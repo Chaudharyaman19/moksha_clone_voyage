@@ -10,7 +10,7 @@ export default function MokshaShlokSection() {
   }, []);
 
   return (
-    <section className="w-full relative overflow-hidden py-16 md:py-20 lg:py-24 bg-[#F8F4EC]">
+    <section className="w-full relative overflow-hidden py-10 md:py-4 lg:py-5 bg-[#F8F4EC]">
       {/* Background Base with subtle texture */}
       <div className="absolute inset-0 bg-[#F8F4EC]">
         <div
@@ -192,7 +192,7 @@ export default function MokshaShlokSection() {
               }`}
             >
               {/* Main Image */}
-              <div className="relative h-[450px] rounded-md overflow-hidden shadow-xl mb-6">
+              <div className="relative h-[600px] rounded-md overflow-hidden shadow-xl mb-6">
                 <img
                   src="/assets/grahpravesh.jpg"
                   alt="Sacred"
