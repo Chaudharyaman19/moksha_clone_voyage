@@ -74,6 +74,79 @@ export default function CompassionSection() {
               step with dignity and care.
             </p>
 
+            {/* New Stats Row - Added for balance */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
+                <div className="text-xl font-bold text-[#8B6A3E]">500+</div>
+                <div className="text-xs text-[#5A4030]">Families Served</div>
+                <div className="text-[9px] text-[#5A4030]/60 mt-1">
+                  With Compassion
+                </div>
+              </div>
+              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
+                <div className="text-xl font-bold text-[#8B6A3E]">50+</div>
+                <div className="text-xs text-[#5A4030]">Verified Pandits</div>
+                <div className="text-[9px] text-[#5A4030]/60 mt-1">
+                  Across India
+                </div>
+              </div>
+              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
+                <div className="text-xl font-bold text-[#8B6A3E]">15+</div>
+                <div className="text-xs text-[#5A4030]">Cities Covered</div>
+                <div className="text-[9px] text-[#5A4030]/60 mt-1">
+                  Pan-India Network
+                </div>
+              </div>
+            </div>
+
+            {/* New Features Grid - Added for balance */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
+                <div>
+                  <div className="text-sm font-medium text-[#3A2A1F]">
+                    Transparent Pricing
+                  </div>
+                  <div className="text-xs text-[#5A4030]/70">
+                    No hidden costs, upfront quotes
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
+                <div>
+                  <div className="text-sm font-medium text-[#3A2A1F]">
+                    Digital Agreements
+                  </div>
+                  <div className="text-xs text-[#5A4030]/70">
+                    Secure documentation
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
+                <div>
+                  <div className="text-sm font-medium text-[#3A2A1F]">
+                    Ritual Guidance
+                  </div>
+                  <div className="text-xs text-[#5A4030]/70">
+                    Step-by-step support
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
+                <div>
+                  <div className="text-sm font-medium text-[#3A2A1F]">
+                    NRI Services
+                  </div>
+                  <div className="text-xs text-[#5A4030]/70">
+                    Support from abroad
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <button className="px-7 py-3.5 bg-[#8B6A3E] text-white text-sm rounded-md font-medium hover:bg-[#7A5A2E] transition-colors shadow-sm hover:shadow-md">
                 Learn More
