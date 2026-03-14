@@ -7,8 +7,8 @@ import shlokas from "@/types/shlokas.json";
 export default function Hero() {
   const images = useMemo(
     () => [
-      "/assets/im5.jpeg",
-      "/assets/im2.jpeg",
+      "/assets/image.webp",
+      "/assets/image3.png",
       "/assets/im3.jpeg",
       "/assets/im4.jpeg",
     ],
