@@ -3,16 +3,6 @@
 import { Mail, Phone, User, Users, Shield } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Cinzel, Inter } from "next/font/google";
-
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-});
 
 export default function TopInfoBar() {
   const [isMusicOn, setIsMusicOn] = useState(false);
@@ -37,12 +27,9 @@ export default function TopInfoBar() {
     return diffDays % playlist.length;
   };
 
-  const [currentTrack, setCurrentTrack] = useState(getTodayTrack());
-
   const toggleMusic = async () => {
     try {
       const todayTrack = getTodayTrack();
-      setCurrentTrack(todayTrack);
 
       if (!audioRef.current) {
         audioRef.current = new Audio(playlist[todayTrack]);
@@ -75,7 +62,7 @@ export default function TopInfoBar() {
   return (
     <div
       id="topbar"
-      className={`fixed top-0 left-0 w-full bg-[#2A1A0F] text-white z-[60] border-b border-white/10 ${inter.className}`}
+      className="fixed top-0 left-0 w-full bg-[#2A1A0F] text-white z-[60] border-b border-white/10 font-sans"
     >
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex items-center justify-between">
         <div className="flex items-center gap-2 md:gap-4">
@@ -155,7 +142,7 @@ export default function TopInfoBar() {
 
           <Link
             href="/login"
-            className={`flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors ${cinzel.className}`}
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <User size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">User Login</span>
@@ -167,7 +154,7 @@ export default function TopInfoBar() {
 
           <Link
             href="/vendorlogin"
-            className={`flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors ${cinzel.className}`}
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <Users size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Vendor Login</span>
@@ -175,14 +162,14 @@ export default function TopInfoBar() {
 
           <div className="hidden md:block w-px h-3 bg-white/20"></div>
 
-          {/* Moksha Seva */}
+          {/* Moksha Sewa */}
 
           <Link
             href="/login"
-            className={`flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors ${cinzel.className}`}
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <Shield size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Moksha Seva</span>
+            <span className="hidden md:inline text-[11px]">Moksha Sewa</span>
           </Link>
 
           <div className="hidden md:block w-px h-3 bg-white/20"></div>
@@ -191,7 +178,7 @@ export default function TopInfoBar() {
 
           <Link
             href="/login"
-            className={`flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors ${cinzel.className}`}
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <Shield size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Mortal Records</span>

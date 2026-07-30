@@ -1,21 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PiFlowerLotus, PiHeart, PiHandHeart, PiStar } from "react-icons/pi";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaQuoteRight } from "react-icons/fa";
 import { FiClock, FiUsers, FiMapPin, FiAward } from "react-icons/fi";
-import { BsShieldCheck, BsHeart, BsHandThumbsUp } from "react-icons/bs";
+import { BsShieldCheck } from "react-icons/bs";
 
-export default function Serving() {
-  const [isVisible, setIsVisible] = useState(false);
+interface ServingProps {
+  variant?: "voyage" | "seva";
+}
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const themeColor = "#8B6A3E";
-  const themeColorLight = "#F5E9D9";
-  const themeColorDark = "#5A3E2B";
+export default function Serving({ variant = "voyage" }: ServingProps) {
+  const isVisible = true;
 
   return (
     <section className="w-full relative overflow-hidden bg-gradient-to-b from-[#FAF7F2] to-white h-200 flex items-center">
@@ -38,20 +33,21 @@ export default function Serving() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/5 rounded-full border border-[#8B6A3E]/10 mb-3">
             <PiFlowerLotus className="w-3.5 h-3.5 text-[#8B6A3E]" />
             <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E]">
-              Who We Serve
+              {variant === "seva" ? "Families We Support" : "Who We Serve"}
             </span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-3xl font-light text-[#2C1810] mb-2">
-            Serving Humanity
+            {variant === "seva" ? "Moksha Sewa for" : "Serving Humanity"}
             <span className="block text-4xl md:text-4xl lg:text-4xl font-serif text-[#8B6A3E] mt-1">
-              Beyond Boundaries
+              {variant === "seva" ? "Every Sacred Duty" : "Beyond Boundaries"}
             </span>
           </h2>
 
           <p className="text-[#5A3E2B]/70 text-sm max-w-2xl mx-auto">
-            Families in India · Global NRI Community · Senior Citizens · Shelter
-            Homes & NGO Partners
+            {variant === "seva"
+              ? "Bereaved Families · Senior Citizens · Hospitals · Homes · Community Partners"
+              : "Families in India · Global NRI Community · Senior Citizens · Shelter Homes & NGO Partners"}
           </p>
         </div>
 
@@ -66,7 +62,11 @@ export default function Serving() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <div className="relative h-[350px] md:h-[450px]">
                 <Image
-                  src="/assets/bodytransport.jpeg"
+                  src={
+                    variant === "seva"
+                      ? "/assets/ambulance.avif"
+                      : "/assets/bodytransport.jpeg"
+                  }
                   alt="Serving with Compassion"
                   fill
                   className="object-cover"
@@ -77,8 +77,12 @@ export default function Serving() {
 
               <div className="absolute bottom-3 left-3 right-3 flex gap-2">
                 <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1.5 flex-1">
-                  <div className="text-[#8B6A3E] font-bold text-xs">30M+</div>
-                  <div className="text-[8px] text-[#5A3E2B]">NRI Community</div>
+                  <div className="text-[#8B6A3E] font-bold text-xs">
+                    {variant === "seva" ? "500+" : "30M+"}
+                  </div>
+                  <div className="text-[8px] text-[#5A3E2B]">
+                    {variant === "seva" ? "Families Helped" : "NRI Community"}
+                  </div>
                 </div>
                 <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1.5 flex-1">
                   <div className="text-[#8B6A3E] font-bold text-xs">24/7</div>
@@ -99,17 +103,32 @@ export default function Serving() {
             {/* Title */}
             <div className="mb-4">
               <h3 className="text-xl md:text-2xl font-serif text-[#2C1810] mb-2">
-                NRI Community
+                {variant === "seva" ? "Complete Funeral Care" : "NRI Community"}
                 <span className="block text-[#8B6A3E] text-lg">
-                  Our Beachhead Market
+                  {variant === "seva" ? "When Families Need Calm Help" : "Our Beachhead Market"}
                 </span>
               </h3>
 
               <p className="text-[#5A3E2B]/70 text-xs leading-relaxed">
-                <span className="font-medium text-[#8B6A3E]">30M+ Indians</span>{" "}
-                living in the UK, USA, UAE, Canada, Australia, Singapore, and
-                the Gulf. Distance transforms grief into paralysis. We become
-                your eyes, hands, and voice in India.
+                {variant === "seva" ? (
+                  <>
+                    <span className="font-medium text-[#8B6A3E]">
+                      Moksha Sewa
+                    </span>{" "}
+                    arranges the practical and sacred details with one reliable
+                    team, so families can focus on prayer, presence and
+                    farewell.
+                  </>
+                ) : (
+                  <>
+                    <span className="font-medium text-[#8B6A3E]">
+                      30M+ Indians
+                    </span>{" "}
+                    living in the UK, USA, UAE, Canada, Australia, Singapore,
+                    and the Gulf. Distance transforms grief into paralysis. We
+                    become your eyes, hands, and voice in India.
+                  </>
+                )}
               </p>
             </div>
 
@@ -118,23 +137,38 @@ export default function Serving() {
               {[
                 {
                   icon: PiHandHeart,
-                  title: "Pain Point Intensity",
-                  desc: "Managing sacred duties from thousands of miles away",
+                  title:
+                    variant === "seva" ? "Urgent Coordination" : "Pain Point Intensity",
+                  desc:
+                    variant === "seva"
+                      ? "Vehicle, venue, samagri and timing handled quickly"
+                      : "Managing sacred duties from thousands of miles away",
                 },
                 {
                   icon: BsShieldCheck,
-                  title: "Financial Capacity",
-                  desc: "3-5x average domestic transaction value",
+                  title:
+                    variant === "seva" ? "Transparent Pricing" : "Financial Capacity",
+                  desc:
+                    variant === "seva"
+                      ? "Clear service details before arrangements begin"
+                      : "3-5x average domestic transaction value",
                 },
                 {
                   icon: PiHeart,
-                  title: "Community Referral",
-                  desc: "Intensely community-networked diaspora",
+                  title: variant === "seva" ? "Ritual Respect" : "Community Referral",
+                  desc:
+                    variant === "seva"
+                      ? "Pandit ji and customs matched to family traditions"
+                      : "Intensely community-networked diaspora",
                 },
                 {
                   icon: FiAward,
-                  title: "Recurring Relationship",
-                  desc: "Elder-care check-ins & pre-planning",
+                  title:
+                    variant === "seva" ? "Family Assistance" : "Recurring Relationship",
+                  desc:
+                    variant === "seva"
+                      ? "Relatives coordination and post-ritual support"
+                      : "Elder-care check-ins & pre-planning",
                 },
               ].map((feature, idx) => {
                 const Icon = feature.icon;
@@ -171,13 +205,14 @@ export default function Serving() {
                 </div>
                 <div>
                   <p className="text-[10px] text-[#5A3E2B]/80 italic mb-1">
-                    "Living in London when my father passed in Delhi, I was
-                    paralysed. Moksha Voyage became my eyes, my hands, and my
-                    voice in India. I never felt alone, not for a single
-                    moment."
+                    {variant === "seva"
+                      ? "\"During our difficult time, Moksha Sewa arranged the pandit ji, samagri, vehicle and prayer hall with dignity. Their team stayed calm when our family needed it most.\""
+                      : "\"Living in London when my father passed in Delhi, I was paralysed. Moksha Voyage became my eyes, my hands, and my voice in India. I never felt alone, not for a single moment.\""}
                   </p>
                   <p className="text-[9px] font-medium text-[#8B6A3E]">
-                    — Priya Sharma, London, UK
+                    {variant === "seva"
+                      ? "— Sharma Family, Delhi NCR"
+                      : "— Priya Sharma, London, UK"}
                   </p>
                 </div>
               </div>
@@ -186,23 +221,23 @@ export default function Serving() {
             {/* Grief Support Ecosystem */}
             <div className="mb-4">
               <h4 className="text-xs font-medium text-[#2C1810] mb-1.5">
-                Grief Support Ecosystem
+                {variant === "seva" ? "Moksha Sewa Includes" : "Grief Support Ecosystem"}
               </h4>
               <div className="flex flex-wrap gap-1.5 font-bold ">
                 <span className="px-1.5 py-0.5 bg-[#8B6A3E]/5  text-[13px] text-[#5A3E2B] rounded-full border border-[#8B6A3E]/10">
-                  Professional Counselling
+                  {variant === "seva" ? "Funeral Samagri" : "Professional Counselling"}
                 </span>
                 <span className="px-1.5 py-0.5 bg-[#8B6A3E]/5 text-[13px] text-[#5A3E2B] rounded-full border border-[#8B6A3E]/10">
-                  Peer Support Groups
+                  {variant === "seva" ? "Pandit Service" : "Peer Support Groups"}
                 </span>
                 <span className="px-1.5 py-0.5 bg-[#8B6A3E]/5 text-[13px] text-[#5A3E2B] rounded-full border border-[#8B6A3E]/10">
-                  Children & Grief Resources
+                  {variant === "seva" ? "Hearse Van" : "Children & Grief Resources"}
                 </span>
                 <span className="px-1.5 py-0.5 bg-[#8B6A3E]/5 text-[13px] text-[#5A3E2B] rounded-full border border-[#8B6A3E]/10">
-                  Ritual Continuity Support
+                  {variant === "seva" ? "Prayer Hall" : "Ritual Continuity Support"}
                 </span>
                 <span className="px-1.5 py-0.5 bg-[#8B6A3E]/5 text-[13px] text-[#5A3E2B] rounded-full border border-[#8B6A3E]/10">
-                  Crisis Intervention 24/7
+                  {variant === "seva" ? "24/7 Support" : "Crisis Intervention 24/7"}
                 </span>
               </div>
             </div>
@@ -210,7 +245,7 @@ export default function Serving() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-2">
               <button className="flex-1 px-4 py-2 bg-[#8B6A3E] text-white rounded-lg text-xs font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
-                <span>Find Support Now</span>
+                <span>{variant === "seva" ? "Call Moksha Sewa" : "Find Support Now"}</span>
                 <svg
                   className="w-3.5 h-3.5"
                   fill="none"
@@ -226,7 +261,9 @@ export default function Serving() {
                 </svg>
               </button>
               <button className="flex-1 px-4 py-2 border border-[#8B6A3E] text-[#8B6A3E] rounded-lg text-xs font-medium hover:bg-[#F5E9D9] transition-all duration-300 flex items-center justify-center gap-2">
-                <span>Join Support Community</span>
+                <span>
+                  {variant === "seva" ? "Plan Ritual Arrangements" : "Join Support Community"}
+                </span>
                 <PiHandHeart className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -239,20 +276,20 @@ export default function Serving() {
             {
               icon: FiClock,
               value: "24/7",
-              label: "Care Coordination",
+              label: variant === "seva" ? "Sewa Support" : "Care Coordination",
               desc: "365 days a year",
             },
             {
               icon: FiMapPin,
-              value: "50+",
+              value: variant === "seva" ? "15+" : "50+",
               label: "Cities Across India",
               desc: "Verified provider network",
             },
             {
               icon: FiUsers,
-              value: "30M+",
-              label: "NRI Community",
-              desc: "Global Indian diaspora",
+              value: variant === "seva" ? "500+" : "30M+",
+              label: variant === "seva" ? "Families Served" : "NRI Community",
+              desc: variant === "seva" ? "With dignity and care" : "Global Indian diaspora",
             },
             {
               icon: PiStar,

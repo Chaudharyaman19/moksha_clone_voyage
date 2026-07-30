@@ -15,13 +15,13 @@ export default function Page() {
     <div>
       <Sideicon />
       <Topbar />
-      <Navbar />
-      <Hero />
-      <CompassionSection />
-      <HowWeHelp />
-      <Serving />
-      <SacredJourney />
-      <Footer />
+      <Navbar variant="seva" />
+      <Hero variant="seva" />
+      <CompassionSection variant="seva" />
+      <HowWeHelp variant="seva" />
+      <Serving variant="seva" />
+      <SacredJourney variant="seva" />
+      <Footer variant="seva" />
     </div>
   );
 }

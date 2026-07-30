@@ -1,5 +1,5 @@
 "use client";
-import { useState, ReactElement } from "react";
+import { ReactElement } from "react";
 import Mantra from "../Mantra/Mantra";
 
 interface CustomIconProps {
@@ -73,58 +73,100 @@ interface StatItem {
   label: string;
 }
 
-export default function HowWeCanHelp() {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+interface HowWeHelpProps {
+  variant?: "voyage" | "seva";
+}
 
-  const cards: CardItem[] = [
-    {
-      icon: "FaFireAlt",
-      title: "Cremation Services",
-      desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
-      color: "from-[#8B6A3E] to-[#A88B5E]",
-      features: [
-        "Cremation Ground Booking",
-        "Pandit Services",
-        "Ritual Materials",
-      ],
-    },
-    {
-      icon: "FaGlobeAsia",
-      title: "NRI Cross-Border",
-      desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
-      color: "from-[#5C4033] to-[#7A5B46]",
-      features: [
-        "Family Representative",
-        "Legal Documentation",
-        "Body/Ash Repatriation",
-      ],
-    },
-    {
-      icon: "FaPrayingHands",
-      title: "Grief Support",
-      desc: "Professional counselling, peer support communities, and post-funeral ritual guidance.",
-      color: "from-[#4A716C] to-[#5E8B83]",
-      features: ["Grief Counselling", "Peer Communities", "Ritual Continuity"],
-    },
-    {
-      icon: "FaVideo",
-      title: "Digital Legacy",
-      desc: "Permanent digital memorials, document vault, and video tributes to preserve memories.",
-      color: "from-[#6B7D6E] to-[#8A9B8C]",
-      features: ["Digital Memorials", "Document Vault", "Obituary Publishing"],
-    },
-  ];
+export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
+  const cards: CardItem[] =
+    variant === "seva"
+      ? [
+          {
+            icon: "FaFireAlt",
+            title: "Funeral Samagri",
+            desc: "Essential antim sanskar items arranged with purity, completeness and timely delivery.",
+            color: "from-[#8B6A3E] to-[#A88B5E]",
+            features: ["Complete Samagri Kit", "Quality Items", "Quick Delivery"],
+          },
+          {
+            icon: "FaPrayingHands",
+            title: "Pandit Service",
+            desc: "Experienced pandit ji for last rites, shraddh, havan and family-specific rituals.",
+            color: "from-[#5C4033] to-[#7A5B46]",
+            features: ["Vedic Guidance", "Ritual Planning", "Regional Traditions"],
+          },
+          {
+            icon: "FaGlobeAsia",
+            title: "Ambulance & Hearse",
+            desc: "Respectful body transport support with ambulance, hearse van and route coordination.",
+            color: "from-[#4A716C] to-[#5E8B83]",
+            features: ["Body Transport", "Hearse Van", "24/7 Availability"],
+          },
+          {
+            icon: "FaVideo",
+            title: "Prayer Hall & Support",
+            desc: "Prayer hall booking, decoration, relatives coordination and calm family assistance.",
+            color: "from-[#6B7D6E] to-[#8A9B8C]",
+            features: ["Prayer Hall", "Floral Decoration", "Family Coordination"],
+          },
+        ]
+      : [
+          {
+            icon: "FaFireAlt",
+            title: "Cremation Services",
+            desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
+            color: "from-[#8B6A3E] to-[#A88B5E]",
+            features: [
+              "Cremation Ground Booking",
+              "Pandit Services",
+              "Ritual Materials",
+            ],
+          },
+          {
+            icon: "FaGlobeAsia",
+            title: "NRI Cross-Border",
+            desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
+            color: "from-[#5C4033] to-[#7A5B46]",
+            features: [
+              "Family Representative",
+              "Legal Documentation",
+              "Body/Ash Repatriation",
+            ],
+          },
+          {
+            icon: "FaPrayingHands",
+            title: "Grief Support",
+            desc: "Professional counselling, peer support communities, and post-funeral ritual guidance.",
+            color: "from-[#4A716C] to-[#5E8B83]",
+            features: ["Grief Counselling", "Peer Communities", "Ritual Continuity"],
+          },
+          {
+            icon: "FaVideo",
+            title: "Digital Legacy",
+            desc: "Permanent digital memorials, document vault, and video tributes to preserve memories.",
+            color: "from-[#6B7D6E] to-[#8A9B8C]",
+            features: ["Digital Memorials", "Document Vault", "Obituary Publishing"],
+          },
+        ];
 
-  const stats: StatItem[] = [
-    { icon: "FaClock", value: "24/7", label: "Care Coordinators" },
-    { icon: "FaUsers", value: "30M+", label: "NRI Community Served" },
-    {
-      icon: "FaHeart",
-      value: "100%",
-      label: "Pricing Transparency",
-    },
-    { icon: "FaStar", value: "12,000 Cr", label: "Indian Funeral Market" },
-  ];
+  const stats: StatItem[] =
+    variant === "seva"
+      ? [
+          { icon: "FaClock", value: "24/7", label: "Immediate Assistance" },
+          { icon: "FaUsers", value: "500+", label: "Families Supported" },
+          { icon: "FaHeart", value: "100%", label: "Respectful Care" },
+          { icon: "FaStar", value: "15+", label: "Service Cities" },
+        ]
+      : [
+          { icon: "FaClock", value: "24/7", label: "Care Coordinators" },
+          { icon: "FaUsers", value: "30M+", label: "NRI Community Served" },
+          {
+            icon: "FaHeart",
+            value: "100%",
+            label: "Pricing Transparency",
+          },
+          { icon: "FaStar", value: "12,000 Cr", label: "Indian Funeral Market" },
+        ];
 
   const circleStyles = [
     {
@@ -208,15 +250,17 @@ export default function HowWeCanHelp() {
           <div className="inline-flex items-center space-x-3 mb-6">
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent"></div>
             <span className="text-[#8B6A3E] font-medium tracking-widest uppercase text-xs">
-              Our Services
+              {variant === "seva" ? "Moksha Sewa Services" : "Our Services"}
             </span>
             <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent"></div>
           </div>
 
           <h2 className="text-3xl md:text-5xl lg:text-3xl font-light text-[#3A2A1F] leading-tight mb-4">
-            <span className="block">End-to-End Cremation &</span>
+            <span className="block">
+              {variant === "seva" ? "Complete Funeral &" : "End-to-End Cremation &"}
+            </span>
             <span className="relative inline-block">
-              Ritual Services
+              {variant === "seva" ? "Antim Sanskar Sewa" : "Ritual Services"}
               <svg
                 className="absolute -bottom-2 left-0 w-full h-2.5 text-[#E8DBC5]/70"
                 viewBox="0 0 100 10"
@@ -233,8 +277,9 @@ export default function HowWeCanHelp() {
           </h2>
 
           <p className="text-lg md:text-sm text-[#6E4B3A]/80 max-w-3xl mx-auto font-light leading-relaxed">
-            Verified Service Network · NRI Cross-Border Coordination · Radical
-            Pricing Transparency
+            {variant === "seva"
+              ? "Funeral Samagri · Pandit Ji · Ambulance · Hearse Van · Prayer Hall"
+              : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
           </p>
         </div>
 
@@ -243,8 +288,6 @@ export default function HowWeCanHelp() {
             <div
               key={index}
               className="relative group"
-              onMouseEnter={() => setActiveCard(index)}
-              onMouseLeave={() => setActiveCard(null)}
             >
               <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-5 border border-[#E8DBC5] h-full flex flex-col overflow-hidden">
                 <div className="relative mb-4">
@@ -318,7 +361,7 @@ export default function HowWeCanHelp() {
             <button className="relative px-6 py-3 md:px-8 md:py-3 bg-gradient-to-br from-[#8B6A3E] to-[#A88B5E] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <div className="relative z-10 flex items-center justify-center space-x-2">
                 <span className="text-base font-medium">
-                  Explore All Services
+                  {variant === "seva" ? "Explore Moksha Sewa" : "Explore All Services"}
                 </span>
                 <CustomIcon name="FaArrowRight" className="w-3.5 h-3.5" />
               </div>
@@ -326,7 +369,7 @@ export default function HowWeCanHelp() {
           </div>
 
           <p className="text-[#6E4B3A] mt-6 text-sm md:text-base font-light">
-            Need immediate assistance?{" "}
+            {variant === "seva" ? "Need urgent funeral support? " : "Need immediate assistance? "}
             <a
               href="tel:+9118001234567"
               className="text-[#8B6A3E] font-normal hover:underline"
@@ -338,7 +381,7 @@ export default function HowWeCanHelp() {
       </div>
 
       <div style={{ marginTop: "40px" }}>
-        <Mantra />
+        <Mantra variant={variant} />
       </div>
     </section>
   );

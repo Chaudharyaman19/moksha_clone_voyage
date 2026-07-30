@@ -1,36 +1,42 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo, useRef } from "react";
-import { ChevronLeft, ChevronRight, Play, Pause, Shield } from "lucide-react";
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { ChevronLeft, ChevronRight, Shield } from "lucide-react";
 import shlokas from "@/types/shlokas.json";
 
-export default function Hero() {
+type Mantra = (typeof shlokas)[number];
+
+interface HeroProps {
+  variant?: "voyage" | "seva";
+}
+
+export default function Hero({ variant = "voyage" }: HeroProps) {
   const images = useMemo(
-    () => [
-      "/assets/image.webp",
-      "/assets/image3.png",
-      "/assets/im3.jpeg",
-      "/assets/im4.jpeg",
-    ],
-    [],
+    () =>
+      variant === "seva"
+        ? [
+            "/assets/four.jpg",
+            "/assets/im1.jpeg",
+            "/assets/im3.jpeg",
+            "/assets/im4.jpeg",
+          ]
+        : [
+            "/assets/image.webp",
+            "/assets/image3.png",
+            "/assets/im3.jpeg",
+            "/assets/im4.jpeg",
+          ],
+    [variant],
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [mantra, setMantra] = useState<any>(null);
-  const [audioPlaying, setAudioPlaying] = useState(false);
-  const [audioError, setAudioError] = useState(false);
-  const [audioLoading, setAudioLoading] = useState(false);
-  const [hasAudio, setHasAudio] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying] = useState(true);
 
   const slideMantras = useMemo(() => {
     return [shlokas[0], shlokas[1], shlokas[2], shlokas[3]];
   }, []);
 
-  useEffect(() => {
-    setMantra(slideMantras[currentIndex] || shlokas[0]);
-  }, [currentIndex, slideMantras]);
+  const mantra: Mantra = slideMantras[currentIndex] || shlokas[0];
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -50,132 +56,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [isPlaying, nextSlide]);
 
-  // Check if mantra has valid audio
-  useEffect(() => {
-    if (mantra && mantra.audio) {
-      // Check if audio file exists by trying to load it
-      const audio = new Audio();
-      audio.src = mantra.audio;
-
-      audio.oncanplaythrough = () => {
-        setHasAudio(true);
-        setAudioError(false);
-      };
-
-      audio.onerror = () => {
-        console.log(`Audio file not found: ${mantra.audio}`);
-        setHasAudio(false);
-        setAudioError(true);
-      };
-
-      return () => {
-        audio.oncanplaythrough = null;
-        audio.onerror = null;
-      };
-    } else {
-      setHasAudio(false);
-      setAudioError(true);
-    }
-  }, [mantra]);
-
-  useEffect(() => {
-    if (!mantra || !audioRef.current || !hasAudio) return;
-
-    const audio = audioRef.current;
-
-    // Reset states
-    setAudioError(false);
-    setAudioLoading(true);
-
-    // Set up audio event listeners
-    const handleCanPlay = () => {
-      console.log("Audio can play now");
-      setAudioLoading(false);
-    };
-
-    const handlePlay = () => {
-      console.log("Audio playing");
-      setAudioPlaying(true);
-    };
-
-    const handlePause = () => {
-      console.log("Audio paused");
-      setAudioPlaying(false);
-    };
-
-    const handleEnded = () => {
-      console.log("Audio ended");
-      setAudioPlaying(false);
-    };
-
-    const handleError = (e: Event) => {
-      const target = e.target as HTMLAudioElement;
-      console.log("Audio unavailable for this mantra");
-      setAudioError(true);
-      setAudioLoading(false);
-      setAudioPlaying(false);
-      setHasAudio(false);
-    };
-
-    const handleLoadedMetadata = () => {
-      console.log("Audio metadata loaded");
-    };
-
-    audio.addEventListener("canplay", handleCanPlay);
-    audio.addEventListener("play", handlePlay);
-    audio.addEventListener("pause", handlePause);
-    audio.addEventListener("ended", handleEnded);
-    audio.addEventListener("error", handleError);
-    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-
-    // Set audio source
-    audio.src = mantra.audio;
-    audio.load();
-
-    return () => {
-      audio.removeEventListener("canplay", handleCanPlay);
-      audio.removeEventListener("play", handlePlay);
-      audio.removeEventListener("pause", handlePause);
-      audio.removeEventListener("ended", handleEnded);
-      audio.removeEventListener("error", handleError);
-      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      audio.pause();
-      audio.src = "";
-    };
-  }, [mantra, hasAudio]);
-
-  // ---------------- AUDIO CONTROL ----------------
-  const toggleAudio = async () => {
-    if (!audioRef.current || !hasAudio) return;
-
-    const audio = audioRef.current;
-
-    try {
-      if (audio.paused) {
-        setAudioLoading(true);
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log("Playback started successfully");
-              setAudioLoading(false);
-            })
-            .catch((error) => {
-              console.log("Playback failed:", error);
-              setAudioError(true);
-              setAudioLoading(false);
-            });
-        }
-      } else {
-        audio.pause();
-      }
-    } catch (err) {
-      console.log("Audio error:", err);
-      setAudioError(true);
-      setAudioLoading(false);
-    }
-  };
-
   return (
     <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
       {/* Background Images */}
@@ -192,9 +72,6 @@ export default function Hero() {
         {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
-
-      {/* Audio Element */}
-      <audio ref={audioRef} preload="metadata" />
 
       {/* Navigation Arrows */}
       <button
@@ -236,14 +113,16 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/30 backdrop-blur-sm">
             <Shield className="w-4 h-4 text-amber-200" />
             <span className="text-xs sm:text-sm text-white font-medium tracking-wider">
-              TRUSTED SINCE 2005
+              {variant === "seva" ? "MOKSHA SEWA SUPPORT" : "TRUSTED SINCE 2005"}
             </span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white">
-            A Journey Guided{" "}
-            <span className="block text-amber-300">by Love</span>
+            {variant === "seva" ? "Moksha Sewa" : "A Journey Guided"}{" "}
+            <span className="block text-amber-300">
+              {variant === "seva" ? "with Dignity & Care" : "by Love"}
+            </span>
           </h1>
 
           {/* Mantra Section */}

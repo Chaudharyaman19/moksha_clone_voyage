@@ -19,18 +19,12 @@ import {
   FaPlaceOfWorship,
   FaMagic,
 } from "react-icons/fa";
-import { Cinzel, Inter } from "next/font/google";
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
+interface NavbarProps {
+  variant?: "voyage" | "seva";
+}
 
-const inter = Inter({
-  subsets: ["latin"],
-});
-
-export default function Navbar() {
+export default function Navbar({ variant = "voyage" }: NavbarProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -242,17 +236,21 @@ export default function Navbar() {
           scrolled
             ? "bg-white backdrop-blur-lg shadow-sm py-0"
             : "bg-white py-0 "
-        } ${inter.className}`}
+        } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-12">
             <div className="absolute top-1 left-4 sm:left-30 z-10">
               <button onClick={() => handleNavigation("/", "home")}>
-                <div className="w-14 h-14 sm:w-30 sm:h-30 overflow-hidden rounded-md bg-white">
+                <div className="w-14 h-16 sm:w-28 sm:h-32 rounded-md bg-white p-1.5 sm:p-2">
                   <img
-                    src="/assets/logoreal-removebg-preview.png"
-                    alt="Moksha Voyage Logo"
-                    className="w-full h-full object-cover"
+                    src={
+                      variant === "seva"
+                        ? "/assets/logo Moksha Seva.png"
+                        : "/assets/logoreal-removebg-preview.png"
+                    }
+                    alt={variant === "seva" ? "Moksha Sewa Logo" : "Moksha Voyage Logo"}
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </button>
@@ -270,7 +268,7 @@ export default function Navbar() {
                         activeLink === item.name.toLowerCase()
                           ? "text-[#8B6A3E]"
                           : "text-[#5A4030] hover:text-[#8B6A3E]"
-                      } ${cinzel.className}`}
+                      }`}
                     >
                       <span className="font-medium">{item.name}</span>
                       <HiChevronDown
@@ -284,7 +282,7 @@ export default function Navbar() {
                         activeLink === item.name.toLowerCase()
                           ? "text-[#8B6A3E]"
                           : "text-[#5A4030] hover:text-[#8B6A3E]"
-                      } ${cinzel.className}`}
+                      }`}
                     >
                       <span className="font-medium">{item.name}</span>
                     </button>
@@ -305,7 +303,7 @@ export default function Navbar() {
                             onClick={() =>
                               handleNavigation(subItem.path, subItem.name)
                             }
-                            className={`flex items-center space-x-2 w-full px-4 py-2 text-[#5A4030] hover:bg-gray-50 transition-all duration-150 ${cinzel.className}`}
+                            className="flex items-center space-x-2 w-full px-4 py-2 text-[#5A4030] hover:bg-gray-50 transition-all duration-150"
                           >
                             <span className="text-[#5A4030]/80 w-5">
                               {subItem.icon}
@@ -339,8 +337,8 @@ export default function Navbar() {
       {open && (
         <div
           className={`lg:hidden fixed left-0 ${
-            hideTopBar ? "top-12" : "top-22"
-          } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 ${inter.className}`}
+            hideTopBar ? "top-12" : "top-24"
+          } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 font-sans`}
         >
           <div className="px-3 py-3 space-y-0.5">
             {navItems.map((item) => (
@@ -348,7 +346,7 @@ export default function Navbar() {
                 {item.dropdown ? (
                   <button
                     onClick={() => toggleDropdown(item.name)}
-                    className={`flex items-center justify-between w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50 ${cinzel.className}`}
+                    className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50"
                   >
                     <div className="flex items-center space-x-2">
                       <span className="text-base">{item.icon}</span>
@@ -365,7 +363,7 @@ export default function Navbar() {
                 ) : (
                   <button
                     onClick={() => handleNavigation(item.path, item.name)}
-                    className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50 ${cinzel.className}`}
+                    className="flex items-center space-x-2 w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50"
                   >
                     <span className="text-base">{item.icon}</span>
                     <span className="text-[15px] font-medium">{item.name}</span>
@@ -381,7 +379,7 @@ export default function Navbar() {
                           handleNavigation(subItem.path, subItem.name);
                           setOpen(false);
                         }}
-                        className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md text-[#5A4030] hover:bg-gray-100 transition-all duration-150 ${cinzel.className}`}
+                        className="flex items-center space-x-2 w-full px-3 py-1.5 rounded-md text-[#5A4030] hover:bg-gray-100 transition-all duration-150"
                       >
                         <span className="text-[#5A4030]/70">
                           {subItem.icon}

@@ -17,12 +17,17 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import mokshalogo from "../../public/assets/logoreal.jpeg";
+import mokshaSevaLogo from "../../public/assets/logo Moksha Seva.png";
 
-export default function Footer() {
+interface FooterProps {
+  variant?: "voyage" | "seva";
+}
+
+export default function Footer({ variant = "voyage" }: FooterProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e: any) => {
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email) {
       setSubscribed(true);
@@ -33,29 +38,34 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-[#3A2A1F] text-white">
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        <div className="flex flex-col lg:flex-row gap-8 mb-10">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-14">
+        <div className="flex flex-col lg:flex-row gap-10 mb-12">
           <div className="lg:w-2/5">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="relative w-14 h-14  overflow-hidden">
+              <div className="relative w-20 h-20 rounded-md bg-white p-2">
                 <Image
-                  src={mokshalogo}
-                  alt="Moksha Voyage"
-                  className="w-full h-full object-cover rounded"
+                  src={variant === "seva" ? mokshaSevaLogo : mokshalogo}
+                  alt={variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
+                  className="w-full h-full object-contain rounded"
                   priority
                 />
               </div>
               <div>
-                <h2 className="text-lg text-white">Moksha Voyage</h2>
+                <h2 className="text-lg text-white">
+                  {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
+                </h2>
                 <p className="text-xs text-white/70">
-                  Compassionate End-of-Life Guidance
+                  {variant === "seva"
+                    ? "Dignified Funeral & Ritual Services"
+                    : "Compassionate End-of-Life Guidance"}
                 </p>
               </div>
             </div>
 
             <p className="text-sm text-white/80 leading-relaxed mb-4 max-w-md">
-              Providing respectful guidance with dignity, tradition and care for
-              every family.
+              {variant === "seva"
+                ? "Complete funeral, cremation, pandit, ambulance, hearse van, prayer hall and family support services with dignity, tradition and care."
+                : "Providing respectful guidance with dignity, tradition and care for every family."}
             </p>
 
             <div className="flex space-x-3">
@@ -90,7 +100,9 @@ export default function Footer() {
             <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm">
               <div className="flex items-center space-x-3 mb-4">
                 <Mail className="w-4 h-4 text-[#E8DBC5]" />
-                <h3 className="text-sm text-white">Stay Connected</h3>
+                <h3 className="text-sm text-white">
+                  {variant === "seva" ? "Request Support" : "Stay Connected"}
+                </h3>
               </div>
 
               <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -98,7 +110,7 @@ export default function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
+                  placeholder={variant === "seva" ? "Family contact email" : "Your email"}
                   className="flex-1 px-3 py-2 rounded-md bg-white text-[#3A2A1F] text-sm outline-none"
                   required
                 />
@@ -110,14 +122,14 @@ export default function Footer() {
                       : "text-white"
                   }`}
                 >
-                  {subscribed ? "Done" : "Join"}
+                  {subscribed ? "Done" : variant === "seva" ? "Send" : "Join"}
                 </button>
               </form>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12 text-sm">
           <div>
             <h3 className="text-sm font-medium text-white mb-3">Quick Links</h3>
             <ul className="space-y-2 text-white/80">
@@ -139,10 +151,21 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-medium text-white mb-3">Services</h3>
             <ul className="space-y-2 text-white/80">
-              <li>Ritual Guidance</li>
-              <li>Planning Support</li>
-              <li>Documentation</li>
-              <li>24/7 Care</li>
+              {variant === "seva" ? (
+                <>
+                  <li>Funeral Samagri</li>
+                  <li>Pandit Service</li>
+                  <li>Ambulance & Hearse Van</li>
+                  <li>Prayer Hall Booking</li>
+                </>
+              ) : (
+                <>
+                  <li>Ritual Guidance</li>
+                  <li>Planning Support</li>
+                  <li>Documentation</li>
+                  <li>24/7 Care</li>
+                </>
+              )}
             </ul>
           </div>
 
@@ -155,11 +178,13 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-[#E8DBC5]" />
-                <span>info@mokshavoyage.com</span>
+                <span>
+                  {variant === "seva" ? "info@mokshayatra.org" : "info@mokshavoyage.com"}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-[#E8DBC5]" />
-                <span>+91 123 456 7890</span>
+                <span>{variant === "seva" ? "+91 96549 00525" : "+91 123 456 7890"}</span>
               </div>
             </div>
           </div>
@@ -184,7 +209,9 @@ export default function Footer() {
         </div>
 
         <div className="text-center text-xs text-white/60 pt-6 border-t border-white/10">
-          © {new Date().getFullYear()} Moksha Voyage • All rights reserved
+          © {new Date().getFullYear()}{" "}
+          {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"} • All rights
+          reserved
         </div>
       </div>
     </footer>

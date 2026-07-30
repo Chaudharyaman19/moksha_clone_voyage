@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+interface MokshaShlokSectionProps {
+  variant?: "voyage" | "seva";
+}
 
-export default function MokshaShlokSection() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setVisible(true);
-  }, []);
+export default function MokshaShlokSection({
+  variant = "voyage",
+}: MokshaShlokSectionProps) {
+  const visible = true;
 
   return (
     <section className="w-full relative overflow-hidden py-10 md:py-4 lg:py-5 bg-[#F8F4EC]">
@@ -34,7 +34,7 @@ export default function MokshaShlokSection() {
             <div className="relative">
               {/* Large decorative quote mark */}
               <div className="absolute -top-6 -left-4 text-8xl text-[#8B6A3E]/20 font-serif">
-                "
+                &quot;
               </div>
 
               {/* OM Symbol with enhanced glow */}
@@ -48,19 +48,21 @@ export default function MokshaShlokSection() {
               {/* Title with elegant underline */}
               <div className="mb-4">
                 <h2 className="text-[#2A1A0F] text-4xl font-light tracking-wide mb-1 drop-shadow-sm">
-                  Moksha Voyage
+                  {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
                 </h2>
                 <div className="flex items-center gap-3">
                   <div className="w-16 h-[2px] bg-[#8B6A3E]/60"></div>
                   <span className="text-[#8B6A3E] text-sm font-medium tracking-[0.25em] uppercase drop-shadow-sm">
-                    Sacred Wisdom
+                    {variant === "seva" ? "Sacred Sewa" : "Sacred Wisdom"}
                   </span>
                 </div>
               </div>
 
               {/* Small description from PDF */}
               <div className="mb-2 text-[#8B6A3E] text-xs tracking-wider">
-                India's First End-to-End Cremation Platform
+                {variant === "seva"
+                  ? "Complete Funeral, Cremation & Ritual Support"
+                  : "India's First End-to-End Cremation Platform"}
               </div>
 
               {/* Shlok with enhanced traditional styling */}
@@ -88,10 +90,11 @@ export default function MokshaShlokSection() {
               <div className="mb-2 p-3 bg-[#8B6A3E]/10 rounded-lg border border-[#8B6A3E]/20">
                 <p className="text-[#2A1A0F] text-xs italic font-medium">
                   <span className="text-[#8B6A3E] font-semibold">
-                    Our Promise:{" "}
+                    {variant === "seva" ? "Moksha Sewa Promise: " : "Our Promise: "}
                   </span>
-                  "Every family will receive the same standard of care, respect,
-                  and transparency we would want for our own loved ones."
+                  {variant === "seva"
+                    ? "\"Every family receives dignified arrangements, clear pricing, verified support and ritual care at the moment they need it most.\""
+                    : "\"Every family will receive the same standard of care, respect, and transparency we would want for our own loved ones.\""}
                 </p>
               </div>
 
@@ -114,15 +117,15 @@ export default function MokshaShlokSection() {
               {/* Core Pillar */}
               <div className="grid grid-cols-5 gap-2 mb-3">
                 <div className="text-[15px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  SIMPLIFY
+                  {variant === "seva" ? "ARRANGE" : "SIMPLIFY"}
                 </div>
 
                 <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  CONNECT
+                  {variant === "seva" ? "GUIDE" : "CONNECT"}
                 </div>
 
                 <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  PROTECT
+                  {variant === "seva" ? "SERVE" : "PROTECT"}
                 </div>
 
                 <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
@@ -130,7 +133,7 @@ export default function MokshaShlokSection() {
                 </div>
 
                 <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  SERVE
+                  {variant === "seva" ? "SUPPORT" : "SERVE"}
                 </div>
               </div>
 
@@ -157,7 +160,7 @@ export default function MokshaShlokSection() {
                 <div className="flex items-center gap-1.5 bg-white/50 p-2 rounded-lg">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E]"></div>
                   <span className="text-[10px] text-[#5A4030]">
-                    Ritual Guidance
+                    {variant === "seva" ? "Funeral Samagri" : "Ritual Guidance"}
                   </span>
                 </div>
               </div>
@@ -177,7 +180,9 @@ export default function MokshaShlokSection() {
 
               {/* Footer Text */}
               <p className="text-center text-[#8B6A3E] text-[12px] tracking-[0.35em] uppercase mt-3 font-bold">
-                A JOURNEY GUIDED BY LOVE
+                {variant === "seva"
+                  ? "MOKSHA SEWA WITH DIGNITY"
+                  : "A JOURNEY GUIDED BY LOVE"}
               </p>
             </div>
           </div>
@@ -194,8 +199,12 @@ export default function MokshaShlokSection() {
               {/* Main Image */}
               <div className="relative h-[600px] rounded-md overflow-hidden shadow-xl mb-6">
                 <img
-                  src="/assets/grahpravesh.jpg"
-                  alt="Sacred"
+                  src={
+                    variant === "seva"
+                      ? "/assets/funeralsamagri.jpeg"
+                      : "/assets/grahpravesh.jpg"
+                  }
+                  alt={variant === "seva" ? "Moksha Sewa" : "Sacred"}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
                 {/* Image Overlay Stats */}
@@ -211,7 +220,7 @@ export default function MokshaShlokSection() {
                     </div>
                     <div className="text-center border-x border-white/20">
                       <div className="text-xl font-bold text-[#D4B68A]">
-                        150+
+                        {variant === "seva" ? "500+" : "150+"}
                       </div>
                       <div className="text-[10px] uppercase tracking-wider">
                         Families
@@ -253,7 +262,7 @@ export default function MokshaShlokSection() {
                   Need immediate assistance?
                 </span>
                 <button className="text-xs bg-[#8B6A3E] text-white px-3 py-1.5 rounded-md hover:bg-[#7A5A2E] transition-colors">
-                  Contact Now
+                  {variant === "seva" ? "Call Now" : "Contact Now"}
                 </button>
               </div>
             </div>

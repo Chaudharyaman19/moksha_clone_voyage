@@ -1,8 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+interface CompassionSectionProps {
+  variant?: "voyage" | "seva";
+}
 
-export default function CompassionSection() {
+export default function CompassionSection({
+  variant = "voyage",
+}: CompassionSectionProps) {
   return (
     <section className="w-full relative overflow-hidden min-h-[650px] md:min-h-[700px] lg:min-h-[750px]">
       <div className="absolute inset-0 z-0">
@@ -32,14 +36,20 @@ export default function CompassionSection() {
             <div className="inline-flex items-center space-x-2 mb-5">
               <div className="w-12 h-0.5 bg-[#8B6A3E]"></div>
               <span className="text-[#8B6A3E] font-medium tracking-wide uppercase text-xs">
-                Our Mission
+                {variant === "seva" ? "Moksha Sewa" : "Our Mission"}
               </span>
             </div>
 
             <h2 className="text-4xl md:text-4xl font-normal text-[#3A2A1F] leading-tight mb-5">
-              <span className="block mb-2">A Journey Guided by Love</span>
+              <span className="block mb-2">
+                {variant === "seva"
+                  ? "Complete Antim Sanskar Support"
+                  : "A Journey Guided by Love"}
+              </span>
               <span className="block font-light text-[#4A3A2F] text-3xl md:text-3xl">
-                with Peace of Mind
+                {variant === "seva"
+                  ? "with Dignity, Rituals & Care"
+                  : "with Peace of Mind"}
               </span>
             </h2>
 
@@ -61,24 +71,20 @@ export default function CompassionSection() {
             <p className="text-[#5A4030] text-base leading-relaxed mb-8 max-w-2xl font-light">
               At{" "}
               <span className="font-semibold text-[#8B6A3E]">
-                Moksha Voyage
+                {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
               </span>
-              To build a trusted, transparent digital ecosystem that connects
-              families with verified end-of-life service providers, provides
-              step-by-step emotional and ritual guidance, and ensures no one
-              navigates life's most profound transition alone or without
-              dignity. Our mission is to create a trusted digital ecosystem that
-              supports families during life’s most difficult moments by
-              connecting them with verified end-of-life service providers and
-              offering compassionate guidance through every emotional and ritual
-              step with dignity and care.
+              {variant === "seva"
+                ? ", we support families through every step of the final rites. From ambulance and hearse van arrangements to funeral samagri, pandit ji, cremation coordination, prayer hall support and post-ritual guidance, our team handles the details with calm, transparency and respect."
+                : " To build a trusted, transparent digital ecosystem that connects families with verified end-of-life service providers, provides step-by-step emotional and ritual guidance, and ensures no one navigates life's most profound transition alone or without dignity. Our mission is to create a trusted digital ecosystem that supports families during life’s most difficult moments by connecting them with verified end-of-life service providers and offering compassionate guidance through every emotional and ritual step with dignity and care."}
             </p>
 
             {/* New Stats Row - Added for balance */}
             <div className="grid grid-cols-3 gap-4 mb-6">
               <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
                 <div className="text-xl font-bold text-[#8B6A3E]">500+</div>
-                <div className="text-xs text-[#5A4030]">Families Served</div>
+                <div className="text-xs text-[#5A4030]">
+                  {variant === "seva" ? "Sewa Requests" : "Families Served"}
+                </div>
                 <div className="text-[9px] text-[#5A4030]/60 mt-1">
                   With Compassion
                 </div>
@@ -105,7 +111,7 @@ export default function CompassionSection() {
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
                 <div>
                   <div className="text-sm font-medium text-[#3A2A1F]">
-                    Transparent Pricing
+                    {variant === "seva" ? "Clear Packages" : "Transparent Pricing"}
                   </div>
                   <div className="text-xs text-[#5A4030]/70">
                     No hidden costs, upfront quotes
@@ -116,10 +122,12 @@ export default function CompassionSection() {
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
                 <div>
                   <div className="text-sm font-medium text-[#3A2A1F]">
-                    Digital Agreements
+                    {variant === "seva" ? "Complete Arrangements" : "Digital Agreements"}
                   </div>
                   <div className="text-xs text-[#5A4030]/70">
-                    Secure documentation
+                    {variant === "seva"
+                      ? "Samagri, vehicle, venue and rituals"
+                      : "Secure documentation"}
                   </div>
                 </div>
               </div>
@@ -138,10 +146,10 @@ export default function CompassionSection() {
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
                 <div>
                   <div className="text-sm font-medium text-[#3A2A1F]">
-                    NRI Services
+                    {variant === "seva" ? "Family Assistance" : "NRI Services"}
                   </div>
                   <div className="text-xs text-[#5A4030]/70">
-                    Support from abroad
+                    {variant === "seva" ? "Calm help during urgent moments" : "Support from abroad"}
                   </div>
                 </div>
               </div>
@@ -149,10 +157,10 @@ export default function CompassionSection() {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <button className="px-7 py-3.5 bg-[#8B6A3E] text-white text-sm rounded-md font-medium hover:bg-[#7A5A2E] transition-colors shadow-sm hover:shadow-md">
-                Learn More
+                {variant === "seva" ? "View Sewa Options" : "Learn More"}
               </button>
               <button className="px-7 py-3.5 border border-[#8B6A3E] text-[#8B6A3E] text-sm rounded-md font-medium hover:bg-[#8B6A3E]/10 transition-colors">
-                Contact Our Team
+                {variant === "seva" ? "Call for Support" : "Contact Our Team"}
               </button>
             </div>
 
@@ -190,7 +198,7 @@ export default function CompassionSection() {
                   </svg>
                 </div>
                 <span className="text-sm text-[#5A4030] font-medium">
-                  Cultural Sensitivity
+                  {variant === "seva" ? "Traditional Ritual Care" : "Cultural Sensitivity"}
                 </span>
               </div>
             </div>
