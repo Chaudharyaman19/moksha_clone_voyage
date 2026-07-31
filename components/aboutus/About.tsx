@@ -1,978 +1,464 @@
 "use client";
+
 import React from "react";
+import Image from "next/image";
 import Topbar from "@/components/topbar/Topbar";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import {
-  Compass,
-  Target,
-  Globe,
-  Award,
-  Heart,
-  Quote,
-  Eye,
-  Feather,
-  Star,
-  Shield,
-  Clock,
-  Lock,
-  HandHeart,
-  Phone,
-  Calendar,
-  CheckCircle,
-  TrendingUp,
-  Users,
-  Globe2,
-  Video,
-  HeartHandshake,
   Ambulance,
+  ArrowRight,
+  BadgeCheck,
+  CheckCircle2,
+  ClipboardList,
+  Clock3,
+  Flame,
+  HandHeart,
+  HeartHandshake,
+  Home,
+  MapPin,
+  MessageCircle,
+  PhoneCall,
+  Quote,
   ShieldCheck,
-  Gem,
-  MessageSquareQuote,
-  ThumbsUp,
+  ShoppingBag,
+  Star,
+  Truck,
+  UserRound,
+  UsersRound,
 } from "lucide-react";
-import Image from "next/image";
 
-function About() {
+const stats = [
+  { icon: Clock3, value: "24/7", title: "Sewa Support", text: "365 Days a Year" },
+  { icon: MapPin, value: "15+", title: "Cities Covered", text: "Across India" },
+  { icon: UsersRound, value: "500+", title: "Verified Pandits", text: "Trusted Ritual Support" },
+  { icon: ShieldCheck, value: "100%", title: "Transparent Services", text: "No Hidden Charges" },
+];
+
+const careServices = [
+  { icon: Ambulance, title: "Ambulance", text: "24/7 Pickup Support" },
+  { icon: Truck, title: "Hearse Van", text: "Dignified Transport" },
+  { icon: ShoppingBag, title: "Samagri", text: "Complete Ritual Items" },
+  { icon: UserRound, title: "Pandit Ji", text: "Verified & Experienced" },
+  { icon: Home, title: "Prayer Hall", text: "Clean & Peaceful Facilities" },
+  { icon: Flame, title: "Cremation", text: "Smooth Arrangements" },
+  { icon: HeartHandshake, title: "Family Support", text: "Guidance & Emotional Care" },
+];
+
+const reasons = [
+  { icon: BadgeCheck, title: "Experienced Team", text: "Trained, verified and compassionate" },
+  { icon: ShieldCheck, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
+  { icon: MapPin, title: "Pan India Network", text: "Strong local presence across cities" },
+  { icon: PhoneCall, title: "24/7 Availability", text: "A caring team always within reach" },
+  { icon: HandHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
+];
+
+const processSteps = [
+  { icon: PhoneCall, title: "Call or Book Sewa", text: "Reach out anytime. We are available 24/7." },
+  { icon: MessageCircle, title: "Share Details", text: "Tell us your needs and family preferences." },
+  { icon: ClipboardList, title: "We Arrange Everything", text: "Our team coordinates all services calmly." },
+  { icon: Flame, title: "Rituals & Cremation", text: "Every ritual is performed with dignity." },
+  { icon: HeartHandshake, title: "Family Support", text: "We remain with your family throughout." },
+];
+
+const locations = [
+  { name: "Gaya", image: "/assets/about-reference/location-gaya.png" },
+  { name: "Varanasi", image: "/assets/about-reference/location-varanasi.png" },
+  { name: "Haridwar", image: "/assets/about-reference/location-haridwar.png" },
+  { name: "Rishikesh", image: "/assets/about-reference/location-rishikesh.png" },
+  { name: "Nashik", image: "/assets/about-reference/location-nashik.png" },
+];
+
+export default function About() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
       <Navbar variant="seva" />
 
-      {/* Hero Section */}
-      <section className="relative py-8 overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#8B6A3E] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#5A3E2B] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-            <Feather className="w-3.5 h-3.5 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Compassionate Antim Sanskar Care
-            </span>
+      <main>
+        <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
+          <div className="absolute inset-0">
+            <Image
+              src="/assets/about-reference/hero-priest-ghat.png"
+              alt="Moksha Sewa ritual support at a sacred river ghat"
+              fill
+              priority
+              quality={100}
+              sizes="100vw"
+              className="object-cover object-[74%_center]"
+            />
           </div>
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-[#2C1810] mb-2 tracking-tight">
-            About
-            <span className="block text-2xl md:text-3xl lg:text-4xl font-semibold text-[#8B6A3E] mt-3">
-              Moksha Sewa
-            </span>
-          </h1>
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              <Quote className="absolute -top-3 -left-8 w-5 h-5 text-[#8B6A3E]/20" />
-              <p className="text-sm md:text-sm text-[#5A3E2B]/90 italic leading-relaxed font-light px-5">
-                &quot;Moksha Sewa supports families with dignified funeral,
-                cremation and ritual arrangements, so the final journey is
-                handled with calm, respect and complete transparency.&quot;
-              </p>
-              <Quote className="absolute -bottom-4 -right-8 w-5 h-5 text-[#8B6A3E]/20 rotate-180" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Stats Bar */}
-      <section className="py-4 px-6 bg-[#8B6A3E]/5 border-y border-[#8B6A3E]/10">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            {
-              icon: Clock,
-              value: "24/7",
-              label: "Sewa Support",
-              desc: "365 days a year",
-            },
-            {
-              icon: Globe,
-              value: "15+",
-              label: "Cities Covered",
-              desc: "Verified local support",
-            },
-            {
-              icon: Users,
-              value: "500+",
-              label: "Verified Pandits",
-              desc: "Across India",
-            },
-            {
-              icon: Shield,
-              value: "100%",
-              label: "Transparency",
-              desc: "No hidden charges",
-            },
-          ].map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <div key={idx} className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-lg flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#8B6A3E]" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-[#2C1810]">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-[#8B6A3E] font-medium">
-                    {stat.label}
-                  </div>
-                  <div className="text-[10px] text-[#5A3E2B]/60">
-                    {stat.desc}
-                  </div>
-                </div>
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-2 sm:px-6 lg:px-8 lg:pt-0">
+            <div className="max-w-[500px] -translate-y-2 lg:-translate-y-4">
+              <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+                <span>About Us</span>
+                <span className="h-px w-7 bg-[#C9A574]" />
               </div>
-            );
-          })}
-        </div>
-      </section>
 
-      {/* Our Story */}
-      <section className="py-8 px-6 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-3 items-center">
-          <div className="relative order-2 lg:order-1">
-            <div className="relative h-[300px] rounded-xl overflow-hidden shadow-2xl">
-              <Image
-                src="/assets/im1.jpeg"
-                alt="Moksha Sewa support"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-xl">
-                  <p className="text-[#2C1810] text-sm italic">
-                    &quot;One reliable team for ambulance, hearse van, samagri,
-                    pandit ji, prayer hall, cremation coordination and family
-                    support.&quot;
-                  </p>
-                </div>
-              </div>
+              <h1 className="font-serif text-[42px] font-normal leading-[0.98] text-[#2C1810] sm:text-[52px] lg:text-[60px]">
+                About
+                <span className="mt-1 block text-[#8B6A3E]">Moksha Sewa</span>
+              </h1>
+
+              <p className="mt-5 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
+                We support families with dignified funeral, cremation and ritual
+                arrangements, so the final journey is handled with calm, respect
+                and complete transparency.
+              </p>
             </div>
           </div>
+        </section>
 
-          <div className="order-1 lg:order-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-              <Heart className="w-4 h-4 text-[#8B6A3E]" />
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-                Our Story
-              </span>
-            </div>
-
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2 leading-tight">
-              Built for Families
-              <span className="block text-[#8B6A3E] mt-2">in Difficult Moments</span>
-            </h2>
-
-            <div className="space-y-2 text-[#5A3E2B]/80 leading-relaxed">
-              <p className="text-sm">
-                Moksha Sewa was created to remove confusion from the most
-                sensitive family responsibility. When a loved one passes, every
-                minute matters and every ritual deserves dignity.
-              </p>
-              <p className="text-sm">
-                Our team coordinates practical needs and sacred customs with one
-                calm point of contact, clear packages and verified local
-                providers, so families can focus on prayer and farewell.
-              </p>
-            </div>
-
-            <div className="mt-3 grid grid-cols-3 gap-3">
-              {[
-                { icon: Calendar, value: "24/7", label: "Available" },
-                { icon: TrendingUp, value: "500+", label: "Families Helped" },
-                { icon: Users, value: "50+", label: "Pandits" },
-              ].map((stat, idx) => {
+        <section className="relative z-20 -mt-12 ">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl border border-[#E5D7C4] bg-white/95 px-4 py-4 shadow-[0_18px_48px_rgba(74,49,32,0.13)] backdrop-blur-md md:px-6">
+            <div className="grid grid-cols-2 gap-y-5 md:grid-cols-4 md:divide-x md:divide-[#E7DAC8]">
+              {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <div
-                    key={idx}
-                    className="text-center p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10"
-                  >
-                    <Icon className="w-5 h-5 text-[#8B6A3E] mx-auto mb-2" />
-                    <div className="text-sm font-semibold text-[#2C1810]">
-                      {stat.value}
+                  <div key={stat.title} className="flex items-center gap-3 px-2 md:justify-center md:px-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <div className="text-[10px] text-[#5A3E2B]/70">
-                      {stat.label}
+                    <div>
+                      <div className="font-serif text-2xl leading-none text-[#2C1810]">{stat.value}</div>
+                      <div className="mt-1 text-xs font-semibold text-[#4A3428]">{stat.title}</div>
+                      <div className="mt-0.5 text-[10px] text-[#7A685B]">{stat.text}</div>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision & Mission - 3 Cards Layout */}
-      <section className="py-8 px-6 bg-[#FAF7F2]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-              <Target className="w-4 h-4 text-[#8B6A3E]" />
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-                Our Purpose
-              </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-              Vision, Mission & Promise
-            </h2>
-            <p className="text-sm text-[#5A3E2B]/70 max-w-2xl mx-auto">
-              Guided by dignity, tradition and transparent arrangements for
-              every family we serve.
-            </p>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-3 gap-3">
-            {/* Vision Card */}
-            <div className="bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#8B6A3E]/10 group">
-              <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Eye className="w-5 h-5 text-[#8B6A3E]" />
+        <section className="pb-8 pt-10 lg:pb-10 lg:pt-12">
+          <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 lg:px-8">
+            <div>
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <span>Our Story</span>
+                <span className="h-px w-7 bg-[#C9A574]" />
               </div>
-              <h3 className="text-sm font-semibold text-[#2C1810] mb-2">
-                Our Vision
-              </h3>
-              <p className="text-sm text-[#5A3E2B]/80 leading-relaxed">
-                A world where every family can complete the final rites with
-                dignity, purity and peace, without panic, confusion or unfair
-                charges.
+
+              <h2 className="mt-3 max-w-[390px] font-serif text-3xl leading-[1.08] text-[#2C1810] sm:text-4xl">
+                Compassion, Care & Complete Support
+              </h2>
+
+              <div className="mt-4 h-[2px] w-10 bg-[#8B6A3E]" />
+
+              <p className="mt-5 max-w-[470px] text-sm leading-6 text-[#5F4A3D]">
+                Moksha Sewa was founded with one simple belief: every family
+                deserves support and respect during life&apos;s most difficult
+                moments. We coordinate the practical arrangements and sacred
+                customs, so families can focus on remembering their loved one.
               </p>
-              <div className="mt-4 pt-3 border-t border-[#8B6A3E]/10">
-                <div className="flex items-center gap-2 text-[#8B6A3E]">
-                  <Globe className="w-4 h-4" />
-                  <span className="text-xs">
-                    Dignity · Ritual Respect
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            {/* Mission Card */}
-            <div className="bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#8B6A3E]/10 group">
-              <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Target className="w-5 h-5 text-[#8B6A3E]" />
-              </div>
-              <h3 className="text-sm font-semibold text-[#2C1810] mb-2">
-                Our Mission
-              </h3>
-              <p className="text-sm text-[#5A3E2B]/80 leading-relaxed">
-                To arrange ambulance, hearse van, funeral samagri, pandit ji,
-                cremation support, prayer hall and post-ritual guidance through
-                one trusted Sewa team.
+              <p className="mt-5 font-serif text-xl italic text-[#8B6A3E]">
+                Serving with Devotion
               </p>
-              <div className="mt-4 pt-3 border-t border-[#8B6A3E]/10">
-                <div className="flex items-center gap-2 text-[#8B6A3E]">
-                  <Shield className="w-4 h-4" />
-                  <span className="text-xs">
-                    Verified Network · 24/7 Support
-                  </span>
-                </div>
-              </div>
             </div>
 
-            {/* Promise Card - Special Highlight */}
-            <div className="bg-gradient-to-br from-[#8B6A3E] to-[#5A3E2B] rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative z-10">
-                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                  <Heart className="w-5 h-5 text-white" />
-                </div>
-              <h3 className="text-sm font-semibold text-white mb-2">
-                  Our Promise
-                </h3>
-                <p className="text-white/90 text-sm leading-relaxed italic">
-                  &quot;Every family receives dignified arrangements, clear pricing,
-                  verified support and ritual care at the moment they need it
-                  most.&quot;
-                </p>
-                <div className="mt-4 pt-3 border-t border-white/20">
-                  <div className="flex items-center gap-2 text-white">
-                    <HeartHandshake className="w-4 h-4" />
-                    <span className="text-xs">Human Promise · Sacred Duty</span>
-                  </div>
-                </div>
+            <div className="grid h-[330px] grid-cols-[1.55fr_1.1fr_0.85fr] grid-rows-2 gap-2 sm:h-[380px]">
+              <div className="relative row-span-2 overflow-hidden rounded-2xl">
+                <Image src="/assets/about-reference/story-main.png" alt="Pandits performing traditional rituals" fill quality={100} sizes="(max-width: 1024px) 45vw, 28vw" className="object-cover" />
+              </div>
+              <div className="relative overflow-hidden rounded-xl">
+                <Image src="/assets/about-reference/story-ritual-items.png" alt="Traditional ritual samagri" fill quality={100} sizes="(max-width: 1024px) 30vw, 18vw" className="object-cover" />
+              </div>
+              <div className="relative row-span-2 overflow-hidden rounded-xl">
+                <Image src="/assets/about-reference/story-ghat-temple.png" alt="Sacred temple ghat illuminated by golden hour light" fill quality={100} sizes="(max-width: 1024px) 24vw, 14vw" className="object-cover" />
+              </div>
+              <div className="relative overflow-hidden rounded-xl">
+                <Image src="/assets/about-reference/story-evening-ghat.png" alt="Peaceful evening ritual by the river" fill quality={100} sizes="(max-width: 1024px) 30vw, 18vw" className="object-cover" />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* HOW WE HELP SECTION - 4 Cards Layout */}
-      <section className="py-8 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-            <HeartHandshake className="w-4 h-4 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Our Services
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-            How We Help
-          </h2>
-          <p className="text-sm text-[#5A3E2B]/70 max-w-2xl mx-auto">
-            Complete funeral and antim sanskar support through every step.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            {
-              icon: Ambulance,
-              title: "Ambulance & Hearse",
-              desc: "Respectful body transport with ambulance, hearse van and route coordination.",
-              features: ["Ambulance", "Hearse Van", "24/7 Support"],
-              color: "from-[#8B6A3E] to-[#A88B5E]",
-            },
-            {
-              icon: Globe2,
-              title: "Funeral Samagri",
-              desc: "Complete antim sanskar items arranged with purity, quality and timely delivery.",
-              features: ["Samagri Kit", "Quality Items", "Fast Delivery"],
-              color: "from-[#5C4033] to-[#7A5B46]",
-            },
-            {
-              icon: Heart,
-              title: "Pandit Service",
-              desc: "Verified pandit ji for last rites, shraddh, havan and family traditions.",
-              features: ["Vedic Guidance", "Ritual Planning", "Customs"],
-              color: "from-[#4A716C] to-[#5E8B83]",
-            },
-            {
-              icon: Video,
-              title: "Prayer Hall Support",
-              desc: "Prayer hall, decoration and relatives coordination handled with care.",
-              features: ["Prayer Hall", "Decoration", "Family Support"],
-              color: "from-[#6B7D6E] to-[#8A9B8C]",
-            },
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] overflow-hidden"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity`}
-                ></div>
-                <div className="relative">
-                  <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5 text-[#8B6A3E]" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-[#2C1810] mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[#5A3E2B]/70 leading-relaxed mb-2">
-                    {item.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.features.map((feature, fidx) => (
-                      <span
-                        key={fidx}
-                        className="px-2 py-1 bg-[#8B6A3E]/5 text-[10px] text-[#8B6A3E] rounded-full border border-[#8B6A3E]/10"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* FIVE CORE OBJECTIVES */}
-      <section className="py-8 px-6 max-w-7xl mx-auto bg-[#FAF7F2]">
-        <div className="text-center mb-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-            <Compass className="w-4 h-4 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Our Core
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-            Five Sewa Principles
-          </h2>
-          <p className="text-sm text-[#5A3E2B]/70 max-w-2xl mx-auto">
-            The values that guide every arrangement, every call and every
-            family interaction.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
-          {[
-            {
-              icon: Compass,
-              title: "ARRANGE",
-              desc: "Bring urgent funeral needs into clear, manageable steps through one trusted point of contact.",
-              color: "from-[#8B6A3E] to-[#A88B5E]",
-              features: [
-                "Single Contact",
-                "Clear Steps",
-                "Fast Action",
-              ],
-            },
-            {
-              icon: Globe,
-              title: "GUIDE",
-              desc: "Guide families through rituals, timing, samagri and customs with verified pandit support.",
-              color: "from-[#5C4033] to-[#7A5B46]",
-              features: [
-                "Ritual Guidance",
-                "Verified Pandits",
-                "Family Traditions",
-              ],
-            },
-            {
-              icon: Shield,
-              title: "PROTECT",
-              desc: "Keep pricing and service details clear before arrangements begin, with no hidden charges.",
-              color: "from-[#4A716C] to-[#5E8B83]",
-              features: [
-                "Transparent Pricing",
-                "Clear Packages",
-                "Zero Hidden Charges",
-              ],
-            },
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] overflow-hidden"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity`}
-                ></div>
-                <div className="relative">
-                  <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5 text-[#8B6A3E]" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-[#2C1810] mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[#5A3E2B]/70 leading-relaxed mb-2">
-                    {item.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.features.map((feature, fidx) => (
-                      <span
-                        key={fidx}
-                        className="px-2 py-1 bg-[#8B6A3E]/5 text-[10px] text-[#8B6A3E] rounded-full border border-[#8B6A3E]/10"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-3 max-w-4xl mx-auto">
-          {[
-            {
-              icon: Star,
-              title: "HONOUR",
-              desc: "Honour every final journey with dignity, clean arrangements and respect for family customs.",
-              color: "from-[#6B7D6E] to-[#8A9B8C]",
-              features: ["Dignified Farewell", "Ritual Respect", "Clean Setup"],
-            },
-            {
-              icon: HandHeart,
-              title: "SERVE",
-              desc: "Stay present with families through urgent coordination, relatives support and post-ritual needs.",
-              color: "from-[#8B6A3E] to-[#A88B5E]",
-              features: [
-                "Family Support",
-                "24/7 Sewa",
-                "Post-Ritual Help",
-              ],
-            },
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] overflow-hidden"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity`}
-                ></div>
-                <div className="relative">
-                  <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5 text-[#8B6A3E]" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-[#2C1810] mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[#5A3E2B]/70 leading-relaxed mb-2">
-                    {item.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.features.map((feature, fidx) => (
-                      <span
-                        key={fidx}
-                        className="px-2 py-1 bg-[#8B6A3E]/5 text-[10px] text-[#8B6A3E] rounded-full border border-[#8B6A3E]/10"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-8 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-            <MessageSquareQuote className="w-4 h-4 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Real Stories
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-            What Families Say
-          </h2>
-          <p className="text-sm text-[#5A3E2B]/70 max-w-2xl mx-auto">
-            Families who trusted Moksha Sewa during difficult moments.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-3">
-          {/* Testimonial 1 */}
-          <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] group overflow-hidden">
-            <div className="relative w-full h-36 overflow-hidden">
-              <Image
-                src="/assets/four.jpg"
-                alt="Moksha Sewa family support"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute top-3 right-4 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-current" />
-                  ))}
-                </div>
-                <span className="text-xs text-white ml-1">5.0</span>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <span className="text-[10px] px-3 py-1.5 bg-[#8B6A3E] text-white rounded-full">
-                  Verified
-                </span>
-              </div>
+        <section className="border-y border-[#E9DDCD] bg-[#F8F3EC] py-7">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-5 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+              <span className="h-px w-8 bg-[#C9A574]" />
+              <span>What We Take Care Of</span>
+              <span className="h-px w-8 bg-[#C9A574]" />
             </div>
 
-            <div className="p-3">
-              <div className="mb-3">
-                <p className="text-sm font-semibold text-[#2C1810]">
-                  Sharma Family
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Delhi NCR · Complete Funeral Support
-                </p>
-              </div>
-
-              <div className="relative">
-                <Quote className="absolute -top-2 -left-1 w-4 h-4 text-[#8B6A3E]/30" />
-                <p className="text-sm text-[#5A3E2B]/80 italic leading-relaxed pl-4">
-                  &quot;Moksha Sewa arranged the pandit ji, samagri, vehicle and
-                  prayer hall with dignity. Their team stayed calm when our
-                  family needed it most.&quot;
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 lg:grid-cols-7 lg:divide-x lg:divide-[#E0D2C0]">
+              {careServices.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div key={service.title} className="px-3 text-center lg:px-4">
+                    <Icon className="mx-auto h-8 w-8 stroke-[1.45] text-[#8B6A3E]" />
+                    <h3 className="mt-2 font-serif text-base text-[#2C1810]">{service.title}</h3>
+                    <p className="mx-auto mt-1 max-w-[120px] text-[10px] leading-4 text-[#6B584B]">{service.text}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
+        </section>
 
-          {/* Testimonial 2 */}
-          <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] group overflow-hidden">
-            <div className="relative w-full h-36 overflow-hidden">
-              <Image
-                src="/assets/im3.jpeg"
-                alt="Funeral arrangements"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute top-3 right-4 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-current" />
-                  ))}
-                </div>
-                <span className="text-xs text-white ml-1">5.0</span>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <span className="text-[10px] px-3 py-1.5 bg-[#8B6A3E] text-white rounded-full">
-                  Verified
-                </span>
-              </div>
+        <section className="relative overflow-hidden bg-[#3B2B21] py-8 lg:py-10">
+          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
+          <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border border-[#C9A574]/10" />
+
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.78fr] lg:px-8">
+            <div className="text-white">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">Why Choose Us</div>
+              <h2 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">Here for You, Always</h2>
+              <div className="mt-4 h-[2px] w-10 bg-[#D9B681]" />
+              <p className="mt-4 max-w-sm text-sm leading-6 text-white/75">
+                We bring transparency, professionalism and heartfelt service
+                together to help you in every possible way.
+              </p>
+              <a href="/contact" className="mt-5 inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-xs font-semibold text-[#3B2B21] transition hover:bg-[#F2E8DA]">
+                Know More
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
 
-            <div className="p-3">
-              <div className="mb-3">
-                <p className="text-sm font-semibold text-[#2C1810]">
-                  Desai Family
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Mumbai · Antim Sanskar Sewa
-                </p>
-              </div>
-
-              <div className="relative">
-                <Quote className="absolute -top-2 -left-1 w-4 h-4 text-[#8B6A3E]/30" />
-                <p className="text-sm text-[#5A3E2B]/80 italic leading-relaxed pl-4">
-                  &quot;The pricing was clear before anything started. The samagri
-                  was complete, the pandit ji was respectful and the entire
-                  process felt organized.&quot;
-                </p>
-              </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {reasons.map((reason) => {
+                const Icon = reason.icon;
+                return (
+                  <div key={reason.title} className="rounded-xl border border-white/20 bg-[#FBF8F3] px-4 py-5 text-center shadow-sm">
+                    <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#B89564] text-[#8B6A3E]">
+                      <Icon className="h-5 w-5 stroke-[1.5]" />
+                    </div>
+                    <h3 className="mt-3 font-serif text-base leading-tight text-[#2C1810]">{reason.title}</h3>
+                    <p className="mt-2 text-[10px] leading-4 text-[#6A574A]">{reason.text}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
+        </section>
 
-          {/* Testimonial 3 */}
-          <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#E8DBC5] group overflow-hidden">
-            <div className="relative w-full h-36 overflow-hidden">
-              <Image
-                src="/assets/im4.jpeg"
-                alt="Prayer support"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute top-3 right-4 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-current" />
-                  ))}
-                </div>
-                <span className="text-xs text-white ml-1">5.0</span>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <span className="text-[10px] px-3 py-1.5 bg-[#8B6A3E] text-white rounded-full">
-                  Verified
-                </span>
-              </div>
+        <section className="bg-[#FBF8F3] py-8 lg:py-9">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+              <span className="h-px w-8 bg-[#C9A574]" />
+              <span>Our Process</span>
+              <span className="h-px w-8 bg-[#C9A574]" />
             </div>
 
-            <div className="p-3">
-              <div className="mb-3">
-                <p className="text-sm font-semibold text-[#2C1810]">
-                  Arjun Nair
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Bengaluru · Prayer Hall Support
-                </p>
-              </div>
-
-              <div className="relative">
-                <Quote className="absolute -top-2 -left-1 w-4 h-4 text-[#8B6A3E]/30" />
-                <p className="text-sm text-[#5A3E2B]/80 italic leading-relaxed pl-4">
-                  &quot;They helped with the prayer hall, decoration and relatives
-                  coordination. In the most difficult moment, they became our
-                  calm support.&quot;
-                </p>
-              </div>
+            <div className="relative grid gap-6 md:grid-cols-5 md:gap-4">
+              <div className="absolute left-[10%] right-[10%] top-6 hidden border-t border-dashed border-[#B89564] md:block" />
+              {processSteps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={step.title} className="relative text-center">
+                    <div className="relative z-10 mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#B89564] bg-[#FBF8F3] text-[#8B6A3E]">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="mt-2 text-[9px] font-semibold text-[#B89564]">0{index + 1}</div>
+                    <h3 className="mt-1 font-serif text-base text-[#2C1810]">{step.title}</h3>
+                    <p className="mx-auto mt-1 max-w-[175px] text-[10px] leading-4 text-[#6A584B]">{step.text}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Additional Reviews Row */}
-        <div className="grid md:grid-cols-2 gap-3 mt-3">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-[#E8DBC5] hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex text-amber-400 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
+        <section className="pb-2 lg:pb-3">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 sm:px-6 lg:px-8">
+            {/* Our Presence — full-width column layout */}
+            <div className="rounded-2xl border border-[#E6D8C5] bg-[#F6EFE6] p-5 sm:p-6">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                Our Presence
+              </div>
+              <h2 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-3xl">
+                Serving Families Across India
+              </h2>
+
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                {locations.map((location) => (
+                  <div
+                    key={location.name}
+                    className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-[#E1D2BE] bg-white shadow-sm"
+                  >
+                    <Image
+                      src={location.image}
+                      alt={`${location.name} Moksha Sewa location`}
+                      fill
+                      quality={100}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/75 via-[#2C1810]/5 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-3">
+                      <p className="font-serif text-base text-white">
+                        {location.name}
+                      </p>
+                    </div>
+                  </div>
                 ))}
+
+                <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-gradient-to-br from-[#9A7445] to-[#6F4E2F] px-3 text-center text-white shadow-sm">
+                  <div>
+                    <div className="font-serif text-3xl">+9</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/80">
+                      More Cities
+                    </div>
+                  </div>
+                </div>
               </div>
-              <span className="text-sm text-[#8B6A3E] font-medium">
-                March 2024
-              </span>
+
+              <p className="mt-4 text-center text-[11px] text-[#746154]">
+                Local teams. Local support. Always near you.
+              </p>
             </div>
-            <p className="text-sm text-[#5A3E2B]/90 italic leading-relaxed mb-2">
-              &quot;The ambulance and hearse van coordination was quick and
-              respectful. Every update was shared clearly with our family.&quot;
-            </p>
-            <p className="text-sm font-medium text-[#2C1810]">
-              — Meera Krishnan, Delhi
-            </p>
+
+            {/* Testimonial — stacked vertically so nothing stretches */}
+         
           </div>
+        </section>
 
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-[#E8DBC5] hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex text-amber-400 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
+        {/* SACRED PROMISE — image and content cards share the same height */}
+        <section className="relative overflow-hidden bg-[#F2E9DD] pb-6 pt-2 lg:pb-7 lg:pt-3">
+          <div className="absolute -left-28 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full border border-[#C9A574]/20" />
+          <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-[#8B6A3E]/5 blur-3xl" />
+
+          <div className="relative mx-auto grid w-full max-w-7xl items-stretch gap-4 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:px-8">
+            <div className="grid h-[320px] grid-cols-[1.35fr_0.85fr] grid-rows-2 gap-2.5 sm:h-[380px] lg:h-full lg:min-h-[470px]">
+              <div className="group relative row-span-2 overflow-hidden rounded-[22px] shadow-[0_18px_42px_rgba(70,47,31,0.14)]">
+                <Image
+                  src="/assets/about-reference/story-ghat-temple.png"
+                  alt="Sacred riverside ghat illuminated in golden light"
+                  fill
+                  quality={100}
+                  sizes="(max-width: 1024px) 62vw, 36vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/45 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 rounded-full border border-white/25 bg-black/20 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                  Sacred Care
+                </div>
               </div>
-              <span className="text-sm text-[#8B6A3E] font-medium">
-                February 2024
-              </span>
-            </div>
-            <p className="text-sm text-[#5A3E2B]/90 italic leading-relaxed mb-2">
-              &quot;Moksha Sewa helped us complete rituals for an elderly resident
-              with dignity, care and no confusion.&quot;
-            </p>
-            <p className="text-sm font-medium text-[#2C1810]">
-              — Anjali Srivastava, Varanasi
-            </p>
-          </div>
-        </div>
 
-        <div className="text-center mt-4">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B6A3E] text-white rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            View All Reviews
-            <ThumbsUp className="w-4 h-4" />
-          </button>
-          <p className="text-xs text-[#8B6A3E]/60 mt-4">
-            Trusted by 500+ families across India
-          </p>
-        </div>
-      </section>
-
-      {/* Trust Signals */}
-      <section className="py-4 px-6 bg-white border-y border-[#8B6A3E]/10">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-7">
-          {[
-            { icon: ShieldCheck, text: "Verified Pandits" },
-            { icon: Lock, text: "Clear Packages" },
-            { icon: Clock, text: "24/7 Sewa Support" },
-            { icon: Heart, text: "Dignified Ritual Care" },
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div key={idx} className="flex items-center gap-3 justify-center">
-                <Icon className="w-5 h-5 text-[#8B6A3E]" />
-                <span className="text-sm font-medium text-[#5A3E2B]">
-                  {item.text}
-                </span>
+              <div className="group relative overflow-hidden rounded-[18px] shadow-sm">
+                <Image
+                  src="/assets/about-reference/story-ritual-items.png"
+                  alt="Traditional ritual samagri arranged with care"
+                  fill
+                  quality={100}
+                  sizes="(max-width: 1024px) 35vw, 20vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
-            );
-          })}
-        </div>
-      </section>
 
-      {/* Sewa Network */}
-      <section className="py-8 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/10 rounded-full border border-[#8B6A3E]/20 mb-2">
-            <Award className="w-4 h-4 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Sewa Network
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-            Trusted Support Network
-          </h2>
-          <p className="text-sm text-[#5A3E2B]/70 max-w-2xl mx-auto">
-            Verified people, reliable arrangements and respectful coordination
-            for every family.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-3">
-          {/* Press Mentions */}
-          <div className="bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#8B6A3E]/10 group">
-            <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <Award className="w-5 h-5 text-[#8B6A3E]" />
-            </div>
-            <h3 className="text-sm font-semibold text-[#2C1810] mb-2">
-              Verified Team
-            </h3>
-            <div className="space-y-2">
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Trained Coordinators
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  One calm point of contact
-                </p>
-              </div>
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Verified Pandits
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Ritual guidance with family customs
-                </p>
-              </div>
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">Local Partners</p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Ambulance, hearse van and prayer hall support
-                </p>
+              <div className="group relative overflow-hidden rounded-[18px] shadow-sm">
+                <Image
+                  src="/assets/about-reference/story-main.png"
+                  alt="Traditional rituals performed with devotion"
+                  fill
+                  quality={100}
+                  sizes="(max-width: 1024px) 35vw, 20vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
-          </div>
 
-          {/* Key Partnerships */}
-          <div className="bg-white rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#8B6A3E]/10 group">
-            <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <Gem className="w-5 h-5 text-[#8B6A3E]" />
-            </div>
-            <h3 className="text-sm font-semibold text-[#2C1810] mb-2">
-              Service Coverage
-            </h3>
-            <div className="space-y-2">
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Funeral Samagri
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Complete kits and urgent delivery
-                </p>
+            <div className="flex h-full flex-col justify-center rounded-[22px] border border-[#E0CFBA] bg-white/85 p-5 shadow-[0_16px_42px_rgba(73,49,31,0.09)] backdrop-blur-sm sm:p-6">
+              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <span>Our Sacred Promise</span>
+                <span className="h-px w-8 bg-[#C9A574]" />
               </div>
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Cremation Coordination
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Ground timing and process support
-                </p>
+
+              <h2 className="mt-2.5 max-w-[500px] font-serif text-[28px] leading-[1.08] text-[#2C1810] sm:text-[34px]">
+                Every Farewell Deserves Dignity, Peace & Devotion
+              </h2>
+
+              <p className="mt-3 text-sm leading-6 text-[#5F4A3D]">
+                From the first call to the final prayer, Moksha Sewa remains
+                beside the family with calm coordination, respectful rituals and
+                clear support at every step.
+              </p>
+
+              <div className="mt-4 space-y-2">
+                {[
+                  {
+                    icon: HandHeart,
+                    title: "Compassionate Guidance",
+                    text: "A patient team that listens and supports the family.",
+                  },
+                  {
+                    icon: ShieldCheck,
+                    title: "Trusted Arrangements",
+                    text: "Verified services, transparent details and no confusion.",
+                  },
+                  {
+                    icon: Clock3,
+                    title: "Support When It Matters",
+                    text: "Available day and night for urgent assistance.",
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-3 rounded-xl border border-[#E8DCCB] bg-[#FBF8F3] px-3 py-2.5"
+                    >
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-serif text-[15px] leading-5 text-[#2C1810]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-0.5 text-[10px] leading-4 text-[#6A584B]">
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Family Assistance
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  Relatives coordination and post-ritual help
-                </p>
-              </div>
+
+              <a
+                href="/contact"
+                className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-2.5 text-xs font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
+              >
+                Speak With Our Sewa Team
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
+        </section>
 
-          {/* Awards & Recognition */}
-          <div className="bg-gradient-to-br from-[#8B6A3E]/5 to-[#5A3E2B]/5 rounded-xl p-3 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-[#8B6A3E]/10 group">
-            <div className="w-10 h-10 bg-[#8B6A3E]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-              <Star className="w-5 h-5 text-[#8B6A3E]" />
-            </div>
-            <h3 className="text-sm font-semibold text-[#2C1810] mb-2">
-              Sewa Standards
-            </h3>
-            <div className="space-y-2">
-              <div className="p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Transparent Pricing
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">
-                  No hidden charges
-                </p>
-              </div>
-              <div className="p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Respectful Handling
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">Dignity at every step</p>
-              </div>
-              <div className="p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#8B6A3E]/10">
-                <p className="text-sm font-medium text-[#2C1810]">
-                  Traditional Ritual Care
-                </p>
-                <p className="text-xs text-[#5A3E2B]/60">Pandit ji and samagri support</p>
-              </div>
+        <section className="relative overflow-hidden bg-[#3B2B21] py-7 text-center text-white">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] via-[#5B432F] to-[#2C1810]" />
+          <div className="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_15%_70%,#D7B37A_0,transparent_23%),radial-gradient(circle_at_85%_60%,#D7B37A_0,transparent_22%)]" />
+
+          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="font-serif text-2xl sm:text-3xl">We Are Here to Serve You in Your Time of Need</h2>
+            <p className="mt-1 text-xs text-white/75 sm:text-sm">Call us anytime for immediate support.</p>
+            <a href="tel:+911234567890" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:bg-[#75552F]">
+              <PhoneCall className="h-4 w-4" />
+              +91 123 456 7890
+            </a>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[10px] text-white/75">
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5" /> Clear Pricing</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5" /> Verified Support</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5" /> Available 24/7</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Moksha Sewa Section */}
-      <section className="py-4 px-6 bg-gradient-to-r from-[#8B6A3E]/10 to-[#5A3E2B]/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/20 rounded-full border border-[#8B6A3E]/30 mb-2">
-            <HandHeart className="w-4 h-4 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E] font-medium">
-              Social Impact
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#2C1810] mb-2">
-            Moksha Sewa Promise
-          </h2>
-          <p className="text-sm text-[#5A3E2B]/80 mb-3 max-w-2xl mx-auto">
-            Moksha Sewa stands for dignity, transparency and timely help. From
-            the first call to post-ritual guidance, our team handles every
-            arrangement with the care we would want for our own family.
-          </p>
-          <button className="px-5 py-3 bg-[#8B6A3E] text-white rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            Call Moksha Sewa
-          </button>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="relative py-10 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] to-[#8B6A3E]"></div>
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/assets/pattern.png')] bg-repeat"></div>
-          </div>
-        </div>
-
-        <div className="relative max-w-5xl mx-auto text-center px-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full border border-white/20 backdrop-blur-sm mb-3">
-            <Phone className="w-4 h-4 text-white" />
-            <span className="text-xs tracking-wider text-white font-medium">
-              24/7 Immediate Support
-            </span>
-          </div>
-
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-2">
-            Need Funeral Support Now?
-            <span className="block text-[#F5E9D9] mt-2">
-              Moksha Sewa Is Available 24/7
-            </span>
-          </h2>
-
-          <p className="text-white/80 text-sm mb-2 max-w-3xl mx-auto">
-            One trusted team for ambulance, hearse van, samagri, pandit ji,
-            cremation coordination and prayer hall arrangements.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-5 py-3 bg-white text-[#2C1810] rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-              Call Moksha Sewa
-            </button>
-            <button className="px-5 py-3 bg-transparent border-2 border-white text-white rounded-lg text-sm font-medium hover:bg-white/10 transition-all duration-300">
-              Plan Ritual Arrangements
-            </button>
-            <button className="px-5 py-3 bg-[#F5E9D9] text-[#2C1810] rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-              WhatsApp Chat
-            </button>
-          </div>
-
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <div className="flex items-center gap-2 text-white/80">
-              <Shield className="w-5 h-5" />
-              <span className="text-sm">Transparent Pricing</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/80">
-              <CheckCircle className="w-5 h-5" />
-              <span className="text-sm">Verified Pandits</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/80">
-              <Clock className="w-5 h-5" />
-              <span className="text-sm">24/7 Sewa Coordinators</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer variant="seva" />
     </div>
   );
 }
-
-export default About;
