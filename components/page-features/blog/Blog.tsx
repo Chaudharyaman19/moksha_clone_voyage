@@ -10,14 +10,10 @@ import {
   FiSearch,
   FiCalendar,
   FiArrowRight,
-  FiShare2,
-  FiBookmark,
   FiClock,
-  FiUser,
 } from "react-icons/fi";
 import { BsEye, BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,13 +23,13 @@ function Blog() {
   const blogPosts = [
     {
       id: 1,
-      title: "The Future of Web Development in 2024",
+      title: "Pind Daan in Gaya: A Complete Guide for Families",
       excerpt:
-        "Explore the latest trends and technologies shaping the future of web development, from AI integration to WebAssembly.",
-      author: "John Doe",
+        "Everything you need to know about performing Pind Daan at Gaya — the rituals, the right time, and how to prepare your family for this sacred duty.",
+      author: "Pandit Ramesh Sharma",
       date: "Mar 15, 2024",
       readTime: "6 min",
-      category: "Technology",
+      category: "Rituals",
       image: "/assets/two.jpg",
       views: 1250,
       comments: 24,
@@ -41,13 +37,13 @@ function Blog() {
     },
     {
       id: 2,
-      title: "Mastering React Performance Optimization",
+      title: "Why Varanasi is Called the City of Moksha",
       excerpt:
-        "Learn advanced techniques to optimize your React applications for better performance and user experience.",
-      author: "Sarah Johnson",
+        "From the ghats of Ganga to the eternal flame of Manikarnika — understanding why Kashi holds the promise of liberation in Hindu tradition.",
+      author: "Anjali Mishra",
       date: "Mar 10, 2024",
       readTime: "8 min",
-      category: "Web Development",
+      category: "Pilgrimage",
       image: "/assets/one.jpg",
       views: 890,
       comments: 18,
@@ -55,13 +51,13 @@ function Blog() {
     },
     {
       id: 3,
-      title: "Building Scalable APIs with Next.js",
+      title: "The 13 Days After: Rituals, Meaning & Support",
       excerpt:
-        "A comprehensive guide to creating robust and scalable APIs using Next.js API routes and best practices.",
-      author: "Mike Chen",
+        "A gentle guide to the terahvin period — what each ritual signifies, and how families can find peace and closure through tradition.",
+      author: "Pandit Suresh Tripathi",
       date: "Mar 5, 2024",
       readTime: "10 min",
-      category: "Backend",
+      category: "Guidance",
       image: "/assets/c.jpg",
       views: 750,
       comments: 12,
@@ -69,13 +65,13 @@ function Blog() {
     },
     {
       id: 4,
-      title: "UI/UX Design Principles for Developers",
+      title: "Asthi Visarjan at Haridwar: Step by Step",
       excerpt:
-        "Essential design principles that every developer should know to create better user interfaces and experiences.",
-      author: "Emma Wilson",
+        "How to perform asthi visarjan at Har Ki Pauri with dignity — timings, arrangements, and what to carry for the ceremony.",
+      author: "Kavita Joshi",
       date: "Feb 28, 2024",
       readTime: "7 min",
-      category: "Design",
+      category: "Rituals",
       image: "/assets/two.jpg",
       views: 1100,
       comments: 31,
@@ -83,13 +79,13 @@ function Blog() {
     },
     {
       id: 5,
-      title: "Getting Started with TypeScript in 2024",
+      title: "Shraddha & Tarpan: Honouring Our Ancestors",
       excerpt:
-        "A beginner-friendly introduction to TypeScript and why it's becoming essential for modern web development.",
-      author: "Alex Rivera",
+        "The meaning behind Pitru Paksha, and why offering shraddha and tarpan remains one of the most sacred duties in our tradition.",
+      author: "Pandit Ramesh Sharma",
       date: "Feb 22, 2024",
       readTime: "5 min",
-      category: "Programming",
+      category: "Ancestors",
       image: "/assets/one.jpg",
       views: 950,
       comments: 15,
@@ -97,13 +93,13 @@ function Blog() {
     },
     {
       id: 6,
-      title: "The Complete Guide to SEO for Single Page Applications",
+      title: "Preparing for a Sacred Yatra: A Family Checklist",
       excerpt:
-        "Learn how to optimize your SPAs for search engines with practical techniques and tools.",
-      author: "David Kim",
+        "From documents to samagri — a practical checklist so your family can focus on devotion, not logistics, during the yatra.",
+      author: "Anjali Mishra",
       date: "Feb 18, 2024",
       readTime: "9 min",
-      category: "SEO",
+      category: "Pilgrimage",
       image: "/assets/c.jpg",
       views: 680,
       comments: 9,
@@ -111,15 +107,7 @@ function Blog() {
     },
   ];
 
-  const categories = [
-    "All",
-    "Technology",
-    "Web Development",
-    "Design",
-    "Programming",
-    "Backend",
-    "SEO",
-  ];
+  const categories = ["All", "Rituals", "Pilgrimage", "Ancestors", "Guidance"];
 
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
@@ -133,7 +121,9 @@ function Blog() {
     return matchesSearch && matchesCategory;
   });
 
-  const featuredPosts = blogPosts.filter((post) => post.featured);
+  const featuredPost = blogPosts.find((post) => post.featured);
+  const showFeatured =
+    featuredPost && selectedCategory === "All" && searchQuery === "";
 
   const toggleSave = (postId: number) => {
     setSavedPosts((prev) =>
@@ -143,296 +133,377 @@ function Blog() {
     );
   };
 
-  const themeColor = "#8B6A3E";
-  const themeColorLight = "#F5E9D9";
-  const themeColorDark = "#5A3E2B";
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#8B6A3E] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#5A3E2B] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/5 rounded-full border border-[#8B6A3E]/10 mb-5">
-            <PiFlowerLotus className="w-3.5 h-3.5 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E]">
-              Wisdom & Insights
-            </span>
+      <main>
+        {/* ============ HERO — clean banner + filter toolbar ============ */}
+        <section className="relative overflow-hidden border-b border-[#E9DDCD] bg-[#F8F3EC] py-10 lg:py-12">
+          {/* watermark tucked to the right so it never sits behind the text */}
+          <div className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-serif text-[200px] leading-none text-[#8B6A3E]/[0.06] lg:block">
+            ज्ञान
           </div>
+          <div className="pointer-events-none absolute -left-20 -top-16 h-56 w-56 rounded-full border border-[#C9A574]/15" />
+          <div className="pointer-events-none absolute -left-10 -top-8 h-40 w-40 rounded-full border border-[#C9A574]/10" />
 
-          <h1 className="flex flex-row items-center justify-center text-4xl md:text-5xl font-light text-[#2C1810] mb-4 tracking-tight">
-            Moksha
-            <span className="block text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-2">
-              Blog
-            </span>
-          </h1>
+          <div className="relative mx-auto w-full max-w-7xl px-0">
+            <div className="text-center">
+              {/* eyebrow */}
+              <div className="inline-flex items-center gap-2.5">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
+                  <PiFlowerLotus className="h-4 w-4" />
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                  Wisdom & Insights
+                </span>
+              </div>
 
-          <p className="text-base text-[#5A3E2B]/70 max-w-2xl mx-auto mb-8">
-            Discover articles on spirituality, wellness, and sacred journeys.
-            Ancient wisdom for modern souls.
-          </p>
+              <h1 className="mt-4 font-serif text-[36px] leading-[1.02] text-[#2C1810] sm:text-[46px]">
+                The Moksha <span className="italic text-[#8B6A3E]">Blog</span>
+              </h1>
 
-          {/* Search Bar */}
-          <div className="relative max-w-md mx-auto">
-            <div className="relative flex items-center">
-              <FiSearch className="absolute left-3 text-[#8B6A3E]/40 text-lg" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 text-sm bg-white rounded-xl border border-[#E7D5C2] focus:border-[#8B6A3E] focus:ring-2 focus:ring-[#8B6A3E]/20 outline-none transition"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+              {/* diya flourish */}
+              <div className="mt-4 flex items-center justify-center gap-2">
+                <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#C9A574]" />
+                <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
+                <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#C9A574]" />
+              </div>
+
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#5F4A3D] sm:text-[15px]">
+                Articles on rituals, pilgrimage and sacred traditions — ancient
+                wisdom, explained gently for modern families.
+              </p>
             </div>
-          </div>
 
-          {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-2 mt-6">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${
-                  selectedCategory === category
-                    ? "text-white shadow-md"
-                    : "bg-white text-[#5A3E2B] hover:bg-[#F5E9D9] border border-[#E7D5C2]"
-                }`}
-                onClick={() => setSelectedCategory(category)}
-                style={
-                  selectedCategory === category
-                    ? { backgroundColor: themeColor }
-                    : {}
-                }
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* search + categories in one elevated toolbar card */}
+            <div className="relative mx-auto mt-7 max-w-4xl overflow-hidden rounded-2xl border border-[#E4D5BE] bg-white p-3 shadow-[0_14px_36px_rgba(73,49,31,0.10)] sm:p-3.5">
+              <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
-      {/* Featured Posts */}
-
-      {/* All Posts Section */}
-      <section className="py-12 px-6 max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <span className="text-sm tracking-[0.3em] uppercase text-[#8B6A3E] mb-1 block">
-              Latest Posts
-            </span>
-            <h2 className="text-2xl font-serif text-[#2C1810]">
-              {selectedCategory === "All" ? "All Articles" : selectedCategory}
-            </h2>
-          </div>
-          <div className="text-sm text-[#5A3E2B]/60">
-            {filteredPosts.length} articles found
-          </div>
-        </div>
-
-        {filteredPosts.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-2xl shadow-sm">
-            <div className="w-16 h-16 mx-auto mb-4 bg-[#8B6A3E]/10 rounded-full flex items-center justify-center">
-              <PiFlowerLotus className="text-2xl text-[#8B6A3E]" />
-            </div>
-            <h3 className="text-lg font-serif text-[#2C1810] mb-2">
-              No articles found
-            </h3>
-            <p className="text-sm text-[#5A3E2B]/60 mb-4">
-              Try adjusting your search or filter to find what you're looking
-              for.
-            </p>
-            <button
-              className="px-4 py-2 bg-[#8B6A3E] text-white text-sm rounded-lg hover:bg-[#5A3E2B] transition"
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
-              }}
-            >
-              Clear filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post) => (
-              <article
-                key={post.id}
-                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
-              >
-                <Link
-                  href={`/blog/${post.id}`}
-                  className="block relative h-40 overflow-hidden"
-                >
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+              <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+                {/* search */}
+                <div className="relative lg:w-[320px] lg:shrink-0">
+                  <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B6A3E]/50" />
+                  <input
+                    type="text"
+                    placeholder="Search articles..."
+                    className="w-full rounded-xl border border-[#E4D5BE] bg-[#FBF8F3] py-2.5 pl-10 pr-4 text-sm text-[#2C1810] outline-none transition placeholder:text-[#A8937E] focus:border-[#C9A574] focus:ring-2 focus:ring-[#C9A574]/40"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <div className="absolute top-3 right-3">
-                    <span
-                      className="px-0 py-1 text-[10px] font-medium text-white rounded-full"
-                      style={{ backgroundColor: themeColor }}
+                </div>
+
+                <span className="hidden h-8 w-px bg-[#EADDC8] lg:block" />
+
+                {/* categories */}
+                <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-300 ${selectedCategory === category
+                          ? "bg-[#8B6A3E] text-white shadow-md"
+                          : "border border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
+                        }`}
                     >
-                      {post.category}
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ FEATURED SPOTLIGHT ============ */}
+        {showFeatured && (
+          <section className="pt-5 lg:pt-6">
+            <div className="mx-auto w-full max-w-7xl px-0">
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)]">
+                <span className="absolute inset-y-0 left-0 z-10 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
+                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full border border-[#C9A574]/15" />
+
+                <div className="grid lg:grid-cols-[1fr_0.9fr]">
+                  {/* content */}
+                  <div className="flex flex-col justify-center p-5 sm:p-7 lg:p-8">
+                    <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+                      <span>Featured Read</span>
+                      <span className="h-px w-8 bg-[#C9A574]" />
+                    </div>
+
+                    <span className="mt-3 w-fit rounded-full border border-[#D9B681]/40 bg-[#D9B681]/10 px-3 py-1 text-[10px] font-semibold text-[#E8D2AC]">
+                      {featuredPost.category}
                     </span>
-                  </div>
-                </Link>
 
-                <div className="p-4">
-                  <div className="flex items-center gap-2 text-[10px] text-[#5A3E2B]/60 mb-2">
-                    <span className="flex items-center gap-1">
-                      <FiCalendar className="text-[10px]" /> {post.date}
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <FiClock className="text-[10px]" /> {post.readTime}
-                    </span>
-                  </div>
+                    <h2 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
+                      {featuredPost.title}
+                    </h2>
 
-                  <h3 className="text-base font-serif text-[#2C1810] mb-2 line-clamp-2">
-                    <Link
-                      href={`/blog/${post.id}`}
-                      className="hover:text-[#8B6A3E] transition"
-                    >
-                      {post.title}
-                    </Link>
-                  </h3>
+                    <p className="mt-3 max-w-lg text-sm leading-6 text-white/70">
+                      {featuredPost.excerpt}
+                    </p>
 
-                  <p className="text-sm text-[#5A3E2B]/70 mb-3 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-3 border-t border-[#F5E9D9]">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-6 h-6 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center">
-                        <span className="text-[8px] font-bold text-[#8B6A3E]">
-                          {post.author.charAt(0)}
+                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-white/60">
+                      <span className="inline-flex items-center gap-1.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[9px] font-bold text-[#2C1810]">
+                          {featuredPost.author.charAt(0)}
                         </span>
-                      </div>
-                      <span className="text-[10px] font-medium text-[#2C1810]">
-                        {post.author}
+                        {featuredPost.author}
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <FiCalendar /> {featuredPost.date}
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <FiClock /> {featuredPost.readTime} read
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1 text-[#5A3E2B]/40 text-[8px]">
-                        <BsEye className="text-[8px]" />
-                        <span>{post.views.toLocaleString()}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-[#5A3E2B]/40 text-[8px]">
-                        <BsChat className="text-[8px]" />
-                        <span>{post.comments}</span>
-                      </div>
-                      <button
-                        onClick={() => toggleSave(post.id)}
-                        className="p-1 hover:text-[#8B6A3E] transition"
-                      >
-                        {savedPosts.includes(post.id) ? (
-                          <BsBookmarkFill className="text-[10px] text-[#8B6A3E]" />
-                        ) : (
-                          <BsBookmark className="text-[10px] text-[#5A3E2B]/40" />
-                        )}
-                      </button>
-                    </div>
+                    <Link
+                      href={`/blog/${featuredPost.id}`}
+                      className="group mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-5 py-2.5 text-xs font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
+                    >
+                      Read Full Article
+                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
+
+                  {/* image — clean rounded frame */}
+                  <div className="relative m-4 h-[240px] overflow-hidden rounded-xl border border-white/15 sm:h-[280px] lg:m-5 lg:h-auto lg:min-h-[340px]">
+                    <Image
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/40 via-transparent to-transparent" />
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
+          </section>
         )}
 
-        {/* Pagination */}
-        {filteredPosts.length > 0 && (
-          <div className="flex justify-center mt-10">
-            <div className="flex items-center gap-1">
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#E7D5C2] text-[#5A3E2B] text-sm hover:bg-[#F5E9D9] transition">
-                &laquo;
-              </button>
-              {[1, 2, 3].map((page) => (
+        {/* ============ ALL POSTS ============ */}
+        <section className="py-5 lg:py-6">
+          <div className="mx-auto w-full max-w-7xl px-0">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                  <span>Latest Posts</span>
+                  <span className="h-px w-7 bg-[#C9A574]" />
+                </div>
+                <h2 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-3xl">
+                  {selectedCategory === "All" ? (
+                    <>
+                      All <span className="italic text-[#8B6A3E]">Articles</span>
+                    </>
+                  ) : (
+                    <span className="italic text-[#8B6A3E]">{selectedCategory}</span>
+                  )}
+                </h2>
+              </div>
+              <span className="rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[10px] font-semibold text-[#6A4F32]">
+                {filteredPosts.length} articles found
+              </span>
+            </div>
+
+            {filteredPosts.length === 0 ? (
+              /* ---- empty state ---- */
+              <div className="rounded-2xl border border-[#E6D6BF] bg-white py-14 text-center shadow-sm">
+                <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#DEC9A8] bg-[#FBF8F3]">
+                  <span className="absolute inset-1.5 rounded-full border border-dashed border-[#C9A574]/60" />
+                  <PiFlowerLotus className="text-2xl text-[#8B6A3E]" />
+                </div>
+                <h3 className="mt-4 font-serif text-xl text-[#2C1810]">
+                  No articles found
+                </h3>
+                <p className="mx-auto mt-1 max-w-sm text-sm text-[#7A685B]">
+                  Try adjusting your search or filter to find what you&apos;re
+                  looking for.
+                </p>
                 <button
-                  key={page}
-                  className={`w-8 h-8 flex items-center justify-center rounded-lg text-sm transition ${
-                    page === 1
-                      ? "bg-[#8B6A3E] text-white"
-                      : "border border-[#E7D5C2] text-[#5A3E2B] hover:bg-[#F5E9D9]"
-                  }`}
+                  className="mt-5 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition hover:bg-[#73532F]"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory("All");
+                  }}
                 >
-                  {page}
+                  Clear Filters
                 </button>
-              ))}
-              <span className="px-1 text-[#5A3E2B]/40 text-sm">...</span>
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#E7D5C2] text-[#5A3E2B] text-sm hover:bg-[#F5E9D9] transition">
-                &raquo;
-              </button>
+              </div>
+            ) : (
+              /* ---- normal rounded article cards ---- */
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {filteredPosts.map((post) => (
+                  <article
+                    key={post.id}
+                    className="group overflow-hidden rounded-xl border border-[#E6D6BF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#C9A574] hover:shadow-[0_16px_32px_rgba(70,47,31,0.14)]"
+                  >
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className="relative block h-44 w-full overflow-hidden"
+                    >
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/60 via-transparent to-transparent" />
+                      <span className="absolute bottom-2.5 left-3 z-10 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-white shadow">
+                        {post.category}
+                      </span>
+                    </Link>
+
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 text-[10px] text-[#8A7460]">
+                        <span className="flex items-center gap-1">
+                          <FiCalendar /> {post.date}
+                        </span>
+                        <span className="h-0.5 w-0.5 rounded-full bg-[#C9A574]" />
+                        <span className="flex items-center gap-1">
+                          <FiClock /> {post.readTime} read
+                        </span>
+                      </div>
+
+                      <h3 className="mt-2 line-clamp-2 font-serif text-base leading-snug text-[#2C1810]">
+                        <Link
+                          href={`/blog/${post.id}`}
+                          className="transition hover:text-[#8B6A3E]"
+                        >
+                          {post.title}
+                        </Link>
+                      </h3>
+
+                      <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-[#6B584B]">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="mt-3 flex items-center justify-between border-t border-[#F0E5D3] pt-3">
+                        <div className="flex items-center gap-1.5">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[9px] font-bold text-white">
+                            {post.author.charAt(0)}
+                          </span>
+                          <span className="text-[10px] font-semibold text-[#4A3428]">
+                            {post.author}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2.5 text-[10px] text-[#A8937E]">
+                          <span className="flex items-center gap-1">
+                            <BsEye />
+                            {post.views.toLocaleString()}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <BsChat />
+                            {post.comments}
+                          </span>
+                          <button
+                            onClick={() => toggleSave(post.id)}
+                            aria-label={
+                              savedPosts.includes(post.id)
+                                ? "Remove bookmark"
+                                : "Save article"
+                            }
+                            className="transition hover:text-[#8B6A3E]"
+                          >
+                            {savedPosts.includes(post.id) ? (
+                              <BsBookmarkFill className="text-[#8B6A3E]" />
+                            ) : (
+                              <BsBookmark />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {/* ---- pagination ---- */}
+            {filteredPosts.length > 0 && (
+              <div className="mt-8 flex justify-center">
+                <div className="flex items-center gap-1.5">
+                  <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E4D5BE] bg-white text-sm text-[#5F4630] transition hover:border-[#C9A574] hover:bg-[#F6EFE6]">
+                    &laquo;
+                  </button>
+                  {[1, 2, 3].map((page) => (
+                    <button
+                      key={page}
+                      className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm transition ${page === 1
+                          ? "bg-[#8B6A3E] font-semibold text-white shadow-md"
+                          : "border border-[#E4D5BE] bg-white text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <span className="px-1 text-sm text-[#A8937E]">...</span>
+                  <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E4D5BE] bg-white text-sm text-[#5F4630] transition hover:border-[#C9A574] hover:bg-[#F6EFE6]">
+                    &raquo;
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <HowItWorks />
+
+        {/* ============ NEWSLETTER — dark gold section ============ */}
+        <section className="relative overflow-hidden bg-[#3B2B21] py-5 lg:py-6">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810]" />
+          <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
+          <div className="pointer-events-none absolute -left-20 top-0 h-56 w-56 rounded-full border border-[#C9A574]/10" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
+
+          <div className="relative mx-auto w-full max-w-7xl px-0 text-white">
+            <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+              {/* Text Side */}
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681]">
+                    <PiFlowerLotus className="h-4 w-4" />
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#D9B681]">
+                    Stay Connected
+                  </span>
+                </div>
+
+                <h2 className="mt-3 font-serif text-2xl text-white sm:text-3xl">
+                  Weekly Wisdom, <span className="italic text-[#D9B681]">Delivered Gently</span>
+                </h2>
+                <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/70 lg:mx-0">
+                  Receive spiritual insights, ritual guides and updates on sacred
+                  journeys — once a week, nothing more.
+                </p>
+              </div>
+
+              {/* Form Side */}
+              <div className="w-full max-w-md shrink-0 text-center lg:text-left">
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    className="min-h-11 flex-1 rounded-lg border border-[#C9A574]/40 bg-white/[0.06] px-4 text-sm text-white outline-none backdrop-blur-sm transition placeholder:text-white/40 focus:border-[#D9B681] focus:bg-white/[0.1]"
+                  />
+                  <button className="min-h-11 rounded-lg bg-gradient-to-b from-[#E5B85F] to-[#C78B32] px-6 text-sm font-semibold text-[#24150C] shadow-md transition duration-300 hover:brightness-110">
+                    Subscribe
+                  </button>
+                </div>
+
+                <p className="mt-2 text-[11px] text-white/45">
+                  No spam. Unsubscribe anytime.
+                </p>
+              </div>
             </div>
           </div>
-        )}
-      </section>
-
-      <HowItWorks />
-
-      {/* Newsletter Section */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] to-[#8B6A3E]"></div>
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/assets/pattern.png')] bg-repeat"></div>
-          </div>
-        </div>
-
-        <div className="relative max-w-3xl mx-auto text-center px-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/20 backdrop-blur-sm mb-5">
-            <PiFlowerLotus className="w-3.5 h-3.5 text-white" />
-            <span className="text-[10px] tracking-wider text-white">
-              STAY CONNECTED
-            </span>
-          </div>
-
-          <h2 className="text-3xl font-serif text-white mb-3">
-            Subscribe to Our Newsletter
-          </h2>
-          <p className="text-white/80 text-sm mb-6 max-w-md mx-auto">
-            Receive weekly wisdom, spiritual insights, and updates on sacred
-            journeys.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-            <div className="relative flex-grow">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-3 pl-10 text-sm bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30"
-              />
-              <svg
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </div>
-            <button className="px-6 py-3 bg-white text-[#8B6A3E] text-sm font-medium rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              Subscribe
-            </button>
-          </div>
-
-          <p className="text-white/60 text-sm mt-4">
-            No spam. Unsubscribe anytime.
-          </p>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
     </div>
