@@ -58,7 +58,7 @@ export default function GlimpseOfJourney() {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center md:mt-8">
+        <div className="mt-3 flex justify-center md:mt-4">
           <button
             type="button"
             className="inline-flex h-10 min-w-[200px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-6 text-[13px] font-medium text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
