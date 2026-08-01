@@ -1,24 +1,37 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Shield } from "lucide-react";
-import shlokas from "@/types/shlokas.json";
-
-type Mantra = (typeof shlokas)[number];
+import Image from "next/image";
+import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  ArrowRight,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Landmark,
+  ShieldCheck,
+  Smile,
+  UsersRound,
+} from "lucide-react";
 
 interface HeroProps {
   variant?: "voyage" | "seva";
 }
+
+type StatItem = {
+  value: string;
+  label: string;
+  icon: ComponentType<{ className?: string; strokeWidth?: number }>;
+};
 
 export default function Hero({ variant = "voyage" }: HeroProps) {
   const images = useMemo(
     () =>
       variant === "seva"
         ? [
-            "/assets/four.jpg",
-            "/assets/im1.jpeg",
-            "/assets/im3.jpeg",
-            "/assets/im4.jpeg",
+            "/assets/hero-hd/moksha-hero-hd-1.png",
+            "/assets/hero-hd/moksha-hero-hd-2.png",
+            "/assets/hero-hd/moksha-hero-hd-3.png",
+            "/assets/hero-hd/moksha-hero-hd-4.png",
           ]
         : [
             "/assets/image.webp",
@@ -29,131 +42,191 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     [variant],
   );
 
+  const stats: StatItem[] =
+    variant === "seva"
+      ? [
+          { value: "50,000+", label: "Sevas Performed", icon: UsersRound },
+          { value: "25+", label: "Sacred Destinations", icon: Landmark },
+          { value: "98%", label: "Happy Devotees", icon: Smile },
+          { value: "100%", label: "Secure & Transparent", icon: ShieldCheck },
+        ]
+      : [
+          { value: "24/7", label: "Care Coordinators", icon: UsersRound },
+          { value: "15+", label: "Service Cities", icon: Landmark },
+          { value: "98%", label: "Families Supported", icon: Smile },
+          { value: "100%", label: "Transparent Support", icon: ShieldCheck },
+        ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying] = useState(true);
-
-  const slideMantras = useMemo(() => {
-    return [shlokas[0], shlokas[1], shlokas[2], shlokas[3]];
-  }, []);
-
-  const mantra: Mantra = slideMantras[currentIndex] || shlokas[0];
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((previous) => (previous + 1) % images.length);
   }, [images.length]);
 
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const previousSlide = useCallback(() => {
+    setCurrentIndex(
+      (previous) => (previous - 1 + images.length) % images.length,
+    );
   }, [images.length]);
-
-  const goToSlide = useCallback((index: number) => {
-    setCurrentIndex(index);
-  }, []);
 
   useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [isPlaying, nextSlide]);
+    const timer = window.setInterval(nextSlide, 5500);
+    return () => window.clearInterval(timer);
+  }, [nextSlide]);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [variant]);
+
+  const heading =
+    variant === "seva"
+      ? ["Sacred Rituals.", "Eternal Peace.", "Blessings for Generations."]
+      : ["Guided Farewells.", "Lasting Memories.", "Care Across Borders."];
+
+  const description =
+    variant === "seva"
+      ? "With devotion and tradition, we help you perform sacred sevas for your ancestors and loved ones at the holy places of Bharat."
+      : "Compassionate end-to-end support for families, with verified services and clear coordination at every step.";
 
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
-      {/* Background Images */}
-      <div className="absolute inset-0">
-        {images.map((img, i) => (
+    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[680px]">
+      {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
+      <div className="absolute inset-y-0 right-0 w-full md:w-[66%] lg:w-[68%]">
+        {images.map((image, index) => (
           <div
-            key={i}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-              i === currentIndex ? "opacity-100" : "opacity-0"
+            key={image}
+            aria-hidden={index !== currentIndex}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
-            style={{ backgroundImage: `url(${img})` }}
-          />
-        ))}
-        {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goToSlide(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all ${
-              i === currentIndex
-                ? "bg-white w-8"
-                : "bg-white/50 hover:bg-white/80"
-            }`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className="relative h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 z-20">
-        <div className="max-w-4xl text-center space-y-6">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/30 backdrop-blur-sm">
-            <Shield className="w-4 h-4 text-amber-200" />
-            <span className="text-xs sm:text-sm text-white font-medium tracking-wider">
-              {variant === "seva" ? "MOKSHA SEWA SUPPORT" : "TRUSTED SINCE 2005"}
-            </span>
+          >
+            <Image
+              src={image}
+              alt="Sacred riverside ritual at a holy ghat"
+              fill
+              priority={index === 0}
+              quality={100}
+              unoptimized
+              sizes="(max-width: 767px) 100vw, 68vw"
+              className="object-cover object-center"
+            />
           </div>
+        ))}
 
-          {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white">
-            {variant === "seva" ? "Moksha Sewa" : "A Journey Guided"}{" "}
-            <span className="block text-amber-300">
-              {variant === "seva" ? "with Dignity & Care" : "by Love"}
-            </span>
-          </h1>
+        <div className="absolute inset-0 bg-[#774516]/[0.035]" />
+      </div>
 
-          {/* Mantra Section */}
-          {mantra && (
-            <div className="mt-8 rounded-xl p-6 ">
-              {/* Mantra Title */}
-              <h3 className="text-amber-200 text-lg sm:text-xl font-semibold mb-4 flex items-center justify-center gap-3">
-                <span>🌼</span>
-                {currentIndex === 0
-                  ? "Morning Mantra"
-                  : currentIndex === 1
-                    ? "Evening Mantra"
-                    : currentIndex === 2
-                      ? "Peace Mantra"
-                      : "Blessing Mantra"}
-                <span>🌼</span>
-              </h3>
+      {/* Soft blend between cream content and image. */}
+      <div
+        className="absolute inset-0 hidden md:block"
+        style={{
+          background:
+            "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 32%, rgba(251,245,234,0.98) 39%, rgba(251,245,234,0.83) 47%, rgba(251,245,234,0.34) 56%, rgba(251,245,234,0) 66%)",
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/86 to-[#fbf5ea]/55 md:hidden" />
 
-              {/* Sanskrit Mantra */}
-              <p className="text-white text-xl sm:text-2xl md:text-3xl font-serif leading-relaxed">
-                {mantra.sanskrit}
-              </p>
+      {/* Slider controls */}
+      <button
+        type="button"
+        onClick={previousSlide}
+        aria-label="Previous hero image"
+        className="absolute left-3 top-1/2 z-40 hidden -translate-y-1/2 rounded-full border border-white/60 bg-black/20 p-2 text-white opacity-0 backdrop-blur-sm transition hover:bg-black/35 group-hover:opacity-100 lg:flex"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
 
-              {/* Hindi Translation */}
-              <p className="text-white/80 text-sm sm:text-base mt-4 italic">
-                {mantra.hindi}
-              </p>
+      <button
+        type="button"
+        onClick={nextSlide}
+        aria-label="Next hero image"
+        className="absolute right-3 top-1/2 z-40 hidden -translate-y-1/2 rounded-full border border-white/60 bg-black/20 p-2 text-white opacity-0 backdrop-blur-sm transition hover:bg-black/35 group-hover:opacity-100 lg:flex"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
 
-              {/* Audio Control Button - Only show if audio exists */}
+      {/* Main content */}
+      <div className="relative z-20 mx-auto h-full max-w-7xl px-5 sm:px-7 lg:px-8">
+        <div className="flex h-full items-start pt-12 sm:pt-14 lg:pt-14 xl:pt-16">
+          <div className="w-full max-w-[610px] md:w-[58%] lg:w-[49%] xl:w-[47%]">
+            <h1
+              className="text-[38px] font-normal leading-[1.1] tracking-[-0.025em] text-[#30170d] sm:text-[43px] md:text-[46px] lg:text-[48px] xl:text-[52px]"
+              style={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontWeight: 400,
+              }}
+            >
+              {heading.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h1>
+
+            <div className="mt-5 flex items-center gap-3 text-[#b27a24]">
+              <span className="h-px w-20 bg-[#c99a50]/70" />
+              <span className="text-sm">✦</span>
+              <span className="h-px w-14 bg-[#c99a50]/70" />
             </div>
-          )}
+
+            <p className="mt-4 max-w-[535px] text-[15px] font-normal leading-6 text-[#3d3732] sm:text-[16px] lg:text-[16px]">
+              {description}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3.5">
+              <a
+                href={variant === "seva" ? "/sevas" : "/services"}
+                className="inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-gradient-to-r from-[#bd8128] to-[#a96913] px-6 text-[14px] font-normal text-white shadow-[0_8px_20px_rgba(137,82,17,0.18)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(137,82,17,0.24)]"
+              >
+                <span>{variant === "seva" ? "Book a Seva" : "Get Support"}</span>
+                <CalendarDays className="h-[17px] w-[17px]" strokeWidth={1.7} />
+              </a>
+
+              <a
+                href={variant === "seva" ? "/sevas" : "/services"}
+                className="inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#b98232] bg-white/45 px-6 text-[14px] font-normal text-[#956019] backdrop-blur-[2px] transition hover:bg-white/75"
+              >
+                <span>{variant === "seva" ? "Explore Sevas" : "Explore Services"}</span>
+                <ArrowRight className="h-[17px] w-[17px]" strokeWidth={1.7} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-width, thin stats band */}
+      <div className="absolute bottom-0 left-0 z-30 w-full border-y border-[#eadbc4] bg-white/95 shadow-[0_-7px_24px_rgba(70,39,13,0.08)] backdrop-blur-md">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:h-[64px] md:grid-cols-4">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={stat.label}
+                className={`flex min-h-[58px] items-center justify-center gap-2.5 px-3 py-2 md:min-h-0 md:py-0 lg:gap-3 ${
+                  index > 0 ? "md:border-l md:border-[#dfc9a6]" : ""
+                } ${index > 1 ? "border-t border-[#eadbc3] md:border-t-0" : ""}`}
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e3cda9] bg-[#fffaf2] text-[#ad7420] shadow-[0_3px_9px_rgba(132,83,23,0.09)] lg:h-10 lg:w-10">
+                  <Icon className="h-[19px] w-[19px] lg:h-5 lg:w-5" strokeWidth={1.55} />
+                </div>
+
+                <div className="min-w-0 text-left">
+                  <div
+                    className="whitespace-nowrap text-[19px] font-normal leading-none text-[#3a2013] lg:text-[21px]"
+                    style={{
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="mt-0.5 whitespace-nowrap text-[10px] font-normal leading-4 text-[#40362f] sm:text-[11px] lg:text-[12px]">
+                    {stat.label}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
