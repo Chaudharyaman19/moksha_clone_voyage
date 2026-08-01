@@ -3,6 +3,7 @@ import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mokshavoyageclone.netlify.app/"),
   title: "Moksha Sewa",
   description: "Dignified farewell and related services with compassion.",
   openGraph: {
@@ -20,6 +21,15 @@ export const metadata: Metadata = {
     ],
     locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Moksha Sewa - Dignified Farewell Services",
+    description: "We offer comprehensive, respectful, and dignified farewell services to support families during difficult times.",
+    images: ["/assets/logo Moksha Seva.png"],
+  },
+  icons: {
+    icon: "/assets/logo Moksha Seva.png",
   },
 };
 export default function RootLayout({
