@@ -88,34 +88,35 @@ export default function VoicesOfGratitude() {
           {visibleTestimonials.map((testimonial) => (
             <article
               key={testimonial.id}
-              className="relative flex flex-col justify-between rounded-[12px] border border-[#E9DED2] bg-white p-4 shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:p-5"
+              className="relative flex flex-row items-center justify-between gap-4 rounded-[12px] border border-[#E9DED2] bg-white p-4 shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:p-5 sm:gap-5"
             >
-              {/* Quote mark icon */}
-              <div className="absolute left-4 top-4 text-3xl font-serif text-[#C78B4D] opacity-60">
-                &ldquo;
-              </div>
-              
-              <div className="relative z-10 pl-6 text-[#5D493C]">
+              {/* Left Side: Quote + Author */}
+              <div className="relative z-10 flex-1 pl-6 text-[#5D493C]">
+                {/* Quote mark icon */}
+                <div className="absolute left-0 top-0 text-3xl font-serif text-[#C78B4D] opacity-60 leading-none">
+                  &ldquo;
+                </div>
+                
                 <p className="mb-4 text-[13px] font-normal leading-relaxed sm:text-[14px]">
                   {testimonial.quote}
                 </p>
 
-                <div className="flex items-center gap-4">
-                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#E9DED2]">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-[15px] font-semibold text-[#32231C]">
-                      - {testimonial.name}
-                    </h3>
-                    <p className="text-[12px] text-[#8B6A3E]">{testimonial.location}</p>
-                  </div>
+                <div>
+                  <h3 className="font-serif text-[15px] font-semibold text-[#32231C]">
+                    - {testimonial.name}
+                  </h3>
+                  <p className="text-[12px] text-[#8B6A3E]">{testimonial.location}</p>
                 </div>
+              </div>
+
+              {/* Right Side: Profile Image */}
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-[#E9DED2] sm:h-20 sm:w-20 lg:h-24 lg:w-24">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
             </article>
           ))}
