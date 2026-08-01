@@ -783,7 +783,7 @@ export default function About() {
                 Network Live · 24/7
               </div>
 
-              <div className="relative mx-auto w-full h-[300px] sm:h-[380px] lg:h-[460px] max-w-[580px] lg:max-w-[640px]">
+              <div className="relative mx-auto w-full h-[200px] sm:h-[260px] lg:h-[320px] max-w-[580px] lg:max-w-[640px]">
                 {/* soft ground shadow */}
                 <div className="pointer-events-none absolute bottom-0 left-1/2 h-8 w-[70%] -translate-x-1/2 rounded-full bg-[#4A3421]/20 blur-xl" />
 
