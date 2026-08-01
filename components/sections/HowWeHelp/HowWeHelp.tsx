@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ReactElement } from "react";
-import Mantra from "@/components/sections/Mantra/Mantra";
+import Mantra from "../Mantra/Mantra";
 
 interface CustomIconProps {
   name: string;
@@ -335,16 +335,23 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         </div>
 
         {variant === "seva" ? (
-          <div className="mb-4 overflow-hidden rounded-2xl border border-[#E7D9C7] bg-white/75 shadow-[0_7px_22px_rgba(73,49,30,0.06)] backdrop-blur-sm">
+          <div className="mb-3 overflow-hidden rounded-lg border border-[#E7D9C7] bg-white/75 shadow-[0_4px_12px_rgba(73,49,30,0.045)] backdrop-blur-sm">
             <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[#E0CDB4]">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex min-h-[98px] items-center justify-center gap-4 px-4 py-3">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2CBAE] bg-gradient-to-br from-[#FBF5EB] to-[#EFE0CA] text-[#81500F]">
-                    <CustomIcon name={stat.icon} className="h-8 w-8" />
+                <div
+                  key={stat.label}
+                  className="flex min-h-[50px] items-center justify-center gap-2 px-2 py-1"
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2CBAE] bg-gradient-to-br from-[#FBF5EB] to-[#EFE0CA] text-[#81500F] sm:h-9 sm:w-9">
+                    <CustomIcon name={stat.icon} className="h-4 w-4" />
                   </div>
-                  <div className="text-left">
-                    <div className="font-serif text-[28px] leading-none text-[#2F1D14]">{stat.value}</div>
-                    <div className="mt-1 max-w-[100px] text-sm leading-5 text-[#37251C]">{stat.label}</div>
+                  <div className="min-w-0 text-left">
+                    <div className="font-serif text-[18px] leading-none text-[#2F1D14] sm:text-[19px]">
+                      {stat.value}
+                    </div>
+                    <div className="mt-0.5 whitespace-nowrap text-[9px] leading-none tracking-[-0.01em] text-[#37251C] sm:text-[10px] lg:text-[11px]">
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -373,15 +380,15 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         )}
 
         <div className="text-center">
-          <button className={`${variant === "seva" ? "rounded-lg px-10 py-3.5" : "rounded-xl px-6 py-3 md:px-8"} relative overflow-hidden bg-gradient-to-br from-[#C58A43] to-[#95601F] text-white shadow-lg transition-shadow hover:shadow-xl`}>
-            <span className="relative z-10 flex items-center justify-center gap-3 text-base font-medium md:text-lg">
+          <button className={`${variant === "seva" ? "rounded-lg px-8 py-2" : "rounded-xl px-6 py-3 md:px-8"} relative overflow-hidden bg-gradient-to-br from-[#C58A43] to-[#95601F] text-white shadow-md transition-shadow hover:shadow-lg`}>
+            <span className="relative z-10 flex items-center justify-center gap-2 text-sm font-medium md:text-base">
               {variant === "seva" ? "Explore Moksha Sewa" : "Explore All Services"}
               <CustomIcon name="FaArrowRight" className="h-4 w-4" />
             </span>
           </button>
 
           {variant === "seva" ? (
-            <p className="mt-2 text-sm text-[#6E3F1F] sm:text-base">
+            <p className="mt-1.5 text-xs text-[#6E3F1F] sm:text-sm">
               Moksha Sewa with Dignity <span className="mx-2">•</span> Trusted Support <span className="mx-2">•</span> Always with You
             </p>
           ) : (
