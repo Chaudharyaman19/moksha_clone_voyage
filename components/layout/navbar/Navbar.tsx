@@ -24,7 +24,7 @@ interface NavbarProps {
   variant?: "voyage" | "seva";
 }
 
-export default function Navbar({ variant = "voyage" }: NavbarProps) {
+export default function Navbar({ variant = "seva" }: NavbarProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

@@ -50,7 +50,7 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Footer({ variant = "voyage" }: FooterProps) {
+export default function Footer({ variant = "seva" }: FooterProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
