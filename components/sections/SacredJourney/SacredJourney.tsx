@@ -99,12 +99,16 @@ export default function SacredJourney({
     <section className="relative w-full overflow-hidden border-y border-[#E9DCCB] bg-[#FBF7F0] py-5 md:py-6">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,129,36,0.08),transparent_42%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <header className="mb-4 text-center md:mb-5">
-          <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.32em] text-[#D97800] sm:text-[10px]">
-            {variant === "seva" ? "Support Moksha Sewa" : "Support With Compassion"}
-          </p>
-          <h2 className="text-[22px] font-normal leading-tight text-[#362319] sm:text-[26px] lg:text-[30px]">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-4 text-center md:mb-5 flex flex-col items-center justify-center">
+          <div className="mb-2 inline-flex items-center space-x-3">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent via-[#D97800] to-transparent" />
+            <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-[#D97800] sm:text-[10px]">
+              {variant === "seva" ? "Support Moksha Sewa" : "Support With Compassion"}
+            </p>
+            <div className="h-px w-8 bg-gradient-to-r from-transparent via-[#D97800] to-transparent" />
+          </div>
+          <h2 className="font-serif text-[22px] font-normal leading-tight text-[#362319] sm:text-[26px] lg:text-[30px]">
             Be the Reason Someone Gets a Dignified Farewell.
           </h2>
         </header>

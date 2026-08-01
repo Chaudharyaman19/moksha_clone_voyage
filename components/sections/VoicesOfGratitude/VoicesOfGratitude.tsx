@@ -88,7 +88,7 @@ export default function VoicesOfGratitude() {
           {visibleTestimonials.map((testimonial) => (
             <article
               key={testimonial.id}
-              className="relative flex flex-row items-center justify-between gap-4 rounded-[12px] border border-[#E9DED2] bg-white p-4 shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:p-5 sm:gap-5"
+              className="relative flex h-full flex-row items-start justify-between gap-4 rounded-[12px] border border-[#E9DED2] bg-white p-4 shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:p-5 sm:gap-5"
             >
               {/* Left Side: Quote + Author */}
               <div className="relative z-10 flex-1 pl-6 text-[#5D493C]">
