@@ -7,6 +7,8 @@ import CompassionSection from "@/components/sections/CompassionSection/Compassio
 import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
 import Serving from "@/components/sections/Serving/Serving";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
+import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
+import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
 import Footer from "@/components/layout/Footer/Footer";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
@@ -21,6 +23,8 @@ export default function Page() {
       <HowWeHelp variant="seva" />
       <Serving variant="seva" />
       <SacredJourney variant="seva" />
+      <VoicesOfGratitude />
+      <GlimpseOfJourney />
       <Footer variant="seva" />
     </div>
   );
