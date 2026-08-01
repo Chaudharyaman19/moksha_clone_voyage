@@ -1,112 +1,159 @@
 "use client";
+
+import Image from "next/image";
 import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaWhatsapp,
+  FaArrowRight,
+  FaHandHoldingUsd,
+  FaHandsHelping,
+  FaHandshake,
+  FaUsers,
 } from "react-icons/fa";
 
 interface SacredJourneyProps {
   variant?: "voyage" | "seva";
 }
 
+type SupportCard = {
+  title: string;
+  description: string;
+  button: string;
+  image: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
 export default function SacredJourney({
   variant = "voyage",
 }: SacredJourneyProps) {
-  const isVisible = true;
-
-  const circleStyles = [
-    { width: "28px", height: "28px", left: "10%", top: "20%" },
-    { width: "36px", height: "26px", left: "30%", top: "70%" },
-    { width: "22px", height: "36px", left: "50%", top: "30%" },
-    { width: "36px", height: "26px", left: "70%", top: "50%" },
-    { width: "24px", height: "36px", left: "85%", top: "10%" },
-  ];
+  const cards: SupportCard[] =
+    variant === "seva"
+      ? [
+          {
+            title: "Donate",
+            description:
+              "Your contribution helps us provide free services to families in need.",
+            button: "Donate Now",
+            image: "/assets/sacred-journey-hd/donate.webp",
+            icon: FaHandHoldingUsd,
+          },
+          {
+            title: "Volunteer",
+            description:
+              "Join our team and serve humanity by being there when it matters most.",
+            button: "Become a Volunteer",
+            image: "/assets/sacred-journey-hd/volunteer.webp",
+            icon: FaUsers,
+          },
+          {
+            title: "Sponsor a Service",
+            description:
+              "Sponsor a cremation or support a family in memory of your loved ones.",
+            button: "Sponsor Now",
+            image: "/assets/sacred-journey-hd/sponsor-service.webp",
+            icon: FaHandsHelping,
+          },
+          {
+            title: "Partner With Us",
+            description:
+              "Partner with us to expand our reach and impact more lives together.",
+            button: "Partner With Us",
+            image: "/assets/sacred-journey-hd/partner-with-us.webp",
+            icon: FaHandshake,
+          },
+        ]
+      : [
+          {
+            title: "Donate",
+            description:
+              "Support dignified care, transparent coordination and compassionate assistance.",
+            button: "Donate Now",
+            image: "/assets/sacred-journey-hd/donate.webp",
+            icon: FaHandHoldingUsd,
+          },
+          {
+            title: "Volunteer",
+            description:
+              "Join our support network and help families when compassionate care matters most.",
+            button: "Become a Volunteer",
+            image: "/assets/sacred-journey-hd/volunteer.webp",
+            icon: FaUsers,
+          },
+          {
+            title: "Sponsor a Service",
+            description:
+              "Sponsor a verified service or support a family in memory of a loved one.",
+            button: "Sponsor Now",
+            image: "/assets/sacred-journey-hd/sponsor-service.webp",
+            icon: FaHandsHelping,
+          },
+          {
+            title: "Partner With Us",
+            description:
+              "Partner with our mission to extend dignified support across more communities.",
+            button: "Partner With Us",
+            image: "/assets/sacred-journey-hd/partner-with-us.webp",
+            icon: FaHandshake,
+          },
+        ];
 
   return (
-    <section className="w-full relative py-7 md:py-8 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FCF9F3] via-[#F8F4EC] to-[#F5F1E9]"></div>
+    <section className="relative w-full overflow-hidden border-y border-[#E9DCCB] bg-[#FBF7F0] py-5 md:py-6">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,129,36,0.08),transparent_42%)]" />
 
-        {circleStyles.map((style, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-[#8B6A3E]/10"
-            style={style}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
-        <div
-          className={`text-center mb-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
-        >
-          <span className="text-[#8B6A3E] tracking-widest uppercase text-[11px] font-medium">
-            {variant === "seva" ? "24/7 Moksha Sewa Helpline" : "24/7 Care Coordination"}
-          </span>
-
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-[#3A2A1F] leading-snug mt-2 mb-2">
-            {variant === "seva" ? "Need Funeral Support Now?" : "A Journey Guided by Love"}
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
+        <header className="mb-4 text-center md:mb-5">
+          <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.32em] text-[#D97800] sm:text-[10px]">
+            {variant === "seva" ? "Support Moksha Sewa" : "Support With Compassion"}
+          </p>
+          <h2 className="text-[22px] font-normal leading-tight text-[#362319] sm:text-[26px] lg:text-[30px]">
+            Be the Reason Someone Gets a Dignified Farewell.
           </h2>
+        </header>
 
-          <p className="text-xs sm:text-sm text-[#6E4B3A]/90 max-w-xl mx-auto font-light leading-relaxed">
-            {variant === "seva"
-              ? "One trusted team for ambulance, hearse van, funeral samagri, pandit ji, cremation coordination and prayer hall arrangements."
-              : "One trusted contact. Complete care. First response within 15 minutes, 24 hours a day, 365 days a year."}
-          </p>
-        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {cards.map((card, index) => {
+            const Icon = card.icon;
 
-        <div
-          className={`transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
-        >
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
-            <button className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#8B6A3E] text-white text-sm hover:bg-[#7A5A2E] transition shadow-md hover:shadow-lg">
-              <FaPhoneAlt className="text-xs" />
-              {variant === "seva" ? "Call Moksha Sewa" : "Get Immediate Support"}
-            </button>
+            return (
+              <article
+                key={card.title}
+                className="group relative h-[206px] overflow-hidden rounded-[15px] border border-[#E7D4BA] bg-white shadow-[0_5px_16px_rgba(74,45,22,0.06)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(74,45,22,0.10)] sm:h-[212px] xl:h-[202px]"
+              >
+                {/* Clean HD image kept fully away from the text column. */}
+                <div className="absolute right-0 top-0 h-[112px] w-[52%] overflow-hidden rounded-tr-[14px] rounded-bl-[100%] sm:h-[116px] xl:h-[108px]">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    unoptimized
+                    priority={index < 2}
+                    sizes="(max-width: 640px) 52vw, (max-width: 1280px) 26vw, 20vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
+                  />
+                </div>
 
-            <button className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#25D366] text-white text-sm hover:bg-[#128C7E] transition shadow-md hover:shadow-lg">
-              <FaWhatsapp className="text-sm" />
-              WhatsApp Chat
-            </button>
+                {/* Fixed-width text column prevents image/content overlap. */}
+                <div className="relative z-10 flex h-full w-[51%] flex-col px-4 pb-[50px] pt-4 sm:px-5 xl:px-4">
+                  <Icon className="mb-2 h-7 w-7 shrink-0 text-[#E98700] sm:h-8 sm:w-8 xl:h-7 xl:w-7" />
 
-            <button className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md border border-[#8B6A3E] text-[#8B6A3E] text-sm hover:bg-[#F8F4EC] transition">
-              <FaEnvelope className="text-xs" />
-              {variant === "seva" ? "Book Sewa Support" : "Plan Ahead for Your Family"}
-            </button>
-          </div>
+                  <h3 className="text-[17px] font-semibold leading-[1.08] text-[#352319] sm:text-[18px] xl:text-[17px]">
+                    {card.title}
+                  </h3>
 
-          <div className="text-center mt-6">
-            <p className="text-[12px] text-[#6E4B3A] font-light">
-              {variant === "seva"
-                ? "24/7 Helpline • Verified Pandits • Clear Packages • Respectful Arrangements"
-                : "Toll-free 24/7 Helpline • Real-Time Family Tracking • Radical Pricing Transparency"}
-            </p>
-          </div>
+                  <p className="mt-2 text-[11px] font-normal leading-[1.38] text-[#694B3A] sm:text-[12px] xl:text-[11px]">
+                    {card.description}
+                  </p>
+                </div>
 
-          <div className="flex justify-center gap-6 mt-4">
-            <span className="text-xs text-[#8B6A3E] font-medium">
-              {variant === "seva" ? "✓ Immediate Assistance" : "✓ Response Time SLA: 15 min"}
-            </span>
-            <span className="text-xs text-[#8B6A3E] font-medium">
-              ✓ Verified Network
-            </span>
-            <span className="text-xs text-[#8B6A3E] font-medium">
-              ✓ No Hidden Charges
-            </span>
-          </div>
-        </div>
-
-        <div
-          className={`text-center mt-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
-        >
-          <p className="text-sm sm:text-base font-light italic text-[#5A4030] px-4 max-w-lg mx-auto border-l-2 border-[#8B6A3E] pl-4">
-            {variant === "seva"
-              ? "\"In the final journey, every ritual deserves dignity and every family deserves support.\""
-              : "\"You should not have to navigate this alone, and with Moksha Voyage, you never will.\""}
-          </p>
-          <p className="text-[10px] text-[#8B6A3E] mt-2">
-            {variant === "seva" ? "— Moksha Sewa Promise" : "— From our Empathy Section"}
-          </p>
+                <button
+                  type="button"
+                  className="absolute bottom-3 left-4 z-20 flex h-8 w-[72%] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#E88A00] to-[#F39A00] px-3 text-[11px] font-semibold text-white shadow-[0_4px_10px_rgba(230,132,0,0.18)] transition hover:brightness-95 sm:left-5 sm:text-[12px] xl:left-4 xl:h-[30px] xl:text-[11px]"
+                >
+                  <span className="truncate">{card.button}</span>
+                  <FaArrowRight className="h-3 w-3 shrink-0" />
+                </button>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
