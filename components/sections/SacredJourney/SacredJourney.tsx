@@ -123,17 +123,17 @@ export default function SacredJourney({
                 className="group relative h-[206px] overflow-hidden rounded-[15px] border border-[#E7D4BA] bg-white shadow-[0_5px_16px_rgba(74,45,22,0.06)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(74,45,22,0.10)] sm:h-[212px] xl:h-[202px]"
               >
                 {/* Clean HD image kept fully away from the text column. */}
-                <div className="absolute right-0 top-0 h-[112px] w-[52%] overflow-hidden rounded-tr-[14px] rounded-bl-[100%] sm:h-[116px] xl:h-[108px]">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    unoptimized
-                    priority={index < 2}
-                    sizes="(max-width: 640px) 52vw, (max-width: 1280px) 26vw, 20vw"
-                    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
-                  />
-                </div>
+              <div className="absolute right-0 top-0 h-[145px] w-[60%] overflow-hidden rounded-tr-[14px] rounded-bl-[100%] sm:h-[150px] xl:h-[155px]">
+  <Image
+    src={card.image}
+    alt={card.title}
+    fill
+    unoptimized
+    priority={index < 2}
+    sizes="(max-width: 640px) 52vw, (max-width: 1280px) 26vw, 20vw"
+    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
+  />
+</div>
 
                 {/* Fixed-width text column prevents image/content overlap. */}
                 <div className="relative z-10 flex h-full w-[51%] flex-col px-4 pb-[50px] pt-4 sm:px-5 xl:px-4">
