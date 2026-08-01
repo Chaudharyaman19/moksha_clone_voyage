@@ -55,8 +55,8 @@ export default function Footer({ variant = "voyage" }: FooterProps) {
     : "Providing respectful guidance with dignity, tradition and care for every family.";
   const contactEmail = isSeva
     ? "info@mokshasewa.org"
-    : "info@mokshavoyage.com";
-  const contactNumber = isSeva ? "+91 96549 00525" : "+91 123 456 7890";
+    : "info@mokshasewa.com";
+  const contactNumber = isSeva ? "+91 96549 00525" : "+91 9568259784";
 
   const services = isSeva
     ? [
@@ -191,8 +191,8 @@ export default function Footer({ variant = "voyage" }: FooterProps) {
                 <button
                   type="submit"
                   className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition duration-300 sm:min-w-32 ${subscribed
-                      ? "bg-emerald-600 text-white"
-                      : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
+                    ? "bg-emerald-600 text-white"
+                    : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
                     }`}
                 >
                   {subscribed ? "Submitted" : isSeva ? "Send" : "Join"}

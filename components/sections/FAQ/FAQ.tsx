@@ -85,7 +85,7 @@ export default function FAQSection({
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF8F2] py-6 sm:py-7 lg:py-8">
+    <section className="relative w-full overflow-hidden bg-[#FBF8F2] py-4 sm:py-5 lg:py-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -101,7 +101,7 @@ export default function FAQSection({
         </div>
 
         {/* Two-column accordion */}
-        <div className="mt-5 grid gap-x-10 lg:grid-cols-2">
+        <div className="mt-3 grid gap-x-10 lg:grid-cols-2">
           {columns.map((column, columnIndex) => {
             const offset = columnIndex === 0 ? 0 : 3;
 
@@ -153,7 +153,7 @@ export default function FAQSection({
         </div>
 
         {/* Support banner */}
-        <div className="relative mt-7 min-h-[260px] overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:min-h-[275px] lg:min-h-[285px]">
+        <div className="relative mt-4 w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] aspect-[16/9] sm:aspect-[21/9] lg:aspect-[4/1]">
           <Image
             src="/assets/faq/faq-support-banner.webp"
             alt="Moksha Sewa compassionate family support"
@@ -166,7 +166,7 @@ export default function FAQSection({
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-[#9C3704]/5 to-black/5" />
 
-          <div className="relative z-10 flex min-h-[260px] items-center px-5 py-8 sm:min-h-[275px] sm:px-8 lg:min-h-[285px] lg:px-10">
+          <div className="absolute inset-0 z-10 flex items-center px-5 sm:px-8 lg:px-10">
             <div className="ml-auto w-full text-white sm:w-[68%] lg:w-[66%]">
               <h3 className="font-serif text-[25px] font-normal leading-[1.25] sm:text-[31px] lg:text-[25px]">
                 In Their Final Journey,
