@@ -90,7 +90,7 @@ export default function Footer({ variant = "voyage" }: FooterProps) {
       <div className="pointer-events-none absolute -right-24 top-16 h-72 w-72 rounded-full border border-[#C79545]/10" />
       <div className="pointer-events-none absolute bottom-12 left-1/2 h-36 w-36 -translate-x-1/2 rounded-full border border-[#C79545]/5" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-0 py-8 lg:py-10">
         {/* Top section */}
         <div className="grid items-center gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
           {/* Brand */}

@@ -120,13 +120,13 @@ export default function About() {
         </section>
 
         <section className="relative z-20 -mt-12 ">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-0">
             <div className="rounded-2xl border border-[#E5D7C4] bg-white/95 px-4 py-4 shadow-[0_18px_48px_rgba(74,49,32,0.13)] backdrop-blur-md md:px-6">
             <div className="grid grid-cols-2 gap-y-5 md:grid-cols-4 md:divide-x md:divide-[#E7DAC8]">
               {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={stat.title} className="flex items-center gap-3 px-2 md:justify-center md:px-4">
+                  <div key={stat.title} className="flex items-center gap-3 px-0 md:justify-center md:px-4">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -144,7 +144,7 @@ export default function About() {
         </section>
 
         <section className="pb-8 pt-10 lg:pb-10 lg:pt-12">
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 lg:px-8">
+          <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 lg:px-8">
             <div>
               <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                 <span>Our Story</span>
@@ -187,7 +187,7 @@ export default function About() {
         </section>
 
         <section className="border-y border-[#E9DDCD] bg-[#F8F3EC] py-7">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-5 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
               <span>What We Take Care Of</span>
@@ -213,7 +213,7 @@ export default function About() {
           <div className="absolute -left-20 top-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
           <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border border-[#C9A574]/10" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.78fr] lg:px-8">
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-7 px-0 lg:grid-cols-[0.72fr_1.78fr] lg:px-8">
             <div className="text-white">
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">Why Choose Us</div>
               <h2 className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">Here for You, Always</h2>
@@ -246,7 +246,7 @@ export default function About() {
         </section>
 
         <section className="bg-[#FBF8F3] py-8 lg:py-9">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-6 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
               <span>Our Process</span>
@@ -273,7 +273,7 @@ export default function About() {
         </section>
 
         <section className="pb-2 lg:pb-3">
-          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-0">
             {/* Our Presence — full-width column layout */}
             <div className="rounded-2xl border border-[#E6D8C5] bg-[#F6EFE6] p-5 sm:p-6">
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
@@ -331,7 +331,7 @@ export default function About() {
           <div className="absolute -left-28 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full border border-[#C9A574]/20" />
           <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-[#8B6A3E]/5 blur-3xl" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl items-stretch gap-4 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:px-8">
+          <div className="relative mx-auto grid w-full max-w-7xl items-stretch gap-4 px-0 lg:grid-cols-[1.08fr_0.92fr] lg:gap-6 lg:px-8">
             <div className="grid h-[320px] grid-cols-[1.35fr_0.85fr] grid-rows-2 gap-2.5 sm:h-[380px] lg:h-full lg:min-h-[470px]">
               <div className="group relative row-span-2 overflow-hidden rounded-[22px] shadow-[0_18px_42px_rgba(70,47,31,0.14)]">
                 <Image
@@ -442,7 +442,7 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] via-[#5B432F] to-[#2C1810]" />
           <div className="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_15%_70%,#D7B37A_0,transparent_23%),radial-gradient(circle_at_85%_60%,#D7B37A_0,transparent_22%)]" />
 
-          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative mx-auto w-full max-w-7xl px-0">
             <h2 className="font-serif text-2xl sm:text-3xl">We Are Here to Serve You in Your Time of Need</h2>
             <p className="mt-1 text-xs text-white/75 sm:text-sm">Call us anytime for immediate support.</p>
             <a href="tel:+911234567890" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:bg-[#75552F]">

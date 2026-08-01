@@ -221,7 +221,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-0">
         <div className={`text-center ${variant === "seva" ? "mb-5" : "mb-12"}`}>
           <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-0" : "mb-6"}`}>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
@@ -340,7 +340,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="flex min-h-[50px] items-center justify-center gap-2 px-2 py-1"
+                  className="flex min-h-[50px] items-center justify-center gap-2 px-0 py-1"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2CBAE] bg-gradient-to-br from-[#FBF5EB] to-[#EFE0CA] text-[#81500F] sm:h-9 sm:w-9">
                     <CustomIcon name={stat.icon} className="h-4 w-4" />

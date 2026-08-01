@@ -76,7 +76,7 @@ export default function VoicesOfGratitude() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#FFFCF8] py-2 md:py-3">
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         <header className="mb-5 text-center">
           <h2 className="font-serif text-[24px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[32px] lg:text-[38px]">
             Voices of Gratitude

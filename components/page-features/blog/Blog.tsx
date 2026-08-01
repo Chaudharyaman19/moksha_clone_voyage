@@ -277,7 +277,7 @@ function Blog() {
                   />
                   <div className="absolute top-3 right-3">
                     <span
-                      className="px-2 py-1 text-[10px] font-medium text-white rounded-full"
+                      className="px-0 py-1 text-[10px] font-medium text-white rounded-full"
                       style={{ backgroundColor: themeColor }}
                     >
                       {post.category}

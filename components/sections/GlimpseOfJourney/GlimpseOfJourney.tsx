@@ -17,7 +17,7 @@ const galleryImages = [
 export default function GlimpseOfJourney() {
   return (
     <section className="relative w-full overflow-hidden border-t border-[#E9DDCF] bg-[#FFFCF8] py-2 md:py-3">
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         
         <header className="mb-4 text-center">
           <div className="mb-2 inline-flex items-center space-x-3">

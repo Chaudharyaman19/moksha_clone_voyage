@@ -68,7 +68,7 @@ export default function Serving({ variant = "voyage" }: ServingProps) {
         <div className="absolute left-1/2 top-0 h-24 w-[70%] -translate-x-1/2 rounded-full bg-[#B97A2A]/[0.035] blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         <header className="mb-1 text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />

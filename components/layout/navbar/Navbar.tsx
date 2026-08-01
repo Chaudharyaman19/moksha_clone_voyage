@@ -238,9 +238,9 @@ export default function Navbar({ variant = "voyage" }: NavbarProps) {
             : "bg-white py-0 "
         } font-sans`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-12">
-            <div className="absolute top-1 left-4 sm:left-30 z-10">
+        <div className="max-w-7xl mx-auto px-0">
+          <div className="flex items-center h-12 relative">
+            <div className="absolute top-1 left-0 z-10">
               <button onClick={() => handleNavigation("/", "home")}>
                 <div className="w-14 h-16 sm:w-28 sm:h-32 rounded-md bg-white p-1.5 sm:p-2">
                   <img

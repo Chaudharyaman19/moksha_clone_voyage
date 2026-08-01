@@ -30,7 +30,7 @@ export default function CompassionSection({
         <div className="absolute top-40 right-40 w-80 h-80 bg-[#C9B696] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
       </div>
 
-      <div className="relative z-10 h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] max-w-7xl mx-auto px-0">
         <div className="h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] flex items-center">
           <div className="max-w-3xl py-12 md:py-16">
             <div className="inline-flex items-center space-x-2 mb-5">

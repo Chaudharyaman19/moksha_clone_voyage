@@ -406,7 +406,7 @@ function AmbulanceServices() {
                   </div>
 
                   {/* Response Time Badge */}
-                  <div className="absolute bottom-2 right-2 z-20 bg-[#8B5E3C]/90 backdrop-blur-sm px-2 py-0.5 rounded-full">
+                  <div className="absolute bottom-2 right-2 z-20 bg-[#8B5E3C]/90 backdrop-blur-sm px-0 py-0.5 rounded-full">
                     <span className="text-white text-[10px] font-medium">
                       {service.responseTime}
                     </span>

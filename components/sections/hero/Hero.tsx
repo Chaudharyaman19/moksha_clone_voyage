@@ -145,7 +145,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       </button>
 
       {/* Main content */}
-      <div className="relative z-20 mx-auto h-full max-w-7xl px-5 sm:px-7 lg:px-8">
+      <div className="relative z-20 mx-auto h-full max-w-7xl px-0">
         <div className="flex h-full items-start pt-[118px] sm:pt-[132px] md:pt-[138px] lg:pt-[145px] xl:pt-[155px]">
           <div className="w-full max-w-[720px] md:w-[62%] lg:w-[56%] xl:w-[54%]">
             <h1

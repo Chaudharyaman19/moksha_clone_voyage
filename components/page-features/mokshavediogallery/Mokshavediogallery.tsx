@@ -315,7 +315,7 @@ function MokshaGallery() {
 
                       {/* Category tag */}
                       <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="px-2 py-1 bg-[#8B6A3E] text-white rounded-full text-[10px] font-medium shadow-lg">
+                        <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[10px] font-medium shadow-lg">
                           {video.category.charAt(0).toUpperCase() +
                             video.category.slice(1)}
                         </span>
@@ -323,7 +323,7 @@ function MokshaGallery() {
 
                       {/* Duration badge */}
                       {video.duration && (
-                        <div className="absolute top-3 right-3 px-2 py-1 bg-black/60 text-white text-[10px] font-medium rounded-full backdrop-blur-sm z-10 flex items-center gap-1">
+                        <div className="absolute top-3 right-3 px-0 py-1 bg-black/60 text-white text-[10px] font-medium rounded-full backdrop-blur-sm z-10 flex items-center gap-1">
                           <FiClock className="w-2.5 h-2.5" />
                           {video.duration}
                         </div>

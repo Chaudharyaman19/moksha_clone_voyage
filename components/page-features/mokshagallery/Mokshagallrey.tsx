@@ -242,7 +242,7 @@ function MokshaGallery() {
 
                     {/* Category tag */}
                     <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <span className="px-2 py-1 bg-[#8B6A3E] text-white rounded-full text-[10px] font-medium shadow-lg">
+                      <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[10px] font-medium shadow-lg">
                         {image.category.charAt(0).toUpperCase() +
                           image.category.slice(1)}
                       </span>

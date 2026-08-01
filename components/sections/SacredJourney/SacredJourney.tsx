@@ -99,7 +99,7 @@ export default function SacredJourney({
     <section className="relative w-full overflow-hidden border-y border-[#E9DCCB] bg-[#FBF7F0] py-5 md:py-6">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,129,36,0.08),transparent_42%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         <header className="mb-4 text-center md:mb-5 flex flex-col items-center justify-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-px w-8 bg-gradient-to-r from-transparent via-[#D97800] to-transparent" />

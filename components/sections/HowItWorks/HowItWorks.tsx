@@ -94,7 +94,7 @@ export default function HowItWorks({
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         <header className="mb-5 text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
