@@ -48,18 +48,22 @@ const activities: ActivityItem[] = [
 
 export default function Serving({ variant = "voyage" }: ServingProps) {
   return (
-    <section className="relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] py-4 md:py-5">
+    <section className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] ${variant === "seva" ? "pt-2 pb-4 md:pt-3 md:pb-5" : "py-4 md:py-5"}`}>
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-24 w-[70%] -translate-x-1/2 rounded-full bg-[#B97A2A]/[0.035] blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-3 sm:px-4 lg:px-5">
-        <header className="mb-3 text-center md:mb-4">
-          <p className="text-[9px] font-medium uppercase tracking-[0.24em] text-[#B36F22] sm:text-[10px]">
-            Our Activities
-          </p>
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-1 text-center">
+          <div className="mb-1 inline-flex items-center space-x-3">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+              Our Activities
+            </span>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+          </div>
 
-          <h2 className="mt-0.5 font-serif text-[22px] font-normal leading-tight text-[#2F211A] sm:text-[25px] lg:text-[28px]">
+          <h2 className="font-serif text-[18px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[38px] xl:text-[32px]">
             {variant === "seva"
               ? "Serving Humanity. Spreading Compassion."
               : "Serving Humanity. Spreading Compassion."}
@@ -72,7 +76,7 @@ export default function Serving({ variant = "voyage" }: ServingProps) {
               key={activity.title}
               className="group overflow-hidden rounded-[12px] border border-[#E9DED2] bg-white shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)]"
             >
-              <div className="relative h-[128px] overflow-hidden sm:h-[132px] lg:h-[122px] xl:h-[132px]">
+              <div className="relative w-full aspect-square overflow-hidden">
                 <Image
                   src={activity.image}
                   alt={activity.title}

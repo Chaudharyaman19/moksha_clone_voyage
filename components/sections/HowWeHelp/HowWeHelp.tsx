@@ -213,7 +213,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
   ];
 
   return (
-    <section className={`relative w-full overflow-hidden ${variant === "seva" ? "py-6 md:py-7" : "py-8 md:py-12"}`}>
+    <section className={`relative w-full overflow-hidden ${variant === "seva" ? "pt-6 pb-0 md:pt-7 md:pb-0" : "py-8 md:py-12"}`}>
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#FCF9F3] via-white to-[#F8F4EC]" />
         {circleStyles.map((style, i) => (
@@ -402,7 +402,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         </div>
       </div>
 
-      <div className="relative mt-8 sm:mt-12 lg:mt-16">
+      <div className={`relative ${variant === "seva" ? "mt-3 sm:mt-4 lg:mt-5" : "mt-8 sm:mt-12 lg:mt-16"}`}>
         <HowItWorks variant={variant} />
       </div>
     </section>
