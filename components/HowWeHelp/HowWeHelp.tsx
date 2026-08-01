@@ -1,4 +1,6 @@
 "use client";
+
+import Image from "next/image";
 import { ReactElement } from "react";
 import Mantra from "../Mantra/Mantra";
 
@@ -29,6 +31,32 @@ const CustomIcon = ({ name, className = "w-6 h-6" }: CustomIconProps) => {
         <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
       </svg>
     ),
+    FaShoppingBag: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 8h12l1 13H5L6 8Z" />
+        <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+      </svg>
+    ),
+    FaUserOutline: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="7" r="4" />
+        <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
+      </svg>
+    ),
+    FaTruckOutline: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 6h11v10H3z" />
+        <path d="M14 10h4l3 3v3h-7z" />
+        <circle cx="7" cy="18" r="2" />
+        <circle cx="18" cy="18" r="2" />
+      </svg>
+    ),
+    FaTemple: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 21h18M5 18h14M6 9h12v9H6zM4 9l8-6 8 6" />
+        <path d="M9 12v6M15 12v6" />
+      </svg>
+    ),
     FaArrowRight: (
       <svg className={className} fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
@@ -54,6 +82,18 @@ const CustomIcon = ({ name, className = "w-6 h-6" }: CustomIconProps) => {
         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
       </svg>
     ),
+    FaShield: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z" />
+        <path d="m9.5 12 1.7 1.7 3.6-4" />
+      </svg>
+    ),
+    FaMapPin: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </svg>
+    ),
   };
 
   return icons[name] || <div className={className}>●</div>;
@@ -65,6 +105,7 @@ interface CardItem {
   desc: string;
   color: string;
   features: string[];
+  image?: string;
 }
 
 interface StatItem {
@@ -82,32 +123,36 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
     variant === "seva"
       ? [
           {
-            icon: "FaFireAlt",
+            icon: "FaShoppingBag",
             title: "Funeral Samagri",
-            desc: "Essential antim sanskar items arranged with purity, completeness and timely delivery.",
+            desc: "Essential items for complete antim sanskar with purity.",
             color: "from-[#8B6A3E] to-[#A88B5E]",
             features: ["Complete Samagri Kit", "Quality Items", "Quick Delivery"],
+            image: "/assets/how-we-help/funeral-samagri.webp",
           },
           {
-            icon: "FaPrayingHands",
+            icon: "FaUserOutline",
             title: "Pandit Service",
-            desc: "Experienced pandit ji for last rites, shraddh, havan and family-specific rituals.",
+            desc: "Experienced pandit ji for meaningful rituals.",
             color: "from-[#5C4033] to-[#7A5B46]",
             features: ["Vedic Guidance", "Ritual Planning", "Regional Traditions"],
+            image: "/assets/how-we-help/pandit-service.webp",
           },
           {
-            icon: "FaGlobeAsia",
+            icon: "FaTruckOutline",
             title: "Ambulance & Hearse",
-            desc: "Respectful body transport support with ambulance, hearse van and route coordination.",
+            desc: "Dignified transport with ambulance and hearse van support.",
             color: "from-[#4A716C] to-[#5E8B83]",
             features: ["Body Transport", "Hearse Van", "24/7 Availability"],
+            image: "/assets/how-we-help/ambulance-hearse.webp",
           },
           {
-            icon: "FaVideo",
+            icon: "FaTemple",
             title: "Prayer Hall & Support",
-            desc: "Prayer hall booking, decoration, relatives coordination and calm family assistance.",
+            desc: "Peaceful prayer hall with complete family assistance.",
             color: "from-[#6B7D6E] to-[#8A9B8C]",
             features: ["Prayer Hall", "Floral Decoration", "Family Coordination"],
+            image: "/assets/how-we-help/prayer-hall.webp",
           },
         ]
       : [
@@ -116,22 +161,14 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             title: "Cremation Services",
             desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
             color: "from-[#8B6A3E] to-[#A88B5E]",
-            features: [
-              "Cremation Ground Booking",
-              "Pandit Services",
-              "Ritual Materials",
-            ],
+            features: ["Cremation Ground Booking", "Pandit Services", "Ritual Materials"],
           },
           {
             icon: "FaGlobeAsia",
             title: "NRI Cross-Border",
             desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
             color: "from-[#5C4033] to-[#7A5B46]",
-            features: [
-              "Family Representative",
-              "Legal Documentation",
-              "Body/Ash Repatriation",
-            ],
+            features: ["Family Representative", "Legal Documentation", "Body/Ash Repatriation"],
           },
           {
             icon: "FaPrayingHands",
@@ -154,229 +191,207 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
       ? [
           { icon: "FaClock", value: "24/7", label: "Immediate Assistance" },
           { icon: "FaUsers", value: "500+", label: "Families Supported" },
-          { icon: "FaHeart", value: "100%", label: "Respectful Care" },
-          { icon: "FaStar", value: "15+", label: "Service Cities" },
+          { icon: "FaShield", value: "100%", label: "Respectful Care" },
+          { icon: "FaMapPin", value: "15+", label: "Service Cities" },
         ]
       : [
           { icon: "FaClock", value: "24/7", label: "Care Coordinators" },
           { icon: "FaUsers", value: "30M+", label: "NRI Community Served" },
-          {
-            icon: "FaHeart",
-            value: "100%",
-            label: "Pricing Transparency",
-          },
+          { icon: "FaHeart", value: "100%", label: "Pricing Transparency" },
           { icon: "FaStar", value: "12,000 Cr", label: "Indian Funeral Market" },
         ];
 
   const circleStyles = [
-    {
-      width: "80px",
-      height: "80px",
-      left: "10%",
-      top: "20%",
-      background:
-        "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)",
-    },
-    {
-      width: "100px",
-      height: "100px",
-      left: "20%",
-      top: "70%",
-      background:
-        "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)",
-    },
-    {
-      width: "60px",
-      height: "60px",
-      left: "40%",
-      top: "30%",
-      background:
-        "radial-gradient(circle at 30% 30%, #8B6A3E20, transparent 70%)",
-    },
-    {
-      width: "90px",
-      height: "90px",
-      left: "60%",
-      top: "10%",
-      background:
-        "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)",
-    },
-    {
-      width: "70px",
-      height: "70px",
-      left: "70%",
-      top: "60%",
-      background:
-        "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)",
-    },
-    {
-      width: "110px",
-      height: "110px",
-      left: "85%",
-      top: "40%",
-      background:
-        "radial-gradient(circle at 30% 30%, #8B6A3E20, transparent 70%)",
-    },
-    {
-      width: "75px",
-      height: "75px",
-      left: "5%",
-      top: "50%",
-      background:
-        "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)",
-    },
-    {
-      width: "85px",
-      height: "85px",
-      left: "90%",
-      top: "80%",
-      background:
-        "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)",
-    },
+    { width: "80px", height: "80px", left: "10%", top: "20%", background: "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)" },
+    { width: "100px", height: "100px", left: "20%", top: "70%", background: "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)" },
+    { width: "60px", height: "60px", left: "40%", top: "30%", background: "radial-gradient(circle at 30% 30%, #8B6A3E20, transparent 70%)" },
+    { width: "90px", height: "90px", left: "60%", top: "10%", background: "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)" },
+    { width: "70px", height: "70px", left: "70%", top: "60%", background: "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)" },
+    { width: "110px", height: "110px", left: "85%", top: "40%", background: "radial-gradient(circle at 30% 30%, #8B6A3E20, transparent 70%)" },
+    { width: "75px", height: "75px", left: "5%", top: "50%", background: "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)" },
+    { width: "85px", height: "85px", left: "90%", top: "80%", background: "radial-gradient(circle at 30% 30%, #D4C1A620, transparent 70%)" },
   ];
 
   return (
-    <section className="w-full relative py-8 md:py-12 overflow-hidden">
+    <section className={`relative w-full overflow-hidden ${variant === "seva" ? "py-6 md:py-7" : "py-8 md:py-12"}`}>
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FCF9F3] via-white to-[#F8F4EC]"></div>
-
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FCF9F3] via-white to-[#F8F4EC]" />
         {circleStyles.map((style, i) => (
           <div key={i} className="absolute rounded-full" style={style} />
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-3 mb-6">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent"></div>
-            <span className="text-[#8B6A3E] font-medium tracking-widest uppercase text-xs">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className={`text-center ${variant === "seva" ? "mb-5" : "mb-12"}`}>
+          <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-2" : "mb-6"}`}>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               {variant === "seva" ? "Moksha Sewa Services" : "Our Services"}
             </span>
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent"></div>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-3xl font-light text-[#3A2A1F] leading-tight mb-4">
-            <span className="block">
-              {variant === "seva" ? "Complete Funeral &" : "End-to-End Cremation &"}
-            </span>
-            <span className="relative inline-block">
-              {variant === "seva" ? "Antim Sanskar Sewa" : "Ritual Services"}
-              <svg
-                className="absolute -bottom-2 left-0 w-full h-2.5 text-[#E8DBC5]/70"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M0,5 Q25,0 50,5 T100,5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-              </svg>
-            </span>
-          </h2>
+          {variant === "seva" ? (
+            <h2 className="font-serif text-[10px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[38px] xl:text-[32px]">
+              Complete Funeral &amp; Antim Sanskar Sewa
+            </h2>
+          ) : (
+            <h2 className="mb-4 text-3xl font-light leading-tight text-[#3A2A1F] md:text-5xl lg:text-3xl">
+              <span className="block">End-to-End Cremation &amp;</span>
+              <span className="relative inline-block">
+                Ritual Services
+                <svg className="absolute -bottom-2 left-0 h-2.5 w-full text-[#E8DBC5]/70" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0,5 Q25,0 50,5 T100,5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                </svg>
+              </span>
+            </h2>
+          )}
 
-          <p className="text-lg md:text-sm text-[#6E4B3A]/80 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className={`${variant === "seva" ? "mt-4 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-relaxed text-[#6E4B3A]`}>
             {variant === "seva"
-              ? "Funeral Samagri · Pandit Ji · Ambulance · Hearse Van · Prayer Hall"
+              ? "Funeral Samagri  ·  Pandit Ji  ·  Ambulance  ·  Hearse Van  ·  Prayer Hall"
               : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-          {cards.map((card, index) => (
-            <div
-              key={index}
-              className="relative group"
-            >
-              <div className="relative bg-white/90 backdrop-blur-sm rounded-xl p-5 border border-[#E8DBC5] h-full flex flex-col overflow-hidden">
-                <div className="relative mb-4">
-                  <div className="relative w-14 h-14 mx-auto">
-                    <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white to-[#F8F4EC] border-4 border-white flex items-center justify-center shadow-lg">
-                      <div className="text-[#8B6A3E]">
-                        <CustomIcon name={card.icon} className="w-5 h-5" />
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ${variant === "seva" ? "mb-4 gap-4" : "mb-16 gap-5"}`}>
+          {cards.map((card, index) =>
+            variant === "seva" && card.image ? (
+              <article key={card.title} className="group overflow-hidden rounded-2xl border border-[#E7D9C7] bg-white shadow-[0_8px_24px_rgba(73,49,30,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(73,49,30,0.13)]">
+                <div className="relative h-[190px] overflow-hidden sm:h-[200px] lg:h-[195px] xl:h-[205px]">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    quality={95}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+
+                <div className="relative flex min-h-[205px] flex-col px-4 pb-3 pt-8 xl:px-4">
+                  <div className="absolute -top-7 left-4 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-[#A77431] to-[#7A4A12] text-white shadow-md">
+                    <CustomIcon name={card.icon} className="h-7 w-7" />
+                  </div>
+
+                  <h3 className="font-serif text-[18px] font-normal leading-tight text-[#2F1D14] lg:whitespace-nowrap xl:text-[19px]">
+                    {card.title}
+                  </h3>
+
+                  <p className="mt-1.5 min-h-[34px] text-[12px] font-normal leading-[17px] text-[#4C3528]">
+                    {card.desc}
+                  </p>
+
+                  <div className="mt-2 space-y-1">
+                    {card.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-1.5 text-[11px] font-normal leading-4 text-[#3E2A20]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#8B5616] text-[9px] leading-none text-white">✓</span>
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button className="mt-3 flex h-8 w-full items-center justify-center gap-1.5 rounded-lg border border-[#A86A25] text-xs font-normal text-[#744211] transition-colors hover:bg-[#FAF2E7]">
+                    <span>Learn More</span>
+                    <CustomIcon name="FaArrowRight" className="h-3 w-3" />
+                  </button>
+                </div>
+              </article>
+            ) : (
+              <div key={index} className="relative group">
+                <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[#E8DBC5] bg-white/90 p-5 backdrop-blur-sm">
+                  <div className="relative mb-4">
+                    <div className="relative mx-auto h-14 w-14">
+                      <div className="relative flex h-full w-full items-center justify-center rounded-full border-4 border-white bg-gradient-to-br from-white to-[#F8F4EC] shadow-lg">
+                        <div className="text-[#8B6A3E]">
+                          <CustomIcon name={card.icon} className="h-5 w-5" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <h3 className="text-base font-light text-[#3A2A1F] mb-3 text-center">
-                  {card.title}
-                </h3>
+                  <h3 className="mb-3 text-center text-base font-light text-[#3A2A1F]">{card.title}</h3>
+                  <p className="mb-4 flex-grow text-center text-sm leading-relaxed text-[#6E4B3A]">{card.desc}</p>
 
-                <p className="text-[#6E4B3A] leading-relaxed mb-4 text-center text-sm flex-grow">
-                  {card.desc}
-                </p>
-
-                <div className="space-y-2 mb-4">
-                  {card.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-2">
-                      <div
-                        className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${card.color} flex-shrink-0`}
-                      ></div>
-                      <span className="text-xs text-[#6E4B3A]">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-center mt-auto">
-                  <button className="inline-flex items-center justify-center space-x-1 text-[#8B6A3E] px-3 py-1.5 rounded-lg border border-[#E8DBC5] w-full text-xs hover:bg-[#F8F4EC] transition-colors">
-                    <span>Learn More</span>
-                    <CustomIcon name="FaArrowRight" className="w-2.5 h-2.5" />
-                  </button>
-                </div>
-
-                <div className="absolute top-3 right-3 w-3 h-3 border-t border-r border-[#E8DBC5] rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-[#E8DBC5] rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="relative">
-              <div className="bg-white/50 backdrop-blur-sm rounded-lg p-3 border border-[#E8DBC5]">
-                <div className="flex flex-col items-center justify-center space-y-2">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E8DBC5] to-[#F8F4EC] flex items-center justify-center">
-                    <div className="text-[#8B6A3E]">
-                      <CustomIcon name={stat.icon} className="w-4 h-4" />
-                    </div>
+                  <div className="mb-4 space-y-2">
+                    {card.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center space-x-2">
+                        <div className={`h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-br ${card.color}`} />
+                        <span className="text-xs text-[#6E4B3A]">{feature}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-center">
-                    <div className="text-xl font-light text-[#8B6A3E]">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs text-[#6E4B3A] whitespace-normal">
-                      {stat.label}
-                    </div>
+
+                  <div className="mt-auto text-center">
+                    <button className="inline-flex w-full items-center justify-center space-x-1 rounded-lg border border-[#E8DBC5] px-3 py-1.5 text-xs text-[#8B6A3E] transition-colors hover:bg-[#F8F4EC]">
+                      <span>Learn More</span>
+                      <CustomIcon name="FaArrowRight" className="h-2.5 w-2.5" />
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </div>
+
+        {variant === "seva" ? (
+          <div className="mb-4 overflow-hidden rounded-2xl border border-[#E7D9C7] bg-white/75 shadow-[0_7px_22px_rgba(73,49,30,0.06)] backdrop-blur-sm">
+            <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[#E0CDB4]">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex min-h-[98px] items-center justify-center gap-4 px-4 py-3">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2CBAE] bg-gradient-to-br from-[#FBF5EB] to-[#EFE0CA] text-[#81500F]">
+                    <CustomIcon name={stat.icon} className="h-8 w-8" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-serif text-[28px] leading-none text-[#2F1D14]">{stat.value}</div>
+                    <div className="mt-1 max-w-[100px] text-sm leading-5 text-[#37251C]">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {stats.map((stat, index) => (
+              <div key={index} className="relative">
+                <div className="rounded-lg border border-[#E8DBC5] bg-white/50 p-3 backdrop-blur-sm">
+                  <div className="flex flex-col items-center justify-center space-y-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#E8DBC5] to-[#F8F4EC]">
+                      <div className="text-[#8B6A3E]">
+                        <CustomIcon name={stat.icon} className="h-4 w-4" />
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xl font-light text-[#8B6A3E]">{stat.value}</div>
+                      <div className="whitespace-normal text-xs text-[#6E4B3A]">{stat.label}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="text-center">
-          <div className="relative inline-block">
-            <button className="relative px-6 py-3 md:px-8 md:py-3 bg-gradient-to-br from-[#8B6A3E] to-[#A88B5E] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div className="relative z-10 flex items-center justify-center space-x-2">
-                <span className="text-base font-medium">
-                  {variant === "seva" ? "Explore Moksha Sewa" : "Explore All Services"}
-                </span>
-                <CustomIcon name="FaArrowRight" className="w-3.5 h-3.5" />
-              </div>
-            </button>
-          </div>
+          <button className={`${variant === "seva" ? "rounded-lg px-10 py-3.5" : "rounded-xl px-6 py-3 md:px-8"} relative overflow-hidden bg-gradient-to-br from-[#C58A43] to-[#95601F] text-white shadow-lg transition-shadow hover:shadow-xl`}>
+            <span className="relative z-10 flex items-center justify-center gap-3 text-base font-medium md:text-lg">
+              {variant === "seva" ? "Explore Moksha Sewa" : "Explore All Services"}
+              <CustomIcon name="FaArrowRight" className="h-4 w-4" />
+            </span>
+          </button>
 
-          <p className="text-[#6E4B3A] mt-6 text-sm md:text-base font-light">
-            {variant === "seva" ? "Need urgent funeral support? " : "Need immediate assistance? "}
-            <a
-              href="tel:+9118001234567"
-              className="text-[#8B6A3E] font-normal hover:underline"
-            >
-              Call our 24/7 helpline
-            </a>
-          </p>
+          {variant === "seva" ? (
+            <p className="mt-2 text-sm text-[#6E3F1F] sm:text-base">
+              Moksha Sewa with Dignity <span className="mx-2">•</span> Trusted Support <span className="mx-2">•</span> Always with You
+            </p>
+          ) : (
+            <p className="mt-6 text-sm font-light text-[#6E4B3A] md:text-base">
+              Need immediate assistance?{" "}
+              <a href="tel:+9118001234567" className="font-normal text-[#8B6A3E] hover:underline">
+                Call our 24/7 helpline
+              </a>
+            </p>
+          )}
         </div>
       </div>
 
