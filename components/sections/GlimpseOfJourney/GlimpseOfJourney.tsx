@@ -27,7 +27,7 @@ export default function GlimpseOfJourney() {
             </span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
-          <h2 className="font-serif text-[20px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[38px] xl:text-[32px]">
+          <h2 className="font-serif text-[20px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[30px] xl:text-[32px]">
             A Glimpse of Our Journey
           </h2>
         </header>

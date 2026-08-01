@@ -1,112 +1,202 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown, PhoneCall, Heart } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import {
+  ChevronDown,
+  Heart,
+  Phone,
+} from "lucide-react";
 
-const faqs = [
-  {
-    question: "Is the cremation service really free?",
-    answer: "We offer both free and paid services depending on the family's financial situation. Our core mission is that no one should be denied a dignified farewell due to lack of funds."
-  },
-  {
-    question: "Do you provide ambulance service?",
-    answer: "Yes, we provide 24/7 ambulance services for transporting the deceased from hospital/home to the cremation ground."
-  },
-  {
-    question: "What services do you deliver?",
-    answer: "We deliver complete end-to-end funeral services including hearse van, samagri, pandit ji, prayer hall arrangements, and asthi visarjan."
-  },
-  {
-    question: "Can you help with death certificate?",
-    answer: "Yes, our team assists you with the necessary documentation and guides you through the process of obtaining the death certificate."
-  },
-  {
-    question: "What documents are required?",
-    answer: "Generally, you need the doctor's certificate/hospital discharge summary and the ID proof of the deceased and the family member."
-  }
-];
+interface FAQSectionProps {
+  variant?: "voyage" | "seva";
+}
 
-export default function FAQ() {
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export default function FAQSection({
+  variant = "seva",
+}: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const leftCol = faqs.slice(0, 3);
-  const rightCol = faqs.slice(3);
+  const faqItems: FAQItem[] =
+    variant === "seva"
+      ? [
+          {
+            question: "Is the cremation service really free?",
+            answer:
+              "Selected support services may be offered without charge for eligible families. Our coordinator confirms availability and inclusions before arrangements begin.",
+          },
+          {
+            question: "What areas do you serve?",
+            answer:
+              "Moksha Sewa currently coordinates support across Delhi NCR and selected service cities through verified local teams and partners.",
+          },
+          {
+            question: "What documents are required?",
+            answer:
+              "Requirements vary by location. Usually, identity proof, hospital papers and the required local documentation are needed. Our team guides the family step by step.",
+          },
+          {
+            question: "Do you provide ambulance service?",
+            answer:
+              "Yes. Ambulance and hearse-van coordination is available based on location, timing and vehicle availability.",
+          },
+          {
+            question: "Can you help with death certificate?",
+            answer:
+              "Our team can explain the process, required papers and relevant local authority steps. Official issuance remains subject to government procedures.",
+          },
+        ]
+      : [
+          {
+            question: "How quickly can your team respond?",
+            answer:
+              "Our care coordinators are available around the clock and begin verified local coordination as soon as the essential details are confirmed.",
+          },
+          {
+            question: "Which cities and destinations do you cover?",
+            answer:
+              "Coverage depends on the requested ritual, local partner availability and destination. Our team confirms the exact service area before booking.",
+          },
+          {
+            question: "Which documents are usually needed?",
+            answer:
+              "Documentation varies by service and location. A coordinator provides a clear checklist after understanding your family’s requirement.",
+          },
+          {
+            question: "Do you arrange transportation?",
+            answer:
+              "Yes. Local transport, ambulance, hearse van and other required logistics can be coordinated depending on availability.",
+          },
+          {
+            question: "Can you guide our family remotely?",
+            answer:
+              "Yes. Families living outside the city or abroad can receive regular coordination updates and local representative support.",
+          },
+        ];
 
-  const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const columns = [faqItems.slice(0, 3), faqItems.slice(3)];
+
+  const toggleItem = (index: number) => {
+    setOpenIndex((current) => (current === index ? null : index));
   };
 
   return (
-    <section className="bg-[#FBF8F3] py-10 md:py-16">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full overflow-hidden bg-[#FBF8F2] py-6 sm:py-7 lg:py-8">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#D97736]">FAQs</p>
-          <h2 className="mt-2 font-serif text-3xl text-[#2C1810] sm:text-4xl">Frequently Asked Questions</h2>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B66C1B] sm:text-[11px]">
+            FAQs
+          </p>
+
+          <h2 className="mt-1 font-serif text-[28px] font-normal leading-tight text-[#2F2118] sm:text-[32px] lg:text-[38px]">
+            Frequently Asked Questions
+          </h2>
         </div>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-2 lg:gap-12">
-          {/* Left Column */}
-          <div className="flex flex-col gap-4">
-            {leftCol.map((faq, idx) => {
-               const actualIndex = idx;
-               const isOpen = openIndex === actualIndex;
-               return (
-                 <div key={idx} className="border-b border-[#E1D2BE] pb-4">
-                   <button onClick={() => toggleFaq(actualIndex)} className="flex w-full items-center justify-between text-left">
-                     <span className="font-serif text-[15px] sm:text-base text-[#2C1810]">{faq.question}</span>
-                     <ChevronDown className={`h-4 w-4 text-[#8B6A3E] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
-                   </button>
-                   {isOpen && (
-                     <div className="mt-3 text-xs sm:text-sm text-[#6B584B] leading-relaxed">
-                       {faq.answer}
-                     </div>
-                   )}
-                 </div>
-               )
-            })}
-          </div>
+        {/* Two-column accordion */}
+        <div className="mt-5 grid gap-x-10 lg:grid-cols-2">
+          {columns.map((column, columnIndex) => {
+            const offset = columnIndex === 0 ? 0 : 3;
 
-          {/* Right Column */}
-          <div className="flex flex-col gap-4">
-            {rightCol.map((faq, idx) => {
-               const actualIndex = idx + 3;
-               const isOpen = openIndex === actualIndex;
-               return (
-                 <div key={idx} className="border-b border-[#E1D2BE] pb-4">
-                   <button onClick={() => toggleFaq(actualIndex)} className="flex w-full items-center justify-between text-left">
-                     <span className="font-serif text-[15px] sm:text-base text-[#2C1810]">{faq.question}</span>
-                     <ChevronDown className={`h-4 w-4 text-[#8B6A3E] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
-                   </button>
-                   {isOpen && (
-                     <div className="mt-3 text-xs sm:text-sm text-[#6B584B] leading-relaxed">
-                       {faq.answer}
-                     </div>
-                   )}
-                 </div>
-               )
-            })}
-          </div>
+            return (
+              <div key={columnIndex} className="divide-y divide-[#E8DED2] border-y border-[#E8DED2] lg:border-t">
+                {column.map((item, itemIndex) => {
+                  const realIndex = offset + itemIndex;
+                  const isOpen = openIndex === realIndex;
+
+                  return (
+                    <div key={item.question} className="bg-white/25">
+                      <button
+                        type="button"
+                        onClick={() => toggleItem(realIndex)}
+                        className="flex min-h-[52px] w-full items-center justify-between gap-5 px-3 py-3 text-left sm:min-h-[56px] sm:px-4"
+                        aria-expanded={isOpen}
+                      >
+                        <span className="text-[13px] font-medium leading-5 text-[#3C2A20] sm:text-[14px]">
+                          {item.question}
+                        </span>
+
+                        <ChevronDown
+                          className={`h-4 w-4 shrink-0 text-[#5A4638] transition-transform duration-300 ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
+                          strokeWidth={1.8}
+                        />
+                      </button>
+
+                      <div
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ${
+                          isOpen
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="px-3 pb-4 text-[12px] font-normal leading-5 text-[#6C5749] sm:px-4 sm:text-[13px]">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
 
-        {/* CTA Banner */}
-        <div className="mt-16 overflow-hidden rounded-xl bg-[#A54A24] text-white shadow-xl relative">
-          <div className="absolute inset-0">
-             <Image src="/assets/newbanner1.jpg" alt="Background" fill className="object-cover opacity-20 mix-blend-multiply" />
-          </div>
-          <div className="relative px-6 py-10 sm:px-12 sm:py-14 lg:flex lg:items-center lg:justify-between lg:px-16">
-            <div className="max-w-xl text-center lg:text-left">
-              <h2 className="font-serif text-2xl sm:text-3xl leading-tight text-white">In Their Final Journey.<br />Let&apos;s Walk Together with Dignity.</h2>
-              <p className="mt-3 text-sm text-white/90">Your support can bring peace to grieving families.</p>
-            </div>
-            
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-4 lg:mt-0 lg:shrink-0">
-              <a href="tel:+911234567890" className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#A54A24] transition hover:bg-gray-100">
-                Get Help Now <PhoneCall className="h-4 w-4" />
-              </a>
-              <a href="/donate" className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-md border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                Donate Now <Heart className="h-4 w-4" />
-              </a>
+        {/* Support banner */}
+        <div className="relative mt-7 min-h-[260px] overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:min-h-[275px] lg:min-h-[285px]">
+          <Image
+            src="/assets/faq/faq-support-banner.webp"
+            alt="Moksha Sewa compassionate family support"
+            fill
+            priority
+            unoptimized
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover object-center"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-[#9C3704]/5 to-black/5" />
+
+          <div className="relative z-10 flex min-h-[260px] items-center px-5 py-8 sm:min-h-[275px] sm:px-8 lg:min-h-[285px] lg:px-10">
+            <div className="ml-auto w-full text-white sm:w-[68%] lg:w-[66%]">
+              <h3 className="font-serif text-[25px] font-normal leading-[1.25] sm:text-[31px] lg:text-[25px]">
+                In Their Final Journey,
+                <span className="block">
+                  Let&apos;s Walk Together with Dignity.
+                </span>
+              </h3>
+
+              <p className="mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[15px]">
+                Your support can bring peace to grieving families.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
+                <a
+                  href="tel:+919810247319"
+                  className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
+                >
+                  Get Help Now
+                  <Phone className="h-4 w-4" strokeWidth={1.8} />
+                </a>
+
+                <a
+                  href="/donate"
+                  className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12"
+                >
+                  Donate Now
+                  <Heart className="h-4 w-4" strokeWidth={1.8} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
