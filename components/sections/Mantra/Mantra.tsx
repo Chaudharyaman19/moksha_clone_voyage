@@ -1,274 +1,196 @@
 "use client";
 
+import {
+  Ambulance,
+  Heart,
+  HeartHandshake,
+  MapPinCheck,
+  PhoneCall,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 interface MokshaShlokSectionProps {
   variant?: "voyage" | "seva";
+}
+
+interface StepItem {
+  number: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  finalStep?: boolean;
 }
 
 export default function MokshaShlokSection({
   variant = "voyage",
 }: MokshaShlokSectionProps) {
-  const visible = true;
+  const steps: StepItem[] =
+    variant === "seva"
+      ? [
+          {
+            number: "1",
+            title: "Call Us Anytime",
+            description: "Reach out to us 24×7. We’re just a phone call away.",
+            icon: PhoneCall,
+          },
+          {
+            number: "2",
+            title: "We Reach You",
+            description: "Our team and vehicle reach the location immediately.",
+            icon: Ambulance,
+          },
+          {
+            number: "3",
+            title: "We Handle Everything",
+            description:
+              "From transportation to cremation, we manage every step with care.",
+            icon: MapPinCheck,
+          },
+          {
+            number: "4",
+            title: "You Focus on Farewell",
+            description:
+              "We ensure your loved one receives a respectful and dignified final journey.",
+            icon: HeartHandshake,
+            finalStep: true,
+          },
+        ]
+      : [
+          {
+            number: "1",
+            title: "Call Us Anytime",
+            description: "Connect with our care team whenever support is needed.",
+            icon: PhoneCall,
+          },
+          {
+            number: "2",
+            title: "We Coordinate",
+            description: "Our verified team confirms every required arrangement.",
+            icon: Ambulance,
+          },
+          {
+            number: "3",
+            title: "We Manage Everything",
+            description: "Documentation, rituals and logistics are handled with care.",
+            icon: MapPinCheck,
+          },
+          {
+            number: "4",
+            title: "You Stay With Family",
+            description: "You remain present while we manage the complete journey.",
+            icon: HeartHandshake,
+            finalStep: true,
+          },
+        ];
 
   return (
-    <section className="w-full relative overflow-hidden py-10 md:py-4 lg:py-5 bg-[#F8F4EC]">
-      {/* Background Base with subtle texture */}
-      <div className="absolute inset-0 bg-[#F8F4EC]">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #8B6A3E 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        ></div>
-      </div>
+    <section className="relative w-full overflow-hidden border-y border-[#eadfce] bg-[#fbf7ef] py-3 md:py-4">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(151,95,24,0.10) 1px, transparent 0)",
+          backgroundSize: "26px 26px",
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Left side - Content */}
-          <div
-            className={`w-full lg:w-1/2 transition-all duration-700 ${
-              visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-            }`}
-          >
-            {/* Main content with adjusted spacing for perfect fit */}
-            <div className="relative">
-              {/* Large decorative quote mark */}
-              <div className="absolute -top-6 -left-4 text-8xl text-[#8B6A3E]/20 font-serif">
-                &quot;
-              </div>
+      <div className="relative z-10 mx-auto w-full max-w-[1540px] px-4 sm:px-6 lg:px-8">
+        <header className="mb-3 text-center md:mb-4">
+          <p className="mb-0.5 text-[9px] font-medium uppercase tracking-[0.22em] text-[#b66b11] sm:text-[10px]">
+            How It Works
+          </p>
+          <h2 className="font-serif text-[19px] font-normal leading-tight text-[#2f2118] sm:text-[21px] md:text-[23px]">
+            Just 4 Steps. We Take Care of Everything.
+          </h2>
+        </header>
 
-              {/* OM Symbol with enhanced glow */}
-              <div className="relative inline-block mb-3">
-                <div className="absolute inset-0 blur-xl bg-[#8B6A3E]/30 rounded-full"></div>
-                <div className="relative text-5xl text-[#8B6A3E] font-serif drop-shadow-md">
-                  ॐ
-                </div>
-              </div>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-4 xl:gap-4">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
 
-              {/* Title with elegant underline */}
-              <div className="mb-4">
-                <h2 className="text-[#2A1A0F] text-4xl font-light tracking-wide mb-1 drop-shadow-sm">
-                  {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
-                </h2>
-                <div className="flex items-center gap-3">
-                  <div className="w-16 h-[2px] bg-[#8B6A3E]/60"></div>
-                  <span className="text-[#8B6A3E] text-sm font-medium tracking-[0.25em] uppercase drop-shadow-sm">
-                    {variant === "seva" ? "Sacred Sewa" : "Sacred Wisdom"}
-                  </span>
-                </div>
-              </div>
-
-              {/* Small description from PDF */}
-              <div className="mb-2 text-[#8B6A3E] text-xs tracking-wider">
-                {variant === "seva"
-                  ? "Complete Funeral, Cremation & Ritual Support"
-                  : "India's First End-to-End Cremation Platform"}
-              </div>
-
-              {/* Shlok with enhanced traditional styling */}
-              <div className="mb-3 bg-gradient-to-r from-[#8B6A3E]/10 via-transparent to-transparent p-4 rounded-r-2xl border-l-4 border-[#8B6A3E]/50 shadow-sm">
-                <p className="text-[#3A2A1F] text-lg md:text-xl font-bold leading-relaxed whitespace-pre-line drop-shadow-sm">
-                  <span className="text-[#8B6A3E] text-2xl mr-1 drop-shadow">
-                    ॥
-                  </span>
-                  सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।
-                  {"\n"}
-                  अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः।
-                  <span className="text-[#8B6A3E] text-2xl ml-1 drop-shadow">
-                    ॥
-                  </span>
-                </p>
-              </div>
-
-              {/* Sanskrit transliteration */}
-              <div className="mb-2 text-[#4A3A2F]/70 text-xs italic font-medium">
-                <p>sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja</p>
-                <p>ahaṁ tvāṁ sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ</p>
-              </div>
-
-              {/* Our Promise - from PDF page 7 */}
-              <div className="mb-2 p-3 bg-[#8B6A3E]/10 rounded-lg border border-[#8B6A3E]/20">
-                <p className="text-[#2A1A0F] text-xs italic font-medium">
-                  <span className="text-[#8B6A3E] font-semibold">
-                    {variant === "seva" ? "Moksha Sewa Promise: " : "Our Promise: "}
-                  </span>
-                  {variant === "seva"
-                    ? "\"Every family receives dignified arrangements, clear pricing, verified support and ritual care at the moment they need it most.\""
-                    : "\"Every family will receive the same standard of care, respect, and transparency we would want for our own loved ones.\""}
-                </p>
-              </div>
-
-              {/* Meaning with enhanced elegant styling */}
-              <div className="relative mb-4 bg-[#8B6A3E]/5 p-4 rounded-lg shadow-[0_6px_18px_rgba(0,0,0,0.08)]">
-                <div className="absolute -left-2 top-0 text-3xl text-[#8B6A3E]/40">
-                  ❝
+            return (
+              <article
+                key={step.number}
+                className="relative min-h-[108px] rounded-[20px] border border-[#eee4d6] bg-white/60 px-4 pb-3 pt-6 shadow-[0_5px_16px_rgba(80,50,22,0.025)] sm:min-h-[112px]"
+              >
+                <div className="absolute -top-3 left-5 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#ee9614] to-[#d97705] font-serif text-[21px] font-normal text-white shadow-[0_5px_12px_rgba(205,118,7,0.20)]">
+                  {step.number}
                 </div>
 
-                <p className="text-[#2A1A0F] text-sm italic font-semibold leading-relaxed pl-6 pr-4 drop-shadow-sm">
-                  Abandon all varieties of religion and just surrender unto Me.
-                  I shall deliver you from all sinful reactions. Do not fear.
-                </p>
-
-                <div className="absolute -right-2 bottom-0 text-3xl text-[#8B6A3E]/40">
-                  ❞
-                </div>
-              </div>
-
-              {/* Core Pillar */}
-              <div className="grid grid-cols-5 gap-2 mb-3">
-                <div className="text-[15px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  {variant === "seva" ? "ARRANGE" : "SIMPLIFY"}
-                </div>
-
-                <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  {variant === "seva" ? "GUIDE" : "CONNECT"}
-                </div>
-
-                <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  {variant === "seva" ? "SERVE" : "PROTECT"}
-                </div>
-
-                <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  HONOUR
-                </div>
-
-                <div className="text-[12px] text-center text-[#8B6A3E] font-semibold tracking-wide drop-shadow-sm">
-                  {variant === "seva" ? "SUPPORT" : "SERVE"}
-                </div>
-              </div>
-
-              {/* Key Benefits Grid - New Addition */}
-              <div className="grid grid-cols-2 gap-2 mb-3">
-                <div className="flex items-center gap-1.5 bg-white/50 p-2 rounded-lg">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E]"></div>
-                  <span className="text-[10px] text-[#5A4030]">
-                    24/7 Support
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-white/50 p-2 rounded-lg">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E]"></div>
-                  <span className="text-[10px] text-[#5A4030]">
-                    Verified Pandits
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-white/50 p-2 rounded-lg">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E]"></div>
-                  <span className="text-[10px] text-[#5A4030]">
-                    Transparent Pricing
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-white/50 p-2 rounded-lg">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E]"></div>
-                  <span className="text-[10px] text-[#5A4030]">
-                    {variant === "seva" ? "Funeral Samagri" : "Ritual Guidance"}
-                  </span>
-                </div>
-              </div>
-
-              {/* Decorative footer */}
-              <div className="flex items-center gap-4 mt-4">
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#8B6A3E]/50 to-transparent"></div>
-
-                <div className="flex gap-2">
-                  <div className="w-2 h-2 bg-[#8B6A3E] rounded-full animate-pulse shadow-md"></div>
-                  <div className="w-2 h-2 bg-[#8B6A3E]/80 rounded-full"></div>
-                  <div className="w-2 h-2 bg-[#8B6A3E]/60 rounded-full"></div>
-                </div>
-
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#8B6A3E]/50 to-transparent"></div>
-              </div>
-
-              {/* Footer Text */}
-              <p className="text-center text-[#8B6A3E] text-[12px] tracking-[0.35em] uppercase mt-3 font-bold">
-                {variant === "seva"
-                  ? "MOKSHA SEWA WITH DIGNITY"
-                  : "A JOURNEY GUIDED BY LOVE"}
-              </p>
-            </div>
-          </div>
-
-          {/* Right side - Image with Stats */}
-          <div className="w-full lg:w-1/2">
-            <div
-              className={`relative transition-all duration-700 ${
-                visible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-4"
-              }`}
-            >
-              {/* Main Image */}
-              <div className="relative h-[600px] rounded-md overflow-hidden shadow-xl mb-6">
-                <img
-                  src={
-                    variant === "seva"
-                      ? "/assets/funeralsamagri.jpeg"
-                      : "/assets/grahpravesh.jpg"
-                  }
-                  alt={variant === "seva" ? "Moksha Sewa" : "Sacred"}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-                {/* Image Overlay Stats */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <div className="grid grid-cols-3 gap-2 text-white">
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-[#D4B68A]">
-                        50+
+                <div className="flex h-full items-center gap-3 pt-0.5">
+                  <div className="flex w-[54px] shrink-0 items-center justify-center text-[#986728]">
+                    {step.finalStep ? (
+                      <div className="relative h-[48px] w-[48px]">
+                        <svg
+                          viewBox="0 0 72 72"
+                          className="absolute inset-0 h-full w-full"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M18 18a25 25 0 1 1-2 33"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="m11 46 4 7 8-2"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <Heart
+                          className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 fill-[#ef5c28] text-[#ef5c28]"
+                          strokeWidth={1.7}
+                        />
                       </div>
-                      <div className="text-[10px] uppercase tracking-wider">
-                        Pandits
-                      </div>
-                    </div>
-                    <div className="text-center border-x border-white/20">
-                      <div className="text-xl font-bold text-[#D4B68A]">
-                        {variant === "seva" ? "500+" : "150+"}
-                      </div>
-                      <div className="text-[10px] uppercase tracking-wider">
-                        Families
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold text-[#D4B68A]">
-                        24/7
-                      </div>
-                      <div className="text-[10px] uppercase tracking-wider">
-                        Support
-                      </div>
-                    </div>
+                    ) : (
+                      <Icon className="h-[44px] w-[44px]" strokeWidth={1.45} />
+                    )}
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3 className="mb-1 text-[13px] font-medium leading-tight text-[#33251d] sm:text-[14px]">
+                      {step.title}
+                    </h3>
+                    <p className="text-[10.5px] font-normal leading-[1.4] text-[#5f5147] sm:text-[11px]">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Stats Cards Row */}
-              <div className="grid grid-cols-3 gap-3">
-                <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-lg text-center">
-                  <div className="text-[#8B6A3E] text-lg font-bold">100%</div>
-                  <div className="text-[10px] text-[#5A4030]">
-                    Verified Services
+                {index < steps.length - 1 && (
+                  <div className="pointer-events-none absolute -right-[23px] top-1/2 z-20 hidden w-[28px] -translate-y-1/2 items-center xl:flex">
+                    <span className="h-px flex-1 border-t border-dotted border-[#d8b47c]" />
+                    <ChevronConnector />
                   </div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-lg text-center">
-                  <div className="text-[#8B6A3E] text-lg font-bold">15+</div>
-                  <div className="text-[10px] text-[#5A4030]">Cities</div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-lg text-center">
-                  <div className="text-[#8B6A3E] text-lg font-bold">5⭐</div>
-                  <div className="text-[10px] text-[#5A4030]">Ratings</div>
-                </div>
-              </div>
-
-              {/* Quick Contact */}
-              <div className="mt-4 flex items-center justify-between bg-[#8B6A3E]/10 p-3 rounded-lg">
-                <span className="text-xs text-[#5A4030]">
-                  Need immediate assistance?
-                </span>
-                <button className="text-xs bg-[#8B6A3E] text-white px-3 py-1.5 rounded-md hover:bg-[#7A5A2E] transition-colors">
-                  {variant === "seva" ? "Call Now" : "Contact Now"}
-                </button>
-              </div>
-            </div>
-          </div>
+                )}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
+  );
+}
+
+function ChevronConnector() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="-ml-1 h-4 w-4 text-[#dd9b43]"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="m6 3 7 7-7 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
