@@ -5,7 +5,7 @@ import Sideicon from "@/components/layout/Sideicon/Sideicon";
 export const metadata: Metadata = {
   metadataBase: new URL("https://mokshavoyageclone.netlify.app/"),
   title: "Moksha Sewa",
-  description: "Dignified farewell and related services with compassion.",
+  description: "We offer comprehensive, respectful, and dignified farewell services to support families during difficult times.",
   openGraph: {
     title: "Moksha Sewa - Dignified Farewell Services",
     description: "We offer comprehensive, respectful, and dignified farewell services to support families during difficult times.",
