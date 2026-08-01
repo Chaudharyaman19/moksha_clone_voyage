@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   FaArrowRight,
   FaHandHoldingUsd,
@@ -19,6 +20,7 @@ type SupportCard = {
   button: string;
   image: string;
   icon: React.ComponentType<{ className?: string }>;
+  href?: string;
 };
 
 export default function SacredJourney({
@@ -34,6 +36,7 @@ export default function SacredJourney({
             button: "Donate Now",
             image: "/assets/sacred-journey-hd/donate.webp",
             icon: FaHandHoldingUsd,
+            href: "/donation",
           },
           {
             title: "Volunteer",
@@ -68,6 +71,7 @@ export default function SacredJourney({
             button: "Donate Now",
             image: "/assets/sacred-journey-hd/donate.webp",
             icon: FaHandHoldingUsd,
+            href: "/donation",
           },
           {
             title: "Volunteer",
@@ -94,6 +98,8 @@ export default function SacredJourney({
             icon: FaHandshake,
           },
         ];
+
+  const router = useRouter();
 
   return (
     <section className="relative w-full overflow-hidden border-y border-[#E9DCCB] bg-[#FBF7F0] py-5 md:py-6">
@@ -150,6 +156,7 @@ export default function SacredJourney({
 
                 <button
                   type="button"
+                  onClick={() => card.href && router.push(card.href)}
                   className="absolute bottom-3 left-4 z-20 flex h-8 w-[72%] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#E88A00] to-[#F39A00] px-3 text-[11px] font-semibold text-white shadow-[0_4px_10px_rgba(230,132,0,0.18)] transition hover:brightness-95 sm:left-5 sm:text-[12px] xl:left-4 xl:h-[30px] xl:text-[11px]"
                 >
                   <span className="truncate">{card.button}</span>

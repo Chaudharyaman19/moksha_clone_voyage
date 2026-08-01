@@ -18,6 +18,7 @@ import {
   FaCarSide,
   FaPlaceOfWorship,
   FaMagic,
+  FaDonate,
 } from "react-icons/fa";
 
 interface NavbarProps {
@@ -223,6 +224,12 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       icon: <FaUserCircle />,
       type: "page",
     },
+    {
+      name: "Donate",
+      path: "/donation",
+      icon: <FaDonate />,
+      type: "page",
+    },
   ];
 
   const toggleDropdown = (itemName: string) => {
@@ -274,6 +281,14 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                       <HiChevronDown
                         className={`transition-transform duration-200 ${openDropdown === item.name ? "rotate-180" : ""}`}
                       />
+                    </button>
+                  ) : item.name === "Donate" ? (
+                    <button
+                      onClick={() => handleNavigation(item.path, item.name)}
+                      className="ml-2 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
+                    >
+                      <FaDonate className="h-3 w-3" />
+                      {item.name}
                     </button>
                   ) : (
                     <button
