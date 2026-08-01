@@ -12,6 +12,8 @@ import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJo
 import Footer from "@/components/layout/Footer/Footer";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
+import FAQ from "@/components/sections/FAQ/FAQ";
+
 export default function Page() {
   return (
     <div>
@@ -25,6 +27,7 @@ export default function Page() {
       <SacredJourney variant="seva" />
       <VoicesOfGratitude />
       <GlimpseOfJourney />
+      <FAQ />
       <Footer variant="seva" />
     </div>
   );
