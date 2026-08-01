@@ -1,5 +1,5 @@
 import "./globals.css";
-import Sideicon from "@/components/Sideicon/Sideicon";
+import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
 export default function RootLayout({
   children,

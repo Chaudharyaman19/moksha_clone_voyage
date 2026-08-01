@@ -1,14 +1,14 @@
 "use client";
 
-import Topbar from "../components/topbar/Topbar";
-import Navbar from "../components/navbar/Navbar";
-import Hero from "../components/hero/Hero";
-import CompassionSection from "../components/CompassionSection/CompassionSection";
-import HowWeHelp from "../components/HowWeHelp/HowWeHelp";
-import Serving from "../components/Serving/Serving";
-import SacredJourney from "../components/SacredJourney/SacredJourney";
-import Footer from "../components/Footer/Footer";
-import Sideicon from "../components/Sideicon/Sideicon";
+import Topbar from "@/components/layout/topbar/Topbar";
+import Navbar from "@/components/layout/navbar/Navbar";
+import Hero from "@/components/sections/hero/Hero";
+import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
+import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
+import Serving from "@/components/sections/Serving/Serving";
+import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
+import Footer from "@/components/layout/Footer/Footer";
+import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
 export default function Page() {
   return (
