@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: "Moksha Sewa",
     images: [
       {
-        url: "/assets/logo Moksha Seva.png",
+        url: "/assets/logo-moksha-seva.png",
         width: 1200,
         height: 630,
         alt: "Moksha Sewa Logo",
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moksha Sewa - Dignified Farewell Services",
     description: "We offer comprehensive, respectful, and dignified farewell services to support families during difficult times.",
-    images: ["/assets/logo Moksha Seva.png"],
+    images: ["/assets/logo-moksha-seva.png"],
   },
   icons: {
-    icon: "/assets/logo Moksha Seva.png",
+    icon: "/assets/logo-moksha-seva.png",
   },
 };
 export default function RootLayout({

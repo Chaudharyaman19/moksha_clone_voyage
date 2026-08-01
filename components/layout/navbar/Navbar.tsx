@@ -246,7 +246,7 @@ export default function Navbar({ variant = "voyage" }: NavbarProps) {
                   <img
                     src={
                       variant === "seva"
-                        ? "/assets/logo Moksha Seva.png"
+                        ? "/assets/logo-moksha-seva.png"
                         : "/assets/logoreal-removebg-preview.png"
                     }
                     alt={variant === "seva" ? "Moksha Sewa Logo" : "Moksha Voyage Logo"}

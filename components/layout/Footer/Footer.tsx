@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import mokshalogo from "../../../public/assets/logoreal.jpeg";
-import mokshaSevaLogo from "../../../public/assets/logo Moksha Seva.png";
+import mokshaSevaLogo from "../../../public/assets/logo-moksha-seva.png";
 
 interface FooterProps {
   variant?: "voyage" | "seva";
