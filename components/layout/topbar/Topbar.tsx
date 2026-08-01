@@ -69,10 +69,10 @@ export default function TopInfoBar() {
           <div className="flex items-center gap-1.5 group">
             <Mail size={16} className="text-[#D4B996]" />
             <a
-              href="mailto:info@mokshayatra.org"
+              href="mailto:info@mokshasewa.org"
               className="sm:text-sm lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
             >
-              info@mokshayatra.org
+              info@mokshasewa.org
             </a>
           </div>
 

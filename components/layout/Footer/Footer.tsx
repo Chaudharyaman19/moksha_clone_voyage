@@ -54,17 +54,17 @@ export default function Footer({ variant = "voyage" }: FooterProps) {
     ? "Complete funeral, cremation, pandit, ambulance, hearse van, prayer hall and family support services with dignity, tradition and care."
     : "Providing respectful guidance with dignity, tradition and care for every family.";
   const contactEmail = isSeva
-    ? "info@mokshayatra.org"
+    ? "info@mokshasewa.org"
     : "info@mokshavoyage.com";
   const contactNumber = isSeva ? "+91 96549 00525" : "+91 123 456 7890";
 
   const services = isSeva
     ? [
-        "Funeral Samagri",
-        "Pandit Service",
-        "Ambulance & Hearse Van",
-        "Prayer Hall Booking",
-      ]
+      "Funeral Samagri",
+      "Pandit Service",
+      "Ambulance & Hearse Van",
+      "Prayer Hall Booking",
+    ]
     : ["Ritual Guidance", "Planning Support", "Documentation", "24/7 Care"];
 
   const handleSubscribe = (event: React.FormEvent<HTMLFormElement>) => {
@@ -190,11 +190,10 @@ export default function Footer({ variant = "voyage" }: FooterProps) {
                 />
                 <button
                   type="submit"
-                  className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition duration-300 sm:min-w-32 ${
-                    subscribed
+                  className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition duration-300 sm:min-w-32 ${subscribed
                       ? "bg-emerald-600 text-white"
                       : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
-                  }`}
+                    }`}
                 >
                   {subscribed ? "Submitted" : isSeva ? "Send" : "Join"}
                   {!subscribed && <Send className="h-4 w-4" />}
