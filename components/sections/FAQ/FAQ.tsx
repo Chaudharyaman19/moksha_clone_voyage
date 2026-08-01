@@ -153,7 +153,7 @@ export default function FAQSection({
         </div>
 
         {/* Support banner */}
-        <div className="relative mt-4 w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] aspect-[16/9] sm:aspect-[21/9] lg:aspect-[4/1]">
+        <div className="relative mt-4 w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] h-[220px] sm:h-[240px] lg:h-[260px]">
           <Image
             src="/assets/faq/faq-support-banner.webp"
             alt="Moksha Sewa compassionate family support"
