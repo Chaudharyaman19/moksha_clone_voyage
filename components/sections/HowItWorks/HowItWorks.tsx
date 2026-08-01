@@ -21,7 +21,7 @@ interface StepItem {
   finalStep?: boolean;
 }
 
-export default function MokshaShlokSection({
+export default function HowItWorks({
   variant = "voyage",
 }: MokshaShlokSectionProps) {
   const steps: StepItem[] =

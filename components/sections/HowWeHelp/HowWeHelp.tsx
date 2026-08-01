@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ReactElement } from "react";
-import Mantra from "../Mantra/Mantra";
+import HowItWorks from "../HowItWorks/HowItWorks";
 
 interface CustomIconProps {
   name: string;
@@ -402,8 +402,8 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         </div>
       </div>
 
-      <div style={{ marginTop: "40px" }}>
-        <Mantra variant={variant} />
+      <div className="relative mt-8 sm:mt-12 lg:mt-16">
+        <HowItWorks variant={variant} />
       </div>
     </section>
   );

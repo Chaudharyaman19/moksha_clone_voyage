@@ -4,7 +4,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import Image from "next/image";
-import Mantra from "@/components/sections/Mantra/Mantra";
+import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
 import Link from "next/link";
 import {
   FiSearch,
@@ -376,7 +376,7 @@ function Blog() {
         )}
       </section>
 
-      <Mantra />
+      <HowItWorks />
 
       {/* Newsletter Section */}
       <section className="relative py-16 overflow-hidden">
