@@ -80,14 +80,13 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
   const heading =
     variant === "seva"
-      ? ["Sacred Rituals.", "Eternal Peace.", "Blessings for Generations."]
+      ? ["Sacred Rituals. Eternal Peace.", "Blessings for Generations."]
       : ["Guided Farewells.", "Lasting Memories.", "Care Across Borders."];
 
-  const description =
-    variant === "seva"
-      ? "With devotion and tradition, we help you perform sacred sevas for your ancestors and loved ones at the holy places of Bharat."
-      : "Compassionate end-to-end support for families, with verified services and clear coordination at every step.";
-
+ const description =
+  variant === "seva"
+    ? "With devotion, dignity and tradition, we help you perform sacred sevas for your ancestors and loved ones at the holy places of Bharat, with complete guidance, ritual arrangements and compassionate support at every step."
+    : "Compassionate end-to-end support for families, with verified services, transparent guidance and clear coordination at every step, ensuring every ritual is completed respectfully, peacefully and without unnecessary stress.";
   return (
     <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[680px]">
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
@@ -147,17 +146,20 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
       {/* Main content */}
       <div className="relative z-20 mx-auto h-full max-w-7xl px-5 sm:px-7 lg:px-8">
-        <div className="flex h-full items-start pt-12 sm:pt-14 lg:pt-14 xl:pt-16">
-          <div className="w-full max-w-[610px] md:w-[58%] lg:w-[49%] xl:w-[47%]">
+        <div className="flex h-full items-start pt-[118px] sm:pt-[132px] md:pt-[138px] lg:pt-[145px] xl:pt-[155px]">
+          <div className="w-full max-w-[720px] md:w-[62%] lg:w-[56%] xl:w-[54%]">
             <h1
-              className="text-[38px] font-normal leading-[1.1] tracking-[-0.025em] text-[#30170d] sm:text-[43px] md:text-[46px] lg:text-[48px] xl:text-[52px]"
+              className="text-[34px] font-normal leading-[1.1] tracking-[-0.025em] text-[#30170d] sm:text-[38px] md:text-[40px] lg:text-[42px] xl:text-[44px]"
               style={{
                 fontFamily: "Georgia, 'Times New Roman', serif",
                 fontWeight: 400,
               }}
             >
               {heading.map((line) => (
-                <span key={line} className="block">
+                <span
+                  key={line}
+                  className={line.includes("Sacred Rituals") ? "block lg:whitespace-nowrap" : "block"}
+                >
                   {line}
                 </span>
               ))}
