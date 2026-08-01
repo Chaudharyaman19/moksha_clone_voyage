@@ -709,7 +709,7 @@ export default function About() {
         </section>
 
         {/* ============ SEWA NETWORK — INDIA MAP IMAGE ============ */}
-        <section className="relative overflow-hidden bg-[#FBF8F3] py-5 lg:py-6">
+        <section className="relative overflow-hidden bg-[#FBF8F3] py-5 lg:py-16">
           {/* soft ambient rings */}
           <div className="pointer-events-none absolute -right-24 top-8 h-72 w-72 rounded-full border border-[#C9A574]/15" />
           <div className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full border border-[#C9A574]/10" />
