@@ -44,6 +44,21 @@ const activities: ActivityItem[] = [
       "Our services reach villages and remote areas where help is needed most.",
     image: "/assets/activities/rural-remote-reach.webp",
   },
+  {
+    title: "Counseling Support",
+    description: "We provide emotional and grief counseling to help families cope with loss.",
+    image: "/assets/activities/community-outreach.webp",
+  },
+  {
+    title: "Emergency Transport",
+    description: "24/7 dedicated transport services for transferring the deceased with respect.",
+    image: "/assets/activities/on-ground-support.webp",
+  },
+  {
+    title: "Document Assistance",
+    description: "Help with acquiring necessary certificates and completing legal formalities.",
+    image: "/assets/activities/hospital-support.webp",
+  },
 ];
 
 export default function Serving({ variant = "voyage" }: ServingProps) {
@@ -70,34 +85,41 @@ export default function Serving({ variant = "voyage" }: ServingProps) {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 md:gap-3 lg:grid-cols-5">
-          {activities.map((activity) => (
-            <article
-              key={activity.title}
-              className="group overflow-hidden rounded-[12px] border border-[#E9DED2] bg-white shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)]"
-            >
-              <div className="relative w-full aspect-square overflow-hidden">
-                <Image
-                  src={activity.image}
-                  alt={activity.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                  quality={95}
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-                />
-              </div>
+        {/* Marquee Wrapper */}
+        <div className="relative mt-2 flex w-full overflow-hidden pb-4 pt-2">
+          {/* Gradient Masks */}
+          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-2 bg-gradient-to-r from-[#FFFCF8] to-transparent sm:w-3 lg:w-4" />
+          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-2 bg-gradient-to-l from-[#FFFCF8] to-transparent sm:w-3 lg:w-4" />
 
-              <div className="px-3 pb-3 pt-2 text-center">
-                <h3 className="font-serif text-[15px] font-normal leading-tight text-[#32231C] lg:text-[14px] xl:text-[15px]">
-                  {activity.title}
-                </h3>
+          <div className="flex w-max animate-scroll gap-4 hover:[animation-play-state:paused] sm:gap-5 md:gap-6">
+            {[...activities, ...activities].map((activity, index) => (
+              <article
+                key={`${activity.title}-${index}`}
+                className="group relative w-[220px] shrink-0 overflow-hidden rounded-[12px] border border-[#E9DED2] bg-white shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:w-[240px] md:w-[260px] lg:w-[230px]"
+              >
+                <div className="relative w-full aspect-square overflow-hidden">
+                  <Image
+                    src={activity.image}
+                    alt={activity.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                    quality={95}
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                  />
+                </div>
 
-                <p className="mx-auto mt-1 max-w-[230px] text-[11px] font-normal leading-[15px] text-[#5D493C] lg:text-[10px] lg:leading-[14px] xl:text-[11px] xl:leading-[15px]">
-                  {activity.description}
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="px-3 pb-3 pt-2 text-center">
+                  <h3 className="font-serif text-[15px] font-normal leading-tight text-[#32231C] lg:text-[14px] xl:text-[15px]">
+                    {activity.title}
+                  </h3>
+
+                  <p className="mx-auto mt-1 max-w-[230px] text-[11px] font-normal leading-[15px] text-[#5D493C] lg:text-[10px] lg:leading-[14px] xl:text-[11px] xl:leading-[15px]">
+                    {activity.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className="mt-3 flex justify-center md:mt-4">

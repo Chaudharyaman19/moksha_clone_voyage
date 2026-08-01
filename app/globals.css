@@ -10,3 +10,12 @@ body {
 .font-serif {
   font-family: "Inter", sans-serif !important;
 }
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.75rem)); } /* Adjusted for gap */
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
