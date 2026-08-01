@@ -21,6 +21,8 @@ import {
 } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
+import { api, ApiRequestError } from "@/lib/api";
+import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
 
 const AMOUNTS = [501, 1100, 2100, 5100, 11000];
 
@@ -147,6 +149,35 @@ function Donation() {
     if (value) setSelectedAmount(null);
   };
 
+  const resetForm = () => {
+    setFormData({ name: "", email: "", phone: "", pan: "", dedication: "" });
+    setCustomAmount("");
+    setSelectedAmount(2100);
+    setIsAnonymous(false);
+  };
+
+  const completeDonation = async (donationId: string, payment: RazorpaySuccessResponse) => {
+    setIsSubmitting(true);
+    try {
+      await api.post("/donations/verify", { donationId, ...payment });
+      setSubmitStatus({
+        type: "success",
+        message: "🙏 Thank you for your generosity. Your contribution has been received.",
+      });
+      resetForm();
+    } catch (err) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          err instanceof ApiRequestError
+            ? err.message
+            : "Payment went through but verification failed — please contact us with your payment details.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -162,23 +193,49 @@ function Donation() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setSubmitStatus({
-        type: "success",
-        message:
-          "🙏 Thank you for your generosity. Our team will reach out shortly to complete your contribution securely.",
+      const { donationId, order } = await api.post<{
+        donationId: string;
+        order: { id: string; amount: number; currency: string };
+      }>("/donations", {
+        donorName: formData.name,
+        donorEmail: formData.email,
+        donorPhone: formData.phone,
+        pan: formData.pan || undefined,
+        dedication: formData.dedication || undefined,
+        isAnonymous,
+        cause: selectedCause,
+        amount: effectiveAmount,
+        frequency,
       });
-      setFormData({ name: "", email: "", phone: "", pan: "", dedication: "" });
-      setCustomAmount("");
-      setSelectedAmount(2100);
-      setIsAnonymous(false);
-    } catch {
+
+      setIsSubmitting(false);
+
+      await openRazorpayCheckout({
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "",
+        amount: order.amount,
+        currency: order.currency,
+        order_id: order.id,
+        name: "Moksha Sewa",
+        description: `Donation — ${activeCause.title}`,
+        prefill: { name: formData.name, email: formData.email, contact: formData.phone },
+        theme: { color: "#8B6A3E" },
+        handler: (payment) => {
+          void completeDonation(donationId, payment);
+        },
+        modal: {
+          ondismiss: () =>
+            setSubmitStatus({
+              type: "error",
+              message: "Payment was not completed. You can try again anytime.",
+            }),
+        },
+      });
+    } catch (err) {
+      setIsSubmitting(false);
       setSubmitStatus({
         type: "error",
-        message: "Something went wrong. Please try again.",
+        message: err instanceof ApiRequestError ? err.message : "Something went wrong. Please try again.",
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
