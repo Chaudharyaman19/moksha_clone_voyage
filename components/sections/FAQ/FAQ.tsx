@@ -89,7 +89,7 @@ export default function FAQSection({
     <section className="relative w-full overflow-hidden bg-[#FBF8F2] py-4 sm:py-5 lg:py-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
         {/* Heading */}
         <div className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B66C1B] sm:text-[11px]">
