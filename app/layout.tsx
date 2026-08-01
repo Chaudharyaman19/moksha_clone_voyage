@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: "Moksha Sewa",
     images: [
       {
-        url: "/assets/logo-moksha-seva.png",
+        url: "https://mokshavoyageclone.netlify.app/assets/logoreal-removebg-preview.png",
         width: 1200,
         height: 630,
         alt: "Moksha Sewa Logo",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moksha Sewa - Dignified Farewell Services",
     description: "We offer comprehensive, respectful, and dignified farewell services to support families during difficult times.",
-    images: ["/assets/logo-moksha-seva.png"],
+    images: ["https://mokshavoyageclone.netlify.app/assets/logoreal-removebg-preview.png"],
   },
   icons: {
     icon: "/assets/logo-moksha-seva.png",
