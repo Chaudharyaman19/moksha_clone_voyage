@@ -22,7 +22,6 @@ import {
   Quote,
   ShieldCheck,
   ShoppingBag,
-  Star,
   Truck,
   UserRound,
   UsersRound,
@@ -89,6 +88,18 @@ const locations = [
   { name: "Nashik", image: "/assets/about-reference/location-nashik.png" },
 ];
 
+const aboutImages = {
+  hero: "/assets/newbanner5.jpg",
+  storyMain: "/assets/about-reference/story-main.png",
+  storyRitualItems: "/assets/about-reference/story-ritual-items.png",
+  storyTemple: "/assets/about-reference/story-ghat-temple.png",
+  storyEvening: "/assets/about-reference/story-evening-ghat.png",
+  promiseMain: "/assets/dharma.jpg",
+  promiseSupport: "/assets/yatra.webp",
+  promiseCare: "/assets/promise.webp",
+  indiaMap: "/assets/about-reference/india-map.png",
+};
+
 export default function About() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
@@ -100,7 +111,7 @@ export default function About() {
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
-              src="/assets/about-reference/hero-priest-ghat.png"
+              src={aboutImages.hero}
               alt="Moksha Sewa ritual support at a sacred river ghat"
               fill
               priority
@@ -287,7 +298,7 @@ export default function About() {
                     style={{ clipPath: templeTall }}
                   >
                     <Image
-                      src="/assets/about-reference/story-main.png"
+                      src={aboutImages.storyMain}
                       alt="Pandits performing traditional rituals"
                       fill
                       quality={100}
@@ -300,7 +311,7 @@ export default function About() {
 
                 <div className="group relative overflow-hidden rounded-xl border-[3px] border-white shadow-md ring-1 ring-[#E4D5BE]">
                   <Image
-                    src="/assets/about-reference/story-ritual-items.png"
+                    src={aboutImages.storyRitualItems}
                     alt="Traditional ritual samagri"
                     fill
                     quality={100}
@@ -321,7 +332,7 @@ export default function About() {
                     style={{ clipPath: templeMed }}
                   >
                     <Image
-                      src="/assets/about-reference/story-ghat-temple.png"
+                      src={aboutImages.storyTemple}
                       alt="Sacred temple ghat illuminated by golden hour light"
                       fill
                       quality={100}
@@ -333,7 +344,7 @@ export default function About() {
 
                 <div className="group relative overflow-hidden rounded-xl border-[3px] border-white shadow-md ring-1 ring-[#E4D5BE]">
                   <Image
-                    src="/assets/about-reference/story-evening-ghat.png"
+                    src={aboutImages.storyEvening}
                     alt="Peaceful evening ritual by the river"
                     fill
                     quality={100}
@@ -603,7 +614,7 @@ export default function About() {
                   style={{ clipPath: templeTall }}
                 >
                   <Image
-                    src="/assets/about-reference/story-ghat-temple.png"
+                    src={aboutImages.promiseMain}
                     alt="Sacred riverside ghat illuminated in golden light"
                     fill
                     quality={100}
@@ -619,7 +630,7 @@ export default function About() {
 
               <div className="group relative overflow-hidden rounded-[18px] border-[3px] border-white shadow-sm ring-1 ring-[#E4D5BE]">
                 <Image
-                  src="/assets/about-reference/story-ritual-items.png"
+                  src={aboutImages.promiseSupport}
                   alt="Traditional ritual samagri arranged with care"
                   fill
                   quality={100}
@@ -630,7 +641,7 @@ export default function About() {
 
               <div className="group relative overflow-hidden rounded-[18px] border-[3px] border-white shadow-sm ring-1 ring-[#E4D5BE]">
                 <Image
-                  src="/assets/about-reference/story-main.png"
+                  src={aboutImages.promiseCare}
                   alt="Traditional rituals performed with devotion"
                   fill
                   quality={100}
@@ -709,7 +720,7 @@ export default function About() {
         </section>
 
         {/* ============ SEWA NETWORK — INDIA MAP IMAGE ============ */}
-        <section className="relative overflow-hidden bg-[#FBF8F3] py-5 lg:py-6">
+        <section className="relative overflow-hidden bg-[#FBF8F3] py-5 lg:py-16">
           {/* soft ambient rings */}
           <div className="pointer-events-none absolute -right-24 top-8 h-72 w-72 rounded-full border border-[#C9A574]/15" />
           <div className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full border border-[#C9A574]/10" />
@@ -789,7 +800,7 @@ export default function About() {
 
                 {/* Complete India map image */}
                 <Image
-                  src="/assets/about-reference/india-map.png"
+                  src={aboutImages.indiaMap}
                   alt="Map of India showing connected Moksha Sewa cities"
                   fill
                   quality={100}
