@@ -341,7 +341,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
               © {new Date().getFullYear()} {brandName} • All rights reserved
             </p>
             <p className="font-serif text-[13px] tracking-[0.25em] text-[#D9A84F]/40">
-              ॐ शांति शांति शांति
+              ॐ शांति शांति शांति ॐ 
             </p>
             <div className="flex items-center gap-4">
               <Link href="/privacy-policy" className="transition hover:text-[#E4B75F]">

@@ -30,7 +30,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     () =>
       variant === "seva"
         ? [
-          "/hero-images/1.png",
+          "/hero-images/u.png",
           "/hero-images/2.png",
           "/hero-images/3.png",
           "/hero-images/4.png",
@@ -97,9 +97,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       : "Compassionate end-to-end support for families, with verified services, transparent guidance and clear coordination at every step, ensuring every ritual is completed respectfully, peacefully and without unnecessary stress.";
 
   return (
-    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[680px]">
+    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[810px]">
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[66%] lg:w-[68%]">
+      <div className="absolute inset-y-0 right-0 w-full md:w-[68%] lg:w-[70%] xl:w-[72%]">
         {images.map((image, index) => (
           <div
             key={image}
@@ -115,7 +115,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               quality={100}
               unoptimized
               sizes="(max-width: 767px) 100vw, 68vw"
-              className={`object-cover object-center transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
+              className={`object-cover object-[76%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}
             />
           </div>
