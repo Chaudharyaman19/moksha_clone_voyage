@@ -5,6 +5,10 @@ import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
+import AboutMokshaSewa from "./AboutMokshaSewa";
+import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
+import FoundersVision from "./FoundersVision";
+import BoardMembers from "./BoardMembers";
 import {
   Ambulance,
   ArrowRight,
@@ -55,13 +59,13 @@ const stats = [
 ];
 
 const careServices = [
-  { icon: Ambulance, title: "Ambulance", text: "24/7 Pickup Support" },
-  { icon: Truck, title: "Hearse Van", text: "Dignified Transport" },
-  { icon: ShoppingBag, title: "Samagri", text: "Complete Ritual Items" },
-  { icon: UserRound, title: "Pandit Ji", text: "Verified & Experienced" },
-  { icon: Home, title: "Prayer Hall", text: "Clean & Peaceful Facilities" },
-  { icon: Flame, title: "Cremation", text: "Smooth Arrangements" },
-  { icon: HeartHandshake, title: "Family Support", text: "Guidance & Emotional Care" },
+  { icon: Ambulance, title: "Ambulance", text: "24/7 Pickup Support", image: "/assets/ambulance.avif" },
+  { icon: Truck, title: "Hearse Van", text: "Dignified Transport", image: "/assets/harse.jpeg" },
+  { icon: ShoppingBag, title: "Samagri", text: "Complete Ritual Items", image: "/assets/funeralsamagri.jpeg" },
+  { icon: UserRound, title: "Pandit Ji", text: "Verified & Experienced", image: "/assets/pandit.avif" },
+  { icon: Home, title: "Prayer Hall", text: "Clean & Peaceful Facilities", image: "/assets/prayerhall.jpeg" },
+  { icon: Flame, title: "Cremation", text: "Smooth Arrangements", image: "/assets/dharma.jpg" },
+  { icon: HeartHandshake, title: "Family Support", text: "Guidance & Emotional Care", image: "/assets/promise.webp" },
 ];
 
 const reasons = [
@@ -89,7 +93,7 @@ const locations = [
 ];
 
 const aboutImages = {
-  hero: "/assets/newbanner5.jpg",
+  hero: "/assets/about-hero.png",
   storyMain: "/assets/about-reference/story-main.png",
   storyRitualItems: "/assets/about-reference/story-ritual-items.png",
   storyTemple: "/assets/about-reference/story-ghat-temple.png",
@@ -108,7 +112,7 @@ export default function About() {
 
       <main>
         {/* ============ HERO — layered type + Devanagari watermark ============ */}
-        <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
+        <section className="relative w-full aspect-[16/7] min-h-[350px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
               src={aboutImages.hero}
@@ -148,7 +152,10 @@ export default function About() {
               </div>
 
               {/* layered display type */}
-              <h1 className="font-serif leading-[0.95]">
+              <h1
+                className="leading-[0.95]"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
                 <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   A Promise of
                 </span>
@@ -239,135 +246,17 @@ export default function About() {
           </div>
         </section>
 
-        {/* ============ OUR STORY — mandir-peak collage ============ */}
-        <section className="py-5 lg:py-6">
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-6 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-8">
-            <div className="relative">
-              <Quote className="pointer-events-none absolute -left-4 -top-6 h-20 w-20 text-[#C9A574]/15" />
+        {/* ============ ABOUT MOKSHA SEWA ============ */}
+        <AboutMokshaSewa />
 
-              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                <span>Our Story</span>
-                <span className="h-px w-7 bg-[#C9A574]" />
-              </div>
+        {/* ============ NAMO GANGE TRUST ============ */}
+        <AboutNamoGangeTrust />
 
-              <h2 className="mt-1 max-w-[420px] font-serif text-3xl leading-[1.08] text-[#2C1810] sm:text-4xl">
-                Compassion, Care &{" "}
-                <span className="italic text-[#8B6A3E]">Complete Support</span>
-              </h2>
+        {/* ============ FOUNDER'S VISION ============ */}
+        <FoundersVision />
 
-              <div className="mt-1 h-[2px] w-10 bg-[#8B6A3E]" />
-
-              <p className="mt-1 max-w-[470px] text-sm leading-6 text-[#5F4A3D]">
-                Moksha Sewa was founded with one simple belief: every family
-                deserves support and respect during life&apos;s most difficult
-                moments. We coordinate the practical arrangements and sacred
-                customs, so families can focus on remembering their loved one.
-              </p>
-
-              {/* signed note */}
-              <div className="mt-1 inline-flex items-center gap-4 rounded-2xl border border-[#E6D6BF] bg-white px-4 py-3 shadow-sm">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <HandHeart className="h-4 w-4" />
-                </span>
-                <span>
-                  <span className="block font-serif text-lg italic leading-tight text-[#8B6A3E]">
-                    Serving with Devotion
-                  </span>
-                  <span className="block text-[10px] uppercase tracking-[0.18em] text-[#8A7460]">
-                    Team Moksha Sewa
-                  </span>
-                </span>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="grid h-[340px] grid-cols-[1.55fr_1.1fr_0.85fr] grid-rows-2 gap-1.5 pt-2 sm:h-[400px]">
-                {/* main tile — pointed mandir shikhara top */}
-                <div
-                  className="group relative row-span-2 [filter:drop-shadow(0_16px_30px_rgba(70,47,31,0.22))]"
-                >
-                  <Kalash />
-                  {/* white frame layer */}
-                  <div
-                    className="absolute inset-0 rounded-b-2xl bg-white"
-                    style={{ clipPath: templeTall }}
-                  />
-                  {/* image layer */}
-                  <div
-                    className="absolute inset-[3px] overflow-hidden rounded-b-2xl"
-                    style={{ clipPath: templeTall }}
-                  >
-                    <Image
-                      src={aboutImages.storyMain}
-                      alt="Pandits performing traditional rituals"
-                      fill
-                      quality={100}
-                      sizes="(max-width: 1024px) 45vw, 28vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/55 via-transparent to-transparent" />
-                  </div>
-                </div>
-
-                <div className="group relative overflow-hidden rounded-xl border-[3px] border-white shadow-md ring-1 ring-[#E4D5BE]">
-                  <Image
-                    src={aboutImages.storyRitualItems}
-                    alt="Traditional ritual samagri"
-                    fill
-                    quality={100}
-                    sizes="(max-width: 1024px) 30vw, 18vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-
-                {/* tall right tile — pointed mandir top */}
-                <div className="group relative row-span-2 [filter:drop-shadow(0_10px_22px_rgba(70,47,31,0.18))]">
-                  <Kalash size="sm" />
-                  <div
-                    className="absolute inset-0 rounded-b-xl bg-white"
-                    style={{ clipPath: templeMed }}
-                  />
-                  <div
-                    className="absolute inset-[3px] overflow-hidden rounded-b-xl"
-                    style={{ clipPath: templeMed }}
-                  >
-                    <Image
-                      src={aboutImages.storyTemple}
-                      alt="Sacred temple ghat illuminated by golden hour light"
-                      fill
-                      quality={100}
-                      sizes="(max-width: 1024px) 24vw, 14vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-                <div className="group relative overflow-hidden rounded-xl border-[3px] border-white shadow-md ring-1 ring-[#E4D5BE]">
-                  <Image
-                    src={aboutImages.storyEvening}
-                    alt="Peaceful evening ritual by the river"
-                    fill
-                    quality={100}
-                    sizes="(max-width: 1024px) 30vw, 18vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-              </div>
-
-              {/* mantra badge overlapping the collage */}
-              <div className="absolute -bottom-5 -left-5 hidden h-24 w-24 items-center justify-center rounded-full border border-[#DEC9A8] bg-[#FBF8F3] shadow-lg sm:flex">
-                <div className="absolute inset-1.5 rounded-full border border-dashed border-[#C9A574]/60" />
-                <div className="text-center">
-                  <Flame className="mx-auto h-5 w-5 text-[#8B6A3E]" />
-                  <div className="mt-1 font-serif text-[13px] leading-none text-[#2C1810]">सेवा</div>
-                  <div className="mt-0.5 text-[7px] uppercase tracking-[0.18em] text-[#8A7460]">
-                    With Dignity
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ============ BOARD MEMBERS ============ */}
+        <BoardMembers />
 
         {/* ============ WHAT WE TAKE CARE OF — mandir-peak tiles ============ */}
         <section className="border-y border-[#E9DDCD] bg-[#F8F3EC] py-5 lg:py-6">
@@ -395,16 +284,28 @@ export default function About() {
                     >
                       {/* card layer */}
                       <div
-                        className="rounded-b-xl bg-white px-3 pb-1 pt-8 text-center"
+                        className="rounded-b-xl bg-white px-2 pb-3 pt-7 text-center flex flex-col items-center"
                         style={{ clipPath: templeCard }}
                       >
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                          <Icon className="h-5 w-5 stroke-[1.45]" />
+                        <div className="relative mb-2 mt-1 h-16 w-16 overflow-hidden rounded-full border-2 border-[#D9B681]/40 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:border-[#D9B681]">
+                          <Image 
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            className="object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='10px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
+                            }}
+                          />
+                          <div className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#8B6A3E] shadow-sm">
+                            <Icon className="h-3.5 w-3.5 stroke-[2]" />
+                          </div>
                         </div>
-                        <h3 className="mt-1.5 font-serif text-base text-[#2C1810]">
+                        <h3 className="font-serif text-[15px] font-medium text-[#2C1810] group-hover:text-[#8B6A3E] transition-colors">
                           {service.title}
                         </h3>
-                        <p className="mx-auto mt-1 max-w-[120px] text-[10px] leading-4 text-[#6B584B]">
+                        <p className="mx-auto mt-0.5 max-w-[120px] text-[10px] leading-[1.3] text-[#6B584B]">
                           {service.text}
                         </p>
                       </div>
@@ -811,9 +712,7 @@ export default function About() {
 
               </div>
 
-              <p className="mt-1 text-center text-[10px] text-[#8A7460]">
-                Connected Moksha Sewa teams across India
-              </p>
+
             </div>
           </div>
         </section>
