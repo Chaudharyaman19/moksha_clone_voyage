@@ -9,6 +9,7 @@ import AboutMokshaSewa from "./AboutMokshaSewa";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
+import OurInitiatives from "./OurInitiatives";
 import {
   Ambulance,
   ArrowRight,
@@ -745,6 +746,9 @@ export default function About() {
         </section>
 
 
+
+        {/* ============ OUR INITIATIVES ============ */}
+        <OurInitiatives />
 
         {/* ============ CTA STRIP ============ */}
         <section className="relative overflow-hidden bg-[#3B2B21] py-3 text-white sm:py-4">
