@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutNamoGangeTrust() {
   return (
-    <section className="bg-white py-4 md:py-6">
+    <section className="bg-white py-3 md:py-4">
       <div className="mx-auto w-full max-w-7xl px-0">
         
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10 items-center">

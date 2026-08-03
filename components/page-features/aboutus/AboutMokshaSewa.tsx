@@ -9,7 +9,7 @@ const aboutImages = {
 
 export default function AboutMokshaSewa() {
   return (
-    <section className="bg-[#FBF8F3] py-6 lg:py-10">
+    <section className="bg-[#FBF8F3] py-4 lg:py-6">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
         <div className="relative">
           <Quote className="pointer-events-none absolute -left-4 -top-6 h-20 w-20 text-[#C9A574]/15" />

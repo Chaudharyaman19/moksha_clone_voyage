@@ -12,7 +12,7 @@ const boardMembers = [
     name: "Sandeep Singh",
     role: "Chief Technology Officer (CTO)",
     description: "Leads technology, data security, and platform infrastructure.",
-    image: "/assets/aman.jpeg"
+    image: "/assets/sandeep_singh.png"
   },
   {
     name: "Vijay Sharma",
@@ -30,13 +30,13 @@ const boardMembers = [
     name: "Madhukar & Srujana",
     role: "Chief Compliance & Risk Officer (CCRO)",
     description: "Ensures legal compliance, risk management, and governance standards.",
-    image: "/assets/our.webp"
+    image: "/assets/madhukar_srujana.png"
   },
 ];
 
 export default function BoardMembers() {
   return (
-    <section className="bg-white py-3 md:py-5">
+    <section className="bg-white py-2 md:py-3">
       <div className="mx-auto w-full max-w-[1400px] px-0">
         
         <header className="mb-3 flex flex-col items-center text-center">
