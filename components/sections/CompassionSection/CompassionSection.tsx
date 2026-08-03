@@ -8,7 +8,7 @@ export default function CompassionSection({
   variant = "voyage",
 }: CompassionSectionProps) {
   return (
-    <section className="w-full relative overflow-hidden min-h-[650px] md:min-h-[700px] lg:min-h-[750px]">
+    <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
           <div
@@ -30,10 +30,10 @@ export default function CompassionSection({
         <div className="absolute top-40 right-40 w-80 h-80 bg-[#C9B696] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
       </div>
 
-      <div className="relative z-10 h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] max-w-7xl mx-auto px-0">
-        <div className="h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] flex items-center">
-          <div className="max-w-3xl py-12 md:py-16">
-            <div className="inline-flex items-center gap-3 mb-4">
+      <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px]">
+        <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
+          <div className="max-w-3xl py-8 md:py-10">
+            <div className="mb-3 inline-flex items-center gap-3">
               <span className="w-10 h-[1px] bg-[#8B6A3E]" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 {variant === "seva" ? "Moksha Sewa" : "Our Mission"}
@@ -41,10 +41,10 @@ export default function CompassionSection({
             </div>
 
             <h2 
-              className="text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.1] text-[#2C1810] mb-5"
+              className="mb-3 text-4xl font-normal leading-[1.1] text-[#2C1810] md:text-5xl lg:text-[42px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              <span className="block mb-2">
+              <span className="mb-1 block">
                 {variant === "seva"
                   ? "Complete Antim Sanskar Support"
                   : "A Journey Guided by Love"}
@@ -57,13 +57,13 @@ export default function CompassionSection({
             </h2>
 
             {/* Standard Diya Flourish */}
-            <div className="mb-7 flex items-center gap-2">
+            <div className="mb-4 flex items-center gap-2">
               <span className="h-[2px] w-12 bg-[#8B6A3E]" />
               <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
               <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
-            <p className="text-[#5A4030] text-base leading-relaxed mb-8 max-w-2xl font-light">
+            <p className="mb-5 max-w-2xl text-base font-light leading-relaxed text-[#5A4030]">
               At{" "}
               <span className="font-semibold text-[#8B6A3E]">
                 {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
@@ -74,7 +74,7 @@ export default function CompassionSection({
             </p>
 
             {/* New Stats Row - Added for balance */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="mb-4 grid grid-cols-3 gap-3">
               <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
                 <div className="text-xl font-bold text-[#8B6A3E]">500+</div>
                 <div className="text-xs text-[#5A4030]">
@@ -101,7 +101,7 @@ export default function CompassionSection({
             </div>
 
             {/* New Features Grid - Added for balance */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="mb-4 grid grid-cols-2 gap-3">
               <div className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
                 <div>
@@ -159,7 +159,7 @@ export default function CompassionSection({
               </button>
             </div>
 
-            <div className="mt-9 flex items-center space-x-8">
+            <div className="mt-5 flex items-center space-x-8">
               <div className="flex items-center space-x-2.5">
                 <div className="w-9 h-9 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center">
                   <svg

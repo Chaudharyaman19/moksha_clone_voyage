@@ -75,10 +75,18 @@ export default function VoicesOfGratitude() {
   }, [totalPages]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FFFCF8] py-2 md:py-3">
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
-        <header className="mb-5 text-center">
-          <h2 className="font-serif text-[24px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[32px] lg:text-[30px]">
+    <section className="relative w-full overflow-hidden bg-[#FFFCF8] px-3 py-2 sm:px-4 lg:px-5">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+        <header className="mx-auto mb-3 max-w-3xl text-center">
+          <div className="mb-2 inline-flex items-center space-x-3">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+              Family Stories
+            </span>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+          </div>
+
+          <h2 className="font-serif text-[26px] font-normal leading-tight text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
             Voices of Gratitude
           </h2>
         </header>
@@ -123,7 +131,7 @@ export default function VoicesOfGratitude() {
         </div>
 
         {/* Dot indicators */}
-        <div className="mt-8 flex items-center justify-center gap-2">
+        <div className="mt-4 flex items-center justify-center gap-2">
           {Array.from({ length: totalPages }).map((_, idx) => (
             <button
               key={idx}

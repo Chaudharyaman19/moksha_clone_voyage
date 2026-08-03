@@ -12,7 +12,6 @@ import BoardMembers from "./BoardMembers";
 import {
   Ambulance,
   ArrowRight,
-  BadgeCheck,
   CheckCircle2,
   ClipboardList,
   Clock3,
@@ -23,7 +22,6 @@ import {
   MapPin,
   MessageCircle,
   PhoneCall,
-  Quote,
   ShieldCheck,
   ShoppingBag,
   Truck,
@@ -66,14 +64,6 @@ const careServices = [
   { icon: Home, title: "Prayer Hall", text: "Clean & Peaceful Facilities", image: "/assets/prayerhall.jpeg" },
   { icon: Flame, title: "Cremation", text: "Smooth Arrangements", image: "/assets/dharma.jpg" },
   { icon: HeartHandshake, title: "Family Support", text: "Guidance & Emotional Care", image: "/assets/promise.webp" },
-];
-
-const reasons = [
-  { icon: BadgeCheck, title: "Experienced Team", text: "Trained, verified and compassionate" },
-  { icon: ShieldCheck, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
-  { icon: MapPin, title: "Pan India Network", text: "Strong local presence across cities" },
-  { icon: PhoneCall, title: "24/7 Availability", text: "A caring team always within reach" },
-  { icon: HandHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
 ];
 
 const processSteps = [
@@ -396,59 +386,6 @@ export default function About() {
               <p className="mt-1 text-center text-[11px] text-[#746154]">
                 Local teams. Local support. Always near you.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ============ WHY CHOOSE US — dark glass cards ============ */}
-        <section className="relative overflow-hidden bg-[#3B2B21] py-5 lg:py-6">
-          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
-          <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border border-[#C9A574]/10" />
-          <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#C9A574]/35 to-transparent" />
-
-          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
-            <div className="text-white">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
-                Why Choose Us
-              </div>
-              <h2 className="mt-1 font-serif text-3xl leading-tight sm:text-4xl">
-                Here for You, <span className="italic text-[#D9B681]">Always</span>
-              </h2>
-              <div className="mt-1 h-[2px] w-10 bg-[#D9B681]" />
-              <p className="mt-1 max-w-sm text-sm leading-6 text-white/75">
-                We bring transparency, professionalism and heartfelt service
-                together to help you in every possible way.
-              </p>
-              <a
-                href="/contact"
-                className="group mt-1 inline-flex items-center gap-2 rounded-md bg-[#D9B681] px-4 py-2 text-xs font-semibold text-[#3B2B21] transition hover:bg-[#E8D2AC]"
-              >
-                Know More
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </a>
-            </div>
-
-            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
-              {reasons.map((reason, index) => {
-                const Icon = reason.icon;
-                return (
-                  <div
-                    key={reason.title}
-                    className="group relative h-full overflow-hidden rounded-xl border border-white/15 bg-white/[0.05] px-3 py-3 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B681]/60 hover:bg-white/[0.09] sm:px-4 sm:py-4"
-                  >
-                    <span className="absolute right-2 top-1.5 font-serif text-lg text-[#D9B681]/25">
-                      0{index + 1}
-                    </span>
-                    <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681] transition-colors duration-300 group-hover:bg-[#D9B681] group-hover:text-[#3B2B21]">
-                      <Icon className="h-5 w-5 stroke-[1.5]" />
-                    </div>
-                    <h3 className="mt-1 font-serif text-base leading-tight text-white">
-                      {reason.title}
-                    </h3>
-                    <p className="mt-1 text-[10px] leading-4 text-white/60">{reason.text}</p>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>

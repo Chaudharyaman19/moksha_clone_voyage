@@ -84,7 +84,7 @@ export default function HowItWorks({
         ];
 
   return (
-    <section className="relative w-full overflow-hidden border-y border-[#eadfce] bg-[#fbf7ef] py-3 md:py-4">
+    <section className="relative w-full overflow-hidden border-y border-[#eadfce] bg-[#fbf7ef] py-2 md:py-3">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.18]"
         style={{
@@ -95,7 +95,7 @@ export default function HowItWorks({
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
-        <header className="mb-5 text-center">
+        <header className="mb-3 text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
             <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">

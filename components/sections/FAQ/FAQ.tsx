@@ -85,23 +85,27 @@ export default function FAQSection({
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF8F2] py-4 sm:py-5 lg:py-6">
+    <section className="relative w-full overflow-hidden bg-[#FBF8F2] px-3 py-3 sm:px-4 sm:py-4 lg:px-5">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
         {/* Heading */}
-        <div className="text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B66C1B] sm:text-[11px]">
-            FAQs
-          </p>
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-2 inline-flex items-center space-x-3">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+              FAQs
+            </span>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+          </div>
 
-          <h2 className="mt-1 font-serif text-[28px] font-normal leading-tight text-[#2F2118] sm:text-[32px] lg:text-[38px]">
+          <h2 className="font-serif text-[26px] font-normal leading-tight text-[#2F2118] sm:text-[30px] lg:text-[34px]">
             Frequently Asked Questions
           </h2>
         </div>
 
         {/* Two-column accordion */}
-        <div className="mt-3 grid gap-x-10 lg:grid-cols-2">
+        <div className="mt-2 grid gap-x-10 lg:grid-cols-2">
           {columns.map((column, columnIndex) => {
             const offset = columnIndex === 0 ? 0 : 3;
 
@@ -153,7 +157,7 @@ export default function FAQSection({
         </div>
 
         {/* Support banner */}
-        <div className="relative mt-4 w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] h-[220px] sm:h-[240px] lg:h-[260px]">
+        <div className="relative mt-3 h-[210px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:h-[225px] lg:h-[240px]">
           <Image
             src="/assets/faq/faq-support-banner.webp"
             alt="Moksha Sewa compassionate family support"

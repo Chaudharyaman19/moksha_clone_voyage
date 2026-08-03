@@ -22,13 +22,13 @@ export default function GlimpseOfJourney() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#fbf5ea] to-[#FDFBF7] py-6 md:py-8 shadow-[inset_0_1px_0_rgba(139,106,62,0.1)]">
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#fbf5ea] to-[#FDFBF7] px-3 py-4 shadow-[inset_0_1px_0_rgba(139,106,62,0.1)] sm:px-4 md:py-5 lg:px-5">
       {/* Subtle Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8B6A3E]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
         
-        <header className="mb-4 flex flex-col items-center text-center">
+        <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
@@ -44,7 +44,7 @@ export default function GlimpseOfJourney() {
           </h2>
           
           {/* Diya Flourish */}
-          <div className="mt-3 flex items-center gap-2">
+          <div className="mt-2 flex items-center gap-2">
             <span className="h-[2px] w-12 bg-[#8B6A3E]" />
             <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
             <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
@@ -52,7 +52,7 @@ export default function GlimpseOfJourney() {
         </header>
 
         {/* Marquee Wrapper */}
-        <div className="relative mt-3 flex w-full overflow-hidden pb-4 pt-1">
+        <div className="relative mt-2 flex w-full overflow-hidden pb-2 pt-1">
           {/* Gradient Masks for smooth fading edges */}
           <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-12 bg-gradient-to-r from-[#fbf5ea] to-transparent sm:w-20 lg:w-32" />
           <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-12 bg-gradient-to-l from-[#fbf5ea] to-transparent sm:w-20 lg:w-32" />
@@ -85,7 +85,7 @@ export default function GlimpseOfJourney() {
           </Marquee>
         </div>
 
-        <div className="mt-3 flex justify-center md:mt-4">
+        <div className="mt-2 flex justify-center">
           <button
             type="button"
             className="inline-flex h-10 min-w-[200px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-6 text-[13px] font-medium text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
