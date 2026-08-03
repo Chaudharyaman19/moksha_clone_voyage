@@ -1,14 +1,18 @@
 export interface RazorpaySuccessResponse {
-  razorpay_order_id: string;
+  razorpay_order_id?: string;
+  razorpay_subscription_id?: string;
   razorpay_payment_id: string;
   razorpay_signature: string;
 }
 
 interface RazorpayCheckoutOptions {
   key: string;
-  amount: number;
-  currency: string;
-  order_id: string;
+  amount?: number;
+  currency?: string;
+  // Exactly one of order_id (one-time) / subscription_id (recurring) is set per checkout —
+  // Razorpay's own API, not a choice made here.
+  order_id?: string;
+  subscription_id?: string;
   name: string;
   description?: string;
   prefill?: { name?: string; email?: string; contact?: string };

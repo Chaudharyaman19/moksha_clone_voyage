@@ -4,6 +4,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
+import AboutNamoGange from "@/components/sections/about/AboutNamoGange";
 import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
 import Serving from "@/components/sections/Serving/Serving";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
@@ -21,6 +22,9 @@ export default function Page() {
       <Topbar />
       <Navbar variant="seva" />
       <Hero variant="seva" />
+      {/* Namo Gange Section */}
+      <AboutNamoGange />
+
       <CompassionSection variant="seva" />
       <HowWeHelp variant="seva" />
       <Serving variant="seva" />

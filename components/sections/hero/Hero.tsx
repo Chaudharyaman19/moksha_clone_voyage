@@ -15,6 +15,39 @@ import {
   UsersRound,
 } from "lucide-react";
 
+function AnimatedNumber({ endString }: { endString: string }) {
+  const end = parseInt(endString.replace(/,/g, "").replace(/\D/g, ""), 10);
+  const suffix = endString.replace(/[0-9,]/g, "");
+  const formatComma = endString.includes(",");
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const duration = 2000;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(easeProgress * end));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [end]);
+
+  return (
+    <span>
+      {formatComma && end > 999 ? count.toLocaleString("en-IN") : count}
+      {suffix}
+    </span>
+  );
+}
+
 interface HeroProps {
   variant?: "voyage" | "seva";
 }
@@ -142,8 +175,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   }, [variant]);
 
   return (
-    <section
-      className="group relative w-full aspect-[16/9] max-w-none overflow-hidden bg-[#fbf5ea]"
+    <>
+      <section
+      className="group relative w-full aspect-[16/9] lg:aspect-[20/9] min-h-[600px] max-w-none overflow-hidden bg-[#fbf5ea]"
     >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
       <div className="absolute inset-y-0 left-0 right-[-80px] overflow-hidden">
@@ -322,46 +356,30 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Full-width, thin stats band — dark with gold, matching the site's stat bars */}
-      <div className="stats-band absolute bottom-0 left-0 z-30 w-full overflow-hidden bg-gradient-to-r from-[#6F4F2F] via-[#8B6A3E] to-[#6F4F2F] shadow-[0_-5px_18px_rgba(111,79,47,0.18)]">
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F1D6A2] to-transparent" />
-
-        <div className="relative z-20 mx-auto grid max-w-[1600px] grid-cols-2 md:h-[44px] md:grid-cols-4">
+    {/* Premium Stats Band Below Hero */}
+      <div className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className={`group/stat relative flex min-h-[42px] items-center justify-center gap-2 overflow-hidden px-2 py-1 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/15" : ""
-                  } ${index > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}
+                className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                  } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
               >
-                <span className="pointer-events-none absolute right-[17%] top-[7px] text-[10px] leading-none text-[#FFD98A] opacity-95 drop-shadow-[0_0_5px_rgba(255,217,138,0.6)]">
-                  ✦
-                </span>
-                <span className="pointer-events-none absolute right-[11%] top-[15px] text-[7px] leading-none text-[#F1D6A2] opacity-85 drop-shadow-[0_0_4px_rgba(241,214,162,0.5)]">
-                  ✦
-                </span>
-
-                <div
-                  className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#F1D6A2]/80 bg-[#F1D6A2]/18 text-[#FFE2A8] shadow-[0_0_10px_rgba(241,214,162,0.22)] lg:h-7 lg:w-7"
-                >
-                  <Icon className="h-3.5 w-3.5" strokeWidth={1.7} />
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                  <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" strokeWidth={1.8} />
                 </div>
-
-                <div className="relative z-10 min-w-0 text-left">
+                <div className="min-w-0 text-left">
                   <div
-                    className="whitespace-nowrap text-[15px] font-semibold leading-none text-[#FFF0C9] drop-shadow-[0_1px_2px_rgba(44,24,16,0.24)] lg:text-[16px]"
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                      fontWeight: 400,
-                    }}
+                    className="whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+                    style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                   >
-                    {stat.value}
+                    <AnimatedNumber endString={stat.value} />
                   </div>
-                  <div
-                    className="mt-0.5 whitespace-nowrap text-[9px] font-semibold leading-3 text-white/90 sm:text-[9px] lg:text-[9px]"
-                  >
+                  <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">
                     {stat.label}
                   </div>
                 </div>
@@ -370,6 +388,6 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
           })}
         </div>
       </div>
-    </section>
+    </>
   );
 }

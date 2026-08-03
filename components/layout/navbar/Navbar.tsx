@@ -9,7 +9,6 @@ import {
   FaLeaf,
   FaUserCircle,
   FaBookOpen,
-  FaLaptopCode,
   FaHistory,
   FaHeart,
   FaAmbulance,
@@ -19,6 +18,7 @@ import {
   FaPlaceOfWorship,
   FaMagic,
   FaDonate,
+  FaHandsHelping,
 } from "react-icons/fa";
 
 interface NavbarProps {
@@ -161,38 +161,6 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       ],
     },
     {
-      name: "Resources",
-      path: "#resources",
-      icon: <FaLeaf />,
-      type: "dropdown",
-      dropdown: [
-        {
-          name: "Articles",
-          path: "#blog",
-          icon: <FaBookOpen />,
-          type: "hash",
-        },
-        {
-          name: "Guided Meditations",
-          path: "#meditations",
-          icon: <FaPrayingHands />,
-          type: "hash",
-        },
-        {
-          name: "E-books",
-          path: "#ebooks",
-          icon: <FaLaptopCode />,
-          type: "hash",
-        },
-        {
-          name: "Video Library",
-          path: "#videos",
-          icon: <FaLeaf />,
-          type: "hash",
-        },
-      ],
-    },
-    {
       name: "Blog",
       path: "/blog",
       icon: <FaBookOpen />,
@@ -225,6 +193,18 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       type: "page",
     },
     {
+      name: "Volunteer",
+      path: "/volunteer/register",
+      icon: <FaHandHoldingHeart />,
+      type: "page",
+    },
+    {
+      name: "Request Help",
+      path: "/request-help",
+      icon: <FaHandsHelping />,
+      type: "page",
+    },
+    {
       name: "Donate",
       path: "/donation",
       icon: <FaDonate />,
@@ -239,11 +219,10 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
   return (
     <>
       <nav
-        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-50 ${
-          scrolled
-            ? "bg-white backdrop-blur-lg shadow-sm py-0"
-            : "bg-white py-0 "
-        } font-sans`}
+        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-50 ${scrolled
+          ? "bg-white backdrop-blur-lg shadow-sm py-0"
+          : "bg-white py-0 "
+          } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
@@ -271,11 +250,10 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                   {item.dropdown ? (
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${
-                        activeLink === item.name.toLowerCase()
-                          ? "text-[#8B6A3E]"
-                          : "text-[#5A4030] hover:text-[#8B6A3E]"
-                      }`}
+                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${activeLink === item.name.toLowerCase()
+                        ? "text-[#8B6A3E]"
+                        : "text-[#5A4030] hover:text-[#8B6A3E]"
+                        }`}
                     >
                       <span className="font-medium">{item.name}</span>
                       <HiChevronDown
@@ -285,19 +263,26 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                   ) : item.name === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path, item.name)}
-                      className="ml-2 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
+                      className="ml-2 flex items-center gap-1.5 rounded-full border border-[#8B6A3E] bg-white px-4 py-1.5 text-sm font-semibold text-[#8B6A3E] shadow-sm transition-all duration-200 hover:bg-[#8B6A3E]/10"
                     >
                       <FaDonate className="h-3 w-3" />
+                      {item.name}
+                    </button>
+                  ) : item.name === "Request Help" ? (
+                    <button
+                      onClick={() => handleNavigation(item.path, item.name)}
+                      className="ml-2 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
+                    >
+                      <FaHandsHelping className="h-3 w-3" />
                       {item.name}
                     </button>
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path, item.name)}
-                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${
-                        activeLink === item.name.toLowerCase()
-                          ? "text-[#8B6A3E]"
-                          : "text-[#5A4030] hover:text-[#8B6A3E]"
-                      }`}
+                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${activeLink === item.name.toLowerCase()
+                        ? "text-[#8B6A3E]"
+                        : "text-[#5A4030] hover:text-[#8B6A3E]"
+                        }`}
                     >
                       <span className="font-medium">{item.name}</span>
                     </button>
@@ -305,11 +290,10 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
 
                   {item.dropdown && (
                     <div
-                      className={`absolute left-0 top-[100%] w-62 bg-white border border-gray-200 transition-all duration-200 z-50 rounded-lg shadow-2xl ${
-                        openDropdown === item.name
-                          ? "opacity-100 visible translate-y-0"
-                          : "opacity-0 invisible -translate-y-2"
-                      }`}
+                      className={`absolute left-0 top-[100%] w-62 bg-white border border-gray-200 transition-all duration-200 z-50 rounded-lg shadow-2xl ${openDropdown === item.name
+                        ? "opacity-100 visible translate-y-0"
+                        : "opacity-0 invisible -translate-y-2"
+                        }`}
                     >
                       <div className="py-2">
                         {item.dropdown.map((subItem) => (
@@ -351,9 +335,8 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
 
       {open && (
         <div
-          className={`lg:hidden fixed left-0 ${
-            hideTopBar ? "top-12" : "top-24"
-          } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 font-sans`}
+          className={`lg:hidden fixed left-0 ${hideTopBar ? "top-12" : "top-24"
+            } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 font-sans`}
         >
           <div className="px-3 py-3 space-y-0.5">
             {navItems.map((item) => (
@@ -370,9 +353,8 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                       </span>
                     </div>
                     <HiChevronDown
-                      className={`transition-transform duration-200 ${
-                        openDropdown === item.name ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-200 ${openDropdown === item.name ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
                 ) : (

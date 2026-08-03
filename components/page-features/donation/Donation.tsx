@@ -193,9 +193,11 @@ function Donation() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const { donationId, order } = await api.post<{
+      const { donationId, order, subscriptionId, razorpayKeyId } = await api.post<{
         donationId: string;
-        order: { id: string; amount: number; currency: string };
+        order?: { id: string; amount: number; currency: string };
+        subscriptionId?: string;
+        razorpayKeyId?: string;
       }>("/donations", {
         donorName: formData.name,
         donorEmail: formData.email,
@@ -211,10 +213,11 @@ function Donation() {
       setIsSubmitting(false);
 
       await openRazorpayCheckout({
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "",
-        amount: order.amount,
-        currency: order.currency,
-        order_id: order.id,
+        key: razorpayKeyId ?? process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "",
+        amount: order?.amount,
+        currency: order?.currency ?? "INR",
+        order_id: order?.id,
+        subscription_id: subscriptionId,
         name: "Moksha Sewa",
         description: `Donation — ${activeCause.title}`,
         prefill: { name: formData.name, email: formData.email, contact: formData.phone },

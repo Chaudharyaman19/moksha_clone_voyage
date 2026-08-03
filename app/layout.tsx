@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
+import StoreProvider from "@/store/StoreProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mokshavoyageclone.netlify.app/"),
@@ -40,8 +41,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <Sideicon />
-        {children}
+        <StoreProvider>
+          <Sideicon />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );

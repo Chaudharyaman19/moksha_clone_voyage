@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, User, Users, Shield } from "lucide-react";
+import { Mail, Phone, User, Shield, Search, FileText } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
@@ -138,6 +138,28 @@ export default function TopInfoBar() {
             )}
           </button>
 
+          {/* Track Request */}
+          <Link
+            href="/track"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+          >
+            <Search size={14} className="md:hidden" />
+            <span className="hidden md:inline text-[11px]">Track Request</span>
+          </Link>
+
+          <div className="hidden md:block w-px h-3 bg-white/20"></div>
+
+          {/* Mortal Records */}
+          <Link
+            href="/records"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+          >
+            <FileText size={14} className="md:hidden" />
+            <span className="hidden md:inline text-[11px]">Mortal Records</span>
+          </Link>
+
+          <div className="hidden md:block w-px h-3 bg-white/20"></div>
+
           {/* User Login */}
 
           <Link
@@ -150,39 +172,16 @@ export default function TopInfoBar() {
 
           <div className="hidden md:block w-px h-3 bg-white/20"></div>
 
-          {/* Vendor Login */}
+          {/* Admin Login — separate admin app; not built yet, so this points at where it will
+              be hosted (NEXT_PUBLIC_ADMIN_URL) and won't resolve until that app exists. */}
 
-          <Link
-            href="/vendorlogin"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
-          >
-            <Users size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Vendor Login</span>
-          </Link>
-
-          <div className="hidden md:block w-px h-3 bg-white/20"></div>
-
-          {/* Moksha Sewa */}
-
-          <Link
-            href="/login"
+          <a
+            href={`${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`}
             className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <Shield size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Moksha Sewa</span>
-          </Link>
-
-          <div className="hidden md:block w-px h-3 bg-white/20"></div>
-
-          {/* Mortal Records */}
-
-          <Link
-            href="/login"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
-          >
-            <Shield size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Mortal Records</span>
-          </Link>
+            <span className="hidden md:inline text-[11px]">Admin Login</span>
+          </a>
         </div>
       </div>
     </div>
