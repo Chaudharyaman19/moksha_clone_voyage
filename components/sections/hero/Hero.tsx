@@ -143,8 +143,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
   return (
     <section
-      className="group relative h-[790px] max-w-none overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[calc(100svh-80px)] lg:min-h-[620px] lg:max-h-[810px]"
-      style={{ width: "100vw", marginLeft: "calc(50% - 50vw)" }}
+      className="group relative w-full aspect-[16/9] max-w-none overflow-hidden bg-[#fbf5ea]"
     >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
       <div className="absolute inset-y-0 left-0 right-[-80px] overflow-hidden">
