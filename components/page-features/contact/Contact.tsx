@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Marquee from "react-fast-marquee";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -23,6 +24,82 @@ import { PiFlowerLotus } from "react-icons/pi";
 /* Temple (shikhara) shape — same signature as the About page */
 const templeMed =
   "polygon(50% 0%, 78% 6%, 100% 16%, 100% 100%, 0% 100%, 0% 16%, 22% 6%)";
+
+const CONTACT_INITIATIVES = [
+  { title: "Meri Beti Mera Abhiman", image: "/assets/initiatives/meri beti mera abhiman.webp" },
+  { title: "Arogya Mantra", image: "/assets/initiatives/Arogya Mantra.webp" },
+  { title: "The Yogshala Expo", image: "/assets/initiatives/The Yogshala Expo.webp" },
+  { title: "The Yogshala Jobs", image: "/assets/initiatives/The Yogshala Jobs.webp" },
+  { title: "Swachh Bharat Sankalp", image: "/assets/initiatives/Swachh Bharat Sankalp.webp" },
+  { title: "Indian Contemporary Art", image: "/assets/initiatives/Indian Contemporary Art.webp" },
+  { title: "ICOA", image: "/assets/initiatives/ICOA.webp" },
+  { title: "Acharaya ji Online", image: "/assets/initiatives/Acharaya ji Online.webp" },
+  { title: "Aviral Ganga", image: "/assets/initiatives/Aviral Ganga.webp" },
+  { title: "Arogya Film Festival", image: "/assets/initiatives/Arogya Film Festival.webp" },
+  { title: "Indo Himalayan Expo", image: "/assets/initiatives/Indo Himalayan Expo.webp" },
+  { title: "Anna Sewa", image: "/assets/initiatives/Anna Sewa.webp" },
+  { title: "NGT Farms", image: "/assets/initiatives/NGT Farms.webp" },
+  { title: "The Grand Master of Yoga", image: "/assets/initiatives/The Grand Master of Yoga.webp" },
+  { title: "Arogya Sangoshti", image: "/assets/initiatives/Arogya Sangoshti.webp" },
+  { title: "Bachchan Ki Rangshala", image: "/assets/initiatives/Bachchan Ki Rangshala.webp" },
+  { title: "Ayush Mitra", image: "/assets/initiatives/Ayush Mitra.webp" },
+  { title: "Vaidhyashala", image: "/assets/initiatives/Vaidhyashala.webp" },
+  { title: "Global Eco-Tech Expo", image: "/assets/initiatives/Global Eco-Tech Expo.webp" },
+  { title: "Ayush Abhinandanam", image: "/assets/initiatives/Ayush Abhinandanam.webp" },
+  { title: "MP Development Expo", image: "/assets/initiatives/MP Development Expo.webp" },
+  { title: "Shrimad Bhagwat Katha", image: "/assets/initiatives/Shrimad Bhagwat Katha.webp" },
+  { title: "The Yogshala Clinic", image: "/assets/initiatives/The Yogshala Clinic.webp" }
+];
+
+function InitiativesCarousel() {
+  const row1 = CONTACT_INITIATIVES.slice(0, 8);
+  const row2 = CONTACT_INITIATIVES.slice(8, 16);
+  const row3 = CONTACT_INITIATIVES.slice(16, 24);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white py-4 shadow-sm flex flex-col justify-center gap-4">
+      {/* Gradient fades for smooth scrolling edges */}
+      <div className="absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+
+      {/* Row 1: Scrolls Left */}
+      <Marquee speed={25} pauseOnHover={true}>
+        {row1.map((item, i) => (
+          <div key={`r1-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
+            <div className="relative h-12 w-full">
+              <Image src={item.image} alt={item.title} fill className="object-contain" />
+            </div>
+            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+          </div>
+        ))}
+      </Marquee>
+
+      {/* Row 2: Scrolls Right */}
+      <Marquee speed={20} direction="right" pauseOnHover={true}>
+        {row2.map((item, i) => (
+          <div key={`r2-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
+            <div className="relative h-12 w-full">
+              <Image src={item.image} alt={item.title} fill className="object-contain" />
+            </div>
+            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+          </div>
+        ))}
+      </Marquee>
+      
+      {/* Row 3: Scrolls Left */}
+      <Marquee speed={30} pauseOnHover={true}>
+        {row3.map((item, i) => (
+          <div key={`r3-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
+            <div className="relative h-12 w-full">
+              <Image src={item.image} alt={item.title} fill className="object-contain" />
+            </div>
+            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+          </div>
+        ))}
+      </Marquee>
+    </div>
+  );
+}
 
 /* Kalash finial — the small gold urn-dot on a mandir peak */
 function Kalash({ size = "md" }: { size?: "sm" | "md" }) {
@@ -100,33 +177,15 @@ function Contact() {
       address: "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh",
       pincode: "201007",
       type: "main",
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
+      image: "/assets/contact/namo-gange-office.webp",
     },
     {
-      city: "Ghaziabad",
-      address: "KK-1, Surdas Marg, Sector 17A, Kavi Nagar Industrial Area",
-      pincode: "201001",
+      city: "London Office",
+      address: "Central London, United Kingdom (Full address to be provided)",
+      pincode: "UK",
       type: "branch",
       image:
-        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&auto=format&fit=crop",
-    },
-    {
-      city: "Delhi",
-      address: "Ground Floor, Main Market, E-1, opposite KFC, Kalkaji",
-      pincode: "110019",
-      type: "branch",
-      image:
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&auto=format&fit=crop",
-    },
-    {
-      city: "Mumbai",
-      address: "212 Bussa Industrial Estate, Lower Parel",
-      pincode: "400013",
-      state: "Maharashtra",
-      type: "branch",
-      image:
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=800&auto=format&fit=crop",
     },
   ];
 
@@ -306,87 +365,91 @@ function Contact() {
           </div>
         </section>
 
-        {/* ============ OFFICE LOCATIONS — temple gateway cards ============ */}
-        <section className="pt-6 pb-3 lg:pt-8 lg:pb-4">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-1 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-              <span className="h-px w-8 bg-[#C9A574]" />
-              <span>ॐ Our Presence ॐ</span>
-              <span className="h-px w-8 bg-[#C9A574]" />
-            </div>
-            <h2 className="text-center font-serif text-3xl text-[#2C1810] sm:text-4xl">
-              Office <span className="italic text-[#8B6A3E]">Locations</span>
-            </h2>
+        {/* ============ OFFICE LOCATIONS & INITIATIVES ============ */}
+        <section className="py-2 lg:py-2">
+          <div className="mx-auto w-full max-w-7xl px-2 sm:px-4 xl:px-0">
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
+              
+              {/* LEFT: Office Locations */}
+              <div className="flex flex-col h-full">
+                <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+                  <span className="h-px w-8 bg-[#C9A574]" />
+                  <span>ॐ Our Presence ॐ</span>
+                </div>
+                <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
+                  Office <span className="italic text-[#8B6A3E]">Locations</span>
+                </h2>
 
-            <div className="mt-8 grid grid-cols-1 gap-2 pt-2 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {officeLocations.map((location) => (
                 <div
                   key={location.city}
-                  className="group relative transition-transform duration-300 hover:-translate-y-1.5 [filter:drop-shadow(0_8px_16px_rgba(70,47,31,0.12))] hover:[filter:drop-shadow(0_16px_28px_rgba(70,47,31,0.2))]"
+                  className="group overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
                 >
-                  <Kalash size="sm" />
-                  {/* border layer */}
-                  <div
-                    className="rounded-b-xl bg-[#E4D5BE] p-[1px] transition-colors duration-300 group-hover:bg-[#C9A574]"
-                    style={{ clipPath: templeMed }}
-                  >
-                    {/* card layer */}
-                    <div
-                      className="overflow-hidden rounded-b-xl bg-white"
-                      style={{ clipPath: templeMed }}
-                    >
-                      {/* image — the temple peak crops it beautifully */}
-                      <div className="relative h-44 w-full overflow-hidden">
-                        <Image
-                          src={location.image}
-                          alt={location.city}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/75 via-[#2C1810]/10 to-transparent" />
+                  {/* image */}
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={location.image}
+                      alt={location.city}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-transparent to-transparent" />
 
-                        {location.type === "main" && (
-                          <span className="absolute right-3 top-[26%] z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow">
-                            HQ
-                          </span>
-                        )}
+                    {location.type === "main" && (
+                      <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow">
+                        HQ
+                      </span>
+                    )}
 
-                        <div className="absolute bottom-2.5 left-3 z-20">
-                          <h3 className="font-serif text-lg text-white drop-shadow">
-                            {location.city}
-                          </h3>
-                          <span className="mt-0.5 block h-px w-6 bg-[#D9B681] transition-all duration-300 group-hover:w-10" />
-                        </div>
-                      </div>
+                    <div className="absolute bottom-3 left-4 z-20">
+                      <h3 className="font-serif text-xl text-white drop-shadow">
+                        {location.city}
+                      </h3>
+                      <span className="mt-1 block h-[2px] w-8 bg-[#D9B681] transition-all duration-300 group-hover:w-12" />
+                    </div>
+                  </div>
 
-                      <div className="p-4">
-                        <p className="min-h-[40px] text-xs leading-5 text-[#6B584B]">
-                          {location.address}
-                        </p>
-                        <div className="mt-1 flex items-center justify-between border-t border-[#F0E5D3] pt-3">
-                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#8B6A3E]">
-                            <FaMapMarkerAlt className="h-2.5 w-2.5" />
-                            PIN: {location.pincode}
-                          </span>
-                          {location.state && (
-                            <span className="text-[10px] font-semibold text-[#8B6A3E]">
-                              {location.state}
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                  {/* Details */}
+                  <div className="p-5">
+                    <p className="min-h-[48px] text-sm leading-relaxed text-[#6B584B]">
+                      {location.address}
+                    </p>
+                    <div className="mt-4 flex items-center justify-between border-t border-[#F0E5D3] pt-4">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#8B6A3E]">
+                        <FaMapMarkerAlt className="h-3.5 w-3.5" />
+                        PIN: {location.pincode}
+                      </span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+
+          {/* RIGHT: Our Initiatives */}
+          <div className="flex flex-col h-full">
+            <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+              <span className="h-px w-8 bg-[#C9A574]" />
+              <span>Our Expanding Horizon</span>
+            </div>
+            <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
+              Our <span className="italic text-[#8B6A3E]">Initiatives</span>
+            </h2>
+            
+            <div className="flex-1 w-full min-h-0">
+              <InitiativesCarousel />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
         {/* ============ FORM + CONTACT CARDS ============ */}
-        <section id="contact-form" className="pb-6 lg:pb-8">
-          <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 sm:px-6 xl:px-0 lg:grid-cols-2">
+        <section id="contact-form" className="py-2 lg:py-2">
+          <div className="mx-auto grid w-full max-w-7xl gap-2 px-2 sm:px-4 xl:px-0 lg:grid-cols-2 lg:gap-2">
             {/* -------- form card -------- */}
             <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
@@ -515,109 +578,93 @@ function Contact() {
             </div>
 
             {/* -------- right column -------- */}
-            <div className="space-y-2">
-              {/* emergency — dark card like About's Sacred Promise */}
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] p-3 text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)] sm:p-4">
-                <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
-                <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full border border-[#C9A574]/15" />
-
-                <div className="flex items-start gap-4">
-                  <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-[#2C1810]">
+            <div className="flex flex-col gap-2">
+              {/* Consolidated Contact Info Block */}
+              <div className="rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
+                
+                {/* Emergency Details */}
+                <div className="flex items-center gap-3">
+                  <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-white">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/40" />
-                    <FaHeadset className="relative h-5 w-5" />
+                    <FaHeadset className="relative h-4 w-4" />
                   </span>
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
-                      Emergency Support
+                    <div className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+                      24/7 Emergency Support
                     </div>
-                    <h4 className="mt-1 font-serif text-xl">
-                      Available <span className="italic text-[#D9B681]">24/7</span> for Urgent Help
-                    </h4>
                     <a
                       href="tel:+919654900525"
-                      className="mt-1 inline-block font-serif text-2xl text-[#E8D2AC] transition hover:text-white"
+                      className="inline-block font-serif text-xl text-[#2C1810] transition hover:text-[#8B6A3E]"
                     >
                       +91 96549 00525
                     </a>
                   </div>
                 </div>
-              </div>
 
-              {/* email + phone rows */}
-              <div className="grid gap-2 sm:grid-cols-2">
-                <a
-                  href="mailto:info@mokshasewa.com"
-                  className="group flex items-center gap-2.5 rounded-2xl border border-[#E6D6BF] bg-white px-3 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C9A574] hover:shadow-md"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                    <MdEmail className="h-5 w-5" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                      Email Us
-                    </span>
-                    <span className="block truncate font-serif text-sm text-[#2C1810]">
-                      info@mokshasewa.com
-                    </span>
-                  </span>
-                </a>
+                <div className="my-3.5 h-px w-full bg-[#F0E5D3]" />
 
-                <a
-                  href="tel:+911234567890"
-                  className="group flex items-center gap-2.5 rounded-2xl border border-[#E6D6BF] bg-white px-3 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#C9A574] hover:shadow-md"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                    <FaPhoneAlt className="h-4 w-4" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                      Call Us
+                {/* Email & Phone List (Side-by-Side) */}
+                <div className="grid grid-cols-2 gap-3">
+                  <a
+                    href="mailto:info@mokshasewa.com"
+                    className="group flex items-center gap-2.5 transition-colors duration-300"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
+                      <MdEmail className="h-3.5 w-3.5" />
                     </span>
-                    <span className="block truncate font-serif text-sm text-[#2C1810]">
-                      +91 9568259784
-                    </span>
-                  </span>
-                </a>
-              </div>
+                    <div className="min-w-0">
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
+                        Email
+                      </span>
+                      <span className="block truncate font-serif text-xs text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
+                        info@mokshasewa.com
+                      </span>
+                    </div>
+                  </a>
 
-              {/* social connect */}
-              <div className="rounded-2xl border border-[#E6D6BF] bg-white p-3 shadow-sm">
-                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                  <span>Connect With Us</span>
-                  <span className="h-px w-7 bg-[#C9A574]" />
+                  <a
+                    href="tel:+919568259784"
+                    className="group flex items-center gap-2.5 transition-colors duration-300"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
+                      <FaPhoneAlt className="h-3 w-3" />
+                    </span>
+                    <div className="min-w-0">
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
+                        Call Us
+                      </span>
+                      <span className="block truncate font-serif text-xs text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
+                        +91 95682 59784
+                      </span>
+                    </div>
+                  </a>
                 </div>
-                <p className="mt-1 text-xs leading-5 text-[#7A685B]">
-                  Follow us on social media for updates, events, and more.
-                </p>
-                <div className="mt-1 flex gap-2.5">
-                  {[FaFacebook, FaTwitter, FaLinkedin, FaYoutube].map((Icon, i) => (
-                    <a
-                      key={i}
-                      href="#"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#DEC9A8] text-[#8B6A3E] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8B6A3E] hover:bg-[#8B6A3E] hover:text-white hover:shadow-md"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  ))}
-                </div>
-              </div>
 
-              {/* reassurance note */}
-              <div className="flex items-center gap-2.5 rounded-2xl border border-[#E6D6BF] bg-[#F6EFE6] px-3 py-2">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PiFlowerLotus className="h-4 w-4" />
-                </span>
-                <p className="text-[11px] leading-4 text-[#5F4A3D]">
-                  <span className="font-serif text-sm italic text-[#8B6A3E]">
-                    Har sawaal ka jawab, poori shraddha ke saath.
-                  </span>
-                  <br />
-                  No query is too small — our team treats every message with care.
-                </p>
+                <div className="my-3.5 h-px w-full bg-[#F0E5D3]" />
+
+                {/* Social Connect & Reassurance (Side-by-Side) */}
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {[FaFacebook, FaTwitter, FaLinkedin, FaYoutube].map((Icon, i) => (
+                      <a
+                        key={i}
+                        href="#"
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8B6A3E] hover:text-white hover:shadow-md"
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                      </a>
+                    ))}
+                  </div>
+                  <div className="text-right text-[10px] leading-4 text-[#5F4A3D]">
+                    <span className="font-serif italic text-[#8B6A3E]">Har sawaal ka jawab.</span>
+                    <br />
+                    We treat every query with care.
+                  </div>
+                </div>
               </div>
 
               {/* ============ MAP ============ */}
-              <div className="relative h-[240px] overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm sm:h-[280px]">
+              <div className="relative h-[300px] lg:h-[420px] w-full overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm">
                 <iframe
                   src="https://maps.google.com/maps?q=12/52,%20Site%20-%202,%20Sunrise%20Industrial%20Area,%20Mohan%20Nagar,%20Sahibabad,%20Ghaziabad&t=&z=14&ie=UTF8&iwloc=&output=embed"
                   width="100%"
@@ -628,31 +675,6 @@ function Contact() {
                   className="h-full w-full"
                   title="Head Office Location"
                 />
-
-                {/* themed info card */}
-                <div className="absolute bottom-3 left-3 right-3 max-w-none overflow-hidden rounded-xl border border-[#E6D6BF] bg-white/95 p-3 shadow-lg backdrop-blur-sm sm:bottom-4 sm:left-4 sm:right-auto sm:max-w-[280px]">
-                  <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
-                  <div className="flex items-start gap-2.5">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                      <FaMapMarkerAlt className="h-3 w-3" />
-                    </span>
-                    <div>
-                      <h4 className="font-serif text-[15px] text-[#2C1810]">Head Office</h4>
-                      <p className="mt-0.5 text-[11px] leading-4 text-[#6B584B]">
-                        12/52, Sunrise Industrial Area, Ghaziabad
-                      </p>
-                      <a
-                        href="https://maps.google.com/maps?q=12/52,%20Site%20-%202,%20Sunrise%20Industrial%20Area,%20Mohan%20Nagar,%20Sahibabad,%20Ghaziabad"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6A3E] hover:underline"
-                      >
-                        Get Directions
-                        <FaChevronRight className="h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
