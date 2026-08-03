@@ -25,6 +25,12 @@ type StatItem = {
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
 };
 
+type SlideContent = {
+  heading: string[];
+  description: string;
+  alt: string;
+};
+
 export default function Hero({ variant = "voyage" }: HeroProps) {
   const images = useMemo(
     () =>
@@ -45,10 +51,58 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     [variant],
   );
 
+  const slideContent = useMemo<SlideContent[]>(
+    () =>
+      variant === "seva"
+        ? [
+            {
+              heading: ["A Dignified Final Journey.", "Care at Every Step."],
+              description:
+                "With dignity, care and timely coordination, our trained Sewa team manages respectful transportation, sacred preparation and ghat arrangements, while supporting every family with calm guidance throughout each step of the final journey.",
+              alt: "Moksha Sewa team respectfully transporting a departed loved one at a sacred ghat",
+            },
+            {
+              heading: ["Sacred Rites. Peaceful Farewell.", "Guided With Devotion."],
+              description:
+                "With experienced Pandits and complete ritual arrangements, we help families perform the final rites with devotion, proper traditions and respectful guidance, ensuring every sacred step is completed peacefully at the holy ghats of Bharat.",
+              alt: "Family performing final rites with a Pandit beside the sacred river",
+            },
+            {
+              heading: ["Every Ritual. Properly Arranged.", "Dignity in Every Detail."],
+              description:
+                "From sacred samagri and pyre preparation to Pandit coordination and family support, our Sewa team manages every detail with respect, clarity and care, allowing loved ones to remain present during the final farewell.",
+              alt: "Moksha Sewa team arranging sacred samagri and final ritual preparations",
+            },
+            {
+              heading: ["Sacred Waters. Lasting Peace.", "Prayers for the Departed."],
+              description:
+                "With complete guidance for Asthi Visarjan and related rituals, we arrange the Pandit, samagri and ghat support, helping families offer prayers with devotion, peace and proper tradition at sacred rivers across Bharat.",
+              alt: "Family offering flowers and prayers during a sacred riverside ritual",
+            },
+            {
+              heading: ["Sewa Through Compassion.", "Honouring With Kindness."],
+              description:
+                "Through respectful food Sewa and charitable offerings, we help families honour their loved ones by serving those in need, with complete arrangements, transparent coordination and compassionate support at sacred destinations.",
+              alt: "Moksha Sewa volunteers respectfully serving food to people at a sacred ghat",
+            },
+          ]
+        : images.map(() => ({
+            heading: [
+              "Guided Farewells.",
+              "Lasting Memories.",
+              "Care Across Borders.",
+            ],
+            description:
+              "Compassionate end-to-end support for families, with verified services, transparent guidance and clear coordination at every step, ensuring every ritual is completed respectfully, peacefully and without unnecessary stress.",
+            alt: "Compassionate farewell support for families",
+          })),
+    [images, variant],
+  );
+
   const stats: StatItem[] =
     variant === "seva"
       ? [
-        { value: "50,000+", label: "Sevas Performed", icon: UsersRound },
+        { value: "50,000+", label: "Sewas Performed", icon: UsersRound },
         { value: "25+", label: "Sacred Destinations", icon: Landmark },
         { value: "98%", label: "Happy Devotees", icon: Smile },
         { value: "100%", label: "Secure & Transparent", icon: ShieldCheck },
@@ -66,6 +120,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       : ["Verified Services", "Clear Guidance", "24/7 Support"];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const activeSlide = slideContent[currentIndex] ?? slideContent[0];
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((previous) => (previous + 1) % images.length);
@@ -86,16 +141,6 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     setCurrentIndex(0);
   }, [variant]);
 
-  const heading =
-    variant === "seva"
-      ? ["Sacred Rituals. Eternal Peace.", "Blessings for Generations."]
-      : ["Guided Farewells.", "Lasting Memories.", "Care Across Borders."];
-
-  const description =
-    variant === "seva"
-      ? "With devotion, dignity and tradition, we help you perform sacred sevas for your ancestors and loved ones at the holy places of Bharat, with complete guidance, ritual arrangements and compassionate support at every step."
-      : "Compassionate end-to-end support for families, with verified services, transparent guidance and clear coordination at every step, ensuring every ritual is completed respectfully, peacefully and without unnecessary stress.";
-
   return (
     <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[810px]">
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
@@ -109,13 +154,13 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
           >
             <Image
               src={image}
-              alt="Sacred riverside ritual at a holy ghat"
+              alt={slideContent[index]?.alt ?? "Moksha Sewa sacred ritual support"}
               fill
               priority={index === 0}
               quality={100}
               unoptimized
               sizes="(max-width: 767px) 100vw, 68vw"
-              className={`object-cover object-[76%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
+              className={`object-cover object-[80%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}
             />
           </div>
@@ -132,7 +177,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
             "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 32%, rgba(251,245,234,0.98) 39%, rgba(251,245,234,0.83) 47%, rgba(251,245,234,0.34) 56%, rgba(251,245,234,0) 66%)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/86 to-[#fbf5ea]/55 md:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/80 to-[#fbf5ea]/55 md:hidden" />
 
       {/* Devanagari watermark — same signature as the rest of the site */}
       <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-serif text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
@@ -185,7 +230,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
       {/* Main content */}
       <div className="relative z-20 mx-auto h-full max-w-7xl px-0">
-        <div className="flex h-full items-start pt-[112px] sm:pt-[126px] md:pt-[132px] lg:pt-[138px] xl:pt-[148px]">
+        <div className="flex h-full items-start pt-[124px] sm:pt-[138px] md:pt-[144px] lg:pt-[150px] xl:pt-[160px]">
           <div className="w-full max-w-[720px] md:w-[62%] lg:w-[56%] xl:w-[54%]">
             {/* eyebrow */}
             <div className="mb-4 inline-flex items-center gap-2.5">
@@ -194,7 +239,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E]">
                 {variant === "seva"
-                  ? "मोक्ष सेवा · Sacred Sevas of Bharat"
+                  ? "मोक्ष सेवा · Sacred Sewas of Bharat"
                   : "मोक्ष · With You, Always"}
               </span>
             </div>
@@ -206,14 +251,14 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                 fontWeight: 400,
               }}
             >
-              {heading.map((line, index) => (
+              {activeSlide.heading.map((line, index) => (
                 <span
                   key={line}
-                  className={`${line.includes("Sacred Rituals")
+                  className={`${index === 0
                       ? "block lg:whitespace-nowrap"
                       : "block"
-                    } ${index === heading.length - 1
-                      ? "italic text-[#8B6A3E]"
+                    } ${index === activeSlide.heading.length - 1
+                      ? "text-[#8B6A3E]"
                       : ""
                     }`}
                 >
@@ -230,7 +275,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
             </div>
 
             <p className="mt-4 max-w-[535px] text-[15px] font-normal leading-6 text-[#4F3A2D] sm:text-[16px]">
-              {description}
+              {activeSlide.description}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3.5">
@@ -238,7 +283,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                 href={variant === "seva" ? "/sevas" : "/services"}
                 className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
               >
-                <span>{variant === "seva" ? "Book a Seva" : "Get Support"}</span>
+                <span>{variant === "seva" ? "Book a Sewa" : "Get Support"}</span>
                 <CalendarDays
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
                   strokeWidth={1.7}
@@ -249,7 +294,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                 href={variant === "seva" ? "/sevas" : "/services"}
                 className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-white/45 px-6 text-[14px] font-semibold text-[#73532F] backdrop-blur-[2px] transition hover:border-[#8B6A3E] hover:bg-white/80"
               >
-                <span>{variant === "seva" ? "Explore Sevas" : "Explore Services"}</span>
+                <span>{variant === "seva" ? "Explore Sewas" : "Explore Services"}</span>
                 <ArrowRight
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
                   strokeWidth={1.7}
@@ -276,25 +321,36 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       </div>
 
       {/* Full-width, thin stats band — dark with gold, matching the site's stat bars */}
-      <div className="absolute bottom-0 left-0 z-30 w-full bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810] shadow-[0_-7px_24px_rgba(44,24,16,0.25)]">
+      <div className="stats-band absolute bottom-0 left-0 z-30 w-full overflow-hidden bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810] shadow-[0_-7px_24px_rgba(44,24,16,0.25)]">
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
 
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:h-[64px] md:grid-cols-4">
+        <div className="relative z-20 mx-auto grid max-w-[1600px] grid-cols-2 md:h-[50px] md:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className={`group/stat flex min-h-[58px] items-center justify-center gap-2.5 px-3 py-2 md:min-h-0 md:py-0 lg:gap-3 ${index > 0 ? "md:border-l md:border-white/10" : ""
+                className={`stat-item group/stat relative flex min-h-[46px] items-center justify-center gap-2 overflow-hidden px-2 py-1.5 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/10" : ""
                   } ${index > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#C9A574]/50 bg-[#C9A574]/10 text-[#D9B681] transition-all duration-300 group-hover/stat:bg-[#C9A574] group-hover/stat:text-[#2C1810] lg:h-10 lg:w-10">
-                  <Icon className="h-[19px] w-[19px] lg:h-5 lg:w-5" strokeWidth={1.55} />
+                {/* Each stat lights up one-by-one */}
+                <span className="stat-item-light pointer-events-none absolute inset-0" />
+                <span className="stat-star stat-star-one pointer-events-none absolute right-[17%] top-[9px] text-[11px] leading-none text-[#F4C96B]">
+                  ✦
+                </span>
+                <span className="stat-star stat-star-two pointer-events-none absolute right-[11%] top-[18px] text-[7px] leading-none text-[#D9B681]">
+                  ✦
+                </span>
+
+                <div
+                  className="stat-icon relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C9A574]/50 bg-[#C9A574]/10 text-[#D9B681] transition-all duration-300 group-hover/stat:bg-[#C9A574] group-hover/stat:text-[#2C1810] lg:h-8 lg:w-8"
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.55} />
                 </div>
 
-                <div className="min-w-0 text-left">
+                <div className="relative z-10 min-w-0 text-left">
                   <div
-                    className="whitespace-nowrap text-[19px] font-normal leading-none text-[#E8D2AC] lg:text-[21px]"
+                    className="stat-value whitespace-nowrap text-[16px] font-normal leading-none text-[#E8D2AC] lg:text-[17px]"
                     style={{
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       fontWeight: 400,
@@ -302,7 +358,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                   >
                     {stat.value}
                   </div>
-                  <div className="mt-0.5 whitespace-nowrap text-[10px] font-normal leading-4 text-white/70 sm:text-[11px] lg:text-[12px]">
+                  <div
+                    className="stat-label mt-0.5 whitespace-nowrap text-[9px] font-normal leading-3 text-white/70 sm:text-[9px] lg:text-[10px]"
+                  >
                     {stat.label}
                   </div>
                 </div>
@@ -311,6 +369,161 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
           })}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes statCardBlink {
+          0%,
+          20% {
+            background-color: rgba(217, 182, 129, 0.15);
+            box-shadow:
+              inset 0 0 24px rgba(255, 224, 158, 0.16),
+              0 0 20px rgba(217, 182, 129, 0.12);
+          }
+          26%,
+          100% {
+            background-color: transparent;
+            box-shadow: none;
+          }
+        }
+
+        @keyframes statLightBlink {
+          0%,
+          20% {
+            opacity: 1;
+            transform: scaleX(1);
+          }
+          26%,
+          100% {
+            opacity: 0;
+            transform: scaleX(0.82);
+          }
+        }
+
+        @keyframes statIconBlink {
+          0%,
+          20% {
+            color: #2c1810;
+            background-color: #e8c98e;
+            border-color: #ffe6ad;
+            box-shadow:
+              0 0 0 4px rgba(217, 182, 129, 0.12),
+              0 0 18px rgba(255, 226, 166, 0.55);
+            transform: scale(1.08);
+          }
+          26%,
+          100% {
+            color: #d9b681;
+            background-color: rgba(201, 165, 116, 0.1);
+            border-color: rgba(201, 165, 116, 0.5);
+            box-shadow: none;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes statValueBlink {
+          0%,
+          20% {
+            color: #fff0c7;
+            text-shadow:
+              0 0 8px rgba(255, 226, 166, 0.75),
+              0 0 18px rgba(217, 182, 129, 0.45);
+          }
+          26%,
+          100% {
+            color: #e8d2ac;
+            text-shadow: none;
+          }
+        }
+
+        @keyframes statLabelBlink {
+          0%,
+          20% {
+            color: rgba(255, 255, 255, 0.98);
+            text-shadow: 0 0 8px rgba(255, 229, 174, 0.38);
+          }
+          26%,
+          100% {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: none;
+          }
+        }
+
+        @keyframes statStarsGlow {
+          0%,
+          100% {
+            opacity: 0.45;
+            transform: scale(0.85);
+            text-shadow: 0 0 3px rgba(244, 201, 107, 0.35);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+            text-shadow:
+              0 0 5px rgba(255, 224, 150, 0.95),
+              0 0 12px rgba(217, 182, 129, 0.75);
+          }
+        }
+
+        .stat-item,
+        .stat-item-light,
+        .stat-icon,
+        .stat-value,
+        .stat-label {
+          animation-duration: 3.2s;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+
+        .stat-item {
+          animation-name: statCardBlink;
+        }
+
+        .stat-item-light {
+          opacity: 0;
+          background:
+            linear-gradient(
+              110deg,
+              transparent 8%,
+              rgba(255, 236, 195, 0.05) 30%,
+              rgba(255, 224, 158, 0.24) 50%,
+              rgba(255, 236, 195, 0.05) 70%,
+              transparent 92%
+            );
+          animation-name: statLightBlink;
+        }
+
+        .stat-icon {
+          animation-name: statIconBlink;
+        }
+
+        .stat-value {
+          animation-name: statValueBlink;
+        }
+
+        .stat-label {
+          animation-name: statLabelBlink;
+        }
+
+        .stat-star {
+          animation: statStarsGlow 1.8s ease-in-out infinite;
+          transform-origin: center;
+        }
+
+        .stat-star-two {
+          animation-delay: 0.35s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .stat-item,
+          .stat-item-light,
+          .stat-icon,
+          .stat-value,
+          .stat-label,
+          .stat-star {
+            animation: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }
