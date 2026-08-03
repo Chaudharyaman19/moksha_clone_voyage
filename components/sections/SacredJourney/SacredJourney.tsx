@@ -175,7 +175,7 @@ function TopLabel() {
       <div className="mt-0.5 flex items-center justify-center gap-2.5">
         <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D98500]" />
 
-        <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-[#C87500] sm:text-[10px]">
+        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#C87500]">
           Our Way of Giving Back
         </p>
 
@@ -241,13 +241,13 @@ export default function SacredJourney({
         <header className="mx-auto mb-3 max-w-[820px] text-center">
           <TopLabel />
 
-          <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-[1.08] tracking-[-0.02em] text-[#342017] sm:text-[29px] lg:text-[34px]">
+          <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
             Be the Reason Someone Gets a Dignified Farewell.
           </h2>
 
           <HeadingDivider />
 
-          <p className="mx-auto mt-2 max-w-[600px] text-[11px] font-normal leading-[1.45] text-[#5B473C] sm:text-[12px] lg:text-[13px]">
+          <p className="mx-auto mt-2 max-w-[600px] text-[13px] font-normal leading-[1.45] text-[#5B473C]">
             Your support helps us provide compassionate care, essential
             services,
             <br className="hidden sm:block" />

@@ -98,12 +98,12 @@ export default function HowItWorks({
         <header className="mb-3 text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               How It Works
             </span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
-          <h2 className="font-serif text-[18px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[38px] xl:text-[32px]">
+          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:whitespace-nowrap lg:text-[30px]">
             Just 4 Steps. We Take Care of Everything.
           </h2>
         </header>

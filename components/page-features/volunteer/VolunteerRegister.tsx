@@ -1,204 +1,996 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
-import { FaHandsHelping, FaCheckCircle } from "react-icons/fa";
+
+import {
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaEnvelope,
+  FaHandsHelping,
+  FaHeart,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaRegClock,
+  FaShieldAlt,
+  FaStar,
+  FaUser,
+  FaUsers,
+} from "react-icons/fa";
+
 import { PiFlowerLotus } from "react-icons/pi";
+
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/slices/authSlice";
 import { volunteerApi } from "@/lib/volunteerApi";
 import { ApiRequestError } from "@/lib/api";
 
+interface VolunteerForm {
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+
+  dateOfBirth: string;
+  gender: string;
+  bloodGroup: string;
+
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+
+  motivation: string;
+  experience: string;
+  availability: string;
+  preferredRole: string;
+}
+
+interface TrustItem {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
+}
+
+const EMPTY_FORM: VolunteerForm = {
+  name: "",
+  phone: "",
+  email: "",
+  password: "",
+
+  dateOfBirth: "",
+  gender: "",
+  bloodGroup: "",
+
+  address: "",
+  city: "",
+  state: "",
+  pincode: "",
+
+  motivation: "",
+  experience: "",
+  availability: "",
+  preferredRole: "",
+};
+
+const SUGGESTED_SKILLS = [
+  "Driving",
+  "First Aid",
+  "Documentation Help",
+  "Ritual Assistance",
+  "Translation",
+];
+
+const trustItems: TrustItem[] = [
+  {
+    title: "Make a Real Impact",
+    description:
+      "Your time and compassion can bring comfort to families in their most difficult moments.",
+    icon: FaUsers,
+  },
+  {
+    title: "Serve with Dignity",
+    description:
+      "Be a part of a respectful and meaningful Sewa for the departed and their loved ones.",
+    icon: FaHeart,
+  },
+  {
+    title: "Growth & Learning",
+    description:
+      "Develop leadership, empathy and life skills while serving humanity.",
+    icon: FaShieldAlt,
+  },
+  {
+    title: "Join a Dedicated Team",
+    description:
+      "Work alongside like-minded people committed to the same mission.",
+    icon: FaHandsHelping,
+  },
+];
+
 const inputClass =
-  "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
-const labelClass = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white px-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
-const SUGGESTED_SKILLS = ["Driving", "First Aid", "Documentation Help", "Ritual Assistance", "Translation"];
+const iconInputClass =
+  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white pl-9 pr-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
-function VolunteerRegister() {
+const labelClass =
+  "mb-1.5 block text-[10px] font-medium leading-none text-[#3B2A20]";
+
+function LotusOrnament({
+  className = "h-8 w-11",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 72 50"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M8 31c9 8 18 12 28 12s19-4 28-12"
+        stroke="#ED6B13"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function SectionTitle({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mb-2 flex items-center gap-2">
+      <span className="h-px w-4 bg-[#ED6B13]" />
+
+      <h3 className="font-serif text-[14px] font-normal text-[#3C251B]">
+        {children}
+      </h3>
+    </div>
+  );
+}
+
+export default function VolunteerRegister() {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const [form, setForm] = useState({ name: "", phone: "", email: "", password: "", city: "" });
-  const [skills, setSkills] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
+  const [form, setForm] =
+    useState<VolunteerForm>(EMPTY_FORM);
+
+  const [skills, setSkills] =
+    useState<string[]>([]);
+
+  const [consent, setConsent] =
+    useState(false);
+
+  const [isSubmitting, setIsSubmitting] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
 
   const toggleSkill = (skill: string) => {
-    setSkills((prev) => (prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]));
+    setSkills((current) =>
+      current.includes(skill)
+        ? current.filter(
+            (item) => item !== skill,
+          )
+        : [...current, skill],
+    );
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (
+    event: React.ChangeEvent<
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = event.target;
+
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
     setError("");
+
+    if (!consent) {
+      setError(
+        "Please accept the volunteer guidelines and code of conduct.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
+
     try {
-      const result = await volunteerApi.register({ ...form, skills });
+      /*
+       * Existing API payload preserved.
+       * Extra form fields are currently UI details only.
+       */
+      const result =
+        await volunteerApi.register({
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          password: form.password,
+          city: form.city,
+          skills,
+        });
+
       dispatch(
         setCredentials({
-          user: { ...result.user, userType: "VOLUNTEER" },
-          accessToken: result.accessToken,
-          refreshToken: result.refreshToken,
-        })
+          user: {
+            ...result.user,
+            userType: "VOLUNTEER",
+          },
+          accessToken:
+            result.accessToken,
+          refreshToken:
+            result.refreshToken,
+        }),
       );
-      router.push("/volunteer/dashboard");
-    } catch (err) {
-      setError(err instanceof ApiRequestError ? err.message : "Something went wrong. Please try again.");
+
+      router.push(
+        "/volunteer/dashboard",
+      );
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof
+          ApiRequestError
+          ? caughtError.message
+          : "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
+    <div className="min-h-screen overflow-x-hidden bg-[#FCF8F1] text-[#302017]">
       <Topbar />
       <Navbar />
 
-      <main>
-        <section className="relative overflow-hidden bg-[#F4EDE3] pb-6 pt-28 lg:pt-32">
-          <div className="relative mx-auto w-full max-w-2xl px-4 text-center sm:px-6 xl:px-0">
-            <div className="mb-3 inline-flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                <FaHandsHelping className="h-4 w-4" />
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                Become a Volunteer
-              </span>
+      <main className="relative overflow-hidden px-3 pb-6 pt-5 sm:px-5 lg:px-7 lg:pb-8 lg:pt-6">
+        {/* Side decorations */}
+        <div className="pointer-events-none absolute -left-14 top-[38%] hidden opacity-[0.08] lg:block">
+          <LotusOrnament className="h-64 w-64" />
+        </div>
+
+        <div className="pointer-events-none absolute -right-14 top-[42%] hidden opacity-[0.08] lg:block">
+          <LotusOrnament className="h-64 w-64" />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-7xl">
+          {/* Heading */}
+          <header className="mb-3 text-center">
+            <div className="flex items-center justify-center gap-4">
+              <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
+
+              <LotusOrnament className="h-9 w-12" />
+
+              <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
             </div>
-            <h1 className="font-serif leading-[1.05]">
-              <span className="block text-[32px] text-[#2C1810] sm:text-[42px] lg:text-[48px]">
-                Give Your Time,
-              </span>
-              <span className="mt-1 block text-[38px] italic text-[#8B6A3E] sm:text-[48px] lg:text-[54px]">
-                Give Them Dignity
-              </span>
+
+            <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
+              Volunteer Registration
             </h1>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-              Register as a Moksha Sewa volunteer and help families in your city arrange a
-              dignified cremation, free of cost.
+
+            <div className="mt-2 flex items-center justify-center gap-2">
+              <span className="h-px w-14 bg-[#E39453]" />
+
+              <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
+
+              <span className="h-px w-14 bg-[#E39453]" />
+            </div>
+
+            <p className="mx-auto mt-2 max-w-[650px] text-[11px] leading-5 text-[#665246] sm:text-[12px]">
+              Join our mission of serving
+              families with care, respect and
+              compassion.
             </p>
-          </div>
-        </section>
+          </header>
 
-        <section className="pb-10 pt-6 lg:pb-14">
-          <div className="mx-auto w-full max-w-xl px-4 sm:px-6 xl:px-0">
-            <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className={labelClass}>Full Name *</label>
-                    <input name="name" required value={form.name} onChange={handleChange} className={inputClass} placeholder="Your name" />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className={labelClass}>Phone Number *</label>
-                    <input
-                      name="phone"
-                      type="tel"
-                      required
-                      pattern="[6-9][0-9]{9}"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className={inputClass}
-                      placeholder="98765 43210"
-                    />
-                  </div>
-                </div>
-
+          <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+            {/* Registration form */}
+            <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-3"
+              >
+                {/* Personal information */}
                 <div>
-                  <label className={labelClass}>Email Address *</label>
-                  <input name="email" type="email" required value={form.email} onChange={handleChange} className={inputClass} placeholder="you@example.com" />
-                </div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <LotusOrnament className="h-6 w-8" />
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className={labelClass}>Password *</label>
-                    <input
-                      name="password"
-                      type="password"
-                      required
-                      minLength={8}
-                      value={form.password}
-                      onChange={handleChange}
-                      className={inputClass}
-                      placeholder="At least 8 characters"
-                    />
+                    <h2 className="font-serif text-[18px] font-normal text-[#382117]">
+                      Personal Information
+                    </h2>
                   </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className={labelClass}>City *</label>
-                    <input name="city" required value={form.city} onChange={handleChange} className={inputClass} placeholder="Your city" />
-                  </div>
-                </div>
 
-                <div>
-                  <label className={labelClass}>Skills (optional)</label>
-                  <div className="flex flex-wrap gap-2">
-                    {SUGGESTED_SKILLS.map((skill) => (
-                      <button
-                        key={skill}
-                        type="button"
-                        onClick={() => toggleSkill(skill)}
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all ${
-                          skills.includes(skill)
-                            ? "border-[#8B6A3E] bg-[#8B6A3E] text-white"
-                            : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
-                        }`}
+                  <div className="grid gap-2.5 sm:grid-cols-3">
+                    <div>
+                      <label
+                        className={labelClass}
                       >
-                        {skills.includes(skill) && <FaCheckCircle className="h-3 w-3" />}
-                        {skill}
-                      </button>
-                    ))}
+                        Full Name *
+                      </label>
+
+                      <div className="relative">
+                        <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+
+                        <input
+                          name="name"
+                          value={form.name}
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={
+                            iconInputClass
+                          }
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Mobile Number *
+                      </label>
+
+                      <div className="relative">
+                        <FaPhoneAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+
+                        <input
+                          name="phone"
+                          type="tel"
+                          required
+                          pattern="[6-9][0-9]{9}"
+                          value={form.phone}
+                          onChange={
+                            handleChange
+                          }
+                          className={
+                            iconInputClass
+                          }
+                          placeholder="Enter 10 digit mobile number"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Email Address *
+                      </label>
+
+                      <div className="relative">
+                        <FaEnvelope className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+
+                        <input
+                          name="email"
+                          type="email"
+                          required
+                          value={form.email}
+                          onChange={
+                            handleChange
+                          }
+                          className={
+                            iconInputClass
+                          }
+                          placeholder="Enter your email address"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Date of Birth *
+                      </label>
+
+                      <div className="relative">
+                        <FaCalendarAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+
+                        <input
+                          name="dateOfBirth"
+                          type="date"
+                          required
+                          value={
+                            form.dateOfBirth
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          className={`${iconInputClass} pr-2`}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Gender *
+                      </label>
+
+                      <select
+                        name="gender"
+                        value={form.gender}
+                        onChange={handleChange}
+                        required
+                        className={`${inputClass} appearance-none`}
+                      >
+                        <option value="">
+                          Select your gender
+                        </option>
+
+                        <option value="Male">
+                          Male
+                        </option>
+
+                        <option value="Female">
+                          Female
+                        </option>
+
+                        <option value="Other">
+                          Other
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Blood Group
+                      </label>
+
+                      <select
+                        name="bloodGroup"
+                        value={
+                          form.bloodGroup
+                        }
+                        onChange={
+                          handleChange
+                        }
+                        className={`${inputClass} appearance-none`}
+                      >
+                        <option value="">
+                          Select blood group
+                        </option>
+
+                        <option value="A+">
+                          A+
+                        </option>
+
+                        <option value="A-">
+                          A-
+                        </option>
+
+                        <option value="B+">
+                          B+
+                        </option>
+
+                        <option value="B-">
+                          B-
+                        </option>
+
+                        <option value="AB+">
+                          AB+
+                        </option>
+
+                        <option value="AB-">
+                          AB-
+                        </option>
+
+                        <option value="O+">
+                          O+
+                        </option>
+
+                        <option value="O-">
+                          O-
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </div>
+
+                <div className="border-t border-dashed border-[#EDB886] pt-3">
+                  <SectionTitle>
+                    Address Information
+                  </SectionTitle>
+
+                  <div>
+                    <label
+                      className={labelClass}
+                    >
+                      Address *
+                    </label>
+
+                    <div className="relative">
+                      <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-3.5 h-3 w-3 text-[#A45331]" />
+
+                      <textarea
+                        name="address"
+                        value={form.address}
+                        onChange={handleChange}
+                        required
+                        rows={2}
+                        className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                        placeholder="Enter your complete address"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        City *
+                      </label>
+
+                      <input
+                        name="city"
+                        value={form.city}
+                        onChange={handleChange}
+                        required
+                        className={inputClass}
+                        placeholder="Enter your city"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        State *
+                      </label>
+
+                      <input
+                        name="state"
+                        value={form.state}
+                        onChange={handleChange}
+                        required
+                        className={inputClass}
+                        placeholder="Enter your state"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Pincode *
+                      </label>
+
+                      <input
+                        name="pincode"
+                        value={form.pincode}
+                        onChange={handleChange}
+                        required
+                        pattern="[0-9]{6}"
+                        title="Enter a valid 6-digit pincode"
+                        className={inputClass}
+                        placeholder="Enter pincode"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-dashed border-[#EDB886] pt-3">
+                  <SectionTitle>
+                    About You
+                  </SectionTitle>
+
+                  <div className="grid gap-2.5 sm:grid-cols-2">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Why do you want to
+                        volunteer with us? *
+                      </label>
+
+                      <div className="relative">
+                        <FaHeart className="pointer-events-none absolute left-3 top-3 h-3 w-3 text-[#A45331]" />
+
+                        <textarea
+                          name="motivation"
+                          value={
+                            form.motivation
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          rows={2}
+                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                          placeholder="Share your motivation"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Skills / Experience
+                      </label>
+
+                      <div className="relative">
+                        <FaStar className="pointer-events-none absolute left-3 top-3 h-3 w-3 text-[#A45331]" />
+
+                        <textarea
+                          name="experience"
+                          value={
+                            form.experience
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          rows={2}
+                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                          placeholder="Your skills or experience"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-2.5 grid gap-2.5 sm:grid-cols-2">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Availability *
+                      </label>
+
+                      <div className="relative">
+                        <FaRegClock className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+
+                        <select
+                          name="availability"
+                          value={
+                            form.availability
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={`${iconInputClass} appearance-none`}
+                        >
+                          <option value="">
+                            Select availability
+                          </option>
+
+                          <option value="Weekdays">
+                            Weekdays
+                          </option>
+
+                          <option value="Weekends">
+                            Weekends
+                          </option>
+
+                          <option value="Evenings">
+                            Evenings
+                          </option>
+
+                          <option value="Emergency Support">
+                            Emergency Support
+                          </option>
+
+                          <option value="Flexible">
+                            Flexible
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Preferred Role *
+                      </label>
+
+                      <select
+                        name="preferredRole"
+                        value={
+                          form.preferredRole
+                        }
+                        onChange={
+                          handleChange
+                        }
+                        required
+                        className={`${inputClass} appearance-none`}
+                      >
+                        <option value="">
+                          Select preferred role
+                        </option>
+
+                        <option value="Field Volunteer">
+                          Field Volunteer
+                        </option>
+
+                        <option value="Transport Support">
+                          Transport Support
+                        </option>
+
+                        <option value="Documentation">
+                          Documentation
+                        </option>
+
+                        <option value="Family Coordination">
+                          Family Coordination
+                        </option>
+
+                        <option value="Ritual Assistance">
+                          Ritual Assistance
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Password */}
+                <div className="border-t border-dashed border-[#EDB886] pt-3">
+                  <div className="grid gap-2.5 sm:grid-cols-[0.75fr_1.25fr]">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Password *
+                      </label>
+
+                      <input
+                        name="password"
+                        type="password"
+                        required
+                        minLength={8}
+                        value={form.password}
+                        onChange={handleChange}
+                        className={inputClass}
+                        placeholder="At least 8 characters"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Skills
+                      </label>
+
+                      <div className="flex min-h-[42px] flex-wrap items-center gap-1.5">
+                        {SUGGESTED_SKILLS.map(
+                          (skill) => {
+                            const selected =
+                              skills.includes(
+                                skill,
+                              );
+
+                            return (
+                              <button
+                                key={skill}
+                                type="button"
+                                onClick={() =>
+                                  toggleSkill(
+                                    skill,
+                                  )
+                                }
+                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[9px] font-medium transition ${
+                                  selected
+                                    ? "border-[#ED6B13] bg-[#ED6B13] text-white"
+                                    : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
+                                }`}
+                              >
+                                {selected && (
+                                  <FaCheckCircle className="h-2.5 w-2.5" />
+                                )}
+
+                                {skill}
+                              </button>
+                            );
+                          },
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-3 text-[9px] leading-4 text-[#5E4B3F]">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(event) =>
+                      setConsent(
+                        event.target.checked,
+                      )
+                    }
+                    className="mt-0.5 h-3.5 w-3.5 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
+                  />
+
+                  I agree to abide by
+                  Moksha Sewa&apos;s volunteer
+                  guidelines and code of
+                  conduct.
+                  <span className="text-red-500">
+                    *
+                  </span>
+                </label>
 
                 {error && (
-                  <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">{error}</div>
+                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[10px] text-red-700">
+                    {error}
+                  </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70"
+                  className="group flex h-[43px] w-full items-center justify-center gap-3 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[13px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                       Registering...
                     </>
                   ) : (
                     <>
-                      <FaHandsHelping />
-                      Register as a Volunteer
+                      <PiFlowerLotus className="h-5 w-5" />
+                      Register as Volunteer
+                      <span className="transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
                     </>
                   )}
                 </button>
-              </form>
-            </div>
 
-            <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-[#E6D6BF] bg-[#F6EFE6] px-4 py-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                <PiFlowerLotus className="h-4 w-4" />
-              </span>
-              <p className="text-[11px] leading-[1.4] text-[#5F4A3D]">
-                Our team reviews every volunteer before assigning a case. You'll get access to
-                your volunteer dashboard immediately after registering.
-              </p>
-            </div>
+                <p className="flex items-center justify-center gap-2 text-center text-[9px] text-[#75655A]">
+                  <FaShieldAlt className="text-[#726D67]" />
+                  Your information is safe and
+                  secure with us.
+                </p>
+              </form>
+            </section>
+
+            {/* Right panel */}
+            <aside className="overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+              <h2 className="text-center font-serif text-[17px] font-normal text-[#40271B]">
+                Why Volunteer With Us?
+              </h2>
+
+              <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#EA7C28] to-transparent" />
+
+              <div className="mt-3 divide-y divide-[#EBDCC9]">
+                {trustItems.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="flex gap-3 py-2.5 first:pt-0"
+                    >
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#EBD5BA] bg-white text-[#ED6B13] shadow-[0_4px_12px_rgba(89,57,31,0.07)]">
+                        <Icon className="h-4.5 w-4.5" />
+                      </span>
+
+                      <div>
+                        <h3 className="font-serif text-[13px] leading-tight text-[#3E261B]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1 text-[9px] leading-[1.45] text-[#715C4E]">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="relative mt-2 h-[155px] overflow-hidden rounded-[11px]">
+                <Image
+                  src="/assets/sacred-journey-hd/volunteer.webp"
+                  alt="Moksha Sewa volunteers serving families"
+                  fill
+                  priority
+                  sizes="320px"
+                  className="object-cover object-center"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A2719]/25 to-transparent" />
+              </div>
+
+              <blockquote className="relative px-3 pb-1 pt-3 text-center">
+                <span className="font-serif text-[23px] leading-none text-[#ED6B13]">
+                  “
+                </span>
+
+                <p className="font-serif text-[13px] italic leading-5 text-[#5B3827]">
+                  When we serve selflessly,
+                  <br />
+                  we become the reason for
+                  <br />
+                  someone&apos;s peace.
+                </p>
+
+                <LotusOrnament className="mx-auto mt-2 h-5 w-8" />
+              </blockquote>
+            </aside>
           </div>
-        </section>
+
+          {/* Bottom message */}
+          <div className="mt-3 text-center">
+            <p className="font-serif text-[14px] text-[#D16521]">
+              ॥ सेवा परम धर्म ॥
+            </p>
+
+            <p className="mt-0.5 text-[9px] text-[#78665A]">
+              Thank you for choosing to serve
+              humanity.
+            </p>
+          </div>
+        </div>
       </main>
 
       <Footer />
     </div>
   );
 }
-
-export default VolunteerRegister;

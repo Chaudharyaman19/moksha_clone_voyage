@@ -41,7 +41,7 @@ export default function CompassionSection({
             </div>
 
             <h2 
-              className="mb-3 text-4xl font-normal leading-[1.1] text-[#2C1810] md:text-5xl lg:text-[42px]"
+              className="mb-3 text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               <span className="mb-1 block">
@@ -49,7 +49,7 @@ export default function CompassionSection({
                   ? "Complete Antim Sanskar Support"
                   : "A Journey Guided by Love"}
               </span>
-              <span className="block bg-gradient-to-r from-[#8B6A3E] to-[#5F4630] bg-clip-text text-transparent text-[26px] md:text-[34px]">
+              <span className="block bg-gradient-to-r from-[#8B6A3E] to-[#5F4630] bg-clip-text text-transparent text-[24px] sm:text-[28px] lg:text-[30px]">
                 {variant === "seva"
                   ? "with Dignity, Rituals & Care"
                   : "with Peace of Mind"}
@@ -63,7 +63,7 @@ export default function CompassionSection({
               <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
-            <p className="mb-5 max-w-2xl text-base font-light leading-relaxed text-[#5A4030]">
+            <p className="mb-5 max-w-2xl text-[13px] font-light leading-relaxed text-[#5A4030]">
               At{" "}
               <span className="font-semibold text-[#8B6A3E]">
                 {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}

@@ -269,7 +269,7 @@ export default function WhyFamiliesTrust() {
             <TopOrnament />
 
             <h2
-              className="mt-1 text-center text-[31px] font-normal leading-none tracking-[-0.025em] text-[#321B10] sm:text-[38px] lg:text-[42px]"
+              className="mt-1 text-center text-[24px] font-normal leading-tight text-[#321B10] sm:text-[28px] lg:text-[30px]"
               style={serifFont}
             >
               Why Families Trust Us
@@ -278,7 +278,7 @@ export default function WhyFamiliesTrust() {
             <TitleDivider />
 
             <p
-              className="mx-auto mt-2 max-w-[620px] text-center text-[12px] font-normal leading-[1.4] text-[#3F3028] sm:text-[13px] lg:text-[13px]"
+              className="mx-auto mt-2 max-w-[620px] text-center text-[13px] font-normal leading-[1.4] text-[#3F3028]"
               style={serifFont}
             >
               At Moksha Sewa, we understand the pain of losing a loved one.

@@ -44,7 +44,7 @@ export default function AboutNamoGange() {
             </div>
 
             <h2 
-              className="mb-3 text-4xl font-normal leading-[1.1] bg-gradient-to-br from-[#2C1810] to-[#5F4630] bg-clip-text text-transparent md:text-4xl lg:text-[42px]"
+              className="mb-3 text-[24px] font-normal leading-tight bg-gradient-to-br from-[#2C1810] to-[#5F4630] bg-clip-text text-transparent sm:text-[28px] lg:text-[30px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               Namo Gange Trust
@@ -57,7 +57,7 @@ export default function AboutNamoGange() {
               <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
-            <p className="mb-4 text-[15px] leading-relaxed text-[#4F3A2D] md:text-[16px]">
+            <p className="mb-4 text-[13px] leading-relaxed text-[#4F3A2D] md:text-[13px]">
               <strong className="font-semibold text-[#2C1810]">Moksha Sewa</strong> is a sacred initiative operated under the divine guidance of the <strong className="font-semibold text-[#2C1810]">Namo Gange Trust</strong>. For years, the trust has been a guiding light for humanity, rooted deeply in the ancient Vedic philosophies of compassion, spiritual wellness, and <span className="italic">Nishkam Sewa</span> (selfless service). From promoting holistic Ayurveda globally to supporting grieving families during their darkest hours—the trust works tirelessly to preserve Indian cultural heritage while uplifting society.
             </p>
 

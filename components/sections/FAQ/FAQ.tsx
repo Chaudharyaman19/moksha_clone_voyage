@@ -93,13 +93,13 @@ export default function FAQSection({
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               FAQs
             </span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
-          <h2 className="font-serif text-[26px] font-normal leading-tight text-[#2F2118] sm:text-[30px] lg:text-[34px]">
+          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F2118] sm:text-[28px] lg:text-[30px]">
             Frequently Asked Questions
           </h2>
         </div>
@@ -123,7 +123,7 @@ export default function FAQSection({
                         className="flex min-h-[52px] w-full items-center justify-between gap-5 px-3 py-3 text-left sm:min-h-[56px] sm:px-4"
                         aria-expanded={isOpen}
                       >
-                        <span className="text-[13px] font-medium leading-5 text-[#3C2A20] sm:text-[14px]">
+                        <span className="text-[14px] font-medium leading-5 text-[#3C2A20] sm:text-[14px]">
                           {item.question}
                         </span>
 
@@ -143,7 +143,7 @@ export default function FAQSection({
                         }`}
                       >
                         <div className="overflow-hidden">
-                          <p className="px-3 pb-4 text-[12px] font-normal leading-5 text-[#6C5749] sm:px-4 sm:text-[13px]">
+                          <p className="px-3 pb-4 text-[13px] font-normal leading-5 text-[#6C5749] sm:px-4 sm:text-[13px]">
                             {item.answer}
                           </p>
                         </div>
@@ -172,14 +172,14 @@ export default function FAQSection({
 
           <div className="absolute inset-0 z-10 flex items-center justify-center px-5 sm:px-8 lg:px-10">
             <div className="w-full text-center text-white sm:w-[62%] lg:w-[48%]">
-              <h3 className="font-serif text-[25px] font-normal leading-[1.25] sm:text-[31px] lg:text-[25px]">
+              <h3 className="font-serif text-[24px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
                 In Their Final Journey,
                 <span className="block">
                   Let&apos;s Walk Together with Dignity.
                 </span>
               </h3>
 
-              <p className="mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[15px]">
+              <p className="mx-auto mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[13px]">
                 Your support can bring peace to grieving families.
               </p>
 

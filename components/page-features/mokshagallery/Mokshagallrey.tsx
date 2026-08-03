@@ -8,7 +8,6 @@ import {
   FiHeart,
   FiUser,
   FiCalendar,
-  FiShare2,
   FiDownload,
   FiX,
   FiEye,
@@ -29,73 +28,116 @@ interface GalleryImage {
   height: number;
 }
 
+const galleryImageSources = [
+  // "/assets/WhatsApp Image 2026-02-25 at 6.41.32 PM.jpeg",
+  "/assets/a.jpg",
+  "/assets/about-hero-new.png",
+  "/assets/about-hero.png",
+  "/assets/about-story-1.png",
+  "/assets/about-story-2.png",
+  "/assets/about-story-3.png",
+  // "/assets/aman.jpeg",
+  "/assets/ambulance.avif",
+  "/assets/b.jpg",
+  "/assets/bodytransport.jpeg",
+  "/assets/c.jpg",
+  "/assets/callingrelative.jpeg",
+  // "/assets/chatgpt.png",
+  // "/assets/contact.jpg",
+  // "/assets/contactbanner.jpg",
+  // "/assets/dharma.jpg",
+  // "/assets/downloadd.webp",
+  // "/assets/four.jpg",
+  // "/assets/funeraldecoration.jpeg",
+  // "/assets/funeralsamagri.jpeg",
+  // "/assets/girl.jpg",
+  // "/assets/grahpravesh.jpg",
+  // "/assets/harse.jpeg",
+  // "/assets/im1.jpeg",
+  // "/assets/im2.jpeg",
+  // "/assets/im3.jpeg",
+  // "/assets/im4.jpeg",
+  // "/assets/im5.jpeg",
+  // "/assets/image.webp",
+  // "/assets/image3.png",
+  // "/assets/kisan.png",
+  // "/assets/logo-moksha-seva.png",
+  // "/assets/logoreal-removebg-preview.png",
+  // "/assets/logoreal.jpeg",
+  // "/assets/madhukar_srujana.png",
+  // "/assets/man1.jpg",
+  // "/assets/man2.avif",
+  // "/assets/mani.png",
+  // "/assets/miss.jpg",
+  // "/assets/misson.avif",
+  // "/assets/mokshalogo.jpg",
+  // "/assets/namogange-logo.webp",
+  // "/assets/newbanner1.jpg",
+  // "/assets/newbanner2.jpg",
+  // "/assets/newbanner3.jpg",
+  // "/assets/newbanner4.jpg",
+  // "/assets/newbanner5.jpg",
+  // "/assets/normalharse.jpeg",
+  // "/assets/old.png",
+  // "/assets/om.png",
+  // "/assets/one.jpg",
+  // "/assets/our.webp",
+  // "/assets/p.jpg",
+  // "/assets/p.webp",
+  // "/assets/pandit.avif",
+  // "/assets/pandit.png",
+  // "/assets/prayerhall.jpeg",
+  // "/assets/pro.webp",
+  // "/assets/promise-1.png",
+  // "/assets/promise-2.png",
+  "/assets/promise-3.png",
+  "/assets/promise.webp",
+  "/assets/raju.png",
+  "/assets/sandeep_singh.png",
+  "/assets/suspect.png",
+  "/assets/three.jpg",
+  "/assets/transferbody.png",
+  "/assets/two.jpg",
+  "/assets/uk.jpeg",
+  "/assets/vijay_sharma.jpg",
+  "/assets/yatra.jpg",
+  "/assets/yatra.webp",
+];
+
+const titleCase = (value: string) =>
+  value
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const getImageTitle = (src: string) => {
+  const fileName = src.split("/").pop() ?? "Gallery Image";
+  return titleCase(fileName);
+};
+
+const getImageCategory = (src: string) => {
+  const parts = src.split("/").filter(Boolean);
+  const folder = parts.length > 2 ? parts[1] : "gallery";
+  return titleCase(folder);
+};
+
+const galleryImages: GalleryImage[] = galleryImageSources.map((src, index) => ({
+  id: index + 1,
+  src,
+  alt: getImageTitle(src),
+  category: getImageCategory(src),
+  title: getImageTitle(src),
+  description: "Moksha gallery image from our local asset collection.",
+  photographer: "Moksha Sewa Team",
+  likes: 120 + ((index * 37) % 280),
+  date: "2026",
+  height: [340, 390, 430, 370, 460, 410][index % 6],
+}));
+
 function MokshaGallery() {
-  const [images] = useState<GalleryImage[]>([
-    {
-      id: 1,
-      src: "/assets/bodytransport.jpeg",
-      alt: "Body Transport Service",
-      category: "services",
-      title: "Dignified Body Transport",
-      description:
-        "Respectful and compassionate body transport services with trained professionals",
-      photographer: "Moksha Voyage Team",
-      likes: 189,
-      date: "2024",
-      height: 420,
-    },
-    {
-      id: 2,
-      src: "/assets/funeraldecoration.jpeg",
-      alt: "Funeral Decoration",
-      category: "services",
-      title: "Traditional Funeral Decoration",
-      description:
-        "Beautiful floral arrangements and traditional decor for funeral ceremonies",
-      photographer: "Moksha Voyage Team",
-      likes: 234,
-      date: "2024",
-      height: 380,
-    },
-    {
-      id: 3,
-      src: "/assets/normalharse.jpeg",
-      alt: "Hearse Van Service",
-      category: "services",
-      title: "Hearse Van Transport",
-      description: "Well-maintained hearse vans for respectful transportation",
-      photographer: "Moksha Voyage Team",
-      likes: 156,
-      date: "2024",
-      height: 450,
-    },
-    {
-      id: 4,
-      src: "/assets/prayerhall.jpeg",
-      alt: "Prayer Hall",
-      category: "facilities",
-      title: "Sacred Prayer Hall",
-      description:
-        "Peaceful and serene prayer hall for last rites and ceremonies",
-      photographer: "Moksha Voyage Team",
-      likes: 312,
-      date: "2024",
-      height: 400,
-    },
-    {
-      id: 5,
-      src: "/assets/callingrelative.jpeg",
-      alt: "Calling Relatives",
-      category: "support",
-      title: "Family Notification Services",
-      description:
-        "Compassionate assistance in notifying and coordinating with family members",
-      photographer: "Moksha Voyage Team",
-      likes: 278,
-      date: "2024",
-      height: 390,
-    },
-  ]);
+  const images = galleryImages;
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
@@ -142,17 +184,10 @@ function MokshaGallery() {
   };
 
   const categories = [
-    { id: "all", name: "All Services" },
-    { id: "services", name: "Funeral Services" },
-    { id: "facilities", name: "Facilities" },
-    { id: "support", name: "Family Support" },
+    { id: "all", name: `All Images (${images.length})` },
   ];
 
   const masonryColumns = getMasonryColumns();
-
-  const themeColor = "#8B6A3E";
-  const themeColorLight = "#F5E9D9";
-  const themeColorDark = "#5A3E2B";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">

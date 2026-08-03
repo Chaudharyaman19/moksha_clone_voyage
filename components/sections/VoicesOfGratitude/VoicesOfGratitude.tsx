@@ -80,13 +80,13 @@ export default function VoicesOfGratitude() {
         <header className="mx-auto mb-3 max-w-3xl text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               Family Stories
             </span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
-          <h2 className="font-serif text-[26px] font-normal leading-tight text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
+          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
             Voices of Gratitude
           </h2>
         </header>

@@ -224,18 +224,18 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         <div className={`mx-auto max-w-3xl text-center ${variant === "seva" ? "mb-2.5" : "mb-8"}`}>
           <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-0.5" : "mb-6"}`}>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               {variant === "seva" ? "Moksha Sewa Services" : "Our Services"}
             </span>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
           {variant === "seva" ? (
-            <h2 className="font-serif text-[26px] font-normal leading-[1.08] text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
+            <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
               Complete Funeral &amp; Antim Sanskar Sewa
             </h2>
           ) : (
-            <h2 className="mb-4 text-3xl font-light leading-tight text-[#3A2A1F] md:text-5xl lg:text-3xl">
+            <h2 className="mb-4 text-[24px] font-light leading-tight text-[#3A2A1F] sm:text-[28px] lg:text-[30px]">
               <span className="block">End-to-End Cremation &amp;</span>
               <span className="relative inline-block">
                 Ritual Services
@@ -246,7 +246,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             </h2>
           )}
 
-          <p className={`${variant === "seva" ? "mt-0.5 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-snug text-[#6E4B3A]`}>
+          <p className="mx-auto mt-0.5 max-w-3xl text-[13px] font-light leading-snug text-[#6E4B3A]">
             {variant === "seva"
               ? "Funeral Samagri  ·  Pandit Ji  ·  Ambulance  ·  Hearse Van  ·  Prayer Hall"
               : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}

@@ -31,13 +31,13 @@ export default function GlimpseOfJourney() {
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Moments of Service
             </span>
             <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
           <h2 
-            className="text-[26px] font-normal leading-tight text-[#2C1810] sm:text-[32px] md:text-[36px]"
+            className="text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             A Glimpse of Our Journey

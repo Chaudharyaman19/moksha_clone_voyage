@@ -1,384 +1,828 @@
 "use client";
 
-import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
+
 import {
-  FaPhoneAlt,
-  FaHandsHelping,
-  FaShieldAlt,
+  FaAmbulance,
+  FaCalendarAlt,
   FaCheckCircle,
-  FaSearchLocation,
+  FaClipboardList,
+  FaFileAlt,
+  FaFire,
+  FaPhoneAlt,
+  FaRegClock,
+  FaShieldAlt,
+  FaShoppingBasket,
+  FaUser,
 } from "react-icons/fa";
+
 import { PiFlowerLotus } from "react-icons/pi";
+
 import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 
-const inputClass =
-  "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
-const labelClass = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+type RequestType = "NORMAL" | "EMERGENCY";
 
-const EMPTY_FORM = {
+type AssistanceType =
+  | "Cremation Support"
+  | "Ambulance / Transport"
+  | "Ritual Arrangements"
+  | "Pandit Support"
+  | "Samagri (Materials)"
+  | "Documentation Help";
+
+interface FormState {
+  requesterName: string;
+  requesterPhone: string;
+  requesterEmail: string;
+  relation: string;
+
+  deceasedName: string;
+  deceasedAge: string;
+  deceasedGender: string;
+
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+
+  assistanceType: AssistanceType;
+  preferredDate: string;
+  urgency: string;
+  notes: string;
+}
+
+interface AssistanceOption {
+  title: AssistanceType;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
+}
+
+interface TrustItem {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
+}
+
+const inputClass =
+  "h-[42px] w-full rounded-[7px] border border-[#E6D8C7] bg-white px-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10";
+
+const labelClass =
+  "mb-1.5 block text-[10px] font-medium leading-none text-[#3A291F]";
+
+const EMPTY_FORM: FormState = {
   requesterName: "",
   requesterPhone: "",
   requesterEmail: "",
   relation: "",
+
   deceasedName: "",
   deceasedAge: "",
   deceasedGender: "",
+
   address: "",
   city: "",
   state: "",
   pincode: "",
+
+  assistanceType: "Cremation Support",
+  preferredDate: "",
+  urgency: "",
   notes: "",
 };
 
-function RequestHelp() {
-  const [isEmergency, setIsEmergency] = useState(false);
-  const [form, setForm] = useState(EMPTY_FORM);
-  const [consent, setConsent] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [result, setResult] = useState<{ requestNo: string } | null>(null);
-  const [error, setError] = useState<string | null>(null);
+const assistanceOptions: AssistanceOption[] = [
+  {
+    title: "Cremation Support",
+    icon: FaFire,
+  },
+  {
+    title: "Ambulance / Transport",
+    icon: FaAmbulance,
+  },
+  {
+    title: "Ritual Arrangements",
+    icon: PiFlowerLotus,
+  },
+  {
+    title: "Pandit Support",
+    icon: FaUser,
+  },
+  {
+    title: "Samagri (Materials)",
+    icon: FaShoppingBasket,
+  },
+  {
+    title: "Documentation Help",
+    icon: FaFileAlt,
+  },
+];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+const trustItems: TrustItem[] = [
+  {
+    title: "24/7 Immediate Support",
+    description:
+      "We are available round the clock whenever you need us.",
+    icon: FaPhoneAlt,
+  },
+  {
+    title: "Verified & Compassionate Team",
+    description:
+      "Trained professionals you can trust, with experience and empathy.",
+    icon: FaShieldAlt,
+  },
+  {
+    title: "Transparent Guidance",
+    description:
+      "Clear information, an honest process and no hidden charges.",
+    icon: FaClipboardList,
+  },
+  {
+    title: "Dignified & Respectful Service",
+    description:
+      "Every service is carried out with dignity, care and respect.",
+    icon: PiFlowerLotus,
+  },
+];
+
+function LotusOrnament({
+  className = "h-8 w-11",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 72 50"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+      />
+
+      <path
+        d="M8 31c9 8 18 12 28 12s19-4 28-12"
+        stroke="#E86F1A"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export default function RequestHelp() {
+  const [requestType, setRequestType] =
+    useState<RequestType>("NORMAL");
+
+  const [form, setForm] =
+    useState<FormState>(EMPTY_FORM);
+
+  const [consent, setConsent] =
+    useState(false);
+
+  const [isSubmitting, setIsSubmitting] =
+    useState(false);
+
+  const [result, setResult] =
+    useState<{ requestNo: string } | null>(
+      null,
+    );
+
+  const [error, setError] =
+    useState<string | null>(null);
+
+  const handleChange = (
+    event: React.ChangeEvent<
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = event.target;
+
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const selectAssistance = (
+    assistanceType: AssistanceType,
+  ) => {
+    setForm((current) => ({
+      ...current,
+      assistanceType,
+    }));
+  };
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
     setError(null);
 
     if (!consent) {
-      setError("Please confirm consent to share these details so our team can help.");
+      setError(
+        "Please confirm consent so our team can contact and assist you.",
+      );
       return;
     }
 
     setIsSubmitting(true);
+
+    const additionalInformation = [
+      `Assistance required: ${form.assistanceType}`,
+      form.preferredDate
+        ? `Preferred date and time: ${form.preferredDate}`
+        : "",
+      form.urgency
+        ? `Urgency: ${form.urgency}`
+        : "",
+      form.notes
+        ? `Special instructions: ${form.notes}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     try {
       const request = await requestApi.submit({
-        type: isEmergency ? "EMERGENCY" : "NORMAL",
+        type: requestType,
+
         requester: {
           name: form.requesterName,
           phone: form.requesterPhone,
-          email: form.requesterEmail || undefined,
-          relation: form.relation,
+          email:
+            form.requesterEmail ||
+            undefined,
+          relation:
+            form.relation ||
+            "Not specified",
         },
+
         deceased: {
-          name: form.deceasedName,
-          age: form.deceasedAge ? Number(form.deceasedAge) : undefined,
-          gender: form.deceasedGender || undefined,
+          name:
+            form.deceasedName ||
+            "Not provided",
+          age: form.deceasedAge
+            ? Number(form.deceasedAge)
+            : undefined,
+          gender:
+            form.deceasedGender ||
+            undefined,
         },
+
         location: {
           address: form.address,
           city: form.city,
-          state: form.state,
-          pincode: form.pincode,
+          state:
+            form.state ||
+            "Not specified",
+          pincode:
+            form.pincode ||
+            "000000",
         },
-        notes: form.notes || undefined,
-        consent: { dataProcessing: consent, publishStory: false },
+
+        notes:
+          additionalInformation ||
+          undefined,
+
+        consent: {
+          dataProcessing: consent,
+          publishStory: false,
+        },
       });
-      setResult({ requestNo: request.requestNo });
+
+      setResult({
+        requestNo: request.requestNo,
+      });
+
       setForm(EMPTY_FORM);
       setConsent(false);
-    } catch (err) {
-      setError(err instanceof ApiRequestError ? err.message : "Something went wrong. Please call our helpline instead.");
+      setRequestType("NORMAL");
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof ApiRequestError
+          ? caughtError.message
+          : "Something went wrong. Please call our helpline instead.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
+    <div className="min-h-screen overflow-x-hidden bg-[#FCF8F1] text-[#302017]">
       <Topbar />
       <Navbar />
 
-      <main>
-        {/* ============ HERO ============ */}
-        <section className="relative overflow-hidden bg-[#F4EDE3] pb-6 pt-28 lg:pt-32">
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-1/2 select-none font-serif text-[220px] leading-none text-[#8B6A3E]/[0.06] lg:block">
-            सेवा
-          </div>
+      <main className="relative overflow-hidden px-3 pb-6 pt-6 sm:px-4 lg:px-5 lg:pb-8 lg:pt-7">
+        {/* Side ornaments */}
+        <div className="pointer-events-none absolute -left-14 top-[38%] hidden opacity-[0.08] lg:block">
+          <LotusOrnament className="h-64 w-64" />
+        </div>
 
-          <div className="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6 xl:px-0">
-            <div className="mb-3 inline-flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                <FaHandsHelping className="h-4 w-4" />
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                Free · Confidential · No Payment Ever
-              </span>
+        <div className="pointer-events-none absolute -right-14 top-[42%] hidden opacity-[0.08] lg:block">
+          <LotusOrnament className="h-64 w-64" />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-7xl">
+          {/* Page heading */}
+          <header className="mb-3 text-center">
+            <div className="flex items-center justify-center gap-4">
+              <span className="hidden h-px w-24 bg-gradient-to-r from-transparent to-[#E57A20] sm:block" />
+
+              <LotusOrnament className="h-8 w-12" />
+
+              <span className="hidden h-px w-24 bg-gradient-to-l from-transparent to-[#E57A20] sm:block" />
             </div>
 
-            <h1 className="font-serif leading-[1.05]">
-              <span className="block text-[32px] text-[#2C1810] sm:text-[42px] lg:text-[48px]">
-                Request Cremation
-              </span>
-              <span className="mt-1 block text-[38px] italic text-[#8B6A3E] sm:text-[48px] lg:text-[54px]">
-                Assistance
-              </span>
+            <h1 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+              Request Cremation Assistance
             </h1>
 
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-              Moksha Sewa never charges a family for this help. Share a few details below and our
-              team will call you back to guide you through every step, free of cost.
+            <div className="mt-2 flex items-center justify-center gap-2.5">
+              <span className="h-px w-14 bg-[#E39856]" />
+
+              <span className="h-2 w-2 rotate-45 border border-[#E17820]" />
+
+              <span className="h-px w-14 bg-[#E39856]" />
+            </div>
+
+            <p className="mx-auto mt-2 max-w-[680px] text-[11px] leading-5 text-[#665246] sm:text-[12px]">
+              We are here to support you
+              with compassion, dignity and
+              care in your time of need.
             </p>
+          </header>
 
-            <a
-              href="tel:+919654900525"
-              className="mt-5 inline-flex items-center gap-2.5 rounded-2xl border border-white/40 bg-[#2C1810]/90 px-5 py-3 text-white shadow-[0_16px_40px_rgba(44,24,16,0.25)]"
-            >
-              <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[#C9A574] text-[#2C1810]">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/50" />
-                <FaPhoneAlt className="relative h-3.5 w-3.5" />
-              </span>
-              <span className="text-left">
-                <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
-                  Need help right now? Call our 24/7 helpline
-                </span>
-                <span className="block font-serif text-base">9220147229</span>
-              </span>
-            </a>
-          </div>
-        </section>
-
-        {/* ============ FORM ============ */}
-        <section className="pb-10 pt-6 lg:pb-14">
-          <div className="mx-auto grid w-full max-w-5xl gap-4 px-4 sm:px-6 xl:px-0 lg:grid-cols-[1fr_280px]">
-            <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
-
+          <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+            {/* Main form */}
+            <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
               {result ? (
-                <div className="flex flex-col items-center py-10 text-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E]">
+                <div className="flex min-h-[510px] flex-col items-center justify-center text-center">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-[#E87520]/10 text-[#E87520]">
                     <FaCheckCircle className="h-7 w-7" />
                   </span>
-                  <h3 className="mt-4 font-serif text-2xl text-[#2C1810]">Request Received</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-6 text-[#6B584B]">
-                    Our team will call you shortly. Please save your reference number for your
-                    records — you can use it later with the Case ID (once assigned) to track
-                    progress.
+
+                  <h2 className="mt-4 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+                    Request Received
+                  </h2>
+
+                  <p className="mt-2 max-w-md text-[12px] leading-6 text-[#69554A]">
+                    Our assistance team will
+                    contact you shortly. Keep
+                    your request number safe for
+                    future reference.
                   </p>
-                  <div className="mt-4 rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-4 py-2 font-serif text-lg text-[#8B6A3E]">
+
+                  <div className="mt-4 rounded-lg border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
                     {result.requestNo}
                   </div>
+
                   <button
                     type="button"
-                    onClick={() => setResult(null)}
-                    className="mt-5 text-xs font-semibold text-[#8B6A3E] hover:underline"
+                    onClick={() =>
+                      setResult(null)
+                    }
+                    className="mt-5 text-[11px] font-medium text-[#D76816] hover:underline"
                   >
                     Submit another request
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className={labelClass}>This is</label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { key: false, label: "A Normal Request" },
-                        { key: true, label: "An Emergency" },
-                      ].map((opt) => (
-                        <button
-                          key={String(opt.key)}
-                          type="button"
-                          onClick={() => setIsEmergency(opt.key)}
-                          className={`rounded-lg border px-3 py-2.5 text-sm font-semibold transition-all ${isEmergency === opt.key
-                              ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-md"
-                              : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
-                            }`}
-                        >
-                          {opt.label}
-                        </button>
-                      ))}
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-3"
+                >
+                  {/* Form title */}
+                  <div className="flex items-center gap-2 border-b border-[#EEE2D3] pb-2">
+                    <LotusOrnament className="h-6 w-8" />
+
+                    <h2 className="font-serif text-[24px] font-normal leading-tight text-[#3A2117] sm:text-[28px] lg:text-[30px]">
+                      Request Assistance
+                    </h2>
+
+                    <div className="ml-auto flex rounded-md border border-[#E7D9C9] bg-[#FCF8F2] p-0.5">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setRequestType(
+                            "NORMAL",
+                          )
+                        }
+                        className={`rounded px-3 py-1 text-[9px] transition ${
+                          requestType ===
+                          "NORMAL"
+                            ? "bg-[#E87520] text-white"
+                            : "text-[#725A4B]"
+                        }`}
+                      >
+                        Normal
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setRequestType(
+                            "EMERGENCY",
+                          )
+                        }
+                        className={`rounded px-3 py-1 text-[9px] transition ${
+                          requestType ===
+                          "EMERGENCY"
+                            ? "bg-[#D94124] text-white"
+                            : "text-[#725A4B]"
+                        }`}
+                      >
+                        Emergency
+                      </button>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="col-span-2 sm:col-span-1">
-                      <label className={labelClass}>Your Name *</label>
-                      <input
-                        type="text"
-                        name="requesterName"
-                        value={form.requesterName}
-                        onChange={handleChange}
-                        required
-                        className={inputClass}
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div className="col-span-2 sm:col-span-1">
-                      <label className={labelClass}>Your Phone Number *</label>
-                      <input
-                        type="tel"
-                        name="requesterPhone"
-                        value={form.requesterPhone}
-                        onChange={handleChange}
-                        required
-                        pattern="[6-9][0-9]{9}"
-                        title="10-digit mobile number"
-                        className={inputClass}
-                        placeholder="98765 43210"
-                      />
-                    </div>
-                  </div>
+                  {/* Personal Details */}
+                  <fieldset>
+                    <legend className="mb-2 flex items-center gap-2 font-serif text-[14px] text-[#472C20]">
+                      <span className="h-px w-4 bg-[#E87520]" />
+                      Personal Details
+                    </legend>
 
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="col-span-2 sm:col-span-1">
-                      <label className={labelClass}>Your Relation to the Deceased *</label>
-                      <input
-                        type="text"
-                        name="relation"
-                        value={form.relation}
-                        onChange={handleChange}
-                        required
-                        className={inputClass}
-                        placeholder="e.g. Son, Daughter, Neighbour"
-                      />
-                    </div>
-                    <div className="col-span-2 sm:col-span-1">
-                      <label className={labelClass}>Email (optional)</label>
-                      <input
-                        type="email"
-                        name="requesterEmail"
-                        value={form.requesterEmail}
-                        onChange={handleChange}
-                        className={inputClass}
-                        placeholder="you@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="border-t border-[#F0E5D3] pt-4">
-                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8B6A3E]">
-                      About the Deceased
-                    </p>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="col-span-2 sm:col-span-1">
-                        <label className={labelClass}>Name *</label>
-                        <input
-                          type="text"
-                          name="deceasedName"
-                          value={form.deceasedName}
-                          onChange={handleChange}
-                          required
-                          className={inputClass}
-                          placeholder="Full name"
-                        />
-                      </div>
-                      <div className="col-span-1">
-                        <label className={labelClass}>Age</label>
-                        <input
-                          type="number"
-                          name="deceasedAge"
-                          value={form.deceasedAge}
-                          onChange={handleChange}
-                          min={0}
-                          className={inputClass}
-                          placeholder="Age"
-                        />
-                      </div>
-                      <div className="col-span-1">
-                        <label className={labelClass}>Gender</label>
-                        <input
-                          type="text"
-                          name="deceasedGender"
-                          value={form.deceasedGender}
-                          onChange={handleChange}
-                          className={inputClass}
-                          placeholder="Male / Female"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-[#F0E5D3] pt-4">
-                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8B6A3E]">
-                      Location
-                    </p>
-                    <div className="space-y-3">
+                    <div className="grid gap-2.5 sm:grid-cols-3">
                       <div>
-                        <label className={labelClass}>Address *</label>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          Full Name *
+                        </label>
+
+                        <input
+                          type="text"
+                          name="requesterName"
+                          value={
+                            form.requesterName
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={
+                            inputClass
+                          }
+                          placeholder="Enter full name"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          Mobile Number *
+                        </label>
+
+                        <input
+                          type="tel"
+                          name="requesterPhone"
+                          value={
+                            form.requesterPhone
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          pattern="[6-9][0-9]{9}"
+                          title="Enter a valid 10-digit mobile number"
+                          className={
+                            inputClass
+                          }
+                          placeholder="Enter 10 digit mobile number"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          Email Address
+                        </label>
+
+                        <input
+                          type="email"
+                          name="requesterEmail"
+                          value={
+                            form.requesterEmail
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          className={
+                            inputClass
+                          }
+                          placeholder="Enter email address"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-2.5 grid gap-2.5 sm:grid-cols-[0.75fr_1.25fr]">
+                      <div>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          City *
+                        </label>
+
+                        <input
+                          type="text"
+                          name="city"
+                          value={form.city}
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={
+                            inputClass
+                          }
+                          placeholder="Enter your city"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          Service Location *
+                        </label>
+
                         <input
                           type="text"
                           name="address"
-                          value={form.address}
-                          onChange={handleChange}
+                          value={
+                            form.address
+                          }
+                          onChange={
+                            handleChange
+                          }
                           required
-                          className={inputClass}
-                          placeholder="House / street / landmark"
+                          className={
+                            inputClass
+                          }
+                          placeholder="Complete address for service"
                         />
                       </div>
-                      <div className="grid grid-cols-3 gap-3">
-                        <div>
-                          <label className={labelClass}>City *</label>
-                          <input
-                            type="text"
-                            name="city"
-                            value={form.city}
-                            onChange={handleChange}
-                            required
-                            className={inputClass}
-                            placeholder="City"
-                          />
-                        </div>
-                        <div>
-                          <label className={labelClass}>State *</label>
-                          <input
-                            type="text"
-                            name="state"
-                            value={form.state}
-                            onChange={handleChange}
-                            required
-                            className={inputClass}
-                            placeholder="State"
-                          />
-                        </div>
-                        <div>
-                          <label className={labelClass}>Pincode *</label>
-                          <input
-                            type="text"
-                            name="pincode"
-                            value={form.pincode}
-                            onChange={handleChange}
-                            required
-                            pattern="[0-9]{6}"
-                            title="6-digit pincode"
-                            className={inputClass}
-                            placeholder="302001"
-                          />
-                        </div>
+                    </div>
+                  </fieldset>
+
+                  {/* Assistance Types */}
+                  <fieldset>
+                    <legend className="mb-2 flex items-center gap-2 font-serif text-[14px] text-[#472C20]">
+                      <span className="h-px w-4 bg-[#E87520]" />
+                      Type of Assistance *
+                    </legend>
+
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6">
+                      {assistanceOptions.map(
+                        (option) => {
+                          const Icon =
+                            option.icon;
+
+                          const selected =
+                            form.assistanceType ===
+                            option.title;
+
+                          return (
+                            <button
+                              key={
+                                option.title
+                              }
+                              type="button"
+                              onClick={() =>
+                                selectAssistance(
+                                  option.title,
+                                )
+                              }
+                              className={`relative flex min-h-[78px] flex-col items-center justify-center rounded-[8px] border px-2 py-2 text-center transition ${
+                                selected
+                                  ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
+                                  : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
+                              }`}
+                            >
+                              <span
+                                className={`absolute right-2 top-2 h-3 w-3 rounded-full border ${
+                                  selected
+                                    ? "border-[#E87520] bg-[#E87520] shadow-[inset_0_0_0_3px_white]"
+                                    : "border-[#CDBCAE]"
+                                }`}
+                              />
+
+                              <Icon className="h-5 w-5 text-[#E87520]" />
+
+                              <span className="mt-1.5 font-serif text-[11px] leading-[1.12] text-[#39251C]">
+                                {
+                                  option.title
+                                }
+                              </span>
+                            </button>
+                          );
+                        },
+                      )}
+                    </div>
+                  </fieldset>
+
+                  {/* Date and urgency */}
+                  <div className="grid gap-2.5 sm:grid-cols-2">
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Preferred Date & Time *
+                      </label>
+
+                      <div className="relative">
+                        <FaCalendarAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#936D56]" />
+
+                        <input
+                          type="datetime-local"
+                          name="preferredDate"
+                          value={
+                            form.preferredDate
+                          }
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={`${inputClass} pl-9`}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        className={labelClass}
+                      >
+                        Urgency *
+                      </label>
+
+                      <div className="relative">
+                        <FaRegClock className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#936D56]" />
+
+                        <select
+                          name="urgency"
+                          value={form.urgency}
+                          onChange={
+                            handleChange
+                          }
+                          required
+                          className={`${inputClass} appearance-none pl-9`}
+                        >
+                          <option value="">
+                            Select urgency
+                          </option>
+
+                          <option value="Immediate">
+                            Immediate
+                          </option>
+
+                          <option value="Within 2 Hours">
+                            Within 2 Hours
+                          </option>
+
+                          <option value="Today">
+                            Today
+                          </option>
+
+                          <option value="Planning Ahead">
+                            Planning Ahead
+                          </option>
+                        </select>
                       </div>
                     </div>
                   </div>
 
+                  {/* Additional API details */}
+                  <div className="grid gap-2.5 sm:grid-cols-4">
+                    <input
+                      type="text"
+                      name="relation"
+                      value={form.relation}
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="Relation"
+                    />
+
+                    <input
+                      type="text"
+                      name="deceasedName"
+                      value={
+                        form.deceasedName
+                      }
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="Deceased name"
+                    />
+
+                    <input
+                      type="text"
+                      name="state"
+                      value={form.state}
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="State"
+                    />
+
+                    <input
+                      type="text"
+                      name="pincode"
+                      value={form.pincode}
+                      onChange={handleChange}
+                      pattern="[0-9]{6}"
+                      className={inputClass}
+                      placeholder="Pincode"
+                    />
+                  </div>
+
                   <div>
-                    <label className={labelClass}>Anything else we should know? (optional)</label>
+                    <label
+                      className={labelClass}
+                    >
+                      Message / Special
+                      Instructions
+                    </label>
+
                     <textarea
                       name="notes"
                       value={form.notes}
                       onChange={handleChange}
-                      rows={3}
-                      className={`${inputClass} resize-none`}
-                      placeholder="Any details that will help our team respond faster"
+                      rows={2}
+                      className="min-h-[58px] w-full resize-none rounded-[7px] border border-[#E6D8C7] bg-white px-3 py-2 text-[11px] text-[#35241B] outline-none placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10"
+                      placeholder="Please share any details that may help us serve you better..."
                     />
                   </div>
 
-                  <label className="flex cursor-pointer items-start gap-2.5 text-xs leading-5 text-[#5F4630]">
+                  <label className="flex cursor-pointer items-start gap-2 text-[9px] leading-4 text-[#6A5548]">
                     <input
                       type="checkbox"
                       checked={consent}
-                      onChange={(e) => setConsent(e.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-[#E4D5BE] text-[#8B6A3E] focus:ring-[#C9A574]/40"
+                      onChange={(event) =>
+                        setConsent(
+                          event.target.checked,
+                        )
+                      }
+                      className="mt-0.5 h-3.5 w-3.5 rounded border-[#D8C6B5] text-[#E87520] focus:ring-[#E87520]/20"
                     />
-                    I consent to Moksha Sewa storing and using these details to provide cremation
-                    assistance. This information is encrypted and never shared without my consent.
+
+                    I consent to Moksha Sewa
+                    using these details only to
+                    provide the requested
+                    cremation assistance.
                   </label>
 
                   {error && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+                    <div className="rounded-[7px] border border-red-200 bg-red-50 px-3 py-2 text-[10px] text-red-700">
                       {error}
                     </div>
                   )}
@@ -386,67 +830,127 @@ function RequestHelp() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70"
+                    className="group flex h-[44px] w-full items-center justify-center gap-3 rounded-[7px] bg-gradient-to-r from-[#F06C16] to-[#E04D0D] px-4 text-[13px] font-medium text-white shadow-[0_7px_18px_rgba(225,78,13,0.20)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                         Submitting...
                       </>
                     ) : (
                       <>
-                        <FaHandsHelping className="transition-transform duration-300 group-hover:scale-110" />
-                        Submit Request — It's Free
+                        <PiFlowerLotus className="h-5 w-5" />
+                        Request Assistance Now
+                        <span className="transition-transform group-hover:translate-x-1">
+                          →
+                        </span>
                       </>
                     )}
                   </button>
+
+                  <p className="flex items-center justify-center gap-2 text-center text-[9px] text-[#76665B]">
+                    <FaShieldAlt className="text-[#6F746F]" />
+                    Your information is safe
+                    and secure with us. We
+                    provide confidential
+                    support.
+                  </p>
                 </form>
               )}
-            </div>
+            </section>
 
-            {/* -------- right column -------- */}
-            <div className="space-y-3">
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] p-4 text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)]">
-                <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
-                <FaShieldAlt className="h-5 w-5 text-[#D9B681]" />
-                <h4 className="mt-2 font-serif text-lg">Always Free</h4>
-                <p className="mt-1 text-xs leading-5 text-[#E8D2AC]">
-                  We never collect any payment from a family, under any circumstance. This service
-                  is funded entirely by donations.
-                </p>
+            {/* Right trust panel */}
+            <aside className="overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+              <h2 className="text-center font-serif text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
+                Why Families Trust Moksha Sewa
+              </h2>
+
+              <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
+
+              <div className="mt-3 divide-y divide-[#EBDCC9]">
+                {trustItems.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="flex gap-3 py-2.5 first:pt-0"
+                    >
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#EBD5BA] bg-white text-[#E87520] shadow-[0_4px_12px_rgba(89,57,31,0.07)]">
+                        <Icon className="h-4.5 w-4.5" />
+                      </span>
+
+                      <div>
+                        <h3 className="font-serif text-[13px] leading-tight text-[#3E261B]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1 text-[9px] leading-[1.45] text-[#715C4E]">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
-              <div className="rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
-                <FaSearchLocation className="h-5 w-5 text-[#8B6A3E]" />
-                <h4 className="mt-2 font-serif text-base text-[#2C1810]">Already Submitted?</h4>
-                <p className="mt-1 text-xs leading-5 text-[#6B584B]">
-                  Track the status of a request once our team has assigned a Case ID.
-                </p>
-                <Link
-                  href="/track"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[#8B6A3E] hover:underline"
-                >
-                  Track Your Request →
-                </Link>
+              <div className="relative mt-2 h-[150px] overflow-hidden rounded-[11px]">
+                <Image
+                  src="/assets/images/why-families-trust-ritual.png"
+                  alt="A peaceful ritual lamp representing compassionate cremation assistance"
+                  fill
+                  priority
+                  sizes="320px"
+                  className="object-cover object-center"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A2719]/25 to-transparent" />
               </div>
 
-              <div className="flex items-start gap-2.5 rounded-2xl border border-[#E6D6BF] bg-[#F6EFE6] px-4 py-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PiFlowerLotus className="h-4 w-4" />
+              <blockquote className="relative px-3 pb-1 pt-3 text-center">
+                <span className="font-serif text-[23px] leading-none text-[#E17A25]">
+                  “
                 </span>
-                <p className="text-[11px] leading-[1.4] text-[#5F4A3D]">
-                  Every detail you share is encrypted and only ever seen by the team helping your
-                  family — never sold, never public.
+
+                <p className="font-serif text-[13px] italic leading-5 text-[#5B3827]">
+                  In Sewa, we find peace.
+                  <br />
+                  In supporting each other,
+                  <br />
+                  we honor life.
                 </p>
-              </div>
-            </div>
+
+                <LotusOrnament className="mx-auto mt-2 h-5 w-8" />
+              </blockquote>
+            </aside>
           </div>
-        </section>
+
+          {/* Bottom message */}
+          <div className="mt-3 text-center">
+            <p className="font-serif text-[13px] text-[#D16521]">
+              ॥ अन्तिम सेवा, हमारी श्रद्धा और
+              आपका विश्वास ॥
+            </p>
+
+            <p className="mt-0.5 text-[9px] text-[#78665A]">
+              With Sewa in our heart, we walk
+              with you in this journey.
+            </p>
+          </div>
+
+          <div className="mt-2 flex justify-center">
+            <Link
+              href="/track"
+              className="text-[9px] font-medium text-[#B85B20] hover:underline"
+            >
+              Already submitted? Track your
+              request →
+            </Link>
+          </div>
+        </div>
       </main>
 
       <Footer />
     </div>
   );
 }
-
-export default RequestHelp;
