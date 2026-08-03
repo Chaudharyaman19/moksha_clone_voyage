@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import type { ComponentType } from "react";
+
 import {
   FaArrowRight,
-  FaHandHoldingUsd,
+  FaHandHoldingHeart,
   FaHandsHelping,
   FaHandshake,
   FaUsers,
@@ -14,158 +16,304 @@ interface SacredJourneyProps {
   variant?: "voyage" | "seva";
 }
 
-type SupportCard = {
+interface SupportCard {
   title: string;
   description: string;
   button: string;
   image: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: ComponentType<{ className?: string }>;
   href?: string;
+}
+
+interface LotusMarkProps {
+  className?: string;
+}
+
+const GOLD = "#D98500";
+
+const donationImages = {
+  donate:
+    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_58 PM (1).png",
+  volunteer:
+    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (2).png",
+  sponsor:
+    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (3).png",
+  partner:
+    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (4).png",
 };
+
+const sevaCards: SupportCard[] = [
+  {
+    title: "Donate",
+    description:
+      "Your contribution helps us provide free last rites and essential support to those in need.",
+    button: "Contribute Now",
+    image: donationImages.donate,
+    icon: FaHandHoldingHeart,
+    href: "/donation",
+  },
+  {
+    title: "Volunteer",
+    description:
+      "Join our team and help us serve families with care, respect and compassion.",
+    button: "Become a Volunteer",
+    image: donationImages.volunteer,
+    icon: FaUsers,
+  },
+  {
+    title: "Sponsor a Service",
+    description:
+      "Sponsor last rites, transport, food or other services for a family in need.",
+    button: "Sponsor Now",
+    image: donationImages.sponsor,
+    icon: FaHandsHelping,
+  },
+  {
+    title: "Partner With Us",
+    description:
+      "Collaborate with us to create a greater impact and reach more lives.",
+    button: "Partner With Us",
+    image: donationImages.partner,
+    icon: FaHandshake,
+  },
+];
+
+const voyageCards: SupportCard[] = [
+  {
+    title: "Donate",
+    description:
+      "Support dignified care, transparent coordination and compassionate assistance.",
+    button: "Contribute Now",
+    image: donationImages.donate,
+    icon: FaHandHoldingHeart,
+    href: "/donation",
+  },
+  {
+    title: "Volunteer",
+    description:
+      "Join our support network and help families when compassionate care matters most.",
+    button: "Become a Volunteer",
+    image: donationImages.volunteer,
+    icon: FaUsers,
+  },
+  {
+    title: "Sponsor a Service",
+    description:
+      "Sponsor a verified service or support a family in memory of a loved one.",
+    button: "Sponsor Now",
+    image: donationImages.sponsor,
+    icon: FaHandsHelping,
+  },
+  {
+    title: "Partner With Us",
+    description:
+      "Partner with our mission to extend dignified support across more communities.",
+    button: "Partner With Us",
+    image: donationImages.partner,
+    icon: FaHandshake,
+  },
+];
+
+function LotusMark({
+  className = "h-5 w-8",
+}: LotusMarkProps) {
+  return (
+    <svg
+      viewBox="0 0 72 50"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
+        stroke={GOLD}
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
+        stroke={GOLD}
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
+        stroke={GOLD}
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
+        stroke={GOLD}
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        stroke={GOLD}
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M8 31c9 8 18 12 28 12s19-4 28-12"
+        stroke={GOLD}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function TopLabel() {
+  return (
+    <div className="flex flex-col items-center">
+      <LotusMark className="h-5 w-8" />
+
+      <div className="mt-0.5 flex items-center justify-center gap-2.5">
+        <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D98500]" />
+
+        <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-[#C87500] sm:text-[10px]">
+          Our Way of Giving Back
+        </p>
+
+        <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#D98500]" />
+      </div>
+    </div>
+  );
+}
+
+function HeadingDivider() {
+  return (
+    <div
+      className="mt-2 flex items-center justify-center gap-2.5"
+      aria-hidden="true"
+    >
+      <span className="h-px w-9 bg-[#D98500]" />
+
+      <span className="grid h-2.5 w-2.5 rotate-45 place-items-center border border-[#D98500]">
+        <span className="h-[3px] w-[3px] bg-[#D98500]" />
+      </span>
+
+      <span className="h-px w-9 bg-[#D98500]" />
+    </div>
+  );
+}
+
+function BottomOrnament() {
+  return (
+    <div
+      className="mt-3 flex items-center justify-center gap-2.5"
+      aria-hidden="true"
+    >
+      <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#D98500] sm:w-36" />
+
+      <LotusMark className="h-5 w-8" />
+
+      <span className="h-px w-24 bg-gradient-to-l from-transparent to-[#D98500] sm:w-36" />
+    </div>
+  );
+}
 
 export default function SacredJourney({
   variant = "voyage",
 }: SacredJourneyProps) {
-  const cards: SupportCard[] =
-    variant === "seva"
-      ? [
-          {
-            title: "Donate",
-            description:
-              "Your contribution helps us provide free services to families in need.",
-            button: "Donate Now",
-            image: "/assets/sacred-journey-hd/donate.webp",
-            icon: FaHandHoldingUsd,
-            href: "/donation",
-          },
-          {
-            title: "Volunteer",
-            description:
-              "Join our team and serve humanity by being there when it matters most.",
-            button: "Become a Volunteer",
-            image: "/assets/sacred-journey-hd/volunteer.webp",
-            icon: FaUsers,
-          },
-          {
-            title: "Sponsor a Service",
-            description:
-              "Sponsor a cremation or support a family in memory of your loved ones.",
-            button: "Sponsor Now",
-            image: "/assets/sacred-journey-hd/sponsor-service.webp",
-            icon: FaHandsHelping,
-          },
-          {
-            title: "Partner With Us",
-            description:
-              "Partner with us to expand our reach and impact more lives together.",
-            button: "Partner With Us",
-            image: "/assets/sacred-journey-hd/partner-with-us.webp",
-            icon: FaHandshake,
-          },
-        ]
-      : [
-          {
-            title: "Donate",
-            description:
-              "Support dignified care, transparent coordination and compassionate assistance.",
-            button: "Donate Now",
-            image: "/assets/sacred-journey-hd/donate.webp",
-            icon: FaHandHoldingUsd,
-            href: "/donation",
-          },
-          {
-            title: "Volunteer",
-            description:
-              "Join our support network and help families when compassionate care matters most.",
-            button: "Become a Volunteer",
-            image: "/assets/sacred-journey-hd/volunteer.webp",
-            icon: FaUsers,
-          },
-          {
-            title: "Sponsor a Service",
-            description:
-              "Sponsor a verified service or support a family in memory of a loved one.",
-            button: "Sponsor Now",
-            image: "/assets/sacred-journey-hd/sponsor-service.webp",
-            icon: FaHandsHelping,
-          },
-          {
-            title: "Partner With Us",
-            description:
-              "Partner with our mission to extend dignified support across more communities.",
-            button: "Partner With Us",
-            image: "/assets/sacred-journey-hd/partner-with-us.webp",
-            icon: FaHandshake,
-          },
-        ];
-
   const router = useRouter();
 
-  return (
-    <section className="relative w-full overflow-hidden border-y border-[#E9DCCB] bg-[#FBF7F0] py-5 md:py-6">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(196,129,36,0.08),transparent_42%)]" />
+  const cards = variant === "seva" ? sevaCards : voyageCards;
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
-        <header className="mb-4 text-center md:mb-5 flex flex-col items-center justify-center">
-          <div className="mb-2 inline-flex items-center space-x-3">
-            <div className="h-px w-8 bg-gradient-to-r from-transparent via-[#D97800] to-transparent" />
-            <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-[#D97800] sm:text-[10px]">
-              {variant === "seva" ? "Support Moksha Sewa" : "Support With Compassion"}
-            </p>
-            <div className="h-px w-8 bg-gradient-to-r from-transparent via-[#D97800] to-transparent" />
-          </div>
-          <h2 className="font-serif text-[22px] font-normal leading-tight text-[#362319] sm:text-[26px] lg:text-[30px]">
+  const handleCardClick = (href?: string) => {
+    if (href) {
+      router.push(href);
+    }
+  };
+
+  return (
+    <section className="relative w-full overflow-hidden border-y border-[#EADFD0] bg-[#FCF9F4] px-3 py-3 sm:px-4 lg:py-4">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-40 w-[65%] -translate-x-1/2 rounded-full bg-[#D68A22]/[0.04] blur-3xl" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+        {/* Header */}
+        <header className="mx-auto mb-3 max-w-[820px] text-center">
+          <TopLabel />
+
+          <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-[1.08] tracking-[-0.02em] text-[#342017] sm:text-[29px] lg:text-[34px]">
             Be the Reason Someone Gets a Dignified Farewell.
           </h2>
+
+          <HeadingDivider />
+
+          <p className="mx-auto mt-2 max-w-[600px] text-[11px] font-normal leading-[1.45] text-[#5B473C] sm:text-[12px] lg:text-[13px]">
+            Your support helps us provide compassionate care, essential
+            services,
+            <br className="hidden sm:block" />
+            and hope to families in their most difficult moments.
+          </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {/* Cards */}
+        <div className="mx-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px]">
           {cards.map((card, index) => {
             const Icon = card.icon;
 
             return (
               <article
                 key={card.title}
-                className="group relative h-[206px] overflow-hidden rounded-[15px] border border-[#E7D4BA] bg-white shadow-[0_5px_16px_rgba(74,45,22,0.06)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(74,45,22,0.10)] sm:h-[212px] xl:h-[202px]"
+                className="group relative mx-auto h-[330px] w-full max-w-[280px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:max-w-none lg:h-[320px]"
               >
-                {/* Clean HD image kept fully away from the text column. */}
-              <div className="absolute right-0 top-0 h-[145px] w-[60%] overflow-hidden rounded-tr-[14px] rounded-bl-[100%] sm:h-[150px] xl:h-[155px]">
-  <Image
-    src={card.image}
-    alt={card.title}
-    fill
-    unoptimized
-    priority={index < 2}
-    sizes="(max-width: 640px) 52vw, (max-width: 1280px) 26vw, 20vw"
-    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
-  />
-</div>
+                {/* Image */}
+                <div className="absolute inset-x-0 top-0 h-[165px] overflow-hidden rounded-t-[13px] lg:h-[155px]">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    priority={index < 2}
+                    unoptimized
+                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
+                  />
 
-                {/* Fixed-width text column prevents image/content overlap. */}
-                <div className="relative z-10 flex h-full w-[51%] flex-col px-4 pb-[50px] pt-4 sm:px-5 xl:px-4">
-                  <Icon className="mb-2 h-7 w-7 shrink-0 text-[#E98700] sm:h-8 sm:w-8 xl:h-7 xl:w-7" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/[0.06] to-transparent" />
+                </div>
 
-                  <h3 className="text-[17px] font-semibold leading-[1.08] text-[#352319] sm:text-[18px] xl:text-[17px]">
+                {/* White wave */}
+                <div className="pointer-events-none absolute left-1/2 top-[136px] h-[64px] w-[125%] -translate-x-1/2 rounded-[50%] bg-[#FFFDF9] lg:top-[126px]" />
+
+                {/* Icon */}
+                <div className="absolute left-1/2 top-[136px] z-20 grid h-[54px] w-[54px] -translate-x-1/2 place-items-center rounded-full border border-[#E8D8C3] bg-[#FFFDF9] shadow-[0_4px_12px_rgba(78,48,24,0.09)] lg:top-[126px]">
+                  <Icon className="h-5 w-5 text-[#DE8500]" />
+                </div>
+
+                {/* Content */}
+                <div className="absolute inset-x-0 bottom-[55px] top-[194px] z-10 flex flex-col items-center px-4 text-center lg:top-[184px]">
+                  <h3 className="font-serif text-[20px] font-normal leading-[1.08] text-[#352017] lg:text-[19px]">
                     {card.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] font-normal leading-[1.38] text-[#694B3A] sm:text-[12px] xl:text-[11px]">
+                  <span className="mt-1.5 h-px w-7 bg-[#D98500]" />
+
+                  <p className="mx-auto mt-2 max-w-[230px] text-[11px] font-normal leading-[1.4] text-[#5B473C]">
                     {card.description}
                   </p>
                 </div>
 
+                {/* Button */}
                 <button
                   type="button"
-                  onClick={() => card.href && router.push(card.href)}
-                  className="absolute bottom-3 left-4 z-20 flex h-8 w-[72%] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#E88A00] to-[#F39A00] px-3 text-[11px] font-semibold text-white shadow-[0_4px_10px_rgba(230,132,0,0.18)] transition hover:brightness-95 sm:left-5 sm:text-[12px] xl:left-4 xl:h-[30px] xl:text-[11px]"
+                  onClick={() => handleCardClick(card.href)}
+                  className="absolute bottom-3 left-4 right-4 z-20 flex h-[36px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
                 >
-                  <span className="truncate">{card.button}</span>
-                  <FaArrowRight className="h-3 w-3 shrink-0" />
+                  <span>{card.button}</span>
+
+                  <FaArrowRight className="h-3 w-3 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </button>
               </article>
             );
           })}
         </div>
+
+        <BottomOrnament />
       </div>
     </section>
   );

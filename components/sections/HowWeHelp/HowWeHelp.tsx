@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { ReactElement } from "react";
-import HowItWorks from "../HowItWorks/HowItWorks";
 
 interface CustomIconProps {
   name: string;
@@ -213,7 +212,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
   ];
 
   return (
-    <section className={`relative w-full overflow-hidden ${variant === "seva" ? "pt-6 pb-0 md:pt-7 md:pb-0" : "py-8 md:py-12"}`}>
+    <section className={`relative w-full overflow-hidden px-3 sm:px-4 lg:px-1 lg:pb-4 ${variant === "seva" ? "pb-0 pt-3 md:pt-4" : "py-6 md:py-8"}`}>
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#FCF9F3] via-white to-[#F8F4EC]" />
         {circleStyles.map((style, i) => (
@@ -221,9 +220,9 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-0">
-        <div className={`text-center ${variant === "seva" ? "mb-5" : "mb-12"}`}>
-          <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-0" : "mb-6"}`}>
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+        <div className={`mx-auto max-w-3xl text-center ${variant === "seva" ? "mb-2.5" : "mb-8"}`}>
+          <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-0.5" : "mb-6"}`}>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
             <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               {variant === "seva" ? "Moksha Sewa Services" : "Our Services"}
@@ -232,7 +231,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
           </div>
 
           {variant === "seva" ? (
-            <h2 className="font-serif text-[10px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[38px] xl:text-[32px]">
+            <h2 className="font-serif text-[26px] font-normal leading-[1.08] text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
               Complete Funeral &amp; Antim Sanskar Sewa
             </h2>
           ) : (
@@ -247,14 +246,14 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             </h2>
           )}
 
-          <p className={`${variant === "seva" ? "mt-1 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-relaxed text-[#6E4B3A]`}>
+          <p className={`${variant === "seva" ? "mt-0.5 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-snug text-[#6E4B3A]`}>
             {variant === "seva"
               ? "Funeral Samagri  ·  Pandit Ji  ·  Ambulance  ·  Hearse Van  ·  Prayer Hall"
               : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ${variant === "seva" ? "mb-4 gap-4" : "mb-16 gap-5"}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ${variant === "seva" ? "mb-3 gap-3" : "mb-10 gap-5"}`}>
           {cards.map((card, index) =>
             variant === "seva" && card.image ? (
               <article key={card.title} className="group overflow-hidden rounded-2xl border border-[#E7D9C7] bg-white shadow-[0_8px_24px_rgba(73,49,30,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(73,49,30,0.13)]">
@@ -402,9 +401,6 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
         </div>
       </div>
 
-      <div className={`relative ${variant === "seva" ? "mt-3 sm:mt-4 lg:mt-5" : "mt-8 sm:mt-12 lg:mt-16"}`}>
-        <HowItWorks variant={variant} />
-      </div>
     </section>
   );
 }

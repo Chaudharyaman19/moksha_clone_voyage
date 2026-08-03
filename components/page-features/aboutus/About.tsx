@@ -13,7 +13,6 @@ import OurInitiatives from "./OurInitiatives";
 import {
   Ambulance,
   ArrowRight,
-  BadgeCheck,
   CheckCircle2,
   ClipboardList,
   Clock3,
@@ -24,7 +23,6 @@ import {
   MapPin,
   MessageCircle,
   PhoneCall,
-  Quote,
   ShieldCheck,
   ShoppingBag,
   Truck,
@@ -271,7 +269,7 @@ export default function About() {
                 </span>
                 <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
               </div>
-              <h2 
+              <h2
                 className="text-3xl font-normal leading-tight text-[#2C1810] sm:text-4xl"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
@@ -289,7 +287,7 @@ export default function About() {
                       className="group relative flex h-64 w-full flex-col justify-end overflow-hidden rounded-none border border-[#E9DDCD]/40 bg-[#2C1810] shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(139,106,62,0.2)]"
                     >
                       {/* Full Background Image */}
-                      <Image 
+                      <Image
                         src={service.image}
                         alt={service.title}
                         fill
@@ -299,11 +297,11 @@ export default function About() {
                           target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
                         }}
                       />
-                      
+
                       {/* Gradients */}
                       {/* Base gradient so title is always visible */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
-                      
+
                       {/* Hover gradient covering more area for text readability */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -316,7 +314,7 @@ export default function About() {
                           </h3>
                           <Icon className="h-6 w-6 text-[#D9B681] opacity-90 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110 group-hover:text-white" />
                         </div>
-                        
+
                         <div className="mt-2 h-[2px] w-8 bg-[#D9B681] transition-all duration-500 group-hover:w-16" />
 
                         {/* Hidden Text Revealed on Hover */}

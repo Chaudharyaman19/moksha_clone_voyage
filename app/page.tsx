@@ -6,7 +6,9 @@ import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
 import AboutNamoGange from "@/components/sections/about/AboutNamoGange";
 import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
+import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
+import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
 import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
@@ -28,7 +30,9 @@ export default function Page() {
       <CompassionSection variant="seva" />
       <HowWeHelp variant="seva" />
       <Serving variant="seva" />
+      <HowItWorks variant="seva" />
       <SacredJourney variant="seva" />
+      <WhyFamiliesTrust />
       <VoicesOfGratitude />
       <GlimpseOfJourney />
       <FAQ />
