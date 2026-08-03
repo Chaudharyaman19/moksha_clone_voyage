@@ -64,7 +64,7 @@ export default function TopInfoBar() {
       id="topbar"
       className="fixed top-0 left-0 w-full bg-[#2A1A0F] text-white z-[60] border-b border-white/10 font-sans"
     >
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-0 py-1.5 flex items-center justify-between">
         <div className="flex items-center gap-2 md:gap-4">
           <div className="flex items-center gap-1.5 group">
             <Mail size={16} className="text-[#D4B996]" />
