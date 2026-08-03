@@ -276,7 +276,7 @@ function Contact() {
 
               <a
                 href="#contact-form"
-                className="group mt-1 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
+                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
               >
                 Send a Message
                 <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -351,7 +351,7 @@ function Contact() {
         </section>
 
         {/* ============ OFFICE LOCATIONS & INITIATIVES ============ */}
-        <section className="py-2 lg:py-2">
+        <section className="pt-8 pb-2 lg:pt-12 lg:pb-2">
           <div className="mx-auto w-full max-w-7xl px-2 sm:px-4 xl:px-0">
             <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
 
