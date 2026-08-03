@@ -3,7 +3,7 @@ import { Quote } from "lucide-react";
 
 export default function FoundersVision() {
   return (
-    <section className="relative overflow-hidden bg-[#FBF8F3] py-3 md:py-4">
+    <section className="relative overflow-hidden bg-[#FBF8F3] py-4 md:py-6">
       {/* Decorative background circle */}
       <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 translate-x-1/3 rounded-full bg-[#8B6A3E]/[0.03] blur-3xl" />
 
