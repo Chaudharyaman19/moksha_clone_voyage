@@ -34,10 +34,13 @@ const GOLD = "#D98500";
 const donationImages = {
   donate:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_58 PM (1).png",
+
   volunteer:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (2).png",
+
   sponsor:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (3).png",
+
   partner:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (4).png",
 };
@@ -149,7 +152,7 @@ function LotusMark({
       />
 
       <path
-        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10 1 10s6-2 10-7c4-5 6-10 6-15Z"
         stroke={GOLD}
         strokeWidth="1.7"
       />
@@ -277,32 +280,32 @@ export default function SacredJourney({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/[0.06] to-transparent" />
                 </div>
 
-                {/* White wave */}
-                <div className="pointer-events-none absolute left-1/2 top-[136px] h-[64px] w-[125%] -translate-x-1/2 rounded-[50%] bg-[#FFFDF9] lg:top-[126px]" />
+                {/* White rounded wave */}
+                <div className="pointer-events-none absolute left-1/2 top-[126px] z-10 h-[92px] w-[150%] -translate-x-1/2 rounded-[50%] bg-[#FFFDF9] sm:top-[136px] lg:top-[116px]" />
 
                 {/* Icon */}
-                <div className="absolute left-1/2 top-[136px] z-20 grid h-[54px] w-[54px] -translate-x-1/2 place-items-center rounded-full border border-[#E8D8C3] bg-[#FFFDF9] shadow-[0_4px_12px_rgba(78,48,24,0.09)] lg:top-[126px]">
+                <div className="absolute left-1/2 top-[132px] z-20 grid h-[54px] w-[54px] -translate-x-1/2 place-items-center rounded-full border border-[#E8D8C3] bg-[#FFFDF9] shadow-[0_4px_12px_rgba(78,48,24,0.09)] sm:top-[142px] lg:top-[122px]">
                   <Icon className="h-5 w-5 text-[#DE8500]" />
                 </div>
 
-                {/* Content */}
-                <div className="absolute inset-x-0 bottom-[55px] top-[194px] z-10 flex flex-col items-center px-4 text-center lg:top-[184px]">
-                  <h3 className="font-serif text-[20px] font-normal leading-[1.08] text-[#352017] lg:text-[19px]">
+                {/* Compact content */}
+                <div className="absolute inset-x-0 top-[187px] z-10 flex flex-col items-center px-4 text-center lg:top-[177px]">
+                  <h3 className="font-serif text-[20px] font-normal leading-[1.05] text-[#352017] lg:text-[19px]">
                     {card.title}
                   </h3>
 
-                  <span className="mt-1.5 h-px w-7 bg-[#D98500]" />
+                  <span className="mt-1 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-2 max-w-[230px] text-[11px] font-normal leading-[1.4] text-[#5B473C]">
+                  <p className="mx-auto mt-1.5 max-w-[230px] text-[11px] font-normal leading-[1.32] text-[#5B473C]">
                     {card.description}
                   </p>
                 </div>
 
-                {/* Button */}
+                {/* Button moved upward */}
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className="absolute bottom-3 left-4 right-4 z-20 flex h-[36px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
+                  className="absolute bottom-[18px] left-4 right-4 z-20 flex h-[36px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
                 >
                   <span>{card.button}</span>
 

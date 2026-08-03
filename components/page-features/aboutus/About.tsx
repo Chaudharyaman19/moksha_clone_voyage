@@ -9,9 +9,11 @@ import AboutMokshaSewa from "./AboutMokshaSewa";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
+import OurInitiatives from "./OurInitiatives";
 import {
   Ambulance,
   ArrowRight,
+  BadgeCheck,
   CheckCircle2,
   ClipboardList,
   Clock3,
@@ -57,13 +59,22 @@ const stats = [
 ];
 
 const careServices = [
-  { icon: Ambulance, title: "Ambulance", text: "24/7 Pickup Support", image: "/assets/ambulance.avif" },
-  { icon: Truck, title: "Hearse Van", text: "Dignified Transport", image: "/assets/harse.jpeg" },
-  { icon: ShoppingBag, title: "Samagri", text: "Complete Ritual Items", image: "/assets/funeralsamagri.jpeg" },
-  { icon: UserRound, title: "Pandit Ji", text: "Verified & Experienced", image: "/assets/pandit.avif" },
-  { icon: Home, title: "Prayer Hall", text: "Clean & Peaceful Facilities", image: "/assets/prayerhall.jpeg" },
-  { icon: Flame, title: "Cremation", text: "Smooth Arrangements", image: "/assets/dharma.jpg" },
-  { icon: HeartHandshake, title: "Family Support", text: "Guidance & Emotional Care", image: "/assets/promise.webp" },
+  { icon: Ambulance, title: "Ambulance", text: "Fast & reliable 24/7 dead body transport services with AC and freezer facilities across the city.", image: "/assets/ambulance.avif" },
+  { icon: Truck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/harse.jpeg" },
+  { icon: ShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/funeralsamagri.jpeg" },
+  { icon: UserRound, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-reference/pandit_ji_new.png" },
+  { icon: Home, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/prayerhall.jpeg" },
+  { icon: Flame, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-reference/cremation_ritual_new.png" },
+  { icon: UsersRound, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-reference/tehrvi_feast.png" },
+  { icon: HeartHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-reference/family_support_new.png" },
+];
+
+const reasons = [
+  { icon: BadgeCheck, title: "Experienced Team", text: "Trained, verified and compassionate" },
+  { icon: ShieldCheck, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
+  { icon: MapPin, title: "Pan India Network", text: "Strong local presence across cities" },
+  { icon: PhoneCall, title: "24/7 Availability", text: "A caring team always within reach" },
+  { icon: HandHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
 ];
 
 const processSteps = [
@@ -75,22 +86,22 @@ const processSteps = [
 ];
 
 const locations = [
-  { name: "Gaya", image: "/assets/about-reference/location-gaya.png" },
-  { name: "Varanasi", image: "/assets/about-reference/location-varanasi.png" },
-  { name: "Haridwar", image: "/assets/about-reference/location-haridwar.png" },
-  { name: "Rishikesh", image: "/assets/about-reference/location-rishikesh.png" },
-  { name: "Nashik", image: "/assets/about-reference/location-nashik.png" },
+  { name: "Gaya", image: "/assets/about-reference/gaya.png" },
+  { name: "Varanasi", image: "/assets/about-reference/varanasi.png" },
+  { name: "Haridwar", image: "/assets/about-reference/haridwar.png" },
+  { name: "Rishikesh", image: "/assets/about-reference/rishikesh.png" },
+  { name: "Nashik", image: "/assets/about-reference/nasik.png" },
 ];
 
 const aboutImages = {
-  hero: "/assets/about-hero.png",
+  hero: "/assets/about-hero-new.png",
   storyMain: "/assets/about-reference/story-main.png",
   storyRitualItems: "/assets/about-reference/story-ritual-items.png",
   storyTemple: "/assets/about-reference/story-ghat-temple.png",
   storyEvening: "/assets/about-reference/story-evening-ghat.png",
-  promiseMain: "/assets/dharma.jpg",
-  promiseSupport: "/assets/yatra.webp",
-  promiseCare: "/assets/promise.webp",
+  promiseMain: "/assets/promise-1.png",
+  promiseSupport: "/assets/promise-2.png",
+  promiseCare: "/assets/promise-3.png",
   indiaMap: "/assets/about-reference/india-map.png",
 };
 
@@ -248,67 +259,84 @@ export default function About() {
         {/* ============ BOARD MEMBERS ============ */}
         <BoardMembers />
 
-        {/* ============ WHAT WE TAKE CARE OF — mandir-peak tiles ============ */}
-        <section className="border-y border-[#E9DDCD] bg-[#F8F3EC] py-5 lg:py-6">
-          <div className="mx-auto w-full max-w-7xl px-0">
-            <div className="mb-1 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-              <span className="h-px w-8 bg-[#C9A574]" />
-              <span>What We Take Care Of</span>
-              <span className="h-px w-8 bg-[#C9A574]" />
+        {/* ============ WHAT WE TAKE CARE OF ============ */}
+        <section className="bg-[#FBF8F3] pb-0 pt-2 lg:pb-0 lg:pt-4">
+          <div className="mx-auto w-full max-w-7xl px-4">
+            <div className="mb-2 flex flex-col items-center text-center">
+              <div className="mb-2 inline-flex items-center space-x-3">
+                <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
+                <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                  What We Take Care Of
+                </span>
+                <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
+              </div>
+              <h2
+                className="text-3xl font-normal leading-tight text-[#2C1810] sm:text-4xl"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Comprehensive Support
+              </h2>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-2 sm:grid-cols-4 lg:grid-cols-7">
-              {careServices.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <div
-                    key={service.title}
-                    className={`group relative transition-transform duration-300 hover:-translate-y-1.5 [filter:drop-shadow(0_6px_14px_rgba(70,47,31,0.10))] hover:[filter:drop-shadow(0_12px_22px_rgba(70,47,31,0.18))] ${index % 2 === 1 ? "lg:translate-y-3 lg:hover:translate-y-1.5" : ""
-                      }`}
-                  >
-                    <Kalash size="sm" />
-                    {/* border layer */}
+            <div className="mx-auto mt-0 w-full">
+              <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-1 pt-0">
+                {careServices.map((service) => {
+                  const Icon = service.icon;
+                  return (
                     <div
-                      className="rounded-b-xl bg-[#E4D5BE] p-[1px] transition-colors duration-300 group-hover:bg-[#C9A574]"
-                      style={{ clipPath: templeCard }}
+                      key={service.title}
+                      className="group relative flex h-64 w-full flex-col justify-end overflow-hidden rounded-none border border-[#E9DDCD]/40 bg-[#2C1810] shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(139,106,62,0.2)]"
                     >
-                      {/* card layer */}
-                      <div
-                        className="rounded-b-xl bg-white px-2 pb-3 pt-7 text-center flex flex-col items-center"
-                        style={{ clipPath: templeCard }}
-                      >
-                        <div className="relative mb-2 mt-1 h-16 w-16 overflow-hidden rounded-full border-2 border-[#D9B681]/40 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:border-[#D9B681]">
-                          <Image 
-                            src={service.image}
-                            alt={service.title}
-                            fill
-                            className="object-cover"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='10px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
-                            }}
-                          />
-                          <div className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#8B6A3E] shadow-sm">
-                            <Icon className="h-3.5 w-3.5 stroke-[2]" />
+                      {/* Full Background Image */}
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-40 group-hover:blur-[2px]"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+
+                      {/* Gradients */}
+                      {/* Base gradient so title is always visible */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
+
+                      {/* Hover gradient covering more area for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                      {/* Content Overlay */}
+                      <div className="relative z-10 flex flex-col justify-end p-5 transition-transform duration-500">
+                        {/* Title & Icon Row */}
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-serif text-[20px] font-medium text-white drop-shadow-sm transition-transform duration-500 group-hover:-translate-y-1">
+                            {service.title}
+                          </h3>
+                          <Icon className="h-6 w-6 text-[#D9B681] opacity-90 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110 group-hover:text-white" />
+                        </div>
+
+                        <div className="mt-2 h-[2px] w-8 bg-[#D9B681] transition-all duration-500 group-hover:w-16" />
+
+                        {/* Hidden Text Revealed on Hover */}
+                        <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-hover:mt-4">
+                          <div className="overflow-hidden">
+                            <p className="text-[13px] leading-relaxed text-white/90 drop-shadow-sm">
+                              {service.text}
+                            </p>
                           </div>
                         </div>
-                        <h3 className="font-serif text-[15px] font-medium text-[#2C1810] group-hover:text-[#8B6A3E] transition-colors">
-                          {service.title}
-                        </h3>
-                        <p className="mx-auto mt-0.5 max-w-[120px] text-[10px] leading-[1.3] text-[#6B584B]">
-                          {service.text}
-                        </p>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
         {/* ============ OUR PRESENCE — mandir gateway city cards ============ */}
-        <section className="pb-1 pt-1 lg:pb-1 lg:pt-1">
+        <section className="pb-1 pt-0 lg:pb-1 lg:pt-0">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-0">
             <div className="relative overflow-hidden rounded-2xl border border-[#E6D8C5] bg-[#F6EFE6] p-5 sm:p-6">
               <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/20" />
@@ -368,14 +396,23 @@ export default function About() {
                     style={{ clipPath: templeMed }}
                   />
                   <div
-                    className="absolute inset-[3px] flex items-center justify-center rounded-b-xl bg-gradient-to-b from-[#9A7445] to-[#6F4E2F] px-3 text-center text-white"
+                    className="absolute inset-[3px] overflow-hidden rounded-b-xl"
                     style={{ clipPath: templeMed }}
                   >
-                    <div>
+                    <Image
+                      src="/assets/about-reference/more_cities.png"
+                      alt="More Moksha Sewa locations"
+                      fill
+                      quality={100}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#9A7445]/60 to-[#2C1810]/80" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center text-white">
                       <div className="font-serif text-4xl transition-transform duration-300 group-hover:scale-110">
                         +9
                       </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/80">
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/90">
                         More Cities
                       </div>
                     </div>
@@ -386,6 +423,59 @@ export default function About() {
               <p className="mt-1 text-center text-[11px] text-[#746154]">
                 Local teams. Local support. Always near you.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ WHY CHOOSE US — dark glass cards ============ */}
+        <section className="relative overflow-hidden bg-[#3B2B21] py-3 lg:py-4">
+          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
+          <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border border-[#C9A574]/10" />
+          <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#C9A574]/35 to-transparent" />
+
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
+            <div className="text-white">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+                Why Choose Us
+              </div>
+              <h2 className="mt-1 font-serif text-3xl leading-tight sm:text-4xl">
+                Here for You, <span className="italic text-[#D9B681]">Always</span>
+              </h2>
+              <div className="mt-1 h-[2px] w-10 bg-[#D9B681]" />
+              <p className="mt-1 max-w-sm text-sm leading-6 text-white/75">
+                We bring transparency, professionalism and heartfelt service
+                together to help you in every possible way.
+              </p>
+              <a
+                href="/contact"
+                className="group mt-1 inline-flex items-center gap-2 rounded-md bg-[#D9B681] px-4 py-2 text-xs font-semibold text-[#3B2B21] transition hover:bg-[#E8D2AC]"
+              >
+                Know More
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {reasons.map((reason, index) => {
+                const Icon = reason.icon;
+                return (
+                  <div
+                    key={reason.title}
+                    className="group relative h-full overflow-hidden rounded-xl border border-white/15 bg-white/[0.05] px-3 py-3 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B681]/60 hover:bg-white/[0.09] sm:px-4 sm:py-4"
+                  >
+                    <span className="absolute right-2 top-1.5 font-serif text-lg text-[#D9B681]/25">
+                      0{index + 1}
+                    </span>
+                    <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681] transition-colors duration-300 group-hover:bg-[#D9B681] group-hover:text-[#3B2B21]">
+                      <Icon className="h-5 w-5 stroke-[1.5]" />
+                    </div>
+                    <h3 className="mt-1 font-serif text-base leading-tight text-white">
+                      {reason.title}
+                    </h3>
+                    <p className="mt-1 text-[10px] leading-4 text-white/60">{reason.text}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -434,7 +524,7 @@ export default function About() {
 
 
         {/* ============ SACRED PROMISE — dark promise card + mandir imagery ============ */}
-        <section className="relative overflow-hidden bg-[#F2E9DD] py-5 lg:py-6">
+        <section className="relative overflow-hidden bg-[#F2E9DD] py-3 lg:py-4">
           <div className="absolute -left-28 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full border border-[#C9A574]/20" />
           <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-[#8B6A3E]/5 blur-3xl" />
 
@@ -656,8 +746,11 @@ export default function About() {
 
 
 
+        {/* ============ OUR INITIATIVES ============ */}
+        <OurInitiatives />
+
         {/* ============ CTA STRIP ============ */}
-        <section className="relative overflow-hidden bg-[#3B2B21] py-4 text-white sm:py-5">
+        <section className="relative overflow-hidden bg-[#3B2B21] py-3 text-white sm:py-4">
           <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] via-[#5B432F] to-[#2C1810]" />
           <div className="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_15%_70%,#D7B37A_0,transparent_23%),radial-gradient(circle_at_85%_60%,#D7B37A_0,transparent_22%)]" />
           {/* fine gold frame inside the strip */}
