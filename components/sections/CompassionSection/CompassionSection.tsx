@@ -33,39 +33,34 @@ export default function CompassionSection({
       <div className="relative z-10 h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] max-w-7xl mx-auto px-0">
         <div className="h-full min-h-[650px] md:min-h-[700px] lg:min-h-[750px] flex items-center">
           <div className="max-w-3xl py-12 md:py-16">
-            <div className="inline-flex items-center space-x-2 mb-5">
-              <div className="w-12 h-0.5 bg-[#8B6A3E]"></div>
-              <span className="text-[#8B6A3E] font-medium tracking-wide uppercase text-xs">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-10 h-[1px] bg-[#8B6A3E]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 {variant === "seva" ? "Moksha Sewa" : "Our Mission"}
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-4xl font-normal text-[#3A2A1F] leading-tight mb-5">
+            <h2 
+              className="text-4xl md:text-5xl lg:text-[46px] font-normal leading-[1.1] text-[#2C1810] mb-5"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
               <span className="block mb-2">
                 {variant === "seva"
                   ? "Complete Antim Sanskar Support"
                   : "A Journey Guided by Love"}
               </span>
-              <span className="block font-light text-[#4A3A2F] text-3xl md:text-3xl">
+              <span className="block bg-gradient-to-r from-[#8B6A3E] to-[#5F4630] bg-clip-text text-transparent text-[26px] md:text-[34px]">
                 {variant === "seva"
                   ? "with Dignity, Rituals & Care"
                   : "with Peace of Mind"}
               </span>
             </h2>
 
-            <div className="mb-7">
-              <svg
-                className="w-28 h-2 text-[#D4B68A] mb-4"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M0,5 Q25,0 50,5 T100,5"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  fill="none"
-                />
-              </svg>
+            {/* Standard Diya Flourish */}
+            <div className="mb-7 flex items-center gap-2">
+              <span className="h-[2px] w-12 bg-[#8B6A3E]" />
+              <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
+              <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
             <p className="text-[#5A4030] text-base leading-relaxed mb-8 max-w-2xl font-light">
