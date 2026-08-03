@@ -128,7 +128,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             desc: "Essential items for complete antim sanskar with purity.",
             color: "from-[#8B6A3E] to-[#A88B5E]",
             features: ["Complete Samagri Kit", "Quality Items", "Quick Delivery"],
-            image: "/assets/how-we-help/funeral-samagri.webp",
+            image: "/assets/how-we-help/samagri.png",
           },
           {
             icon: "FaUserOutline",
@@ -136,7 +136,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             desc: "Experienced pandit ji for meaningful rituals.",
             color: "from-[#5C4033] to-[#7A5B46]",
             features: ["Vedic Guidance", "Ritual Planning", "Regional Traditions"],
-            image: "/assets/how-we-help/pandit-service.webp",
+            image: "/assets/how-we-help/pandit.png",
           },
           {
             icon: "FaTruckOutline",
@@ -152,7 +152,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             desc: "Peaceful prayer hall with complete family assistance.",
             color: "from-[#6B7D6E] to-[#8A9B8C]",
             features: ["Prayer Hall", "Floral Decoration", "Family Coordination"],
-            image: "/assets/how-we-help/prayer-hall.webp",
+            image: "/assets/how-we-help/prayer.png",
           },
         ]
       : [
