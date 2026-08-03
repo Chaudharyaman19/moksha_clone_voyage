@@ -93,7 +93,7 @@ const locations = [
 ];
 
 const aboutImages = {
-  hero: "/assets/about-hero.png",
+  hero: "/assets/about-hero-new.png",
   storyMain: "/assets/about-reference/story-main.png",
   storyRitualItems: "/assets/about-reference/story-ritual-items.png",
   storyTemple: "/assets/about-reference/story-ghat-temple.png",
