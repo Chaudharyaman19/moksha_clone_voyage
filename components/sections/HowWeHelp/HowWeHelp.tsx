@@ -221,8 +221,8 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
-        <div className={`mx-auto max-w-3xl text-center ${variant === "seva" ? "mb-3" : "mb-8"}`}>
-          <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-1" : "mb-6"}`}>
+        <div className={`mx-auto max-w-3xl text-center ${variant === "seva" ? "mb-2.5" : "mb-8"}`}>
+          <div className={`inline-flex items-center space-x-3 ${variant === "seva" ? "mb-0.5" : "mb-6"}`}>
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
             <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               {variant === "seva" ? "Moksha Sewa Services" : "Our Services"}
@@ -231,7 +231,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
           </div>
 
           {variant === "seva" ? (
-            <h2 className="font-serif text-[26px] font-normal leading-tight text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
+            <h2 className="font-serif text-[26px] font-normal leading-[1.08] text-[#2F1D14] sm:text-[30px] lg:text-[34px]">
               Complete Funeral &amp; Antim Sanskar Sewa
             </h2>
           ) : (
@@ -246,7 +246,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
             </h2>
           )}
 
-          <p className={`${variant === "seva" ? "mt-1 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-relaxed text-[#6E4B3A]`}>
+          <p className={`${variant === "seva" ? "mt-0.5 text-sm sm:text-base md:text-lg" : "text-lg md:text-sm"} mx-auto max-w-3xl font-light leading-snug text-[#6E4B3A]`}>
             {variant === "seva"
               ? "Funeral Samagri  ·  Pandit Ji  ·  Ambulance  ·  Hearse Van  ·  Prayer Hall"
               : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
