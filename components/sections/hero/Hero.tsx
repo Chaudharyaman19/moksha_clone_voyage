@@ -30,10 +30,11 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     () =>
       variant === "seva"
         ? [
-          "/assets/hero-hd/moksha-hero-hd-1.png",
-          "/assets/hero-hd/moksha-hero-hd-2.png",
-          "/assets/hero-hd/moksha-hero-hd-3.png",
-          "/assets/hero-hd/moksha-hero-hd-4.png",
+          "/hero-images/1.png",
+          "/hero-images/2.png",
+          "/hero-images/3.png",
+          "/hero-images/4.png",
+          "/hero-images/5.png",
         ]
         : [
           "/assets/image.webp",
