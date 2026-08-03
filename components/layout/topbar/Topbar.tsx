@@ -82,7 +82,7 @@ export default function TopInfoBar() {
               href="tel:+919654900525"
               className="text-xs lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
             >
-              +91 96549 00525
+              9220147229
             </a>
           </div>
         </div>

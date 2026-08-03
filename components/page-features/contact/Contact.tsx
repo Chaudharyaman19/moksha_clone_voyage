@@ -85,7 +85,7 @@ function InitiativesCarousel() {
           </div>
         ))}
       </Marquee>
-      
+
       {/* Row 3: Scrolls Left */}
       <Marquee speed={30} pauseOnHover={true}>
         {row3.map((item, i) => (
@@ -181,8 +181,8 @@ function Contact() {
     },
     {
       city: "London Office",
-      address: "Central London, United Kingdom (Full address to be provided)",
-      pincode: "UK",
+      address: "6 Liddel Close, Luton, England",
+      pincode: "LU3 1TW",
       type: "branch",
       image:
         "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=800&auto=format&fit=crop",
@@ -297,7 +297,7 @@ function Contact() {
               <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 24/7 Helpline
               </span>
-              <span className="block font-serif text-sm">+91 96549 00525</span>
+              <span className="block font-serif text-sm">9220147229</span>
             </span>
           </a>
         </section>
@@ -314,7 +314,7 @@ function Contact() {
                 {[
                   {
                     icon: FaPhoneAlt,
-                    value: "+91 96549 00525",
+                    value: "9220147229",
                     title: "Emergency Helpline",
                     href: "tel:+919654900525",
                   },
@@ -369,7 +369,7 @@ function Contact() {
         <section className="py-2 lg:py-2">
           <div className="mx-auto w-full max-w-7xl px-2 sm:px-4 xl:px-0">
             <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
-              
+
               {/* LEFT: Office Locations */}
               <div className="flex flex-col h-full">
                 <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
@@ -381,71 +381,71 @@ function Contact() {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {officeLocations.map((location) => (
-                <div
-                  key={location.city}
-                  className="group overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
-                >
-                  {/* image */}
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={location.image}
-                      alt={location.city}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-transparent to-transparent" />
+                  {officeLocations.map((location) => (
+                    <div
+                      key={location.city}
+                      className="group overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+                    >
+                      {/* image */}
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={location.image}
+                          alt={location.city}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-transparent to-transparent" />
 
-                    {location.type === "main" && (
-                      <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow">
-                        HQ
-                      </span>
-                    )}
+                        {location.type === "main" && (
+                          <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow">
+                            HQ
+                          </span>
+                        )}
 
-                    <div className="absolute bottom-3 left-4 z-20">
-                      <h3 className="font-serif text-xl text-white drop-shadow">
-                        {location.city}
-                      </h3>
-                      <span className="mt-1 block h-[2px] w-8 bg-[#D9B681] transition-all duration-300 group-hover:w-12" />
+                        <div className="absolute bottom-3 left-4 z-20">
+                          <h3 className="font-serif text-xl text-white drop-shadow">
+                            {location.city}
+                          </h3>
+                          <span className="mt-1 block h-[2px] w-8 bg-[#D9B681] transition-all duration-300 group-hover:w-12" />
+                        </div>
+                      </div>
+
+                      {/* Details */}
+                      <div className="p-5">
+                        <p className="min-h-[48px] text-sm leading-relaxed text-[#6B584B]">
+                          {location.address}
+                        </p>
+                        <div className="mt-4 flex items-center justify-between border-t border-[#F0E5D3] pt-4">
+                          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#8B6A3E]">
+                            <FaMapMarkerAlt className="h-3.5 w-3.5" />
+                            PIN: {location.pincode}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Details */}
-                  <div className="p-5">
-                    <p className="min-h-[48px] text-sm leading-relaxed text-[#6B584B]">
-                      {location.address}
-                    </p>
-                    <div className="mt-4 flex items-center justify-between border-t border-[#F0E5D3] pt-4">
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#8B6A3E]">
-                        <FaMapMarkerAlt className="h-3.5 w-3.5" />
-                        PIN: {location.pincode}
-                      </span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* RIGHT: Our Initiatives */}
+              <div className="flex flex-col h-full">
+                <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+                  <span className="h-px w-8 bg-[#C9A574]" />
+                  <span>Our Expanding Horizon</span>
+                </div>
+                <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
+                  Our <span className="italic text-[#8B6A3E]">Initiatives</span>
+                </h2>
+
+                <div className="flex-1 w-full min-h-0">
+                  <InitiativesCarousel />
+                </div>
+              </div>
+
             </div>
           </div>
-
-          {/* RIGHT: Our Initiatives */}
-          <div className="flex flex-col h-full">
-            <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-              <span className="h-px w-8 bg-[#C9A574]" />
-              <span>Our Expanding Horizon</span>
-            </div>
-            <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
-              Our <span className="italic text-[#8B6A3E]">Initiatives</span>
-            </h2>
-            
-            <div className="flex-1 w-full min-h-0">
-              <InitiativesCarousel />
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+        </section>
 
         {/* ============ FORM + CONTACT CARDS ============ */}
         <section id="contact-form" className="py-2 lg:py-2">
@@ -581,7 +581,7 @@ function Contact() {
             <div className="flex flex-col gap-2">
               {/* Consolidated Contact Info Block */}
               <div className="rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
-                
+
                 {/* Emergency Details */}
                 <div className="flex items-center gap-3">
                   <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-white">
@@ -596,7 +596,7 @@ function Contact() {
                       href="tel:+919654900525"
                       className="inline-block font-serif text-xl text-[#2C1810] transition hover:text-[#8B6A3E]"
                     >
-                      +91 96549 00525
+                      9220147229
                     </a>
                   </div>
                 </div>
@@ -623,7 +623,7 @@ function Contact() {
                   </a>
 
                   <a
-                    href="tel:+919568259784"
+                    href="tel:+919220147229"
                     className="group flex items-center gap-2.5 transition-colors duration-300"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">

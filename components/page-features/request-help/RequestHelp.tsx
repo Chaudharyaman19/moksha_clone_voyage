@@ -138,7 +138,7 @@ function RequestHelp() {
                 <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                   Need help right now? Call our 24/7 helpline
                 </span>
-                <span className="block font-serif text-base">+91 96549 00525</span>
+                <span className="block font-serif text-base">9220147229</span>
               </span>
             </a>
           </div>
@@ -185,11 +185,10 @@ function RequestHelp() {
                           key={String(opt.key)}
                           type="button"
                           onClick={() => setIsEmergency(opt.key)}
-                          className={`rounded-lg border px-3 py-2.5 text-sm font-semibold transition-all ${
-                            isEmergency === opt.key
+                          className={`rounded-lg border px-3 py-2.5 text-sm font-semibold transition-all ${isEmergency === opt.key
                               ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-md"
                               : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
-                          }`}
+                            }`}
                         >
                           {opt.label}
                         </button>

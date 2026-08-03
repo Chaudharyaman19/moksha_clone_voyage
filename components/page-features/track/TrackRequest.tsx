@@ -164,13 +164,12 @@ function TrackRequest() {
                 <div className="flex items-center justify-between">
                   <span className="font-serif text-lg text-[#2C1810]">{result.caseId}</span>
                   <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
-                      isTerminalNegative
+                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ${isTerminalNegative
                         ? "bg-red-50 text-red-700"
                         : result.status === "CLOSED"
-                        ? "bg-green-50 text-green-700"
-                        : "bg-[#8B6A3E]/10 text-[#8B6A3E]"
-                    }`}
+                          ? "bg-green-50 text-green-700"
+                          : "bg-[#8B6A3E]/10 text-[#8B6A3E]"
+                      }`}
                   >
                     {STATUS_LABELS[result.status] ?? result.status}
                   </span>
@@ -185,9 +184,8 @@ function TrackRequest() {
                         <div key={status} className="flex gap-3">
                           <div className="flex flex-col items-center">
                             <span
-                              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
-                                isDone ? "bg-[#8B6A3E] text-white" : "bg-[#F0E5D3] text-[#A8937E]"
-                              }`}
+                              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${isDone ? "bg-[#8B6A3E] text-white" : "bg-[#F0E5D3] text-[#A8937E]"
+                                }`}
                             >
                               {isDone ? <FaCheckCircle className="h-3 w-3" /> : <FaClock className="h-3 w-3" />}
                             </span>
@@ -233,7 +231,7 @@ function TrackRequest() {
               <p className="text-[11px] leading-[1.4] text-[#5F4A3D]">
                 Can't find your Case ID or have questions? Call our 24/7 helpline at{" "}
                 <a href="tel:+919654900525" className="font-semibold hover:underline">
-                  +91 96549 00525
+                  9220147229
                 </a>
                 .
               </p>

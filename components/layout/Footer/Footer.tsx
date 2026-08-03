@@ -64,7 +64,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
     ? "Complete funeral, cremation, pandit, ambulance, hearse van, prayer hall and family support services with dignity, tradition and care."
     : "Providing respectful guidance with dignity, tradition and care for every family.";
   const contactEmail = isSeva ? "info@mokshasewa.org" : "info@mokshasewa.com";
-  const contactNumber = isSeva ? "+91 96549 00525" : "+91 9568259784";
+  const contactNumber = isSeva ? "9220147229" : "+91 9220147229";
 
   const services = isSeva
     ? [
@@ -227,8 +227,8 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 <button
                   type="submit"
                   className={`group inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold transition duration-300 ${subscribed
-                      ? "bg-emerald-600 text-white"
-                      : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
+                    ? "bg-emerald-600 text-white"
+                    : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
                     }`}
                 >
                   {subscribed ? "Submitted" : isSeva ? "Send" : "Join"}
@@ -341,7 +341,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
               © {new Date().getFullYear()} {brandName} • All rights reserved
             </p>
             <p className="font-serif text-[13px] tracking-[0.25em] text-[#D9A84F]/40">
-              ॐ शांति शांति शांति ॐ 
+              ॐ शांति शांति शांति ॐ
             </p>
             <div className="flex items-center gap-4">
               <Link href="/privacy-policy" className="transition hover:text-[#E4B75F]">

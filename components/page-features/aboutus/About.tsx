@@ -197,7 +197,7 @@ export default function About() {
 
           {/* floating helpline card — bottom right */}
           <a
-            href="tel:+919568259784"
+            href="tel:+919220147229"
             className="group absolute bottom-24 right-16 hidden items-center gap-3 rounded-2xl border border-white/40 bg-[#2C1810]/70 px-4 py-3 text-white shadow-[0_16px_40px_rgba(44,24,16,0.35)] backdrop-blur-md transition hover:bg-[#2C1810]/85 lg:flex lg:right-24 xl:right-32"
           >
             <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#C9A574] text-[#2C1810]">
@@ -208,7 +208,7 @@ export default function About() {
               <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 24/7 Helpline
               </span>
-              <span className="block font-serif text-sm">+91 9568259784</span>
+              <span className="block font-serif text-sm">+91 9220147229</span>
             </span>
           </a>
         </section>
@@ -781,14 +781,14 @@ export default function About() {
 
             <div className="mt-1 flex justify-center md:mt-0 md:shrink-0">
               <a
-                href="tel:+919568259784"
+                href="tel:+919220147229"
                 className="group relative inline-flex items-center gap-2 rounded-lg bg-[#D9B681] px-6 py-2.5 text-sm font-semibold text-[#2C1810] shadow-lg transition hover:bg-[#E8D2AC]"
               >
                 <span className="relative flex h-4 w-4 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2C1810]/25" />
                   <PhoneCall className="relative h-4 w-4" />
                 </span>
-                +91 9568259784
+                +91 9220147229
               </a>
             </div>
           </div>
