@@ -98,9 +98,9 @@ const aboutImages = {
   storyRitualItems: "/assets/about-reference/story-ritual-items.png",
   storyTemple: "/assets/about-reference/story-ghat-temple.png",
   storyEvening: "/assets/about-reference/story-evening-ghat.png",
-  promiseMain: "/assets/dharma.jpg",
-  promiseSupport: "/assets/yatra.webp",
-  promiseCare: "/assets/promise.webp",
+  promiseMain: "/assets/promise-1.png",
+  promiseSupport: "/assets/promise-2.png",
+  promiseCare: "/assets/promise-3.png",
   indiaMap: "/assets/about-reference/india-map.png",
 };
 

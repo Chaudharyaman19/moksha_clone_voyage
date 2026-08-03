@@ -2,9 +2,9 @@ import Image from "next/image";
 import { Quote, HandHeart } from "lucide-react";
 
 const aboutImages = {
-  storyMain: "/assets/about-reference/story-main.png",
-  storyRitualItems: "/assets/about-reference/story-ritual-items.png",
-  storyTemple: "/assets/about-reference/story-ghat-temple.png",
+  storyMain: "/assets/about-story-1.png",
+  storyRitualItems: "/assets/about-story-2.png",
+  storyTemple: "/assets/about-story-3.png",
 };
 
 export default function AboutMokshaSewa() {
@@ -60,9 +60,9 @@ export default function AboutMokshaSewa() {
         </div>
 
         <div className="relative">
-          <div className="grid h-[400px] grid-cols-[1.2fr_1fr] grid-rows-2 gap-4 sm:h-[500px]">
+          <div className="grid h-[400px] grid-cols-[1.2fr_1fr] grid-rows-2 gap-2 sm:h-[500px]">
             {/* Main Image (Left) */}
-            <div className="group relative row-span-2 h-full w-full overflow-hidden rounded-[2rem] rounded-tr-md shadow-lg ring-1 ring-[#E6D6BF]">
+            <div className="group relative row-span-2 h-full w-full overflow-hidden rounded-none shadow-lg ring-1 ring-[#E6D6BF]">
               <Image
                 src={aboutImages.storyMain}
                 alt="Pandits performing traditional rituals"
@@ -79,7 +79,7 @@ export default function AboutMokshaSewa() {
             </div>
 
             {/* Top Right Image */}
-            <div className="group relative h-full w-full overflow-hidden rounded-2xl rounded-bl-md shadow-md ring-1 ring-[#E6D6BF]">
+            <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
               <Image
                 src={aboutImages.storyRitualItems}
                 alt="Traditional ritual samagri"
@@ -95,7 +95,7 @@ export default function AboutMokshaSewa() {
             </div>
 
             {/* Bottom Right Image */}
-            <div className="group relative h-full w-full overflow-hidden rounded-2xl rounded-tl-md shadow-md ring-1 ring-[#E6D6BF]">
+            <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
               <Image
                 src={aboutImages.storyTemple}
                 alt="Sacred temple ghat"
