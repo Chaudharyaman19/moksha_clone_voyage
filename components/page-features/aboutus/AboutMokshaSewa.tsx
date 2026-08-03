@@ -1,31 +1,15 @@
 import Image from "next/image";
 import { Quote, HandHeart } from "lucide-react";
 
-/*
-  TEMPLE (SHIKHARA) SHAPES — pointed mandir peaks, not domes.
-  clip-path polygons: peak at top-center, angled shoulders, straight sides.
-*/
-const templeTall = "polygon(50% 0%, 78% 5%, 100% 13%, 100% 100%, 0% 100%, 0% 13%, 22% 5%)";
-const templeMed = "polygon(50% 0%, 78% 6%, 100% 16%, 100% 100%, 0% 100%, 0% 16%, 22% 6%)";
-
-function Kalash({ size = "md" }) {
-  const s = size === "sm" ? "h-1.5 w-1.5" : "h-2 w-2";
-  return (
-    <span className="pointer-events-none absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
-      <span className={`block ${s} rounded-full border border-[#8B6A3E] bg-[#D9B681]`} />
-    </span>
-  );
-}
-
 const aboutImages = {
-  storyMain: "/assets/about-reference/story-main.png",
-  storyRitualItems: "/assets/about-reference/story-ritual-items.png",
-  storyTemple: "/assets/about-reference/story-ghat-temple.png",
+  storyMain: "/assets/about-story-1.png",
+  storyRitualItems: "/assets/about-story-2.png",
+  storyTemple: "/assets/about-story-3.png",
 };
 
 export default function AboutMokshaSewa() {
   return (
-    <section className="bg-[#FBF8F3] py-6 lg:py-10">
+    <section className="bg-[#FBF8F3] py-4 lg:py-6">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
         <div className="relative">
           <Quote className="pointer-events-none absolute -left-4 -top-6 h-20 w-20 text-[#C9A574]/15" />
@@ -76,41 +60,32 @@ export default function AboutMokshaSewa() {
         </div>
 
         <div className="relative">
-          <div className="grid h-[400px] grid-cols-[1.55fr_1.1fr_0.85fr] grid-rows-2 gap-2 sm:h-[480px]">
-            {/* main tile — pointed mandir shikhara top */}
-            <div className="group relative row-span-2 [filter:drop-shadow(0_16px_30px_rgba(70,47,31,0.22))]">
-              <Kalash />
-              <div
-                className="absolute inset-0 rounded-b-2xl bg-white"
-                style={{ clipPath: templeTall }}
+          <div className="grid h-[400px] grid-cols-[1.2fr_1fr] grid-rows-2 gap-2 sm:h-[500px]">
+            {/* Main Image (Left) */}
+            <div className="group relative row-span-2 h-full w-full overflow-hidden rounded-none shadow-lg ring-1 ring-[#E6D6BF]">
+              <Image
+                src={aboutImages.storyMain}
+                alt="Pandits performing traditional rituals"
+                fill
+                quality={100}
+                sizes="(max-width: 1024px) 45vw, 30vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
+                }}
               />
-              <div
-                className="absolute inset-[3px] overflow-hidden rounded-b-2xl"
-                style={{ clipPath: templeTall }}
-              >
-                <Image
-                  src={aboutImages.storyMain}
-                  alt="Pandits performing traditional rituals"
-                  fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 45vw, 28vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/55 via-transparent to-transparent" />
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/40 via-transparent to-transparent" />
             </div>
 
-            <div className="group relative overflow-hidden rounded-xl border-[3px] border-white shadow-md ring-1 ring-[#E4D5BE]">
+            {/* Top Right Image */}
+            <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
               <Image
                 src={aboutImages.storyRitualItems}
                 alt="Traditional ritual samagri"
                 fill
                 quality={100}
-                sizes="(max-width: 1024px) 30vw, 18vw"
+                sizes="(max-width: 1024px) 30vw, 20vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -119,30 +94,20 @@ export default function AboutMokshaSewa() {
               />
             </div>
 
-            {/* tall right tile — pointed mandir top */}
-            <div className="group relative row-span-2 [filter:drop-shadow(0_10px_22px_rgba(70,47,31,0.18))]">
-              <Kalash size="sm" />
-              <div
-                className="absolute inset-0 rounded-b-xl bg-white"
-                style={{ clipPath: templeMed }}
+            {/* Bottom Right Image */}
+            <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
+              <Image
+                src={aboutImages.storyTemple}
+                alt="Sacred temple ghat"
+                fill
+                quality={100}
+                sizes="(max-width: 1024px) 30vw, 20vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
+                }}
               />
-              <div
-                className="absolute inset-[3px] overflow-hidden rounded-b-xl"
-                style={{ clipPath: templeMed }}
-              >
-                <Image
-                  src={aboutImages.storyTemple}
-                  alt="Sacred temple ghat illuminated by golden hour light"
-                  fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 24vw, 14vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
-                  }}
-                />
-              </div>
             </div>
           </div>
         </div>

@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function AboutNamoGangeTrust() {
   return (
-    <section className="bg-white py-4 md:py-6">
+    <section className="bg-white py-3 md:py-4">
       <div className="mx-auto w-full max-w-7xl px-0">
         
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10 items-center">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:gap-10 items-center">
           
           {/* Left: Text Content */}
           <div className="order-2 lg:order-1">
@@ -55,20 +55,23 @@ export default function AboutNamoGangeTrust() {
             </div>
           </div>
 
-          {/* Right: Namo Gange Logo / Visuals */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="relative flex items-center justify-center p-4 lg:pr-8 w-full max-w-[450px]">
-              <Image
-                src="/assets/namogange-logo.webp"
-                alt="Namo Gange Trust Logo"
-                width={450}
-                height={180}
-                className="object-contain drop-shadow-lg transition-transform hover:scale-105 duration-500 w-full h-auto"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='180'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='16px' fill='%238B6A3E'%3ENamo Gange Logo%3C/text%3E%3C/svg%3E";
-                }}
-              />
+          {/* Right: Video (previously Logo) */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end w-full">
+            <div className="relative group w-full max-w-[650px] lg:max-w-none">
+              {/* Offset decorative box */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#8B6A3E]/20 to-transparent rounded-3xl opacity-50 transition-all duration-700 group-hover:scale-[1.02]" />
+              <div className="absolute -inset-2 rounded-2xl border border-[#8B6A3E]/20 translate-x-4 translate-y-4" />
+              
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(44,24,16,0.15)] border border-[#D9B681]/40 bg-[#1a0f09] z-10">
+                <video
+                  src="/assets/videos/namoGange.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
           
