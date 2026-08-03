@@ -1,6 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Marquee from "react-fast-marquee";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, X } from "lucide-react";
 
 const galleryImages = [
   "/assets/im1.jpeg",
@@ -15,35 +19,50 @@ const galleryImages = [
 ];
 
 export default function GlimpseOfJourney() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
-    <section className="relative w-full overflow-hidden border-t border-[#E9DDCF] bg-[#FFFCF8] py-2 md:py-3">
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#fbf5ea] to-[#FDFBF7] py-6 md:py-8 shadow-[inset_0_1px_0_rgba(139,106,62,0.1)]">
+      {/* Subtle Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8B6A3E]/[0.04] rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-0">
         
-        <header className="mb-4 text-center">
+        <header className="mb-4 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
-              MOMENTS OF SERVICE
+            <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+              Moments of Service
             </span>
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
-          <h2 className="font-serif text-[20px] font-normal leading-none text-[#2F1D14] sm:text-[28px] md:text-[24px] lg:whitespace-nowrap lg:text-[30px] xl:text-[32px]">
+          <h2 
+            className="text-[26px] font-normal leading-tight text-[#2C1810] sm:text-[32px] md:text-[36px]"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
             A Glimpse of Our Journey
           </h2>
+          
+          {/* Diya Flourish */}
+          <div className="mt-3 flex items-center gap-2">
+            <span className="h-[2px] w-12 bg-[#8B6A3E]" />
+            <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
+            <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
+          </div>
         </header>
 
         {/* Marquee Wrapper */}
-        <div className="relative mt-2 flex w-full overflow-hidden pb-4 pt-2">
-          {/* Gradient Masks */}
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-2 bg-gradient-to-r from-[#FFFCF8] to-transparent sm:w-3 lg:w-4" />
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-2 bg-gradient-to-l from-[#FFFCF8] to-transparent sm:w-3 lg:w-4" />
+        <div className="relative mt-3 flex w-full overflow-hidden pb-4 pt-1">
+          {/* Gradient Masks for smooth fading edges */}
+          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-12 bg-gradient-to-r from-[#fbf5ea] to-transparent sm:w-20 lg:w-32" />
+          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-12 bg-gradient-to-l from-[#fbf5ea] to-transparent sm:w-20 lg:w-32" />
 
-          <div className="flex w-max animate-scroll gap-3 sm:gap-4 md:gap-5 hover:[animation-play-state:paused]">
-            {/* Double the array for seamless scrolling */}
-            {[...galleryImages, ...galleryImages].map((imgSrc, index) => (
+          <Marquee speed={45} pauseOnHover={true} gradient={false} className="overflow-y-hidden">
+            {galleryImages.map((imgSrc, index) => (
               <article
                 key={`gallery-${index}`}
-                className="group relative h-[140px] w-[200px] shrink-0 overflow-hidden rounded-[12px] border border-[#E9DED2] bg-white shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:h-[160px] sm:w-[240px] md:h-[180px] md:w-[280px]"
+                onClick={() => setSelectedImage(imgSrc)}
+                className="group relative h-[150px] w-[220px] shrink-0 cursor-pointer overflow-hidden rounded-[16px] border border-[#E9DED2] bg-[#2C1810] shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(139,106,62,0.2)] sm:h-[180px] sm:w-[260px] md:h-[220px] md:w-[320px] mx-[2px] sm:mx-1 md:mx-1"
               >
                 <Image
                   src={imgSrc}
@@ -51,11 +70,19 @@ export default function GlimpseOfJourney() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                   quality={90}
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                 />
+                
+                {/* Stylish Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white shadow-lg backdrop-blur-sm border border-white/30">
+                    <Search className="h-6 w-6" strokeWidth={2} />
+                  </div>
+                </div>
               </article>
             ))}
-          </div>
+          </Marquee>
         </div>
 
         <div className="mt-3 flex justify-center md:mt-4">
@@ -68,6 +95,41 @@ export default function GlimpseOfJourney() {
         </div>
 
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button
+              className="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white/70 transition-colors hover:bg-white/20 hover:text-white focus:outline-none"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X className="h-6 w-6" strokeWidth={2} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-xl shadow-2xl"
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
+              <img
+                src={selectedImage}
+                alt="Expanded view"
+                className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
