@@ -13,6 +13,7 @@ import OurInitiatives from "./OurInitiatives";
 import {
   Ambulance,
   ArrowRight,
+  BadgeCheck,
   CheckCircle2,
   ClipboardList,
   Clock3,
