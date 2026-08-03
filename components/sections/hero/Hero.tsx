@@ -142,9 +142,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   }, [variant]);
 
   return (
-    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[650px] xl:h-[810px]">
+    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[calc(100svh-80px)] lg:min-h-[620px] lg:max-h-[810px]">
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[68%] lg:w-[70%] xl:w-[72%]">
+      <div className="absolute inset-0 w-full">
         {images.map((image, index) => (
           <div
             key={image}
@@ -159,25 +159,26 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               priority={index === 0}
               quality={100}
               unoptimized
-              sizes="(max-width: 767px) 100vw, 68vw"
+              sizes="100vw"
               className={`object-cover object-[80%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}
             />
           </div>
         ))}
 
-        <div className="absolute inset-0 bg-[#774516]/[0.035]" />
       </div>
 
-      {/* Soft blend between cream content and image. */}
+      {/* Smooth content-to-image blend: no visible vertical division */}
       <div
-        className="absolute inset-0 hidden md:block"
+        className="pointer-events-none absolute inset-0 hidden md:block"
         style={{
           background:
-            "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 32%, rgba(251,245,234,0.98) 39%, rgba(251,245,234,0.83) 47%, rgba(251,245,234,0.34) 56%, rgba(251,245,234,0) 66%)",
+            "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 24%, rgba(251,245,234,0.96) 31%, rgba(251,245,234,0.78) 38%, rgba(251,245,234,0.42) 45%, rgba(251,245,234,0.12) 51%, rgba(251,245,234,0) 57%)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/80 to-[#fbf5ea]/55 md:hidden" />
+
+      {/* Mobile content readability without covering the complete image */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/78 via-[#fbf5ea]/38 to-transparent md:hidden" />
 
       {/* Devanagari watermark — same signature as the rest of the site */}
       <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-serif text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
@@ -330,27 +331,25 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
             return (
               <div
                 key={stat.label}
-                className={`stat-item group/stat relative flex min-h-[46px] items-center justify-center gap-2 overflow-hidden px-2 py-1.5 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/10" : ""
+                className={`group/stat relative flex min-h-[46px] items-center justify-center gap-2 overflow-hidden px-2 py-1.5 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/10" : ""
                   } ${index > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}
               >
-                {/* Each stat lights up one-by-one */}
-                <span className="stat-item-light pointer-events-none absolute inset-0" />
-                <span className="stat-star stat-star-one pointer-events-none absolute right-[17%] top-[9px] text-[11px] leading-none text-[#F4C96B]">
+                <span className="pointer-events-none absolute right-[17%] top-[9px] text-[11px] leading-none text-[#F4C96B] opacity-90 drop-shadow-[0_0_5px_rgba(244,201,107,0.55)]">
                   ✦
                 </span>
-                <span className="stat-star stat-star-two pointer-events-none absolute right-[11%] top-[18px] text-[7px] leading-none text-[#D9B681]">
+                <span className="pointer-events-none absolute right-[11%] top-[18px] text-[7px] leading-none text-[#D9B681] opacity-75 drop-shadow-[0_0_4px_rgba(217,182,129,0.45)]">
                   ✦
                 </span>
 
                 <div
-                  className="stat-icon relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C9A574]/50 bg-[#C9A574]/10 text-[#D9B681] transition-all duration-300 group-hover/stat:bg-[#C9A574] group-hover/stat:text-[#2C1810] lg:h-8 lg:w-8"
+                  className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E5C784]/75 bg-[#D9B681]/20 text-[#F0D38F] shadow-[0_0_12px_rgba(217,182,129,0.22)] lg:h-8 lg:w-8"
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.55} />
                 </div>
 
                 <div className="relative z-10 min-w-0 text-left">
                   <div
-                    className="stat-value whitespace-nowrap text-[16px] font-normal leading-none text-[#E8D2AC] lg:text-[17px]"
+                    className="whitespace-nowrap text-[16px] font-normal leading-none text-[#F0D8A7] lg:text-[17px]"
                     style={{
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       fontWeight: 400,
@@ -359,7 +358,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                     {stat.value}
                   </div>
                   <div
-                    className="stat-label mt-0.5 whitespace-nowrap text-[9px] font-normal leading-3 text-white/70 sm:text-[9px] lg:text-[10px]"
+                    className="mt-0.5 whitespace-nowrap text-[9px] font-normal leading-3 text-white/80 sm:text-[9px] lg:text-[10px]"
                   >
                     {stat.label}
                   </div>
@@ -369,161 +368,6 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
           })}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes statCardBlink {
-          0%,
-          20% {
-            background-color: rgba(217, 182, 129, 0.15);
-            box-shadow:
-              inset 0 0 24px rgba(255, 224, 158, 0.16),
-              0 0 20px rgba(217, 182, 129, 0.12);
-          }
-          26%,
-          100% {
-            background-color: transparent;
-            box-shadow: none;
-          }
-        }
-
-        @keyframes statLightBlink {
-          0%,
-          20% {
-            opacity: 1;
-            transform: scaleX(1);
-          }
-          26%,
-          100% {
-            opacity: 0;
-            transform: scaleX(0.82);
-          }
-        }
-
-        @keyframes statIconBlink {
-          0%,
-          20% {
-            color: #2c1810;
-            background-color: #e8c98e;
-            border-color: #ffe6ad;
-            box-shadow:
-              0 0 0 4px rgba(217, 182, 129, 0.12),
-              0 0 18px rgba(255, 226, 166, 0.55);
-            transform: scale(1.08);
-          }
-          26%,
-          100% {
-            color: #d9b681;
-            background-color: rgba(201, 165, 116, 0.1);
-            border-color: rgba(201, 165, 116, 0.5);
-            box-shadow: none;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes statValueBlink {
-          0%,
-          20% {
-            color: #fff0c7;
-            text-shadow:
-              0 0 8px rgba(255, 226, 166, 0.75),
-              0 0 18px rgba(217, 182, 129, 0.45);
-          }
-          26%,
-          100% {
-            color: #e8d2ac;
-            text-shadow: none;
-          }
-        }
-
-        @keyframes statLabelBlink {
-          0%,
-          20% {
-            color: rgba(255, 255, 255, 0.98);
-            text-shadow: 0 0 8px rgba(255, 229, 174, 0.38);
-          }
-          26%,
-          100% {
-            color: rgba(255, 255, 255, 0.7);
-            text-shadow: none;
-          }
-        }
-
-        @keyframes statStarsGlow {
-          0%,
-          100% {
-            opacity: 0.45;
-            transform: scale(0.85);
-            text-shadow: 0 0 3px rgba(244, 201, 107, 0.35);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.2);
-            text-shadow:
-              0 0 5px rgba(255, 224, 150, 0.95),
-              0 0 12px rgba(217, 182, 129, 0.75);
-          }
-        }
-
-        .stat-item,
-        .stat-item-light,
-        .stat-icon,
-        .stat-value,
-        .stat-label {
-          animation-duration: 3.2s;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;
-        }
-
-        .stat-item {
-          animation-name: statCardBlink;
-        }
-
-        .stat-item-light {
-          opacity: 0;
-          background:
-            linear-gradient(
-              110deg,
-              transparent 8%,
-              rgba(255, 236, 195, 0.05) 30%,
-              rgba(255, 224, 158, 0.24) 50%,
-              rgba(255, 236, 195, 0.05) 70%,
-              transparent 92%
-            );
-          animation-name: statLightBlink;
-        }
-
-        .stat-icon {
-          animation-name: statIconBlink;
-        }
-
-        .stat-value {
-          animation-name: statValueBlink;
-        }
-
-        .stat-label {
-          animation-name: statLabelBlink;
-        }
-
-        .stat-star {
-          animation: statStarsGlow 1.8s ease-in-out infinite;
-          transform-origin: center;
-        }
-
-        .stat-star-two {
-          animation-delay: 0.35s;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .stat-item,
-          .stat-item-light,
-          .stat-icon,
-          .stat-value,
-          .stat-label,
-          .stat-star {
-            animation: none;
-          }
-        }
-      `}</style>
     </section>
   );
 }
