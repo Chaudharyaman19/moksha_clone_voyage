@@ -142,14 +142,17 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   }, [variant]);
 
   return (
-    <section className="group relative h-[790px] w-full overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[calc(100svh-80px)] lg:min-h-[620px] lg:max-h-[810px]">
+    <section
+      className="group relative h-[790px] max-w-none overflow-hidden bg-[#fbf5ea] md:h-[700px] lg:h-[calc(100svh-80px)] lg:min-h-[620px] lg:max-h-[810px]"
+      style={{ width: "100vw", marginLeft: "calc(50% - 50vw)" }}
+    >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
-      <div className="absolute inset-0 w-full">
+      <div className="absolute inset-y-0 left-0 right-[-80px] overflow-hidden">
         {images.map((image, index) => (
           <div
             key={image}
             aria-hidden={index !== currentIndex}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-out ${index === currentIndex ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 min-w-full transition-opacity duration-1000 ease-out ${index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
           >
             <Image
@@ -160,7 +163,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               quality={100}
               unoptimized
               sizes="100vw"
-              className={`object-cover object-[80%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
+              className={`object-cover object-[76%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}
             />
           </div>
@@ -322,34 +325,34 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       </div>
 
       {/* Full-width, thin stats band — dark with gold, matching the site's stat bars */}
-      <div className="stats-band absolute bottom-0 left-0 z-30 w-full overflow-hidden bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810] shadow-[0_-7px_24px_rgba(44,24,16,0.25)]">
-        <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
+      <div className="stats-band absolute bottom-0 left-0 z-30 w-full overflow-hidden bg-gradient-to-r from-[#6F4F2F] via-[#8B6A3E] to-[#6F4F2F] shadow-[0_-5px_18px_rgba(111,79,47,0.18)]">
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F1D6A2] to-transparent" />
 
-        <div className="relative z-20 mx-auto grid max-w-[1600px] grid-cols-2 md:h-[50px] md:grid-cols-4">
+        <div className="relative z-20 mx-auto grid max-w-[1600px] grid-cols-2 md:h-[44px] md:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className={`group/stat relative flex min-h-[46px] items-center justify-center gap-2 overflow-hidden px-2 py-1.5 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/10" : ""
+                className={`group/stat relative flex min-h-[42px] items-center justify-center gap-2 overflow-hidden px-2 py-1 md:min-h-0 md:py-0 lg:gap-2.5 ${index > 0 ? "md:border-l md:border-white/15" : ""
                   } ${index > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}
               >
-                <span className="pointer-events-none absolute right-[17%] top-[9px] text-[11px] leading-none text-[#F4C96B] opacity-90 drop-shadow-[0_0_5px_rgba(244,201,107,0.55)]">
+                <span className="pointer-events-none absolute right-[17%] top-[7px] text-[10px] leading-none text-[#FFD98A] opacity-95 drop-shadow-[0_0_5px_rgba(255,217,138,0.6)]">
                   ✦
                 </span>
-                <span className="pointer-events-none absolute right-[11%] top-[18px] text-[7px] leading-none text-[#D9B681] opacity-75 drop-shadow-[0_0_4px_rgba(217,182,129,0.45)]">
+                <span className="pointer-events-none absolute right-[11%] top-[15px] text-[7px] leading-none text-[#F1D6A2] opacity-85 drop-shadow-[0_0_4px_rgba(241,214,162,0.5)]">
                   ✦
                 </span>
 
                 <div
-                  className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E5C784]/75 bg-[#D9B681]/20 text-[#F0D38F] shadow-[0_0_12px_rgba(217,182,129,0.22)] lg:h-8 lg:w-8"
+                  className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#F1D6A2]/80 bg-[#F1D6A2]/18 text-[#FFE2A8] shadow-[0_0_10px_rgba(241,214,162,0.22)] lg:h-7 lg:w-7"
                 >
-                  <Icon className="h-4 w-4" strokeWidth={1.55} />
+                  <Icon className="h-3.5 w-3.5" strokeWidth={1.7} />
                 </div>
 
                 <div className="relative z-10 min-w-0 text-left">
                   <div
-                    className="whitespace-nowrap text-[16px] font-normal leading-none text-[#F0D8A7] lg:text-[17px]"
+                    className="whitespace-nowrap text-[15px] font-semibold leading-none text-[#FFF0C9] drop-shadow-[0_1px_2px_rgba(44,24,16,0.24)] lg:text-[16px]"
                     style={{
                       fontFamily: "Georgia, 'Times New Roman', serif",
                       fontWeight: 400,
@@ -358,7 +361,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                     {stat.value}
                   </div>
                   <div
-                    className="mt-0.5 whitespace-nowrap text-[9px] font-normal leading-3 text-white/80 sm:text-[9px] lg:text-[10px]"
+                    className="mt-0.5 whitespace-nowrap text-[9px] font-semibold leading-3 text-white/90 sm:text-[9px] lg:text-[9px]"
                   >
                     {stat.label}
                   </div>
