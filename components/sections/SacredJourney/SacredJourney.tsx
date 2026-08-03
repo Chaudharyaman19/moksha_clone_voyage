@@ -152,7 +152,7 @@ function LotusMark({
       />
 
       <path
-        d="M52 12c-7 2-12 6-15 12-2 5-1 10 1 10s6-2 10-7c4-5 6-10 6-15Z"
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
         stroke={GOLD}
         strokeWidth="1.7"
       />
@@ -263,7 +263,7 @@ export default function SacredJourney({
             return (
               <article
                 key={card.title}
-                className="group relative mx-auto h-[330px] w-full max-w-[280px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:max-w-none lg:h-[320px]"
+                className="group relative mx-auto h-[308px] w-full max-w-[280px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:max-w-none lg:h-[300px]"
               >
                 {/* Image */}
                 <div className="absolute inset-x-0 top-0 h-[165px] overflow-hidden rounded-t-[13px] lg:h-[155px]">
@@ -301,11 +301,11 @@ export default function SacredJourney({
                   </p>
                 </div>
 
-                {/* Button moved upward */}
+                {/* Compact button */}
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className="absolute bottom-[18px] left-4 right-4 z-20 flex h-[36px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
+                  className="absolute bottom-[9px] left-4 right-4 z-20 flex h-[34px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
                 >
                   <span>{card.button}</span>
 

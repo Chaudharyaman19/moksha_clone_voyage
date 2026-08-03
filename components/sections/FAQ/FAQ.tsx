@@ -159,7 +159,7 @@ export default function FAQSection({
         {/* Support banner */}
         <div className="relative mt-3 h-[210px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:h-[225px] lg:h-[240px]">
           <Image
-            src="/assets/faq/faq-support-banner.webp"
+            src="/assets/faq/faq-support-banner-v3.png"
             alt="Moksha Sewa compassionate family support"
             fill
             priority
@@ -168,10 +168,10 @@ export default function FAQSection({
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-[#9C3704]/5 to-black/5" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.18)_0%,rgba(103,45,12,0.68)_36%,rgba(103,45,12,0.72)_64%,rgba(0,0,0,0.18)_100%)]" />
 
-          <div className="absolute inset-0 z-10 flex items-center px-5 sm:px-8 lg:px-10">
-            <div className="ml-auto w-full text-white sm:w-[68%] lg:w-[66%]">
+          <div className="absolute inset-0 z-10 flex items-center justify-center px-5 sm:px-8 lg:px-10">
+            <div className="w-full text-center text-white sm:w-[62%] lg:w-[48%]">
               <h3 className="font-serif text-[25px] font-normal leading-[1.25] sm:text-[31px] lg:text-[25px]">
                 In Their Final Journey,
                 <span className="block">
@@ -183,7 +183,7 @@ export default function FAQSection({
                 Your support can bring peace to grieving families.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
+              <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
                 <a
                   href="tel:+919810247319"
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
