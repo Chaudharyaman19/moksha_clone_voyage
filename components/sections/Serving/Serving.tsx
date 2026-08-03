@@ -18,46 +18,46 @@ const activities: ActivityItem[] = [
     title: "Community Outreach",
     description:
       "We conduct awareness programs and reach out to communities in need.",
-    image: "/assets/activities/community-outreach.webp",
+    image: "/assets/serving/community-outreach.png",
   },
   {
     title: "On-Ground Support",
     description:
       "Our teams work tirelessly on ground to ensure no family is left alone.",
-    image: "/assets/activities/on-ground-support.webp",
+    image: "/assets/serving/on-ground-support.png",
   },
   {
     title: "Food & Essentials",
     description:
       "We distribute food, clothes and essentials to families during difficult times.",
-    image: "/assets/activities/food-essentials.webp",
+    image: "/assets/serving/food-essentials.png",
   },
   {
     title: "Support at Hospitals",
     description:
       "We coordinate with hospitals to provide immediate end-of-life support.",
-    image: "/assets/activities/hospital-support.webp",
+    image: "/assets/serving/hospital-support.png",
   },
   {
     title: "Rural & Remote Reach",
     description:
       "Our services reach villages and remote areas where help is needed most.",
-    image: "/assets/activities/rural-remote-reach.webp",
+    image: "/assets/serving/rural-remote-reach.png",
   },
   {
     title: "Counseling Support",
     description: "We provide emotional and grief counseling to help families cope with loss.",
-    image: "/assets/activities/community-outreach.webp",
+    image: "/assets/serving/counseling-support.png",
   },
   {
     title: "Emergency Transport",
     description: "24/7 dedicated transport services for transferring the deceased with respect.",
-    image: "/assets/activities/on-ground-support.webp",
+    image: "/assets/serving/emergency-transport.png",
   },
   {
     title: "Document Assistance",
     description: "Help with acquiring necessary certificates and completing legal formalities.",
-    image: "/assets/activities/hospital-support.webp",
+    image: "/assets/serving/document-assistance.png",
   },
 ];
 
