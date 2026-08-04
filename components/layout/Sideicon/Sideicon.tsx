@@ -12,6 +12,7 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { PiFlowerLotus } from "react-icons/pi";
 import { MdEmail } from "react-icons/md";
 
@@ -27,11 +28,11 @@ const SocialSidebar = () => {
       hoverColor: "#20BA57",
     },
     {
-      icon: <FaTelegram size={20} />,
-      url: "https://t.me/9310219283",
-      color: "#0088cc",
-      label: "Telegram",
-      hoverColor: "#0077B5",
+      icon: <FaXTwitter size={20} />,
+      url: "https://twitter.com/",
+      color: "#000000",
+      label: "X",
+      hoverColor: "#333333",
     },
     {
       icon: <FaFacebook size={20} />,
@@ -158,18 +159,19 @@ const SocialSidebar = () => {
                 aria-label={social.label}
                 className="group relative flex items-center justify-end"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm border border-[#E6D6BF] shadow-[0_4px_16px_rgba(44,24,16,0.08)] transition-all duration-300 ease-out hover:w-[130px] hover:justify-between hover:px-3 hover:bg-white hover:shadow-[0_8px_24px_rgba(44,24,16,0.12)]">
+                <div 
+                  className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[115px] hover:justify-between hover:px-3 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+                  style={{ backgroundColor: social.color }}
+                >
                   <span 
-                    className="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100"
-                    style={{ color: social.color }}
+                    className="max-w-0 overflow-hidden whitespace-nowrap text-[10px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
                   >
                     {social.label}
                   </span>
                   <span 
-                    className="shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ color: social.color }}
+                    className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white"
                   >
-                    {social.icon}
+                    <social.icon.type size={18} />
                   </span>
                 </div>
               </a>
@@ -179,54 +181,46 @@ const SocialSidebar = () => {
 
         {/* Bottom Left - WhatsApp */}
         <div className="absolute left-4 bottom-4 pointer-events-auto">
-          <div className="group relative">
-            <a
-              href={socialLinks[0].url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              onMouseEnter={() => setShowTooltip("whatsapp")}
-              onMouseLeave={() => setShowTooltip(null)}
+          <a
+            href={socialLinks[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="group relative flex items-center justify-start"
+          >
+            <div
+              className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+              style={{ backgroundColor: socialLinks[0].color }}
             >
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-xl border border-gray-200 group-hover:shadow-2xl"
-                style={{ color: socialLinks[0].color }}
-              >
-                <FaWhatsapp size={24} />
-              </div>
-            </a>
-            {/* Tooltip */}
-            {showTooltip === "whatsapp" && (
-              <div className="absolute left-0 top-full mt-2 px-3 py-1.5 bg-[#25D366] text-white text-xs rounded whitespace-nowrap shadow-lg">
-                Chat on WhatsApp
-              </div>
-            )}
-          </div>
+              <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
+                <FaWhatsapp size={22} />
+              </span>
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[12px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
+                WhatsApp
+              </span>
+            </div>
+          </a>
         </div>
 
         {/* Bottom Right - Phone */}
         <div className="absolute right-4 bottom-4 pointer-events-auto">
-          <div className="group relative">
-            <a
-              href={phoneLink.url}
-              aria-label={phoneLink.label}
-              onMouseEnter={() => setShowTooltip("phone")}
-              onMouseLeave={() => setShowTooltip(null)}
+          <a
+            href={phoneLink.url}
+            aria-label={phoneLink.label}
+            className="group relative flex items-center justify-end"
+          >
+            <div
+              className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+              style={{ backgroundColor: phoneLink.color }}
             >
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-xl border border-gray-200 group-hover:shadow-2xl"
-                style={{ color: phoneLink.color }}
-              >
-                <FaPhone size={24} />
-              </div>
-            </a>
-            {/* Tooltip */}
-            {showTooltip === "phone" && (
-              <div className="absolute right-0 top-full mt-2 px-3 py-1.5 bg-[#4CAF50] text-white text-xs rounded whitespace-nowrap shadow-lg">
-                Call us 24/7
-              </div>
-            )}
-          </div>
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white">
+                {phoneLink.label}
+              </span>
+              <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
+                <FaPhone size={19} />
+              </span>
+            </div>
+          </a>
         </div>
 
         {/* Bottom Center - Sacred Symbol */}
