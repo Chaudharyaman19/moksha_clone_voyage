@@ -48,28 +48,28 @@ const CAUSES: Cause[] = [
     title: "Where Needed Most",
     description: "General Sewa Fund — strengthens every arm of our work for grieving families.",
     icon: PiFlowerLotus,
-    image: "/assets/activities/community-outreach.webp",
+    image: "/assets/namo-gange/vol2.png",
   },
   {
     id: "cremation",
     title: "Sponsor a Dignified Cremation",
     description: "Covers rites, samagri and pandit fees for families who cannot afford them.",
     icon: FaFire,
-    image: "/assets/activities/on-ground-support.webp",
+    image: "/assets/namo-gange/vol3.png",
   },
   {
     id: "ambulance",
     title: "Ambulance & Emergency Transport",
     description: "Keeps our ambulance and hearse-van fleet ready to respond, day or night.",
     icon: FaAmbulance,
-    image: "/assets/activities/hospital-support.webp",
+    image: "/assets/namo-gange/vol4.png",
   },
   {
     id: "annadan",
     title: "Annadan — Food for Grieving Families",
     description: "Provides meals and daily essentials to families during their days of mourning.",
     icon: FaUtensils,
-    image: "/assets/activities/food-essentials.webp",
+    image: "/assets/namo-gange/vol5.png",
   },
 ];
 
@@ -407,7 +407,7 @@ function Donation() {
               Select where you&apos;d like your contribution to go — it will carry through to the form below.
             </p>
 
-            <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-7 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {CAUSES.map((cause) => {
                 const Icon = cause.icon;
                 const isSelected = cause.id === selectedCause;
@@ -421,7 +421,7 @@ function Donation() {
                         : "border-[#E6D6BF] hover:border-[#C9A574]"
                       }`}
                   >
-                    <div className="relative h-36 w-full overflow-hidden">
+                    <div className="relative h-[220px] w-full overflow-hidden">
                       <Image
                         src={cause.image}
                         alt={cause.title}
@@ -473,7 +473,7 @@ function Donation() {
 
         {/* ============ FORM + IMPACT ============ */}
         <section id="donate-form" className="pb-6 lg:pb-8">
-          <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 sm:px-6 xl:px-0 lg:grid-cols-2">
+          <div className="mx-auto grid w-full max-w-7xl gap-2 px-4 sm:px-6 xl:px-0 lg:grid-cols-2">
             {/* -------- form card -------- */}
             <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
@@ -655,7 +655,7 @@ function Donation() {
             </div>
 
             {/* -------- right column -------- */}
-            <div className="space-y-2.5">
+            <div className="space-y-1.5">
               {/* impact — dark card */}
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] p-4 text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)] sm:p-5">
                 <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
@@ -687,89 +687,70 @@ function Donation() {
                 </div>
               </div>
 
-              {/* tax benefit */}
-              <div className="flex items-center gap-3 rounded-2xl border border-[#E6D6BF] bg-white px-4 py-3 shadow-sm">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-bold text-sm">
-                  80G
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                    Tax Exemption
-                  </span>
-                  <span className="block text-xs text-[#2C1810] mt-0.5">
-                    Donations are eligible for 50% tax deduction under Section 80G.
-                  </span>
-                </span>
-              </div>
+              {/* unified trust & info block */}
+              <div className="rounded-2xl border border-[#E6D6BF] bg-white shadow-sm overflow-hidden">
+                <div className="p-4 sm:p-5 space-y-4">
+                  {/* Tax & Security */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-bold text-xs">
+                        80G
+                      </span>
+                      <div>
+                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Exemption</span>
+                        <span className="block text-xs text-[#2C1810] mt-0.5 leading-tight">50% deduction under 80G.</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E]">
+                        <FaShieldAlt className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Secure Payment</span>
+                        <span className="block text-xs text-[#2C1810] mt-0.5 leading-tight">100% encrypted & safe.</span>
+                      </div>
+                    </div>
+                  </div>
 
-              {/* trust badges */}
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 rounded-2xl border border-[#E6D6BF] bg-white px-4 py-3 shadow-sm">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E]">
-                    <FaShieldAlt className="h-5 w-5" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                      Secure & Encrypted
+                  <div className="h-px w-full bg-[#E6D6BF]" />
+
+                  {/* transparency & reassurance note */}
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white mt-0.5">
+                      <PiFlowerLotus className="h-3.5 w-3.5" />
                     </span>
-                    <span className="block truncate font-serif text-sm text-[#2C1810]">
-                      Payments Protected
-                    </span>
-                  </span>
+                    <p className="text-[11px] leading-[1.45] text-[#5F4A3D]">
+                      <span className="font-serif text-[13px] italic text-[#8B6A3E]">
+                        Daan se badhkar koi punya nahi.
+                      </span>
+                      <br />
+                      We maintain <strong>100% transparency</strong> on fund utilization. Every contribution is treated with the utmost reverence.
+                    </p>
+                  </div>
+
+                  <div className="h-px w-full bg-[#E6D6BF]" />
+
+                  {/* Prefer Another Way */}
+                  <div>
+                    <p className="text-xs leading-5 text-[#7A685B]">
+                      Have questions about corporate giving, or want to volunteer instead?
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="group mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6A3E] hover:underline"
+                    >
+                      Get in Touch
+                      <FaChevronRight className="h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
                 </div>
-
-                <div className="flex items-center gap-3 rounded-2xl border border-[#E6D6BF] bg-white px-4 py-3 shadow-sm">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E]">
-                    <FaReceipt className="h-5 w-5" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                      Receipt Provided
-                    </span>
-                    <span className="block truncate font-serif text-sm text-[#2C1810]">
-                      For Every Contribution
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              {/* transparency & reassurance note */}
-              <div className="flex items-start gap-3 rounded-2xl border border-[#E6D6BF] bg-[#F6EFE6] px-4 py-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white mt-0.5">
-                  <PiFlowerLotus className="h-4 w-4" />
-                </span>
-                <p className="text-[11px] leading-[1.4] text-[#5F4A3D]">
-                  <span className="font-serif text-sm italic text-[#8B6A3E]">
-                    Daan se badhkar koi punya nahi.
-                  </span>
-                  <br />
-                  <span className="mt-1 block">
-                    No virtue is greater than charity. We maintain <strong>100% transparency</strong> on fund utilization. Every contribution is treated with the same reverence as the families we serve.
-                  </span>
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-[#E6D6BF] bg-white p-3.5 shadow-sm">
-                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                  <span>Prefer Another Way?</span>
-                  <span className="h-px w-7 bg-[#C9A574]" />
-                </div>
-                <p className="mt-1.5 text-xs leading-5 text-[#7A685B]">
-                  Have questions about donating, corporate giving, or want to volunteer instead? Our team is happy to help.
-                </p>
-                <Link
-                  href="/contact"
-                  className="group mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6A3E] hover:underline"
-                >
-                  Get in Touch
-                  <FaChevronRight className="h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </Link>
               </div>
 
               {/* closing image */}
-              <div className="relative h-[200px] w-full overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm lg:h-[240px]">
+              <div className="relative h-[280px] w-full overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm lg:h-[320px]">
                 <Image
-                  src="/assets/activities/community-outreach.webp"
+                  src="/assets/namo-gange/vol6.png"
                   alt="Moksha Sewa team helping community"
                   fill
                   className="object-cover"

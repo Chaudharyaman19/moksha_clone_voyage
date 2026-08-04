@@ -215,8 +215,8 @@ export default function VolunteerRegister() {
     setSkills((current) =>
       current.includes(skill)
         ? current.filter(
-            (item) => item !== skill,
-          )
+          (item) => item !== skill,
+        )
         : [...current, skill],
     );
   };
@@ -834,11 +834,10 @@ export default function VolunteerRegister() {
                                     skill,
                                   )
                                 }
-                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[9px] font-medium transition ${
-                                  selected
+                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[9px] font-medium transition ${selected
                                     ? "border-[#ED6B13] bg-[#ED6B13] text-white"
                                     : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
-                                }`}
+                                  }`}
                               >
                                 {selected && (
                                   <FaCheckCircle className="h-2.5 w-2.5" />
@@ -945,9 +944,9 @@ export default function VolunteerRegister() {
                 })}
               </div>
 
-              <div className="relative mt-2 h-[155px] overflow-hidden rounded-[11px]">
+              <div className="relative mt-3 aspect-square overflow-hidden rounded-[11px]">
                 <Image
-                  src="/assets/sacred-journey-hd/volunteer.webp"
+                  src="/assets/namo-gange/vol1.png"
                   alt="Moksha Sewa volunteers serving families"
                   fill
                   priority
