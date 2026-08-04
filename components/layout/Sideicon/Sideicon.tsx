@@ -148,31 +148,31 @@ const SocialSidebar = () => {
 
         {/* Right Side - Social Icons */}
         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-auto">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 items-end">
             {socialLinks.map((social, index) => (
-              <div key={index} className="group relative">
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  onMouseEnter={() => setShowTooltip(social.label)}
-                  onMouseLeave={() => setShowTooltip(null)}
-                >
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-lg border border-gray-200 group-hover:shadow-xl"
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="group relative flex items-center justify-end"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm border border-[#E6D6BF] shadow-[0_4px_16px_rgba(44,24,16,0.08)] transition-all duration-300 ease-out hover:w-[130px] hover:justify-between hover:px-3 hover:bg-white hover:shadow-[0_8px_24px_rgba(44,24,16,0.12)]">
+                  <span 
+                    className="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100"
+                    style={{ color: social.color }}
+                  >
+                    {social.label}
+                  </span>
+                  <span 
+                    className="shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{ color: social.color }}
                   >
                     {social.icon}
-                  </div>
-                </a>
-                {/* Tooltip */}
-                {showTooltip === social.label && (
-                  <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 px-3 py-1.5 bg-[#2C1810] text-white text-xs rounded whitespace-nowrap shadow-lg">
-                    {social.label}
-                  </div>
-                )}
-              </div>
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
