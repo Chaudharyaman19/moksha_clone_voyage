@@ -7,15 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, X } from "lucide-react";
 
 const galleryImages = [
-  "/assets/im1.jpeg",
-  "/assets/im2.jpeg",
-  "/assets/im3.jpeg",
-  "/assets/im4.jpeg",
-  "/assets/im5.jpeg",
-  "/assets/four.jpg",
-  "/assets/one.jpg",
-  "/assets/two.jpg",
-  "/assets/three.jpg",
+  "/gallary/g1.png",
+  "/gallary/g2.png",
+  "/gallary/g3.png",
+  "/gallary/g4.png",
+  "/gallary/gg5.png",
+  "/gallary/g6.png",
 ];
 
 export default function GlimpseOfJourney() {
@@ -32,7 +29,7 @@ export default function GlimpseOfJourney() {
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
-              Moments of Service
+              Sewa Moments
             </span>
             <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
@@ -40,7 +37,7 @@ export default function GlimpseOfJourney() {
             className="text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            A Glimpse of Our Journey
+            Real Moments of Help and Antim Sewa
           </h2>
           
           {/* Diya Flourish */}
@@ -90,7 +87,7 @@ export default function GlimpseOfJourney() {
             type="button"
             className="inline-flex h-10 min-w-[200px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-6 text-[13px] font-medium text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
-            <span>View Full Gallery</span>
+            <span>View Sewa Gallery</span>
           </button>
         </div>
 

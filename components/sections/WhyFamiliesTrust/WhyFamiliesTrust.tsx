@@ -46,43 +46,43 @@ interface ReasonIconProps {
 const reasons: Reason[] = [
   {
     type: "support",
-    title: "24/7 Immediate Support",
-    text: "We are available round the clock to assist you at every step, anytime, anywhere.",
+    title: "Urgent Sewa Support",
+    text: "When a family needs help, we quickly guide them for ambulance, ghat and rituals.",
   },
   {
     type: "team",
-    title: "Verified & Experienced Team",
-    text: "Our trained professionals and verified pandits ensure every ritual is performed with care and respect.",
+    title: "Pandit Ji & Local Team",
+    text: "Pandit ji and local volunteers help complete kriya karam with proper vidhi.",
   },
   {
     type: "pricing",
-    title: "Transparent Pricing",
-    text: "No hidden charges. You receive clear information and honest pricing before every service.",
+    title: "Help for Needy Families",
+    text: "For eligible zaruratmand families, sewa support is arranged without adding burden.",
   },
   {
     type: "care",
-    title: "Compassionate Care",
-    text: "We treat every family with empathy, respect and dignity as our own.",
+    title: "Respectful Behaviour",
+    text: "Every lawaris, anath or be-sahara person is treated with dignity and care.",
   },
   {
     type: "arrangements",
-    title: "Complete Arrangements",
-    text: "From samagri to transportation, venue to rituals—we take care of everything.",
+    title: "Complete Basic Arrangements",
+    text: "Lakdi, kafan, phool, samagri, ambulance and ghat coordination are handled.",
   },
   {
     type: "network",
-    title: "Pan-India Service Network",
-    text: "Our services are available in 15+ cities across India with a strong support network.",
+    title: "City & Ghat Network",
+    text: "Local teams help families connect with nearby ghats, vehicles and support.",
   },
   {
     type: "trusted",
-    title: "Trusted by Thousands",
-    text: "Over 50,000+ families have trusted us in their most difficult moments.",
+    title: "Trusted in Difficult Moments",
+    text: "Families trust us because we explain clearly and stand with them on-ground.",
   },
   {
     type: "dignity",
-    title: "Commitment to Dignity",
-    text: "We are committed to ensuring a dignified and peaceful final journey for your loved one.",
+    title: "Dignified Antim Vidai",
+    text: "Our aim is simple: no final journey should happen without respect.",
   },
 ];
 
@@ -272,7 +272,7 @@ export default function WhyFamiliesTrust() {
               className="mt-1 text-center text-[24px] font-normal leading-tight text-[#321B10] sm:text-[28px] lg:text-[30px]"
               style={serifFont}
             >
-              Why Families Trust Us
+              Why Families Trust Moksha Sewa
             </h2>
 
             <TitleDivider />
@@ -281,12 +281,11 @@ export default function WhyFamiliesTrust() {
               className="mx-auto mt-2 max-w-[620px] text-center text-[13px] font-normal leading-[1.4] text-[#3F3028]"
               style={serifFont}
             >
-              At Moksha Sewa, we understand the pain of losing a loved one.
+              Moksha Sewa is built for families who need real help,
               <br className="hidden sm:block" />
-              Our commitment is to provide compassionate support, complete
-              transparency
+              especially lawaris, anath and zaruratmand cases.
               <br className="hidden lg:block" />
-              and dignified services—so you can focus on what truly matters.
+              We arrange the essentials so antim sanskar happens with dignity.
             </p>
           </div>
         </div>
@@ -338,7 +337,7 @@ export default function WhyFamiliesTrust() {
               className="text-[12px] font-normal text-[#4A392E]"
               style={serifFont}
             >
-              Moksha Sewa is always with you, in every moment that matters.
+              When there is no sahara, Moksha Sewa stands with the family.
             </p>
 
             <span className="relative hidden h-px w-[44px] bg-[#D8A646] sm:block">

@@ -1,11 +1,9 @@
 "use client";
 
 import {
-  Ambulance,
-  Heart,
-  HeartHandshake,
-  MapPinCheck,
+  HandHeart,
   PhoneCall,
+  UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -17,8 +15,148 @@ interface StepItem {
   number: string;
   title: string;
   description: string;
-  icon: LucideIcon;
-  finalStep?: boolean;
+  icon: LucideIcon | null;
+  lotusStep?: boolean;
+}
+
+function LotusMark({
+  className = "h-6 w-9",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 72 50"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M8 31c9 8 18 12 28 12s19-4 28-12"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ColoredLotus({
+  className = "h-10 w-12",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 72 58"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 8c-7 7-10 14-8 21 2 5 8 9 8 9s6-4 8-9c2-7-1-14-8-21Z"
+        fill="#E94921"
+      />
+
+      <path
+        d="M18 17c7 1 13 4 17 10 2 4 2 9 2 9s-7-1-12-5c-5-4-7-9-7-14Z"
+        fill="#EE6A23"
+      />
+
+      <path
+        d="M54 17c-7 1-13 4-17 10-2 4-2 9-2 9s7-1 12-5c5-4 7-9 7-14Z"
+        fill="#D93022"
+      />
+
+      <path
+        d="M10 29c8 1 15 4 21 10 3 3 5 7 5 7s-8 0-15-4c-6-4-9-8-11-13Z"
+        fill="#F18B18"
+      />
+
+      <path
+        d="M62 29c-8 1-15 4-21 10-3 3-5 7-5 7s8 0 15-4c6-4 9-8 11-13Z"
+        fill="#E4521C"
+      />
+
+      <path
+        d="M13 45c7 4 14 6 23 6s16-2 23-6"
+        stroke="#B9751B"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function HeaderDivider() {
+  return (
+    <div
+      className="mt-2 flex items-center justify-center gap-2"
+      aria-hidden="true"
+    >
+      <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9903D]" />
+
+      <span className="h-px w-7 bg-[#D8AC6B]" />
+
+      <span className="grid h-[9px] w-[9px] rotate-45 place-items-center border border-[#D98A0A]">
+        <span className="h-[3px] w-[3px] bg-[#D98A0A]" />
+      </span>
+
+      <span className="h-px w-7 bg-[#D8AC6B]" />
+
+      <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9903D]" />
+    </div>
+  );
+}
+
+function CornerLotus() {
+  return (
+    <div className="pointer-events-none absolute -bottom-5 -right-4 z-0 text-[#DDA957]/[0.14]">
+      <LotusMark className="h-[82px] w-[82px]" />
+    </div>
+  );
+}
+
+function StepConnector() {
+  return (
+    <div className="pointer-events-none absolute -right-[23px] top-1/2 z-20 hidden w-[30px] -translate-y-1/2 items-center xl:flex">
+      <span className="h-px flex-1 border-t border-dashed border-[#DDB87D]" />
+
+      <span className="-ml-[1px] h-[9px] w-[9px] rotate-45 border border-[#D98A0A] bg-[#D98A0A]" />
+
+      <span className="-ml-[1px] h-px w-2 border-t border-dashed border-[#DDB87D]" />
+    </div>
+  );
 }
 
 export default function HowItWorks({
@@ -28,173 +166,147 @@ export default function HowItWorks({
     variant === "seva"
       ? [
           {
-            number: "1",
-            title: "Call Us Anytime",
-            description: "Reach out to us 24×7. We’re just a phone call away.",
+            number: "01",
+            title: "Call Anytime, 24×7",
+            description:
+              "Reach us by call or WhatsApp. We are always here to help.",
             icon: PhoneCall,
           },
           {
-            number: "2",
-            title: "We Reach You",
-            description: "Our team and vehicle reach the location immediately.",
-            icon: Ambulance,
+            number: "02",
+            title: "Share Details",
+            description:
+              "Tell us your needs. We will guide you step by step.",
+            icon: UserRound,
           },
           {
-            number: "3",
-            title: "We Handle Everything",
+            number: "03",
+            title: "We Arrange Everything",
             description:
-              "From transportation to cremation, we manage every step with care.",
-            icon: MapPinCheck,
+              "From pandit ji to samagri, we take care of all.",
+            icon: HandHeart,
           },
           {
-            number: "4",
-            title: "You Focus on Farewell",
+            number: "04",
+            title: "You Focus on Prayer",
             description:
-              "We ensure your loved one receives a respectful and dignified final journey.",
-            icon: HeartHandshake,
-            finalStep: true,
+              "We handle everything with dignity, care and compassion.",
+            icon: null,
+            lotusStep: true,
           },
         ]
       : [
           {
-            number: "1",
-            title: "Call Us Anytime",
-            description: "Connect with our care team whenever support is needed.",
+            number: "01",
+            title: "Call Anytime, 24×7",
+            description:
+              "Connect with our support team whenever assistance is required.",
             icon: PhoneCall,
           },
           {
-            number: "2",
-            title: "We Coordinate",
-            description: "Our verified team confirms every required arrangement.",
-            icon: Ambulance,
+            number: "02",
+            title: "Share Details",
+            description:
+              "Tell us what is needed. Our team guides you clearly.",
+            icon: UserRound,
           },
           {
-            number: "3",
-            title: "We Manage Everything",
-            description: "Documentation, rituals and logistics are handled with care.",
-            icon: MapPinCheck,
+            number: "03",
+            title: "We Arrange Everything",
+            description:
+              "Transport, documentation and services are coordinated.",
+            icon: HandHeart,
           },
           {
-            number: "4",
+            number: "04",
             title: "You Stay With Family",
-            description: "You remain present while we manage the complete journey.",
-            icon: HeartHandshake,
-            finalStep: true,
+            description:
+              "We manage each step with dignity, care and compassion.",
+            icon: null,
+            lotusStep: true,
           },
         ];
 
   return (
-    <section className="relative w-full overflow-hidden border-y border-[#eadfce] bg-[#fbf7ef] py-2 md:py-3">
+    <section className="relative w-full overflow-hidden border-y border-[#EADFCE] bg-[#FBF7EF] py-2 md:py-3">
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        className="pointer-events-none absolute inset-0 opacity-[0.14]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(151,95,24,0.10) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, rgba(151,95,24,0.09) 1px, transparent 0)",
           backgroundSize: "26px 26px",
         }}
       />
 
+      <div className="pointer-events-none absolute left-1/2 top-0 h-24 w-[62%] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
+
       <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
-        <header className="mb-3 text-center">
-          <div className="mb-1 inline-flex items-center space-x-3">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
-              How It Works
+        <header className="mb-5 text-center">
+          <LotusMark className="mx-auto h-5 w-8 text-[#C98A34]" />
+
+          <div className="mt-0.5 inline-flex items-center gap-3">
+            <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#A77B43]" />
+
+            <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[11px]">
+              How We Help
             </span>
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+
+            <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#A77B43]" />
           </div>
-          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:whitespace-nowrap lg:text-[30px]">
-            Just 4 Steps. We Take Care of Everything.
+
+          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:whitespace-nowrap lg:text-[30px]">
+            Simple Process, Complete Sewa Support.
           </h2>
+
+          <HeaderDivider />
         </header>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-4 xl:gap-4">
+        <div className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-4 xl:grid-cols-4 xl:gap-x-4 xl:gap-y-0">
           {steps.map((step, index) => {
             const Icon = step.icon;
 
             return (
               <article
                 key={step.number}
-                className="relative min-h-[108px] rounded-[20px] border border-[#eee4d6] bg-white/60 px-4 pb-3 pt-6 shadow-[0_5px_16px_rgba(80,50,22,0.025)] sm:min-h-[112px]"
+                className="group relative min-h-[108px] overflow-visible rounded-[20px] border border-[#EADBC6] bg-white/80 px-4 pb-3 pt-6 shadow-[0_6px_18px_rgba(80,50,22,0.045)] transition duration-300 hover:-translate-y-0.5 hover:border-[#D9B47A] hover:shadow-[0_10px_24px_rgba(80,50,22,0.08)] sm:min-h-[112px]"
               >
-                <div className="absolute -top-3 left-5 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#ee9614] to-[#d97705] font-serif text-[21px] font-normal text-white shadow-[0_5px_12px_rgba(205,118,7,0.20)]">
+                <div className="absolute left-7 top-0 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#F1A016] to-[#DF7F00] font-sans text-[16px] font-semibold leading-none text-white shadow-[0_5px_12px_rgba(205,118,7,0.22)]">
                   {step.number}
                 </div>
 
-                <div className="flex h-full items-center gap-3 pt-0.5">
-                  <div className="flex w-[54px] shrink-0 items-center justify-center text-[#986728]">
-                    {step.finalStep ? (
-                      <div className="relative h-[48px] w-[48px]">
-                        <svg
-                          viewBox="0 0 72 72"
-                          className="absolute inset-0 h-full w-full"
-                          fill="none"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M18 18a25 25 0 1 1-2 33"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                          />
-                          <path
-                            d="m11 46 4 7 8-2"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <Heart
-                          className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 fill-[#ef5c28] text-[#ef5c28]"
-                          strokeWidth={1.7}
-                        />
-                      </div>
-                    ) : (
-                      <Icon className="h-[44px] w-[44px]" strokeWidth={1.45} />
-                    )}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[20px]">
+                  <CornerLotus />
+                </div>
+
+                <div className="relative z-10 flex h-full items-center gap-3 pt-0.5">
+                  <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full bg-[#FBF4E9] text-[#C17D1E]">
+                    {step.lotusStep ? (
+                      <ColoredLotus className="h-[39px] w-[42px]" />
+                    ) : Icon ? (
+                      <Icon
+                        className="h-[37px] w-[37px]"
+                        strokeWidth={1.45}
+                      />
+                    ) : null}
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="mb-1 text-[13px] font-medium leading-tight text-[#33251d] sm:text-[14px]">
+                    <h3 className="mb-1 text-[13px] font-semibold leading-tight text-[#33251D] sm:text-[14px]">
                       {step.title}
                     </h3>
-                    <p className="text-[10.5px] font-normal leading-[1.4] text-[#5f5147] sm:text-[11px]">
+
+                    <p className="text-[10.5px] font-normal leading-[1.4] text-[#5F5147] sm:text-[11px]">
                       {step.description}
                     </p>
                   </div>
                 </div>
 
-                {index < steps.length - 1 && (
-                  <div className="pointer-events-none absolute -right-[23px] top-1/2 z-20 hidden w-[28px] -translate-y-1/2 items-center xl:flex">
-                    <span className="h-px flex-1 border-t border-dotted border-[#d8b47c]" />
-                    <ChevronConnector />
-                  </div>
-                )}
+                {index < steps.length - 1 && <StepConnector />}
               </article>
             );
           })}
         </div>
       </div>
     </section>
-  );
-}
-
-function ChevronConnector() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="-ml-1 h-4 w-4 text-[#dd9b43]"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="m6 3 7 7-7 7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

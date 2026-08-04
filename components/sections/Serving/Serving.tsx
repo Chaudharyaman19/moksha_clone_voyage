@@ -15,51 +15,51 @@ interface ActivityItem {
 
 const activities: ActivityItem[] = [
   {
-    title: "Community Outreach",
+    title: "Unclaimed Case Support",
     description:
-      "We conduct awareness programs and reach out to communities in need.",
+      "We reach places where unclaimed or helpless people need final-rites support.",
     image: "/assets/serving/community-outreach.png",
   },
   {
     title: "On-Ground Support",
     description:
-      "Our teams work tirelessly on ground to ensure no family is left alone.",
+      "Our volunteers stand with the family at hospital, home, ghat and cremation ground.",
     image: "/assets/serving/on-ground-support.png",
   },
   {
-    title: "Food & Essentials",
+    title: "Food Service & Essentials",
     description:
-      "We distribute food, clothes and essentials to families during difficult times.",
+      "We arrange bhoj, ration, kapda and basic items for families in need.",
     image: "/assets/serving/food-essentials.png",
   },
   {
     title: "Support at Hospitals",
     description:
-      "We coordinate with hospitals to provide immediate end-of-life support.",
+      "We help families with body release guidance and urgent ambulance coordination.",
     image: "/assets/serving/hospital-support.png",
   },
   {
     title: "Rural & Remote Reach",
     description:
-      "Our services reach villages and remote areas where help is needed most.",
+      "We try to reach villages and areas where families have no easy support.",
     image: "/assets/serving/rural-remote-reach.png",
   },
   {
-    title: "Counseling Support",
+    title: "Family Guidance",
     description:
-      "We provide emotional and grief counseling to help families cope with loss.",
+      "We calmly guide families through rituals, documents and next steps.",
     image: "/assets/serving/counseling-support.png",
   },
   {
     title: "Emergency Transport",
     description:
-      "24/7 dedicated transport services for transferring the deceased with respect.",
+      "Ambulance and hearse van support for respectful body transport.",
     image: "/assets/serving/emergency-transport.png",
   },
   {
     title: "Document Assistance",
     description:
-      "Help with acquiring necessary certificates and completing legal formalities.",
+      "Support with required papers, hospital documents and local process guidance.",
     image: "/assets/serving/document-assistance.png",
   },
 ];
@@ -136,14 +136,14 @@ export default function Serving({
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
 
             <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
-              Our Activities
+              Our Service Work
             </span>
 
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
           <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
-            Serving Humanity. Spreading Compassion.
+            Every Small Arrangement Becomes Service.
           </h2>
         </header>
 
@@ -166,7 +166,7 @@ export default function Serving({
             type="button"
             className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[12px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
-            <span>View More Activities</span>
+            <span>View More Service Work</span>
 
             <ArrowRight
               className="h-3.5 w-3.5"

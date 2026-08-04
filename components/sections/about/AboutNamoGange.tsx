@@ -39,7 +39,7 @@ export default function AboutNamoGange() {
             <div className="mb-2 inline-flex items-center gap-3">
               <span className="w-10 h-[1px] bg-[#8B6A3E]" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                Our Parent Organization
+                Namo Gange Trust Initiative
               </span>
             </div>
 
@@ -47,7 +47,7 @@ export default function AboutNamoGange() {
               className="mb-3 text-[24px] font-normal leading-tight bg-gradient-to-br from-[#2C1810] to-[#5F4630] bg-clip-text text-transparent sm:text-[28px] lg:text-[30px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              Namo Gange Trust
+              Service, Rituals and Support
             </h2>
 
             {/* Diya flourish (same as Hero) */}
@@ -58,7 +58,7 @@ export default function AboutNamoGange() {
             </div>
 
             <p className="mb-4 text-[13px] leading-relaxed text-[#4F3A2D] md:text-[13px]">
-              <strong className="font-semibold text-[#2C1810]">Moksha Sewa</strong> is a sacred initiative operated under the divine guidance of the <strong className="font-semibold text-[#2C1810]">Namo Gange Trust</strong>. For years, the trust has been a guiding light for humanity, rooted deeply in the ancient Vedic philosophies of compassion, spiritual wellness, and <span className="italic">Nishkam Sewa</span> (selfless service). From promoting holistic Ayurveda globally to supporting grieving families during their darkest hours—the trust works tirelessly to preserve Indian cultural heritage while uplifting society.
+              <strong className="font-semibold text-[#2C1810]">Moksha Sewa</strong> is an initiative of <strong className="font-semibold text-[#2C1810]">Namo Gange Trust</strong> created for families who cannot arrange final rites on their own. Through this service, we help with priest support, ritual items, ambulance, cremation wood, cremation-ground coordination and food service, so unclaimed, orphaned and needy people can receive a respectful final farewell.
             </p>
 
             <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -67,8 +67,8 @@ export default function AboutNamoGange() {
                   <HeartHandshake className="w-5 h-5" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Nishkam Sewa</h4>
-                  <p className="text-[13px] text-[#5F4630] leading-snug">Serving society selflessly, ensuring every soul is treated with utmost dignity.</p>
+                  <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Selfless Service</h4>
+                  <p className="text-[13px] text-[#5F4630] leading-snug">Free help for helpless families, with dignity in every final rite.</p>
                 </div>
               </div>
               
@@ -77,8 +77,8 @@ export default function AboutNamoGange() {
                   <Leaf className="w-5 h-5" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Holistic Wellness</h4>
-                  <p className="text-[13px] text-[#5F4630] leading-snug">A global movement for health, environment, and preserving Indian traditions.</p>
+                  <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Ritual Support</h4>
+                  <p className="text-[13px] text-[#5F4630] leading-snug">Priest support, ritual items and guidance so final rites are completed properly.</p>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function AboutNamoGange() {
               rel="noopener noreferrer"
               className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
             >
-              <span>Discover Namo Gange</span>
+              <span>Know About Namo Gange</span>
               <ArrowRight className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5" strokeWidth={1.7} />
             </a>
           </div>

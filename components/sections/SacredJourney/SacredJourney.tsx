@@ -49,8 +49,8 @@ const sevaCards: SupportCard[] = [
   {
     title: "Donate",
     description:
-      "Your contribution helps us provide free last rites and essential support to those in need.",
-    button: "Contribute Now",
+      "Your donation helps arrange lakdi, kafan, phool, samagri and ambulance for needy antim sewa.",
+    button: "Donate for Sewa",
     image: donationImages.donate,
     icon: FaHandHoldingHeart,
     href: "/donation",
@@ -58,23 +58,23 @@ const sevaCards: SupportCard[] = [
   {
     title: "Volunteer",
     description:
-      "Join our team and help us serve families with care, respect and compassion.",
+      "Join our on-ground team to help families at hospitals, ghats and cremation grounds.",
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
   },
   {
-    title: "Sponsor a Service",
+    title: "Sponsor Antim Sewa",
     description:
-      "Sponsor last rites, transport, food or other services for a family in need.",
-    button: "Sponsor Now",
+      "Sponsor pandit ji, lakdi, ambulance, pooja samagri or logon ko bhoj for a family in need.",
+    button: "Sponsor Sewa",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
   },
   {
     title: "Partner With Us",
     description:
-      "Collaborate with us to create a greater impact and reach more lives.",
+      "Help us reach more lawaris, anath and zaruratmand cases through local support.",
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
@@ -176,7 +176,7 @@ function TopLabel() {
         <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D98500]" />
 
         <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#C87500]">
-          Our Way of Giving Back
+          Support This Sewa
         </p>
 
         <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#D98500]" />
@@ -242,16 +242,16 @@ export default function SacredJourney({
           <TopLabel />
 
           <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
-            Be the Reason Someone Gets a Dignified Farewell.
+            Help Someone Receive a Respectful Antim Sanskar.
           </h2>
 
           <HeadingDivider />
 
           <p className="mx-auto mt-2 max-w-[600px] text-[13px] font-normal leading-[1.45] text-[#5B473C]">
-            Your support helps us provide compassionate care, essential
-            services,
+            Your support helps arrange ambulance, lakdi, pandit ji,
+            samagri,
             <br className="hidden sm:block" />
-            and hope to families in their most difficult moments.
+            and logon ko bhoj for families who cannot afford it.
           </p>
         </header>
 

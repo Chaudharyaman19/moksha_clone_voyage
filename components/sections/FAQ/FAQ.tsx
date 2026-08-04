@@ -25,29 +25,29 @@ export default function FAQSection({
     variant === "seva"
       ? [
           {
-            question: "Is the cremation service really free?",
+            question: "Kya zaruratmand parivar ke liye help free hoti hai?",
             answer:
-              "Selected support services may be offered without charge for eligible families. Our coordinator confirms availability and inclusions before arrangements begin.",
+              "Eligible gareeb, anath, lawaris ya be-sahara cases mein Moksha Sewa zaruri sahayata arrange karne ki koshish karta hai. Team case details confirm karke batati hai ki kya-kya support possible hai.",
           },
           {
-            question: "What areas do you serve?",
+            question: "Aap log kya-kya arrange karte ho?",
             answer:
-              "Moksha Sewa currently coordinates support across Delhi NCR and selected service cities through verified local teams and partners.",
+              "Need ke hisaab se ambulance, hearse van, lakdi, kafan, phool, pooja samagri, pandit ji, ghat support, document guidance aur logon ko bhoj sewa arrange ki ja sakti hai.",
           },
           {
-            question: "What documents are required?",
+            question: "Lawaris lash ke case mein help mil sakti hai?",
             answer:
-              "Requirements vary by location. Usually, identity proof, hospital papers and the required local documentation are needed. Our team guides the family step by step.",
+              "Haan, lawaris ya be-sahara case mein local rules, police/hospital process aur available support ke hisaab se team guidance deti hai. Official process complete hona zaruri hota hai.",
           },
           {
-            question: "Do you provide ambulance service?",
+            question: "Ambulance ya hearse van mil sakti hai?",
             answer:
-              "Yes. Ambulance and hearse-van coordination is available based on location, timing and vehicle availability.",
+              "Haan. Location, timing aur vehicle availability ke basis par ambulance aur hearse van coordination kiya jata hai.",
           },
           {
-            question: "Can you help with death certificate?",
+            question: "Kya pandit ji aur kriya karam bhi arrange hota hai?",
             answer:
-              "Our team can explain the process, required papers and relevant local authority steps. Official issuance remains subject to government procedures.",
+              "Haan. Gareeb aur zaruratmand parivar ke liye pandit ji, pooja samagri aur kriya karam ki guidance arrange karne mein help ki jaati hai.",
           },
         ]
       : [
@@ -173,14 +173,14 @@ export default function FAQSection({
           <div className="absolute inset-0 z-10 flex items-center justify-center px-5 sm:px-8 lg:px-10">
             <div className="w-full text-center text-white sm:w-[62%] lg:w-[48%]">
               <h3 className="font-serif text-[24px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
-                In Their Final Journey,
+                Lawaris Aur Zaruratmand Ke Liye,
                 <span className="block">
-                  Let&apos;s Walk Together with Dignity.
+                  Antim Sewa Samman Ke Saath.
                 </span>
               </h3>
 
               <p className="mx-auto mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[13px]">
-                Your support can bring peace to grieving families.
+                Ek call se ambulance, lakdi, samagri, pandit ji aur ghat support ki guidance mil sakti hai.
               </p>
 
               <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
@@ -188,7 +188,7 @@ export default function FAQSection({
                   href="tel:+919810247319"
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
                 >
-                  Get Help Now
+                  Get Sewa Help
                   <Phone className="h-4 w-4" strokeWidth={1.8} />
                 </a>
 
@@ -196,7 +196,7 @@ export default function FAQSection({
                   href="/donate"
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12"
                 >
-                  Donate Now
+                  Donate for Sewa
                   <Heart className="h-4 w-4" strokeWidth={1.8} />
                 </a>
               </div>

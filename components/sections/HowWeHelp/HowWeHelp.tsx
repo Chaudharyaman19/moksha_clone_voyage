@@ -123,35 +123,35 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
       ? [
           {
             icon: "FaShoppingBag",
-            title: "Funeral Samagri",
-            desc: "Essential items for complete antim sanskar with purity.",
+            title: "Wood & Ritual Items",
+            desc: "Cremation wood, shroud cloth, flowers, lamps and prayer items arranged for needy families.",
             color: "from-[#8B6A3E] to-[#A88B5E]",
-            features: ["Complete Samagri Kit", "Quality Items", "Quick Delivery"],
-            image: "/assets/how-we-help/samagri.png",
+            features: ["Wood Arrangement", "Shroud & Flowers", "Prayer Items"],
+            image: "/assets/how-we-help/four.png",
           },
           {
             icon: "FaUserOutline",
-            title: "Pandit Service",
-            desc: "Experienced pandit ji for meaningful rituals.",
+            title: "Priest Support",
+            desc: "Priest support is provided so poor families can complete the final rites properly.",
             color: "from-[#5C4033] to-[#7A5B46]",
-            features: ["Vedic Guidance", "Ritual Planning", "Regional Traditions"],
+            features: ["Proper Rituals", "Final Rites", "Family Guidance"],
             image: "/assets/how-we-help/pandit.png",
           },
           {
             icon: "FaTruckOutline",
             title: "Ambulance & Hearse",
-            desc: "Dignified transport with ambulance and hearse van support.",
+            desc: "Body transport from hospital, home or street to cremation ground.",
             color: "from-[#4A716C] to-[#5E8B83]",
-            features: ["Body Transport", "Hearse Van", "24/7 Availability"],
-            image: "/assets/how-we-help/ambulance-hearse.webp",
+            features: ["Body Transport", "Hearse Van", "Urgent Help"],
+            image: "/assets/how-we-help/five.png",
           },
           {
             icon: "FaTemple",
-            title: "Prayer Hall & Support",
-            desc: "Peaceful prayer hall with complete family assistance.",
+            title: "Ground & Prayer Support",
+            desc: "Cremation-ground coordination, prayer support and calm guidance for the family.",
             color: "from-[#6B7D6E] to-[#8A9B8C]",
-            features: ["Prayer Hall", "Floral Decoration", "Family Coordination"],
-            image: "/assets/how-we-help/prayer.png",
+            features: ["Ground Support", "Prayer Setup", "Family Coordination"],
+            image: "/assets/how-we-help/three.png",
           },
         ]
       : [
@@ -232,7 +232,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
 
           {variant === "seva" ? (
             <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
-              Complete Funeral &amp; Antim Sanskar Sewa
+              What Moksha Sewa Arranges
             </h2>
           ) : (
             <h2 className="mb-4 text-[24px] font-light leading-tight text-[#3A2A1F] sm:text-[28px] lg:text-[30px]">
@@ -248,7 +248,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
 
           <p className="mx-auto mt-0.5 max-w-3xl text-[13px] font-light leading-snug text-[#6E4B3A]">
             {variant === "seva"
-              ? "Funeral Samagri  ·  Pandit Ji  ·  Ambulance  ·  Hearse Van  ·  Prayer Hall"
+              ? "Wood  ·  Shroud  ·  Flowers  ·  Priest  ·  Ambulance  ·  Ground Support"
               : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
           </p>
         </div>
@@ -388,7 +388,7 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
 
           {variant === "seva" ? (
             <p className="mt-1.5 text-xs text-[#6E3F1F] sm:text-sm">
-              Moksha Sewa with Dignity <span className="mx-2">•</span> Trusted Support <span className="mx-2">•</span> Always with You
+              For unclaimed and needy cases <span className="mx-2">•</span> Final rites with dignity <span className="mx-2">•</span> Every essential arrangement
             </p>
           ) : (
             <p className="mt-6 text-sm font-light text-[#6E4B3A] md:text-base">

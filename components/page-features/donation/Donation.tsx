@@ -258,7 +258,7 @@ function Donation() {
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
-              src="/assets/hero-hd/moksha-hero-hd-2.png"
+              src="/hero-images/3.png"
               alt="Donate to Moksha Sewa"
               fill
               priority

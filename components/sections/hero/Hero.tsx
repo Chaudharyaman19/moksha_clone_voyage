@@ -62,6 +62,14 @@ type SlideContent = {
   heading: string[];
   description: string;
   alt: string;
+  primaryButton?: {
+    label: string;
+    href: string;
+  };
+  secondaryButton?: {
+    label: string;
+    href: string;
+  };
 };
 
 export default function Hero({ variant = "voyage" }: HeroProps) {
@@ -69,11 +77,13 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     () =>
       variant === "seva"
         ? [
-          "/hero-images/u.png",
+          "/hero-images/7.png",
+          "/hero-images/8.png",
+          "/hero-images/1.png",
           "/hero-images/2.png",
           "/hero-images/3.png",
-          "/hero-images/4.png",
-          "/hero-images/5.png",
+            "/hero-images/4.png",
+               "/hero-images/9.png",
         ]
         : [
           "/assets/image.webp",
@@ -89,34 +99,102 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       variant === "seva"
         ? [
             {
-              heading: ["A Dignified Final Journey.", "Care at Every Step."],
+            heading: ["No One Left Behind.", "Dignity for Every Life."],
               description:
-                "With dignity, care and timely coordination, our trained Sewa team manages respectful transportation, sacred preparation and ghat arrangements, while supporting every family with calm guidance throughout each step of the final journey.",
-              alt: "Moksha Sewa team respectfully transporting a departed loved one at a sacred ghat",
+                "For those who have no one, or for families who cannot afford final rites, Moksha Sewa arranges ambulance support, body transport, wood, cloth, flowers and essential ritual items.",
+              alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
+              primaryButton: {
+                label: "Unclaimed Case Help",
+                href: "/request-help",
+              },
+              secondaryButton: {
+                label: "Donate for Service",
+                href: "/donation",
+              },
             },
             {
-              heading: ["Sacred Rites. Peaceful Farewell.", "Guided With Devotion."],
+              heading: ["Ambulance to Cremation Ground,", "Complete Support."],
               description:
-                "With experienced Pandits and complete ritual arrangements, we help families perform the final rites with devotion, proper traditions and respectful guidance, ensuring every sacred step is completed peacefully at the holy ghats of Bharat.",
-              alt: "Family performing final rites with a Pandit beside the sacred river",
+                "We arrange ambulance and hearse van support to respectfully move the body from a hospital, home or public place to the cremation ground, so the family or authorities are not left alone.",
+              alt: "Moksha Sewa team arranging hearse van support for a grieving family",
+              primaryButton: {
+                label: "Call Ambulance",
+                href: "tel:+919220147229",
+              },
+              secondaryButton: {
+                label: "Request Transport",
+                href: "/request-help",
+              },
             },
             {
-              heading: ["Every Ritual. Properly Arranged.", "Dignity in Every Detail."],
+              heading: ["Wood, Cloth and Flowers,", "We Arrange the Essentials."],
               description:
-                "From sacred samagri and pyre preparation to Pandit coordination and family support, our Sewa team manages every detail with respect, clarity and care, allowing loved ones to remain present during the final farewell.",
-              alt: "Moksha Sewa team arranging sacred samagri and final ritual preparations",
+                "Moksha Sewa arranges basic cremation essentials such as wood, shroud cloth, flowers, ritual items and cremation-ground support for people in need.",
+              alt: "Moksha Sewa volunteers supporting a needy family at the cremation ground",
+              primaryButton: {
+                label: "Sponsor Ritual Items",
+                href: "/donation",
+              },
+              secondaryButton: {
+                label: "Request Support",
+                href: "/request-help",
+              },
             },
             {
-              heading: ["Sacred Waters. Lasting Peace.", "Prayers for the Departed."],
+              heading: ["For Families in Need,", "Support With Care."],
               description:
-                "With complete guidance for Asthi Visarjan and related rituals, we arrange the Pandit, samagri and ghat support, helping families offer prayers with devotion, peace and proper tradition at sacred rivers across Bharat.",
-              alt: "Family offering flowers and prayers during a sacred riverside ritual",
+                "Many families cannot arrange even basic supplies during their hardest moments. We help provide food, clothing, blankets and ritual items so the final service can happen with respect.",
+              alt: "Moksha Sewa volunteers providing ration blankets and ritual materials",
+              primaryButton: {
+                label: "Donate Essentials",
+                href: "/donation",
+              },
+              secondaryButton: {
+                label: "Help a Family",
+                href: "/request-help",
+              },
             },
             {
-              heading: ["Sewa Through Compassion.", "Honouring With Kindness."],
+              heading: ["Unclaimed or Helpless,", "Every Life Deserves Dignity."],
               description:
-                "Through respectful food Sewa and charitable offerings, we help families honour their loved ones by serving those in need, with complete arrangements, transparent coordination and compassionate support at sacred destinations.",
-              alt: "Moksha Sewa volunteers respectfully serving food to people at a sacred ghat",
+                "Whether it is an unclaimed body or a helpless person, dignity matters. We help arrange local support, transport, wood, cremation-ground coordination and basic final-rites arrangements.",
+              alt: "Moksha Sewa team giving respectful final farewell support",
+              primaryButton: {
+                label: "Final Rites Help",
+                href: "/request-help",
+              },
+              secondaryButton: {
+                label: "Sponsor Final Rites",
+                href: "/donation",
+              },
+            },
+            {
+              heading: ["At Every Step,", "Volunteers Stand With You."],
+              description:
+                "Moksha Sewa provides on-ground volunteers to help with ambulance coordination, wood, ritual items, cremation-ground support and a respectful final farewell.",
+              alt: "Moksha Sewa volunteers doing on-ground service near the cremation ground",
+              primaryButton: {
+                label: "Become Volunteer",
+                href: "/volunteer/register",
+              },
+              secondaryButton: {
+                label: "Support Service",
+                href: "/donation",
+              },
+            },
+            {
+              heading: ["Food Service for People,", "Arranged by Namo Gange."],
+              description:
+                "After the final rites, arranging food for people can be difficult for many families. Namo Gange helps arrange food service so families in need do not face extra burden.",
+              alt: "Namo Gange volunteers serving food as part of community food service",
+              primaryButton: {
+                label: "Sponsor Food Service",
+                href: "/donation",
+              },
+              secondaryButton: {
+                label: "Donate Food Support",
+                href: "/donation",
+              },
             },
           ]
         : images.map(() => ({
@@ -135,10 +213,10 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   const stats: StatItem[] =
     variant === "seva"
       ? [
-        { value: "50,000+", label: "Sewas Performed", icon: UsersRound },
-        { value: "25+", label: "Sacred Destinations", icon: Landmark },
-        { value: "98%", label: "Happy Devotees", icon: Smile },
-        { value: "100%", label: "Secure & Transparent", icon: ShieldCheck },
+        { value: "0", label: "Cost for Helpless", icon: UsersRound },
+        { value: "24", label: "Hour Ambulance Help", icon: Landmark },
+        { value: "100%", label: "Respectful Final Rites", icon: Smile },
+        { value: "1", label: "Call for Full Arrangement", icon: ShieldCheck },
       ]
       : [
         { value: "24/7", label: "Care Coordinators", icon: UsersRound },
@@ -149,7 +227,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
   const trustChips =
     variant === "seva"
-      ? ["Verified Pandits", "Transparent Pricing", "24/7 Support"]
+      ? ["Unclaimed Body Support", "Ambulance & Wood", "Shroud, Flowers & Ritual Items"]
       : ["Verified Services", "Clear Guidance", "24/7 Support"];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -276,7 +354,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E]">
                 {variant === "seva"
-                  ? "मोक्ष सेवा · Sacred Sewas of Bharat"
+                  ? "मोक्ष सेवा · Free Final Rites Support"
                   : "मोक्ष · With You, Always"}
               </span>
             </div>
@@ -317,10 +395,18 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
             <div className="mt-6 flex flex-wrap items-center gap-3.5">
               <a
-                href={variant === "seva" ? "/sevas" : "/services"}
+                href={
+                  variant === "seva"
+                    ? activeSlide.primaryButton?.href ?? "/sevas"
+                    : "/services"
+                }
                 className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
               >
-                <span>{variant === "seva" ? "Book a Sewa" : "Get Support"}</span>
+                <span>
+                  {variant === "seva"
+                    ? activeSlide.primaryButton?.label ?? "Final Rites Help"
+                    : "Get Support"}
+                </span>
                 <CalendarDays
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
                   strokeWidth={1.7}
@@ -328,10 +414,18 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               </a>
 
               <a
-                href={variant === "seva" ? "/sevas" : "/services"}
+                href={
+                  variant === "seva"
+                    ? activeSlide.secondaryButton?.href ?? "/sevas"
+                    : "/services"
+                }
                 className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-white/45 px-6 text-[14px] font-semibold text-[#73532F] backdrop-blur-[2px] transition hover:border-[#8B6A3E] hover:bg-white/80"
               >
-                <span>{variant === "seva" ? "Explore Sewas" : "Explore Services"}</span>
+                <span>
+                  {variant === "seva"
+                    ? activeSlide.secondaryButton?.label ?? "Ambulance & Ritual Items"
+                    : "Explore Services"}
+                </span>
                 <ArrowRight
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
                   strokeWidth={1.7}
