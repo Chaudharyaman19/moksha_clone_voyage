@@ -327,20 +327,20 @@ export default function WhyFamiliesTrust() {
         </div>
 
         {/* Bottom statement */}
-        <div className="relative flex h-[28px] items-center justify-center px-5">
+        <div className="relative flex h-[28px] items-center justify-center px-5 ">
           <div className="flex items-center justify-center gap-2.5 text-center">
             <span className="relative hidden h-px w-[44px] bg-[#D8A646] sm:block">
               <span className="absolute -left-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D8A646]" />
             </span>
 
             <p
-              className="text-[12px] font-normal text-[#4A392E]"
+              className="text-[12px] font-normal text-[#4A392E] "
               style={serifFont}
             >
               When there is no sahara, Moksha Sewa stands with the family.
             </p>
 
-            <span className="relative hidden h-px w-[44px] bg-[#D8A646] sm:block">
+            <span className="relative hidden h-px w-[24px] bg-[#D8A646] sm:block">
               <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D8A646]" />
             </span>
           </div>

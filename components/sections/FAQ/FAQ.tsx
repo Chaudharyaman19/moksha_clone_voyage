@@ -1,11 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { useState } from "react";
-import {
-  ChevronDown,
-  Heart,
-  Phone,
-} from "lucide-react";
+import { ChevronDown, Heart, Phone } from "lucide-react";
 
 interface FAQSectionProps {
   variant?: "voyage" | "seva";
@@ -25,29 +22,29 @@ export default function FAQSection({
     variant === "seva"
       ? [
           {
-            question: "Kya zaruratmand parivar ke liye help free hoti hai?",
+            question: "Is assistance free for families in need?",
             answer:
-              "Eligible gareeb, anath, lawaris ya be-sahara cases mein Moksha Sewa zaruri sahayata arrange karne ki koshish karta hai. Team case details confirm karke batati hai ki kya-kya support possible hai.",
+              "For eligible poor, orphaned, unclaimed or helpless cases, Moksha Sewa makes every possible effort to arrange essential support. Our team first verifies the case details and then confirms what assistance can be provided.",
           },
           {
-            question: "Aap log kya-kya arrange karte ho?",
+            question: "What services can your team arrange?",
             answer:
-              "Need ke hisaab se ambulance, hearse van, lakdi, kafan, phool, pooja samagri, pandit ji, ghat support, document guidance aur logon ko bhoj sewa arrange ki ja sakti hai.",
+              "Depending on the need, we may help coordinate an ambulance, hearse van, cremation wood, shroud, flowers, ritual materials, a pandit, cremation-ground support, documentation guidance and food service.",
           },
           {
-            question: "Lawaris lash ke case mein help mil sakti hai?",
+            question: "Can you help in an unclaimed body case?",
             answer:
-              "Haan, lawaris ya be-sahara case mein local rules, police/hospital process aur available support ke hisaab se team guidance deti hai. Official process complete hona zaruri hota hai.",
+              "Yes. In unclaimed or helpless cases, our team provides guidance according to local regulations, police or hospital procedures and available support. All required official formalities must be completed first.",
           },
           {
-            question: "Ambulance ya hearse van mil sakti hai?",
+            question: "Can you arrange an ambulance or hearse van?",
             answer:
-              "Haan. Location, timing aur vehicle availability ke basis par ambulance aur hearse van coordination kiya jata hai.",
+              "Yes. Ambulance and hearse-van coordination is provided based on the location, required time and vehicle availability.",
           },
           {
-            question: "Kya pandit ji aur kriya karam bhi arrange hota hai?",
+            question: "Can you arrange a pandit and final rituals?",
             answer:
-              "Haan. Gareeb aur zaruratmand parivar ke liye pandit ji, pooja samagri aur kriya karam ki guidance arrange karne mein help ki jaati hai.",
+              "Yes. We help families in need arrange a pandit, ritual materials and guidance for the final rites, depending on the case and local availability.",
           },
         ]
       : [
@@ -93,9 +90,11 @@ export default function FAQSection({
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+
             <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               FAQs
             </span>
+
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
@@ -110,7 +109,10 @@ export default function FAQSection({
             const offset = columnIndex === 0 ? 0 : 3;
 
             return (
-              <div key={columnIndex} className="divide-y divide-[#E8DED2] border-y border-[#E8DED2] lg:border-t">
+              <div
+                key={columnIndex}
+                className="divide-y divide-[#E8DED2] border-y border-[#E8DED2] lg:border-t"
+              >
                 {column.map((item, itemIndex) => {
                   const realIndex = offset + itemIndex;
                   const isOpen = openIndex === realIndex;
@@ -160,7 +162,7 @@ export default function FAQSection({
         <div className="relative mt-3 h-[210px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:h-[225px] lg:h-[240px]">
           <Image
             src="/assets/faq/faq-support-banner-v3.png"
-            alt="Moksha Sewa compassionate family support"
+            alt="Moksha Sewa compassionate support for unclaimed and vulnerable cases"
             fill
             priority
             unoptimized
@@ -173,14 +175,16 @@ export default function FAQSection({
           <div className="absolute inset-0 z-10 flex items-center justify-center px-5 sm:px-8 lg:px-10">
             <div className="w-full text-center text-white sm:w-[62%] lg:w-[48%]">
               <h3 className="font-serif text-[24px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
-                Lawaris Aur Zaruratmand Ke Liye,
+                For the Unclaimed and Those in Need,
                 <span className="block">
-                  Antim Sewa Samman Ke Saath.
+                  A Dignified Final Farewell.
                 </span>
               </h3>
 
               <p className="mx-auto mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[13px]">
-                Ek call se ambulance, lakdi, samagri, pandit ji aur ghat support ki guidance mil sakti hai.
+                One call can help you receive guidance for an ambulance,
+                cremation wood, ritual materials, a pandit and
+                cremation-ground support.
               </p>
 
               <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
@@ -189,6 +193,7 @@ export default function FAQSection({
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
                 >
                   Get Sewa Help
+
                   <Phone className="h-4 w-4" strokeWidth={1.8} />
                 </a>
 
@@ -197,6 +202,7 @@ export default function FAQSection({
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12"
                 >
                   Donate for Sewa
+
                   <Heart className="h-4 w-4" strokeWidth={1.8} />
                 </a>
               </div>

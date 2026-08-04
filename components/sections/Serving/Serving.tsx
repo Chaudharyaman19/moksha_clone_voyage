@@ -1,7 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import {
+  Ambulance,
+  ArrowRight,
+  FileText,
+  HandHeart,
+  Heart,
+  Hospital,
+  Landmark,
+  MapPinned,
+  PackageOpen,
+  UsersRound,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface ServingProps {
   variant?: "voyage" | "seva";
@@ -11,66 +23,164 @@ interface ActivityItem {
   title: string;
   description: string;
   image: string;
+  icon: LucideIcon;
+  imagePosition?: string;
 }
 
 const activities: ActivityItem[] = [
   {
     title: "Unclaimed Case Support",
     description:
-      "We reach places where unclaimed or helpless people need final-rites support.",
+      "We assist police, hospitals and authorities to ensure a respectful final farewell.",
     image: "/assets/serving/community-outreach.png",
+    icon: HandHeart,
+    imagePosition: "50% 50%",
   },
   {
     title: "On-Ground Support",
     description:
-      "Our volunteers stand with the family at hospital, home, ghat and cremation ground.",
+      "Our volunteers remain with families at hospitals, homes, ghats and cremation grounds.",
     image: "/assets/serving/on-ground-support.png",
+    icon: Landmark,
+    imagePosition: "50% 50%",
   },
   {
     title: "Food Service & Essentials",
     description:
-      "We arrange bhoj, ration, kapda and basic items for families in need.",
+      "We arrange food, water, clothing and basic essentials for families in need.",
     image: "/assets/serving/food-essentials.png",
+    icon: PackageOpen,
+    imagePosition: "50% 50%",
   },
   {
-    title: "Support at Hospitals",
+    title: "Hospital Support",
     description:
-      "We help families with body release guidance and urgent ambulance coordination.",
+      "We help with body-release guidance, hospital coordination and urgent assistance.",
     image: "/assets/serving/hospital-support.png",
+    icon: Hospital,
+    imagePosition: "50% 50%",
   },
   {
     title: "Rural & Remote Reach",
     description:
-      "We try to reach villages and areas where families have no easy support.",
+      "We reach villages and remote areas where families have limited access to support.",
     image: "/assets/serving/rural-remote-reach.png",
+    icon: MapPinned,
+    imagePosition: "50% 50%",
   },
   {
-    title: "Family Guidance",
+    title: "Emotional Support",
     description:
-      "We calmly guide families through rituals, documents and next steps.",
+      "We support families with compassion, clear guidance and emotional strength.",
     image: "/assets/serving/counseling-support.png",
+    icon: Heart,
+    imagePosition: "50% 50%",
   },
   {
-    title: "Emergency Transport",
+    title: "Ambulance & Transport",
     description:
-      "Ambulance and hearse van support for respectful body transport.",
+      "Quick and respectful ambulance or hearse-van support for every required distance.",
     image: "/assets/serving/emergency-transport.png",
+    icon: Ambulance,
+    imagePosition: "50% 50%",
   },
   {
     title: "Document Assistance",
     description:
-      "Support with required papers, hospital documents and local process guidance.",
+      "Support with required papers, hospital documents and official-process guidance.",
     image: "/assets/serving/document-assistance.png",
+    icon: FileText,
+    imagePosition: "50% 50%",
   },
 ];
+
+function LotusMark({
+  className = "h-6 w-9",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 72 50"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+
+      <path
+        d="M8 31c9 8 18 12 28 12s19-4 28-12"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function HeadingDivider() {
+  return (
+    <div
+      className="mt-1.5 flex items-center justify-center gap-1.5"
+      aria-hidden="true"
+    >
+      <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#C88B35]" />
+
+      <span className="h-[5px] w-[5px] rotate-45 bg-[#C88B35]" />
+
+      <span className="h-[3px] w-[3px] rotate-45 bg-[#E0B26D]" />
+
+      <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#C88B35]" />
+    </div>
+  );
+}
+
+function CornerLotus() {
+  return (
+    <div className="pointer-events-none absolute -bottom-5 -right-4 z-0 text-[#D6A456]/[0.13]">
+      <LotusMark className="h-[76px] w-[76px]" />
+    </div>
+  );
+}
 
 function ActivityCard({
   activity,
 }: {
   activity: ActivityItem;
 }) {
+  const Icon = activity.icon;
+
   return (
-    <article className="group relative w-[220px] shrink-0 overflow-hidden rounded-[12px] border border-[#E9DED2] bg-white shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:w-[240px] md:w-[260px] lg:w-[230px]">
+    <article className="group relative w-[220px] shrink-0 overflow-hidden rounded-[12px] border border-[#E9DED2] bg-[#FFFDF9] shadow-[0_4px_14px_rgba(66,43,24,0.055)] transition duration-300 hover:-translate-y-0.5 hover:border-[#DDBB87] hover:shadow-[0_8px_20px_rgba(66,43,24,0.09)] sm:w-[240px] md:w-[260px] lg:w-[230px]">
+      {/* Same image height */}
       <div className="relative aspect-square w-full overflow-hidden">
         <Image
           src={activity.image}
@@ -78,18 +188,41 @@ function ActivityCard({
           fill
           sizes="(max-width: 640px) 220px, (max-width: 768px) 240px, (max-width: 1024px) 260px, 230px"
           quality={95}
+          style={{
+            objectPosition: activity.imagePosition ?? "50% 50%",
+          }}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
         />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#382013]/10 via-transparent to-transparent" />
       </div>
 
-      <div className="px-3 pb-3 pt-2 text-center">
-        <h3 className="font-serif text-[15px] font-normal leading-tight text-[#32231C] lg:text-[14px] xl:text-[15px]">
-          {activity.title}
-        </h3>
+      {/* Floating icon */}
+      <div className="absolute left-1/2 top-[calc(100%-86px)] z-20 hidden" />
 
-        <p className="mx-auto mt-1 max-w-[230px] text-[11px] font-normal leading-[15px] text-[#5D493C] lg:text-[10px] lg:leading-[14px] xl:text-[11px] xl:leading-[15px]">
-          {activity.description}
-        </p>
+      <div className="absolute left-1/2 top-[calc(100%-1px)] z-20" />
+
+      <div className="absolute left-1/2 top-[220px] z-20 hidden -translate-x-1/2 sm:top-[240px] md:top-[260px] lg:top-[230px]" />
+
+      <div className="absolute left-1/2 top-[220px] z-20 grid h-[46px] w-[46px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-[#DFC08F] bg-[#FFFDF9] text-[#C48324] shadow-[0_5px_14px_rgba(80,48,22,0.10)] sm:top-[240px] md:top-[260px] lg:top-[230px]">
+        <Icon className="h-[22px] w-[22px]" strokeWidth={1.55} />
+      </div>
+
+      {/* Compact content */}
+      <div className="relative min-h-[94px] overflow-hidden px-3 pb-3 pt-7 text-center">
+        <CornerLotus />
+
+        <div className="relative z-10">
+          <h3 className="font-serif text-[14px] font-normal leading-tight text-[#32231C] lg:text-[13px] xl:text-[14px]">
+            {activity.title}
+          </h3>
+
+          <span className="mx-auto mt-1.5 block h-px w-7 bg-[#C88935]" />
+
+          <p className="mx-auto mt-1.5 max-w-[210px] text-[10px] font-normal leading-[14px] text-[#5D493C] xl:text-[10.5px] xl:leading-[14px]">
+            {activity.description}
+          </p>
+        </div>
       </div>
     </article>
   );
@@ -128,32 +261,36 @@ export default function Serving({
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-24 w-[70%] -translate-x-1/2 rounded-full bg-[#B97A2A]/[0.035] blur-3xl" />
+
+        <div className="absolute bottom-[-65px] left-1/2 h-[110px] w-[75%] -translate-x-1/2 rounded-[50%] border border-[#D7AA68]/[0.07]" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
         <header className="mx-auto mb-2 max-w-3xl text-center">
-          <div className="mb-1 inline-flex items-center space-x-3">
+          <LotusMark className="mx-auto h-5 w-8 text-[#C88B35]" />
+
+          <div className="mb-1 mt-0.5 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
 
-            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E] sm:text-[11px]">
               Our Service Work
             </span>
 
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <div className="h-px w-12 bg-gradient-to-l from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
           <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
             Every Small Arrangement Becomes Service.
           </h2>
+
+          <HeadingDivider />
         </header>
 
-        {/* Infinite Marquee */}
+        {/* Infinite marquee remains unchanged */}
         <div className="marquee-wrapper relative mt-1 w-full overflow-hidden pb-2 pt-1">
-          {/* Left fade */}
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-5 bg-gradient-to-r from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
+          <div className="pointer-events-none absolute left-0 top-0 z-30 h-full w-5 bg-gradient-to-r from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
 
-          {/* Right fade */}
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-5 bg-gradient-to-l from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
+          <div className="pointer-events-none absolute right-0 top-0 z-30 h-full w-5 bg-gradient-to-l from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
 
           <div className="marquee-track flex w-max">
             <ActivityGroup />
@@ -166,7 +303,7 @@ export default function Serving({
             type="button"
             className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[12px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
-            <span>View More Service Work</span>
+            <span>View More Services</span>
 
             <ArrowRight
               className="h-3.5 w-3.5"
