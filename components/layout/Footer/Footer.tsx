@@ -3,22 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ChevronRight,
-  Facebook,
-  Flame,
-  Globe,
-  Heart,
-  Instagram,
-  Leaf,
-  Link2,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Shield,
-  Twitter,
-  Youtube,
-} from "lucide-react";
+  FaChevronRight,
+  FaFacebook,
+  FaFire,
+  FaGlobe,
+  FaHeart,
+  FaInstagram,
+  FaLeaf,
+  FaLink,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaPaperPlane,
+  FaShieldAlt,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import { useState } from "react";
 import mokshalogo from "../../../public/assets/logoreal.jpeg";
 import mokshaSevaLogo from "../../../public/assets/logo-moksha-seva.png";
@@ -37,10 +37,10 @@ function Kalash() {
 }
 
 const socialLinks = [
-  { label: "Facebook", href: "#", icon: Facebook },
-  { label: "Instagram", href: "#", icon: Instagram },
-  { label: "Twitter", href: "#", icon: Twitter },
-  { label: "YouTube", href: "#", icon: Youtube },
+  { label: "Facebook", href: "#", icon: FaFacebook },
+  { label: "Instagram", href: "#", icon: FaInstagram },
+  { label: "Twitter", href: "#", icon: FaTwitter },
+  { label: "YouTube", href: "#", icon: FaYoutube },
 ];
 
 const quickLinks = [
@@ -171,7 +171,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
               >
                 <span className="relative flex h-3.5 w-3.5 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#24150C]/25" />
-                  <Phone className="relative h-3.5 w-3.5" />
+                  <FaPhoneAlt className="relative h-3.5 w-3.5" />
                 </span>
                 {contactNumber}
               </a>
@@ -186,7 +186,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
             <div className="relative">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D3A14D]/65 text-[#E4B75F]">
-                  <Mail className="h-4 w-4" />
+                  <FaEnvelope className="h-4 w-4" />
                 </div>
                 <div>
                   <h3 className="font-serif text-lg leading-tight text-white">
@@ -233,7 +233,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 >
                   {subscribed ? "Submitted" : isSeva ? "Send" : "Join"}
                   {!subscribed && (
-                    <Send className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   )}
                 </button>
               </form>
@@ -245,7 +245,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
         <div className="my-4 flex items-center gap-3 lg:my-5">
           <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#B17C37]/55" />
           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#B17C37]/40 text-[#E4B75F]">
-            <Flame className="h-3.5 w-3.5" />
+            <FaFire className="h-3.5 w-3.5" />
           </div>
           <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#B17C37]/55" />
         </div>
@@ -253,7 +253,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
         {/* ---------- Navigation columns ---------- */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           <div>
-            <FooterColumnTitle icon={Link2} title="Quick Links" />
+            <FooterColumnTitle icon={FaLink} title="Quick Links" />
             <ul className="mt-2.5 space-y-1.5">
               {quickLinks.map((item) => (
                 <li key={item.href}>
@@ -261,7 +261,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                     href={item.href}
                     className="group inline-flex items-center gap-1.5 text-[13px] text-white/70 transition hover:text-[#E4B75F]"
                   >
-                    <ChevronRight className="h-3.5 w-3.5 text-[#D3A14D] transition group-hover:translate-x-0.5" />
+                    <FaChevronRight className="h-3.5 w-3.5 text-[#D3A14D] transition group-hover:translate-x-0.5" />
                     {item.label}
                   </Link>
                 </li>
@@ -270,14 +270,14 @@ export default function Footer({ variant = "seva" }: FooterProps) {
           </div>
 
           <div>
-            <FooterColumnTitle icon={Leaf} title="Services" />
+            <FooterColumnTitle icon={FaLeaf} title="Services" />
             <ul className="mt-2.5 space-y-1.5">
               {services.map((service) => (
                 <li
                   key={service}
                   className="flex items-start gap-1.5 text-[13px] leading-5 text-white/70"
                 >
-                  <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
+                  <FaChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
                   <span>{service}</span>
                 </li>
               ))}
@@ -285,14 +285,14 @@ export default function Footer({ variant = "seva" }: FooterProps) {
           </div>
 
           <div>
-            <FooterColumnTitle icon={MapPin} title="Contact" />
+            <FooterColumnTitle icon={FaMapMarkerAlt} title="Contact" />
             <ul className="mt-2.5 space-y-1.5 text-[13px] text-white/70">
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
+                <FaMapMarkerAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
                 <span>Delhi NCR</span>
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
+                <FaEnvelope className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
                 <a
                   href={`mailto:${contactEmail}`}
                   className="break-all transition hover:text-[#E4B75F]"
@@ -301,7 +301,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
+                <FaPhoneAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
                 <a
                   href={`tel:${contactNumber.replace(/\s/g, "")}`}
                   className="transition hover:text-[#E4B75F]"
@@ -313,13 +313,13 @@ export default function Footer({ variant = "seva" }: FooterProps) {
           </div>
 
           <div>
-            <FooterColumnTitle icon={Heart} title="Values" />
+            <FooterColumnTitle icon={FaHeart} title="Values" />
             <ul className="mt-2.5 space-y-1.5 text-[13px] text-white/70">
               {[
-                { icon: Heart, label: "Compassion" },
-                { icon: Shield, label: "Trust" },
-                { icon: Leaf, label: "Respect" },
-                { icon: Globe, label: "Service" },
+                { icon: FaHeart, label: "Compassion" },
+                { icon: FaShieldAlt, label: "Trust" },
+                { icon: FaLeaf, label: "Respect" },
+                { icon: FaGlobe, label: "Service" },
               ].map((value) => {
                 const Icon = value.icon;
 

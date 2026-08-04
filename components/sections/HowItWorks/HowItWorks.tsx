@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  HandHeart,
-  PhoneCall,
-  UserRound,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  FaHandHoldingHeart,
+  FaPhoneAlt,
+  FaUser,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
 interface MokshaShlokSectionProps {
   variant?: "voyage" | "seva";
@@ -15,7 +15,7 @@ interface StepItem {
   number: string;
   title: string;
   description: string;
-  icon: LucideIcon | null;
+  icon: IconType | null;
   lotusStep?: boolean;
 }
 
@@ -170,21 +170,21 @@ export default function HowItWorks({
             title: "Call Anytime, 24×7",
             description:
               "Reach us by call or WhatsApp. We are always here to help.",
-            icon: PhoneCall,
+            icon: FaPhoneAlt,
           },
           {
             number: "02",
             title: "Share Details",
             description:
               "Tell us your needs. We will guide you step by step.",
-            icon: UserRound,
+            icon: FaUser,
           },
           {
             number: "03",
             title: "We Arrange Everything",
             description:
               "From pandit ji to samagri, we take care of all.",
-            icon: HandHeart,
+            icon: FaHandHoldingHeart,
           },
           {
             number: "04",
@@ -201,21 +201,21 @@ export default function HowItWorks({
             title: "Call Anytime, 24×7",
             description:
               "Connect with our support team whenever assistance is required.",
-            icon: PhoneCall,
+            icon: FaPhoneAlt,
           },
           {
             number: "02",
             title: "Share Details",
             description:
               "Tell us what is needed. Our team guides you clearly.",
-            icon: UserRound,
+            icon: FaUser,
           },
           {
             number: "03",
             title: "We Arrange Everything",
             description:
               "Transport, documentation and services are coordinated.",
-            icon: HandHeart,
+            icon: FaHandHoldingHeart,
           },
           {
             number: "04",
@@ -285,7 +285,6 @@ export default function HowItWorks({
                     ) : Icon ? (
                       <Icon
                         className="h-[37px] w-[37px]"
-                        strokeWidth={1.45}
                       />
                     ) : null}
                   </div>

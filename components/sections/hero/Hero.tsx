@@ -3,17 +3,17 @@
 import Image from "next/image";
 import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
 import {
-  ArrowRight,
-  CalendarDays,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Flame,
-  Landmark,
-  ShieldCheck,
-  Smile,
-  UsersRound,
-} from "lucide-react";
+  FaArrowRight,
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaChevronLeft,
+  FaChevronRight,
+  FaFire,
+  FaLandmark,
+  FaShieldAlt,
+  FaSmile,
+  FaUsers,
+} from "react-icons/fa";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const end = parseInt(endString.replace(/,/g, "").replace(/\D/g, ""), 10);
@@ -213,16 +213,16 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   const stats: StatItem[] =
     variant === "seva"
       ? [
-        { value: "0", label: "Cost for Helpless", icon: UsersRound },
-        { value: "24", label: "Hour Ambulance Help", icon: Landmark },
-        { value: "100%", label: "Respectful Final Rites", icon: Smile },
-        { value: "1", label: "Call for Full Arrangement", icon: ShieldCheck },
+        { value: "0", label: "Cost for Helpless", icon: FaUsers },
+        { value: "24", label: "Hour Ambulance Help", icon: FaLandmark },
+        { value: "100%", label: "Respectful Final Rites", icon: FaSmile },
+        { value: "1", label: "Call for Full Arrangement", icon: FaShieldAlt },
       ]
       : [
-        { value: "24/7", label: "Care Coordinators", icon: UsersRound },
-        { value: "15+", label: "Service Cities", icon: Landmark },
-        { value: "98%", label: "Families Supported", icon: Smile },
-        { value: "100%", label: "Transparent Support", icon: ShieldCheck },
+        { value: "24/7", label: "Care Coordinators", icon: FaUsers },
+        { value: "15+", label: "Service Cities", icon: FaLandmark },
+        { value: "98%", label: "Families Supported", icon: FaSmile },
+        { value: "100%", label: "Transparent Support", icon: FaShieldAlt },
       ];
 
   const trustChips =
@@ -310,7 +310,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
         aria-label="Previous hero image"
         className="absolute left-3 top-1/2 z-40 hidden -translate-y-1/2 rounded-full border border-[#C9A574]/60 bg-[#2C1810]/25 p-2 text-white opacity-0 backdrop-blur-sm transition hover:bg-[#2C1810]/45 group-hover:opacity-100 lg:flex"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <FaChevronLeft className="h-5 w-5" />
       </button>
 
       <button
@@ -319,7 +319,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
         aria-label="Next hero image"
         className="absolute right-3 top-1/2 z-40 hidden -translate-y-1/2 rounded-full border border-[#C9A574]/60 bg-[#2C1810]/25 p-2 text-white opacity-0 backdrop-blur-sm transition hover:bg-[#2C1810]/45 group-hover:opacity-100 lg:flex"
       >
-        <ChevronRight className="h-5 w-5" />
+        <FaChevronRight className="h-5 w-5" />
       </button>
 
       {/* Slide dots + counter — sits just above the stats band */}
@@ -350,7 +350,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
             {/* eyebrow */}
             <div className="mb-4 inline-flex items-center gap-2.5">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
-                <Flame className="h-3.5 w-3.5" />
+                <FaFire className="h-3.5 w-3.5" />
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E]">
                 {variant === "seva"
@@ -407,9 +407,8 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                     ? activeSlide.primaryButton?.label ?? "Final Rites Help"
                     : "Get Support"}
                 </span>
-                <CalendarDays
+                <FaCalendarAlt
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
-                  strokeWidth={1.7}
                 />
               </a>
 
@@ -426,9 +425,8 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                     ? activeSlide.secondaryButton?.label ?? "Ambulance & Ritual Items"
                     : "Explore Services"}
                 </span>
-                <ArrowRight
+                <FaArrowRight
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
-                  strokeWidth={1.7}
                 />
               </a>
             </div>
@@ -441,7 +439,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                   className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
-                    <CheckCircle2 className="h-3 w-3 text-[#8B6A3E]" />
+                    <FaCheckCircle className="h-3 w-3 text-[#8B6A3E]" />
                   </span>
                   {chip}
                 </span>
@@ -464,7 +462,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                   } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
               >
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                  <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" strokeWidth={1.8} />
+                  <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                 </div>
                 <div className="min-w-0 text-left">
                   <div

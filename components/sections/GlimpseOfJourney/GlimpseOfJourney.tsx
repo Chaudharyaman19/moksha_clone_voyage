@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, X } from "lucide-react";
+import { FaSearch, FaTimes } from "react-icons/fa";
 
 const galleryImages = [
   "/gallary/g1.png",
@@ -74,7 +73,7 @@ export default function GlimpseOfJourney() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white shadow-lg backdrop-blur-sm border border-white/30">
-                    <Search className="h-6 w-6" strokeWidth={2} />
+                    <FaSearch className="h-6 w-6" />
                   </div>
                 </div>
               </article>
@@ -94,39 +93,30 @@ export default function GlimpseOfJourney() {
       </div>
 
       {/* Lightbox Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white/70 transition-colors hover:bg-white/20 hover:text-white focus:outline-none"
             onClick={() => setSelectedImage(null)}
           >
-            <button
-              className="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white/70 transition-colors hover:bg-white/20 hover:text-white focus:outline-none"
-              onClick={() => setSelectedImage(null)}
-            >
-              <X className="h-6 w-6" strokeWidth={2} />
-            </button>
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-xl shadow-2xl"
-              onClick={(e: React.MouseEvent) => e.stopPropagation()}
-            >
-              <img
-                src={selectedImage}
-                alt="Expanded view"
-                className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <FaTimes className="h-6 w-6" />
+          </button>
+          <div
+            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-xl shadow-2xl animate-in zoom-in-95 duration-300"
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Expanded view"
+              className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

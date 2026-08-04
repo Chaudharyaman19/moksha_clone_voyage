@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Quote, HandHeart } from "lucide-react";
+import { FaQuoteLeft, FaHandHoldingHeart } from "react-icons/fa";
 
 const aboutImages = {
   storyMain: "/assets/about-story-1.png",
@@ -12,7 +12,7 @@ export default function AboutMokshaSewa() {
     <section className="bg-[#FBF8F3] py-4 lg:py-6">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
         <div className="relative">
-          <Quote className="pointer-events-none absolute -left-4 -top-6 h-20 w-20 text-[#C9A574]/15" />
+          <FaQuoteLeft className="pointer-events-none absolute -left-4 -top-6 h-20 w-20 text-[#C9A574]/15" />
 
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-[1px] w-10 bg-[#8B6A3E]" />
@@ -46,7 +46,7 @@ export default function AboutMokshaSewa() {
           {/* signed note */}
           <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-[#E6D6BF] bg-white px-5 py-4 shadow-sm">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-              <HandHeart className="h-5 w-5" />
+              <FaHandHoldingHeart className="h-5 w-5" />
             </span>
             <span>
               <span className="block font-serif text-xl italic leading-tight text-[#8B6A3E]">

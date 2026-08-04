@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import {
-  Award,
-  BadgeCheck,
-  ClipboardList,
-  HandHeart,
-  Headphones,
-  MapPinned,
-  PackageCheck,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react";
+  FaAward,
+  FaCertificate,
+  FaClipboardList,
+  FaHandHoldingHeart,
+  FaHeadphones,
+  FaMapMarkerAlt,
+  FaBoxOpen,
+  FaShieldAlt,
+  FaUsers,
+} from "react-icons/fa";
 
 const GOLD = "#B17A1D";
 
@@ -180,7 +180,7 @@ function ReasonIcon({ type }: ReasonIconProps) {
     case "support":
       return (
         <div className="relative grid h-[38px] w-[38px] place-items-center">
-          <Headphones className="h-[36px] w-[36px] stroke-[1.45] text-[#AA7318]" />
+          <FaHeadphones className="h-[36px] w-[36px] text-[#AA7318]" />
 
           <span
             className="absolute top-[15px] text-[9px] font-normal leading-none text-[#7D5412]"
@@ -194,10 +194,10 @@ function ReasonIcon({ type }: ReasonIconProps) {
     case "team":
       return (
         <div className="relative grid h-[38px] w-[46px] place-items-center">
-          <UsersRound className="h-[35px] w-[35px] stroke-[1.45] text-[#AA7318]" />
+          <FaUsers className="h-[35px] w-[35px] text-[#AA7318]" />
 
           <span className="absolute bottom-0 right-0 grid h-[16px] w-[16px] place-items-center rounded-full bg-[#FFFDF8]">
-            <ShieldCheck className="h-[16px] w-[16px] stroke-[1.45] text-[#AA7318]" />
+            <FaShieldAlt className="h-[16px] w-[16px] text-[#AA7318]" />
           </span>
         </div>
       );
@@ -205,7 +205,7 @@ function ReasonIcon({ type }: ReasonIconProps) {
     case "pricing":
       return (
         <div className="relative grid h-[38px] w-[46px] place-items-center">
-          <ClipboardList className="h-[35px] w-[35px] stroke-[1.45] text-[#AA7318]" />
+          <FaClipboardList className="h-[35px] w-[35px] text-[#AA7318]" />
 
           <span className="absolute bottom-0 right-0 grid h-[18px] w-[18px] place-items-center rounded-full border border-[#AA7318] bg-[#FFFDF8]">
             <span
@@ -219,22 +219,22 @@ function ReasonIcon({ type }: ReasonIconProps) {
       );
 
     case "care":
-      return <HandHeart className={iconClass} />;
+      return <FaHandHoldingHeart className={iconClass} />;
 
     case "arrangements":
-      return <PackageCheck className={iconClass} />;
+      return <FaBoxOpen className={iconClass} />;
 
     case "network":
-      return <MapPinned className={iconClass} />;
+      return <FaMapMarkerAlt className={iconClass} />;
 
     case "trusted":
-      return <ShieldCheck className={iconClass} />;
+      return <FaShieldAlt className={iconClass} />;
 
     case "dignity":
-      return <Award className={iconClass} />;
+      return <FaAward className={iconClass} />;
 
     default:
-      return <BadgeCheck className={iconClass} />;
+      return <FaCertificate className={iconClass} />;
   }
 }
 

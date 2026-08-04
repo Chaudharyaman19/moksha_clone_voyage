@@ -2,18 +2,18 @@
 
 import Image from "next/image";
 import {
-  Ambulance,
-  ArrowRight,
-  FileText,
-  HandHeart,
-  Heart,
-  Hospital,
-  Landmark,
-  MapPinned,
-  PackageOpen,
-  UsersRound,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  FaAmbulance,
+  FaArrowRight,
+  FaFileAlt,
+  FaHandHoldingHeart,
+  FaHeart,
+  FaHospital,
+  FaLandmark,
+  FaMapMarkerAlt,
+  FaBoxOpen,
+  FaUsers,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
 interface ServingProps {
   variant?: "voyage" | "seva";
@@ -23,7 +23,7 @@ interface ActivityItem {
   title: string;
   description: string;
   image: string;
-  icon: LucideIcon;
+  icon: IconType;
   imagePosition?: string;
 }
 
@@ -33,7 +33,7 @@ const activities: ActivityItem[] = [
     description:
       "We assist police, hospitals and authorities to ensure a respectful final farewell.",
     image: "/assets/serving/community-outreach.png",
-    icon: HandHeart,
+    icon: FaHandHoldingHeart,
     imagePosition: "50% 50%",
   },
   {
@@ -41,7 +41,7 @@ const activities: ActivityItem[] = [
     description:
       "Our volunteers remain with families at hospitals, homes, ghats and cremation grounds.",
     image: "/assets/serving/on-ground-support.png",
-    icon: Landmark,
+    icon: FaLandmark,
     imagePosition: "50% 50%",
   },
   {
@@ -49,7 +49,7 @@ const activities: ActivityItem[] = [
     description:
       "We arrange food, water, clothing and basic essentials for families in need.",
     image: "/assets/serving/food-essentials.png",
-    icon: PackageOpen,
+    icon: FaBoxOpen,
     imagePosition: "50% 50%",
   },
   {
@@ -57,7 +57,7 @@ const activities: ActivityItem[] = [
     description:
       "We help with body-release guidance, hospital coordination and urgent assistance.",
     image: "/assets/serving/hospital-support.png",
-    icon: Hospital,
+    icon: FaHospital,
     imagePosition: "50% 50%",
   },
   {
@@ -65,7 +65,7 @@ const activities: ActivityItem[] = [
     description:
       "We reach villages and remote areas where families have limited access to support.",
     image: "/assets/serving/rural-remote-reach.png",
-    icon: MapPinned,
+    icon: FaMapMarkerAlt,
     imagePosition: "50% 50%",
   },
   {
@@ -73,7 +73,7 @@ const activities: ActivityItem[] = [
     description:
       "We support families with compassion, clear guidance and emotional strength.",
     image: "/assets/serving/counseling-support.png",
-    icon: Heart,
+    icon: FaHeart,
     imagePosition: "50% 50%",
   },
   {
@@ -81,7 +81,7 @@ const activities: ActivityItem[] = [
     description:
       "Quick and respectful ambulance or hearse-van support for every required distance.",
     image: "/assets/serving/emergency-transport.png",
-    icon: Ambulance,
+    icon: FaAmbulance,
     imagePosition: "50% 50%",
   },
   {
@@ -89,7 +89,7 @@ const activities: ActivityItem[] = [
     description:
       "Support with required papers, hospital documents and official-process guidance.",
     image: "/assets/serving/document-assistance.png",
-    icon: FileText,
+    icon: FaFileAlt,
     imagePosition: "50% 50%",
   },
 ];
@@ -305,9 +305,8 @@ export default function Serving({
           >
             <span>View More Services</span>
 
-            <ArrowRight
+            <FaArrowRight
               className="h-3.5 w-3.5"
-              strokeWidth={1.8}
             />
           </button>
         </div>

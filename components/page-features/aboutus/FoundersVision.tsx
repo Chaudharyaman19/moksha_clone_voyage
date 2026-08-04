@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { FaQuoteLeft } from "react-icons/fa";
 
 export default function FoundersVision() {
   return (
@@ -42,7 +42,7 @@ export default function FoundersVision() {
 
           {/* Right: Vision Content */}
           <div className="relative">
-            <Quote className="absolute -left-6 -top-6 h-16 w-16 text-[#C9A574]/15" />
+            <FaQuoteLeft className="absolute -left-6 -top-6 h-16 w-16 text-[#C9A574]/15" />
             
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />

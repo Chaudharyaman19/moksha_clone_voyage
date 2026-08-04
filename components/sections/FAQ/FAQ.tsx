@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ChevronDown, Heart, Phone } from "lucide-react";
+import {
+  FaChevronDown,
+  FaHeart,
+  FaPhoneAlt,
+} from "react-icons/fa";
 
 interface FAQSectionProps {
   variant?: "voyage" | "seva";
@@ -129,11 +133,10 @@ export default function FAQSection({
                           {item.question}
                         </span>
 
-                        <ChevronDown
+                        <FaChevronDown
                           className={`h-4 w-4 shrink-0 text-[#5A4638] transition-transform duration-300 ${
                             isOpen ? "rotate-180" : ""
                           }`}
-                          strokeWidth={1.8}
                         />
                       </button>
 
@@ -193,8 +196,7 @@ export default function FAQSection({
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
                 >
                   Get Sewa Help
-
-                  <Phone className="h-4 w-4" strokeWidth={1.8} />
+                  <FaPhoneAlt className="h-4 w-4" />
                 </a>
 
                 <a
@@ -202,8 +204,7 @@ export default function FAQSection({
                   className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12"
                 >
                   Donate for Sewa
-
-                  <Heart className="h-4 w-4" strokeWidth={1.8} />
+                  <FaHeart className="h-4 w-4" />
                 </a>
               </div>
             </div>

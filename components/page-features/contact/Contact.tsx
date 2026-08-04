@@ -20,6 +20,8 @@ import {
 } from "react-icons/fa";
 import { MdVerified, MdEmail } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
+import { enquiryApi } from "@/lib/enquiryApi";
+import { ApiRequestError } from "@/lib/api";
 
 /* Temple (shikhara) shape — same signature as the About page */
 const templeMed =
@@ -142,7 +144,12 @@ function Contact() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await enquiryApi.create({
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        phone: formData.phone,
+        email: formData.email || undefined,
+        message: formData.subject ? `${formData.subject}\n\n${formData.message}` : formData.message,
+      });
       setSubmitStatus({
         type: "success",
         message: "Thank you! Your message has been sent successfully.",
@@ -155,10 +162,13 @@ function Contact() {
         subject: "",
         message: "",
       });
-    } catch {
+    } catch (err) {
       setSubmitStatus({
         type: "error",
-        message: "Something went wrong. Please try again.",
+        message:
+          err instanceof ApiRequestError
+            ? err.message
+            : "Something went wrong. Please try again.",
       });
     } finally {
       setIsSubmitting(false);

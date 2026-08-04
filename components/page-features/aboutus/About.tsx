@@ -11,30 +11,25 @@ import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
 import {
-  Ambulance,
-  ArrowRight,
-  BadgeCheck,
-  CheckCircle2,
-  ClipboardList,
-  Clock3,
-  Flame,
-  HandHeart,
-  HeartHandshake,
-  Home,
-  MapPin,
-  MessageCircle,
-  PhoneCall,
-  ShieldCheck,
-  ShoppingBag,
-  Truck,
-  UserRound,
-  UsersRound,
-} from "lucide-react";
-
-/*
-  TEMPLE (SHIKHARA) SHAPES — pointed mandir peaks, not domes.
-  clip-path polygons: peak at top-center, angled shoulders, straight sides.
-*/
+  FaAmbulance,
+  FaArrowRight,
+  FaCertificate,
+  FaCheckCircle,
+  FaClipboardList,
+  FaRegClock,
+  FaFire,
+  FaHandHoldingHeart,
+  FaHandshake,
+  FaHome,
+  FaMapMarkerAlt,
+  FaComment,
+  FaPhoneAlt,
+  FaShieldAlt,
+  FaShoppingBag,
+  FaTruck,
+  FaUserAlt,
+  FaUsers,
+} from "react-icons/fa";
 const templeTall = "polygon(50% 0%, 78% 5%, 100% 13%, 100% 100%, 0% 100%, 0% 13%, 22% 5%)";
 const templeMed = "polygon(50% 0%, 78% 6%, 100% 16%, 100% 100%, 0% 100%, 0% 16%, 22% 6%)";
 const templeCard = "polygon(50% 0%, 80% 8%, 100% 20%, 100% 100%, 0% 100%, 0% 20%, 20% 8%)";
@@ -52,37 +47,37 @@ function Kalash({ size = "md" }) {
 
 
 const stats = [
-  { icon: Clock3, value: "24/7", title: "Sewa Support", text: "365 Days a Year" },
-  { icon: MapPin, value: "15+", title: "Cities Covered", text: "Across India" },
-  { icon: UsersRound, value: "500+", title: "Verified Pandits", text: "Trusted Ritual Support" },
-  { icon: ShieldCheck, value: "100%", title: "Transparent Services", text: "No Hidden Charges" },
+  { icon: FaRegClock, value: "24/7", title: "Sewa Support", text: "365 Days a Year" },
+  { icon: FaMapMarkerAlt, value: "15+", title: "Cities Covered", text: "Across India" },
+  { icon: FaUsers, value: "500+", title: "Verified Pandits", text: "Trusted Ritual Support" },
+  { icon: FaShieldAlt, value: "100%", title: "Transparent Services", text: "No Hidden Charges" },
 ];
 
 const careServices = [
-  { icon: Ambulance, title: "Ambulance", text: "Fast & reliable 24/7 dead body transport services with AC and freezer facilities across the city.", image: "/assets/ambulance.avif" },
-  { icon: Truck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/harse.jpeg" },
-  { icon: ShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/funeralsamagri.jpeg" },
-  { icon: UserRound, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-reference/pandit_ji_new.png" },
-  { icon: Home, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/prayerhall.jpeg" },
-  { icon: Flame, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-reference/cremation_ritual_new.png" },
-  { icon: UsersRound, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-reference/tehrvi_feast.png" },
-  { icon: HeartHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-reference/family_support_new.png" },
+  { icon: FaAmbulance, title: "Ambulance", text: "Fast & reliable 24/7 dead body transport services with AC and freezer facilities across the city.", image: "/assets/ambulance.avif" },
+  { icon: FaTruck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/harse.jpeg" },
+  { icon: FaShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/funeralsamagri.jpeg" },
+  { icon: FaUserAlt, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-reference/pandit_ji_new.png" },
+  { icon: FaHome, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/prayerhall.jpeg" },
+  { icon: FaFire, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-reference/cremation_ritual_new.png" },
+  { icon: FaUsers, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-reference/tehrvi_feast.png" },
+  { icon: FaHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-reference/family_support_new.png" },
 ];
 
 const reasons = [
-  { icon: BadgeCheck, title: "Experienced Team", text: "Trained, verified and compassionate" },
-  { icon: ShieldCheck, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
-  { icon: MapPin, title: "Pan India Network", text: "Strong local presence across cities" },
-  { icon: PhoneCall, title: "24/7 Availability", text: "A caring team always within reach" },
-  { icon: HandHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
+  { icon: FaCertificate, title: "Experienced Team", text: "Trained, verified and compassionate" },
+  { icon: FaShieldAlt, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
+  { icon: FaMapMarkerAlt, title: "Pan India Network", text: "Strong local presence across cities" },
+  { icon: FaPhoneAlt, title: "24/7 Availability", text: "A caring team always within reach" },
+  { icon: FaHandHoldingHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
 ];
 
 const processSteps = [
-  { icon: PhoneCall, title: "Call or Book Sewa", text: "Reach out anytime. We are available 24/7." },
-  { icon: MessageCircle, title: "Share Details", text: "Tell us your needs and family preferences." },
-  { icon: ClipboardList, title: "We Arrange Everything", text: "Our team coordinates all services calmly." },
-  { icon: Flame, title: "Rituals & Cremation", text: "Every ritual is performed with dignity." },
-  { icon: HeartHandshake, title: "Family Support", text: "We remain with your family throughout." },
+  { icon: FaPhoneAlt, title: "Call or Book Sewa", text: "Reach out anytime. We are available 24/7." },
+  { icon: FaComment, title: "Share Details", text: "Tell us your needs and family preferences." },
+  { icon: FaClipboardList, title: "We Arrange Everything", text: "Our team coordinates all services calmly." },
+  { icon: FaFire, title: "Rituals & Cremation", text: "Every ritual is performed with dignity." },
+  { icon: FaHandshake, title: "Family Support", text: "We remain with your family throughout." },
 ];
 
 const locations = [
@@ -145,7 +140,7 @@ export default function About() {
               {/* eyebrow */}
               <div className="mb-1 inline-flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <Flame className="h-3.5 w-3.5" />
+                  <FaFire className="h-3.5 w-3.5" />
                 </span>
                 <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   About Us · Since Day One
@@ -186,7 +181,7 @@ export default function About() {
                     className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
                   >
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
-                      <CheckCircle2 className="h-3 w-3 text-[#8B6A3E]" />
+                      <FaCheckCircle className="h-3 w-3 text-[#8B6A3E]" />
                     </span>
                     {chip}
                   </span>
@@ -202,7 +197,7 @@ export default function About() {
           >
             <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#C9A574] text-[#2C1810]">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/50" />
-              <PhoneCall className="relative h-4 w-4" />
+              <FaPhoneAlt className="relative h-4 w-4" />
             </span>
             <span>
               <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
@@ -352,7 +347,7 @@ export default function About() {
                   </h2>
                 </div>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[10px] font-semibold text-[#6A4F32]">
-                  <MapPin className="h-3 w-3 text-[#8B6A3E]" />
+                  <FaMapMarkerAlt className="h-3 w-3 text-[#8B6A3E]" />
                   15+ Cities & Growing
                 </span>
               </div>
@@ -451,7 +446,7 @@ export default function About() {
                 className="group mt-1 inline-flex items-center gap-2 rounded-md bg-[#D9B681] px-4 py-2 text-xs font-semibold text-[#3B2B21] transition hover:bg-[#E8D2AC]"
               >
                 Know More
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
             </div>
 
@@ -467,7 +462,7 @@ export default function About() {
                       0{index + 1}
                     </span>
                     <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681] transition-colors duration-300 group-hover:bg-[#D9B681] group-hover:text-[#3B2B21]">
-                      <Icon className="h-5 w-5 stroke-[1.5]" />
+                      <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mt-1 font-serif text-base leading-tight text-white">
                       {reason.title}
@@ -603,17 +598,17 @@ export default function About() {
               <div className="mt-1 space-y-2">
                 {[
                   {
-                    icon: HandHeart,
+                    icon: FaHandHoldingHeart,
                     title: "Compassionate Guidance",
                     text: "A patient team that listens and supports the family.",
                   },
                   {
-                    icon: ShieldCheck,
+                    icon: FaShieldAlt,
                     title: "Trusted Arrangements",
                     text: "Verified services, transparent details and no confusion.",
                   },
                   {
-                    icon: Clock3,
+                    icon: FaRegClock,
                     title: "Support When It Matters",
                     text: "Available day and night for urgent assistance.",
                   },
@@ -641,7 +636,7 @@ export default function About() {
                 className="group mt-1 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-4 py-2.5 text-xs font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
               >
                 Speak With Our Sewa Team
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>
@@ -698,7 +693,7 @@ export default function About() {
 
               <div className="mt-1 flex items-center gap-3 rounded-2xl border border-[#E6D6BF] bg-white px-4 py-3 shadow-sm">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PhoneCall className="h-4 w-4" />
+                  <FaPhoneAlt className="h-4 w-4" />
                 </span>
 
                 <p className="text-[11px] leading-4 text-[#5F4A3D]">
@@ -768,13 +763,13 @@ export default function About() {
 
               <div className="mt-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[10px] text-white/75 md:justify-start">
                 <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-[#D9B681]" /> Clear Pricing
+                  <FaCheckCircle className="h-3.5 w-3.5 text-[#D9B681]" /> Clear Pricing
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-[#D9B681]" /> Verified Support
+                  <FaCheckCircle className="h-3.5 w-3.5 text-[#D9B681]" /> Verified Support
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-[#D9B681]" /> Available 24/7
+                  <FaCheckCircle className="h-3.5 w-3.5 text-[#D9B681]" /> Available 24/7
                 </span>
               </div>
             </div>
@@ -786,7 +781,7 @@ export default function About() {
               >
                 <span className="relative flex h-4 w-4 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#2C1810]/25" />
-                  <PhoneCall className="relative h-4 w-4" />
+                  <FaPhoneAlt className="relative h-4 w-4" />
                 </span>
                 +91 9220147229
               </a>

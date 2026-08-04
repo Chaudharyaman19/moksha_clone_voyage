@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, HeartHandshake, Leaf } from "lucide-react";
+import { FaArrowRight, FaHandshake, FaLeaf } from "react-icons/fa";
 
 export default function AboutNamoGange() {
   return (
@@ -64,7 +64,7 @@ export default function AboutNamoGange() {
             <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="flex gap-3 group/feature">
                 <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] transition-all duration-300 group-hover/feature:bg-[#8B6A3E] group-hover/feature:text-white group-hover/feature:shadow-md">
-                  <HeartHandshake className="w-5 h-5" strokeWidth={1.5} />
+                  <FaHandshake className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Selfless Service</h4>
@@ -74,7 +74,7 @@ export default function AboutNamoGange() {
               
               <div className="flex gap-3 group/feature">
                 <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] transition-all duration-300 group-hover/feature:bg-[#8B6A3E] group-hover/feature:text-white group-hover/feature:shadow-md">
-                  <Leaf className="w-5 h-5" strokeWidth={1.5} />
+                  <FaLeaf className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Ritual Support</h4>
@@ -90,7 +90,7 @@ export default function AboutNamoGange() {
               className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
             >
               <span>Know About Namo Gange</span>
-              <ArrowRight className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5" strokeWidth={1.7} />
+              <FaArrowRight className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
             </a>
           </div>
 

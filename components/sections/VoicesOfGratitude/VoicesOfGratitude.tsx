@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 interface Testimonial {
   id: number;
@@ -223,9 +223,8 @@ export default function VoicesOfGratitude() {
                     </h3>
 
                     <p className="mt-0.5 flex items-center gap-1 text-[10px] font-medium text-[#B17627]">
-                      <MapPin
+                      <FaMapMarkerAlt
                         className="h-3 w-3 fill-[#C88C33] text-[#C88C33]"
-                        strokeWidth={1.4}
                       />
 
                       {testimonial.location}

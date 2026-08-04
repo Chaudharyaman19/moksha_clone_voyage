@@ -109,7 +109,38 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       path: "#services",
       icon: <FaStar />,
       type: "dropdown",
-      dropdown: [
+      dropdown: variant === "seva" ? [
+        {
+          name: "Wood & Ritual Items",
+          path: "/furalservices",
+          icon: <FaHandHoldingHeart />,
+          type: "page",
+        },
+        {
+          name: "Priest Support",
+          path: "/panditservices",
+          icon: <FaPrayingHands />,
+          type: "page",
+        },
+        {
+          name: "Ambulance & Hearse",
+          path: "/ambulanceservices",
+          icon: <FaAmbulance />,
+          type: "page",
+        },
+        {
+          name: "Ground & Prayer Support",
+          path: "/prayerhallservices",
+          icon: <FaPlaceOfWorship />,
+          type: "page",
+        },
+        {
+          name: "Family Support",
+          path: "/specialservices",
+          icon: <FaHandsHelping />,
+          type: "page",
+        },
+      ] : [
         {
           name: "Funeral Samagri",
           path: "/furalservices",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, User, Shield, Search, FileText } from "lucide-react";
+import { FaEnvelope, FaPhoneAlt, FaUser, FaShieldAlt, FaSearch, FaFileAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
@@ -67,7 +67,7 @@ export default function TopInfoBar() {
       <div className="max-w-7xl mx-auto px-0 py-1.5 flex items-center justify-between">
         <div className="flex items-center gap-2 md:gap-4">
           <div className="flex items-center gap-1.5 group">
-            <Mail size={16} className="text-[#D4B996]" />
+            <FaEnvelope size={16} className="text-[#D4B996]" />
             <a
               href="mailto:info@mokshasewa.org"
               className="sm:text-sm lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
@@ -77,7 +77,7 @@ export default function TopInfoBar() {
           </div>
 
           <div className="hidden sm:flex items-center gap-1.5 group">
-            <Phone size={16} className="text-[#D4B996]" />
+            <FaPhoneAlt size={16} className="text-[#D4B996]" />
             <a
               href="tel:+919654900525"
               className="text-xs lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
@@ -143,7 +143,7 @@ export default function TopInfoBar() {
             href="/track"
             className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
-            <Search size={14} className="md:hidden" />
+            <FaSearch size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Track Request</span>
           </Link>
 
@@ -154,7 +154,7 @@ export default function TopInfoBar() {
             href="/records"
             className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
-            <FileText size={14} className="md:hidden" />
+            <FaFileAlt size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Mortal Records</span>
           </Link>
 
@@ -166,7 +166,7 @@ export default function TopInfoBar() {
             href="/login"
             className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
-            <User size={14} className="md:hidden" />
+            <FaUser size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">User Login</span>
           </Link>
 
@@ -179,7 +179,7 @@ export default function TopInfoBar() {
             href={`${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`}
             className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
-            <Shield size={14} className="md:hidden" />
+            <FaShieldAlt size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Admin Login</span>
           </a>
         </div>
