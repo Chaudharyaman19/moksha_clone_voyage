@@ -193,8 +193,8 @@ export default function FamilySupport() {
         </section>
 
         {/* NAMO GANGE VOLUNTEERS */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0 py-4 lg:py-6 mt-1 mb-1 overflow-hidden">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1 mt-1 mb-1 overflow-hidden">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 items-center">
             <div className="lg:w-1/3 flex flex-col items-center lg:items-start text-center lg:text-left shrink-0">
               <div className="mb-4">
                 <Image src="/assets/namo-gange-logo.webp" alt="Namo Gange Trust" width={280} height={120} className="object-contain" />
@@ -221,7 +221,7 @@ export default function FamilySupport() {
                     "/assets/namo-gange/vol6.png",
                     "/assets/namo-gange/vol7.png",
                   ].map((src, i) => (
-                    <div key={i} className="relative w-[300px] h-[210px] rounded-2xl overflow-hidden shadow-sm border border-[#E8DCC8]">
+                    <div key={i} className="relative w-[300px] h-[210px] rounded-none overflow-hidden shadow-sm border border-[#E8DCC8]">
                       <Image src={src} alt={`Namo Gange Volunteer ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" />
                     </div>
                   ))}
@@ -233,65 +233,66 @@ export default function FamilySupport() {
 
         {/* COMPASSION SECTION */}
         <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1">
-          <div className="bg-[#FAF7F2] rounded-2xl border border-[#E8DCC8] overflow-hidden flex flex-col lg:flex-row shadow-sm">
-            <div className="p-3 lg:p-4 lg:w-1/2 flex flex-col justify-center">
-              <span className="text-[#9A6A31] text-[11px] font-bold uppercase tracking-widest mb-1">Holistic Support System</span>
-              <h2 className="font-serif text-[22px] lg:text-[26px] text-[#3A2418] leading-tight mb-1">
-                An Extended Family <span className="text-[#9A6A31]">For Those Who Need One</span>
+          <div className="bg-[#FAF7F2] rounded-none border border-[#E8DCC8] overflow-hidden flex flex-col lg:flex-row shadow-sm">
+            <div className="p-4 lg:p-6 lg:w-1/2 flex flex-col justify-center">
+              <span className="text-[#9A6A31] text-[13px] font-bold uppercase tracking-widest mb-3">Holistic Support System</span>
+              <h2 className="font-serif text-[28px] lg:text-[36px] text-[#3A2418] leading-[1.15] mb-5">
+                An Extended Family <br />
+                <span className="text-[#9A6A31]">For Those Who Need One</span>
               </h2>
-              <p className="text-[#624C3F] mb-2 leading-snug italic text-[13px]">
+              <p className="text-[#624C3F] mb-6 leading-relaxed italic text-[16px] max-w-[500px]">
                 "Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace."
               </p>
 
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 mb-3">
+              <ul className="flex flex-col gap-3.5 mb-8">
                 {[
                   "Sympathetic ear for intense grief and trauma",
                   "Assistance with death certificates and formalities",
                   "Tehravi Khana arrangements without financial burden",
                   "Completely free of charge for underprivileged families",
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-1.5 text-[#4A3D36] text-[12px] font-medium leading-tight">
-                    <div className="w-3.5 h-3.5 rounded-full bg-[#9A6A31] text-white flex items-center justify-center shrink-0 mt-0.5">
-                      <FaCheck size={7} />
+                  <li key={idx} className="flex items-start gap-3 text-[#4A3D36] text-[15px] font-medium">
+                    <div className="w-5 h-5 rounded-full bg-[#9A6A31] text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <FaCheck size={10} />
                     </div>
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <Link href="/contact" className="inline-flex items-center justify-center gap-1.5 bg-[#8B6A3E] text-white px-4 py-1.5 rounded-md font-medium hover:bg-[#73532F] transition-colors w-fit text-[12px] shadow-sm">
-                Know More About Our Work <FaArrowRight size={10} />
+              <Link href="/contact" className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)] w-fit">
+                Know More About Our Work <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
               </Link>
             </div>
 
-            <div className="lg:w-1/2 relative min-h-[160px] lg:min-h-full">
+            <div className="lg:w-1/2 relative min-h-[340px] lg:min-h-auto">
               <Image src="/assets/serving/hospital-support.png" alt="Compassion Support" fill className="object-cover" />
             </div>
           </div>
         </section>
 
         {/* BOTTOM CTA BANNER */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1">
-          <div className="bg-[#4E3827] rounded-2xl overflow-hidden relative flex flex-col md:flex-row">
-            <div className="p-3 lg:p-4 md:w-3/5 z-10 flex flex-col justify-center">
-              <h2 className="font-serif text-[22px] lg:text-[26px] text-[#EED8A1] mb-1">
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1 pb-4">
+          <div className="bg-[#4E3827] rounded-none overflow-hidden relative flex flex-col md:flex-row shadow-sm">
+            <div className="p-4 lg:p-6 md:w-3/5 z-10 flex flex-col justify-center">
+              <h2 className="font-serif text-[28px] lg:text-[36px] text-[#EED8A1] mb-4 leading-[1.2]">
                 Your Support Helps Us <br /> Feed Grieving Families
               </h2>
-              <p className="text-[#FDFBF7] text-[13px] leading-relaxed opacity-90 mb-3 max-w-lg">
+              <p className="text-[#FDFBF7] text-[16px] leading-relaxed opacity-90 mb-8 max-w-[480px]">
                 By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                <Link href="/donation" className="inline-flex items-center gap-1.5 bg-[#9A6A31] text-white px-4 py-1.5 rounded-md font-medium hover:bg-[#855B29] transition-colors text-[12px]">
-                  <FaHeart size={10} /> Donate to Moksha Sewa
+              <div className="flex flex-wrap gap-4">
+                <Link href="/donation" className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]">
+                  <FaHeart className="h-[14px] w-[14px]" /> Donate to Moksha Sewa
                 </Link>
-                <Link href="/volunteer/register" className="inline-flex items-center gap-1.5 bg-transparent border border-[#9A6A31] text-white px-4 py-1.5 rounded-md font-medium hover:bg-white/10 transition-colors text-[12px]">
-                  Support Our Seva <FaArrowRight size={10} />
+                <Link href="/volunteer/register" className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-transparent px-6 text-[14px] font-semibold text-white transition hover:border-[#EED8A1] hover:bg-white/10">
+                  Support Our Seva <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                 </Link>
               </div>
             </div>
 
-            <div className="md:w-2/5 min-h-[160px] relative">
+            <div className="md:w-2/5 min-h-[300px] relative">
               <Image src="/assets/serving/counseling-support.png" alt="Donate Support" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#4E3827] via-[#4E3827]/80 to-transparent md:hidden" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#4E3827] via-[#4E3827]/40 to-transparent hidden md:block" />
@@ -333,7 +334,7 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
 
 function StepCard({ num, icon, title, desc }: { num: number, icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <div className="flex flex-col items-center text-center w-full max-w-[260px] mx-auto z-10 bg-white border border-[#E8DCC8] rounded-xl p-6 shadow-sm hover:border-[#DCC4A5] transition-colors duration-300 relative">
+    <div className="flex flex-col items-center text-center w-full max-w-[260px] mx-auto z-10 bg-white border border-[#E8DCC8] rounded-none p-6 shadow-sm hover:border-[#DCC4A5] transition-colors duration-300 relative">
       <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#8B6A3E] text-white flex items-center justify-center font-semibold text-[13px] border-2 border-white z-20">
         {num}
       </div>
