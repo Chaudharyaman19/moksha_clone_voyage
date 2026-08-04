@@ -29,18 +29,13 @@ interface LotusMarkProps {
   className?: string;
 }
 
-const GOLD = "#D98500";
-
 const donationImages = {
   donate:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_58 PM (1).png",
-
   volunteer:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (2).png",
-
   sponsor:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (3).png",
-
   partner:
     "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (4).png",
 };
@@ -62,6 +57,7 @@ const sevaCards: SupportCard[] = [
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
+    href: "/volunteer/register",
   },
   {
     title: "Sponsor Antim Sewa",
@@ -70,6 +66,7 @@ const sevaCards: SupportCard[] = [
     button: "Sponsor Sewa",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
+    href: "/donation",
   },
   {
     title: "Partner With Us",
@@ -78,6 +75,7 @@ const sevaCards: SupportCard[] = [
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
+    href: "/contact",
   },
 ];
 
@@ -98,6 +96,7 @@ const voyageCards: SupportCard[] = [
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
+    href: "/volunteer/register",
   },
   {
     title: "Sponsor a Service",
@@ -106,6 +105,7 @@ const voyageCards: SupportCard[] = [
     button: "Sponsor Now",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
+    href: "/donation",
   },
   {
     title: "Partner With Us",
@@ -114,6 +114,7 @@ const voyageCards: SupportCard[] = [
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
+    href: "/contact",
   },
 ];
 
@@ -129,37 +130,37 @@ function LotusMark({
     >
       <path
         d="M36 4c-7 8-9 15-7 22 2 5 7 9 7 9s5-4 7-9c2-7 0-14-7-22Z"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
       />
 
       <path
         d="M12 17c9 0 16 3 20 9 3 5 3 10 3 10s-6 0-12-4c-6-4-9-9-11-15Z"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
       />
 
       <path
         d="M60 17c-9 0-16 3-20 9-3 5-3 10-3 10s6 0 12-4c6-4 9-9 11-15Z"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
       />
 
       <path
         d="M20 12c7 2 12 6 15 12 2 5 1 10 1 10s-6-2-10-7c-4-5-6-10-6-15Z"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
       />
 
       <path
         d="M52 12c-7 2-12 6-15 12-2 5-1 10-1 10s6-2 10-7c4-5 6-10 6-15Z"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
       />
 
       <path
         d="M8 31c9 8 18 12 28 12s19-4 28-12"
-        stroke={GOLD}
+        stroke="currentColor"
         strokeWidth="1.7"
         strokeLinecap="round"
       />
@@ -170,7 +171,7 @@ function LotusMark({
 function TopLabel() {
   return (
     <div className="flex flex-col items-center">
-      <LotusMark className="h-5 w-8" />
+      <LotusMark className="h-5 w-8 text-[#D98500]" />
 
       <div className="mt-0.5 flex items-center justify-center gap-2.5">
         <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D98500]" />
@@ -210,9 +211,80 @@ function BottomOrnament() {
     >
       <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#D98500] sm:w-36" />
 
-      <LotusMark className="h-5 w-8" />
+      <LotusMark className="h-5 w-8 text-[#D98500]" />
 
       <span className="h-px w-24 bg-gradient-to-l from-transparent to-[#D98500] sm:w-36" />
+    </div>
+  );
+}
+
+function DotPattern() {
+  return (
+    <div
+      className="pointer-events-none absolute bottom-[62px] left-3 z-10 grid grid-cols-3 gap-[5px] opacity-30"
+      aria-hidden="true"
+    >
+      {Array.from({ length: 12 }).map((_, index) => (
+        <span
+          key={index}
+          className="h-[3px] w-[3px] rounded-full bg-[#E4A24C]"
+        />
+      ))}
+    </div>
+  );
+}
+
+function CardCornerLotus() {
+  return (
+    <div className="pointer-events-none absolute -bottom-6 -right-5 z-10 text-[#D99B48]/15">
+      <LotusMark className="h-[88px] w-[88px]" />
+    </div>
+  );
+}
+
+/*
+ * Reference-image white shape:
+ * edges stay higher and the centre curves slightly downward.
+ */
+function CardWhiteWave() {
+  return (
+     <div
+      className="pointer-events-none absolute inset-x-0 top-[126px] z-10 h-[96px] sm:top-[136px] lg:top-[116px]"
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="h-full w-full"
+      >
+        <path
+          d="
+            M 0 14
+           C 20 14, 34 41, 50 48
+           C 66 41, 80 14, 100 14
+            L 100 100
+            L 0 100
+            Z
+          "
+          fill="#FFFDF9"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function FloatingIcon({
+  Icon,
+}: {
+  Icon: ComponentType<{ className?: string }>;
+}) {
+  return (
+    <div className="absolute left-1/2 top-[132px] z-30 -translate-x-1/2 sm:top-[142px] lg:top-[122px]">
+      <div className="absolute inset-0 scale-110 rounded-full bg-[#E99932]/10 blur-[7px]" />
+
+      <div className="relative grid h-[58px] w-[58px] place-items-center rounded-full border border-[#E49A3D] bg-[#FFFDF9] text-[#E27F00] shadow-[0_5px_14px_rgba(216,124,13,0.16)]">
+        <Icon className="h-[22px] w-[22px]" />
+      </div>
     </div>
   );
 }
@@ -234,10 +306,13 @@ export default function SacredJourney({
     <section className="relative w-full overflow-hidden border-y border-[#EADFD0] bg-[#FCF9F4] px-3 py-3 sm:px-4 lg:py-4">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-40 w-[65%] -translate-x-1/2 rounded-full bg-[#D68A22]/[0.04] blur-3xl" />
+
+        <div className="absolute -left-24 top-10 h-44 w-44 rounded-full border border-[#D98500]/10" />
+
+        <div className="absolute -right-24 bottom-8 h-48 w-48 rounded-full border border-[#D98500]/10" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px]">
-        {/* Header */}
         <header className="mx-auto mb-3 max-w-[820px] text-center">
           <TopLabel />
 
@@ -248,17 +323,16 @@ export default function SacredJourney({
           <HeadingDivider />
 
           <p className="mx-auto mt-2 max-w-[600px] text-[13px] font-normal leading-[1.45] text-[#5B473C]">
-            Your support helps arrange ambulance, lakdi, pandit ji,
-            samagri,
+            Your support helps arrange ambulance, lakdi, pandit ji, samagri,
             <br className="hidden sm:block" />
             and logon ko bhoj for families who cannot afford it.
           </p>
         </header>
 
-        {/* Cards */}
         <div className="mx-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px]">
           {cards.map((card, index) => {
             const Icon = card.icon;
+            const isFilledButton = index === 0 || index === 2;
 
             return (
               <article
@@ -277,35 +351,39 @@ export default function SacredJourney({
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/[0.06] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#432312]/12 via-transparent to-transparent" />
                 </div>
 
-                {/* White rounded wave */}
-                <div className="pointer-events-none absolute left-1/2 top-[126px] z-10 h-[92px] w-[150%] -translate-x-1/2 rounded-[50%] bg-[#FFFDF9] sm:top-[136px] lg:top-[116px]" />
+                {/* Exact controlled white curve */}
+                <CardWhiteWave />
 
-                {/* Icon */}
-                <div className="absolute left-1/2 top-[132px] z-20 grid h-[54px] w-[54px] -translate-x-1/2 place-items-center rounded-full border border-[#E8D8C3] bg-[#FFFDF9] shadow-[0_4px_12px_rgba(78,48,24,0.09)] sm:top-[142px] lg:top-[122px]">
-                  <Icon className="h-5 w-5 text-[#DE8500]" />
-                </div>
+                {/* Circular icon overlapping the wave */}
+                <FloatingIcon Icon={Icon} />
 
-                {/* Compact content */}
-                <div className="absolute inset-x-0 top-[187px] z-10 flex flex-col items-center px-4 text-center lg:top-[177px]">
-                  <h3 className="font-serif text-[20px] font-normal leading-[1.05] text-[#352017] lg:text-[19px]">
+                <DotPattern />
+                <CardCornerLotus />
+
+                {/* Card content */}
+                <div className="absolute inset-x-0 top-[198px] z-20 flex flex-col items-center px-4 text-center lg:top-[188px]">
+                  <h3 className="font-serif text-[18px] font-normal uppercase leading-[1.05] tracking-[0.015em] text-[#352017] lg:text-[17px]">
                     {card.title}
                   </h3>
 
-                  <span className="mt-1 h-px w-7 shrink-0 bg-[#D98500]" />
+                  <span className="mt-1.5 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-1.5 max-w-[230px] text-[11px] font-normal leading-[1.32] text-[#5B473C]">
+                  <p className="mx-auto mt-2 max-w-[230px] text-[10.5px] font-normal leading-[1.38] text-[#5B473C]">
                     {card.description}
                   </p>
                 </div>
 
-                {/* Compact button */}
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className="absolute bottom-[9px] left-4 right-4 z-20 flex h-[34px] items-center justify-center gap-2 rounded-[5px] bg-gradient-to-r from-[#DF8300] to-[#EE9708] px-4 text-[11px] font-medium text-white shadow-[0_4px_10px_rgba(225,132,0,0.2)] transition hover:brightness-95"
+                  className={`absolute bottom-[9px] left-4 right-4 z-30 flex h-[34px] items-center justify-center gap-2 rounded-[5px] px-4 text-[11px] font-medium transition ${
+                    isFilledButton
+                      ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
+                      : "border border-[#E17D18] bg-white/75 text-[#C66300] hover:bg-[#FFF5E8]"
+                  }`}
                 >
                   <span>{card.button}</span>
 
