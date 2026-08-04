@@ -1,94 +1,187 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import type { ReactNode, SVGProps } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
-import { FaHandHoldingHeart, FaLeaf, FaPhoneAlt, FaAmbulance, FaCarSide } from "react-icons/fa";
-import { MdEmergency } from "react-icons/md";
+
+type IconName =
+  | "drop"
+  | "phone"
+  | "heart"
+  | "shield"
+  | "clock"
+  | "ambulance"
+  | "team"
+  | "timer"
+  | "hands"
+  | "leaf"
+  | "ritual"
+  | "pin"
+  | "family"
+  | "support";
+
+interface InfoItem {
+  icon: IconName;
+  title: string;
+  copy: string;
+}
+
+interface IconProps extends SVGProps<SVGSVGElement> {
+  name: IconName;
+  size?: number;
+}
+
+const highlights: InfoItem[] = [
+  {
+    icon: "clock",
+    title: "24/7 Availability",
+    copy: "Always here, day or night. Whenever you need us.",
+  },
+  {
+    icon: "ambulance",
+    title: "Respectful Transport",
+    copy: "Dignified ambulance and hearse van for last journey.",
+  },
+  {
+    icon: "team",
+    title: "Trained Support Team",
+    copy: "Compassionate and skilled team you can trust.",
+  },
+  {
+    icon: "timer",
+    title: "Fast Response",
+    copy: "Quick response to reach you as soon as possible.",
+  },
+];
+
+const steps: InfoItem[] = [
+  {
+    icon: "phone",
+    title: "Call or Request",
+    copy: "Contact us anytime by call or request online.",
+  },
+  {
+    icon: "ambulance",
+    title: "We Respond",
+    copy: "Our team reaches you quickly.",
+  },
+  {
+    icon: "hands",
+    title: "We Assist",
+    copy: "We handle transport and support with care.",
+  },
+  {
+    icon: "leaf",
+    title: "Dignified Last Journey",
+    copy: "We ensure a respectful and peaceful last journey.",
+  },
+];
+
+const stories = [
+  {
+    image: "/ambulance/story-always-ready.webp",
+    icon: "clock" as IconName,
+    title: "Always Ready",
+    copy: "Ambulance available 24×7 at all locations.",
+  },
+  {
+    image: "/ambulance/story-respectful-transfer.webp",
+    icon: "hands" as IconName,
+    title: "Careful & Respectful",
+    copy: "Trained team ensures safe and dignified transfer.",
+  },
+  {
+    image: "/ambulance/story-family-care.webp",
+    icon: "family" as IconName,
+    title: "Compassionate Support",
+    copy: "We stand with families with empathy and care.",
+  },
+];
+
+const receiveItems: InfoItem[] = [
+  {
+    icon: "ambulance",
+    title: "Ambulance Support",
+    copy: "24×7 ambulance service for quick and safe transfer.",
+  },
+  {
+    icon: "ambulance",
+    title: "Hearse Van Support",
+    copy: "Dignified hearse van for last journey transport.",
+  },
+  {
+    icon: "ritual",
+    title: "Ritual Coordination",
+    copy: "Basic ritual support and puja samagri assistance.",
+  },
+  {
+    icon: "team",
+    title: "On-Ground Assistance",
+    copy: "Help with ghat entry, arrangements & support.",
+  },
+  {
+    icon: "phone",
+    title: "Emergency Contact Support",
+    copy: "Dedicated helpline for immediate guidance.",
+  },
+];
+
+const trustItems: InfoItem[] = [
+  {
+    icon: "leaf",
+    title: "Sewa with Respect",
+    copy: "24×7 service with dignity and care.",
+  },
+  {
+    icon: "family",
+    title: "Trusted by Families",
+    copy: "Thousands of families trust our sewa.",
+  },
+  {
+    icon: "shield",
+    title: "Transparent & Honest",
+    copy: "No hidden charges. Complete transparency.",
+  },
+  {
+    icon: "pin",
+    title: "Wide Service Network",
+    copy: "Help across Delhi NCR and nearby regions.",
+  },
+  {
+    icon: "support",
+    title: "End-to-End Support",
+    copy: "From first call to final ritual support.",
+  },
+];
+
+const supportBullets = [
+  "Ambulance for emergency & non-emergency transfer",
+  "Hearse van for last journey with full respect",
+  "Help with basic coordination & arrangements",
+  "Respectful support at the ghat and during rituals",
+];
+
+const primaryButton =
+  "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-[12px] font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
 
 export default function AmbulanceService() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
+    <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#2F2922]">
       <Topbar />
       <Navbar variant="seva" />
 
-      <main className="pt-24 pb-16 lg:pt-32 lg:pb-24">
-        {/* Hero Section */}
-        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#EFEBE4]/80 via-transparent to-[#F5E6D3]/40 rounded-[2.5rem] -z-10" />
-          
-          <div className="py-20 md:py-28 text-center max-w-4xl mx-auto flex flex-col items-center relative">
-            <div className="inline-flex items-center justify-center p-5 bg-white/70 rounded-full shadow-sm mb-8 backdrop-blur-md border border-[#E8DCC8] hover:scale-110 transition-transform duration-500">
-              <FaAmbulance className="w-10 h-10 text-[#A0522D]" />
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3E2723] mb-8 leading-tight tracking-tight">
-              Ambulance & Hearse <br className="hidden md:block" />
-              <span className="font-medium text-[#8D6E63] italic mt-2 block text-3xl md:text-4xl">Dignified Transport Services.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-[#5D4037] max-w-2xl mx-auto leading-relaxed opacity-95">
-              We arrange quick and respectful body transport from the hospital, home, or street directly to the cremation ground for families who need it most.
-            </p>
-            
-            <div className="mt-12 flex flex-col sm:flex-row gap-5 items-center justify-center w-full">
-              <a href="/request-help" className="w-full sm:w-auto px-8 py-4 bg-[#8B6A3E] text-white rounded-full font-medium text-lg shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] hover:shadow-[0_12px_25px_-6px_rgba(139,106,62,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group">
-                <FaHandHoldingHeart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                Request Transport
-              </a>
-              <a href="tel:+919999999999" className="w-full sm:w-auto px-8 py-4 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-lg shadow-sm hover:bg-[#F9F5F0] hover:border-[#8B6A3E] transition-all duration-300 flex items-center justify-center gap-3">
-                <FaPhoneAlt className="w-4 h-4" />
-                24x7 Helpline
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Essential Services */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-medium text-[#4A3D36] mb-4">Our Transport Support</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent mx-auto rounded-full" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ItemCard 
-              icon={<FaAmbulance className="w-8 h-8" />}
-              title="Body Transport"
-              desc="Safe and respectful transportation of the deceased from any location to their home or directly to the final resting place."
-            />
-            <ItemCard 
-              icon={<FaCarSide className="w-8 h-8" />}
-              title="Hearse Van"
-              desc="Specially arranged Hearse vans (Shav Vahan) designed for the dignified final journey, completely free for those in need."
-            />
-            <ItemCard 
-              icon={<MdEmergency className="w-8 h-8" />}
-              title="Urgent Help"
-              desc="Our 24x7 helpline ensures that an ambulance or hearse reaches you as quickly as possible during an emergency."
-            />
-          </div>
-        </section>
-
-        {/* Emotional Connect */}
-        <section className="w-full bg-gradient-to-br from-[#F5F0EA] to-[#FDFBF7] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E8DCC8]">
-          <div className="max-w-4xl mx-auto text-center">
-            <FaLeaf className="w-10 h-10 text-[#A0522D]/30 mx-auto mb-8" />
-            <h3 className="text-2xl md:text-3xl font-light text-[#5D4037] mb-8 italic leading-relaxed">
-              "We ensure the last journey is not a burden, but a path of peace."
-            </h3>
-            <p className="text-lg text-[#795548] leading-relaxed max-w-2xl mx-auto">
-              Handling logistics during a moment of profound grief is difficult. 
-              Moksha Sewa takes this responsibility so you can spend those last precious moments with your loved one.
-            </p>
-          </div>
-        </section>
+      <main className="w-full bg-[#FBFAF7] py-0">
+        <div className="w-full overflow-hidden bg-[#FBFAF7]">
+          <HeroSection />
+          <FeatureHighlights />
+          <HowItWorks />
+          <SupportSection />
+          <StoryCards />
+          <ReceiveSection />
+          <TrustSection />
+          <DonationSection />
+        </div>
       </main>
 
       <Footer />
@@ -96,14 +189,526 @@ export default function AmbulanceService() {
   );
 }
 
-function ItemCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+function HeroSection() {
   return (
-    <div className="bg-white p-8 rounded-3xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] border border-[#F0E6D9] hover:shadow-[0_8px_30px_-4px_rgba(139,106,62,0.12)] hover:-translate-y-1 transition-all duration-500 group">
-      <div className="w-16 h-16 bg-[#FDFBF7] border border-[#F0E6D9] rounded-2xl flex items-center justify-center text-[#8B6A3E] mb-6 group-hover:scale-110 group-hover:bg-[#8B6A3E] group-hover:text-white transition-all duration-500">
-        {icon}
+    <section className="relative min-h-[500px] overflow-hidden bg-[#FBF8F1] max-[820px]:min-h-[700px]">
+      {/* Full-bleed image: no max-width wrapper, so no empty strip on the right. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-[40%] right-0 bg-[url('/ambulance/hero-ambulance.webp')] bg-[length:100%_100%] bg-right-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:top-0 max-[820px]:h-[310px]"
+      />
+
+      {/* Wide overlap removes the visible join between content and image. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(90deg,#FAF7F0_0%,#FAF7F0_40%,rgba(250,247,240,0.98)_46%,rgba(250,247,240,0.84)_52%,rgba(250,247,240,0.35)_61%,transparent_70%)] max-[820px]:bg-[linear-gradient(180deg,transparent_0%,transparent_35%,rgba(250,247,240,0.9)_47%,#FAF7F0_58%,#FAF7F0_100%)]"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5">
+        <div className="w-[47%] pb-[18px] pt-[126px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
+        <div className="mb-5 flex items-center gap-[9px] text-[11px] font-normal tracking-[1.5px] text-[#8B682F]">
+          <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
+            <Icon name="drop" size={14} />
+          </span>
+          <span>24×7 Last Journey Support</span>
+        </div>
+
+        <h1 className="font-serif text-[39px] font-normal leading-[1.02] tracking-[-1.25px] text-[#2B251F] max-[820px]:text-[clamp(34px,8vw,44px)]">
+          Ambulance &amp; Hearse
+          <br />
+          Support with Dignity
+        </h1>
+
+        <Divider className="my-[19px] w-[127px]" />
+
+        <p className="w-[325px] text-[12.1px] leading-[1.53] text-[#50483F] max-[820px]:w-auto">
+          Namo Gange provides free and compassionate ambulance and hearse support
+          for last journey needs. Our trained team ensures dignified transfer,
+          calm coordination and timely assistance for families in their time of
+          need.
+        </p>
+
+        <div className="mt-[19px] flex gap-3 max-[520px]:flex-col">
+          <a className={primaryButton} href="tel:+919654900525">
+            <Icon name="phone" size={18} />
+            <span>Call for Ambulance</span>
+          </a>
+
+          <a
+            className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[12px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
+            href="/request-help"
+          >
+            <Icon name="heart" size={17} />
+            <span>Request Support</span>
+          </a>
+        </div>
+
+        <div className="mt-[21px] flex items-center gap-[6px] text-[9.4px] font-normal text-[#756858]">
+          <span className="text-[#A87935]">
+            <Icon name="shield" size={16} />
+          </span>
+          <span>Serving families with compassion, respect and timely support.</span>
+        </div>
       </div>
-      <h4 className="text-xl font-semibold text-[#3E2723] mb-4">{title}</h4>
-      <p className="text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
+      </div>
+    </section>
+  );
+}
+
+function FeatureHighlights() {
+  return (
+    <section
+      aria-label="Service highlights"
+      className="relative z-20 -mt-px mx-auto grid w-full max-w-7xl grid-cols-4 gap-[12px] bg-[#FBFAF7] px-5 pb-[5px] pt-[10px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1"
+    >
+      {highlights.map((item) => (
+        <article
+          className="flex min-h-[68px] items-center gap-[9px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[11px] py-[8px] shadow-[0_4px_10px_rgba(79,55,24,0.045),inset_0_0_0_1px_rgba(255,255,255,0.55)]"
+          key={item.title}
+        >
+          <div className="grid h-[36px] min-w-[36px] place-items-center text-[#9C6D2A]">
+            <Icon name={item.icon} size={35} />
+          </div>
+          <div>
+            <h3 className="mb-[3px] text-[12.7px] font-normal leading-[1.15] text-[#2F2A24]">
+              {item.title}
+            </h3>
+            <p className="text-[10.4px] leading-[1.32] text-[#5A5148]">
+              {item.copy}
+            </p>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section className="mx-auto w-full max-w-7xl px-5 pb-1 pt-0">
+      <SectionTitle>How It Works</SectionTitle>
+
+      <div className="grid grid-cols-4 gap-[12px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
+        {steps.map((step, index) => (
+          <div className="relative" key={step.title}>
+            <article className="relative min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
+              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[12px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+                {index + 1}
+              </span>
+              <div className="mx-auto mb-1 grid h-[34px] place-items-center text-[#9C6D2A]">
+                <Icon name={step.icon} size={33} />
+              </div>
+              <h3 className="mb-[3px] text-[12.5px] font-normal">{step.title}</h3>
+              <p className="text-[10.6px] leading-[1.28] text-[#514A42]">
+                {step.copy}
+              </p>
+            </article>
+
+            {index < steps.length - 1 ? (
+              <span className="absolute -right-[11px] top-1/2 z-20 -translate-y-1/2 text-[22px] font-normal text-[#9C6D2A] [text-shadow:0_1px_#fff] max-[820px]:hidden">
+                →
+              </span>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SupportSection() {
+  return (
+    <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] max-[820px]:grid-cols-1">
+      <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
+        <h2 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.5px] text-[#28231E] max-[520px]:text-[27px]">
+          We Stand With You
+          <br />
+          When It Matters Most
+        </h2>
+
+        <span className="my-[11px] block h-px w-[145px] bg-gradient-to-r from-[#9C6D2A] to-transparent" />
+
+        <p className="text-[12.4px] leading-[1.48] text-[#554C43]">
+          In your most difficult moments, we stand beside you. Our ambulance and
+          hearse support services are designed to bring relief, care and dignity.
+        </p>
+
+        <ul className="mt-[11px] grid gap-[7px]">
+          {supportBullets.map((item) => (
+            <li
+              className="flex items-start gap-[7px] text-[11.4px] leading-[1.3] text-[#3F3831]"
+              key={item}
+            >
+              <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[9px] font-normal text-white">
+                ✓
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-[11.5px]`}
+          href="tel:+919654900525"
+        >
+          <span>We Are Here For You</span>
+          <Icon name="heart" size={15} />
+        </a>
+      </div>
+
+      <div className="self-center overflow-hidden rounded-xl bg-[#E8D8C4] shadow-[inset_0_0_0_1px_rgba(95,63,25,0.1),0_5px_12px_rgba(70,47,20,0.07)]">
+        <img
+          alt="Support team standing with a family"
+          className="block h-auto w-full"
+          src="/ambulance/family-support.webp"
+        />
+      </div>
+    </section>
+  );
+}
+
+function StoryCards() {
+  return (
+    <section
+      aria-label="Ambulance support stories"
+      className="mx-auto grid w-full max-w-7xl grid-cols-3 gap-[10px] px-5 pb-[5px] pt-[8px] max-[820px]:grid-cols-1"
+    >
+      {stories.map((story) => (
+        <article
+          className="w-full overflow-hidden rounded-[10px] bg-[#392719] shadow-[0_4px_10px_rgba(58,38,16,0.14)]"
+          key={story.title}
+        >
+          <img
+            alt={story.title}
+            className="block aspect-[2.25/1] w-full object-cover object-center"
+            src={story.image}
+          />
+
+          <div className="flex min-h-[58px] items-center gap-[10px] bg-gradient-to-b from-[#4A2D17] to-[#351F0E] px-[12px] py-[8px] text-[#F6E8C9]">
+            <span className="grid size-[34px] shrink-0 place-items-center rounded-full border border-[#DAB471]/70 text-[#D8B372]">
+              <Icon name={story.icon} size={23} />
+            </span>
+
+            <div className="min-w-0">
+              <h3 className="mb-[2px] text-[14px] font-normal leading-[1.15] text-[#E2BD78]">
+                {story.title}
+              </h3>
+              <p className="text-[11px] leading-[1.25] text-[#F5EEE2]">
+                {story.copy}
+              </p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function ReceiveSection() {
+  return (
+    <section className="mx-auto w-full max-w-7xl px-5">
+      <SectionTitle compact>What Families Receive</SectionTitle>
+      <InfoGrid items={receiveItems} />
+    </section>
+  );
+}
+
+function TrustSection() {
+  return (
+    <section className="mx-auto w-full max-w-7xl px-5 pt-[4px]">
+      <SectionTitle compact>Why Families Trust Namo Gange</SectionTitle>
+      <InfoGrid compact items={trustItems} />
+    </section>
+  );
+}
+
+function DonationSection() {
+  return (
+    <section
+      className="mx-auto mb-[14px] mt-[8px] w-full max-w-7xl px-5"
+      id="donate"
+    >
+      <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 right-0 w-[48%] bg-[url('/ambulance/donation-prayer.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
+
+        <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
+          <h2 className="mb-[7px] font-serif text-[22px] font-normal text-[#FFF4DE]">
+            Your Donation Brings Peace
+          </h2>
+          <p className="text-[9.6px] leading-[1.35] text-[#FFF6E9]">
+            Your kind contribution helps us provide ambulance, hearse and
+            last-journey support to families who cannot afford it. Together, we
+            can bring comfort, dignity and peace in their most difficult
+            moments.
+          </p>
+
+          <div className="mt-3 flex gap-2 max-[520px]:flex-col">
+            <a
+              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] bg-[#D19645] px-[11px] text-[9.5px] font-medium text-white shadow-[inset_0_1px_rgba(255,255,255,0.2)] transition-transform hover:-translate-y-px"
+              href="/donate"
+            >
+              <Icon name="heart" size={16} />
+              <span>Donate for Ambulance Service</span>
+            </a>
+
+            <a
+              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-[9.5px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
+              href="tel:+919654900525"
+            >
+              <Icon name="hands" size={16} />
+              <span>Support Our Sewa</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[12px] leading-[1.25] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
+          <span className="mb-[7px] text-[#DCB56F]">
+            <Icon name="heart" size={16} />
+          </span>
+          <span>
+            Every
+            <br />
+            Contribution
+            <br />
+            Brings Peace
+          </span>
+          <i className="mt-[5px] text-[16px] not-italic">❦</i>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InfoGrid({
+  items,
+  compact = false,
+}: {
+  items: InfoItem[];
+  compact?: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-5 gap-[6px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
+      {items.map((item) => (
+        <article
+          className={`flex items-center gap-[6px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[8px] py-[6px] shadow-[0_3px_8px_rgba(71,47,19,0.035)] ${
+            compact ? "min-h-[58px] py-[5px]" : "min-h-[64px]"
+          }`}
+          key={item.title}
+        >
+          <div className="grid min-w-[32px] place-items-center text-[#9C6D2A]">
+            <Icon name={item.icon} size={compact ? 30 : 33} />
+          </div>
+          <div>
+            <h3
+              className={`mb-[2px] font-normal leading-[1.15] ${
+                compact ? "text-[9.8px]" : "text-[10px]"
+              }`}
+            >
+              {item.title}
+            </h3>
+            <p
+              className={`leading-[1.28] text-[#51483F] ${
+                compact ? "text-[9px]" : "text-[9.1px]"
+              }`}
+            >
+              {item.copy}
+            </p>
+          </div>
+        </article>
+      ))}
     </div>
+  );
+}
+
+function SectionTitle({
+  children,
+  compact = false,
+}: {
+  children: ReactNode;
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={`flex flex-col items-center ${compact ? "mb-[7px]" : "mb-[11px]"}`}
+    >
+      <h2
+        className={`text-center font-serif font-normal leading-[1.08] ${
+          compact ? "text-[22px]" : "text-[25px]"
+        }`}
+      >
+        {children}
+      </h2>
+      {!compact ? <Divider className="mt-[7px] w-[70px]" small /> : null}
+    </div>
+  );
+}
+
+function Divider({
+  className = "",
+  small = false,
+}: {
+  className?: string;
+  small?: boolean;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`flex items-center text-[#9C6D2A] ${className}`}
+    >
+      <i className="h-px flex-1 bg-current opacity-60" />
+      <b
+        className={`${small ? "mx-[6px] size-[5px]" : "mx-2 size-[7px]"} rotate-45 bg-current`}
+      />
+      <i className="h-px flex-1 bg-current opacity-60" />
+    </span>
+  );
+}
+
+const commonStroke = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+function Icon({ name, size = 28, ...props }: IconProps) {
+  const paths: Record<IconName, ReactNode> = {
+    drop: (
+      <>
+        <path
+          {...commonStroke}
+          d="M12 2.8S6.2 9.3 6.2 14.2a5.8 5.8 0 0 0 11.6 0C17.8 9.3 12 2.8 12 2.8Z"
+        />
+        <path {...commonStroke} d="M9.5 14.5c.5 1.6 1.5 2.4 3.1 2.5" />
+      </>
+    ),
+    phone: (
+      <path
+        {...commonStroke}
+        d="M7.4 3.8 10 7.2 8.2 9.4c1.5 3 3.8 5.3 6.8 6.8l2.2-1.8 3.4 2.6c.4.3.5.9.2 1.4l-1.1 1.8c-.5.8-1.4 1.2-2.3 1-8.4-1.6-15-8.2-16.6-16.6-.2-.9.2-1.8 1-2.3l1.8-1.1c.5-.3 1.1-.2 1.4.2Z"
+      />
+    ),
+    heart: (
+      <path
+        {...commonStroke}
+        d="M12 20.5 4.7 13.4a4.8 4.8 0 0 1 6.8-6.8L12 7l.5-.4a4.8 4.8 0 0 1 6.8 6.8L12 20.5Z"
+      />
+    ),
+    shield: (
+      <>
+        <path
+          {...commonStroke}
+          d="M12 2.8 20 6v5.7c0 5.1-3.1 8.1-8 10.5-4.9-2.4-8-5.4-8-10.5V6l8-3.2Z"
+        />
+        <path {...commonStroke} d="m8.6 12.2 2.2 2.2 4.8-5" />
+      </>
+    ),
+    clock: (
+      <>
+        <circle {...commonStroke} cx="12" cy="12" r="8.5" />
+        <path {...commonStroke} d="M12 7.2v5.2l3.5 2" />
+        <path {...commonStroke} d="M7.2 2.8 5.8 1.6M16.8 2.8l1.4-1.2" />
+      </>
+    ),
+    ambulance: (
+      <>
+        <path {...commonStroke} d="M3 8h11.5l3.2 3.2H21v6.3h-2" />
+        <path {...commonStroke} d="M3 8v9.5h2" />
+        <path {...commonStroke} d="M9 17.5h5" />
+        <circle {...commonStroke} cx="7" cy="17.5" r="2" />
+        <circle {...commonStroke} cx="16.5" cy="17.5" r="2" />
+        <path {...commonStroke} d="M8.5 10.7h3M10 9.2v3" />
+      </>
+    ),
+    team: (
+      <>
+        <circle {...commonStroke} cx="8" cy="8" r="2.6" />
+        <circle {...commonStroke} cx="16.3" cy="8.8" r="2.2" />
+        <path {...commonStroke} d="M2.8 18c.5-4 2.5-6 5.2-6 2.8 0 4.8 2 5.3 6" />
+        <path {...commonStroke} d="M13.5 13c3.6-.5 6.2 1.3 6.8 5" />
+      </>
+    ),
+    timer: (
+      <>
+        <circle {...commonStroke} cx="12" cy="13" r="7.5" />
+        <path {...commonStroke} d="M12 8.8v4.6l-3.3 1.7M9 2.5h6M12 2.5v3" />
+        <path {...commonStroke} d="M4.4 8.1 2.8 6.6" />
+      </>
+    ),
+    hands: (
+      <>
+        <path
+          {...commonStroke}
+          d="M4 13.5c2.4-.5 4.4.2 6 2.1l2 2.4 2-2.4c1.6-1.9 3.6-2.6 6-2.1"
+        />
+        <path
+          {...commonStroke}
+          d="M7.2 12.5 5.5 8.8c-.5-1.1-.2-2.4.8-3.1l.6-.4 3.2 5.1"
+        />
+        <path
+          {...commonStroke}
+          d="m16.8 12.5 1.7-3.7c.5-1.1.2-2.4-.8-3.1l-.6-.4-3.2 5.1"
+        />
+        <path {...commonStroke} d="M12 13.6V8.2" />
+        <path
+          {...commonStroke}
+          d="M12 8.2c-2.4-.8-3.2-2.7-2.3-4.8 1.9.1 3.2 1.2 3.5 3 .8-1.8 2.3-2.7 4.4-2.4.4 2.2-.7 3.9-3.2 4.6"
+        />
+      </>
+    ),
+    leaf: (
+      <>
+        <path {...commonStroke} d="M12 21c0-7.8 3.4-13 9-16-1 8.2-3.9 13-9 14.3" />
+        <path {...commonStroke} d="M12 21C12 13.2 8.6 8 3 5c1 8.2 3.9 13 9 14.3" />
+        <path {...commonStroke} d="M12 21v-9" />
+      </>
+    ),
+    ritual: (
+      <>
+        <path {...commonStroke} d="M7 20h10M9 17h6l1-7H8l1 7Z" />
+        <path {...commonStroke} d="M12 10V5M10 7h4M9.5 5.2c.7-2.2 1.5-3 2.5-3 1 0 1.8.8 2.5 3" />
+      </>
+    ),
+    pin: (
+      <>
+        <path {...commonStroke} d="M12 21s6-5.8 6-11a6 6 0 1 0-12 0c0 5.2 6 11 6 11Z" />
+        <circle {...commonStroke} cx="12" cy="10" r="2" />
+      </>
+    ),
+    family: (
+      <>
+        <circle {...commonStroke} cx="12" cy="7" r="3" />
+        <path {...commonStroke} d="M6.5 20c.4-4.4 2.4-7 5.5-7s5.1 2.6 5.5 7" />
+        <circle {...commonStroke} cx="5" cy="10" r="2" />
+        <circle {...commonStroke} cx="19" cy="10" r="2" />
+        <path {...commonStroke} d="M1.5 20c.2-3.4 1.4-5.3 3.5-5.3 1.4 0 2.5.8 3.1 2.3M22.5 20c-.2-3.4-1.4-5.3-3.5-5.3-1.4 0-2.5.8-3.1 2.3" />
+      </>
+    ),
+    support: (
+      <>
+        <path {...commonStroke} d="M12 21c-4.9-2.4-8-5.4-8-10.5V6.2l8-3.3 8 3.3v4.3c0 5.1-3.1 8.1-8 10.5Z" />
+        <path {...commonStroke} d="M8.5 12.2c1.4-1.2 2.5-1.7 3.5-1.7s2.1.5 3.5 1.7M12 10.5V7.8" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height={size}
+      viewBox="0 0 24 24"
+      width={size}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      {paths[name]}
+    </svg>
   );
 }
