@@ -109,11 +109,17 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       path: "#services",
       icon: <FaStar />,
       type: "dropdown",
-      dropdown: variant === "seva" ? [
+      dropdown: [
         {
           name: "Wood & Ritual Items",
           path: "/furalservices",
           icon: <FaHandHoldingHeart />,
+          type: "page",
+        },
+        {
+          name: "Funeral Decoration",
+          path: "/furaldecoration",
+          icon: <FaShoppingBasket />,
           type: "page",
         },
         {
@@ -129,6 +135,12 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           type: "page",
         },
         {
+          name: "Hearse Van",
+          path: "/harsevanservices",
+          icon: <FaCarSide />,
+          type: "page",
+        },
+        {
           name: "Ground & Prayer Support",
           path: "/prayerhallservices",
           icon: <FaPlaceOfWorship />,
@@ -138,49 +150,6 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           name: "Family Support",
           path: "/specialservices",
           icon: <FaHandsHelping />,
-          type: "page",
-        },
-      ] : [
-        {
-          name: "Funeral Samagri",
-          path: "/furalservices",
-          icon: <FaShoppingBasket />,
-          type: "page",
-        },
-        {
-          name: "Funeral Decoration",
-          path: "/furaldecoration",
-          icon: <FaShoppingBasket />,
-          type: "page",
-        },
-        {
-          name: "Pandit Service",
-          path: "/panditservices",
-          icon: <FaPrayingHands />,
-          type: "page",
-        },
-        {
-          name: "Ambulance Service",
-          path: "/ambulanceservices",
-          icon: <FaAmbulance />,
-          type: "page",
-        },
-        {
-          name: "Hearse Van",
-          path: "/harsevanservices",
-          icon: <FaCarSide />,
-          type: "page",
-        },
-        {
-          name: "Prayer Hall",
-          path: "/prayerhallservices",
-          icon: <FaPlaceOfWorship />,
-          type: "page",
-        },
-        {
-          name: "Special Services",
-          path: "/specialservices",
-          icon: <FaMagic />,
           type: "page",
         },
         {

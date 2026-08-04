@@ -4,6 +4,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import { FaHandHoldingHeart, FaLeaf, FaPhoneAlt, FaPrayingHands } from "react-icons/fa";
+import Image from "next/image";
 import { GiIncense, GiCandleHolder } from "react-icons/gi";
 import { BsBook } from "react-icons/bs";
 
@@ -23,31 +24,42 @@ export default function PriestSupport() {
 
       <main className="pt-24 pb-16 lg:pt-32 lg:pb-24">
         {/* Hero Section */}
-        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#EFEBE4]/80 via-transparent to-[#F5E6D3]/40 rounded-[2.5rem] -z-10" />
-          
-          <div className="py-20 md:py-28 text-center max-w-4xl mx-auto flex flex-col items-center relative">
-            <div className="inline-flex items-center justify-center p-5 bg-white/70 rounded-full shadow-sm mb-8 backdrop-blur-md border border-[#E8DCC8] hover:scale-110 transition-transform duration-500">
-              <FaPrayingHands className="w-10 h-10 text-[#A0522D]" />
+        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Text Content */}
+            <div className="flex flex-col items-start relative z-10 order-2 lg:order-1">
+              <div className="inline-flex items-center justify-center p-4 bg-white/80 rounded-full shadow-sm mb-6 backdrop-blur-md border border-[#E8DCC8]">
+                <FaPrayingHands className="w-8 h-8 text-[#A0522D]" />
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3E2723] mb-6 leading-tight tracking-tight">
+                Priest Support
+                <span className="font-medium text-[#8D6E63] italic mt-2 block text-3xl md:text-4xl">For Peaceful Final Rites.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-[#5D4037] leading-relaxed opacity-95 mb-8">
+                Every soul deserves a farewell conducted with proper rituals and devotion. We arrange experienced priests (Pandit Ji / Acharya Ji) to guide grieving families and perform the final rites respectfully according to Vedic traditions.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="/request-help" className="px-8 py-4 bg-[#8B6A3E] text-white rounded-full font-medium text-lg shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] transition-all duration-300 flex items-center justify-center gap-3 group">
+                  <FaHandHoldingHeart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  Request Priest Support
+                </a>
+                <a href="tel:+919999999999" className="px-8 py-4 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-lg shadow-sm hover:bg-[#F9F5F0] transition-all duration-300 flex items-center justify-center gap-3">
+                  <FaPhoneAlt className="w-4 h-4" />
+                  24x7 Helpline
+                </a>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3E2723] mb-8 leading-tight tracking-tight">
-              Priest Support <br className="hidden md:block" />
-              <span className="font-medium text-[#8D6E63] italic mt-2 block text-3xl md:text-4xl">For Peaceful Final Rites.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-[#5D4037] max-w-2xl mx-auto leading-relaxed opacity-95">
-              Every soul deserves a farewell conducted with proper rituals and devotion. 
-              We arrange experienced priests (Pandit Ji) to guide grieving families and perform the final rites respectfully.
-            </p>
-            
-            <div className="mt-12 flex flex-col sm:flex-row gap-5 items-center justify-center w-full">
-              <a href="/request-help" className="w-full sm:w-auto px-8 py-4 bg-[#8B6A3E] text-white rounded-full font-medium text-lg shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] hover:shadow-[0_12px_25px_-6px_rgba(139,106,62,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group">
-                <FaHandHoldingHeart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                Request Priest Support
-              </a>
-              <a href="tel:+919999999999" className="w-full sm:w-auto px-8 py-4 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-lg shadow-sm hover:bg-[#F9F5F0] hover:border-[#8B6A3E] transition-all duration-300 flex items-center justify-center gap-3">
-                <FaPhoneAlt className="w-4 h-4" />
-                24x7 Helpline
-              </a>
+
+            {/* Image */}
+            <div className="relative h-[400px] lg:h-[550px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl order-1 lg:order-2">
+              <Image 
+                src="/assets/how-we-help/pandit.png"
+                alt="Pandit Ji for Final Rites"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           </div>
         </section>
