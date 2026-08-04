@@ -96,16 +96,16 @@ const SocialSidebar = () => {
                 onMouseEnter={() => setShowTooltip("enquiry")}
                 onMouseLeave={() => setShowTooltip(null)}
               >
-                <div className="px-0 py-5 rounded-r-lg flex items-center justify-center shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
+                <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
+                  <FaEnvelope size={14} className="text-white" />
                   <span
-                    className="font-semibold text-sm tracking-wide text-white flex items-center gap-2"
+                    className="font-semibold text-sm tracking-wide text-white"
                     style={{
                       writingMode: "vertical-rl",
                       transform: "rotate(180deg)",
                     }}
                   >
                     ENQUIRY
-                    <FaEnvelope size={14} />
                   </span>
                 </div>
               </a>
@@ -124,16 +124,16 @@ const SocialSidebar = () => {
                 onMouseEnter={() => setShowTooltip("emergency")}
                 onMouseLeave={() => setShowTooltip(null)}
               >
-                <div className="px-0 py-7 rounded-r-lg flex items-center justify-center shadow-xl border-l-0 border border-red-500/20 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
+                <div className="px-1 py-7 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-red-500/20 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
+                  <FaPhone size={14} className="text-white" />
                   <span
-                    className="font-semibold text-sm tracking-wide text-white flex items-center gap-2"
+                    className="font-semibold text-sm tracking-wide text-white"
                     style={{
                       writingMode: "vertical-rl",
                       transform: "rotate(180deg)",
                     }}
                   >
                     EMERGENCY
-                    <FaPhone size={14} />
                   </span>
                 </div>
               </a>
