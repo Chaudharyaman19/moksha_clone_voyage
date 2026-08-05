@@ -38,8 +38,8 @@ export default function PrayerHallServices() {
       <Topbar />
       <Navbar variant="seva" />
 
-      <main className="pb-4 lg:pb-6 overflow-hidden">
-        <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[400px] overflow-hidden">
+      <main className="pb-6 lg:pb-6 overflow-hidden">
+        <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[530px] overflow-hidden">
           <div className="absolute inset-0">
             <Image 
               src="/assets/prayerhallservices/hero-real.png"
@@ -50,8 +50,7 @@ export default function PrayerHallServices() {
               className="object-cover object-right"
             />
           </div>
-          
-          {/* Gradient to ensure text readability on the left */}
+        
           <div
             className="absolute inset-0"
             style={{
@@ -61,7 +60,7 @@ export default function PrayerHallServices() {
 
           <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 lg:px-0 pt-16 sm:pt-20 lg:pt-24">
             <div className="max-w-[540px]">
-              <div className="mb-6 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
+              <div className="mb-1 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
                 <span className="opacity-70">Moksha Sewa</span> 
                 <span className="opacity-50">›</span> 
                 <span className="opacity-70">Our Services</span> 
