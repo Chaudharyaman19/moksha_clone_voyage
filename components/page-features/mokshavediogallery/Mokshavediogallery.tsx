@@ -219,7 +219,7 @@ function MokshaGallery() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative pt-12 pb-4 md:pt-16 md:pb-5 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#8B6A3E] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -227,21 +227,21 @@ function MokshaGallery() {
         </div>
 
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/5 rounded-full border border-[#8B6A3E]/10 mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/5 rounded-full border border-[#8B6A3E]/10 mb-3">
             <PiFlowerLotus className="w-3.5 h-3.5 text-[#8B6A3E]" />
             <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E]">
               Visual Stories
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-light text-[#2C1810] mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-light text-[#2C1810] mb-2 tracking-tight">
             Moksha
-            <span className="block text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-2">
+            <span className="block text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-1">
               Video Gallery
             </span>
           </h1>
 
-          <p className="text-base text-[#5A3E2B]/70 max-w-2xl mx-auto">
+          <p className="text-base text-[#5A3E2B]/70 max-w-2xl mx-auto leading-relaxed">
             Watch our services in action - respectful, dignified, and
             compassionate care captured on video.
           </p>
@@ -249,7 +249,7 @@ function MokshaGallery() {
       </section>
 
       {/* Categories */}
-      <div className="max-w-7xl mx-auto px-6 mb-10">
+      <div className="max-w-7xl mx-auto px-6 mb-3">
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map((category) => (
             <button
