@@ -962,7 +962,7 @@ export default function VolunteerRegister() {
                   “
                 </span>
 
-                <p className="font-serif text-[13px] italic leading-5 text-[#5B3827]">
+                <p className="font-serif text-[13px]  leading-5 text-[#5B3827]">
                   When we serve selflessly,
                   <br />
                   we become the reason for

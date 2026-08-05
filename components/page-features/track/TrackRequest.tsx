@@ -89,7 +89,7 @@ function TrackRequest() {
               <span className="block text-[32px] text-[#2C1810] sm:text-[42px] lg:text-[48px]">
                 Track Your
               </span>
-              <span className="mt-1 block text-[38px] italic text-[#8B6A3E] sm:text-[48px] lg:text-[54px]">
+              <span className="mt-1 block text-[38px]  text-[#8B6A3E] sm:text-[48px] lg:text-[54px]">
                 Request
               </span>
             </h1>

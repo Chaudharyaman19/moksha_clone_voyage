@@ -912,7 +912,7 @@ export default function RequestHelp() {
                   “
                 </span>
 
-                <p className="font-serif text-[13px] italic leading-5 text-[#5B3827]">
+                <p className="font-serif text-[13px]  leading-5 text-[#5B3827]">
                   In Sewa, we find peace.
                   <br />
                   In supporting each other,

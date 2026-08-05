@@ -55,7 +55,7 @@ export default function FoundersVision() {
               className="mb-3 text-[26px] font-normal leading-[1.2] text-[#2C1810] sm:text-[32px] md:text-[38px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              The Thought Behind <span className="italic text-[#8B6A3E]">Moksha Sewa</span>
+              The Thought Behind <span className=" text-[#8B6A3E]">Moksha Sewa</span>
             </h2>
 
             {/* Diya Flourish */}
@@ -81,7 +81,7 @@ export default function FoundersVision() {
             </div>
 
             <div className="mt-4">
-              <p className="font-serif text-lg italic text-[#8B6A3E]">Vijay Sharma</p>
+              <p className="font-serif text-lg  text-[#8B6A3E]">Vijay Sharma</p>
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Founder & COO, Moksha Sewa</p>
             </div>
           </div>

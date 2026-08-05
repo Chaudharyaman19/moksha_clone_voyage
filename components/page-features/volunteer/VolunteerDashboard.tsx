@@ -75,7 +75,7 @@ function VolunteerDashboard() {
       <main className="mx-auto w-full max-w-3xl px-4 pb-14 pt-28 sm:px-6 lg:pt-32 xl:px-0">
         <div className="mb-6">
           <h1 className="font-serif text-2xl text-[#2C1810]">
-            Namaste, <span className="italic text-[#8B6A3E]">{user.name}</span>
+            Namaste, <span className=" text-[#8B6A3E]">{user.name}</span>
           </h1>
           <p className="mt-1 text-sm text-[#6B584B]">Here are the cases assigned to you.</p>
         </div>

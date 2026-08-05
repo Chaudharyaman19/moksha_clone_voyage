@@ -79,7 +79,7 @@ export default function FamilySupport() {
                 <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   Family Support
                 </span>
-                <span className="mt-1 block text-[34px] italic text-[#8B6A3E] sm:text-[40px] lg:text-[48px]">
+                <span className="mt-1 block text-[28px]  text-[#8B6A3E] md:text-[34px]">
                   Standing Beside You.
                 </span>
               </h1>
@@ -91,7 +91,7 @@ export default function FamilySupport() {
                 <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
               </div>
 
-              <p className="mb-3 max-w-[480px] text-sm leading-relaxed text-[#4F3A2D] sm:text-[15px]">
+              <p className="mb-3 max-w-[480px] text-[15px] leading-relaxed text-[#4F3A2D] sm:text-[16px]">
                 Beyond the final rites, Moksha Sewa helps families with post-cremation arrangements and continuous emotional support, completely free of charge for those in need.
               </p>
 
@@ -174,7 +174,7 @@ export default function FamilySupport() {
         {/* HOW IT WORKS */}
         <section className="max-w-7xl mx-auto px-4 lg:px-0 pt-1 pb-1">
           <div className="text-center mb-1">
-            <h2 className="font-serif text-[24px] lg:text-[30px] text-[#3A2418]">How We Extend Our Help</h2>
+            <h2 className="font-serif text-[28px] md:text-[34px] text-[#3A2418]">How We Extend Our Help</h2>
             <div className="h-1 w-24 bg-[#DCC4A5] mx-auto mt-3 rounded-full" />
           </div>
 
@@ -199,7 +199,7 @@ export default function FamilySupport() {
               <div className="mb-4">
                 <Image src="/assets/namo-gange-logo.webp" alt="Namo Gange Trust" width={280} height={120} className="object-contain" />
               </div>
-              <h2 className="font-serif text-[26px] lg:text-[32px] text-[#3A2418] leading-tight mb-3">
+              <h2 className="font-serif text-[28px] md:text-[34px] text-[#3A2418] leading-tight mb-3">
                 Empowered by <br className="hidden lg:block" />
                 <span className="text-[#9A6A31]">Namo Gange Volunteers</span>
               </h2>
@@ -236,11 +236,11 @@ export default function FamilySupport() {
           <div className="bg-[#FAF7F2] rounded-none border border-[#E8DCC8] overflow-hidden flex flex-col lg:flex-row shadow-sm">
             <div className="p-4 lg:p-6 lg:w-1/2 flex flex-col justify-center">
               <span className="text-[#9A6A31] text-[13px] font-bold uppercase tracking-widest mb-3">Holistic Support System</span>
-              <h2 className="font-serif text-[28px] lg:text-[36px] text-[#3A2418] leading-[1.15] mb-5">
+              <h2 className="font-serif text-[28px] md:text-[34px] text-[#3A2418] leading-[1.15] mb-5">
                 An Extended Family <br />
                 <span className="text-[#9A6A31]">For Those Who Need One</span>
               </h2>
-              <p className="text-[#624C3F] mb-6 leading-relaxed italic text-[16px] max-w-[500px]">
+              <p className="text-[#624C3F] mb-6 leading-relaxed  text-[16px] max-w-[500px]">
                 "Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace."
               </p>
 
@@ -275,7 +275,7 @@ export default function FamilySupport() {
         <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1 pb-4">
           <div className="bg-[#4E3827] rounded-none overflow-hidden relative flex flex-col md:flex-row shadow-sm">
             <div className="p-4 lg:p-6 md:w-3/5 z-10 flex flex-col justify-center">
-              <h2 className="font-serif text-[28px] lg:text-[36px] text-[#EED8A1] mb-4 leading-[1.2]">
+              <h2 className="font-serif text-[28px] md:text-[34px] text-[#EED8A1] mb-4 leading-[1.2]">
                 Your Support Helps Us <br /> Feed Grieving Families
               </h2>
               <p className="text-[#FDFBF7] text-[16px] leading-relaxed opacity-90 mb-8 max-w-[480px]">
@@ -320,11 +320,11 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
 
       {/* Content Container */}
       <div className="relative z-10 p-6 flex flex-col items-center text-center">
-        <h3 className="font-serif font-medium text-xl text-white transition-transform duration-500 group-hover:-translate-y-2">{title}</h3>
+        <h3 className="font-serif font-medium text-[15px] text-white transition-transform duration-500 group-hover:-translate-y-2">{title}</h3>
 
         <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out w-full">
           <div className="overflow-hidden">
-            <p className="text-[#FDFBF7] text-[14.5px] leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{desc}</p>
+            <p className="text-[#FDFBF7] text-[13px] leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{desc}</p>
           </div>
         </div>
       </div>
@@ -341,7 +341,7 @@ function StepCard({ num, icon, title, desc }: { num: number, icon: React.ReactNo
       <div className="text-[#8B6A3E] mb-3 mt-2">
         {icon}
       </div>
-      <h3 className="font-serif text-[18px] text-[#3A2418] mb-1.5">{title}</h3>
+      <h3 className="font-serif text-[15px] text-[#3A2418] mb-1.5">{title}</h3>
       <p className="text-[13px] text-[#624C3F] leading-relaxed">{desc}</p>
     </div>
   );

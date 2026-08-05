@@ -163,7 +163,7 @@ const supportBullets = [
 ];
 
 const primaryButton =
-  "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-[12px] font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
+  "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-sm font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
 
 export default function AmbulanceService() {
   return (
@@ -206,14 +206,14 @@ function HeroSection() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5">
         <div className="w-[47%] pb-[18px] pt-[126px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
-          <div className="mb-5 flex items-center gap-[9px] text-[11px] font-normal tracking-[1.5px] text-[#8B682F]">
+          <div className="mb-5 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
               <Icon name="drop" size={14} />
             </span>
             <span>24×7 Last Journey Support</span>
           </div>
 
-          <h1 className="font-serif text-[39px] font-normal leading-[1.02] tracking-[-1.25px] text-[#2B251F] max-[820px]:text-[clamp(34px,8vw,44px)]">
+          <h1 className="font-serif text-[38px] font-normal leading-[1.1] text-[#2B251F] sm:text-[46px] lg:text-[52px]">
             Ambulance &amp; Hearse
             <br />
             Support with Dignity
@@ -221,7 +221,7 @@ function HeroSection() {
 
           <Divider className="my-[19px] w-[127px]" />
 
-          <p className="w-[325px] text-[12.1px] leading-[1.53] text-[#50483F] max-[820px]:w-auto">
+          <p className="w-[325px] text-[15px] leading-relaxed text-[#50483F] max-[820px]:w-auto sm:text-[16px]">
             Namo Gange provides free and compassionate ambulance and hearse support
             for last journey needs. Our trained team ensures dignified transfer,
             calm coordination and timely assistance for families in their time of
@@ -235,7 +235,7 @@ function HeroSection() {
             </a>
 
             <a
-              className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[12px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
+              className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-sm font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
               href="/request-help"
             >
               <Icon name="heart" size={17} />
@@ -243,7 +243,7 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-[21px] flex items-center gap-[6px] text-[9.4px] font-normal text-[#756858]">
+          <div className="mt-[21px] flex items-center gap-[6px] text-[13px] font-normal text-[#756858]">
             <span className="text-[#A87935]">
               <Icon name="shield" size={16} />
             </span>
@@ -270,10 +270,10 @@ function FeatureHighlights() {
             <Icon name={item.icon} size={35} />
           </div>
           <div>
-            <h3 className="mb-[3px] text-[12.7px] font-normal leading-[1.15] text-[#2F2A24]">
+            <h3 className="mb-[3px] text-[15px] font-normal leading-[1.15] text-[#2F2A24]">
               {item.title}
             </h3>
-            <p className="text-[10.4px] leading-[1.32] text-[#5A5148]">
+            <p className="text-[13px] leading-snug text-[#5A5148]">
               {item.copy}
             </p>
           </div>
@@ -298,8 +298,8 @@ function HowItWorks() {
               <div className="mx-auto mb-1 grid h-[34px] place-items-center text-[#9C6D2A]">
                 <Icon name={step.icon} size={33} />
               </div>
-              <h3 className="mb-[3px] text-[12.5px] font-normal">{step.title}</h3>
-              <p className="text-[10.6px] leading-[1.28] text-[#514A42]">
+              <h3 className="mb-[3px] text-[15px] font-normal">{step.title}</h3>
+              <p className="text-[13px] leading-snug text-[#514A42]">
                 {step.copy}
               </p>
             </article>
@@ -320,7 +320,7 @@ function SupportSection() {
   return (
     <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] max-[820px]:grid-cols-1">
       <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
-        <h2 className="font-serif text-[30px] font-normal leading-[1.05] tracking-[-0.5px] text-[#28231E] max-[520px]:text-[27px]">
+        <h2 className="font-serif text-[28px] font-normal leading-[1.1] text-[#28231E] md:text-[34px]">
           We Stand With You
           <br />
           When It Matters Most
@@ -328,7 +328,7 @@ function SupportSection() {
 
         <span className="my-[11px] block h-px w-[145px] bg-gradient-to-r from-[#9C6D2A] to-transparent" />
 
-        <p className="text-[12.4px] leading-[1.48] text-[#554C43]">
+        <p className="text-[15px] leading-relaxed text-[#554C43] sm:text-[16px]">
           In your most difficult moments, we stand beside you. Our ambulance and
           hearse support services are designed to bring relief, care and dignity.
         </p>
@@ -336,7 +336,7 @@ function SupportSection() {
         <ul className="mt-[11px] grid gap-[7px]">
           {supportBullets.map((item) => (
             <li
-              className="flex items-start gap-[7px] text-[11.4px] leading-[1.3] text-[#3F3831]"
+              className="flex items-start gap-[7px] text-[15px] leading-[1.3] text-[#3F3831]"
               key={item}
             >
               <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[9px] font-normal text-white">
@@ -348,7 +348,7 @@ function SupportSection() {
         </ul>
 
         <a
-          className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-[11.5px]`}
+          className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-sm`}
           href="tel:+919654900525"
         >
           <span>We Are Here For You</span>
@@ -390,10 +390,10 @@ function StoryCards() {
             </span>
 
             <div className="min-w-0">
-              <h3 className="mb-[2px] text-[14px] font-normal leading-[1.15] text-[#E2BD78]">
+              <h3 className="mb-[2px] text-[15px] font-normal leading-[1.15] text-[#E2BD78]">
                 {story.title}
               </h3>
-              <p className="text-[11px] leading-[1.25] text-[#F5EEE2]">
+              <p className="text-[13px] leading-snug text-[#F5EEE2]">
                 {story.copy}
               </p>
             </div>
@@ -437,10 +437,10 @@ function DonationSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
 
         <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
-          <h2 className="mb-[7px] font-serif text-[22px] font-normal text-[#FFF4DE]">
+          <h2 className="mb-[7px] font-serif text-[28px] font-normal text-[#FFF4DE] md:text-[34px]">
             Your Donation Brings Peace
           </h2>
-          <p className="text-[9.6px] leading-[1.35] text-[#FFF6E9]">
+          <p className="text-[15px] leading-relaxed text-[#FFF6E9] sm:text-[16px]">
             Your kind contribution helps us provide ambulance, hearse and
             last-journey support to families who cannot afford it. Together, we
             can bring comfort, dignity and peace in their most difficult
@@ -449,7 +449,7 @@ function DonationSection() {
 
           <div className="mt-3 flex gap-2 max-[520px]:flex-col">
             <a
-              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] bg-[#D19645] px-[11px] text-[9.5px] font-medium text-white shadow-[inset_0_1px_rgba(255,255,255,0.2)] transition-transform hover:-translate-y-px"
+              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] bg-[#D19645] px-[11px] text-sm font-medium text-white shadow-[inset_0_1px_rgba(255,255,255,0.2)] transition-transform hover:-translate-y-px"
               href="/donate"
             >
               <Icon name="heart" size={16} />
@@ -457,7 +457,7 @@ function DonationSection() {
             </a>
 
             <a
-              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-[9.5px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
+              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-sm font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
               href="tel:+919654900525"
             >
               <Icon name="hands" size={16} />
@@ -477,7 +477,7 @@ function DonationSection() {
             <br />
             Brings Peace
           </span>
-          <i className="mt-[5px] text-[16px] not-italic">❦</i>
+          <i className="mt-[5px] text-[16px] not-">❦</i>
         </div>
       </div>
     </section>
@@ -504,13 +504,13 @@ function InfoGrid({
           </div>
           <div>
             <h3
-              className={`mb-[2px] font-normal leading-[1.15] ${compact ? "text-[9.8px]" : "text-[10px]"
+              className={`mb-[2px] font-normal leading-[1.15] ${compact ? "text-[15px]" : "text-[15px]"
                 }`}
             >
               {item.title}
             </h3>
             <p
-              className={`leading-[1.28] text-[#51483F] ${compact ? "text-[9px]" : "text-[9.1px]"
+              className={`leading-snug text-[#51483F] ${compact ? "text-[13px]" : "text-[13px]"
                 }`}
             >
               {item.copy}
@@ -534,7 +534,7 @@ function SectionTitle({
       className={`flex flex-col items-center ${compact ? "mb-[7px]" : "mb-[11px]"}`}
     >
       <h2
-        className={`text-center font-serif font-normal leading-[1.08] ${compact ? "text-[22px]" : "text-[25px]"
+        className={`text-center font-serif font-normal leading-[1.08] ${compact ? "text-[28px] md:text-[34px]" : "text-[28px] md:text-[34px]"
           }`}
       >
         {children}

@@ -26,7 +26,7 @@ export default function AboutMokshaSewa() {
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Compassion, Care &{" "}
-            <span className="italic text-[#8B6A3E]">Complete Support</span>
+            <span className=" text-[#8B6A3E]">Complete Support</span>
           </h2>
 
           {/* Diya Flourish */}
@@ -49,7 +49,7 @@ export default function AboutMokshaSewa() {
               <FaHandHoldingHeart className="h-5 w-5" />
             </span>
             <span>
-              <span className="block font-serif text-xl italic leading-tight text-[#8B6A3E]">
+              <span className="block font-serif text-xl  leading-tight text-[#8B6A3E]">
                 Serving with Devotion
               </span>
               <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8A7460] mt-1">

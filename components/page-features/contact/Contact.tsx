@@ -247,11 +247,11 @@ function Contact() {
               </div>
 
               {/* layered display type */}
-              <h1 className="font-serif leading-[0.95]">
-                <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
+              <h1 className="flex items-center gap-2 font-serif leading-[0.95]">
+                <span className="text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   Contact
                 </span>
-                <span className="mt-1 block text-[46px] italic text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
+                <span className="text-[46px]  text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
                   With Us
                 </span>
               </h1>
@@ -298,14 +298,8 @@ function Contact() {
         </section>
 
         {/* ============ QUICK CONTACT — dark bar overlapping hero ============ */}
-        <section className="relative z-20 -mt-8 sm:-mt-10">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="relative overflow-hidden rounded-2xl border border-[#5B432F] bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810] px-4 py-3 shadow-[0_18px_48px_rgba(44,24,16,0.35)] md:px-5 md:py-3.5">
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
-              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full border border-[#C9A574]/15" />
-              <div className="pointer-events-none absolute -bottom-12 -left-8 h-36 w-36 rounded-full border border-[#C9A574]/10" />
-
-              <div className="relative grid grid-cols-2 gap-y-3 md:grid-cols-4 md:divide-x md:divide-white/10">
+        <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
                 {[
                   {
                     icon: FaPhoneAlt,
@@ -321,18 +315,21 @@ function Contact() {
                   },
                   { icon: FaClock, value: "24/7", title: "Always Available" },
                   { icon: FaHeadset, value: "15 Min", title: "Avg Response Time" },
-                ].map((item) => {
+                ].map((item, index) => {
                   const Icon = item.icon;
                   const content = (
                     <>
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#C9A574]/50 bg-[#C9A574]/10 text-[#D9B681] transition-all duration-300 group-hover:bg-[#C9A574] group-hover:text-[#2C1810]">
-                        <Icon className="h-4 w-4" />
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                        <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                       </div>
-                      <div className="min-w-0">
-                        <div className="truncate font-serif text-[15px] leading-tight text-[#E8D2AC]">
+                      <div className="min-w-0 text-left">
+                        <div
+                          className="truncate whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+                          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                        >
                           {item.value}
                         </div>
-                        <div className="mt-0.5 text-[10px] font-semibold text-white/70">
+                        <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">
                           {item.title}
                         </div>
                       </div>
@@ -342,21 +339,21 @@ function Contact() {
                     <a
                       key={item.title}
                       href={item.href}
-                      className="group flex items-center gap-2.5 px-0 md:justify-center md:px-3"
+                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
                     >
                       {content}
                     </a>
                   ) : (
                     <div
                       key={item.title}
-                      className="group flex items-center gap-2.5 px-0 md:justify-center md:px-3"
+                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
                     >
                       {content}
                     </div>
                   );
                 })}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -372,7 +369,7 @@ function Contact() {
                   <span>ॐ Our Presence ॐ</span>
                 </div>
                 <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
-                  Office <span className="italic text-[#8B6A3E]">Locations</span>
+                  Office <span className=" text-[#8B6A3E]">Locations</span>
                 </h2>
 
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -430,7 +427,7 @@ function Contact() {
                   <span>Our Expanding Horizon</span>
                 </div>
                 <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
-                  Our <span className="italic text-[#8B6A3E]">Initiatives</span>
+                  Our <span className=" text-[#8B6A3E]">Initiatives</span>
                 </h2>
 
                 <div className="flex-1 w-full min-h-0">
@@ -455,7 +452,7 @@ function Contact() {
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
                 <h3 className="mt-1 font-serif text-2xl text-[#2C1810]">
-                  We&apos;d Love to <span className="italic text-[#8B6A3E]">Hear From You</span>
+                  We&apos;d Love to <span className=" text-[#8B6A3E]">Hear From You</span>
                 </h3>
                 <p className="mt-1 text-xs text-[#7A685B]">
                   Our team will respond within 1–2 business days.
@@ -651,7 +648,7 @@ function Contact() {
                     ))}
                   </div>
                   <div className="text-right text-[10px] leading-4 text-[#5F4A3D]">
-                    <span className="font-serif italic text-[#8B6A3E]">Har sawaal ka jawab.</span>
+                    <span className="font-serif  text-[#8B6A3E]">Har sawaal ka jawab.</span>
                     <br />
                     We treat every query with care.
                   </div>

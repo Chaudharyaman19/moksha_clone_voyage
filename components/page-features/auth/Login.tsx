@@ -145,7 +145,7 @@ function Login() {
                 <PiFlowerLotus className="h-6 w-6" />
               </span>
               <h1 className="font-serif text-2xl text-[#2C1810]">
-                Welcome to <span className="italic text-[#8B6A3E]">Moksha Sewa</span>
+                Welcome to <span className=" text-[#8B6A3E]">Moksha Sewa</span>
               </h1>
               <p className="mt-1 text-xs text-[#7A685B]">Sign in to book services and track your requests.</p>
             </div>

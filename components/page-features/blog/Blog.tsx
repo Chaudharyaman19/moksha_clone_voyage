@@ -161,7 +161,7 @@ function Blog() {
               </div>
 
               <h1 className="mt-4 font-serif text-[36px] leading-[1.02] text-[#2C1810] sm:text-[46px]">
-                The Moksha <span className="italic text-[#8B6A3E]">Blog</span>
+                The Moksha <span className=" text-[#8B6A3E]">Blog</span>
               </h1>
 
               {/* diya flourish */}
@@ -297,10 +297,10 @@ function Blog() {
                 <h2 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-3xl">
                   {selectedCategory === "All" ? (
                     <>
-                      All <span className="italic text-[#8B6A3E]">Articles</span>
+                      All <span className=" text-[#8B6A3E]">Articles</span>
                     </>
                   ) : (
-                    <span className="italic text-[#8B6A3E]">{selectedCategory}</span>
+                    <span className=" text-[#8B6A3E]">{selectedCategory}</span>
                   )}
                 </h2>
               </div>
@@ -475,7 +475,7 @@ function Blog() {
                 </div>
 
                 <h2 className="mt-3 font-serif text-2xl text-white sm:text-3xl">
-                  Weekly Wisdom, <span className="italic text-[#D9B681]">Delivered Gently</span>
+                  Weekly Wisdom, <span className=" text-[#D9B681]">Delivered Gently</span>
                 </h2>
                 <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/70 lg:mx-0">
                   Receive spiritual insights, ritual guides and updates on sacred

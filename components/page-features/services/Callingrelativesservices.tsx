@@ -31,20 +31,20 @@ export default function Callingrelativesservices() {
               <div className="inline-flex items-center justify-center p-4 bg-white/80 rounded-full shadow-sm mb-6 backdrop-blur-md border border-[#E8DCC8]">
                 <MdOutlineLocalPhone className="w-8 h-8 text-[#A0522D]" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3E2723] mb-6 leading-tight tracking-tight">
+              <h1 className="text-[38px] sm:text-[46px] lg:text-[52px] font-serif text-[#3E2723] mb-5 leading-[1.1] tracking-tight">
                 Family & Relative Support
-                <span className="font-medium text-[#8D6E63] italic mt-2 block text-3xl md:text-4xl">Compassionate Communication.</span>
+                <span className="font-medium text-[#8D6E63]  mt-1 block text-[28px] md:text-[34px]">Compassionate Communication.</span>
               </h1>
-              <p className="text-lg md:text-xl text-[#5D4037] leading-relaxed opacity-95 mb-8">
+              <p className="text-[15px] sm:text-[16px] text-[#5D4037] leading-relaxed opacity-95 mb-8">
                 In times of sudden loss, making phone calls to inform relatives can be emotionally draining. Our compassionate volunteers take this burden off your shoulders, respectfully notifying all extended family members and friends.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="/request-help" className="px-8 py-4 bg-[#8B6A3E] text-white rounded-full font-medium text-lg shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] transition-all duration-300 flex items-center justify-center gap-3 group">
+                <a href="/request-help" className="px-6 md:px-8 py-3 bg-[#8B6A3E] text-white rounded-full font-medium text-sm shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] transition-all duration-300 flex items-center justify-center gap-3 group">
                   <FaHandHoldingHeart className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   Request Assistance
                 </a>
-                <a href="tel:+919999999999" className="px-8 py-4 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-lg shadow-sm hover:bg-[#F9F5F0] transition-all duration-300 flex items-center justify-center gap-3">
+                <a href="tel:+919999999999" className="px-6 md:px-8 py-3 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-sm shadow-sm hover:bg-[#F9F5F0] transition-all duration-300 flex items-center justify-center gap-3">
                   <FaPhoneAlt className="w-4 h-4" />
                   24x7 Helpline
                 </a>
@@ -67,7 +67,7 @@ export default function Callingrelativesservices() {
         {/* Essential Services */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-medium text-[#4A3D36] mb-4">How We Assist You</h2>
+            <h2 className="text-[28px] md:text-[34px] font-serif text-[#4A3D36] mb-4">How We Assist You</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent mx-auto rounded-full" />
           </div>
 
@@ -94,10 +94,10 @@ export default function Callingrelativesservices() {
         <section className="w-full bg-gradient-to-br from-[#F5F0EA] to-[#FDFBF7] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E8DCC8]">
           <div className="max-w-4xl mx-auto text-center">
             <FaLeaf className="w-10 h-10 text-[#A0522D]/30 mx-auto mb-8" />
-            <h3 className="text-2xl md:text-3xl font-light text-[#5D4037] mb-8 italic leading-relaxed">
+            <h3 className="text-[24px] md:text-[28px] font-light text-[#5D4037] mb-8  leading-relaxed">
               "You have lost someone precious. Focus on saying goodbye, let us handle the words for the rest."
             </h3>
-            <p className="text-lg text-[#795548] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[15px] sm:text-[16px] text-[#795548] leading-relaxed max-w-2xl mx-auto">
               Our volunteers step in as your extended family, offering support that lets you grieve without the added burden of coordination and communication.
             </p>
           </div>
@@ -115,8 +115,8 @@ function ItemCard({ icon, title, desc }: { icon: React.ReactNode, title: string,
       <div className="w-16 h-16 bg-[#FDFBF7] border border-[#F0E6D9] rounded-2xl flex items-center justify-center text-[#8B6A3E] mb-6 group-hover:scale-110 group-hover:bg-[#8B6A3E] group-hover:text-white transition-all duration-500">
         {icon}
       </div>
-      <h4 className="text-xl font-semibold text-[#3E2723] mb-4">{title}</h4>
-      <p className="text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
+      <h4 className="text-[15px] font-semibold text-[#3E2723] mb-4">{title}</h4>
+      <p className="text-[13px] text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
     </div>
   );
 }

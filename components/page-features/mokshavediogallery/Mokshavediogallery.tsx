@@ -234,9 +234,9 @@ function MokshaGallery() {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-light text-[#2C1810] mb-2 tracking-tight">
+          <h1 className="flex items-center justify-center gap-2 text-center text-4xl md:text-5xl font-light text-[#2C1810] mb-2 tracking-tight">
             Moksha
-            <span className="block text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-1">
+            <span className="text-5xl md:text-6xl font-serif text-[#8B6A3E]">
               Video Gallery
             </span>
           </h1>

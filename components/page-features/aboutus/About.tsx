@@ -155,7 +155,7 @@ export default function About() {
                 <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   A Promise of
                 </span>
-                <span className="mt-1 block text-[46px] italic text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
+                <span className="mt-1 block text-[46px]  text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
                   Moksha Sewa
                 </span>
               </h1>
@@ -209,36 +209,31 @@ export default function About() {
         </section>
 
         {/* ============ STATS — inverted dark bar with gold numbers ============ */}
-        <section className="relative z-20 -mt-8 sm:-mt-10">
-          <div className="mx-auto w-full max-w-7xl px-0">
-            <div className="relative overflow-hidden rounded-2xl border border-[#5B432F] bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810] px-4 py-3 shadow-[0_18px_48px_rgba(44,24,16,0.35)] md:px-5 md:py-3.5">
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
-              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full border border-[#C9A574]/15" />
-              <div className="pointer-events-none absolute -bottom-12 -left-8 h-36 w-36 rounded-full border border-[#C9A574]/10" />
-
-              <div className="relative grid grid-cols-2 gap-y-3 md:grid-cols-4 md:divide-x md:divide-white/10">
-                {stats.map((stat) => {
+        <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
+                {stats.map((stat, index) => {
                   const Icon = stat.icon;
                   return (
                     <div
                       key={stat.title}
-                      className="group flex items-center gap-2.5 px-0 md:justify-center md:px-3"
+                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
                     >
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#C9A574]/50 bg-[#C9A574]/10 text-[#D9B681] transition-all duration-300 group-hover:bg-[#C9A574] group-hover:text-[#2C1810]">
-                        <Icon className="h-4 w-4" />
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                        <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
                       </div>
-                      <div>
-                        <div className="font-serif text-[20px] leading-none text-[#E8D2AC]">
+                      <div className="min-w-0 text-left">
+                        <div
+                          className="whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+                          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                        >
                           {stat.value}
                         </div>
-                        <div className="mt-0.5 text-[11px] font-semibold text-white/90">{stat.title}</div>
-                        <div className="mt-0 text-[9px] leading-tight text-white/50">{stat.text}</div>
+                        <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">{stat.title}</div>
                       </div>
                     </div>
                   );
                 })}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -343,7 +338,7 @@ export default function About() {
                     Our Presence
                   </div>
                   <h2 className="mt-1 font-serif text-2xl text-[#2C1810] sm:text-3xl">
-                    Serving Families <span className="italic text-[#8B6A3E]">Across India</span>
+                    Serving Families <span className=" text-[#8B6A3E]">Across India</span>
                   </h2>
                 </div>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[10px] font-semibold text-[#6A4F32]">
@@ -434,7 +429,7 @@ export default function About() {
                 Why Choose Us
               </div>
               <h2 className="mt-1 font-serif text-3xl leading-tight sm:text-4xl">
-                Here for You, <span className="italic text-[#D9B681]">Always</span>
+                Here for You, <span className=" text-[#D9B681]">Always</span>
               </h2>
               <div className="mt-1 h-[2px] w-10 bg-[#D9B681]" />
               <p className="mt-1 max-w-sm text-sm leading-6 text-white/75">
@@ -586,7 +581,7 @@ export default function About() {
 
               <h2 className="mt-1.5 max-w-[500px] font-serif text-[28px] leading-[1.08] sm:text-[34px]">
                 Every Farewell Deserves{" "}
-                <span className="italic text-[#D9B681]">Dignity, Peace & Devotion</span>
+                <span className=" text-[#D9B681]">Dignity, Peace & Devotion</span>
               </h2>
 
               <p className="mt-1 text-sm leading-6 text-white/70">
@@ -658,7 +653,7 @@ export default function About() {
 
               <h2 className="mt-1 max-w-[420px] font-serif text-3xl leading-[1.08] text-[#2C1810] sm:text-4xl">
                 One Bharat,{" "}
-                <span className="italic text-[#8B6A3E]">
+                <span className=" text-[#8B6A3E]">
                   One Sewa Network
                 </span>
               </h2>
@@ -697,7 +692,7 @@ export default function About() {
                 </span>
 
                 <p className="text-[11px] leading-4 text-[#5F4A3D]">
-                  <span className="font-serif text-sm italic text-[#8B6A3E]">
+                  <span className="font-serif text-sm  text-[#8B6A3E]">
                     Ek call, poora network.
                   </span>
                   <br />
@@ -755,7 +750,7 @@ export default function About() {
             <div className="text-center md:text-left">
               <h2 className="font-serif text-xl sm:text-2xl md:text-3xl">
                 We Are Here to Serve You in{" "}
-                <span className="italic text-[#D9B681]">Your Time of Need</span>
+                <span className=" text-[#D9B681]">Your Time of Need</span>
               </h2>
               <p className="mt-1 text-xs text-white/75 sm:text-sm">
                 Call us anytime for immediate support.

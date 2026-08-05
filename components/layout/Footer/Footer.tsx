@@ -137,11 +137,11 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 <h2 className="font-serif text-2xl leading-none text-white">
                   {isSeva ? (
                     <>
-                      Moksha <span className="italic text-[#E4B75F]">Sewa</span>
+                      Moksha <span className=" text-[#E4B75F]">Sewa</span>
                     </>
                   ) : (
                     <>
-                      Moksha <span className="italic text-[#E4B75F]">Voyage</span>
+                      Moksha <span className=" text-[#E4B75F]">Voyage</span>
                     </>
                   )}
                 </h2>
@@ -199,11 +199,11 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                   <h3 className="font-serif text-lg leading-tight text-white">
                     {isSeva ? (
                       <>
-                        Request <span className="italic text-[#E4B75F]">Support</span>
+                        Request <span className=" text-[#E4B75F]">Support</span>
                       </>
                     ) : (
                       <>
-                        Stay <span className="italic text-[#E4B75F]">Connected</span>
+                        Stay <span className=" text-[#E4B75F]">Connected</span>
                       </>
                     )}
                   </h3>
