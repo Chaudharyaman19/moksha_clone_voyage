@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import mokshalogo from "../../../public/assets/logoreal.jpeg";
 import mokshaSevaLogo from "../../../public/assets/logo-moksha-seva.png";
+import { newsletterApi } from "@/lib/newsletterApi";
 
 interface FooterProps {
   variant?: "voyage" | "seva";
@@ -70,22 +71,28 @@ export default function Footer({ variant = "seva" }: FooterProps) {
     ? [
       "Funeral Samagri",
       "Pandit Service",
-      "Ambulance & Hearse Van",
+      "Ambulance Van",
       "Prayer Hall Booking",
     ]
     : ["Ritual Guidance", "Planning Support", "Documentation", "24/7 Care"];
 
-  const handleSubscribe = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!email.trim()) return;
 
-    setSubscribed(true);
-    setEmail("");
+    try {
+      await newsletterApi.subscribe(email.trim(), isSeva ? "footer-request-support" : "footer-stay-connected");
+      setSubscribed(true);
+      setEmail("");
 
-    window.setTimeout(() => {
-      setSubscribed(false);
-    }, 2500);
+      window.setTimeout(() => {
+        setSubscribed(false);
+      }, 2500);
+    } catch {
+      // Silently ignored — the footer has no space for an error state, and this is a
+      // low-stakes lead-capture form: a failed submit here shouldn't block the visitor.
+    }
   };
 
   return (

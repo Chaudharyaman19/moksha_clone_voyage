@@ -116,12 +116,7 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           icon: <FaHandHoldingHeart />,
           type: "page",
         },
-        {
-          name: "Funeral Decoration",
-          path: "/furaldecoration",
-          icon: <FaShoppingBasket />,
-          type: "page",
-        },
+
         {
           name: "Priest Support",
           path: "/panditservices",
@@ -129,15 +124,9 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           type: "page",
         },
         {
-          name: "Ambulance & Hearse",
+          name: "Ambulance",
           path: "/ambulanceservices",
           icon: <FaAmbulance />,
-          type: "page",
-        },
-        {
-          name: "Hearse Van",
-          path: "/harsevanservices",
-          icon: <FaCarSide />,
           type: "page",
         },
         {
@@ -152,12 +141,7 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           icon: <FaHandsHelping />,
           type: "page",
         },
-        {
-          name: "Calling Relatives",
-          path: "/callingrelativesservices",
-          icon: <FaPhone />,
-          type: "page",
-        },
+
       ],
     },
     {

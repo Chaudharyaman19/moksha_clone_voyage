@@ -121,84 +121,84 @@ export default function HowWeCanHelp({ variant = "voyage" }: HowWeHelpProps) {
   const cards: CardItem[] =
     variant === "seva"
       ? [
-          {
-            icon: "FaShoppingBag",
-            title: "Wood & Ritual Items",
-            desc: "Cremation wood, shroud cloth, flowers, lamps and prayer items arranged for needy families.",
-            color: "from-[#8B6A3E] to-[#A88B5E]",
-            features: ["Wood Arrangement", "Shroud & Flowers", "Prayer Items"],
-            image: "/assets/how-we-help/four.png",
-          },
-          {
-            icon: "FaUserOutline",
-            title: "Priest Support",
-            desc: "Priest support is provided so poor families can complete the final rites properly.",
-            color: "from-[#5C4033] to-[#7A5B46]",
-            features: ["Proper Rituals", "Final Rites", "Family Guidance"],
-            image: "/assets/how-we-help/pandit.png",
-          },
-          {
-            icon: "FaTruckOutline",
-            title: "Ambulance & Hearse",
-            desc: "Body transport from hospital, home or street to cremation ground.",
-            color: "from-[#4A716C] to-[#5E8B83]",
-            features: ["Body Transport", "Hearse Van", "Urgent Help"],
-            image: "/assets/how-we-help/five.png",
-          },
-          {
-            icon: "FaTemple",
-            title: "Ground & Prayer Support",
-            desc: "Cremation-ground coordination, prayer support and calm guidance for the family.",
-            color: "from-[#6B7D6E] to-[#8A9B8C]",
-            features: ["Ground Support", "Prayer Setup", "Family Coordination"],
-            image: "/assets/how-we-help/three.png",
-          },
-        ]
+        {
+          icon: "FaShoppingBag",
+          title: "Wood & Ritual Items",
+          desc: "Cremation wood, shroud cloth, flowers, lamps and prayer items arranged for needy families.",
+          color: "from-[#8B6A3E] to-[#A88B5E]",
+          features: ["Wood Arrangement", "Shroud & Flowers", "Prayer Items"],
+          image: "/assets/how-we-help/four.png",
+        },
+        {
+          icon: "FaUserOutline",
+          title: "Priest Support",
+          desc: "Priest support is provided so poor families can complete the final rites properly.",
+          color: "from-[#5C4033] to-[#7A5B46]",
+          features: ["Proper Rituals", "Final Rites", "Family Guidance"],
+          image: "/assets/how-we-help/pandit.png",
+        },
+        {
+          icon: "FaTruckOutline",
+          title: "Ambulance",
+          desc: "Body transport from hospital, home or street to cremation ground.",
+          color: "from-[#4A716C] to-[#5E8B83]",
+          features: ["Body Transport", "Hearse Van", "Urgent Help"],
+          image: "/assets/how-we-help/five.png",
+        },
+        {
+          icon: "FaTemple",
+          title: "Ground & Prayer Support",
+          desc: "Cremation-ground coordination, prayer support and calm guidance for the family.",
+          color: "from-[#6B7D6E] to-[#8A9B8C]",
+          features: ["Ground Support", "Prayer Setup", "Family Coordination"],
+          image: "/assets/how-we-help/three.png",
+        },
+      ]
       : [
-          {
-            icon: "FaFireAlt",
-            title: "Cremation Services",
-            desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
-            color: "from-[#8B6A3E] to-[#A88B5E]",
-            features: ["Cremation Ground Booking", "Pandit Services", "Ritual Materials"],
-          },
-          {
-            icon: "FaGlobeAsia",
-            title: "NRI Cross-Border",
-            desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
-            color: "from-[#5C4033] to-[#7A5B46]",
-            features: ["Family Representative", "Legal Documentation", "Body/Ash Repatriation"],
-          },
-          {
-            icon: "FaPrayingHands",
-            title: "Grief Support",
-            desc: "Professional counselling, peer support communities, and post-funeral ritual guidance.",
-            color: "from-[#4A716C] to-[#5E8B83]",
-            features: ["Grief Counselling", "Peer Communities", "Ritual Continuity"],
-          },
-          {
-            icon: "FaVideo",
-            title: "Digital Legacy",
-            desc: "Permanent digital memorials, document vault, and video tributes to preserve memories.",
-            color: "from-[#6B7D6E] to-[#8A9B8C]",
-            features: ["Digital Memorials", "Document Vault", "Obituary Publishing"],
-          },
-        ];
+        {
+          icon: "FaFireAlt",
+          title: "Cremation Services",
+          desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
+          color: "from-[#8B6A3E] to-[#A88B5E]",
+          features: ["Cremation Ground Booking", "Pandit Services", "Ritual Materials"],
+        },
+        {
+          icon: "FaGlobeAsia",
+          title: "NRI Cross-Border",
+          desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
+          color: "from-[#5C4033] to-[#7A5B46]",
+          features: ["Family Representative", "Legal Documentation", "Body/Ash Repatriation"],
+        },
+        {
+          icon: "FaPrayingHands",
+          title: "Grief Support",
+          desc: "Professional counselling, peer support communities, and post-funeral ritual guidance.",
+          color: "from-[#4A716C] to-[#5E8B83]",
+          features: ["Grief Counselling", "Peer Communities", "Ritual Continuity"],
+        },
+        {
+          icon: "FaVideo",
+          title: "Digital Legacy",
+          desc: "Permanent digital memorials, document vault, and video tributes to preserve memories.",
+          color: "from-[#6B7D6E] to-[#8A9B8C]",
+          features: ["Digital Memorials", "Document Vault", "Obituary Publishing"],
+        },
+      ];
 
   const stats: StatItem[] =
     variant === "seva"
       ? [
-          { icon: "FaClock", value: "24/7", label: "Immediate Assistance" },
-          { icon: "FaUsers", value: "500+", label: "Families Supported" },
-          { icon: "FaShield", value: "100%", label: "Respectful Care" },
-          { icon: "FaMapPin", value: "15+", label: "Service Cities" },
-        ]
+        { icon: "FaClock", value: "24/7", label: "Immediate Assistance" },
+        { icon: "FaUsers", value: "500+", label: "Families Supported" },
+        { icon: "FaShield", value: "100%", label: "Respectful Care" },
+        { icon: "FaMapPin", value: "15+", label: "Service Cities" },
+      ]
       : [
-          { icon: "FaClock", value: "24/7", label: "Care Coordinators" },
-          { icon: "FaUsers", value: "30M+", label: "NRI Community Served" },
-          { icon: "FaHeart", value: "100%", label: "Pricing Transparency" },
-          { icon: "FaStar", value: "12,000 Cr", label: "Indian Funeral Market" },
-        ];
+        { icon: "FaClock", value: "24/7", label: "Care Coordinators" },
+        { icon: "FaUsers", value: "30M+", label: "NRI Community Served" },
+        { icon: "FaHeart", value: "100%", label: "Pricing Transparency" },
+        { icon: "FaStar", value: "12,000 Cr", label: "Indian Funeral Market" },
+      ];
 
   const circleStyles = [
     { width: "80px", height: "80px", left: "10%", top: "20%", background: "radial-gradient(circle at 30% 30%, #E8DBC520, transparent 70%)" },

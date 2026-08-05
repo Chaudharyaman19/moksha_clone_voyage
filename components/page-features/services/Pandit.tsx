@@ -3,10 +3,26 @@ import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
-import { FaHandHoldingHeart, FaLeaf, FaPhoneAlt, FaPrayingHands } from "react-icons/fa";
 import Image from "next/image";
-import { GiIncense, GiCandleHolder } from "react-icons/gi";
-import { BsBook } from "react-icons/bs";
+import { 
+  FaHandHoldingHeart, FaOm
+} from "react-icons/fa";
+import { 
+  GiLotusFlower, GiCandleHolder
+} from "react-icons/gi";
+import { BsBook, BsClipboardCheck, BsTelephone } from "react-icons/bs";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlinePeopleAlt, MdTempleHindu, MdHandshake } from "react-icons/md";
+import { TbHeartHandshake } from "react-icons/tb";
+
+const ritualCards = [
+  { src: "/assets/panditservices/ritual-1.png", title: "Pre-Ritual Consultation" },
+  { src: "/assets/panditservices/ritual-2.png", title: "Antim Sanskar Vidhi" },
+  { src: "/assets/panditservices/ritual-3.png", title: "Mukhagni Guidance" },
+  { src: "/assets/panditservices/ritual-4.png", title: "Asthi Visarjan" },
+  { src: "/assets/panditservices/ritual-5.png", title: "Pind Daan" },
+  { src: "/assets/panditservices/ritual-6.png", title: "Tehrvi & Shanti Paath" },
+];
 
 export default function PriestSupport() {
   const [isMounted, setIsMounted] = useState(false);
@@ -18,91 +34,249 @@ export default function PriestSupport() {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
+    <div className="min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
       <Navbar variant="seva" />
 
-      <main className="pt-24 pb-16 lg:pt-32 lg:pb-24">
-        {/* Hero Section */}
-        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            {/* Text Content */}
-            <div className="flex flex-col items-start relative z-10 order-2 lg:order-1">
-              <div className="inline-flex items-center justify-center p-4 bg-white/80 rounded-full shadow-sm mb-6 backdrop-blur-md border border-[#E8DCC8]">
-                <FaPrayingHands className="w-8 h-8 text-[#A0522D]" />
+      <main className="pb-4 lg:pb-6 overflow-hidden">
+        <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[400px] overflow-hidden">
+          <div className="absolute inset-0">
+            <Image 
+              src="/assets/panditservices/hero-real.png"
+              alt="Pandit Ji guiding family"
+              fill
+              priority
+              quality={100}
+              className="object-cover object-right"
+            />
+          </div>
+          
+          {/* Gradient to ensure text readability on the left */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.9) 35%, rgba(250,248,244,0.40) 60%, rgba(250,248,244,0.05) 85%)"
+            }}
+          />
+
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 lg:px-0 pt-16 sm:pt-20 lg:pt-24">
+            <div className="max-w-[540px]">
+              <div className="mb-6 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
+                <span className="opacity-70">Moksha Sewa</span> 
+                <span className="opacity-50">›</span> 
+                <span className="opacity-70">Our Services</span> 
+                <span className="opacity-50">›</span> 
+                <span className="font-semibold text-[#C99A4A]">Priest Support</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3E2723] mb-6 leading-tight tracking-tight">
+              
+              <div className="flex items-center gap-2 mb-4 text-[#C99A4A]">
+                <GiLotusFlower className="w-5 h-5" />
+                <span className="font-medium text-[15px] tracking-wide">Guided by Dharma. Supported by Compassion.</span>
+              </div>
+              
+              <h1 className="text-[38px] sm:text-[46px] lg:text-[52px] font-serif text-[#321A10] mb-5 leading-[1.1]">
                 Priest Support
-                <span className="font-medium text-[#8D6E63] italic mt-2 block text-3xl md:text-4xl">For Peaceful Final Rites.</span>
               </h1>
-              <p className="text-lg md:text-xl text-[#5D4037] leading-relaxed opacity-95 mb-8">
-                Every soul deserves a farewell conducted with proper rituals and devotion. We arrange experienced priests (Pandit Ji / Acharya Ji) to guide grieving families and perform the final rites respectfully according to Vedic traditions.
+              
+              <p className="text-[15px] sm:text-[16px] text-[#321A10]/80 leading-relaxed mb-8 max-w-[480px]">
+                Experienced Pandit Ji's guide your family with compassion, clarity and reverence — in every sacred ritual of your loved one's journey.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="/request-help" className="px-8 py-4 bg-[#8B6A3E] text-white rounded-full font-medium text-lg shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] hover:bg-[#73532F] transition-all duration-300 flex items-center justify-center gap-3 group">
-                  <FaHandHoldingHeart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a href="/request-help" className="inline-flex items-center justify-center gap-2 bg-[#321A10] text-[#FAF8F4] px-6 md:px-8 py-3 rounded-md font-semibold text-sm hover:bg-[#4A2E1B] transition-all shadow-sm">
+                  <GiLotusFlower className="w-4 h-4 text-[#C99A4A]" />
                   Request Priest Support
                 </a>
-                <a href="tel:+919999999999" className="px-8 py-4 bg-white text-[#8B6A3E] border border-[#D7CCC8] rounded-full font-medium text-lg shadow-sm hover:bg-[#F9F5F0] transition-all duration-300 flex items-center justify-center gap-3">
-                  <FaPhoneAlt className="w-4 h-4" />
-                  24x7 Helpline
+                <a href="/donation" className="inline-flex items-center justify-center gap-2 bg-transparent text-[#321A10] border border-[#321A10] px-6 md:px-8 py-3 rounded-md font-semibold text-sm hover:bg-[#321A10]/5 transition-all shadow-sm">
+                  <GiCandleHolder className="w-5 h-5 text-[#C99A4A]" />
+                  Donate for Ritual Support
                 </a>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Image */}
-            <div className="relative h-[400px] lg:h-[550px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl order-1 lg:order-2">
-              <Image 
-                src="/assets/how-we-help/pandit.png"
-                alt="Pandit Ji for Final Rites"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        {/* Feature Cards (Compact, equal height, single row) */}
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 h-full">
+            <FeatureCard 
+              imageSrc="/assets/panditservices/feature-pandit.png"
+              title="Experienced Pandit Ji"
+              desc="Learned and compassionate guidance"
+            />
+            <FeatureCard 
+              imageSrc="/assets/panditservices/feature-vedic.png"
+              title="Vedic Guidance"
+              desc="Guidance based on Hindu traditions"
+            />
+            <FeatureCard 
+              imageSrc="/assets/panditservices/feature-planning.png"
+              title="Ritual Planning"
+              desc="Complete ritual planning and coordination"
+            />
+            <FeatureCard 
+              imageSrc="/assets/panditservices/feature-traditions.png"
+              title="Regional Traditions"
+              desc="Rituals according to family customs"
+            />
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section className="pt-2 pb-4 bg-[#FAF8F4] relative">
+          <div className="max-w-7xl mx-auto px-4 lg:px-0">
+            <div className="text-center mb-6 relative">
+              <h2 className="text-[28px] md:text-[34px] font-serif text-[#321A10] inline-flex items-center gap-3">
+                <span className="text-[#C99A4A]/80 text-xl">✹</span>
+                How It Works
+                <span className="text-[#C99A4A]/80 text-xl">✹</span>
+              </h2>
+            </div>
+            
+            <div className="relative">
+              {/* Dotted Line connector */}
+              <div className="hidden lg:block absolute top-[36px] left-[15%] right-[15%] border-t-[1.5px] border-dashed border-[#C99A4A]/40" />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                <StepItem 
+                  num="1" 
+                  icon={<BsTelephone className="w-6 h-6 text-[#321A10]" />} 
+                  title="Call or Request Support" 
+                />
+                <StepItem 
+                  num="2" 
+                  icon={<MdOutlinePeopleAlt className="w-7 h-7 text-[#321A10]" />} 
+                  title="Pandit Ji Consultation" 
+                />
+                <StepItem 
+                  num="3" 
+                  icon={<GiCandleHolder className="w-7 h-7 text-[#321A10]" />} 
+                  title="Ritual Arrangement" 
+                />
+                <StepItem 
+                  num="4" 
+                  icon={<MdHandshake className="w-7 h-7 text-[#321A10]" />} 
+                  title="Guidance Through Every Ceremony" 
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Essential Services */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-medium text-[#4A3D36] mb-4">How We Assist You</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent mx-auto rounded-full" />
+        {/* Ritual Support at Every Step (Marquee) */}
+        <section className="w-full max-w-7xl mx-auto px-4 lg:px-0 pt-4 pb-2 overflow-hidden">
+          <SectionHeader title="Ritual Support at Every Step" />
+          
+          <style>{`
+            @keyframes scrollMarquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .marquee-track {
+              display: flex;
+              width: max-content;
+              animation: scrollMarquee 25s linear infinite;
+            }
+            .marquee-track:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+          
+          <div className="mt-8 relative w-full overflow-hidden">
+            <div className="marquee-track gap-4 lg:gap-5">
+              {[...ritualCards, ...ritualCards].map((card, idx) => (
+                <div key={idx} className="w-[180px] sm:w-[220px] shrink-0">
+                  <SquareImageCard src={card.src} title={card.title} />
+                </div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ItemCard 
-              icon={<BsBook className="w-8 h-8" />}
-              title="Proper Rituals"
-              desc="Our priests are well-versed in Vedic rituals, ensuring every step of the Antim Sanskar is performed flawlessly."
+        {/* Pandit Ji Roles (4x1 Grid) */}
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 pt-0 pb-2 mb-2">
+          <SectionHeader title="Pandit Ji Roles" />
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-6">
+            <RoleSquareCard 
+              src="/assets/panditservices/roles-1.png" 
+              title="Samagri Guidance" 
+              desc="Right samagri for every sacred ritual." 
             />
-            <ItemCard 
-              icon={<GiIncense className="w-8 h-8" />}
-              title="Final Rites"
-              desc="Complete guidance from the home to the cremation ground, chanting sacred mantras for the peace of the departed."
+            <RoleSquareCard 
+              src="/assets/panditservices/roles-2.png" 
+              title="Prayer Hall Ceremony" 
+              desc="Rituals conducted with peace and reverence." 
             />
-            <ItemCard 
-              icon={<GiCandleHolder className="w-8 h-8" />}
-              title="Family Guidance"
-              desc="Compassionate and calm direction for the family members, helping them navigate the rituals during a tough time."
+            <RoleSquareCard 
+              src="/assets/panditservices/roles-3.png" 
+              title="Family Ritual Explanation" 
+              desc="Simple guidance at every sacred step." 
+            />
+            <RoleSquareCard 
+              src="/assets/panditservices/roles-4.png" 
+              title="Post-Ritual Support" 
+              desc="Guidance for remaining rituals and timelines." 
             />
           </div>
         </section>
 
-        {/* Emotional Connect */}
-        <section className="w-full bg-gradient-to-br from-[#F5F0EA] to-[#FDFBF7] py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E8DCC8]">
-          <div className="max-w-4xl mx-auto text-center">
-            <FaLeaf className="w-10 h-10 text-[#A0522D]/30 mx-auto mb-8" />
-            <h3 className="text-2xl md:text-3xl font-light text-[#5D4037] mb-8 italic leading-relaxed">
-              "Through sacred mantras and pure devotion, we help the soul find its path to Moksha."
-            </h3>
-            <p className="text-lg text-[#795548] leading-relaxed max-w-2xl mx-auto">
-              Our volunteers coordinate with local priests to ensure they are available exactly when needed. 
-              We stand by you, offering spiritual support and solace.
-            </p>
+        {/* Trust Cards (3 items) */}
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 mt-2 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <TrustCard 
+              icon={<FaHandHoldingHeart className="w-10 h-10 text-[#C99A4A]" />}
+              title="Compassionate Guidance"
+              desc="Care, sensitivity and respect in every moment."
+            />
+            <TrustCard 
+              icon={<FaOm className="w-10 h-10 text-[#C99A4A]" />}
+              title="Authentic Hindu Rituals"
+              desc="Rituals performed according to Shastra and tradition."
+            />
+            <TrustCard 
+              icon={<TbHeartHandshake className="w-10 h-10 text-[#C99A4A]" />}
+              title="Support Beyond Ceremony"
+              desc="Continued spiritual guidance after the ceremony."
+            />
           </div>
         </section>
+
+        {/* Final Donation CTA */}
+        <section className="max-w-7xl mx-auto px-4 lg:px-0">
+          <div className="bg-[#E7D5B8]/30 rounded-none overflow-hidden border border-[#E7D5B8] flex flex-col lg:flex-row items-stretch shadow-sm">
+            
+            {/* Left Image (Decorative crop) */}
+            <div className="w-full lg:w-1/5 h-[160px] lg:h-auto relative hidden lg:block">
+              <Image 
+                src="/assets/panditservices/hero.png" 
+                alt="Decorative brass items" 
+                fill
+                className="object-cover object-bottom opacity-90"
+              />
+            </div>
+
+            {/* Center Content */}
+            <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center items-center text-center lg:text-left lg:items-start z-10 bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent">
+              <h2 className="text-2xl lg:text-[28px] font-serif text-[#321A10] mb-5 max-w-lg leading-tight">
+                Your Support Helps Families Receive Dignified & Sacred Final Rites
+              </h2>
+              <a href="/donation" className="px-6 py-3 bg-[#321A10] text-[#FAF8F4] rounded-none font-medium text-[15px] shadow-sm hover:bg-[#4A2E1B] transition-all inline-block">
+                Donate for Ritual Support
+              </a>
+            </div>
+            
+            {/* Right Side Icon & Text */}
+            <div className="w-full lg:w-1/4 p-6 flex flex-col justify-center items-center text-center border-t lg:border-t-0 lg:border-l border-[#E7D5B8]/50 bg-[#FAF8F4]/50">
+              <FaHandHoldingHeart className="w-10 h-10 text-[#C99A4A] mb-3" />
+              <p className="text-[#321A10] font-medium text-[13px] leading-relaxed max-w-[150px]">
+                Every act of kindness becomes a blessing for many.
+              </p>
+            </div>
+            
+          </div>
+        </section>
+
       </main>
 
       <Footer />
@@ -110,14 +284,92 @@ export default function PriestSupport() {
   );
 }
 
-function ItemCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+// ---------------- Components ----------------
+
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="bg-white p-8 rounded-3xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] border border-[#F0E6D9] hover:shadow-[0_8px_30px_-4px_rgba(139,106,62,0.12)] hover:-translate-y-1 transition-all duration-500 group">
-      <div className="w-16 h-16 bg-[#FDFBF7] border border-[#F0E6D9] rounded-2xl flex items-center justify-center text-[#8B6A3E] mb-6 group-hover:scale-110 group-hover:bg-[#8B6A3E] group-hover:text-white transition-all duration-500">
+    <div className="text-center flex items-center justify-center gap-4 mb-4">
+      <GiLotusFlower className="w-5 h-5 text-[#C99A4A] opacity-60 rotate-90" />
+      <h2 className="text-3xl lg:text-4xl font-serif text-[#321A10]">{title}</h2>
+      <GiLotusFlower className="w-5 h-5 text-[#C99A4A] opacity-60 -rotate-90" />
+    </div>
+  );
+}
+
+function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: string, desc: string }) {
+  return (
+    <div className="relative w-full aspect-[5/4] rounded-sm overflow-hidden group cursor-pointer border border-black/10">
+      <Image 
+        src={imageSrc} 
+        alt={title} 
+        fill 
+        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/5 flex flex-col justify-end items-center p-5 text-center">
+        <h4 className="text-[20px] font-semibold text-white mb-2">{title}</h4>
+        {desc && (
+          <p className="text-white/90 text-[14px] leading-snug">
+            {desc}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StepItem({ num, icon, title }: { num: string, icon: React.ReactNode, title: string }) {
+  return (
+    <div className="flex flex-col items-center text-center group">
+      <div className="relative mb-4">
+        <div className="w-[72px] h-[72px] rounded-full bg-white border border-[#E7D5B8]/80 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all">
+          {icon}
+        </div>
+        <div className="absolute -top-1 -right-1 w-[26px] h-[26px] bg-[#C99A4A] rounded-full flex items-center justify-center text-white text-[12px] font-bold border-2 border-white">
+          {num}
+        </div>
+      </div>
+      <h4 className="text-[15px] font-medium text-[#321A10] leading-[1.3] px-2 max-w-[150px] mx-auto">{title}</h4>
+    </div>
+  );
+}
+
+function SquareImageCard({ src, title }: { src: string, title: string }) {
+  return (
+    <div className="bg-white rounded-none overflow-hidden border border-[#E7D5B8]/60 flex flex-col hover:shadow-md transition-shadow duration-300 group">
+      <div className="relative w-full aspect-square overflow-hidden">
+        <Image src={src} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+      </div>
+      <div className="p-4 text-center flex-1 flex items-center justify-center bg-white border-t border-[#E7D5B8]/30">
+        <h4 className="text-[15px] font-medium text-[#321A10] leading-snug">{title}</h4>
+      </div>
+    </div>
+  );
+}
+
+function RoleSquareCard({ src, title, desc }: { src: string, title: string, desc: string }) {
+  return (
+    <div className="bg-white rounded-none overflow-hidden border border-[#E7D5B8]/60 flex flex-col hover:shadow-md transition-shadow duration-300 group">
+      <div className="relative w-full aspect-square overflow-hidden">
+        <Image src={src} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+      </div>
+      <div className="p-4 text-center flex-1 bg-white border-t border-[#E7D5B8]/30">
+        <h4 className="text-[15px] font-medium text-[#321A10] mb-1">{title}</h4>
+        <p className="text-[#321A10]/70 text-[13px] leading-snug">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function TrustCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+  return (
+    <div className="bg-white p-6 rounded-none border border-[#E7D5B8] flex flex-col lg:flex-row gap-5 items-center lg:items-start text-center lg:text-left h-full">
+      <div className="shrink-0 p-3 bg-[#FAF8F4] rounded-full border border-[#E7D5B8]/50">
         {icon}
       </div>
-      <h4 className="text-xl font-semibold text-[#3E2723] mb-4">{title}</h4>
-      <p className="text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
+      <div>
+        <h4 className="text-base font-semibold text-[#321A10] mb-1">{title}</h4>
+        <p className="text-[#321A10]/70 text-sm leading-relaxed">{desc}</p>
+      </div>
     </div>
   );
 }
