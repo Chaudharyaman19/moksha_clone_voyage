@@ -167,30 +167,30 @@ export default function HowItWorks({
       ? [
           {
             number: "01",
-            title: "Call Anytime, 24×7",
+            title: "Call or Send Details",
             description:
-              "Reach us by call or WhatsApp. We are always here to help.",
+              "Share the location, situation and type of help needed.",
             icon: FaPhoneAlt,
           },
           {
             number: "02",
-            title: "Share Details",
+            title: "Team Reviews the Need",
             description:
-              "Tell us your needs. We will guide you step by step.",
+              "We confirm the case and explain what support can be arranged.",
             icon: FaUser,
           },
           {
             number: "03",
-            title: "We Arrange Everything",
+            title: "Support Is Coordinated",
             description:
-              "From pandit ji to samagri, we take care of all.",
+              "Ambulance, priest, materials, flowers and volunteers are coordinated.",
             icon: FaHandHoldingHeart,
           },
           {
             number: "04",
-            title: "You Focus on Prayer",
+            title: "Final Rites With Dignity",
             description:
-              "We handle everything with dignity, care and compassion.",
+              "The family receives calm guidance until the service is complete.",
             icon: null,
             lotusStep: true,
           },
@@ -240,7 +240,7 @@ export default function HowItWorks({
 
       <div className="pointer-events-none absolute left-1/2 top-0 h-24 w-[62%] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-0">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-5 lg:px-0">
         <header className="mb-5 text-center">
           <LotusMark className="mx-auto h-5 w-8 text-[#C98A34]" />
 
@@ -255,7 +255,7 @@ export default function HowItWorks({
           </div>
 
           <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:whitespace-nowrap lg:text-[30px]">
-            Simple Process, Complete Sewa Support.
+            Simple Process, Clear Support.
           </h2>
 
           <HeaderDivider />
@@ -268,7 +268,7 @@ export default function HowItWorks({
             return (
               <article
                 key={step.number}
-                className="group relative min-h-[108px] overflow-visible rounded-[20px] border border-[#EADBC6] bg-white/80 px-4 pb-3 pt-6 shadow-[0_6px_18px_rgba(80,50,22,0.045)] transition duration-300 hover:-translate-y-0.5 hover:border-[#D9B47A] hover:shadow-[0_10px_24px_rgba(80,50,22,0.08)] sm:min-h-[112px]"
+                className="group relative min-h-[126px] overflow-visible rounded-[20px] border border-[#EADBC6] bg-white/80 px-4 pb-4 pt-7 shadow-[0_6px_18px_rgba(80,50,22,0.045)] transition duration-300 hover:-translate-y-0.5 hover:border-[#D9B47A] hover:shadow-[0_10px_24px_rgba(80,50,22,0.08)] sm:min-h-[118px] md:min-h-[126px] xl:min-h-[122px]"
               >
                 <div className="absolute left-7 top-0 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#F1A016] to-[#DF7F00] font-sans text-[16px] font-semibold leading-none text-white shadow-[0_5px_12px_rgba(205,118,7,0.22)]">
                   {step.number}
@@ -294,7 +294,7 @@ export default function HowItWorks({
                       {step.title}
                     </h3>
 
-                    <p className="text-[10.5px] font-normal leading-[1.4] text-[#5F5147] sm:text-[11px]">
+                    <p className="text-[11px] font-normal leading-[1.45] text-[#5F5147] sm:text-[11px]">
                       {step.description}
                     </p>
                   </div>

@@ -51,23 +51,23 @@ const reasons: Reason[] = [
   },
   {
     type: "team",
-    title: "Pandit Ji & Local Team",
-    text: "Pandit ji and local volunteers help complete kriya karam with proper vidhi.",
+    title: "Priest & Local Team",
+    text: "Priests and local volunteers help complete the final rites with care.",
   },
   {
     type: "pricing",
     title: "Help for Needy Families",
-    text: "For eligible zaruratmand families, sewa support is arranged without adding burden.",
+    text: "For eligible needy families, support is arranged without adding burden.",
   },
   {
     type: "care",
     title: "Respectful Behaviour",
-    text: "Every lawaris, anath or be-sahara person is treated with dignity and care.",
+    text: "Every unclaimed, orphaned or helpless person is treated with dignity.",
   },
   {
     type: "arrangements",
     title: "Complete Basic Arrangements",
-    text: "Lakdi, kafan, phool, samagri, ambulance and ghat coordination are handled.",
+    text: "Wood, cloth, flowers, ritual items, ambulance and ghat coordination are handled.",
   },
   {
     type: "network",
@@ -81,7 +81,7 @@ const reasons: Reason[] = [
   },
   {
     type: "dignity",
-    title: "Dignified Antim Vidai",
+    title: "Dignified Final Farewell",
     text: "Our aim is simple: no final journey should happen without respect.",
   },
 ];
@@ -283,9 +283,9 @@ export default function WhyFamiliesTrust() {
             >
               Moksha Sewa is built for families who need real help,
               <br className="hidden sm:block" />
-              especially lawaris, anath and zaruratmand cases.
+              especially unclaimed, orphaned and needy cases.
               <br className="hidden lg:block" />
-              We arrange the essentials so antim sanskar happens with dignity.
+              We arrange the essentials so final rites happen with dignity.
             </p>
           </div>
         </div>
@@ -337,7 +337,7 @@ export default function WhyFamiliesTrust() {
               className="text-[12px] font-normal text-[#4A392E] "
               style={serifFont}
             >
-              When there is no sahara, Moksha Sewa stands with the family.
+              When there is no support Moksha Sewa stands with the family.
             </p>
 
             <span className="relative hidden h-px w-[24px] bg-[#D8A646] sm:block">

@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 function AnimatedNumber({ endString }: { endString: string }) {
+  const shouldAnimate = !/[^0-9,%+]/.test(endString);
   const end = parseInt(endString.replace(/,/g, "").replace(/\D/g, ""), 10);
   const suffix = endString.replace(/[0-9,]/g, "");
   const formatComma = endString.includes(",");
@@ -23,6 +24,8 @@ function AnimatedNumber({ endString }: { endString: string }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!shouldAnimate) return;
+
     let startTimestamp: number | null = null;
     const duration = 2000;
 
@@ -38,7 +41,11 @@ function AnimatedNumber({ endString }: { endString: string }) {
     };
     
     window.requestAnimationFrame(step);
-  }, [end]);
+  }, [end, shouldAnimate]);
+
+  if (!shouldAnimate) {
+    return <span>{endString}</span>;
+  }
 
   return (
     <span>
@@ -99,23 +106,23 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       variant === "seva"
         ? [
             {
-            heading: ["No One Left Behind.", "Dignity for Every Life."],
+            heading: ["Dignity for Every Life.", "Support in Difficult Times."],
               description:
-                "For those who have no one, or for families who cannot afford final rites, Moksha Sewa arranges ambulance support, body transport, wood, cloth, flowers and essential ritual items.",
+                "Moksha Sewa helps helpless and needy families arrange respectful final-rites support, including ambulance, wood, cloth, flowers, priest guidance and volunteers.",
               alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
               primaryButton: {
-                label: "Unclaimed Case Help",
+                label: "Request Help",
                 href: "/request-help",
               },
               secondaryButton: {
-                label: "Donate for Service",
+                label: "Donate for Sewa",
                 href: "/donation",
               },
             },
             {
-              heading: ["Ambulance to Cremation Ground,", "Complete Support."],
+              heading: ["Ambulance and Hearse Van.", "Handled With Care."],
               description:
-                "We arrange ambulance and hearse van support to respectfully move the body from a hospital, home or public place to the cremation ground, so the family or authorities are not left alone.",
+                "We coordinate ambulance and hearse-van support from hospital, home or public place to the cremation ground, with clear guidance at each step.",
               alt: "Moksha Sewa team arranging hearse van support for a grieving family",
               primaryButton: {
                 label: "Call Ambulance",
@@ -127,9 +134,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               },
             },
             {
-              heading: ["Wood, Cloth and Flowers,", "We Arrange the Essentials."],
+              heading: ["Wood, Cloth and Flowers.", "Essentials Arranged."],
               description:
-                "Moksha Sewa arranges basic cremation essentials such as wood, shroud cloth, flowers, ritual items and cremation-ground support for people in need.",
+                "For families who cannot manage the basic items, we help arrange cremation wood, shroud cloth, flowers, lamps and other ritual materials.",
               alt: "Moksha Sewa volunteers supporting a needy family at the cremation ground",
               primaryButton: {
                 label: "Sponsor Ritual Items",
@@ -141,23 +148,23 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               },
             },
             {
-              heading: ["For Families in Need,", "Support With Care."],
+              heading: ["Priest and Ritual Support.", "Simple Guidance."],
               description:
-                "Many families cannot arrange even basic supplies during their hardest moments. We help provide food, clothing, blankets and ritual items so the final service can happen with respect.",
-              alt: "Moksha Sewa volunteers providing ration blankets and ritual materials",
+                "We help arrange priest support and ritual guidance so the final prayers can be completed respectfully, even when the family has limited resources.",
+              alt: "Moksha Sewa volunteers arranging priest and ritual materials",
               primaryButton: {
-                label: "Donate Essentials",
-                href: "/donation",
+                label: "Request Priest Help",
+                href: "/request-help",
               },
               secondaryButton: {
-                label: "Help a Family",
-                href: "/request-help",
+                label: "Sponsor Rituals",
+                href: "/donation",
               },
             },
             {
-              heading: ["Unclaimed or Helpless,", "Every Life Deserves Dignity."],
+              heading: ["Unclaimed or Helpless.", "Never Without Respect."],
               description:
-                "Whether it is an unclaimed body or a helpless person, dignity matters. We help arrange local support, transport, wood, cremation-ground coordination and basic final-rites arrangements.",
+                "In unclaimed or helpless cases, we support the required coordination with local authorities, transport, cremation-ground arrangements and basic final-rites needs.",
               alt: "Moksha Sewa team giving respectful final farewell support",
               primaryButton: {
                 label: "Final Rites Help",
@@ -169,9 +176,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               },
             },
             {
-              heading: ["At Every Step,", "Volunteers Stand With You."],
+              heading: ["Volunteers on Ground.", "Families Are Not Alone."],
               description:
-                "Moksha Sewa provides on-ground volunteers to help with ambulance coordination, wood, ritual items, cremation-ground support and a respectful final farewell.",
+                "Our volunteers help families with calls, local coordination, materials, cremation-ground support and practical guidance during the final journey.",
               alt: "Moksha Sewa volunteers doing on-ground service near the cremation ground",
               primaryButton: {
                 label: "Become Volunteer",
@@ -183,9 +190,9 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               },
             },
             {
-              heading: ["Food Service for People,", "Arranged by Namo Gange."],
+              heading: ["Food and Basic Support.", "For Families in Need."],
               description:
-                "After the final rites, arranging food for people can be difficult for many families. Namo Gange helps arrange food service so families in need do not face extra burden.",
+                "Where possible, we help arrange food, water and basic essentials so grieving families do not face extra pressure during the rituals.",
               alt: "Namo Gange volunteers serving food as part of community food service",
               primaryButton: {
                 label: "Sponsor Food Service",
@@ -213,10 +220,10 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
   const stats: StatItem[] =
     variant === "seva"
       ? [
-        { value: "0", label: "Cost for Helpless", icon: FaUsers },
-        { value: "24", label: "Hour Ambulance Help", icon: FaLandmark },
-        { value: "100%", label: "Respectful Final Rites", icon: FaSmile },
-        { value: "1", label: "Call for Full Arrangement", icon: FaShieldAlt },
+        { value: "24/7", label: "Help Requests", icon: FaUsers },
+        { value: "1", label: "Call to Coordinate", icon: FaLandmark },
+        { value: "100%", label: "Respectful Care", icon: FaSmile },
+        { value: "0", label: "Cost for Eligible Cases", icon: FaShieldAlt },
       ]
       : [
         { value: "24/7", label: "Care Coordinators", icon: FaUsers },
@@ -227,7 +234,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
   const trustChips =
     variant === "seva"
-      ? ["Unclaimed Body Support", "Ambulance & Wood", "Shroud, Flowers & Ritual Items"]
+      ? ["Ambulance Support", "Priest & Ritual Items", "Volunteers on Ground"]
       : ["Verified Services", "Clear Guidance", "24/7 Support"];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -248,17 +255,13 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     return () => window.clearInterval(timer);
   }, [nextSlide]);
 
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [variant]);
-
   return (
     <>
       <section
-      className="group relative w-full aspect-[16/9] lg:aspect-[20/9] min-h-[600px] max-w-none overflow-hidden bg-[#fbf5ea]"
+      className="group relative w-full min-h-[720px] overflow-hidden bg-[#fbf5ea] sm:min-h-[690px] md:aspect-[16/10] md:min-h-[620px] lg:aspect-[20/9] lg:min-h-[600px]"
     >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
-      <div className="absolute inset-y-0 left-0 right-[-80px] overflow-hidden">
+      <div className="absolute inset-y-0 left-0 right-0 overflow-hidden md:right-[-80px]">
         {images.map((image, index) => (
           <div
             key={image}
@@ -274,7 +277,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               quality={100}
               unoptimized
               sizes="100vw"
-              className={`object-cover object-[76%_center] transition-transform duration-[6000ms] ease-out ${index === currentIndex ? "scale-[1.04]" : "scale-100"
+              className={`object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center] ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}
             />
           </div>
@@ -292,7 +295,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       />
 
       {/* Mobile content readability without covering the complete image */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/78 via-[#fbf5ea]/38 to-transparent md:hidden" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf5ea]/92 via-[#fbf5ea]/68 to-[#fbf5ea]/16 md:hidden" />
 
       {/* Devanagari watermark — same signature as the rest of the site */}
       <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-serif text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
@@ -344,23 +347,23 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
       </div>
 
       {/* Main content */}
-      <div className="relative z-20 mx-auto h-full max-w-7xl px-0">
-        <div className="flex h-full items-start pt-[124px] sm:pt-[138px] md:pt-[144px] lg:pt-[150px] xl:pt-[160px]">
-          <div className="w-full max-w-[720px] md:w-[62%] lg:w-[56%] xl:w-[54%]">
+      <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
+        <div className="flex h-full items-start pt-[104px] sm:pt-[122px] md:pt-[140px] lg:pt-[150px] xl:pt-[160px]">
+          <div className="w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
             {/* eyebrow */}
-            <div className="mb-4 inline-flex items-center gap-2.5">
+            <div className="mb-3 inline-flex max-w-full items-center gap-2.5 sm:mb-4">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
                 <FaFire className="h-3.5 w-3.5" />
               </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E]">
+              <span className="min-w-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E] sm:text-[10px] sm:tracking-[0.28em]">
                 {variant === "seva"
-                  ? "मोक्ष सेवा · Free Final Rites Support"
+                  ? "मोक्ष सेवा · Final Rites Support"
                   : "मोक्ष · With You, Always"}
               </span>
             </div>
 
             <h1
-              className="text-[34px] font-normal leading-[1.1] tracking-[-0.025em] text-[#2C1810] sm:text-[38px] md:text-[40px] lg:text-[42px] xl:text-[44px]"
+              className="text-[30px] font-normal leading-[1.12] text-[#2C1810] sm:text-[36px] md:text-[38px] lg:text-[42px] xl:text-[44px]"
               style={{
                 fontFamily: "Georgia, 'Times New Roman', serif",
                 fontWeight: 400,
@@ -389,18 +392,18 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
-            <p className="mt-4 max-w-[535px] text-[15px] font-normal leading-6 text-[#4F3A2D] sm:text-[16px]">
+            <p className="mt-4 max-w-[535px] text-[14px] font-normal leading-[1.65] text-[#4F3A2D] sm:text-[16px]">
               {activeSlide.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3.5">
+            <div className="mt-5 flex flex-col items-stretch gap-3 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
               <a
                 href={
                   variant === "seva"
                     ? activeSlide.primaryButton?.href ?? "/sevas"
                     : "/services"
                 }
-                className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
+                className="group/cta inline-flex min-h-[46px] w-full items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-5 py-3 text-center text-[14px] font-semibold leading-tight text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)] sm:w-auto sm:min-w-[182px] sm:px-6"
               >
                 <span>
                   {variant === "seva"
@@ -418,7 +421,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                     ? activeSlide.secondaryButton?.href ?? "/sevas"
                     : "/services"
                 }
-                className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-white/45 px-6 text-[14px] font-semibold text-[#73532F] backdrop-blur-[2px] transition hover:border-[#8B6A3E] hover:bg-white/80"
+                className="group/cta inline-flex min-h-[46px] w-full items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-white/60 px-5 py-3 text-center text-[14px] font-semibold leading-tight text-[#73532F] backdrop-blur-[2px] transition hover:border-[#8B6A3E] hover:bg-white/80 sm:w-auto sm:min-w-[182px] sm:px-6"
               >
                 <span>
                   {variant === "seva"
@@ -451,7 +454,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
     </section>
 
     {/* Premium Stats Band Below Hero */}
-      <div className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
+      <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
@@ -466,12 +469,12 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                 </div>
                 <div className="min-w-0 text-left">
                   <div
-                    className="whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+                    className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]"
                     style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                   >
                     <AnimatedNumber endString={stat.value} />
                   </div>
-                  <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">
+                  <div className="mt-1 max-w-[120px] text-[9px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[10px]">
                     {stat.label}
                   </div>
                 </div>

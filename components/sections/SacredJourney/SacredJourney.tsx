@@ -44,7 +44,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Donate",
     description:
-      "Your donation helps arrange lakdi, kafan, phool, samagri and ambulance for needy antim sewa.",
+      "Your donation helps arrange ambulance, wood, cloth, flowers and ritual items for families in need.",
     button: "Donate for Sewa",
     image: donationImages.donate,
     icon: FaHandHoldingHeart,
@@ -53,16 +53,16 @@ const sevaCards: SupportCard[] = [
   {
     title: "Volunteer",
     description:
-      "Join our on-ground team to help families at hospitals, ghats and cremation grounds.",
+      "Join our on-ground team and help families at hospitals, homes, ghats and cremation grounds.",
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
     href: "/volunteer/register",
   },
   {
-    title: "Sponsor Antim Sewa",
+    title: "Sponsor Final Rites",
     description:
-      "Sponsor pandit ji, lakdi, ambulance, pooja samagri or logon ko bhoj for a family in need.",
+      "Sponsor priest support, cremation wood, ambulance, ritual items or food service for a family.",
     button: "Sponsor Sewa",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
@@ -71,7 +71,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Partner With Us",
     description:
-      "Help us reach more lawaris, anath and zaruratmand cases through local support.",
+      "Help us reach more unclaimed, orphaned and needy cases through local support.",
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
@@ -317,15 +317,15 @@ export default function SacredJourney({
           <TopLabel />
 
           <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
-            Help Someone Receive a Respectful Antim Sanskar.
+            Help Someone Receive a Respectful Farewell.
           </h2>
 
           <HeadingDivider />
 
           <p className="mx-auto mt-2 max-w-[600px] text-[13px] font-normal leading-[1.45] text-[#5B473C]">
-            Your support helps arrange ambulance, lakdi, pandit ji, samagri,
+            Your support helps arrange ambulance, priest support, wood, cloth,
             <br className="hidden sm:block" />
-            and logon ko bhoj for families who cannot afford it.
+            flowers, ritual items and food service for families in need.
           </p>
         </header>
 
@@ -337,10 +337,10 @@ export default function SacredJourney({
             return (
               <article
                 key={card.title}
-                className="group relative mx-auto h-[308px] w-full max-w-[280px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:max-w-none lg:h-[300px]"
+                className="group relative mx-auto h-[348px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[336px] sm:max-w-none md:h-[326px] lg:h-[318px]"
               >
                 {/* Image */}
-                <div className="absolute inset-x-0 top-0 h-[165px] overflow-hidden rounded-t-[13px] lg:h-[155px]">
+                <div className="absolute inset-x-0 top-0 h-[168px] overflow-hidden rounded-t-[13px] sm:h-[165px] lg:h-[155px]">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -364,14 +364,14 @@ export default function SacredJourney({
                 <CardCornerLotus />
 
                 {/* Card content */}
-                <div className="absolute inset-x-0 top-[198px] z-20 flex flex-col items-center px-4 text-center lg:top-[188px]">
-                  <h3 className="font-serif text-[18px] font-normal uppercase leading-[1.05] tracking-[0.015em] text-[#352017] lg:text-[17px]">
+                <div className="absolute inset-x-0 top-[204px] z-20 flex flex-col items-center px-4 text-center sm:top-[198px] md:top-[194px] lg:top-[188px]">
+                  <h3 className="font-serif text-[17px] font-normal uppercase leading-[1.1] tracking-[0.015em] text-[#352017] lg:text-[16px] xl:text-[17px]">
                     {card.title}
                   </h3>
 
                   <span className="mt-1.5 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-2 max-w-[230px] text-[10.5px] font-normal leading-[1.38] text-[#5B473C]">
+                  <p className="mx-auto mt-2 max-w-[250px] text-[11px] font-normal leading-[1.45] text-[#5B473C] lg:max-w-[220px] lg:text-[10.5px]">
                     {card.description}
                   </p>
                 </div>
@@ -379,7 +379,7 @@ export default function SacredJourney({
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className={`absolute bottom-[9px] left-4 right-4 z-30 flex h-[34px] items-center justify-center gap-2 rounded-[5px] px-4 text-[11px] font-medium transition ${
+                  className={`absolute bottom-[12px] left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[11px] font-medium leading-tight transition ${
                     isFilledButton
                       ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
                       : "border border-[#E17D18] bg-white/75 text-[#C66300] hover:bg-[#FFF5E8]"

@@ -25,7 +25,7 @@ export default function Page() {
       <Navbar variant="seva" />
       <Hero variant="seva" />
       {/* Namo Gange Section */}
-      <AboutNamoGange />
+      {/* <AboutNamoGange /> */}
 
       <CompassionSection variant="seva" />
       <HowWeHelp variant="seva" />
