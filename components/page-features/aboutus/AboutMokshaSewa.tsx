@@ -29,7 +29,7 @@ export default function AboutMokshaSewa() {
             <span className=" text-[#8B6A3E]">Complete Support</span>
           </h2>
 
-          {/* Diya Flourish */}
+      
           <div className="mb-8 flex items-center gap-2">
             <span className="h-[2px] w-12 bg-[#8B6A3E]" />
             <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
@@ -94,7 +94,7 @@ export default function AboutMokshaSewa() {
               />
             </div>
 
-            {/* Bottom Right Image */}
+           
             <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
               <Image
                 src={aboutImages.storyTemple}

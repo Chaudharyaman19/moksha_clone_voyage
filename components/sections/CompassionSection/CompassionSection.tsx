@@ -1,14 +1,258 @@
 "use client";
 
+import type { ReactNode, SVGProps } from "react";
+
 interface CompassionSectionProps {
   variant?: "voyage" | "seva";
 }
 
+type IconProps = SVGProps<SVGSVGElement>;
+
+function IconBase({
+  children,
+  className = "h-5 w-5",
+  ...props
+}: IconProps & { children: ReactNode }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      {children}
+    </svg>
+  );
+}
+
+function LotusIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M12 20c-4.8-1.4-8-4.5-8-8.2 3.9.1 6.7 1.4 8 4.2 1.3-2.8 4.1-4.1 8-4.2 0 3.7-3.2 6.8-8 8.2Z" />
+      <path d="M12 16c-2.7-2.1-4.1-4.6-3.6-7.6 2.2.7 3.5 2 3.6 4.1.1-2.1 1.4-3.4 3.6-4.1.5 3-1 5.5-3.6 7.6Z" />
+      <path d="M12 12.5C10.3 10.3 10 7.9 12 5.5c2 2.4 1.7 4.8 0 7Z" />
+      <path d="M7 21h10" />
+    </IconBase>
+  );
+}
+
+function HandHeartIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M8.5 11.5 6.8 9.8a2.4 2.4 0 0 0-3.4 3.4l5.7 5.7c.8.8 2 .8 2.8.1l3.1-2.8" />
+      <path d="M13.3 8.4c.9-1.3 2.8-1.4 3.8-.2 1-1.2 2.9-1.1 3.8.2 1 1.5.4 3.2-.7 4.2L17.1 15 14 12.6c-1.2-1-1.7-2.7-.7-4.2Z" />
+      <path d="M11.5 14.7h3.4c1.4 0 2.4.8 2.7 1.9" />
+    </IconBase>
+  );
+}
+
+function PriestIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <circle cx="12" cy="7" r="3" />
+      <path d="M5.5 20c.6-4.1 2.8-6.3 6.5-6.3s5.9 2.2 6.5 6.3" />
+      <path d="M9.4 4.8c.8-.9 1.7-1.3 2.6-1.3s1.8.4 2.6 1.3" />
+      <path d="M9.5 14.2 12 18l2.5-3.8" />
+    </IconBase>
+  );
+}
+
+function FlameIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M12 22c4.1 0 7-2.8 7-6.8 0-3.1-1.7-5.3-4.7-8.4.1 2.6-1 4.2-2.2 5.2-.2-3.6-1.9-6.1-4.3-8C8 8.8 5 10.6 5 15.2 5 19.2 7.9 22 12 22Z" />
+      <path d="M9.7 17.1c0 1.5 1 2.6 2.3 2.6s2.3-1.1 2.3-2.6c0-1-.6-2-1.9-3.2-.1 1-.5 1.7-1.1 2.2-.1-1.3-.6-2.3-1.4-3.1-.2 1.7-.2 2.8-.2 4.1Z" />
+    </IconBase>
+  );
+}
+
+function AmbulanceIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M3 7h11v10H3z" />
+      <path d="M14 10h3.2l3.8 3.8V17h-7" />
+      <circle cx="7" cy="18" r="2" />
+      <circle cx="18" cy="18" r="2" />
+      <path d="M7 9v4M5 11h4" />
+    </IconBase>
+  );
+}
+
+function PackageIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
+      <path d="m4.5 7.8 7.5 4.3 7.5-4.3M12 12v9" />
+      <path d="m8 5.3 8 4.6" />
+    </IconBase>
+  );
+}
+
+function BadgeCheckIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M12 3.5 14 5l2.5-.2.8 2.4 2 1.5-.9 2.3.6 2.4-2.1 1.3-.9 2.3-2.5-.1L12 18.5 10 17l-2.5.1-.9-2.3-2.1-1.3.6-2.4-.9-2.3 2-1.5.8-2.4 2.5.2L12 3.5Z" />
+      <path d="m8.8 11.2 2 2 4.5-4.5" />
+    </IconBase>
+  );
+}
+
+function UsersIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3.5 20c.4-4.1 2.2-6.3 5.5-6.3s5.1 2.2 5.5 6.3" />
+      <path d="M15.8 5.4a3 3 0 0 1 0 5.2M16.8 13.8c2.3.7 3.4 2.8 3.7 6.2" />
+    </IconBase>
+  );
+}
+
+function PhoneIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M5.4 3.8 8.7 3l1.7 4.1-2 1.7a15.8 15.8 0 0 0 6.8 6.8l1.7-2 4.1 1.7-.8 3.3c-.3 1.2-1.4 2-2.6 1.9C10.4 19.8 4.2 13.6 3.5 6.4c-.1-1.2.7-2.3 1.9-2.6Z" />
+    </IconBase>
+  );
+}
+
+function ShieldIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M12 3 20 6v5.7c0 4.8-3.2 7.8-8 9.3-4.8-1.5-8-4.5-8-9.3V6l8-3Z" />
+      <path d="m8.7 12 2.2 2.2 4.6-4.6" />
+    </IconBase>
+  );
+}
+
+function ClockIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7v5l3.2 2" />
+    </IconBase>
+  );
+}
+
+function BoxIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
+      <path d="m4 7.5 8 4.5 8-4.5M12 12v9" />
+    </IconBase>
+  );
+}
+
+function MailIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
+    </IconBase>
+  );
+}
+
+const sevaStats = [
+  {
+    value: "500+",
+    title: "Ritual Help",
+    caption: "For Needy Families",
+    icon: HandHeartIcon,
+  },
+  {
+    value: "50+",
+    title: "Verified Priests",
+    caption: "Proper Ritual Guidance",
+    icon: PriestIcon,
+  },
+  {
+    value: "15+",
+    title: "Cremation Ground Support",
+    caption: "Family Guidance",
+    icon: FlameIcon,
+  },
+];
+
+const voyageStats = [
+  {
+    value: "500+",
+    title: "Families Served",
+    caption: "With Compassion",
+    icon: HandHeartIcon,
+  },
+  {
+    value: "50+",
+    title: "Verified Pandits",
+    caption: "Across India",
+    icon: PriestIcon,
+  },
+  {
+    value: "15+",
+    title: "Cities Covered",
+    caption: "Pan-India Network",
+    icon: BadgeCheckIcon,
+  },
+];
+
 export default function CompassionSection({
   variant = "voyage",
 }: CompassionSectionProps) {
+  const isSeva = variant === "seva";
+  const stats = isSeva ? sevaStats : voyageStats;
+
+  const features = isSeva
+    ? [
+        {
+          title: "Ambulance Support",
+          text: "Transport with respect",
+          icon: AmbulanceIcon,
+        },
+        {
+          title: "Ritual Essentials",
+          text: "Wood, cloth, flowers and samagri",
+          icon: PackageIcon,
+        },
+        {
+          title: "Priest Guidance",
+          text: "Final rites with proper guidance",
+          icon: BadgeCheckIcon,
+        },
+        {
+          title: "Volunteer Support",
+          text: "Help at hospital, home and ghat",
+          icon: UsersIcon,
+        },
+      ]
+    : [
+        {
+          title: "Transparent Pricing",
+          text: "No hidden costs, upfront quotes",
+          icon: BadgeCheckIcon,
+        },
+        {
+          title: "Digital Agreements",
+          text: "Secure documentation",
+          icon: PackageIcon,
+        },
+        {
+          title: "Ritual Guidance",
+          text: "Step-by-step support",
+          icon: PriestIcon,
+        },
+        {
+          title: "NRI Services",
+          text: "Support from abroad",
+          icon: UsersIcon,
+        },
+      ];
+
   return (
     <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
+      {/* Background dimensions and positioning are intentionally unchanged. */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
           <div
@@ -20,188 +264,202 @@ export default function CompassionSection({
             }}
           />
 
-          {/* Single, balanced gradient overlay - this controls brightness */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F8F4EC] via-[#F8F4EC]/20 to-[#F8F4EC]/0"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#FBF7EF_0%,#FBF7EF_37%,rgba(251,247,239,0.96)_44%,rgba(251,247,239,0.55)_53%,rgba(251,247,239,0)_68%)]" />
         </div>
 
-        {/* Blur elements with reduced opacity for subtle depth */}
-        <div className="absolute top-10 left-10 w-72 h-72 bg-[#E8DBC5] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#D4C1A6] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
-        <div className="absolute top-40 right-40 w-80 h-80 bg-[#C9B696] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+        <div className="absolute left-0 top-0 h-full w-[47%] opacity-[0.12] [background-image:radial-gradient(circle_at_20%_20%,#B7833E_0.7px,transparent_0.8px)] [background-size:18px_18px]" />
+        <div className="absolute left-0 top-0 h-full w-[42%] bg-[radial-gradient(circle_at_0%_0%,rgba(202,157,93,0.12),transparent_42%)]" />
+      </div>
+
+      {/* Left vertical action tabs */}
+      <div className="absolute left-0 top-[18%] z-30 hidden flex-col gap-3 xl:flex">
+        <a
+          href="/contact"
+          className="flex h-[120px] w-[44px] flex-col items-center justify-center gap-2 rounded-r-xl bg-[#8B6334] text-white shadow-[0_10px_30px_rgba(67,38,15,0.22)] transition-transform hover:translate-x-1"
+          aria-label="Enquiry"
+        >
+          <MailIcon className="h-4 w-4" />
+          <span className="[writing-mode:vertical-rl] rotate-180 text-[12px] font-semibold uppercase tracking-[0.08em]">
+            Enquiry
+          </span>
+        </a>
+
+        <a
+          href="tel:+919810247319"
+          className="flex h-[142px] w-[44px] flex-col items-center justify-center gap-2 rounded-r-xl bg-[#e10f0f] text-white shadow-[0_10px_30px_rgba(130,0,0,0.22)] transition-transform hover:translate-x-1"
+          aria-label="Emergency"
+        >
+          <PhoneIcon className="h-4 w-4" />
+          <span className="[writing-mode:vertical-rl] rotate-180 text-[12px] font-semibold uppercase tracking-[0.08em]">
+            Emergency
+          </span>
+        </a>
       </div>
 
       <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px]">
         <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
-          <div className="max-w-3xl py-8 md:py-10">
-            <div className="mb-3 inline-flex items-center gap-3">
-              <span className="w-10 h-[1px] bg-[#8B6A3E]" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                {variant === "seva" ? "Moksha Sewa" : "Our Mission"}
+          <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-0 lg:py-8">
+            {/* Brand row */}
+            <div className="mb-3 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center border-b border-[#A87B3D] text-[#956A32]">
+                <LotusIcon className="h-9 w-9" />
+              </div>
+              <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
+                {isSeva ? "Moksha Sewa" : "Our Mission"}
               </span>
             </div>
 
-            <h2 
-              className="mb-3 text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
+            {/* Heading */}
+            <h2
+              className="mb-2.5 text-[31px] font-normal leading-[1.08] text-[#26140D] sm:text-[38px] lg:text-[44px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              <span className="mb-1 block">
-                {variant === "seva"
-                  ? "For Families Who Need Support"
+              <span className="block">
+                {isSeva
+                  ? "When a Family Needs Help,"
                   : "A Journey Guided by Love"}
               </span>
-              <span className="block bg-gradient-to-r from-[#8B6A3E] to-[#5F4630] bg-clip-text text-transparent text-[24px] sm:text-[28px] lg:text-[30px]">
-                {variant === "seva"
-                  ? "Priest and Ritual Assistance"
-                  : "with Peace of Mind"}
+              <span className="mt-1 block text-[#956A32]">
+                {isSeva
+                  ? "We Arrange the Essentials."
+                  : "with Peace of Mind."}
               </span>
             </h2>
 
-            {/* Standard Diya Flourish */}
-            <div className="mb-4 flex items-center gap-2">
-              <span className="h-[2px] w-12 bg-[#8B6A3E]" />
-              <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-              <span className="h-[1px] w-12 bg-gradient-to-r from-[#C9A574] to-transparent" />
+            {/* Decorative flourish */}
+            <div className="mb-3.5 flex items-center gap-2 text-[#AE7B35]">
+              <span className="h-px w-16 bg-[#AE7B35]" />
+              <LotusIcon className="h-5 w-5" />
+              <span className="h-px w-16 bg-gradient-to-r from-[#AE7B35] to-transparent" />
             </div>
 
-            <p className="mb-5 max-w-2xl text-[13px] font-light leading-relaxed text-[#5A4030]">
+            {/* Description */}
+            <p className="mb-4 max-w-[600px] text-[12px] font-normal leading-[1.55] text-[#3F2A1F] sm:text-[13px]">
               At{" "}
-              <span className="font-semibold text-[#8B6A3E]">
-                {variant === "seva" ? "Moksha Sewa" : "Moksha Voyage"}
+              <span className="font-semibold text-[#865E30]">
+                {isSeva ? "Moksha Sewa" : "Moksha Voyage"}
               </span>
-              {variant === "seva"
-                ? ", we arrange priest support, ritual items and final-rites assistance for poor and needy families. When a family cannot afford or manage the rituals, our team helps complete the prayers at the cremation ground with dignity, peace and proper guidance."
-                : " To build a trusted, transparent digital ecosystem that connects families with verified end-of-life service providers, provides step-by-step emotional and ritual guidance, and ensures no one navigates life's most profound transition alone or without dignity. Our mission is to create a trusted digital ecosystem that supports families during life’s most difficult moments by connecting them with verified end-of-life service providers and offering compassionate guidance through every emotional and ritual step with dignity and care."}
+              {isSeva
+                ? ", we support helpless, unclaimed and needy cases with practical final-rites arrangements. Our team helps coordinate ambulance or hearse van, priest support, wood, shroud cloth, flowers, ritual items, food service and on-ground volunteers—so every final journey is handled with dignity, respect and compassion."
+                : " builds a trusted and transparent digital ecosystem that connects families with verified end-of-life service providers, offering compassionate emotional and ritual guidance through every step with dignity and care."}
             </p>
 
-            {/* New Stats Row - Added for balance */}
-            <div className="mb-4 grid grid-cols-3 gap-3">
-              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
-                <div className="text-xl font-bold text-[#8B6A3E]">500+</div>
-                <div className="text-xs text-[#5A4030]">
-                  {variant === "seva" ? "Ritual Help" : "Families Served"}
-                </div>
-                <div className="text-[9px] text-[#5A4030]/60 mt-1">
-                  {variant === "seva" ? "For Needy Families" : "With Compassion"}
-                </div>
-              </div>
-              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
-                <div className="text-xl font-bold text-[#8B6A3E]">50+</div>
-                <div className="text-xs text-[#5A4030]">
-                  {variant === "seva" ? "Verified Priests" : "Verified Pandits"}
-                </div>
-                <div className="text-[9px] text-[#5A4030]/60 mt-1">
-                  {variant === "seva" ? "Proper Ritual Guidance" : "Across India"}
-                </div>
-              </div>
-              <div className="bg-[#8B6A3E]/5 p-3 rounded-lg text-center border border-[#8B6A3E]/10">
-                <div className="text-xl font-bold text-[#8B6A3E]">15+</div>
-                <div className="text-xs text-[#5A4030]">
-                  {variant === "seva" ? "Cremation Ground Support" : "Cities Covered"}
-                </div>
-                <div className="text-[9px] text-[#5A4030]/60 mt-1">
-                  {variant === "seva" ? "Family Guidance" : "Pan-India Network"}
-                </div>
-              </div>
-            </div>
-
-            {/* New Features Grid - Added for balance */}
-            <div className="mb-4 grid grid-cols-2 gap-3">
-              <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
-                <div>
-                  <div className="text-sm font-medium text-[#3A2A1F]">
-                    {variant === "seva" ? "Priest Arrangement" : "Transparent Pricing"}
+            {/* Stat cards */}
+            <div className="mb-4 grid max-w-[555px] grid-cols-1 gap-2 sm:grid-cols-3">
+              {stats.map(({ value, title, caption, icon: StatIcon }) => (
+                <article
+                  key={title}
+                  className="group rounded-lg border border-[#CDAF86]/35 bg-white/65 px-2.5 py-2 text-center shadow-[0_8px_24px_rgba(83,55,28,0.08)] backdrop-blur-sm transition-transform hover:-translate-y-0.5"
+                >
+                  <div className="mx-auto mb-1 grid h-10 w-10 place-items-center text-[#A87531]">
+                    <StatIcon className="h-9 w-9" />
                   </div>
-                  <div className="text-xs text-[#5A4030]/70">
-                    {variant === "seva" ? "For families in need" : "No hidden costs, upfront quotes"}
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
-                <div>
-                  <div className="text-sm font-medium text-[#3A2A1F]">
-                    {variant === "seva" ? "Ritual Items" : "Digital Agreements"}
-                  </div>
-                  <div className="text-xs text-[#5A4030]/70">
-                    {variant === "seva"
-                      ? "Flowers, lamps and prayer items"
-                      : "Secure documentation"}
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
-                <div>
-                  <div className="text-sm font-medium text-[#3A2A1F]">
-                    {variant === "seva" ? "Priest & Rituals" : "Ritual Guidance"}
-                  </div>
-                  <div className="text-xs text-[#5A4030]/70">
-                    {variant === "seva" ? "Final rites with proper guidance" : "Step-by-step support"}
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B6A3E] mt-2"></div>
-                <div>
-                  <div className="text-sm font-medium text-[#3A2A1F]">
-                    {variant === "seva" ? "Family Guidance" : "NRI Services"}
-                  </div>
-                  <div className="text-xs text-[#5A4030]/70">
-                    {variant === "seva" ? "Calm support through rituals" : "Support from abroad"}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button className="px-7 py-3.5 bg-[#8B6A3E] text-white text-sm rounded-md font-medium hover:bg-[#7A5A2E] transition-colors shadow-sm hover:shadow-md">
-                {variant === "seva" ? "Request Priest Support" : "Learn More"}
-              </button>
-              <button className="px-7 py-3.5 border border-[#8B6A3E] text-[#8B6A3E] text-sm rounded-md font-medium hover:bg-[#8B6A3E]/10 transition-colors">
-                {variant === "seva" ? "Call for Ritual Help" : "Contact Our Team"}
-              </button>
-            </div>
-
-            <div className="mt-5 flex items-center space-x-8">
-              <div className="flex items-center space-x-2.5">
-                <div className="w-9 h-9 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-[#8B6A3E]"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                  <div
+                    className="text-[24px] font-semibold leading-none text-[#392116]"
+                    style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    {value}
+                  </div>
+                  <div className="mt-1 text-[11px] font-medium leading-tight text-[#39261B]">
+                    {title}
+                  </div>
+                  <div className="mt-1 text-[9px] leading-tight text-[#786254]">
+                    {caption}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Feature grid */}
+            <div className="mb-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+              {features.map(({ title, text, icon: FeatureIcon }) => (
+                <div key={title} className="flex items-start gap-2.5">
+                  <div className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#A87632] text-white shadow-sm">
+                    <FeatureIcon className="h-3.5 w-3.5" />
+                  </div>
+                  <div>
+                    <div className="text-[13px] font-semibold leading-tight text-[#332117]">
+                      {title}
+                    </div>
+                    <div className="mt-0.5 text-[10px] leading-tight text-[#6F5A4C]">
+                      {text}
+                    </div>
+                  </div>
                 </div>
-                <span className="text-sm text-[#5A4030] font-medium">
-                  {variant === "seva" ? "Priest Support" : "24/7 Support"}
-                </span>
+              ))}
+            </div>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col gap-2.5 sm:flex-row">
+              <a
+                href={isSeva ? "/request-help" : "/about"}
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[13px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)]"
+              >
+                <HandHeartIcon className="h-5 w-5" />
+                {isSeva ? "Request Sewa Support" : "Learn More"}
+              </a>
+
+              <a
+                href={isSeva ? "tel:+919810247319" : "/contact"}
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[13px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10"
+              >
+                <PhoneIcon className="h-5 w-5" />
+                {isSeva ? "Call for Help" : "Contact Our Team"}
+              </a>
+            </div>
+
+            {/* Bottom trust strip */}
+            <div className="mt-4 flex w-fit max-w-full flex-col overflow-hidden rounded-xl border border-white/70 bg-white/65 shadow-[0_8px_24px_rgba(76,48,23,0.08)] backdrop-blur-sm sm:flex-row">
+              <div className="flex min-w-[235px] items-center gap-3 px-4 py-2.5">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9A6B31]/10 text-[#8B5F2D]">
+                  {isSeva ? (
+                    <PriestIcon className="h-5 w-5" />
+                  ) : (
+                    <ClockIcon className="h-5 w-5" />
+                  )}
+                </div>
+                <div>
+                  <div className="text-[12px] font-semibold text-[#4A3020]">
+                    {isSeva ? "Priest Support" : "24/7 Support"}
+                  </div>
+                  <div className="text-[9px] text-[#796556]">
+                    {isSeva ? "Experienced & Verified" : "Always Available"}
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-2.5">
-                <div className="w-9 h-9 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-[#8B6A3E]"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+
+              <span className="hidden w-px bg-[#BFA57E]/35 sm:block" />
+
+              <div className="flex min-w-[250px] items-center gap-3 px-4 py-2.5">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9A6B31]/10 text-[#8B5F2D]">
+                  {isSeva ? (
+                    <BoxIcon className="h-5 w-5" />
+                  ) : (
+                    <ShieldIcon className="h-5 w-5" />
+                  )}
                 </div>
-                <span className="text-sm text-[#5A4030] font-medium">
-                  {variant === "seva" ? "Ritual Items & Guidance" : "Cultural Sensitivity"}
-                </span>
+                <div>
+                  <div className="text-[12px] font-semibold text-[#4A3020]">
+                    {isSeva ? "Ritual Items & Guidance" : "Cultural Sensitivity"}
+                  </div>
+                  <div className="text-[9px] text-[#796556]">
+                    {isSeva ? "Complete Essentials" : "Respectful Support"}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Right-bottom trust badge */}
+      <div className="absolute bottom-5 right-12 z-20 hidden items-center gap-3 rounded-2xl border border-[#CBAA77]/45 bg-[#FFF9EF]/90 px-4 py-3 text-[#5A3A21] shadow-[0_12px_35px_rgba(54,34,17,0.16)] backdrop-blur-md lg:flex">
+        <div className="grid h-10 w-10 place-items-center rounded-full bg-[#A67635]/10 text-[#8E612E]">
+          <ShieldIcon className="h-6 w-6" />
+        </div>
+        <div className="text-[11px] leading-relaxed">
+          <div className="font-semibold">Compassionate Support.</div>
+          <div>Dignified Goodbyes.</div>
         </div>
       </div>
     </section>

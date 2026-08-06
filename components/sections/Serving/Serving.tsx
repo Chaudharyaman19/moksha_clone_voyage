@@ -11,7 +11,6 @@ import {
   FaLandmark,
   FaMapMarkerAlt,
   FaBoxOpen,
-  FaUsers,
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
@@ -31,7 +30,7 @@ const activities: ActivityItem[] = [
   {
     title: "Unclaimed Case Support",
     description:
-      "We assist police, hospitals and authorities to ensure a respectful final farewell.",
+      "We coordinate with police, hospitals and authorities for respectful final rites.",
     image: "/assets/serving/community-outreach.png",
     icon: FaHandHoldingHeart,
     imagePosition: "50% 50%",
@@ -39,7 +38,7 @@ const activities: ActivityItem[] = [
   {
     title: "On-Ground Support",
     description:
-      "Our volunteers remain with families at hospitals, homes, ghats and cremation grounds.",
+      "Volunteers assist families at hospitals, homes, ghats and cremation grounds.",
     image: "/assets/serving/on-ground-support.png",
     icon: FaLandmark,
     imagePosition: "50% 50%",
@@ -47,7 +46,7 @@ const activities: ActivityItem[] = [
   {
     title: "Food Service & Essentials",
     description:
-      "We arrange food, water, clothing and basic essentials for families in need.",
+      "Food, water, clothing and basic essentials are arranged where support is needed.",
     image: "/assets/serving/food-essentials.png",
     icon: FaBoxOpen,
     imagePosition: "50% 50%",
@@ -55,7 +54,7 @@ const activities: ActivityItem[] = [
   {
     title: "Hospital Support",
     description:
-      "We help with body-release guidance, hospital coordination and urgent assistance.",
+      "We guide families through body release, hospital coordination and urgent needs.",
     image: "/assets/serving/hospital-support.png",
     icon: FaHospital,
     imagePosition: "50% 50%",
@@ -63,7 +62,7 @@ const activities: ActivityItem[] = [
   {
     title: "Rural & Remote Reach",
     description:
-      "We reach villages and remote areas where families have limited access to support.",
+      "We help villages and remote areas where access to final-rites support is limited.",
     image: "/assets/serving/rural-remote-reach.png",
     icon: FaMapMarkerAlt,
     imagePosition: "50% 50%",
@@ -71,7 +70,7 @@ const activities: ActivityItem[] = [
   {
     title: "Emotional Support",
     description:
-      "We support families with compassion, clear guidance and emotional strength.",
+      "Families receive calm guidance and respectful support through a hard moment.",
     image: "/assets/serving/counseling-support.png",
     icon: FaHeart,
     imagePosition: "50% 50%",
@@ -79,7 +78,7 @@ const activities: ActivityItem[] = [
   {
     title: "Ambulance & Transport",
     description:
-      "Quick and respectful ambulance or hearse-van support for every required distance.",
+      "Ambulance and hearse-van coordination for short or long-distance transport.",
     image: "/assets/serving/emergency-transport.png",
     icon: FaAmbulance,
     imagePosition: "50% 50%",
@@ -87,7 +86,7 @@ const activities: ActivityItem[] = [
   {
     title: "Document Assistance",
     description:
-      "Support with required papers, hospital documents and official-process guidance.",
+      "Support with required papers, hospital documents and official guidance.",
     image: "/assets/serving/document-assistance.png",
     icon: FaFileAlt,
     imagePosition: "50% 50%",
@@ -280,7 +279,7 @@ export default function Serving({
           </div>
 
           <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
-            Every Small Arrangement Becomes Service.
+            Practical Help, Step by Step.
           </h2>
 
           <HeadingDivider />
@@ -299,16 +298,16 @@ export default function Serving({
         </div>
 
         <div className="mt-2 flex justify-center">
-          <button
-            type="button"
+          <a
+            href="/request-help"
             className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[12px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
-            <span>View More Services</span>
+            <span>Request Help Now</span>
 
             <FaArrowRight
               className="h-3.5 w-3.5"
             />
-          </button>
+          </a>
         </div>
       </div>
 

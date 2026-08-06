@@ -162,7 +162,7 @@ export default function FAQSection({
         </div>
 
         {/* Support banner */}
-        <div className="relative mt-3 h-[210px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:h-[225px] lg:h-[240px]">
+        <div className="relative mt-3 min-h-[360px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:min-h-[300px] lg:min-h-[240px]">
           <Image
             src="/assets/faq/faq-support-banner-v3.png"
             alt="Moksha Sewa compassionate support for unclaimed and vulnerable cases"
@@ -173,14 +173,14 @@ export default function FAQSection({
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.18)_0%,rgba(103,45,12,0.68)_36%,rgba(103,45,12,0.72)_64%,rgba(0,0,0,0.18)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(103,45,12,0.80)_0%,rgba(103,45,12,0.70)_58%,rgba(0,0,0,0.20)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.18)_0%,rgba(103,45,12,0.68)_36%,rgba(103,45,12,0.72)_64%,rgba(0,0,0,0.18)_100%)]" />
 
-          <div className="absolute inset-0 z-10 flex items-center justify-center px-5 sm:px-8 lg:px-10">
-            <div className="w-full text-center text-white sm:w-[62%] lg:w-[48%]">
-              <h3 className="font-serif text-[24px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
-                For the Unclaimed and Those in Need,
+          <div className="relative z-10 flex min-h-[360px] items-center justify-center px-5 py-8 sm:min-h-[300px] sm:px-8 lg:min-h-[240px] lg:px-10">
+            <div className="w-full text-center text-white sm:w-[72%] lg:w-[48%]">
+              <h3 className="font-serif text-[22px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
+                For Unclaimed and Needy Cases,
                 <span className="block">
-                  A Dignified Final Farewell.
+                  A Respectful Final Farewell.
                 </span>
               </h3>
 
@@ -190,18 +190,18 @@ export default function FAQSection({
                 cremation-ground support.
               </p>
 
-              <div className="mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
+              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="tel:+919810247319"
-                  className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md bg-white px-5 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF]"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF] sm:w-auto sm:min-w-[174px]"
                 >
                   Get Sewa Help
                   <FaPhoneAlt className="h-4 w-4" />
                 </a>
 
                 <a
-                  href="/donate"
-                  className="inline-flex h-11 min-w-[174px] items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12"
+                  href="/donation"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 py-3 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12 sm:w-auto sm:min-w-[174px]"
                 >
                   Donate for Sewa
                   <FaHeart className="h-4 w-4" />
