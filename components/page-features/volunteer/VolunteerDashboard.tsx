@@ -5,10 +5,32 @@ import { useRouter } from "next/navigation";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
-import { FaCheckCircle, FaTimesCircle, FaClock, FaMapMarkerAlt, FaHandsHelping, FaUserCircle } from "react-icons/fa";
-import { useAppSelector } from "@/store/hooks";
-import { volunteerApi, VolunteerAssignment, VolunteerProfile } from "@/lib/volunteerApi";
+import {
+  FaCheckCircle,
+  FaTimesCircle,
+  FaClock,
+  FaMapMarkerAlt,
+  FaHandsHelping,
+  FaUserCircle,
+  FaPen,
+  FaKey,
+  FaInfoCircle,
+  FaPhoneAlt,
+} from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { logout, updateUser } from "@/store/slices/authSlice";
+import {
+  volunteerApi,
+  VolunteerAssignment,
+  VolunteerAssignmentDetail,
+  VolunteerProfile,
+  VOLUNTEER_PREFERRED_ROLES,
+  VOLUNTEER_SCHEDULE_PREFERENCES,
+} from "@/lib/volunteerApi";
+import { userApi } from "@/lib/userApi";
+import { authApi } from "@/lib/authApi";
 import { ApiRequestError } from "@/lib/api";
+import VolunteerModal from "./VolunteerModal";
 
 const STATUS_META: Record<VolunteerAssignment["status"], { label: string; className: string }> = {
   ASSIGNED: { label: "Awaiting Your Response", className: "bg-amber-50 text-amber-700" },
@@ -37,6 +59,10 @@ const VOLUNTEER_STATUS_META: Record<VolunteerProfile["status"], { label: string;
   BLACKLISTED: { label: "Blacklisted", className: "bg-red-50 text-red-700" },
 };
 
+const INPUT_CLASSES =
+  "w-full rounded-lg border border-[#E4D5BE] bg-white px-3 py-2 text-sm text-[#2C1810] placeholder:text-[#A8937E] focus:border-[#8B6A3E] focus:outline-none focus:ring-2 focus:ring-[#8B6A3E]/15";
+const LABEL_CLASSES = "mb-1 block text-[11px] font-semibold uppercase tracking-wide text-[#8A7460]";
+
 function humanize(value: string): string {
   return value
     .split("_")
@@ -48,10 +74,12 @@ function AssignmentCard({
   assignment,
   busy,
   onRespond,
+  onViewDetails,
 }: {
   assignment: VolunteerAssignment;
   busy: boolean;
   onRespond: (id: string, response: "ACCEPTED" | "DECLINED") => void;
+  onViewDetails: (assignment: VolunteerAssignment) => void;
 }) {
   const kase = assignment.case;
   return (
@@ -91,9 +119,9 @@ function AssignmentCard({
       )}
       {assignment.note && <p className="mt-2 text-xs text-[#6B584B]">{assignment.note}</p>}
 
-      {assignment.status === "ASSIGNED" && (
-        <>
-          <div className="mt-3 flex gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
+        {assignment.status === "ASSIGNED" && (
+          <>
             <button
               onClick={() => onRespond(assignment._id, "ACCEPTED")}
               disabled={busy}
@@ -108,18 +136,41 @@ function AssignmentCard({
             >
               <FaTimesCircle className="h-3 w-3" /> Decline
             </button>
-          </div>
-          <p className="mt-2 flex items-center gap-1 text-[10px] text-[#A8937E]">
-            <FaClock className="h-2.5 w-2.5" /> Please respond as soon as you can
-          </p>
-        </>
+          </>
+        )}
+        {kase && (
+          <button
+            onClick={() => onViewDetails(assignment)}
+            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+          >
+            <FaInfoCircle className="h-3 w-3" /> View Details
+          </button>
+        )}
+      </div>
+      {assignment.status === "ASSIGNED" && (
+        <p className="mt-2 flex items-center gap-1 text-[10px] text-[#A8937E]">
+          <FaClock className="h-2.5 w-2.5" /> Please respond as soon as you can
+        </p>
       )}
     </div>
   );
 }
 
+interface EditForm {
+  name: string;
+  email: string;
+  city: string;
+  skills: string;
+  address: string;
+  state: string;
+  pincode: string;
+  schedulePreference: string;
+  preferredRole: string;
+}
+
 function VolunteerDashboard() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { user, hydrated } = useAppSelector((state) => state.auth);
   const [profile, setProfile] = useState<VolunteerProfile | null>(null);
   const [assignments, setAssignments] = useState<VolunteerAssignment[]>([]);
@@ -127,6 +178,23 @@ function VolunteerDashboard() {
   const [busyId, setBusyId] = useState<string | null>(null);
   const [availabilitySaving, setAvailabilitySaving] = useState(false);
   const [error, setError] = useState("");
+
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [editForm, setEditForm] = useState<EditForm | null>(null);
+  const [editSaving, setEditSaving] = useState(false);
+  const [editError, setEditError] = useState("");
+
+  const [showChangePassword, setShowChangePassword] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pwSaving, setPwSaving] = useState(false);
+  const [pwError, setPwError] = useState("");
+
+  const [viewingAssignment, setViewingAssignment] = useState<VolunteerAssignment | null>(null);
+  const [assignmentDetail, setAssignmentDetail] = useState<VolunteerAssignmentDetail | null>(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState("");
 
   useEffect(() => {
     if (hydrated && (!user || user.userType !== "VOLUNTEER")) {
@@ -180,6 +248,86 @@ function VolunteerDashboard() {
     }
   };
 
+  const openEditProfile = () => {
+    if (!profile) return;
+    setEditForm({
+      name: profile.name ?? "",
+      email: profile.email ?? "",
+      city: profile.city,
+      skills: profile.skills.join(", "),
+      address: profile.address ?? "",
+      state: profile.state ?? "",
+      pincode: profile.pincode ?? "",
+      schedulePreference: profile.schedulePreference ?? "",
+      preferredRole: profile.preferredRole ?? "",
+    });
+    setEditError("");
+    setShowEditProfile(true);
+  };
+
+  const handleSaveProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editForm) return;
+    setEditSaving(true);
+    setEditError("");
+    try {
+      await Promise.all([
+        userApi.updateMyProfile({ name: editForm.name, email: editForm.email }),
+        volunteerApi.updateProfile({
+          city: editForm.city,
+          skills: editForm.skills
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean),
+          address: editForm.address || undefined,
+          state: editForm.state || undefined,
+          pincode: editForm.pincode || undefined,
+          schedulePreference: (editForm.schedulePreference || undefined) as VolunteerProfile["schedulePreference"],
+          preferredRole: (editForm.preferredRole || undefined) as VolunteerProfile["preferredRole"],
+        }),
+      ]);
+      dispatch(updateUser({ name: editForm.name, email: editForm.email }));
+      setShowEditProfile(false);
+      load();
+    } catch (err) {
+      setEditError(err instanceof ApiRequestError ? err.message : "Could not save your profile.");
+    } finally {
+      setEditSaving(false);
+    }
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwError("");
+    if (newPassword !== confirmPassword) {
+      setPwError("New passwords do not match.");
+      return;
+    }
+    setPwSaving(true);
+    try {
+      await authApi.changePassword(currentPassword, newPassword);
+      // Changing password revokes every session for this account, including the current one.
+      dispatch(logout());
+      router.push("/login?passwordChanged=1");
+    } catch (err) {
+      setPwError(err instanceof ApiRequestError ? err.message : "Could not change password.");
+    } finally {
+      setPwSaving(false);
+    }
+  };
+
+  const openAssignmentDetail = (assignment: VolunteerAssignment) => {
+    setViewingAssignment(assignment);
+    setAssignmentDetail(null);
+    setDetailError("");
+    setDetailLoading(true);
+    volunteerApi
+      .assignmentDetail(assignment._id)
+      .then(setAssignmentDetail)
+      .catch((err) => setDetailError(err instanceof ApiRequestError ? err.message : "Could not load assignment details."))
+      .finally(() => setDetailLoading(false));
+  };
+
   if (!hydrated || !user || user.userType !== "VOLUNTEER") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#FBF8F3]">
@@ -198,11 +346,19 @@ function VolunteerDashboard() {
       <Navbar />
 
       <main className="mx-auto w-full max-w-3xl px-4 pb-14 pt-28 sm:px-6 lg:pt-32 xl:px-0">
-        <div className="mb-6">
-          <h1 className="font-serif text-2xl text-[#2C1810]">
-            Namaste, <span className=" text-[#8B6A3E]">{user.name}</span>
-          </h1>
-          <p className="mt-1 text-sm text-[#6B584B]">Here's your volunteer profile and assigned cases.</p>
+        <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h1 className="font-serif text-2xl text-[#2C1810]">
+              Namaste, <span className=" text-[#8B6A3E]">{user.name}</span>
+            </h1>
+            <p className="mt-1 text-sm text-[#6B584B]">Here's your volunteer profile and assigned cases.</p>
+          </div>
+          <button
+            onClick={() => setShowChangePassword(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] bg-white px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+          >
+            <FaKey className="h-3 w-3" /> Change Password
+          </button>
         </div>
 
         {error && (
@@ -232,11 +388,20 @@ function VolunteerDashboard() {
                       </p>
                     </div>
                   </div>
-                  <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ${VOLUNTEER_STATUS_META[profile.status].className}`}
-                  >
-                    {VOLUNTEER_STATUS_META[profile.status].label}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`rounded-full px-3 py-1 text-[11px] font-semibold ${VOLUNTEER_STATUS_META[profile.status].className}`}
+                    >
+                      {VOLUNTEER_STATUS_META[profile.status].label}
+                    </span>
+                    <button
+                      onClick={openEditProfile}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E4D5BE] text-[#5F4630] hover:border-[#C9A574]"
+                      aria-label="Edit profile"
+                    >
+                      <FaPen className="h-3 w-3" />
+                    </button>
+                  </div>
                 </div>
 
                 {profile.skills.length > 0 && (
@@ -287,7 +452,13 @@ function VolunteerDashboard() {
                     <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8A7460]">Needs Your Response</h2>
                     <div className="space-y-3">
                       {needsResponse.map((a) => (
-                        <AssignmentCard key={a._id} assignment={a} busy={busyId === a._id} onRespond={handleRespond} />
+                        <AssignmentCard
+                          key={a._id}
+                          assignment={a}
+                          busy={busyId === a._id}
+                          onRespond={handleRespond}
+                          onViewDetails={openAssignmentDetail}
+                        />
                       ))}
                     </div>
                   </section>
@@ -298,7 +469,13 @@ function VolunteerDashboard() {
                     <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8A7460]">Active Assignments</h2>
                     <div className="space-y-3">
                       {active.map((a) => (
-                        <AssignmentCard key={a._id} assignment={a} busy={busyId === a._id} onRespond={handleRespond} />
+                        <AssignmentCard
+                          key={a._id}
+                          assignment={a}
+                          busy={busyId === a._id}
+                          onRespond={handleRespond}
+                          onViewDetails={openAssignmentDetail}
+                        />
                       ))}
                     </div>
                   </section>
@@ -309,7 +486,13 @@ function VolunteerDashboard() {
                     <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8A7460]">History</h2>
                     <div className="space-y-3">
                       {history.map((a) => (
-                        <AssignmentCard key={a._id} assignment={a} busy={busyId === a._id} onRespond={handleRespond} />
+                        <AssignmentCard
+                          key={a._id}
+                          assignment={a}
+                          busy={busyId === a._id}
+                          onRespond={handleRespond}
+                          onViewDetails={openAssignmentDetail}
+                        />
                       ))}
                     </div>
                   </section>
@@ -321,6 +504,264 @@ function VolunteerDashboard() {
       </main>
 
       <Footer />
+
+      {showEditProfile && editForm && (
+        <VolunteerModal
+          title="Edit Profile"
+          onClose={() => setShowEditProfile(false)}
+          footer={
+            <>
+              <button
+                onClick={() => setShowEditProfile(false)}
+                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveProfile}
+                disabled={editSaving}
+                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+              >
+                {editSaving ? "Saving..." : "Save Changes"}
+              </button>
+            </>
+          }
+        >
+          <form onSubmit={handleSaveProfile} className="space-y-3">
+            <div>
+              <label className={LABEL_CLASSES}>Name</label>
+              <input
+                className={INPUT_CLASSES}
+                value={editForm.name}
+                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Email</label>
+              <input
+                type="email"
+                className={INPUT_CLASSES}
+                value={editForm.email}
+                onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>City</label>
+              <input
+                className={INPUT_CLASSES}
+                value={editForm.city}
+                onChange={(e) => setEditForm({ ...editForm, city: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Skills (comma-separated)</label>
+              <input
+                className={INPUT_CLASSES}
+                value={editForm.skills}
+                onChange={(e) => setEditForm({ ...editForm, skills: e.target.value })}
+                placeholder="First Aid, Driving, Translation"
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Address</label>
+              <input
+                className={INPUT_CLASSES}
+                value={editForm.address}
+                onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className={LABEL_CLASSES}>State</label>
+                <input
+                  className={INPUT_CLASSES}
+                  value={editForm.state}
+                  onChange={(e) => setEditForm({ ...editForm, state: e.target.value })}
+                />
+              </div>
+              <div>
+                <label className={LABEL_CLASSES}>Pincode</label>
+                <input
+                  className={INPUT_CLASSES}
+                  value={editForm.pincode}
+                  onChange={(e) => setEditForm({ ...editForm, pincode: e.target.value })}
+                />
+              </div>
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Schedule Preference</label>
+              <select
+                className={INPUT_CLASSES}
+                value={editForm.schedulePreference}
+                onChange={(e) => setEditForm({ ...editForm, schedulePreference: e.target.value })}
+              >
+                <option value="">Not set</option>
+                {VOLUNTEER_SCHEDULE_PREFERENCES.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Preferred Role</label>
+              <select
+                className={INPUT_CLASSES}
+                value={editForm.preferredRole}
+                onChange={(e) => setEditForm({ ...editForm, preferredRole: e.target.value })}
+              >
+                <option value="">Not set</option>
+                {VOLUNTEER_PREFERRED_ROLES.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {editError && <p className="text-xs font-medium text-red-600">{editError}</p>}
+          </form>
+        </VolunteerModal>
+      )}
+
+      {showChangePassword && (
+        <VolunteerModal
+          title="Change Password"
+          onClose={() => setShowChangePassword(false)}
+          footer={
+            <>
+              <button
+                onClick={() => setShowChangePassword(false)}
+                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleChangePassword}
+                disabled={pwSaving}
+                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+              >
+                {pwSaving ? "Saving..." : "Change Password"}
+              </button>
+            </>
+          }
+        >
+          <form onSubmit={handleChangePassword} className="space-y-3">
+            <div>
+              <label className={LABEL_CLASSES}>Current Password</label>
+              <input
+                type="password"
+                className={INPUT_CLASSES}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>New Password</label>
+              <input
+                type="password"
+                className={INPUT_CLASSES}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                minLength={8}
+                required
+              />
+            </div>
+            <div>
+              <label className={LABEL_CLASSES}>Confirm New Password</label>
+              <input
+                type="password"
+                className={INPUT_CLASSES}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                minLength={8}
+                required
+              />
+            </div>
+            <p className="text-[11px] text-[#8A7460]">At least 8 characters. You'll be signed out of every session after this.</p>
+            {pwError && <p className="text-xs font-medium text-red-600">{pwError}</p>}
+          </form>
+        </VolunteerModal>
+      )}
+
+      {viewingAssignment && (
+        <VolunteerModal title={viewingAssignment.case?.caseId ?? "Assignment Details"} onClose={() => setViewingAssignment(null)}>
+          {detailLoading ? (
+            <div className="flex justify-center py-8">
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-[#8B6A3E] border-t-transparent" />
+            </div>
+          ) : detailError ? (
+            <p className="text-sm font-medium text-red-600">{detailError}</p>
+          ) : assignmentDetail ? (
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${STATUS_META[assignmentDetail.assignment.status].className}`}>
+                  {STATUS_META[assignmentDetail.assignment.status].label}
+                </span>
+                <span className="rounded-full bg-[#F6EEDF] px-3 py-1 text-[11px] font-semibold text-[#6B584B]">
+                  {humanize(assignmentDetail.case.status)}
+                </span>
+              </div>
+
+              {assignmentDetail.pickup && (
+                <div>
+                  <p className={LABEL_CLASSES}>Pickup Location</p>
+                  <p className="flex items-start gap-1.5 text-sm text-[#2C1810]">
+                    <FaMapMarkerAlt className="mt-0.5 h-3 w-3 shrink-0 text-[#8B6A3E]" />
+                    {assignmentDetail.pickup.address}, {assignmentDetail.pickup.area}, {assignmentDetail.pickup.city},{" "}
+                    {assignmentDetail.pickup.state} - {assignmentDetail.pickup.pincode}
+                  </p>
+                </div>
+              )}
+
+              {assignmentDetail.contact && (
+                <div>
+                  <p className={LABEL_CLASSES}>Family Contact</p>
+                  <p className="text-sm text-[#2C1810]">{assignmentDetail.contact.name}</p>
+                  <a
+                    href={`tel:${assignmentDetail.contact.phone}`}
+                    className="mt-0.5 flex items-center gap-1.5 text-sm font-medium text-[#8B6A3E]"
+                  >
+                    <FaPhoneAlt className="h-2.5 w-2.5" /> {assignmentDetail.contact.phone}
+                  </a>
+                </div>
+              )}
+
+              {assignmentDetail.caseManager && (
+                <div>
+                  <p className={LABEL_CLASSES}>Case Manager</p>
+                  <p className="text-sm text-[#2C1810]">{assignmentDetail.caseManager.name}</p>
+                  <a
+                    href={`tel:${assignmentDetail.caseManager.phone}`}
+                    className="mt-0.5 flex items-center gap-1.5 text-sm font-medium text-[#8B6A3E]"
+                  >
+                    <FaPhoneAlt className="h-2.5 w-2.5" /> {assignmentDetail.caseManager.phone}
+                  </a>
+                </div>
+              )}
+
+              {assignmentDetail.timeline.length > 0 && (
+                <div>
+                  <p className={LABEL_CLASSES}>Timeline</p>
+                  <div className="space-y-2 border-l-2 border-[#F1E7D6] pl-3">
+                    {assignmentDetail.timeline.map((t, i) => (
+                      <div key={i}>
+                        <p className="text-xs font-semibold text-[#2C1810]">{t.note || humanize(t.event)}</p>
+                        <p className="text-[10px] text-[#A8937E]">
+                          {new Date(t.at).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </VolunteerModal>
+      )}
     </div>
   );
 }
