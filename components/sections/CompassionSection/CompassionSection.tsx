@@ -271,31 +271,6 @@ export default function CompassionSection({
         <div className="absolute left-0 top-0 h-full w-[42%] bg-[radial-gradient(circle_at_0%_0%,rgba(202,157,93,0.12),transparent_42%)]" />
       </div>
 
-      {/* Left vertical action tabs */}
-      <div className="absolute left-0 top-[18%] z-30 hidden flex-col gap-3 xl:flex">
-        <a
-          href="/contact"
-          className="flex h-[120px] w-[44px] flex-col items-center justify-center gap-2 rounded-r-xl bg-[#8B6334] text-white shadow-[0_10px_30px_rgba(67,38,15,0.22)] transition-transform hover:translate-x-1"
-          aria-label="Enquiry"
-        >
-          <MailIcon className="h-4 w-4" />
-          <span className="[writing-mode:vertical-rl] rotate-180 text-[12px] font-semibold uppercase tracking-[0.08em]">
-            Enquiry
-          </span>
-        </a>
-
-        <a
-          href="tel:+919810247319"
-          className="flex h-[142px] w-[44px] flex-col items-center justify-center gap-2 rounded-r-xl bg-[#e10f0f] text-white shadow-[0_10px_30px_rgba(130,0,0,0.22)] transition-transform hover:translate-x-1"
-          aria-label="Emergency"
-        >
-          <PhoneIcon className="h-4 w-4" />
-          <span className="[writing-mode:vertical-rl] rotate-180 text-[12px] font-semibold uppercase tracking-[0.08em]">
-            Emergency
-          </span>
-        </a>
-      </div>
-
       <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px]">
         <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
           <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-0 lg:py-8">
