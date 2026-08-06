@@ -54,8 +54,11 @@ async function refreshAccessToken(): Promise<boolean> {
 }
 
 async function request<T>(path: string, options?: RequestInit, isRetry = false): Promise<T> {
+  // FormData bodies must NOT get an explicit Content-Type — the browser sets one itself with the
+  // correct multipart boundary, which we can't reproduce by hand.
+  const isFormData = options?.body instanceof FormData;
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    ...(isFormData ? {} : { "Content-Type": "application/json" }),
     ...(options?.headers as Record<string, string> | undefined),
   };
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
@@ -96,5 +99,6 @@ export const api = {
     request<T>(path, { method: "PUT", body: payload !== undefined ? JSON.stringify(payload) : undefined }),
   patch: <T>(path: string, payload?: unknown) =>
     request<T>(path, { method: "PATCH", body: payload !== undefined ? JSON.stringify(payload) : undefined }),
+  postForm: <T>(path: string, formData: FormData) => request<T>(path, { method: "POST", body: formData }),
   getHtml: requestHtml,
 };

@@ -1,6 +1,12 @@
 import { api } from "./api";
 import { AuthUser, AuthTokens } from "@/store/slices/authSlice";
 
+export const VOLUNTEER_GENDERS = ["Male", "Female", "Other"] as const;
+export type VolunteerGender = (typeof VOLUNTEER_GENDERS)[number];
+
+export const VOLUNTEER_BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] as const;
+export type VolunteerBloodGroup = (typeof VOLUNTEER_BLOOD_GROUPS)[number];
+
 export const VOLUNTEER_SCHEDULE_PREFERENCES = ["Weekdays", "Weekends", "Evenings", "Emergency Support", "Flexible"] as const;
 export type VolunteerSchedulePreference = (typeof VOLUNTEER_SCHEDULE_PREFERENCES)[number];
 
@@ -49,6 +55,27 @@ export interface VolunteerAssignment {
   createdAt: string;
 }
 
+export const VOLUNTEER_DOCUMENT_TYPES = [
+  "DEATH_CERTIFICATE",
+  "ID_PROOF",
+  "ADDRESS_PROOF",
+  "CREMATION_PROOF",
+  "CONSENT_FORM",
+  "BILL",
+  "OTHER",
+] as const;
+export type VolunteerDocumentType = (typeof VOLUNTEER_DOCUMENT_TYPES)[number];
+
+export interface CaseDocumentResult {
+  _id: string;
+  caseId: string;
+  docType: VolunteerDocumentType;
+  url: string;
+  fileName: string;
+  isProof: boolean;
+  createdAt: string;
+}
+
 export interface VolunteerAssignmentDetail {
   assignment: VolunteerAssignment;
   case: VolunteerAssignmentCase;
@@ -60,9 +87,27 @@ export interface VolunteerAssignmentDetail {
 
 type RegisterResult = { user: AuthUser; volunteer: VolunteerProfile } & AuthTokens;
 
+interface RegisterVolunteerInput {
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  city: string;
+  skills: string[];
+  dateOfBirth?: string;
+  gender?: VolunteerGender;
+  bloodGroup?: VolunteerBloodGroup;
+  address?: string;
+  state?: string;
+  pincode?: string;
+  motivation?: string;
+  experience?: string;
+  schedulePreference?: VolunteerSchedulePreference;
+  preferredRole?: VolunteerPreferredRole;
+}
+
 export const volunteerApi = {
-  register: (input: { name: string; phone: string; email: string; password: string; city: string; skills: string[] }) =>
-    api.post<RegisterResult>("/volunteers/register", input),
+  register: (input: RegisterVolunteerInput) => api.post<RegisterResult>("/volunteers/register", input),
   myProfile: () => api.get<VolunteerProfile>("/volunteers/me"),
   updateProfile: (
     input: Partial<{
@@ -82,4 +127,11 @@ export const volunteerApi = {
     api.get<VolunteerAssignmentDetail>(`/volunteers/me/assignments/${assignmentId}`),
   respondToAssignment: (assignmentId: string, response: "ACCEPTED" | "DECLINED") =>
     api.patch<VolunteerAssignment>(`/volunteers/me/assignments/${assignmentId}/respond`, { response }),
+  uploadDocument: (assignmentId: string, file: File, docType: VolunteerDocumentType, isProof: boolean) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("docType", docType);
+    formData.append("isProof", String(isProof));
+    return api.postForm<CaseDocumentResult>(`/volunteers/me/assignments/${assignmentId}/documents`, formData);
+  },
 };

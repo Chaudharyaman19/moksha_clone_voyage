@@ -16,6 +16,8 @@ import {
   FaKey,
   FaInfoCircle,
   FaPhoneAlt,
+  FaCloudUploadAlt,
+  FaFileAlt,
 } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, updateUser } from "@/store/slices/authSlice";
@@ -24,8 +26,10 @@ import {
   VolunteerAssignment,
   VolunteerAssignmentDetail,
   VolunteerProfile,
+  VolunteerDocumentType,
   VOLUNTEER_PREFERRED_ROLES,
   VOLUNTEER_SCHEDULE_PREFERENCES,
+  VOLUNTEER_DOCUMENT_TYPES,
 } from "@/lib/volunteerApi";
 import { userApi } from "@/lib/userApi";
 import { authApi } from "@/lib/authApi";
@@ -196,6 +200,13 @@ function VolunteerDashboard() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
 
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadDocType, setUploadDocType] = useState<VolunteerDocumentType>("CREMATION_PROOF");
+  const [uploadIsProof, setUploadIsProof] = useState(true);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const [uploadedDocs, setUploadedDocs] = useState<{ fileName: string; docType: string }[]>([]);
+
   useEffect(() => {
     if (hydrated && (!user || user.userType !== "VOLUNTEER")) {
       router.replace("/login?redirect=/volunteer/dashboard");
@@ -321,11 +332,29 @@ function VolunteerDashboard() {
     setAssignmentDetail(null);
     setDetailError("");
     setDetailLoading(true);
+    setUploadFile(null);
+    setUploadError("");
+    setUploadedDocs([]);
     volunteerApi
       .assignmentDetail(assignment._id)
       .then(setAssignmentDetail)
       .catch((err) => setDetailError(err instanceof ApiRequestError ? err.message : "Could not load assignment details."))
       .finally(() => setDetailLoading(false));
+  };
+
+  const handleUploadDocument = async () => {
+    if (!viewingAssignment || !uploadFile) return;
+    setUploading(true);
+    setUploadError("");
+    try {
+      const doc = await volunteerApi.uploadDocument(viewingAssignment._id, uploadFile, uploadDocType, uploadIsProof);
+      setUploadedDocs((prev) => [...prev, { fileName: doc.fileName, docType: doc.docType }]);
+      setUploadFile(null);
+    } catch (err) {
+      setUploadError(err instanceof ApiRequestError ? err.message : "Could not upload this file.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   if (!hydrated || !user || user.userType !== "VOLUNTEER") {
@@ -416,7 +445,7 @@ function VolunteerDashboard() {
 
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-[#6B584B]">
                   <FaHandsHelping className="h-3 w-3 text-[#8B6A3E]" />
-                  <span className="font-semibold text-[#2C1810]">{profile.totalAssignments}</span> assignments completed
+                  <span className="font-semibold text-[#2C1810]">{profile.totalAssignments}</span> assignments accepted
                 </div>
 
                 <div className="mt-4 border-t border-[#F1E7D6] pt-4">
@@ -755,6 +784,69 @@ function VolunteerDashboard() {
                         </p>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {(assignmentDetail.assignment.status === "ACCEPTED" || assignmentDetail.assignment.status === "COMPLETED") && (
+                <div className="border-t border-[#F1E7D6] pt-4">
+                  <p className={LABEL_CLASSES}>Upload a Document or Photo</p>
+                  <p className="mb-2 text-xs text-[#6B584B]">e.g. cremation proof, bills, or ID/consent documents for this case.</p>
+
+                  {uploadedDocs.length > 0 && (
+                    <div className="mb-2 space-y-1">
+                      {uploadedDocs.map((d, i) => (
+                        <p key={i} className="flex items-center gap-1.5 text-xs text-green-700">
+                          <FaCheckCircle className="h-2.5 w-2.5" /> {d.fileName} uploaded ({humanize(d.docType)})
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <select
+                        className="flex-1 rounded-lg border border-[#E4D5BE] bg-white px-2 py-1.5 text-xs text-[#2C1810] focus:border-[#8B6A3E] focus:outline-none"
+                        value={uploadDocType}
+                        onChange={(e) => setUploadDocType(e.target.value as VolunteerDocumentType)}
+                      >
+                        {VOLUNTEER_DOCUMENT_TYPES.map((t) => (
+                          <option key={t} value={t}>
+                            {humanize(t)}
+                          </option>
+                        ))}
+                      </select>
+                      <label className="flex items-center gap-1.5 text-xs text-[#6B584B]">
+                        <input type="checkbox" checked={uploadIsProof} onChange={(e) => setUploadIsProof(e.target.checked)} />
+                        Proof doc
+                      </label>
+                    </div>
+
+                    <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-[#E4D5BE] px-3 py-2.5 text-xs text-[#8A7460] hover:border-[#C9A574]">
+                      <FaCloudUploadAlt className="h-4 w-4 shrink-0" />
+                      {uploadFile ? (
+                        <span className="flex items-center gap-1 text-[#2C1810]">
+                          <FaFileAlt className="h-3 w-3" /> {uploadFile.name}
+                        </span>
+                      ) : (
+                        "Choose a file to upload"
+                      )}
+                      <input
+                        type="file"
+                        className="hidden"
+                        onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)}
+                      />
+                    </label>
+
+                    {uploadError && <p className="text-xs font-medium text-red-600">{uploadError}</p>}
+
+                    <button
+                      onClick={handleUploadDocument}
+                      disabled={!uploadFile || uploading}
+                      className="flex items-center gap-1.5 rounded-lg bg-[#8B6A3E] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+                    >
+                      {uploading ? "Uploading..." : "Upload"}
+                    </button>
                   </div>
                 </div>
               )}

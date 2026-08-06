@@ -27,7 +27,13 @@ import { PiFlowerLotus } from "react-icons/pi";
 
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/slices/authSlice";
-import { volunteerApi } from "@/lib/volunteerApi";
+import {
+  volunteerApi,
+  VolunteerGender,
+  VolunteerBloodGroup,
+  VolunteerSchedulePreference,
+  VolunteerPreferredRole,
+} from "@/lib/volunteerApi";
 import { ApiRequestError } from "@/lib/api";
 
 interface VolunteerForm {
@@ -252,10 +258,6 @@ export default function VolunteerRegister() {
     setIsSubmitting(true);
 
     try {
-      /*
-       * Existing API payload preserved.
-       * Extra form fields are currently UI details only.
-       */
       const result =
         await volunteerApi.register({
           name: form.name,
@@ -264,6 +266,16 @@ export default function VolunteerRegister() {
           password: form.password,
           city: form.city,
           skills,
+          dateOfBirth: form.dateOfBirth || undefined,
+          gender: (form.gender || undefined) as VolunteerGender | undefined,
+          bloodGroup: (form.bloodGroup || undefined) as VolunteerBloodGroup | undefined,
+          address: form.address || undefined,
+          state: form.state || undefined,
+          pincode: form.pincode || undefined,
+          motivation: form.motivation || undefined,
+          experience: form.experience || undefined,
+          schedulePreference: (form.availability || undefined) as VolunteerSchedulePreference | undefined,
+          preferredRole: (form.preferredRole || undefined) as VolunteerPreferredRole | undefined,
         });
 
       dispatch(
