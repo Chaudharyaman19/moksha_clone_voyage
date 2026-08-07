@@ -64,8 +64,8 @@ export default function TopInfoBar() {
       id="topbar"
       className="fixed top-0 left-0 w-full bg-[#2A1A0F] text-white z-[60] border-b border-white/10 font-sans"
     >
-      <div className="max-w-7xl mx-auto px-0 py-1.5 flex items-center justify-between">
-        <div className="flex items-center gap-2 md:gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex items-center justify-between">
+        <div className="flex items-center gap-2 md:gap-3">
           <div className="flex items-center gap-1.5 group">
             <FaEnvelope size={16} className="text-[#D4B996]" />
             <a
@@ -87,7 +87,7 @@ export default function TopInfoBar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {/* Music Button */}
 
           <button
@@ -141,43 +141,37 @@ export default function TopInfoBar() {
           {/* Track Request */}
           <Link
             href="/track"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <FaSearch size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Track Request</span>
           </Link>
 
-          <div className="hidden md:block w-px h-3 bg-white/20"></div>
-
           {/* Mortal Records */}
           <Link
             href="/records"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <FaFileAlt size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Mortal Records</span>
           </Link>
 
-          <div className="hidden md:block w-px h-3 bg-white/20"></div>
-
           {/* User Login */}
 
           <Link
             href="/login"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <FaUser size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">User Login</span>
           </Link>
-
-          <div className="hidden md:block w-px h-3 bg-white/20"></div>
 
           {/* Admin Login — separate admin app; not built yet, so this points at where it will
               be hosted (NEXT_PUBLIC_ADMIN_URL) and won't resolve until that app exists. */}
 
           <a
             href={`${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`}
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-1.5 md:py-0.5 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
           >
             <FaShieldAlt size={14} className="md:hidden" />
             <span className="hidden md:inline text-[11px]">Admin Login</span>
