@@ -335,9 +335,56 @@ function TrackRequest() {
                 </div>
               </div>
 
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <aside className="space-y-4">
+              {/* How tracking works */}
+              <div className="relative overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/82 px-5 pb-4 pt-4 shadow-[0_14px_34px_rgba(73,49,31,0.06)]">
+                <div className="pointer-events-none absolute -bottom-7 -right-7 text-[#C89B5B] opacity-[0.12]">
+                  <LotusOrnament className="h-28 w-32" />
+                </div>
+
+                <h3
+                  className="relative text-center text-[17px] font-normal text-[#2C1810]"
+                  style={{
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                  }}
+                >
+                  How Tracking Works
+                </h3>
+
+                <div className="mt-1 flex items-center justify-center gap-2">
+                  <span className="h-px w-14 bg-[#C79A58]" />
+                  <FineDiamond />
+                  <span className="h-px w-14 bg-[#C79A58]" />
+                </div>
+
+                <div className="relative mt-3 space-y-3">
+                  {HOW_IT_WORKS.map(({ icon: Icon, text }, i) => (
+                    <div key={i} className="relative flex gap-4">
+                      {i < HOW_IT_WORKS.length - 1 && (
+                        <span className="absolute left-[19px] top-[36px] h-[20px] border-l border-dashed border-[#CDAA75]" />
+                      )}
+
+                      <span className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-[#E6CFAE] bg-[#FFF7E9] text-[#A16A27]">
+                        <Icon className="h-4 w-4" />
+                      </span>
+
+                      <p className="pt-0.5 text-[11px] leading-[1.5] text-[#3F2C21]">
+                        {text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </aside>
+          </div>
+
               {/* RESULT - PENDING */}
               {result && isPending && (
-                <div className="relative mt-5 overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/90 p-6 shadow-[0_16px_38px_rgba(73,49,31,0.08)]">
+                <div className="relative mt-4 overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/90 p-5 shadow-[0_16px_38px_rgba(73,49,31,0.08)]">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <span
@@ -390,7 +437,7 @@ function TrackRequest() {
 
               {/* RESULT - ACTIVE CASE */}
               {result && !isPending && (
-                <div className="relative mt-5 overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/90 p-6 shadow-[0_16px_38px_rgba(73,49,31,0.08)]">
+                <div className="relative mt-4 overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/90 p-5 shadow-[0_16px_38px_rgba(73,49,31,0.08)]">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <span
@@ -439,18 +486,31 @@ function TrackRequest() {
                   </div>
 
                   {!isTerminalNegative && (
-                    <div className="mt-5 space-y-0 border-t border-[#F0E5D3] pt-5">
-                      {STATUS_ORDER.map((status, index) => {
-                        const isDone =
-                          currentStepIndex >= 0 && index <= currentStepIndex;
-                        const isLast =
-                          index === STATUS_ORDER.length - 1;
+                    <div className="mt-4 border-t border-[#F0E5D3] pt-4">
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-3 lg:grid-cols-9">
+                        {STATUS_ORDER.map((status, index) => {
+                          const isDone =
+                            currentStepIndex >= 0 && index <= currentStepIndex;
+                          const isLast =
+                            index === STATUS_ORDER.length - 1;
 
-                        return (
-                          <div key={status} className="flex gap-3">
-                            <div className="flex flex-col items-center">
+                          return (
+                            <div
+                              key={status}
+                              className="relative flex min-w-0 flex-col items-center text-center"
+                            >
+                              {!isLast && (
+                                <span
+                                  className={`absolute left-[calc(50%+14px)] top-3 hidden h-px w-[calc(100%-28px)] lg:block ${
+                                    isDone
+                                      ? "bg-[#8B6A3E]"
+                                      : "bg-[#E8D9C6]"
+                                  }`}
+                                />
+                              )}
+
                               <span
-                                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
+                                className={`relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
                                   isDone
                                     ? "bg-[#8B6A3E] text-white"
                                     : "bg-[#F0E5D3] text-[#A8937E]"
@@ -463,21 +523,8 @@ function TrackRequest() {
                                 )}
                               </span>
 
-                              {!isLast && (
-                                <span
-                                  className={`w-px flex-1 ${
-                                    isDone
-                                      ? "bg-[#8B6A3E]"
-                                      : "bg-[#F0E5D3]"
-                                  }`}
-                                  style={{ minHeight: "20px" }}
-                                />
-                              )}
-                            </div>
-
-                            <div className="pb-4">
                               <p
-                                className={`text-sm font-semibold ${
+                                className={`mt-1.5 max-w-[118px] text-[10px] font-medium leading-[1.25] xl:text-[11px] ${
                                   isDone
                                     ? "text-[#2C1810]"
                                     : "text-[#A8937E]"
@@ -486,9 +533,9 @@ function TrackRequest() {
                                 {STATUS_LABELS[status]}
                               </p>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
 
@@ -498,14 +545,14 @@ function TrackRequest() {
                         Recent Updates
                       </p>
 
-                      <div className="space-y-2">
+                      <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-5">
                         {[...result.timeline]
                           .reverse()
                           .slice(0, 5)
                           .map((entry, i) => (
                             <div
                               key={i}
-                              className="text-xs leading-5 text-[#6B584B]"
+                              className="rounded-lg bg-[#FBF7F0] px-2.5 py-2 text-[10px] leading-4 text-[#6B584B]"
                             >
                               <span className="font-semibold text-[#2C1810]">
                                 {new Date(entry.at).toLocaleDateString(
@@ -527,122 +574,7 @@ function TrackRequest() {
                   )}
                 </div>
               )}
-            </div>
 
-            {/* RIGHT COLUMN */}
-            <aside className="space-y-4">
-              {/* How tracking works */}
-              <div className="relative overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/82 px-5 pb-4 pt-4 shadow-[0_14px_34px_rgba(73,49,31,0.06)]">
-                <div className="pointer-events-none absolute -bottom-7 -right-7 text-[#C89B5B] opacity-[0.12]">
-                  <LotusOrnament className="h-28 w-32" />
-                </div>
-
-                <h3
-                  className="relative text-center text-[17px] font-normal text-[#2C1810]"
-                  style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                  }}
-                >
-                  How Tracking Works
-                </h3>
-
-                <div className="mt-1 flex items-center justify-center gap-2">
-                  <span className="h-px w-14 bg-[#C79A58]" />
-                  <FineDiamond />
-                  <span className="h-px w-14 bg-[#C79A58]" />
-                </div>
-
-                <div className="relative mt-3 space-y-3">
-                  {HOW_IT_WORKS.map(({ icon: Icon, text }, i) => (
-                    <div key={i} className="relative flex gap-4">
-                      {i < HOW_IT_WORKS.length - 1 && (
-                        <span className="absolute left-[19px] top-[36px] h-[20px] border-l border-dashed border-[#CDAA75]" />
-                      )}
-
-                      <span className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-[#E6CFAE] bg-[#FFF7E9] text-[#A16A27]">
-                        <Icon className="h-4 w-4" />
-                      </span>
-
-                      <p className="pt-0.5 text-[11px] leading-[1.5] text-[#3F2C21]">
-                        {text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Need help + sample preview */}
-              <div className="overflow-hidden rounded-[18px] border border-[#E6CFAE] bg-white/84 shadow-[0_14px_34px_rgba(73,49,31,0.06)]">
-                <div className="relative flex h-[44px] items-center gap-2.5 bg-gradient-to-r from-[#8A5C2A] to-[#9C6D3C] px-6 text-white">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/10">
-                    <FaPhoneAlt className="h-4 w-4" />
-                  </span>
-
-                  <h3
-                    className="text-[16px] font-normal"
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                    }}
-                  >
-                    Need help instead?
-                  </h3>
-
-                  <LotusOrnament className="pointer-events-none absolute right-4 top-1/2 h-12 w-16 -translate-y-1/2 text-white opacity-10" />
-                </div>
-
-                <div className="grid min-h-[118px] grid-cols-1 divide-y divide-[#E6D4BC] md:grid-cols-[1.1fr_0.9fr] md:divide-x md:divide-y-0">
-                  <div className="p-4">
-                    <p className="text-[11px] leading-[1.45] text-[#3E2B20]">
-                      Can&apos;t find your Case ID or have questions?
-                      <br />
-                      Our helpline is available 24/7.
-                    </p>
-
-                    <a
-                      href="tel:+919220147229"
-                      className="mt-2.5 inline-flex h-9 items-center gap-3 rounded-full border border-[#E4C697] bg-[#FFF7E9] px-4 text-[16px] font-medium text-[#8F5E27] shadow-[0_5px_15px_rgba(114,72,24,0.08)]"
-                    >
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#A16A27] text-white">
-                        <FaPhoneAlt className="h-3.5 w-3.5" />
-                      </span>
-                      9220147229
-                    </a>
-                  </div>
-
-                  <div className="p-4">
-                    <p className="text-[10px] font-medium text-[#3A271C]">
-                      Sample Status Preview
-                    </p>
-
-                    <div className="mt-2 space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-green-500 text-white">
-                          <FaCheckCircle className="h-2.5 w-2.5" />
-                        </span>
-                        <span className="text-[10px] text-[#5A4334]">
-                          Request Received
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="h-4 w-4 rounded-full border-[3px] border-[#D7A44E] bg-white" />
-                        <span className="text-[10px] text-[#5A4334]">
-                          Under Review
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="h-4 w-4 rounded-full border border-[#C9BCA9] bg-white" />
-                        <span className="text-[10px] text-[#8D8174]">
-                          Resolved
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
         </section>
 
         {/* Bottom ornament */}
