@@ -4,6 +4,9 @@ import { FaEnvelope, FaPhoneAlt, FaUser, FaShieldAlt, FaSearch, FaFileAlt } from
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+const utilityLink =
+  "flex items-center justify-center gap-1.5 rounded-md text-white/90 transition-all hover:bg-white/10 hover:text-white active:scale-95 h-7 w-7 shrink-0 md:h-auto md:w-auto md:px-2.5 md:py-1.5";
+
 export default function TopInfoBar() {
   const [isMusicOn, setIsMusicOn] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -62,122 +65,108 @@ export default function TopInfoBar() {
   return (
     <div
       id="topbar"
-      className="fixed top-0 left-0 w-full bg-[#2A1A0F] text-white z-[60] border-b border-white/10 font-sans"
+      className="fixed top-0 left-0 z-[60] h-11 w-full bg-gradient-to-r from-[#26170D] via-[#2E1C10] to-[#26170D] text-white font-sans"
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-1.5 flex items-center justify-between">
-        <div className="flex items-center gap-2 md:gap-3">
-          <div className="flex items-center gap-1.5 group">
-            <FaEnvelope size={16} className="text-[#D4B996]" />
+      {/* Explicit h-11 (44px) above — Navbar hardcodes its own top-11 offset assuming exactly
+          this height, so this can't be left to size itself from content (padding/icon tweaks
+          here would silently reopen a gap between the two bars otherwise). */}
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-2 px-3 sm:px-4 lg:px-6">
+        {/* Contact */}
+        <div className="flex min-w-0 items-center gap-2 md:gap-3">
+          <div className="flex min-w-0 items-center gap-1.5">
+            <FaEnvelope className="h-3 w-3 shrink-0 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
             <a
               href="mailto:info@mokshasewa.org"
-              className="sm:text-sm lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
+              className="min-w-0 truncate text-[11px] text-white/90 transition-colors hover:text-white sm:text-sm lg:text-[13px]"
             >
               info@mokshasewa.org
             </a>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 group">
-            <FaPhoneAlt size={16} className="text-[#D4B996]" />
+          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 sm:block" />
+
+          <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
+            <FaPhoneAlt className="h-3 w-3 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
             <a
-              href="tel:+919654900525"
-              className="text-xs lg:text-[13px] text-white/90 hover:text-white transition-colors whitespace-nowrap"
+              href="tel:+919220147229"
+              className="whitespace-nowrap text-xs text-white/90 transition-colors hover:text-white lg:text-[13px]"
             >
               9220147229
             </a>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          {/* Music Button */}
-
+        {/* Utilities */}
+        <div className="flex shrink-0 items-center gap-1 md:gap-1.5">
           <button
             onClick={toggleMusic}
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-[#8B6A3E] hover:bg-[#755735] transition-all duration-300"
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] transition-all hover:bg-[#755735] active:scale-95"
             aria-label="Toggle Music"
+            aria-pressed={isMusicOn}
           >
             {isMusicOn ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 text-white"
+                className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 9l6 6M15 9l-6 6"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11 5L6 9H3v6h3l5 4V5z"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6M15 9l-6 6" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
               </svg>
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 text-white"
+                className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11 5L6 9H3v6h3l5 4V5z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 9a3 3 0 010 6m3-8a7 7 0 010 10"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 9a3 3 0 010 6m3-8a7 7 0 010 10" />
               </svg>
             )}
           </button>
 
-          {/* Track Request */}
-          <Link
-            href="/track"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
-          >
-            <FaSearch size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Track Request</span>
+          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
+
+          <Link href="/track" className={utilityLink} aria-label="Track request">
+            <FaSearch className="h-3 w-3" />
+            <span className="hidden text-[11px] md:inline">Track Request</span>
           </Link>
 
-          {/* Mortal Records */}
-          <Link
-            href="/records"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
-          >
-            <FaFileAlt size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Mortal Records</span>
+          <Link href="/records" className={utilityLink} aria-label="Mortal records">
+            <FaFileAlt className="h-3 w-3" />
+            <span className="hidden text-[11px] md:inline">Mortal Records</span>
           </Link>
 
-          {/* User Login */}
+          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
 
-          <Link
-            href="/login"
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
-          >
-            <FaUser size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">User Login</span>
+          <Link href="/login" className={utilityLink} aria-label="User login">
+            <FaUser className="h-3 w-3" />
+            <span className="hidden text-[11px] md:inline">User Login</span>
           </Link>
 
           {/* Admin Login — separate admin app; not built yet, so this points at where it will
               be hosted (NEXT_PUBLIC_ADMIN_URL) and won't resolve until that app exists. */}
-
           <a
             href={`${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`}
-            className="flex items-center justify-center w-7 h-7 md:w-auto md:h-auto md:px-2.5 md:py-1 rounded bg-[#8B6A3E] hover:bg-[#755735] text-white transition-colors"
+            className={utilityLink}
+            aria-label="Admin login"
           >
-            <FaShieldAlt size={14} className="md:hidden" />
-            <span className="hidden md:inline text-[11px]">Admin Login</span>
+            <FaShieldAlt className="h-3 w-3" />
+            <span className="hidden text-[11px] md:inline">Admin Login</span>
           </a>
         </div>
       </div>
+
+      <span
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#C9A574]/40 to-transparent"
+      />
     </div>
   );
 }

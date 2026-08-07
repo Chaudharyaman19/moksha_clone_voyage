@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   FaHandHoldingHeart,
   FaStar,
@@ -27,11 +27,21 @@ interface NavbarProps {
 
 export default function Navbar({ variant = "seva" }: NavbarProps) {
   const router = useRouter();
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("home");
   const [hideTopBar, setHideTopBar] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  // Derived from the actual URL rather than tracked in state — a manually-set "which link did
+  // they last click" flag goes stale the moment someone refreshes, opens a link in a new tab, or
+  // lands on a page via browser back/forward, all of which never fire a click handler here.
+  const isPathActive = (path: string) => {
+    if (path.startsWith("#")) return false;
+    return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
+  };
+  const isItemActive = (item: { path: string; dropdown?: { path: string }[] }) =>
+    item.dropdown ? item.dropdown.some((child) => isPathActive(child.path)) : isPathActive(item.path);
 
   useEffect(() => {
     let lastScroll = 0;
@@ -75,7 +85,6 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
   }, [openDropdown]);
 
   const handleNavigation = (path: string, name: string) => {
-    setActiveLink(name.toLowerCase());
     setOpenDropdown(null);
     setOpen(false);
 
@@ -203,16 +212,16 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
   return (
     <>
       <nav
-        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-50 ${scrolled
+        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-150 ${scrolled
           ? "bg-white backdrop-blur-lg shadow-sm py-0"
           : "bg-white py-0 "
           } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
-            <div className="absolute top-1 left-0 z-10">
-              <button onClick={() => handleNavigation("/", "home")}>
-                <div className="w-14 h-16 sm:w-28 sm:h-32 rounded-md bg-white p-1.5 sm:p-2">
+            <div className="absolute -top-1 left-0 z-10">
+              <button onClick={() => handleNavigation("/", "home")} aria-label="Moksha Sewa — home">
+                <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md bg-white p-1.5 sm:p-2 shadow-[0_8px_20px_rgba(42,26,15,0.15)]">
                   <img
                     src={
                       variant === "seva"
@@ -234,7 +243,7 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                   {item.dropdown ? (
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${activeLink === item.name.toLowerCase()
+                      className={`relative px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
                         ? "text-[#8B6A3E]"
                         : "text-[#5A4030] hover:text-[#8B6A3E]"
                         }`}
@@ -242,6 +251,11 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                       <span className="font-medium">{item.name}</span>
                       <HiChevronDown
                         className={`transition-transform duration-200 ${openDropdown === item.name ? "rotate-180" : ""}`}
+                      />
+                      <span
+                        aria-hidden
+                        className={`absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
+                          }`}
                       />
                     </button>
                   ) : item.name === "Donate" ? (
@@ -263,18 +277,24 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path, item.name)}
-                      className={`px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${activeLink === item.name.toLowerCase()
+                      aria-current={isItemActive(item) ? "page" : undefined}
+                      className={`relative px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
                         ? "text-[#8B6A3E]"
                         : "text-[#5A4030] hover:text-[#8B6A3E]"
                         }`}
                     >
                       <span className="font-medium">{item.name}</span>
+                      <span
+                        aria-hidden
+                        className={`absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
+                          }`}
+                      />
                     </button>
                   )}
 
                   {item.dropdown && (
                     <div
-                      className={`absolute left-0 top-[100%] w-62 bg-white border border-gray-200 transition-all duration-200 z-50 rounded-lg shadow-2xl ${openDropdown === item.name
+                      className={`absolute left-0 top-[100%] w-64 bg-white border border-gray-200 transition-all duration-200 z-50 rounded-lg shadow-2xl ${openDropdown === item.name
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
                         }`}
@@ -286,12 +306,14 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                             onClick={() =>
                               handleNavigation(subItem.path, subItem.name)
                             }
-                            className="flex items-center space-x-2 w-full px-4 py-2 text-[#5A4030] hover:bg-gray-50 transition-all duration-150"
+                            aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                            className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                              }`}
                           >
-                            <span className="text-[#5A4030]/80 w-5">
+                            <span className={isPathActive(subItem.path) ? "text-[#8B6A3E] w-5" : "text-[#5A4030]/80 w-5"}>
                               {subItem.icon}
                             </span>
-                            <span className="font-medium text-[#5A4030] flex-1 text-left">
+                            <span className={`font-medium flex-1 text-left ${isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]"}`}>
                               {subItem.name}
                             </span>
                           </button>
@@ -328,7 +350,8 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                 {item.dropdown ? (
                   <button
                     onClick={() => toggleDropdown(item.name)}
-                    className="flex items-center justify-between w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50"
+                    className={`flex items-center justify-between w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                      }`}
                   >
                     <div className="flex items-center space-x-2">
                       <span className="text-base">{item.icon}</span>
@@ -344,7 +367,9 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                 ) : (
                   <button
                     onClick={() => handleNavigation(item.path, item.name)}
-                    className="flex items-center space-x-2 w-full px-3 py-2 rounded-lg text-[#5A4030] hover:bg-gray-50"
+                    aria-current={isItemActive(item) ? "page" : undefined}
+                    className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                      }`}
                   >
                     <span className="text-base">{item.icon}</span>
                     <span className="text-[15px] font-medium">{item.name}</span>
@@ -360,9 +385,11 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
                           handleNavigation(subItem.path, subItem.name);
                           setOpen(false);
                         }}
-                        className="flex items-center space-x-2 w-full px-3 py-1.5 rounded-md text-[#5A4030] hover:bg-gray-100 transition-all duration-150"
+                        aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                        className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
+                          }`}
                       >
-                        <span className="text-[#5A4030]/70">
+                        <span className={isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]/70"}>
                           {subItem.icon}
                         </span>
                         <span className="text-[14px] font-medium">
