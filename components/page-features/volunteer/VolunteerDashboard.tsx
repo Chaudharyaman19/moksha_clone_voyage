@@ -18,6 +18,7 @@ import {
   FaPhoneAlt,
   FaCloudUploadAlt,
   FaFileAlt,
+  FaDirections,
 } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, updateUser } from "@/store/slices/authSlice";
@@ -33,6 +34,7 @@ import {
 } from "@/lib/volunteerApi";
 import { userApi } from "@/lib/userApi";
 import { authApi } from "@/lib/authApi";
+import { directionsUrl } from "@/lib/maps";
 import { ApiRequestError } from "@/lib/api";
 import VolunteerModal from "./VolunteerModal";
 
@@ -743,6 +745,20 @@ function VolunteerDashboard() {
                     {assignmentDetail.pickup.address}, {assignmentDetail.pickup.area}, {assignmentDetail.pickup.city},{" "}
                     {assignmentDetail.pickup.state} - {assignmentDetail.pickup.pincode}
                   </p>
+                  <a
+                    href={directionsUrl(
+                      assignmentDetail.pickup.address,
+                      assignmentDetail.pickup.area,
+                      assignmentDetail.pickup.city,
+                      assignmentDetail.pickup.state,
+                      assignmentDetail.pickup.pincode
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B6A3E] hover:underline"
+                  >
+                    <FaDirections className="h-3 w-3" /> Get Directions
+                  </a>
                 </div>
               )}
 
