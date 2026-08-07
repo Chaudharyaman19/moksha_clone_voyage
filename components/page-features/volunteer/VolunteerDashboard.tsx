@@ -35,6 +35,7 @@ import {
 import { userApi } from "@/lib/userApi";
 import { authApi } from "@/lib/authApi";
 import { directionsUrl } from "@/lib/maps";
+import { lookupPincode } from "@/lib/pincode";
 import { ApiRequestError } from "@/lib/api";
 import VolunteerModal from "./VolunteerModal";
 
@@ -189,6 +190,32 @@ function VolunteerDashboard() {
   const [editForm, setEditForm] = useState<EditForm | null>(null);
   const [editSaving, setEditSaving] = useState(false);
   const [editError, setEditError] = useState("");
+  const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  // Pincode-first lookup: once 6 digits are typed, auto-fill state/city so there's less to retype.
+  // Both stay editable afterward in case the lookup gets it wrong.
+  useEffect(() => {
+    const pincode = editForm?.pincode ?? "";
+    if (!/^\d{6}$/.test(pincode)) {
+      setPincodeStatus("idle");
+      return;
+    }
+    let cancelled = false;
+    setPincodeStatus("loading");
+    lookupPincode(pincode).then((result) => {
+      if (cancelled) return;
+      if (result) {
+        setEditForm((current) => (current ? { ...current, city: result.city, state: result.state } : current));
+        setPincodeStatus("done");
+      } else {
+        setPincodeStatus("error");
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editForm?.pincode]);
 
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
@@ -275,6 +302,7 @@ function VolunteerDashboard() {
       preferredRole: profile.preferredRole ?? "",
     });
     setEditError("");
+    setPincodeStatus("idle");
     setShowEditProfile(true);
   };
 
@@ -578,13 +606,53 @@ function VolunteerDashboard() {
                 required
               />
             </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label className={LABEL_CLASSES}>Pincode</label>
+                <input
+                  className={INPUT_CLASSES}
+                  value={editForm.pincode}
+                  onChange={(e) => setEditForm({ ...editForm, pincode: e.target.value })}
+                  inputMode="numeric"
+                  pattern="[0-9]{6}"
+                  placeholder="6-digit pincode"
+                />
+              </div>
+              <div>
+                <label className={LABEL_CLASSES}>State</label>
+                <input
+                  className={INPUT_CLASSES}
+                  value={editForm.state}
+                  onChange={(e) => setEditForm({ ...editForm, state: e.target.value })}
+                  placeholder="Auto-filled from pincode"
+                />
+              </div>
+              <div>
+                <label className={LABEL_CLASSES}>City</label>
+                <input
+                  className={INPUT_CLASSES}
+                  value={editForm.city}
+                  onChange={(e) => setEditForm({ ...editForm, city: e.target.value })}
+                  required
+                  placeholder="Auto-filled from pincode"
+                />
+              </div>
+            </div>
+            {pincodeStatus === "loading" && <p className="text-[11px] text-[#8A7460]">Looking up state and city…</p>}
+            {pincodeStatus === "done" && (
+              <p className="text-[11px] text-emerald-600">
+                Found: {editForm.city}, {editForm.state}
+              </p>
+            )}
+            {pincodeStatus === "error" && (
+              <p className="text-[11px] text-red-600">Couldn&apos;t find this pincode — please enter state and city manually.</p>
+            )}
             <div>
-              <label className={LABEL_CLASSES}>City</label>
+              <label className={LABEL_CLASSES}>Address</label>
               <input
                 className={INPUT_CLASSES}
-                value={editForm.city}
-                onChange={(e) => setEditForm({ ...editForm, city: e.target.value })}
-                required
+                value={editForm.address}
+                onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
               />
             </div>
             <div>
@@ -595,32 +663,6 @@ function VolunteerDashboard() {
                 onChange={(e) => setEditForm({ ...editForm, skills: e.target.value })}
                 placeholder="First Aid, Driving, Translation"
               />
-            </div>
-            <div>
-              <label className={LABEL_CLASSES}>Address</label>
-              <input
-                className={INPUT_CLASSES}
-                value={editForm.address}
-                onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={LABEL_CLASSES}>State</label>
-                <input
-                  className={INPUT_CLASSES}
-                  value={editForm.state}
-                  onChange={(e) => setEditForm({ ...editForm, state: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className={LABEL_CLASSES}>Pincode</label>
-                <input
-                  className={INPUT_CLASSES}
-                  value={editForm.pincode}
-                  onChange={(e) => setEditForm({ ...editForm, pincode: e.target.value })}
-                />
-              </div>
             </div>
             <div>
               <label className={LABEL_CLASSES}>Schedule Preference</label>

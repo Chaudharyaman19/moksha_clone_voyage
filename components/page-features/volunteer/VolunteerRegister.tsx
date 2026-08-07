@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { lookupPincode } from "@/lib/pincode";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -216,6 +217,31 @@ export default function VolunteerRegister() {
 
   const [error, setError] =
     useState("");
+
+  const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  // Pincode-first lookup: once 6 digits are typed, auto-fill state/city so the volunteer doesn't
+  // have to type them by hand. Both stay editable afterward in case the lookup gets it wrong.
+  useEffect(() => {
+    if (!/^\d{6}$/.test(form.pincode)) {
+      setPincodeStatus("idle");
+      return;
+    }
+    let cancelled = false;
+    setPincodeStatus("loading");
+    lookupPincode(form.pincode).then((result) => {
+      if (cancelled) return;
+      if (result) {
+        setForm((current) => ({ ...current, city: result.city, state: result.state }));
+        setPincodeStatus("done");
+      } else {
+        setPincodeStatus("error");
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [form.pincode]);
 
   const toggleSkill = (skill: string) => {
     setSkills((current) =>
@@ -568,43 +594,22 @@ export default function VolunteerRegister() {
                     Address Information
                   </SectionTitle>
 
-                  <div>
-                    <label
-                      className={labelClass}
-                    >
-                      Address *
-                    </label>
-
-                    <div className="relative">
-                      <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-3.5 h-3 w-3 text-[#A45331]" />
-
-                      <textarea
-                        name="address"
-                        value={form.address}
-                        onChange={handleChange}
-                        required
-                        rows={2}
-                        className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
-                        placeholder="Enter your complete address"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                  <div className="grid gap-2.5 sm:grid-cols-3">
                     <div>
-                      <label
-                        className={labelClass}
-                      >
-                        City *
+                      <label className={labelClass}>
+                        Pincode *
                       </label>
 
                       <input
-                        name="city"
-                        value={form.city}
+                        name="pincode"
+                        value={form.pincode}
                         onChange={handleChange}
                         required
+                        inputMode="numeric"
+                        pattern="[0-9]{6}"
+                        title="Enter a valid 6-digit pincode"
                         className={inputClass}
-                        placeholder="Enter your city"
+                        placeholder="6-digit pincode"
                       />
                     </div>
 
@@ -621,7 +626,7 @@ export default function VolunteerRegister() {
                         onChange={handleChange}
                         required
                         className={inputClass}
-                        placeholder="Enter your state"
+                        placeholder="Auto-filled from pincode"
                       />
                     </div>
 
@@ -629,18 +634,52 @@ export default function VolunteerRegister() {
                       <label
                         className={labelClass}
                       >
-                        Pincode *
+                        City *
                       </label>
 
                       <input
-                        name="pincode"
-                        value={form.pincode}
+                        name="city"
+                        value={form.city}
                         onChange={handleChange}
                         required
-                        pattern="[0-9]{6}"
-                        title="Enter a valid 6-digit pincode"
                         className={inputClass}
-                        placeholder="Enter pincode"
+                        placeholder="Auto-filled from pincode"
+                      />
+                    </div>
+                  </div>
+
+                  {pincodeStatus === "loading" && (
+                    <p className="mt-1 text-[10px] text-[#9E9186]">Looking up state and city…</p>
+                  )}
+                  {pincodeStatus === "done" && (
+                    <p className="mt-1 text-[10px] text-emerald-600">
+                      Found: {form.city}, {form.state}
+                    </p>
+                  )}
+                  {pincodeStatus === "error" && (
+                    <p className="mt-1 text-[10px] text-[#C1502E]">
+                      Couldn&apos;t find this pincode — please enter state and city manually.
+                    </p>
+                  )}
+
+                  <div className="mt-2.5">
+                    <label
+                      className={labelClass}
+                    >
+                      Address *
+                    </label>
+
+                    <div className="relative">
+                      <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-3.5 h-3 w-3 text-[#A45331]" />
+
+                      <textarea
+                        name="address"
+                        value={form.address}
+                        onChange={handleChange}
+                        required
+                        rows={2}
+                        className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                        placeholder="House/flat no., street, landmark"
                       />
                     </div>
                   </div>

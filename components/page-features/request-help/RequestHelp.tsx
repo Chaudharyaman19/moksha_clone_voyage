@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -26,6 +26,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 
 import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
+import { lookupPincode } from "@/lib/pincode";
 
 type RequestType = "NORMAL" | "EMERGENCY";
 
@@ -226,6 +227,31 @@ export default function RequestHelp() {
 
   const [error, setError] =
     useState<string | null>(null);
+
+  const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  // Pincode-first lookup: once 6 digits are typed, auto-fill state/city — a grieving family
+  // shouldn't have to type more than they must. Both stay editable in case it's wrong.
+  useEffect(() => {
+    if (!/^\d{6}$/.test(form.pincode)) {
+      setPincodeStatus("idle");
+      return;
+    }
+    let cancelled = false;
+    setPincodeStatus("loading");
+    lookupPincode(form.pincode).then((result) => {
+      if (cancelled) return;
+      if (result) {
+        setForm((current) => ({ ...current, city: result.city, state: result.state }));
+        setPincodeStatus("done");
+      } else {
+        setPincodeStatus("error");
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [form.pincode]);
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -564,7 +590,46 @@ export default function RequestHelp() {
                       </div>
                     </div>
 
-                    <div className="mt-2.5 grid gap-2.5 sm:grid-cols-[0.75fr_1.25fr]">
+                    <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                      <div>
+                        <label className={labelClass}>
+                          Pincode *
+                        </label>
+
+                        <input
+                          type="text"
+                          name="pincode"
+                          value={form.pincode}
+                          onChange={handleChange}
+                          required
+                          inputMode="numeric"
+                          pattern="[0-9]{6}"
+                          title="Enter a valid 6-digit pincode"
+                          className={inputClass}
+                          placeholder="6-digit pincode"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          className={
+                            labelClass
+                          }
+                        >
+                          State *
+                        </label>
+
+                        <input
+                          type="text"
+                          name="state"
+                          value={form.state}
+                          onChange={handleChange}
+                          required
+                          className={inputClass}
+                          placeholder="Auto-filled from pincode"
+                        />
+                      </div>
+
                       <div>
                         <label
                           className={
@@ -585,35 +650,49 @@ export default function RequestHelp() {
                           className={
                             inputClass
                           }
-                          placeholder="Enter your city"
+                          placeholder="Auto-filled from pincode"
                         />
                       </div>
+                    </div>
 
-                      <div>
-                        <label
-                          className={
-                            labelClass
-                          }
-                        >
-                          Service Location *
-                        </label>
+                    {pincodeStatus === "loading" && (
+                      <p className="mt-1 text-[10px] text-[#A59689]">Looking up state and city…</p>
+                    )}
+                    {pincodeStatus === "done" && (
+                      <p className="mt-1 text-[10px] text-emerald-600">
+                        Found: {form.city}, {form.state}
+                      </p>
+                    )}
+                    {pincodeStatus === "error" && (
+                      <p className="mt-1 text-[10px] text-[#E47B22]">
+                        Couldn&apos;t find this pincode — please enter state and city manually.
+                      </p>
+                    )}
 
-                        <input
-                          type="text"
-                          name="address"
-                          value={
-                            form.address
-                          }
-                          onChange={
-                            handleChange
-                          }
-                          required
-                          className={
-                            inputClass
-                          }
-                          placeholder="Complete address for service"
-                        />
-                      </div>
+                    <div className="mt-2.5">
+                      <label
+                        className={
+                          labelClass
+                        }
+                      >
+                        Service Location *
+                      </label>
+
+                      <input
+                        type="text"
+                        name="address"
+                        value={
+                          form.address
+                        }
+                        onChange={
+                          handleChange
+                        }
+                        required
+                        className={
+                          inputClass
+                        }
+                        placeholder="Complete address for service"
+                      />
                     </div>
                   </fieldset>
 
@@ -744,7 +823,7 @@ export default function RequestHelp() {
                   </div>
 
                   {/* Additional API details */}
-                  <div className="grid gap-2.5 sm:grid-cols-4">
+                  <div className="grid gap-2.5 sm:grid-cols-2">
                     <input
                       type="text"
                       name="relation"
@@ -763,25 +842,6 @@ export default function RequestHelp() {
                       onChange={handleChange}
                       className={inputClass}
                       placeholder="Deceased name"
-                    />
-
-                    <input
-                      type="text"
-                      name="state"
-                      value={form.state}
-                      onChange={handleChange}
-                      className={inputClass}
-                      placeholder="State"
-                    />
-
-                    <input
-                      type="text"
-                      name="pincode"
-                      value={form.pincode}
-                      onChange={handleChange}
-                      pattern="[0-9]{6}"
-                      className={inputClass}
-                      placeholder="Pincode"
                     />
                   </div>
 
