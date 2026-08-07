@@ -221,7 +221,7 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
           <div className="flex items-center h-12 relative">
             <div className="absolute -top-1 left-0 z-10">
               <button onClick={() => handleNavigation("/", "home")} aria-label="Moksha Sewa — home">
-                <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md bg-white p-1.5 sm:p-2 shadow-[0_8px_20px_rgba(42,26,15,0.15)]">
+                <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md border border-[#D8B982] bg-white p-1.5 sm:p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80">
                   <img
                     src={
                       variant === "seva"
