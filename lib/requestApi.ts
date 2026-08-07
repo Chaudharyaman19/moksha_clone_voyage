@@ -35,11 +35,12 @@ export interface AssistanceRequestResult {
 }
 
 export interface TrackedCase {
-  caseId: string;
+  caseId: string | null;
+  requestNo: string;
   status: string;
-  scheduledAt: string | null;
-  completedAt: string | null;
-  closedAt: string | null;
+  scheduledAt?: string | null;
+  completedAt?: string | null;
+  closedAt?: string | null;
   createdAt: string;
   timeline: { event: string; toStatus?: string; note?: string; at: string }[];
 }

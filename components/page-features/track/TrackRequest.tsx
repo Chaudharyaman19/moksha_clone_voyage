@@ -26,6 +26,9 @@ const STATUS_LABELS: Record<string, string> = {
   CLOSED: "Case Closed",
   REJECTED: "Request Could Not Be Approved",
   CANCELLED: "Request Cancelled",
+  // Pre-conversion states — result.caseId is null while these are the status (see caseId===null
+  // branch below), so these two never collide with the actual Case status enum above.
+  SUBMITTED: "Under Review",
 };
 
 const STATUS_ORDER = [
@@ -94,8 +97,8 @@ function TrackRequest() {
               </span>
             </h1>
             <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-              Enter the Case ID shared by our team along with your phone number to see the latest
-              status.
+              Enter your Case ID or the Request Number you received when you submitted, along with
+              your phone number, to see the latest status.
             </p>
           </div>
         </section>
@@ -107,14 +110,14 @@ function TrackRequest() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className={labelClass}>Case ID *</label>
+                  <label className={labelClass}>Case ID or Request Number *</label>
                   <input
                     type="text"
                     value={caseId}
                     onChange={(e) => setCaseId(e.target.value)}
                     required
                     className={inputClass}
-                    placeholder="MS-2026-000125"
+                    placeholder="MS-2026-000125 or REQ-2026-000125"
                   />
                 </div>
                 <div>
@@ -157,7 +160,30 @@ function TrackRequest() {
               </form>
             </div>
 
-            {result && (
+            {result && result.caseId === null && (
+              <div className="relative mt-4 overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
+                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
+
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-lg text-[#2C1810]">{result.requestNo}</span>
+                  <span
+                    className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                      result.status === "REJECTED" ? "bg-red-50 text-red-700" : "bg-[#8B6A3E]/10 text-[#8B6A3E]"
+                    }`}
+                  >
+                    {STATUS_LABELS[result.status] ?? result.status}
+                  </span>
+                </div>
+
+                <p className="mt-3 text-sm leading-6 text-[#4F3A2D]">
+                  {result.status === "REJECTED"
+                    ? "We're sorry — this request could not be approved. Please call our helpline below if you'd like to discuss this."
+                    : "Our team is reviewing your request. A Case ID will be created and emailed to you (if you gave us an email) once someone begins working on it — you can keep checking back here with this Request Number in the meantime."}
+                </p>
+              </div>
+            )}
+
+            {result && result.caseId !== null && (
               <div className="relative mt-4 overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
                 <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
