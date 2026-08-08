@@ -208,9 +208,7 @@ interface StatItem {
   label: string;
 }
 
-interface HowWeHelpProps {
-  variant?: "voyage" | "seva";
-}
+interface HowWeHelpProps {}
 
 const decorativePattern = {
   backgroundImage:
@@ -218,13 +216,8 @@ const decorativePattern = {
   backgroundSize: "20px 20px, 26px 26px",
 };
 
-export default function HowWeCanHelp({
-  variant = "voyage",
-}: HowWeHelpProps) {
-  const isSeva = variant === "seva";
-
-  const cards: CardItem[] = isSeva
-    ? [
+export default function HowWeCanHelp({}: HowWeHelpProps) {
+  const cards: CardItem[] = [
         {
           icon: "FaWoodStack",
           title: "Wood, Cloth & Flowers",
@@ -257,52 +250,9 @@ export default function HowWeCanHelp({
           image: "/assets/how-we-help/three.png",
           href: "/prayerhallservices",
         },
-      ]
-    : [
-        {
-          icon: "FaFireAlt",
-          title: "Cremation Services",
-          desc: "End-to-end cremation coordination with verified providers, ritual materials, and cremation ground booking.",
-          features: [
-            "Cremation Ground Booking",
-            "Pandit Services",
-            "Ritual Materials",
-          ],
-        },
-        {
-          icon: "FaGlobeAsia",
-          title: "NRI Cross-Border",
-          desc: "Dedicated local representatives managing all logistics for families abroad with real-time updates.",
-          features: [
-            "Family Representative",
-            "Legal Documentation",
-            "Body/Ash Repatriation",
-          ],
-        },
-        {
-          icon: "FaPrayingHands",
-          title: "Grief Support",
-          desc: "Professional counselling, peer support communities, and post-funeral ritual guidance.",
-          features: [
-            "Grief Counselling",
-            "Peer Communities",
-            "Ritual Continuity",
-          ],
-        },
-        {
-          icon: "FaVideo",
-          title: "Digital Legacy",
-          desc: "Permanent digital memorials, document vault, and video tributes to preserve memories.",
-          features: [
-            "Digital Memorials",
-            "Document Vault",
-            "Obituary Publishing",
-          ],
-        },
       ];
 
-  const stats: StatItem[] = isSeva
-    ? [
+  const stats: StatItem[] = [
         {
           icon: "FaClockOutline",
           value: "24/7",
@@ -323,39 +273,10 @@ export default function HowWeCanHelp({
           value: "15+",
           label: "Service Cities",
         },
-      ]
-    : [
-        {
-          icon: "FaClockOutline",
-          value: "24/7",
-          label: "Care Coordinators",
-        },
-        {
-          icon: "FaFamiliesOutline",
-          value: "30M+",
-          label: "NRI Community Served",
-        },
-        {
-          icon: "FaShieldOutline",
-          value: "100%",
-          label: "Pricing Transparency",
-        },
-        {
-          icon: "FaMapPinOutline",
-          value: "12,000 Cr",
-          label: "Indian Funeral Market",
-        },
       ];
 
   return (
-    <section
-      className={`relative w-full overflow-hidden ${
-        isSeva
-          ? "bg-[#FCF8F0] px-4 pb-2 pt-2 sm:px-5 lg:px-6 lg:pb-3 lg:pt-3"
-          : "bg-gradient-to-b from-[#FCF9F3] via-white to-[#F8F4EC] px-4 py-8"
-      }`}
-    >
-      {isSeva && (
+    <section className="relative w-full overflow-hidden bg-[#FCF8F0] px-4 pb-2 pt-2 sm:px-5 lg:px-6 lg:pb-3 lg:pt-3">
         <>
           <div
             className="pointer-events-none absolute inset-0 opacity-50"
@@ -365,99 +286,51 @@ export default function HowWeCanHelp({
           <div className="pointer-events-none absolute -right-24 top-2 h-96 w-96 rounded-full border border-[#C59658]/10" />
           <div className="pointer-events-none absolute bottom-0 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full border border-[#C59658]/10" />
         </>
-      )}
 
-      <div
-        className={`relative z-10 mx-auto w-full ${
-          isSeva ? "max-w-[1280px]" : "max-w-[1280px]"
-        }`}
-      >
-        <header
-          className={`mx-auto text-center ${
-            isSeva ? "mb-2 max-w-4xl" : "mb-8 max-w-3xl"
-          }`}
-        >
-          <div
-            className={`inline-flex items-center ${
-              isSeva ? "mb-0 gap-4" : "mb-5 gap-3"
-            }`}
-          >
-            <span
-              className={`h-px bg-gradient-to-r from-transparent via-[#A66F2C] to-[#A66F2C] ${
-                isSeva ? "w-20" : "w-12"
-              }`}
-            />
+      <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+        <header className="mx-auto text-center mb-2 max-w-4xl">
+          <div className="inline-flex items-center mb-0 gap-4">
+            <span className="h-px bg-gradient-to-r from-transparent via-[#A66F2C] to-[#A66F2C] w-20" />
 
             <span className="rotate-45 text-[11px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
-            <span
-              className={`font-semibold uppercase text-[#9A6426] ${
-                isSeva
-                  ? "text-[12px] tracking-[0.32em] sm:text-[13px]"
-                  : "text-[11px] tracking-[0.25em]"
-              }`}
-            >
-              {isSeva ? "Moksha Sewa Services" : "Our Services"}
+            <span className="font-semibold uppercase text-[#9A6426] text-[12px] tracking-[0.32em] sm:text-[13px]">
+              Moksha Sewa Services
             </span>
 
             <span className="rotate-45 text-[11px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
-            <span
-              className={`h-px bg-gradient-to-l from-transparent via-[#A66F2C] to-[#A66F2C] ${
-                isSeva ? "w-20" : "w-12"
-              }`}
-            />
+            <span className="h-px bg-gradient-to-l from-transparent via-[#A66F2C] to-[#A66F2C] w-20" />
           </div>
 
-          <h2
-            className={
-              isSeva
-                ? "font-serif text-[24px] font-normal leading-tight text-[#2C180F] sm:text-[28px] lg:text-[30px]"
-                : "text-[28px] font-light leading-tight text-[#3A2A1F] lg:text-[32px]"
-            }
-          >
-            {isSeva ? "What We Arrange" : "End-to-End Cremation & Ritual Services"}
+          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2C180F] sm:text-[28px] lg:text-[30px]">
+            What We Arrange
           </h2>
 
-          <p
-            className={
-              isSeva
-                ? "mt-1 font-serif text-[16px] leading-snug text-[#855426] sm:text-[18px]"
-                : "mx-auto mt-3 max-w-3xl text-[13px] font-light leading-snug text-[#6E4B3A]"
-            }
-          >
-            {isSeva
-              ? "Ambulance · Priest · Wood · Cloth · Flowers · Volunteers"
-              : "Verified Service Network · NRI Cross-Border Coordination · Radical Pricing Transparency"}
+          <p className="mt-1 font-serif text-[16px] leading-snug text-[#855426] sm:text-[18px]">
+            Ambulance · Priest · Wood · Cloth · Flowers · Volunteers
           </p>
 
-          {isSeva && (
             <div className="mt-0.5 flex items-center justify-center gap-2 text-[#A66F2C]">
               <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#A66F2C]" />
               <span className="text-[13px]">◇</span>
               <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#A66F2C]" />
             </div>
-          )}
         </header>
 
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ${
-            isSeva ? "gap-3" : "gap-5"
-          }`}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {cards.map((card) =>
-            isSeva && card.image ? (
               <article
                 key={card.title}
                 className="group overflow-hidden rounded-[22px] border border-[#DEC7A6] bg-[#FFFCF7] shadow-[0_14px_34px_rgba(86,52,22,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(86,52,22,0.15)]"
               >
                 <div className="relative h-[195px] overflow-hidden sm:h-[200px] lg:h-[195px] xl:h-[205px]">
                   <Image
-                    src={card.image}
+                    src={card.image!}
                     alt={card.title}
                     fill
                     quality={95}
@@ -508,45 +381,9 @@ export default function HowWeCanHelp({
                   </a>
                 </div>
               </article>
-            ) : (
-              <article
-                key={card.title}
-                className="flex h-full flex-col rounded-xl border border-[#E8DBC5] bg-white/90 p-5"
-              >
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F8F4EC] text-[#8B6A3E]">
-                  <CustomIcon name={card.icon} className="h-6 w-6" />
-                </div>
-
-                <h3 className="mb-3 text-center text-base font-light text-[#3A2A1F]">
-                  {card.title}
-                </h3>
-
-                <p className="mb-4 flex-grow text-center text-sm leading-relaxed text-[#6E4B3A]">
-                  {card.desc}
-                </p>
-
-                <div className="mb-4 space-y-2">
-                  {card.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#8B6A3E]" />
-                      <span className="text-xs text-[#6E4B3A]">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <a
-                  href={card.href || "/services"}
-                  className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg border border-[#E8DBC5] px-3 py-2 text-xs text-[#8B6A3E] hover:bg-[#F8F4EC]"
-                >
-                  Learn More
-                  <CustomIcon name="FaArrowRight" className="h-3 w-3" />
-                </a>
-              </article>
-            ),
           )}
         </div>
 
-        {isSeva ? (
           <div className="mt-1 overflow-hidden rounded-[22px] border border-[#D9B983] bg-[#FFFDF9]/90 shadow-[0_12px_28px_rgba(86,52,22,0.10)] backdrop-blur-sm">
             <div className="grid grid-cols-1 divide-y divide-[#DEC49C] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {stats.map((stat) => (
@@ -570,24 +407,7 @@ export default function HowWeCanHelp({
               ))}
             </div>
           </div>
-        ) : (
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-lg border border-[#E8DBC5] bg-white/60 p-4 text-center"
-              >
-                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#F8F4EC] text-[#8B6A3E]">
-                  <CustomIcon name={stat.icon} className="h-5 w-5" />
-                </div>
-                <div className="mt-2 text-xl text-[#8B6A3E]">{stat.value}</div>
-                <div className="text-xs text-[#6E4B3A]">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        )}
 
-        {isSeva && (
           <div className="mx-auto mt-1 flex w-fit items-center gap-3 text-[#B07B36] opacity-80">
             <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#B07B36]" />
             <svg
@@ -603,7 +423,6 @@ export default function HowWeCanHelp({
             </svg>
             <span className="h-px w-24 bg-gradient-to-l from-transparent to-[#B07B36]" />
           </div>
-        )}
       </div>
     </section>
   );

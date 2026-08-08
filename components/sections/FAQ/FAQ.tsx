@@ -8,23 +8,17 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 
-interface FAQSectionProps {
-  variant?: "voyage" | "seva";
-}
+interface FAQSectionProps {}
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-export default function FAQSection({
-  variant = "seva",
-}: FAQSectionProps) {
+export default function FAQSection({}: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqItems: FAQItem[] =
-    variant === "seva"
-      ? [
+  const faqItems: FAQItem[] = [
           {
             question: "Is assistance free for families in need?",
             answer:
@@ -49,33 +43,6 @@ export default function FAQSection({
             question: "Can you arrange a pandit and final rituals?",
             answer:
               "Yes. We help families in need arrange a pandit, ritual materials and guidance for the final rites, depending on the case and local availability.",
-          },
-        ]
-      : [
-          {
-            question: "How quickly can your team respond?",
-            answer:
-              "Our care coordinators are available around the clock and begin verified local coordination as soon as the essential details are confirmed.",
-          },
-          {
-            question: "Which cities and destinations do you cover?",
-            answer:
-              "Coverage depends on the requested ritual, local partner availability and destination. Our team confirms the exact service area before booking.",
-          },
-          {
-            question: "Which documents are usually needed?",
-            answer:
-              "Documentation varies by service and location. A coordinator provides a clear checklist after understanding your family’s requirement.",
-          },
-          {
-            question: "Do you arrange transportation?",
-            answer:
-              "Yes. Local transport, ambulance, hearse van and other required logistics can be coordinated depending on availability.",
-          },
-          {
-            question: "Can you guide our family remotely?",
-            answer:
-              "Yes. Families living outside the city or abroad can receive regular coordination updates and local representative support.",
           },
         ];
 

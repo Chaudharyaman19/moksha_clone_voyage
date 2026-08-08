@@ -2,9 +2,7 @@
 
 import type { ReactNode, SVGProps } from "react";
 
-interface CompassionSectionProps {
-  variant?: "voyage" | "seva";
-}
+interface CompassionSectionProps {}
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -198,14 +196,10 @@ const voyageStats = [
   },
 ];
 
-export default function CompassionSection({
-  variant = "voyage",
-}: CompassionSectionProps) {
-  const isSeva = variant === "seva";
-  const stats = isSeva ? sevaStats : voyageStats;
+export default function CompassionSection({}: CompassionSectionProps) {
+  const stats = sevaStats;
 
-  const features = isSeva
-    ? [
+  const features = [
         {
           title: "Ambulance Support",
           text: "Transport with respect",
@@ -224,28 +218,6 @@ export default function CompassionSection({
         {
           title: "Volunteer Support",
           text: "Help at hospital, home and ghat",
-          icon: UsersIcon,
-        },
-      ]
-    : [
-        {
-          title: "Transparent Pricing",
-          text: "No hidden costs, upfront quotes",
-          icon: BadgeCheckIcon,
-        },
-        {
-          title: "Digital Agreements",
-          text: "Secure documentation",
-          icon: PackageIcon,
-        },
-        {
-          title: "Ritual Guidance",
-          text: "Step-by-step support",
-          icon: PriestIcon,
-        },
-        {
-          title: "NRI Services",
-          text: "Support from abroad",
           icon: UsersIcon,
         },
       ];
@@ -280,7 +252,7 @@ export default function CompassionSection({
                 <LotusIcon className="h-9 w-9" />
               </div>
               <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
-                {isSeva ? "Moksha Sewa" : "Our Mission"}
+                Moksha Sewa
               </span>
             </div>
 
@@ -290,14 +262,10 @@ export default function CompassionSection({
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               <span className="block">
-                {isSeva
-                  ? "When a Family Needs Help,"
-                  : "A Journey Guided by Love"}
+                When a Family Needs Help,
               </span>
               <span className="mt-1 block text-[#956A32]">
-                {isSeva
-                  ? "We Arrange the Essentials."
-                  : "with Peace of Mind."}
+                We Arrange the Essentials.
               </span>
             </h2>
 
@@ -312,11 +280,9 @@ export default function CompassionSection({
             <p className="mb-4 max-w-[600px] text-[12px] font-normal leading-[1.55] text-[#3F2A1F] sm:text-[13px]">
               At{" "}
               <span className="font-semibold text-[#865E30]">
-                {isSeva ? "Moksha Sewa" : "Moksha Voyage"}
+                Moksha Sewa
               </span>
-              {isSeva
-                ? ", we support helpless, unclaimed and needy cases with practical final-rites arrangements. Our team helps coordinate ambulance or hearse van, priest support, wood, shroud cloth, flowers, ritual items, food service and on-ground volunteers—so every final journey is handled with dignity, respect and compassion."
-                : " builds a trusted and transparent digital ecosystem that connects families with verified end-of-life service providers, offering compassionate emotional and ritual guidance through every step with dignity and care."}
+              , we support helpless, unclaimed and needy cases with practical final-rites arrangements. Our team helps coordinate ambulance or hearse van, priest support, wood, shroud cloth, flowers, ritual items, food service and on-ground volunteers—so every final journey is handled with dignity, respect and compassion.
             </p>
 
             {/* Stat cards */}
@@ -367,19 +333,19 @@ export default function CompassionSection({
             {/* CTA buttons */}
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <a
-                href={isSeva ? "/request-help" : "/about"}
+                href="/request-help"
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[13px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)]"
               >
                 <HandHeartIcon className="h-5 w-5" />
-                {isSeva ? "Request Sewa Support" : "Learn More"}
+                Request Sewa Support
               </a>
 
               <a
-                href={isSeva ? "tel:+919810247319" : "/contact"}
+                href="tel:+919810247319"
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[13px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10"
               >
                 <PhoneIcon className="h-5 w-5" />
-                {isSeva ? "Call for Help" : "Contact Our Team"}
+                Call for Help
               </a>
             </div>
 
@@ -387,18 +353,14 @@ export default function CompassionSection({
             <div className="mt-4 flex w-fit max-w-full flex-col overflow-hidden rounded-xl border border-white/70 bg-white/65 shadow-[0_8px_24px_rgba(76,48,23,0.08)] backdrop-blur-sm sm:flex-row">
               <div className="flex min-w-[235px] items-center gap-3 px-4 py-2.5">
                 <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9A6B31]/10 text-[#8B5F2D]">
-                  {isSeva ? (
-                    <PriestIcon className="h-5 w-5" />
-                  ) : (
-                    <ClockIcon className="h-5 w-5" />
-                  )}
+                  <PriestIcon className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="text-[12px] font-semibold text-[#4A3020]">
-                    {isSeva ? "Priest Support" : "24/7 Support"}
+                    Priest Support
                   </div>
                   <div className="text-[9px] text-[#796556]">
-                    {isSeva ? "Experienced & Verified" : "Always Available"}
+                    Experienced & Verified
                   </div>
                 </div>
               </div>
@@ -407,18 +369,14 @@ export default function CompassionSection({
 
               <div className="flex min-w-[250px] items-center gap-3 px-4 py-2.5">
                 <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9A6B31]/10 text-[#8B5F2D]">
-                  {isSeva ? (
-                    <BoxIcon className="h-5 w-5" />
-                  ) : (
-                    <ShieldIcon className="h-5 w-5" />
-                  )}
+                  <BoxIcon className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="text-[12px] font-semibold text-[#4A3020]">
-                    {isSeva ? "Ritual Items & Guidance" : "Cultural Sensitivity"}
+                    Ritual Items & Guidance
                   </div>
                   <div className="text-[9px] text-[#796556]">
-                    {isSeva ? "Complete Essentials" : "Respectful Support"}
+                    Complete Essentials
                   </div>
                 </div>
               </div>

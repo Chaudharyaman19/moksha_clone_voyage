@@ -22,21 +22,21 @@ export default function Page() {
     <div>
       <Sideicon />
       <Topbar />
-      <Navbar variant="seva" />
-      <Hero variant="seva" />
+      <Navbar />
+      <Hero />
       {/* Namo Gange Section */}
       {/* <AboutNamoGange /> */}
 
-      <CompassionSection variant="seva" />
-      <HowWeHelp variant="seva" />
-      <Serving variant="seva" />
-      <HowItWorks variant="seva" />
-      <SacredJourney variant="seva" />
+      <CompassionSection />
+      <HowWeHelp />
+      <Serving />
+      <HowItWorks />
+      <SacredJourney />
       <WhyFamiliesTrust />
       <VoicesOfGratitude />
       <GlimpseOfJourney />
       <FAQ />
-      <Footer variant="seva" />
+      <Footer />
     </div>
   );
 }

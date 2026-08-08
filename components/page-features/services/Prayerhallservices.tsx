@@ -36,7 +36,7 @@ export default function PrayerHallServices() {
   return (
     <div className="min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main className="pb-6 lg:pb-6 overflow-hidden">
         <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[530px] overflow-hidden">

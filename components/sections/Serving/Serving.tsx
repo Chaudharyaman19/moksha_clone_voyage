@@ -14,9 +14,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
-interface ServingProps {
-  variant?: "voyage" | "seva";
-}
+interface ServingProps {}
 
 interface ActivityItem {
   title: string;
@@ -247,16 +245,10 @@ function ActivityGroup({
   );
 }
 
-export default function Serving({
-  variant = "voyage",
-}: ServingProps) {
+export default function Serving({}: ServingProps) {
   return (
     <section
-      className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] px-3 sm:px-4 lg:px-5 ${
-        variant === "seva"
-          ? "pb-3 pt-2 md:pb-3 md:pt-2"
-          : "py-3 md:py-4"
-      }`}
+      className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] px-3 sm:px-4 lg:px-5 pb-3 pt-2 md:pb-3 md:pt-2`}
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-24 w-[70%] -translate-x-1/2 rounded-full bg-[#B97A2A]/[0.035] blur-3xl" />

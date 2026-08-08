@@ -32,7 +32,7 @@ export default function FamilySupport() {
   return (
     <div className="min-h-screen font-sans text-[#4A3D36] bg-[#FDFBF7]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main>
 

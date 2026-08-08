@@ -55,9 +55,7 @@ function AnimatedNumber({ endString }: { endString: string }) {
   );
 }
 
-interface HeroProps {
-  variant?: "voyage" | "seva";
-}
+interface HeroProps {}
 
 type StatItem = {
   value: string;
@@ -79,32 +77,22 @@ type SlideContent = {
   };
 };
 
-export default function Hero({ variant = "voyage" }: HeroProps) {
+export default function Hero({}: HeroProps) {
   const images = useMemo(
-    () =>
-      variant === "seva"
-        ? [
-          "/hero-images/7.png",
-          "/hero-images/8.png",
-          "/hero-images/1.png",
-          "/hero-images/2.png",
-          "/hero-images/3.png",
-            "/hero-images/4.png",
-               "/hero-images/9.png",
-        ]
-        : [
-          "/assets/image.webp",
-          "/assets/image3.png",
-          "/assets/im3.jpeg",
-          "/assets/im4.jpeg",
-        ],
-    [variant],
+    () => [
+      "/hero-images/7.png",
+      "/hero-images/8.png",
+      "/hero-images/1.png",
+      "/hero-images/2.png",
+      "/hero-images/3.png",
+      "/hero-images/4.png",
+      "/hero-images/9.png",
+    ],
+    [],
   );
 
   const slideContent = useMemo<SlideContent[]>(
-    () =>
-      variant === "seva"
-        ? [
+    () => [
             {
             heading: ["Dignity for Every Life.", "Support in Difficult Times."],
               description:
@@ -204,38 +192,18 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               },
             },
           ]
-        : images.map(() => ({
-            heading: [
-              "Guided Farewells.",
-              "Lasting Memories.",
-              "Care Across Borders.",
-            ],
-            description:
-              "Compassionate end-to-end support for families, with verified services, transparent guidance and clear coordination at every step, ensuring every ritual is completed respectfully, peacefully and without unnecessary stress.",
-            alt: "Compassionate farewell support for families",
-          })),
-    [images, variant],
+    ,
+    [],
   );
 
-  const stats: StatItem[] =
-    variant === "seva"
-      ? [
-        { value: "24/7", label: "Help Requests", icon: FaUsers },
-        { value: "1", label: "Call to Coordinate", icon: FaLandmark },
-        { value: "100%", label: "Respectful Care", icon: FaSmile },
-        { value: "0", label: "Cost for Eligible Cases", icon: FaShieldAlt },
-      ]
-      : [
-        { value: "24/7", label: "Care Coordinators", icon: FaUsers },
-        { value: "15+", label: "Service Cities", icon: FaLandmark },
-        { value: "98%", label: "Families Supported", icon: FaSmile },
-        { value: "100%", label: "Transparent Support", icon: FaShieldAlt },
-      ];
+  const stats: StatItem[] = [
+    { value: "24/7", label: "Help Requests", icon: FaUsers },
+    { value: "1", label: "Call to Coordinate", icon: FaLandmark },
+    { value: "100%", label: "Respectful Care", icon: FaSmile },
+    { value: "0", label: "Cost for Eligible Cases", icon: FaShieldAlt },
+  ];
 
-  const trustChips =
-    variant === "seva"
-      ? ["Ambulance Support", "Priest & Ritual Items", "Volunteers on Ground"]
-      : ["Verified Services", "Clear Guidance", "24/7 Support"];
+  const trustChips = ["Ambulance Support", "Priest & Ritual Items", "Volunteers on Ground"];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
@@ -356,9 +324,7 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
                 <FaFire className="h-3.5 w-3.5" />
               </span>
               <span className="min-w-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E] sm:text-[10px] sm:tracking-[0.28em]">
-                {variant === "seva"
-                  ? "मोक्ष सेवा · Final Rites Support"
-                  : "मोक्ष · With You, Always"}
+                मोक्ष सेवा · Final Rites Support
               </span>
             </div>
 
@@ -398,17 +364,11 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
 
             <div className="mt-5 flex flex-col items-stretch gap-3 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
               <a
-                href={
-                  variant === "seva"
-                    ? activeSlide.primaryButton?.href ?? "/sevas"
-                    : "/services"
-                }
+                href={activeSlide.primaryButton?.href ?? "/sevas"}
                 className="group/cta inline-flex min-h-[46px] w-full items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-5 py-3 text-center text-[14px] font-semibold leading-tight text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)] sm:w-auto sm:min-w-[182px] sm:px-6"
               >
                 <span>
-                  {variant === "seva"
-                    ? activeSlide.primaryButton?.label ?? "Final Rites Help"
-                    : "Get Support"}
+                  {activeSlide.primaryButton?.label ?? "Final Rites Help"}
                 </span>
                 <FaCalendarAlt
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"
@@ -416,17 +376,11 @@ export default function Hero({ variant = "voyage" }: HeroProps) {
               </a>
 
               <a
-                href={
-                  variant === "seva"
-                    ? activeSlide.secondaryButton?.href ?? "/sevas"
-                    : "/services"
-                }
+                href={activeSlide.secondaryButton?.href ?? "/sevas"}
                 className="group/cta inline-flex min-h-[46px] w-full items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-white/60 px-5 py-3 text-center text-[14px] font-semibold leading-tight text-[#73532F] backdrop-blur-[2px] transition hover:border-[#8B6A3E] hover:bg-white/80 sm:w-auto sm:min-w-[182px] sm:px-6"
               >
                 <span>
-                  {variant === "seva"
-                    ? activeSlide.secondaryButton?.label ?? "Ambulance & Ritual Items"
-                    : "Explore Services"}
+                  {activeSlide.secondaryButton?.label ?? "Ambulance & Ritual Items"}
                 </span>
                 <FaArrowRight
                   className="h-[17px] w-[17px] transition-transform duration-300 group-hover/cta:translate-x-0.5"

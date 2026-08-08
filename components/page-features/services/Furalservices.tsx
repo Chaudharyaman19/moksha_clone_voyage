@@ -71,7 +71,7 @@ export default function WoodRitualItemsPage() {
   return (
     <div className="min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main className="overflow-hidden">
         <HeroSection />

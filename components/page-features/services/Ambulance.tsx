@@ -169,7 +169,7 @@ export default function AmbulanceService() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#2F2922]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main className="w-full bg-[#FBFAF7] py-0">
         <div className="w-full overflow-hidden bg-[#FBFAF7]">

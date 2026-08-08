@@ -104,7 +104,7 @@ export default function About() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main>
         {/* ============ HERO — layered type + Devanagari watermark ============ */}
@@ -785,7 +785,7 @@ export default function About() {
         </section>
       </main>
 
-      <Footer variant="seva" />
+      <Footer />
     </div>
   );
 }

@@ -7,9 +7,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
-interface MokshaShlokSectionProps {
-  variant?: "voyage" | "seva";
-}
+interface MokshaShlokSectionProps {}
 
 interface StepItem {
   number: string;
@@ -159,12 +157,8 @@ function StepConnector() {
   );
 }
 
-export default function HowItWorks({
-  variant = "voyage",
-}: MokshaShlokSectionProps) {
-  const steps: StepItem[] =
-    variant === "seva"
-      ? [
+export default function HowItWorks({}: MokshaShlokSectionProps) {
+  const steps: StepItem[] = [
           {
             number: "01",
             title: "Call or Send Details",
@@ -194,38 +188,8 @@ export default function HowItWorks({
             icon: null,
             lotusStep: true,
           },
-        ]
-      : [
-          {
-            number: "01",
-            title: "Call Anytime, 24×7",
-            description:
-              "Connect with our support team whenever assistance is required.",
-            icon: FaPhoneAlt,
-          },
-          {
-            number: "02",
-            title: "Share Details",
-            description:
-              "Tell us what is needed. Our team guides you clearly.",
-            icon: FaUser,
-          },
-          {
-            number: "03",
-            title: "We Arrange Everything",
-            description:
-              "Transport, documentation and services are coordinated.",
-            icon: FaHandHoldingHeart,
-          },
-          {
-            number: "04",
-            title: "You Stay With Family",
-            description:
-              "We manage each step with dignity, care and compassion.",
-            icon: null,
-            lotusStep: true,
-          },
         ];
+
 
   return (
     <section className="relative w-full overflow-hidden border-y border-[#EADFCE] bg-[#FBF7EF] py-2 md:py-3">

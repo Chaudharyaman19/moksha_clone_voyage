@@ -24,9 +24,7 @@ import mokshalogo from "../../../public/assets/logoreal.jpeg";
 import mokshaSevaLogo from "../../../public/assets/logo-moksha-seva.png";
 import { newsletterApi } from "@/lib/newsletterApi";
 
-interface FooterProps {
-  variant?: "voyage" | "seva";
-}
+interface FooterProps {}
 
 /* Kalash finial — same signature as About & Contact pages */
 function Kalash() {
@@ -51,36 +49,23 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Footer({ variant = "seva" }: FooterProps) {
+export default function Footer({}: FooterProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const isSeva = variant === "seva";
+  const brandName = "Moksha Sewa";
+  const tagline = "Dignified Funeral & Ritual Services";
+  const description = "Complete funeral, cremation, pandit, ambulance, hearse van, prayer hall and family support services with dignity, tradition and care.";
+  const contactEmail = "info@mokshasewa.org";
+  const contactNumber = "9220147229";
 
-  const brandName = isSeva ? "Moksha Sewa" : "Moksha Voyage";
-  const tagline = isSeva
-    ? "Dignified Funeral & Ritual Services"
-    : "Compassionate End-of-Life Guidance";
-  const description = isSeva
-    ? "Complete funeral, cremation, pandit, ambulance, hearse van, prayer hall and family support services with dignity, tradition and care."
-    : "Providing respectful guidance with dignity, tradition and care for every family.";
-  const contactEmail = isSeva ? "info@mokshasewa.org" : "info@mokshasewa.com";
-  const contactNumber = isSeva ? "9220147229" : "+91 9220147229";
-
-  const services = isSeva
-    ? [
-        { label: "Wood & Ritual Items", href: "/furalservices" },
-        { label: "Priest Support", href: "/panditservices" },
-        { label: "Ambulance", href: "/ambulanceservices" },
-        { label: "Ground & Prayer Support", href: "/prayerhallservices" },
-        { label: "Family Support", href: "/specialservices" },
-      ]
-    : [
-        { label: "Ritual Guidance", href: "#" },
-        { label: "Planning Support", href: "#" },
-        { label: "Documentation", href: "#" },
-        { label: "24/7 Care", href: "#" },
-      ];
+  const services = [
+    { label: "Wood & Ritual Items", href: "/furalservices" },
+    { label: "Priest Support", href: "/panditservices" },
+    { label: "Ambulance", href: "/ambulanceservices" },
+    { label: "Ground & Prayer Support", href: "/prayerhallservices" },
+    { label: "Family Support", href: "/specialservices" },
+  ];
 
   const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -88,7 +73,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
     if (!email.trim()) return;
 
     try {
-      await newsletterApi.subscribe(email.trim(), isSeva ? "footer-request-support" : "footer-stay-connected");
+      await newsletterApi.subscribe(email.trim(), "footer-request-support");
       setSubscribed(true);
       setEmail("");
 
@@ -129,7 +114,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 <Kalash />
                 <div className="relative h-full w-full overflow-hidden rounded-xl border border-[#D5A451]/30 bg-white p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.25)]">
                   <Image
-                    src={isSeva ? mokshaSevaLogo : mokshalogo}
+                    src={mokshaSevaLogo}
                     alt={brandName}
                     fill
                     priority
@@ -141,15 +126,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
 
               <div>
                 <h2 className="font-serif text-2xl leading-none text-white">
-                  {isSeva ? (
-                    <>
-                      Moksha <span className=" text-[#E4B75F]">Sewa</span>
-                    </>
-                  ) : (
-                    <>
-                      Moksha <span className=" text-[#E4B75F]">Voyage</span>
-                    </>
-                  )}
+                  Moksha <span className=" text-[#E4B75F]">Sewa</span>
                 </h2>
                 <p className="mt-1 text-xs font-medium tracking-wide text-[#D9A84F] sm:text-[13px]">
                   {tagline}
@@ -203,20 +180,10 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                 </div>
                 <div>
                   <h3 className="font-serif text-lg leading-tight text-white">
-                    {isSeva ? (
-                      <>
-                        Request <span className=" text-[#E4B75F]">Support</span>
-                      </>
-                    ) : (
-                      <>
-                        Stay <span className=" text-[#E4B75F]">Connected</span>
-                      </>
-                    )}
+                    Request <span className=" text-[#E4B75F]">Support</span>
                   </h3>
                   <p className="mt-0.5 text-[11px] leading-4 text-white/55">
-                    {isSeva
-                      ? "Share your email and our support team will contact you."
-                      : "Receive thoughtful guidance and important updates."}
+                    Share your email and our support team will contact you.
                   </p>
                 </div>
               </div>
@@ -233,7 +200,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                   type="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  placeholder={isSeva ? "Family contact email" : "Your email address"}
+                  placeholder="Family contact email"
                   className="min-h-10 flex-1 rounded-lg border border-[#B88846]/55 bg-white/[0.045] px-3.5 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-[#E4B75F] focus:bg-white/[0.07]"
                   required
                 />
@@ -244,7 +211,7 @@ export default function Footer({ variant = "seva" }: FooterProps) {
                     : "bg-gradient-to-b from-[#E5B85F] to-[#C78B32] text-[#24150C] hover:brightness-110"
                     }`}
                 >
-                  {subscribed ? "Submitted" : isSeva ? "Send" : "Join"}
+                  {subscribed ? "Submitted" : "Send"}
                   {!subscribed && (
                     <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   )}

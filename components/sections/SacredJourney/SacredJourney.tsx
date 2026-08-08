@@ -12,9 +12,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-interface SacredJourneyProps {
-  variant?: "voyage" | "seva";
-}
+interface SacredJourneyProps {}
 
 interface SupportCard {
   title: string;
@@ -289,12 +287,10 @@ function FloatingIcon({
   );
 }
 
-export default function SacredJourney({
-  variant = "voyage",
-}: SacredJourneyProps) {
+export default function SacredJourney({}: SacredJourneyProps) {
   const router = useRouter();
 
-  const cards = variant === "seva" ? sevaCards : voyageCards;
+  const cards = sevaCards;
 
   const handleCardClick = (href?: string) => {
     if (href) {

@@ -44,7 +44,7 @@ function MokshaGallery() {
       title: "Dignified Body Transport Service",
       description:
         "Respectful and compassionate body transport services with trained professionals handling all logistics with care.",
-      videographer: "Moksha Voyage Team",
+      videographer: "Moksha Sewa Team",
       likes: 234,
       date: "2024",
       height: 380,
@@ -59,7 +59,7 @@ function MokshaGallery() {
       title: "Traditional Funeral Decoration",
       description:
         "Beautiful floral arrangements and traditional decor for funeral ceremonies, creating a serene and sacred atmosphere.",
-      videographer: "Moksha Voyage Team",
+      videographer: "Moksha Sewa Team",
       likes: 567,
       date: "2024",
       height: 520,
@@ -74,7 +74,7 @@ function MokshaGallery() {
       title: "Hearse Van Transport",
       description:
         "Well-maintained hearse vans for respectful transportation, ensuring dignity throughout the journey.",
-      videographer: "Moksha Voyage Team",
+      videographer: "Moksha Sewa Team",
       likes: 189,
       date: "2024",
       height: 420,
@@ -89,7 +89,7 @@ function MokshaGallery() {
       title: "Sacred Prayer Hall",
       description:
         "Peaceful and serene prayer hall for last rites and ceremonies, accommodating families with comfort and dignity.",
-      videographer: "Moksha Voyage Team",
+      videographer: "Moksha Sewa Team",
       likes: 892,
       date: "2024",
       height: 480,
@@ -104,7 +104,7 @@ function MokshaGallery() {
       title: "Family Notification Services",
       description:
         "Compassionate assistance in notifying and coordinating with family members during difficult times.",
-      videographer: "Moksha Voyage Team",
+      videographer: "Moksha Sewa Team",
       likes: 445,
       date: "2024",
       height: 350,

@@ -21,21 +21,15 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 
-interface NavbarProps {
-  variant?: "voyage" | "seva";
-}
+interface NavbarProps { }
 
-export default function Navbar({ variant = "seva" }: NavbarProps) {
+export default function Navbar({ }: NavbarProps) {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  // Derived from the actual URL rather than tracked in state — a manually-set "which link did
-  // they last click" flag goes stale the moment someone refreshes, opens a link in a new tab, or
-  // lands on a page via browser back/forward, all of which never fire a click handler here.
   const isPathActive = (path: string) => {
     if (path.startsWith("#")) return false;
     return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
@@ -219,16 +213,12 @@ export default function Navbar({ variant = "seva" }: NavbarProps) {
       >
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
-            <div className="absolute top-0 left-0 z-10">
+            <div className="absolute top-1 left-0 z-10">
               <button onClick={() => handleNavigation("/", "home")} aria-label="Moksha Sewa — home">
                 <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md border border-[#D8B982] bg-white p-1.5 sm:p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80">
                   <img
-                    src={
-                      variant === "seva"
-                        ? "/assets/logo-moksha-seva.png"
-                        : "/assets/logoreal-removebg-preview.png"
-                    }
-                    alt={variant === "seva" ? "Moksha Sewa Logo" : "Moksha Voyage Logo"}
+                    src="/assets/logo-moksha-seva.png"
+                    alt="Moksha Sewa Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>

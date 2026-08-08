@@ -20,7 +20,7 @@ export default function HearseVanServices() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
-      <Navbar variant="seva" />
+      <Navbar />
 
       <main className="pt-24 pb-16 lg:pt-32 lg:pb-24">
         {/* Hero Section */}
