@@ -199,6 +199,7 @@ interface CardItem {
   desc: string;
   features: string[];
   image?: string;
+  href?: string;
 }
 
 interface StatItem {
@@ -230,6 +231,7 @@ export default function HowWeCanHelp({
           desc: "Cremation wood, shroud cloth, flowers, lamps and prayer items arranged for families in need.",
           features: ["Wood Arrangement", "Shroud & Flowers", "Prayer Items"],
           image: "/assets/how-we-help/four.png",
+          href: "/furalservices",
         },
         {
           icon: "FaPriestOutline",
@@ -237,6 +239,7 @@ export default function HowWeCanHelp({
           desc: "Priest guidance is arranged so final prayers can be completed with proper care.",
           features: ["Proper Rituals", "Final Rites", "Family Guidance"],
           image: "/assets/how-we-help/pandit.png",
+          href: "/panditservices",
         },
         {
           icon: "FaHearseVan",
@@ -244,6 +247,7 @@ export default function HowWeCanHelp({
           desc: "Respectful body transport from hospital, home or public place to the cremation ground.",
           features: ["Body Transport", "Hearse Van", "Urgent Help"],
           image: "/assets/how-we-help/five.png",
+          href: "/ambulanceservices",
         },
         {
           icon: "FaVolunteersOutline",
@@ -251,6 +255,7 @@ export default function HowWeCanHelp({
           desc: "On-ground volunteers help with coordination, materials, prayers and family guidance.",
           features: ["Ground Support", "Prayer Setup", "Volunteer Help"],
           image: "/assets/how-we-help/three.png",
+          href: "/prayerhallservices",
         },
       ]
     : [
@@ -495,7 +500,7 @@ export default function HowWeCanHelp({
                   </div>
 
                   <a
-                    href="/request-help"
+                    href={card.href || "/request-help"}
                     className="mt-2 flex min-h-8 w-full items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-3 py-2 text-center font-serif text-[14px] leading-tight text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
                   >
                     <span >Learn More</span>
@@ -530,7 +535,7 @@ export default function HowWeCanHelp({
                 </div>
 
                 <a
-                  href="/services"
+                  href={card.href || "/services"}
                   className="mt-auto inline-flex items-center justify-center gap-1 rounded-lg border border-[#E8DBC5] px-3 py-2 text-xs text-[#8B6A3E] hover:bg-[#F8F4EC]"
                 >
                   Learn More

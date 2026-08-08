@@ -47,7 +47,7 @@ const socialLinks = [
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Volunteer", href: "/volunteer/register" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -69,12 +69,18 @@ export default function Footer({ variant = "seva" }: FooterProps) {
 
   const services = isSeva
     ? [
-      "Funeral Samagri",
-      "Pandit Service",
-      "Ambulance Van",
-      "Prayer Hall Booking",
-    ]
-    : ["Ritual Guidance", "Planning Support", "Documentation", "24/7 Care"];
+        { label: "Wood & Ritual Items", href: "/furalservices" },
+        { label: "Priest Support", href: "/panditservices" },
+        { label: "Ambulance", href: "/ambulanceservices" },
+        { label: "Ground & Prayer Support", href: "/prayerhallservices" },
+        { label: "Family Support", href: "/specialservices" },
+      ]
+    : [
+        { label: "Ritual Guidance", href: "#" },
+        { label: "Planning Support", href: "#" },
+        { label: "Documentation", href: "#" },
+        { label: "24/7 Care", href: "#" },
+      ];
 
   const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -280,12 +286,14 @@ export default function Footer({ variant = "seva" }: FooterProps) {
             <FooterColumnTitle icon={FaLeaf} title="Services" />
             <ul className="mt-2.5 space-y-1.5">
               {services.map((service) => (
-                <li
-                  key={service}
-                  className="flex items-start gap-1.5 text-[13px] leading-5 text-white/70"
-                >
-                  <FaChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
-                  <span>{service}</span>
+                <li key={service.label}>
+                  <Link
+                    href={service.href}
+                    className="group inline-flex items-center gap-1.5 text-[13px] text-white/70 transition hover:text-[#E4B75F]"
+                  >
+                    <FaChevronRight className="h-3.5 w-3.5 text-[#D3A14D] transition group-hover:translate-x-0.5" />
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>
