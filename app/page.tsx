@@ -13,14 +13,12 @@ import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
 import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
 import Footer from "@/components/layout/Footer/Footer";
-import Sideicon from "@/components/layout/Sideicon/Sideicon";
 
 import FAQ from "@/components/sections/FAQ/FAQ";
 
 export default function Page() {
   return (
     <div>
-      <Sideicon />
       <Topbar />
       <Navbar />
       <Hero />

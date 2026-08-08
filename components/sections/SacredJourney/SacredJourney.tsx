@@ -77,44 +77,7 @@ const sevaCards: SupportCard[] = [
   },
 ];
 
-const voyageCards: SupportCard[] = [
-  {
-    title: "Donate",
-    description:
-      "Support dignified care, transparent coordination and compassionate assistance.",
-    button: "Contribute Now",
-    image: donationImages.donate,
-    icon: FaHandHoldingHeart,
-    href: "/donation",
-  },
-  {
-    title: "Volunteer",
-    description:
-      "Join our support network and help families when compassionate care matters most.",
-    button: "Become a Volunteer",
-    image: donationImages.volunteer,
-    icon: FaUsers,
-    href: "/volunteer/register",
-  },
-  {
-    title: "Sponsor a Service",
-    description:
-      "Sponsor a verified service or support a family in memory of a loved one.",
-    button: "Sponsor Now",
-    image: donationImages.sponsor,
-    icon: FaHandsHelping,
-    href: "/donation",
-  },
-  {
-    title: "Partner With Us",
-    description:
-      "Partner with our mission to extend dignified support across more communities.",
-    button: "Partner With Us",
-    image: donationImages.partner,
-    icon: FaHandshake,
-    href: "/contact",
-  },
-];
+
 
 function LotusMark({
   className = "h-5 w-8",

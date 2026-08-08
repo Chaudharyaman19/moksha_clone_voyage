@@ -175,27 +175,6 @@ const sevaStats = [
   },
 ];
 
-const voyageStats = [
-  {
-    value: "500+",
-    title: "Families Served",
-    caption: "With Compassion",
-    icon: HandHeartIcon,
-  },
-  {
-    value: "50+",
-    title: "Verified Pandits",
-    caption: "Across India",
-    icon: PriestIcon,
-  },
-  {
-    value: "15+",
-    title: "Cities Covered",
-    caption: "Pan-India Network",
-    icon: BadgeCheckIcon,
-  },
-];
-
 export default function CompassionSection({}: CompassionSectionProps) {
   const stats = sevaStats;
 
