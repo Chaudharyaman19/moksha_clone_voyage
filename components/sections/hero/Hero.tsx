@@ -286,28 +286,6 @@ export default function Hero({}: HeroProps) {
         <FaChevronRight className="h-5 w-5" />
       </button>
 
-      {/* Slide dots + counter — sits just above the stats band */}
-      <div className="absolute bottom-[80px] right-5 z-40 hidden items-center gap-3 rounded-full border border-white/25 bg-black/25 px-3 py-1.5 backdrop-blur-md md:flex">
-        <div className="flex items-center gap-0.5">
-          {images.map((image, index) => (
-            <button
-              key={image}
-              type="button"
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className="grid h-11 w-11 place-items-center rounded-full transition"
-            >
-              <span
-                className={`h-1.5 rounded-full transition-all duration-300 ${index === currentIndex
-                    ? "w-5 bg-[#E4B75F]"
-                    : "w-1.5 bg-white/50 hover:bg-white/80"
-                  }`}
-              />
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Main content */}
       <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
         <div className="flex h-full items-start pt-[104px] sm:pt-[122px] md:pt-[140px] lg:pt-[150px] xl:pt-[160px]">
