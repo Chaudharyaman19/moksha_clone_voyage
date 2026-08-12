@@ -290,15 +290,15 @@ export default function HowWeCanHelp() {
           <div className="inline-flex items-center mb-0 gap-4">
             <span className="h-px bg-gradient-to-r from-transparent via-[#A66F2C] to-[#A66F2C] w-20" />
 
-            <span className="rotate-45 text-[11px] leading-none text-[#A66F2C]">
+            <span className="rotate-45 text-[14px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
-            <span className="font-semibold uppercase text-[#9A6426] text-[12px] tracking-[0.32em] sm:text-[13px]">
+            <span className="font-semibold uppercase text-[#9A6426] text-[14px] tracking-[0.32em] sm:text-[15px]">
               Moksha Sewa Services
             </span>
 
-            <span className="rotate-45 text-[11px] leading-none text-[#A66F2C]">
+            <span className="rotate-45 text-[14px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
@@ -315,7 +315,7 @@ export default function HowWeCanHelp() {
 
             <div className="mt-0.5 flex items-center justify-center gap-2 text-[#A66F2C]">
               <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#A66F2C]" />
-              <span className="text-[13px]">◇</span>
+              <span className="text-[14px]">◇</span>
               <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#A66F2C]" />
             </div>
         </header>
@@ -362,7 +362,7 @@ export default function HowWeCanHelp() {
                         key={feature}
                         className="flex items-center gap-1.5 text-[14px] leading-5 text-[#3A291F]"
                       >
-                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#A86D1E] text-[9px] font-bold leading-none text-white">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#A86D1E] text-[14px] font-bold leading-none text-white">
                           ✓
                         </span>
                         <span>{feature}</span>
@@ -397,7 +397,7 @@ export default function HowWeCanHelp() {
                     <div className="font-serif text-[15px] leading-none text-[#2F1D14]">
                       {stat.value}
                     </div>
-                    <div className="mt-0.5 text-[11px] leading-tight text-[#432D20]">
+                    <div className="mt-0.5 text-[14px] leading-tight text-[#432D20]">
                       {stat.label}
                     </div>
                   </div>

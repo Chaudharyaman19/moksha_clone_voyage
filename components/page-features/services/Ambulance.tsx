@@ -244,7 +244,7 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-[21px] flex items-center gap-[6px] text-[13px] font-normal text-[#756858]">
+          <div className="mt-[21px] flex items-center gap-[6px] text-[14px] font-normal text-[#756858]">
             <span className="text-[#A87935]">
               <Icon name="shield" size={16} />
             </span>
@@ -274,7 +274,7 @@ function FeatureHighlights() {
             <h3 className="mb-[3px] text-[15px] font-normal leading-[1.15] text-[#2F2A24]">
               {item.title}
             </h3>
-            <p className="text-[13px] leading-snug text-[#5A5148]">
+            <p className="text-[14px] leading-snug text-[#5A5148]">
               {item.copy}
             </p>
           </div>
@@ -293,14 +293,14 @@ function HowItWorks() {
         {steps.map((step, index) => (
           <div className="relative" key={step.title}>
             <article className="relative min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
-              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[12px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[14px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
                 {index + 1}
               </span>
               <div className="mx-auto mb-1 grid h-[34px] place-items-center text-[#9C6D2A]">
                 <Icon name={step.icon} size={33} />
               </div>
               <h3 className="mb-[3px] text-[15px] font-normal">{step.title}</h3>
-              <p className="text-[13px] leading-snug text-[#514A42]">
+              <p className="text-[14px] leading-snug text-[#514A42]">
                 {step.copy}
               </p>
             </article>
@@ -340,7 +340,7 @@ function SupportSection() {
               className="flex items-start gap-[7px] text-[15px] leading-[1.3] text-[#3F3831]"
               key={item}
             >
-              <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[9px] font-normal text-white">
+              <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[14px] font-normal text-white">
                 ✓
               </span>
               <span>{item}</span>
@@ -400,7 +400,7 @@ function StoryCards() {
               <h3 className="mb-[2px] text-[15px] font-normal leading-[1.15] text-[#E2BD78]">
                 {story.title}
               </h3>
-              <p className="text-[13px] leading-snug text-[#F5EEE2]">
+              <p className="text-[14px] leading-snug text-[#F5EEE2]">
                 {story.copy}
               </p>
             </div>
@@ -473,7 +473,7 @@ function DonationSection() {
           </div>
         </div>
 
-        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[12px] leading-[1.25] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
+        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.25] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
           <span className="mb-[7px] text-[#DCB56F]">
             <Icon name="heart" size={16} />
           </span>
@@ -517,7 +517,7 @@ function InfoGrid({
               {item.title}
             </h3>
             <p
-              className={`leading-snug text-[#51483F] ${compact ? "text-[13px]" : "text-[13px]"
+              className={`leading-snug text-[#51483F] ${compact ? "text-[14px]" : "text-[14px]"
                 }`}
             >
               {item.copy}

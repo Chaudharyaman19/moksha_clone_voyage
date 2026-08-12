@@ -123,13 +123,13 @@ const trustItems: TrustItem[] = [
 ];
 
 const inputClass =
-  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white px-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
+  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white px-3 text-[14px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
 const iconInputClass =
-  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white pl-9 pr-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
+  "h-[42px] w-full rounded-[6px] border border-[#E6D8C9] bg-white pl-9 pr-3 text-[14px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
 const labelClass =
-  "mb-1.5 block text-[10px] font-medium leading-none text-[#3B2A20]";
+  "mb-1.5 block text-[14px] font-medium leading-none text-[#3B2A20]";
 
 function LotusOrnament({
   className = "h-8 w-11",
@@ -370,7 +370,7 @@ export default function VolunteerRegister() {
               <span className="h-px w-14 bg-[#E39453]" />
             </div>
 
-            <p className="mx-auto mt-2 max-w-[650px] text-[11px] leading-5 text-[#665246] sm:text-[12px]">
+            <p className="mx-auto mt-2 max-w-[650px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
               Join our mission of serving
               families with care, respect and
               compassion.
@@ -649,15 +649,15 @@ export default function VolunteerRegister() {
                   </div>
 
                   {pincodeStatus === "loading" && (
-                    <p className="mt-1 text-[10px] text-[#9E9186]">Looking up state and city…</p>
+                    <p className="mt-1 text-[14px] text-[#9E9186]">Looking up state and city…</p>
                   )}
                   {pincodeStatus === "done" && (
-                    <p className="mt-1 text-[10px] text-emerald-600">
+                    <p className="mt-1 text-[14px] text-emerald-600">
                       Found: {form.city}, {form.state}
                     </p>
                   )}
                   {pincodeStatus === "error" && (
-                    <p className="mt-1 text-[10px] text-[#C1502E]">
+                    <p className="mt-1 text-[14px] text-[#C1502E]">
                       Couldn&apos;t find this pincode — please enter state and city manually.
                     </p>
                   )}
@@ -678,7 +678,7 @@ export default function VolunteerRegister() {
                         onChange={handleChange}
                         required
                         rows={2}
-                        className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                        className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[14px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
                         placeholder="House/flat no., street, landmark"
                       />
                     </div>
@@ -712,7 +712,7 @@ export default function VolunteerRegister() {
                           }
                           required
                           rows={2}
-                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[14px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
                           placeholder="Share your motivation"
                         />
                       </div>
@@ -737,7 +737,7 @@ export default function VolunteerRegister() {
                             handleChange
                           }
                           rows={2}
-                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[11px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
+                          className="min-h-[46px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-2 pl-9 pr-3 text-[14px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10"
                           placeholder="Your skills or experience"
                         />
                       </div>
@@ -885,7 +885,7 @@ export default function VolunteerRegister() {
                                     skill,
                                   )
                                 }
-                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[9px] font-medium transition ${selected
+                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[14px] font-medium transition ${selected
                                     ? "border-[#ED6B13] bg-[#ED6B13] text-white"
                                     : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
                                   }`}
@@ -904,7 +904,7 @@ export default function VolunteerRegister() {
                   </div>
                 </div>
 
-                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-3 text-[9px] leading-4 text-[#5E4B3F]">
+                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-3 text-[14px] leading-4 text-[#5E4B3F]">
                   <input
                     type="checkbox"
                     checked={consent}
@@ -926,7 +926,7 @@ export default function VolunteerRegister() {
                 </label>
 
                 {error && (
-                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[10px] text-red-700">
+                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[14px] text-red-700">
                     {error}
                   </div>
                 )}
@@ -934,7 +934,7 @@ export default function VolunteerRegister() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group flex h-[43px] w-full items-center justify-center gap-3 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[13px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="group flex h-[43px] w-full items-center justify-center gap-3 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[14px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -952,7 +952,7 @@ export default function VolunteerRegister() {
                   )}
                 </button>
 
-                <p className="flex items-center justify-center gap-2 text-center text-[9px] text-[#75655A]">
+                <p className="flex items-center justify-center gap-2 text-center text-[14px] text-[#75655A]">
                   <FaShieldAlt className="text-[#726D67]" />
                   Your information is safe and
                   secure with us.
@@ -982,11 +982,11 @@ export default function VolunteerRegister() {
                       </span>
 
                       <div>
-                        <h3 className="font-serif text-[13px] leading-tight text-[#3E261B]">
+                        <h3 className="font-serif text-[14px] leading-tight text-[#3E261B]">
                           {item.title}
                         </h3>
 
-                        <p className="mt-1 text-[9px] leading-[1.45] text-[#715C4E]">
+                        <p className="mt-1 text-[14px] leading-[1.45] text-[#715C4E]">
                           {item.description}
                         </p>
                       </div>
@@ -1013,7 +1013,7 @@ export default function VolunteerRegister() {
                   “
                 </span>
 
-                <p className="font-serif text-[13px]  leading-5 text-[#5B3827]">
+                <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
                   When we serve selflessly,
                   <br />
                   we become the reason for
@@ -1032,7 +1032,7 @@ export default function VolunteerRegister() {
               ॥ सेवा परम धर्म ॥
             </p>
 
-            <p className="mt-0.5 text-[9px] text-[#78665A]">
+            <p className="mt-0.5 text-[14px] text-[#78665A]">
               Thank you for choosing to serve
               humanity.
             </p>

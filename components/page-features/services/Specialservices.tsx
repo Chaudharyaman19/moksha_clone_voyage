@@ -66,7 +66,7 @@ export default function FamilySupport() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <FaUserFriends className="h-3.5 w-3.5" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   Extended Family Support
                 </span>
               </div>
@@ -235,7 +235,7 @@ export default function FamilySupport() {
         <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1">
           <div className="bg-[#FAF7F2] rounded-none border border-[#E8DCC8] overflow-hidden flex flex-col lg:flex-row shadow-sm">
             <div className="p-4 lg:p-6 lg:w-1/2 flex flex-col justify-center">
-              <span className="text-[#9A6A31] text-[13px] font-bold uppercase tracking-widest mb-3">Holistic Support System</span>
+              <span className="text-[#9A6A31] text-[14px] font-bold uppercase tracking-widest mb-3">Holistic Support System</span>
               <h2 className="font-serif text-[28px] md:text-[34px] text-[#3A2418] leading-[1.15] mb-5">
                 An Extended Family <br />
                 <span className="text-[#9A6A31]">For Those Who Need One</span>
@@ -324,7 +324,7 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
 
         <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out w-full">
           <div className="overflow-hidden">
-            <p className="text-[#FDFBF7] text-[13px] leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{desc}</p>
+            <p className="text-[#FDFBF7] text-[14px] leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">{desc}</p>
           </div>
         </div>
       </div>
@@ -335,14 +335,14 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
 function StepCard({ num, icon, title, desc }: { num: number, icon: React.ReactNode, title: string, desc: string }) {
   return (
     <div className="flex flex-col items-center text-center w-full max-w-[260px] mx-auto z-10 bg-white border border-[#E8DCC8] rounded-none p-6 shadow-sm hover:border-[#DCC4A5] transition-colors duration-300 relative">
-      <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#8B6A3E] text-white flex items-center justify-center font-semibold text-[13px] border-2 border-white z-20">
+      <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#8B6A3E] text-white flex items-center justify-center font-semibold text-[14px] border-2 border-white z-20">
         {num}
       </div>
       <div className="text-[#8B6A3E] mb-3 mt-2">
         {icon}
       </div>
       <h3 className="font-serif text-[15px] text-[#3A2418] mb-1.5">{title}</h3>
-      <p className="text-[13px] text-[#624C3F] leading-relaxed">{desc}</p>
+      <p className="text-[14px] text-[#624C3F] leading-relaxed">{desc}</p>
     </div>
   );
 }

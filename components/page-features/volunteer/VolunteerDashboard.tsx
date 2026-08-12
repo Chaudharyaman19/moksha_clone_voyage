@@ -68,7 +68,7 @@ const VOLUNTEER_STATUS_META: Record<VolunteerProfile["status"], { label: string;
 
 const INPUT_CLASSES =
   "w-full rounded-lg border border-[#E4D5BE] bg-white px-3 py-2 text-sm text-[#2C1810] placeholder:text-[#A8937E] focus:border-[#8B6A3E] focus:outline-none focus:ring-2 focus:ring-[#8B6A3E]/15";
-const LABEL_CLASSES = "mb-1 block text-[11px] font-semibold uppercase tracking-wide text-[#8A7460]";
+const LABEL_CLASSES = "mb-1 block text-[14px] font-semibold uppercase tracking-wide text-[#8A7460]";
 
 function humanize(value: string): string {
   return value
@@ -94,9 +94,9 @@ function AssignmentCard({
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="font-serif text-base text-[#2C1810]">
-            {kase ? kase.caseId : "Case"} <span className="font-sans text-xs font-normal text-[#8A7460]">— {assignment.role}</span>
+            {kase ? kase.caseId : "Case"} <span className="font-sans text-[14px] font-normal text-[#8A7460]">— {assignment.role}</span>
           </p>
-          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#8A7460]">
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-[#8A7460]">
             {kase && (
               <span className="flex items-center gap-1">
                 <FaMapMarkerAlt className="h-2.5 w-2.5" /> {kase.city}
@@ -108,11 +108,11 @@ function AssignmentCard({
           </div>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1.5">
-          <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${STATUS_META[assignment.status].className}`}>
+          <span className={`rounded-full px-3 py-1 text-[14px] font-semibold ${STATUS_META[assignment.status].className}`}>
             {STATUS_META[assignment.status].label}
           </span>
           {kase && (kase.priority === "HIGH" || kase.priority === "CRITICAL") && (
-            <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${PRIORITY_META[kase.priority].className}`}>
+            <span className={`rounded-full px-2.5 py-0.5 text-[14px] font-semibold ${PRIORITY_META[kase.priority].className}`}>
               {PRIORITY_META[kase.priority].label}
             </span>
           )}
@@ -120,11 +120,11 @@ function AssignmentCard({
       </div>
 
       {kase && (
-        <p className="mt-2 text-xs text-[#6B584B]">
+        <p className="mt-2 text-[14px] text-[#6B584B]">
           Case status: <span className="font-medium text-[#2C1810]">{humanize(kase.status)}</span>
         </p>
       )}
-      {assignment.note && <p className="mt-2 text-xs text-[#6B584B]">{assignment.note}</p>}
+      {assignment.note && <p className="mt-2 text-[14px] text-[#6B584B]">{assignment.note}</p>}
 
       <div className="mt-3 flex flex-wrap gap-2">
         {assignment.status === "ASSIGNED" && (
@@ -132,14 +132,14 @@ function AssignmentCard({
             <button
               onClick={() => onRespond(assignment._id, "ACCEPTED")}
               disabled={busy}
-              className="flex items-center gap-1.5 rounded-lg bg-[#8B6A3E] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+              className="flex items-center gap-1.5 rounded-lg bg-[#8B6A3E] px-3 py-1.5 text-[14px] font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
             >
               <FaCheckCircle className="h-3 w-3" /> Accept
             </button>
             <button
               onClick={() => onRespond(assignment._id, "DECLINED")}
               disabled={busy}
-              className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574] disabled:opacity-60"
+              className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574] disabled:opacity-60"
             >
               <FaTimesCircle className="h-3 w-3" /> Decline
             </button>
@@ -148,14 +148,14 @@ function AssignmentCard({
         {kase && (
           <button
             onClick={() => onViewDetails(assignment)}
-            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574]"
           >
             <FaInfoCircle className="h-3 w-3" /> View Details
           </button>
         )}
       </div>
       {assignment.status === "ASSIGNED" && (
-        <p className="mt-2 flex items-center gap-1 text-[10px] text-[#A8937E]">
+        <p className="mt-2 flex items-center gap-1 text-[14px] text-[#A8937E]">
           <FaClock className="h-2.5 w-2.5" /> Please respond as soon as you can
         </p>
       )}
@@ -414,7 +414,7 @@ function VolunteerDashboard() {
           </div>
           <button
             onClick={() => setShowChangePassword(true)}
-            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] bg-white px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+            className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] bg-white px-3 py-1.5 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574]"
           >
             <FaKey className="h-3 w-3" /> Change Password
           </button>
@@ -442,14 +442,14 @@ function VolunteerDashboard() {
                     )}
                     <div>
                       <p className="font-serif text-lg text-[#2C1810]">{profile.name}</p>
-                      <p className="flex items-center gap-1 text-xs text-[#8A7460]">
+                      <p className="flex items-center gap-1 text-[14px] text-[#8A7460]">
                         <FaMapMarkerAlt className="h-2.5 w-2.5" /> {profile.city}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`rounded-full px-3 py-1 text-[11px] font-semibold ${VOLUNTEER_STATUS_META[profile.status].className}`}
+                      className={`rounded-full px-3 py-1 text-[14px] font-semibold ${VOLUNTEER_STATUS_META[profile.status].className}`}
                     >
                       {VOLUNTEER_STATUS_META[profile.status].label}
                     </span>
@@ -466,27 +466,27 @@ function VolunteerDashboard() {
                 {profile.skills.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {profile.skills.map((skill) => (
-                      <span key={skill} className="rounded-full bg-[#F6EEDF] px-2.5 py-1 text-[11px] font-medium text-[#6B584B]">
+                      <span key={skill} className="rounded-full bg-[#F6EEDF] px-2.5 py-1 text-[14px] font-medium text-[#6B584B]">
                         {skill}
                       </span>
                     ))}
                   </div>
                 )}
 
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-[#6B584B]">
+                <div className="mt-4 flex items-center gap-1.5 text-[14px] text-[#6B584B]">
                   <FaHandsHelping className="h-3 w-3 text-[#8B6A3E]" />
                   <span className="font-semibold text-[#2C1810]">{profile.totalAssignments}</span> assignments accepted
                 </div>
 
                 <div className="mt-4 border-t border-[#F1E7D6] pt-4">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-[#8A7460]">Your Availability</p>
+                  <p className="mb-2 text-[14px] font-semibold uppercase tracking-wide text-[#8A7460]">Your Availability</p>
                   <div className="flex gap-2">
                     {AVAILABILITY_OPTIONS.map((opt) => (
                       <button
                         key={opt.value}
                         onClick={() => handleAvailabilityChange(opt.value)}
                         disabled={availabilitySaving}
-                        className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-60 ${
+                        className={`rounded-lg px-3 py-1.5 text-[14px] font-semibold transition-colors disabled:opacity-60 ${
                           profile.availability === opt.value
                             ? "bg-[#8B6A3E] text-white"
                             : "border border-[#E4D5BE] text-[#5F4630] hover:border-[#C9A574]"
@@ -572,14 +572,14 @@ function VolunteerDashboard() {
             <>
               <button
                 onClick={() => setShowEditProfile(false)}
-                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574]"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSaveProfile}
                 disabled={editSaving}
-                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-[14px] font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
               >
                 {editSaving ? "Saving..." : "Save Changes"}
               </button>
@@ -638,14 +638,14 @@ function VolunteerDashboard() {
                 />
               </div>
             </div>
-            {pincodeStatus === "loading" && <p className="text-[11px] text-[#8A7460]">Looking up state and city…</p>}
+            {pincodeStatus === "loading" && <p className="text-[14px] text-[#8A7460]">Looking up state and city…</p>}
             {pincodeStatus === "done" && (
-              <p className="text-[11px] text-emerald-600">
+              <p className="text-[14px] text-emerald-600">
                 Found: {editForm.city}, {editForm.state}
               </p>
             )}
             {pincodeStatus === "error" && (
-              <p className="text-[11px] text-red-600">Couldn&apos;t find this pincode — please enter state and city manually.</p>
+              <p className="text-[14px] text-red-600">Couldn&apos;t find this pincode — please enter state and city manually.</p>
             )}
             <div>
               <label className={LABEL_CLASSES}>Address</label>
@@ -694,7 +694,7 @@ function VolunteerDashboard() {
                 ))}
               </select>
             </div>
-            {editError && <p className="text-xs font-medium text-red-600">{editError}</p>}
+            {editError && <p className="text-[14px] font-medium text-red-600">{editError}</p>}
           </form>
         </VolunteerModal>
       )}
@@ -707,14 +707,14 @@ function VolunteerDashboard() {
             <>
               <button
                 onClick={() => setShowChangePassword(false)}
-                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+                className="rounded-lg border border-[#E4D5BE] px-3.5 py-2 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574]"
               >
                 Cancel
               </button>
               <button
                 onClick={handleChangePassword}
                 disabled={pwSaving}
-                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+                className="rounded-lg bg-[#8B6A3E] px-3.5 py-2 text-[14px] font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
               >
                 {pwSaving ? "Saving..." : "Change Password"}
               </button>
@@ -754,8 +754,8 @@ function VolunteerDashboard() {
                 required
               />
             </div>
-            <p className="text-[11px] text-[#8A7460]">At least 8 characters. You'll be signed out of every session after this.</p>
-            {pwError && <p className="text-xs font-medium text-red-600">{pwError}</p>}
+            <p className="text-[14px] text-[#8A7460]">At least 8 characters. You'll be signed out of every session after this.</p>
+            {pwError && <p className="text-[14px] font-medium text-red-600">{pwError}</p>}
           </form>
         </VolunteerModal>
       )}
@@ -771,10 +771,10 @@ function VolunteerDashboard() {
           ) : assignmentDetail ? (
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${STATUS_META[assignmentDetail.assignment.status].className}`}>
+                <span className={`rounded-full px-3 py-1 text-[14px] font-semibold ${STATUS_META[assignmentDetail.assignment.status].className}`}>
                   {STATUS_META[assignmentDetail.assignment.status].label}
                 </span>
-                <span className="rounded-full bg-[#F6EEDF] px-3 py-1 text-[11px] font-semibold text-[#6B584B]">
+                <span className="rounded-full bg-[#F6EEDF] px-3 py-1 text-[14px] font-semibold text-[#6B584B]">
                   {humanize(assignmentDetail.case.status)}
                 </span>
               </div>
@@ -797,7 +797,7 @@ function VolunteerDashboard() {
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B6A3E] hover:underline"
+                    className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#8B6A3E] hover:underline"
                   >
                     <FaDirections className="h-3 w-3" /> Get Directions
                   </a>
@@ -836,8 +836,8 @@ function VolunteerDashboard() {
                   <div className="space-y-2 border-l-2 border-[#F1E7D6] pl-3">
                     {assignmentDetail.timeline.map((t, i) => (
                       <div key={i}>
-                        <p className="text-xs font-semibold text-[#2C1810]">{t.note || humanize(t.event)}</p>
-                        <p className="text-[10px] text-[#A8937E]">
+                        <p className="text-[14px] font-semibold text-[#2C1810]">{t.note || humanize(t.event)}</p>
+                        <p className="text-[14px] text-[#A8937E]">
                           {new Date(t.at).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}
                         </p>
                       </div>
@@ -849,12 +849,12 @@ function VolunteerDashboard() {
               {(assignmentDetail.assignment.status === "ACCEPTED" || assignmentDetail.assignment.status === "COMPLETED") && (
                 <div className="border-t border-[#F1E7D6] pt-4">
                   <p className={LABEL_CLASSES}>Upload a Document or Photo</p>
-                  <p className="mb-2 text-xs text-[#6B584B]">e.g. cremation proof, bills, or ID/consent documents for this case.</p>
+                  <p className="mb-2 text-[14px] text-[#6B584B]">e.g. cremation proof, bills, or ID/consent documents for this case.</p>
 
                   {uploadedDocs.length > 0 && (
                     <div className="mb-2 space-y-1">
                       {uploadedDocs.map((d, i) => (
-                        <p key={i} className="flex items-center gap-1.5 text-xs text-green-700">
+                        <p key={i} className="flex items-center gap-1.5 text-[14px] text-green-700">
                           <FaCheckCircle className="h-2.5 w-2.5" /> {d.fileName} uploaded ({humanize(d.docType)})
                         </p>
                       ))}
@@ -864,7 +864,7 @@ function VolunteerDashboard() {
                   <div className="space-y-2">
                     <div className="flex gap-2">
                       <select
-                        className="flex-1 rounded-lg border border-[#E4D5BE] bg-white px-2 py-1.5 text-xs text-[#2C1810] focus:border-[#8B6A3E] focus:outline-none"
+                        className="flex-1 rounded-lg border border-[#E4D5BE] bg-white px-2 py-1.5 text-[14px] text-[#2C1810] focus:border-[#8B6A3E] focus:outline-none"
                         value={uploadDocType}
                         onChange={(e) => setUploadDocType(e.target.value as VolunteerDocumentType)}
                       >
@@ -874,13 +874,13 @@ function VolunteerDashboard() {
                           </option>
                         ))}
                       </select>
-                      <label className="flex items-center gap-1.5 text-xs text-[#6B584B]">
+                      <label className="flex items-center gap-1.5 text-[14px] text-[#6B584B]">
                         <input type="checkbox" checked={uploadIsProof} onChange={(e) => setUploadIsProof(e.target.checked)} />
                         Proof doc
                       </label>
                     </div>
 
-                    <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-[#E4D5BE] px-3 py-2.5 text-xs text-[#8A7460] hover:border-[#C9A574]">
+                    <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-[#E4D5BE] px-3 py-2.5 text-[14px] text-[#8A7460] hover:border-[#C9A574]">
                       <FaCloudUploadAlt className="h-4 w-4 shrink-0" />
                       {uploadFile ? (
                         <span className="flex items-center gap-1 text-[#2C1810]">
@@ -896,12 +896,12 @@ function VolunteerDashboard() {
                       />
                     </label>
 
-                    {uploadError && <p className="text-xs font-medium text-red-600">{uploadError}</p>}
+                    {uploadError && <p className="text-[14px] font-medium text-red-600">{uploadError}</p>}
 
                     <button
                       onClick={handleUploadDocument}
                       disabled={!uploadFile || uploading}
-                      className="flex items-center gap-1.5 rounded-lg bg-[#8B6A3E] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
+                      className="flex items-center gap-1.5 rounded-lg bg-[#8B6A3E] px-3 py-1.5 text-[14px] font-semibold text-white hover:bg-[#73532F] disabled:opacity-60"
                     >
                       {uploading ? "Uploading..." : "Upload"}
                     </button>

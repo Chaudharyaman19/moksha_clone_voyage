@@ -116,7 +116,7 @@ function ItemCard({ icon, title, desc }: { icon: React.ReactNode, title: string,
         {icon}
       </div>
       <h4 className="text-[15px] font-semibold text-[#3E2723] mb-4">{title}</h4>
-      <p className="text-[13px] text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
+      <p className="text-[14px] text-[#6D4C41] leading-relaxed opacity-90">{desc}</p>
     </div>
   );
 }

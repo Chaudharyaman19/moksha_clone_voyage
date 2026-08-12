@@ -142,7 +142,7 @@ export default function About() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <FaFire className="h-3.5 w-3.5" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   About Us · Since Day One
                 </span>
               </div>
@@ -178,7 +178,7 @@ export default function About() {
                 {["Dignity First", "Transparent Pricing", "Always Available"].map((chip) => (
                   <span
                     key={chip}
-                    className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
+                    className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
                   >
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
                       <FaCheckCircle className="h-3 w-3 text-[#8B6A3E]" />
@@ -200,7 +200,7 @@ export default function About() {
               <FaPhoneAlt className="relative h-4 w-4" />
             </span>
             <span>
-              <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
+              <span className="block text-[14px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 24/7 Helpline
               </span>
               <span className="block font-serif text-sm">+91 9220147229</span>
@@ -229,7 +229,7 @@ export default function About() {
                         >
                           {stat.value}
                         </div>
-                        <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">{stat.title}</div>
+                        <div className="mt-1 whitespace-nowrap text-[14px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[15px]">{stat.title}</div>
                       </div>
                     </div>
                   );
@@ -255,7 +255,7 @@ export default function About() {
             <div className="mb-2 flex flex-col items-center text-center">
               <div className="mb-2 inline-flex items-center space-x-3">
                 <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-                <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   What We Take Care Of
                 </span>
                 <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
@@ -311,7 +311,7 @@ export default function About() {
                         {/* Hidden Text Revealed on Hover */}
                         <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-hover:mt-4">
                           <div className="overflow-hidden">
-                            <p className="text-[13px] leading-relaxed text-white/90 drop-shadow-sm">
+                            <p className="text-[14px] leading-relaxed text-white/90 drop-shadow-sm">
                               {service.text}
                             </p>
                           </div>
@@ -334,14 +334,14 @@ export default function About() {
 
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                  <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                     Our Presence
                   </div>
                   <h2 className="mt-1 font-serif text-2xl text-[#2C1810] sm:text-3xl">
                     Serving Families <span className=" text-[#8B6A3E]">Across India</span>
                   </h2>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[10px] font-semibold text-[#6A4F32]">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[14px] font-semibold text-[#6A4F32]">
                   <FaMapMarkerAlt className="h-3 w-3 text-[#8B6A3E]" />
                   15+ Cities & Growing
                 </span>
@@ -402,7 +402,7 @@ export default function About() {
                       <div className="font-serif text-4xl transition-transform duration-300 group-hover:scale-110">
                         +9
                       </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.14em] text-white/90">
+                      <div className="mt-1 text-[14px] uppercase tracking-[0.14em] text-white/90">
                         More Cities
                       </div>
                     </div>
@@ -410,7 +410,7 @@ export default function About() {
                 </div>
               </div>
 
-              <p className="mt-1 text-center text-[11px] text-[#746154]">
+              <p className="mt-1 text-center text-[14px] text-[#746154]">
                 Local teams. Local support. Always near you.
               </p>
             </div>
@@ -425,7 +425,7 @@ export default function About() {
 
           <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
             <div className="text-white">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+              <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                 Why Choose Us
               </div>
               <h2 className="mt-1 font-serif text-3xl leading-tight sm:text-4xl">
@@ -438,7 +438,7 @@ export default function About() {
               </p>
               <a
                 href="/contact"
-                className="group mt-1 inline-flex items-center gap-2 rounded-md bg-[#D9B681] px-4 py-2 text-xs font-semibold text-[#3B2B21] transition hover:bg-[#E8D2AC]"
+                className="group mt-1 inline-flex items-center gap-2 rounded-md bg-[#D9B681] px-4 py-2 text-[14px] font-semibold text-[#3B2B21] transition hover:bg-[#E8D2AC]"
               >
                 Know More
                 <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -462,7 +462,7 @@ export default function About() {
                     <h3 className="mt-1 font-serif text-base leading-tight text-white">
                       {reason.title}
                     </h3>
-                    <p className="mt-1 text-[10px] leading-4 text-white/60">{reason.text}</p>
+                    <p className="mt-1 text-[14px] leading-4 text-white/60">{reason.text}</p>
                   </div>
                 );
               })}
@@ -473,7 +473,7 @@ export default function About() {
         {/* ============ OUR PROCESS — zigzag journey ============ */}
         <section className="bg-[#FBF8F3] py-5 lg:py-6">
           <div className="mx-auto w-full max-w-7xl px-0">
-            <div className="mb-1 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+            <div className="mb-1 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
               <span>Our Process — The Sewa Journey</span>
               <span className="h-px w-8 bg-[#C9A574]" />
@@ -497,12 +497,12 @@ export default function About() {
                       <div className="absolute inset-2 flex items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md transition-colors duration-300 group-hover:bg-[#6F4E2F]">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <span className="absolute -right-0.5 -top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C1810] font-serif text-[10px] text-[#D9B681] ring-2 ring-[#FBF8F3]">
+                      <span className="absolute -right-0.5 -top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C1810] font-serif text-[14px] text-[#D9B681] ring-2 ring-[#FBF8F3]">
                         {index + 1}
                       </span>
                     </div>
                     <h3 className="mt-1 font-serif text-base text-[#2C1810]">{step.title}</h3>
-                    <p className="mx-auto mt-1 max-w-[175px] text-[10px] leading-4 text-[#6A584B]">
+                    <p className="mx-auto mt-1 max-w-[175px] text-[14px] leading-4 text-[#6A584B]">
                       {step.text}
                     </p>
                   </div>
@@ -540,7 +540,7 @@ export default function About() {
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/45 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/25 bg-black/25 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/25 bg-black/25 px-3 py-1 text-[14px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
                     Sacred Care
                   </div>
                 </div>
@@ -574,7 +574,7 @@ export default function About() {
               <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full border border-[#C9A574]/15" />
               <span className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
 
-              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+              <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                 <span>Our Sacred Promise</span>
                 <span className="h-px w-8 bg-[#C9A574]" />
               </div>
@@ -619,7 +619,7 @@ export default function About() {
                       </div>
                       <div className="min-w-0">
                         <h3 className="font-serif text-[15px] leading-5 text-white">{item.title}</h3>
-                        <p className="mt-0.5 text-[10px] leading-4 text-white/60">{item.text}</p>
+                        <p className="mt-0.5 text-[14px] leading-4 text-white/60">{item.text}</p>
                       </div>
                     </div>
                   );
@@ -628,7 +628,7 @@ export default function About() {
 
               <a
                 href="/contact"
-                className="group mt-1 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-4 py-2.5 text-xs font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
+                className="group mt-1 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-4 py-2.5 text-[14px] font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
               >
                 Speak With Our Sewa Team
                 <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -646,7 +646,7 @@ export default function About() {
           <div className="relative mx-auto grid w-full max-w-7xl items-center gap-6 px-0 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
             {/* LEFT — content */}
             <div>
-              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+              <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                 <span>Sewa Network</span>
                 <span className="h-px w-7 bg-[#C9A574]" />
               </div>
@@ -671,7 +671,7 @@ export default function About() {
                 {locations.map((location) => (
                   <span
                     key={location.name}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#E4D5BE] bg-white px-3 py-1.5 text-[11px] font-semibold text-[#5F4630] shadow-sm"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#E4D5BE] bg-white px-3 py-1.5 text-[14px] font-semibold text-[#5F4630] shadow-sm"
                   >
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574] opacity-70" />
@@ -681,7 +681,7 @@ export default function About() {
                   </span>
                 ))}
 
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[14px] font-semibold text-white shadow-sm">
                   +9 More Cities
                 </span>
               </div>
@@ -691,7 +691,7 @@ export default function About() {
                   <FaPhoneAlt className="h-4 w-4" />
                 </span>
 
-                <p className="text-[11px] leading-4 text-[#5F4A3D]">
+                <p className="text-[14px] leading-4 text-[#5F4A3D]">
                   <span className="font-serif text-sm  text-[#8B6A3E]">
                     Ek call, poora network.
                   </span>
@@ -704,7 +704,7 @@ export default function About() {
             {/* RIGHT — India map image */}
             <div className="relative mx-auto w-full max-w-[640px] lg:max-w-[700px]">
               {/* live badge */}
-              <div className="absolute right-2 top-2 z-30 inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white/95 px-3 py-1.5 text-[10px] font-semibold text-[#6A4F32] shadow-md backdrop-blur-sm">
+              <div className="absolute right-2 top-2 z-30 inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white/95 px-3 py-1.5 text-[14px] font-semibold text-[#6A4F32] shadow-md backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600" />
@@ -752,11 +752,11 @@ export default function About() {
                 We Are Here to Serve You in{" "}
                 <span className=" text-[#D9B681]">Your Time of Need</span>
               </h2>
-              <p className="mt-1 text-xs text-white/75 sm:text-sm">
+              <p className="mt-1 text-[14px] text-white/75 sm:text-sm">
                 Call us anytime for immediate support.
               </p>
 
-              <div className="mt-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[10px] text-white/75 md:justify-start">
+              <div className="mt-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[14px] text-white/75 md:justify-start">
                 <span className="inline-flex items-center gap-1.5">
                   <FaCheckCircle className="h-3.5 w-3.5 text-[#D9B681]" /> Clear Pricing
                 </span>

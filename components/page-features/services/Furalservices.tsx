@@ -212,7 +212,7 @@ function SupportFeatureCard({
           {title}
         </h2>
 
-        <p className="mt-[3px] text-[13px] leading-snug text-[#4B2F23]/80">
+        <p className="mt-[3px] text-[14px] leading-snug text-[#4B2F23]/80">
           {description}
         </p>
       </div>
@@ -282,7 +282,7 @@ function ArrangeCard({
           {title}
         </h3>
 
-        <p className="mt-1 text-[13px] leading-snug text-[#422A20]/88">
+        <p className="mt-1 text-[14px] leading-snug text-[#422A20]/88">
           {description}
         </p>
       </div>

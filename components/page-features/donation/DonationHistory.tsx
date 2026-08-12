@@ -90,22 +90,22 @@ function DonationHistory() {
                 <div>
                   <p className="font-serif text-lg text-[#2C1810]">
                     ₹{d.amount.toLocaleString("en-IN")}
-                    <span className="ml-2 text-xs font-sans font-semibold uppercase tracking-wide text-[#8A7460]">
+                    <span className="ml-2 text-[14px] font-sans font-semibold uppercase tracking-wide text-[#8A7460]">
                       {d.type === "RECURRING" ? "Monthly" : d.type === "OFFLINE" ? "Offline" : "One-Time"}
                     </span>
                   </p>
-                  <p className="mt-0.5 text-xs text-[#8A7460]">
+                  <p className="mt-0.5 text-[14px] text-[#8A7460]">
                     {d.cause} · {new Date(d.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${STATUS_META[d.status].className}`}>
+                  <span className={`rounded-full px-3 py-1 text-[14px] font-semibold ${STATUS_META[d.status].className}`}>
                     {STATUS_META[d.status].label}
                   </span>
                   {d.status === "SUCCESS" && d.receiptId && (
                     <button
                       onClick={() => viewReceipt(d._id)}
-                      className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-xs font-semibold text-[#5F4630] hover:border-[#C9A574]"
+                      className="flex items-center gap-1.5 rounded-lg border border-[#E4D5BE] px-3 py-1.5 text-[14px] font-semibold text-[#5F4630] hover:border-[#C9A574]"
                     >
                       <FaReceipt className="h-3 w-3" /> Receipt
                     </button>

@@ -155,7 +155,7 @@ function Blog() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   Wisdom & Insights
                 </span>
               </div>
@@ -202,7 +202,7 @@ function Blog() {
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-300 ${selectedCategory === category
+                      className={`rounded-full px-4 py-1.5 text-[14px] font-semibold transition-all duration-300 ${selectedCategory === category
                           ? "bg-[#8B6A3E] text-white shadow-md"
                           : "border border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
                         }`}
@@ -227,12 +227,12 @@ function Blog() {
                 <div className="grid lg:grid-cols-[1fr_0.9fr]">
                   {/* content */}
                   <div className="flex flex-col justify-center p-5 sm:p-7 lg:p-8">
-                    <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+                    <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                       <span>Featured Read</span>
                       <span className="h-px w-8 bg-[#C9A574]" />
                     </div>
 
-                    <span className="mt-3 w-fit rounded-full border border-[#D9B681]/40 bg-[#D9B681]/10 px-3 py-1 text-[10px] font-semibold text-[#E8D2AC]">
+                    <span className="mt-3 w-fit rounded-full border border-[#D9B681]/40 bg-[#D9B681]/10 px-3 py-1 text-[14px] font-semibold text-[#E8D2AC]">
                       {featuredPost.category}
                     </span>
 
@@ -244,9 +244,9 @@ function Blog() {
                       {featuredPost.excerpt}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] text-white/60">
+                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-white/60">
                       <span className="inline-flex items-center gap-1.5">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[9px] font-bold text-[#2C1810]">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[14px] font-bold text-[#2C1810]">
                           {featuredPost.author.charAt(0)}
                         </span>
                         {featuredPost.author}
@@ -261,7 +261,7 @@ function Blog() {
 
                     <Link
                       href={`/blog/${featuredPost.id}`}
-                      className="group mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-5 py-2.5 text-xs font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
+                      className="group mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-5 py-2.5 text-[14px] font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
                     >
                       Read Full Article
                       <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -290,7 +290,7 @@ function Blog() {
           <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
               <div>
-                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                   <span>Latest Posts</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
@@ -304,7 +304,7 @@ function Blog() {
                   )}
                 </h2>
               </div>
-              <span className="rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[10px] font-semibold text-[#6A4F32]">
+              <span className="rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[14px] font-semibold text-[#6A4F32]">
                 {filteredPosts.length} articles found
               </span>
             </div>
@@ -324,7 +324,7 @@ function Blog() {
                   looking for.
                 </p>
                 <button
-                  className="mt-5 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition hover:bg-[#73532F]"
+                  className="mt-5 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition hover:bg-[#73532F]"
                   onClick={() => {
                     setSearchQuery("");
                     setSelectedCategory("All");
@@ -353,13 +353,13 @@ function Blog() {
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/60 via-transparent to-transparent" />
-                      <span className="absolute bottom-2.5 left-3 z-10 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-white shadow">
+                      <span className="absolute bottom-2.5 left-3 z-10 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-white shadow">
                         {post.category}
                       </span>
                     </Link>
 
                     <div className="p-4">
-                      <div className="flex items-center gap-2 text-[10px] text-[#8A7460]">
+                      <div className="flex items-center gap-2 text-[14px] text-[#8A7460]">
                         <span className="flex items-center gap-1">
                           <FiCalendar /> {post.date}
                         </span>
@@ -378,21 +378,21 @@ function Blog() {
                         </Link>
                       </h3>
 
-                      <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-[#6B584B]">
+                      <p className="mt-1.5 line-clamp-2 text-[14px] leading-5 text-[#6B584B]">
                         {post.excerpt}
                       </p>
 
                       <div className="mt-3 flex items-center justify-between border-t border-[#F0E5D3] pt-3">
                         <div className="flex items-center gap-1.5">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[9px] font-bold text-white">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[14px] font-bold text-white">
                             {post.author.charAt(0)}
                           </span>
-                          <span className="text-[10px] font-semibold text-[#4A3428]">
+                          <span className="text-[14px] font-semibold text-[#4A3428]">
                             {post.author}
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-2.5 text-[10px] text-[#A8937E]">
+                        <div className="flex items-center gap-2.5 text-[14px] text-[#A8937E]">
                           <span className="flex items-center gap-1">
                             <BsEye />
                             {post.views.toLocaleString()}
@@ -469,7 +469,7 @@ function Blog() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681]">
                     <PiFlowerLotus className="h-4 w-4" />
                   </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#D9B681]">
+                  <span className="text-[14px] font-semibold uppercase tracking-[0.28em] text-[#D9B681]">
                     Stay Connected
                   </span>
                 </div>
@@ -496,7 +496,7 @@ function Blog() {
                   </button>
                 </div>
 
-                <p className="mt-2 text-[11px] text-white/45">
+                <p className="mt-2 text-[14px] text-white/45">
                   No spam. Unsubscribe anytime.
                 </p>
               </div>

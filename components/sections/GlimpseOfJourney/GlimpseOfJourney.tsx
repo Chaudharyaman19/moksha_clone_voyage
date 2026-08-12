@@ -27,7 +27,7 @@ export default function GlimpseOfJourney() {
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+            <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Sewa Moments
             </span>
             <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
@@ -84,7 +84,7 @@ export default function GlimpseOfJourney() {
         <div className="mt-2 flex justify-center">
           <button
             type="button"
-            className="inline-flex h-10 min-w-[200px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-6 text-[13px] font-medium text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
+            className="inline-flex h-10 min-w-[200px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-6 text-[14px] font-medium text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
             <span>View Sewa Gallery</span>
           </button>

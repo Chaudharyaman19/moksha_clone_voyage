@@ -71,7 +71,7 @@ function InitiativesCarousel() {
             <div className="relative h-12 w-full">
               <Image src={item.image} alt={item.title} fill className="object-contain" />
             </div>
-            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
           </div>
         ))}
       </Marquee>
@@ -83,7 +83,7 @@ function InitiativesCarousel() {
             <div className="relative h-12 w-full">
               <Image src={item.image} alt={item.title} fill className="object-contain" />
             </div>
-            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
           </div>
         ))}
       </Marquee>
@@ -95,7 +95,7 @@ function InitiativesCarousel() {
             <div className="relative h-12 w-full">
               <Image src={item.image} alt={item.title} fill className="object-contain" />
             </div>
-            <p className="text-center text-[9px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
           </div>
         ))}
       </Marquee>
@@ -179,7 +179,7 @@ function Contact() {
     "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
 
   const labelClass =
-    "mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+    "mb-1 block text-[14px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
 
   const officeLocations = [
     {
@@ -241,7 +241,7 @@ function Contact() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   संपर्क करें · We&apos;re Listening
                 </span>
               </div>
@@ -274,7 +274,7 @@ function Contact() {
                 {["24/7 Support", "15 Min Response", "Pan India Teams"].map((chip) => (
                   <span
                     key={chip}
-                    className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
+                    className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
                   >
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
                       <MdVerified className="h-3 w-3 text-[#8B6A3E]" />
@@ -286,7 +286,7 @@ function Contact() {
 
               <a
                 href="#contact-form"
-                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
+                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
               >
                 Send a Message
                 <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -329,7 +329,7 @@ function Contact() {
                         >
                           {item.value}
                         </div>
-                        <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">
+                        <div className="mt-1 whitespace-nowrap text-[14px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[15px]">
                           {item.title}
                         </div>
                       </div>
@@ -364,7 +364,7 @@ function Contact() {
 
               {/* LEFT: Office Locations */}
               <div className="flex flex-col h-full">
-                <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+                <div className="mb-1 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
                   <span className="h-px w-8 bg-[#C9A574]" />
                   <span>ॐ Our Presence ॐ</span>
                 </div>
@@ -390,7 +390,7 @@ function Contact() {
                         <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-transparent to-transparent" />
 
                         {location.type === "main" && (
-                          <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow">
+                          <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-bold uppercase tracking-[0.14em] text-white shadow">
                             HQ
                           </span>
                         )}
@@ -409,7 +409,7 @@ function Contact() {
                           {location.address}
                         </p>
                         <div className="mt-4 flex items-center justify-between border-t border-[#F0E5D3] pt-4">
-                          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#8B6A3E]">
+                          <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#8B6A3E]">
                             <FaMapMarkerAlt className="h-3.5 w-3.5" />
                             PIN: {location.pincode}
                           </span>
@@ -422,7 +422,7 @@ function Contact() {
 
               {/* RIGHT: Our Initiatives */}
               <div className="flex flex-col h-full">
-                <div className="mb-1 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+                <div className="mb-1 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
                   <span className="h-px w-8 bg-[#C9A574]" />
                   <span>Our Expanding Horizon</span>
                 </div>
@@ -447,14 +447,14 @@ function Contact() {
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
               <div className="mb-1">
-                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                   <span>Send a Message</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
                 <h3 className="mt-1 font-serif text-2xl text-[#2C1810]">
                   We&apos;d Love to <span className=" text-[#8B6A3E]">Hear From You</span>
                 </h3>
-                <p className="mt-1 text-xs text-[#7A685B]">
+                <p className="mt-1 text-[14px] text-[#7A685B]">
                   Our team will respond within 1–2 business days.
                 </p>
               </div>
@@ -581,7 +581,7 @@ function Contact() {
                     <FaHeadset className="relative h-4 w-4" />
                   </span>
                   <div>
-                    <div className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+                    <div className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                       24/7 Emergency Support
                     </div>
                     <a
@@ -605,10 +605,10 @@ function Contact() {
                       <MdEmail className="h-3.5 w-3.5" />
                     </span>
                     <div className="min-w-0">
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
+                      <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
                         Email
                       </span>
-                      <span className="block truncate font-serif text-xs text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
+                      <span className="block truncate font-serif text-[14px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
                         info@mokshasewa.org
                       </span>
                     </div>
@@ -622,10 +622,10 @@ function Contact() {
                       <FaPhoneAlt className="h-3 w-3" />
                     </span>
                     <div className="min-w-0">
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
+                      <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
                         Call Us
                       </span>
-                      <span className="block truncate font-serif text-xs text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
+                      <span className="block truncate font-serif text-[14px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
                         +91 95682 59784
                       </span>
                     </div>
@@ -647,7 +647,7 @@ function Contact() {
                       </a>
                     ))}
                   </div>
-                  <div className="text-right text-[10px] leading-4 text-[#5F4A3D]">
+                  <div className="text-right text-[14px] leading-4 text-[#5F4A3D]">
                     <span className="font-serif  text-[#8B6A3E]">Har sawaal ka jawab.</span>
                     <br />
                     We treat every query with care.

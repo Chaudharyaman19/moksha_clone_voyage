@@ -18,7 +18,7 @@ type OtpStep = "phone" | "otp";
 
 const inputClass =
   "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
-const labelClass = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+const labelClass = "mb-1 block text-[14px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
 
 function Login() {
   const router = useRouter();
@@ -147,7 +147,7 @@ function Login() {
               <h1 className="font-serif text-2xl text-[#2C1810]">
                 Welcome to <span className=" text-[#8B6A3E]">Moksha Sewa</span>
               </h1>
-              <p className="mt-1 text-xs text-[#7A685B]">Sign in to book services and track your requests.</p>
+              <p className="mt-1 text-[14px] text-[#7A685B]">Sign in to book services and track your requests.</p>
             </div>
 
             {/* mode tabs */}
@@ -155,7 +155,7 @@ function Login() {
               <button
                 type="button"
                 onClick={() => switchMode("otp")}
-                className={`flex items-center justify-center gap-1.5 rounded-md py-2 text-xs font-semibold transition-all ${
+                className={`flex items-center justify-center gap-1.5 rounded-md py-2 text-[14px] font-semibold transition-all ${
                   mode === "otp" ? "bg-[#8B6A3E] text-white shadow" : "text-[#5F4630] hover:text-[#8B6A3E]"
                 }`}
               >
@@ -164,7 +164,7 @@ function Login() {
               <button
                 type="button"
                 onClick={() => switchMode("password")}
-                className={`flex items-center justify-center gap-1.5 rounded-md py-2 text-xs font-semibold transition-all ${
+                className={`flex items-center justify-center gap-1.5 rounded-md py-2 text-[14px] font-semibold transition-all ${
                   mode === "password" ? "bg-[#8B6A3E] text-white shadow" : "text-[#5F4630] hover:text-[#8B6A3E]"
                 }`}
               >
@@ -173,7 +173,7 @@ function Login() {
             </div>
 
             {error && (
-              <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-xs font-medium text-red-700">
+              <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-[14px] font-medium text-red-700">
                 {error}
               </div>
             )}
@@ -206,7 +206,7 @@ function Login() {
                 <button
                   type="button"
                   onClick={() => setOtpStep("phone")}
-                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6A3E] hover:underline"
+                  className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#8B6A3E] hover:underline"
                 >
                   <FaChevronLeft className="h-2.5 w-2.5" /> +91 {phone}
                 </button>
@@ -243,7 +243,7 @@ function Login() {
                   type="button"
                   disabled={resendCooldown > 0}
                   onClick={handleSendOtp}
-                  className="w-full text-center text-[11px] font-semibold text-[#8B6A3E] disabled:text-[#B5A490]"
+                  className="w-full text-center text-[14px] font-semibold text-[#8B6A3E] disabled:text-[#B5A490]"
                 >
                   {resendCooldown > 0 ? `Resend OTP in ${resendCooldown}s` : "Resend OTP"}
                 </button>
@@ -252,7 +252,7 @@ function Login() {
 
             {mode === "password" && (
               <>
-                <div className="mb-4 flex justify-center gap-4 text-xs font-semibold">
+                <div className="mb-4 flex justify-center gap-4 text-[14px] font-semibold">
                   <button
                     type="button"
                     onClick={() => setPasswordSubMode("login")}

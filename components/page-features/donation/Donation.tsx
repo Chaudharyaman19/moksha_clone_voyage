@@ -246,7 +246,7 @@ function Donation() {
     "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
 
   const labelClass =
-    "mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+    "mb-1 block text-[14px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
@@ -288,7 +288,7 @@ function Donation() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   दान · Give With Devotion
                 </span>
               </div>
@@ -320,7 +320,7 @@ function Donation() {
                   (chip) => (
                     <span
                       key={chip}
-                      className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
+                      className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
                     >
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
                         <MdVerified className="h-3 w-3 text-[#8B6A3E]" />
@@ -333,7 +333,7 @@ function Donation() {
 
               <a
                 href="#donate-form"
-                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-xs font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
+                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
               >
                 Donate Now
                 <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -348,7 +348,7 @@ function Donation() {
               <FaHandHoldingHeart className="relative h-4 w-4" />
             </span>
             <span>
-              <span className="block text-[9px] uppercase tracking-[0.2em] text-[#E8D2AC]">
+              <span className="block text-[14px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 Together, So Far
               </span>
               <span className="block font-serif text-sm">500+ Families Supported</span>
@@ -377,7 +377,7 @@ function Donation() {
                         >
                           {item.value}
                         </div>
-                        <div className="mt-1 whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[10px]">
+                        <div className="mt-1 whitespace-nowrap text-[14px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[15px]">
                           {item.label}
                         </div>
                       </div>
@@ -390,7 +390,7 @@ function Donation() {
         {/* ============ CAUSES — normal cards, doubles as cause selector ============ */}
         <section className="pt-6 pb-3 lg:pt-8 lg:pb-4">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-2 flex items-center justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+            <div className="mb-2 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
               <span>ॐ Where Your Donation Goes ॐ</span>
               <span className="h-px w-8 bg-[#C9A574]" />
@@ -398,7 +398,7 @@ function Donation() {
             <h2 className="text-center font-serif text-3xl text-[#2C1810] sm:text-4xl">
               Choose a <span className=" text-[#8B6A3E]">Cause</span> Close to Your Heart
             </h2>
-            <p className="mx-auto mt-2 max-w-xl text-center text-xs leading-5 text-[#7A685B] sm:text-sm">
+            <p className="mx-auto mt-2 max-w-xl text-center text-[14px] leading-5 text-[#7A685B] sm:text-sm">
               Select where you&apos;d like your contribution to go — it will carry through to the form below.
             </p>
 
@@ -427,7 +427,7 @@ function Donation() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-[#2C1810]/15 to-transparent" />
 
                       {isSelected && (
-                        <span className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-white shadow">
+                        <span className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-bold uppercase tracking-[0.1em] text-white shadow">
                           <FaCheckCircle className="h-2.5 w-2.5" />
                           Selected
                         </span>
@@ -449,7 +449,7 @@ function Donation() {
                     </div>
 
                     <div className="p-4">
-                      <p className="min-h-[52px] text-xs leading-5 text-[#6B584B]">
+                      <p className="min-h-[52px] text-[14px] leading-5 text-[#6B584B]">
                         {cause.description}
                       </p>
                       <span
@@ -474,14 +474,14 @@ function Donation() {
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
               <div className="mb-4">
-                <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                   <span>Make a Donation</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
                 <h3 className="mt-2 font-serif text-2xl text-[#2C1810]">
                   Your Support, <span className=" text-[#8B6A3E]">Their Dignity</span>
                 </h3>
-                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[11px] font-semibold text-[#8B6A3E]">
+                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[14px] font-semibold text-[#8B6A3E]">
                   <activeCause.icon className="h-3 w-3" />
                   Donating toward: {activeCause.title}
                 </div>
@@ -607,7 +607,7 @@ function Donation() {
                   </div>
                 </div>
 
-                <label className="flex cursor-pointer items-center gap-2.5 text-xs text-[#5F4630]">
+                <label className="flex cursor-pointer items-center gap-2.5 text-[14px] text-[#5F4630]">
                   <input
                     type="checkbox"
                     checked={isAnonymous}
@@ -662,7 +662,7 @@ function Donation() {
                     <FaHandHoldingHeart className="relative h-5 w-5" />
                   </span>
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+                    <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                       Your Impact
                     </div>
                     <h4 className="mt-1 font-serif text-xl">
@@ -688,12 +688,12 @@ function Donation() {
                   {/* Tax & Security */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-bold text-xs">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-bold text-[14px]">
                         80G
                       </span>
                       <div>
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Exemption</span>
-                        <span className="block text-xs text-[#2C1810] mt-0.5 leading-tight">50% deduction under 80G.</span>
+                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Exemption</span>
+                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">50% deduction under 80G.</span>
                       </div>
                     </div>
                     
@@ -702,8 +702,8 @@ function Donation() {
                         <FaShieldAlt className="h-4 w-4" />
                       </span>
                       <div>
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Secure Payment</span>
-                        <span className="block text-xs text-[#2C1810] mt-0.5 leading-tight">100% encrypted & safe.</span>
+                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Secure Payment</span>
+                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">100% encrypted & safe.</span>
                       </div>
                     </div>
                   </div>
@@ -715,8 +715,8 @@ function Donation() {
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white mt-0.5">
                       <PiFlowerLotus className="h-3.5 w-3.5" />
                     </span>
-                    <p className="text-[11px] leading-[1.45] text-[#5F4A3D]">
-                      <span className="font-serif text-[13px]  text-[#8B6A3E]">
+                    <p className="text-[14px] leading-[1.45] text-[#5F4A3D]">
+                      <span className="font-serif text-[14px]  text-[#8B6A3E]">
                         Daan se badhkar koi punya nahi.
                       </span>
                       <br />
@@ -728,12 +728,12 @@ function Donation() {
 
                   {/* Prefer Another Way */}
                   <div>
-                    <p className="text-xs leading-5 text-[#7A685B]">
+                    <p className="text-[14px] leading-5 text-[#7A685B]">
                       Have questions about corporate giving, or want to volunteer instead?
                     </p>
                     <Link
                       href="/contact"
-                      className="group mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6A3E] hover:underline"
+                      className="group mt-1.5 inline-flex items-center gap-1 text-[14px] font-semibold text-[#8B6A3E] hover:underline"
                     >
                       Get in Touch
                       <FaChevronRight className="h-2 w-2 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -759,7 +759,7 @@ function Donation() {
         <section className="border-t border-[#E9DCCB] bg-[#FBF7F0] py-8 lg:py-10">
           <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 xl:px-0">
             <div className="text-center">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[11px]">
+              <p className="text-[14px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[15px]">
                 FAQs
               </p>
               <h2 className="mt-1 font-serif text-[28px] font-normal leading-tight text-[#2C1810] sm:text-[32px]">
@@ -791,7 +791,7 @@ function Donation() {
                         }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="px-3 pb-4 text-xs leading-5 text-[#6B584B] sm:px-4 sm:text-[13px]">
+                        <p className="px-3 pb-4 text-[14px] leading-5 text-[#6B584B] sm:px-4 sm:text-[15px]">
                           {item.a}
                         </p>
                       </div>

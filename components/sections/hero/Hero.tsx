@@ -308,7 +308,7 @@ export default function Hero({}: HeroProps) {
             />
           ))}
         </div>
-        <span className="font-serif text-[10px] tracking-[0.18em] text-white/80">
+        <span className="font-serif text-[14px] tracking-[0.18em] text-white/80">
           0{currentIndex + 1} / 0{images.length}
         </span>
       </div>
@@ -322,7 +322,7 @@ export default function Hero({}: HeroProps) {
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
                 <FaFire className="h-3.5 w-3.5" />
               </span>
-              <span className="min-w-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E] sm:text-[10px] sm:tracking-[0.28em]">
+              <span className="min-w-0 text-[14px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E] sm:text-[15px] sm:tracking-[0.28em]">
                 मोक्ष सेवा · Final Rites Support
               </span>
             </div>
@@ -392,7 +392,7 @@ export default function Hero({}: HeroProps) {
               {trustChips.map((chip) => (
                 <span
                   key={chip}
-                  className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#5F4630]"
+                  className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
                     <FaCheckCircle className="h-3 w-3 text-[#8B6A3E]" />
@@ -427,7 +427,7 @@ export default function Hero({}: HeroProps) {
                   >
                     <AnimatedNumber endString={stat.value} />
                   </div>
-                  <div className="mt-1 max-w-[120px] text-[9px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[10px]">
+                  <div className="mt-1 max-w-[120px] text-[14px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[15px]">
                     {stat.label}
                   </div>
                 </div>

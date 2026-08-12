@@ -189,7 +189,7 @@ function MokshaGallery() {
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#8B6A3E]/5 rounded-full border border-[#8B6A3E]/10 mb-3">
             <PiFlowerLotus className="w-3.5 h-3.5 text-[#8B6A3E]" />
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B6A3E]">
+            <span className="text-[14px] tracking-[0.2em] uppercase text-[#8B6A3E]">
               Visual Stories
             </span>
           </div>
@@ -215,7 +215,7 @@ function MokshaGallery() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${
                 selectedCategory === category.id
                   ? "bg-[#8B6A3E] text-white shadow-md"
                   : "bg-white text-[#5A3E2B] border border-[#E7D5C2] hover:bg-[#F5E9D9]"
@@ -261,7 +261,7 @@ function MokshaGallery() {
 
                     {/* Category tag */}
                     <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[10px] font-medium shadow-lg">
+                      <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
                         {image.category.charAt(0).toUpperCase() +
                           image.category.slice(1)}
                       </span>
@@ -275,22 +275,22 @@ function MokshaGallery() {
                           <h3 className="text-sm font-serif text-white mb-1 line-clamp-1">
                             {image.title}
                           </h3>
-                          <p className="text-white/80 text-[10px] line-clamp-2 mb-2">
+                          <p className="text-white/80 text-[14px] line-clamp-2 mb-2">
                             {image.description}
                           </p>
                         </div>
 
                         {/* Photographer and likes */}
                         <div className="flex items-center justify-between pt-2 border-t border-white/20">
-                          <span className="text-white/70 text-[9px] flex items-center gap-1">
+                          <span className="text-white/70 text-[14px] flex items-center gap-1">
                             <FiUser className="w-2.5 h-2.5" />
                             {image.photographer}
                           </span>
-                          <span className="text-white/70 text-[9px] flex items-center gap-1">
+                          <span className="text-white/70 text-[14px] flex items-center gap-1">
                             <FiHeart className="w-2.5 h-2.5" />
                             {image.likes}
                           </span>
-                          <span className="text-white/70 text-[9px] flex items-center gap-1">
+                          <span className="text-white/70 text-[14px] flex items-center gap-1">
                             <FiCalendar className="w-2.5 h-2.5" />
                             {image.date}
                           </span>
@@ -302,7 +302,7 @@ function MokshaGallery() {
                             e.stopPropagation();
                             setSelectedImage(image);
                           }}
-                          className="w-full mt-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-[9px] font-medium py-1.5 rounded-lg transition-all duration-200 flex items-center justify-center gap-1 border border-white/30"
+                          className="w-full mt-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-[14px] font-medium py-1.5 rounded-lg transition-all duration-200 flex items-center justify-center gap-1 border border-white/30"
                         >
                           <FiEye className="w-3 h-3" />
                           View Details
@@ -372,7 +372,7 @@ function MokshaGallery() {
               <div className="lg:w-2/5 p-6 lg:p-8 bg-white overflow-y-auto">
                 <div className="space-y-6">
                   <div>
-                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-xs font-medium mb-3">
+                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3">
                       {selectedImage.category.charAt(0).toUpperCase() +
                         selectedImage.category.slice(1)}
                     </span>
@@ -386,7 +386,7 @@ function MokshaGallery() {
 
                   <div className="grid grid-cols-2 gap-4 py-4 border-y border-[#F5E9D9]">
                     <div>
-                      <p className="text-[10px] text-[#5A3E2B]/60 mb-1">
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
                         Photographer
                       </p>
                       <p className="text-sm font-medium text-[#2C1810]">
@@ -394,13 +394,13 @@ function MokshaGallery() {
                       </p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#5A3E2B]/60 mb-1">Year</p>
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">Year</p>
                       <p className="text-sm font-medium text-[#2C1810]">
                         {selectedImage.date}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#5A3E2B]/60 mb-1">
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
                         Likes
                       </p>
                       <p className="text-sm font-medium text-[#2C1810] flex items-center gap-1">
@@ -409,7 +409,7 @@ function MokshaGallery() {
                       </p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#5A3E2B]/60 mb-1">
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
                         Category
                       </p>
                       <p className="text-sm font-medium text-[#2C1810]">

@@ -181,7 +181,7 @@ export default function VoicesOfGratitude() {
           <div className="mt-0.5 flex items-center justify-center gap-3">
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-[#B9843D]" />
 
-            <span className="text-[9px] font-medium uppercase tracking-[0.28em] text-[#93692E] sm:text-[10px]">
+            <span className="text-[14px] font-medium uppercase tracking-[0.28em] text-[#93692E] sm:text-[15px]">
               Family Experiences
             </span>
 
@@ -192,7 +192,7 @@ export default function VoicesOfGratitude() {
             Families Who Received Sewa
           </h2>
 
-          <p className="mx-auto mt-1 max-w-[620px] text-[10px] font-normal leading-4 text-[#655247] sm:text-[11px]">
+          <p className="mx-auto mt-1 max-w-[620px] text-[14px] font-normal leading-4 text-[#655247] sm:text-[15px]">
             Stories of families supported with dignity, care and compassion.
           </p>
         </header>
@@ -211,7 +211,7 @@ export default function VoicesOfGratitude() {
                     “
                   </div>
 
-                  <p className="mt-1.5 line-clamp-5 font-serif text-[12px] font-normal leading-[1.42] text-[#3D2A20]">
+                  <p className="mt-1.5 line-clamp-5 font-serif text-[14px] font-normal leading-[1.42] text-[#3D2A20]">
                     {testimonial.quote}
                   </p>
 
@@ -222,7 +222,7 @@ export default function VoicesOfGratitude() {
                       {testimonial.name}
                     </h3>
 
-                    <p className="mt-0.5 flex items-center gap-1 text-[10px] font-medium text-[#B17627]">
+                    <p className="mt-0.5 flex items-center gap-1 text-[14px] font-medium text-[#B17627]">
                       <FaMapMarkerAlt
                         className="h-3 w-3 fill-[#C88C33] text-[#C88C33]"
                       />

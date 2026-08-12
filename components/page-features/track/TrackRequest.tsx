@@ -20,10 +20,10 @@ import { requestApi, TrackedCase } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 
 const inputClass =
-  "h-[46px] w-full rounded-[9px] border border-[#E2C79F] bg-[#FFFCF7] px-3.5 text-[13px] text-[#2C1810] placeholder:text-[#A99A8C] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all focus:border-[#B9843E] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/25";
+  "h-[46px] w-full rounded-[9px] border border-[#E2C79F] bg-[#FFFCF7] px-3.5 text-[14px] text-[#2C1810] placeholder:text-[#A99A8C] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all focus:border-[#B9843E] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/25";
 
 const labelClass =
-  "mb-1.5 block text-[10px] font-medium uppercase tracking-[0.12em] text-[#3E2A1F]";
+  "mb-1.5 block text-[14px] font-medium uppercase tracking-[0.12em] text-[#3E2A1F]";
 
 const STATUS_LABELS: Record<string, string> = {
   NEW: "Request Received",
@@ -223,7 +223,7 @@ function TrackRequest() {
             <span className="h-px w-20 bg-gradient-to-l from-transparent to-[#C79A58]" />
           </div>
 
-          <p className="mx-auto mt-2 max-w-[620px] text-[12px] leading-5 text-[#4F382A] sm:text-[13px]">
+          <p className="mx-auto mt-2 max-w-[620px] text-[14px] leading-5 text-[#4F382A] sm:text-[15px]">
             Enter your Case ID or Request Number along with your phone number
             <br className="hidden sm:block" /> to check the latest status of your
             support request.
@@ -259,7 +259,7 @@ function TrackRequest() {
                     >
                       Find Your Status
                     </h2>
-                    <p className="mt-0.5 text-[12px] text-[#765A43]">
+                    <p className="mt-0.5 text-[14px] text-[#765A43]">
                       No login required — just two details
                     </p>
                   </div>
@@ -318,7 +318,7 @@ function TrackRequest() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="group mx-auto flex h-[44px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#A66D24] via-[#9A6427] to-[#84531E] px-6 text-[13px] font-medium text-white shadow-[0_7px_18px_rgba(126,77,22,0.18)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_10px_22px_rgba(126,77,22,0.24)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-[230px]"
+                    className="group mx-auto flex h-[44px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#A66D24] via-[#9A6427] to-[#84531E] px-6 text-[14px] font-medium text-white shadow-[0_7px_18px_rgba(126,77,22,0.18)] transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_10px_22px_rgba(126,77,22,0.24)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-[230px]"
                   >
                     {isLoading ? (
                       <>
@@ -334,7 +334,7 @@ function TrackRequest() {
                   </button>
                 </form>
 
-                <div className="relative mt-2.5 flex items-center justify-center gap-2 text-[9px] text-[#7D6A5B] sm:text-[11px]">
+                <div className="relative mt-2.5 flex items-center justify-center gap-2 text-[14px] text-[#7D6A5B] sm:text-[15px]">
                   <FaShieldAlt className="h-3.5 w-3.5 text-[#A66E2E]" />
                   <span>
                     Your information is secure and used only to fetch your
@@ -379,7 +379,7 @@ function TrackRequest() {
                         <Icon className="h-[18px] w-[18px]" />
                       </span>
 
-                      <p className="pt-0.5 text-[13px] leading-[1.55] text-[#3F2C21]">
+                      <p className="pt-0.5 text-[14px] leading-[1.55] text-[#3F2C21]">
                         {text}
                       </p>
                     </div>
@@ -418,14 +418,14 @@ function TrackRequest() {
                         >
                           {result.requestNo}
                         </p>
-                        <p className="text-[11px] text-[#8A7460]">
+                        <p className="text-[14px] text-[#8A7460]">
                           Request Number
                         </p>
                       </div>
                     </div>
 
                     <span
-                      className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold ${
+                      className={`shrink-0 rounded-full px-3 py-1 text-[14px] font-semibold ${
                         result.status === "REJECTED"
                           ? "bg-red-50 text-red-700"
                           : "bg-[#8B6A3E]/10 text-[#8B6A3E]"
@@ -474,14 +474,14 @@ function TrackRequest() {
                         >
                           {result.caseId}
                         </p>
-                        <p className="text-[11px] text-[#8A7460]">
+                        <p className="text-[14px] text-[#8A7460]">
                           Case ID · {result.requestNo}
                         </p>
                       </div>
                     </div>
 
                     <span
-                      className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold ${
+                      className={`shrink-0 rounded-full px-3 py-1 text-[14px] font-semibold ${
                         isTerminalNegative
                           ? "bg-red-50 text-red-700"
                           : result.status === "CLOSED"
@@ -532,7 +532,7 @@ function TrackRequest() {
                               </span>
 
                               <p
-                                className={`mt-1 max-w-[118px] text-[10px] font-medium leading-[1.2] xl:text-[11px] ${
+                                className={`mt-1 max-w-[118px] text-[14px] font-medium leading-[1.2] xl:text-[15px] ${
                                   isDone
                                     ? "text-[#2C1810]"
                                     : "text-[#A8937E]"
@@ -549,7 +549,7 @@ function TrackRequest() {
 
                   {result.timeline.length > 0 && (
                     <div className="mt-2 border-t border-[#F0E5D3] pt-3">
-                      <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8B6A3E]">
+                      <p className="mb-1.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-[#8B6A3E]">
                         Recent Updates
                       </p>
 
@@ -560,7 +560,7 @@ function TrackRequest() {
                           .map((entry, i) => (
                             <div
                               key={i}
-                              className="rounded-lg bg-[#FBF7F0] px-2.5 py-1.5 text-[10px] leading-4 text-[#6B584B]"
+                              className="rounded-lg bg-[#FBF7F0] px-2.5 py-1.5 text-[14px] leading-4 text-[#6B584B]"
                             >
                               <span className="font-semibold text-[#2C1810]">
                                 {new Date(entry.at).toLocaleDateString(

@@ -75,10 +75,10 @@ interface TrustItem {
 }
 
 const inputClass =
-  "h-[42px] w-full rounded-[7px] border border-[#E6D8C7] bg-white px-3 text-[11px] font-normal text-[#35241B] outline-none transition placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10";
+  "h-[42px] w-full rounded-[7px] border border-[#E6D8C7] bg-white px-3 text-[14px] font-normal text-[#35241B] outline-none transition placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10";
 
 const labelClass =
-  "mb-1.5 block text-[10px] font-medium leading-none text-[#3A291F]";
+  "mb-1.5 block text-[14px] font-medium leading-none text-[#3A291F]";
 
 const EMPTY_FORM: FormState = {
   requesterName: "",
@@ -411,7 +411,7 @@ export default function RequestHelp() {
               <span className="h-px w-14 bg-[#E39856]" />
             </div>
 
-            <p className="mx-auto mt-2 max-w-[680px] text-[11px] leading-5 text-[#665246] sm:text-[12px]">
+            <p className="mx-auto mt-2 max-w-[680px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
               We are here to support you
               with compassion, dignity and
               care in your time of need.
@@ -431,7 +431,7 @@ export default function RequestHelp() {
                     Request Received
                   </h2>
 
-                  <p className="mt-2 max-w-md text-[12px] leading-6 text-[#69554A]">
+                  <p className="mt-2 max-w-md text-[14px] leading-6 text-[#69554A]">
                     Our assistance team will
                     contact you shortly. Keep
                     your request number safe for
@@ -447,7 +447,7 @@ export default function RequestHelp() {
                     onClick={() =>
                       setResult(null)
                     }
-                    className="mt-5 text-[11px] font-medium text-[#D76816] hover:underline"
+                    className="mt-5 text-[14px] font-medium text-[#D76816] hover:underline"
                   >
                     Submit another request
                   </button>
@@ -473,7 +473,7 @@ export default function RequestHelp() {
                             "NORMAL",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[9px] transition ${
+                        className={`rounded px-3 py-1 text-[14px] transition ${
                           requestType ===
                           "NORMAL"
                             ? "bg-[#E87520] text-white"
@@ -490,7 +490,7 @@ export default function RequestHelp() {
                             "EMERGENCY",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[9px] transition ${
+                        className={`rounded px-3 py-1 text-[14px] transition ${
                           requestType ===
                           "EMERGENCY"
                             ? "bg-[#D94124] text-white"
@@ -656,15 +656,15 @@ export default function RequestHelp() {
                     </div>
 
                     {pincodeStatus === "loading" && (
-                      <p className="mt-1 text-[10px] text-[#A59689]">Looking up state and city…</p>
+                      <p className="mt-1 text-[14px] text-[#A59689]">Looking up state and city…</p>
                     )}
                     {pincodeStatus === "done" && (
-                      <p className="mt-1 text-[10px] text-emerald-600">
+                      <p className="mt-1 text-[14px] text-emerald-600">
                         Found: {form.city}, {form.state}
                       </p>
                     )}
                     {pincodeStatus === "error" && (
-                      <p className="mt-1 text-[10px] text-[#E47B22]">
+                      <p className="mt-1 text-[14px] text-[#E47B22]">
                         Couldn&apos;t find this pincode — please enter state and city manually.
                       </p>
                     )}
@@ -740,7 +740,7 @@ export default function RequestHelp() {
 
                               <Icon className="h-5 w-5 text-[#E87520]" />
 
-                              <span className="mt-1.5 font-serif text-[11px] leading-[1.12] text-[#39251C]">
+                              <span className="mt-1.5 font-serif text-[14px] leading-[1.12] text-[#39251C]">
                                 {
                                   option.title
                                 }
@@ -858,12 +858,12 @@ export default function RequestHelp() {
                       value={form.notes}
                       onChange={handleChange}
                       rows={2}
-                      className="min-h-[58px] w-full resize-none rounded-[7px] border border-[#E6D8C7] bg-white px-3 py-2 text-[11px] text-[#35241B] outline-none placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10"
+                      className="min-h-[58px] w-full resize-none rounded-[7px] border border-[#E6D8C7] bg-white px-3 py-2 text-[14px] text-[#35241B] outline-none placeholder:text-[#A59689] focus:border-[#E47B22] focus:ring-2 focus:ring-[#E47B22]/10"
                       placeholder="Please share any details that may help us serve you better..."
                     />
                   </div>
 
-                  <label className="flex cursor-pointer items-start gap-2 text-[9px] leading-4 text-[#6A5548]">
+                  <label className="flex cursor-pointer items-start gap-2 text-[14px] leading-4 text-[#6A5548]">
                     <input
                       type="checkbox"
                       checked={consent}
@@ -882,7 +882,7 @@ export default function RequestHelp() {
                   </label>
 
                   {error && (
-                    <div className="rounded-[7px] border border-red-200 bg-red-50 px-3 py-2 text-[10px] text-red-700">
+                    <div className="rounded-[7px] border border-red-200 bg-red-50 px-3 py-2 text-[14px] text-red-700">
                       {error}
                     </div>
                   )}
@@ -890,7 +890,7 @@ export default function RequestHelp() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group flex h-[44px] w-full items-center justify-center gap-3 rounded-[7px] bg-gradient-to-r from-[#F06C16] to-[#E04D0D] px-4 text-[13px] font-medium text-white shadow-[0_7px_18px_rgba(225,78,13,0.20)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="group flex h-[44px] w-full items-center justify-center gap-3 rounded-[7px] bg-gradient-to-r from-[#F06C16] to-[#E04D0D] px-4 text-[14px] font-medium text-white shadow-[0_7px_18px_rgba(225,78,13,0.20)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSubmitting ? (
                       <>
@@ -908,7 +908,7 @@ export default function RequestHelp() {
                     )}
                   </button>
 
-                  <p className="flex items-center justify-center gap-2 text-center text-[9px] text-[#76665B]">
+                  <p className="flex items-center justify-center gap-2 text-center text-[14px] text-[#76665B]">
                     <FaShieldAlt className="text-[#6F746F]" />
                     Your information is safe
                     and secure with us. We
@@ -941,11 +941,11 @@ export default function RequestHelp() {
                       </span>
 
                       <div>
-                        <h3 className="font-serif text-[13px] leading-tight text-[#3E261B]">
+                        <h3 className="font-serif text-[14px] leading-tight text-[#3E261B]">
                           {item.title}
                         </h3>
 
-                        <p className="mt-1 text-[9px] leading-[1.45] text-[#715C4E]">
+                        <p className="mt-1 text-[14px] leading-[1.45] text-[#715C4E]">
                           {item.description}
                         </p>
                       </div>
@@ -972,7 +972,7 @@ export default function RequestHelp() {
                   “
                 </span>
 
-                <p className="font-serif text-[13px]  leading-5 text-[#5B3827]">
+                <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
                   In Sewa, we find peace.
                   <br />
                   In supporting each other,
@@ -987,12 +987,12 @@ export default function RequestHelp() {
 
           {/* Bottom message */}
           <div className="mt-3 text-center">
-            <p className="font-serif text-[13px] text-[#D16521]">
+            <p className="font-serif text-[14px] text-[#D16521]">
               ॥ अन्तिम सेवा, हमारी श्रद्धा और
               आपका विश्वास ॥
             </p>
 
-            <p className="mt-0.5 text-[9px] text-[#78665A]">
+            <p className="mt-0.5 text-[14px] text-[#78665A]">
               With Sewa in our heart, we walk
               with you in this journey.
             </p>
@@ -1001,7 +1001,7 @@ export default function RequestHelp() {
           <div className="mt-2 flex justify-center">
             <Link
               href="/track"
-              className="text-[9px] font-medium text-[#B85B20] hover:underline"
+              className="text-[14px] font-medium text-[#B85B20] hover:underline"
             >
               Already submitted? Track your
               request →

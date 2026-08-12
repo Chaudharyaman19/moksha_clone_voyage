@@ -46,7 +46,7 @@ export default function FoundersVision() {
             
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+              <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 Founder's Vision
               </span>
             </div>
@@ -82,7 +82,7 @@ export default function FoundersVision() {
 
             <div className="mt-4">
               <p className="font-serif text-lg  text-[#8B6A3E]">Vijay Sharma</p>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Co-Founder & Director, Moksha Sewa</p>
+              <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Co-Founder & Director, Moksha Sewa</p>
             </div>
           </div>
 

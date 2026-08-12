@@ -210,13 +210,13 @@ function ActivityCard({
         <CornerLotus />
 
         <div className="relative z-10">
-          <h3 className="font-serif text-[14px] font-normal leading-tight text-[#32231C] lg:text-[13px] xl:text-[14px]">
+          <h3 className="font-serif text-[14px] font-normal leading-tight text-[#32231C] lg:text-[15px] xl:text-[14px]">
             {activity.title}
           </h3>
 
           <span className="mx-auto mt-1.5 block h-px w-7 bg-[#C88935]" />
 
-          <p className="mx-auto mt-1.5 max-w-[210px] text-[10px] font-normal leading-[14px] text-[#5D493C] xl:text-[10.5px] xl:leading-[14px]">
+          <p className="mx-auto mt-1.5 max-w-[210px] text-[14px] font-normal leading-[14px] text-[#5D493C] xl:text-[15px] xl:leading-[14px]">
             {activity.description}
           </p>
         </div>
@@ -263,7 +263,7 @@ export default function Serving({}: ServingProps) {
           <div className="mb-1 mt-0.5 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
 
-            <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E] sm:text-[11px]">
+            <span className="text-[14px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E] sm:text-[15px]">
               Our Service Work
             </span>
 
@@ -292,7 +292,7 @@ export default function Serving({}: ServingProps) {
         <div className="mt-2 flex justify-center">
           <a
             href="/request-help"
-            className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[12px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
+            className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[14px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
             <span>Request Help Now</span>
 

@@ -42,7 +42,7 @@ export default function BoardMembers() {
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-            <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+            <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Leadership & Governance
             </span>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
@@ -100,9 +100,9 @@ export default function BoardMembers() {
                       {member.name}
                     </h3>
                     
-                    <p className="mt-2 text-[12px] leading-[1.4] text-[#333333] md:text-[13px]">
+                    <p className="mt-2 text-[14px] leading-[1.4] text-[#333333] md:text-[15px]">
                       <span className="font-medium block">{member.role}</span>
-                      <span className="mt-1 block text-[11px] text-[#666666] md:text-[12px]">{member.description}</span>
+                      <span className="mt-1 block text-[14px] text-[#666666] md:text-[15px]">{member.description}</span>
                     </p>
                   </div>
                 </div>

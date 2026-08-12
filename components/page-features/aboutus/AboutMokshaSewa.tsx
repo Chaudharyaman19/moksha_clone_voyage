@@ -16,7 +16,7 @@ export default function AboutMokshaSewa() {
 
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-[1px] w-10 bg-[#8B6A3E]" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+            <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
               Our Story
             </span>
           </div>
@@ -52,7 +52,7 @@ export default function AboutMokshaSewa() {
               <span className="block font-serif text-xl  leading-tight text-[#8B6A3E]">
                 Serving with Devotion
               </span>
-              <span className="block text-[11px] uppercase tracking-[0.18em] text-[#8A7460] mt-1">
+              <span className="block text-[14px] uppercase tracking-[0.18em] text-[#8A7460] mt-1">
                 Team Moksha Sewa
               </span>
             </span>

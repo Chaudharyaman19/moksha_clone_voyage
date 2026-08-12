@@ -183,7 +183,7 @@ function ReasonIcon({ type }: ReasonIconProps) {
           <FaHeadphones className="h-[36px] w-[36px] text-[#AA7318]" />
 
           <span
-            className="absolute top-[15px] text-[9px] font-normal leading-none text-[#7D5412]"
+            className="absolute top-[15px] text-[14px] font-normal leading-none text-[#7D5412]"
             style={serifFont}
           >
             24/7
@@ -209,7 +209,7 @@ function ReasonIcon({ type }: ReasonIconProps) {
 
           <span className="absolute bottom-0 right-0 grid h-[18px] w-[18px] place-items-center rounded-full border border-[#AA7318] bg-[#FFFDF8]">
             <span
-              className="text-[10px] font-normal leading-none text-[#AA7318]"
+              className="text-[14px] font-normal leading-none text-[#AA7318]"
               style={serifFont}
             >
               ₹
@@ -278,7 +278,7 @@ export default function WhyFamiliesTrust() {
             <TitleDivider />
 
             <p
-              className="mx-auto mt-2 max-w-[620px] text-center text-[13px] font-normal leading-[1.4] text-[#3F3028]"
+              className="mx-auto mt-2 max-w-[620px] text-center text-[14px] font-normal leading-[1.4] text-[#3F3028]"
               style={serifFont}
             >
               Moksha Sewa is built for families who need real help,
@@ -317,7 +317,7 @@ export default function WhyFamiliesTrust() {
 
               {/* Description */}
               <p
-                className="mt-1.5 max-w-[235px] text-[12px] font-normal leading-[1.3] text-[#44352C]"
+                className="mt-1.5 max-w-[235px] text-[14px] font-normal leading-[1.3] text-[#44352C]"
                 style={serifFont}
               >
                 {reason.text}
@@ -334,7 +334,7 @@ export default function WhyFamiliesTrust() {
             </span>
 
             <p
-              className="text-[12px] font-normal text-[#4A392E] "
+              className="text-[14px] font-normal text-[#4A392E] "
               style={serifFont}
             >
               When there is no support Moksha Sewa stands with the family.

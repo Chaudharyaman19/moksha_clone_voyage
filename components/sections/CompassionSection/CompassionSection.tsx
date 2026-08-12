@@ -210,7 +210,7 @@ export default function CompassionSection() {
               <div className="flex h-11 w-11 items-center justify-center border-b border-[#A87B3D] text-[#956A32]">
                 <LotusIcon className="h-9 w-9" />
               </div>
-              <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
+              <span className="text-[14px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
                 Moksha Sewa
               </span>
             </div>
@@ -263,7 +263,7 @@ export default function CompassionSection() {
                   <div className="mt-1 text-[14px] font-medium leading-tight text-[#39261B]">
                     {title}
                   </div>
-                  <div className="mt-1 text-[12px] leading-tight text-[#786254]">
+                  <div className="mt-1 text-[14px] leading-tight text-[#786254]">
                     {caption}
                   </div>
                 </article>
@@ -315,10 +315,10 @@ export default function CompassionSection() {
                   <PriestIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[12px] font-semibold text-[#4A3020]">
+                  <div className="text-[14px] font-semibold text-[#4A3020]">
                     Priest Support
                   </div>
-                  <div className="text-[9px] text-[#796556]">
+                  <div className="text-[14px] text-[#796556]">
                     Experienced & Verified
                   </div>
                 </div>
@@ -331,10 +331,10 @@ export default function CompassionSection() {
                   <BoxIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[12px] font-semibold text-[#4A3020]">
+                  <div className="text-[14px] font-semibold text-[#4A3020]">
                     Ritual Items & Guidance
                   </div>
-                  <div className="text-[9px] text-[#796556]">
+                  <div className="text-[14px] text-[#796556]">
                     Complete Essentials
                   </div>
                 </div>
@@ -349,7 +349,7 @@ export default function CompassionSection() {
         <div className="grid h-10 w-10 place-items-center rounded-full bg-[#A67635]/10 text-[#8E612E]">
           <ShieldIcon className="h-6 w-6" />
         </div>
-        <div className="text-[11px] leading-relaxed">
+        <div className="text-[14px] leading-relaxed">
           <div className="font-semibold">Compassionate Support.</div>
           <div>Dignified Goodbyes.</div>
         </div>

@@ -77,7 +77,7 @@ export default function TopInfoBar() {
             <FaEnvelope className="h-3 w-3 shrink-0 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
             <a
               href="mailto:info@mokshasewa.org"
-              className="min-w-0 truncate text-[11px] text-white/90 transition-colors hover:text-white sm:text-sm lg:text-[13px]"
+              className="min-w-0 truncate text-[14px] text-white/90 transition-colors hover:text-white sm:text-sm lg:text-[15px]"
             >
               info@mokshasewa.org
             </a>
@@ -89,7 +89,7 @@ export default function TopInfoBar() {
             <FaPhoneAlt className="h-3 w-3 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
             <a
               href="tel:+919220147229"
-              className="whitespace-nowrap text-xs text-white/90 transition-colors hover:text-white lg:text-[13px]"
+              className="whitespace-nowrap text-[14px] text-white/90 transition-colors hover:text-white lg:text-[15px]"
             >
               9220147229
             </a>
@@ -135,19 +135,19 @@ export default function TopInfoBar() {
 
           <Link href="/track" className={utilityLink} aria-label="Track request">
             <FaSearch className="h-3 w-3" />
-            <span className="hidden text-[11px] md:inline">Track Request</span>
+            <span className="hidden text-[14px] md:inline">Track Request</span>
           </Link>
 
           <Link href="/track" className={utilityLink} aria-label="Track records">
             <FaFileAlt className="h-3 w-3" />
-            <span className="hidden text-[11px] md:inline">Track Records</span>
+            <span className="hidden text-[14px] md:inline">Track Records</span>
           </Link>
 
           <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
 
           <Link href="/login" className={utilityLink} aria-label="User login">
             <FaUser className="h-3 w-3" />
-            <span className="hidden text-[11px] md:inline">User Login</span>
+            <span className="hidden text-[14px] md:inline">User Login</span>
           </Link>
 
           {/* Admin Login — separate admin app; not built yet, so this points at where it will
@@ -158,7 +158,7 @@ export default function TopInfoBar() {
             aria-label="Admin login"
           >
             <FaShieldAlt className="h-3 w-3" />
-            <span className="hidden text-[11px] md:inline">Admin Login</span>
+            <span className="hidden text-[14px] md:inline">Admin Login</span>
           </a>
         </div>
       </div>

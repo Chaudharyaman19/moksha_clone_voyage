@@ -11,7 +11,7 @@ export default function AboutNamoGangeTrust() {
           <div className="order-2 lg:order-1">
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+              <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 Our Parent Organization
               </span>
             </div>
@@ -48,7 +48,7 @@ export default function AboutNamoGangeTrust() {
                 href="https://www.namogange.org/" 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#8B6A3E] bg-transparent px-6 text-[13px] font-medium text-[#8B6A3E] transition-all hover:bg-[#8B6A3E] hover:text-white"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#8B6A3E] bg-transparent px-6 text-[14px] font-medium text-[#8B6A3E] transition-all hover:bg-[#8B6A3E] hover:text-white"
               >
                 Visit Namo Gange Trust
               </a>

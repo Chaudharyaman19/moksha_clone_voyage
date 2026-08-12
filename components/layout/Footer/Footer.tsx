@@ -128,13 +128,13 @@ export default function Footer({}: FooterProps) {
                 <h2 className="font-serif text-2xl leading-none text-white">
                   Moksha <span className=" text-[#E4B75F]">Sewa</span>
                 </h2>
-                <p className="mt-1 text-xs font-medium tracking-wide text-[#D9A84F] sm:text-[13px]">
+                <p className="mt-1 text-[14px] font-medium tracking-wide text-[#D9A84F] sm:text-[15px]">
                   {tagline}
                 </p>
               </div>
             </div>
 
-            <p className="mt-3 max-w-xl text-[13px] leading-6 text-white/70">
+            <p className="mt-3 max-w-xl text-[14px] leading-6 text-white/70">
               {description}
             </p>
 
@@ -157,7 +157,7 @@ export default function Footer({}: FooterProps) {
               {/* helpline sits inline with socials — no separate ribbon needed */}
               <a
                 href={`tel:${contactNumber.replace(/\s/g, "")}`}
-                className="group ml-1 inline-flex items-center gap-2 rounded-lg bg-gradient-to-b from-[#E5B85F] to-[#C78B32] px-3.5 py-2 text-xs font-semibold text-[#24150C] shadow-md transition duration-300 hover:brightness-110"
+                className="group ml-1 inline-flex items-center gap-2 rounded-lg bg-gradient-to-b from-[#E5B85F] to-[#C78B32] px-3.5 py-2 text-[14px] font-semibold text-[#24150C] shadow-md transition duration-300 hover:brightness-110"
               >
                 <span className="relative flex h-3.5 w-3.5 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#24150C]/25" />
@@ -182,7 +182,7 @@ export default function Footer({}: FooterProps) {
                   <h3 className="font-serif text-lg leading-tight text-white">
                     Request <span className=" text-[#E4B75F]">Support</span>
                   </h3>
-                  <p className="mt-0.5 text-[11px] leading-4 text-white/55">
+                  <p className="mt-0.5 text-[14px] leading-4 text-white/55">
                     Share your email and our support team will contact you.
                   </p>
                 </div>
@@ -239,7 +239,7 @@ export default function Footer({}: FooterProps) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group inline-flex items-center gap-1.5 text-[13px] text-white/70 transition hover:text-[#E4B75F]"
+                    className="group inline-flex items-center gap-1.5 text-[14px] text-white/70 transition hover:text-[#E4B75F]"
                   >
                     <FaChevronRight className="h-3.5 w-3.5 text-[#D3A14D] transition group-hover:translate-x-0.5" />
                     {item.label}
@@ -256,7 +256,7 @@ export default function Footer({}: FooterProps) {
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center gap-1.5 text-[13px] text-white/70 transition hover:text-[#E4B75F]"
+                    className="group inline-flex items-center gap-1.5 text-[14px] text-white/70 transition hover:text-[#E4B75F]"
                   >
                     <FaChevronRight className="h-3.5 w-3.5 text-[#D3A14D] transition group-hover:translate-x-0.5" />
                     {service.label}
@@ -268,7 +268,7 @@ export default function Footer({}: FooterProps) {
 
           <div>
             <FooterColumnTitle icon={FaMapMarkerAlt} title="Contact" />
-            <ul className="mt-2.5 space-y-1.5 text-[13px] text-white/70">
+            <ul className="mt-2.5 space-y-1.5 text-[14px] text-white/70">
               <li className="flex items-start gap-2">
                 <FaMapMarkerAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D3A14D]" />
                 <span>Delhi NCR</span>
@@ -296,7 +296,7 @@ export default function Footer({}: FooterProps) {
 
           <div>
             <FooterColumnTitle icon={FaHeart} title="Values" />
-            <ul className="mt-2.5 space-y-1.5 text-[13px] text-white/70">
+            <ul className="mt-2.5 space-y-1.5 text-[14px] text-white/70">
               {[
                 { icon: FaHeart, label: "Compassion" },
                 { icon: FaShieldAlt, label: "Trust" },
@@ -318,11 +318,11 @@ export default function Footer({}: FooterProps) {
 
         {/* ---------- Bottom bar (shanti + copyright in one row) ---------- */}
         <div className="mt-4 border-t border-[#B17C37]/25 pt-3 lg:mt-5">
-          <div className="flex flex-col items-center justify-between gap-2 text-center text-xs text-white/45 sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center justify-between gap-2 text-center text-[14px] text-white/45 sm:flex-row sm:text-left">
             <p>
               © {new Date().getFullYear()} {brandName} • All rights reserved
             </p>
-            <p className="font-serif text-[13px] tracking-[0.25em] text-[#D9A84F]/40">
+            <p className="font-serif text-[14px] tracking-[0.25em] text-[#D9A84F]/40">
               ॐ शांति शांति शांति ॐ
             </p>
             <div className="flex items-center gap-4">

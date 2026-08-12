@@ -60,7 +60,7 @@ export default function FAQSection() {
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
 
-            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
+            <span className="text-[14px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
               FAQs
             </span>
 

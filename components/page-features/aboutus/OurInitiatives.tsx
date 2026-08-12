@@ -35,7 +35,7 @@ export default function OurInitiatives() {
         <header className="mx-auto mb-2 flex flex-col items-center justify-center text-center">
           <div className="mb-2 inline-flex items-center gap-2">
             <span className="h-[1px] w-8 bg-[#8B6A3E]" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+            <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
               Our Expanding Horizon
             </span>
             <span className="h-[1px] w-8 bg-[#8B6A3E]" />

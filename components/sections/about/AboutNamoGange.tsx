@@ -38,7 +38,7 @@ export default function AboutNamoGange() {
           <div className="w-full lg:w-1/2 relative z-10">
             <div className="mb-2 inline-flex items-center gap-3">
               <span className="w-10 h-[1px] bg-[#8B6A3E]" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+              <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 Namo Gange Trust Initiative
               </span>
             </div>
@@ -57,7 +57,7 @@ export default function AboutNamoGange() {
               <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
             </div>
 
-            <p className="mb-4 text-[13px] leading-relaxed text-[#4F3A2D] md:text-[13px]">
+            <p className="mb-4 text-[14px] leading-relaxed text-[#4F3A2D] md:text-[15px]">
               <strong className="font-semibold text-[#2C1810]">Moksha Sewa</strong> is an initiative of <strong className="font-semibold text-[#2C1810]">Namo Gange Trust</strong> created for families who cannot arrange final rites on their own. Through this service, we help with priest support, ritual items, ambulance, cremation wood, cremation-ground coordination and food service, so unclaimed, orphaned and needy people can receive a respectful final farewell.
             </p>
 
@@ -68,7 +68,7 @@ export default function AboutNamoGange() {
                 </div>
                 <div>
                   <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Selfless Service</h4>
-                  <p className="text-[13px] text-[#5F4630] leading-snug">Free help for helpless families, with dignity in every final rite.</p>
+                  <p className="text-[14px] text-[#5F4630] leading-snug">Free help for helpless families, with dignity in every final rite.</p>
                 </div>
               </div>
               
@@ -78,7 +78,7 @@ export default function AboutNamoGange() {
                 </div>
                 <div>
                   <h4 className="text-[14px] font-semibold text-[#2C1810] mb-0.5">Ritual Support</h4>
-                  <p className="text-[13px] text-[#5F4630] leading-snug">Priest support, ritual items and guidance so final rites are completed properly.</p>
+                  <p className="text-[14px] text-[#5F4630] leading-snug">Priest support, ritual items and guidance so final rites are completed properly.</p>
                 </div>
               </div>
             </div>
