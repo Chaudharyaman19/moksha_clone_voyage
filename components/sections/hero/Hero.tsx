@@ -207,6 +207,7 @@ export default function Hero({}: HeroProps) {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
+  const activeImage = images[currentIndex] ?? images[0];
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((previous) => (previous + 1) % images.length);
@@ -230,26 +231,19 @@ export default function Hero({}: HeroProps) {
     >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
       <div className="absolute inset-y-0 left-0 right-0 overflow-hidden md:right-[-80px]">
-        {images.map((image, index) => (
-          <div
-            key={image}
-            aria-hidden={index !== currentIndex}
-            className={`absolute inset-0 min-w-full transition-opacity duration-1000 ease-out ${index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
-          >
-            <Image
-              src={image}
-              alt={slideContent[index]?.alt ?? "Moksha Sewa sacred ritual support"}
-              fill
-              priority={index === 0}
-              quality={100}
-              sizes="100vw"
-              className={`object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center] ${index === currentIndex ? "scale-[1.04]" : "scale-100"
-                }`}
-            />
-          </div>
-        ))}
-
+        <div className="absolute inset-0 min-w-full transition-opacity duration-1000 ease-out">
+          <Image
+            key={activeImage}
+            src={activeImage}
+            alt={activeSlide.alt}
+            fill
+            priority={currentIndex === 0}
+            fetchPriority={currentIndex === 0 ? "high" : "auto"}
+            quality={75}
+            sizes="100vw"
+            className="object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center] scale-[1.04]"
+          />
+        </div>
       </div>
 
       {/* Smooth content-to-image blend: no visible vertical division */}
@@ -294,18 +288,22 @@ export default function Hero({}: HeroProps) {
 
       {/* Slide dots + counter — sits just above the stats band */}
       <div className="absolute bottom-[80px] right-5 z-40 hidden items-center gap-3 rounded-full border border-white/25 bg-black/25 px-3 py-1.5 backdrop-blur-md md:flex">
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-0.5">
           {images.map((image, index) => (
             <button
               key={image}
               type="button"
               onClick={() => setCurrentIndex(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${index === currentIndex
-                  ? "w-5 bg-[#E4B75F]"
-                  : "w-1.5 bg-white/50 hover:bg-white/80"
-                }`}
-            />
+              className="grid h-11 w-11 place-items-center rounded-full transition"
+            >
+              <span
+                className={`h-1.5 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? "w-5 bg-[#E4B75F]"
+                    : "w-1.5 bg-white/50 hover:bg-white/80"
+                  }`}
+              />
+            </button>
           ))}
         </div>
         <span className="font-serif text-[14px] tracking-[0.18em] text-white/80">

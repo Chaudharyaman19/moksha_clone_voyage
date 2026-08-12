@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode, SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -186,13 +187,14 @@ export default function CompassionSection() {
       {/* Background dimensions and positioning are intentionally unchanged. */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-no-repeat"
-            style={{
-              backgroundImage: "url('/assets/chatgpt.png')",
-              backgroundPosition: "right center",
-              backgroundSize: "contain",
-            }}
+          <Image
+            src="/assets/chatgpt.png"
+            alt=""
+            fill
+            quality={75}
+            sizes="100vw"
+            aria-hidden="true"
+            className="object-contain object-right"
           />
 
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#FBF7EF_0%,#FBF7EF_37%,rgba(251,247,239,0.96)_44%,rgba(251,247,239,0.55)_53%,rgba(251,247,239,0)_68%)]" />

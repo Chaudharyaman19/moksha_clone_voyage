@@ -22,19 +22,21 @@ export default function Page() {
       <JsonLd data={breadcrumbJsonLd("/")} />
       <Topbar />
       <Navbar />
-      <Hero />
-      {/* Namo Gange Section */}
-      {/* <AboutNamoGange /> */}
+      <main>
+        <Hero />
+        {/* Namo Gange Section */}
+        {/* <AboutNamoGange /> */}
 
-      <CompassionSection />
-      <HowWeHelp />
-      <Serving />
-      <HowItWorks />
-      <SacredJourney />
-      <WhyFamiliesTrust />
-      <VoicesOfGratitude />
-      <GlimpseOfJourney />
-      <FAQ />
+        <CompassionSection />
+        <HowWeHelp />
+        <Serving />
+        <HowItWorks />
+        <SacredJourney />
+        <WhyFamiliesTrust />
+        <VoicesOfGratitude />
+        <GlimpseOfJourney />
+        <FAQ />
+      </main>
       <Footer />
     </div>
   );

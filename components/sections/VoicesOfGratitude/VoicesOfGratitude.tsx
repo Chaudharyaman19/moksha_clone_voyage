@@ -222,7 +222,7 @@ export default function VoicesOfGratitude() {
                       {testimonial.name}
                     </h3>
 
-                    <p className="mt-0.5 flex items-center gap-1 text-[14px] font-medium text-[#B17627]">
+                    <p className="mt-0.5 flex items-center gap-1 text-[14px] font-medium text-[#7A4A14]">
                       <FaMapMarkerAlt
                         className="h-3 w-3 fill-[#C88C33] text-[#C88C33]"
                       />
@@ -259,7 +259,7 @@ export default function VoicesOfGratitude() {
           ))}
         </div>
 
-        <div className="mt-3 flex items-center justify-center gap-2.5">
+        <div className="mt-3 flex items-center justify-center gap-1">
           {Array.from({ length: totalPages }).map((_, index) => {
             const selected = page === index;
 
@@ -270,12 +270,16 @@ export default function VoicesOfGratitude() {
                 onClick={() => setPage(index)}
                 aria-label={`Go to testimonial page ${index + 1}`}
                 aria-current={selected ? "true" : undefined}
-                className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${
-                  selected
-                    ? "border-[#D89A32] bg-[#D89A32]"
-                    : "border-[#C7954B] bg-transparent hover:bg-[#EAD3AC]"
-                }`}
-              />
+                className="grid h-11 w-11 place-items-center rounded-full transition"
+              >
+                <span
+                  className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${
+                    selected
+                      ? "border-[#D89A32] bg-[#D89A32]"
+                      : "border-[#C7954B] bg-transparent hover:bg-[#EAD3AC]"
+                  }`}
+                />
+              </button>
             );
           })}
         </div>

@@ -132,7 +132,7 @@ function TopLabel() {
       <div className="mt-0.5 flex items-center justify-center gap-2.5">
         <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D98500]" />
 
-        <p className="text-[14px] font-medium uppercase tracking-[0.3em] text-[#C87500]">
+        <p className="text-[14px] font-medium uppercase tracking-[0.3em] text-[#8F4C00]">
           Support This Sewa
         </p>
 
@@ -334,7 +334,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
                   className={`absolute bottom-[12px] left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[14px] font-medium leading-tight transition ${
                     isFilledButton
                       ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
-                      : "border border-[#E17D18] bg-white/75 text-[#C66300] hover:bg-[#FFF5E8]"
+                      : "border border-[#B85F00] bg-white/90 text-[#8F3E00] hover:bg-[#FFF5E8]"
                   }`}
                 >
                   <span>{card.button}</span>

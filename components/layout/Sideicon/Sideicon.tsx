@@ -157,7 +157,7 @@ const SocialSidebar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group relative flex items-center justify-end"
+                className="group relative flex min-h-11 min-w-11 items-center justify-end"
               >
                 <div 
                   className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[115px] hover:justify-between hover:px-3 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -185,8 +185,8 @@ const SocialSidebar = () => {
             href={socialLinks[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            className="group relative flex items-center justify-start"
+            aria-label="Message Moksha Sewa on WhatsApp"
+            className="group relative flex min-h-12 min-w-12 items-center justify-start"
           >
             <div
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -207,7 +207,7 @@ const SocialSidebar = () => {
           <a
             href={phoneLink.url}
             aria-label={phoneLink.label}
-            className="group relative flex items-center justify-end"
+            className="group relative flex min-h-12 min-w-12 items-center justify-end"
           >
             <div
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -237,7 +237,8 @@ const SocialSidebar = () => {
           {/* Enquiry */}
           <a
             href="mailto:info@mokshasewa.org"
-            className="flex flex-col items-center gap-1 group"
+            aria-label="Email Moksha Sewa"
+            className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center group-hover:bg-[#8B6A3E] group-hover:text-white">
               <FaEnvelope
@@ -245,7 +246,7 @@ const SocialSidebar = () => {
                 className="text-[#8B6A3E] group-hover:text-white"
               />
             </div>
-            <span className="text-[8px] font-medium text-[#5A3E2B]">
+            <span className="text-[11px] font-medium text-[#5A3E2B]">
               ENQUIRY
             </span>
           </a>
@@ -253,7 +254,8 @@ const SocialSidebar = () => {
           {/* Emergency */}
           <a
             href="tel:+919310219283"
-            className="flex flex-col items-center gap-1 group"
+            aria-label="Call Moksha Sewa emergency support"
+            className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center group-hover:bg-red-600">
               <FaPhone
@@ -261,7 +263,7 @@ const SocialSidebar = () => {
                 className="text-red-600 group-hover:text-white"
               />
             </div>
-            <span className="text-[8px] font-medium text-red-600">
+            <span className="text-[11px] font-medium text-red-600">
               EMERGENCY
             </span>
           </a>
@@ -271,7 +273,8 @@ const SocialSidebar = () => {
             href={socialLinks[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-1 group"
+            aria-label="Message Moksha Sewa on WhatsApp"
+            className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]">
               <FaWhatsapp
@@ -279,7 +282,7 @@ const SocialSidebar = () => {
                 className="text-[#25D366] group-hover:text-white"
               />
             </div>
-            <span className="text-[8px] font-medium text-[#25D366]">
+            <span className="text-[11px] font-medium text-[#16823E]">
               WHATSAPP
             </span>
           </a>
@@ -287,7 +290,8 @@ const SocialSidebar = () => {
           {/* Phone */}
           <a
             href={phoneLink.url}
-            className="flex flex-col items-center gap-1 group"
+            aria-label="Call Moksha Sewa"
+            className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-[#4CAF50]/10 flex items-center justify-center group-hover:bg-[#4CAF50]">
               <FaPhone
@@ -295,16 +299,16 @@ const SocialSidebar = () => {
                 className="text-[#4CAF50] group-hover:text-white"
               />
             </div>
-            <span className="text-[8px] font-medium text-[#4CAF50]">CALL</span>
+            <span className="text-[11px] font-medium text-[#2D6E30]">CALL</span>
           </a>
 
           {/* Social Menu Trigger */}
           <div className="group relative">
-            <button className="flex flex-col items-center gap-1">
+            <button className="flex min-h-11 min-w-11 flex-col items-center gap-1" aria-label="Open social links">
               <div className="w-10 h-10 rounded-full bg-[#8B6A3E] flex items-center justify-center">
                 <PiFlowerLotus size={16} className="text-white" />
               </div>
-              <span className="text-[8px] font-medium text-[#8B6A3E]">
+              <span className="text-[11px] font-medium text-[#8B6A3E]">
                 SOCIAL
               </span>
             </button>
