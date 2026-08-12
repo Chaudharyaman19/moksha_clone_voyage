@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { ComponentType } from "react";
@@ -42,7 +41,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Donate",
     description:
-      "Your donation helps arrange ambulance, wood, cloth, flowers and ritual items for families in need.",
+      "Your donation helps arrange ambulance,",
     button: "Donate for Sewa",
     image: donationImages.donate,
     icon: FaHandHoldingHeart,
@@ -51,7 +50,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Volunteer",
     description:
-      "Join our on-ground team and help families at hospitals, homes, ghats and cremation grounds.",
+      "Join our on-ground team and help families at hospitals,",
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
@@ -60,7 +59,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Sponsor Final Rites",
     description:
-      "Sponsor priest support, cremation wood, ambulance, ritual items or food service for a family.",
+      "Sponsor priest support, cremation wood, ambulance,",
     button: "Sponsor Sewa",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
@@ -69,7 +68,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Partner With Us",
     description:
-      "Help us reach more unclaimed, orphaned and needy cases through local support.",
+      "Help us reach more unclaimed,",
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
