@@ -8,7 +8,7 @@
     "build:seo": "npm run build && npm run seo:lighthouse",
     "start": "next start",
     "lint": "eslint",
-    "seo:lighthouse": "npx lighthouse https://moksha-clone-voyage.vercel.app/ --only-categories=seo --chrome-flags=\"--headless --no-sandbox\" --output=json --output-path=./lighthouse-seo-report.json"
+    "seo:lighthouse": "node scripts/lighthouse-seo.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",

@@ -27,14 +27,10 @@ interface LotusMarkProps {
 }
 
 const donationImages = {
-  donate:
-    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_58 PM (1).png",
-  volunteer:
-    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (2).png",
-  sponsor:
-    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (3).png",
-  partner:
-    "/assets/donation-images/ChatGPT Image Aug 3, 2026, 02_07_59 PM (4).png",
+  donate: "/assets/donation-images/donate-sewa.png",
+  volunteer: "/assets/donation-images/volunteer-sewa.png",
+  sponsor: "/assets/donation-images/sponsor-sewa.png",
+  partner: "/assets/donation-images/partner-sewa.png",
 };
 
 const sevaCards: SupportCard[] = [
