@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://mokshavoyageclone.netlify.app";
+export const SITE_URL = "https://moksha-clone-voyage.vercel.app";
 export const SITE_NAME = "Moksha Sewa";
 export const DEFAULT_OG_IMAGE = "/assets/logo-moksha-seva.png";
 

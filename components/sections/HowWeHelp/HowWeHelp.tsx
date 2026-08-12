@@ -374,7 +374,7 @@ export default function HowWeCanHelp() {
                     href={card.href || "/request-help"}
                     className="mt-2 flex min-h-8 w-full items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-3 py-2 text-center font-serif text-[14px] leading-tight text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
                   >
-                    <span >Learn More</span>
+                    <span>Learn More About {card.title}</span>
                     <CustomIcon name="FaArrowRight" className="h-3 w-3" />
                   </a>
                 </div>
