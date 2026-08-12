@@ -306,9 +306,6 @@ export default function Hero({}: HeroProps) {
             </button>
           ))}
         </div>
-        <span className="font-serif text-[14px] tracking-[0.18em] text-white/80">
-          0{currentIndex + 1} / 0{images.length}
-        </span>
       </div>
 
       {/* Main content */}
