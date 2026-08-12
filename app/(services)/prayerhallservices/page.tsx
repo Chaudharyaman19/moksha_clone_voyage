@@ -1,9 +1,13 @@
 import Prayerhallservices from "@/components/page-features/services/Prayerhallservices";
-import React from "react";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata("/prayerhallservices");
 
 function page() {
   return (
     <div>
+      <JsonLd data={breadcrumbJsonLd("/prayerhallservices")} />
       <Prayerhallservices />
     </div>
   );

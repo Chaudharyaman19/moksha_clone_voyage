@@ -271,7 +271,7 @@ export default function Serving({}: ServingProps) {
           </div>
 
           <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
-            Practical Help, Step by Step.
+            Practical Help, Step by Step
           </h2>
 
           <HeadingDivider />

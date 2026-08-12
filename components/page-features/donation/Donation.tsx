@@ -264,7 +264,6 @@ function Donation() {
               priority
               quality={100}
               sizes="100vw"
-              unoptimized
               className="scale-[1.02] object-cover"
             />
           </div>

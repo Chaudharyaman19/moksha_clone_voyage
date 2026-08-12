@@ -219,7 +219,7 @@ export default function HowItWorks({}: MokshaShlokSectionProps) {
           </div>
 
           <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:whitespace-nowrap lg:text-[30px]">
-            Simple Process, Clear Support.
+            Simple Process, Clear Support
           </h2>
 
           <HeaderDivider />

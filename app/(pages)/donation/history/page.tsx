@@ -1,11 +1,7 @@
-import React from "react";
-import type { Metadata } from "next";
 import DonationHistory from "@/components/page-features/donation/DonationHistory";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Your Donation History | Moksha Sewa",
-  description: "View your past donations and download receipts.",
-};
+export const metadata = createPageMetadata("/donation/history");
 
 function page() {
   return (

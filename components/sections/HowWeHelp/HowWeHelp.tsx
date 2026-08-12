@@ -208,15 +208,13 @@ interface StatItem {
   label: string;
 }
 
-interface HowWeHelpProps {}
-
 const decorativePattern = {
   backgroundImage:
     "radial-gradient(circle at 18% 18%, rgba(164,112,48,0.08) 0 1px, transparent 1.2px), radial-gradient(circle at 82% 38%, rgba(164,112,48,0.06) 0 1px, transparent 1.2px)",
   backgroundSize: "20px 20px, 26px 26px",
 };
 
-export default function HowWeCanHelp({}: HowWeHelpProps) {
+export default function HowWeCanHelp() {
   const cards: CardItem[] = [
         {
           icon: "FaWoodStack",
@@ -352,7 +350,7 @@ export default function HowWeCanHelp({}: HowWeHelpProps) {
                     {card.title}
                   </h3>
 
-                  <p className="mt-1.5 min-h-[42px] text-[12px] leading-[17px] text-[#493326]">
+                  <p className="mt-1.5 min-h-[48px] text-[15px] leading-6 text-[#493326]">
                     {card.desc}
                   </p>
 
@@ -362,7 +360,7 @@ export default function HowWeCanHelp({}: HowWeHelpProps) {
                     {card.features.map((feature) => (
                       <div
                         key={feature}
-                        className="flex items-center gap-1.5 text-[11px] leading-4 text-[#3A291F]"
+                        className="flex items-center gap-1.5 text-[14px] leading-5 text-[#3A291F]"
                       >
                         <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#A86D1E] text-[9px] font-bold leading-none text-white">
                           ✓

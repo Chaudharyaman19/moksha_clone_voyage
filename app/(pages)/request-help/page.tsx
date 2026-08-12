@@ -1,16 +1,13 @@
-import React from "react";
-import type { Metadata } from "next";
 import RequestHelp from "@/components/page-features/request-help/RequestHelp";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Request Cremation Assistance | Moksha Sewa",
-  description:
-    "Request free cremation assistance from Moksha Sewa. No payment is ever collected from a family — our team will reach out to help within minutes.",
-};
+export const metadata = createPageMetadata("/request-help");
 
 function page() {
   return (
     <div>
+      <JsonLd data={breadcrumbJsonLd("/request-help")} />
       <RequestHelp />
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode, SVGProps } from "react";
+import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -357,9 +358,12 @@ function SupportSection() {
       </div>
 
       <div className="self-center overflow-hidden rounded-xl bg-[#E8D8C4] shadow-[inset_0_0_0_1px_rgba(95,63,25,0.1),0_5px_12px_rgba(70,47,20,0.07)]">
-        <img
+        <Image
           alt="Support team standing with a family"
           className="block h-auto w-full"
+          width={1100}
+          height={620}
+          sizes="(max-width: 820px) 100vw, 50vw"
           src="/ambulance/family-support.webp"
         />
       </div>
@@ -378,9 +382,12 @@ function StoryCards() {
           className="w-full overflow-hidden rounded-[10px] bg-[#392719] shadow-[0_4px_10px_rgba(58,38,16,0.14)]"
           key={story.title}
         >
-          <img
+          <Image
             alt={story.title}
             className="block aspect-[2.25/1] w-full object-cover object-center"
+            width={720}
+            height={320}
+            sizes="(max-width: 820px) 100vw, 33vw"
             src={story.image}
           />
 
@@ -450,7 +457,7 @@ function DonationSection() {
           <div className="mt-3 flex gap-2 max-[520px]:flex-col">
             <a
               className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] bg-[#D19645] px-[11px] text-sm font-medium text-white shadow-[inset_0_1px_rgba(255,255,255,0.2)] transition-transform hover:-translate-y-px"
-              href="/donate"
+              href="/donation"
             >
               <Icon name="heart" size={16} />
               <span>Donate for Ambulance Service</span>

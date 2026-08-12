@@ -8,14 +8,12 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 
-interface FAQSectionProps {}
-
 interface FAQItem {
   question: string;
   answer: string;
 }
 
-export default function FAQSection({}: FAQSectionProps) {
+export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqItems: FAQItem[] = [
@@ -96,7 +94,7 @@ export default function FAQSection({}: FAQSectionProps) {
                         className="flex min-h-[52px] w-full items-center justify-between gap-5 px-3 py-3 text-left sm:min-h-[56px] sm:px-4"
                         aria-expanded={isOpen}
                       >
-                        <span className="text-[14px] font-medium leading-5 text-[#3C2A20] sm:text-[14px]">
+                        <span className="text-[15px] font-medium leading-6 text-[#3C2A20] sm:text-[16px]">
                           {item.question}
                         </span>
 
@@ -115,7 +113,7 @@ export default function FAQSection({}: FAQSectionProps) {
                         }`}
                       >
                         <div className="overflow-hidden">
-                          <p className="px-3 pb-4 text-[13px] font-normal leading-5 text-[#6C5749] sm:px-4 sm:text-[13px]">
+                          <p className="px-3 pb-4 text-[14px] font-normal leading-6 text-[#6C5749] sm:px-4 sm:text-[15px]">
                             {item.answer}
                           </p>
                         </div>
@@ -134,8 +132,6 @@ export default function FAQSection({}: FAQSectionProps) {
             src="/assets/faq/faq-support-banner-v3.png"
             alt="Moksha Sewa compassionate support for unclaimed and vulnerable cases"
             fill
-            priority
-            unoptimized
             sizes="(max-width: 1280px) 100vw, 1280px"
             className="object-cover object-center"
           />
@@ -151,7 +147,7 @@ export default function FAQSection({}: FAQSectionProps) {
                 </span>
               </h3>
 
-              <p className="mx-auto mt-2 max-w-2xl text-[13px] font-normal leading-5 text-white/86 sm:text-[13px]">
+              <p className="mx-auto mt-2 max-w-2xl text-[15px] font-normal leading-6 text-white/86 sm:text-[16px]">
                 One call can help you receive guidance for an ambulance,
                 cremation wood, ritual materials, a pandit and
                 cremation-ground support.
@@ -160,7 +156,7 @@ export default function FAQSection({}: FAQSectionProps) {
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="tel:+919810247319"
-                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-[13px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF] sm:w-auto sm:min-w-[174px]"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-[14px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF] sm:w-auto sm:min-w-[174px] sm:text-[15px]"
                 >
                   Get Sewa Help
                   <FaPhoneAlt className="h-4 w-4" />
@@ -168,7 +164,7 @@ export default function FAQSection({}: FAQSectionProps) {
 
                 <a
                   href="/donation"
-                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 py-3 text-[13px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12 sm:w-auto sm:min-w-[174px]"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 py-3 text-[14px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12 sm:w-auto sm:min-w-[174px] sm:text-[15px]"
                 >
                   Donate for Sewa
                   <FaHeart className="h-4 w-4" />

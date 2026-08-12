@@ -32,7 +32,7 @@ export default function FoundersVision() {
                 
                 <div className="absolute bottom-6 left-6">
                   <h3 className="font-serif text-2xl font-medium text-white sm:text-3xl">Vijay Sharma</h3>
-                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">Founder & COO</p>
+                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">Co-Founder & Director</p>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export default function FoundersVision() {
 
             <div className="mt-4">
               <p className="font-serif text-lg  text-[#8B6A3E]">Vijay Sharma</p>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Founder & COO, Moksha Sewa</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Co-Founder & Director, Moksha Sewa</p>
             </div>
           </div>
 

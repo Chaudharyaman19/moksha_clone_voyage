@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 import { useRouter, usePathname } from "next/navigation";
 import {
@@ -12,18 +13,12 @@ import {
   FaHistory,
   FaHeart,
   FaAmbulance,
-  FaShoppingBasket,
-  FaPhone,
-  FaCarSide,
   FaPlaceOfWorship,
-  FaMagic,
   FaDonate,
   FaHandsHelping,
 } from "react-icons/fa";
 
-interface NavbarProps { }
-
-export default function Navbar({ }: NavbarProps) {
+export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -78,7 +73,7 @@ export default function Navbar({ }: NavbarProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openDropdown]);
 
-  const handleNavigation = (path: string, name: string) => {
+  const handleNavigation = (path: string) => {
     setOpenDropdown(null);
     setOpen(false);
 
@@ -214,11 +209,15 @@ export default function Navbar({ }: NavbarProps) {
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
             <div className="absolute top-1 left-0 z-10">
-              <button onClick={() => handleNavigation("/", "home")} aria-label="Moksha Sewa — home">
+              <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
                 <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md border border-[#D8B982] bg-white p-1.5 sm:p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80">
-                  <img
+                  <Image
                     src="/assets/logo-moksha-seva.png"
                     alt="Moksha Sewa Logo"
+                    width={96}
+                    height={96}
+                    priority
+                    sizes="(max-width: 640px) 48px, 96px"
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -250,7 +249,7 @@ export default function Navbar({ }: NavbarProps) {
                     </button>
                   ) : item.name === "Donate" ? (
                     <button
-                      onClick={() => handleNavigation(item.path, item.name)}
+                      onClick={() => handleNavigation(item.path)}
                       className="ml-2 flex items-center gap-1.5 rounded-full border border-[#8B6A3E] bg-white px-4 py-1.5 text-sm font-semibold text-[#8B6A3E] shadow-sm transition-all duration-200 hover:bg-[#8B6A3E]/10"
                     >
                       <FaDonate className="h-3 w-3" />
@@ -258,7 +257,7 @@ export default function Navbar({ }: NavbarProps) {
                     </button>
                   ) : item.name === "Request Help" ? (
                     <button
-                      onClick={() => handleNavigation(item.path, item.name)}
+                      onClick={() => handleNavigation(item.path)}
                       className="ml-2 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
                     >
                       <FaHandsHelping className="h-3 w-3" />
@@ -266,7 +265,7 @@ export default function Navbar({ }: NavbarProps) {
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleNavigation(item.path, item.name)}
+                      onClick={() => handleNavigation(item.path)}
                       aria-current={isItemActive(item) ? "page" : undefined}
                       className={`relative px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
                         ? "text-[#8B6A3E]"
@@ -294,7 +293,7 @@ export default function Navbar({ }: NavbarProps) {
                           <button
                             key={subItem.name}
                             onClick={() =>
-                              handleNavigation(subItem.path, subItem.name)
+                              handleNavigation(subItem.path)
                             }
                             aria-current={isPathActive(subItem.path) ? "page" : undefined}
                             className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
@@ -356,7 +355,7 @@ export default function Navbar({ }: NavbarProps) {
                   </button>
                 ) : (
                   <button
-                    onClick={() => handleNavigation(item.path, item.name)}
+                    onClick={() => handleNavigation(item.path)}
                     aria-current={isItemActive(item) ? "page" : undefined}
                     className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
                       }`}
@@ -372,7 +371,7 @@ export default function Navbar({ }: NavbarProps) {
                       <button
                         key={subItem.name}
                         onClick={() => {
-                          handleNavigation(subItem.path, subItem.name);
+                          handleNavigation(subItem.path);
                           setOpen(false);
                         }}
                         aria-current={isPathActive(subItem.path) ? "page" : undefined}

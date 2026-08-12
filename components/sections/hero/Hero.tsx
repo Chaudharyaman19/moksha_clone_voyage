@@ -94,7 +94,7 @@ export default function Hero({}: HeroProps) {
   const slideContent = useMemo<SlideContent[]>(
     () => [
             {
-            heading: ["Dignity for Every Life.", "Support in Difficult Times."],
+            heading: ["Dignity for Every Life", "Support in Difficult Times"],
               description:
                 "Moksha Sewa helps helpless and needy families arrange respectful final-rites support, including ambulance, wood, cloth, flowers, priest guidance and volunteers.",
               alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
@@ -108,7 +108,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Ambulance and Hearse Van.", "Handled With Care."],
+              heading: ["Ambulance and Hearse Van", "Handled With Care"],
               description:
                 "We coordinate ambulance and hearse-van support from hospital, home or public place to the cremation ground, with clear guidance at each step.",
               alt: "Moksha Sewa team arranging hearse van support for a grieving family",
@@ -122,7 +122,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Wood, Cloth and Flowers.", "Essentials Arranged."],
+              heading: ["Wood, Cloth and Flowers", "Essentials Arranged"],
               description:
                 "For families who cannot manage the basic items, we help arrange cremation wood, shroud cloth, flowers, lamps and other ritual materials.",
               alt: "Moksha Sewa volunteers supporting a needy family at the cremation ground",
@@ -136,7 +136,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Priest and Ritual Support.", "Simple Guidance."],
+              heading: ["Priest and Ritual Support", "Simple Guidance"],
               description:
                 "We help arrange priest support and ritual guidance so the final prayers can be completed respectfully, even when the family has limited resources.",
               alt: "Moksha Sewa volunteers arranging priest and ritual materials",
@@ -150,7 +150,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Unclaimed or Helpless.", "Never Without Respect."],
+              heading: ["Unclaimed or Helpless", "Never Without Respect"],
               description:
                 "In unclaimed or helpless cases, we support the required coordination with local authorities, transport, cremation-ground arrangements and basic final-rites needs.",
               alt: "Moksha Sewa team giving respectful final farewell support",
@@ -164,7 +164,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Volunteers on Ground.", "Families Are Not Alone."],
+              heading: ["Volunteers on Ground", "Families Are Not Alone"],
               description:
                 "Our volunteers help families with calls, local coordination, materials, cremation-ground support and practical guidance during the final journey.",
               alt: "Moksha Sewa volunteers doing on-ground service near the cremation ground",
@@ -178,7 +178,7 @@ export default function Hero({}: HeroProps) {
               },
             },
             {
-              heading: ["Food and Basic Support.", "For Families in Need."],
+              heading: ["Food and Basic Support", "For Families in Need"],
               description:
                 "Where possible, we help arrange food, water and basic essentials so grieving families do not face extra pressure during the rituals.",
               alt: "Namo Gange volunteers serving food as part of community food service",
@@ -243,7 +243,6 @@ export default function Hero({}: HeroProps) {
               fill
               priority={index === 0}
               quality={100}
-              unoptimized
               sizes="100vw"
               className={`object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center] ${index === currentIndex ? "scale-[1.04]" : "scale-100"
                 }`}

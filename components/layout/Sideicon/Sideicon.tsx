@@ -66,7 +66,7 @@ const SocialSidebar = () => {
 
   const emailLink = {
     icon: <MdEmail size={20} />,
-    url: "mailto:info@mokshasewa.com",
+    url: "mailto:info@mokshasewa.org",
     color: "#8B6A3E",
     label: "Email Us",
     hoverColor: "#5A3E2B",
@@ -91,7 +91,7 @@ const SocialSidebar = () => {
           <div className="flex flex-col gap-3">
             <div className="group relative">
               <a
-                href="mailto:info@mokshasewa.com"
+                href="mailto:info@mokshasewa.org"
                 className="block"
                 onMouseEnter={() => setShowTooltip("enquiry")}
                 onMouseLeave={() => setShowTooltip(null)}
@@ -236,7 +236,7 @@ const SocialSidebar = () => {
         <div className="flex items-center justify-around py-2 px-1">
           {/* Enquiry */}
           <a
-            href="mailto:info@mokshasewa.com"
+            href="mailto:info@mokshasewa.org"
             className="flex flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center group-hover:bg-[#8B6A3E] group-hover:text-white">

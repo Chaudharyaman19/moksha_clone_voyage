@@ -1,15 +1,13 @@
-import React from "react";
-import type { Metadata } from "next";
 import VolunteerRegister from "@/components/page-features/volunteer/VolunteerRegister";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Become a Volunteer | Moksha Sewa",
-  description: "Register as a Moksha Sewa volunteer and help families in your city arrange a dignified cremation, free of cost.",
-};
+export const metadata = createPageMetadata("/volunteer/register");
 
 function page() {
   return (
     <div>
+      <JsonLd data={breadcrumbJsonLd("/volunteer/register")} />
       <VolunteerRegister />
     </div>
   );

@@ -276,7 +276,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
           <TopLabel />
 
           <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
-            Help Someone Receive a Respectful Farewell.
+            Help Someone Receive a Respectful Farewell
           </h2>
 
           <HeadingDivider />
@@ -304,8 +304,6 @@ export default function SacredJourney({}: SacredJourneyProps) {
                     src={card.image}
                     alt={card.title}
                     fill
-                    priority={index < 2}
-                    unoptimized
                     sizes="(max-width: 640px) 280px, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.025]"
                   />

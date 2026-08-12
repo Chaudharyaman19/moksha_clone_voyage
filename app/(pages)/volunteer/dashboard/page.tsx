@@ -1,11 +1,7 @@
-import React from "react";
-import type { Metadata } from "next";
 import VolunteerDashboard from "@/components/page-features/volunteer/VolunteerDashboard";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Volunteer Dashboard | Moksha Sewa",
-  description: "View and respond to your assigned cases.",
-};
+export const metadata = createPageMetadata("/volunteer/dashboard");
 
 function page() {
   return (

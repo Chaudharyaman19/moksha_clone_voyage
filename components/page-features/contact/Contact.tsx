@@ -309,9 +309,9 @@ function Contact() {
                   },
                   {
                     icon: MdEmail,
-                    value: "info@mokshasewa.com",
+                    value: "info@mokshasewa.org",
                     title: "Write to Us",
-                    href: "mailto:info@mokshasewa.com",
+                    href: "mailto:info@mokshasewa.org",
                   },
                   { icon: FaClock, value: "24/7", title: "Always Available" },
                   { icon: FaHeadset, value: "15 Min", title: "Avg Response Time" },
@@ -598,7 +598,7 @@ function Contact() {
                 {/* Email & Phone List (Side-by-Side) */}
                 <div className="grid grid-cols-2 gap-3">
                   <a
-                    href="mailto:info@mokshasewa.com"
+                    href="mailto:info@mokshasewa.org"
                     className="group flex items-center gap-2.5 transition-colors duration-300"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
@@ -609,7 +609,7 @@ function Contact() {
                         Email
                       </span>
                       <span className="block truncate font-serif text-xs text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
-                        info@mokshasewa.com
+                        info@mokshasewa.org
                       </span>
                     </div>
                   </a>

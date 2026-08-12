@@ -2,8 +2,6 @@
 
 import type { ReactNode, SVGProps } from "react";
 
-interface CompassionSectionProps {}
-
 type IconProps = SVGProps<SVGSVGElement>;
 
 function IconBase({
@@ -127,29 +125,11 @@ function ShieldIcon(props: IconProps) {
   );
 }
 
-function ClockIcon(props: IconProps) {
-  return (
-    <IconBase {...props}>
-      <circle cx="12" cy="12" r="8.5" />
-      <path d="M12 7v5l3.2 2" />
-    </IconBase>
-  );
-}
-
 function BoxIcon(props: IconProps) {
   return (
     <IconBase {...props}>
       <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
       <path d="m4 7.5 8 4.5 8-4.5M12 12v9" />
-    </IconBase>
-  );
-}
-
-function MailIcon(props: IconProps) {
-  return (
-    <IconBase {...props}>
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m4 7 8 6 8-6" />
     </IconBase>
   );
 }
@@ -175,7 +155,7 @@ const sevaStats = [
   },
 ];
 
-export default function CompassionSection({}: CompassionSectionProps) {
+export default function CompassionSection() {
   const stats = sevaStats;
 
   const features = [
@@ -241,10 +221,10 @@ export default function CompassionSection({}: CompassionSectionProps) {
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               <span className="block">
-                When a Family Needs Help,
+                When a Family Needs Help
               </span>
               <span className="mt-1 block text-[#956A32]">
-                We Arrange the Essentials.
+                We Arrange the Essentials
               </span>
             </h2>
 
@@ -256,7 +236,7 @@ export default function CompassionSection({}: CompassionSectionProps) {
             </div>
 
             {/* Description */}
-            <p className="mb-4 max-w-[600px] text-[12px] font-normal leading-[1.55] text-[#3F2A1F] sm:text-[13px]">
+            <p className="mb-4 max-w-[600px] text-[15px] font-normal leading-[1.6] text-[#3F2A1F] sm:text-[16px]">
               At{" "}
               <span className="font-semibold text-[#865E30]">
                 Moksha Sewa
@@ -280,10 +260,10 @@ export default function CompassionSection({}: CompassionSectionProps) {
                   >
                     {value}
                   </div>
-                  <div className="mt-1 text-[11px] font-medium leading-tight text-[#39261B]">
+                  <div className="mt-1 text-[14px] font-medium leading-tight text-[#39261B]">
                     {title}
                   </div>
-                  <div className="mt-1 text-[9px] leading-tight text-[#786254]">
+                  <div className="mt-1 text-[12px] leading-tight text-[#786254]">
                     {caption}
                   </div>
                 </article>
@@ -298,10 +278,10 @@ export default function CompassionSection({}: CompassionSectionProps) {
                     <FeatureIcon className="h-3.5 w-3.5" />
                   </div>
                   <div>
-                    <div className="text-[13px] font-semibold leading-tight text-[#332117]">
+                    <div className="text-[15px] font-semibold leading-tight text-[#332117]">
                       {title}
                     </div>
-                    <div className="mt-0.5 text-[10px] leading-tight text-[#6F5A4C]">
+                    <div className="mt-1 text-[14px] leading-snug text-[#6F5A4C]">
                       {text}
                     </div>
                   </div>
@@ -313,7 +293,7 @@ export default function CompassionSection({}: CompassionSectionProps) {
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <a
                 href="/request-help"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[13px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[14px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)] sm:text-[15px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
                 Request Sewa Support
@@ -321,7 +301,7 @@ export default function CompassionSection({}: CompassionSectionProps) {
 
               <a
                 href="tel:+919810247319"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[13px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[14px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10 sm:text-[15px]"
               >
                 <PhoneIcon className="h-5 w-5" />
                 Call for Help
