@@ -997,7 +997,7 @@ export default function VolunteerRegister() {
 
               <div className="relative mt-3 aspect-square overflow-hidden rounded-[11px]">
                 <Image
-                  src="/assets/namo-gange/vol1.png"
+                  src="/assets/route-optimized/volunteer-trust.webp"
                   alt="Moksha Sewa volunteers serving families"
                   fill
                   priority

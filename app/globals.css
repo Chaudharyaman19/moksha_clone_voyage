@@ -42,6 +42,19 @@ body {
   animation-duration: 42s;
 }
 
+.marquee-track-contact {
+  animation-duration: 30s;
+}
+
+.marquee-track-contact-slow {
+  animation-duration: 36s;
+}
+
+.marquee-track-contact-reverse {
+  animation-direction: reverse;
+  animation-duration: 32s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;

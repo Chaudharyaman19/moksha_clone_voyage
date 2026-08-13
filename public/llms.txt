@@ -1,0 +1,27 @@
+# Moksha Sewa
+
+Moksha Sewa helps families in India request dignified cremation assistance, ambulance or hearse van support, pandit guidance, ritual samagri, prayer hall coordination, volunteer care, and donation-backed sewa.
+
+## Key Pages
+
+- Home: https://moksha-clone-voyage.vercel.app/
+- About Moksha Sewa: https://moksha-clone-voyage.vercel.app/about
+- Request Cremation Assistance: https://moksha-clone-voyage.vercel.app/request-help
+- Volunteer Registration: https://moksha-clone-voyage.vercel.app/volunteer/register
+- Contact Support: https://moksha-clone-voyage.vercel.app/contact
+- Blog and Ritual Guides: https://moksha-clone-voyage.vercel.app/blog
+- Photo Gallery: https://moksha-clone-voyage.vercel.app/mokshagallery
+- Video Gallery: https://moksha-clone-voyage.vercel.app/mokshavediogallery
+- Donation Support: https://moksha-clone-voyage.vercel.app/donation
+
+## Main Actions
+
+- Families can submit help requests at `/request-help`.
+- Volunteers can register at `/volunteer/register`.
+- Donors can support funeral and cremation assistance at `/donation`.
+- Visitors can contact the team by phone, email, WhatsApp, or the contact form at `/contact`.
+
+## Contact
+
+- Phone: +91 9220147229
+- Email: info@mokshasewa.org

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -8,7 +8,6 @@ import {
   FiHeart,
   FiUser,
   FiCalendar,
-  FiShare2,
   FiDownload,
   FiX,
   FiEye,
@@ -38,7 +37,7 @@ function MokshaGallery() {
     {
       id: 1,
       src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      poster: "/assets/bodytransport.jpeg",
+      poster: "/assets/route-optimized/video-body-transport.webp",
       alt: "Body Transport Service",
       category: "services",
       title: "Dignified Body Transport Service",
@@ -53,7 +52,7 @@ function MokshaGallery() {
     {
       id: 2,
       src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      poster: "/assets/funeraldecoration.jpeg",
+      poster: "/assets/route-optimized/video-funeral-decoration.webp",
       alt: "Funeral Decoration",
       category: "services",
       title: "Traditional Funeral Decoration",
@@ -68,7 +67,7 @@ function MokshaGallery() {
     {
       id: 3,
       src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-      poster: "/assets/normalharse.jpeg",
+      poster: "/assets/route-optimized/video-hearse.webp",
       alt: "Hearse Van Service",
       category: "services",
       title: "Hearse Van Transport",
@@ -83,7 +82,7 @@ function MokshaGallery() {
     {
       id: 4,
       src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-      poster: "/assets/prayerhall.jpeg",
+      poster: "/assets/route-optimized/video-prayer-hall.webp",
       alt: "Prayer Hall",
       category: "facilities",
       title: "Sacred Prayer Hall",
@@ -98,7 +97,7 @@ function MokshaGallery() {
     {
       id: 5,
       src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-      poster: "/assets/callingrelative.jpeg",
+      poster: "/assets/route-optimized/video-calling-relative.webp",
       alt: "Calling Relatives",
       category: "support",
       title: "Family Notification Services",
@@ -116,9 +115,6 @@ function MokshaGallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedVideo, setSelectedVideo] = useState<GalleryVideo | null>(null);
   const [columns, setColumns] = useState(4);
-  const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<{ [key: number]: HTMLVideoElement }>({});
 
   // Update columns based on screen size
   useEffect(() => {
@@ -136,19 +132,6 @@ function MokshaGallery() {
     window.addEventListener("resize", updateColumns);
     return () => window.removeEventListener("resize", updateColumns);
   }, []);
-
-  // Pause all videos when modal opens/closes
-  useEffect(() => {
-    if (selectedVideo) {
-      Object.values(videoRefs.current).forEach((video) => {
-        if (video) {
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
-      setPlayingVideoId(null);
-    }
-  }, [selectedVideo]);
 
   const filteredVideos =
     selectedCategory === "all"
@@ -179,39 +162,6 @@ function MokshaGallery() {
   ];
 
   const masonryColumns = getMasonryColumns();
-
-  const handleVideoMouseEnter = async (videoId: number) => {
-    const video = videoRefs.current[videoId];
-    if (video && !selectedVideo) {
-      try {
-        if (playingVideoId && playingVideoId !== videoId) {
-          const prevVideo = videoRefs.current[playingVideoId];
-          if (prevVideo) {
-            prevVideo.pause();
-            prevVideo.currentTime = 0;
-          }
-        }
-
-        await video.play();
-        setPlayingVideoId(videoId);
-      } catch (error) {
-        console.log("Autoplay prevented:", error);
-      }
-    }
-  };
-
-  const handleVideoMouseLeave = (videoId: number) => {
-    const video = videoRefs.current[videoId];
-    if (video && !selectedVideo) {
-      video.pause();
-      video.currentTime = 0;
-      setPlayingVideoId(null);
-    }
-  };
-
-  const themeColor = "#8B6A3E";
-  const themeColorLight = "#F5E9D9";
-  const themeColorDark = "#5A3E2B";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">
@@ -277,7 +227,6 @@ function MokshaGallery() {
           </div>
         ) : (
           <div
-            ref={containerRef}
             className="grid gap-4"
             style={{
               gridTemplateColumns: `repeat(${Math.min(columns, filteredVideos.length)}, minmax(0, 1fr))`,
@@ -290,24 +239,17 @@ function MokshaGallery() {
                     key={video.id}
                     className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 bg-white cursor-pointer hover:-translate-y-1"
                     onClick={() => setSelectedVideo(video)}
-                    onMouseEnter={() => handleVideoMouseEnter(video.id)}
-                    onMouseLeave={() => handleVideoMouseLeave(video.id)}
                     style={{
                       height: `${video.height}px`,
                     }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
-                      <video
-                        ref={(el) => {
-                          if (el) videoRefs.current[video.id] = el;
-                        }}
-                        src={video.src}
-                        poster={video.poster}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
+                      <Image
+                        src={video.poster ?? "/assets/route-optimized/video-body-transport.webp"}
+                        alt={video.alt}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
 
                       {/* Gradient overlay */}
@@ -330,13 +272,11 @@ function MokshaGallery() {
                       )}
 
                       {/* Play button overlay */}
-                      {playingVideoId !== video.id && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="w-12 h-12 bg-[#8B6A3E]/80 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-white/50 transform group-hover:scale-110 transition-transform">
-                            <FiPlay className="w-6 h-6 text-white ml-1" />
-                          </div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="w-12 h-12 bg-[#8B6A3E]/80 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-white/50 transform group-hover:scale-110 transition-transform">
+                          <FiPlay className="w-6 h-6 text-white ml-1" />
                         </div>
-                      )}
+                      </div>
 
                       {/* Hover overlay with details */}
                       <div className="absolute inset-x-0 bottom-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">

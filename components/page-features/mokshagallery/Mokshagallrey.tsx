@@ -85,6 +85,14 @@ const galleryImageSources = [
   "/hero-images/9.png",
 ];
 
+const toOptimizedGallerySrc = (src: string) =>
+  `/assets/route-optimized/gallery-${src
+    .replace(/^\//, "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase()}.webp`;
+
 const titleCase = (value: string) =>
   value
     .replace(/\.[^/.]+$/, "")
@@ -109,7 +117,7 @@ const getImageCategory = (src: string) => {
 
 const galleryImages: GalleryImage[] = galleryImageSources.map((src, index) => ({
   id: index + 1,
-  src,
+  src: toOptimizedGallerySrc(src),
   alt: getImageTitle(src),
   category: getImageCategory(src),
   title: getImageTitle(src),
@@ -253,7 +261,7 @@ function MokshaGallery() {
                       alt={image.alt}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes={`(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw`}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
                     />
 
                     {/* Gradient overlay */}

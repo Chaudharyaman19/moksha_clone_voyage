@@ -30,7 +30,7 @@ function Blog() {
       date: "Mar 15, 2024",
       readTime: "6 min",
       category: "Rituals",
-      image: "/assets/two.jpg",
+      image: "/assets/route-optimized/blog-two.webp",
       views: 1250,
       comments: 24,
       featured: true,
@@ -44,7 +44,7 @@ function Blog() {
       date: "Mar 10, 2024",
       readTime: "8 min",
       category: "Pilgrimage",
-      image: "/assets/one.jpg",
+      image: "/assets/route-optimized/blog-one.webp",
       views: 890,
       comments: 18,
       featured: true,
@@ -58,7 +58,7 @@ function Blog() {
       date: "Mar 5, 2024",
       readTime: "10 min",
       category: "Guidance",
-      image: "/assets/c.jpg",
+      image: "/assets/route-optimized/blog-c.webp",
       views: 750,
       comments: 12,
       featured: false,
@@ -72,7 +72,7 @@ function Blog() {
       date: "Feb 28, 2024",
       readTime: "7 min",
       category: "Rituals",
-      image: "/assets/two.jpg",
+      image: "/assets/route-optimized/blog-two.webp",
       views: 1100,
       comments: 31,
       featured: false,
@@ -86,7 +86,7 @@ function Blog() {
       date: "Feb 22, 2024",
       readTime: "5 min",
       category: "Ancestors",
-      image: "/assets/one.jpg",
+      image: "/assets/route-optimized/blog-one.webp",
       views: 950,
       comments: 15,
       featured: false,
@@ -100,7 +100,7 @@ function Blog() {
       date: "Feb 18, 2024",
       readTime: "9 min",
       category: "Pilgrimage",
-      image: "/assets/c.jpg",
+      image: "/assets/route-optimized/blog-c.webp",
       views: 680,
       comments: 9,
       featured: false,
@@ -274,7 +274,9 @@ function Blog() {
                       src={featuredPost.image}
                       alt={featuredPost.title}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 45vw"
+                      priority
+                      fetchPriority="high"
+                      sizes="(max-width: 1024px) 100vw, 560px"
                       className="object-cover transition-transform duration-700 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/40 via-transparent to-transparent" />
@@ -349,7 +351,7 @@ function Blog() {
                         src={post.image}
                         alt={post.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 390px"
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/60 via-transparent to-transparent" />

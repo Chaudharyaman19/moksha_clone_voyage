@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Marquee from "react-fast-marquee";
+import React, { useState } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -22,10 +21,6 @@ import { MdVerified, MdEmail } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
-
-/* Temple (shikhara) shape — same signature as the About page */
-const templeMed =
-  "polygon(50% 0%, 78% 6%, 100% 16%, 100% 100%, 0% 100%, 0% 16%, 22% 6%)";
 
 const CONTACT_INITIATIVES = [
   { title: "Meri Beti Mera Abhiman", image: "/assets/initiatives/meri beti mera abhiman.webp" },
@@ -64,52 +59,25 @@ function InitiativesCarousel() {
       <div className="absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
-      {/* Row 1: Scrolls Left */}
-      <Marquee speed={25} pauseOnHover={true}>
-        {row1.map((item, i) => (
-          <div key={`r1-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
-            <div className="relative h-12 w-full">
-              <Image src={item.image} alt={item.title} fill className="object-contain" />
-            </div>
-            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+      {[
+        { items: row1, className: "marquee-track-contact-slow" },
+        { items: row2, className: "marquee-track-contact-reverse" },
+        { items: row3, className: "marquee-track-contact" },
+      ].map((row, rowIndex) => (
+        <div key={rowIndex} className="overflow-hidden">
+          <div className={`marquee-track ${row.className}`}>
+            {[...row.items, ...row.items].map((item, i) => (
+              <div key={`${item.title}-${i}`} className="mx-2 flex w-[140px] shrink-0 flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]" aria-hidden={i >= row.items.length}>
+                <div className="relative h-12 w-full">
+                  <Image src={item.image} alt={i >= row.items.length ? "" : item.title} fill sizes="140px" className="object-contain" />
+                </div>
+                <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </Marquee>
-
-      {/* Row 2: Scrolls Right */}
-      <Marquee speed={20} direction="right" pauseOnHover={true}>
-        {row2.map((item, i) => (
-          <div key={`r2-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
-            <div className="relative h-12 w-full">
-              <Image src={item.image} alt={item.title} fill className="object-contain" />
-            </div>
-            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
-          </div>
-        ))}
-      </Marquee>
-
-      {/* Row 3: Scrolls Left */}
-      <Marquee speed={30} pauseOnHover={true}>
-        {row3.map((item, i) => (
-          <div key={`r3-${i}`} className="mx-2 flex w-[140px] flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]">
-            <div className="relative h-12 w-full">
-              <Image src={item.image} alt={item.title} fill className="object-contain" />
-            </div>
-            <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
-          </div>
-        ))}
-      </Marquee>
+        </div>
+      ))}
     </div>
-  );
-}
-
-/* Kalash finial — the small gold urn-dot on a mandir peak */
-function Kalash({ size = "md" }: { size?: "sm" | "md" }) {
-  const s = size === "sm" ? "h-1.5 w-1.5" : "h-2 w-2";
-  return (
-    <span className="pointer-events-none absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
-      <span className={`block ${s} rounded-full border border-[#8B6A3E] bg-[#D9B681]`} />
-    </span>
   );
 }
 
@@ -209,11 +177,11 @@ function Contact() {
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
-              src="/assets/contact/contact-hero-new.png"
+              src="/assets/route-optimized/contact-hero.webp"
               alt="Contact Moksha Sewa"
               fill
               priority
-              quality={100}
+              fetchPriority="high"
               sizes="100vw"
               className="scale-[1.02] object-cover"
             />

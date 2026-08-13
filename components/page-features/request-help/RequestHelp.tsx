@@ -956,7 +956,7 @@ export default function RequestHelp() {
 
               <div className="relative mt-2 h-[150px] overflow-hidden rounded-[11px]">
                 <Image
-                  src="/assets/images/why-families-trust-ritual.png"
+                  src="/assets/route-optimized/request-trust-ritual.webp"
                   alt="A peaceful ritual lamp representing compassionate cremation assistance"
                   fill
                   priority
