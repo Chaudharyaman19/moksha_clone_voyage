@@ -2,9 +2,9 @@ import Image from "next/image";
 import { FaQuoteLeft, FaHandHoldingHeart } from "react-icons/fa";
 
 const aboutImages = {
-  storyMain: "/assets/about-story-1.png",
-  storyRitualItems: "/assets/about-story-2.png",
-  storyTemple: "/assets/about-story-3.png",
+  storyMain: "/assets/about-optimized/about-story-1.webp",
+  storyRitualItems: "/assets/about-optimized/about-story-2.webp",
+  storyTemple: "/assets/about-optimized/about-story-3.webp",
 };
 
 export default function AboutMokshaSewa() {
@@ -38,7 +38,7 @@ export default function AboutMokshaSewa() {
 
           <p className="max-w-[470px] text-base leading-relaxed text-[#5F4A3D] sm:text-lg">
             Moksha Sewa was founded with one simple belief: every family
-            deserves support and respect during life's most difficult
+            deserves support and respect during life&apos;s most difficult
             moments. We coordinate the practical arrangements and sacred
             customs, so families can focus on remembering their loved one.
           </p>
@@ -67,8 +67,7 @@ export default function AboutMokshaSewa() {
                 src={aboutImages.storyMain}
                 alt="Pandits performing traditional rituals"
                 fill
-                quality={100}
-                sizes="(max-width: 1024px) 45vw, 30vw"
+                sizes="(max-width: 1024px) 45vw, 500px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -84,8 +83,7 @@ export default function AboutMokshaSewa() {
                 src={aboutImages.storyRitualItems}
                 alt="Traditional ritual samagri"
                 fill
-                quality={100}
-                sizes="(max-width: 1024px) 30vw, 20vw"
+                sizes="(max-width: 1024px) 30vw, 255px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -100,8 +98,7 @@ export default function AboutMokshaSewa() {
                 src={aboutImages.storyTemple}
                 alt="Sacred temple ghat"
                 fill
-                quality={100}
-                sizes="(max-width: 1024px) 30vw, 20vw"
+                sizes="(max-width: 1024px) 30vw, 255px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

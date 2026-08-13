@@ -6,13 +6,13 @@ const boardMembers = [
     name: "Madhukar Reddy Dasari",
     role: "Chief Financial Officer (CFO) & CIOO",
     description: "Manages finance, compliance, IT operations, and digital infrastructure.",
-    image: "/assets/man1.jpg"
+    image: "/assets/about-optimized/madhukar-reddy-dasari.webp"
   },
   {
     name: "Sandeep Singh",
     role: "Chief Technology Officer (CTO)",
     description: "Leads technology, data security, and platform infrastructure.",
-    image: "/assets/sandeep_singh.png"
+    image: "/assets/about-optimized/sandeep-singh.webp"
   },
   {
     name: "Vijay Sharma",
@@ -24,13 +24,13 @@ const boardMembers = [
     name: "Srujana Paid",
     role: "Chief Partnerships & Growth Officer (CPGO)",
     description: "Manages partnerships, growth strategies, and expansion initiatives.",
-    image: "/assets/girl.jpg"
+    image: "/assets/about-optimized/srujana-paid.webp"
   },
   {
     name: "Madhukar & Srujana",
     role: "Chief Compliance & Risk Officer (CCRO)",
     description: "Ensures legal compliance, risk management, and governance standards.",
-    image: "/assets/madhukar_srujana.png"
+    image: "/assets/about-optimized/madhukar-srujana.webp"
   },
 ];
 
@@ -84,6 +84,7 @@ export default function BoardMembers() {
                           src={member.image}
                           alt={member.name}
                           fill
+                          sizes="110px"
                           className="object-cover"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;

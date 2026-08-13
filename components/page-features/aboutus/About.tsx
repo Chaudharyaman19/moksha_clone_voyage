@@ -32,7 +32,6 @@ import {
 } from "react-icons/fa";
 const templeTall = "polygon(50% 0%, 78% 5%, 100% 13%, 100% 100%, 0% 100%, 0% 13%, 22% 5%)";
 const templeMed = "polygon(50% 0%, 78% 6%, 100% 16%, 100% 100%, 0% 100%, 0% 16%, 22% 6%)";
-const templeCard = "polygon(50% 0%, 80% 8%, 100% 20%, 100% 100%, 0% 100%, 0% 20%, 20% 8%)";
 
 /* Kalash finial — the small gold urn-dot that sits on a mandir peak */
 function Kalash({ size = "md" }) {
@@ -55,13 +54,13 @@ const stats = [
 
 const careServices = [
   { icon: FaAmbulance, title: "Ambulance", text: "Fast & reliable 24/7 dead body transport services with AC and freezer facilities across the city.", image: "/assets/ambulance.avif" },
-  { icon: FaTruck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/harse.jpeg" },
-  { icon: FaShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/funeralsamagri.jpeg" },
-  { icon: FaUserAlt, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-reference/pandit_ji_new.png" },
-  { icon: FaHome, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/prayerhall.jpeg" },
-  { icon: FaFire, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-reference/cremation_ritual_new.png" },
-  { icon: FaUsers, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-reference/tehrvi_feast.png" },
-  { icon: FaHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-reference/family_support_new.png" },
+  { icon: FaTruck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/about-optimized/hearse-van.webp" },
+  { icon: FaShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/about-optimized/samagri.webp" },
+  { icon: FaUserAlt, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-optimized/pandit-ji.webp" },
+  { icon: FaHome, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/about-optimized/prayer-hall.webp" },
+  { icon: FaFire, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-optimized/cremation-ritual.webp" },
+  { icon: FaUsers, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-optimized/tehrvi-feast.webp" },
+  { icon: FaHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-optimized/family-support.webp" },
 ];
 
 const reasons = [
@@ -89,14 +88,14 @@ const locations = [
 ];
 
 const aboutImages = {
-  hero: "/assets/about-hero-new.png",
+  hero: "/assets/about-optimized/about-hero-new.webp",
   storyMain: "/assets/about-reference/story-main.png",
   storyRitualItems: "/assets/about-reference/story-ritual-items.png",
   storyTemple: "/assets/about-reference/story-ghat-temple.png",
   storyEvening: "/assets/about-reference/story-evening-ghat.png",
-  promiseMain: "/assets/promise-1.png",
-  promiseSupport: "/assets/promise-2.png",
-  promiseCare: "/assets/promise-3.png",
+  promiseMain: "/assets/about-optimized/promise-1.webp",
+  promiseSupport: "/assets/about-optimized/promise-2.webp",
+  promiseCare: "/assets/about-optimized/promise-3.webp",
   indiaMap: "/assets/about-reference/india-map.png",
 };
 
@@ -115,7 +114,7 @@ export default function About() {
               alt="Moksha Sewa ritual support at a sacred river ghat"
               fill
               priority
-              quality={100}
+              fetchPriority="high"
               sizes="100vw"
               className="scale-[1.02] object-cover object-[74%_center]"
             />
@@ -282,6 +281,7 @@ export default function About() {
                         src={service.image}
                         alt={service.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 320px"
                         className="object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-40 group-hover:blur-[2px]"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -366,8 +366,7 @@ export default function About() {
                         src={location.image}
                         alt={`${location.name} Moksha Sewa location`}
                         fill
-                        quality={100}
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 210px"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-[#2C1810]/10 to-transparent" />
@@ -393,8 +392,7 @@ export default function About() {
                       src="/assets/about-reference/more_cities.png"
                       alt="More Moksha Sewa locations"
                       fill
-                      quality={100}
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 210px"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#9A7445]/60 to-[#2C1810]/80" />
@@ -535,8 +533,7 @@ export default function About() {
                     src={aboutImages.promiseMain}
                     alt="Sacred riverside ghat illuminated in golden light"
                     fill
-                    quality={100}
-                    sizes="(max-width: 1024px) 62vw, 36vw"
+                    sizes="(max-width: 1024px) 62vw, 460px"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/45 via-transparent to-transparent" />
@@ -551,8 +548,7 @@ export default function About() {
                   src={aboutImages.promiseSupport}
                   alt="Traditional ritual samagri arranged with care"
                   fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 35vw, 20vw"
+                  sizes="(max-width: 1024px) 35vw, 260px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -562,8 +558,7 @@ export default function About() {
                   src={aboutImages.promiseCare}
                   alt="Traditional rituals performed with devotion"
                   fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 35vw, 20vw"
+                  sizes="(max-width: 1024px) 35vw, 260px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -721,8 +716,7 @@ export default function About() {
                   src={aboutImages.indiaMap}
                   alt="Map of India showing connected Moksha Sewa cities"
                   fill
-                  quality={100}
-                  sizes="(max-width: 1024px) 90vw, 520px"
+                  sizes="(max-width: 1024px) 90vw, 640px"
                   className="object-contain scale-110 sm:scale-125 lg:scale-[1.3] drop-shadow-[0_14px_12px_rgba(74,52,33,0.24)] origin-center"
                 />
 

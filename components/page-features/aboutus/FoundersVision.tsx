@@ -19,6 +19,7 @@ export default function FoundersVision() {
                   src="/assets/vijay_sharma.jpg"
                   alt="Vijay Sharma - Founder"
                   fill
+                  sizes="(max-width: 1024px) 384px, 500px"
                   className="object-cover"
                   onError={(e) => {
                     // Fallback to a solid color if image is not yet provided
@@ -47,7 +48,7 @@ export default function FoundersVision() {
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />
               <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                Founder's Vision
+                Founder&apos;s Vision
               </span>
             </div>
 
@@ -67,16 +68,16 @@ export default function FoundersVision() {
 
             <div className="space-y-3 text-[14px] leading-relaxed text-[#5F4A3D] sm:text-[15px]">
               <p>
-                "When a family loses a loved one, they are overwhelmed with grief. 
+                &quot;When a family loses a loved one, they are overwhelmed with grief.
                 At that critical moment, dealing with the logistics of rituals, cremation, 
                 and arrangements should not add to their burden. Moksha Sewa was born out 
-                of this very realization."
+                of this very realization.&quot;
               </p>
               <p>
-                "Our vision is to provide absolute dignity, complete transparency, and 
+                &quot;Our vision is to provide absolute dignity, complete transparency, and
                 compassionate care to families during their toughest times. Every ritual 
                 is guided by deep respect for our traditions, ensuring that the final journey 
-                is peaceful and honorable."
+                is peaceful and honorable.&quot;
               </p>
             </div>
 
