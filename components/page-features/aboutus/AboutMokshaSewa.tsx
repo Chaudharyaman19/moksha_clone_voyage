@@ -69,10 +69,6 @@ export default function AboutMokshaSewa() {
                 fill
                 sizes="(max-width: 1024px) 45vw, 500px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
-                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/40 via-transparent to-transparent" />
             </div>
@@ -85,10 +81,6 @@ export default function AboutMokshaSewa() {
                 fill
                 sizes="(max-width: 1024px) 30vw, 255px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
-                }}
               />
             </div>
 
@@ -100,10 +92,6 @@ export default function AboutMokshaSewa() {
                 fill
                 sizes="(max-width: 1024px) 30vw, 255px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3C/svg%3E";
-                }}
               />
             </div>
           </div>

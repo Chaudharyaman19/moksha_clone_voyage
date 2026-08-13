@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 
 const boardMembers = [
   {
@@ -70,45 +69,44 @@ export default function BoardMembers() {
             <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-12 bg-gradient-to-r from-[#FDFAF7] to-transparent md:w-20" />
             <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-12 bg-gradient-to-l from-[#FDFAF7] to-transparent md:w-20" />
 
-            <Marquee speed={40} pauseOnHover={true} gradient={false} className="py-8">
-              {boardMembers.map((member, idx) => (
-                <div 
-                  key={idx}
-                  className="flex w-[260px] shrink-0 flex-col items-center border-r border-[#E9DDCD]/70 px-6 text-center md:w-[300px]"
-                >
-                  {/* Avatar */}
-                  <div className="mb-4">
-                    <div className="relative h-[95px] w-[95px] overflow-hidden rounded-full border border-[#D9B681] bg-white p-[3px] shadow-[0_2px_8px_rgba(217,182,129,0.2)] md:h-[110px] md:w-[110px]">
-                      <div className="relative h-full w-full overflow-hidden rounded-full">
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          fill
-                          sizes="110px"
-                          className="object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23FBF8F3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='12px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
-                          }}
-                        />
+            <div className="overflow-hidden py-8">
+              <div className="marquee-track marquee-track-board">
+                {[...boardMembers, ...boardMembers].map((member, idx) => (
+                  <div
+                    key={`${member.name}-${idx}`}
+                    className="flex w-[260px] shrink-0 flex-col items-center border-r border-[#E9DDCD]/70 px-6 text-center md:w-[300px]"
+                    aria-hidden={idx >= boardMembers.length}
+                  >
+                    {/* Avatar */}
+                    <div className="mb-4">
+                      <div className="relative h-[95px] w-[95px] overflow-hidden rounded-full border border-[#D9B681] bg-white p-[3px] shadow-[0_2px_8px_rgba(217,182,129,0.2)] md:h-[110px] md:w-[110px]">
+                        <div className="relative h-full w-full overflow-hidden rounded-full">
+                          <Image
+                            src={member.image}
+                            alt={idx >= boardMembers.length ? "" : member.name}
+                            fill
+                            sizes="110px"
+                            className="object-cover"
+                          />
+                        </div>
                       </div>
                     </div>
+
+                    {/* Text Content */}
+                    <div className="flex flex-col items-center">
+                      <h3 className="font-sans text-[15px] font-bold text-[#0D3823] md:text-[17px]">
+                        {member.name}
+                      </h3>
+
+                      <p className="mt-2 text-[14px] leading-[1.4] text-[#333333] md:text-[15px]">
+                        <span className="font-medium block">{member.role}</span>
+                        <span className="mt-1 block text-[14px] text-[#666666] md:text-[15px]">{member.description}</span>
+                      </p>
+                    </div>
                   </div>
-                  
-                  {/* Text Content */}
-                  <div className="flex flex-col items-center">
-                    <h3 className="font-sans text-[15px] font-bold text-[#0D3823] md:text-[17px]">
-                      {member.name}
-                    </h3>
-                    
-                    <p className="mt-2 text-[14px] leading-[1.4] text-[#333333] md:text-[15px]">
-                      <span className="font-medium block">{member.role}</span>
-                      <span className="mt-1 block text-[14px] text-[#666666] md:text-[15px]">{member.description}</span>
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </Marquee>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

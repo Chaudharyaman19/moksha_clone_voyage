@@ -21,11 +21,6 @@ export default function FoundersVision() {
                   fill
                   sizes="(max-width: 1024px) 384px, 500px"
                   className="object-cover"
-                  onError={(e) => {
-                    // Fallback to a solid color if image is not yet provided
-                    const target = e.target as HTMLImageElement;
-                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23E9DDCF'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='20px' fill='%238B6A3E'%3EVijay Sharma Photo%3C/text%3E%3C/svg%3E";
-                  }}
                 />
                 
                 {/* Elegant overlay gradient at bottom */}

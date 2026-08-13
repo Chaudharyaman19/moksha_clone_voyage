@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
@@ -283,10 +281,6 @@ export default function About() {
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 320px"
                         className="object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-40 group-hover:blur-[2px]"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23F4EDE3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14px' fill='%238B6A3E'%3EPhoto%3C/text%3E%3C/svg%3E";
-                        }}
                       />
 
                       {/* Gradients */}

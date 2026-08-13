@@ -1,24 +1,15 @@
-"use client";
-
-import { useState } from "react";
 import {
   FaWhatsapp,
-  FaTelegram,
   FaFacebook,
   FaLinkedin,
   FaYoutube,
   FaPhone,
   FaEnvelope,
-  FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { PiFlowerLotus } from "react-icons/pi";
-import { MdEmail } from "react-icons/md";
 
 const SocialSidebar = () => {
-  const [showTooltip, setShowTooltip] = useState<string | null>(null);
-
   const socialLinks = [
     {
       icon: <FaWhatsapp size={20} />,
@@ -64,26 +55,6 @@ const SocialSidebar = () => {
     hoverColor: "#3D8B40",
   };
 
-  const emailLink = {
-    icon: <MdEmail size={20} />,
-    url: "mailto:info@mokshasewa.org",
-    color: "#8B6A3E",
-    label: "Email Us",
-    hoverColor: "#5A3E2B",
-  };
-
-  const enquiryLink = {
-    icon: <FaEnvelope size={14} />,
-    label: "ENQUIRY",
-    color: "#8B6A3E",
-  };
-
-  const emergencyLink = {
-    icon: <FaPhone size={14} />,
-    label: "EMERGENCY",
-    color: "#8B6A3E",
-  };
-
   return (
     <>
       <div className="fixed inset-0 pointer-events-none z-50 hidden md:block">
@@ -93,8 +64,6 @@ const SocialSidebar = () => {
               <a
                 href="mailto:info@mokshasewa.org"
                 className="block"
-                onMouseEnter={() => setShowTooltip("enquiry")}
-                onMouseLeave={() => setShowTooltip(null)}
               >
                 <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
                   <FaEnvelope size={14} className="text-white" />
@@ -110,19 +79,15 @@ const SocialSidebar = () => {
                 </div>
               </a>
 
-              {showTooltip === "enquiry" && (
-                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-3 py-1.5 bg-[#2C1810] text-white text-[14px] rounded whitespace-nowrap shadow-lg">
-                  Send us an email
-                </div>
-              )}
+              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-[#2C1810] px-3 py-1.5 text-[14px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+                Send us an email
+              </div>
             </div>
 
             <div className="group relative">
               <a
                 href="tel:+919310219283"
                 className="block"
-                onMouseEnter={() => setShowTooltip("emergency")}
-                onMouseLeave={() => setShowTooltip(null)}
               >
                 <div className="px-1 py-7 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-red-500/20 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
                   <FaPhone size={14} className="text-white" />
@@ -138,11 +103,9 @@ const SocialSidebar = () => {
                 </div>
               </a>
               {/* Tooltip */}
-              {showTooltip === "emergency" && (
-                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-3 py-1.5 bg-red-600 text-white text-[14px] rounded whitespace-nowrap shadow-lg">
-                  24/7 Emergency Support
-                </div>
-              )}
+              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-red-600 px-3 py-1.5 text-[14px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+                24/7 Emergency Support
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +134,7 @@ const SocialSidebar = () => {
                   <span 
                     className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white"
                   >
-                    <social.icon.type size={18} />
+                    {social.icon}
                   </span>
                 </div>
               </a>

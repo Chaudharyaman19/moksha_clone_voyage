@@ -37,7 +37,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Donate",
     description:
-      "Your donation helps arrange ambulance,",
+      "Your donation helps arrange ambulance",
     button: "Donate for Sewa",
     image: donationImages.donate,
     icon: FaHandHoldingHeart,
@@ -46,7 +46,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Volunteer",
     description:
-      "Join our on-ground team and help families at hospitals,",
+      "Join our on-ground team and help families at hospitals",
     button: "Become a Volunteer",
     image: donationImages.volunteer,
     icon: FaUsers,
@@ -55,7 +55,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Sponsor Final Rites",
     description:
-      "Sponsor priest support, cremation wood, ambulance,",
+      "Sponsor priest support cremation wood, ambulance",
     button: "Sponsor Sewa",
     image: donationImages.sponsor,
     icon: FaHandsHelping,
@@ -64,7 +64,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Partner With Us",
     description:
-      "Help us reach more unclaimed,",
+      "Help us reach more unclaimed",
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,

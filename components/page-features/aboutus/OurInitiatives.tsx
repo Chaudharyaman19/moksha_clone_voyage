@@ -1,5 +1,4 @@
 import React from "react";
-import Marquee from "react-fast-marquee";
 import Image from "next/image";
 
 const initiatives = [
@@ -54,23 +53,29 @@ export default function OurInitiatives() {
           <div className="absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-[#FBF8F3] to-transparent" />
           <div className="absolute bottom-0 right-0 top-0 z-10 w-24 bg-gradient-to-l from-[#FBF8F3] to-transparent" />
 
-          <Marquee speed={45} gradient={false} pauseOnHover={true} className="py-1">
-            {initiatives.map((item, index) => (
-              <div 
-                key={index}
-                className="group flex items-center pr-10 pl-6"
-                title={item.title}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-16 sm:h-20 md:h-24 w-auto object-contain transition-all duration-300 hover:scale-105 drop-shadow-sm"
-                />
-                {/* Vertical Divider */}
-                <div className="ml-10 h-14 w-[1px] bg-[#D9B681]/30" />
-              </div>
-            ))}
-          </Marquee>
+          <div className="overflow-hidden py-1">
+            <div className="marquee-track marquee-track-initiatives">
+              {[...initiatives, ...initiatives].map((item, index) => (
+                <div
+                  key={`${item.title}-${index}`}
+                  className="group flex items-center pr-10 pl-6"
+                  title={item.title}
+                  aria-hidden={index >= initiatives.length}
+                >
+                  <Image
+                    src={item.image}
+                    alt={index >= initiatives.length ? "" : item.title}
+                    width={160}
+                    height={96}
+                    sizes="160px"
+                    className="h-16 w-auto object-contain drop-shadow-sm transition-all duration-300 hover:scale-105 sm:h-20 md:h-24"
+                  />
+                  {/* Vertical Divider */}
+                  <div className="ml-10 h-14 w-[1px] bg-[#D9B681]/30" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

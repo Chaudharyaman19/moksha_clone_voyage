@@ -17,3 +17,33 @@ body {
 .animate-scroll {
   animation: scroll 40s linear infinite;
 }
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-x 36s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-track-board {
+  animation-duration: 34s;
+}
+
+.marquee-track-initiatives {
+  animation-duration: 42s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
