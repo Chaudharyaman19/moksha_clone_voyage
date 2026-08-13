@@ -445,15 +445,19 @@ export default function Footer({}: FooterProps) {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-[#EFE0CA] text-[#432819]">
+    <footer className="relative overflow-hidden bg-[#F7E9CF] text-[#352116]">
       {/* subtle background depth */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(146,90,34,0.08),transparent_24%),radial-gradient(circle_at_88%_8%,rgba(181,121,51,0.08),transparent_22%),linear-gradient(180deg,#F4E8D6_0%,#EBD8BD_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_5%,rgba(255,255,255,0.95),transparent_20%),radial-gradient(circle_at_82%_10%,rgba(255,220,150,0.34),transparent_24%),radial-gradient(circle_at_45%_90%,rgba(196,124,45,0.15),transparent_34%),linear-gradient(135deg,#FFFDF8_0%,#F9ECD5_32%,#F1D7AE_68%,#F8E8CF_100%)]" />
 
       {/* slim top accent */}
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#A9672D] to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D89A32] to-transparent shadow-[0_0_14px_rgba(216,154,50,0.55)]" />
+
+      {/* glossy warm highlights */}
+      <div className="pointer-events-none absolute -left-16 -top-20 h-64 w-64 rounded-full bg-white/45 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-[#F0BD64]/18 blur-3xl" />
 
       {/* watermark */}
-      <div className="pointer-events-none absolute -right-4 top-10 hidden select-none font-serif text-[140px] leading-none text-[#8D5426]/[0.045] lg:block">
+      <div className="pointer-events-none absolute -right-4 top-10 hidden select-none font-serif text-[140px] leading-none text-[#A96B2B]/[0.055] lg:block">
         मोक्ष
       </div>
 
@@ -476,9 +480,9 @@ export default function Footer({}: FooterProps) {
 
                 <div>
                   <h2 className="font-serif text-[25px] font-bold leading-none tracking-[-0.02em] text-[#3A2215]">
-                    Moksha <span className="text-[#8D5426]">Sewa</span>
+                    Moksha <span className="text-[#A15B22]">Sewa</span>
                   </h2>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-[#70401F] sm:text-[12px]">
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-[#6B391A] sm:text-[12px]">
                     {tagline}
                   </p>
                 </div>
@@ -492,18 +496,18 @@ export default function Footer({}: FooterProps) {
           </div>
 
           {/* Support card */}
-          <div className="relative self-start overflow-hidden rounded-2xl border border-white/70 bg-white/60 px-3 py-2.5 shadow-[0_8px_26px_rgba(84,51,24,0.10)] backdrop-blur-sm">
-            <div className="absolute inset-y-0 left-0 w-[3px] bg-[#8D5426]" />
-            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#D6B27B]/20" />
+          <div className="relative self-start overflow-hidden rounded-2xl border border-white/90 bg-white/72 px-3 py-2.5 shadow-[0_10px_30px_rgba(123,72,24,0.16)] ring-1 ring-[#DDAA55]/20 backdrop-blur-md">
+            <div className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-[#C98C2D] via-[#A96024] to-[#7B431D]" />
+            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#E7BC6B]/24" />
 
             <div className="relative flex items-start gap-2.5">
-              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8D5426] text-white">
+              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#D58A2F] via-[#B96A22] to-[#7E421A] text-white shadow-[0_4px_12px_rgba(126,66,26,0.24)]">
                 <FaEnvelope className="h-3.5 w-3.5" />
               </div>
 
               <div className="min-w-0 flex-1">
                 <h3 className="font-serif text-[17px] font-bold leading-tight text-[#3A2215]">
-                  Request <span className="text-[#8D5426]">Support</span>
+                  Request <span className="text-[#A15B22]">Support</span>
                 </h3>
                 <p className="mt-0 text-[11px] font-medium leading-4 text-[#654A3A]">
                   Share your email and our support team will contact you.
@@ -523,7 +527,7 @@ export default function Footer({}: FooterProps) {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="Family contact email"
-                    className="!h-8 !min-h-0 flex-1 rounded-lg border border-[#B99B76]/55 bg-white/90 px-3 py-0 text-[12px] font-medium leading-none text-[#3F281B] outline-none transition placeholder:text-[#9A887B] focus:border-[#8D5426]"
+                    className="!h-8 !min-h-0 flex-1 rounded-lg border border-[#B99B76]/55 bg-white/95 px-3 py-0 shadow-inner text-[12px] font-medium leading-none text-[#3F281B] outline-none transition placeholder:text-[#9A887B] focus:border-[#8D5426]"
                     required
                   />
 
@@ -532,7 +536,7 @@ export default function Footer({}: FooterProps) {
                     className={`inline-flex !h-8 !min-h-0 items-center justify-center gap-1.5 rounded-lg px-3.5 py-0 text-[12px] font-bold transition ${
                       subscribed
                         ? "bg-emerald-600 text-white"
-                        : "bg-[#8D5426] text-white hover:bg-[#75431E]"
+                        : "bg-gradient-to-b from-[#D58A2F] via-[#B96A22] to-[#7E421A] text-white shadow-[0_4px_12px_rgba(126,66,26,0.24)] hover:brightness-110"
                     }`}
                   >
                     {subscribed ? "Submitted" : "Send"}
@@ -550,7 +554,7 @@ export default function Footer({}: FooterProps) {
                         key={social.label}
                         href={social.href}
                         aria-label={social.label}
-                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#7A4A27]/20 bg-white/70 text-[#4A2B1B] transition duration-300 hover:-translate-y-0.5 hover:border-[#8D5426]/45 hover:bg-[#E1C295]"
+                        className="flex h-7 w-7 items-center justify-center rounded-full border border-[#7A4A27]/20 bg-white/82 text-[#4A2B1B] shadow-[0_2px_8px_rgba(109,66,29,0.10)] transition duration-300 hover:-translate-y-0.5 hover:border-[#8D5426]/45 hover:bg-[#F1CF91]"
                       >
                         <Icon className="h-3 w-3" />
                       </a>
@@ -559,7 +563,7 @@ export default function Footer({}: FooterProps) {
 
                   <a
                     href={`tel:${contactNumber.replace(/\s/g, "")}`}
-                    className="ml-1 inline-flex h-7 items-center gap-1.5 rounded-full bg-[#8D5426] px-3 text-[11px] font-bold text-white shadow-[0_3px_10px_rgba(91,52,22,0.14)] transition hover:bg-[#75431E]"
+                    className="ml-1 inline-flex h-7 items-center gap-1.5 rounded-full bg-[#8D5426] px-3 text-[11px] font-bold text-white shadow-[0_3px_10px_rgba(91,52,22,0.14)] transition hover:brightness-110"
                   >
                     <FaPhoneAlt className="h-2.5 w-2.5" />
                     {contactNumber}
@@ -572,9 +576,9 @@ export default function Footer({}: FooterProps) {
 
         {/* MAIN DIVIDER */}
         <div className="my-4 flex items-center gap-3">
-          <span className="h-px flex-1 bg-[#B9976D]/40" />
-          <span className="h-1.5 w-1.5 rotate-45 bg-[#8D5426]/70" />
-          <span className="h-px flex-1 bg-[#B9976D]/40" />
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#B8792D]/45 to-transparent" />
+          <span className="h-1.5 w-1.5 rotate-45 bg-[#C97924] shadow-[0_0_8px_rgba(201,121,36,0.35)]" />
+          <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#B8792D]/45 to-transparent" />
         </div>
 
         {/* LINK COLUMNS */}
@@ -585,7 +589,7 @@ export default function Footer({}: FooterProps) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group inline-flex items-center gap-2 text-[13px] font-medium text-[#4A3023] transition hover:text-[#8D5426]"
+                    className="group inline-flex items-center gap-2 text-[13px] font-medium text-[#4A3023] transition hover:text-[#A35E22]"
                   >
                     <FaChevronRight className="h-2.5 w-2.5 text-[#4B2A18] transition group-hover:translate-x-0.5" />
                     {item.label}
@@ -601,7 +605,7 @@ export default function Footer({}: FooterProps) {
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center gap-2 text-[13px] font-medium text-[#4A3023] transition hover:text-[#8D5426]"
+                    className="group inline-flex items-center gap-2 text-[13px] font-medium text-[#4A3023] transition hover:text-[#A35E22]"
                   >
                     <FaChevronRight className="h-2.5 w-2.5 text-[#4B2A18] transition group-hover:translate-x-0.5" />
                     {service.label}
@@ -621,7 +625,7 @@ export default function Footer({}: FooterProps) {
                 <FaEnvelope className="h-3 w-3 shrink-0 text-[#4B2A18]" />
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="break-all transition hover:text-[#8D5426]"
+                  className="break-all transition hover:text-[#A35E22]"
                 >
                   {contactEmail}
                 </a>
@@ -630,7 +634,7 @@ export default function Footer({}: FooterProps) {
                 <FaPhoneAlt className="h-3 w-3 shrink-0 text-[#4B2A18]" />
                 <a
                   href={`tel:${contactNumber.replace(/\s/g, "")}`}
-                  className="transition hover:text-[#8D5426]"
+                  className="transition hover:text-[#A35E22]"
                 >
                   {contactNumber}
                 </a>
@@ -655,25 +659,25 @@ export default function Footer({}: FooterProps) {
         </div>
 
         {/* BOTTOM */}
-        <div className="mt-4 border-t border-[#B9976D]/35 pt-3">
+        <div className="mt-4 border-t border-[#B8792D]/35 pt-3">
           <div className="flex flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
             <p className="text-[11px] font-medium tracking-[0.02em] text-[#654A3A]">
               © {new Date().getFullYear()} {brandName} • All rights reserved
             </p>
 
-            <p className="font-serif text-[12px] font-bold tracking-[0.18em] text-[#6B3E20]">
+            <p className="font-serif text-[12px] font-bold tracking-[0.18em] text-[#7A431E]">
               ॐ शांति शांति शांति ॐ
             </p>
 
             <div className="flex items-center gap-4 text-[11px] font-medium text-[#654A3A]">
               <Link
                 href="/privacy-policy"
-                className="transition hover:text-[#8D5426]"
+                className="transition hover:text-[#A35E22]"
               >
                 Privacy Policy
               </Link>
-              <span className="h-3 w-px bg-[#9D744E]/35" />
-              <Link href="/terms" className="transition hover:text-[#8D5426]">
+              <span className="h-3 w-px bg-[#B8792D]/35" />
+              <Link href="/terms" className="transition hover:text-[#A35E22]">
                 Terms & Conditions
               </Link>
             </div>
@@ -694,7 +698,7 @@ function FooterBlock({ icon: Icon, title, children }: FooterBlockProps) {
   return (
     <div>
       <div className="flex items-center gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#8D5426]/10">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-white/70 to-[#E5B767]/28 shadow-[0_2px_8px_rgba(121,76,35,0.08)]">
           <Icon className="h-3.5 w-3.5 text-[#4B2A18]" />
         </span>
 
@@ -703,7 +707,7 @@ function FooterBlock({ icon: Icon, title, children }: FooterBlockProps) {
         </h3>
       </div>
 
-      <div className="mt-1.5 h-px w-10 bg-[#8D5426]/35" />
+      <div className="mt-1.5 h-px w-10 bg-gradient-to-r from-[#A96024]/65 to-[#D4A24A]/35" />
       {children}
     </div>
   );
