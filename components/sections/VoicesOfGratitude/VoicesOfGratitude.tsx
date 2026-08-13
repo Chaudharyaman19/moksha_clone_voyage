@@ -270,7 +270,7 @@ export default function VoicesOfGratitude() {
                 onClick={() => setPage(index)}
                 aria-label={`Go to testimonial page ${index + 1}`}
                 aria-current={selected ? "true" : undefined}
-                className="grid h-11 w-11 place-items-center rounded-full transition"
+                className="grid h-11  place-items-center rounded-full transition"
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${
