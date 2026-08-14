@@ -28,7 +28,7 @@ export default function FoundersVision() {
                 
                 <div className="absolute bottom-6 left-6">
                   <h3 className="font-serif text-2xl font-medium text-white sm:text-3xl">Vijay Sharma</h3>
-                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">Co-Founder & Director</p>
+                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">Founder</p>
                 </div>
               </div>
             </div>
