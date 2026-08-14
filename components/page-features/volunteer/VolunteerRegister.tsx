@@ -56,6 +56,21 @@ interface VolunteerForm {
   experience: string;
   availability: string;
   preferredRole: string;
+  whatsappPhone: string;
+  occupation: string;
+  organisation: string;
+  languagesKnown: string;
+  hoursPerWeek: string;
+  emergencyOnCall: string;
+  canParticipateFieldCases: string;
+  ownVehicle: string;
+  volunteeredBefore: string;
+  previousOrganisationRole: string;
+  emergencyContactName: string;
+  emergencyContactRelationship: string;
+  emergencyContactPhone: string;
+  idProofType: string;
+  idProofNumber: string;
 }
 
 interface TrustItem {
@@ -85,6 +100,10 @@ const EMPTY_FORM: VolunteerForm = {
   experience: "",
   availability: "",
   preferredRole: "",
+  whatsappPhone: "", occupation: "", organisation: "", languagesKnown: "", hoursPerWeek: "",
+  emergencyOnCall: "", canParticipateFieldCases: "", ownVehicle: "", volunteeredBefore: "",
+  previousOrganisationRole: "", emergencyContactName: "", emergencyContactRelationship: "",
+  emergencyContactPhone: "", idProofType: "", idProofNumber: "",
 };
 
 const SUGGESTED_SKILLS = [
@@ -94,6 +113,7 @@ const SUGGESTED_SKILLS = [
   "Ritual Assistance",
   "Translation",
 ];
+const SERVICE_AREAS = ["Field Volunteer", "Hospital & Authority Coordination", "Cremation & Ritual Assistance", "Unclaimed Body Support", "Economically Weaker Family Support", "24×7 Helpline Support", "Ambulance / Logistics Support", "Documentation & Case Support", "Community Awareness", "Social Media / Digital Volunteering", "Photography / Videography / Content", "Fundraising & Donor Outreach", "Professional / Pro-Bono Support", "Events & Campaign Support"];
 
 const trustItems: TrustItem[] = [
   {
@@ -208,6 +228,11 @@ export default function VolunteerRegister() {
 
   const [skills, setSkills] =
     useState<string[]>([]);
+  const [volunteerAreas, setVolunteerAreas] = useState<string[]>([]);
+  const [availabilityDays, setAvailabilityDays] = useState<string[]>([]);
+  const [preferredTimes, setPreferredTimes] = useState<string[]>([]);
+  const [photograph, setPhotograph] = useState<File | null>(null);
+  const [idProof, setIdProof] = useState<File | null>(null);
 
   const [consent, setConsent] =
     useState(false);
@@ -252,6 +277,7 @@ export default function VolunteerRegister() {
         : [...current, skill],
     );
   };
+  const toggleList = (setter: React.Dispatch<React.SetStateAction<string[]>>, value: string) => setter((items) => items.includes(value) ? items.filter((item) => item !== value) : [...items, value]);
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -280,6 +306,10 @@ export default function VolunteerRegister() {
       );
       return;
     }
+    if (!photograph || !idProof) {
+      setError("Please attach both your photograph and ID proof.");
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -302,6 +332,25 @@ export default function VolunteerRegister() {
           experience: form.experience || undefined,
           schedulePreference: (form.availability || undefined) as VolunteerSchedulePreference | undefined,
           preferredRole: (form.preferredRole || undefined) as VolunteerPreferredRole | undefined,
+          whatsappPhone: form.whatsappPhone || undefined,
+          occupation: form.occupation || undefined,
+          organisation: form.organisation || undefined,
+          volunteerAreas,
+          availabilityDays,
+          preferredTimes,
+          emergencyOnCall: form.emergencyOnCall === "Yes",
+          canParticipateFieldCases: form.canParticipateFieldCases === "Yes",
+          ownVehicle: form.ownVehicle === "Yes",
+          languagesKnown: form.languagesKnown || undefined,
+          hoursPerWeek: form.hoursPerWeek || undefined,
+          volunteeredBefore: form.volunteeredBefore === "Yes",
+          previousOrganisationRole: form.previousOrganisationRole || undefined,
+          emergencyContact: { name: form.emergencyContactName, relationship: form.emergencyContactRelationship, phone: form.emergencyContactPhone || undefined },
+          idProofType: form.idProofType || undefined,
+          idProofNumber: form.idProofNumber || undefined,
+          declarationAccepted: true,
+          photograph,
+          idProof,
         });
 
       dispatch(
@@ -837,6 +886,25 @@ export default function VolunteerRegister() {
                       </select>
                     </div>
                   </div>
+                </div>
+
+                <div className="border-t border-dashed border-[#EDB886] pt-3">
+                  <SectionTitle>Service &amp; Availability Details</SectionTitle>
+                  <div className="grid gap-2.5 sm:grid-cols-3">
+                    {[['whatsappPhone','WhatsApp Number','tel'],['occupation','Occupation / Profession','text'],['organisation','Organisation / Institution','text'],['languagesKnown','Languages Known','text'],['hoursPerWeek','Approx. Hours / Week','text']].map(([name, text, type]) => <label key={name}><span className={labelClass}>{text}</span><input name={name} type={type} value={form[name as keyof VolunteerForm]} onChange={handleChange} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass}/></label>)}
+                  </div>
+                  <p className={`${labelClass} mt-3`}>Preferred Areas of Volunteering</p>
+                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3">{SERVICE_AREAS.map((area)=><label key={area} className="flex items-start gap-2 text-[13px] text-[#5E4B3F]"><input type="checkbox" checked={volunteerAreas.includes(area)} onChange={()=>toggleList(setVolunteerAreas,area)} className="mt-0.5 accent-[#ED6B13]"/>{area}</label>)}</div>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <div><span className={labelClass}>Available Days</span><div className="flex flex-wrap gap-3">{['Weekdays','Weekends','Flexible'].map(v=><label key={v} className="text-[13px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={()=>toggleList(setAvailabilityDays,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>)}</div></div>
+                    <div><span className={labelClass}>Preferred Time</span><div className="flex flex-wrap gap-3">{['Morning','Day','Evening','Night'].map(v=><label key={v} className="text-[13px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={()=>toggleList(setPreferredTimes,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>)}</div></div>
+                  </div>
+                  <div className="mt-3 grid gap-2.5 sm:grid-cols-3">{[['emergencyOnCall','Emergency / On-Call Seva?'],['canParticipateFieldCases','Can Participate in Field Cases?'],['ownVehicle','Own Vehicle Available?'],['volunteeredBefore','Volunteered with an NGO before?']].map(([name,text])=><label key={name}><span className={labelClass}>{text}</span><select name={name} value={form[name as keyof VolunteerForm]} onChange={handleChange} required className={inputClass}><option value="">Select</option><option>Yes</option><option>No</option></select></label>)}<label className="sm:col-span-2"><span className={labelClass}>Previous Organisation &amp; Role</span><input name="previousOrganisationRole" value={form.previousOrganisationRole} onChange={handleChange} className={inputClass}/></label></div>
+                </div>
+
+                <div className="border-t border-dashed border-[#EDB886] pt-3">
+                  <SectionTitle>Emergency Contact &amp; Identity Verification</SectionTitle>
+                  <div className="grid gap-2.5 sm:grid-cols-3">{[['emergencyContactName','Contact Person *','text'],['emergencyContactRelationship','Relationship *','text'],['emergencyContactPhone','Emergency Mobile No. *','tel']].map(([name,text,type])=><label key={name}><span className={labelClass}>{text}</span><input name={name} type={type} required value={form[name as keyof VolunteerForm]} onChange={handleChange} pattern={type==='tel'?'[6-9][0-9]{9}':undefined} className={inputClass}/></label>)}<label><span className={labelClass}>ID Proof Type *</span><select name="idProofType" required value={form.idProofType} onChange={handleChange} className={inputClass}><option value="">Select</option>{['Aadhaar','Voter ID','Driving Licence','Passport','Other'].map(v=><option key={v}>{v}</option>)}</select></label><label className="sm:col-span-2"><span className={labelClass}>ID Proof Number *</span><input name="idProofNumber" required value={form.idProofNumber} onChange={handleChange} className={inputClass}/></label><label><span className={labelClass}>Upload Photograph *</span><input type="file" accept="image/jpeg,image/png,image/webp" required onChange={(e)=>setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-2`}/><span className="mt-1 block text-[11px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span></label><label className="sm:col-span-2"><span className={labelClass}>Upload ID Proof *</span><input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required onChange={(e)=>setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-2`}/><span className="mt-1 block text-[11px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span></label></div>
                 </div>
 
                 {/* Password */}
