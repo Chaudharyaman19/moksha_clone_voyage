@@ -203,7 +203,7 @@ function Contact() {
                 <span className="text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   Contact{" "}
                 </span>
-                <span className="text-[38px] text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
+                <span className="text-[32px] text-[#8B6A3E] sm:text-[46px] lg:text-[52px]">
                   With Us
                 </span>
               </h1>

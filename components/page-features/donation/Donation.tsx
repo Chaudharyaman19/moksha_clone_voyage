@@ -24,13 +24,15 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
 
-const AMOUNTS = [501, 1100, 2100, 5100, 11000];
+const AMOUNTS = [501, 1100, 2100, 3100, 5100, 7500, 11000];
 
 const IMPACT_NOTES: Record<number, string> = {
   501: "Provides a ration kit for a grieving family",
   1100: "Covers pandit & ritual samagri for one family",
   2100: "Contributes toward a dignified cremation",
-  5100: "Funds one ambulance / hearse-van dispatch",
+  3100: "Supports Annadan meals and daily essentials for grieving families",
+  5100: "Supports the General Sewa Fund wherever help is needed most",
+  7500: "Supports ambulance and emergency transport readiness",
   11000: "Fully sponsors a dignified cremation for a family in need",
 };
 
@@ -40,36 +42,48 @@ type Cause = {
   description: string;
   icon: React.ComponentType<{ className?: string }>;
   image: string;
+  price: number;
+  features: string[];
+  badge?: string;
 };
 
 const CAUSES: Cause[] = [
   {
     id: "general",
-    title: "Where Needed Most",
-    description: "General Sewa Fund — strengthens every arm of our work for grieving families.",
+    title: "General Sewa Package",
+    description: "Flexible support that strengthens every arm of our work for grieving families.",
     icon: PiFlowerLotus,
     image: "/assets/namo-gange/vol2.png",
+    price: 5100,
+    features: ["Family assistance", "Most needed", "Immediate help", "General support"],
   },
   {
     id: "cremation",
-    title: "Sponsor a Dignified Cremation",
-    description: "Covers rites, samagri and pandit fees for families who cannot afford them.",
+    title: "Dignified Cremation Package",
+    description: "Supports rites, samagri and pandit fees for families who cannot afford them.",
     icon: FaFire,
     image: "/assets/namo-gange/vol3.png",
+    price: 11000,
+    badge: "MOST CHOSEN",
+    features: ["Ritual support", "Pandit assistance", "Samagri", "Compassionate care"],
   },
   {
     id: "ambulance",
-    title: "Ambulance & Emergency Transport",
-    description: "Keeps our ambulance and hearse-van fleet ready to respond, day or night.",
+    title: "Ambulance & Transport Package",
+    description: "Helps keep ambulance and hearse-van services ready to respond day or night.",
     icon: FaAmbulance,
     image: "/assets/namo-gange/vol4.png",
+    price: 7500,
+    features: ["24/7 readiness", "Transport care", "Emergency support", "Rapid response"],
   },
   {
     id: "annadan",
-    title: "Annadan — Food for Grieving Families",
-    description: "Provides meals and daily essentials to families during their days of mourning.",
+    title: "Annadan Support Package",
+    description: "Provides meals and daily essentials to families during days of mourning.",
     icon: FaUtensils,
     image: "/assets/namo-gange/vol5.png",
+    price: 3100,
+    features: ["Meal support", "Family relief", "Daily essentials", "Community care"],
   },
 ];
 
@@ -105,7 +119,7 @@ const STATS = [
 
 function Donation() {
   const [selectedCause, setSelectedCause] = useState(CAUSES[0].id);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(2100);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(CAUSES[0].price);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -143,6 +157,12 @@ function Donation() {
     setCustomAmount("");
   };
 
+  const handlePackageSelect = (cause: Cause) => {
+    setSelectedCause(cause.id);
+    setSelectedAmount(cause.price);
+    setCustomAmount("");
+  };
+
   const handleCustomAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, "").slice(0, 7);
     setCustomAmount(value);
@@ -152,7 +172,7 @@ function Donation() {
   const resetForm = () => {
     setFormData({ name: "", email: "", phone: "", pan: "", dedication: "" });
     setCustomAmount("");
-    setSelectedAmount(2100);
+    setSelectedAmount(CAUSES[0].price);
     setIsAnonymous(false);
   };
 
@@ -387,77 +407,111 @@ function Donation() {
           </div>
         </section>
 
-        {/* ============ CAUSES — normal cards, doubles as cause selector ============ */}
-        <section className="pt-6 pb-3 lg:pt-8 lg:pb-4">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-2 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-              <span className="h-px w-8 bg-[#C9A574]" />
+        {/* ============ SUPPORT PACKAGES — exact package selector layout ============ */}
+        <section className="relative overflow-hidden bg-[#FBF8F3] pb-3 pt-4 lg:pb-4 lg:pt-4">
+          {/* subtle corner mandala feel */}
+          <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/10" />
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/10" />
+
+          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
+            <div className="mb-0 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+              <span className="h-px w-10 bg-[#C9A574]" />
               <span>ॐ Where Your Donation Goes ॐ</span>
-              <span className="h-px w-8 bg-[#C9A574]" />
+              <span className="h-px w-10 bg-[#C9A574]" />
             </div>
-            <h2 className="text-center font-serif text-3xl text-[#2C1810] sm:text-4xl">
-              Choose a <span className=" text-[#8B6A3E]">Cause</span> Close to Your Heart
+
+            <h2 className="-mt-0.5 text-center font-serif text-[30px] leading-[1.02] text-[#2C1810] sm:text-[36px]">
+              Choose a <span className="text-[#A36B2B]">Support Package</span>
             </h2>
-            <p className="mx-auto mt-2 max-w-xl text-center text-[14px] leading-5 text-[#7A685B] sm:text-sm">
-              Select where you&apos;d like your contribution to go — it will carry through to the form below.
+
+            <p className="mx-auto mt-0 max-w-3xl text-center text-[13px] leading-5 text-[#6E5A4C] sm:text-[14px]">
+              Select the package that best matches the help you want to provide for grieving families.
             </p>
 
-            <div className="mt-7 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 mt-5">
               {CAUSES.map((cause) => {
                 const Icon = cause.icon;
                 const isSelected = cause.id === selectedCause;
+
                 return (
                   <button
                     key={cause.id}
                     type="button"
-                    onClick={() => setSelectedCause(cause.id)}
-                    className={`group overflow-hidden rounded-xl border-2 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(70,47,31,0.14)] ${isSelected
-                        ? "-translate-y-1.5 border-[#8B6A3E] shadow-[0_16px_32px_rgba(70,47,31,0.18)] ring-2 ring-[#C9A574]/40"
-                        : "border-[#E6D6BF] hover:border-[#C9A574]"
-                      }`}
+                    onClick={() => handlePackageSelect(cause)}
+                    aria-pressed={isSelected}
+                    className={`group relative overflow-visible rounded-[16px] border bg-[#FFFDF9] text-left shadow-[0_8px_20px_rgba(70,47,31,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(70,47,31,0.15)] ${
+                      isSelected
+                        ? "border-[#B8792D] ring-2 ring-[#D9B681]/35"
+                        : "border-[#E2C99F]"
+                    }`}
                   >
-                    <div className="relative h-[220px] w-full overflow-hidden">
+                    {cause.badge && (
+                      <span className="absolute left-1/2 top-0 z-30 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#B8782D] via-[#D6A24F] to-[#B8782D] px-3 py-0.5 text-[10px] font-bold tracking-[0.08em] text-white shadow-md">
+                        ★ {cause.badge} ★
+                      </span>
+                    )}
+
+                    {/* package image */}
+                    <div className="relative h-[205px] overflow-hidden rounded-t-[15px] sm:h-[215px]">
                       <Image
                         src={cause.image}
                         alt={cause.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-[#2C1810]/15 to-transparent" />
-
-                      {isSelected && (
-                        <span className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-bold uppercase tracking-[0.1em] text-white shadow">
-                          <FaCheckCircle className="h-2.5 w-2.5" />
-                          Selected
-                        </span>
-                      )}
-
-                      <div className="absolute bottom-2.5 left-3 right-3 z-20 flex items-center gap-2">
-                        <span
-                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${isSelected
-                              ? "bg-[#8B6A3E] text-white"
-                              : "bg-[#C9A574] text-[#2C1810]"
-                            }`}
-                        >
-                          <Icon className="h-3.5 w-3.5" />
-                        </span>
-                        <h3 className="font-serif text-[15px] leading-tight text-white drop-shadow">
-                          {cause.title}
-                        </h3>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/15 via-transparent to-transparent" />
                     </div>
 
-                    <div className="p-4">
-                      <p className="min-h-[52px] text-[14px] leading-5 text-[#6B584B]">
+                    {/* floating icon */}
+                    <div className="absolute left-1/2 top-[205px] z-20 -translate-x-1/2 -translate-y-1/2 sm:top-[215px]">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D7A44E] bg-[#FFF8E9] text-[#B77325] shadow-[0_4px_12px_rgba(109,66,29,0.16)]">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                    </div>
+
+                    <div className="flex min-h-[205px] flex-col px-3 pb-2.5 pt-6">
+                      <h3 className="text-center font-serif text-[16px] font-semibold leading-tight text-[#2C1810]">
+                        {cause.title}
+                      </h3>
+
+                      {/* price */}
+                      <div className="mt-0.5 flex items-center justify-center gap-1.5">
+                        <span className="h-px w-7 bg-[#C78C3B]/70" />
+                        <span className="font-serif text-[20px] font-bold leading-none text-[#B5742A]">
+                          ₹ {cause.price.toLocaleString("en-IN")}
+                        </span>
+                        <span className="h-px w-7 bg-[#C78C3B]/70" />
+                      </div>
+
+                      <p className="mx-auto mt-1 min-h-[32px] max-w-[285px] text-center text-[10px] leading-3.5 text-[#5F5046] sm:text-[11px]">
                         {cause.description}
                       </p>
-                      <span
-                        className={`mt-1 block h-[2px] w-8 transition-all duration-300 ${isSelected
-                            ? "w-14 bg-[#8B6A3E]"
-                            : "bg-[#C9A574]/50 group-hover:w-14 group-hover:bg-[#C9A574]"
+
+                      <div className="mt-1.5 grid grid-cols-2 gap-x-2 gap-y-1">
+                        {cause.features.map((feature) => (
+                          <span
+                            key={feature}
+                            className="inline-flex items-center gap-1 text-[9.5px] font-medium leading-3.5 text-[#5F5046] sm:text-[10px]"
+                          >
+                            <FaCheckCircle className="h-2.5 w-2.5 shrink-0 text-[#D18A24]" />
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-auto pt-1.5">
+                        <div
+                          className={`flex h-[34px] w-full items-center justify-center gap-1.5 rounded-lg border text-[12px] font-semibold transition ${
+                            isSelected
+                              ? "border-[#B56C20] bg-gradient-to-r from-[#A75A1D] via-[#C67F2B] to-[#A75A1D] text-white shadow-md"
+                              : "border-[#D9A35A] bg-[#FFFDF9] text-[#9A5B24] group-hover:bg-[#FFF5E7]"
                           }`}
-                      />
+                        >
+                          <Icon className="h-4 w-4" />
+                          {isSelected ? "Selected Package" : "Choose Package"}
+                        </div>
+                      </div>
                     </div>
                   </button>
                 );
@@ -481,9 +535,14 @@ function Donation() {
                 <h3 className="mt-2 font-serif text-2xl text-[#2C1810]">
                   Your Support, <span className=" text-[#8B6A3E]">Their Dignity</span>
                 </h3>
-                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[14px] font-semibold text-[#8B6A3E]">
-                  <activeCause.icon className="h-3 w-3" />
-                  Donating toward: {activeCause.title}
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[14px] font-semibold text-[#8B6A3E]">
+                    <activeCause.icon className="h-3 w-3" />
+                    Selected: {activeCause.title}
+                  </div>
+                  <div className="inline-flex items-center rounded-full bg-[#8B6A3E] px-3 py-1 text-[14px] font-bold text-white">
+                    ₹{activeCause.price.toLocaleString("en-IN")}
+                  </div>
                 </div>
               </div>
 
