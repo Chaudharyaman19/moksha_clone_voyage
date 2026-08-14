@@ -169,15 +169,15 @@ export default function Navbar() {
       ],
     },
     {
-      name: "Contact",
-      path: "/contact",
-      icon: <FaUserCircle />,
-      type: "page",
-    },
-    {
       name: "Volunteer",
       path: "/volunteer/register",
       icon: <FaHandHoldingHeart />,
+      type: "page",
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: <FaUserCircle />,
       type: "page",
     },
     {
