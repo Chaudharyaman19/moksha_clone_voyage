@@ -15,6 +15,10 @@ import {
 import { BsEye, BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { PiFlowerLotus } from "react-icons/pi";
 
+const blogImages = {
+  hero: "/hero-images/9.png",
+};
+
 function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -139,20 +143,37 @@ function Blog() {
       <Navbar />
 
       <main>
-        {/* ============ HERO — clean banner + filter toolbar ============ */}
-        <section className="relative overflow-hidden border-b border-[#E9DDCD] bg-[#F8F3EC] py-10 lg:py-12">
-          {/* watermark tucked to the right so it never sits behind the text */}
-          <div className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-serif text-[200px] leading-none text-[#8B6A3E]/[0.06] lg:block">
+        {/* ============ HERO — visual banner first ============ */}
+        <section className="relative w-full aspect-[16/5] min-h-[260px] overflow-hidden bg-[#F4EDE3]">
+          <div className="absolute inset-0">
+            <Image
+              src={blogImages.hero}
+              alt="Moksha Sewa ritual guidance and sacred stories"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="scale-[1.02] object-cover object-center"
+            />
+          </div>
+
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
+
+          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[300px] leading-none text-[#8B6A3E]/[0.07] lg:block">
             ज्ञान
           </div>
-          <div className="pointer-events-none absolute -left-20 -top-16 h-56 w-56 rounded-full border border-[#C9A574]/15" />
-          <div className="pointer-events-none absolute -left-10 -top-8 h-40 w-40 rounded-full border border-[#C9A574]/10" />
 
-          <div className="relative mx-auto w-full max-w-7xl px-0">
-            <div className="text-center">
-              {/* eyebrow */}
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-8 lg:pt-10">
+            <div className="max-w-[540px] translate-y-2 lg:translate-y-3">
               <div className="inline-flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-md">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
                 <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
@@ -160,25 +181,36 @@ function Blog() {
                 </span>
               </div>
 
-              <h1 className="mt-4 font-serif text-[36px] leading-[1.02] text-[#2C1810] sm:text-[46px]">
-                The Moksha <span className=" text-[#8B6A3E]">Blog</span>
+              <h1
+                className="mt-3 leading-[0.95]"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
+                  The Moksha
+                </span>
+                <span className="mt-1 block text-[46px] text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
+                  Blog
+                </span>
               </h1>
 
-              {/* diya flourish */}
-              <div className="mt-4 flex items-center justify-center gap-2">
-                <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#C9A574]" />
+              <div className="mt-2 flex items-center gap-2">
+                <span className="h-[2px] w-12 bg-[#8B6A3E]" />
                 <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-                <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#C9A574]" />
+                <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
               </div>
 
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#5F4A3D] sm:text-[15px]">
+              <p className="mt-3 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
                 Articles on rituals, pilgrimage and sacred traditions — ancient
                 wisdom, explained gently for modern families.
               </p>
             </div>
+          </div>
+        </section>
 
-            {/* search + categories in one elevated toolbar card */}
-            <div className="relative mx-auto mt-7 max-w-4xl overflow-hidden rounded-2xl border border-[#E4D5BE] bg-white p-3 shadow-[0_14px_36px_rgba(73,49,31,0.10)] sm:p-3.5">
+        {/* ============ FILTER TOOLBAR ============ */}
+        <section className="border-b border-[#E9DDCD] bg-[#F8F3EC] py-5">
+          <div className="mx-auto w-full max-w-7xl px-0">
+            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#E4D5BE] bg-white p-3 shadow-[0_14px_36px_rgba(73,49,31,0.10)] sm:p-3.5">
               <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
@@ -454,57 +486,9 @@ function Blog() {
           </div>
         </section>
 
-        <HowItWorks />
 
         {/* ============ NEWSLETTER — dark gold section ============ */}
-        <section className="relative overflow-hidden bg-[#3B2B21] py-5 lg:py-6">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1810] via-[#3B2B21] to-[#2C1810]" />
-          <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#D9B681] to-transparent" />
-          <div className="pointer-events-none absolute -left-20 top-0 h-56 w-56 rounded-full border border-[#C9A574]/10" />
-          <div className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
-
-          <div className="relative mx-auto w-full max-w-7xl px-0 text-white">
-            <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-              {/* Text Side */}
-              <div className="text-center lg:text-left">
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D9B681]/50 text-[#D9B681]">
-                    <PiFlowerLotus className="h-4 w-4" />
-                  </span>
-                  <span className="text-[14px] font-semibold uppercase tracking-[0.28em] text-[#D9B681]">
-                    Stay Connected
-                  </span>
-                </div>
-
-                <h2 className="mt-3 font-serif text-2xl text-white sm:text-3xl">
-                  Weekly Wisdom, <span className=" text-[#D9B681]">Delivered Gently</span>
-                </h2>
-                <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/70 lg:mx-0">
-                  Receive spiritual insights, ritual guides and updates on sacred
-                  journeys — once a week, nothing more.
-                </p>
-              </div>
-
-              {/* Form Side */}
-              <div className="w-full max-w-md shrink-0 text-center lg:text-left">
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="min-h-11 flex-1 rounded-lg border border-[#C9A574]/40 bg-white/[0.06] px-4 text-sm text-white outline-none backdrop-blur-sm transition placeholder:text-white/40 focus:border-[#D9B681] focus:bg-white/[0.1]"
-                  />
-                  <button className="min-h-11 rounded-lg bg-gradient-to-b from-[#E5B85F] to-[#C78B32] px-6 text-sm font-semibold text-[#24150C] shadow-md transition duration-300 hover:brightness-110">
-                    Subscribe
-                  </button>
-                </div>
-
-                <p className="mt-2 text-[14px] text-white/45">
-                  No spam. Unsubscribe anytime.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+     
       </main>
 
       <Footer />

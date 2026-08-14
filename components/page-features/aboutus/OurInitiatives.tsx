@@ -43,7 +43,7 @@ export default function OurInitiatives() {
             className="text-[32px] font-normal leading-tight text-[#2C1810] sm:text-[38px] md:text-[44px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Our Initiatives
+            Our Namo Gange Initiatives
           </h2>
         </header>
 
