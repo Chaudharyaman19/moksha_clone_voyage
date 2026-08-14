@@ -54,8 +54,7 @@ const officeLocations = [
     pincode: "LU3 1TW",
     hours: "Mon–Sat · 9:00 am – 6:00 pm GMT",
     type: "branch",
-    image:
-      "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=1200&auto=format&fit=crop",
+     image: "/assets/contact/encodency.png",
     mapQuery: "6 Liddel Close, Luton, England LU3 1TW",
     orgName: "enCodency Pvt. Ltd.",
   },
