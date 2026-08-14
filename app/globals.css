@@ -55,8 +55,80 @@ body {
   animation-duration: 32s;
 }
 
+.donate-nav-sparkle {
+  isolation: isolate;
+  animation: donate-glow 1.8s ease-in-out infinite;
+}
+
+.donate-nav-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.42) 44%, transparent 58%);
+  transform: translateX(-120%);
+  animation: donate-shine 2.4s ease-in-out infinite;
+}
+
+.donate-star {
+  position: absolute;
+  z-index: 1;
+  color: #fff4c7;
+  filter: drop-shadow(0 0 5px rgba(255, 244, 199, 0.95));
+  animation: donate-star-twinkle 1.2s ease-in-out infinite;
+}
+
+.donate-star-one {
+  right: 0.42rem;
+  top: 0.22rem;
+  width: 0.38rem;
+  height: 0.38rem;
+}
+
+.donate-star-two {
+  bottom: 0.26rem;
+  left: 0.55rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  animation-delay: 0.45s;
+}
+
+@keyframes donate-glow {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(229, 169, 62, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(229, 169, 62, 0.78), 0 0 8px rgba(255, 255, 255, 0.42) inset;
+  }
+}
+
+@keyframes donate-shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  45%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes donate-star-twinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.75) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(18deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
+    animation: none;
+  }
+
+  .donate-nav-sparkle,
+  .donate-nav-shine,
+  .donate-star {
     animation: none;
   }
 }
