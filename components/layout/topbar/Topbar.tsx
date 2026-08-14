@@ -158,7 +158,7 @@ export default function TopInfoBar() {
             aria-label="Admin login"
           >
             <FaShieldAlt className="h-3 w-3" />
-            <span className="hidden text-[14px] md:inline">Admin Login</span>
+            <span className="hidden text-[14px] md:inline">Login</span>
           </a>
         </div>
       </div>

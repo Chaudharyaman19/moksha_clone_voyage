@@ -24,18 +24,6 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
 
-const AMOUNTS = [501, 1100, 2100, 3100, 5100, 7500, 11000];
-
-const IMPACT_NOTES: Record<number, string> = {
-  501: "Provides a ration kit for a grieving family",
-  1100: "Covers pandit & ritual samagri for one family",
-  2100: "Contributes toward a dignified cremation",
-  3100: "Supports Annadan meals and daily essentials for grieving families",
-  5100: "Supports the General Sewa Fund wherever help is needed most",
-  7500: "Supports ambulance and emergency transport readiness",
-  11000: "Fully sponsors a dignified cremation for a family in need",
-};
-
 type Cause = {
   id: string;
   title: string;
@@ -119,7 +107,6 @@ const STATS = [
 
 function Donation() {
   const [selectedCause, setSelectedCause] = useState(CAUSES[0].id);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(CAUSES[0].price);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -139,12 +126,16 @@ function Donation() {
     message: string;
   }>({ type: null, message: "" });
 
-  const effectiveAmount = customAmount ? Number(customAmount) : selectedAmount ?? 0;
   const activeCause = CAUSES.find((c) => c.id === selectedCause) ?? CAUSES[0];
+  const effectiveAmount = customAmount ? Number(customAmount) : activeCause.price;
   const impactNote =
-    AMOUNTS.includes(effectiveAmount) && IMPACT_NOTES[effectiveAmount]
-      ? IMPACT_NOTES[effectiveAmount]
-      : "Every rupee helps a grieving family receive care and dignity.";
+    activeCause.id === "general"
+      ? "Supports the General Sewa Fund wherever help is needed most"
+      : activeCause.id === "cremation"
+        ? "Fully sponsors a dignified cremation for a family in need"
+        : activeCause.id === "ambulance"
+          ? "Supports ambulance and emergency transport readiness"
+          : "Supports Annadan meals and daily essentials for grieving families";
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -152,27 +143,20 @@ function Donation() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlePreset = (amount: number) => {
-    setSelectedAmount(amount);
-    setCustomAmount("");
-  };
-
   const handlePackageSelect = (cause: Cause) => {
     setSelectedCause(cause.id);
-    setSelectedAmount(cause.price);
     setCustomAmount("");
   };
 
   const handleCustomAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, "").slice(0, 7);
     setCustomAmount(value);
-    if (value) setSelectedAmount(null);
   };
 
   const resetForm = () => {
     setFormData({ name: "", email: "", phone: "", pan: "", dedication: "" });
+    setSelectedCause(CAUSES[0].id);
     setCustomAmount("");
-    setSelectedAmount(CAUSES[0].price);
     setIsAnonymous(false);
   };
 
@@ -204,7 +188,7 @@ function Donation() {
     if (!effectiveAmount || effectiveAmount < 50) {
       setSubmitStatus({
         type: "error",
-        message: "Please select or enter an amount of at least ₹50.",
+        message: "Please select a package or enter a custom amount of at least ₹50.",
       });
       return;
     }
@@ -567,36 +551,39 @@ function Donation() {
                   </div>
                 </div>
 
-                {/* amount presets */}
+                {/* selected package price */}
                 <div>
-                  <label className={labelClass}>Choose an Amount (₹)</label>
-                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
-                    {AMOUNTS.map((amount) => (
-                      <button
-                        key={amount}
-                        type="button"
-                        onClick={() => handlePreset(amount)}
-                        className={`rounded-lg border px-2 py-2.5 text-center text-sm font-semibold transition-all ${selectedAmount === amount
-                            ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-md"
-                            : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
-                          }`}
-                      >
-                        {amount.toLocaleString("en-IN")}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="relative mt-2">
-                    <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#A8937E]">
-                      ₹
+                  <label className={labelClass}>Package Amount</label>
+                  <div className="flex min-h-[48px] items-center justify-between rounded-lg border border-[#D7B98C] bg-[#FBF8F3] px-4 py-2.5">
+                    <div className="flex items-center gap-2">
+                      <activeCause.icon className="h-4 w-4 text-[#8B6A3E]" />
+                      <span className="text-[13px] font-semibold text-[#4A3428]">
+                        {activeCause.title}
+                      </span>
+                    </div>
+                    <span className="font-serif text-[20px] font-bold text-[#8B6A3E]">
+                      ₹{activeCause.price.toLocaleString("en-IN")}
                     </span>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      value={customAmount}
-                      onChange={handleCustomAmount}
-                      placeholder="Enter a custom amount"
-                      className={`${inputClass} pl-7`}
-                    />
+                  </div>
+
+                  <div className="mt-2">
+                    <label className={labelClass}>Custom Amount (optional)</label>
+                    <div className="relative">
+                      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-[#A8937E]">
+                        ₹
+                      </span>
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        value={customAmount}
+                        onChange={handleCustomAmount}
+                        placeholder={`Enter amount or use ₹${activeCause.price.toLocaleString("en-IN")}`}
+                        className={`${inputClass} pl-7`}
+                      />
+                    </div>
+                    <p className="mt-1 text-[11px] text-[#8A7460]">
+                      Leave blank to donate the selected package amount.
+                    </p>
                   </div>
                 </div>
 
