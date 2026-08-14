@@ -16,70 +16,58 @@ import {
   FaChevronRight,
   FaMapMarkerAlt,
   FaClock,
+  FaDirections,
 } from "react-icons/fa";
 import { MdVerified, MdEmail } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
 
-const CONTACT_INITIATIVES = [
-  { title: "Meri Beti Mera Abhiman", image: "/assets/initiatives/meri beti mera abhiman.webp" },
-  { title: "Arogya Mantra", image: "/assets/initiatives/Arogya Mantra.webp" },
-  { title: "The Yogshala Expo", image: "/assets/initiatives/The Yogshala Expo.webp" },
-  { title: "The Yogshala Jobs", image: "/assets/initiatives/The Yogshala Jobs.webp" },
-  { title: "Swachh Bharat Sankalp", image: "/assets/initiatives/Swachh Bharat Sankalp.webp" },
-  { title: "Indian Contemporary Art", image: "/assets/initiatives/Indian Contemporary Art.webp" },
-  { title: "ICOA", image: "/assets/initiatives/ICOA.webp" },
-  { title: "Acharaya ji Online", image: "/assets/initiatives/Acharaya ji Online.webp" },
-  { title: "Aviral Ganga", image: "/assets/initiatives/Aviral Ganga.webp" },
-  { title: "Arogya Film Festival", image: "/assets/initiatives/Arogya Film Festival.webp" },
-  { title: "Indo Himalayan Expo", image: "/assets/initiatives/Indo Himalayan Expo.webp" },
-  { title: "Anna Sewa", image: "/assets/initiatives/Anna Sewa.webp" },
-  { title: "NGT Farms", image: "/assets/initiatives/NGT Farms.webp" },
-  { title: "The Grand Master of Yoga", image: "/assets/initiatives/The Grand Master of Yoga.webp" },
-  { title: "Arogya Sangoshti", image: "/assets/initiatives/Arogya Sangoshti.webp" },
-  { title: "Bachchan Ki Rangshala", image: "/assets/initiatives/Bachchan Ki Rangshala.webp" },
-  { title: "Ayush Mitra", image: "/assets/initiatives/Ayush Mitra.webp" },
-  { title: "Vaidhyashala", image: "/assets/initiatives/Vaidhyashala.webp" },
-  { title: "Global Eco-Tech Expo", image: "/assets/initiatives/Global Eco-Tech Expo.webp" },
-  { title: "Ayush Abhinandanam", image: "/assets/initiatives/Ayush Abhinandanam.webp" },
-  { title: "MP Development Expo", image: "/assets/initiatives/MP Development Expo.webp" },
-  { title: "Shrimad Bhagwat Katha", image: "/assets/initiatives/Shrimad Bhagwat Katha.webp" },
-  { title: "The Yogshala Clinic", image: "/assets/initiatives/The Yogshala Clinic.webp" }
+/* ---------- one source of truth so numbers never mismatch ---------- */
+const CONTACT = {
+  helpline: { label: "+91 92201 47229", href: "tel:+919220147229" },
+  altPhone: { label: "+91 95682 59784", href: "tel:+919568259784" },
+  email: { label: "info@mokshasewa.org", href: "mailto:info@mokshasewa.org" },
+};
+
+const HEAD_OFFICE_QUERY =
+  "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad";
+
+const officeLocations = [
+  {
+    city: "Head Office",
+    region: "Ghaziabad, Uttar Pradesh",
+    country: "India",
+    address:
+      "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh, India",
+    pincode: "201007",
+    hours: "Open 24 hours · every day",
+    type: "main",
+    image: "/assets/contact/namo-gange-office.webp",
+    mapQuery: HEAD_OFFICE_QUERY,
+    orgName: "Namo Gange Trust",
+  },
+  {
+    city: "London Office",
+    region: "Luton, England",
+    country: "United Kingdom",
+    address: "6 Liddel Close, Luton, England, United Kingdom",
+    pincode: "LU3 1TW",
+    hours: "Mon–Sat · 9:00 am – 6:00 pm GMT",
+    type: "branch",
+    image:
+      "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=1200&auto=format&fit=crop",
+    mapQuery: "6 Liddel Close, Luton, England LU3 1TW",
+    orgName: "enCodency Pvt. Ltd.",
+  },
 ];
 
-function InitiativesCarousel() {
-  const row1 = CONTACT_INITIATIVES.slice(0, 8);
-  const row2 = CONTACT_INITIATIVES.slice(8, 16);
-  const row3 = CONTACT_INITIATIVES.slice(16, 24);
-
-  return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white py-4 shadow-sm flex flex-col justify-center gap-4">
-      {/* Gradient fades for smooth scrolling edges */}
-      <div className="absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-
-      {[
-        { items: row1, className: "marquee-track-contact-slow" },
-        { items: row2, className: "marquee-track-contact-reverse" },
-        { items: row3, className: "marquee-track-contact" },
-      ].map((row, rowIndex) => (
-        <div key={rowIndex} className="overflow-hidden">
-          <div className={`marquee-track ${row.className}`}>
-            {[...row.items, ...row.items].map((item, i) => (
-              <div key={`${item.title}-${i}`} className="mx-2 flex w-[140px] shrink-0 flex-col items-center justify-center gap-2 rounded-xl border border-[#F0E5D3] bg-[#FBF8F3] p-3 transition-colors hover:bg-[#F4EBE1]" aria-hidden={i >= row.items.length}>
-                <div className="relative h-12 w-full">
-                  <Image src={item.image} alt={i >= row.items.length ? "" : item.title} fill sizes="140px" className="object-contain" />
-                </div>
-                <p className="text-center text-[14px] font-semibold text-[#5F4A3D] leading-tight">{item.title}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+const socials = [
+  { Icon: FaFacebook, label: "Facebook", href: "#" },
+  { Icon: FaTwitter, label: "Twitter", href: "#" },
+  { Icon: FaLinkedin, label: "LinkedIn", href: "#" },
+  { Icon: FaYoutube, label: "YouTube", href: "#" },
+];
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -116,11 +104,13 @@ function Contact() {
         name: `${formData.firstName} ${formData.lastName}`.trim(),
         phone: formData.phone,
         email: formData.email || undefined,
-        message: formData.subject ? `${formData.subject}\n\n${formData.message}` : formData.message,
+        message: formData.subject
+          ? `${formData.subject}\n\n${formData.message}`
+          : formData.message,
       });
       setSubmitStatus({
         type: "success",
-        message: "Thank you! Your message has been sent successfully.",
+        message: "Message sent. Our team will get back to you shortly.",
       });
       setFormData({
         firstName: "",
@@ -136,36 +126,22 @@ function Contact() {
         message:
           err instanceof ApiRequestError
             ? err.message
-            : "Something went wrong. Please try again.",
+            : "Message could not be sent. Please try again, or call our helpline.",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  /* ---------------- shared class tokens ---------------- */
   const inputClass =
-    "w-full rounded-lg border border-[#E4D5BE] bg-[#FBF8F3] px-3 py-3 text-sm text-[#2C1810] placeholder:text-[#A8937E] transition-all focus:border-[#C9A574] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/40";
+    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[14px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
 
   const labelClass =
-    "mb-1 block text-[14px] font-semibold uppercase tracking-[0.08em] text-[#4A3428]";
+    "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B584B]";
 
-  const officeLocations = [
-    {
-      city: "Head Office",
-      address: "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh",
-      pincode: "201007",
-      type: "main",
-      image: "/assets/contact/namo-gange-office.webp",
-    },
-    {
-      city: "London Office",
-      address: "6 Liddel Close, Luton, England",
-      pincode: "LU3 1TW",
-      type: "branch",
-      image:
-        "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=800&auto=format&fit=crop",
-    },
-  ];
+  const eyebrowClass =
+    "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#8B6A3E]";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
@@ -173,9 +149,10 @@ function Contact() {
       <Navbar />
 
       <main>
-        {/* ============ HERO — matches the About page language ============ */}
-        <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
+        {/* ============================= HERO ============================= */}
+        <section className="relative flex aspect-[4/5] w-full flex-col justify-center overflow-hidden bg-[#F4EDE3] md:aspect-auto md:h-[560px] lg:h-[600px]">
           <div className="absolute inset-0">
+            {/* Desktop Hero Image */}
             <Image
               src="/assets/route-optimized/contact-hero.webp"
               alt="Contact Moksha Sewa"
@@ -183,11 +160,20 @@ function Contact() {
               priority
               fetchPriority="high"
               sizes="100vw"
-              className="scale-[1.02] object-cover"
+              className="hidden scale-[1.02] object-cover md:block"
+            />
+            {/* Mobile Hero Image (4:5 Aspect Ratio) */}
+            <Image
+              src="/assets/route-optimized/contact-hero-mobile.png"
+              alt="Contact Moksha Sewa Mobile"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="scale-[1.02] object-cover md:hidden"
             />
           </div>
 
-          {/* cream gradient from the left so text stays readable */}
           <div
             className="absolute inset-0"
             style={{
@@ -195,446 +181,467 @@ function Contact() {
                 "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/10 via-transparent to-transparent" />
 
           {/* Devanagari watermark — page signature */}
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
+          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[56%] select-none font-serif text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
             संपर्क
           </div>
 
           <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 xl:px-0">
-            <div className="max-w-[540px] -translate-y-2 lg:-translate-y-4">
-              {/* eyebrow */}
-              <div className="mb-1 inline-flex items-center gap-2.5">
+            <div className="max-w-[540px]">
+              <div className="inline-flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
-                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   संपर्क करें · We&apos;re Listening
                 </span>
               </div>
 
-              {/* layered display type */}
-              <h1 className="flex items-center gap-2 font-serif leading-[0.95]">
-                <span className="text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  Contact
+              <h1 className="mt-4 font-serif leading-[0.95]">
+                <span className="text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
+                  Contact{" "}
                 </span>
-                <span className="text-[46px]  text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
+                <span className="text-[38px] text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
                   With Us
                 </span>
               </h1>
 
-              {/* diya flourish */}
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-4 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />
                 <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
                 <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
               </div>
 
-              <p className="mt-1 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                Get in touch with our team for any inquiries or assistance. A
-                caring team is available round the clock — reach out and we
-                will handle the rest.
+              <p className="mt-4 hidden max-w-[460px] text-[15px] leading-7 text-[#4F3A2D] md:block">
+                Ek call ya ek message — baaki sab hum sambhaal lenge. Our team
+                answers round the clock and stays with you until the last ritual
+                is complete.
               </p>
 
-              {/* trust row */}
-              <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {["24/7 Support", "15 Min Response", "Pan India Teams"].map((chip) => (
-                  <span
-                    key={chip}
-                    className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
-                  >
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
-                      <MdVerified className="h-3 w-3 text-[#8B6A3E]" />
+              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+                {["24/7 support", "15 min response", "Pan-India teams"].map(
+                  (chip) => (
+                    <span
+                      key={chip}
+                      className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#5F4630]"
+                    >
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/15">
+                        <MdVerified className="h-3 w-3 text-[#8B6A3E]" />
+                      </span>
+                      {chip}
                     </span>
-                    {chip}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href="#contact-form"
-                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg"
-              >
-                Send a Message
-                <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </a>
-            </div>
-          </div>
-
-
-        </section>
-
-        {/* ============ QUICK CONTACT — dark bar overlapping hero ============ */}
-        <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
-          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
-                {[
-                  {
-                    icon: FaPhoneAlt,
-                    value: "9220147229",
-                    title: "Emergency Helpline",
-                    href: "tel:+919654900525",
-                  },
-                  {
-                    icon: MdEmail,
-                    value: "info@mokshasewa.org",
-                    title: "Write to Us",
-                    href: "mailto:info@mokshasewa.org",
-                  },
-                  { icon: FaClock, value: "24/7", title: "Always Available" },
-                  { icon: FaHeadset, value: "15 Min", title: "Avg Response Time" },
-                ].map((item, index) => {
-                  const Icon = item.icon;
-                  const content = (
-                    <>
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                        <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
-                      </div>
-                      <div className="min-w-0 text-left">
-                        <div
-                          className="truncate whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
-                          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-                        >
-                          {item.value}
-                        </div>
-                        <div className="mt-1 whitespace-nowrap text-[14px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[15px]">
-                          {item.title}
-                        </div>
-                      </div>
-                    </>
-                  );
-                  return item.href ? (
-                    <a
-                      key={item.title}
-                      href={item.href}
-                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
-                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    <div
-                      key={item.title}
-                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
-                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
-                    >
-                      {content}
-                    </div>
-                  );
-                })}
-          </div>
-        </section>
-
-        {/* ============ OFFICE LOCATIONS & INITIATIVES ============ */}
-        <section className="pt-8 pb-2 lg:pt-12 lg:pb-2">
-          <div className="mx-auto w-full max-w-7xl px-2 sm:px-4 xl:px-0">
-            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-2">
-
-              {/* LEFT: Office Locations */}
-              <div className="flex flex-col h-full">
-                <div className="mb-1 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-                  <span className="h-px w-8 bg-[#C9A574]" />
-                  <span>ॐ Our Presence ॐ</span>
-                </div>
-                <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
-                  Office <span className=" text-[#8B6A3E]">Locations</span>
-                </h2>
-
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {officeLocations.map((location) => (
-                    <div
-                      key={location.city}
-                      className="group overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
-                    >
-                      {/* image */}
-                      <div className="relative h-48 w-full overflow-hidden">
-                        <Image
-                          src={location.image}
-                          alt={location.city}
-                          fill
-                          sizes="(max-width: 640px) 100vw, 50vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/80 via-transparent to-transparent" />
-
-                        {location.type === "main" && (
-                          <span className="absolute right-3 top-3 z-20 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-bold uppercase tracking-[0.14em] text-white shadow">
-                            HQ
-                          </span>
-                        )}
-
-                        <div className="absolute bottom-3 left-4 z-20">
-                          <h3 className="font-serif text-xl text-white drop-shadow">
-                            {location.city}
-                          </h3>
-                          <span className="mt-1 block h-[2px] w-8 bg-[#D9B681] transition-all duration-300 group-hover:w-12" />
-                        </div>
-                      </div>
-
-                      {/* Details */}
-                      <div className="p-5">
-                        <p className="min-h-[48px] text-sm leading-relaxed text-[#6B584B]">
-                          {location.address}
-                        </p>
-                        <div className="mt-4 flex items-center justify-between border-t border-[#F0E5D3] pt-4">
-                          <span className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#8B6A3E]">
-                            <FaMapMarkerAlt className="h-3.5 w-3.5" />
-                            PIN: {location.pincode}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* RIGHT: Our Initiatives */}
-              <div className="flex flex-col h-full">
-                <div className="mb-1 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
-                  <span className="h-px w-8 bg-[#C9A574]" />
-                  <span>Our Expanding Horizon</span>
-                </div>
-                <h2 className="mb-4 font-serif text-3xl text-[#2C1810] sm:text-4xl">
-                  Our <span className=" text-[#8B6A3E]">Initiatives</span>
-                </h2>
-
-                <div className="flex-1 w-full min-h-0">
-                  <InitiativesCarousel />
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* ============ FORM + CONTACT CARDS ============ */}
-        <section id="contact-form" className="py-2 lg:py-2">
-          <div className="mx-auto grid w-full max-w-7xl gap-2 px-2 sm:px-4 xl:px-0 lg:grid-cols-2 lg:gap-2">
-            {/* -------- form card -------- */}
-            <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
-              <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
-
-              <div className="mb-1">
-                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                  <span>Send a Message</span>
-                  <span className="h-px w-7 bg-[#C9A574]" />
-                </div>
-                <h3 className="mt-1 font-serif text-2xl text-[#2C1810]">
-                  We&apos;d Love to <span className=" text-[#8B6A3E]">Hear From You</span>
-                </h3>
-                <p className="mt-1 text-[14px] text-[#7A685B]">
-                  Our team will respond within 1–2 business days.
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className={labelClass}>First Name *</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                      className={inputClass}
-                      placeholder="John"
-                    />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Last Name *</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                      className={inputClass}
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className={labelClass}>Email Address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className={inputClass}
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label className={labelClass}>Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={inputClass}
-                    placeholder="+91 98765 43210"
-                  />
-                </div>
-
-                <div>
-                  <label className={labelClass}>Subject *</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={inputClass}
-                    placeholder="How can we help?"
-                  />
-                </div>
-
-                <div>
-                  <label className={labelClass}>Message *</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className={`${inputClass} resize-none`}
-                    placeholder="Tell us about your inquiry..."
-                  />
-                </div>
-
-                {submitStatus.type && (
-                  <div
-                    className={`rounded-lg border p-3 text-sm font-medium ${submitStatus.type === "success"
-                      ? "border-green-200 bg-green-50 text-green-700"
-                      : "border-red-200 bg-red-50 text-red-700"
-                      }`}
-                  >
-                    {submitStatus.message}
-                  </div>
+                  ),
                 )}
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="group flex w-full items-center justify-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70"
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href="#contact-form"
+                  className="group inline-flex items-center gap-2 rounded-none bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4EDE3]"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <FaPaperPlane className="transition-transform duration-300 group-hover:translate-x-1" />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </form>
+                  Send a message
+                  <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </a>
+                <a
+                  href={CONTACT.helpline.href}
+                  className="inline-flex items-center gap-2 rounded-none border border-[#C9A574] bg-white/70 px-5 py-2.5 text-[14px] font-semibold text-[#73532F] backdrop-blur transition duration-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4EDE3]"
+                >
+                  <FaPhoneAlt className="h-3 w-3" />
+                  Call the helpline
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ======================= QUICK CONTACT BAR ====================== */}
+        <section className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] shadow-md">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 md:grid-cols-4 xl:px-0">
+            {[
+              {
+                icon: FaPhoneAlt,
+                value: CONTACT.helpline.label,
+                title: "Emergency helpline",
+                href: CONTACT.helpline.href,
+              },
+              {
+                icon: MdEmail,
+                value: CONTACT.email.label,
+                title: "Write to us",
+                href: CONTACT.email.href,
+              },
+              { icon: FaClock, value: "24 / 7", title: "Always available" },
+              { icon: FaHeadset, value: "15 min", title: "Average response" },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              const content = (
+                <>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover/stat:scale-110">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0 text-left">
+                    <span className="block truncate font-serif text-[16px] leading-tight text-white lg:text-[18px]">
+                      {item.value}
+                    </span>
+                    <span className="mt-0.5 block truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/85">
+                      {item.title}
+                    </span>
+                  </span>
+                </>
+              );
+
+              const base = `group/stat flex items-center gap-3 px-4 py-3.5 md:justify-center ${index > 0 ? "md:border-l md:border-white/20" : ""
+                } ${index % 2 === 1 ? "border-l border-white/20" : ""} ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""
+                }`;
+
+              return item.href ? (
+                <a key={item.title} href={item.href} className={base}>
+                  {content}
+                </a>
+              ) : (
+                <div key={item.title} className={base}>
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ======================= OFFICE LOCATIONS ====================== */}
+        <section className="pb-2 pt-6 lg:pb-2 lg:pt-8">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
+            <div className="mb-6 flex flex-col items-center text-center">
+              <div className={eyebrowClass}>
+                <span className="hidden sm:block h-px w-8 bg-[#C9A574]" />
+                <span>ॐ Our presence ॐ</span>
+                <span className="hidden sm:block h-px w-8 bg-[#C9A574]" />
+              </div>
+              <h2 className="mt-2 font-serif text-3xl text-[#2C1810] sm:text-4xl">
+                Office <span className="text-[#8B6A3E]">Locations</span>
+              </h2>
             </div>
 
-            {/* -------- right column -------- */}
-            <div className="flex flex-col gap-2">
-              {/* Consolidated Contact Info Block */}
-              <div className="rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
-
-                {/* Emergency Details */}
-                <div className="flex items-center gap-3">
-                  <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-white">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/40" />
-                    <FaHeadset className="relative h-4 w-4" />
-                  </span>
-                  <div>
-                    <div className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                      24/7 Emergency Support
+            <div className="grid gap-1 sm:grid-cols-2">
+              {officeLocations.map((location) => (
+                <article
+                  key={location.city}
+                  className="group flex flex-col border border-[#E6D6BF] bg-white transition-all duration-300 hover:border-[#C9A574] hover:shadow-md"
+                >
+                  {/* Image */}
+                  <div className="relative h-64 w-full overflow-hidden">
+                    <Image
+                      src={location.image}
+                      alt={`${location.city}, ${location.region}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute right-3 top-3 bg-black/60 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                      {location.type === "main" ? "HQ" : "Branch"}
                     </div>
+                  </div>
+
+                  {/* Header / Org Name Bar */}
+                  <div className="border-b border-[#E6D6BF] bg-[#FBF8F3] px-4 py-2">
+                    <h4 className="font-serif text-[20px] leading-tight text-[#2C1810]">
+                      {location.orgName}
+                    </h4>
+                    <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#8B6A3E]">
+                      {location.region}, {location.country}
+                    </p>
+                  </div>
+
+                  {/* Details */}
+                  <div className="flex flex-1 flex-col px-4 pb-3 pt-2">
+                    <p className="text-[14px] leading-6 text-[#6B584B]">
+                      {location.address}
+                    </p>
+
+                    <div className="mt-auto flex flex-col gap-2 border-t border-[#F0E5D3] pt-2 text-[13px] text-[#5F4A3D]">
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-2">
+                          <FaClock className="text-[#8B6A3E]" /> {location.hours}
+                        </span>
+                        <span className="font-semibold tracking-wider text-[#8B6A3E]">
+                          PIN {location.pincode}
+                        </span>
+                      </div>
+                    </div>
+
                     <a
-                      href="tel:+919654900525"
-                      className="inline-block font-serif text-xl text-[#2C1810] transition hover:text-[#8B6A3E]"
+                      href={`https://maps.google.com/?q=${encodeURIComponent(
+                        location.mapQuery,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 flex w-full items-center justify-center gap-2 border border-[#E4D5BE] bg-white px-4 py-2 text-[12px] font-bold uppercase tracking-[0.16em] text-[#73532F] transition-all duration-300 hover:border-[#8B6A3E] hover:bg-[#8B6A3E] hover:text-white"
                     >
-                      9220147229
+                      <FaDirections className="h-3.5 w-3.5" />
+                      Get directions
                     </a>
                   </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =================== FORM + CONTACT / MAP COLUMN ================ */}
+        <section id="contact-form" className="scroll-mt-24 pb-10 pt-0 lg:pb-14">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
+            <div className="grid items-stretch gap-1 lg:grid-cols-[1.05fr_0.95fr]">
+              {/* ------------------------ FORM CARD ------------------------ */}
+              <div className="relative flex flex-col overflow-hidden rounded-none border border-[#E6D6BF] bg-white p-4 shadow-[0_16px_42px_rgba(73,49,31,0.08)] sm:p-5">
+                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
+
+                <div className="mb-5">
+                  <div className={eyebrowClass}>
+                    <span>Send a message</span>
+                    <span className="h-px w-8 bg-[#C9A574]" />
+                  </div>
+                  <h3 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-[28px]">
+                    We&apos;d love to{" "}
+                    <span className="text-[#8B6A3E]">hear from you</span>
+                  </h3>
+                  <p className="mt-1.5 text-[13px] text-[#7A685B]">
+                    We reply within one business day. For anything urgent, the
+                    helpline is answered day and night.
+                  </p>
                 </div>
 
-                <div className="my-3.5 h-px w-full bg-[#F0E5D3]" />
-
-                {/* Email & Phone List (Side-by-Side) */}
-                <div className="grid grid-cols-2 gap-3">
-                  <a
-                    href="mailto:info@mokshasewa.org"
-                    className="group flex items-center gap-2.5 transition-colors duration-300"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                      <MdEmail className="h-3.5 w-3.5" />
-                    </span>
-                    <div className="min-w-0">
-                      <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                        Email
-                      </span>
-                      <span className="block truncate font-serif text-[14px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
-                        info@mokshasewa.org
-                      </span>
+                <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="firstName" className={labelClass}>
+                        First name *
+                      </label>
+                      <input
+                        id="firstName"
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                        className={inputClass}
+                        placeholder="Rahul"
+                      />
                     </div>
-                  </a>
-
-                  <a
-                    href="tel:+919220147229"
-                    className="group flex items-center gap-2.5 transition-colors duration-300"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                      <FaPhoneAlt className="h-3 w-3" />
-                    </span>
-                    <div className="min-w-0">
-                      <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                        Call Us
-                      </span>
-                      <span className="block truncate font-serif text-[14px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
-                        +91 95682 59784
-                      </span>
+                    <div>
+                      <label htmlFor="lastName" className={labelClass}>
+                        Last name *
+                      </label>
+                      <input
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                        className={inputClass}
+                        placeholder="Sharma"
+                      />
                     </div>
-                  </a>
-                </div>
+                  </div>
 
-                <div className="my-3.5 h-px w-full bg-[#F0E5D3]" />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="email" className={labelClass}>
+                        Email address *
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className={inputClass}
+                        placeholder="rahul@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className={labelClass}>
+                        Phone number
+                      </label>
+                      <input
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className={inputClass}
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
 
-                {/* Social Connect & Reassurance (Side-by-Side) */}
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {[FaFacebook, FaTwitter, FaLinkedin, FaYoutube].map((Icon, i) => (
+                  <div>
+                    <label htmlFor="subject" className={labelClass}>
+                      Subject *
+                    </label>
+                    <input
+                      id="subject"
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className={inputClass}
+                      placeholder="What do you need help with?"
+                    />
+                  </div>
+
+                  <div className="flex flex-1 flex-col">
+                    <label htmlFor="message" className={labelClass}>
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className={`${inputClass} min-h-[120px] flex-1 resize-none`}
+                      placeholder="Share the details — city, timing, and what you need arranged."
+                    />
+                  </div>
+
+                  {submitStatus.type && (
+                    <div
+                      role="status"
+                      className={`rounded-none border p-3 text-[13px] font-medium ${submitStatus.type === "success"
+                        ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
+                        : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
+                        }`}
+                    >
+                      {submitStatus.message}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="group mt-auto flex w-full items-center justify-center gap-2 rounded-none bg-[#8B6A3E] px-4 py-3 text-[14px] font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        Sending
+                      </>
+                    ) : (
+                      <>
+                        <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        Send message
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
+
+              {/* --------------------- RIGHT COLUMN ---------------------- */}
+              <div className="flex flex-col gap-1">
+                <div className="rounded-none border border-[#E6D6BF] bg-white p-4 shadow-sm">
+                  {/* helpline */}
+                  <div className="flex items-center gap-3">
+                    <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-white">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/40 motion-reduce:hidden" />
+                      <FaHeadset className="relative h-4 w-4" />
+                    </span>
+                    <div>
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]">
+                        24/7 emergency support
+                      </div>
                       <a
-                        key={i}
-                        href="#"
-                        className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8B6A3E] hover:text-white hover:shadow-md"
+                        href={CONTACT.helpline.href}
+                        className="font-serif text-[22px] leading-tight text-[#2C1810] transition hover:text-[#8B6A3E]"
                       >
-                        <Icon className="h-3.5 w-3.5" />
+                        {CONTACT.helpline.label}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="my-4 h-px w-full bg-[#F0E5D3]" />
+
+                  {/* email + alternate line */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {[
+                      {
+                        Icon: MdEmail,
+                        label: "Email",
+                        value: CONTACT.email.label,
+                        href: CONTACT.email.href,
+                      },
+                      {
+                        Icon: FaPhoneAlt,
+                        label: "Alternate line",
+                        value: CONTACT.altPhone.label,
+                        href: CONTACT.altPhone.href,
+                      },
+                    ].map(({ Icon, label, value, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        className="group flex items-center gap-3"
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
+                          <Icon className="h-3.5 w-3.5" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
+                            {label}
+                          </span>
+                          <span className="block truncate font-serif text-[15px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
+                            {value}
+                          </span>
+                        </span>
                       </a>
                     ))}
                   </div>
-                  <div className="text-right text-[14px] leading-4 text-[#5F4A3D]">
-                    <span className="font-serif  text-[#8B6A3E]">Har sawaal ka jawab.</span>
-                    <br />
-                    We treat every query with care.
+
+                  <div className="my-4 h-px w-full bg-[#F0E5D3]" />
+
+                  {/* socials + line */}
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex gap-2">
+                      {socials.map(({ Icon, label, href }) => (
+                        <a
+                          key={label}
+                          href={href}
+                          aria-label={label}
+                          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8B6A3E] hover:text-white hover:shadow-md"
+                        >
+                          <Icon className="h-3.5 w-3.5" />
+                        </a>
+                      ))}
+                    </div>
+                    <p className="text-right text-[13px] leading-5 text-[#5F4A3D]">
+                      <span className="font-serif text-[#8B6A3E]">
+                        Har sawaal ka jawab.
+                      </span>
+                      <br />
+                      Every query handled with care.
+                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* ============ MAP ============ */}
-              <div className="relative h-[300px] lg:h-[420px] w-full overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm">
-                <iframe
-                  src="https://maps.google.com/maps?q=12/52,%20Site%20-%202,%20Sunrise%20Industrial%20Area,%20Mohan%20Nagar,%20Sahibabad,%20Ghaziabad&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  className="h-full w-full"
-                  title="Head Office Location"
-                />
+                {/* map grows so both columns end level */}
+                <div className="relative min-h-[300px] flex-1 overflow-hidden rounded-none border border-[#E6D6BF] shadow-sm">
+                  <iframe
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      HEAD_OFFICE_QUERY,
+                    )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full"
+                    title="Head office location on map"
+                  />
+                </div>
               </div>
             </div>
           </div>
