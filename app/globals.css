@@ -92,6 +92,45 @@ body {
   animation-delay: 0.45s;
 }
 
+.footer-brand-highlight,
+.footer-logo-highlight,
+.footer-link-glow,
+.footer-contact-glow,
+.footer-social-glow {
+  position: relative;
+  transition: transform 180ms ease, color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.footer-brand-highlight {
+  box-shadow: 0 0 18px rgba(229, 169, 62, 0.12);
+}
+
+.footer-logo-highlight {
+  filter: drop-shadow(0 0 9px rgba(229, 169, 62, 0.28));
+}
+
+.footer-title-glow {
+  text-shadow: 0 0 11px rgba(232, 163, 46, 0.28);
+}
+
+.footer-link-glow:hover,
+.footer-contact-glow:hover {
+  background: rgba(229, 169, 62, 0.1);
+  box-shadow: 0 0 16px rgba(229, 169, 62, 0.22), inset 0 0 0 1px rgba(244, 196, 106, 0.24);
+  transform: translateX(2px);
+}
+
+.footer-social-glow {
+  box-shadow: 0 0 12px rgba(229, 169, 62, 0.16);
+}
+
+.footer-social-glow:hover,
+.footer-logo-highlight:hover,
+.footer-brand-highlight:hover {
+  box-shadow: 0 0 22px rgba(229, 169, 62, 0.36), inset 0 0 0 1px rgba(244, 196, 106, 0.2);
+  transform: translateY(-1px);
+}
+
 @keyframes donate-glow {
   0%, 100% {
     box-shadow: 0 0 14px rgba(229, 169, 62, 0.4);
@@ -130,5 +169,13 @@ body {
   .donate-nav-shine,
   .donate-star {
     animation: none;
+  }
+
+  .footer-brand-highlight,
+  .footer-logo-highlight,
+  .footer-link-glow,
+  .footer-contact-glow,
+  .footer-social-glow {
+    transition: none;
   }
 }
