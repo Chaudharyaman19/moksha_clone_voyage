@@ -15,6 +15,7 @@ import {
   FaRegClock,
   FaHandHoldingHeart,
   FaStar,
+  FaDonate,
 } from "react-icons/fa";
 import { useState } from "react";
 import footerMokshaLogo from "../../../public/assets/logo-moksha-seva.png";
@@ -171,6 +172,17 @@ export default function Footer() {
             <p className="mt-2 max-w-[390px] text-[13px] font-medium leading-5 text-white/90">
               {description}
             </p>
+
+            <Link
+              href="/donation"
+              className="donate-nav-sparkle relative mt-3 inline-flex h-[42px] min-w-[154px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[14px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+            >
+              <span className="donate-nav-shine" aria-hidden />
+              <FaDonate className="relative z-10 h-3.5 w-3.5" />
+              <span className="relative z-10">Donate Now</span>
+              <FaStar className="donate-star donate-star-one" aria-hidden />
+              <FaStar className="donate-star donate-star-two" aria-hidden />
+            </Link>
 
             <div className="mt-2 flex items-center">
               <span className="h-px w-[42%] bg-gradient-to-r from-[#D4942D]/60 to-[#D4942D]" />

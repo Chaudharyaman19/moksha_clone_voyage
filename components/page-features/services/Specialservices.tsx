@@ -13,6 +13,7 @@ import {
   FaHandHoldingHeart,
   FaHeart,
   FaPhoneAlt,
+  FaStar,
   FaUserFriends,
   FaUsers,
 } from "react-icons/fa";
@@ -283,8 +284,12 @@ export default function FamilySupport() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="/donation" className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-2.5 rounded-lg bg-[#8B6A3E] px-6 text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]">
-                  <FaHeart className="h-[14px] w-[14px]" /> Donate to Moksha Sewa
+                <Link href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[198px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[14px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+                  <span className="donate-nav-shine" aria-hidden />
+                  <FaHeart className="relative z-10 h-[14px] w-[14px]" />
+                  <span className="relative z-10">Donate to Moksha Sewa</span>
+                  <FaStar className="donate-star donate-star-one" aria-hidden />
+                  <FaStar className="donate-star donate-star-two" aria-hidden />
                 </Link>
                 <Link href="/volunteer/register" className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 rounded-lg border border-[#B89564] bg-transparent px-6 text-[14px] font-semibold text-white transition hover:border-[#EED8A1] hover:bg-white/10">
                   Support Our Seva <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />

@@ -456,11 +456,14 @@ function DonationSection() {
 
           <div className="mt-3 flex gap-2 max-[520px]:flex-col">
             <a
-              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] bg-[#D19645] px-[11px] text-sm font-medium text-white shadow-[inset_0_1px_rgba(255,255,255,0.2)] transition-transform hover:-translate-y-px"
+              className="donate-nav-sparkle relative inline-flex min-h-[38px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-sm font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               href="/donation"
             >
-              <Icon name="heart" size={16} />
-              <span>Donate for Ambulance Service</span>
+              <span className="donate-nav-shine" aria-hidden />
+              <span className="relative z-10">
+                <Icon name="heart" size={16} />
+              </span>
+              <span className="relative z-10">Donate for Ambulance Service</span>
             </a>
 
             <a

@@ -24,11 +24,7 @@ export default function AboutNamoGangeTrust() {
             </h2>
 
             {/* Diya Flourish */}
-            <div className="mb-5 flex items-center gap-2">
-              <span className="h-[2px] w-10 bg-[#8B6A3E]" />
-              <span className="h-1.5 w-1.5 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-              <span className="h-[1px] w-10 bg-gradient-to-r from-[#C9A574] to-transparent" />
-            </div>
+         
 
             <div className="space-y-4 text-[14px] leading-relaxed text-[#5F4A3D] sm:text-[15px]">
               <p>

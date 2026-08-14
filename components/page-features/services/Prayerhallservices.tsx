@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import Image from "next/image";
 import { 
-  FaHandHoldingHeart, FaOm
+  FaHandHoldingHeart, FaOm, FaStar
 } from "react-icons/fa";
 import { 
   GiLotusFlower, GiCandleHolder
@@ -86,9 +86,12 @@ export default function PrayerHallServices() {
                   <GiLotusFlower className="w-4 h-4 text-[#C99A4A]" />
                   Request Support
                 </a>
-                <a href="/donation" className="inline-flex items-center justify-center gap-2 bg-transparent text-[#321A10] border border-[#321A10] px-6 md:px-8 py-3 rounded-md font-semibold text-sm hover:bg-[#321A10]/5 transition-all shadow-sm">
-                  <GiCandleHolder className="w-5 h-5 text-[#C99A4A]" />
-                  Donate for Support
+                <a href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-sm font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+                  <span className="donate-nav-shine" aria-hidden />
+                  <GiCandleHolder className="relative z-10 w-5 h-5" />
+                  <span className="relative z-10">Donate for Support</span>
+                  <FaStar className="donate-star donate-star-one" aria-hidden />
+                  <FaStar className="donate-star donate-star-two" aria-hidden />
                 </a>
               </div>
             </div>
@@ -260,8 +263,11 @@ export default function PrayerHallServices() {
               <h2 className="text-2xl lg:text-[28px] font-serif text-[#321A10] mb-5 max-w-lg leading-tight">
                 Your Support Helps Families Receive Dignified & Sacred Final Rites
               </h2>
-              <a href="/donation" className="px-6 py-3 bg-[#321A10] text-[#FAF8F4] rounded-none font-medium text-[15px] shadow-sm hover:bg-[#4A2E1B] transition-all inline-block">
-                Donate for Support
+              <a href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[15px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+                <span className="donate-nav-shine" aria-hidden />
+                <span className="relative z-10">Donate for Support</span>
+                <FaStar className="donate-star donate-star-one" aria-hidden />
+                <FaStar className="donate-star donate-star-two" aria-hidden />
               </a>
             </div>
             
