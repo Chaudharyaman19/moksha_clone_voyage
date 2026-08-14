@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -43,7 +42,7 @@ const officeLocations = [
     pincode: "201007",
     hours: "Open 24 hours · every day",
     type: "main",
-    image: "/assets/contact/namo-gange-office.webp",
+    image: "/assets/contact/image.png",
     mapQuery: HEAD_OFFICE_QUERY,
     orgName: "Namo Gange Trust",
   },
@@ -330,7 +329,7 @@ function Contact() {
                   className="group flex flex-col border border-[#E6D6BF] bg-white transition-all duration-300 hover:border-[#C9A574] hover:shadow-md"
                 >
                   {/* Image */}
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-[380px] w-full overflow-hidden">
                     <Image
                       src={location.image}
                       alt={`${location.city}, ${location.region}`}

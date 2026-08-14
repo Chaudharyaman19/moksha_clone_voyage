@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   FaWhatsapp,
   FaFacebook,
@@ -61,8 +62,8 @@ const SocialSidebar = () => {
         <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-auto">
           <div className="flex flex-col gap-3">
             <div className="group relative">
-              <a
-                href="mailto:info@mokshasewa.org"
+              <Link
+                href="/contact"
                 className="block"
               >
                 <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
@@ -77,10 +78,10 @@ const SocialSidebar = () => {
                     ENQUIRY
                   </span>
                 </div>
-              </a>
+              </Link>
 
               <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-[#2C1810] px-3 py-1.5 text-[14px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-                Send us an email
+                Go to contact page
               </div>
             </div>
 
@@ -198,9 +199,9 @@ const SocialSidebar = () => {
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-[#8B6A3E]/20 shadow-2xl">
         <div className="flex items-center justify-around py-2 px-1">
           {/* Enquiry */}
-          <a
-            href="mailto:info@mokshasewa.org"
-            aria-label="Email Moksha Sewa"
+          <Link
+            href="/contact"
+            aria-label="Contact Moksha Sewa"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >
             <div className="w-10 h-10 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center group-hover:bg-[#8B6A3E] group-hover:text-white">
@@ -212,7 +213,7 @@ const SocialSidebar = () => {
             <span className="text-[11px] font-medium text-[#5A3E2B]">
               ENQUIRY
             </span>
-          </a>
+          </Link>
 
           {/* Emergency */}
           <a
