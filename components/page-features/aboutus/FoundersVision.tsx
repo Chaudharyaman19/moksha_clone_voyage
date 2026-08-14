@@ -78,7 +78,7 @@ export default function FoundersVision() {
 
             <div className="mt-4">
               <p className="font-serif text-lg  text-[#8B6A3E]">Vijay Sharma</p>
-              <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Co-Founder & Director, Moksha Sewa</p>
+              <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Founder</p>
             </div>
           </div>
 
