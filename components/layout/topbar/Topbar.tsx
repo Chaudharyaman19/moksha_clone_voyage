@@ -138,9 +138,9 @@ export default function TopInfoBar() {
             <span className="hidden text-[14px] md:inline">Track Request</span>
           </Link>
 
-          <Link href="/track" className={utilityLink} aria-label="Track records">
+          <Link href="/mortal-records" className={utilityLink} aria-label="Mortal records">
             <FaFileAlt className="h-3 w-3" />
-            <span className="hidden text-[14px] md:inline">Track Records</span>
+            <span className="hidden text-[14px] md:inline">Mortal Records</span>
           </Link>
 
           <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
