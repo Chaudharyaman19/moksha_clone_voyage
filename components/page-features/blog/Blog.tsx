@@ -16,7 +16,7 @@ import { BsEye, BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { PiFlowerLotus } from "react-icons/pi";
 
 const blogImages = {
-  hero: "/hero-images/9.png",
+  hero: "/assets/blog/blog.png",
 };
 
 function Blog() {
@@ -144,7 +144,7 @@ function Blog() {
 
       <main>
         {/* ============ HERO — visual banner first ============ */}
-        <section className="relative w-full aspect-[16/5] min-h-[260px] overflow-hidden bg-[#F4EDE3]">
+        <section className="relative w-full aspect-[16/6] min-h-[400px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
               src={blogImages.hero}
@@ -170,7 +170,7 @@ function Blog() {
             ज्ञान
           </div>
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-8 lg:pt-10">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-2 lg:pt-1">
             <div className="max-w-[540px] translate-y-2 lg:translate-y-3">
               <div className="inline-flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
@@ -186,11 +186,9 @@ function Blog() {
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  The Moksha
+                  The Moksha   Blog
                 </span>
-                <span className="mt-1 block text-[46px] text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
-                  Blog
-                </span>
+           
               </h1>
 
               <div className="mt-2 flex items-center gap-2">
@@ -199,9 +197,11 @@ function Blog() {
                 <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
               </div>
 
-              <p className="mt-3 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                Articles on rituals, pilgrimage and sacred traditions — ancient
-                wisdom, explained gently for modern families.
+              <p className="mt-3 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[20px]">
+               Articles on rituals, pilgrimage,
+                sacred traditions, funeral guidance, and spiritual practices — timeless wisdom explained with warmth,
+                 clarity, and compassion for modern families seeking understanding, comfort,
+                  and meaningful cultural connection.
               </p>
             </div>
           </div>

@@ -108,7 +108,7 @@ export default function FamilySupport() {
         </section>
 
         {/* FEATURES MARQUEE */}
-        <section className="max-w-[100vw] overflow-hidden pt-0 pb-1">
+        <section className="max-w-7xl mx-auto px-4 lg:px-0 overflow-hidden pt-0 pb-1">
           <Marquee speed={40} pauseOnHover={true} gradient={false} className="py-1">
             <div className="flex gap-2 px-1">
               <div className="w-[240px]">

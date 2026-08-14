@@ -154,7 +154,7 @@ function Contact() {
           <div className="absolute inset-0">
             {/* Desktop Hero Image */}
             <Image
-              src="/assets/route-optimized/contact-hero-new.png"
+              src="/assets/contact/contact.png"
               alt="Contact Moksha Sewa"
               fill
               priority
