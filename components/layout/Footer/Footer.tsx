@@ -10,10 +10,7 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaPaperPlane,
-  FaShieldAlt,
-  FaUsers,
   FaRegClock,
-  FaHandHoldingHeart,
   FaStar,
   FaDonate,
 } from "react-icons/fa";
@@ -42,12 +39,6 @@ const services = [
   { label: "Family Support", href: "/specialservices" },
 ];
 
-const trustPoints = [
-  { icon: FaShieldAlt, label: "Trusted & Verified Services" },
-  { icon: FaUsers, label: "Experienced & Compassionate Team" },
-  { icon: FaRegClock, label: "Available 24x7, Every Day" },
-  { icon: FaHandHoldingHeart, label: "Serving with Dignity & Respect" },
-];
 
 const socials = [
   { label: "Facebook", href: "#", icon: FaFacebookF },
@@ -72,7 +63,7 @@ function FooterLogoWhiteText({
 }) {
   return (
     <div
-      className="footer-logo-highlight relative shrink-0 rounded-xl"
+      className="footer-logo-highlight pointer-events-none relative shrink-0 rounded-xl"
       style={{ width, height }}
     >
       {/* Original logo stays exactly the same */}
@@ -150,14 +141,16 @@ export default function Footer() {
         <div className="grid gap-3 lg:grid-cols-[1.28fr_0.58fr_0.66fr_0.70fr_0.92fr] lg:gap-5 xl:gap-6">
           {/* BRAND + TRUST */}
           <div className="min-w-0">
-            <div className="footer-brand-highlight flex items-center gap-1 rounded-2xl px-1 py-1">
-              <FooterLogoWhiteText
-                width={102}
-                height={92}
-                priority
-                objectLeft
-                alt={brandName}
-              />
+            <div className="flex flex-col items-start gap-0">
+              <div className="-mt-4 mb-1 ml-2">
+                <FooterLogoWhiteText
+                  width={132}
+                  height={116}
+                  priority
+                  objectLeft
+                  alt={brandName}
+                />
+              </div>
 
               <div>
                 <h2 className="footer-title-glow font-serif text-[23px] font-medium leading-none tracking-[0.02em] text-[#FFF9EF] sm:text-[26px]">
@@ -184,38 +177,16 @@ export default function Footer() {
               <FaStar className="donate-star donate-star-two" aria-hidden />
             </Link>
 
-            <div className="mt-2 flex items-center">
-              <span className="h-px w-[42%] bg-gradient-to-r from-[#D4942D]/60 to-[#D4942D]" />
-              <span className="mx-1 font-serif text-[16px] leading-none text-[#E7A52E]">◇</span>
-              <span className="h-px flex-1 bg-gradient-to-r from-[#D4942D] to-transparent" />
-            </div>
-
-            <ul className="mt-2 space-y-1.5">
-              {trustPoints.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <li
-                    key={item.label}
-                    className="flex items-center gap-3 text-[13px] font-medium text-white/92"
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#D79423] text-[#E9A22D] shadow-[0_0_12px_rgba(217,148,35,0.08)]">
-                      <Icon className="h-3.5 w-3.5" />
-                    </span>
-                    <span>{item.label}</span>
-                  </li>
-                );
-              })}
-            </ul>
           </div>
 
           {/* QUICK LINKS */}
           <FooterColumn title="QUICK LINKS">
-            <ul className="mt-2 space-y-1.5">
+            <ul className="mt-1 space-y-0.5">
               {quickLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link-glow group inline-flex items-center gap-2.5 rounded-md px-1.5 py-0.5 text-[13px] font-medium text-white/90 transition hover:text-[#E8A32E]"
+                    className="footer-link-glow group inline-flex items-center gap-2 rounded-md px-1 py-0 text-[13px] font-medium text-white/90 transition hover:text-[#E8A32E]"
                   >
                     <FaChevronRight className="h-3 w-3 text-[#E8A32E] transition-transform group-hover:translate-x-0.5" />
                     {item.label}
@@ -227,12 +198,12 @@ export default function Footer() {
 
           {/* SERVICES */}
           <FooterColumn title="OUR SERVICES">
-            <ul className="mt-2 space-y-1.5">
+            <ul className="mt-1 space-y-0.5">
               {services.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link-glow group inline-flex items-center gap-2.5 rounded-md px-1.5 py-0.5 text-[13px] font-medium text-white/90 transition hover:text-[#E8A32E]"
+                    className="footer-link-glow group inline-flex items-center gap-2 rounded-md px-1 py-0 text-[13px] font-medium text-white/90 transition hover:text-[#E8A32E]"
                   >
                     <FaChevronRight className="h-3 w-3 text-[#E8A32E] transition-transform group-hover:translate-x-0.5" />
                     {item.label}
@@ -244,8 +215,8 @@ export default function Footer() {
 
           {/* CONTACT */}
           <FooterColumn title="CONTACT US">
-            <div className="mt-2 space-y-2 text-[12px] leading-5 text-white/90">
-              <div className="footer-contact-glow flex items-start gap-3 rounded-lg px-1.5 py-1">
+            <div className="mt-1 space-y-0.5 text-[12px] leading-4 text-white/90">
+              <div className="footer-contact-glow flex items-start gap-2 rounded-lg px-1 py-0.5">
                 <FaMapMarkerAlt className="mt-1 h-5 w-5 shrink-0 text-[#E8A32E]" />
                 <p>
                   Delhi NCR,
@@ -256,7 +227,7 @@ export default function Footer() {
 
               <a
                 href={`tel:+91${contactNumber}`}
-                className="footer-contact-glow flex items-center gap-3 rounded-lg px-1.5 py-1 transition hover:text-[#E8A32E]"
+                className="footer-contact-glow flex items-center gap-2 rounded-lg px-1 py-0.5 transition hover:text-[#E8A32E]"
               >
                 <FaPhoneAlt className="h-4 w-4 shrink-0 text-[#E8A32E]" />
                 <span>+91 {contactNumber}</span>
@@ -264,13 +235,13 @@ export default function Footer() {
 
               <a
                 href={`mailto:${contactEmail}`}
-                className="footer-contact-glow flex items-start gap-3 rounded-lg px-1.5 py-1 transition hover:text-[#E8A32E]"
+                className="footer-contact-glow flex items-start gap-2 rounded-lg px-1 py-0.5 transition hover:text-[#E8A32E]"
               >
                 <FaEnvelope className="mt-1 h-4 w-4 shrink-0 text-[#E8A32E]" />
                 <span className="break-all">{contactEmail}</span>
               </a>
 
-              <div className="footer-contact-glow flex items-start gap-3 rounded-lg px-1.5 py-1">
+              <div className="footer-contact-glow flex items-start gap-2 rounded-lg px-1 py-0.5">
                 <FaRegClock className="mt-1 h-4 w-4 shrink-0 text-[#E8A32E]" />
                 <p>
                   We are available
@@ -282,26 +253,26 @@ export default function Footer() {
           </FooterColumn>
 
           {/* REQUEST SUPPORT CARD */}
-          <div className="donate-nav-sparkle relative self-start overflow-hidden rounded-[18px] border border-[#F4C46A] bg-[#211B15]/90 p-3 shadow-[0_0_26px_rgba(229,169,62,0.28)] backdrop-blur-[2px] sm:p-3">
+          <div className="donate-nav-sparkle relative self-start overflow-hidden rounded-[16px] border border-[#F4C46A] bg-[#211B15]/90 p-2 shadow-[0_0_22px_rgba(229,169,62,0.24)] backdrop-blur-[2px] sm:p-2">
             <span className="donate-nav-shine" aria-hidden />
             <FaStar className="donate-star donate-star-one" aria-hidden />
             <FaStar className="donate-star donate-star-two" aria-hidden />
 
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#C78018] bg-[#2A2119]/85 text-[#F3A72F] shadow-[0_0_24px_rgba(224,151,39,0.10)]">
-              <FaEnvelope className="h-4 w-4" />
+            <div className="mx-auto flex h-8 w-8 items-center justify-center rounded-full border border-[#C78018] bg-[#2A2119]/85 text-[#F3A72F] shadow-[0_0_18px_rgba(224,151,39,0.10)]">
+              <FaEnvelope className="h-3.5 w-3.5" />
             </div>
 
-            <h3 className="mt-2 text-center font-serif text-[17px] font-semibold text-white sm:text-[18px]">
+            <h3 className="mt-1 text-center font-serif text-[15px] font-semibold text-white sm:text-[16px]">
               REQUEST SUPPORT
             </h3>
 
-            <div className="mx-auto mt-1.5 flex max-w-[190px] items-center">
+            <div className="mx-auto mt-1 flex max-w-[160px] items-center">
               <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#C78018]/65" />
               <span className="mx-1.5 text-[#E8A32E]">◇</span>
               <span className="h-px flex-1 bg-gradient-to-r from-[#C78018]/65 to-transparent" />
             </div>
 
-            <p className="mx-auto mt-1.5 max-w-[250px] text-center text-[11px] leading-4 text-white/88">
+            <p className="mx-auto mt-1 max-w-[235px] text-center text-[10px] leading-3.5 text-white/88">
               Share your email and our support team will contact you.
             </p>
 
@@ -316,13 +287,13 @@ export default function Footer() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="Your email address"
-                className="h-[36px] w-full rounded-lg border border-white/25 bg-white/[0.06] px-4 text-[14px] font-medium text-white outline-none transition placeholder:text-white/55 focus:border-[#D58C22]"
+                className="h-[32px] w-full rounded-lg border border-white/25 bg-white/[0.06] px-3 text-[12px] font-medium text-white outline-none transition placeholder:text-white/55 focus:border-[#D58C22]"
                 required
               />
 
               <button
                 type="submit"
-                className={`relative inline-flex h-[36px] w-full items-center justify-center gap-3 overflow-hidden rounded-lg text-[14px] font-semibold text-white shadow-[0_6px_16px_rgba(0,0,0,0.20)] transition ${
+                className={`relative inline-flex h-[32px] w-full items-center justify-center gap-2 overflow-hidden rounded-lg text-[12px] font-semibold text-white shadow-[0_5px_14px_rgba(0,0,0,0.18)] transition ${
                   subscribed
                     ? "bg-emerald-600"
                     : "bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] hover:brightness-110 hover:shadow-[0_0_20px_rgba(229,169,62,0.58)]"
@@ -334,26 +305,7 @@ export default function Footer() {
               </button>
             </form>
 
-            <div className="my-2 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-            <a
-              href={`tel:+91${contactNumber}`}
-              className="footer-contact-glow flex items-center justify-center gap-3 rounded-xl px-2 py-1"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#D6871E] shadow-[0_0_16px_rgba(255,255,255,0.18)]">
-                <FaPhoneAlt className="h-4 w-4" />
-              </span>
-              <span>
-                <span className="block text-[14px] font-bold text-white">
-                  +91 {contactNumber}
-                </span>
-                <span className="mt-0.5 block text-[11px] text-white/80">
-                  Call us anytime
-                </span>
-              </span>
-            </a>
-
-            <div className="mt-2 flex items-center justify-center gap-3">
+            <div className="mt-1 flex items-center justify-center gap-2">
               {socials.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -361,9 +313,9 @@ export default function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="footer-social-glow flex h-7 w-7 items-center justify-center rounded-full border border-[#D18A1E] text-white transition hover:-translate-y-0.5 hover:bg-[#D18A1E] hover:text-[#15120F]"
+                    className="footer-social-glow flex h-6 w-6 items-center justify-center rounded-full border border-[#D18A1E] text-white transition hover:-translate-y-0.5 hover:bg-[#D18A1E] hover:text-[#15120F]"
                   >
-                    <Icon className="h-3.5 w-3.5" />
+                    <Icon className="h-3 w-3" />
                   </a>
                 );
               })}
@@ -372,9 +324,9 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="-mx-5 mt-3 border-t-2 border-[#B87516] bg-[#090B0C]/95 px-5 py-2 sm:-mx-7 sm:px-7 lg:-mx-10 lg:px-10">
+        <div className="-mx-5 mt-2 border-t-2 border-[#B87516] bg-[#090B0C]/95 px-5 py-1 sm:-mx-7 sm:px-7 lg:-mx-10 lg:px-10">
           <div className="mx-auto flex max-w-[1540px] flex-col items-center justify-between gap-2 sm:flex-row">
-            <div className="footer-logo-highlight rounded-lg opacity-90">
+            <div className="footer-logo-highlight pointer-events-none rounded-lg opacity-90">
               <FooterLogoWhiteText width={48} height={32} />
             </div>
 
@@ -390,7 +342,7 @@ export default function Footer() {
               </Link>
             </div>
 
-            <div className="footer-logo-highlight rounded-lg opacity-90">
+            <div className="footer-logo-highlight pointer-events-none rounded-lg opacity-90">
               <FooterLogoWhiteText width={48} height={32} />
             </div>
           </div>
@@ -411,7 +363,7 @@ function FooterColumn({ title, children }: FooterColumnProps) {
       <h3 className="footer-title-glow text-[13px] font-bold tracking-[0.02em] text-white">
         {title}
       </h3>
-      <div className="mt-1.5 h-[2px] w-12 bg-gradient-to-r from-[#E7A32D] to-transparent" />
+      <div className="mt-1 h-[2px] w-12 bg-gradient-to-r from-[#E7A32D] to-transparent" />
       {children}
     </div>
   );

@@ -725,59 +725,12 @@ export default function About() {
 
 
         {/* ============ Our Namo Gange Initiatives ============ */}
-        <OurInitiatives />
+        <div className="border-y-2 border-[#C9A574]">
+          <OurInitiatives />
+        </div>
 
         {/* ============ CTA STRIP — extra thin, benefits moved to phone side ============ */}
-        <section className="relative overflow-hidden border-y border-[#C47A22] bg-[#FFF9F1] text-[#2F180F]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_50%,rgba(223,171,86,0.10),transparent_24%),radial-gradient(circle_at_88%_50%,rgba(223,171,86,0.08),transparent_24%),linear-gradient(90deg,#FFFDF9_0%,#FFF9F1_48%,#FFFDF8_100%)]" />
-
-          <div className="pointer-events-none absolute -right-12 top-1/2 h-24 w-24 -translate-y-1/2 rounded-full border border-[#D7A04C]/10 opacity-60" />
-
-          <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 px-4 py-1.5 sm:px-6 md:flex-row md:gap-4 md:py-1.5 lg:px-8">
-            {/* left content */}
-            <div className="text-center md:text-left">
-              <h2 className="font-serif text-[18px] font-bold leading-[1.02] text-[#2F180F] sm:text-[20px] md:text-[21px]">
-                We Are Here to Serve You in{" "}
-                <span className="text-[#C47A22]">Your Time of Need</span>
-              </h2>
-              <p className="mt-0.5 text-[16px] font-medium text-[#66564B]">
-                Call us anytime for immediate support.
-              </p>
-            </div>
-
-            {/* right side — benefits + mobile number */}
-            <div className="flex flex-col items-center gap-1.5 md:flex-row md:justify-end md:gap-3">
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[16px] font-medium text-[#2F241D]">
-                <span className="inline-flex items-center gap-1">
-                  <FaCheckCircle className="h-4 w-4 text-[#D18B22]" />
-                  Clear Pricing
-                </span>
-
-                <span className="hidden h-3 w-px bg-[#C9A273]/45 sm:block" />
-
-                <span className="inline-flex items-center gap-1">
-                  <FaCheckCircle className="h-4 w-4 text-[#D18B22]" />
-                  Verified Support
-                </span>
-
-                <span className="hidden h-3 w-px bg-[#C9A273]/45 sm:block" />
-
-                <span className="inline-flex items-center gap-1">
-                  <FaCheckCircle className="h-4 w-4 text-[#D18B22]" />
-                  Available 24/7
-                </span>
-              </div>
-
-              <a
-                href="tel:+919220147229"
-                className="group inline-flex h-[38px] shrink-0 items-center gap-2 rounded-lg border border-[#E3A13D] bg-white/95 px-4 text-[16px] font-bold text-[#32180F] shadow-[0_3px_10px_rgba(135,77,24,0.10)] transition hover:-translate-y-0.5 hover:bg-[#FFF5E6]"
-              >
-                <FaPhoneAlt className="h-4 w-4 text-[#A75C17]" />
-                <span className="whitespace-nowrap">+91 9220147229</span>
-              </a>
-            </div>
-          </div>
-        </section>
+     
       </main>
 
       <Footer />

@@ -1976,16 +1976,7 @@ export default function VolunteerRegister() {
           </div>
 
           {/* Bottom message */}
-          <div className="mt-3 text-center">
-            <p className="font-serif text-[14px] text-[#D16521]">
-              ॥ सेवा परम धर्म ॥
-            </p>
-
-            <p className="mt-0.5 text-[14px] text-[#78665A]">
-              Thank you for choosing to serve
-              humanity.
-            </p>
-          </div>
+         
         </div>
       </main>
 

@@ -206,7 +206,7 @@ export default function FamilySupport() {
               </h2>
               <p className="text-[#624C3F] text-[15px] leading-relaxed max-w-[400px]">
                 Our widespread network of dedicated volunteers is always ready to mobilize.
-                They step forward to organize meals, manage hospital formalities, and stand with grieving families.
+                They step forward to organize meals, manage hospital formalities, and with grieving families.
               </p>
             </div>
 
@@ -222,7 +222,7 @@ export default function FamilySupport() {
                     "/assets/namo-gange/vol6.png",
                     "/assets/namo-gange/vol7.png",
                   ].map((src, i) => (
-                    <div key={i} className="relative w-[300px] h-[210px] rounded-none overflow-hidden shadow-sm border border-[#E8DCC8]">
+                    <div key={i} className="relative w-[300px] h-[300px] rounded-none overflow-hidden shadow-sm border border-[#E8DCC8]">
                       <Image src={src} alt={`Namo Gange Volunteer ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" />
                     </div>
                   ))}
