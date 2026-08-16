@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import { FaPhoneAlt, FaEnvelope, FaChevronLeft } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
 import { useAppDispatch } from "@/store/hooks";

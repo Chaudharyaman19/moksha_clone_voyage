@@ -2,17 +2,17 @@ import React from "react";
 import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import AboutMokshaSewa from "./AboutMokshaSewa";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
+import AboutHeroSlider from "./AboutHeroSlider";
 import {
   FaAmbulance,
   FaArrowRight,
   FaCertificate,
-  FaCheckCircle,
   FaClipboardList,
   FaRegClock,
   FaFire,
@@ -99,121 +99,23 @@ const aboutImages = {
 
 export default function About() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
+    <div className="overflow-x-clip bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
       <Navbar />
 
       <main>
-        {/* ============ HERO — layered type + Devanagari watermark ============ */}
-        <section className="relative w-full aspect-[16/7] min-h-[350px] overflow-hidden bg-[#F4EDE3]">
-          <div className="absolute inset-0">
-            <Image
-              src={aboutImages.hero}
-              alt="Moksha Sewa ritual support at a sacred river ghat"
-              fill
-              priority
-              fetchPriority="high"
-              sizes="100vw"
-              className="scale-[1.02] object-cover object-[74%_center]"
-            />
-          </div>
-
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
-
-          {/* giant Devanagari watermark — the signature of the page */}
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[300px] leading-none text-[#8B6A3E]/[0.07] lg:block">
-            मोक्ष
-          </div>
-
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-2 lg:pt-0">
-            <div className="max-w-[540px] -translate-y-2 lg:-translate-y-4">
-              {/* eyebrow */}
-              <div className="mb-1 inline-flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <FaFire className="h-3.5 w-3.5" />
-                </span>
-                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  About Us · A Namo Gange Trust Initiative
-                </span>
-              </div>
-
-              {/* layered display type */}
-              <h1
-                className="leading-[0.95]"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              >
-                <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  A Promise of
-                </span>
-                <span className="mt-1 block text-[46px]  text-[#8B6A3E] sm:text-[58px] lg:text-[68px]">
-                  Moksha Sewa
-                </span>
-              </h1>
-
-              {/* diya-style flourish */}
-              <div className="mt-1 flex items-center gap-2">
-                <span className="h-[2px] w-12 bg-[#8B6A3E]" />
-                <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-                <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
-              </div>
-
-              <p className="mt-1 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                Moksha Sewa is a humanitarian end-of-life support mission for
-                economically weaker families and legally authorised unclaimed
-                cases.
-              </p>
-
-              {/* trust row */}
-              <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {["Dignity First", "Eligibility-Based", "Always Available"].map((chip) => (
-                  <span
-                    key={chip}
-                    className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
-                  >
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/12">
-                      <FaCheckCircle className="h-3 w-3 text-[#8B6A3E]" />
-                    </span>
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* floating helpline card — bottom right */}
-          <a
-            href="tel:+919220147229"
-            className="group absolute bottom-24 right-16 hidden items-center gap-3 rounded-2xl border border-white/40 bg-[#2C1810]/70 px-4 py-3 text-white shadow-[0_16px_40px_rgba(44,24,16,0.35)] backdrop-blur-md transition hover:bg-[#2C1810]/85 lg:flex lg:right-24 xl:right-32"
-          >
-            <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#C9A574] text-[#2C1810]">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/50" />
-              <FaPhoneAlt className="relative h-4 w-4" />
-            </span>
-            <span>
-              <span className="block text-[14px] uppercase tracking-[0.2em] text-[#E8D2AC]">
-                24/7 Helpline
-              </span>
-              <span className="block font-serif text-sm">+91 9220147229</span>
-            </span>
-          </a>
-        </section>
+        {/* ============ HERO SLIDER — new banner (1) + previous banner (2) ============ */}
+        <AboutHeroSlider />
 
         {/* ============ STATS — inverted dark bar with gold numbers ============ */}
-        <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
+        <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-0.5 md:py-1 shadow-md border-b border-[#73532F]">
           <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
                 {stats.map((stat, index) => {
                   const Icon = stat.icon;
                   return (
                     <div
                       key={stat.title}
-                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                      className={`group/stat flex items-center justify-center gap-2 md:gap-3 px-2 md:px-4 py-0.5 md:py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
                         } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
                     >
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
@@ -247,7 +149,7 @@ export default function About() {
         <BoardMembers />
 
         {/* ============ WHAT WE TAKE CARE OF ============ */}
-        <section className="bg-[#FBF8F3] pb-0 pt-2 lg:pb-0 lg:pt-4">
+        <section className="bg-[#FBF8F3] pb-0 pt-1 md:pt-2 lg:pb-0 lg:pt-4">
           <div className="mx-auto w-full max-w-7xl px-4">
             <div className="mb-2 flex flex-col items-center text-center">
               <div className="mb-2 inline-flex items-center space-x-3">
@@ -266,7 +168,7 @@ export default function About() {
             </div>
 
             <div className="mx-auto mt-0 w-full">
-              <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-1 pt-0">
+              <div className="grid grid-cols-1 gap-0.5 sm:gap-1 md:gap-0.5 lg:gap-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-1 pt-0">
                 {careServices.map((service) => {
                   const Icon = service.icon;
                   return (
@@ -320,9 +222,9 @@ export default function About() {
         </section>
 
         {/* ============ OUR PRESENCE — mandir gateway city cards ============ */}
-        <section className="pb-1 pt-0 lg:pb-1 lg:pt-0">
+        <section className="pb-0.5 md:pb-1 pt-0 lg:pb-1 lg:pt-0">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-0">
-            <div className="relative overflow-hidden rounded-2xl border border-[#E6D8C5] bg-[#F6EFE6] p-5 sm:p-6">
+            <div className="relative overflow-hidden rounded-2xl border border-[#E6D8C5] bg-[#F6EFE6] p-3 sm:p-4 md:p-4 lg:p-6">
               <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/20" />
               <div className="pointer-events-none absolute -bottom-20 -left-16 h-52 w-52 rounded-full border border-[#C9A574]/15" />
 
@@ -410,12 +312,12 @@ export default function About() {
         </section>
 
         {/* ============ WHY CHOOSE US — dark glass cards ============ */}
-        <section className="relative overflow-hidden bg-[#3B2B21] py-3 lg:py-4">
+        <section className="relative overflow-hidden bg-[#3B2B21] py-2 md:py-2.5 lg:py-4">
           <div className="absolute -left-20 top-0 h-64 w-64 rounded-full border border-[#C9A574]/10" />
           <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full border border-[#C9A574]/10" />
           <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#C9A574]/35 to-transparent" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-3 md:gap-4 lg:gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
             <div className="text-white">
               <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                 Why This Mission
@@ -463,7 +365,7 @@ export default function About() {
         </section>
 
         {/* ============ OUR PROCESS — zigzag journey ============ */}
-        <section className="bg-[#FBF8F3] py-5 lg:py-6">
+        <section className="bg-[#FBF8F3] py-3 md:py-4 lg:py-6">
           <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-1 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
@@ -471,7 +373,7 @@ export default function About() {
               <span className="h-px w-8 bg-[#C9A574]" />
             </div>
 
-            <div className="relative grid gap-3 md:grid-cols-5 md:gap-2">
+            <div className="relative grid gap-2 md:gap-1.5 md:grid-cols-5">
               <div className="absolute left-[10%] right-[10%] top-10 hidden border-t-2 border-dashed border-[#D9C4A0] md:block" />
 
               {processSteps.map((step, index) => {
@@ -506,11 +408,11 @@ export default function About() {
 
 
         {/* ============ SACRED PROMISE — dark promise card + mandir imagery ============ */}
-        <section className="relative overflow-hidden bg-[#F2E9DD] py-3 lg:py-4">
+        <section className="relative overflow-hidden bg-[#F2E9DD] py-2 md:py-2.5 lg:py-4">
           <div className="absolute -left-28 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full border border-[#C9A574]/20" />
           <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-[#8B6A3E]/5 blur-3xl" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl items-stretch gap-3 px-0 lg:grid-cols-[1.08fr_0.92fr] lg:gap-4">
+          <div className="relative mx-auto grid w-full max-w-7xl items-stretch gap-2 md:gap-2.5 px-0 lg:grid-cols-[1.08fr_0.92fr] lg:gap-4">
             <div className="grid h-[320px] grid-cols-[1.35fr_0.85fr] grid-rows-2 gap-1.5 pt-2 sm:h-[380px] lg:h-full lg:min-h-[470px]">
               {/* main tile — pointed mandir top */}
               <div className="group relative row-span-2 [filter:drop-shadow(0_16px_30px_rgba(70,47,31,0.2))]">
@@ -627,12 +529,12 @@ export default function About() {
         </section>
 
         {/* ============ SEWA NETWORK — INDIA MAP IMAGE ============ */}
-        <section className="relative overflow-hidden bg-[#FBF8F3] py-5 lg:py-16">
+        <section className="relative overflow-hidden bg-[#FBF8F3] py-3 md:py-4 lg:py-16">
           {/* soft ambient rings */}
           <div className="pointer-events-none absolute -right-24 top-8 h-72 w-72 rounded-full border border-[#C9A574]/15" />
           <div className="pointer-events-none absolute -left-20 bottom-8 h-64 w-64 rounded-full border border-[#C9A574]/10" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-6 px-0 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
+          <div className="relative mx-auto grid w-full max-w-7xl items-center gap-3 md:gap-4 px-0 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
             {/* LEFT — content */}
             <div>
               <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
@@ -731,9 +633,8 @@ export default function About() {
 
         {/* ============ CTA STRIP — extra thin, benefits moved to phone side ============ */}
      
+        <Footer />
       </main>
-
-      <Footer />
     </div>
   );
 }

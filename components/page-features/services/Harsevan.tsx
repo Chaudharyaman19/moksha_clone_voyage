@@ -1,7 +1,7 @@
 "use client";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import { FaHandHoldingHeart, FaLeaf, FaPhoneAlt, FaCarSide } from "react-icons/fa";
 import Image from "next/image";
 import { MdOutlineLocalPhone } from "react-icons/md";

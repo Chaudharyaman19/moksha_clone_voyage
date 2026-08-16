@@ -1,8 +1,6 @@
-"use client";
-import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
 import { 
   FaHandHoldingHeart, FaOm, FaStar
@@ -25,14 +23,6 @@ const supportCards = [
 ];
 
 export default function PrayerHallServices() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <div className="min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
@@ -274,7 +264,7 @@ export default function PrayerHallServices() {
             {/* Right Side Icon & Text */}
             <div className="w-full lg:w-1/4 p-6 flex flex-col justify-center items-center text-center border-t lg:border-t-0 lg:border-l border-[#E7D5B8]/50 bg-[#FAF8F4]/50">
               <FaHandHoldingHeart className="w-10 h-10 text-[#C99A4A] mb-3" />
-              <p className="text-[#321A10] font-medium text-[14px] leading-relaxed max-w-[150px]">
+              <p className="text-[#321A10] font-medium text-[16px] leading-relaxed max-w-[150px]">
                 Every act of kindness becomes a blessing for many.
               </p>
             </div>
@@ -313,7 +303,7 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/5 flex flex-col justify-end items-center p-5 text-center">
         <h4 className="text-[20px] font-semibold text-white mb-2">{title}</h4>
         {desc && (
-          <p className="text-white/90 text-[14px] leading-snug">
+          <p className="text-white/90 text-[16px] leading-snug">
             {desc}
           </p>
         )}
@@ -357,7 +347,7 @@ function RoleSquareCard({ src, title, desc }: { src: string, title: string, desc
       </div>
       <div className="p-4 text-center flex-1 bg-white border-t border-[#E7D5B8]/30">
         <h4 className="text-[15px] font-medium text-[#321A10] mb-1">{title}</h4>
-        <p className="text-[#321A10]/70 text-[14px] leading-snug">{desc}</p>
+        <p className="text-[#321A10]/70 text-[16px] leading-snug">{desc}</p>
       </div>
     </div>
   );

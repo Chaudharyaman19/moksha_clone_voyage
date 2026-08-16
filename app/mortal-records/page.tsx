@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 
 export default function MortalRecordsPage() {
   return (

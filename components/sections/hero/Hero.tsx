@@ -786,26 +786,28 @@ export default function Hero() {
                 : "lg:w-[56%] xl:w-[54%]"
             }`}
           >
-            {/* Changeable Namo Gange logo — same position on every slide */}
-            <div className="mb-4 w-[190px] sm:w-[220px] lg:w-[250px]">
-              <Image
-                src="/hero-images/image6.png"
-                alt="Namo Gange"
-                width={420}
-                height={150}
-                priority
-                sizes="250px"
-                className="h-auto w-full object-contain object-left"
-              />
-            </div>
+            {/* Changeable Namo Gange logo — centered over the text below */}
+            <div className="mb-4 flex w-fit flex-col items-center">
+              <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
+                <Image
+                  src="/hero-images/image6.png"
+                  alt="Namo Gange"
+                  width={420}
+                  height={150}
+                  priority
+                  sizes="250px"
+                  className="h-auto w-full object-contain"
+                />
+              </div>
 
-            {/* eyebrow — same on every slide */}
-            <div className="mb-4 flex max-w-[520px] items-center gap-3">
-              <span className="h-px w-8 bg-[#73532F]/70" />
-              <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                Moksha Sewa A Namo Gange Trust Initiative
-              </span>
-              <span className="h-px w-8 bg-[#73532F]/70" />
+              {/* eyebrow — starts from the left */}
+              <div className="mt-4 flex w-fit items-center gap-3">
+                <span className="h-px w-8 bg-[#73532F]/70" />
+                <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
+                  Moksha Sewa A Namo Gange Trust Initiative
+                </span>
+                <span className="h-px w-8 bg-[#73532F]/70" />
+              </div>
             </div>
 
             {isFamilySupportSlide ? (

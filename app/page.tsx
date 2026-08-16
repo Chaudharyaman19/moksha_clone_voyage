@@ -10,7 +10,7 @@ import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
 import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import FAQ from "@/components/sections/FAQ/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";

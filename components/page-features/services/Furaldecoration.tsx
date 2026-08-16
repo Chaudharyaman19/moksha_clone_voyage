@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 import { FaHandHoldingHeart, FaLeaf, FaPhoneAlt } from "react-icons/fa";
 import Image from "next/image";
 import { MdOutlineLocalFlorist, MdNaturePeople } from "react-icons/md";

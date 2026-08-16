@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
+    "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
   keywords: [
     "Moksha Sewa",
     "Namo Gange Trust",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
     images: [`${SITE_URL}${DEFAULT_OG_IMAGE}`],
   },
   icons: {

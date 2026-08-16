@@ -4,7 +4,7 @@ import type { ReactNode, SVGProps } from "react";
 import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/Footer";
+import Footer from "@/components/layout/Footer/FooterNew";
 
 type IconName =
   | "drop"

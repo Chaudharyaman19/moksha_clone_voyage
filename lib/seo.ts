@@ -12,6 +12,7 @@ type RouteSeo = {
   ogImage: string;
   ogImageAlt: string;
   keywords: string[];
+  titleSuffix?: string;
   priority: number;
   changeFrequency:
     | "always"
@@ -30,7 +31,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Home",
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
+      "Moksha Sewa, a Namo Gange Trust initiative, supports economically weaker families and legally authorised unclaimed cases with dignified last-rites assistance.",
     ogImage: "/hero-images/3.png",
     ogImageAlt: "Moksha Sewa humanitarian last-rites assistance mission",
     keywords: [
@@ -47,12 +48,13 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/about",
     label: "About",
-    title: "About Moksha Sewa",
+    title: "About Moksha Sewa – Dignified Last Rites Support",
     description:
       "Learn about Moksha Sewa, a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases.",
     ogImage: "/assets/about-reference/hero-priest-ghat.png",
     ogImageAlt: "Moksha Sewa mission and sacred final rites support",
     keywords: ["about Moksha Sewa", "Namo Gange Trust", "final rites support"],
+    titleSuffix: "Namo Gange Trust",
     priority: 0.8,
     changeFrequency: "monthly",
   },
@@ -143,7 +145,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/prayerhallservices",
     label: "Prayer Hall Services",
-    title: "Prayer Hall and Ground Support",
+    title: "Pandit Services for Last Rites & Ritual Guidance",
     description:
       "Moksha Sewa helps coordinate prayer hall arrangements, ground support and peaceful spaces for families during final rites.",
     ogImage: "/assets/prayerhallservices/hero-real.png",
@@ -191,7 +193,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/specialservices",
     label: "Special Services",
-    title: "Special Seva and Volunteer Support",
+    title: "Family Support & Relief After Last Rites",
     description:
       "Explore Moksha Sewa special support, volunteer help and extended care for families, unclaimed cases and people in need.",
     ogImage: "/assets/family-support/hero-bg-2.png",
@@ -326,10 +328,10 @@ export function createPageMetadata(path: string): Metadata {
   const isIndexable = route.index !== false;
   const url = absoluteUrl(route.path);
   const ogImageUrl = absoluteUrl(route.ogImage);
-  const socialTitle = route.path === "/" ? route.title : `${route.title} | ${SITE_NAME}`;
+  const socialTitle = route.path === "/" ? route.title : `${route.title} | ${route.titleSuffix ?? SITE_NAME}`;
 
   return {
-    title: route.title,
+    title: { absolute: socialTitle },
     description: route.description,
     keywords: route.keywords,
     alternates: {
