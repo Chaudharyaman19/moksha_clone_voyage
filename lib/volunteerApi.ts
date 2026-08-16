@@ -121,8 +121,8 @@ interface RegisterVolunteerInput {
   idProofType?: string;
   idProofNumber?: string;
   declarationAccepted: true;
-  photograph: File;
-  idProof: File;
+  photograph?: File;
+  idProof?: File;
 }
 
 export const volunteerApi = {

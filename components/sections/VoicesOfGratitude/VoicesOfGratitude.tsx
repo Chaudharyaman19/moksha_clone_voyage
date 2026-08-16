@@ -17,35 +17,35 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      "Moksha Sewa arranged pandit ji and samagri when our family could not manage anything. Their support gave us strength in a very difficult time.",
-    name: "Suman Devi",
-    location: "Varanasi",
+      "Essential ritual materials and priest guidance were coordinated for an economically weaker family after case verification.",
+    name: "Verified Case Record",
+    location: "Delhi NCR",
     image: "/assets/girl.jpg",
     position: "50% 38%",
   },
   {
     id: 2,
     quote:
-      "They arranged ambulance and ghat support with full respect and care. We did not feel alone at all.",
-    name: "Rajesh Sharma",
-    location: "Lucknow",
+      "Transport and cremation-ground guidance were supported for a family that needed urgent last-rites coordination.",
+    name: "Verified Case Record",
+    location: "Delhi NCR",
     image: "/assets/man1.jpg",
     position: "72% 35%",
   },
   {
     id: 3,
     quote:
-      "Lakdi, kafan, phool and pooja items were arranged on time. Their sewa helped us perform the last rites with peace of mind.",
-    name: "Meena Patel",
-    location: "Ahmedabad",
+      "Wood, shroud cloth, flowers and basic ritual items were coordinated for a verified eligible case.",
+    name: "Verified Case Record",
+    location: "Delhi NCR",
     image: "/assets/im1.jpeg",
     position: "50% 50%",
   },
   {
     id: 4,
     quote:
-      "Pandit ji guided the kriya karam properly and the team stayed with us at every step.",
-    name: "Anil Kumar",
+      "Ritual guidance was arranged with sensitivity so the family could complete the final prayers respectfully.",
+    name: "Verified Case Record",
     location: "Delhi",
     image: "/assets/man2.avif",
     position: "50% 32%",
@@ -53,18 +53,18 @@ const testimonials: Testimonial[] = [
   {
     id: 5,
     quote:
-      "Moksha Sewa helped arrange food sewa for the people. It reduced a major burden for our family.",
-    name: "Sunita Verma",
-    location: "Pune",
+      "Food and basic relief support were coordinated where verified need and availability permitted.",
+    name: "Verified Case Record",
+    location: "Delhi NCR",
     image: "/assets/girl.jpg",
     position: "50% 38%",
   },
   {
     id: 6,
     quote:
-      "They help poor and helpless families with dignity, not just service. That matters in such difficult moments.",
-    name: "Prakash Singh",
-    location: "Mumbai",
+      "Guidance was provided for an unclaimed case only after applicable authority formalities were completed.",
+    name: "Verified Case Record",
+    location: "Delhi NCR",
     image: "/assets/man1.jpg",
     position: "72% 35%",
   },
@@ -182,18 +182,18 @@ export default function VoicesOfGratitude() {
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-[#B9843D]" />
 
             <span className="text-[14px] font-medium uppercase tracking-[0.28em] text-[#93692E] sm:text-[15px]">
-              Family Experiences
+              Case Records
             </span>
 
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-[#B9843D]" />
           </div>
 
           <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
-            Families Who Received Sewa
+            Verified Support Stories
           </h2>
 
           <p className="mx-auto mt-1 max-w-[620px] text-[14px] font-normal leading-4 text-[#655247] sm:text-[15px]">
-            Stories of families supported with dignity, care and compassion.
+            Non-identifying summaries of support coordinated with dignity, care and compassion.
           </p>
         </header>
 

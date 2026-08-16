@@ -15,7 +15,6 @@ import {
   FaCheckCircle,
   FaHandHoldingHeart,
   FaShieldAlt,
-  FaReceipt,
   FaMapMarkedAlt,
   FaHandsHelping,
 } from "react-icons/fa";
@@ -38,40 +37,40 @@ type Cause = {
 const CAUSES: Cause[] = [
   {
     id: "general",
-    title: "General Sewa Package",
-    description: "Flexible support that strengthens every arm of our work for grieving families.",
+    title: "Support a Final Journey",
+    description: "Indicative contribution toward verified last-rites assistance and related programme needs.",
     icon: PiFlowerLotus,
     image: "/assets/namo-gange/vol2.png",
-    price: 5100,
-    features: ["Family assistance", "Most needed", "Immediate help", "General support"],
+    price: 1100,
+    features: ["Case support", "Most needed", "Mission fund", "General support"],
   },
   {
     id: "cremation",
-    title: "Dignified Cremation Package",
-    description: "Supports rites, samagri and pandit fees for families who cannot afford them.",
+    title: "Last-Rites Assistance",
+    description: "Indicative contribution toward essential ritual materials and case-based support.",
     icon: FaFire,
     image: "/assets/namo-gange/vol3.png",
-    price: 11000,
-    badge: "MOST CHOSEN",
-    features: ["Ritual support", "Pandit assistance", "Samagri", "Compassionate care"],
+    price: 2100,
+    badge: "MISSION NEED",
+    features: ["Ritual support", "Guidance", "Materials", "Case care"],
   },
   {
     id: "ambulance",
-    title: "Ambulance & Transport Package",
-    description: "Helps keep ambulance and hearse-van services ready to respond day or night.",
+    title: "Transport Support",
+    description: "Indicative contribution toward ambulance or hearse-van coordination for verified cases.",
     icon: FaAmbulance,
     image: "/assets/namo-gange/vol4.png",
-    price: 7500,
-    features: ["24/7 readiness", "Transport care", "Emergency support", "Rapid response"],
+    price: 5100,
+    features: ["Readiness", "Transport care", "Helpline support", "Coordination"],
   },
   {
     id: "annadan",
-    title: "Annadan Support Package",
-    description: "Provides meals and daily essentials to families during days of mourning.",
+    title: "Family Relief Support",
+    description: "Indicative contribution toward food, water and basic relief where verified need exists.",
     icon: FaUtensils,
     image: "/assets/namo-gange/vol5.png",
-    price: 3100,
-    features: ["Meal support", "Family relief", "Daily essentials", "Community care"],
+    price: 11000,
+    features: ["Meal support", "Family relief", "Essentials", "Community care"],
   },
 ];
 
@@ -82,7 +81,7 @@ const FAQS = [
   },
   {
     q: "How is my donation used?",
-    a: "Funds go directly toward the cause you choose — cremation sponsorships, ambulance readiness, food support, or wherever the need is greatest. Our team can share usage updates on request.",
+    a: "Your selected amount is an indicative contribution toward programme activities. Actual utilisation may vary according to verified case requirements, availability and applicable local or legal requirements.",
   },
   {
     q: "Can I donate in memory of someone?",
@@ -99,10 +98,10 @@ const FAQS = [
 ];
 
 const STATS = [
-  { icon: FaHandHoldingHeart, value: "500+", label: "Families Supported" },
-  { icon: FaMapMarkedAlt, value: "25+", label: "Cities Reached" },
-  { icon: FaUtensils, value: "10,000+", label: "Meals & Essentials Given" },
-  { icon: FaHandsHelping, value: "5+", label: "Years of Sewa" },
+  { icon: FaHandHoldingHeart, value: "Verified", label: "Case Support" },
+  { icon: FaMapMarkedAlt, value: "Delhi NCR", label: "Launch Region" },
+  { icon: FaUtensils, value: "Need-Based", label: "Relief Assistance" },
+  { icon: FaHandsHelping, value: "Trust-Led", label: "Sewa Mission" },
 ];
 
 function Donation() {
@@ -130,12 +129,12 @@ function Donation() {
   const effectiveAmount = customAmount ? Number(customAmount) : activeCause.price;
   const impactNote =
     activeCause.id === "general"
-      ? "Supports the General Sewa Fund wherever help is needed most"
+      ? "Supports the General Sewa Fund wherever verified help is needed most"
       : activeCause.id === "cremation"
-        ? "Fully sponsors a dignified cremation for a family in need"
+        ? "Supports essential last-rites assistance for eligible cases"
         : activeCause.id === "ambulance"
-          ? "Supports ambulance and emergency transport readiness"
-          : "Supports Annadan meals and daily essentials for grieving families";
+          ? "Supports transport coordination and emergency response readiness"
+          : "Supports food, water and basic relief for verified families";
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -188,7 +187,7 @@ function Donation() {
     if (!effectiveAmount || effectiveAmount < 50) {
       setSubmitStatus({
         type: "error",
-        message: "Please select a package or enter a custom amount of at least ₹50.",
+        message: "Please select an amount or enter a custom amount of at least ₹50.",
       });
       return;
     }
@@ -293,16 +292,16 @@ function Donation() {
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
                 <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  दान · Give With Devotion
+                  दान · A Namo Gange Trust Initiative
                 </span>
               </div>
 
               <h1 className="font-serif leading-[0.95]">
                 <span className="block text-[36px] text-[#2C1810] sm:text-[44px] lg:text-[50px]">
-                  Give the Gift of
+                  Support a
                 </span>
                 <span className="mt-1 block text-[44px]  text-[#8B6A3E] sm:text-[56px] lg:text-[66px]">
-                  Dignified Farewell
+                  Final Journey
                 </span>
               </h1>
 
@@ -314,13 +313,13 @@ function Donation() {
               </div>
 
               <p className="mt-5 max-w-[460px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                Every family deserves a farewell filled with respect, not
-                financial worry. Your contribution funds free and subsidised
-                last-rites support for families who cannot bear the cost alone.
+                Your contribution supports a humanitarian end-of-life mission
+                for economically weaker families and legally authorised
+                unclaimed cases.
               </p>
 
               <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {["Secure Payments", "Receipt Provided", "100% Fund Tracking"].map(
+                {["Secure Payments", "Receipt Provided", "Verified Utilisation"].map(
                   (chip) => (
                     <span
                       key={chip}
@@ -355,7 +354,7 @@ function Donation() {
               <span className="block text-[14px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 Together, So Far
               </span>
-              <span className="block font-serif text-sm">500+ Families Supported</span>
+              <span className="block font-serif text-sm">A Namo Gange Trust Initiative</span>
             </span>
           </div>
         </section>
@@ -405,11 +404,11 @@ function Donation() {
             </div>
 
             <h2 className="-mt-0.5 text-center font-serif text-[30px] leading-[1.02] text-[#2C1810] sm:text-[36px]">
-              Choose a <span className="text-[#A36B2B]">Support Package</span>
+              Support a <span className="text-[#A36B2B]">Final Journey</span>
             </h2>
 
             <p className="mx-auto mt-0 max-w-3xl text-center text-[13px] leading-5 text-[#6E5A4C] sm:text-[14px]">
-              Select the package that best matches the help you want to provide for grieving families.
+              Amounts are indicative contributions toward programme activities; actual utilisation may vary according to verified case requirements.
             </p>
 
             <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 mt-5">
@@ -493,7 +492,7 @@ function Donation() {
                           }`}
                         >
                           <Icon className="h-4 w-4" />
-                          {isSelected ? "Selected Package" : "Choose Package"}
+                          {isSelected ? "Selected Amount" : "Choose Amount"}
                         </div>
                       </div>
                     </div>
@@ -553,7 +552,7 @@ function Donation() {
 
                 {/* selected package price */}
                 <div>
-                  <label className={labelClass}>Package Amount</label>
+                <label className={labelClass}>Donation Amount</label>
                   <div className="flex min-h-[48px] items-center justify-between rounded-lg border border-[#D7B98C] bg-[#FBF8F3] px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <activeCause.icon className="h-4 w-4 text-[#8B6A3E]" />
@@ -582,7 +581,7 @@ function Donation() {
                       />
                     </div>
                     <p className="mt-1 text-[11px] text-[#8A7460]">
-                      Leave blank to donate the selected package amount.
+                      Leave blank to donate the selected suggested amount.
                     </p>
                   </div>
                 </div>
@@ -738,8 +737,8 @@ function Donation() {
                         80G
                       </span>
                       <div>
-                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Exemption</span>
-                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">50% deduction under 80G.</span>
+                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Receipt</span>
+                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">Subject to applicable 80G approval.</span>
                       </div>
                     </div>
                     
@@ -766,7 +765,7 @@ function Donation() {
                         Daan se badhkar koi punya nahi.
                       </span>
                       <br />
-                      We maintain <strong>100% transparency</strong> on fund utilization. Every contribution is treated with the utmost reverence.
+                      Moksha Sewa is an initiative of Namo Gange Trust. Donations are used for verified programme requirements.
                     </p>
                   </div>
 

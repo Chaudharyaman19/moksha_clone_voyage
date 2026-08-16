@@ -137,19 +137,19 @@ function BoxIcon(props: IconProps) {
 
 const sevaStats = [
   {
-    value: "500+",
-    title: "Ritual Help",
-    caption: "For Needy Families",
+    value: "Verified",
+    title: "Case Support",
+    caption: "For Eligible Families",
     icon: HandHeartIcon,
   },
   {
-    value: "50+",
-    title: "Verified Priests",
-    caption: "Proper Ritual Guidance",
+    value: "Guided",
+    title: "Ritual Support",
+    caption: "Local Availability",
     icon: PriestIcon,
   },
   {
-    value: "15+",
+    value: "Delhi NCR",
     title: "Cremation Ground Support",
     caption: "Family Guidance",
     icon: FlameIcon,
@@ -243,7 +243,7 @@ export default function CompassionSection() {
               <span className="font-semibold text-[#865E30]">
                 Moksha Sewa
               </span>
-              , we support helpless, unclaimed and needy cases with practical final-rites arrangements. Our team helps coordinate ambulance or hearse van, priest support, wood, shroud cloth, flowers, ritual items, food service and on-ground volunteers—so every final journey is handled with dignity, respect and compassion.
+              , we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.
             </p>
 
             {/* Stat cards */}

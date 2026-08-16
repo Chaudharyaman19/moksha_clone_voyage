@@ -103,7 +103,7 @@ export default function Navbar() {
       type: "page",
     },
     {
-      name: "Our Sewa",
+      name: "Sewa Support",
       path: "#services",
       icon: <FaStar />,
       type: "dropdown",
@@ -116,19 +116,19 @@ export default function Navbar() {
         },
 
         {
-          name: "Priest Support",
+          name: "Ritual Guidance",
           path: "/panditservices",
           icon: <FaPrayingHands />,
           type: "page",
         },
         {
-          name: "Ambulance",
+          name: "Transport Support",
           path: "/ambulanceservices",
           icon: <FaAmbulance />,
           type: "page",
         },
         {
-          name: "Ground & Prayer Support",
+          name: "Ground Support",
           path: "/prayerhallservices",
           icon: <FaPlaceOfWorship />,
           type: "page",

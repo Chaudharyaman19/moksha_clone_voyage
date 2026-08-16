@@ -15,18 +15,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Moksha Sewa - Free Cremation Assistance and Funeral Support",
+    default: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Moksha Sewa helps families with dignified funeral support, cremation assistance, ambulance, hearse van, pandit, ritual items and volunteer care.",
+    "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
   keywords: [
     "Moksha Sewa",
-    "free cremation assistance",
-    "funeral support",
-    "cremation services",
-    "hearse van",
-    "pandit services",
+    "Namo Gange Trust",
+    "end-of-life support mission",
+    "last rites assistance",
+    "unclaimed case support",
+    "Delhi NCR sewa",
   ],
   alternates: {
     canonical: "/",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Moksha Sewa - Free Cremation Assistance and Funeral Support",
+    title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa helps families with dignified funeral support, cremation assistance, ambulance, hearse van, pandit, ritual items and volunteer care.",
+      "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Moksha Sewa - Free Cremation Assistance and Funeral Support",
+    title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa helps families with dignified funeral support, cremation assistance, ambulance, hearse van, pandit, ritual items and volunteer care.",
+      "Moksha Sewa is a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
     images: [`${SITE_URL}${DEFAULT_OG_IMAGE}`],
   },
   icons: {

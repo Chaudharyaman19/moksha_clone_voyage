@@ -3,33 +3,27 @@ import Image from "next/image";
 const boardMembers = [
   {
     name: "Madhukar Reddy Dasari",
-    role: "Chief Financial Officer (CFO) & CIOO",
-    description: "Manages finance, compliance, IT operations, and digital infrastructure.",
+    role: "Namo Gange Trust Leadership",
+    description: "Supports governance, finance and operational oversight for the mission.",
     image: "/assets/about-optimized/madhukar-reddy-dasari.webp"
   },
   {
     name: "Sandeep Singh",
-    role: "Chief Technology Officer (CTO)",
-    description: "Leads technology, data security, and platform infrastructure.",
+    role: "Technology & Data Support",
+    description: "Supports technology, data security and platform infrastructure.",
     image: "/assets/about-optimized/sandeep-singh.webp"
   },
   {
     name: "Vijay Sharma",
-    role: "Chief Operating Officer (COO) & CRSGO",
-    description: "Oversees India operations, execution, on-ground services, and rituals.",
+    role: "Operations Coordination",
+    description: "Supports on-ground coordination, field execution and case response.",
     image: "/assets/vijay_sharma.jpg"
   },
   {
     name: "Srujana Paid",
-    role: "Chief Partnerships & Growth Officer (CPGO)",
-    description: "Manages partnerships, growth strategies, and expansion initiatives.",
+    role: "Partnerships & Outreach",
+    description: "Supports partnerships, outreach and progressive mission expansion.",
     image: "/assets/about-optimized/srujana-paid.webp"
-  },
-  {
-    name: "Madhukar & Srujana",
-    role: "Chief Compliance & Risk Officer (CCRO)",
-    description: "Ensures legal compliance, risk management, and governance standards.",
-    image: "/assets/about-optimized/madhukar-srujana.webp"
   },
 ];
 
@@ -50,7 +44,7 @@ export default function BoardMembers() {
             className="text-[32px] font-normal leading-tight text-[#2C1810] sm:text-[40px] md:text-[46px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Meet Our Board
+            Mission Leadership
           </h2>
           
           {/* Elegant Diya Flourish */}

@@ -869,7 +869,6 @@
 // }
 "use client";
 
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { lookupPincode } from "@/lib/pincode";
@@ -1183,11 +1182,6 @@ export default function VolunteerRegister() {
       );
       return;
     }
-    if (!photograph || !idProof) {
-      setError("Please attach both your photograph and ID proof.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -1226,8 +1220,8 @@ export default function VolunteerRegister() {
           idProofType: form.idProofType || undefined,
           idProofNumber: form.idProofNumber || undefined,
           declarationAccepted: true,
-          photograph,
-          idProof,
+          photograph: photograph || undefined,
+          idProof: idProof || undefined,
         });
 
       dispatch(
@@ -1539,7 +1533,7 @@ export default function VolunteerRegister() {
                 </div>
 
                 <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <SectionTitle>Emergency Contact &amp; Identity Verification</SectionTitle>
+                  <SectionTitle>Emergency Contact &amp; KYC Later</SectionTitle>
 
                   <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
                     {[['emergencyContactName','Contact Person *','text'],['emergencyContactRelationship','Relationship *','text'],['emergencyContactPhone','Emergency Mobile No. *','tel']].map(([name,text,type]) => (
@@ -1550,27 +1544,27 @@ export default function VolunteerRegister() {
                     ))}
 
                     <label>
-                      <span className={labelClass}>ID Proof Type *</span>
-                      <select name="idProofType" required value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
+                      <span className={labelClass}>ID Proof Type (optional)</span>
+                      <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
                         <option value="">Select</option>
                         {['Aadhaar','Voter ID','Driving Licence','Passport','Other'].map(v => <option key={v}>{v}</option>)}
                       </select>
                     </label>
 
                     <label>
-                      <span className={labelClass}>ID Proof Number *</span>
-                      <input name="idProofNumber" required value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass}/>
+                      <span className={labelClass}>ID Proof Number (optional)</span>
+                      <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass}/>
                     </label>
 
                     <label>
-                      <span className={labelClass}>Upload Photograph *</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp" required onChange={(e)=>setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
+                      <span className={labelClass}>Upload Photograph (optional)</span>
+                      <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e)=>setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
                       <span className="mt-0.5 block text-[10px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
                     </label>
 
                     <label className="sm:col-span-2">
-                      <span className={labelClass}>Upload ID Proof *</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required onChange={(e)=>setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
+                      <span className={labelClass}>Upload ID Proof (optional)</span>
+                      <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e)=>setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
                       <span className="mt-0.5 block text-[10px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
                     </label>
                   </div>

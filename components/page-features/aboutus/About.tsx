@@ -45,44 +45,44 @@ function Kalash({ size = "md" }) {
 
 const stats = [
   { icon: FaRegClock, value: "24/7", title: "Sewa Support", text: "365 Days a Year" },
-  { icon: FaMapMarkerAlt, value: "15+", title: "Cities Covered", text: "Across India" },
-  { icon: FaUsers, value: "500+", title: "Verified Pandits", text: "Trusted Ritual Support" },
-  { icon: FaShieldAlt, value: "100%", title: "Transparent Services", text: "No Hidden Charges" },
+  { icon: FaMapMarkerAlt, value: "Delhi NCR", title: "Launch Region", text: "Expanding Progressively" },
+  { icon: FaUsers, value: "Verified", title: "Case Support", text: "Eligibility Based" },
+  { icon: FaShieldAlt, value: "Legal", title: "Formalities First", text: "Authority Clearance" },
 ];
 
 const careServices = [
-  { icon: FaAmbulance, title: "Ambulance", text: "Fast & reliable 24/7 dead body transport services with AC and freezer facilities across the city.", image: "/assets/ambulance.avif" },
-  { icon: FaTruck, title: "Hearse Van", text: "Dignified final journey vehicles decorated with flowers for a respectful and peaceful transport.", image: "/assets/about-optimized/hearse-van.webp" },
-  { icon: FaShoppingBag, title: "Samagri", text: "Premium quality Antim Sanskar samagri kits covering all essential items required for rituals.", image: "/assets/about-optimized/samagri.webp" },
-  { icon: FaUserAlt, title: "Pandit Ji", text: "Experienced and verified Pandits to guide your family through Antim Sanskar and Shanti paath.", image: "/assets/about-optimized/pandit-ji.webp" },
-  { icon: FaHome, title: "Prayer Hall", text: "Spacious, clean, and peaceful prayer halls available for conducting Shanti Paath and Chautha.", image: "/assets/about-optimized/prayer-hall.webp" },
-  { icon: FaFire, title: "Cremation", text: "Complete end-to-end assistance at the Shamshan Ghat including wood and electric cremation options.", image: "/assets/about-optimized/cremation-ritual.webp" },
-  { icon: FaUsers, title: "Tehrvi", text: "Comprehensive arrangements for 13th-day rituals, including Brahman Bhoj, catering, and venue setup.", image: "/assets/about-optimized/tehrvi-feast.webp" },
-  { icon: FaHandshake, title: "Family Support", text: "Compassionate emotional support and step-by-step guidance so you can focus on your loved ones.", image: "/assets/about-optimized/family-support.webp" },
+  { icon: FaAmbulance, title: "Transport Coordination", text: "Case-based ambulance and hearse-van coordination, subject to location, verification and availability.", image: "/assets/ambulance.avif" },
+  { icon: FaTruck, title: "Hearse Support", text: "Respectful final-journey transport coordination for eligible families and authorised cases.", image: "/assets/about-optimized/hearse-van.webp" },
+  { icon: FaShoppingBag, title: "Ritual Materials", text: "Essential ritual material assistance such as wood, shroud cloth, flowers and basic items.", image: "/assets/about-optimized/samagri.webp" },
+  { icon: FaUserAlt, title: "Ritual Guidance", text: "Priest and ritual guidance coordination according to local customs and availability.", image: "/assets/about-optimized/pandit-ji.webp" },
+  { icon: FaHome, title: "Family Guidance", text: "Practical guidance for families navigating immediate final-rites requirements.", image: "/assets/about-optimized/prayer-hall.webp" },
+  { icon: FaFire, title: "Cremation Support", text: "Cremation-ground coordination after required case verification and local formalities.", image: "/assets/about-optimized/cremation-ritual.webp" },
+  { icon: FaUsers, title: "Relief Support", text: "Food, water and basic relief support where verified need and availability permit.", image: "/assets/about-optimized/tehrvi-feast.webp" },
+  { icon: FaHandshake, title: "Case Coordination", text: "Compassionate step-by-step coordination so families are not left alone in crisis.", image: "/assets/about-optimized/family-support.webp" },
 ];
 
 const reasons = [
-  { icon: FaCertificate, title: "Experienced Team", text: "Trained, verified and compassionate" },
-  { icon: FaShieldAlt, title: "Complete Transparency", text: "Clear pricing with no hidden costs" },
-  { icon: FaMapMarkerAlt, title: "Pan India Network", text: "Strong local presence across cities" },
+  { icon: FaCertificate, title: "Mission-Led Team", text: "Compassionate case coordination" },
+  { icon: FaShieldAlt, title: "Verified Support", text: "Eligibility and formalities first" },
+  { icon: FaMapMarkerAlt, title: "Delhi NCR Launch", text: "Expanding progressively" },
   { icon: FaPhoneAlt, title: "24/7 Availability", text: "A caring team always within reach" },
   { icon: FaHandHoldingHeart, title: "Dignity & Respect", text: "Every ritual handled with utmost care" },
 ];
 
 const processSteps = [
-  { icon: FaPhoneAlt, title: "Call or Book Sewa", text: "Reach out anytime. We are available 24/7." },
-  { icon: FaComment, title: "Share Details", text: "Tell us your needs and family preferences." },
-  { icon: FaClipboardList, title: "We Arrange Everything", text: "Our team coordinates all services calmly." },
-  { icon: FaFire, title: "Rituals & Cremation", text: "Every ritual is performed with dignity." },
-  { icon: FaHandshake, title: "Family Support", text: "We remain with your family throughout." },
+  { icon: FaPhoneAlt, title: "Request Sewa Help", text: "Reach out anytime through the helpline." },
+  { icon: FaComment, title: "Share Case Details", text: "Tell us the situation, location and urgent need." },
+  { icon: FaClipboardList, title: "Verification", text: "Our team reviews eligibility and formalities." },
+  { icon: FaFire, title: "Case Coordination", text: "Approved support is coordinated with dignity." },
+  { icon: FaHandshake, title: "Family Support", text: "We guide the family through the process." },
 ];
 
 const locations = [
-  { name: "Gaya", image: "/assets/about-reference/gaya.png" },
-  { name: "Varanasi", image: "/assets/about-reference/varanasi.png" },
-  { name: "Haridwar", image: "/assets/about-reference/haridwar.png" },
-  { name: "Rishikesh", image: "/assets/about-reference/rishikesh.png" },
-  { name: "Nashik", image: "/assets/about-reference/nasik.png" },
+  { name: "Delhi", image: "/assets/about-reference/gaya.png" },
+  { name: "Noida", image: "/assets/about-reference/varanasi.png" },
+  { name: "Ghaziabad", image: "/assets/about-reference/haridwar.png" },
+  { name: "Gurugram", image: "/assets/about-reference/rishikesh.png" },
+  { name: "Faridabad", image: "/assets/about-reference/nasik.png" },
 ];
 
 const aboutImages = {
@@ -140,7 +140,7 @@ export default function About() {
                   <FaFire className="h-3.5 w-3.5" />
                 </span>
                 <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  About Us · Since Day One
+                  About Us · A Namo Gange Trust Initiative
                 </span>
               </div>
 
@@ -165,14 +165,14 @@ export default function About() {
               </div>
 
               <p className="mt-1 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                We support families with dignified funeral, cremation and ritual
-                arrangements, so the final journey is handled with calm, respect
-                and complete transparency.
+                Moksha Sewa is a humanitarian end-of-life support mission for
+                economically weaker families and legally authorised unclaimed
+                cases.
               </p>
 
               {/* trust row */}
               <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {["Dignity First", "Transparent Pricing", "Always Available"].map((chip) => (
+                {["Dignity First", "Eligibility-Based", "Always Available"].map((chip) => (
                   <span
                     key={chip}
                     className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#5F4630]"
@@ -253,7 +253,7 @@ export default function About() {
               <div className="mb-2 inline-flex items-center space-x-3">
                 <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
                 <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  What We Take Care Of
+                  What Support We Coordinate
                 </span>
                 <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
               </div>
@@ -261,7 +261,7 @@ export default function About() {
                 className="text-3xl font-normal leading-tight text-[#2C1810] sm:text-4xl"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                Comprehensive Support
+                Case-Based Support
               </h2>
             </div>
 
@@ -332,12 +332,12 @@ export default function About() {
                     Our Presence
                   </div>
                   <h2 className="mt-1 font-serif text-2xl text-[#2C1810] sm:text-3xl">
-                    Serving Families <span className=" text-[#8B6A3E]">Across India</span>
+                    Launching in <span className=" text-[#8B6A3E]">Delhi NCR</span>
                   </h2>
                 </div>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[14px] font-semibold text-[#6A4F32]">
                   <FaMapMarkerAlt className="h-3 w-3 text-[#8B6A3E]" />
-                  15+ Cities & Growing
+                  Expanding Progressively
                 </span>
               </div>
 
@@ -395,7 +395,7 @@ export default function About() {
                         +9
                       </div>
                       <div className="mt-1 text-[14px] uppercase tracking-[0.14em] text-white/90">
-                        More Cities
+                        More Areas
                       </div>
                     </div>
                   </div>
@@ -403,7 +403,7 @@ export default function About() {
               </div>
 
               <p className="mt-1 text-center text-[14px] text-[#746154]">
-                Local teams. Local support. Always near you.
+                Launching in Delhi NCR with careful, progressive expansion.
               </p>
             </div>
           </div>
@@ -418,15 +418,15 @@ export default function About() {
           <div className="relative mx-auto grid w-full max-w-7xl items-center gap-5 px-0 lg:grid-cols-[0.72fr_1.78fr]">
             <div className="text-white">
               <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
-                Why Choose Us
+                Why This Mission
               </div>
               <h2 className="mt-1 font-serif text-3xl leading-tight sm:text-4xl">
                 Here for You, <span className=" text-[#D9B681]">Always</span>
               </h2>
               <div className="mt-1 h-[2px] w-10 bg-[#D9B681]" />
               <p className="mt-1 max-w-sm text-sm leading-6 text-white/75">
-                We bring transparency, professionalism and heartfelt service
-                together to help you in every possible way.
+                We bring verified, compassionate and legally careful support
+                to families and authorised unclaimed cases.
               </p>
               <a
                 href="/contact"
@@ -467,7 +467,7 @@ export default function About() {
           <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-1 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-8 bg-[#C9A574]" />
-              <span>Our Process — The Sewa Journey</span>
+              <span>Our Process — The Case Journey</span>
               <span className="h-px w-8 bg-[#C9A574]" />
             </div>
 
@@ -574,9 +574,9 @@ export default function About() {
               </h2>
 
               <p className="mt-1 text-sm leading-6 text-white/70">
-                From the first call to the final prayer, Moksha Sewa remains
-                beside the family with calm coordination, respectful rituals and
-                clear support at every step.
+                From the first call to verified support, Moksha Sewa remains
+                beside eligible families with calm coordination, respectful
+                guidance and legal-formality awareness.
               </p>
 
               <div className="mt-1 space-y-2">
@@ -589,7 +589,7 @@ export default function About() {
                   {
                     icon: FaShieldAlt,
                     title: "Trusted Arrangements",
-                    text: "Verified services, transparent details and no confusion.",
+                    text: "Verified support, clear details and no confusion.",
                   },
                   {
                     icon: FaRegClock,
@@ -636,23 +636,23 @@ export default function About() {
             {/* LEFT — content */}
             <div>
               <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                <span>Sewa Network</span>
+                <span>Launch Region</span>
                 <span className="h-px w-7 bg-[#C9A574]" />
               </div>
 
               <h2 className="mt-1 max-w-[420px] font-serif text-3xl leading-[1.08] text-[#2C1810] sm:text-4xl">
-                One Bharat,{" "}
+                Delhi NCR,{" "}
                 <span className=" text-[#8B6A3E]">
-                  One Sewa Network
+                  Progressive Expansion
                 </span>
               </h2>
 
               <div className="mt-1 h-[2px] w-10 bg-[#8B6A3E]" />
 
               <p className="mt-1 max-w-[460px] text-sm leading-6 text-[#5F4A3D]">
-                From the sacred ghats of Haridwar to cities across India, our
-                connected teams ensure that one call reaches the right people,
-                wherever your family needs immediate assistance.
+                Moksha Sewa is launching with a Delhi NCR focus, building
+                verified local coordination before expanding to additional
+                regions.
               </p>
 
               {/* city legend chips */}
@@ -671,7 +671,7 @@ export default function About() {
                 ))}
 
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[14px] font-semibold text-white shadow-sm">
-                  +9 More Cities
+                  More Areas Soon
                 </span>
               </div>
 
@@ -682,10 +682,10 @@ export default function About() {
 
                 <p className="text-[14px] leading-4 text-[#5F4A3D]">
                   <span className="font-serif text-sm  text-[#8B6A3E]">
-                    Ek call, poora network.
+                    Ek call, verified guidance.
                   </span>
                   <br />
-                  Every city team is connected 24/7 for instant coordination.
+                  Our helpline guides eligible cases through the next step.
                 </p>
               </div>
             </div>
@@ -698,7 +698,7 @@ export default function About() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600" />
                 </span>
-                Network Live · 24/7
+                Helpline Live · 24/7
               </div>
 
               <div className="relative mx-auto w-full h-[200px] sm:h-[260px] lg:h-[320px] max-w-[580px] lg:max-w-[640px]">

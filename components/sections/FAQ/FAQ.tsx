@@ -18,9 +18,9 @@ export default function FAQSection() {
 
   const faqItems: FAQItem[] = [
           {
-            question: "Is assistance free for families in need?",
+            question: "Is assistance guaranteed for every case?",
             answer:
-              "For eligible poor, orphaned, unclaimed or helpless cases, Moksha Sewa makes every possible effort to arrange essential support. Our team first verifies the case details and then confirms what assistance can be provided.",
+              "Assistance for eligible cases is subject to verification, availability and applicable local or legal requirements. Our team first verifies the case details and then confirms what support can be provided.",
           },
           {
             question: "What services can your team arrange?",
@@ -30,7 +30,7 @@ export default function FAQSection() {
           {
             question: "Can you help in an unclaimed body case?",
             answer:
-              "Yes. In unclaimed or helpless cases, our team provides guidance according to local regulations, police or hospital procedures and available support. All required official formalities must be completed first.",
+              "Yes. Support is undertaken only after completion of applicable police, hospital, municipal or other competent-authority formalities.",
           },
           {
             question: "Can you arrange an ambulance or hearse van?",
@@ -148,14 +148,14 @@ export default function FAQSection() {
               </h3>
 
               <p className="mx-auto mt-2 max-w-2xl text-[15px] font-normal leading-6 text-white/86 sm:text-[16px]">
-                One call can help you receive guidance for an ambulance,
-                cremation wood, ritual materials, a pandit and
-                cremation-ground support.
+                One call can help you receive guidance for verified assistance,
+                local formalities, transport coordination and essential
+                final-rites support.
               </p>
 
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
-                  href="tel:+919810247319"
+                  href="tel:+919220147229"
                   className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-[14px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF] sm:w-auto sm:min-w-[174px] sm:text-[15px]"
                 >
                   Get Sewa Help
@@ -166,7 +166,7 @@ export default function FAQSection() {
                   href="/donation"
                   className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 py-3 text-[14px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12 sm:w-auto sm:min-w-[174px] sm:text-[15px]"
                 >
-                  Donate for Sewa
+                  Support This Mission
                   <FaHeart className="h-4 w-4" />
                 </a>
               </div>

@@ -42,7 +42,9 @@ const officeLocations = [
     pincode: "201007",
     hours: "Open 24 hours · every day",
     type: "main",
-    image: "/assets/contact/image.png",
+    image: "/assets/contact/im.png",
+    imageWidth: 1448,
+    imageHeight: 1086,
     mapQuery: HEAD_OFFICE_QUERY,
     orgName: "Namo Gange Trust",
   },
@@ -50,12 +52,15 @@ const officeLocations = [
     city: "London Office",
     region: "Luton, England",
     country: "United Kingdom",
-    address: "6 Liddel Close, Luton, England, United Kingdom",
+    address:
+      "Registration address: 6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW",
     pincode: "LU3 1TW",
-    hours: "Mon–Sat · 9:00 am – 6:00 pm GMT",
+    hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
     type: "branch",
-     image: "/assets/contact/encodency.png",
-    mapQuery: "6 Liddel Close, Luton, England LU3 1TW",
+    image: "/assets/contact/en.png",
+    imageWidth: 1448,
+    imageHeight: 1086,
+    mapQuery: "6 Liddel Close, Luton, Bedfordshire LU3 1TW, United Kingdom",
     orgName: "enCodency Pvt. Ltd.",
   },
 ];
@@ -148,7 +153,7 @@ function Contact() {
 
       <main>
         {/* ============================= HERO ============================= */}
-        <section className="relative flex aspect-[4/5] w-full flex-col justify-center overflow-hidden bg-[#F4EDE3] md:aspect-auto md:h-[560px] lg:h-[600px]">
+        <section className="relative flex aspect-[4/5] w-full flex-col justify-center overflow-hidden bg-[#F4EDE3] md:aspect-auto md:h-[500px] lg:h-[520px]">
           <div className="absolute inset-0">
             {/* Desktop Hero Image */}
             <Image
@@ -197,29 +202,29 @@ function Contact() {
                 </span>
               </div>
 
-              <h1 className="mt-4 font-serif leading-[0.95]">
+              <h1 className="mt-3 font-serif leading-[0.95]">
                 <span className="text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   Contact{" "}
                 </span>
                 <span className="text-[32px] text-[#8B6A3E] sm:text-[46px] lg:text-[52px]">
-                  With Us
+                   Us
                 </span>
               </h1>
 
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-2 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />
                 <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
                 <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
               </div>
 
-              <p className="mt-4 hidden max-w-[460px] text-[15px] leading-7 text-[#4F3A2D] md:block">
+              <p className="mt-3 hidden max-w-[460px] text-[15px] leading-6 text-[#4F3A2D] md:block">
                 Ek call ya ek message — baaki sab hum sambhaal lenge. Our team
                 answers round the clock and stays with you until the last ritual
                 is complete.
               </p>
 
-              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {["24/7 support", "15 min response", "Pan-India teams"].map(
+              <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-1.5">
+                {["24/7 guidance", "Delhi NCR launch", "Verified cases"].map(
                   (chip) => (
                     <span
                       key={chip}
@@ -234,7 +239,7 @@ function Contact() {
                 )}
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-4 flex flex-wrap items-center gap-2.5">
                 <a
                   href="#contact-form"
                   className="group inline-flex items-center gap-2 rounded-none bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4EDE3]"
@@ -290,7 +295,7 @@ function Contact() {
                 </>
               );
 
-              const base = `group/stat flex items-center gap-3 px-4 py-3.5 md:justify-center ${index > 0 ? "md:border-l md:border-white/20" : ""
+              const base = `group/stat flex items-center gap-2.5 px-3 py-2.5 md:justify-center ${index > 0 ? "md:border-l md:border-white/20" : ""
                 } ${index % 2 === 1 ? "border-l border-white/20" : ""} ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""
                 }`;
 
@@ -308,109 +313,158 @@ function Contact() {
         </section>
 
         {/* ======================= OFFICE LOCATIONS ====================== */}
-        <section className="pb-2 pt-6 lg:pb-2 lg:pt-8">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-6 flex flex-col items-center text-center">
+        <section className="relative overflow-hidden pb-3 pt-5 lg:pb-4 lg:pt-6">
+          <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#C9A574]/8 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#8B6A3E]/6 blur-3xl" />
+
+          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
+            <div className="mb-4 flex flex-col items-center text-center">
               <div className={eyebrowClass}>
-                <span className="hidden sm:block h-px w-8 bg-[#C9A574]" />
+                <span className="hidden h-px w-10 bg-[#C9A574] sm:block" />
                 <span>ॐ Our presence ॐ</span>
-                <span className="hidden sm:block h-px w-8 bg-[#C9A574]" />
+                <span className="hidden h-px w-10 bg-[#C9A574] sm:block" />
               </div>
-              <h2 className="mt-2 font-serif text-3xl text-[#2C1810] sm:text-4xl">
+              <h2 className="mt-1.5 font-serif text-[30px] leading-none text-[#2C1810] sm:text-[36px]">
                 Office <span className="text-[#8B6A3E]">Locations</span>
               </h2>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#C9A574]" />
+                <PiFlowerLotus className="h-5 w-5 text-[#C98924]" />
+                <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#C9A574]" />
+              </div>
             </div>
 
-            <div className="grid gap-1 sm:grid-cols-2">
-              {officeLocations.map((location) => (
-                <article
-                  key={location.city}
-                  className="group flex flex-col border border-[#E6D6BF] bg-white transition-all duration-300 hover:border-[#C9A574] hover:shadow-md"
-                >
-                  {/* Image */}
-                  <div className="relative h-[380px] w-full overflow-hidden">
-                    <Image
-                      src={location.image}
-                      alt={`${location.city}, ${location.region}`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute right-3 top-3 bg-black/60 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
-                      {location.type === "main" ? "HQ" : "Branch"}
-                    </div>
-                  </div>
+            <div className="grid gap-3 lg:grid-cols-2">
+              {officeLocations.map((location) => {
+                const isMain = location.type === "main";
 
-                  {/* Header / Org Name Bar */}
-                  <div className="border-b border-[#E6D6BF] bg-[#FBF8F3] px-4 py-2">
-                    <h4 className="font-serif text-[20px] leading-tight text-[#2C1810]">
-                      {location.orgName}
-                    </h4>
-                    <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#8B6A3E]">
-                      {location.region}, {location.country}
-                    </p>
-                  </div>
+                return (
+                  <article
+                    key={location.city}
+                    className="group relative overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_12px_40px_rgba(69,45,28,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D6B98E] hover:shadow-[0_20px_48px_rgba(69,45,28,0.13)]"
+                  >
+                    <div className="grid min-h-[270px] sm:grid-cols-[0.88fr_1.12fr]">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-[#E7D9C7] sm:aspect-auto sm:h-full sm:min-h-[270px]">
+                        <Image
+                          src={location.image}
+                          alt={`${location.city}, ${location.region}`}
+                          width={location.imageWidth}
+                          height={location.imageHeight}
+                          sizes="(max-width: 640px) 100vw, 42vw"
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/24 via-transparent to-transparent" />
 
-                  {/* Details */}
-                  <div className="flex flex-1 flex-col px-4 pb-3 pt-2">
-                    <p className="text-[14px] leading-6 text-[#6B584B]">
-                      {location.address}
-                    </p>
-
-                    <div className="mt-auto flex flex-col gap-2 border-t border-[#F0E5D3] pt-2 text-[13px] text-[#5F4A3D]">
-                      <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-2">
-                          <FaClock className="text-[#8B6A3E]" /> {location.hours}
-                        </span>
-                        <span className="font-semibold tracking-wider text-[#8B6A3E]">
-                          PIN {location.pincode}
+                        <span
+                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-md ${
+                            isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
+                          }`}
+                        >
+                          {isMain ? "Head Office" : "Branch Office"}
                         </span>
                       </div>
-                    </div>
 
-                    <a
-                      href={`https://maps.google.com/?q=${encodeURIComponent(
-                        location.mapQuery,
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 flex w-full items-center justify-center gap-2 border border-[#E4D5BE] bg-white px-4 py-2 text-[12px] font-bold uppercase tracking-[0.16em] text-[#73532F] transition-all duration-300 hover:border-[#8B6A3E] hover:bg-[#8B6A3E] hover:text-white"
-                    >
-                      <FaDirections className="h-3.5 w-3.5" />
-                      Get directions
-                    </a>
-                  </div>
-                </article>
-              ))}
+                      <div className="relative flex min-w-0 flex-col p-4 sm:p-5">
+                        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#C9A574]/15" />
+
+                        <div className="flex items-start gap-3">
+                          <span
+                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
+                              isMain
+                                ? "border-[#F3C8A5] bg-[#FFF7F0] text-[#E56A18]"
+                                : "border-[#CADDBB] bg-[#F4F9EF] text-[#567F2C]"
+                            }`}
+                          >
+                            <FaMapMarkerAlt className="h-4 w-4" />
+                          </span>
+
+                          <div className="min-w-0">
+                            <h3 className="font-serif text-[23px] leading-tight text-[#2C1810]">
+                              {location.orgName}
+                            </h3>
+                            <p
+                              className={`mt-1 text-[10px] font-bold uppercase tracking-[0.12em] ${
+                                isMain ? "text-[#C96822]" : "text-[#567F2C]"
+                              }`}
+                            >
+                              {location.region}, {location.country}
+                            </p>
+                          </div>
+                        </div>
+
+                        <p className="mt-3 text-[13px] leading-5 text-[#5F4A3D]">
+                          {location.address}
+                        </p>
+
+                        <div className="mt-auto pt-3">
+                          <div className="grid grid-cols-[1fr_auto] overflow-hidden rounded-xl border border-[#E9DDCE] bg-[#FCFAF7]">
+                            <div className="flex min-w-0 items-center gap-2 px-3 py-2.5">
+                              <FaClock
+                                className={`h-4 w-4 shrink-0 ${
+                                  isMain ? "text-[#E56A18]" : "text-[#567F2C]"
+                                }`}
+                              />
+                              <span className="truncate text-[12px] font-medium text-[#4F4036]">
+                                {location.hours}
+                              </span>
+                            </div>
+                            <div className="flex items-center border-l border-[#E9DDCE] px-3 py-2.5">
+                              <span className="whitespace-nowrap text-[11px] font-bold tracking-[0.08em] text-[#7C6249]">
+                                PIN {location.pincode}
+                              </span>
+                            </div>
+                          </div>
+
+                          <a
+                            href={`https://maps.google.com/?q=${encodeURIComponent(
+                              location.mapQuery,
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
+                              isMain
+                                ? "border-[#E56A18] text-[#C95C15] hover:bg-[#E56A18] hover:text-white"
+                                : "border-[#6C913E] text-[#567F2C] hover:bg-[#567F2C] hover:text-white"
+                            }`}
+                          >
+                            <FaDirections className="h-3.5 w-3.5" />
+                            Get directions
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* =================== FORM + CONTACT / MAP COLUMN ================ */}
-        <section id="contact-form" className="scroll-mt-24 pb-10 pt-0 lg:pb-14">
+        {/* ================= MODERN CONTACT EXPERIENCE ================= */}
+        <section id="contact-form" className="scroll-mt-24 pb-7 pt-0 lg:pb-9">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="grid items-stretch gap-1 lg:grid-cols-[1.05fr_0.95fr]">
-              {/* ------------------------ FORM CARD ------------------------ */}
-              <div className="relative flex flex-col overflow-hidden rounded-none border border-[#E6D6BF] bg-white p-4 shadow-[0_16px_42px_rgba(73,49,31,0.08)] sm:p-5">
-                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
+            <div className="grid items-stretch gap-3 xl:grid-cols-[1.18fr_0.58fr_0.98fr]">
+              {/* MESSAGE FORM */}
+              <div className="relative overflow-hidden border border-[#E7D9C7] bg-white p-4 shadow-[0_12px_34px_rgba(69,45,28,0.07)] sm:p-5">
+                <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#C9A574]/10 blur-2xl" />
 
-                <div className="mb-5">
-                  <div className={eyebrowClass}>
-                    <span>Send a message</span>
-                    <span className="h-px w-8 bg-[#C9A574]" />
+                <div className="relative mb-4">
+                  <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#C96822]">
+                    <MdEmail className="h-4 w-4" />
+                    Send a message
                   </div>
-                  <h3 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-[28px]">
+                  <h3 className="mt-1.5 font-serif text-[27px] leading-tight text-[#2C1810]">
                     We&apos;d love to{" "}
-                    <span className="text-[#8B6A3E]">hear from you</span>
+                    <span className="text-[#E56A18]">hear from you</span>
                   </h3>
-                  <p className="mt-1.5 text-[13px] text-[#7A685B]">
+                  <p className="mt-1.5 max-w-[500px] text-[13px] leading-5 text-[#7A685B]">
                     We reply within one business day. For anything urgent, the
                     helpline is answered day and night.
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
+                <form onSubmit={handleSubmit} className="relative grid gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="firstName" className={labelClass}>
                         First name *
@@ -422,10 +476,11 @@ function Contact() {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        className={inputClass}
+                        className={`${inputClass} rounded-xl`}
                         placeholder="Rahul"
                       />
                     </div>
+
                     <div>
                       <label htmlFor="lastName" className={labelClass}>
                         Last name *
@@ -437,13 +492,13 @@ function Contact() {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        className={inputClass}
+                        className={`${inputClass} rounded-xl`}
                         placeholder="Sharma"
                       />
                     </div>
                   </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-3.5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="email" className={labelClass}>
                         Email address *
@@ -455,10 +510,11 @@ function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className={inputClass}
+                        className={`${inputClass} rounded-xl`}
                         placeholder="rahul@example.com"
                       />
                     </div>
+
                     <div>
                       <label htmlFor="phone" className={labelClass}>
                         Phone number
@@ -469,7 +525,7 @@ function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className={inputClass}
+                        className={`${inputClass} rounded-xl`}
                         placeholder="+91 98765 43210"
                       />
                     </div>
@@ -486,12 +542,12 @@ function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className={inputClass}
+                      className={`${inputClass} rounded-xl`}
                       placeholder="What do you need help with?"
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col">
+                  <div>
                     <label htmlFor="message" className={labelClass}>
                       Message *
                     </label>
@@ -502,7 +558,7 @@ function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className={`${inputClass} min-h-[120px] flex-1 resize-none`}
+                      className={`${inputClass} min-h-[95px] resize-none rounded-xl`}
                       placeholder="Share the details — city, timing, and what you need arranged."
                     />
                   </div>
@@ -510,10 +566,11 @@ function Contact() {
                   {submitStatus.type && (
                     <div
                       role="status"
-                      className={`rounded-none border p-3 text-[13px] font-medium ${submitStatus.type === "success"
-                        ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
-                        : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
-                        }`}
+                      className={`rounded-xl border p-3 text-[13px] font-medium ${
+                        submitStatus.type === "success"
+                          ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
+                          : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
+                      }`}
                     >
                       {submitStatus.message}
                     </div>
@@ -522,7 +579,7 @@ function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group mt-auto flex w-full items-center justify-center gap-2 rounded-none bg-[#8B6A3E] px-4 py-3 text-[14px] font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D76A1D] to-[#F07A24] px-4 text-[13px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(218,105,29,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(218,105,29,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <>
@@ -531,7 +588,7 @@ function Contact() {
                       </>
                     ) : (
                       <>
-                        <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                         Send message
                       </>
                     )}
@@ -539,109 +596,137 @@ function Contact() {
                 </form>
               </div>
 
-              {/* --------------------- RIGHT COLUMN ---------------------- */}
-              <div className="flex flex-col gap-1">
-                <div className="rounded-none border border-[#E6D6BF] bg-white p-4 shadow-sm">
-                  {/* helpline */}
-                  <div className="flex items-center gap-3">
-                    <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#C9A574] text-white">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C9A574]/40 motion-reduce:hidden" />
-                      <FaHeadset className="relative h-4 w-4" />
+              {/* CONTACT RAIL */}
+              <div className="flex flex-col overflow-hidden border border-[#E7D9C7] bg-[#2D211A] text-white shadow-[0_14px_42px_rgba(69,45,28,0.10)]">
+                <div className="relative p-4 sm:p-5">
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border border-[#D9B681]/15" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C99858] text-white">
+                    <FaHeadset className="h-4 w-4" />
+                  </span>
+                  <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9B681]">
+                    24/7 Emergency Support
+                  </p>
+                  <a
+                    href={CONTACT.helpline.href}
+                    className="mt-1 block font-serif text-[24px] leading-tight text-white transition hover:text-[#E9C58F]"
+                  >
+                    {CONTACT.helpline.label}
+                  </a>
+                </div>
+
+                <div className="mx-4 h-px bg-white/10" />
+
+                <div className="space-y-4 p-4 sm:p-5">
+                  <a
+                    href={CONTACT.email.href}
+                    className="group flex items-start gap-3"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681] transition group-hover:bg-[#D9B681] group-hover:text-[#2D211A]">
+                      <MdEmail className="h-4 w-4" />
                     </span>
-                    <div>
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]">
-                        24/7 emergency support
-                      </div>
-                      <a
-                        href={CONTACT.helpline.href}
-                        className="font-serif text-[22px] leading-tight text-[#2C1810] transition hover:text-[#8B6A3E]"
-                      >
-                        {CONTACT.helpline.label}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="my-4 h-px w-full bg-[#F0E5D3]" />
-
-                  {/* email + alternate line */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {[
-                      {
-                        Icon: MdEmail,
-                        label: "Email",
-                        value: CONTACT.email.label,
-                        href: CONTACT.email.href,
-                      },
-                      {
-                        Icon: FaPhoneAlt,
-                        label: "Alternate line",
-                        value: CONTACT.altPhone.label,
-                        href: CONTACT.altPhone.href,
-                      },
-                    ].map(({ Icon, label, value, href }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        className="group flex items-center gap-3"
-                      >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-colors duration-300 group-hover:bg-[#8B6A3E] group-hover:text-white">
-                          <Icon className="h-3.5 w-3.5" />
-                        </span>
-                        <span className="min-w-0">
-                          <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">
-                            {label}
-                          </span>
-                          <span className="block truncate font-serif text-[15px] text-[#2C1810] transition-colors group-hover:text-[#8B6A3E]">
-                            {value}
-                          </span>
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-
-                  <div className="my-4 h-px w-full bg-[#F0E5D3]" />
-
-                  {/* socials + line */}
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div className="flex gap-2">
-                      {socials.map(({ Icon, label, href }) => (
-                        <a
-                          key={label}
-                          href={href}
-                          aria-label={label}
-                          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FBF8F3] text-[#8B6A3E] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8B6A3E] hover:text-white hover:shadow-md"
-                        >
-                          <Icon className="h-3.5 w-3.5" />
-                        </a>
-                      ))}
-                    </div>
-                    <p className="text-right text-[13px] leading-5 text-[#5F4A3D]">
-                      <span className="font-serif text-[#8B6A3E]">
-                        Har sawaal ka jawab.
+                    <span className="min-w-0">
+                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                        Email
                       </span>
-                      <br />
+                      <span className="mt-0.5 block break-all font-serif text-[14px] text-white/95">
+                        {CONTACT.email.label}
+                      </span>
+                    </span>
+                  </a>
+
+                  <a
+                    href={CONTACT.altPhone.href}
+                    className="group flex items-start gap-3"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681] transition group-hover:bg-[#D9B681] group-hover:text-[#2D211A]">
+                      <FaPhoneAlt className="h-3.5 w-3.5" />
+                    </span>
+                    <span>
+                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                        Alternate line
+                      </span>
+                      <span className="mt-0.5 block font-serif text-[15px] text-white/95">
+                        {CONTACT.altPhone.label}
+                      </span>
+                    </span>
+                  </a>
+
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681]">
+                      <FaClock className="h-3.5 w-3.5" />
+                    </span>
+                    <span>
+                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                        We are available
+                      </span>
+                      <span className="mt-0.5 block font-serif text-[15px] text-white/95">
+                        24/7 for you
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="pt-2">
+                    <p className="font-serif text-[16px] text-[#E9C58F]">
+                      Har sawaal ka jawab.
+                    </p>
+                    <p className="mt-1 text-[12px] leading-5 text-white/65">
                       Every query handled with care.
                     </p>
                   </div>
                 </div>
 
-                {/* map grows so both columns end level */}
-                <div className="relative min-h-[300px] flex-1 overflow-hidden rounded-none border border-[#E6D6BF] shadow-sm">
-                  <iframe
-                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                      HEAD_OFFICE_QUERY,
-                    )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full"
-                    title="Head office location on map"
-                  />
+                <div className="mt-auto border-t border-white/10 p-4 sm:p-5">
+                  <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/45">
+                    Follow us
+                  </p>
+                  <div className="flex gap-2">
+                    {socials.map(({ Icon, label, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        aria-label={label}
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/75 transition hover:-translate-y-0.5 hover:border-[#D9B681] hover:bg-[#D9B681] hover:text-[#2D211A]"
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              {/* MAP */}
+              <div className="group relative min-h-[360px] overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_14px_42px_rgba(69,45,28,0.08)]">
+                <iframe
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                    HEAD_OFFICE_QUERY,
+                  )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full grayscale-[0.08] transition duration-500 group-hover:grayscale-0"
+                  title="Head office location on map"
+                />
+
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2C1810]/16 to-transparent" />
+
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(
+                    HEAD_OFFICE_QUERY,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
+                >
+                  <FaDirections className="h-3.5 w-3.5" />
+                  Open in Maps
+                </a>
+              </div>
             </div>
+
+            {/* SMALL CLOSING STRIP */}
+          
           </div>
         </section>
       </main>

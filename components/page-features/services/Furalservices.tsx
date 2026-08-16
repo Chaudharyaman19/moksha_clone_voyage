@@ -132,9 +132,9 @@ function HeroSection() {
 
           <p className="mt-4 max-w-[560px] text-[15px] leading-relaxed text-[#321A10]/90 sm:text-[16px]">
             At Moksha Sewa, we understand the financial and emotional burden of
-            the final rites. We arrange cremation wood, shroud cloth (Kafan),
-            pure flowers, lamps, and all essential prayer items completely free
-            for families in need.
+            the final rites. We help eligible families coordinate cremation
+            wood, shroud cloth (Kafan), flowers, lamps, and essential prayer
+            items subject to verification and availability.
           </p>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">

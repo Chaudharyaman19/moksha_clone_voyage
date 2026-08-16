@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -9,14 +8,6 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { GiSteeringWheel } from "react-icons/gi";
 
 export default function HearseVanServices() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -36,7 +27,7 @@ export default function HearseVanServices() {
                 <span className="font-medium text-[#8D6E63]  mt-1 block text-[28px] md:text-[34px]">For a Dignified Final Journey.</span>
               </h1>
               <p className="text-[15px] sm:text-[16px] text-[#5D4037] leading-relaxed opacity-95 mb-8">
-                The final journey should be carried out with the utmost dignity. We provide free Hearse Van (Shav Vahan) services to transport your loved one respectfully to the cremation ground.
+                The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -95,7 +86,7 @@ export default function HearseVanServices() {
           <div className="max-w-4xl mx-auto text-center">
             <FaLeaf className="w-10 h-10 text-[#A0522D]/30 mx-auto mb-8" />
             <h3 className="text-[24px] md:text-[28px] font-light text-[#5D4037] mb-8  leading-relaxed">
-              "We ensure their final journey is as peaceful and dignified as the life they lived."
+              &quot;We ensure their final journey is as peaceful and dignified as the life they lived.&quot;
             </h3>
             <p className="text-[15px] sm:text-[16px] text-[#795548] leading-relaxed max-w-2xl mx-auto">
               You should never have to worry about transportation logistics while mourning. Moksha Sewa stands ready to help you navigate this difficult time.

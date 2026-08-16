@@ -223,10 +223,10 @@ function HeroSection() {
           <Divider className="my-[19px] w-[127px]" />
 
           <p className="w-[325px] text-[15px] leading-relaxed text-[#50483F] max-[820px]:w-auto sm:text-[16px]">
-            Namo Gange provides free and compassionate ambulance and hearse support
-            for last journey needs. Our trained team ensures dignified transfer,
-            calm coordination and timely assistance for families in their time of
-            need.
+            Namo Gange helps coordinate compassionate ambulance and hearse support
+            for eligible last-journey cases. Our team supports dignified transfer,
+            calm coordination and timely guidance subject to verification and
+            availability.
           </p>
 
           <div className="mt-[19px] flex gap-3 max-[520px]:flex-col">

@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
@@ -17,19 +16,9 @@ import {
   FaUserFriends,
   FaUsers,
 } from "react-icons/fa";
-import { MdOutlineFoodBank } from "react-icons/md";
-import { BiSupport } from "react-icons/bi";
 import Marquee from "react-fast-marquee";
 
 export default function FamilySupport() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <div className="min-h-screen font-sans text-[#4A3D36] bg-[#FDFBF7]">
       <Topbar />
@@ -93,14 +82,14 @@ export default function FamilySupport() {
               </div>
 
               <p className="mb-3 max-w-[480px] text-[15px] leading-relaxed text-[#4F3A2D] sm:text-[16px]">
-                Beyond the final rites, Moksha Sewa helps families with post-cremation arrangements and continuous emotional support, completely free of charge for those in need.
+                Beyond the final rites, Moksha Sewa helps eligible families with case-based guidance, relief coordination and compassionate support, subject to verification and availability.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
                 <Link href="/request-help" className="inline-flex items-center justify-center gap-2 bg-[#8B6A3E] text-white px-6 md:px-8 py-3 rounded-md font-semibold hover:bg-[#73532F] transition-colors shadow-sm text-sm">
                   <FaHandHoldingHeart size={16} /> Request Support
                 </Link>
-                <a href="tel:+919999999999" className="inline-flex items-center justify-center gap-2 bg-white text-[#8B6A3E] border border-[#E8DCC8] px-6 md:px-8 py-3 rounded-md font-semibold hover:bg-[#F9F5F0] transition-colors shadow-sm text-sm">
+                <a href="tel:+919220147229" className="inline-flex items-center justify-center gap-2 bg-white text-[#8B6A3E] border border-[#E8DCC8] px-6 md:px-8 py-3 rounded-md font-semibold hover:bg-[#F9F5F0] transition-colors shadow-sm text-sm">
                   <FaPhoneAlt size={14} /> 24x7 Helpline
                 </a>
               </div>
@@ -137,14 +126,14 @@ export default function FamilySupport() {
                 <FeatureCard
                   imageSrc="/assets/serving/emergency-transport.png"
                   title="Ambulance"
-                  desc="Free transport support from hospital to cremation."
+                  desc="Transport support subject to case verification."
                 />
               </div>
               <div className="w-[240px]">
                 <FeatureCard
                   imageSrc="/assets/serving/community-outreach.png"
-                  title="Free of Charge"
-                  desc="Our services are entirely free for those in need."
+                  title="Eligibility Based"
+                  desc="Assistance depends on verification and availability."
                 />
               </div>
               <div className="w-[240px]">
@@ -242,15 +231,15 @@ export default function FamilySupport() {
                 <span className="text-[#9A6A31]">For Those Who Need One</span>
               </h2>
               <p className="text-[#624C3F] mb-6 leading-relaxed  text-[16px] max-w-[500px]">
-                "Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace."
+                &quot;Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.&quot;
               </p>
 
               <ul className="flex flex-col gap-3.5 mb-8">
                 {[
                   "Sympathetic ear for intense grief and trauma",
                   "Assistance with death certificates and formalities",
-                  "Tehravi Khana arrangements without financial burden",
-                  "Completely free of charge for underprivileged families",
+                  "Relief coordination for verified family needs",
+                  "Assistance subject to eligibility and availability",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-[#4A3D36] text-[15px] font-medium">
                     <div className="w-5 h-5 rounded-full bg-[#9A6A31] text-white flex items-center justify-center shrink-0 mt-0.5">

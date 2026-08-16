@@ -219,32 +219,32 @@ export default function HowWeCanHelp() {
         {
           icon: "FaWoodStack",
           title: "Wood, Cloth & Flowers",
-          desc: "Cremation wood, shroud cloth, flowers, lamps and prayer items arranged for families in need.",
-          features: ["Wood Arrangement", "Shroud & Flowers", "Prayer Items"],
+          desc: "Essential ritual materials arranged for eligible families and verified cases.",
+          features: ["Wood Support", "Shroud & Flowers", "Basic Items"],
           image: "/assets/how-we-help/four.png",
           href: "/furalservices",
         },
         {
           icon: "FaPriestOutline",
-          title: "Priest Support",
-          desc: "Priest guidance is arranged so final prayers can be completed with proper care.",
-          features: ["Proper Rituals", "Final Rites", "Family Guidance"],
+          title: "Ritual Guidance",
+          desc: "Priest guidance is coordinated so final prayers can be completed with proper care.",
+          features: ["Local Customs", "Final Rites", "Family Guidance"],
           image: "/assets/how-we-help/pandit.png",
           href: "/panditservices",
         },
         {
           icon: "FaHearseVan",
           title: "Ambulance & Hearse Van",
-          desc: "Respectful body transport from hospital, home or public place to the cremation ground.",
-          features: ["Body Transport", "Hearse Van", "Urgent Help"],
+          desc: "Respectful transport coordination from hospital, home or public place to the cremation ground.",
+          features: ["Transport Help", "Hearse Van", "Urgent Guidance"],
           image: "/assets/how-we-help/five.png",
           href: "/ambulanceservices",
         },
         {
           icon: "FaVolunteersOutline",
           title: "Volunteers & Ground Help",
-          desc: "On-ground volunteers help with coordination, materials, prayers and family guidance.",
-          features: ["Ground Support", "Prayer Setup", "Volunteer Help"],
+          desc: "On-ground volunteers help with case coordination, materials and family guidance.",
+          features: ["Ground Support", "Case Guidance", "Volunteer Help"],
           image: "/assets/how-we-help/three.png",
           href: "/prayerhallservices",
         },
@@ -258,8 +258,8 @@ export default function HowWeCanHelp() {
         },
         {
           icon: "FaFamiliesOutline",
-          value: "500+",
-          label: "Families Supported",
+          value: "Verified",
+          label: "Case Support",
         },
         {
           icon: "FaShieldOutline",
@@ -268,8 +268,8 @@ export default function HowWeCanHelp() {
         },
         {
           icon: "FaMapPinOutline",
-          value: "15+",
-          label: "Service Cities",
+          value: "Delhi NCR",
+          label: "Launch Region",
         },
       ];
 
@@ -295,7 +295,7 @@ export default function HowWeCanHelp() {
             </span>
 
             <span className="font-semibold uppercase text-[#9A6426] text-[14px] tracking-[0.32em] sm:text-[15px]">
-              Moksha Sewa Services
+              Moksha Sewa Support
             </span>
 
             <span className="rotate-45 text-[14px] leading-none text-[#A66F2C]">

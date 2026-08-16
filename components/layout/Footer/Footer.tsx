@@ -29,14 +29,14 @@ const quickLinks = [
 ];
 
 const services = [
-  { label: "Ambulance Service", href: "/ambulanceservices" },
-  { label: "Hearse Van", href: "/hearse-van" },
-  { label: "Samagri", href: "/furalservices" },
-  { label: "Pandit Ji", href: "/panditservices" },
-  { label: "Prayer Hall", href: "/prayerhallservices" },
-  { label: "Cremation", href: "/cremation" },
-  { label: "Tehrvi / 13th Day", href: "/tehrvi" },
-  { label: "Family Support", href: "/specialservices" },
+  { label: "Request Sewa Help", href: "/request-help" },
+  { label: "Transport Coordination", href: "/ambulanceservices" },
+  { label: "Ritual Material Support", href: "/furalservices" },
+  { label: "Priest Guidance", href: "/panditservices" },
+  { label: "Unclaimed Case Support", href: "/request-help" },
+  { label: "Volunteer Support", href: "/volunteer/register" },
+  { label: "Family Guidance", href: "/specialservices" },
+  { label: "Support This Mission", href: "/donation" },
 ];
 
 
@@ -95,9 +95,9 @@ export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
   const brandName = "Moksha Sewa";
-  const tagline = "Dignified Funeral & Ritual Services";
+  const tagline = "Humanitarian End-of-Life Support Mission";
   const description =
-    "We serve with compassion and devotion, providing complete Antim Sanskar services with dignity, respect and transparency.";
+    "A Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.";
 
   const contactEmail = "info@mokshasewa.org";
   const contactNumber = "9220147229";

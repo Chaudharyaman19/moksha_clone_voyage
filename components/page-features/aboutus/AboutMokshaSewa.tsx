@@ -26,7 +26,7 @@ export default function AboutMokshaSewa() {
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Compassion, Care &{" "}
-            <span className=" text-[#8B6A3E]">Complete Support</span>
+            <span className=" text-[#8B6A3E]">Verified Support</span>
           </h2>
 
       
@@ -37,10 +37,10 @@ export default function AboutMokshaSewa() {
           </div>
 
           <p className="max-w-[470px] text-base leading-relaxed text-[#5F4A3D] sm:text-lg">
-            Moksha Sewa was founded with one simple belief: every family
-            deserves support and respect during life&apos;s most difficult
-            moments. We coordinate the practical arrangements and sacred
-            customs, so families can focus on remembering their loved one.
+            Moksha Sewa was founded with one simple belief: every final journey
+            deserves dignity. We support economically weaker families and
+            legally authorised unclaimed cases through verified, compassionate
+            coordination.
           </p>
 
           {/* signed note */}

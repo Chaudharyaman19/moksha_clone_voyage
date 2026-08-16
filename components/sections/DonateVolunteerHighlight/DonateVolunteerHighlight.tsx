@@ -1,0 +1,320 @@
+"use client";
+
+import {
+  FaArrowRight,
+  FaHandHoldingHeart,
+  FaHandsHelping,
+  FaUsers,
+} from "react-icons/fa";
+import { PiFlowerLotus } from "react-icons/pi";
+
+export default function DonateVolunteerHighlight() {
+  return (
+    <section className="relative isolate overflow-hidden bg-[#FBF6EE] px-4 py-5 sm:px-5 lg:px-6 lg:py-2">
+      {/* =========================================================
+          PREMIUM BACKGROUND
+      ========================================================== */}
+
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(200,81,23,0.08),transparent_28%),radial-gradient(circle_at_88%_82%,rgba(139,106,62,0.10),transparent_34%),linear-gradient(135deg,#FFF9F1_0%,#FBF3E8_48%,#FFFDF9_100%)]" />
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C99354]/55 to-transparent" />
+
+      <div className="pointer-events-none absolute -left-32 top-1/2 h-[430px] w-[430px] -translate-y-1/2 rounded-full border border-[#B8874E]/10" />
+
+      <div className="pointer-events-none absolute -left-12 top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full border border-[#B8874E]/10" />
+
+      <div className="pointer-events-none absolute -right-28 -top-24 h-[360px] w-[360px] rounded-full border border-[#B8874E]/10" />
+
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-24 w-[78%] -translate-x-1/2 bg-gradient-to-t from-[#8B6A3E]/[0.05] to-transparent blur-2xl" />
+
+      {/* =========================================================
+          CONTENT
+      ========================================================== */}
+
+      <div className="relative z-10 mx-auto max-w-[1280px]">
+
+        {/* =======================================================
+            SECTION LABEL
+        ======================================================== */}
+
+        <div className="mb-1 flex items-center justify-center gap-3">
+          <span className="h-px w-10 bg-[#A97843]/45 sm:w-14" />
+
+          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D7B47D] bg-[#FFF8EC] shadow-[0_6px_18px_rgba(129,83,38,0.08)]">
+            <PiFlowerLotus className="h-4 w-4 text-[#C85117]" />
+          </span>
+
+          <span className="text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#72502F] sm:text-[11px]">
+            Together For Dignity
+          </span>
+
+          <span className="h-px w-10 bg-[#A97843]/45 sm:w-14" />
+        </div>
+
+        {/* =======================================================
+            MAIN GRID
+        ======================================================== */}
+
+        <div className="grid items-stretch gap-4 lg:grid-cols-[1.04fr_0.96fr]">
+
+          {/* =====================================================
+              LEFT — VIDEO
+          ====================================================== */}
+
+          <div className="group relative min-h-[270px] overflow-hidden border border-[#D5AF78]/65 bg-[#2C1810] shadow-[0_20px_48px_rgba(73,47,25,0.16)] sm:min-h-[315px] lg:min-h-[355px]">
+
+            <video
+              src="/vedio/vedio.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]"
+            />
+
+            {/* Cinematic overlay */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(44,24,16,0.06)_0%,rgba(44,24,16,0.18)_48%,rgba(44,24,16,0.94)_100%)]" />
+
+            {/* Top gold line */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E1B778]/70 to-transparent" />
+
+            {/* Video content */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 sm:px-6 sm:pb-6 lg:px-7">
+
+              <div className="mb-2.5 inline-flex items-center gap-2 border border-white/20 bg-[#2C1810]/35 px-3 py-1.5 backdrop-blur-md">
+
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F3C77F] shadow-[0_0_10px_rgba(243,199,127,0.75)]" />
+
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#F6D39B]">
+                  Moksha Sewa Mission
+                </span>
+
+              </div>
+
+              <h3
+                className="max-w-[600px] text-[22px] leading-[1.16] text-white sm:text-[27px] lg:text-[30px]"
+                style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                }}
+              >
+                A little support can bring dignity to someone&apos;s final
+                journey.
+              </h3>
+
+              <div className="mt-3 flex items-center gap-3">
+                <span className="h-px w-12 bg-[#F0C889]/70" />
+
+                <PiFlowerLotus className="h-4 w-4 text-[#F0C889]" />
+
+                <span className="h-px w-12 bg-[#F0C889]/70" />
+              </div>
+
+            </div>
+          </div>
+
+          {/* =====================================================
+              RIGHT — CONTENT
+          ====================================================== */}
+
+          <div className="relative overflow-hidden border border-[#DFC59D] bg-[#FFFDF9]/95 p-4 shadow-[0_18px_42px_rgba(79,51,27,0.10)] backdrop-blur-sm sm:p-5 lg:p-6">
+
+            {/* Top line */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C58B49] to-transparent" />
+
+            {/* Decorative glow */}
+            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#D95A06]/[0.06] blur-3xl" />
+
+            <div className="pointer-events-none absolute -bottom-12 -left-12 h-36 w-36 rounded-full bg-[#8B6A3E]/[0.05] blur-3xl" />
+
+            <div className="relative z-10">
+
+              {/* =================================================
+                  SMALL HEADER
+              ================================================== */}
+
+              <div className="mb-2.5 flex items-center gap-3">
+
+                <div className="flex h-9 w-9 items-center justify-center border border-[#D9B67F] bg-[#F8EAD5] text-[#C85117] shadow-[0_6px_16px_rgba(129,83,38,0.08)]">
+                  <FaHandHoldingHeart className="h-4 w-4" />
+                </div>
+
+                <div>
+                  <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-[#A27549]">
+                    Moksha Sewa
+                  </span>
+
+                  <span className="mt-0.5 block text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#815B35]">
+                    Join The Mission
+                  </span>
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  MAIN HEADING
+              ================================================== */}
+
+              <h2
+                className="max-w-[560px] text-[27px] font-normal leading-[1.08] text-[#2C1810] sm:text-[33px] lg:text-[37px]"
+                style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                }}
+              >
+                Your Support Can Become Someone&apos;s{" "}
+                <span className="relative inline-block text-[#C85117]">
+                  Final Dignity.
+
+                  <span className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-[#C85117]/75 to-transparent" />
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="mt-2 max-w-[580px] text-[13px] leading-[1.6] text-[#655043] sm:text-[14px]">
+                Donate to support verified sewa needs or volunteer your time
+                for coordination, guidance and on-ground assistance.
+              </p>
+
+              {/* =================================================
+                  DONATE + VOLUNTEER
+              ================================================== */}
+
+              <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+
+                {/* =================================================
+                    DONATE CARD
+                ================================================== */}
+
+                <a
+                  href="/donation"
+                  className="group relative overflow-hidden border border-[#9E6129] bg-[linear-gradient(145deg,#4A2A19_0%,#351E14_52%,#28150D_100%)] p-3.5 text-white shadow-[0_14px_30px_rgba(70,39,20,0.20)] transition duration-300 hover:-translate-y-1 hover:border-[#C88643] hover:shadow-[0_20px_40px_rgba(70,39,20,0.26)]"
+                >
+
+                  {/* Decorative elements */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F0C889]/70 to-transparent" />
+
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#DDB475]/20" />
+
+                  <div className="pointer-events-none absolute -right-2 -top-2 h-20 w-20 rounded-full bg-[#D95A06]/15 blur-2xl" />
+
+                  <div className="pointer-events-none absolute bottom-0 left-0 h-16 w-full bg-gradient-to-t from-black/10 to-transparent" />
+
+                  <div className="relative z-10">
+
+                    <div className="mb-2.5 flex items-center justify-between">
+
+                      <div className="flex h-10 w-10 items-center justify-center border border-[#E5B56F]/55 bg-[#E5B56F]/10 text-[#F1C27D]">
+                        <FaHandHoldingHeart className="h-4 w-4" />
+                      </div>
+
+                      <span className="border border-[#E6C18A]/30 bg-white/5 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.16em] text-[#EBCB9A]">
+                        Support
+                      </span>
+
+                    </div>
+
+                    <h3
+                      className="text-[19px] leading-tight text-white"
+                      style={{
+                        fontFamily: "Georgia, 'Times New Roman', serif",
+                      }}
+                    >
+                      Donate For Sewa
+                    </h3>
+
+                    <p className="mt-1 text-[11.5px] leading-[1.45] text-white/72">
+                      Help verified cases receive respectful final-rites
+                      assistance.
+                    </p>
+
+                    <span className="mt-2.5 inline-flex items-center gap-2 text-[12px] font-bold text-[#F2C986]">
+                      Donate Now
+
+                      <span className="flex h-6 w-6 items-center justify-center border border-[#F2C986]/45 transition duration-300 group-hover:translate-x-1 group-hover:border-[#F2C986]">
+                        <FaArrowRight className="h-2.5 w-2.5" />
+                      </span>
+                    </span>
+
+                  </div>
+                </a>
+
+                {/* =================================================
+                    VOLUNTEER CARD
+                ================================================== */}
+
+                <a
+                  href="/volunteer/register"
+                  className="group relative overflow-hidden border border-[#D2A064] bg-[linear-gradient(145deg,#FFF9EE_0%,#FFFDF9_50%,#F5E4CA_100%)] p-3.5 text-[#2C1810] shadow-[0_14px_30px_rgba(122,79,35,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#B97535] hover:shadow-[0_20px_40px_rgba(122,79,35,0.16)]"
+                >
+
+                  {/* Decorative elements */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C58B49]/70 to-transparent" />
+
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#C98B45]/15" />
+
+                  <div className="pointer-events-none absolute -right-2 -top-2 h-20 w-20 rounded-full bg-[#C85117]/[0.06] blur-2xl" />
+
+                  <div className="relative z-10">
+
+                    <div className="mb-2.5 flex items-center justify-between">
+
+                      <div className="flex h-10 w-10 items-center justify-center border border-[#D8AD76] bg-[#F5E2C4] text-[#C85117]">
+                        <FaUsers className="h-4 w-4" />
+                      </div>
+
+                      <span className="border border-[#C99152]/30 bg-[#9A6A2E]/5 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.16em] text-[#8C5D2E]">
+                        Volunteer
+                      </span>
+
+                    </div>
+
+                    <h3
+                      className="text-[19px] leading-tight text-[#2C1810]"
+                      style={{
+                        fontFamily: "Georgia, 'Times New Roman', serif",
+                      }}
+                    >
+                      Become a Volunteer
+                    </h3>
+
+                    <p className="mt-1 text-[11.5px] leading-[1.45] text-[#685446]">
+                      Give your time for coordination, guidance and on-ground
+                      sewa.
+                    </p>
+
+                    <span className="mt-2.5 inline-flex items-center gap-2 text-[12px] font-bold text-[#A85C20]">
+                      Register Now
+
+                      <span className="flex h-6 w-6 items-center justify-center border border-[#C97A3A]/45 transition duration-300 group-hover:translate-x-1 group-hover:border-[#C97A3A]">
+                        <FaArrowRight className="h-2.5 w-2.5" />
+                      </span>
+                    </span>
+
+                  </div>
+                </a>
+              </div>
+
+              {/* =================================================
+                  TRUST NOTE
+              ================================================== */}
+
+              <div className="mt-3 flex items-start gap-3 border-t border-[#E7D7BF] pt-3">
+
+                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center border border-[#DFC49D] bg-[#F6E8D3] text-[#B86A2A]">
+                  <FaHandsHelping className="h-4 w-4" />
+                </div>
+
+                <p className="text-[11.5px] leading-[1.45] text-[#756154]">
+                  Every request is handled with dignity and is subject to
+                  verification, availability and applicable local requirements.
+                </p>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
