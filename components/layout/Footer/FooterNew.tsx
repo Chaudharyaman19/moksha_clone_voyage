@@ -589,10 +589,18 @@ export default function FooterNew() {
             <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
           </div>
 
-          <div className="flex w-full shrink-0 items-center justify-center gap-3 sm:w-auto sm:justify-end">
+          <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
+            <Link
+              href="/request-help"
+              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
+            >
+              <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
+              <span className="whitespace-nowrap">Request Help</span>
+            </Link>
+
             <Link
               href="/donation"
-              className="inline-flex h-[40px] w-1/2 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
+              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
             >
               <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
               <span className="whitespace-nowrap">Donate Now</span>
@@ -600,7 +608,7 @@ export default function FooterNew() {
 
             <Link
               href="/volunteer/register"
-              className="inline-flex h-[40px] w-1/2 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[175px] sm:gap-2 sm:px-4 sm:text-[14px]"
+              className="inline-flex h-[40px] w-full min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[175px] sm:gap-2 sm:px-4 sm:text-[14px]"
             >
               <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
               <span className="whitespace-nowrap">Become a Volunteer</span>
