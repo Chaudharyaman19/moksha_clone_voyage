@@ -324,7 +324,6 @@
 //             <h1
 //               className="text-[38px] leading-[0.98] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[60px]"
 //               style={{
-//                 fontFamily: "Georgia, 'Times New Roman', serif",
 //                 fontWeight: 500,
 //               }}
 //             >
@@ -410,7 +409,6 @@
 //                 <div className="min-w-0 text-left">
 //                   <div
 //                     className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]"
-//                     style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
 //                   >
 //                     <AnimatedNumber endString={stat.value} />
 //                   </div>
