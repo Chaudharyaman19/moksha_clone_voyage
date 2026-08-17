@@ -172,7 +172,7 @@ export default function AmbulanceService() {
       <Topbar />
       <Navbar />
 
-      <main className="w-full bg-[#FBFAF7] py-0">
+      <main className="w-full bg-[#FBFAF7] pt-24 lg:pt-24">
         <div className="w-full overflow-hidden bg-[#FBFAF7]">
           <HeroSection />
           <FeatureHighlights />
@@ -206,8 +206,8 @@ function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5">
-        <div className="w-[47%] pb-[18px] pt-[132px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
-          <div className="mb-5 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
+        <div className="w-[47%] pb-[18px] pt-8 max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
+          <div className="mb-3 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
               <Icon name="drop" size={14} />
             </span>
@@ -220,16 +220,15 @@ function HeroSection() {
             Support with Dignity
           </h1>
 
-          <Divider className="my-[19px] w-[127px]" />
+          <Divider className="my-3 w-[127px]" />
 
           <p className="w-[325px] text-[15px] leading-relaxed text-[#50483F] max-[820px]:w-auto sm:text-[16px]">
-            Namo Gange helps coordinate compassionate ambulance and hearse support
-            for eligible last-journey cases. Our team supports dignified transfer,
-            calm coordination and timely guidance subject to verification and
-            availability.
+            Namo Gange coordinates ambulance and hearse support for eligible
+            last-journey cases with dignified transfer, calm guidance and timely
+            assistance, subject to verification and availability.
           </p>
 
-          <div className="mt-[19px] flex gap-3 max-[520px]:flex-col">
+          <div className="mt-4 flex gap-3 max-[520px]:flex-col">
             <a className={primaryButton} href="tel:+919654900525">
               <Icon name="phone" size={18} />
               <span>Call for Ambulance</span>
@@ -244,7 +243,7 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-[21px] flex items-center gap-[6px] text-[14px] font-normal text-[#756858]">
+          <div className="mt-4 flex items-center gap-[6px] text-[14px] font-normal text-[#756858]">
             <span className="text-[#A87935]">
               <Icon name="shield" size={16} />
             </span>
