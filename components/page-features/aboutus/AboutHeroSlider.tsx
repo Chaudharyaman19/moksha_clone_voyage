@@ -73,7 +73,7 @@ function NewBanner() {
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-0">
           <div className="max-w-[540px]">
             {/* Namo Gange logo — centered over the text below */}
-            <div className="mb-2 mt-14 flex w-fit flex-col items-center">
+            <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
               <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
                 <Image
                   src="/hero-images/image6.png"
@@ -86,13 +86,13 @@ function NewBanner() {
                 />
               </div>
 
-              {/* eyebrow — starts from the left */}
-              <div className="mt-2 flex w-fit items-center gap-3">
-                <span className="h-px w-8 bg-[#73532F]/70" />
-                <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                  Moksha Sewa — An Initiative of Namo Gange Trust
+              <div className="mt-1 flex flex-col items-center text-center">
+                <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+                  Moksha Sewa
                 </span>
-                <span className="h-px w-8 bg-[#73532F]/70" />
+                <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+                  An Initiative of Namo Gange Trust
+                </span>
               </div>
             </div>
 
@@ -238,7 +238,7 @@ function PreviousBanner() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0">
         <div className="max-w-[540px]">
           {/* Namo Gange logo — centered over the text below */}
-          <div className="mb-2 mt-14 flex w-fit flex-col items-center">
+          <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
             <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
               <Image
                 src="/hero-images/image6.png"
@@ -251,13 +251,13 @@ function PreviousBanner() {
               />
             </div>
 
-            {/* eyebrow — starts from the left */}
-            <div className="mt-2 flex w-fit items-center gap-3">
-              <span className="h-px w-8 bg-[#73532F]/70" />
-              <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                Moksha Sewa — An Initiative of Namo Gange Trust
+            <div className="mt-1 flex flex-col items-center text-center">
+              <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+                Moksha Sewa
               </span>
-              <span className="h-px w-8 bg-[#73532F]/70" />
+              <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+                An Initiative of Namo Gange Trust
+              </span>
             </div>
           </div>
 
