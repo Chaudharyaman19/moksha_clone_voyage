@@ -69,7 +69,7 @@ const SocialSidebar = () => {
                 <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
                   <FaEnvelope size={14} className="text-white" />
                   <span
-                    className="font-semibold text-sm tracking-wide text-white"
+                    className="font-semibold text-[16px] tracking-wide text-white"
                     style={{
                       writingMode: "vertical-rl",
                       transform: "rotate(180deg)",
@@ -80,7 +80,7 @@ const SocialSidebar = () => {
                 </div>
               </Link>
 
-              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-[#2C1810] px-3 py-1.5 text-[14px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-[#2C1810] px-3 py-1.5 text-[16px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
                 Go to contact page
               </div>
             </div>
@@ -93,7 +93,7 @@ const SocialSidebar = () => {
                 <div className="px-1 py-7 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-red-500/20 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
                   <FaPhone size={14} className="text-white" />
                   <span
-                    className="font-semibold text-sm tracking-wide text-white"
+                    className="font-semibold text-[16px] tracking-wide text-white"
                     style={{
                       writingMode: "vertical-rl",
                       transform: "rotate(180deg)",
@@ -104,7 +104,7 @@ const SocialSidebar = () => {
                 </div>
               </a>
               {/* Tooltip */}
-              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-red-600 px-3 py-1.5 text-[14px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+              <div className="pointer-events-none absolute left-full top-1/2 ml-2 -translate-y-1/2 whitespace-nowrap rounded bg-red-600 px-3 py-1.5 text-[16px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
                 24/7 Emergency Support
               </div>
             </div>
@@ -128,7 +128,7 @@ const SocialSidebar = () => {
                   style={{ backgroundColor: social.color }}
                 >
                   <span 
-                    className="max-w-0 overflow-hidden whitespace-nowrap text-[14px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
+                    className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
                   >
                     {social.label}
                   </span>
@@ -159,7 +159,7 @@ const SocialSidebar = () => {
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
                 <FaWhatsapp size={22} />
               </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[14px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
                 WhatsApp
               </span>
             </div>
@@ -177,7 +177,7 @@ const SocialSidebar = () => {
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
               style={{ backgroundColor: phoneLink.color }}
             >
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[14px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white">
                 {phoneLink.label}
               </span>
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
@@ -210,7 +210,7 @@ const SocialSidebar = () => {
                 className="text-[#8B6A3E] group-hover:text-white"
               />
             </div>
-            <span className="text-[11px] font-medium text-[#5A3E2B]">
+            <span className="text-[16px] font-medium text-[#5A3E2B]">
               ENQUIRY
             </span>
           </Link>
@@ -227,7 +227,7 @@ const SocialSidebar = () => {
                 className="text-red-600 group-hover:text-white"
               />
             </div>
-            <span className="text-[11px] font-medium text-red-600">
+            <span className="text-[16px] font-medium text-red-600">
               EMERGENCY
             </span>
           </a>
@@ -246,7 +246,7 @@ const SocialSidebar = () => {
                 className="text-[#25D366] group-hover:text-white"
               />
             </div>
-            <span className="text-[11px] font-medium text-[#16823E]">
+            <span className="text-[16px] font-medium text-[#16823E]">
               WHATSAPP
             </span>
           </a>
@@ -263,7 +263,7 @@ const SocialSidebar = () => {
                 className="text-[#4CAF50] group-hover:text-white"
               />
             </div>
-            <span className="text-[11px] font-medium text-[#2D6E30]">CALL</span>
+            <span className="text-[16px] font-medium text-[#2D6E30]">CALL</span>
           </a>
 
           {/* Social Menu Trigger */}
@@ -272,7 +272,7 @@ const SocialSidebar = () => {
               <div className="w-10 h-10 rounded-full bg-[#8B6A3E] flex items-center justify-center">
                 <PiFlowerLotus size={16} className="text-white" />
               </div>
-              <span className="text-[11px] font-medium text-[#8B6A3E]">
+              <span className="text-[16px] font-medium text-[#8B6A3E]">
                 SOCIAL
               </span>
             </button>
@@ -289,7 +289,7 @@ const SocialSidebar = () => {
                     className="flex items-center gap-3 px-3 py-2 hover:bg-[#F5E9D9] rounded-lg"
                   >
                     <div style={{ color: social.color }}>{social.icon}</div>
-                    <span className="text-[14px] text-[#5A3E2B]">
+                    <span className="text-[16px] text-[#5A3E2B]">
                       {social.label}
                     </span>
                   </a>

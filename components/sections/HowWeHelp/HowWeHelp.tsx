@@ -290,15 +290,15 @@ export default function HowWeCanHelp() {
           <div className="inline-flex items-center mb-0 gap-4">
             <span className="h-px bg-gradient-to-r from-transparent via-[#A66F2C] to-[#A66F2C] w-20" />
 
-            <span className="rotate-45 text-[14px] leading-none text-[#A66F2C]">
+            <span className="rotate-45 text-[16px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
-            <span className="font-semibold uppercase text-[#9A6426] text-[14px] tracking-[0.32em] sm:text-[15px]">
+            <span className="font-semibold uppercase text-[#9A6426] text-[16px] tracking-[0.32em] sm:text-[16px]">
               Moksha Sewa Support
             </span>
 
-            <span className="rotate-45 text-[14px] leading-none text-[#A66F2C]">
+            <span className="rotate-45 text-[16px] leading-none text-[#A66F2C]">
               ◇
             </span>
 
@@ -315,7 +315,7 @@ export default function HowWeCanHelp() {
 
             <div className="mt-0.5 flex items-center justify-center gap-2 text-[#A66F2C]">
               <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#A66F2C]" />
-              <span className="text-[14px]">◇</span>
+              <span className="text-[16px]">◇</span>
               <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#A66F2C]" />
             </div>
         </header>
@@ -350,7 +350,7 @@ export default function HowWeCanHelp() {
                     {card.title}
                   </h3>
 
-                  <p className="mt-1.5 min-h-[72px] text-[15px] leading-6 text-[#493326]">
+                  <p className="mt-1.5 min-h-[72px] text-[16px] leading-6 text-[#493326]">
                     {card.desc}
                   </p>
 
@@ -360,9 +360,9 @@ export default function HowWeCanHelp() {
                     {card.features.map((feature) => (
                       <div
                         key={feature}
-                        className="flex items-center gap-1.5 text-[14px] leading-5 text-[#3A291F]"
+                        className="flex items-center gap-1.5 text-[16px] leading-5 text-[#3A291F]"
                       >
-                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#A86D1E] text-[14px] font-bold leading-none text-white">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#A86D1E] text-[16px] font-bold leading-none text-white">
                           ✓
                         </span>
                         <span>{feature}</span>
@@ -372,7 +372,7 @@ export default function HowWeCanHelp() {
 
                   <a
                     href={card.href || "/request-help"}
-                    className="relative top-1 mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[13px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
+                    className="relative top-1 mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[16px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
                   >
                     <span className="whitespace-nowrap">Learn More</span>
                     <CustomIcon name="FaArrowRight" className="h-3 w-3" />
@@ -394,10 +394,10 @@ export default function HowWeCanHelp() {
                   </div>
 
                   <div className="min-w-0 text-left">
-                    <div className="font-serif text-[15px] leading-none text-[#2F1D14]">
+                    <div className="font-serif text-[16px] leading-none text-[#2F1D14]">
                       {stat.value}
                     </div>
-                    <div className="mt-0.5 text-[14px] leading-tight text-[#432D20]">
+                    <div className="mt-0.5 text-[16px] leading-tight text-[#432D20]">
                       {stat.label}
                     </div>
                   </div>

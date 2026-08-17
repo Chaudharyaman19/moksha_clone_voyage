@@ -315,7 +315,7 @@
 //             {/* eyebrow */}
 //             <div className="mb-4 flex max-w-[520px] items-center gap-3">
 //               <span className="h-px w-8 bg-[#73532F]/70" />
-//               <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
+//               <span className="text-[16px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[16px]">
 //                Moksha Sewa A Namo Gange Trust Initiative
 //               </span>
 //               <span className="h-px w-8 bg-[#73532F]/70" />
@@ -344,7 +344,7 @@
 //               <span className="h-px flex-1 bg-[#C85117]/65" />
 //             </div>
 
-//             <p className="mt-4 max-w-[545px] text-[15px] font-semibold leading-[1.55] text-[#2C1810] sm:text-[17px]">
+//             <p className="mt-4 max-w-[545px] text-[16px] font-semibold leading-[1.55] text-[#2C1810] sm:text-[17px]">
 //               {activeSlide.descriptionHighlight &&
 //               activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
 //                 <>
@@ -361,7 +361,7 @@
 //             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
 //               <a
 //                 href={activeSlide.primaryButton?.href ?? "/sevas"}
-//                 className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[255px]"
+//                 className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[255px]"
 //               >
 //                 <span className="flex items-center gap-3">
 //                   <FaHandsHelping className="h-6 w-6" />
@@ -374,7 +374,7 @@
 
 //               <a
 //                 href={activeSlide.secondaryButton?.href ?? "/sevas"}
-//                 className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[15px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[255px]"
+//                 className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[255px]"
 //               >
 //                 <span className="flex items-center gap-3">
 //                   <FaRegHeart className="h-6 w-6 text-[#D95A06]" />
@@ -412,7 +412,7 @@
 //                   >
 //                     <AnimatedNumber endString={stat.value} />
 //                   </div>
-//                   <div className="mt-1 max-w-[120px] text-[14px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[15px]">
+//                   <div className="mt-1 max-w-[120px] text-[16px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[16px]">
 //                     {stat.label}
 //                   </div>
 //                 </div>
@@ -809,7 +809,7 @@ export default function Hero() {
               {/* eyebrow — starts from the left */}
               <div className="mt-2 flex w-fit items-center gap-3">
                 <span className="h-px w-8 bg-[#73532F]/70" />
-                <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
+                <span className="text-[16px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[16px]">
                   Moksha Sewa A Namo Gange Trust Initiative
                 </span>
                 <span className="h-px w-8 bg-[#73532F]/70" />
@@ -915,7 +915,7 @@ export default function Hero() {
             </div>
 
             {!isFamilySupportSlide && !isJourneyPrayerSlide && (
-              <p className="mt-3 max-w-[545px] text-[15px] font-semibold leading-[1.5] text-[#2C1810] sm:text-[17px]">
+              <p className="mt-3 max-w-[545px] text-[16px] font-semibold leading-[1.5] text-[#2C1810] sm:text-[17px]">
                 {activeSlide.descriptionHighlight &&
                 activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
@@ -940,7 +940,7 @@ export default function Hero() {
                     <FaHandHoldingHeart className="h-8 w-8" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-[14px] font-bold leading-tight">
+                    <span className="block text-[16px] font-bold leading-tight">
                       Request Support
                     </span>
                   </span>
@@ -954,7 +954,7 @@ export default function Hero() {
                     <FaHandsHelping className="h-8 w-8" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-[14px] font-bold leading-tight text-[#C85117]">
+                    <span className="block text-[16px] font-bold leading-tight text-[#C85117]">
                       Support a Family
                     </span>
                   </span>
@@ -967,7 +967,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaAmbulance className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
+                    <span className="text-[16px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Transport
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">with care</span>
@@ -978,7 +978,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaPrayingHands className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
+                    <span className="text-[16px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Rituals
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">with dignity</span>
@@ -989,7 +989,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaUsers className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
+                    <span className="text-[16px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Supporting Families
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">every step</span>
@@ -1000,7 +1000,7 @@ export default function Hero() {
                 <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <a
                     href={activeSlide.primaryButton?.href ?? "/sevas"}
-                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                   >
                     <span className="whitespace-nowrap">{activeSlide.primaryButton?.label}</span>
                     <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
@@ -1009,7 +1009,7 @@ export default function Hero() {
                   </a>
                   <a
                     href={activeSlide.secondaryButton?.href ?? "/donation"}
-                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
                   >
                     <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label}</span>
                     <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
@@ -1022,7 +1022,7 @@ export default function Hero() {
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/volunteer/register"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                 >
                   <span className="flex items-center gap-3">
                     <FaUsers className="h-6 w-6 shrink-0" />
@@ -1034,7 +1034,7 @@ export default function Hero() {
                 </a>
                 <a
                   href={activeSlide.secondaryButton?.href ?? "/donation"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
                 >
                   <span className="flex items-center gap-3">
                     <FaRegHeart className="h-6 w-6 shrink-0 text-[#D95A06]" />
@@ -1049,7 +1049,7 @@ export default function Hero() {
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                 >
                   <span className="flex min-w-0 items-center gap-3">
                     <FaHandHoldingHeart className="h-6 w-6 shrink-0" />
@@ -1062,7 +1062,7 @@ export default function Hero() {
 
                 <a
                   href={activeSlide.secondaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
                 >
                   <span className="flex min-w-0 items-center gap-3">
                     {activeSlide.secondaryButton?.label === "Become a Volunteer" ? (
@@ -1085,7 +1085,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaHandHoldingHeart className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Compassion
                     <br />
                     Brings Dignity
@@ -1096,7 +1096,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaUsers className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Time
                     <br />
                     Creates Impact
@@ -1107,7 +1107,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaHandHoldingHeart className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Support
                     <br />
                     Gives Respect
@@ -1127,7 +1127,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaPrayingHands className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
+              <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Volunteer
                 <br />
                 For Sewa
@@ -1138,7 +1138,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaHandHoldingHeart className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
+              <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Donate
                 <br />
                 With Heart
@@ -1149,7 +1149,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaUsers className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
+              <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Share
                 <br />
                 The Mission
@@ -1159,7 +1159,7 @@ export default function Hero() {
 
           <div className="mt-3 flex items-center gap-2 border-t border-[#E7CDAE] pt-3">
             <PiFlowerLotus className="h-5 w-5 shrink-0 text-[#D95A06]" />
-            <p className="text-[12px] font-medium text-[#5B4635]">
+            <p className="text-[16px] font-medium text-[#5B4635]">
               Together, we ensure{" "}
               <span className="font-bold text-[#D95A06]">
                 no one is left without dignity
@@ -1191,7 +1191,7 @@ export default function Hero() {
                   >
                     <AnimatedNumber endString={stat.value} />
                   </div>
-                  <div className="mt-1 max-w-[120px] text-[14px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[15px]">
+                  <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
                     {stat.label}
                   </div>
                 </div>

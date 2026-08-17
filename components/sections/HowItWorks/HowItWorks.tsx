@@ -211,7 +211,7 @@ export default function HowItWorks({}: MokshaShlokSectionProps) {
           <div className="mt-0.5 inline-flex items-center gap-3">
             <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#A77B43]" />
 
-            <span className="text-[14px] font-medium uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[15px]">
+            <span className="text-[16px] font-medium uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[16px]">
               How We Help
             </span>
 
@@ -254,11 +254,11 @@ export default function HowItWorks({}: MokshaShlokSectionProps) {
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="mb-1 text-[14px] font-semibold leading-tight text-[#33251D] sm:text-[14px]">
+                    <h3 className="mb-1 text-[16px] font-semibold leading-tight text-[#33251D] sm:text-[16px]">
                       {step.title}
                     </h3>
 
-                    <p className="text-[14px] font-normal leading-[1.45] text-[#5F5147] sm:text-[15px]">
+                    <p className="text-[16px] font-normal leading-[1.45] text-[#5F5147] sm:text-[16px]">
                       {step.description}
                     </p>
                   </div>

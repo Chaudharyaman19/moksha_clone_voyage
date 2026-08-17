@@ -591,7 +591,7 @@ export default function FooterNew() {
   </h2>
   */}
 
-  <p className="footer-brand-tagline mt-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[#F28C18]">
+  <p className="footer-brand-tagline mt-0.5 text-[16px] font-bold uppercase tracking-[0.08em] text-[#F28C18]">
     {tagline}
   </p>
 
@@ -607,13 +607,13 @@ export default function FooterNew() {
     <span className="h-px w-10 bg-[#F28C18]" />
   </div>
 
-  <p className="footer-brand-desc mx-auto mt-1.5 max-w-[220px] text-center text-[14px] font-medium leading-[1.4] text-[#123F40]">
+  <p className="footer-brand-desc mx-auto mt-1.5 max-w-[220px] text-center text-[16px] font-medium leading-[1.4] text-[#123F40]">
     {description}
   </p>
 
   <Link
     href="/donation"
-    className="footer-donate-btn mt-2 inline-flex h-9 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#E94B2B] to-[#F28C18] px-6 text-[13px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_8px_18px_rgba(233,75,43,0.30)] transition hover:-translate-y-0.5 hover:brightness-105"
+    className="footer-donate-btn mt-2 inline-flex h-9 items-center gap-2.5 rounded-full bg-gradient-to-r from-[#E94B2B] to-[#F28C18] px-6 text-[16px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_8px_18px_rgba(233,75,43,0.30)] transition hover:-translate-y-0.5 hover:brightness-105"
   >
     <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
       <HandHeart className="h-5 w-5" />
@@ -634,7 +634,7 @@ export default function FooterNew() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link inline-flex items-center gap-2 text-[14px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
+                    className="footer-link inline-flex items-center gap-2 text-[16px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
                   >
                     <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#F28C18]" />
                     {item.label}
@@ -651,7 +651,7 @@ export default function FooterNew() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link inline-flex items-center gap-2 text-[14px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
+                    className="footer-link inline-flex items-center gap-2 text-[16px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
                   >
                     <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#F28C18]" />
                     {item.label}
@@ -668,7 +668,7 @@ export default function FooterNew() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="footer-link inline-flex items-center gap-2 text-[14px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
+                    className="footer-link inline-flex items-center gap-2 text-[16px] font-semibold leading-[1.3] text-[#123F40] transition hover:text-[#E94B2B]"
                   >
                     <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#F28C18]" />
                     {item.label}
@@ -682,7 +682,7 @@ export default function FooterNew() {
           <FloatingCard icon={Phone} title="Contact Us">
             <div className="space-y-1">
               <ContactItem icon={MapPin}>
-                <p className="text-[14px] font-medium leading-[1.4] text-[#123F40]">
+                <p className="text-[16px] font-medium leading-[1.4] text-[#123F40]">
                   Delhi NCR,
                   <br />
                   India
@@ -692,7 +692,7 @@ export default function FooterNew() {
               <ContactItem icon={Phone}>
                 <a
                   href={`tel:+91${contactNumber}`}
-                  className="text-[14px] font-medium leading-[1.4] text-[#123F40] transition hover:text-[#E94B2B]"
+                  className="text-[16px] font-medium leading-[1.4] text-[#123F40] transition hover:text-[#E94B2B]"
                 >
                   +91 {contactNumber}
                 </a>
@@ -701,14 +701,14 @@ export default function FooterNew() {
               <ContactItem icon={Mail}>
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="text-[14px] font-medium leading-[1.4] text-[#123F40] transition hover:text-[#E94B2B]"
+                  className="text-[16px] font-medium leading-[1.4] text-[#123F40] transition hover:text-[#E94B2B]"
                 >
                   <span className="break-all">{contactEmail}</span>
                 </a>
               </ContactItem>
 
               <ContactItem icon={Clock}>
-                <p className="text-[14px] font-medium leading-[1.4] text-[#123F40]">
+                <p className="text-[16px] font-medium leading-[1.4] text-[#123F40]">
                   We are available
                   <br />
                   24/7 for you
@@ -742,12 +742,12 @@ export default function FooterNew() {
                   </span>
                   <div>
 
-                    <h3 className="footer-card-heading text-[14px] font-bold uppercase tracking-[0.04em] text-white">
+                    <h3 className="footer-card-heading text-[16px] font-bold uppercase tracking-[0.04em] text-white">
                       Request <span className="text-[#D99A32]">
                         Support
                         </span>
                     </h3>
-                    <p className="footer-card-desc mt-1 text-[13px] leading-5 text-white/85">
+                    <p className="footer-card-desc mt-1 text-[16px] leading-5 text-white/85">
                       Share your email and our support team will contact you.
                     </p>
 
@@ -775,14 +775,14 @@ export default function FooterNew() {
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
                           placeholder="Your email address"
-                          className="h-10 w-full rounded-[10px] border-none bg-white pl-10 pr-3 text-[13px] text-[#123F40] outline-none transition placeholder:text-[#123F40]/45 focus:ring-2 focus:ring-[#F28C18]"
+                          className="h-10 w-full rounded-[10px] border-none bg-white pl-10 pr-3 text-[16px] text-[#123F40] outline-none transition placeholder:text-[#123F40]/45 focus:ring-2 focus:ring-[#F28C18]"
                           required
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className={`footer-send-btn relative mt-2 flex h-10 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] bg-gradient-to-r from-[#E94B2B] to-[#F28C18] text-[12px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_18px_rgba(233,75,43,0.20),0_2px_8px_rgba(242,140,24,0.12),inset_0_1px_0_rgba(255,255,255,0.20)] transition ${subscribed
+                        className={`footer-send-btn relative mt-2 flex h-10 w-full items-center justify-center gap-2 overflow-hidden rounded-[10px] bg-gradient-to-r from-[#E94B2B] to-[#F28C18] text-[16px] font-bold uppercase tracking-[0.04em] text-white shadow-[0_6px_18px_rgba(233,75,43,0.20),0_2px_8px_rgba(242,140,24,0.12),inset_0_1px_0_rgba(255,255,255,0.20)] transition ${subscribed
                             ? "bg-emerald-600"
                             : ""
                           }`}
@@ -805,7 +805,7 @@ export default function FooterNew() {
                     {/* <div className="footer-card-follow relative mt-3 px-1 pb-1">
                       <div className="flex items-center justify-center gap-3">
                         <span aria-hidden className="h-px w-12 bg-white/60" />
-                        <p className="text-center text-[11px] font-bold uppercase tracking-[0.08em] text-white">
+                        <p className="text-center text-[16px] font-bold uppercase tracking-[0.08em] text-white">
                           Follow Us
                         </p>
                         <span aria-hidden className="h-px w-12 bg-white/60" />
@@ -855,10 +855,10 @@ export default function FooterNew() {
                     <ShineLayer sparks={1} />
                   </span>
                   <div>
-                    <h4 className="footer-value-heading text-[12px] font-bold uppercase tracking-[0.02em] text-[#123F40]">
+                    <h4 className="footer-value-heading text-[16px] font-bold uppercase tracking-[0.02em] text-[#123F40]">
                       {value.title}
                     </h4>
-                    <p className="footer-value-desc mt-0 whitespace-pre-line text-[10.5px] leading-[1.35] text-[#173F40]">
+                    <p className="footer-value-desc mt-0 whitespace-pre-line text-[16px] leading-[1.35] text-[#173F40]">
                       {value.description}
                     </p>
                   </div>
@@ -872,7 +872,7 @@ export default function FooterNew() {
         <div className="footer-bottom relative z-10 mt-1.5 pt-8 pb-2">
           <div className="mx-auto flex max-w-[1540px] flex-col items-center gap-x-4 gap-y-2 px-[4%] py-0.5 text-center sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-y-1.5 sm:text-left">
             {/* copyright */}
-            <div className="footer-bottom-left flex items-center gap-2 text-[12px] text-[#F5EFE4]">
+            <div className="footer-bottom-left flex items-center gap-2 text-[16px] text-[#F5EFE4]">
               <PiFlowerLotus className="h-5 w-5 text-[#D99A32]" />
               <p>
                 © {new Date().getFullYear()} {brandName}. All Rights Reserved.
@@ -885,7 +885,7 @@ export default function FooterNew() {
                 <span key={item.label} className="flex items-center gap-4">
                   <Link
                     href={item.href}
-                    className="text-[12px] text-[#F5EFE4] transition hover:text-[#D99A32]"
+                    className="text-[16px] text-[#F5EFE4] transition hover:text-[#D99A32]"
                   >
                     {item.label}
                   </Link>
@@ -898,7 +898,7 @@ export default function FooterNew() {
 
             {/* Seva • Samman • Samarpan */}
             <div className="footer-bottom-seva flex flex-col items-center text-center">
-              <p className="text-[14px] font-bold tracking-[0.08em] text-[#F28C18]">
+              <p className="text-[16px] font-bold tracking-[0.08em] text-[#F28C18]">
                 Seva • Samman • Samarpan
               </p>
               <div
@@ -909,7 +909,7 @@ export default function FooterNew() {
 
             {/* A Namo Gange Trust Initiative + logo — sath mein, text left logo right */}
             {/* <div className="flex items-center justify-center gap-2.5 border-0 pl-0 sm:border-l sm:border-white/25 sm:pl-4">
-              <p className="text-[12px] text-[#F5EFE4]">{tagline}</p>
+              <p className="text-[16px] text-[#F5EFE4]">{tagline}</p>
               <span className="footer-namo-gange relative inline-flex h-12 w-12 shrink-0 overflow-hidden rounded-full">
                 <Image
                   src={namoGangeLogo}
@@ -1006,7 +1006,7 @@ function FloatingCard({ icon: Icon, title, children, className = "" }: FloatingC
           aria-hidden
           className="pointer-events-none absolute bottom-1.5 left-1.5 h-3 w-3 rounded-full bg-gradient-to-tr from-[#F28C18] to-transparent opacity-10"
         />
-        <h3 className="footer-card-title mt-0 text-center text-[14px] font-bold uppercase tracking-[0.02em] text-[#123F40] self-center">
+        <h3 className="footer-card-title mt-0 text-center text-[16px] font-bold uppercase tracking-[0.02em] text-[#123F40] self-center">
           {title}
         </h3>
         <div className="footer-heading-line footer-heading-glow mt-0.5 h-[2px] w-10 self-center" />

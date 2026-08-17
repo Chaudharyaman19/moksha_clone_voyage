@@ -237,7 +237,7 @@ export default function CompassionSection() {
             </div>
 
             {/* Description */}
-            <p className="mb-4 max-w-[600px] text-[15px] font-normal leading-[1.6] text-[#3F2A1F] sm:text-[16px]">
+            <p className="mb-4 max-w-[600px] text-[16px] font-normal leading-[1.6] text-[#3F2A1F] sm:text-[16px]">
               At{" "}
               <span className="font-semibold text-[#865E30]">
                 Moksha Sewa
@@ -260,10 +260,10 @@ export default function CompassionSection() {
                   >
                     {value}
                   </div>
-                  <div className="mt-1 text-[14px] font-medium leading-tight text-[#39261B]">
+                  <div className="mt-1 text-[16px] font-medium leading-tight text-[#39261B]">
                     {title}
                   </div>
-                  <div className="mt-1 text-[14px] leading-tight text-[#786254]">
+                  <div className="mt-1 text-[16px] leading-tight text-[#786254]">
                     {caption}
                   </div>
                 </article>
@@ -278,10 +278,10 @@ export default function CompassionSection() {
                     <FeatureIcon className="h-3.5 w-3.5" />
                   </div>
                   <div>
-                    <div className="text-[15px] font-semibold leading-tight text-[#332117]">
+                    <div className="text-[16px] font-semibold leading-tight text-[#332117]">
                       {title}
                     </div>
-                    <div className="mt-1 text-[14px] leading-snug text-[#6F5A4C]">
+                    <div className="mt-1 text-[16px] leading-snug text-[#6F5A4C]">
                       {text}
                     </div>
                   </div>
@@ -293,7 +293,7 @@ export default function CompassionSection() {
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <a
                 href="/request-help"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[14px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)] sm:text-[15px]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[16px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)] sm:text-[16px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
                 Request Sewa Support
@@ -301,7 +301,7 @@ export default function CompassionSection() {
 
               <a
                 href="tel:+919810247319"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[14px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10 sm:text-[15px]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[16px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10 sm:text-[16px]"
               >
                 <PhoneIcon className="h-5 w-5" />
                 Call for Help
@@ -315,10 +315,10 @@ export default function CompassionSection() {
                   <PriestIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[14px] font-semibold text-[#4A3020]">
+                  <div className="text-[16px] font-semibold text-[#4A3020]">
                     Priest Support
                   </div>
-                  <div className="text-[14px] text-[#796556]">
+                  <div className="text-[16px] text-[#796556]">
                     Experienced & Verified
                   </div>
                 </div>
@@ -331,10 +331,10 @@ export default function CompassionSection() {
                   <BoxIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[14px] font-semibold text-[#4A3020]">
+                  <div className="text-[16px] font-semibold text-[#4A3020]">
                     Ritual Items & Guidance
                   </div>
-                  <div className="text-[14px] text-[#796556]">
+                  <div className="text-[16px] text-[#796556]">
                     Complete Essentials
                   </div>
                 </div>
@@ -349,7 +349,7 @@ export default function CompassionSection() {
         <div className="grid h-10 w-10 place-items-center rounded-full bg-[#A67635]/10 text-[#8E612E]">
           <ShieldIcon className="h-6 w-6" />
         </div>
-        <div className="text-[14px] leading-relaxed">
+        <div className="text-[16px] leading-relaxed">
           <div className="font-semibold">Compassionate Support.</div>
           <div>Dignified Goodbyes.</div>
         </div>
