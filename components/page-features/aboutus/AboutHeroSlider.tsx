@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFire, FaCheckCircle, FaPhoneAlt, FaArrowRight } from "react-icons/fa";
+import { FaFire, FaCheckCircle, FaPhoneAlt, FaHandHoldingHeart } from "react-icons/fa";
 
 export default function AboutHeroSlider() {
   const [index, setIndex] = useState(0);
@@ -73,7 +73,7 @@ function NewBanner() {
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-0">
           <div className="max-w-[540px]">
             {/* Namo Gange logo — centered over the text below */}
-            <div className="mb-2 mt-14 flex w-fit flex-col items-center">
+            <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
               <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
                 <Image
                   src="/hero-images/image6.png"
@@ -86,79 +86,78 @@ function NewBanner() {
                 />
               </div>
 
-              {/* eyebrow — starts from the left */}
-              <div className="mt-2 flex w-fit items-center gap-3">
-                <span className="h-px w-8 bg-[#73532F]/70" />
-                <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                  Moksha Sewa A Namo Gange Trust Initiative
+              <div className="mt-1 flex flex-col items-center text-center">
+                <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+                  Moksha Sewa
                 </span>
-                <span className="h-px w-8 bg-[#73532F]/70" />
+                <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+                  An Initiative of Namo Gange Trust
+                </span>
               </div>
             </div>
 
-          {/* Hero Text */}
-          <div className="max-w-[540px]">
-            <h2
-              className="text-[38px] leading-[1.03] text-[#102b44] sm:text-[46px] lg:text-[52px]"
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontWeight: 500,
-              }}
-            >
-              Every Life Deserves
-              <br />
+            {/* Hero Text */}
+            <div className="max-w-[540px]">
+              <h2
+                className="text-[38px] leading-[1.03] text-[#102b44] sm:text-[46px] lg:text-[52px]"
+                style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                  fontWeight: 500,
+                }}
+              >
+                Every Life Deserves
+                <br />
 
-              <span className="text-[#dc671f]">
-                Dignity. Always.
-                <span className="ml-1 inline-block text-[34px] font-normal sm:text-[42px]">
-                  ♡
+                <span className="text-[#dc671f]">
+                  Dignity. Always.
+                  <span className="ml-1 inline-block text-[34px] font-normal sm:text-[42px]">
+                    ♡
+                  </span>
                 </span>
-              </span>
-            </h2>
+              </h2>
 
-            {/* Decorative divider */}
-            <div className="mt-3 flex items-center gap-4">
-              <span className="h-[2px] w-44 bg-[#dc671f]" />
+              {/* Decorative divider */}
+              <div className="mt-3 flex items-center gap-4">
+                <span className="h-[2px] w-44 bg-[#dc671f]" />
 
-              <div className="relative flex h-9 w-9 items-center justify-center">
-                <PiFlowerLotus
-                  className="h-9 w-9 text-[#dc671f]"
-                />
+                <div className="relative flex h-9 w-9 items-center justify-center">
+                  <PiFlowerLotus
+                    className="h-9 w-9 text-[#dc671f]"
+                  />
+                </div>
+
+                <span className="h-[2px] w-44 bg-[#dc671f]" />
               </div>
 
-              <span className="h-[2px] w-44 bg-[#dc671f]" />
-            </div>
+              <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
+                Moksha Sewa stands for compassion in action.
+                <br />
+                We are here for the forgotten, the unclaimed,
+                <br />
+                and those who have no one.
+                <br />
 
-            <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
-              Moksha Sewa stands for compassion in action.
-              <br />
-              We are here for the forgotten, the unclaimed,
-              <br />
-              and those who have no one.
-              <br />
+                <strong className="font-bold">
+                  Because no one should face their final journey alone.
+                </strong>
+              </p>
 
-              <strong className="font-bold">
-                Because no one should face their final journey alone.
-              </strong>
-            </p>
-
-            {/* Initiative Badge — home banner button theme */}
-            <div className="mt-3 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
-              <span className="flex items-center gap-3">
-                <PiFlowerLotus className="h-6 w-6 shrink-0" />
-                <span>
-                  <span className="block text-[15px] font-extrabold uppercase leading-tight">
-                    Moksha Sewa
-                  </span>
-                  <span className="mt-0.5 block text-[12px] font-medium text-white/90">
-                    A Namo Gange Trust Initiative
-                  </span>
-                </span>
-              </span>
-              <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
-                <FaArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </div>
+              <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
+                <a
+                  href="/request-help"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                >
+                  <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
+                  <span>Request Help</span>
+                </a>
+                <a
+                  href="/donation"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                >
+                  <FaFire className="h-5 w-5 shrink-0" />
+                  <span>Support This Mission</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -238,7 +237,7 @@ function PreviousBanner() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0">
         <div className="max-w-[540px]">
           {/* Namo Gange logo — centered over the text below */}
-          <div className="mb-2 mt-14 flex w-fit flex-col items-center">
+          <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
             <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
               <Image
                 src="/hero-images/image6.png"
@@ -251,13 +250,13 @@ function PreviousBanner() {
               />
             </div>
 
-            {/* eyebrow — starts from the left */}
-            <div className="mt-2 flex w-fit items-center gap-3">
-              <span className="h-px w-8 bg-[#73532F]/70" />
-              <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                Moksha Sewa A Namo Gange Trust Initiative
+            <div className="mt-1 flex flex-col items-center text-center">
+              <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+                Moksha Sewa
               </span>
-              <span className="h-px w-8 bg-[#73532F]/70" />
+              <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+                An Initiative of Namo Gange Trust
+              </span>
             </div>
           </div>
 
@@ -302,19 +301,22 @@ function PreviousBanner() {
             ))}
           </div>
 
-          {/* CTA — like home banner */}
-          <a
-            href="/sevas"
-            className="group/cta mt-3 inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[300px]"
-          >
-            <span className="flex items-center gap-3">
-              <FaFire className="h-5 w-5" />
-              <span>Explore Our Sewa</span>
-            </span>
-            <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
-              <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-            </span>
-          </a>
+          <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
+            <a
+              href="/request-help"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+            >
+              <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
+              <span>Request Help</span>
+            </a>
+            <a
+              href="/donation"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+            >
+              <FaFire className="h-5 w-5 shrink-0" />
+              <span>Support This Mission</span>
+            </a>
+          </div>
         </div>
       </div>
 

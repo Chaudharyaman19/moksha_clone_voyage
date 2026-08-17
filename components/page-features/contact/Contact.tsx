@@ -7,6 +7,7 @@ import Image from "next/image";
 import {
   FaPhoneAlt,
   FaFacebook,
+  FaInstagram,
   FaTwitter,
   FaLinkedin,
   FaYoutube,
@@ -66,10 +67,27 @@ const officeLocations = [
 ];
 
 const socials = [
-  { Icon: FaFacebook, label: "Facebook", href: "#" },
-  { Icon: FaTwitter, label: "Twitter", href: "#" },
-  { Icon: FaLinkedin, label: "LinkedIn", href: "#" },
-  { Icon: FaYoutube, label: "YouTube", href: "#" },
+  {
+    Icon: FaFacebook,
+    label: "Facebook",
+    href: "https://www.facebook.com/mokshasewa/",
+  },
+  {
+    Icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/mokshasewa/",
+  },
+  { Icon: FaTwitter, label: "X (Twitter)", href: "https://x.com/mokshasewa" },
+  {
+    Icon: FaLinkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/moksha-sewaorg/",
+  },
+  {
+    Icon: FaYoutube,
+    label: "YouTube",
+    href: "https://www.youtube.com/@Mokshasewa",
+  },
 ];
 
 function Contact() {
@@ -91,9 +109,14 @@ function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    const value =
+      e.target.name === "phone"
+        ? e.target.value.replace(/\D/g, "").slice(0, 10)
+        : e.target.value;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -138,10 +161,10 @@ function Contact() {
 
   /* ---------------- shared class tokens ---------------- */
   const inputClass =
-    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[14px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
+    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[16px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
 
   const labelClass =
-    "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B584B]";
+    "mb-1.5 block text-[16px] font-semibold uppercase tracking-[0.08em] text-[#6B584B]";
 
   const eyebrowClass =
     "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#8B6A3E]";
@@ -525,8 +548,12 @@ function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        inputMode="numeric"
+                        maxLength={10}
+                        pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit mobile number"
                         className={`${inputClass} rounded-xl`}
-                        placeholder="+91 98765 43210"
+                        placeholder="Enter 10 digit mobile number"
                       />
                     </div>
                   </div>
@@ -685,6 +712,8 @@ function Contact() {
                         key={label}
                         href={href}
                         aria-label={label}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/75 transition hover:-translate-y-0.5 hover:border-[#D9B681] hover:bg-[#D9B681] hover:text-[#2D211A]"
                       >
                         <Icon className="h-3.5 w-3.5" />

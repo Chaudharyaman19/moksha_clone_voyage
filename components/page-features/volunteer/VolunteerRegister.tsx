@@ -989,31 +989,31 @@ const trustItems: TrustItem[] = [
   {
     title: "Make a Real Impact",
     description:
-      "Your time and compassion can bring comfort to families in their most difficult moments.",
+      "Your time and compassion will bring lasting comfort to families during their most difficult moments.",
     icon: FaUsers,
   },
   {
     title: "Serve with Dignity",
     description:
-      "Be a part of a respectful and meaningful Sewa for the departed and their loved ones.",
+      "Serve with compassion, bringing dignity to the departed and meaningful comfort to grieving families.",
     icon: FaHeart,
   },
   {
     title: "Growth & Learning",
     description:
-      "Develop leadership, empathy and life skills while serving humanity.",
+      "Develop leadership, empathy and real life skills while serving humanity with compassion and purpose.",
     icon: FaShieldAlt,
   },
   {
     title: "Join a Dedicated Team",
     description:
-      "Work alongside like-minded people committed to the same mission.",
+      "Work with kind, aligned people who support families through compassion, dignity and shared purpose.",
     icon: FaHandsHelping,
   },
  {
   title: "Be Part of a Purpose",
   description:
-    "Join a compassionate community working together to support families when they need it most.",
+    "Join a compassionate community working together to support families whenever they need aid the most.",
   icon: FaHandsHelping,
 },
 ];
@@ -1162,7 +1162,16 @@ export default function VolunteerRegister() {
       | HTMLSelectElement
     >,
   ) => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    let { value } = event.target;
+
+    if (["phone", "whatsappPhone", "emergencyContactPhone"].includes(name)) {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    if (name === "pincode") {
+      value = value.replace(/\D/g, "").slice(0, 6);
+    }
 
     setForm((current) => ({
       ...current,
@@ -1334,7 +1343,7 @@ export default function VolunteerRegister() {
                       <label className={labelClass}>Mobile Number *</label>
                       <div className="relative">
                         <FaPhoneAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="phone" type="tel" required pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter mobile number" />
+                        <input name="phone" type="tel" required inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter mobile number" />
                       </div>
                     </div>
 
@@ -1387,7 +1396,7 @@ export default function VolunteerRegister() {
                   <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
                     <div>
                       <label className={labelClass}>Pincode *</label>
-                      <input name="pincode" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder="6-digit pincode" />
+                      <input name="pincode" type="tel" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" maxLength={6} pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder="6-digit pincode" />
                     </div>
 
                     <div>
@@ -1476,7 +1485,7 @@ export default function VolunteerRegister() {
                     {[['whatsappPhone','WhatsApp Number','tel'],['occupation','Occupation / Profession','text'],['organisation','Organisation / Institution','text'],['languagesKnown','Languages Known','text'],['hoursPerWeek','Approx. Hours / Week','text']].map(([name, text, type]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass}/>
+                        <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={name === 'whatsappPhone' ? 'numeric' : undefined} maxLength={name === 'whatsappPhone' ? 10 : undefined} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass}/>
                       </label>
                     ))}
                   </div>
@@ -1539,7 +1548,7 @@ export default function VolunteerRegister() {
                     {[['emergencyContactName','Contact Person *','text'],['emergencyContactRelationship','Relationship *','text'],['emergencyContactPhone','Emergency Mobile No. *','tel']].map(([name,text,type]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} pattern={type==='tel'?'[6-9][0-9]{9}':undefined} className={inputClass}/>
+                        <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={type === 'tel' ? 'numeric' : undefined} maxLength={type === 'tel' ? 10 : undefined} pattern={type==='tel'?'[6-9][0-9]{9}':undefined} className={inputClass}/>
                       </label>
                     ))}
 
