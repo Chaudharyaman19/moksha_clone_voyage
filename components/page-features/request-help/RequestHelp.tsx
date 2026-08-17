@@ -398,38 +398,41 @@ export default function RequestHelp() {
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl">
-          {/* Page heading */}
-          <header className="mb-3 text-center">
-            <div className="flex items-center justify-center gap-4">
-              <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
+          <div className="mb-2 grid items-stretch gap-2 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <header className="text-center">
+              <div className="flex items-center justify-center gap-4">
+                <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
+                <LotusOrnament className="h-9 w-12" />
+                <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
+              </div>
 
-              <LotusOrnament className="h-9 w-12" />
+              <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
+                Request Cremation Assistance
+              </h1>
 
-              <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
-            </div>
+              <p className="mx-auto mt-2 max-w-[680px] leading-6 text-[#665246]">
+                We are here to support you with compassion, dignity and care in your time of need.
+              </p>
 
-            <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
-              Request Cremation Assistance
-            </h1>
+              <div className="mt-2 flex items-center justify-center gap-2">
+                <span className="h-px w-14 bg-[#E39453]" />
+                <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
+                <span className="h-px w-14 bg-[#E39453]" />
+              </div>
+            </header>
 
-            <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="h-px w-14 bg-[#E39453]" />
+            <aside className="hidden items-center justify-center border border-[#EDD9BF] bg-[#FFF8EC] px-4 py-3 text-center shadow-[0_10px_26px_rgba(106,65,29,0.07)] lg:flex">
+              <div>
+                <LotusOrnament className="mx-auto h-7 w-10" />
+                <p className="mt-1 font-serif font-semibold text-[#40271B]">24/7 Support Available</p>
+                <p className="mt-1 leading-[1.35] text-[#715C4E]">Calm, confidential guidance when your family needs it most.</p>
+              </div>
+            </aside>
+          </div>
 
-              <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
-
-              <span className="h-px w-14 bg-[#E39453]" />
-            </div>
-
-            <p className="mx-auto mt-2 max-w-[680px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
-              We are here to support you
-              with compassion, dignity and
-              care in your time of need.
-            </p>
-          </header>
-
-          <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="grid items-start gap-2 lg:grid-cols-[minmax(0,1fr)_320px]">
             {/* Main form */}
-            <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
+            <section className="relative overflow-hidden border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
               {result ? (
                 <div className="flex min-h-[510px] flex-col items-center justify-center text-center">
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-[#E87520]/10 text-[#E87520]">
@@ -736,7 +739,7 @@ export default function RequestHelp() {
                                   option.title,
                                 )
                               }
-                              className={`relative flex min-h-[78px] flex-col items-center justify-center rounded-[8px] border px-2 py-2 text-center transition ${
+                              className={`relative flex min-h-[78px] flex-col items-center justify-center border px-2 py-2 text-center transition ${
                                 selected
                                   ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
                                   : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
@@ -932,10 +935,14 @@ export default function RequestHelp() {
             </section>
 
             {/* Right trust panel */}
-            <aside className="overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+            <aside className="overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
               <h2 className="text-center font-serif text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
                 Why Families Trust Moksha Sewa
               </h2>
+
+              <p className="mx-auto mt-1.5 max-w-[270px] text-center leading-[1.4] text-[#715C4E]">
+                Compassionate guidance, verified coordination and confidential support at every step.
+              </p>
 
               <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
 
