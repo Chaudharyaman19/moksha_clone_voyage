@@ -1,8 +1,10 @@
 import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
-import RefundPolicy from "@/components/sections/terms/Content";
-import PolicyHero from "@/components/sections/policy-hero/PolicyHero";
+import TermsAndConditions from "@/components/sections/terms/Content";
+import PolicyHero, {
+  termsPolicyMeta,
+} from "@/components/sections/policy-hero/PolicyHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
@@ -18,9 +20,9 @@ export default function TermsPage() {
         title="Terms & Conditions"
         subtitle="Please read these terms carefully"
         description="Welcome to Moksha Sewa. By accessing our website or using our services, you agree to comply with and be bound by the following Terms & Conditions."
-        showInfoBanner={false}
+        policyMeta={termsPolicyMeta}
       />
-      <RefundPolicy />
+      <TermsAndConditions />
       {/* OLD CONTENT - COMMENTED OUT
       <main className="mx-auto max-w-4xl px-5 pb-16 pt-28">
         <h1 className="font-serif text-[34px] leading-tight sm:text-[44px]">

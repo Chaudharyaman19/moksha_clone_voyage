@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -37,32 +38,13 @@ const sections = [
   "About Moksha Sewa",
   "Information We Collect",
   "How We Use Your Information",
-  "Sensitive Information",
-  "Legal Basis for Processing",
-  "Sharing of Information",
-  "Volunteers",
-  "Donations & Payments",
-  "Cookies & Technologies",
-  "Third-Party Links",
-  "Social Media",
-  "Data Security",
-  "Data Retention",
   "Your Privacy Rights",
-  "Withdrawal of Consent",
-  "Children's Privacy",
-  "Case Photos & Stories",
-  "Data of Deceased / Unclaimed Persons",
-  "International Data Processing",
-  "Data Breaches",
-  "Privacy Grievance / Contact",
-  "Changes to This Policy",
-  "Governing Law",
 ];
 
 const informationCards = [
   {
     icon: UserRound,
-    title: "Contact\nInformation",
+    title: "Contact Information",
     items: [
       "Name, mobile number, email address",
       "Communication preferences",
@@ -71,7 +53,7 @@ const informationCards = [
   },
   {
     icon: ClipboardList,
-    title: "Seva / Assistance\nInformation",
+    title: "Seva / Assistance Information",
     items: [
       "Nature of assistance required and details of the case",
       "Location, hospital / cremation-ground details",
@@ -81,7 +63,7 @@ const informationCards = [
   },
   {
     icon: UsersRound,
-    title: "Volunteer\nInformation",
+    title: "Volunteer Information",
     items: [
       "Name, contact details, location, availability",
       "Skills, experience and preferred activities",
@@ -90,7 +72,7 @@ const informationCards = [
   },
   {
     icon: WalletCards,
-    title: "Donation\nInformation",
+    title: "Donation Information",
     items: [
       "Donation and payment related information",
       "Transaction details processed through authorised payment gateways",
@@ -99,7 +81,7 @@ const informationCards = [
   },
   {
     icon: Monitor,
-    title: "Technical\nInformation",
+    title: "Technical Information",
     items: [
       "IP address, browser type, device information",
       "Pages visited, date/time of access, referral/source",
@@ -290,11 +272,11 @@ export default function PrivacyPolicy() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[240px_minmax(0,1fr)] gap-5 px-4 pb-16 pt-12 sm:px-5 lg:px-0">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =========================
             LEFT SIDEBAR
         ========================== */}
-        <aside className="privacy-sidebar self-start">
+        <aside className="privacy-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="bg-[#8B6A3E] px-4 py-2.5 text-center">
               <h3 className="text-[13px] font-bold uppercase tracking-wide text-white">
@@ -328,8 +310,8 @@ export default function PrivacyPolicy() {
           </div>
 
           {/* Commitment card */}
-          <div className="mt-4 overflow-hidden rounded-[7px] border border-[#e8e1d1] bg-[#fffef9] px-4 py-4 shadow-[0_2px_10px_rgba(29,65,53,0.035)]">
-            <div className="mb-3 flex items-center gap-2.5">
+          <div className="mt-4 overflow-hidden rounded-[7px] border border-[#e8e1d1] bg-[#fffef9] px-4 pt-4 pb-0 shadow-[0_2px_10px_rgba(29,65,53,0.035)]">
+            <div className="mb-2 flex items-center gap-2.5">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] bg-[#FFF8EE]">
                 <ShieldCheck
                   size={17}
@@ -343,7 +325,7 @@ export default function PrivacyPolicy() {
               </h3>
             </div>
 
-            <p className="mt-4 text-[13px] leading-6 text-[#5B4635]">
+            <p className="mt-3 text-[13px] leading-6 text-[#5B4635]">
               We are committed to transparency and protecting your personal
               information.
               <br />
@@ -352,10 +334,14 @@ export default function PrivacyPolicy() {
               humanity.
             </p>
 
-            <div className="mt-4 flex justify-end opacity-25">
-              <span className="font-sans text-[45px] leading-none text-[#8B6A3E]">
-                ♢
-              </span>
+            <div className="flex justify-end">
+              <Image
+                src="/assets/privacy-policy/our_commitment.webp"
+                alt="Our Commitment"
+                width={240}
+                height={160}
+                className="h-auto w-1/2 object-cover"
+              />
             </div>
           </div>
         </aside>
@@ -367,7 +353,7 @@ export default function PrivacyPolicy() {
           {/* Section 1 */}
           <section
             id="privacy-section-1"
-            className="mb-8 scroll-mt-5"
+            className="mb-4 scroll-mt-4"
           >
             <SectionTitle number="1" title="About Moksha Sewa" />
 
@@ -405,7 +391,7 @@ export default function PrivacyPolicy() {
           {/* Section 2 */}
           <section
             id="privacy-section-2"
-            className="mb-8 scroll-mt-5"
+            className="mb-4 scroll-mt-4"
           >
             <SectionTitle number="2" title="Information We Collect" />
 
@@ -421,7 +407,7 @@ export default function PrivacyPolicy() {
                 return (
                   <div
                     key={card.title}
-                    className={`info-card grid grid-cols-[190px_minmax(0,1fr)] ${
+                    className={`info-card grid grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] ${
                       index !== informationCards.length - 1
                         ? "border-b border-[#e8e4d8]"
                         : ""
@@ -436,12 +422,12 @@ export default function PrivacyPolicy() {
                         />
                       </div>
 
-                      <h3 className="whitespace-pre-line pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810]">
+                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810]">
                         {card.title}
                       </h3>
                     </div>
 
-                    <div className="border-l border-[#eeeade] px-4 py-3.5">
+                    <div className="border-t border-[#eeeade] px-4 py-3.5 md:border-l md:border-t-0">
                       <ul className="space-y-1.5">
                         {card.items.map((item) => (
                           <li
@@ -483,7 +469,7 @@ export default function PrivacyPolicy() {
           {/* Section 3 */}
           <section
             id="privacy-section-3"
-            className="mb-8 scroll-mt-5"
+            className="mb-4 scroll-mt-4"
           >
             <SectionTitle number="3" title="How We Use Your Information" />
 
@@ -491,7 +477,7 @@ export default function PrivacyPolicy() {
               We may use your personal information to:
             </p>
 
-            <div className="grid grid-cols-2 gap-x-7">
+            <div className="grid grid-cols-1 gap-x-7 gap-y-3 md:grid-cols-2">
               <ul className="space-y-1.5">
                 {useInformationLeft.map((item) => (
                   <li
@@ -533,7 +519,7 @@ export default function PrivacyPolicy() {
           {/* Section 4 */}
           <section
             id="privacy-section-4"
-            className="mb-8 scroll-mt-5"
+            className="mb-4 scroll-mt-4"
           >
             <SectionTitle number="4" title="Your Privacy Rights" />
 
@@ -542,16 +528,16 @@ export default function PrivacyPolicy() {
               regarding your personal data:
             </p>
 
-            <div className="privacy-right grid grid-cols-7 overflow-hidden rounded-[7px] border border-[#e7e3d7] bg-white/75">
+            <div className="privacy-right grid grid-cols-2 overflow-hidden rounded-[7px] border border-[#e7e3d7] bg-white/75 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
               {rights.map((right, index) => {
                 const Icon = right.icon;
 
                 return (
                   <div
                     key={right.title}
-                    className={`flex min-h-[90px] flex-col items-center justify-center px-1 text-center ${
+                    className={`flex min-h-[90px] flex-col items-center justify-center px-1 py-3 text-center ${
                       index !== rights.length - 1
-                        ? "border-r border-[#ebe7db]"
+                        ? "md:border-r md:border-[#ebe7db]"
                         : ""
                     }`}
                   >
@@ -574,8 +560,8 @@ export default function PrivacyPolicy() {
       </div>
 
       {/* Bottom contact */}
-      <section className="privacy-contact mt-10 w-full border-t border-[#e7e2d5] bg-white/65 px-4 py-5 sm:px-5 lg:px-0">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+      <section className="privacy-contact mt-0 w-full border-t border-[#e7e2d5] bg-white/65 px-4 py-5 sm:px-5 lg:px-0">
+        <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
               <Mail

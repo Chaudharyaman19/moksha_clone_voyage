@@ -28,7 +28,7 @@ interface PolicyHeroProps {
   policyMeta?: PolicyMetaItem[];
 }
 
-const defaultPolicyMeta: PolicyMetaItem[] = [
+export const defaultPolicyMeta: PolicyMetaItem[] = [
   {
     icon: CalendarDays,
     label: "Effective Date",
@@ -51,6 +51,52 @@ const defaultPolicyMeta: PolicyMetaItem[] = [
   },
 ];
 
+export const termsPolicyMeta: PolicyMetaItem[] = [
+  {
+    icon: CalendarDays,
+    label: "Effective Date",
+    value: "17 August 2026",
+  },
+  {
+    icon: Clock3,
+    label: "Last Updated",
+    value: "17 August 2026",
+  },
+  {
+    icon: Scale,
+    label: "Governing Law",
+    value: "Laws of India",
+  },
+  {
+    icon: Globe2,
+    label: "Applies To",
+    value: "Website & All Services",
+  },
+];
+
+export const refundPolicyMeta: PolicyMetaItem[] = [
+  {
+    icon: CalendarDays,
+    label: "Effective Date",
+    value: "17 August 2026",
+  },
+  {
+    icon: Clock3,
+    label: "Last Updated",
+    value: "17 August 2026",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Governing Law",
+    value: "Laws of India",
+  },
+  {
+    icon: Globe2,
+    label: "Applies To",
+    value: "Donations & Transactions",
+  },
+];
+
 const PolicyHero = ({
   title,
   subtitle,
@@ -61,6 +107,7 @@ const PolicyHero = ({
   policyMeta = defaultPolicyMeta,
 }: PolicyHeroProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   const imageWrapperRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -69,7 +116,6 @@ const PolicyHero = ({
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const decorationRef = useRef<HTMLDivElement | null>(null);
   const descriptionRef = useRef<HTMLDivElement | null>(null);
-  const leafRef = useRef<HTMLDivElement | null>(null);
 
   const infoBannerRef = useRef<HTMLDivElement | null>(null);
   const infoItemsRef = useRef<HTMLDivElement[]>([]);
@@ -113,17 +159,10 @@ const PolicyHero = ({
         }
       );
 
-      gsap.set(leafRef.current, {
-        opacity: 0,
-        scale: 0.5,
-        rotate: -20,
-      });
-
       if (showInfoBanner) {
         gsap.set(infoBannerRef.current, {
           opacity: 0,
-          y: 50,
-          scale: 0.96,
+          y: 40,
         });
 
         gsap.set(infoItemsRef.current, {
@@ -212,25 +251,7 @@ const PolicyHero = ({
 
       /*
        * -----------------------------------------
-       * 6. LEAF
-       * -----------------------------------------
-       */
-
-      tl.to(
-        leafRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          rotate: 0,
-          duration: 0.65,
-          ease: "back.out(1.7)",
-        },
-        "-=0.3"
-      );
-
-      /*
-       * -----------------------------------------
-       * 7. DESCRIPTION
+       * 6. DESCRIPTION
        * -----------------------------------------
        */
 
@@ -257,7 +278,6 @@ const PolicyHero = ({
           {
             opacity: 1,
             y: 0,
-            scale: 1,
             duration: 0.7,
             ease: "back.out(1.2)",
           },
@@ -282,7 +302,7 @@ const PolicyHero = ({
           "-=0.35"
         );
       }
-    }, sectionRef);
+    }, rootRef);
 
     return () => ctx.revert();
   }, [showInfoBanner]);
@@ -294,19 +314,20 @@ const PolicyHero = ({
   };
 
   return (
+    <div ref={rootRef}>
     <section
       ref={sectionRef}
       className="
         relative
         w-full
-        min-h-[735px]
+        min-h-[360px]
         overflow-visible
         bg-[#fbf5ea]
-        sm:min-h-[705px]
-        md:aspect-[16/10]
-        md:min-h-[635px]
-        lg:aspect-[20/9]
-        lg:min-h-[615px]
+        sm:min-h-[340px]
+        md:aspect-[21/10]
+        md:min-h-[320px]
+        lg:aspect-[21/10]
+        lg:min-h-[340px]
       "
     >
       {/* =====================================================
@@ -396,26 +417,26 @@ const PolicyHero = ({
             mx-auto
             flex
             h-full
-            min-h-[735px]
+            min-h-[360px]
             w-full
             max-w-7xl
             items-center
-            sm:min-h-[705px]
-            md:min-h-[635px]
-            lg:min-h-[615px]
+            sm:min-h-[340px]
+            md:min-h-[320px]
+            lg:min-h-[340px]
           "
         >
         <div
           className="
             relative
             h-full
-            min-h-[735px]
+            min-h-[360px]
             w-[58%]
             flex
             items-center
-            sm:min-h-[705px]
-            md:min-h-[635px]
-            lg:min-h-[615px]
+            sm:min-h-[340px]
+            md:min-h-[320px]
+            lg:min-h-[340px]
           "
         >
           {/* =================================================
@@ -463,76 +484,14 @@ const PolicyHero = ({
                 mt-5
                 flex
                 items-center
-                gap-3
               "
             >
-              <div
-                className="
-                  h-[1px]
-                  w-[80px]
-                  bg-[#C9A574]/60
-                "
-              />
-
-              <div
-                ref={leafRef}
-                className="
-                  relative
-                  h-[20px]
-                  w-[34px]
-                "
-              >
-                <span
-                  className="
-                    absolute
-                    left-1/2
-                    top-1/2
-                    h-[16px]
-                    w-[10px]
-                    -translate-x-1/2
-                    -translate-y-1/2
-                    rotate-[-25deg]
-                    rounded-[100%_0]
-                    border
-                    border-[#C9A574]
-                  "
-                />
-
-                <span
-                  className="
-                    absolute
-                    left-[9px]
-                    top-[4px]
-                    h-[16px]
-                    w-[10px]
-                    rotate-[25deg]
-                    rounded-[100%_0]
-                    border
-                    border-[#C9A574]/70
-                  "
-                />
-
-                <span
-                  className="
-                    absolute
-                    right-[4px]
-                    top-[7px]
-                    h-[13px]
-                    w-[8px]
-                    rotate-[55deg]
-                    rounded-[100%_0]
-                    border
-                    border-[#C9A574]/50
-                  "
-                />
-              </div>
-
-              <div
-                className="
-                  h-[1px]
-                  w-[45px]
-                  bg-[#C9A574]/40
-                "
+              <Image
+                src="/assets/privacy-policy/title_decoration.webp"
+                alt=""
+                width={200}
+                height={40}
+                className="h-8 w-auto object-contain sm:h-10"
               />
             </div>
 
@@ -551,10 +510,11 @@ const PolicyHero = ({
               <p
                 className="
                   mb-3
-                  text-[15px]
-                  font-semibold
+                  text-[17px]
+                  font-bold
                   leading-relaxed
-                  sm:text-[16px]
+                  text-[#D95A06]
+                  sm:text-[19px]
                 "
               >
                 {subtitle}
@@ -564,6 +524,7 @@ const PolicyHero = ({
                 className="
                   max-w-[480px]
                   text-[13px]
+                  font-semibold
                   leading-[1.8]
                   text-[#5B4635]
                   sm:text-[14px]
@@ -575,324 +536,121 @@ const PolicyHero = ({
           </div>
         </div>
       </div>
+    </section>
 
-      {showInfoBanner && (
-        /* =====================================================
-            FLOATING INFORMATION BANNER
-        ====================================================== */
+    {showInfoBanner && (
+      /* =====================================================
+          INFORMATION BANNER
+      ====================================================== */
 
+      <div
+        ref={infoBannerRef}
+        className="
+          w-full
+          border-b
+          border-[#73532F]
+          bg-gradient-to-r
+          from-[#8B6A3E]
+          via-[#9C794C]
+          to-[#8B6A3E]
+          shadow-md
+        "
+      >
         <div
-          ref={infoBannerRef}
           className="
-            absolute
-            bottom-0
-            left-1/2
-            z-50
-            w-full
+            mx-auto
+            grid
             max-w-[1600px]
-            -translate-x-1/2
-            translate-y-1/2
-            border-b
-            border-[#73532F]
-            bg-gradient-to-r
-            from-[#8B6A3E]
-            via-[#9C794C]
-            to-[#8B6A3E]
-            shadow-md
+            grid-cols-2
+            px-4
+            md:grid-cols-4
+            sm:px-6
           "
         >
-          <div
-            className="
-              grid
-              grid-cols-2
-              lg:grid-cols-4
-            "
-          >
-            {/* ===============================================
-                EFFECTIVE DATE
-            ================================================ */}
+          {policyMeta.map((item, index) => {
+            const Icon = item.icon;
 
-            <div
-              ref={addInfoItem}
-              className="
-                flex
-                items-center
-                justify-center
-                gap-2
-                px-2
-                py-1.5
-                sm:gap-3
-                sm:px-4
-                lg:px-5
-              "
-            >
+            return (
               <div
-                className="
+                key={item.label}
+                ref={addInfoItem}
+                className={`
                   flex
-                  h-9
-                  w-9
-                  shrink-0
                   items-center
                   justify-center
-                  rounded-full
-                  bg-white/15
-                  text-white
-                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                  sm:h-10
-                  sm:w-10
-                "
+                  gap-3
+                  px-4
+                  py-1.5
+                  ${
+                    index > 0
+                      ? "md:border-l md:border-white/20"
+                      : ""
+                  }
+                  ${
+                    index > 1
+                      ? "border-t border-white/20 md:border-t-0"
+                      : ""
+                  }
+                `}
               >
-                <CalendarDays
-                  size={25}
-                  strokeWidth={1.7}
-                />
-              </div>
-
-              <div>
-                <p
+                <div
                   className="
-                    text-[8px]
-                    text-white/90
-                    sm:text-[9px]
-                    lg:text-[10px]
-                  "
-                >
-                  Effective Date
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    whitespace-nowrap
-                    text-[9px]
-                    font-semibold
+                    flex
+                    h-8
+                    w-8
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-white/15
                     text-white
-                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                    sm:text-[10px]
-                    lg:text-[11px]
+                    shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
                   "
                 >
-                  17 August 2026
-                </p>
+                  <Icon
+                    size={16}
+                    strokeWidth={1.7}
+                    className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
+                  />
+                </div>
+
+                <div className="min-w-0 text-left">
+                  <p
+                    className="
+                      text-[17px]
+                      font-medium
+                      leading-none
+                      text-white
+                      drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                      lg:text-[19px]
+                    "
+                  >
+                    {item.value}
+                  </p>
+
+                  <p
+                    className="
+                      mt-1
+                      max-w-[150px]
+                      text-[15px]
+                      font-medium
+                      leading-tight
+                      tracking-[0.02em]
+                      text-white/90
+                      lg:max-w-none
+                      lg:text-[16px]
+                    "
+                  >
+                    {item.label}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            {/* ===============================================
-                LAST UPDATED
-            ================================================ */}
-
-            <div
-              ref={addInfoItem}
-              className="
-                flex
-                items-center
-                gap-2
-                px-2
-                sm:gap-3
-                sm:px-4
-                lg:px-5
-                md:border-l
-                md:border-white/20
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-white/15
-                  text-white
-                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                  sm:h-10
-                  sm:w-10
-                "
-              >
-                <History
-                  size={25}
-                  strokeWidth={1.7}
-                />
-              </div>
-
-              <div>
-                <p
-                  className="
-                    text-[8px]
-                    text-white/90
-                    sm:text-[9px]
-                    lg:text-[10px]
-                  "
-                >
-                  Last Updated
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    whitespace-nowrap
-                    text-[9px]
-                    font-semibold
-                    text-white
-                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                    sm:text-[10px]
-                    lg:text-[11px]
-                  "
-                >
-                  17 August 2026
-                </p>
-              </div>
-            </div>
-
-            {/* ===============================================
-                GOVERNING LAW
-            ================================================ */}
-
-            <div
-              ref={addInfoItem}
-              className="
-                flex
-                items-center
-                gap-2
-                px-2
-                sm:gap-3
-                sm:px-4
-                lg:px-5
-                border-t
-                border-white/20
-                md:border-l
-                md:border-white/20
-                md:border-t-0
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-white/15
-                  text-white
-                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                  sm:h-10
-                  sm:w-10
-                "
-              >
-                <ShieldCheck
-                  size={25}
-                  strokeWidth={1.7}
-                />
-              </div>
-
-              <div>
-                <p
-                  className="
-                    text-[8px]
-                    text-white/90
-                    sm:text-[9px]
-                    lg:text-[10px]
-                  "
-                >
-                  Governing Law
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    whitespace-nowrap
-                    text-[9px]
-                    font-semibold
-                    text-white
-                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                    sm:text-[10px]
-                    lg:text-[11px]
-                  "
-                >
-                  Laws of India
-                </p>
-              </div>
-            </div>
-
-            {/* ===============================================
-                APPLIES TO
-            ================================================ */}
-
-            <div
-              ref={addInfoItem}
-              className="
-                flex
-                items-center
-                gap-2
-                px-2
-                sm:gap-3
-                sm:px-4
-                lg:px-5
-                border-t
-                border-white/20
-                md:border-l
-                md:border-white/20
-                md:border-t-0
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-white/15
-                  text-white
-                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                  sm:h-10
-                  sm:w-10
-                "
-              >
-                <Globe2
-                  size={25}
-                  strokeWidth={1.7}
-                />
-              </div>
-
-              <div>
-                <p
-                  className="
-                    text-[8px]
-                    text-white/90
-                    sm:text-[9px]
-                    lg:text-[10px]
-                  "
-                >
-                  Applies To
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    whitespace-nowrap
-                    text-[9px]
-                    font-semibold
-                    text-white
-                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                    sm:text-[10px]
-                    lg:text-[11px]
-                  "
-                >
-                  Website &amp; All Services
-                </p>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
-      )}
-    </section>
+      </div>
+    )}
+    </div>
   );
 };
 
