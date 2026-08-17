@@ -194,12 +194,6 @@ const SocialSidebar = () => {
           </a>
         </div>
 
-        {/* Bottom Center - Sacred Symbol */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-auto">
-          <div className="w-10 h-10 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center border border-[#8B6A3E]/20">
-            <PiFlowerLotus className="w-5 h-5 text-[#8B6A3E]" />
-          </div>
-        </div>
       </div>
 
       {/* Mobile View - Bottom Bar */}

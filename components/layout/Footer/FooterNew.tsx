@@ -8,11 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
   FaChevronRight,
-  FaFacebookF,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-  FaTwitter,
   FaEnvelope,
   FaPaperPlane,
   FaArrowRight,
@@ -77,27 +72,13 @@ const services = [
   { label: "Transport Coordination", href: "/ambulanceservices" },
   { label: "Ritual Material Support", href: "/furalservices" },
   { label: "Priest Guidance", href: "/panditservices" },
-  { label: "Unclaimed Case Support", href: "/request-help" },
-  { label: "Volunteer Support", href: "/volunteer/register" },
   { label: "Family Guidance", href: "/specialservices" },
-  { label: "Support This Mission", href: "/donation" },
 ];
 
 const initiatives = [
-  { label: "Unclaimed Bodies Support", href: "/request-help" },
-  { label: "Last Rites Support", href: "/request-help" },
-  { label: "Support for Needy Families", href: "/request-help" },
-  { label: "Ritual & Ceremony Support", href: "/furalservices" },
+  { label: "Unclaimed Bodies Support", href: "/initiatives" },
   { label: "Volunteer Programme", href: "/volunteer/register" },
   { label: "Awareness & Outreach", href: "/blog" },
-];
-
-const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/mokshasewa/", icon: FaFacebookF },
-  { label: "Instagram", href: "https://www.instagram.com/mokshasewa/", icon: FaInstagram },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/moksha-sewaorg/", icon: FaLinkedinIn },
-  { label: "Twitter", href: "https://x.com/mokshasewa", icon: FaTwitter },
-  { label: "YouTube", href: "https://www.youtube.com/@Mokshasewa", icon: FaYoutube },
 ];
 
 const values = [
@@ -806,7 +787,7 @@ export default function FooterNew() {
 
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[325px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[250px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -870,34 +851,6 @@ export default function FooterNew() {
                     </button>
                   </form>
 
-                  <div className="footer-card-follow mt-4">
-                    <div className="flex items-center justify-center gap-3">
-                      <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D9A33A]/80" />
-                      <span className="text-[12px] font-bold uppercase tracking-[0.06em] text-white">
-                        Follow Us
-                      </span>
-                      <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D9A33A]/80" />
-                    </div>
-
-                    <div className="mt-3 flex items-center justify-center gap-3">
-                      {socials.map((social) => {
-                        const Icon = social.icon;
-                        return (
-                          <a
-                            key={social.label}
-                            href={social.href}
-                            aria-label={social.label}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="footer-social relative flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A] text-[#E7B448] transition hover:bg-[#D9A33A] hover:text-[#003a35]"
-                          >
-                            <Icon className="h-[21px] w-[21px]" />
-                            <ShineLayer sparks={0} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -945,9 +898,9 @@ export default function FooterNew() {
 
         {/* ========================= BOTTOM BAR ========================= */}
         <div className="footer-bottom relative bg-black">
-          <div className="mx-auto grid min-h-[58px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-2 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-1.5">
-            <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
-              <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
+          <div className="mx-auto flex min-h-[52px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1.5 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 lg:py-1 xl:gap-12">
+            <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
+              <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
               <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
             </div>
 
@@ -971,13 +924,8 @@ export default function FooterNew() {
               <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
                 Seva • Samman • Samarpan
               </p>
-              <GoldDivider className="mt-1" compact />
             </div>
 
-            <div className="flex items-center justify-center gap-4 text-[12px] text-white/90 lg:justify-end">
-              <p>A Namo Gange Trust Initiative</p>
-              <PiFlowerLotus className="h-11 w-11 shrink-0 text-[#D9A33A]" />
-            </div>
           </div>
         </div>
       </div>
