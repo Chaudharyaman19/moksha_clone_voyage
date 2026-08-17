@@ -634,7 +634,7 @@ export default function FooterNew() {
         <div className="mx-auto w-full max-w-[1600px] px-4 pb-7 pt-8 sm:px-6 lg:min-h-[454px] lg:px-4 lg:pb-6 lg:pt-9 xl:px-5">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[minmax(340px,1.7fr)_minmax(120px,0.6fr)_minmax(160px,0.8fr)_minmax(165px,0.85fr)_minmax(170px,0.9fr)_minmax(230px,1.15fr)] xl:gap-2 2xl:grid-cols-[410px_145px_195px_205px_210px_minmax(260px,315px)] 2xl:gap-0">
             {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[382px] lg:justify-start lg:pb-2 lg:pt-2 xl:pl-[80px] xl:pr-2 2xl:pl-[145px] 2xl:pr-2">
+            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:left-4 lg:col-span-1 lg:min-h-[382px] lg:justify-start lg:pb-2 lg:pt-2 xl:left-8 xl:pl-[80px] xl:pr-2 2xl:left-10 2xl:pl-[145px] 2xl:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                 <Image
                   src={footerMokshaLogo}
