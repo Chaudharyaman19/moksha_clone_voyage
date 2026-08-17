@@ -320,14 +320,12 @@ const PolicyHero = ({
       className="
         relative
         w-full
-        min-h-[360px]
+        min-h-[735px]
         overflow-visible
         bg-[#fbf5ea]
-        sm:min-h-[340px]
-        md:aspect-[21/10]
-        md:min-h-[320px]
-        lg:aspect-[21/10]
-        lg:min-h-[340px]
+        sm:min-h-[570px]
+        md:min-h-[570px]
+        lg:min-h-[550px]
       "
     >
       {/* =====================================================
@@ -417,26 +415,26 @@ const PolicyHero = ({
             mx-auto
             flex
             h-full
-            min-h-[360px]
+            min-h-[735px]
             w-full
             max-w-7xl
             items-center
-            sm:min-h-[340px]
-            md:min-h-[320px]
-            lg:min-h-[340px]
+            sm:min-h-[570px]
+            md:min-h-[570px]
+            lg:min-h-[550px]
           "
         >
         <div
           className="
             relative
             h-full
-            min-h-[360px]
+            min-h-[735px]
             w-[58%]
             flex
             items-center
-            sm:min-h-[340px]
-            md:min-h-[320px]
-            lg:min-h-[340px]
+            sm:min-h-[570px]
+            md:min-h-[570px]
+            lg:min-h-[550px]
           "
         >
           {/* =================================================
@@ -449,8 +447,10 @@ const PolicyHero = ({
               z-20
               max-w-[680px]
               px-4
-              py-12
+              pt-16
+              pb-10
               sm:px-5
+              lg:pt-24
               lg:px-0
             "
           >
@@ -466,6 +466,7 @@ const PolicyHero = ({
                 leading-[0.95]
                 tracking-[-2px]
                 text-[#2C1810]
+                drop-shadow-[0_2px_8px_rgba(92,58,27,0.18)]
                 sm:text-[48px]
                 md:text-[52px]
                 lg:text-[56px]
@@ -514,6 +515,7 @@ const PolicyHero = ({
                   font-bold
                   leading-relaxed
                   text-[#D95A06]
+                  drop-shadow-[0_1px_4px_rgba(217,90,6,0.35)]
                   sm:text-[19px]
                 "
               >
@@ -527,6 +529,7 @@ const PolicyHero = ({
                   font-semibold
                   leading-[1.8]
                   text-[#5B4635]
+                  drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]
                   sm:text-[14px]
                 "
               >
@@ -553,6 +556,7 @@ const PolicyHero = ({
           from-[#8B6A3E]
           via-[#9C794C]
           to-[#8B6A3E]
+          py-2
           shadow-md
         "
       >
@@ -580,7 +584,7 @@ const PolicyHero = ({
                   justify-center
                   gap-3
                   px-4
-                  py-1.5
+                  py-0.5
                   ${
                     index > 0
                       ? "md:border-l md:border-white/20"
@@ -617,20 +621,6 @@ const PolicyHero = ({
                 <div className="min-w-0 text-left">
                   <p
                     className="
-                      text-[17px]
-                      font-medium
-                      leading-none
-                      text-white
-                      drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                      lg:text-[19px]
-                    "
-                  >
-                    {item.value}
-                  </p>
-
-                  <p
-                    className="
-                      mt-1
                       max-w-[150px]
                       text-[15px]
                       font-medium
@@ -642,6 +632,20 @@ const PolicyHero = ({
                     "
                   >
                     {item.label}
+                  </p>
+
+                  <p
+                    className="
+                      mt-1
+                      text-[17px]
+                      font-medium
+                      leading-none
+                      text-white
+                      drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                      lg:text-[19px]
+                    "
+                  >
+                    {item.value}
                   </p>
                 </div>
               </div>

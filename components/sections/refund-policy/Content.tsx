@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -194,7 +194,7 @@ function SectionHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810]">
+    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
       {number}. {title}
     </h2>
   );
@@ -202,6 +202,51 @@ function SectionHeading({
 
 export default function RefundPolicy() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const sectionIds = [
+    "refund-section-1",
+    "refund-section-2",
+    "refund-section-3",
+    "refund-section-4",
+    "refund-section-5",
+    "refund-section-6",
+    "refund-section-7",
+    "refund-section-9",
+    "refund-section-9",
+    "refund-section-9",
+    "refund-section-12",
+    "refund-section-12",
+    "refund-section-12",
+    "refund-section-12",
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = 0;
+
+      for (let index = 0; index < sectionIds.length; index++) {
+        const element = document.getElementById(sectionIds[index]);
+
+        if (!element) continue;
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= 150) {
+          current = index;
+        } else {
+          break;
+        }
+      }
+
+      setActiveIndex(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useLayoutEffect(() => {
     const context = gsap.context(() => {
@@ -302,7 +347,7 @@ export default function RefundPolicy() {
         <aside className="refund-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
-              <h2 className="text-[13px] font-bold tracking-wide text-white">
+              <h2 className="text-[13px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h2>
             </div>
@@ -315,7 +360,7 @@ export default function RefundPolicy() {
                       type="button"
                       onClick={() => scrollToSection(item.number)}
                       className={`refund-nav-button flex w-full items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
-                        index === 0
+                        activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
                       }`}
@@ -341,7 +386,7 @@ export default function RefundPolicy() {
                 className="text-[#D95A06]"
               />
 
-              <h3 className="font-serif text-[16px] font-bold text-[#2C1810]">
+              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Note
               </h3>
             </div>
@@ -471,7 +516,7 @@ export default function RefundPolicy() {
                       className="mt-[1px] shrink-0 text-[#8B6A3E]"
                     />
 
-                    <h2 className="text-[14px] font-bold leading-[1.35] text-[#2C1810]">
+                    <h2 className="text-[14px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                       {card.number}. {card.title}
                     </h2>
                   </div>
@@ -506,7 +551,7 @@ export default function RefundPolicy() {
                       className="mt-[1px] shrink-0 text-[#8B6A3E]"
                     />
 
-                    <h2 className="text-[13px] font-bold leading-[1.35] text-[#2C1810]">
+                    <h2 className="text-[13px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                       {card.number}. {card.title}
                     </h2>
                   </div>
@@ -528,15 +573,17 @@ export default function RefundPolicy() {
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
-              <HeartHandshake
-                size={22}
-                strokeWidth={1.5}
-                className="text-white"
+              <Image
+                src="/assets/privacy-policy/cta_icon.webp"
+                alt="Contact us"
+                width={22}
+                height={22}
+                className="object-cover"
               />
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-bold text-[#2C1810]">
+              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Have Questions About a Refund?
               </h2>
 
@@ -545,6 +592,14 @@ export default function RefundPolicy() {
                 concerns.
               </p>
             </div>
+
+            <Image
+              src="/assets/privacy-policy/subtitle_decoration.webp"
+              alt=""
+              width={120}
+              height={40}
+              className="hidden h-6 w-auto object-contain sm:block"
+            />
           </div>
 
           <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -156,7 +156,7 @@ function SectionTitle({
       id={id}
       className="section-title mb-3 flex scroll-mt-6 items-center gap-2"
     >
-      <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810]">
+      <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
         {number}. {title}
       </h2>
 
@@ -172,6 +172,36 @@ function SectionTitle({
 
 export default function PrivacyPolicy() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = 0;
+
+      for (let index = 0; index < sections.length; index++) {
+        const element = document.getElementById(
+          `privacy-section-${index + 1}`,
+        );
+
+        if (!element) continue;
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= 150) {
+          current = index;
+        } else {
+          break;
+        }
+      }
+
+      setActiveIndex(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -279,7 +309,7 @@ export default function PrivacyPolicy() {
         <aside className="privacy-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="bg-[#8B6A3E] px-4 py-2.5 text-center">
-              <h3 className="text-[13px] font-bold uppercase tracking-wide text-white">
+              <h3 className="text-[13px] font-bold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h3>
             </div>
@@ -292,7 +322,7 @@ export default function PrivacyPolicy() {
                       type="button"
                       onClick={() => scrollToSection(index)}
                       className={`group flex w-full items-center gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
-                        index === 0
+                        activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
                       }`}
@@ -320,7 +350,7 @@ export default function PrivacyPolicy() {
                 />
               </div>
 
-              <h3 className="font-sans text-[16px] font-bold text-[#2C1810]">
+              <h3 className="font-sans text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Our Commitment
               </h3>
             </div>
@@ -422,7 +452,7 @@ export default function PrivacyPolicy() {
                         />
                       </div>
 
-                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810]">
+                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                         {card.title}
                       </h3>
                     </div>
@@ -572,7 +602,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className="text-[16px] font-bold text-[#2C1810]">
+              <h3 className="text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Have Questions About Your Privacy?
               </h3>
 
@@ -583,6 +613,14 @@ export default function PrivacyPolicy() {
                 information, please contact our Grievance Officer.
               </p>
             </div>
+
+            <Image
+              src="/assets/privacy-policy/subtitle_decoration.webp"
+              alt=""
+              width={120}
+              height={40}
+              className="hidden h-6 w-auto object-contain sm:block"
+            />
           </div>
 
           <button

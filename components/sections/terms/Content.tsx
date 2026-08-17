@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -147,7 +147,7 @@ function TermsHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810]">
+    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
       {number}. {title}
     </h2>
   );
@@ -159,6 +159,36 @@ function TermsHeading({
 
 export default function TermsAndConditions() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = 0;
+
+      for (let index = 0; index < navigationItems.length; index++) {
+        const element = document.getElementById(
+          `terms-section-${index + 1}`,
+        );
+
+        if (!element) continue;
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= 150) {
+          current = index;
+        } else {
+          break;
+        }
+      }
+
+      setActiveIndex(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -315,7 +345,7 @@ export default function TermsAndConditions() {
             {/* Header */}
 
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
-              <h2 className="text-[13px] font-bold tracking-wide text-white">
+              <h2 className="text-[13px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h2>
             </div>
@@ -330,7 +360,7 @@ export default function TermsAndConditions() {
                       type="button"
                       onClick={() => scrollToSection(index)}
                       className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
-                        index === 0
+                        activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
                       }`}
@@ -361,7 +391,7 @@ export default function TermsAndConditions() {
                 />
               </div>
 
-              <h3 className="font-serif text-[16px] font-bold text-[#2C1810]">
+              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Our Commitment
               </h3>
             </div>
@@ -458,15 +488,17 @@ export default function TermsAndConditions() {
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
-              <HeartHandshake
-                size={22}
-                strokeWidth={1.5}
-                className="text-white"
+              <Image
+                src="/assets/privacy-policy/cta_icon.webp"
+                alt="Contact us"
+                width={22}
+                height={22}
+                className="object-cover"
               />
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-bold text-[#2C1810]">
+              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
                 Questions About These Terms?
               </h2>
 
@@ -475,6 +507,14 @@ export default function TermsAndConditions() {
                 please reach out to us.
               </p>
             </div>
+
+            <Image
+              src="/assets/privacy-policy/subtitle_decoration.webp"
+              alt=""
+              width={120}
+              height={40}
+              className="hidden h-6 w-auto object-contain sm:block"
+            />
           </div>
 
           <button
