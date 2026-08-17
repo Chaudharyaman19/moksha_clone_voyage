@@ -429,7 +429,6 @@
 import Image from "next/image";
 import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
 import {
-  FaArrowRight,
   FaChevronLeft,
   FaChevronRight,
   FaLandmark,
@@ -533,7 +532,7 @@ export default function Hero() {
       {
         heading: ["Dignity in Every", "Final Journey"],
         description:
-          "Supporting economically weaker families and legally authorised unclaimed cases with compassionate last-rites assistance.",
+          "Supporting weaker families with compassionate last-rites assistance.",
         descriptionHighlight: "compassionate last-rites assistance.",
         alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
         primaryButton: {
@@ -546,10 +545,10 @@ export default function Hero() {
         },
       },
       {
-        heading: ["No One Should Leave", "This World", "Without Dignity."],
+        heading: ["No One Leaves", "Without Dignity."],
         description:
-          "We provide legally authorised, dignified last rites for unclaimed and abandoned bodies with complete respect and compassion.",
-        descriptionHighlight: "respect and compassion.",
+          "Dignified last rites for authorised unclaimed and abandoned cases.",
+        descriptionHighlight: "Dignified last rites",
         alt: "Moksha Sewa volunteers providing dignified last rites support for an authorised unclaimed case",
         primaryButton: {
           label: "Know Our Mission",
@@ -561,11 +560,11 @@ export default function Hero() {
         },
       },
       {
-        heading: ["Be the Reason Someone", "Receives a", "Dignified Farewell"],
-        headingHighlight: "Dignified Farewell",
+        heading: ["Be the Reason", "Dignity Reaches Someone."],
+        headingHighlight: "Dignity Reaches Someone.",
         description:
-          "Your time, compassion or contribution can bring dignity to someone’s final journey.",
-        descriptionHighlight: "dignity",
+          "Your support can bring care to a final journey.",
+        descriptionHighlight: "care",
         alt: "Moksha Sewa volunteers supporting an elderly couple with dignity and compassion",
         primaryButton: {
           label: "Support This Mission",
@@ -617,10 +616,9 @@ export default function Hero() {
       {
         heading: [
           "Be the Reason",
-          "Someone Receives a",
-          "Dignified Farewell.",
+          "Dignity Reaches Someone.",
         ],
-        headingHighlight: "Dignified Farewell.",
+        headingHighlight: "Dignity Reaches Someone.",
         description:
           "Your time can bring comfort, care and compassion.",
         alt: "Moksha Sewa volunteers serving with compassion and dignity",
@@ -637,7 +635,7 @@ export default function Hero() {
       {
         heading: ["Food and Basic Support", "Case-Based Relief"],
         description:
-          "Where verified need exists, we help coordinate food, water and basic relief support for families facing immediate hardship.",
+          "Food, water and basic relief for families facing immediate hardship.",
         descriptionHighlight: "families facing immediate hardship.",
         alt: "Namo Gange volunteers serving food as part of community food service",
         primaryButton: {
@@ -788,8 +786,8 @@ export default function Hero() {
                   : "lg:w-[56%] xl:w-[54%]"
                 }`}
             >
-              {/* Changeable Namo Gange logo — centered over the text below */}
-              <div className="mb-2 flex w-fit flex-col items-center">
+             
+              <div className="mb-3 flex w-full max-w-[360px] flex-col items-center text-center sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
                   <Image
                     src="/hero-images/image6.png"
@@ -802,13 +800,17 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* eyebrow — starts from the left */}
-                <div className="mt-2 flex w-fit items-center gap-3">
-                  <span className="h-px w-8 bg-[#73532F]/70" />
-                  <span className="text-[16px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[16px]">
-                    Moksha Sewa — An Initiative of Namo Gange Trust
-                  </span>
-                  <span className="h-px w-8 bg-[#73532F]/70" />
+                <div className="mt-2 flex w-full items-center justify-center gap-3">
+                  
+                  <div className="shrink-0 text-center">
+                    <span className="block text-[22px] font-extrabold leading-none tracking-[0.01em] text-[#2C1810] sm:text-[24px] lg:text-[26px]">
+                      Moksha Sewa
+                    </span>
+                    <span className="mt-1 block text-[11px] font-bold uppercase leading-tight tracking-[0.22em] text-[#73532F] sm:text-[12px]">
+                      An Initiative of Namo Gange Trust
+                    </span>
+                  </div>
+                
                 </div>
               </div>
 
@@ -826,7 +828,7 @@ export default function Hero() {
                     Afford a{" "}
                     <span className="text-[#C85117]">Final Farewell,</span>
                   </span>
-                  <span className="mt-2 block text-[22px] font-semibold leading-[1.12] sm:text-[25px] lg:text-[28px]">
+                  <span className="mt-1 block text-[36px] font-semibold leading-[1.02] sm:text-[42px] lg:text-[46px]">
                     Humanity Must Stand Beside Them.
                   </span>
                 </h1>
@@ -849,19 +851,16 @@ export default function Hero() {
                 </h1>
               ) : isVolunteerImpactSlide ? (
                 <h1
-                  className="max-w-[650px] text-[#2C1810]"
+                  className="max-w-[610px] text-[#2C1810]"
                   style={{
                     fontWeight: 500,
                   }}
                 >
-                  <span className="block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
+                  <span className="block text-[34px] leading-[0.98] sm:text-[39px] lg:text-[43px]">
                     Be the Reason
                   </span>
-                  <span className="mt-1 block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
-                    Someone Receives a
-                  </span>
-                  <span className="mt-2 block text-[38px] font-semibold leading-[1.02] text-[#C85117] sm:text-[44px] lg:text-[48px]">
-                    Dignified Farewell.
+                  <span className="mt-1 block text-[34px] font-semibold leading-[0.98] text-[#C85117] sm:text-[39px] lg:text-[43px]">
+                    Dignity Reaches Someone.
                   </span>
                 </h1>
               ) : (
@@ -910,14 +909,19 @@ export default function Hero() {
               </div>
 
               {!isFamilySupportSlide && !isJourneyPrayerSlide && (
-                <p className="mt-3 max-w-[545px] text-[16px] font-semibold leading-[1.5] text-[#2C1810] sm:text-[17px]">
+                <p
+                  className={`max-w-[590px] text-[18px] font-semibold text-[#2C1810] sm:text-[19px] lg:text-[20px] ${
+                    isVolunteerImpactSlide ? "mt-2 leading-[1.28]" : "mt-3 leading-[1.35]"
+                  }`}
+                >
                   {activeSlide.descriptionHighlight &&
                     activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                     <>
-                      {activeSlide.description.replace(activeSlide.descriptionHighlight, "")}
+                      {activeSlide.description.split(activeSlide.descriptionHighlight)[0]}
                       <span className="font-bold text-[#C85117]">
                         {activeSlide.descriptionHighlight}
                       </span>
+                      {activeSlide.description.split(activeSlide.descriptionHighlight).slice(1).join(activeSlide.descriptionHighlight)}
                     </>
                   ) : (
                     activeSlide.description
