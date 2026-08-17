@@ -64,53 +64,19 @@ export default function DonateVolunteerHighlight() {
           <div className="group relative min-h-[270px] overflow-hidden border border-[#D5AF78]/65 bg-[#2C1810] shadow-[0_20px_48px_rgba(73,47,25,0.16)] sm:min-h-[315px] lg:min-h-[355px]">
 
             <video
-              src="/vedio/vedio.mp4"
+              src="/vedio/taniya.mp4"
               autoPlay
               loop
-              muted
               playsInline
               controls
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]"
             />
 
             {/* Cinematic overlay */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(44,24,16,0.06)_0%,rgba(44,24,16,0.18)_48%,rgba(44,24,16,0.94)_100%)]" />
-
-            {/* Top gold line */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E1B778]/70 to-transparent" />
+          
 
             {/* Video content */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 sm:px-6 sm:pb-6 lg:px-7">
-
-              <div className="mb-2.5 inline-flex items-center gap-2 border border-white/20 bg-[#2C1810]/35 px-3 py-1.5 backdrop-blur-md">
-
-                <span className="h-1.5 w-1.5 rounded-full bg-[#F3C77F] shadow-[0_0_10px_rgba(243,199,127,0.75)]" />
-
-                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#F6D39B]">
-                  Moksha Sewa Mission
-                </span>
-
-              </div>
-
-              <h3
-                className="max-w-[600px] text-[22px] leading-[1.16] text-white sm:text-[27px] lg:text-[30px]"
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
-              >
-                A little support can bring dignity to someone&apos;s final
-                journey.
-              </h3>
-
-              <div className="mt-3 flex items-center gap-3">
-                <span className="h-px w-12 bg-[#F0C889]/70" />
-
-                <PiFlowerLotus className="h-4 w-4 text-[#F0C889]" />
-
-                <span className="h-px w-12 bg-[#F0C889]/70" />
-              </div>
-
-            </div>
+          
           </div>
 
           {/* =====================================================
