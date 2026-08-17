@@ -40,7 +40,7 @@ export const defaultPolicyMeta: PolicyMetaItem[] = [
     value: "17 August 2026",
   },
   {
-    icon: ShieldCheck,
+    icon: Scale,
     label: "Governing Law",
     value: "Laws of India",
   },
@@ -86,7 +86,7 @@ export const refundPolicyMeta: PolicyMetaItem[] = [
     value: "17 August 2026",
   },
   {
-    icon: ShieldCheck,
+    icon: Scale,
     label: "Governing Law",
     value: "Laws of India",
   },
@@ -179,7 +179,7 @@ const PolicyHero = ({
 
       tl.to(imageWrapperRef.current, {
         clipPath: "inset(0 0% 0 0)",
-        duration: 1.5,
+        duration: 0.7,
         ease: "power4.inOut",
       });
 
@@ -193,7 +193,7 @@ const PolicyHero = ({
         imageRef.current,
         {
           scale: 1,
-          duration: 1.8,
+          duration: 0.9,
           ease: "power3.out",
         },
         "<"
@@ -210,10 +210,10 @@ const PolicyHero = ({
         {
           opacity: 1,
           x: 0,
-          duration: 0.8,
+          duration: 0.5,
           ease: "power3.out",
         },
-        "-=0.65"
+        0.4
       );
 
       /*
@@ -227,10 +227,10 @@ const PolicyHero = ({
         {
           opacity: 1,
           y: 0,
-          duration: 0.75,
+          duration: 0.45,
           ease: "power4.out",
         },
-        "-=0.15"
+        0.5
       );
 
       /*
@@ -244,9 +244,9 @@ const PolicyHero = ({
         {
           opacity: 1,
           y: 0,
-          duration: 0.5,
+          duration: 0.35,
         },
-        "-=0.35"
+        0.55
       );
 
       /*
@@ -260,10 +260,10 @@ const PolicyHero = ({
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.4,
           ease: "power3.out",
         },
-        "-=0.2"
+        0.6
       );
 
       /*
@@ -278,10 +278,10 @@ const PolicyHero = ({
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.45,
             ease: "back.out(1.2)",
           },
-          "-=0.15"
+          0.65
         );
 
         /*
@@ -295,11 +295,11 @@ const PolicyHero = ({
           {
             opacity: 1,
             y: 0,
-            duration: 0.45,
-            stagger: 0.1,
+            duration: 0.35,
+            stagger: 0.05,
             ease: "power3.out",
           },
-          "-=0.35"
+          0.75
         );
       }
     }, rootRef);
@@ -466,7 +466,7 @@ const PolicyHero = ({
                 leading-[0.95]
                 tracking-[-2px]
                 text-[#2C1810]
-                drop-shadow-[0_2px_8px_rgba(92,58,27,0.18)]
+                drop-shadow-[0_2px_8px_rgba(92,58,27,0.06)]
                 sm:text-[48px]
                 md:text-[52px]
                 lg:text-[56px]
@@ -482,7 +482,7 @@ const PolicyHero = ({
             <div
               ref={decorationRef}
               className="
-                mt-5
+                mt-2.5
                 flex
                 items-center
               "
@@ -511,12 +511,11 @@ const PolicyHero = ({
               <p
                 className="
                   mb-3
-                  text-[17px]
+                  text-[20px]
                   font-bold
                   leading-relaxed
                   text-[#D95A06]
-                  drop-shadow-[0_1px_4px_rgba(217,90,6,0.35)]
-                  sm:text-[19px]
+                  sm:text-[20px]
                 "
               >
                 {subtitle}
@@ -525,12 +524,12 @@ const PolicyHero = ({
               <p
                 className="
                   max-w-[480px]
-                  text-[13px]
+                  text-[16px]
                   font-semibold
                   leading-[1.8]
                   text-[#5B4635]
-                  drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]
-                  sm:text-[14px]
+                  drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]
+                  sm:text-[16px]
                 "
               >
                 {description}
@@ -566,9 +565,11 @@ const PolicyHero = ({
             grid
             max-w-[1600px]
             grid-cols-2
-            px-4
+            pr-4
+            pl-0
             md:grid-cols-4
-            sm:px-6
+            sm:pr-6
+            sm:pl-0
           "
         >
           {policyMeta.map((item, index) => {
@@ -583,8 +584,8 @@ const PolicyHero = ({
                   items-center
                   justify-center
                   gap-3
-                  px-4
                   py-0.5
+                  ${index === 0 ? "pr-4" : "px-4"}
                   ${
                     index > 0
                       ? "md:border-l md:border-white/20"
@@ -622,7 +623,7 @@ const PolicyHero = ({
                   <p
                     className="
                       max-w-[150px]
-                      text-[15px]
+                      text-[16px]
                       font-medium
                       leading-tight
                       tracking-[0.02em]

@@ -2,14 +2,18 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowRight,
   BookOpen,
   CalendarDays,
   Check,
+  CircleHelp,
   ClipboardList,
+  CreditCard,
   FileText,
   Globe2,
   HeartHandshake,
@@ -32,7 +36,13 @@ import {
   X,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const HEADER_OFFSET = 150;
+
+const SECTIONS_SELECTOR = 'section[id^="privacy-section-"]';
+
+const ITEMS_SELECTOR = ".info-card";
 
 const sections = [
   "About Moksha Sewa",
@@ -71,7 +81,7 @@ const informationCards = [
     ],
   },
   {
-    icon: WalletCards,
+    icon:  CircleHelp,
     title: "Donation Information",
     items: [
       "Donation and payment related information",
@@ -156,13 +166,13 @@ function SectionTitle({
       id={id}
       className="section-title mb-3 flex scroll-mt-6 items-center gap-2"
     >
-      <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
+      <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
         {number}. {title}
       </h2>
 
       <span className="relative flex items-center">
         <span className="h-px w-10 bg-[#8B6A3E]" />
-        <span className="absolute left-1/2 -translate-x-1/2 text-[10px] text-[#8B6A3E]">
+        <span className="absolute left-1/2 -translate-x-1/2 text-[16px] text-[#8B6A3E]">
           ❖
         </span>
       </span>
@@ -172,35 +182,89 @@ function SectionTitle({
 
 export default function PrivacyPolicy() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const isProgrammaticScroll = useRef(false);
+  const lastHighlighted = useRef<HTMLElement | null>(null);
+  const reducedMotion = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      let current = 0;
+    reducedMotion.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-      for (let index = 0; index < sections.length; index++) {
-        const element = document.getElementById(
-          `privacy-section-${index + 1}`,
-        );
+    const elements = sections.map((_, index) =>
+      document.getElementById(`privacy-section-${index + 1}`),
+    );
 
-        if (!element) continue;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isProgrammaticScroll.current) return;
 
-        const rect = element.getBoundingClientRect();
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
 
-        if (rect.top <= 150) {
-          current = index;
-        } else {
-          break;
+        if (visible.length === 0) return;
+
+        const index = elements.indexOf(visible[0].target as HTMLElement);
+
+        if (index !== -1) {
+          const element = elements[index] as HTMLElement;
+          setActiveIndex(index);
+
+          if (element !== lastHighlighted.current) {
+            lastHighlighted.current = element;
+            highlightTarget(element);
+            highlightNavItem(index);
+          }
         }
+      },
+      {
+        rootMargin: "-150px 0px -55% 0px",
+        threshold: 0,
+      },
+    );
+
+    elements.forEach((element) => {
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+
+    const timer = window.setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (!element) return;
+
+      const index = sections.findIndex(
+        (_, i) => `privacy-section-${i + 1}` === hash,
+      );
+
+      if (index !== -1) {
+        setActiveIndex(index);
+        highlightNavItem(index);
       }
 
-      setActiveIndex(current);
-    };
+      const targetY = Math.max(
+        element.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+        0,
+      );
+      isProgrammaticScroll.current = true;
+      window.scrollTo(0, targetY);
+      isProgrammaticScroll.current = false;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+      lastHighlighted.current = element;
+      highlightTarget(element);
+    }, 450);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useLayoutEffect(() => {
@@ -286,15 +350,157 @@ export default function PrivacyPolicy() {
     return () => ctx.revert();
   }, []);
 
-  const scrollToSection = (index: number) => {
-    const element = document.getElementById(
-      `privacy-section-${index + 1}`,
+  const highlightTarget = (target: HTMLElement) => {
+    if (reducedMotion.current) return;
+
+    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
+      gsap.killTweensOf(el);
+      el.remove();
+    });
+
+    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
+      gsap.killTweensOf(section);
+      gsap.set(section, {
+        boxShadow: "0 0 0 rgba(215,140,40,0)",
+        backgroundColor: "rgba(255,250,240,0)",
+      });
+    });
+
+    const items = Array.from(
+      target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
     );
 
-    element?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    gsap.killTweensOf(target);
+    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+
+    gsap.fromTo(
+      target,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+
+    if (items.length > 0) {
+      gsap.killTweensOf(items);
+      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+
+      gsap.to(items, {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        stagger: 0.06,
+        onComplete: () => {
+          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      });
+    }
+  };
+
+  const scrollToTarget = (target: HTMLElement) => {
+    isProgrammaticScroll.current = true;
+
+    gsap.killTweensOf(window);
+
+    const targetY = Math.max(
+      target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+      0,
+    );
+
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(SECTIONS_SELECTOR),
+    ).filter((section) => section !== target);
+
+    if (reducedMotion.current) {
+      window.scrollTo({ top: targetY, behavior: "auto" });
+      isProgrammaticScroll.current = false;
+      lastHighlighted.current = target;
+      highlightTarget(target);
+      return;
+    }
+
+    gsap.to(sections, {
+      opacity: 0.25,
+      duration: 0.45,
+      ease: "power2.out",
+      overwrite: "auto",
     });
+
+    const restoreSections = () => {
+      gsap.to(sections, {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    };
+
+    const distance = Math.abs(targetY - window.scrollY);
+    const duration = Math.min(0.75 + distance / 2600, 1.15);
+
+    gsap.to(window, {
+      duration,
+      scrollTo: { y: targetY, autoKill: false },
+      ease: "power3.inOut",
+      overwrite: true,
+      onComplete: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+        gsap.delayedCall(0.15, () => {
+          lastHighlighted.current = target;
+          highlightTarget(target);
+        });
+      },
+      onInterrupt: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+      },
+    });
+  };
+
+  const highlightNavItem = (index: number) => {
+    if (reducedMotion.current) return;
+
+    const item = navItemRefs.current[index];
+    if (!item) return;
+
+    gsap.killTweensOf(item);
+    gsap.fromTo(
+      item,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+  };
+
+  const handleNavClick = (index: number) => {
+    const element = document.getElementById(`privacy-section-${index + 1}`);
+    const item = navItemRefs.current[index];
+
+    if (!element || !item) return;
+
+    setActiveIndex(index);
+    highlightNavItem(index);
+    scrollToTarget(element);
+
+    window.history.replaceState(null, "", `#${element.id}`);
   };
 
   return (
@@ -309,7 +515,7 @@ export default function PrivacyPolicy() {
         <aside className="privacy-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="bg-[#8B6A3E] px-4 py-2.5 text-center">
-              <h3 className="text-[13px] font-bold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+              <h3 className="text-[16px] font-bold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h3>
             </div>
@@ -320,14 +526,20 @@ export default function PrivacyPolicy() {
                   <li key={section}>
                     <button
                       type="button"
-                      onClick={() => scrollToSection(index)}
-                      className={`group flex w-full items-center gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
+                      ref={(el) => {
+                        navItemRefs.current[index] = el;
+                      }}
+                      aria-current={
+                        activeIndex === index ? "location" : undefined
+                      }
+                      onClick={() => handleNavClick(index)}
+                      className={`group flex w-full items-center gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${
                         activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
                       }`}
                     >
-                      <span className="min-w-[16px] text-[11px] font-bold text-[#8B6A3E]">
+                      <span className="min-w-[16px] text-[16px] font-bold text-[#8B6A3E]">
                         {index + 1}.
                       </span>
 
@@ -350,12 +562,12 @@ export default function PrivacyPolicy() {
                 />
               </div>
 
-              <h3 className="font-sans text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h3 className="font-sans text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Our Commitment
               </h3>
             </div>
 
-            <p className="mt-3 text-[13px] leading-6 text-[#5B4635]">
+            <p className="mt-3 text-[16px] leading-6 text-[#5B4635]">
               We are committed to transparency and protecting your personal
               information.
               <br />
@@ -383,7 +595,7 @@ export default function PrivacyPolicy() {
           {/* Section 1 */}
           <section
             id="privacy-section-1"
-            className="mb-4 scroll-mt-4"
+            className="relative mb-4 scroll-mt-4 overflow-hidden"
           >
             <SectionTitle number="1" title="About Moksha Sewa" />
 
@@ -410,7 +622,7 @@ export default function PrivacyPolicy() {
                 strokeWidth={2}
               />
 
-              <p className="text-[14px] font-medium leading-6 text-[#5B4635]">
+              <p className="text-[16px] font-medium leading-6 text-[#5B4635]">
                 All assistance is subject to case verification, availability
                 and applicable legal, police, hospital, municipal and other
                 competent-authority requirements.
@@ -421,7 +633,7 @@ export default function PrivacyPolicy() {
           {/* Section 2 */}
           <section
             id="privacy-section-2"
-            className="mb-4 scroll-mt-4"
+            className="relative mb-4 scroll-mt-4 overflow-hidden"
           >
             <SectionTitle number="2" title="Information We Collect" />
 
@@ -437,22 +649,22 @@ export default function PrivacyPolicy() {
                 return (
                   <div
                     key={card.title}
-                    className={`info-card grid grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] ${
+                    className={`info-card grid grid-cols-1 p-2 md:grid-cols-[360px_minmax(0,1fr)] ${
                       index !== informationCards.length - 1
                         ? "border-b border-[#e8e4d8]"
                         : ""
                     }`}
                   >
                     <div className="flex items-start gap-3 px-4 py-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF8EE]">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6]">
                         <Icon
                           size={22}
                           strokeWidth={1.55}
-                          className="text-[#8B6A3E]"
+                          className="text-[#D95A06]"
                         />
                       </div>
 
-                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                         {card.title}
                       </h3>
                     </div>
@@ -462,7 +674,7 @@ export default function PrivacyPolicy() {
                         {card.items.map((item) => (
                           <li
                             key={item}
-                            className="relative pl-3 text-[14px] leading-6 text-[#5B4635]"
+                            className="relative pl-3 text-[16px] leading-6 text-[#5B4635]"
                           >
                             <span className="absolute left-0 top-[9px] h-[4px] w-[4px] rounded-full bg-[#8B6A3E]" />
                             {item}
@@ -471,7 +683,7 @@ export default function PrivacyPolicy() {
                       </ul>
 
                       {card.note && (
-                        <p className="mt-1.5 text-[13px] font-semibold leading-5 text-[#5B4635]">
+                        <p className="mt-1.5 text-[16px] font-semibold leading-5 text-[#5B4635]">
                           {card.note}
                         </p>
                       )}
@@ -484,11 +696,11 @@ export default function PrivacyPolicy() {
             <div className="mt-3 flex items-center gap-2.5 rounded-[7px] border border-[#E2AE73] bg-[#FFF8EE] px-4 py-3">
               <Shield
                 size={20}
-                className="shrink-0 text-[#8B6A3E]"
+                className="shrink-0 text-[#D95A06]"
                 strokeWidth={1.6}
               />
 
-              <p className="text-[13px] font-medium leading-5 text-[#5B4635]">
+              <p className="text-[16px] font-medium leading-5 text-[#5B4635]">
                 We do not request or store your card PIN, CVV, UPI PIN,
                 internet-banking password or other payment authentication
                 credentials.
@@ -499,7 +711,7 @@ export default function PrivacyPolicy() {
           {/* Section 3 */}
           <section
             id="privacy-section-3"
-            className="mb-4 scroll-mt-4"
+            className="relative mb-4 scroll-mt-4 overflow-hidden"
           >
             <SectionTitle number="3" title="How We Use Your Information" />
 
@@ -512,13 +724,13 @@ export default function PrivacyPolicy() {
                 {useInformationLeft.map((item) => (
                   <li
                     key={item}
-                    className="use-item flex items-start gap-2.5 text-[14px] leading-6 text-[#5B4635]"
+                    className="use-item flex items-start gap-2.5 text-[16px] leading-6 text-[#5B4635]"
                   >
-                    <span className="mt-[2px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
+                    <span className="mt-[2px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6]">
                       <Check
                         size={11}
                         strokeWidth={3}
-                        className="text-white"
+                        className="text-[#D95A06]"
                       />
                     </span>
                     <span>{item}</span>
@@ -530,13 +742,13 @@ export default function PrivacyPolicy() {
                 {useInformationRight.map((item) => (
                   <li
                     key={item}
-                    className="use-item flex items-start gap-2.5 text-[14px] leading-6 text-[#5B4635]"
+                    className="use-item flex items-start gap-2.5 text-[16px] leading-6 text-[#5B4635]"
                   >
-                    <span className="mt-[2px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
+                    <span className="mt-[2px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6]">
                       <Check
                         size={11}
                         strokeWidth={3}
-                        className="text-white"
+                        className="text-[#D95A06]"
                       />
                     </span>
                     <span>{item}</span>
@@ -549,7 +761,7 @@ export default function PrivacyPolicy() {
           {/* Section 4 */}
           <section
             id="privacy-section-4"
-            className="mb-4 scroll-mt-4"
+            className="relative mb-4 scroll-mt-4 overflow-hidden"
           >
             <SectionTitle number="4" title="Your Privacy Rights" />
 
@@ -577,7 +789,7 @@ export default function PrivacyPolicy() {
                       className="mb-2 text-[#8B6A3E]"
                     />
 
-                    <span className="whitespace-pre-line text-[10px] font-medium leading-[1.5] text-[#5B4635]">
+                    <span className="whitespace-pre-line text-[16px] font-medium leading-[1.5] text-[#5B4635]">
                       {right.title}
                     </span>
                   </div>
@@ -602,11 +814,11 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className="text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h3 className="text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Have Questions About Your Privacy?
               </h3>
 
-              <p className="mt-1 text-[13px] leading-6 text-[#5B4635]">
+              <p className="mt-1 text-[16px] leading-6 text-[#5B4635]">
                 If you have any questions, requests or concerns regarding
                 this policy or your personal
                 <br className="hidden sm:block" />
@@ -623,16 +835,16 @@ export default function PrivacyPolicy() {
             />
           </div>
 
-          <button
-            type="button"
-            className="group flex shrink-0 items-center gap-3 rounded-[5px] bg-[#8B6A3E] px-6 py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-[#73532F] hover:shadow-[0_7px_18px_rgba(139,106,62,0.35)]"
+          <Link
+            href="/contact"
+            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-bold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             Contact Us
             <ArrowRight
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </button>
+          </Link>
         </div>
       </section>
     </main>

@@ -2,8 +2,10 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowRight,
   CalendarDays,
@@ -12,9 +14,11 @@ import {
   CircleDollarSign,
   ClipboardList,
   Clock3,
+  CreditCard,
   FileCheck2,
   FileText,
   Gift,
+  HandHeart,
   HeartHandshake,
   Info,
   Landmark,
@@ -30,7 +34,13 @@ import {
   XCircle,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const HEADER_OFFSET = 150;
+
+const SECTIONS_SELECTOR = 'section[id^="refund-section-"]';
+
+const ITEMS_SELECTOR = ".refund-bottom-card";
 
 const navigationItems = [
   { number: 1, label: "Overview" },
@@ -60,14 +70,14 @@ const mainSections = [
   {
     number: 2,
     title: "Donations",
-    icon: Gift,
+    icon: HandHeart,
     content:
       "Donations made towards our cause are voluntary and non-refundable. We utilize these funds towards verified humanitarian activities and operational expenses to support our mission.",
   },
   {
     number: 3,
     title: "Payment Failure or Deduction Without Successful Donation",
-    icon: WalletCards,
+    icon: CreditCard,
     content:
       "If an amount is deducted from your account but the donation is not recorded by us due to a technical error or gateway failure, the full amount will be refunded to your original payment method within 7–10 working days.",
   },
@@ -180,7 +190,7 @@ function SectionIcon({
   icon: React.ElementType;
 }) {
   return (
-    <div className="refund-section-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-[0_3px_10px_rgba(139,106,62,0.12)]">
+    <div className="refund-section-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
       <Icon size={24} strokeWidth={1.5} />
     </div>
   );
@@ -194,7 +204,7 @@ function SectionHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
+    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
       {number}. {title}
     </h2>
   );
@@ -202,50 +212,103 @@ function SectionHeading({
 
 export default function RefundPolicy() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const isProgrammaticScroll = useRef(false);
+  const lastHighlighted = useRef<HTMLElement | null>(null);
+  const reducedMotion = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const sectionIds = [
-    "refund-section-1",
-    "refund-section-2",
-    "refund-section-3",
-    "refund-section-4",
-    "refund-section-5",
-    "refund-section-6",
-    "refund-section-7",
-    "refund-section-9",
-    "refund-section-9",
-    "refund-section-9",
-    "refund-section-12",
-    "refund-section-12",
-    "refund-section-12",
-    "refund-section-12",
-  ];
+  const anchorFor = (number: number) => {
+    if (number >= 9 && number <= 11) return 9;
+    if (number >= 12) return 12;
+    return number;
+  };
+
+  const sectionIds = navigationItems.map((item) =>
+    item.number >= 9 && item.number <= 11
+      ? "refund-section-9"
+      : item.number >= 12
+        ? "refund-section-12"
+        : `refund-section-${item.number}`,
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      let current = 0;
+    reducedMotion.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-      for (let index = 0; index < sectionIds.length; index++) {
-        const element = document.getElementById(sectionIds[index]);
+    const elements = sectionIds.map((id) => document.getElementById(id));
 
-        if (!element) continue;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isProgrammaticScroll.current) return;
 
-        const rect = element.getBoundingClientRect();
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
 
-        if (rect.top <= 150) {
-          current = index;
-        } else {
-          break;
+        if (visible.length === 0) return;
+
+        const el = visible[0].target as HTMLElement;
+        const index = elements.indexOf(el);
+
+        if (index !== -1) {
+          const element = elements[index] as HTMLElement;
+          setActiveIndex(index);
+
+          if (element !== lastHighlighted.current) {
+            lastHighlighted.current = element;
+            highlightTarget(element);
+            highlightNavItem(index);
+          }
         }
+      },
+      {
+        rootMargin: "-150px 0px -55% 0px",
+        threshold: 0,
+      },
+    );
+
+    elements.forEach((element) => {
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+
+    const timer = window.setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (!element) return;
+
+      const anchor = Number(hash.replace("refund-section-", ""));
+      const index = navigationItems.findIndex(
+        (item) => anchorFor(item.number) === anchor,
+      );
+
+      if (index !== -1) {
+        setActiveIndex(index);
+        highlightNavItem(index);
       }
 
-      setActiveIndex(current);
-    };
+      const targetY = Math.max(
+        element.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+        0,
+      );
+      isProgrammaticScroll.current = true;
+      window.scrollTo(0, targetY);
+      isProgrammaticScroll.current = false;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+      lastHighlighted.current = element;
+      highlightTarget(element);
+    }, 450);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useLayoutEffect(() => {
@@ -291,48 +354,167 @@ export default function RefundPolicy() {
           });
         },
       );
-
-      gsap.utils.toArray<HTMLElement>(".refund-nav-button").forEach(
-        (button) => {
-          button.addEventListener("mouseenter", () => {
-            gsap.to(button, {
-              x: 2,
-              duration: 0.2,
-              ease: "power2.out",
-            });
-          });
-
-          button.addEventListener("mouseleave", () => {
-            gsap.to(button, {
-              x: 0,
-              duration: 0.2,
-              ease: "power2.out",
-            });
-          });
-        },
-      );
     }, pageRef);
 
     return () => context.revert();
   }, []);
 
-  const scrollToSection = (number: number) => {
-    let anchor = number;
+  const highlightTarget = (target: HTMLElement) => {
+    if (reducedMotion.current) return;
 
-    if (number >= 9 && number <= 11) {
-      anchor = 9;
-    } else if (number >= 12) {
-      anchor = 12;
+    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
+      gsap.killTweensOf(el);
+      el.remove();
+    });
+
+    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
+      gsap.killTweensOf(section);
+      gsap.set(section, {
+        boxShadow: "0 0 0 rgba(215,140,40,0)",
+        backgroundColor: "rgba(255,250,240,0)",
+      });
+    });
+
+    const items = Array.from(
+      target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
+    );
+
+    gsap.killTweensOf(target);
+    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+
+    gsap.fromTo(
+      target,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+
+    if (items.length > 0) {
+      gsap.killTweensOf(items);
+      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+
+      gsap.to(items, {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        stagger: 0.06,
+        onComplete: () => {
+          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      });
+    }
+  };
+
+  const scrollToTarget = (target: HTMLElement) => {
+    isProgrammaticScroll.current = true;
+
+    gsap.killTweensOf(window);
+
+    const targetY = Math.max(
+      target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+      0,
+    );
+
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(SECTIONS_SELECTOR),
+    ).filter((section) => section !== target);
+
+    if (reducedMotion.current) {
+      window.scrollTo({ top: targetY, behavior: "auto" });
+      isProgrammaticScroll.current = false;
+      lastHighlighted.current = target;
+      highlightTarget(target);
+      return;
     }
 
-    const target = document.getElementById(`refund-section-${anchor}`);
-
-    if (!target) return;
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    gsap.to(sections, {
+      opacity: 0.25,
+      duration: 0.45,
+      ease: "power2.out",
+      overwrite: "auto",
     });
+
+    const restoreSections = () => {
+      gsap.to(sections, {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    };
+
+    const distance = Math.abs(targetY - window.scrollY);
+    const duration = Math.min(0.75 + distance / 2600, 1.15);
+
+    gsap.to(window, {
+      duration,
+      scrollTo: { y: targetY, autoKill: false },
+      ease: "power3.inOut",
+      overwrite: true,
+      onComplete: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+        gsap.delayedCall(0.15, () => {
+          lastHighlighted.current = target;
+          highlightTarget(target);
+        });
+      },
+      onInterrupt: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+      },
+    });
+  };
+
+  const highlightNavItem = (index: number) => {
+    if (reducedMotion.current) return;
+
+    const item = navItemRefs.current[index];
+    if (!item) return;
+
+    gsap.killTweensOf(item);
+    gsap.fromTo(
+      item,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+  };
+
+  const handleNavClick = (index: number) => {
+    const item = navigationItems[index];
+    if (!item) return;
+
+    const element = document.getElementById(
+      `refund-section-${anchorFor(item.number)}`,
+    );
+    const navItem = navItemRefs.current[index];
+
+    if (!element || !navItem) return;
+
+    setActiveIndex(index);
+    highlightNavItem(index);
+    scrollToTarget(element);
+
+    window.history.replaceState(null, "", `#${element.id}`);
   };
 
   return (
@@ -340,14 +522,14 @@ export default function RefundPolicy() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-2 pt-12 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =====================================================
             SIDEBAR
         ====================================================== */}
         <aside className="refund-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
-              <h2 className="text-[13px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+              <h2 className="text-[16px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h2>
             </div>
@@ -358,8 +540,14 @@ export default function RefundPolicy() {
                   <li key={item.number}>
                     <button
                       type="button"
-                      onClick={() => scrollToSection(item.number)}
-                      className={`refund-nav-button flex w-full items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
+                      ref={(el) => {
+                        navItemRefs.current[index] = el;
+                      }}
+                      aria-current={
+                        activeIndex === index ? "location" : undefined
+                      }
+                      onClick={() => handleNavClick(index)}
+                      className={`refund-nav-button flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${
                         activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
@@ -386,12 +574,12 @@ export default function RefundPolicy() {
                 className="text-[#D95A06]"
               />
 
-              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Note
               </h3>
             </div>
 
-            <div className="mt-3 space-y-2 text-[13px] leading-6 text-[#5B4635]">
+            <div className="mt-3 space-y-2 text-[16px] leading-6 text-[#5B4635]">
               <p>
                 Refunds are processed only in eligible cases as per this
                 policy.
@@ -432,8 +620,17 @@ export default function RefundPolicy() {
               />
             </div>
 
-            <p className="text-[14px] font-medium leading-6 text-[#2C1810]">
-              Moksha Sewa (an initiative of Namo Gange Trust) is a non-profit
+            <p className="text-[16px] font-medium leading-6 text-[#2C1810]">
+              Moksha Sewa (an initiative of{" "}
+              <a
+                href="https://namogange.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#8B6A3E] underline underline-offset-4 transition-colors hover:text-[#B76B16]"
+              >
+                Namo Gange Trust
+              </a>
+              ) is a non-profit
               organisation. Donations made to support our humanitarian
               activities are voluntary and non-refundable except as provided
               in this Refund Policy.
@@ -449,7 +646,7 @@ export default function RefundPolicy() {
                 <section
                   key={section.number}
                   id={`refund-section-${section.number}`}
-                  className="refund-main-section scroll-mt-4"
+                  className="refund-main-section relative scroll-mt-4 overflow-hidden"
                 >
                   <div className="grid grid-cols-[64px_minmax(0,1fr)]">
                     <div className="flex justify-start pt-1">
@@ -472,7 +669,7 @@ export default function RefundPolicy() {
 
                       {/* Section 8 special bullets */}
                       {section.number === 8 && (
-                        <div className="mt-2 grid grid-cols-2 gap-x-7 text-[14px] leading-6 text-[#5B4635]">
+                        <div className="mt-2 grid grid-cols-2 gap-x-7 text-[16px] leading-6 text-[#5B4635]">
                           <div className="space-y-1">
                             <p>• Change of mind after successful donation</p>
                             <p>
@@ -499,7 +696,7 @@ export default function RefundPolicy() {
           ====================================================== */}
           <section
             id="refund-section-9"
-            className="mt-6 grid grid-cols-1 gap-3 scroll-mt-4 md:grid-cols-3"
+            className="relative mt-6 grid grid-cols-1 gap-3 scroll-mt-4 overflow-hidden md:grid-cols-3"
           >
             {bottomCards.map((card) => {
               const Icon = card.icon;
@@ -507,21 +704,22 @@ export default function RefundPolicy() {
               return (
                 <article
                   key={card.number}
-                  className="refund-bottom-card min-h-[130px] rounded-[7px] border border-[#e7e2d5] bg-[#fffef9] px-4 py-3.5 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_7px_18px_rgba(139,106,62,0.08)]"
+                  className="refund-bottom-card min-h-[130px] rounded-[7px] border border-[#e7e2d5] bg-[#fffef9] p-2 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_7px_18px_rgba(139,106,62,0.08)]"
                 >
                   <div className="flex items-start gap-2.5">
-                    <Icon
-                      size={24}
-                      strokeWidth={1.45}
-                      className="mt-[1px] shrink-0 text-[#8B6A3E]"
-                    />
+                    <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
+                      <Icon
+                        size={24}
+                        strokeWidth={1.5}
+                      />
+                    </div>
 
-                    <h2 className="text-[14px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+                    <h2 className="text-[16px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                       {card.number}. {card.title}
                     </h2>
                   </div>
 
-                  <div className="mt-2 pl-[31px] text-[13px] leading-5 text-[#5B4635]">
+                  <div className="mt-2 pl-[31px] text-[16px] leading-5 text-[#5B4635]">
                     {card.content}
                   </div>
                 </article>
@@ -534,7 +732,7 @@ export default function RefundPolicy() {
           ====================================================== */}
           <section
             id="refund-section-12"
-            className="refund-final-grid mt-6 grid grid-cols-1 gap-3 scroll-mt-4 sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_1fr]"
+            className="refund-final-grid relative mt-6 grid grid-cols-1 gap-3 scroll-mt-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_1fr]"
           >
             {finalCards.map((card) => {
               const Icon = card.icon;
@@ -545,18 +743,19 @@ export default function RefundPolicy() {
                   className="refund-final-card min-h-[130px] rounded-[7px] border border-[#e7e2d5] bg-[#fffef9] px-4 py-3.5 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_7px_18px_rgba(139,106,62,0.08)]"
                 >
                   <div className="flex items-start gap-2.5">
-                    <Icon
-                      size={23}
-                      strokeWidth={1.4}
-                      className="mt-[1px] shrink-0 text-[#8B6A3E]"
-                    />
+                    <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
+                      <Icon
+                        size={23}
+                        strokeWidth={1.5}
+                      />
+                    </div>
 
-                    <h2 className="text-[13px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+                    <h2 className="text-[16px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                       {card.number}. {card.title}
                     </h2>
                   </div>
 
-                  <p className="mt-2 pl-[31px] text-[12px] leading-5 text-[#5B4635]">
+                  <p className="mt-2 pl-[31px] text-[16px] leading-5 text-[#5B4635]">
                     {card.content}
                   </p>
                 </article>
@@ -572,7 +771,7 @@ export default function RefundPolicy() {
       <section className="refund-contact w-full border-t border-[#e7e2d5] bg-white/65 px-4 py-3 sm:px-5 lg:px-0">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2C1810]">
               <Image
                 src="/assets/privacy-policy/cta_icon.webp"
                 alt="Contact us"
@@ -583,11 +782,11 @@ export default function RefundPolicy() {
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Have Questions About a Refund?
               </h2>
 
-              <p className="mt-1 text-[13px] leading-6 text-[#5B4635]">
+              <p className="mt-1 text-[16px] leading-6 text-[#5B4635]">
                 We are here to help you with any refund-related queries or
                 concerns.
               </p>
@@ -602,9 +801,9 @@ export default function RefundPolicy() {
             />
           </div>
 
-          <button
-            type="button"
-            className="group flex shrink-0 items-center gap-3 rounded-[5px] bg-[#8B6A3E] px-6 py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-[#73532F] hover:shadow-[0_7px_18px_rgba(139,106,62,0.35)]"
+          <Link
+            href="/contact"
+            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-bold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             Contact Us
 
@@ -612,7 +811,7 @@ export default function RefundPolicy() {
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </button>
+          </Link>
         </div>
       </section>
     </main>

@@ -2,8 +2,10 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowDown,
   ArrowRight,
@@ -20,7 +22,13 @@ import {
   UsersRound,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const HEADER_OFFSET = 150;
+
+const SECTIONS_SELECTOR = ".terms-section";
+
+const ITEMS_SELECTOR = ".terms-round-icon";
 
 /* =========================================================
    SIDEBAR CONTENT
@@ -126,7 +134,7 @@ function RoundIcon({
   icon: React.ElementType;
 }) {
   return (
-    <div className="terms-round-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-[0_3px_10px_rgba(139,106,62,0.12)]">
+    <div className="terms-round-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
       <Icon
         size={24}
         strokeWidth={1.5}
@@ -147,7 +155,7 @@ function TermsHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.2)]">
+    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
       {number}. {title}
     </h2>
   );
@@ -159,35 +167,89 @@ function TermsHeading({
 
 export default function TermsAndConditions() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const isProgrammaticScroll = useRef(false);
+  const lastHighlighted = useRef<HTMLElement | null>(null);
+  const reducedMotion = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      let current = 0;
+    reducedMotion.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-      for (let index = 0; index < navigationItems.length; index++) {
-        const element = document.getElementById(
-          `terms-section-${index + 1}`,
-        );
+    const elements = navigationItems.map((_, index) =>
+      document.getElementById(`terms-section-${index + 1}`),
+    );
 
-        if (!element) continue;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isProgrammaticScroll.current) return;
 
-        const rect = element.getBoundingClientRect();
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
 
-        if (rect.top <= 150) {
-          current = index;
-        } else {
-          break;
+        if (visible.length === 0) return;
+
+        const index = elements.indexOf(visible[0].target as HTMLElement);
+
+        if (index !== -1) {
+          const element = elements[index] as HTMLElement;
+          setActiveIndex(index);
+
+          if (element !== lastHighlighted.current) {
+            lastHighlighted.current = element;
+            highlightTarget(element);
+            highlightNavItem(index);
+          }
         }
+      },
+      {
+        rootMargin: "-150px 0px -55% 0px",
+        threshold: 0,
+      },
+    );
+
+    elements.forEach((element) => {
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+
+    const timer = window.setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (!element) return;
+
+      const index = navigationItems.findIndex(
+        (_, i) => `terms-section-${i + 1}` === hash,
+      );
+
+      if (index !== -1) {
+        setActiveIndex(index);
+        highlightNavItem(index);
       }
 
-      setActiveIndex(current);
-    };
+      const targetY = Math.max(
+        element.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+        0,
+      );
+      isProgrammaticScroll.current = true;
+      window.scrollTo(0, targetY);
+      isProgrammaticScroll.current = false;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+      lastHighlighted.current = element;
+      highlightTarget(element);
+    }, 450);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useLayoutEffect(() => {
@@ -314,20 +376,160 @@ export default function TermsAndConditions() {
   }, []);
 
   /* =====================================================
-     SCROLL TO SECTION
+     PORTRAIT FOCUS + SCROLL TO SECTION
   ===================================================== */
 
-  const scrollToSection = (index: number) => {
-    const element = document.getElementById(
-      `terms-section-${index + 1}`,
+  const highlightTarget = (target: HTMLElement) => {
+    if (reducedMotion.current) return;
+
+    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
+      gsap.killTweensOf(el);
+      el.remove();
+    });
+
+    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
+      gsap.killTweensOf(section);
+      gsap.set(section, {
+        boxShadow: "0 0 0 rgba(215,140,40,0)",
+        backgroundColor: "rgba(255,250,240,0)",
+      });
+    });
+
+    const items = Array.from(
+      target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
     );
 
-    if (!element) return;
+    gsap.killTweensOf(target);
+    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
 
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    gsap.fromTo(
+      target,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+
+    if (items.length > 0) {
+      gsap.killTweensOf(items);
+      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+
+      gsap.to(items, {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        stagger: 0.06,
+        onComplete: () => {
+          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      });
+    }
+  };
+
+  const scrollToTarget = (target: HTMLElement) => {
+    isProgrammaticScroll.current = true;
+
+    gsap.killTweensOf(window);
+
+    const targetY = Math.max(
+      target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+      0,
+    );
+
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(SECTIONS_SELECTOR),
+    ).filter((section) => section !== target);
+
+    if (reducedMotion.current) {
+      window.scrollTo({ top: targetY, behavior: "auto" });
+      isProgrammaticScroll.current = false;
+      lastHighlighted.current = target;
+      highlightTarget(target);
+      return;
+    }
+
+    gsap.to(sections, {
+      opacity: 0.25,
+      duration: 0.45,
+      ease: "power2.out",
+      overwrite: "auto",
     });
+
+    const restoreSections = () => {
+      gsap.to(sections, {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    };
+
+    const distance = Math.abs(targetY - window.scrollY);
+    const duration = Math.min(0.75 + distance / 2600, 1.15);
+
+    gsap.to(window, {
+      duration,
+      scrollTo: { y: targetY, autoKill: false },
+      ease: "power3.inOut",
+      overwrite: true,
+      onComplete: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+        gsap.delayedCall(0.15, () => {
+          lastHighlighted.current = target;
+          highlightTarget(target);
+        });
+      },
+      onInterrupt: () => {
+        isProgrammaticScroll.current = false;
+        restoreSections();
+      },
+    });
+  };
+
+  const highlightNavItem = (index: number) => {
+    if (reducedMotion.current) return;
+
+    const item = navItemRefs.current[index];
+    if (!item) return;
+
+    gsap.killTweensOf(item);
+    gsap.fromTo(
+      item,
+      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
+      {
+        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
+        duration: 0.5,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 2,
+        onComplete: () => {
+          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+        },
+      },
+    );
+  };
+
+  const handleNavClick = (index: number) => {
+    const element = document.getElementById(`terms-section-${index + 1}`);
+    const item = navItemRefs.current[index];
+
+    if (!element || !item) return;
+
+    setActiveIndex(index);
+    highlightNavItem(index);
+    scrollToTarget(element);
+
+    window.history.replaceState(null, "", `#${element.id}`);
   };
 
   return (
@@ -335,7 +537,7 @@ export default function TermsAndConditions() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-2 pt-12 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =================================================
             LEFT SIDEBAR
         ================================================== */}
@@ -345,7 +547,7 @@ export default function TermsAndConditions() {
             {/* Header */}
 
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
-              <h2 className="text-[13px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+              <h2 className="text-[16px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h2>
             </div>
@@ -358,8 +560,14 @@ export default function TermsAndConditions() {
                   <li key={item}>
                     <button
                       type="button"
-                      onClick={() => scrollToSection(index)}
-                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[13px] leading-[1.4] transition-colors ${
+                      ref={(el) => {
+                        navItemRefs.current[index] = el;
+                      }}
+                      aria-current={
+                        activeIndex === index ? "location" : undefined
+                      }
+                      onClick={() => handleNavClick(index)}
+                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${
                         activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
@@ -391,12 +599,12 @@ export default function TermsAndConditions() {
                 />
               </div>
 
-              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Our Commitment
               </h3>
             </div>
 
-            <p className="mt-3 max-w-[190px] text-[13px] leading-6 text-[#5B4635]">
+            <p className="mt-3 max-w-[190px] text-[16px] leading-6 text-[#5B4635]">
               We are committed to transparency, compassion and dignity in
               every service we deliver.
             </p>
@@ -427,7 +635,7 @@ export default function TermsAndConditions() {
               <section
                 key={section.number}
                 id={`terms-section-${section.number}`}
-                className="terms-section scroll-mt-4"
+                className="terms-section relative scroll-mt-4 overflow-hidden"
               >
                 <div className="grid grid-cols-[64px_minmax(0,1fr)] px-[10px]">
                   {/* Icon */}
@@ -466,7 +674,7 @@ export default function TermsAndConditions() {
           <div className="flex justify-center">
             <button
               type="button"
-              className="terms-view-button group mt-5 inline-flex items-center gap-2 rounded-[5px] border border-[#e4dcca] bg-[#fffdf8] px-5 py-2.5 text-[13px] font-semibold text-[#5A4030] shadow-[0_1px_4px_rgba(40,60,50,0.04)] transition-all duration-300 hover:border-[#E2AE73] hover:text-[#8B6A3E]"
+              className="terms-view-button group mt-5 inline-flex items-center gap-2 rounded-[5px] border border-[#e4dcca] bg-[#fffdf8] px-5 py-2.5 text-[16px] font-semibold text-[#5A4030] shadow-[0_1px_4px_rgba(40,60,50,0.04)] transition-all duration-300 hover:border-[#E2AE73] hover:text-[#8B6A3E]"
             >
               View All Terms &amp; Conditions
 
@@ -487,7 +695,7 @@ export default function TermsAndConditions() {
       <section className="terms-contact w-full border-t border-[#e7e2d5] bg-white/65 px-4 py-3 sm:px-5 lg:px-0">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2C1810]">
               <Image
                 src="/assets/privacy-policy/cta_icon.webp"
                 alt="Contact us"
@@ -498,11 +706,11 @@ export default function TermsAndConditions() {
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.15)]">
+              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Questions About These Terms?
               </h2>
 
-              <p className="mt-1 text-[13px] leading-6 text-[#5B4635]">
+              <p className="mt-1 text-[16px] leading-6 text-[#5B4635]">
                 If you have any questions about these Terms &amp; Conditions,
                 please reach out to us.
               </p>
@@ -517,9 +725,9 @@ export default function TermsAndConditions() {
             />
           </div>
 
-          <button
-            type="button"
-            className="group flex shrink-0 items-center gap-3 rounded-[5px] bg-[#8B6A3E] px-6 py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-[#73532F] hover:shadow-[0_7px_18px_rgba(139,106,62,0.35)]"
+          <Link
+            href="/contact"
+            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-bold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             Contact Us
 
@@ -527,7 +735,7 @@ export default function TermsAndConditions() {
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </button>
+          </Link>
         </div>
       </section>
     </main>
