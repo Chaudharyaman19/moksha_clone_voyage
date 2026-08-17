@@ -277,7 +277,7 @@ export default function WhyFamiliesTrust() {
               <br className="hidden sm:block" />
               especially unclaimed, orphaned and needy cases.
               <br className="hidden lg:block" />
-              We arrange the essentials so final rites happen with dignity.
+            
             </p>
           </div>
         </div>
