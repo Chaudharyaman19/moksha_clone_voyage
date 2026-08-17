@@ -18,7 +18,7 @@ import {
 import { PiFlowerLotus } from "react-icons/pi";
 import { MapPin, Mail, Clock } from "lucide-react";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
-import footerBg from "../../../public/assets/footer_bg.webp";
+import footerBg from "../../../public/assets/footer-ghat-sunset.png";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 
