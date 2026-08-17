@@ -520,7 +520,7 @@ export default function Hero() {
       "/hero-images/image3.png",
       "/hero-images/image7.png",
       "/hero-images/image8.png",
-      "/hero-images/image9.png",
+      "/hero-images/volunteer-impact.png",
       // "/hero-images/1.png",
       // "/hero-images/2.png",
       // "/hero-images/3.png",
@@ -946,7 +946,7 @@ export default function Hero() {
                     <FaHandHoldingHeart className="h-8 w-8" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-[15px] font-extrabold uppercase leading-tight">
+                    <span className="block text-[14px] font-bold leading-tight">
                       Request Support
                     </span>
                   </span>
@@ -960,7 +960,7 @@ export default function Hero() {
                     <FaHandsHelping className="h-8 w-8" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-[15px] font-extrabold uppercase leading-tight text-[#C85117]">
+                    <span className="block text-[14px] font-bold leading-tight text-[#C85117]">
                       Support a Family
                     </span>
                   </span>
@@ -973,7 +973,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaAmbulance className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold uppercase leading-[1.18] text-[#2C1810]">
+                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Transport
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">with care</span>
@@ -984,7 +984,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaPrayingHands className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold uppercase leading-[1.18] text-[#2C1810]">
+                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Rituals
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">with dignity</span>
@@ -995,7 +995,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaUsers className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-extrabold uppercase leading-[1.18] text-[#2C1810]">
+                    <span className="text-[11px] font-extrabold leading-[1.18] text-[#2C1810]">
                       Supporting Families
                       <br />
                       <span className="font-medium normal-case text-[#6C5547]">every step</span>
@@ -1091,7 +1091,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaHandHoldingHeart className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold uppercase leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Compassion
                     <br />
                     Brings Dignity
@@ -1102,7 +1102,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaUsers className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold uppercase leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Time
                     <br />
                     Creates Impact
@@ -1113,7 +1113,7 @@ export default function Hero() {
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                     <FaHandHoldingHeart className="h-5 w-5" />
                   </span>
-                  <span className="text-[11px] font-extrabold uppercase leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                  <span className="text-[11px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                     Your Support
                     <br />
                     Gives Respect
@@ -1133,7 +1133,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaPrayingHands className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold uppercase leading-[1.25] text-[#2C1810]">
+              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Volunteer
                 <br />
                 For Sewa
@@ -1144,7 +1144,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaHandHoldingHeart className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold uppercase leading-[1.25] text-[#2C1810]">
+              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Donate
                 <br />
                 With Heart
@@ -1155,7 +1155,7 @@ export default function Hero() {
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                 <FaUsers className="h-7 w-7" />
               </span>
-              <span className="text-[12px] font-extrabold uppercase leading-[1.25] text-[#2C1810]">
+              <span className="text-[12px] font-extrabold leading-[1.25] text-[#2C1810]">
                 Share
                 <br />
                 The Mission
@@ -1198,7 +1198,7 @@ export default function Hero() {
                   >
                     <AnimatedNumber endString={stat.value} />
                   </div>
-                  <div className="mt-1 max-w-[120px] text-[14px] font-medium uppercase leading-tight tracking-[0.06em] text-white/90 lg:max-w-none lg:text-[15px]">
+                  <div className="mt-1 max-w-[120px] text-[14px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[15px]">
                     {stat.label}
                   </div>
                 </div>
