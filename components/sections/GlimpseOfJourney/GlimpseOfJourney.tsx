@@ -34,7 +34,6 @@ export default function GlimpseOfJourney() {
           </div>
           <h2 
             className="text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Real Moments of Help and Antim Sewa
           </h2>

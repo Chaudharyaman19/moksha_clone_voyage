@@ -220,7 +220,6 @@ export default function CompassionSection() {
             {/* Heading */}
             <h2
               className="mb-2.5 text-[31px] font-normal leading-[1.08] text-[#26140D] sm:text-[38px] lg:text-[44px]"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               <span className="block">
                 When a Family Needs Help
@@ -258,7 +257,6 @@ export default function CompassionSection() {
                   </div>
                   <div
                     className="text-[24px] font-semibold leading-none text-[#392116]"
-                    style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                   >
                     {value}
                   </div>
