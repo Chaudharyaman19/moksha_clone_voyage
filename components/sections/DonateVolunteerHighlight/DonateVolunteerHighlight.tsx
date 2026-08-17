@@ -10,12 +10,12 @@ import { PiFlowerLotus } from "react-icons/pi";
 
 export default function DonateVolunteerHighlight() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#FBF6EE] px-4 py-5 sm:px-5 lg:px-6 lg:py-2">
+    <section className="relative isolate overflow-hidden bg-[#F2E6D8] px-4 py-8 sm:px-5 lg:px-6 lg:py-8">
       {/* =========================================================
           PREMIUM BACKGROUND
       ========================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(200,81,23,0.08),transparent_28%),radial-gradient(circle_at_88%_82%,rgba(139,106,62,0.10),transparent_34%),linear-gradient(135deg,#FFF9F1_0%,#FBF3E8_48%,#FFFDF9_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(200,81,23,0.10),transparent_28%),radial-gradient(circle_at_88%_82%,rgba(139,106,62,0.13),transparent_34%),linear-gradient(135deg,#F5E7D8_0%,#EFE0CF_48%,#F8EEE2_100%)]" />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C99354]/55 to-transparent" />
 
@@ -27,17 +27,9 @@ export default function DonateVolunteerHighlight() {
 
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-24 w-[78%] -translate-x-1/2 bg-gradient-to-t from-[#8B6A3E]/[0.05] to-transparent blur-2xl" />
 
-      {/* =========================================================
-          CONTENT
-      ========================================================== */}
-
       <div className="relative z-10 mx-auto max-w-[1280px]">
 
-        {/* =======================================================
-            SECTION LABEL
-        ======================================================== */}
-
-        <div className="mb-1 flex items-center justify-center gap-3">
+        <div className="mb-1 -mt-2 flex items-center justify-center gap-3 py-1">
           <span className="h-px w-10 bg-[#A97843]/45 sm:w-14" />
 
           <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D7B47D] bg-[#FFF8EC] shadow-[0_6px_18px_rgba(129,83,38,0.08)]">
@@ -51,15 +43,7 @@ export default function DonateVolunteerHighlight() {
           <span className="h-px w-10 bg-[#A97843]/45 sm:w-14" />
         </div>
 
-        {/* =======================================================
-            MAIN GRID
-        ======================================================== */}
-
         <div className="grid items-stretch gap-4 lg:grid-cols-[1.04fr_0.96fr]">
-
-          {/* =====================================================
-              LEFT — VIDEO
-          ====================================================== */}
 
           <div className="group relative min-h-[270px] overflow-hidden border border-[#D5AF78]/65 bg-[#2C1810] shadow-[0_20px_48px_rgba(73,47,25,0.16)] sm:min-h-[315px] lg:min-h-[355px]">
 

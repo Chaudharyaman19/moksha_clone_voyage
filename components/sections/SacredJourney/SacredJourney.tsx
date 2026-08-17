@@ -283,7 +283,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
           </p>
         </header>
 
-        <div className="mx-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px]">
+        <div className="mx-auto mb-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px]">
           {cards.map((card, index) => {
             const Icon = card.icon;
             const isFilledButton = index === 0 || index === 2;
@@ -323,7 +323,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
 
                   <span className="mt-1.5 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-2 max-w-[250px] text-[16px] font-normal leading-[1.45] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
+                  <p className="mx-auto mt-4 max-w-[250px] text-[16px] font-normal leading-[1.45] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
                     {card.description}
                   </p>
                 </div>
@@ -331,7 +331,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className={`absolute bottom-[12px] left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[16px] font-medium leading-tight transition ${
+                  className={`absolute bottom-0 left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[16px] font-medium leading-tight transition ${
                     isFilledButton
                       ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
                       : "border border-[#B85F00] bg-white/90 text-[#8F3E00] hover:bg-[#FFF5E8]"
