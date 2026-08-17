@@ -7,6 +7,7 @@ import Image from "next/image";
 import {
   FaPhoneAlt,
   FaFacebook,
+  FaInstagram,
   FaTwitter,
   FaLinkedin,
   FaYoutube,
@@ -66,10 +67,27 @@ const officeLocations = [
 ];
 
 const socials = [
-  { Icon: FaFacebook, label: "Facebook", href: "#" },
-  { Icon: FaTwitter, label: "Twitter", href: "#" },
-  { Icon: FaLinkedin, label: "LinkedIn", href: "#" },
-  { Icon: FaYoutube, label: "YouTube", href: "#" },
+  {
+    Icon: FaFacebook,
+    label: "Facebook",
+    href: "https://www.facebook.com/mokshasewa/",
+  },
+  {
+    Icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/mokshasewa/",
+  },
+  { Icon: FaTwitter, label: "X (Twitter)", href: "https://x.com/mokshasewa" },
+  {
+    Icon: FaLinkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/moksha-sewaorg/",
+  },
+  {
+    Icon: FaYoutube,
+    label: "YouTube",
+    href: "https://www.youtube.com/@Mokshasewa",
+  },
 ];
 
 function Contact() {
@@ -685,6 +703,8 @@ function Contact() {
                         key={label}
                         href={href}
                         aria-label={label}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/75 transition hover:-translate-y-0.5 hover:border-[#D9B681] hover:bg-[#D9B681] hover:text-[#2D211A]"
                       >
                         <Icon className="h-3.5 w-3.5" />
