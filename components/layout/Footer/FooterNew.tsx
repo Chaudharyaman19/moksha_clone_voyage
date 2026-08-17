@@ -577,7 +577,7 @@ export default function FooterNew() {
             {pathname !== "/request-help" && (
               <Link
                 href="/request-help"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Request Help</span>
@@ -597,7 +597,7 @@ export default function FooterNew() {
             {pathname !== "/volunteer/register" && (
               <Link
                 href="/volunteer/register"
-                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Become a Volunteer</span>
