@@ -787,7 +787,7 @@ export default function FooterNew() {
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
               <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
-                <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#D9A33A]">
+                <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D9A33A]">
                   Initiative by
                 </p>
                 <Image
@@ -796,9 +796,17 @@ export default function FooterNew() {
                   className="h-auto w-[178px] object-contain"
                   sizes="178px"
                 />
+                <div className="mt-1 text-center">
+                  <p className="text-[15px] font-bold leading-tight text-white">
+                    Moksha Sewa
+                  </p>
+                  <p className="mt-0.5 text-[11px] font-medium leading-tight text-[#D9A33A]">
+                    An Initiative of Namo Gange Trust
+                  </p>
+                </div>
               </div>
 
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[250px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
                 <Image
                   src={requestSupportBg}
                   alt=""

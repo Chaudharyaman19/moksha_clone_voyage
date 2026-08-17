@@ -90,75 +90,75 @@ function NewBanner() {
               <div className="mt-2 flex w-fit items-center gap-3">
                 <span className="h-px w-8 bg-[#73532F]/70" />
                 <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                  Moksha Sewa A Namo Gange Trust Initiative
+                  Moksha Sewa — An Initiative of Namo Gange Trust
                 </span>
                 <span className="h-px w-8 bg-[#73532F]/70" />
               </div>
             </div>
 
-          {/* Hero Text */}
-          <div className="max-w-[540px]">
-            <h2
-              className="text-[38px] leading-[1.03] text-[#102b44] sm:text-[46px] lg:text-[52px]"
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontWeight: 500,
-              }}
-            >
-              Every Life Deserves
-              <br />
+            {/* Hero Text */}
+            <div className="max-w-[540px]">
+              <h2
+                className="text-[38px] leading-[1.03] text-[#102b44] sm:text-[46px] lg:text-[52px]"
+                style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                  fontWeight: 500,
+                }}
+              >
+                Every Life Deserves
+                <br />
 
-              <span className="text-[#dc671f]">
-                Dignity. Always.
-                <span className="ml-1 inline-block text-[34px] font-normal sm:text-[42px]">
-                  ♡
+                <span className="text-[#dc671f]">
+                  Dignity. Always.
+                  <span className="ml-1 inline-block text-[34px] font-normal sm:text-[42px]">
+                    ♡
+                  </span>
                 </span>
-              </span>
-            </h2>
+              </h2>
 
-            {/* Decorative divider */}
-            <div className="mt-3 flex items-center gap-4">
-              <span className="h-[2px] w-44 bg-[#dc671f]" />
+              {/* Decorative divider */}
+              <div className="mt-3 flex items-center gap-4">
+                <span className="h-[2px] w-44 bg-[#dc671f]" />
 
-              <div className="relative flex h-9 w-9 items-center justify-center">
-                <PiFlowerLotus
-                  className="h-9 w-9 text-[#dc671f]"
-                />
+                <div className="relative flex h-9 w-9 items-center justify-center">
+                  <PiFlowerLotus
+                    className="h-9 w-9 text-[#dc671f]"
+                  />
+                </div>
+
+                <span className="h-[2px] w-44 bg-[#dc671f]" />
               </div>
 
-              <span className="h-[2px] w-44 bg-[#dc671f]" />
-            </div>
+              <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
+                Moksha Sewa stands for compassion in action.
+                <br />
+                We are here for the forgotten, the unclaimed,
+                <br />
+                and those who have no one.
+                <br />
 
-            <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
-              Moksha Sewa stands for compassion in action.
-              <br />
-              We are here for the forgotten, the unclaimed,
-              <br />
-              and those who have no one.
-              <br />
+                <strong className="font-bold">
+                  Because no one should face their final journey alone.
+                </strong>
+              </p>
 
-              <strong className="font-bold">
-                Because no one should face their final journey alone.
-              </strong>
-            </p>
-
-            {/* Initiative Badge — home banner button theme */}
-            <div className="mt-3 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
-              <span className="flex items-center gap-3">
-                <PiFlowerLotus className="h-6 w-6 shrink-0" />
-                <span>
-                  <span className="block text-[15px] font-extrabold uppercase leading-tight">
-                    Moksha Sewa
-                  </span>
-                  <span className="mt-0.5 block text-[12px] font-medium text-white/90">
-                    A Namo Gange Trust Initiative
+              {/* Initiative Badge — home banner button theme */}
+              <div className="mt-3 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
+                <span className="flex items-center gap-3">
+                  <PiFlowerLotus className="h-6 w-6 shrink-0" />
+                  <span>
+                    <span className="block text-[15px] font-extrabold uppercase leading-tight">
+                      Moksha Sewa
+                    </span>
+                    <span className="mt-0.5 block text-[12px] font-medium text-white/90">
+                      A Namo Gange Trust Initiative
+                    </span>
                   </span>
                 </span>
-              </span>
-              <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
-                <FaArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </div>
+                <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
+                  <FaArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -255,7 +255,7 @@ function PreviousBanner() {
             <div className="mt-2 flex w-fit items-center gap-3">
               <span className="h-px w-8 bg-[#73532F]/70" />
               <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
-                Moksha Sewa A Namo Gange Trust Initiative
+                Moksha Sewa — An Initiative of Namo Gange Trust
               </span>
               <span className="h-px w-8 bg-[#73532F]/70" />
             </div>
