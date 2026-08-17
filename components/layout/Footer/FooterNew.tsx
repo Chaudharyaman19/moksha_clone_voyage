@@ -798,7 +798,7 @@ export default function FooterNew() {
                   <p className="text-[15px] font-bold leading-tight text-white">
                     Moksha Sewa
                   </p>
-                  <p className="mt-0.5 text-[11px] font-medium leading-tight text-[#D9A33A]">
+                  <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
                     An Initiative of Namo Gange Trust
                   </p>
                 </div>
