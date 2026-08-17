@@ -109,9 +109,14 @@ function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    const value =
+      e.target.name === "phone"
+        ? e.target.value.replace(/\D/g, "").slice(0, 10)
+        : e.target.value;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -156,10 +161,10 @@ function Contact() {
 
   /* ---------------- shared class tokens ---------------- */
   const inputClass =
-    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[14px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
+    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[16px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
 
   const labelClass =
-    "mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B584B]";
+    "mb-1.5 block text-[16px] font-semibold uppercase tracking-[0.08em] text-[#6B584B]";
 
   const eyebrowClass =
     "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#8B6A3E]";
@@ -543,8 +548,12 @@ function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        inputMode="numeric"
+                        maxLength={10}
+                        pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit mobile number"
                         className={`${inputClass} rounded-xl`}
-                        placeholder="+91 98765 43210"
+                        placeholder="Enter 10 digit mobile number"
                       />
                     </div>
                   </div>
