@@ -421,24 +421,23 @@ export default function RequestHelp() {
               </div>
             </header>
 
-            <aside className="relative hidden overflow-hidden border border-[#D9681D] bg-gradient-to-br from-[#FFF6EC] via-[#FFE9D3] to-[#FFD9B6] px-4 py-3 shadow-[0_10px_26px_rgba(184,91,32,0.14)] lg:flex">
-              <span className="absolute inset-y-0 left-0 w-1 bg-[#D9681D]" />
-              <LotusOrnament className="absolute -right-2 -top-2 h-20 w-24 opacity-[0.09]" />
+            <aside className="relative hidden overflow-hidden border border-[#9E4717] bg-gradient-to-r from-[#351A10] via-[#542515] to-[#713218] px-4 py-2 shadow-[0_9px_24px_rgba(74,29,10,0.22)] lg:flex">
+              <span className="absolute inset-y-0 left-0 w-1 bg-[#F2A23B]" />
+              <LotusOrnament className="absolute -right-3 -top-3 h-20 w-24 text-[#F2A23B] opacity-[0.10]" />
 
-              <div className="relative flex w-full items-center gap-3 text-left">
-                <span className="grid h-12 w-12 shrink-0 place-items-center bg-[#C95613] text-white shadow-[0_6px_16px_rgba(159,66,14,0.22)]">
-                  <FaPhoneAlt className="h-5 w-5" />
+              <div className="relative flex w-full items-center justify-center px-10 text-center">
+                <span className="absolute left-0 grid h-10 w-10 place-items-center border border-[#F4B45F] bg-[#E1691D] text-white shadow-[0_5px_14px_rgba(0,0,0,0.22)]">
+                  <FaPhoneAlt className="h-[17px] w-[17px]" />
                 </span>
 
+                <span className="absolute right-0 top-0 bg-[#F2A23B] px-1.5 py-0.5 text-[11px] font-bold leading-none text-[#32180D]">24/7</span>
+
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="font-serif font-semibold leading-tight text-[#40271B]">Moksha Sewa Helpline</p>
-                    <span className="shrink-0 bg-[#D9681D] px-1.5 py-0.5 text-[11px] font-bold leading-none text-white">24/7</span>
-                  </div>
-                  <p className="mt-1 text-[13px] leading-tight text-[#76513B]">Call now for immediate assistance</p>
+                  <p className="font-serif text-[24px] font-bold leading-none text-[#FFF5E8]">Helpline Number</p>
                   <a
                     href="tel:+919220147229"
-                    className="mt-1 inline-block font-bold tracking-[0.035em] text-[#A9440D] hover:text-[#762B07]"
+                    aria-label="Call Moksha Sewa helpline at +91 9220147229"
+                    className="mt-2 inline-block text-[23px] font-bold leading-none tracking-[0.035em] text-[#FFC978] transition hover:text-white"
                   >
                     +91 9220147229
                   </a>
