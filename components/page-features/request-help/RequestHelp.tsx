@@ -432,12 +432,12 @@ export default function RequestHelp() {
                 </div>
 
                 <div className="flex min-w-0 flex-1 flex-col items-center justify-center text-center">
-                  <p className="font-serif text-[22px] font-bold leading-none text-[#FFF5E8]">Helpline Number</p>
+                  <p className="font-serif text-[24px] font-bold leading-none text-[#FFF5E8]">Helpline Number</p>
                   <span className="my-1.5 h-px w-24 bg-gradient-to-r from-transparent via-[#F2A23B] to-transparent" />
                   <a
                     href="tel:+919220147229"
                     aria-label="Call Moksha Sewa helpline at +91 9220147229"
-                    className="inline-block whitespace-nowrap text-[20px] font-bold leading-none tracking-[0.025em] text-[#FFC978] transition hover:text-white"
+                    className="inline-block whitespace-nowrap text-[22px] font-bold leading-none tracking-[0.02em] text-[#FFC978] transition hover:text-white"
                   >
                     +91 9220147229
                   </a>
