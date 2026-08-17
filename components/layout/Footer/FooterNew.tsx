@@ -143,6 +143,7 @@ export default function FooterNew() {
 
       const root = footerRef.current;
       if (!root) return;
+      if (root.getAttribute("data-animations") !== "enabled") return;
 
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -205,9 +206,6 @@ export default function FooterNew() {
       // ─────────────── CONTINUOUS AMBIENT SHINE ───────────────
       // Ambient timelines are tracked so hot-reload / unmount never duplicates them.
       const ambientTl: gsap.core.Timeline[] = [];
-
-      // Moksha logo — strongest, continuous reflective sweep + organic sparkles.
-      // Normal → 2.8s pause → diagonal sweep → pause → repeat infinitely.
       const logoAmbient = (host: HTMLElement, delay = 0) => {
         const line = host.querySelector<HTMLElement>(".footer-shine-line");
         if (line) {
