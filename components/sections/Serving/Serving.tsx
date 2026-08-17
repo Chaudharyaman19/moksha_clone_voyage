@@ -216,7 +216,7 @@ function ActivityCard({
 
           <span className="mx-auto mt-1.5 block h-px w-7 bg-[#C88935]" />
 
-          <p className="mx-auto mt-1.5 max-w-[210px] text-[16px] font-normal leading-[14px] text-[#5D493C] xl:text-[16px] xl:leading-[14px]">
+          <p className="mx-auto mt-1.5 max-w-[210px] text-[10px] font-normal leading-[1px] text-[#5D493C] xl:text-[14px] xl:leading-[18px]">
             {activity.description}
           </p>
         </div>
