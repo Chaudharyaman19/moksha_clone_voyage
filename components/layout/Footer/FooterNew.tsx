@@ -657,10 +657,10 @@ export default function FooterNew() {
 
       <div className="footer-master relative z-10">
         {/* ========================= MAIN ROW ========================= */}
-        <div className="mx-auto w-full max-w-[1600px] px-4 pb-4 pt-5 sm:px-6 lg:min-h-[385px] lg:px-4 lg:pb-3 lg:pt-5 xl:px-5">
+        <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
             {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[315px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
+            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                 <Image
                   src={footerMokshaLogo}
@@ -882,7 +882,7 @@ export default function FooterNew() {
               return (
                 <div
                   key={value.title}
-                  className={`footer-value flex min-h-[56px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
+                  className={`footer-value flex min-h-[52px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
                     ? "lg:border-r lg:border-[#C39438]/45"
                     : ""
                     }`}
@@ -911,7 +911,7 @@ export default function FooterNew() {
 
         {/* ========================= BOTTOM BAR ========================= */}
         <div className="footer-bottom relative bg-black">
-          <div className="mx-auto flex min-h-[52px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1.5 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 lg:py-1 xl:gap-12">
+          <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
             <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
               <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
               <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
@@ -1047,7 +1047,7 @@ function FloatingCard({
 }: FloatingCardProps) {
   return (
     <div
-      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[260px] lg:min-h-[290px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[305px] 2xl:px-4 ${className}`}
+      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[250px] lg:min-h-[280px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[295px] 2xl:px-4 ${className}`}
     >
       <div className="flex flex-col items-center">
         <span className="footer-card-icon-circle relative flex h-[58px] w-[58px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A]/80 text-[#E2AC3D] 2xl:h-[64px] 2xl:w-[64px]">
