@@ -8,11 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
   FaChevronRight,
-  FaFacebookF,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-  FaTwitter,
   FaEnvelope,
   FaPaperPlane,
   FaArrowRight,
@@ -21,6 +16,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { MapPin, Mail, Clock } from "lucide-react";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 import footerBg from "../../../public/assets/footer-ghat-sunset.png";
+import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 
@@ -65,9 +61,7 @@ function ReferenceHeartIcon({ className, strokeWidth }: FooterSvgProps) {
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Our Services", href: "/services" },
-  { label: "Our Initiatives", href: "/initiatives" },
-  { label: "Gallery", href: "/moksha-gallery" },
+  { label: "Gallery", href: "/mokshagallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -77,27 +71,13 @@ const services = [
   { label: "Transport Coordination", href: "/ambulanceservices" },
   { label: "Ritual Material Support", href: "/furalservices" },
   { label: "Priest Guidance", href: "/panditservices" },
-  { label: "Unclaimed Case Support", href: "/request-help" },
-  { label: "Volunteer Support", href: "/volunteer/register" },
   { label: "Family Guidance", href: "/specialservices" },
-  { label: "Support This Mission", href: "/donation" },
 ];
 
 const initiatives = [
-  { label: "Unclaimed Bodies Support", href: "/request-help" },
-  { label: "Last Rites Support", href: "/request-help" },
-  { label: "Support for Needy Families", href: "/request-help" },
-  { label: "Ritual & Ceremony Support", href: "/furalservices" },
+  { label: "Unclaimed Bodies Support", href: "/mortal-records" },
   { label: "Volunteer Programme", href: "/volunteer/register" },
   { label: "Awareness & Outreach", href: "/blog" },
-];
-
-const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/mokshasewa/", icon: FaFacebookF },
-  { label: "Instagram", href: "https://www.instagram.com/mokshasewa/", icon: FaInstagram },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/moksha-sewaorg/", icon: FaLinkedinIn },
-  { label: "Twitter", href: "https://x.com/mokshasewa", icon: FaTwitter },
-  { label: "YouTube", href: "https://www.youtube.com/@Mokshasewa", icon: FaYoutube },
 ];
 
 const values = [
@@ -595,7 +575,7 @@ export default function FooterNew() {
             {pathname !== "/request-help" && (
               <Link
                 href="/request-help"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Request Help</span>
@@ -615,7 +595,7 @@ export default function FooterNew() {
             {pathname !== "/volunteer/register" && (
               <Link
                 href="/volunteer/register"
-                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Become a Volunteer</span>
@@ -675,10 +655,10 @@ export default function FooterNew() {
 
       <div className="footer-master relative z-10">
         {/* ========================= MAIN ROW ========================= */}
-        <div className="mx-auto w-full max-w-[1600px] px-4 pb-4 pt-5 sm:px-6 lg:min-h-[385px] lg:px-4 lg:pb-3 lg:pt-5 xl:px-5">
+        <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
             {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[315px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
+            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                 <Image
                   src={footerMokshaLogo}
@@ -694,19 +674,19 @@ export default function FooterNew() {
                 {brandName}
               </h2>
 
-              <p className="footer-brand-tagline mt-2 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
+              <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
                 A Namo Gange Trust Initiative
               </p>
 
-              <GoldDivider className="footer-brand-divider mt-1" />
+              <GoldDivider className="footer-brand-divider mt-0.5" />
 
-              <p className="footer-brand-desc relative mx-auto mt-4 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
+              <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
                 {description}
               </p>
 
               <Link
                 href="/donation"
-                className="footer-donate-btn relative mt-4 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-bold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
+                className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-bold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
               >
                 <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
                   <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
@@ -805,8 +785,20 @@ export default function FooterNew() {
             </FloatingCard>
 
             {/* REQUEST SUPPORT */}
-            <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[325px]">
+            <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
+              <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
+                <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#D9A33A]">
+                  Initiative by
+                </p>
+                <Image
+                  src={namoGangeLogo}
+                  alt="Namo Gange"
+                  className="h-auto w-[178px] object-contain"
+                  sizes="178px"
+                />
+              </div>
+
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[250px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -831,15 +823,15 @@ export default function FooterNew() {
                       <h3 className="footer-card-heading text-[17px] font-extrabold uppercase tracking-[0.01em] text-white">
                         Request <span className="text-[#E2AA3C]">Support</span>
                       </h3>
-                      <p className="footer-card-desc mt-1.5 max-w-[180px] text-[12px] leading-[1.4] text-white/95">
+                      <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
                         Share your email and our support team will contact you.
                       </p>
                     </div>
                   </div>
 
-                  <GoldDivider className="mt-4" />
+                  <GoldDivider className="mt-2" />
 
-                  <form onSubmit={handleSubscribe} className="mt-4">
+                  <form onSubmit={handleSubscribe} className="mt-2.5">
                     <label htmlFor="footer-email" className="sr-only">
                       Email address
                     </label>
@@ -852,14 +844,14 @@ export default function FooterNew() {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         placeholder="Your email address"
-                        className="h-[46px] w-full rounded-[7px] border border-white/70 bg-white pl-12 pr-4 text-[14px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
+                        className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
                         required
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className={`footer-send-btn relative mt-3 flex h-[46px] w-full items-center justify-center gap-3 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[14px] font-bold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
+                      className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-bold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
                         }`}
                     >
                       <ShineLayer sparks={0} />
@@ -870,34 +862,6 @@ export default function FooterNew() {
                     </button>
                   </form>
 
-                  <div className="footer-card-follow mt-4">
-                    <div className="flex items-center justify-center gap-3">
-                      <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D9A33A]/80" />
-                      <span className="text-[12px] font-bold uppercase tracking-[0.06em] text-white">
-                        Follow Us
-                      </span>
-                      <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D9A33A]/80" />
-                    </div>
-
-                    <div className="mt-3 flex items-center justify-center gap-3">
-                      {socials.map((social) => {
-                        const Icon = social.icon;
-                        return (
-                          <a
-                            key={social.label}
-                            href={social.href}
-                            aria-label={social.label}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="footer-social relative flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A] text-[#E7B448] transition hover:bg-[#D9A33A] hover:text-[#003a35]"
-                          >
-                            <Icon className="h-[21px] w-[21px]" />
-                            <ShineLayer sparks={0} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -916,7 +880,7 @@ export default function FooterNew() {
               return (
                 <div
                   key={value.title}
-                  className={`footer-value flex min-h-[56px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
+                  className={`footer-value flex min-h-[52px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
                     ? "lg:border-r lg:border-[#C39438]/45"
                     : ""
                     }`}
@@ -945,9 +909,9 @@ export default function FooterNew() {
 
         {/* ========================= BOTTOM BAR ========================= */}
         <div className="footer-bottom relative bg-black">
-          <div className="mx-auto grid min-h-[58px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-2 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-1.5">
-            <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
-              <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
+          <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
+            <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
+              <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
               <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
             </div>
 
@@ -971,13 +935,8 @@ export default function FooterNew() {
               <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
                 Seva • Samman • Samarpan
               </p>
-              <GoldDivider className="mt-1" compact />
             </div>
 
-            <div className="flex items-center justify-center gap-4 text-[12px] text-white/90 lg:justify-end">
-              <p>A Namo Gange Trust Initiative</p>
-              <PiFlowerLotus className="h-11 w-11 shrink-0 text-[#D9A33A]" />
-            </div>
           </div>
         </div>
       </div>
@@ -1086,7 +1045,7 @@ function FloatingCard({
 }: FloatingCardProps) {
   return (
     <div
-      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[260px] lg:min-h-[290px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[305px] 2xl:px-4 ${className}`}
+      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[250px] lg:min-h-[280px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[295px] 2xl:px-4 ${className}`}
     >
       <div className="flex flex-col items-center">
         <span className="footer-card-icon-circle relative flex h-[58px] w-[58px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A]/80 text-[#E2AC3D] 2xl:h-[64px] 2xl:w-[64px]">
