@@ -450,7 +450,7 @@ export default function RequestHelp() {
                     future reference.
                   </p>
 
-                  <div className="mt-4 rounded-lg border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
+                  <div className="mt-4 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
                     {result.requestNo}
                   </div>
 
@@ -973,7 +973,7 @@ export default function RequestHelp() {
                 })}
               </div>
 
-              <div className="relative mt-2 h-[150px] overflow-hidden rounded-[11px]">
+              <div className="relative mt-2 h-[150px] overflow-hidden">
                 <Image
                   src="/assets/route-optimized/request-trust-ritual.webp"
                   alt="A peaceful ritual lamp representing compassionate cremation assistance"
