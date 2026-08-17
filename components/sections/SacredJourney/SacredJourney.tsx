@@ -62,7 +62,7 @@ const sevaCards: SupportCard[] = [
   {
     title: "Partner With Us",
     description:
-      "Help us reach more unclaimed",
+      "Help us reach more\nunclaimed",
     button: "Partner With Us",
     image: donationImages.partner,
     icon: FaHandshake,
@@ -289,7 +289,7 @@ export default function SacredJourney() {
             return (
               <article
                 key={card.title}
-                className="group relative mx-auto h-[372px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[360px] sm:max-w-none md:h-[350px] lg:h-[350px]"
+                className="group relative mx-auto h-[356px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[344px] sm:max-w-none md:h-[334px] lg:h-[330px]"
               >
                 {/* Image */}
                 <div className="absolute inset-x-0 top-0 h-[168px] overflow-hidden rounded-t-[13px] sm:h-[165px] lg:h-[155px] pb-4">
@@ -321,7 +321,7 @@ export default function SacredJourney() {
 
                   <span className="mt-1.5 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-2.5 max-w-[250px] text-[16px] font-normal leading-[1.4] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
+                  <p className="mx-auto mt-2.5 max-w-[250px] whitespace-pre-line text-[16px] font-normal leading-[1.4] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
                     {card.description}
                   </p>
                 </div>
