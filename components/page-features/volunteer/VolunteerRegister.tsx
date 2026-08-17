@@ -989,31 +989,31 @@ const trustItems: TrustItem[] = [
   {
     title: "Make a Real Impact",
     description:
-      "Your time and compassion can bring comfort to families in their most difficult moments.",
+      "Your time and compassion will bring lasting comfort to families during their most difficult moments.",
     icon: FaUsers,
   },
   {
     title: "Serve with Dignity",
     description:
-      "Be a part of a respectful and meaningful Sewa for the departed and their loved ones.",
+      "Serve with compassion, bringing dignity to the departed and meaningful comfort to grieving families.",
     icon: FaHeart,
   },
   {
     title: "Growth & Learning",
     description:
-      "Develop leadership, empathy and life skills while serving humanity.",
+      "Develop leadership, empathy and real life skills while serving humanity with compassion and purpose.",
     icon: FaShieldAlt,
   },
   {
     title: "Join a Dedicated Team",
     description:
-      "Work alongside like-minded people committed to the same mission.",
+      "Work with kind, aligned people who support families through compassion, dignity and shared purpose.",
     icon: FaHandsHelping,
   },
  {
   title: "Be Part of a Purpose",
   description:
-    "Join a compassionate community working together to support families when they need it most.",
+    "Join a compassionate community working together to support families whenever they need aid the most.",
   icon: FaHandsHelping,
 },
 ];
