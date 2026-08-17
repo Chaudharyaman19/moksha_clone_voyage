@@ -61,9 +61,7 @@ function ReferenceHeartIcon({ className, strokeWidth }: FooterSvgProps) {
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Our Services", href: "/services" },
-  { label: "Our Initiatives", href: "/initiatives" },
-  { label: "Gallery", href: "/moksha-gallery" },
+  { label: "Gallery", href: "/mokshagallery" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -77,7 +75,7 @@ const services = [
 ];
 
 const initiatives = [
-  { label: "Unclaimed Bodies Support", href: "/initiatives" },
+  { label: "Unclaimed Bodies Support", href: "/mortal-records" },
   { label: "Volunteer Programme", href: "/volunteer/register" },
   { label: "Awareness & Outreach", href: "/blog" },
 ];
@@ -676,19 +674,19 @@ export default function FooterNew() {
                 {brandName}
               </h2>
 
-              <p className="footer-brand-tagline mt-2 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
+              <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
                 A Namo Gange Trust Initiative
               </p>
 
-              <GoldDivider className="footer-brand-divider mt-1" />
+              <GoldDivider className="footer-brand-divider mt-0.5" />
 
-              <p className="footer-brand-desc relative mx-auto mt-4 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
+              <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
                 {description}
               </p>
 
               <Link
                 href="/donation"
-                className="footer-donate-btn relative mt-4 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-bold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
+                className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-bold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
               >
                 <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
                   <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
