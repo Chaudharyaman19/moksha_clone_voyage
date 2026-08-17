@@ -5,12 +5,61 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import {
   CalendarDays,
-  History,
-  ShieldCheck,
+  Clock3,
   Globe2,
+  History,
+  Scale,
+  ShieldCheck,
 } from "lucide-react";
 
-const PrivacyHero = () => {
+interface PolicyMetaItem {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+}
+
+interface PolicyHeroProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  showInfoBanner?: boolean;
+  policyMeta?: PolicyMetaItem[];
+}
+
+const defaultPolicyMeta: PolicyMetaItem[] = [
+  {
+    icon: CalendarDays,
+    label: "Effective Date",
+    value: "17 August 2026",
+  },
+  {
+    icon: History,
+    label: "Last Updated",
+    value: "17 August 2026",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Governing Law",
+    value: "Laws of India",
+  },
+  {
+    icon: Globe2,
+    label: "Applies To",
+    value: "Website & All Services",
+  },
+];
+
+const PolicyHero = ({
+  title,
+  subtitle,
+  description,
+  imageSrc = "/assets/privacy-policy/privacy.webp",
+  imageAlt,
+  showInfoBanner = true,
+  policyMeta = defaultPolicyMeta,
+}: PolicyHeroProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const imageWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -70,16 +119,18 @@ const PrivacyHero = () => {
         rotate: -20,
       });
 
-      gsap.set(infoBannerRef.current, {
-        opacity: 0,
-        y: 50,
-        scale: 0.96,
-      });
+      if (showInfoBanner) {
+        gsap.set(infoBannerRef.current, {
+          opacity: 0,
+          y: 50,
+          scale: 0.96,
+        });
 
-      gsap.set(infoItemsRef.current, {
-        opacity: 0,
-        y: 15,
-      });
+        gsap.set(infoItemsRef.current, {
+          opacity: 0,
+          y: 15,
+        });
+      }
 
       /*
        * -----------------------------------------
@@ -128,7 +179,7 @@ const PrivacyHero = () => {
 
       /*
        * -----------------------------------------
-       * 5. TITLE
+       * 4. TITLE
        * -----------------------------------------
        */
 
@@ -145,7 +196,7 @@ const PrivacyHero = () => {
 
       /*
        * -----------------------------------------
-       * 6. DECORATION
+       * 5. DECORATION
        * -----------------------------------------
        */
 
@@ -161,7 +212,7 @@ const PrivacyHero = () => {
 
       /*
        * -----------------------------------------
-       * 7. LEAF
+       * 6. LEAF
        * -----------------------------------------
        */
 
@@ -179,7 +230,7 @@ const PrivacyHero = () => {
 
       /*
        * -----------------------------------------
-       * 8. DESCRIPTION
+       * 7. DESCRIPTION
        * -----------------------------------------
        */
 
@@ -196,43 +247,45 @@ const PrivacyHero = () => {
 
       /*
        * -----------------------------------------
-       * 9. FLOATING INFO BANNER
+       * 8. FLOATING INFO BANNER
        * -----------------------------------------
        */
 
-      tl.to(
-        infoBannerRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          ease: "back.out(1.2)",
-        },
-        "-=0.15"
-      );
+      if (showInfoBanner) {
+        tl.to(
+          infoBannerRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
+            ease: "back.out(1.2)",
+          },
+          "-=0.15"
+        );
 
-      /*
-       * -----------------------------------------
-       * 10. INFO ITEMS STAGGER
-       * -----------------------------------------
-       */
+        /*
+         * -----------------------------------------
+         * 9. INFO ITEMS STAGGER
+         * -----------------------------------------
+         */
 
-      tl.to(
-        infoItemsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.45,
-          stagger: 0.1,
-          ease: "power3.out",
-        },
-        "-=0.35"
-      );
+        tl.to(
+          infoItemsRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          "-=0.35"
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showInfoBanner]);
 
   const addInfoItem = (el: HTMLDivElement | null) => {
     if (el && !infoItemsRef.current.includes(el)) {
@@ -272,8 +325,8 @@ const PrivacyHero = () => {
         "
       >
         <Image
-          src="/assets/privacy-policy/privacy.webp"
-          alt="Privacy Policy"
+          src={imageSrc}
+          alt={imageAlt ?? title}
           fill
           priority
           sizes="100vw"
@@ -397,7 +450,7 @@ const PrivacyHero = () => {
                 lg:text-[56px]
               "
             >
-              Privacy Policy
+              {title}
             </h1>
 
             {/* =================================================
@@ -504,7 +557,7 @@ const PrivacyHero = () => {
                   sm:text-[16px]
                 "
               >
-                Your privacy is important to us.
+                {subtitle}
               </p>
 
               <p
@@ -516,333 +569,331 @@ const PrivacyHero = () => {
                   sm:text-[14px]
                 "
               >
-                This Privacy Policy explains how Moksh Sewa
-                (an initiative of Namo Gange Trust) collects,
-                uses, protects, and shares your personal
-                information when you visit our website or use
-                our services.
+                {description}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* =====================================================
-          FLOATING INFORMATION BANNER
-      ====================================================== */}
+      {showInfoBanner && (
+        /* =====================================================
+            FLOATING INFORMATION BANNER
+        ====================================================== */
 
-      <div
-        ref={infoBannerRef}
-        className="
-          absolute
-          bottom-0
-          left-1/2
-          z-50
-          w-full
-          max-w-[1600px]
-          -translate-x-1/2
-          translate-y-1/2
-          border-b
-          border-[#73532F]
-          bg-gradient-to-r
-          from-[#8B6A3E]
-          via-[#9C794C]
-          to-[#8B6A3E]
-          shadow-md
-        "
-      >
         <div
+          ref={infoBannerRef}
           className="
-            grid
-            grid-cols-2
-            lg:grid-cols-4
+            absolute
+            bottom-0
+            left-1/2
+            z-50
+            w-full
+            max-w-[1600px]
+            -translate-x-1/2
+            translate-y-1/2
+            border-b
+            border-[#73532F]
+            bg-gradient-to-r
+            from-[#8B6A3E]
+            via-[#9C794C]
+            to-[#8B6A3E]
+            shadow-md
           "
         >
-          {/* ===============================================
-              EFFECTIVE DATE
-          ================================================ */}
-
           <div
-            ref={addInfoItem}
             className="
-              flex
-              items-center
-              justify-center
-              gap-2
-              px-2
-              py-1.5
-              sm:gap-3
-              sm:px-4
-              lg:px-5
+              grid
+              grid-cols-2
+              lg:grid-cols-4
             "
           >
+            {/* ===============================================
+                EFFECTIVE DATE
+            ================================================ */}
+
             <div
+              ref={addInfoItem}
               className="
                 flex
-                h-9
-                w-9
-                shrink-0
                 items-center
                 justify-center
-                rounded-full
-                bg-white/15
-                text-white
-                shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                sm:h-10
-                sm:w-10
+                gap-2
+                px-2
+                py-1.5
+                sm:gap-3
+                sm:px-4
+                lg:px-5
               "
             >
-              <CalendarDays
-                size={25}
-                strokeWidth={1.7}
-              />
-            </div>
-
-            <div>
-              <p
+              <div
                 className="
-                  text-[8px]
-                  text-white/90
-                  sm:text-[9px]
-                  lg:text-[10px]
-                "
-              >
-                Effective Date
-              </p>
-
-              <p
-                className="
-                  mt-0.5
-                  whitespace-nowrap
-                  text-[9px]
-                  font-semibold
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/15
                   text-white
-                  drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                  sm:text-[10px]
-                  lg:text-[11px]
+                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
+                  sm:h-10
+                  sm:w-10
                 "
               >
-                17 August 2026
-              </p>
+                <CalendarDays
+                  size={25}
+                  strokeWidth={1.7}
+                />
+              </div>
+
+              <div>
+                <p
+                  className="
+                    text-[8px]
+                    text-white/90
+                    sm:text-[9px]
+                    lg:text-[10px]
+                  "
+                >
+                  Effective Date
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    whitespace-nowrap
+                    text-[9px]
+                    font-semibold
+                    text-white
+                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                    sm:text-[10px]
+                    lg:text-[11px]
+                  "
+                >
+                  17 August 2026
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* ===============================================
-              LAST UPDATED
-          ================================================ */}
+            {/* ===============================================
+                LAST UPDATED
+            ================================================ */}
 
-          <div
-            ref={addInfoItem}
-            className="
-              flex
-              items-center
-              gap-2
-              px-2
-              sm:gap-3
-              sm:px-4
-              lg:px-5
-              md:border-l
-              md:border-white/20
-            "
-          >
             <div
+              ref={addInfoItem}
               className="
                 flex
-                h-9
-                w-9
-                shrink-0
                 items-center
-                justify-center
-                rounded-full
-                bg-white/15
-                text-white
-                shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                sm:h-10
-                sm:w-10
+                gap-2
+                px-2
+                sm:gap-3
+                sm:px-4
+                lg:px-5
+                md:border-l
+                md:border-white/20
               "
             >
-              <History
-                size={25}
-                strokeWidth={1.7}
-              />
-            </div>
-
-            <div>
-              <p
+              <div
                 className="
-                  text-[8px]
-                  text-white/90
-                  sm:text-[9px]
-                  lg:text-[10px]
-                "
-              >
-                Last Updated
-              </p>
-
-              <p
-                className="
-                  mt-0.5
-                  whitespace-nowrap
-                  text-[9px]
-                  font-semibold
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/15
                   text-white
-                  drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                  sm:text-[10px]
-                  lg:text-[11px]
+                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
+                  sm:h-10
+                  sm:w-10
                 "
               >
-                17 August 2026
-              </p>
+                <History
+                  size={25}
+                  strokeWidth={1.7}
+                />
+              </div>
+
+              <div>
+                <p
+                  className="
+                    text-[8px]
+                    text-white/90
+                    sm:text-[9px]
+                    lg:text-[10px]
+                  "
+                >
+                  Last Updated
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    whitespace-nowrap
+                    text-[9px]
+                    font-semibold
+                    text-white
+                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                    sm:text-[10px]
+                    lg:text-[11px]
+                  "
+                >
+                  17 August 2026
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* ===============================================
-              GOVERNING LAW
-          ================================================ */}
+            {/* ===============================================
+                GOVERNING LAW
+            ================================================ */}
 
-          <div
-            ref={addInfoItem}
-            className="
-              flex
-              items-center
-              gap-2
-              px-2
-              sm:gap-3
-              sm:px-4
-              lg:px-5
-              border-t
-              border-white/20
-              md:border-l
-              md:border-white/20
-              md:border-t-0
-            "
-          >
             <div
+              ref={addInfoItem}
               className="
                 flex
-                h-9
-                w-9
-                shrink-0
                 items-center
-                justify-center
-                rounded-full
-                bg-white/15
-                text-white
-                shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                sm:h-10
-                sm:w-10
+                gap-2
+                px-2
+                sm:gap-3
+                sm:px-4
+                lg:px-5
+                border-t
+                border-white/20
+                md:border-l
+                md:border-white/20
+                md:border-t-0
               "
             >
-              <ShieldCheck
-                size={25}
-                strokeWidth={1.7}
-              />
-            </div>
-
-            <div>
-              <p
+              <div
                 className="
-                  text-[8px]
-                  text-white/90
-                  sm:text-[9px]
-                  lg:text-[10px]
-                "
-              >
-                Governing Law
-              </p>
-
-              <p
-                className="
-                  mt-0.5
-                  whitespace-nowrap
-                  text-[9px]
-                  font-semibold
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/15
                   text-white
-                  drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                  sm:text-[10px]
-                  lg:text-[11px]
+                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
+                  sm:h-10
+                  sm:w-10
                 "
               >
-                Laws of India
-              </p>
+                <ShieldCheck
+                  size={25}
+                  strokeWidth={1.7}
+                />
+              </div>
+
+              <div>
+                <p
+                  className="
+                    text-[8px]
+                    text-white/90
+                    sm:text-[9px]
+                    lg:text-[10px]
+                  "
+                >
+                  Governing Law
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    whitespace-nowrap
+                    text-[9px]
+                    font-semibold
+                    text-white
+                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                    sm:text-[10px]
+                    lg:text-[11px]
+                  "
+                >
+                  Laws of India
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* ===============================================
-              APPLIES TO
-          ================================================ */}
+            {/* ===============================================
+                APPLIES TO
+            ================================================ */}
 
-          <div
-            ref={addInfoItem}
-            className="
-              flex
-              items-center
-              gap-2
-              px-2
-              sm:gap-3
-              sm:px-4
-              lg:px-5
-              border-t
-              border-white/20
-              md:border-l
-              md:border-white/20
-              md:border-t-0
-            "
-          >
             <div
+              ref={addInfoItem}
               className="
                 flex
-                h-9
-                w-9
-                shrink-0
                 items-center
-                justify-center
-                rounded-full
-                bg-white/15
-                text-white
-                shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
-                sm:h-10
-                sm:w-10
+                gap-2
+                px-2
+                sm:gap-3
+                sm:px-4
+                lg:px-5
+                border-t
+                border-white/20
+                md:border-l
+                md:border-white/20
+                md:border-t-0
               "
             >
-              <Globe2
-                size={25}
-                strokeWidth={1.7}
-              />
-            </div>
-
-            <div>
-              <p
+              <div
                 className="
-                  text-[8px]
-                  text-white/90
-                  sm:text-[9px]
-                  lg:text-[10px]
-                "
-              >
-                Applies To
-              </p>
-
-              <p
-                className="
-                  mt-0.5
-                  whitespace-nowrap
-                  text-[9px]
-                  font-semibold
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/15
                   text-white
-                  drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-                  sm:text-[10px]
-                  lg:text-[11px]
+                  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
+                  sm:h-10
+                  sm:w-10
                 "
               >
-                Website &amp; All Services
-              </p>
+                <Globe2
+                  size={25}
+                  strokeWidth={1.7}
+                />
+              </div>
+
+              <div>
+                <p
+                  className="
+                    text-[8px]
+                    text-white/90
+                    sm:text-[9px]
+                    lg:text-[10px]
+                  "
+                >
+                  Applies To
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    whitespace-nowrap
+                    text-[9px]
+                    font-semibold
+                    text-white
+                    drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+                    sm:text-[10px]
+                    lg:text-[11px]
+                  "
+                >
+                  Website &amp; All Services
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };
 
-export default PrivacyHero;
+export default PolicyHero;
