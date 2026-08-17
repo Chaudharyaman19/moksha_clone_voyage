@@ -219,7 +219,7 @@ export default function HowWeCanHelp() {
         {
           icon: "FaWoodStack",
           title: "Wood, Cloth & Flowers",
-          desc: "Essential ritual materials arranged for eligible families and verified cases.",
+          desc: "Essential ritual materials arranged for eligible families and verified cases to ensure the final rites.",
           features: ["Wood Support", "Shroud & Flowers", "Basic Items"],
           image: "/assets/how-we-help/four.png",
           href: "/furalservices",
@@ -320,13 +320,13 @@ export default function HowWeCanHelp() {
             </div>
         </header>
 
-        <div className="grid grid-cols-1 items-stretch gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 items-stretch gap-2 md:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) =>
               <article
                 key={card.title}
                 className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[#DEC7A6] bg-[#FFFCF7] shadow-[0_14px_34px_rgba(86,52,22,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(86,52,22,0.15)]"
               >
-                <div className="relative h-[195px] overflow-hidden sm:h-[200px] lg:h-[195px] xl:h-[205px]">
+                <div className="relative h-[155px] overflow-hidden sm:h-[160px] lg:h-[155px] xl:h-[165px]">
                   <Image
                     src={card.image!}
                     alt={card.title}
@@ -339,18 +339,18 @@ export default function HowWeCanHelp() {
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/12 to-transparent" />
                 </div>
 
-                <div className="relative flex min-h-[250px] flex-1 flex-col px-4 pb-4 pt-8">
+                <div className="relative flex min-h-[230px] flex-1 flex-col px-4 pb-4 pt-6">
                   <div className="absolute left-4 top-0 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#C79045] bg-[#FFFDF8] text-[#A36B26] shadow-[0_6px_16px_rgba(102,61,20,0.14)]">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D8B57C] bg-white">
                       <CustomIcon name={card.icon} className="h-8 w-8" />
                     </div>
                   </div>
 
-                  <h3 className="min-h-[46px] font-serif text-[18px] font-normal leading-[1.2] text-[#2F1C12] xl:text-[19px]">
+                  <h3 className="font-serif text-[18px] font-normal leading-[1.2] text-[#2F1C12] xl:text-[19px] mt-2">
                     {card.title}
                   </h3>
 
-                  <p className="mt-1.5 min-h-[72px] text-[16px] leading-6 text-[#493326]">
+                  <p className="mt-0.5 min-h-[72px] text-[16px] leading-6 text-[#493326]">
                     {card.desc}
                   </p>
 
