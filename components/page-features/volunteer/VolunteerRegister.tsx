@@ -1257,7 +1257,7 @@ export default function VolunteerRegister() {
       <Topbar />
       <Navbar />
 
-      <main className="relative overflow-hidden px-3 pb-6 pt-5 sm:px-5 lg:px-7 lg:pb-8 lg:pt-6">
+      <main className="relative overflow-hidden px-3 pb-6 pt-28 sm:px-5 lg:px-7 lg:pb-8 lg:pt-32">
         {/* Side decorations */}
         <div className="pointer-events-none absolute -left-14 top-[38%] hidden opacity-[0.08] lg:block">
           <LotusOrnament className="h-64 w-64" />
