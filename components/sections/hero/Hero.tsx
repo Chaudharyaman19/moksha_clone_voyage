@@ -611,6 +611,10 @@ export default function Hero() {
                 label: "Explore Our Sewa",
                 href: "/sevas",
               },
+              secondaryButton: {
+                label: "Support This Mission",
+                href: "/donation",
+              },
             },
             {
               heading: [
@@ -626,6 +630,10 @@ export default function Hero() {
               primaryButton: {
                 label: "Become a Volunteer",
                 href: "/volunteer/register",
+              },
+              secondaryButton: {
+                label: "Support This Mission",
+                href: "/donation",
               },
             },
             {
@@ -773,10 +781,10 @@ export default function Hero() {
         <div
           className={`flex h-full items-start ${
             isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
-              ? "pt-[66px] sm:pt-[72px] md:pt-[78px] lg:pt-[82px] xl:pt-[86px]"
+              ? "pt-[104px] sm:pt-[140px]"
               : activeSlide.showMissionExtras
-                ? "pt-[42px] sm:pt-[48px] md:pt-[52px] lg:pt-[54px] xl:pt-[56px]"
-                : "pt-[66px] sm:pt-[72px] md:pt-[78px] lg:pt-[82px] xl:pt-[86px]"
+                ? "pt-[104px] sm:pt-[132px]"
+                : "pt-[104px] sm:pt-[140px]"
           }`}
         >
           <div
@@ -787,7 +795,7 @@ export default function Hero() {
             }`}
           >
             {/* Changeable Namo Gange logo — centered over the text below */}
-            <div className="mb-4 flex w-fit flex-col items-center">
+            <div className="mb-2 flex w-fit flex-col items-center">
               <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
                 <Image
                   src="/hero-images/image6.png"
@@ -801,7 +809,7 @@ export default function Hero() {
               </div>
 
               {/* eyebrow — starts from the left */}
-              <div className="mt-4 flex w-fit items-center gap-3">
+              <div className="mt-2 flex w-fit items-center gap-3">
                 <span className="h-px w-8 bg-[#73532F]/70" />
                 <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
                   Moksha Sewa A Namo Gange Trust Initiative
@@ -906,14 +914,14 @@ export default function Hero() {
             )}
 
             {/* reference-style flourish */}
-            <div className="mt-5 flex max-w-[500px] items-center gap-3">
+            <div className="mt-3 flex max-w-[500px] items-center gap-3">
               <span className="h-px flex-1 bg-[#C85117]/65" />
               <PiFlowerLotus className="h-6 w-6 shrink-0 text-[#C85117]" />
               <span className="h-px flex-1 bg-[#C85117]/65" />
             </div>
 
             {!isFamilySupportSlide && !isJourneyPrayerSlide && (
-              <p className="mt-4 max-w-[545px] text-[15px] font-semibold leading-[1.55] text-[#2C1810] sm:text-[17px]">
+              <p className="mt-3 max-w-[545px] text-[15px] font-semibold leading-[1.5] text-[#2C1810] sm:text-[17px]">
                 {activeSlide.descriptionHighlight &&
                 activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
@@ -929,10 +937,10 @@ export default function Hero() {
             )}
 
             {isFamilySupportSlide ? (
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="/request-help"
-                  className="group/cta flex min-h-[72px] w-full items-center gap-3 rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[280px]"
+                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center text-white">
                     <FaHandHoldingHeart className="h-8 w-8" />
@@ -941,15 +949,12 @@ export default function Hero() {
                     <span className="block text-[15px] font-extrabold uppercase leading-tight">
                       Request Support
                     </span>
-                    <span className="mt-1 block text-[12px] font-medium text-white/90">
-                      We are here to help
-                    </span>
                   </span>
                 </a>
 
                 <a
                   href="/donation"
-                  className="group/cta flex min-h-[72px] w-full items-center gap-3 rounded-[9px] border border-[#D9A56C] bg-[#FFF8EE]/95 px-4 text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#C85117] hover:bg-white sm:w-[300px]"
+                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] border border-[#D9A56C] bg-[#FFF8EE]/95 px-4 text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#C85117] hover:bg-white sm:w-[265px]"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center text-[#C85117]">
                     <FaHandsHelping className="h-8 w-8" />
@@ -958,14 +963,11 @@ export default function Hero() {
                     <span className="block text-[15px] font-extrabold uppercase leading-tight text-[#C85117]">
                       Support a Family
                     </span>
-                    <span className="mt-1 block text-[12px] font-medium text-[#5E493D]">
-                      Your support brings dignity.
-                    </span>
                   </span>
                 </a>
               </div>
             ) : isJourneyPrayerSlide ? (
-              <div className="mt-5">
+              <div className="mt-4">
                 <div className="flex flex-wrap items-center gap-y-4">
                   <div className="flex min-w-[145px] items-center gap-3 border-r border-[#D8B58B] pr-4">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
@@ -1001,40 +1003,63 @@ export default function Hero() {
                   </div>
                 </div>
 
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href={activeSlide.primaryButton?.href ?? "/sevas"}
+                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  >
+                    <span className="whitespace-nowrap">{activeSlide.primaryButton?.label}</span>
+                    <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
+                      <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
+                    </span>
+                  </a>
+                  <a
+                    href={activeSlide.secondaryButton?.href ?? "/donation"}
+                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                  >
+                    <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label}</span>
+                    <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                      <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
+                    </span>
+                  </a>
+                </div>
+              </div>
+            ) : isVolunteerImpactSlide ? (
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
-                  href="/sevas"
-                  className="group/cta mt-5 inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-extrabold uppercase text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[270px]"
+                  href={activeSlide.primaryButton?.href ?? "/volunteer/register"}
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                 >
-                  <span>Explore Our Sewa</span>
+                  <span className="flex items-center gap-3">
+                    <FaUsers className="h-6 w-6 shrink-0" />
+                    <span className="whitespace-nowrap">{activeSlide.primaryButton?.label}</span>
+                  </span>
                   <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                   </span>
                 </a>
-              </div>
-            ) : isVolunteerImpactSlide ? (
-              <div className="mt-5">
                 <a
-                  href="/volunteer/register"
-                  className="group/cta inline-flex h-[64px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-extrabold uppercase text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[315px]"
+                  href={activeSlide.secondaryButton?.href ?? "/donation"}
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
                 >
                   <span className="flex items-center gap-3">
-                    <FaUsers className="h-7 w-7" />
-                    <span>Become a Volunteer</span>
+                    <FaRegHeart className="h-6 w-6 shrink-0 text-[#D95A06]" />
+                    <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label}</span>
                   </span>
-                  <span className="ml-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/75">
-                    <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
+                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                    <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                   </span>
                 </a>
               </div>
             ) : (
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[255px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
                 >
-                  <span className="flex items-center gap-3">
-                    <FaHandHoldingHeart className="h-6 w-6" />
-                    <span>{activeSlide.primaryButton?.label ?? "Request Sewa Help"}</span>
+                  <span className="flex min-w-0 items-center gap-3">
+                    <FaHandHoldingHeart className="h-6 w-6 shrink-0" />
+                    <span className="whitespace-nowrap">{activeSlide.primaryButton?.label ?? "Request Sewa Help"}</span>
                   </span>
                   <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
@@ -1043,17 +1068,17 @@ export default function Hero() {
 
                 <a
                   href={activeSlide.secondaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[56px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[15px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[255px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[14px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
                 >
-                  <span className="flex items-center gap-3">
+                  <span className="flex min-w-0 items-center gap-3">
                     {activeSlide.secondaryButton?.label === "Become a Volunteer" ? (
-                      <FaUsers className="h-6 w-6 text-[#D95A06]" />
+                      <FaUsers className="h-6 w-6 shrink-0 text-[#D95A06]" />
                     ) : (
-                      <FaRegHeart className="h-6 w-6 text-[#D95A06]" />
+                      <FaRegHeart className="h-6 w-6 shrink-0 text-[#D95A06]" />
                     )}
-                    <span>{activeSlide.secondaryButton?.label ?? "Support This Mission"}</span>
+                    <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label ?? "Support This Mission"}</span>
                   </span>
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                   </span>
                 </a>
