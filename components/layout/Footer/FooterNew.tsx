@@ -787,9 +787,7 @@ export default function FooterNew() {
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
               <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
-                <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D9A33A]">
-                  Initiative by
-                </p>
+
                 <Image
                   src={namoGangeLogo}
                   alt="Namo Gange"
