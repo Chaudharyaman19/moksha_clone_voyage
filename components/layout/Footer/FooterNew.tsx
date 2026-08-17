@@ -582,8 +582,8 @@ export default function FooterNew() {
       className="relative isolate overflow-hidden bg-[#050706] text-white"
     >
       {/* Slim action band attached directly above the footer content. */}
-      <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-3 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
-        <div className="mx-auto flex min-h-[54px] w-full max-w-7xl flex-col items-center justify-between gap-3 sm:flex-row">
+      <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-2 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
+        <div className="mx-auto flex min-h-[44px] w-full max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
           <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
             <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
             <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
