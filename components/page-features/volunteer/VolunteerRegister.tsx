@@ -439,7 +439,7 @@
 //                 onSubmit={handleSubmit}
 //                 className="space-y-1.5"
 //               >
-           
+
 //                 <div>
 //                   <div className="mb-1.5 flex items-center gap-2">
 //                     <LotusOrnament className="h-6 w-8" />
@@ -854,12 +854,12 @@
 //               </div>
 
 
-             
+
 //             </aside>
 //           </div>
 
 //           {/* Bottom message */}
-         
+
 //         </div>
 //       </main>
 
@@ -870,6 +870,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { lookupPincode } from "@/lib/pincode";
 
@@ -1010,12 +1011,12 @@ const trustItems: TrustItem[] = [
       "Work with kind, aligned people who support families through compassion, dignity and shared purpose.",
     icon: FaHandsHelping,
   },
- {
-  title: "Be Part of a Purpose",
-  description:
-    "Join a compassionate community working together to support families whenever they need aid the most.",
-  icon: FaHandsHelping,
-},
+  {
+    title: "Be Part of a Purpose",
+    description:
+      "Join a compassionate community working together to support families whenever they need aid the most.",
+    icon: FaHandsHelping,
+  },
 ];
 
 const inputClass =
@@ -1266,7 +1267,7 @@ export default function VolunteerRegister() {
       <Topbar />
       <Navbar />
 
-      <main className="relative overflow-hidden px-3 pb-6 pt-28 sm:px-5 lg:px-7 lg:pb-8 lg:pt-32">
+      <main className="relative overflow-hidden px-3 pb-6 pt-0 sm:px-5 lg:px-7 lg:pb-8">
         {/* Side decorations */}
         <div className="pointer-events-none absolute -left-14 top-[38%] hidden opacity-[0.08] lg:block">
           <LotusOrnament className="h-64 w-64" />
@@ -1277,8 +1278,84 @@ export default function VolunteerRegister() {
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl">
+          {/* Volunteer hero */}
+          <section className="relative left-1/2 mb-5 aspect-[16/7] min-h-[350px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3]">
+            <Image
+              src="/hero-images/volunteer-impact-v2.png"
+              alt="Moksha Sewa volunteers serving families with care and compassion"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
+
+            <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-5 lg:px-0">
+              <div className="max-w-[540px] translate-y-4 sm:translate-y-5">
+                <div className="mb-2 flex w-full max-w-[440px] flex-col items-start text-left">
+                  <div className="w-[150px] self-center sm:w-[190px] lg:w-[220px]">
+                    <Image
+                      src="/hero-images/image6.png"
+                      alt="Namo Gange"
+                      width={420}
+                      height={150}
+                      priority
+                      sizes="220px"
+                      className="h-auto w-full object-contain"
+                    />
+                  </div>
+
+                  <div className="mt-1 flex flex-col items-start text-left">
+                    <span className="text-[15px] font-bold leading-tight text-[#2C1810]">Moksha Sewa</span>
+                    <span className="mt-0.5 text-[13px] font-medium leading-tight text-[#8F5A21]">
+                      An Initiative of Namo Gange Trust
+                    </span>
+                  </div>
+                </div>
+
+                <h1 className="font-serif text-[32px] font-medium leading-[1.03] text-[#102B44] sm:text-[42px] lg:text-[52px]">
+                  Be the Reason Someone Receives a
+                  <span className="block text-[#DC671F]">Dignified Farewell.</span>
+                </h1>
+
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="h-[2px] w-14 bg-[#DC671F]" />
+                  <span className="h-2 w-2 rotate-45 bg-[#DC671F]" />
+                  <span className="h-px w-20 bg-gradient-to-r from-[#DC671F] to-transparent" />
+                </div>
+
+                <p className="mt-2 max-w-[510px] text-[16px] leading-6 text-[#17283A] sm:text-[17px]">
+                  Your time can bring comfort, care and compassion to families when they need it most.
+                </p>
+
+                <div className="mt-3 flex flex-wrap gap-2.5">
+                  <a
+                    href="#volunteer-registration"
+                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  >
+                    Become a Volunteer
+                  </a>
+                  <a
+                    href="/donation"
+                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  >
+                    Support This Mission
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Heading */}
-          <header className="mb-3 text-center">
+          <header id="volunteer-registration" className="mb-3 scroll-mt-32 text-center">
             <div className="flex items-center justify-center gap-4">
               <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
 
@@ -1288,7 +1365,7 @@ export default function VolunteerRegister() {
             </div>
 
             <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
-              Volunteer Registration
+              Volunteer Registration Form
             </h1>
 
             <p className="mx-auto mt-2 max-w-[650px] text-[16px] leading-5 text-[#665246]">
@@ -1313,7 +1390,7 @@ export default function VolunteerRegister() {
                 onSubmit={handleSubmit}
                 className="space-y-1.5"
               >
-           
+
                 <div>
                   <div className="mb-1.5 flex items-center gap-2">
                     <LotusOrnament className="h-6 w-8" />
@@ -1482,10 +1559,10 @@ export default function VolunteerRegister() {
                   <SectionTitle>Service &amp; Availability Details</SectionTitle>
 
                   <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['whatsappPhone','WhatsApp Number','tel'],['occupation','Occupation / Profession','text'],['organisation','Organisation / Institution','text'],['languagesKnown','Languages Known','text'],['hoursPerWeek','Approx. Hours / Week','text']].map(([name, text, type]) => (
+                    {[['whatsappPhone', 'WhatsApp Number', 'tel'], ['occupation', 'Occupation / Profession', 'text'], ['organisation', 'Organisation / Institution', 'text'], ['languagesKnown', 'Languages Known', 'text'], ['hoursPerWeek', 'Approx. Hours / Week', 'text']].map(([name, text, type]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={name === 'whatsappPhone' ? 'numeric' : undefined} maxLength={name === 'whatsappPhone' ? 10 : undefined} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass}/>
+                        <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={name === 'whatsappPhone' ? 'numeric' : undefined} maxLength={name === 'whatsappPhone' ? 10 : undefined} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
                       </label>
                     ))}
                   </div>
@@ -1494,7 +1571,7 @@ export default function VolunteerRegister() {
                   <div className="grid gap-x-3 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
                     {SERVICE_AREAS.map((area) => (
                       <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
-                        <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas,area)} className="mt-0.5 accent-[#ED6B13]"/>
+                        <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas, area)} className="mt-0.5 accent-[#ED6B13]" />
                         {area}
                       </label>
                     ))}
@@ -1504,8 +1581,8 @@ export default function VolunteerRegister() {
                     <div>
                       <span className={labelClass}>Available Days</span>
                       <div className="flex flex-wrap gap-2">
-                        {['Weekdays','Weekends','Flexible'].map(v => (
-                          <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
+                        {['Weekdays', 'Weekends', 'Flexible'].map(v => (
+                          <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
                         ))}
                       </div>
                     </div>
@@ -1513,15 +1590,15 @@ export default function VolunteerRegister() {
                     <div>
                       <span className={labelClass}>Preferred Time</span>
                       <div className="flex flex-wrap gap-2">
-                        {['Morning','Day','Evening','Night'].map(v => (
-                          <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
+                        {['Morning', 'Day', 'Evening', 'Night'].map(v => (
+                          <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
                         ))}
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-1.5 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['emergencyOnCall','Emergency / On-Call Seva?'],['canParticipateFieldCases','Can Participate in Field Cases?'],['ownVehicle','Own Vehicle Available?'],['volunteeredBefore','Volunteered with an NGO before?']].map(([name,text]) => (
+                    {[['emergencyOnCall', 'Emergency / On-Call Seva?'], ['canParticipateFieldCases', 'Can Participate in Field Cases?'], ['ownVehicle', 'Own Vehicle Available?'], ['volunteeredBefore', 'Volunteered with an NGO before?']].map(([name, text]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
                         <select name={name} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} required className={inputClass}>
@@ -1536,7 +1613,7 @@ export default function VolunteerRegister() {
                   <div className="mt-1.5">
                     <label>
                       <span className={labelClass}>Previous Organisation &amp; Role</span>
-                      <input name="previousOrganisationRole" value={form.previousOrganisationRole ?? ""} onChange={handleChange} className={inputClass}/>
+                      <input name="previousOrganisationRole" value={form.previousOrganisationRole ?? ""} onChange={handleChange} className={inputClass} />
                     </label>
                   </div>
                 </div>
@@ -1545,10 +1622,10 @@ export default function VolunteerRegister() {
                   <SectionTitle>Emergency Contact &amp; KYC Later</SectionTitle>
 
                   <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['emergencyContactName','Contact Person *','text'],['emergencyContactRelationship','Relationship *','text'],['emergencyContactPhone','Emergency Mobile No. *','tel']].map(([name,text,type]) => (
+                    {[['emergencyContactName', 'Contact Person *', 'text'], ['emergencyContactRelationship', 'Relationship *', 'text'], ['emergencyContactPhone', 'Emergency Mobile No. *', 'tel']].map(([name, text, type]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={type === 'tel' ? 'numeric' : undefined} maxLength={type === 'tel' ? 10 : undefined} pattern={type==='tel'?'[6-9][0-9]{9}':undefined} className={inputClass}/>
+                        <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={type === 'tel' ? 'numeric' : undefined} maxLength={type === 'tel' ? 10 : undefined} pattern={type === 'tel' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
                       </label>
                     ))}
 
@@ -1556,24 +1633,24 @@ export default function VolunteerRegister() {
                       <span className={labelClass}>ID Proof Type (optional)</span>
                       <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
                         <option value="">Select</option>
-                        {['Aadhaar','Voter ID','Driving Licence','Passport','Other'].map(v => <option key={v}>{v}</option>)}
+                        {['Aadhaar', 'Voter ID', 'Driving Licence', 'Passport', 'Other'].map(v => <option key={v}>{v}</option>)}
                       </select>
                     </label>
 
                     <label>
                       <span className={labelClass}>ID Proof Number (optional)</span>
-                      <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass}/>
+                      <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass} />
                     </label>
 
                     <label>
                       <span className={labelClass}>Upload Photograph (optional)</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e)=>setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
+                      <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                       <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
                     </label>
 
                     <label className="sm:col-span-2">
                       <span className={labelClass}>Upload ID Proof (optional)</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e)=>setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
+                      <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                       <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
                     </label>
                   </div>
@@ -1626,8 +1703,8 @@ export default function VolunteerRegister() {
                                   )
                                 }
                                 className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[16px] font-medium transition ${selected
-                                    ? "border-[#ED6B13] bg-[#ED6B13] text-white"
-                                    : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
+                                  ? "border-[#ED6B13] bg-[#ED6B13] text-white"
+                                  : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
                                   }`}
                               >
                                 {selected && (
@@ -1736,12 +1813,12 @@ export default function VolunteerRegister() {
               </div>
 
 
-             
+
             </aside>
           </div>
 
           {/* Bottom message */}
-         
+
         </div>
       </main>
 
