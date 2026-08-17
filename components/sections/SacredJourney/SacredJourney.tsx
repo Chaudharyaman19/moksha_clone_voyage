@@ -283,7 +283,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
           </p>
         </header>
 
-        <div className="mx-auto mb-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px]">
+        <div className="mx-auto mb-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px] ">
           {cards.map((card, index) => {
             const Icon = card.icon;
             const isFilledButton = index === 0 || index === 2;
@@ -291,10 +291,10 @@ export default function SacredJourney({}: SacredJourneyProps) {
             return (
               <article
                 key={card.title}
-                className="group relative mx-auto h-[348px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[336px] sm:max-w-none md:h-[326px] lg:h-[318px]"
+                className="group relative  mx-auto h-[348px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[336px] sm:max-w-none md:h-[326px] lg:h-[318px]"
               >
                 {/* Image */}
-                <div className="absolute inset-x-0 top-0 h-[168px] overflow-hidden rounded-t-[13px] sm:h-[165px] lg:h-[155px]">
+                <div className="absolute inset-x-0 top-0 h-[168px] overflow-hidden rounded-t-[13px] sm:h-[165px] lg:h-[155px] pb-4">
                   <Image
                     src={card.image}
                     alt={card.title}
