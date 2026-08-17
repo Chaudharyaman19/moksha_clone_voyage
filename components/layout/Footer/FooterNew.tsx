@@ -893,14 +893,14 @@ export default function FooterNew() {
           <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
           <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
 
-          <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-2 sm:grid-cols-2 lg:grid-cols-5 lg:px-4 lg:py-3">
+          <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4 lg:py-2">
             {values.map((value, index) => {
               const Icon = value.icon;
 
               return (
                 <div
                   key={value.title}
-                  className={`footer-value flex min-h-[64px] items-center gap-3 px-3 py-1.5 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
+                  className={`footer-value flex min-h-[56px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
                     ? "lg:border-r lg:border-[#C39438]/45"
                     : ""
                     }`}
@@ -908,7 +908,7 @@ export default function FooterNew() {
                   <span className="relative inline-flex shrink-0">
                     <Icon
                       strokeWidth={1.45}
-                      className="footer-value-icon h-12 w-12 text-[#E3B44E] lg:h-[55px] lg:w-[55px]"
+                      className="footer-value-icon h-11 w-11 text-[#E3B44E] lg:h-[46px] lg:w-[46px]"
                     />
                     <ShineLayer sparks={1} />
                   </span>
