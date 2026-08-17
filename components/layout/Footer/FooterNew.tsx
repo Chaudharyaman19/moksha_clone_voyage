@@ -33,31 +33,31 @@ const svgBase = (strokeWidth = 1.7) => ({
 });
 
 function ReferenceChainIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M19 29l-3.8 3.8a7 7 0 01-9.9-9.9l6.1-6.1a7 7 0 019.9 0"/><path d="M29 19l3.8-3.8a7 7 0 019.9 9.9l-6.1 6.1a7 7 0 01-9.9 0"/><path d="M16.5 31.5l15-15"/></g></svg>;
+  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M19 29l-3.8 3.8a7 7 0 01-9.9-9.9l6.1-6.1a7 7 0 019.9 0" /><path d="M29 19l3.8-3.8a7 7 0 019.9 9.9l-6.1 6.1a7 7 0 01-9.9 0" /><path d="M16.5 31.5l15-15" /></g></svg>;
 }
 
 function ReferenceHandHeartIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 26.5S20.5 19 20.5 11.8c0-6.2 7.8-8.8 11.5-2.4 3.7-6.4 11.5-3.8 11.5 2.4C43.5 19 32 26.5 32 26.5z"/><path d="M12 31v15.5l10.5 6.5h19L52 43V29.5c0-2.6-3.2-3.8-5-2l-8.5 8.2"/><path d="M52 31l-10.5 9H29a4 4 0 010-8h8"/><path d="M12 31c4.8 0 8 2 11 5"/><path d="M6 29h6v21H6zM52 29h6v21h-6z"/></g></svg>;
+  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 26.5S20.5 19 20.5 11.8c0-6.2 7.8-8.8 11.5-2.4 3.7-6.4 11.5-3.8 11.5 2.4C43.5 19 32 26.5 32 26.5z" /><path d="M12 31v15.5l10.5 6.5h19L52 43V29.5c0-2.6-3.2-3.8-5-2l-8.5 8.2" /><path d="M52 31l-10.5 9H29a4 4 0 010-8h8" /><path d="M12 31c4.8 0 8 2 11 5" /><path d="M6 29h6v21H6zM52 29h6v21h-6z" /></g></svg>;
 }
 
 function ReferenceLotusIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 8c9 9 9 19 0 29-9-10-9-20 0-29z"/><path d="M29 39C18 37 12 29 13 18c10 2 17 9 18 19"/><path d="M35 39c11-2 17-10 16-21-10 2-17 9-18 19"/><path d="M27 43C17 44 8 39 5 29c10-1 19 3 24 11"/><path d="M37 43c10 1 19-4 22-14-10-1-19 3-24 11"/><path d="M11 48c13 6 29 6 42 0"/></g></svg>;
+  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 8c9 9 9 19 0 29-9-10-9-20 0-29z" /><path d="M29 39C18 37 12 29 13 18c10 2 17 9 18 19" /><path d="M35 39c11-2 17-10 16-21-10 2-17 9-18 19" /><path d="M27 43C17 44 8 39 5 29c10-1 19 3 24 11" /><path d="M37 43c10 1 19-4 22-14-10-1-19 3-24 11" /><path d="M11 48c13 6 29 6 42 0" /></g></svg>;
 }
 
 function ReferencePhoneIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M13.5 5.5l7 10-5 5c3.2 6.2 6.9 9.9 13 13l5-5 10 7-3 7c-.7 1.6-2.3 2.5-4 2.2C18.2 42 6 29.8 3.3 11.5 3 9.8 4 8.2 5.5 7.5l8-2z"/></g></svg>;
+  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M13.5 5.5l7 10-5 5c3.2 6.2 6.9 9.9 13 13l5-5 10 7-3 7c-.7 1.6-2.3 2.5-4 2.2C18.2 42 6 29.8 3.3 11.5 3 9.8 4 8.2 5.5 7.5l8-2z" /></g></svg>;
 }
 
 function ReferenceShieldIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 5l23 9v16c0 14-9.7 24.2-23 29C18.7 54.2 9 44 9 30V14l23-9z"/><path d="M21 31l7 7 15-16"/></g></svg>;
+  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 5l23 9v16c0 14-9.7 24.2-23 29C18.7 54.2 9 44 9 30V14l23-9z" /><path d="M21 31l7 7 15-16" /></g></svg>;
 }
 
 function ReferenceUsersIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><circle cx="23" cy="19" r="8"/><circle cx="43" cy="21" r="7"/><path d="M7 52v-6c0-9 7-15 16-15s16 6 16 15v6"/><path d="M38 34c10-3 19 3 19 13v5"/><path d="M16 52V42M31 52V42M47 52V43"/></g></svg>;
+  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><circle cx="23" cy="19" r="8" /><circle cx="43" cy="21" r="7" /><path d="M7 52v-6c0-9 7-15 16-15s16 6 16 15v6" /><path d="M38 34c10-3 19 3 19 13v5" /><path d="M16 52V42M31 52V42M47 52V43" /></g></svg>;
 }
 
 function ReferenceHeartIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 55S7 40 7 21.5C7 7 25 4 32 16 39 4 57 7 57 21.5 57 40 32 55 32 55z"/></g></svg>;
+  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 55S7 40 7 21.5C7 7 25 4 32 16 39 4 57 7 57 21.5 57 40 32 55 32 55z" /></g></svg>;
 }
 
 const quickLinks = [
@@ -252,11 +252,6 @@ export default function FooterNew() {
       };
 
       if (!reduced) {
-        /* ═══════════════ MASTER FOOTER REVEAL ═══════════════
-           0.00 scene  0.10 ganga  0.15 logo  0.35 brand text
-           0.40 cards  0.45 support card  0.90 support content
-           1.15 socials  1.25 values pill  1.55 value icons
-           1.80 bottom bar — entrance finishes ≈ 1.9–2.1s        */
         const master = gsap.timeline({
           scrollTrigger: {
             trigger: root,
@@ -637,9 +632,9 @@ export default function FooterNew() {
       <div className="footer-master relative z-10">
         {/* ========================= MAIN ROW ========================= */}
         <div className="mx-auto w-full max-w-[1600px] px-4 pb-7 pt-8 sm:px-6 lg:min-h-[454px] lg:px-4 lg:pb-6 lg:pt-9 xl:px-5">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 2xl:grid-cols-[410px_145px_195px_205px_210px_minmax(260px,315px)] 2xl:gap-0">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[minmax(340px,1.7fr)_minmax(120px,0.6fr)_minmax(160px,0.8fr)_minmax(165px,0.85fr)_minmax(170px,0.9fr)_minmax(230px,1.15fr)] xl:gap-2 2xl:grid-cols-[410px_145px_195px_205px_210px_minmax(260px,315px)] 2xl:gap-0">
             {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[382px] lg:justify-start lg:pb-2 lg:pt-2 2xl:pl-[145px] 2xl:pr-2">
+            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[382px] lg:justify-start lg:pb-2 lg:pt-2 xl:pl-[80px] xl:pr-2 2xl:pl-[145px] 2xl:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                 <Image
                   src={footerMokshaLogo}
