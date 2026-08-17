@@ -73,7 +73,7 @@ function NewBanner() {
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-0">
           <div className="max-w-[540px]">
             {/* Namo Gange logo — centered over the text below */}
-            <div className="mb-4 mt-11 flex w-fit flex-col items-center">
+            <div className="mb-2 mt-14 flex w-fit flex-col items-center">
               <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
                 <Image
                   src="/hero-images/image6.png"
@@ -87,7 +87,7 @@ function NewBanner() {
               </div>
 
               {/* eyebrow — starts from the left */}
-              <div className="mt-4 flex w-fit items-center gap-3">
+              <div className="mt-2 flex w-fit items-center gap-3">
                 <span className="h-px w-8 bg-[#73532F]/70" />
                 <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
                   Moksha Sewa A Namo Gange Trust Initiative
@@ -117,7 +117,7 @@ function NewBanner() {
             </h2>
 
             {/* Decorative divider */}
-            <div className="mt-5 flex items-center gap-4">
+            <div className="mt-3 flex items-center gap-4">
               <span className="h-[2px] w-44 bg-[#dc671f]" />
 
               <div className="relative flex h-9 w-9 items-center justify-center">
@@ -129,7 +129,7 @@ function NewBanner() {
               <span className="h-[2px] w-44 bg-[#dc671f]" />
             </div>
 
-            <p className="mt-4 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
+            <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
               Moksha Sewa stands for compassion in action.
               <br />
               We are here for the forgotten, the unclaimed,
@@ -143,7 +143,7 @@ function NewBanner() {
             </p>
 
             {/* Initiative Badge — home banner button theme */}
-            <div className="mt-4 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
+            <div className="mt-3 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
               <span className="flex items-center gap-3">
                 <PiFlowerLotus className="h-6 w-6 shrink-0" />
                 <span>
@@ -238,7 +238,7 @@ function PreviousBanner() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0">
         <div className="max-w-[540px]">
           {/* Namo Gange logo — centered over the text below */}
-          <div className="mb-4 mt-11 flex w-fit flex-col items-center">
+          <div className="mb-2 mt-14 flex w-fit flex-col items-center">
             <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
               <Image
                 src="/hero-images/image6.png"
@@ -252,7 +252,7 @@ function PreviousBanner() {
             </div>
 
             {/* eyebrow — starts from the left */}
-            <div className="mt-4 flex w-fit items-center gap-3">
+            <div className="mt-2 flex w-fit items-center gap-3">
               <span className="h-px w-8 bg-[#73532F]/70" />
               <span className="text-[13px] font-bold tracking-[0.01em] text-[#2C1810] sm:text-[14px]">
                 Moksha Sewa A Namo Gange Trust Initiative
@@ -305,7 +305,7 @@ function PreviousBanner() {
           {/* CTA — like home banner */}
           <a
             href="/sevas"
-            className="group/cta mt-4 inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[300px]"
+            className="group/cta mt-3 inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[300px]"
           >
             <span className="flex items-center gap-3">
               <FaFire className="h-5 w-5" />
