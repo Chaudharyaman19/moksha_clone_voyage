@@ -293,7 +293,9 @@ export default function CompassionSection() {
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <a
                 href="/request-help"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#9A6A2E] to-[#A97C3E] px-6 text-center text-[16px] font-semibold text-white shadow-[0_10px_24px_rgba(130,84,34,0.22)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(130,84,34,0.28)] sm:text-[16px]"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
                 Request Sewa Support
@@ -301,7 +303,9 @@ export default function CompassionSection() {
 
               <a
                 href="tel:+919810247319"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#96672F] bg-white/35 px-7 text-center text-[16px] font-semibold text-[#81582B] backdrop-blur-sm transition-colors hover:bg-[#96672F]/10 sm:text-[16px]"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <PhoneIcon className="h-5 w-5" />
                 Call for Help

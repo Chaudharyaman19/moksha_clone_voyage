@@ -292,7 +292,9 @@ export default function Serving({}: ServingProps) {
         <div className="mt-4 flex justify-center">
           <a
             href="/request-help"
-            className="inline-flex h-10 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[16px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             <span>Request Help Now</span>
 

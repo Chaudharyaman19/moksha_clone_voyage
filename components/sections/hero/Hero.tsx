@@ -679,7 +679,7 @@ export default function Hero() {
   }, [images.length]);
 
   useEffect(() => {
-    const timer = window.setInterval(nextSlide, 55500);
+    const timer = window.setInterval(nextSlide, 5500);
     return () => window.clearInterval(timer);
   }, [nextSlide]);
 
@@ -934,7 +934,9 @@ export default function Hero() {
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href="/request-help"
-                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[265px]"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center text-white">
                     <FaHandHoldingHeart className="h-8 w-8" />
@@ -948,13 +950,15 @@ export default function Hero() {
 
                 <a
                   href="/donation"
-                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] border border-[#D9A56C] bg-[#FFF8EE]/95 px-4 text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#C85117] hover:bg-white sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta flex h-[54px] w-full items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[265px]"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center text-[#C85117]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center text-white">
                     <FaHandsHelping className="h-8 w-8" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-[16px] font-bold leading-tight text-[#C85117]">
+                    <span className="block text-[16px] font-bold leading-tight text-white">
                       Support a Family
                     </span>
                   </span>
@@ -1000,21 +1004,25 @@ export default function Hero() {
                 <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <a
                     href={activeSlide.primaryButton?.href ?? "/sevas"}
-                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                   >
                     <span className="whitespace-nowrap">{activeSlide.primaryButton?.label}</span>
-                    <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
+                    {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
                       <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                    </span>
+                    </span> */}
                   </a>
                   <a
                     href={activeSlide.secondaryButton?.href ?? "/donation"}
-                    className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                   >
                     <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label}</span>
-                    <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                    {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
                       <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                    </span>
+                    </span> */}
                   </a>
                 </div>
               </div>
@@ -1022,59 +1030,67 @@ export default function Hero() {
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/volunteer/register"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="flex items-center gap-3">
                     <FaUsers className="h-6 w-6 shrink-0" />
                     <span className="whitespace-nowrap">{activeSlide.primaryButton?.label}</span>
                   </span>
-                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
+                  {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                  </span>
+                  </span> */}
                 </a>
                 <a
                   href={activeSlide.secondaryButton?.href ?? "/donation"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="flex items-center gap-3">
-                    <FaRegHeart className="h-6 w-6 shrink-0 text-[#D95A06]" />
+                    <FaRegHeart className="h-6 w-6 shrink-0 text-white" />
                     <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label}</span>
                   </span>
-                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                  {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                  </span>
+                  </span> */}
                 </a>
               </div>
             ) : (
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="flex min-w-0 items-center gap-3">
                     <FaHandHoldingHeart className="h-6 w-6 shrink-0" />
                     <span className="whitespace-nowrap">{activeSlide.primaryButton?.label ?? "Request Sewa Help"}</span>
                   </span>
-                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
+                  {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                  </span>
+                  </span> */}
                 </a>
 
                 <a
                   href={activeSlide.secondaryButton?.href ?? "/sevas"}
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-between rounded-[9px] border border-[#E8D9C8] bg-white/90 px-4 text-[16px] font-bold text-[#2C1810] shadow-[0_8px_18px_rgba(73,49,31,0.08)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:border-[#D95A06] hover:bg-white sm:w-[265px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/cta inline-flex h-[54px] w-fit items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="flex min-w-0 items-center gap-3">
                     {activeSlide.secondaryButton?.label === "Become a Volunteer" ? (
-                      <FaUsers className="h-6 w-6 shrink-0 text-[#D95A06]" />
+                      <FaUsers className="h-6 w-6 shrink-0 text-white" />
                     ) : (
-                      <FaRegHeart className="h-6 w-6 shrink-0 text-[#D95A06]" />
+                      <FaRegHeart className="h-6 w-6 shrink-0 text-white" />
                     )}
                     <span className="whitespace-nowrap">{activeSlide.secondaryButton?.label ?? "Support This Mission"}</span>
                   </span>
-                  <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
+                  {/* <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D95A06] text-[#D95A06]">
                     <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-                  </span>
+                  </span> */}
                 </a>
               </div>
             )}

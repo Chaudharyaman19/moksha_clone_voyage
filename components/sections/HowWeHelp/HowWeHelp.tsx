@@ -372,7 +372,9 @@ export default function HowWeCanHelp() {
 
                   <a
                     href={card.href || "/request-help"}
-                    className="mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[16px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-auto mt-auto inline-flex h-[36px] w-fit shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-center font-serif text-[16px] font-bold leading-none text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                   >
                     <span className="whitespace-nowrap">Learn More</span>
                     <CustomIcon name="FaArrowRight" className="h-3 w-3" />

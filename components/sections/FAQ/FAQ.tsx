@@ -156,7 +156,9 @@ export default function FAQSection() {
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="tel:+919220147229"
-                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md bg-white px-5 py-3 text-[16px] font-medium text-[#A8430C] shadow-sm transition hover:bg-[#FFF8EF] sm:w-auto sm:min-w-[174px] sm:text-[16px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-fit items-center justify-center gap-3 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-3 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
                 >
                   Get Sewa Help
                   <FaPhoneAlt className="h-4 w-4" />
@@ -164,7 +166,9 @@ export default function FAQSection() {
 
                 <a
                   href="/donation"
-                  className="inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-md border border-white/80 bg-white/5 px-5 py-3 text-[16px] font-medium text-white backdrop-blur-[2px] transition hover:bg-white/12 sm:w-auto sm:min-w-[174px] sm:text-[16px]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 w-fit items-center justify-center gap-3 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-3 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
                 >
                   Support This Mission
                   <FaHeart className="h-4 w-4" />
