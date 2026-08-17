@@ -520,7 +520,7 @@ export default function Hero() {
       "/hero-images/image3.png",
       "/hero-images/image7.png",
       "/hero-images/image8.png",
-      "/hero-images/volunteer-impact.png",
+      "/hero-images/volunteer-impact-v2.png",
       // "/hero-images/1.png",
       // "/hero-images/2.png",
       // "/hero-images/3.png",
