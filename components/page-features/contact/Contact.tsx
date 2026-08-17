@@ -167,14 +167,14 @@ function Contact() {
     "mb-1.5 block text-[16px] font-semibold uppercase tracking-[0.08em] text-[#6B584B]";
 
   const eyebrowClass =
-    "inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#8B6A3E]";
+    "inline-flex items-center gap-3 text-[16px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E]";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
       <Navbar />
 
-      <main>
+      <main className="[&_a]:text-[max(16px,1em)] [&_button]:text-[max(16px,1em)] [&_input]:text-[max(16px,1em)] [&_label]:text-[max(16px,1em)] [&_p]:text-[max(16px,1em)] [&_select]:text-[max(16px,1em)] [&_span]:text-[max(16px,1em)] [&_textarea]:text-[max(16px,1em)]">
         {/* ============================= HERO ============================= */}
         <section className="relative flex aspect-[4/5] w-full flex-col justify-center overflow-hidden bg-[#F4EDE3] md:aspect-auto md:h-[500px] lg:h-[520px]">
           <div className="absolute inset-0">
@@ -225,13 +225,8 @@ function Contact() {
                 </span>
               </div>
 
-              <h1 className="mt-3 font-serif leading-[0.95]">
-                <span className="text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  Contact{" "}
-                </span>
-                <span className="text-[32px] text-[#8B6A3E] sm:text-[46px] lg:text-[52px]">
-                   Us
-                </span>
+              <h1 className="mt-3 whitespace-nowrap font-serif text-[32px] leading-none text-[#2C1810] sm:text-[46px] lg:text-[52px]">
+                Contact <span className="text-[#8B6A3E]">Us</span>
               </h1>
 
               <div className="mt-2 flex items-center gap-2">
@@ -472,7 +467,7 @@ function Contact() {
                 <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#C9A574]/10 blur-2xl" />
 
                 <div className="relative mb-4">
-                  <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#C96822]">
+                  <div className="inline-flex items-center gap-2 text-[16px] font-bold uppercase tracking-[0.14em] text-[#C96822]">
                     <MdEmail className="h-4 w-4" />
                     Send a message
                   </div>
@@ -593,7 +588,7 @@ function Contact() {
                   {submitStatus.type && (
                     <div
                       role="status"
-                      className={`rounded-xl border p-3 text-[13px] font-medium ${
+                      className={`rounded-xl border p-3 text-[16px] font-medium ${
                         submitStatus.type === "success"
                           ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
                           : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"

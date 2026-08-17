@@ -13,7 +13,6 @@ import {
   FaHistory,
   FaHeart,
   FaAmbulance,
-  FaPlaceOfWorship,
   FaDonate,
   FaHandsHelping,
 } from "react-icons/fa";
@@ -30,7 +29,7 @@ export default function Navbar() {
     return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
   };
   const isItemActive = (item: { path: string; dropdown?: { path: string }[] }) =>
-    item.dropdown ? item.dropdown.some((child) => isPathActive(child.path)) : isPathActive(item.path);
+    isPathActive(item.path) || Boolean(item.dropdown?.some((child) => isPathActive(child.path)));
 
   useEffect(() => {
     let lastScroll = 0;
@@ -97,85 +96,57 @@ export default function Navbar() {
       type: "page",
     },
     {
-      name: "About",
+      name: "About Us",
       path: "/about",
       icon: <FaPrayingHands />,
       type: "page",
     },
     {
-      name: "Sewa Support",
+      name: "Sewa & Support",
       path: "#services",
       icon: <FaStar />,
       type: "dropdown",
       dropdown: [
-        {
-          name: "Wood & Ritual Items",
-          path: "/furalservices",
-          icon: <FaHandHoldingHeart />,
-          type: "page",
-        },
-
-        {
-          name: "Ritual Guidance",
-          path: "/panditservices",
-          icon: <FaPrayingHands />,
-          type: "page",
-        },
-        {
-          name: "Transport Support",
-          path: "/ambulanceservices",
-          icon: <FaAmbulance />,
-          type: "page",
-        },
-        {
-          name: "Ground Support",
-          path: "/prayerhallservices",
-          icon: <FaPlaceOfWorship />,
-          type: "page",
-        },
-        {
-          name: "Family Support",
-          path: "/specialservices",
-          icon: <FaHandsHelping />,
-          type: "page",
-        },
-
+        { name: "Ground Support", path: "/prayerhallservices", icon: <FaPrayingHands />, type: "page" },
+        { name: "Support for Needy Families", path: "/specialservices", icon: <FaHeart />, type: "page" },
+        { name: "Ambulance & Body Transport", path: "/ambulanceservices", icon: <FaAmbulance />, type: "page" },
+        { name: "Ritual Material Support", path: "/furalservices", icon: <FaHandHoldingHeart />, type: "page" },
+        { name: "Priest & Ritual Guidance", path: "/panditservices", icon: <FaPrayingHands />, type: "page" },
       ],
     },
     {
-      name: "Blog",
-      path: "/blog",
+      name: "Our Work",
+      path: "/mortal-records",
       icon: <FaBookOpen />,
-      type: "page",
+      type: "dropdown",
+      dropdown: [
+        { name: "Photo Gallery", path: "/mokshagallery", icon: <FaLeaf />, type: "page" },
+        { name: "Videos", path: "/mokshavediogallery", icon: <FaHistory />, type: "page" },
+      ],
     },
     {
-      name: "Moksha Gallery",
-      path: "/mokshagallery",
+      name: "Join Us",
+      path: "/volunteer/register",
       icon: <FaHeart />,
       type: "dropdown",
       dropdown: [
-        {
-          name: "Moksha Gallery",
-          path: "/mokshagallery",
-          icon: <FaLeaf />,
-          type: "page",
-        },
-        {
-          name: "Moksha Video Gallery",
-          path: "/mokshavediogallery",
-          icon: <FaHistory />,
-          type: "page",
-        },
+        { name: "Become a Volunteer", path: "/volunteer/register", icon: <FaHandsHelping />, type: "page" },
+        { name: "CSR Partnership", path: "#", icon: <FaStar />, type: "page", disabled: true },
+        { name: "Partner With Us", path: "#", icon: <FaHandHoldingHeart />, type: "page", disabled: true },
       ],
     },
     {
-      name: "Volunteer",
-      path: "/volunteer/register",
-      icon: <FaHandHoldingHeart />,
-      type: "page",
+      name: "Help & Information",
+      path: "/request-help",
+      icon: <FaBookOpen />,
+      type: "dropdown",
+      dropdown: [
+        { name: "How to Request Help", path: "/request-help", icon: <FaHandsHelping />, type: "page" },
+        { name: "Blog & Awareness", path: "/blog", icon: <FaBookOpen />, type: "page" },
+      ],
     },
     {
-      name: "Contact",
+      name: "Contact Us",
       path: "/contact",
       icon: <FaUserCircle />,
       type: "page",
@@ -232,7 +203,7 @@ export default function Navbar() {
                   {item.dropdown ? (
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className={`relative px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
+                      className={`relative px-2.5 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
                         ? "text-[#8B6A3E]"
                         : "text-[#5A4030] hover:text-[#8B6A3E]"
                         }`}
@@ -250,7 +221,7 @@ export default function Navbar() {
                   ) : item.name === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="donate-nav-sparkle group relative ml-2 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 py-1.5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                      className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                     >
                       <span className="donate-nav-shine" aria-hidden />
                       <FaDonate className="relative z-10 h-3 w-3" />
@@ -261,7 +232,7 @@ export default function Navbar() {
                   ) : item.name === "Request Help" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="ml-2 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-4 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
+                      className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
                     >
                       <FaHandsHelping className="h-3 w-3" />
                       {item.name}
@@ -270,7 +241,7 @@ export default function Navbar() {
                     <button
                       onClick={() => handleNavigation(item.path)}
                       aria-current={isItemActive(item) ? "page" : undefined}
-                      className={`relative px-4 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
+                      className={`relative px-2.5 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
                         ? "text-[#8B6A3E]"
                         : "text-[#5A4030] hover:text-[#8B6A3E]"
                         }`}
@@ -295,11 +266,10 @@ export default function Navbar() {
                         {item.dropdown.map((subItem) => (
                           <button
                             key={subItem.name}
-                            onClick={() =>
-                              handleNavigation(subItem.path)
-                            }
+                            onClick={() => !subItem.disabled && handleNavigation(subItem.path)}
+                            disabled={subItem.disabled}
                             aria-current={isPathActive(subItem.path) ? "page" : undefined}
-                            className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                            className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
                               }`}
                           >
                             <span className={isPathActive(subItem.path) ? "text-[#8B6A3E] w-5" : "text-[#5A4030]/80 w-5"}>
@@ -386,11 +356,14 @@ export default function Navbar() {
                       <button
                         key={subItem.name}
                         onClick={() => {
-                          handleNavigation(subItem.path);
-                          setOpen(false);
+                          if (!subItem.disabled) {
+                            handleNavigation(subItem.path);
+                            setOpen(false);
+                          }
                         }}
+                        disabled={subItem.disabled}
                         aria-current={isPathActive(subItem.path) ? "page" : undefined}
-                        className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
+                        className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
                           }`}
                       >
                         <span className={isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]/70"}>

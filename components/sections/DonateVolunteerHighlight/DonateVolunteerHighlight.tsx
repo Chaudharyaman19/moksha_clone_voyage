@@ -27,7 +27,7 @@ export default function DonateVolunteerHighlight() {
 
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-24 w-[78%] -translate-x-1/2 bg-gradient-to-t from-[#8B6A3E]/[0.05] to-transparent blur-2xl" />
 
-      <div className="relative z-10 mx-auto max-w-[1280px]">
+      <div className="relative z-10 mx-auto max-w-[1344px]">
 
         <div className="mb-1 -mt-2 flex items-center justify-center gap-3 py-1">
           <span className="h-px w-10 bg-[#A97843]/45 sm:w-14" />

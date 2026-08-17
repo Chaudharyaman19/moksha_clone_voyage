@@ -174,7 +174,7 @@ export default function VoicesOfGratitude() {
 
       <div className="pointer-events-none absolute right-[4%] top-[20%] h-[100px] w-[190px] rounded-[50%] border border-[#DCA653]/10" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
         <header className="mx-auto mb-3 max-w-[760px] text-center">
           <LotusMark className="mx-auto h-5 w-8 mt-3" />
 

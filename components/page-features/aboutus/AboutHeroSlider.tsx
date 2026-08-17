@@ -73,8 +73,8 @@ function NewBanner() {
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-0">
           <div className="max-w-[540px]">
             {/* Namo Gange logo — centered over the text below */}
-            <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
-              <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
+            <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-start text-left">
+              <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
                 <Image
                   src="/hero-images/image6.png"
                   alt="Namo Gange"
@@ -86,7 +86,7 @@ function NewBanner() {
                 />
               </div>
 
-              <div className="mt-1 flex flex-col items-center text-center">
+              <div className="mt-1 flex flex-col items-start text-left">
                 <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
                   Moksha Sewa
                 </span>
@@ -237,8 +237,8 @@ function PreviousBanner() {
       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0">
         <div className="max-w-[540px]">
           {/* Namo Gange logo — centered over the text below */}
-          <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-center">
-            <div className="w-[190px] sm:w-[220px] lg:w-[250px]">
+          <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-start text-left">
+            <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
               <Image
                 src="/hero-images/image6.png"
                 alt="Namo Gange"
@@ -250,7 +250,7 @@ function PreviousBanner() {
               />
             </div>
 
-            <div className="mt-1 flex flex-col items-center text-center">
+            <div className="mt-1 flex flex-col items-start text-left">
               <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
                 Moksha Sewa
               </span>

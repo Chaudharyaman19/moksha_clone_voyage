@@ -216,7 +216,7 @@ function ActivityCard({
 
           <span className="mx-auto mt-1.5 block h-px w-7 bg-[#C88935]" />
 
-          <p className="mx-auto mt-1.5 max-w-[210px] text-[16px] font-normal leading-[14px] text-[#5D493C] xl:text-[16px] xl:leading-[14px]">
+          <p className="mx-auto mt-1.5 max-w-[210px] text-[10px] font-normal leading-[1px] text-[#5D493C] xl:text-[14px] xl:leading-[18px]">
             {activity.description}
           </p>
         </div>
@@ -256,7 +256,7 @@ export default function Serving({}: ServingProps) {
         <div className="absolute bottom-[-65px] left-1/2 h-[110px] w-[75%] -translate-x-1/2 rounded-[50%] border border-[#D7AA68]/[0.07]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
         <header className="mx-auto mb-4 max-w-3xl text-center">
           <LotusMark className="mx-auto h-5 w-8 text-[#C88B35]" />
 

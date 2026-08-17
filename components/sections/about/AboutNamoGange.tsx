@@ -13,7 +13,7 @@ export default function AboutNamoGange() {
         NAMO
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
         <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-8">
           
           {/* Left: Video with offset frame */}

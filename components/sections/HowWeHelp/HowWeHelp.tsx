@@ -285,7 +285,7 @@ export default function HowWeCanHelp() {
           <div className="pointer-events-none absolute bottom-0 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full border border-[#C59658]/10" />
         </>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
         <header className="mx-auto text-center mb-2 max-w-4xl">
           <div className="inline-flex items-center mb-0 gap-4">
             <span className="h-px bg-gradient-to-r from-transparent via-[#A66F2C] to-[#A66F2C] w-20" />
