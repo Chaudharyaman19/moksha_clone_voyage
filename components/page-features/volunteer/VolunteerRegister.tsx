@@ -1289,7 +1289,7 @@ export default function VolunteerRegister() {
 
         <div className="relative mx-auto w-full max-w-7xl">
           {/* Volunteer hero */}
-          <section className="relative left-1/2 mb-5 aspect-[16/7] min-h-[350px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3]">
+          <section className="relative left-1/2 mb-5 aspect-[16/7] min-h-[390px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3] lg:min-h-[620px]">
             <div
               className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${heroSlide * 100}%)` }}
