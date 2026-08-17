@@ -260,7 +260,16 @@ export default function RequestHelp() {
       | HTMLSelectElement
     >,
   ) => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    let { value } = event.target;
+
+    if (name === "requesterPhone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    if (name === "pincode") {
+      value = value.replace(/\D/g, "").slice(0, 6);
+    }
 
     setForm((current) => ({
       ...current,
@@ -378,7 +387,7 @@ export default function RequestHelp() {
       <Topbar />
       <Navbar />
 
-      <main className="relative overflow-hidden px-3 pb-6 pt-6 sm:px-4 lg:px-5 lg:pb-8 lg:pt-7">
+      <main className="relative overflow-hidden px-3 pb-6 pt-[112px] sm:px-4 sm:pt-[156px] lg:px-5 lg:pb-8 lg:pt-[116px] [&_a]:text-[16px] [&_button]:text-[16px] [&_h3]:text-[16px] [&_input]:text-[16px] [&_label]:text-[16px] [&_legend]:text-[16px] [&_p]:text-[16px] [&_select]:text-[16px] [&_textarea]:text-[16px]">
         {/* Side ornaments */}
         <div className="pointer-events-none absolute -left-14 top-[38%] hidden opacity-[0.08] lg:block">
           <LotusOrnament className="h-64 w-64" />
@@ -392,23 +401,23 @@ export default function RequestHelp() {
           {/* Page heading */}
           <header className="mb-3 text-center">
             <div className="flex items-center justify-center gap-4">
-              <span className="hidden h-px w-24 bg-gradient-to-r from-transparent to-[#E57A20] sm:block" />
+              <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
 
-              <LotusOrnament className="h-8 w-12" />
+              <LotusOrnament className="h-9 w-12" />
 
-              <span className="hidden h-px w-24 bg-gradient-to-l from-transparent to-[#E57A20] sm:block" />
+              <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
             </div>
 
-            <h1 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+            <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
               Request Cremation Assistance
             </h1>
 
-            <div className="mt-2 flex items-center justify-center gap-2.5">
-              <span className="h-px w-14 bg-[#E39856]" />
+            <div className="mt-2 flex items-center justify-center gap-2">
+              <span className="h-px w-14 bg-[#E39453]" />
 
-              <span className="h-2 w-2 rotate-45 border border-[#E17820]" />
+              <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
 
-              <span className="h-px w-14 bg-[#E39856]" />
+              <span className="h-px w-14 bg-[#E39453]" />
             </div>
 
             <p className="mx-auto mt-2 max-w-[680px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
@@ -555,6 +564,8 @@ export default function RequestHelp() {
                             handleChange
                           }
                           required
+                          inputMode="numeric"
+                          maxLength={10}
                           pattern="[6-9][0-9]{9}"
                           title="Enter a valid 10-digit mobile number"
                           className={
@@ -597,12 +608,13 @@ export default function RequestHelp() {
                         </label>
 
                         <input
-                          type="text"
+                          type="tel"
                           name="pincode"
                           value={form.pincode}
                           onChange={handleChange}
                           required
                           inputMode="numeric"
+                          maxLength={6}
                           pattern="[0-9]{6}"
                           title="Enter a valid 6-digit pincode"
                           className={inputClass}
@@ -740,7 +752,7 @@ export default function RequestHelp() {
 
                               <Icon className="h-5 w-5 text-[#E87520]" />
 
-                              <span className="mt-1.5 font-serif text-[14px] leading-[1.12] text-[#39251C]">
+                              <span className="mt-1.5 font-serif text-[16px] leading-[1.12] text-[#39251C]">
                                 {
                                   option.title
                                 }
@@ -882,7 +894,7 @@ export default function RequestHelp() {
                   </label>
 
                   {error && (
-                    <div className="rounded-[7px] border border-red-200 bg-red-50 px-3 py-2 text-[14px] text-red-700">
+                    <div className="rounded-[7px] border border-red-200 bg-red-50 px-3 py-2 text-[16px] text-red-700">
                       {error}
                     </div>
                   )}
