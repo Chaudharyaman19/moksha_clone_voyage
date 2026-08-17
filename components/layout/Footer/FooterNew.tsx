@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
 import { HandHeart, Shield, Users, Heart, MapPin, Phone, Mail, Clock, Link2 } from "lucide-react";
-import footerMokshaLogo from "../../../public/assets/logo-moksha-seva.png";
+import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 import footerBg from "../../../public/assets/footer_bg.webp";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
@@ -599,8 +599,8 @@ export default function FooterNew() {
                   src={footerMokshaLogo}
                   alt={brandName}
                   width={145}
-                  height={105}
-                  className="h-auto w-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.16)]"
+                  height={127}
+                  className="h-[105px] w-auto max-w-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.16)] sm:h-[112px]"
                 />
                 <ShineLayer sparks={4} gold />
               </div>
@@ -858,7 +858,7 @@ export default function FooterNew() {
 
         {/* ========================= BOTTOM BAR ========================= */}
         <div className="footer-bottom relative bg-[#002f2b]">
-          <div className="mx-auto grid min-h-[72px] w-full max-w-[1540px] grid-cols-1 items-center gap-3 px-5 py-4 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-2.5">
+          <div className="mx-auto grid min-h-[64px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-3 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-2">
             <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
               <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
               <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
