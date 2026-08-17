@@ -12,14 +12,13 @@ import { FaXTwitter } from "react-icons/fa6";
 import { PiFlowerLotus } from "react-icons/pi";
 
 const SocialSidebar = () => {
+  const whatsappLink = {
+    url: "https://wa.me/919310219283?text=Hello%20I%20need%20information",
+    color: "#25D366",
+    label: "WhatsApp",
+  };
+
   const socialLinks = [
-    {
-      icon: <FaWhatsapp size={20} />,
-      url: "https://wa.me/919310219283?text=Hello%20I%20need%20information",
-      color: "#25D366",
-      label: "WhatsApp",
-      hoverColor: "#20BA57",
-    },
     {
       icon: <FaXTwitter size={20} />,
       url: "https://x.com/mokshasewa",
@@ -154,7 +153,7 @@ const SocialSidebar = () => {
         {/* Bottom Left - WhatsApp */}
         <div className="absolute left-4 bottom-4 pointer-events-auto">
           <a
-            href={socialLinks[0].url}
+            href={whatsappLink.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Message Moksha Sewa on WhatsApp"
@@ -162,13 +161,13 @@ const SocialSidebar = () => {
           >
             <div
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
-              style={{ backgroundColor: socialLinks[0].color }}
+              style={{ backgroundColor: whatsappLink.color }}
             >
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
                 <FaWhatsapp size={22} />
               </span>
               <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
-                WhatsApp
+                {whatsappLink.label}
               </span>
             </div>
           </a>
@@ -242,7 +241,7 @@ const SocialSidebar = () => {
 
           {/* WhatsApp */}
           <a
-            href={socialLinks[0].url}
+            href={whatsappLink.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Message Moksha Sewa on WhatsApp"
@@ -288,7 +287,7 @@ const SocialSidebar = () => {
             {/* Social Menu Dropdown */}
             <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block">
               <div className="bg-white rounded-lg shadow-xl border border-[#8B6A3E]/20 p-2 min-w-[120px]">
-                {socialLinks.slice(1).map((social, index) => (
+                {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.url}
