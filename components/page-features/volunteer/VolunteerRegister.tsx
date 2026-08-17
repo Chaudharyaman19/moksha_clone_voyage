@@ -1019,13 +1019,13 @@ const trustItems: TrustItem[] = [
 ];
 
 const inputClass =
-  "h-[36px] w-full rounded-[6px] border border-[#E6D8C9] bg-white px-3 text-[13px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
+  "h-[36px] w-full rounded-[6px] border border-[#E6D8C9] bg-white px-3 text-[16px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
 const iconInputClass =
-  "h-[36px] w-full rounded-[6px] border border-[#E6D8C9] bg-white pl-9 pr-3 text-[13px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
+  "h-[36px] w-full rounded-[6px] border border-[#E6D8C9] bg-white pl-9 pr-3 text-[16px] font-normal text-[#35241B] outline-none transition placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10";
 
 const labelClass =
-  "mb-0.5 block text-[12px] font-medium leading-none text-[#3B2A20]";
+  "mb-0.5 block text-[16px] font-medium leading-none text-[#3B2A20]";
 
 function LotusOrnament({
   className = "h-8 w-11",
@@ -1088,7 +1088,7 @@ function SectionTitle({
     <div className="mb-1.5 flex items-center gap-2">
       <span className="h-px w-4 bg-[#ED6B13]" />
 
-      <h3 className="font-serif text-[14px] font-normal text-[#3C251B]">
+      <h3 className="font-serif text-[16px] font-normal text-[#3C251B]">
         {children}
       </h3>
     </div>
@@ -1290,7 +1290,7 @@ export default function VolunteerRegister() {
               <span className="h-px w-14 bg-[#E39453]" />
             </div>
 
-            <p className="mx-auto mt-2 max-w-[650px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
+            <p className="mx-auto mt-2 max-w-[650px] text-[16px] leading-5 text-[#665246]">
               Join our mission of serving
               families with care, respect and
               compassion.
@@ -1410,13 +1410,13 @@ export default function VolunteerRegister() {
                   </div>
 
                   {pincodeStatus === "loading" && (
-                    <p className="mt-1 text-[12px] text-[#9E9186]">Looking up state and city…</p>
+                    <p className="mt-1 text-[16px] text-[#9E9186]">Looking up state and city…</p>
                   )}
                   {pincodeStatus === "done" && (
-                    <p className="mt-1 text-[12px] text-emerald-600">Found: {form.city}, {form.state}</p>
+                    <p className="mt-1 text-[16px] text-emerald-600">Found: {form.city}, {form.state}</p>
                   )}
                   {pincodeStatus === "error" && (
-                    <p className="mt-1 text-[12px] text-[#C1502E]">Couldn&apos;t find this pincode — please enter state and city manually.</p>
+                    <p className="mt-1 text-[16px] text-[#C1502E]">Couldn&apos;t find this pincode — please enter state and city manually.</p>
                   )}
                 </div>
 
@@ -1428,7 +1428,7 @@ export default function VolunteerRegister() {
                       <label className={labelClass}>Why do you want to volunteer with us? *</label>
                       <div className="relative">
                         <FaHeart className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                        <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[13px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Share your motivation" />
+                        <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Share your motivation" />
                       </div>
                     </div>
 
@@ -1436,7 +1436,7 @@ export default function VolunteerRegister() {
                       <label className={labelClass}>Skills / Experience</label>
                       <div className="relative">
                         <FaStar className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                        <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[13px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Your skills or experience" />
+                        <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Your skills or experience" />
                       </div>
                     </div>
 
