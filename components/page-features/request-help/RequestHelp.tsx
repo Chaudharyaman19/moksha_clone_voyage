@@ -983,9 +983,6 @@ export default function RequestHelp() {
               </div>
 
               <blockquote className="relative px-3 pb-1 pt-1 text-center">
-                <span className="font-serif text-[23px] leading-none text-[#E17A25]">
-                  “
-                </span>
 
                 <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
                   In Sewa, we find peace.
