@@ -1595,7 +1595,7 @@ export default function VolunteerRegister() {
                     ))}
                   </div>
 
-                  <p className={`${labelClass} mt-2`}>Preferred Areas of Volunteering</p>
+                  <p className={`${labelClass} mt-2 border-t border-dashed border-[#EDB886] pt-2.5`}>Preferred Areas of Volunteering</p>
                   <div className="mt-1.5 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
                     {SERVICE_AREAS.map((area) => (
                       <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
