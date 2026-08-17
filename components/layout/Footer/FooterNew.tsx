@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -135,6 +136,7 @@ const legalLinks = [
 ];
 
 export default function FooterNew() {
+  const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
@@ -590,29 +592,35 @@ export default function FooterNew() {
           </div>
 
           <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
-            <Link
-              href="/request-help"
-              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Request Help</span>
-            </Link>
+            {pathname !== "/request-help" && (
+              <Link
+                href="/request-help"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Request Help</span>
+              </Link>
+            )}
 
-            <Link
-              href="/donation"
-              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Donate Now</span>
-            </Link>
+            {pathname !== "/donation" && (
+              <Link
+                href="/donation"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Donate Now</span>
+              </Link>
+            )}
 
-            <Link
-              href="/volunteer/register"
-              className="inline-flex h-[40px] w-full min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[175px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Become a Volunteer</span>
-            </Link>
+            {pathname !== "/volunteer/register" && (
+              <Link
+                href="/volunteer/register"
+                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Become a Volunteer</span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -667,10 +675,10 @@ export default function FooterNew() {
 
       <div className="footer-master relative z-10">
         {/* ========================= MAIN ROW ========================= */}
-        <div className="mx-auto w-full max-w-[1600px] px-4 pb-5 pt-6 sm:px-6 lg:min-h-[400px] lg:px-4 lg:pb-4 lg:pt-6 xl:px-5">
+        <div className="mx-auto w-full max-w-[1600px] px-4 pb-4 pt-5 sm:px-6 lg:min-h-[385px] lg:px-4 lg:pb-3 lg:pt-5 xl:px-5">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
             {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[330px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
+            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[315px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                 <Image
                   src={footerMokshaLogo}
@@ -798,7 +806,7 @@ export default function FooterNew() {
 
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[340px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[325px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -901,7 +909,7 @@ export default function FooterNew() {
           <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
           <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
 
-          <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4 lg:py-2">
+          <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4">
             {values.map((value, index) => {
               const Icon = value.icon;
 
@@ -937,7 +945,7 @@ export default function FooterNew() {
 
         {/* ========================= BOTTOM BAR ========================= */}
         <div className="footer-bottom relative bg-black">
-          <div className="mx-auto grid min-h-[64px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-3 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-2">
+          <div className="mx-auto grid min-h-[58px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-2 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-1.5">
             <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
               <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
               <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
@@ -1078,7 +1086,7 @@ function FloatingCard({
 }: FloatingCardProps) {
   return (
     <div
-      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[270px] lg:min-h-[305px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[320px] 2xl:px-4 ${className}`}
+      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[260px] lg:min-h-[290px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[305px] 2xl:px-4 ${className}`}
     >
       <div className="flex flex-col items-center">
         <span className="footer-card-icon-circle relative flex h-[58px] w-[58px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A]/80 text-[#E2AC3D] 2xl:h-[64px] 2xl:w-[64px]">
