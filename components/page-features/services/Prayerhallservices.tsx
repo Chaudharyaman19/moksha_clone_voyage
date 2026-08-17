@@ -28,7 +28,7 @@ export default function PrayerHallServices() {
       <Topbar />
       <Navbar />
 
-      <main className="pb-6 lg:pb-6 overflow-hidden">
+      <main className="overflow-hidden pb-6 pt-24 lg:pb-6 lg:pt-24">
         <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[530px] overflow-hidden">
           <div className="absolute inset-0">
             <Image 
@@ -48,7 +48,7 @@ export default function PrayerHallServices() {
             }}
           />
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 lg:px-0 pt-16 sm:pt-20 lg:pt-24">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-4 sm:pt-4 lg:px-0 lg:pt-4">
             <div className="max-w-[540px]">
               <div className="mb-1 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
                 <span className="opacity-70">Moksha Sewa</span> 

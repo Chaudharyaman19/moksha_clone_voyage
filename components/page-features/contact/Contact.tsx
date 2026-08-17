@@ -191,7 +191,7 @@ function Contact() {
             संपर्क
           </div>
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 xl:px-0">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-28 sm:px-6 lg:pt-32 xl:px-0">
             <div className="max-w-[540px]">
               <div className="inline-flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">

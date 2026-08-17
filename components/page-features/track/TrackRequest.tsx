@@ -174,7 +174,7 @@ function TrackRequest() {
       <Topbar />
       <Navbar />
 
-      <main className="relative overflow-hidden bg-[#FCF8F1] pb-7 pt-10 lg:pb-9 lg:pt-14">
+      <main className="relative overflow-hidden bg-[#FCF8F1] pb-7 pt-28 lg:pb-9 lg:pt-32">
         {/* Soft background glow */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.9),transparent_38%),radial-gradient(circle_at_18%_65%,rgba(201,165,116,0.08),transparent_32%),radial-gradient(circle_at_85%_70%,rgba(201,165,116,0.07),transparent_30%)]" />
 

@@ -170,7 +170,7 @@ function Blog() {
             ज्ञान
           </div>
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-2 lg:pt-1">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-28 lg:pt-32">
             <div className="max-w-[540px] translate-y-2 lg:translate-y-3">
               <div className="inline-flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">

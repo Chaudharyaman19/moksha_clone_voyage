@@ -24,7 +24,7 @@ export default function FamilySupport() {
       <Topbar />
       <Navbar />
 
-      <main>
+      <main className="pt-24 lg:pt-24">
 
         {/* HERO SECTION */}
         <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[400px] overflow-hidden bg-[#F4EDE3]">
@@ -48,7 +48,7 @@ export default function FamilySupport() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 lg:px-0 pt-20 sm:pt-24 lg:pt-28">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-4 sm:pt-4 lg:px-0 lg:pt-4">
             <div className="max-w-[540px]">
 
               {/* eyebrow */}

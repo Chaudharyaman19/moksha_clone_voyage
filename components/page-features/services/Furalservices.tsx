@@ -73,7 +73,7 @@ export default function WoodRitualItemsPage() {
       <Topbar />
       <Navbar />
 
-      <main className="overflow-hidden">
+      <main className="overflow-hidden pt-24 lg:pt-24">
         <HeroSection />
         <SupportFeatures />
         <ArrangeSection />
@@ -102,7 +102,7 @@ function HeroSection() {
 
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(250,248,244,1)_0%,rgba(250,248,244,1)_38%,rgba(250,248,244,0.98)_45%,rgba(250,248,244,0.7)_55%,rgba(250,248,244,0.12)_70%,rgba(250,248,244,0)_100%)]" />
 
-      <div className="relative mx-auto flex min-h-[470px] w-full max-w-7xl items-center px-5 pb-6 pt-20 sm:px-7 lg:min-h-[500px] lg:px-0 lg:pt-20">
+      <div className="relative mx-auto flex min-h-[470px] w-full max-w-7xl items-center px-5 pb-6 pt-4 sm:px-7 lg:min-h-[500px] lg:px-0 lg:pt-4">
         <div className="w-full max-w-[575px]">
           <div className="mb-1 flex flex-wrap items-center gap-2 text-[14px] text-[#351D12]/85 mt-10">
             <span>Moksha Sewa</span>

@@ -206,7 +206,7 @@ function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5">
-        <div className="w-[47%] pb-[18px] pt-[126px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
+        <div className="w-[47%] pb-[18px] pt-[132px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
           <div className="mb-5 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
               <Icon name="drop" size={14} />
