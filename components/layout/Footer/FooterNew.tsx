@@ -631,14 +631,14 @@ export default function FooterNew() {
         {/* Perfect circular mask blends into the footer; it intentionally has no outline. */}
         <div
           aria-hidden
-          className="absolute left-[100px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
+          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
         />
 
         {/* Controlled left circle arc: bold and softly glowing, clipped just
             before the values strip so it never enters the lower section. */}
         <div
           aria-hidden
-          className="absolute left-[100px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_35%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
+          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_30%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
         />
 
         {/* subtle inner green depth */}
