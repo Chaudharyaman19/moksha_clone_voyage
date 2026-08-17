@@ -16,6 +16,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { MapPin, Mail, Clock } from "lucide-react";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 import footerBg from "../../../public/assets/footer-ghat-sunset.png";
+import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 
@@ -786,7 +787,19 @@ export default function FooterNew() {
             </FloatingCard>
 
             {/* REQUEST SUPPORT */}
-            <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
+            <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
+              <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
+                <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#D9A33A]">
+                  Initiative by
+                </p>
+                <Image
+                  src={namoGangeLogo}
+                  alt="Namo Gange"
+                  className="h-auto w-[178px] object-contain"
+                  sizes="178px"
+                />
+              </div>
+
               <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-4 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[250px]">
                 <Image
                   src={requestSupportBg}
@@ -812,15 +825,15 @@ export default function FooterNew() {
                       <h3 className="footer-card-heading text-[17px] font-extrabold uppercase tracking-[0.01em] text-white">
                         Request <span className="text-[#E2AA3C]">Support</span>
                       </h3>
-                      <p className="footer-card-desc mt-1.5 max-w-[180px] text-[12px] leading-[1.4] text-white/95">
+                      <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
                         Share your email and our support team will contact you.
                       </p>
                     </div>
                   </div>
 
-                  <GoldDivider className="mt-4" />
+                  <GoldDivider className="mt-2" />
 
-                  <form onSubmit={handleSubscribe} className="mt-4">
+                  <form onSubmit={handleSubscribe} className="mt-2.5">
                     <label htmlFor="footer-email" className="sr-only">
                       Email address
                     </label>
@@ -833,14 +846,14 @@ export default function FooterNew() {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         placeholder="Your email address"
-                        className="h-[46px] w-full rounded-[7px] border border-white/70 bg-white pl-12 pr-4 text-[14px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
+                        className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
                         required
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className={`footer-send-btn relative mt-3 flex h-[46px] w-full items-center justify-center gap-3 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[14px] font-bold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
+                      className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-bold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
                         }`}
                     >
                       <ShineLayer sparks={0} />
