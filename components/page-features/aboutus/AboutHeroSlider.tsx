@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFire, FaCheckCircle, FaPhoneAlt, FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
+import { FaFire, FaCheckCircle, FaPhoneAlt, FaHandHoldingHeart } from "react-icons/fa";
 
 export default function AboutHeroSlider() {
   const [index, setIndex] = useState(0);
