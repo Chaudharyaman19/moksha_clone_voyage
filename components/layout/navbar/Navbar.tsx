@@ -210,14 +210,14 @@ export default function Navbar() {
           <div className="flex items-center h-12 relative">
             <div className="absolute top-0 left-0 z-10">
               <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
-                <div className="w-12 h-12 sm:w-24 sm:h-24 rounded-md border border-[#D8B982] bg-white p-1.5 sm:p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80">
+                <div className="h-[52px] w-[52px] rounded-md border border-[#D8B982] bg-white p-1.5 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80 sm:h-[104px] sm:w-[104px] sm:p-2">
                   <Image
                     src="/assets/logo-moksha-seva.png"
                     alt="Moksha Sewa Logo"
                     width={96}
                     height={96}
                     priority
-                    sizes="(max-width: 640px) 48px, 96px"
+                    sizes="(max-width: 640px) 52px, 104px"
                     className="w-full h-full object-contain"
                   />
                 </div>
