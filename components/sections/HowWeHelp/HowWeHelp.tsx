@@ -382,7 +382,7 @@ export default function HowWeCanHelp() {
           )}
         </div>
 
-          <div className="mt-1 overflow-hidden rounded-[22px] border border-[#D9B983] bg-[#FFFDF9]/90 shadow-[0_12px_28px_rgba(86,52,22,0.10)] backdrop-blur-sm">
+          <div className="mt-1 overflow-hidden rounded-[2px] border border-[#D9B983] bg-[#FFFDF9]/90 shadow-[0_12px_28px_rgba(86,52,22,0.10)] backdrop-blur-sm">
             <div className="grid grid-cols-1 divide-y divide-[#DEC49C] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {stats.map((stat) => (
                 <div
