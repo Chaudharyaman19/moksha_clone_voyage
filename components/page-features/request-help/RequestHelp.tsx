@@ -421,11 +421,28 @@ export default function RequestHelp() {
               </div>
             </header>
 
-            <aside className="hidden items-center justify-center border border-[#EDD9BF] bg-[#FFF8EC] px-4 py-3 text-center shadow-[0_10px_26px_rgba(106,65,29,0.07)] lg:flex">
-              <div>
-                <LotusOrnament className="mx-auto h-7 w-10" />
-                <p className="mt-1 font-serif font-semibold text-[#40271B]">24/7 Support Available</p>
-                <p className="mt-1 leading-[1.35] text-[#715C4E]">Calm, confidential guidance when your family needs it most.</p>
+            <aside className="relative hidden overflow-hidden border border-[#D9681D] bg-gradient-to-br from-[#FFF6EC] via-[#FFE9D3] to-[#FFD9B6] px-4 py-3 shadow-[0_10px_26px_rgba(184,91,32,0.14)] lg:flex">
+              <span className="absolute inset-y-0 left-0 w-1 bg-[#D9681D]" />
+              <LotusOrnament className="absolute -right-2 -top-2 h-20 w-24 opacity-[0.09]" />
+
+              <div className="relative flex w-full items-center gap-3 text-left">
+                <span className="grid h-12 w-12 shrink-0 place-items-center bg-[#C95613] text-white shadow-[0_6px_16px_rgba(159,66,14,0.22)]">
+                  <FaPhoneAlt className="h-5 w-5" />
+                </span>
+
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="font-serif font-semibold leading-tight text-[#40271B]">Moksha Sewa Helpline</p>
+                    <span className="shrink-0 bg-[#D9681D] px-1.5 py-0.5 text-[11px] font-bold leading-none text-white">24/7</span>
+                  </div>
+                  <p className="mt-1 text-[13px] leading-tight text-[#76513B]">Call now for immediate assistance</p>
+                  <a
+                    href="tel:+919220147229"
+                    className="mt-1 inline-block font-bold tracking-[0.035em] text-[#A9440D] hover:text-[#762B07]"
+                  >
+                    +91 9220147229
+                  </a>
+                </div>
               </div>
             </aside>
           </div>
