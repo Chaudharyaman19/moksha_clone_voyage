@@ -1595,8 +1595,8 @@ export default function VolunteerRegister() {
                     ))}
                   </div>
 
-                  <p className={`${labelClass} mt-1.5`}>Preferred Areas of Volunteering</p>
-                  <div className="grid gap-x-3 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
+                  <p className={`${labelClass} mt-2`}>Preferred Areas of Volunteering</p>
+                  <div className="mt-1.5 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
                     {SERVICE_AREAS.map((area) => (
                       <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
                         <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas, area)} className="mt-0.5 accent-[#ED6B13]" />
@@ -1605,10 +1605,10 @@ export default function VolunteerRegister() {
                     ))}
                   </div>
 
-                  <div className="mt-1.5 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="mt-3 grid gap-3 border-t border-dashed border-[#EDB886] pt-2.5 sm:grid-cols-2 lg:gap-6">
                     <div>
                       <span className={labelClass}>Available Days</span>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
                         {['Weekdays', 'Weekends', 'Flexible'].map(v => (
                           <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
                         ))}
@@ -1617,7 +1617,7 @@ export default function VolunteerRegister() {
 
                     <div>
                       <span className={labelClass}>Preferred Time</span>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
                         {['Morning', 'Day', 'Evening', 'Night'].map(v => (
                           <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
                         ))}
@@ -1625,7 +1625,7 @@ export default function VolunteerRegister() {
                     </div>
                   </div>
 
-                  <div className="mt-1.5 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="mt-3 grid gap-1.5 border-t border-dashed border-[#EDB886] pt-2.5 sm:grid-cols-2 lg:grid-cols-4">
                     {[['emergencyOnCall', 'Emergency / On-Call Seva?'], ['canParticipateFieldCases', 'Can Participate in Field Cases?'], ['ownVehicle', 'Own Vehicle Available?'], ['volunteeredBefore', 'Volunteered with an NGO before?']].map(([name, text]) => (
                       <label key={name}>
                         <span className={labelClass}>{text}</span>
