@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFire, FaCheckCircle, FaPhoneAlt, FaArrowRight } from "react-icons/fa";
+import { FaFire, FaCheckCircle, FaPhoneAlt, FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
 
 export default function AboutHeroSlider() {
   const [index, setIndex] = useState(0);
@@ -142,22 +142,21 @@ function NewBanner() {
                 </strong>
               </p>
 
-              {/* Initiative Badge — home banner button theme */}
-              <div className="mt-3 inline-flex h-[56px] w-full max-w-[300px] items-center justify-between rounded-[9px] bg-[#D95A06] px-4 text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]">
-                <span className="flex items-center gap-3">
-                  <PiFlowerLotus className="h-6 w-6 shrink-0" />
-                  <span>
-                    <span className="block text-[15px] font-extrabold uppercase leading-tight">
-                      Moksha Sewa
-                    </span>
-                    <span className="mt-0.5 block text-[12px] font-medium text-white/90">
-                      A Namo Gange Trust Initiative
-                    </span>
-                  </span>
-                </span>
-                <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
-                  <FaArrowRight className="h-3.5 w-3.5" />
-                </span>
+              <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
+                <a
+                  href="/request-help"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                >
+                  <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
+                  <span>Request Help</span>
+                </a>
+                <a
+                  href="/donation"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                >
+                  <FaFire className="h-5 w-5 shrink-0" />
+                  <span>Support This Mission</span>
+                </a>
               </div>
             </div>
           </div>
@@ -302,19 +301,22 @@ function PreviousBanner() {
             ))}
           </div>
 
-          {/* CTA — like home banner */}
-          <a
-            href="/sevas"
-            className="group/cta mt-3 inline-flex h-[56px] w-full items-center justify-between rounded-[9px] bg-[#D95A06] px-5 text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(190,74,0,0.20)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:w-[300px]"
-          >
-            <span className="flex items-center gap-3">
-              <FaFire className="h-5 w-5" />
-              <span>Explore Our Sewa</span>
-            </span>
-            <span className="ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
-              <FaArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
-            </span>
-          </a>
+          <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
+            <a
+              href="/request-help"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+            >
+              <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
+              <span>Request Help</span>
+            </a>
+            <a
+              href="/donation"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+            >
+              <FaFire className="h-5 w-5 shrink-0" />
+              <span>Support This Mission</span>
+            </a>
+          </div>
         </div>
       </div>
 
