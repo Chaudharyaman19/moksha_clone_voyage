@@ -686,7 +686,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="group relative w-full min-h-[720px] overflow-hidden bg-[#fbf5ea] sm:min-h-[690px] md:aspect-[16/10] md:min-h-[620px] lg:aspect-[20/9] lg:min-h-[600px]"
+        className="group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px]"
       >
       {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
       <div
