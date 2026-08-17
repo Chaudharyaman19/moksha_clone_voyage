@@ -823,14 +823,14 @@ export default function Hero() {
                   fontWeight: 500,
                 }}
               >
-                <span className="block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
+                <span className="block text-[36px] leading-[1.02] sm:text-[42px] lg:text-[46px]">
                   When a Family Cannot
                 </span>
-                <span className="mt-1 block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
+                <span className="mt-1 block text-[36px] leading-[1.02] sm:text-[42px] lg:text-[46px]">
                   Afford a{" "}
                   <span className="text-[#C85117]">Final Farewell,</span>
                 </span>
-                <span className="mt-2 block text-[24px] font-semibold leading-[1.12] sm:text-[27px] lg:text-[30px]">
+                <span className="mt-2 block text-[22px] font-semibold leading-[1.12] sm:text-[25px] lg:text-[28px]">
                   Humanity Must Stand Beside Them.
                 </span>
               </h1>
@@ -841,13 +841,13 @@ export default function Hero() {
                   fontWeight: 500,
                 }}
               >
-                <span className="block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
+                <span className="block text-[36px] leading-[1.02] sm:text-[42px] lg:text-[46px]">
                   From the Final Journey
                 </span>
-                <span className="mt-1 block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
+                <span className="mt-1 block text-[36px] leading-[1.02] sm:text-[42px] lg:text-[46px]">
                   to the Final Prayer,
                 </span>
-                <span className="mt-2 block text-[38px] font-semibold leading-[1.02] text-[#C85117] sm:text-[44px] lg:text-[48px]">
+                <span className="mt-2 block text-[36px] font-semibold leading-[1.02] text-[#C85117] sm:text-[42px] lg:text-[46px]">
                   We Stand Beside Them.
                 </span>
               </h1>
@@ -858,19 +858,19 @@ export default function Hero() {
                   fontWeight: 500,
                 }}
               >
-                <span className="block text-[40px] leading-[1.02] sm:text-[46px] lg:text-[50px]">
+                <span className="block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
                   Be the Reason
                 </span>
-                <span className="mt-1 block text-[40px] leading-[1.02] sm:text-[46px] lg:text-[50px]">
+                <span className="mt-1 block text-[38px] leading-[1.02] sm:text-[44px] lg:text-[48px]">
                   Someone Receives a
                 </span>
-                <span className="mt-2 block text-[40px] font-semibold leading-[1.02] text-[#C85117] sm:text-[46px] lg:text-[50px]">
+                <span className="mt-2 block text-[38px] font-semibold leading-[1.02] text-[#C85117] sm:text-[44px] lg:text-[48px]">
                   Dignified Farewell.
                 </span>
               </h1>
             ) : (
               <h1
-                className="text-[38px] leading-[0.98] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[60px]"
+                className="text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:text-[54px] xl:text-[58px]"
                 style={{
                   fontWeight: 500,
                 }}
