@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -135,6 +136,7 @@ const legalLinks = [
 ];
 
 export default function FooterNew() {
+  const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
@@ -590,29 +592,35 @@ export default function FooterNew() {
           </div>
 
           <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
-            <Link
-              href="/request-help"
-              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Request Help</span>
-            </Link>
+            {pathname !== "/request-help" && (
+              <Link
+                href="/request-help"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Request Help</span>
+              </Link>
+            )}
 
-            <Link
-              href="/donation"
-              className="inline-flex h-[40px] w-[calc(50%-5px)] min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Donate Now</span>
-            </Link>
+            {pathname !== "/donation" && (
+              <Link
+                href="/donation"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Donate Now</span>
+              </Link>
+            )}
 
-            <Link
-              href="/volunteer/register"
-              className="inline-flex h-[40px] w-full min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[175px] sm:gap-2 sm:px-4 sm:text-[14px]"
-            >
-              <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span className="whitespace-nowrap">Become a Volunteer</span>
-            </Link>
+            {pathname !== "/volunteer/register" && (
+              <Link
+                href="/volunteer/register"
+                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:gap-2 sm:px-4 sm:text-[14px]"
+              >
+                <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
+                <span className="whitespace-nowrap">Become a Volunteer</span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
