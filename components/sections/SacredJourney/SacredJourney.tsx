@@ -11,8 +11,6 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-interface SacredJourneyProps {}
-
 interface SupportCard {
   title: string;
   description: string;
@@ -245,7 +243,7 @@ function FloatingIcon({
   );
 }
 
-export default function SacredJourney({}: SacredJourneyProps) {
+export default function SacredJourney() {
   const router = useRouter();
 
   const cards = sevaCards;
@@ -291,7 +289,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
             return (
               <article
                 key={card.title}
-                className="group relative  mx-auto h-[348px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[336px] sm:max-w-none md:h-[326px] lg:h-[318px]"
+                className="group relative mx-auto h-[372px] w-full max-w-[320px] overflow-hidden rounded-[14px] border border-[#E6D5BF] bg-[#FFFDF9] shadow-[0_6px_18px_rgba(75,47,25,0.065)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D3A15F] hover:shadow-[0_10px_24px_rgba(75,47,25,0.10)] sm:h-[360px] sm:max-w-none md:h-[350px] lg:h-[350px]"
               >
                 {/* Image */}
                 <div className="absolute inset-x-0 top-0 h-[168px] overflow-hidden rounded-t-[13px] sm:h-[165px] lg:h-[155px] pb-4">
@@ -316,14 +314,14 @@ export default function SacredJourney({}: SacredJourneyProps) {
                 <CardCornerLotus />
 
                 {/* Card content */}
-                <div className="absolute inset-x-0 top-[204px] z-20 flex flex-col items-center px-4 text-center sm:top-[198px] md:top-[194px] lg:top-[188px]">
+                <div className="absolute inset-x-0 top-[198px] z-20 flex flex-col items-center px-4 text-center sm:top-[192px] md:top-[188px] lg:top-[180px]">
                   <h3 className="font-serif text-[17px] font-normal uppercase leading-[1.1] tracking-[0.015em] text-[#352017] lg:text-[16px] xl:text-[17px]">
                     {card.title}
                   </h3>
 
                   <span className="mt-1.5 h-px w-7 shrink-0 bg-[#D98500]" />
 
-                  <p className="mx-auto mt-4 max-w-[250px] text-[16px] font-normal leading-[1.45] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
+                  <p className="mx-auto mt-2.5 max-w-[250px] text-[16px] font-normal leading-[1.4] text-[#5B473C] lg:max-w-[220px] lg:text-[16px]">
                     {card.description}
                   </p>
                 </div>
@@ -331,7 +329,7 @@ export default function SacredJourney({}: SacredJourneyProps) {
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className={`absolute bottom-0 left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[16px] font-medium leading-tight transition ${
+                  className={`absolute bottom-3 left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[16px] font-medium leading-tight transition ${
                     isFilledButton
                       ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
                       : "border border-[#B85F00] bg-white/90 text-[#8F3E00] hover:bg-[#FFF5E8]"
