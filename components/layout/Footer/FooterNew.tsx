@@ -605,9 +605,17 @@ export default function FooterNew() {
         </div>
 
         {/* Creates the exact concave photo boundary seen in the reference */}
+        {/* Dark circular mask blends into the footer; it intentionally has no outline. */}
         <div
           aria-hidden
-          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full border-l-[4px] border-[#D7A33A] bg-[#003a35]"
+          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#003a35]"
+        />
+
+        {/* Full left arc: bold and softly glowing. Its circle ends above the
+            values strip, so the gold line never touches the lower section. */}
+        <div
+          aria-hidden
+          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full border-l-[6px] border-[#E2AC3D] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
         />
 
         {/* subtle inner green depth */}
@@ -629,7 +637,7 @@ export default function FooterNew() {
       <div className="footer-master relative z-10">
         {/* ========================= MAIN ROW ========================= */}
         <div className="mx-auto w-full max-w-[1600px] px-4 pb-7 pt-8 sm:px-6 lg:min-h-[454px] lg:px-4 lg:pb-6 lg:pt-9 xl:px-5">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-4 2xl:grid-cols-[410px_145px_185px_190px_180px_minmax(280px,350px)] 2xl:gap-0">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 2xl:grid-cols-[410px_145px_195px_205px_210px_minmax(260px,315px)] 2xl:gap-0">
             {/* BRAND */}
             <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[382px] lg:justify-start lg:pb-2 lg:pt-2 2xl:pl-[145px] 2xl:pr-2">
               <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
@@ -673,7 +681,7 @@ export default function FooterNew() {
 
             {/* QUICK LINKS */}
             <FloatingCard icon={ReferenceChainIcon} title="Quick Links">
-              <ul className="space-y-[6px]">
+              <ul className="space-y-[5px]">
                 {quickLinks.map((item) => (
                   <li key={item.label}>
                     <Link
@@ -690,7 +698,7 @@ export default function FooterNew() {
 
             {/* SERVICES */}
             <FloatingCard icon={ReferenceHandHeartIcon} title="Our Services">
-              <ul className="space-y-[6px]">
+              <ul className="space-y-[5px]">
                 {services.map((item) => (
                   <li key={item.label}>
                     <Link
@@ -707,7 +715,7 @@ export default function FooterNew() {
 
             {/* INITIATIVES */}
             <FloatingCard icon={ReferenceLotusIcon} title="Our Initiatives">
-              <ul className="space-y-[6px]">
+              <ul className="space-y-[5px]">
                 {initiatives.map((item) => (
                   <li key={item.label}>
                     <Link
@@ -724,7 +732,7 @@ export default function FooterNew() {
 
             {/* CONTACT */}
             <FloatingCard icon={ReferencePhoneIcon} title="Contact Us">
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <ContactItem icon={MapPin}>
                   <p>Delhi NCR, India</p>
                 </ContactItem>
@@ -741,7 +749,7 @@ export default function FooterNew() {
                 <ContactItem icon={Mail}>
                   <a
                     href={`mailto:${contactEmail}`}
-                    className="break-all transition hover:text-[#E5B14A]"
+                    className="whitespace-nowrap transition hover:text-[#E5B14A]"
                   >
                     {contactEmail}
                   </a>
@@ -759,7 +767,7 @@ export default function FooterNew() {
 
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[350px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#00342f]/95 px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(5,72,64,0.28)] lg:min-h-[370px] lg:px-6 2xl:min-h-[392px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#00342f]/95 px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(5,72,64,0.28)] lg:min-h-[370px] 2xl:min-h-[392px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -771,20 +779,20 @@ export default function FooterNew() {
                 <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(13,92,80,0.28),rgba(0,42,39,0.82))]" />
 
                 <div className="relative z-10">
-                  <div className="flex items-start gap-4">
-                    <span className="relative inline-flex h-[70px] w-[70px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
+                  <div className="flex items-start gap-3">
+                    <span className="relative inline-flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
                       <ReferenceHandHeartIcon
-                        className="footer-card-icon h-[66px] w-[66px]"
+                        className="footer-card-icon h-[54px] w-[54px]"
                         strokeWidth={1.55}
                       />
                       <ShineLayer sparks={2} />
                     </span>
 
                     <div className="pt-1">
-                      <h3 className="footer-card-heading text-[18px] font-extrabold uppercase tracking-[0.015em] text-white">
+                      <h3 className="footer-card-heading text-[17px] font-extrabold uppercase tracking-[0.01em] text-white">
                         Request <span className="text-[#E2AA3C]">Support</span>
                       </h3>
-                      <p className="footer-card-desc mt-2 max-w-[225px] text-[12px] leading-[1.45] text-white/95">
+                      <p className="footer-card-desc mt-1.5 max-w-[180px] text-[12px] leading-[1.4] text-white/95">
                         Share your email and our support team will contact you.
                       </p>
                     </div>
