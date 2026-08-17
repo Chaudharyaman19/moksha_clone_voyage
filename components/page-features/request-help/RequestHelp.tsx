@@ -398,56 +398,82 @@ export default function RequestHelp() {
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl">
-          {/* Page heading */}
-          <header className="mb-3 text-center">
-            <div className="flex items-center justify-center gap-4">
-              <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
+          <div className="mb-2 grid items-stretch gap-2 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <header className="text-center">
+              <div className="flex items-center justify-center gap-4">
+                <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
+                <LotusOrnament className="h-9 w-12" />
+                <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
+              </div>
 
-              <LotusOrnament className="h-9 w-12" />
+              <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
+                Request Cremation Assistance
+              </h1>
 
-              <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
-            </div>
+              <p className="mx-auto mt-1 max-w-[680px] leading-6 text-[#665246]">
+                We are here to support you with compassion, dignity and care in your time of need.
+              </p>
 
-            <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
-              Request Cremation Assistance
-            </h1>
+              <div className="mt-1 flex items-center justify-center gap-2">
+                <span className="h-px w-14 bg-[#E39453]" />
+                <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
+                <span className="h-px w-14 bg-[#E39453]" />
+              </div>
+            </header>
 
-            <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="h-px w-14 bg-[#E39453]" />
+            <aside className="relative hidden overflow-hidden border border-[#9E4717] bg-gradient-to-r from-[#351A10] via-[#542515] to-[#713218] shadow-[0_9px_24px_rgba(74,29,10,0.22)] lg:flex">
+              <span className="absolute inset-y-0 left-0 w-1 bg-[#F2A23B]" />
+              <LotusOrnament className="absolute -right-3 -top-3 h-20 w-24 text-[#F2A23B] opacity-[0.10]" />
 
-              <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
+              <div className="relative flex w-full items-stretch">
+                <div className="flex w-[66px] shrink-0 flex-col items-center justify-center bg-gradient-to-b from-[#F08A2C] to-[#C94F10] text-white shadow-[5px_0_16px_rgba(0,0,0,0.16)]">
+                  <span className="grid h-9 w-9 place-items-center border border-white/60">
+                    <FaPhoneAlt className="h-4 w-4" />
+                  </span>
+                  <span className="mt-1.5 text-[11px] font-bold leading-none tracking-[0.12em]">CALL</span>
+                </div>
 
-              <span className="h-px w-14 bg-[#E39453]" />
-            </div>
+                <div className="flex min-w-0 flex-1 flex-col text-center">
+                  <div className="flex flex-1 items-center justify-center gap-2 px-3 py-2">
+                    <p className="font-serif text-[22px] font-bold leading-none text-[#FFF5E8]">Helpline Number</p>
+                    <span className="bg-[#F2A23B] px-1.5 py-0.5 text-[11px] font-bold leading-none text-[#32180D]">24/7</span>
+                  </div>
 
-            <p className="mx-auto mt-2 max-w-[680px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
-              We are here to support you
-              with compassion, dignity and
-              care in your time of need.
-            </p>
-          </header>
+                  <div className="border-t border-[#F2A23B]/35 bg-black/15 px-3 py-2">
+                    <a
+                      href="tel:+919220147229"
+                      aria-label="Call Moksha Sewa helpline at +91 9220147229"
+                      className="inline-block whitespace-nowrap text-[23px] font-bold leading-none tracking-[0.015em] text-[#FFC978] transition hover:text-white"
+                    >
+                      +91 9220147229
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
 
-          <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="grid items-start gap-2 lg:grid-cols-[minmax(0,1fr)_320px]">
             {/* Main form */}
-            <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
+            <section className="relative overflow-hidden border border-[#E7D9C9] bg-white/95 px-4 py-4 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
               {result ? (
                 <div className="flex min-h-[510px] flex-col items-center justify-center text-center">
                   <span className="grid h-14 w-14 place-items-center rounded-full bg-[#E87520]/10 text-[#E87520]">
                     <FaCheckCircle className="h-7 w-7" />
                   </span>
 
-                  <h2 className="mt-4 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+                  <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
                     Request Received
                   </h2>
 
-                  <p className="mt-2 max-w-md text-[14px] leading-6 text-[#69554A]">
+                  <p className="mt-1 max-w-md text-[14px] leading-6 text-[#69554A]">
                     Our assistance team will
                     contact you shortly. Keep
                     your request number safe for
                     future reference.
                   </p>
 
-                  <div className="mt-4 rounded-lg border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
+                  <div className="mt-1 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
                     {result.requestNo}
                   </div>
 
@@ -482,12 +508,11 @@ export default function RequestHelp() {
                             "NORMAL",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[14px] transition ${
-                          requestType ===
+                        className={`rounded px-3 py-1 text-[14px] transition ${requestType ===
                           "NORMAL"
-                            ? "bg-[#E87520] text-white"
-                            : "text-[#725A4B]"
-                        }`}
+                          ? "bg-[#E87520] text-white"
+                          : "text-[#725A4B]"
+                          }`}
                       >
                         Normal
                       </button>
@@ -499,12 +524,11 @@ export default function RequestHelp() {
                             "EMERGENCY",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[14px] transition ${
-                          requestType ===
+                        className={`rounded px-3 py-1 text-[14px] transition ${requestType ===
                           "EMERGENCY"
-                            ? "bg-[#D94124] text-white"
-                            : "text-[#725A4B]"
-                        }`}
+                          ? "bg-[#D94124] text-white"
+                          : "text-[#725A4B]"
+                          }`}
                       >
                         Emergency
                       </button>
@@ -601,7 +625,7 @@ export default function RequestHelp() {
                       </div>
                     </div>
 
-                    <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                    <div className="mt-1.5 grid gap-2.5 sm:grid-cols-3">
                       <div>
                         <label className={labelClass}>
                           Pincode *
@@ -681,7 +705,7 @@ export default function RequestHelp() {
                       </p>
                     )}
 
-                    <div className="mt-2.5">
+                    <div className="mt-1.5">
                       <label
                         className={
                           labelClass
@@ -736,18 +760,16 @@ export default function RequestHelp() {
                                   option.title,
                                 )
                               }
-                              className={`relative flex min-h-[78px] flex-col items-center justify-center rounded-[8px] border px-2 py-2 text-center transition ${
-                                selected
-                                  ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
-                                  : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
-                              }`}
+                              className={`relative flex min-h-[78px] flex-col items-center justify-center border px-2 py-2 text-center transition ${selected
+                                ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
+                                : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
+                                }`}
                             >
                               <span
-                                className={`absolute right-2 top-2 h-3 w-3 rounded-full border ${
-                                  selected
-                                    ? "border-[#E87520] bg-[#E87520] shadow-[inset_0_0_0_3px_white]"
-                                    : "border-[#CDBCAE]"
-                                }`}
+                                className={`absolute right-2 top-2 h-3 w-3 rounded-full border ${selected
+                                  ? "border-[#E87520] bg-[#E87520] shadow-[inset_0_0_0_3px_white]"
+                                  : "border-[#CDBCAE]"
+                                  }`}
                               />
 
                               <Icon className="h-5 w-5 text-[#E87520]" />
@@ -932,14 +954,18 @@ export default function RequestHelp() {
             </section>
 
             {/* Right trust panel */}
-            <aside className="overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+            <aside className="overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
               <h2 className="text-center font-serif text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
                 Why Families Trust Moksha Sewa
               </h2>
 
-              <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
+              <p className="mx-auto mt-1.5 max-w-[270px] text-center leading-[1.4] text-[#715C4E]">
+                Compassionate guidance, verified coordination and confidential support at every step.
+              </p>
 
-              <div className="mt-3 divide-y divide-[#EBDCC9]">
+              <div className="mx-auto mt-1 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
+
+              <div className="mt-1 divide-y divide-[#EBDCC9]">
                 {trustItems.map((item) => {
                   const Icon = item.icon;
 
@@ -966,7 +992,7 @@ export default function RequestHelp() {
                 })}
               </div>
 
-              <div className="relative mt-2 h-[150px] overflow-hidden rounded-[11px]">
+              <div className="relative mt-1 h-[150px] overflow-hidden">
                 <Image
                   src="/assets/route-optimized/request-trust-ritual.webp"
                   alt="A peaceful ritual lamp representing compassionate cremation assistance"
@@ -979,10 +1005,7 @@ export default function RequestHelp() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#4A2719]/25 to-transparent" />
               </div>
 
-              <blockquote className="relative px-3 pb-1 pt-3 text-center">
-                <span className="font-serif text-[23px] leading-none text-[#E17A25]">
-                  “
-                </span>
+              <blockquote className="relative px-3 pb-1 pt-1 text-center">
 
                 <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
                   In Sewa, we find peace.
@@ -992,13 +1015,13 @@ export default function RequestHelp() {
                   we honor life.
                 </p>
 
-                <LotusOrnament className="mx-auto mt-2 h-5 w-8" />
+                <LotusOrnament className="mx-auto mt-1 h-5 w-8" />
               </blockquote>
             </aside>
           </div>
 
           {/* Bottom message */}
-          <div className="mt-3 text-center">
+          <div className="mt-1 text-center">
             <p className="font-serif text-[14px] text-[#D16521]">
               ॥ अन्तिम सेवा, हमारी श्रद्धा और
               आपका विश्वास ॥
@@ -1010,7 +1033,7 @@ export default function RequestHelp() {
             </p>
           </div>
 
-          <div className="mt-2 flex justify-center">
+          <div className="mt-1 flex justify-center">
             <Link
               href="/track"
               className="text-[14px] font-medium text-[#B85B20] hover:underline"

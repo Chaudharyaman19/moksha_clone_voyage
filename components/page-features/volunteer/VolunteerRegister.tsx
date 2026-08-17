@@ -1291,6 +1291,12 @@ export default function VolunteerRegister() {
               Volunteer Registration
             </h1>
 
+            <p className="mx-auto mt-2 max-w-[650px] text-[16px] leading-5 text-[#665246]">
+              Join our mission of serving
+              families with care, respect and
+              compassion.
+            </p>
+
             <div className="mt-2 flex items-center justify-center gap-2">
               <span className="h-px w-14 bg-[#E39453]" />
 
@@ -1298,12 +1304,6 @@ export default function VolunteerRegister() {
 
               <span className="h-px w-14 bg-[#E39453]" />
             </div>
-
-            <p className="mx-auto mt-2 max-w-[650px] text-[16px] leading-5 text-[#665246]">
-              Join our mission of serving
-              families with care, respect and
-              compassion.
-            </p>
           </header>
 
           <div className="flex flex-col gap-3">
