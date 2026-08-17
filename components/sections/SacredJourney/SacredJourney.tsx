@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import type { ComponentType } from "react";
 
 import {
@@ -244,13 +243,11 @@ function FloatingIcon({
 }
 
 export default function SacredJourney() {
-  const router = useRouter();
-
   const cards = sevaCards;
 
   const handleCardClick = (href?: string) => {
     if (href) {
-      router.push(href);
+      window.open(href, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -282,9 +279,8 @@ export default function SacredJourney() {
         </header>
 
         <div className="mx-auto mb-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[14px] ">
-          {cards.map((card, index) => {
+          {cards.map((card) => {
             const Icon = card.icon;
-            const isFilledButton = index === 0 || index === 2;
 
             return (
               <article
@@ -329,11 +325,7 @@ export default function SacredJourney() {
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className={`absolute bottom-3 left-4 right-4 z-30 flex min-h-[36px] items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-center text-[16px] font-medium leading-tight transition ${
-                    isFilledButton
-                      ? "bg-gradient-to-r from-[#DF6700] to-[#EE9200] text-white shadow-[0_4px_10px_rgba(225,132,0,0.20)] hover:brightness-95"
-                      : "border border-[#B85F00] bg-white/90 text-[#8F3E00] hover:bg-[#FFF5E8]"
-                  }`}
+                  className="absolute bottom-3 left-1/2 z-30 flex min-h-[36px] w-fit -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap rounded-[5px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-2 text-center text-[16px] font-bold leading-tight text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span>{card.button}</span>
 

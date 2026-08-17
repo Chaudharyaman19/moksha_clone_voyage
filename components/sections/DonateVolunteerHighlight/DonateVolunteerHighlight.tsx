@@ -50,9 +50,12 @@ export default function DonateVolunteerHighlight() {
             <video
               src="/vedio/taniya.mp4"
               autoPlay
+              muted
               loop
               playsInline
               controls
+              preload="auto"
+              poster="/assets/route-optimized/video-prayer-hall.webp"
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]"
             />
 
@@ -134,6 +137,8 @@ export default function DonateVolunteerHighlight() {
 
                 <a
                   href="/donation"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group relative overflow-hidden border border-[#9E6129] bg-[linear-gradient(145deg,#4A2A19_0%,#351E14_52%,#28150D_100%)] p-3.5 text-white shadow-[0_14px_30px_rgba(70,39,20,0.20)] transition duration-300 hover:-translate-y-1 hover:border-[#C88643] hover:shadow-[0_20px_40px_rgba(70,39,20,0.26)]"
                 >
 
@@ -188,6 +193,8 @@ export default function DonateVolunteerHighlight() {
 
                 <a
                   href="/volunteer/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group relative overflow-hidden border border-[#D2A064] bg-[linear-gradient(145deg,#FFF9EE_0%,#FFFDF9_50%,#F5E4CA_100%)] p-3.5 text-[#2C1810] shadow-[0_14px_30px_rgba(122,79,35,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#B97535] hover:shadow-[0_20px_40px_rgba(122,79,35,0.16)]"
                 >
 
