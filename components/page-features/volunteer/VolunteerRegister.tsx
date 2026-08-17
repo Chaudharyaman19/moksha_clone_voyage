@@ -1120,7 +1120,17 @@ export default function VolunteerRegister() {
   const [error, setError] =
     useState("");
 
+  const [heroSlide, setHeroSlide] = useState(0);
+
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setHeroSlide((current) => (current + 1) % 2);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   // Pincode-first lookup: once 6 digits are typed, auto-fill state/city so the volunteer doesn't
   // have to type them by hand. Both stay editable afterward in case the lookup gets it wrong.
@@ -1280,14 +1290,31 @@ export default function VolunteerRegister() {
         <div className="relative mx-auto w-full max-w-7xl">
           {/* Volunteer hero */}
           <section className="relative left-1/2 mb-5 aspect-[16/7] min-h-[350px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3]">
-            <Image
-              src="/hero-images/volunteer-impact-v2.png"
-              alt="Moksha Sewa volunteers serving families with care and compassion"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
+            <div
+              className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${heroSlide * 100}%)` }}
+            >
+              <div className="relative h-full w-full shrink-0">
+                <Image
+                  src="/hero-images/volunteer-impact-v2.png"
+                  alt="Moksha Sewa volunteers serving families with care and compassion"
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+
+              <div className="relative h-full w-full shrink-0">
+                <Image
+                  src="/hero-images/volunteer-hero-second.png"
+                  alt="Moksha Sewa volunteer carrying ritual materials at a sacred river ghat"
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
 
             <div
               className="absolute inset-0"
