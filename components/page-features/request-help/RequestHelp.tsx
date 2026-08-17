@@ -410,11 +410,11 @@ export default function RequestHelp() {
                 Request Cremation Assistance
               </h1>
 
-              <p className="mx-auto mt-2 max-w-[680px] leading-6 text-[#665246]">
+              <p className="mx-auto mt-1 max-w-[680px] leading-6 text-[#665246]">
                 We are here to support you with compassion, dignity and care in your time of need.
               </p>
 
-              <div className="mt-2 flex items-center justify-center gap-2">
+              <div className="mt-1 flex items-center justify-center gap-2">
                 <span className="h-px w-14 bg-[#E39453]" />
                 <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
                 <span className="h-px w-14 bg-[#E39453]" />
@@ -439,18 +439,18 @@ export default function RequestHelp() {
                     <FaCheckCircle className="h-7 w-7" />
                   </span>
 
-                  <h2 className="mt-4 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+                  <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
                     Request Received
                   </h2>
 
-                  <p className="mt-2 max-w-md text-[14px] leading-6 text-[#69554A]">
+                  <p className="mt-1 max-w-md text-[14px] leading-6 text-[#69554A]">
                     Our assistance team will
                     contact you shortly. Keep
                     your request number safe for
                     future reference.
                   </p>
 
-                  <div className="mt-4 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
+                  <div className="mt-1 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
                     {result.requestNo}
                   </div>
 
@@ -485,12 +485,11 @@ export default function RequestHelp() {
                             "NORMAL",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[14px] transition ${
-                          requestType ===
+                        className={`rounded px-3 py-1 text-[14px] transition ${requestType ===
                           "NORMAL"
-                            ? "bg-[#E87520] text-white"
-                            : "text-[#725A4B]"
-                        }`}
+                          ? "bg-[#E87520] text-white"
+                          : "text-[#725A4B]"
+                          }`}
                       >
                         Normal
                       </button>
@@ -502,12 +501,11 @@ export default function RequestHelp() {
                             "EMERGENCY",
                           )
                         }
-                        className={`rounded px-3 py-1 text-[14px] transition ${
-                          requestType ===
+                        className={`rounded px-3 py-1 text-[14px] transition ${requestType ===
                           "EMERGENCY"
-                            ? "bg-[#D94124] text-white"
-                            : "text-[#725A4B]"
-                        }`}
+                          ? "bg-[#D94124] text-white"
+                          : "text-[#725A4B]"
+                          }`}
                       >
                         Emergency
                       </button>
@@ -604,7 +602,7 @@ export default function RequestHelp() {
                       </div>
                     </div>
 
-                    <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
+                    <div className="mt-1.5 grid gap-2.5 sm:grid-cols-3">
                       <div>
                         <label className={labelClass}>
                           Pincode *
@@ -684,7 +682,7 @@ export default function RequestHelp() {
                       </p>
                     )}
 
-                    <div className="mt-2.5">
+                    <div className="mt-1.5">
                       <label
                         className={
                           labelClass
@@ -739,18 +737,16 @@ export default function RequestHelp() {
                                   option.title,
                                 )
                               }
-                              className={`relative flex min-h-[78px] flex-col items-center justify-center border px-2 py-2 text-center transition ${
-                                selected
-                                  ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
-                                  : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
-                              }`}
+                              className={`relative flex min-h-[78px] flex-col items-center justify-center border px-2 py-2 text-center transition ${selected
+                                ? "border-[#E87520] bg-[#FFF9F2] shadow-[0_5px_14px_rgba(226,112,29,0.10)]"
+                                : "border-[#E8DDD0] bg-white hover:border-[#E7A164]"
+                                }`}
                             >
                               <span
-                                className={`absolute right-2 top-2 h-3 w-3 rounded-full border ${
-                                  selected
-                                    ? "border-[#E87520] bg-[#E87520] shadow-[inset_0_0_0_3px_white]"
-                                    : "border-[#CDBCAE]"
-                                }`}
+                                className={`absolute right-2 top-2 h-3 w-3 rounded-full border ${selected
+                                  ? "border-[#E87520] bg-[#E87520] shadow-[inset_0_0_0_3px_white]"
+                                  : "border-[#CDBCAE]"
+                                  }`}
                               />
 
                               <Icon className="h-5 w-5 text-[#E87520]" />
@@ -944,9 +940,9 @@ export default function RequestHelp() {
                 Compassionate guidance, verified coordination and confidential support at every step.
               </p>
 
-              <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
+              <div className="mx-auto mt-1 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
 
-              <div className="mt-3 divide-y divide-[#EBDCC9]">
+              <div className="mt-1 divide-y divide-[#EBDCC9]">
                 {trustItems.map((item) => {
                   const Icon = item.icon;
 
@@ -973,7 +969,7 @@ export default function RequestHelp() {
                 })}
               </div>
 
-              <div className="relative mt-2 h-[150px] overflow-hidden">
+              <div className="relative mt-1 h-[150px] overflow-hidden">
                 <Image
                   src="/assets/route-optimized/request-trust-ritual.webp"
                   alt="A peaceful ritual lamp representing compassionate cremation assistance"
@@ -986,7 +982,7 @@ export default function RequestHelp() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#4A2719]/25 to-transparent" />
               </div>
 
-              <blockquote className="relative px-3 pb-1 pt-3 text-center">
+              <blockquote className="relative px-3 pb-1 pt-1 text-center">
                 <span className="font-serif text-[23px] leading-none text-[#E17A25]">
                   “
                 </span>
@@ -999,13 +995,13 @@ export default function RequestHelp() {
                   we honor life.
                 </p>
 
-                <LotusOrnament className="mx-auto mt-2 h-5 w-8" />
+                <LotusOrnament className="mx-auto mt-1 h-5 w-8" />
               </blockquote>
             </aside>
           </div>
 
           {/* Bottom message */}
-          <div className="mt-3 text-center">
+          <div className="mt-1 text-center">
             <p className="font-serif text-[14px] text-[#D16521]">
               ॥ अन्तिम सेवा, हमारी श्रद्धा और
               आपका विश्वास ॥
@@ -1017,7 +1013,7 @@ export default function RequestHelp() {
             </p>
           </div>
 
-          <div className="mt-2 flex justify-center">
+          <div className="mt-1 flex justify-center">
             <Link
               href="/track"
               className="text-[14px] font-medium text-[#B85B20] hover:underline"
