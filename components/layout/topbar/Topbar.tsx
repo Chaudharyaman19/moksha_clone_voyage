@@ -1,6 +1,6 @@
 "use client";
 
-import { FaChevronDown, FaEnvelope, FaPhoneAlt, FaUser, FaShieldAlt, FaSearch, FaFileAlt } from "react-icons/fa";
+import { FaChevronDown, FaUser, FaShieldAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
@@ -71,29 +71,8 @@ export default function TopInfoBar() {
           this height, so this can't be left to size itself from content (padding/icon tweaks
           here would silently reopen a gap between the two bars otherwise). */}
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-2 px-3 sm:px-4 lg:px-6">
-        {/* Contact */}
-        <div className="flex min-w-0 items-center gap-2 md:gap-3">
-          <div className="flex min-w-0 items-center gap-1.5">
-            <FaEnvelope className="h-3 w-3 shrink-0 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
-            <a
-              href="mailto:info@mokshasewa.org"
-              className="min-w-0 truncate text-[16px] text-white/90 transition-colors hover:text-white sm:text-[16px] lg:text-[16px]"
-            >
-              info@mokshasewa.org
-            </a>
-          </div>
-
-          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 sm:block" />
-
-          <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
-            <FaPhoneAlt className="h-3 w-3 text-[#D4B996] sm:h-3.5 sm:w-3.5" />
-            <a
-              href="tel:+919220147229"
-              className="whitespace-nowrap text-[16px] text-white/90 transition-colors hover:text-white lg:text-[16px]"
-            >
-              9220147229
-            </a>
-          </div>
+        <div className="min-w-0 truncate text-[12px] font-medium text-white/90 sm:text-[14px] lg:text-[16px]">
+          Sewa Available in Delhi NCR <span className="text-[#D4B996]">|</span> 24×7 Last-Rites Assistance <span className="text-[#D4B996]">|</span> Unclaimed &amp; Needy Family Support
         </div>
 
         {/* Utilities */}
@@ -130,18 +109,6 @@ export default function TopInfoBar() {
               </svg>
             )}
           </button>
-
-          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
-
-          <Link href="/track" className={utilityLink} aria-label="Track request">
-            <FaSearch className="h-3 w-3" />
-            <span className="hidden text-[16px] md:inline">Track Request</span>
-          </Link>
-
-          <Link href="/mortal-records" className={utilityLink} aria-label="Mortal records">
-            <FaFileAlt className="h-3 w-3" />
-            <span className="hidden text-[16px] md:inline">Mortal Records</span>
-          </Link>
 
           <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
 
