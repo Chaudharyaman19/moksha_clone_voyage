@@ -224,7 +224,6 @@ export default function Navbar() {
                       className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                     >
                       <span className="donate-nav-shine" aria-hidden />
-                      <FaDonate className="relative z-10 h-3 w-3" />
                       <span className="relative z-10">{item.name}</span>
                       <FaStar className="donate-star donate-star-one" aria-hidden />
                       <FaStar className="donate-star donate-star-two" aria-hidden />
@@ -234,7 +233,6 @@ export default function Navbar() {
                       onClick={() => handleNavigation(item.path)}
                       className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
                     >
-                      <FaHandsHelping className="h-3 w-3" />
                       {item.name}
                     </button>
                   ) : (
@@ -333,7 +331,6 @@ export default function Navbar() {
                     className="donate-nav-sparkle relative flex w-full items-center space-x-2 overflow-hidden rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-2 text-white shadow-[0_0_18px_rgba(229,169,62,0.38)]"
                   >
                     <span className="donate-nav-shine" aria-hidden />
-                    <span className="relative z-10 text-base">{item.icon}</span>
                     <span className="relative z-10 text-[16px] font-bold">{item.name}</span>
                     <FaStar className="donate-star donate-star-one" aria-hidden />
                     <FaStar className="donate-star donate-star-two" aria-hidden />
@@ -345,7 +342,9 @@ export default function Navbar() {
                     className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
                       }`}
                   >
-                    <span className="text-base">{item.icon}</span>
+                    {item.name !== "Request Help" && (
+                      <span className="text-base">{item.icon}</span>
+                    )}
                     <span className="text-[16px] font-medium">{item.name}</span>
                   </button>
                 )}
