@@ -11,6 +11,7 @@ import {
   FaInstagram,
   FaYoutube,
   FaLinkedinIn,
+  FaTwitter,
   FaEnvelope,
   FaPaperPlane,
   FaArrowRight,
@@ -91,10 +92,11 @@ const initiatives = [
 ];
 
 const socials = [
-  { label: "Facebook", href: "#", icon: FaFacebookF },
-  { label: "Instagram", href: "#", icon: FaInstagram },
-  { label: "YouTube", href: "#", icon: FaYoutube },
-  { label: "LinkedIn", href: "#", icon: FaLinkedinIn },
+  { label: "Facebook", href: "https://www.facebook.com/mokshasewa/", icon: FaFacebookF },
+  { label: "Instagram", href: "https://www.instagram.com/mokshasewa/", icon: FaInstagram },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/moksha-sewaorg/", icon: FaLinkedinIn },
+  { label: "Twitter", href: "https://x.com/mokshasewa", icon: FaTwitter },
+  { label: "YouTube", href: "https://www.youtube.com/@Mokshasewa", icon: FaYoutube },
 ];
 
 const values = [
@@ -841,6 +843,8 @@ export default function FooterNew() {
                             key={social.label}
                             href={social.href}
                             aria-label={social.label}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="footer-social relative flex h-[42px] w-[42px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A] text-[#E7B448] transition hover:bg-[#D9A33A] hover:text-[#003a35]"
                           >
                             <Icon className="h-[21px] w-[21px]" />
