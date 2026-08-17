@@ -628,17 +628,17 @@ export default function FooterNew() {
         </div>
 
         {/* Creates the exact concave photo boundary seen in the reference */}
-        {/* Dark circular mask blends into the footer; it intentionally has no outline. */}
+        {/* Perfect circular mask blends into the footer; it intentionally has no outline. */}
         <div
           aria-hidden
-          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#050706]"
+          className="absolute left-[100px] top-[-250px] h-[900px] w-[900px] rounded-full bg-[#050706]"
         />
 
-        {/* Full left arc: bold and softly glowing. Its circle ends above the
-            values strip, so the gold line never touches the lower section. */}
+        {/* Controlled left circle arc: bold and softly glowing, clipped just
+            before the values strip so it never enters the lower section. */}
         <div
           aria-hidden
-          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full border-l-[6px] border-[#E2AC3D] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
+          className="absolute left-[100px] top-[-250px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_28%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
         />
 
         {/* subtle inner green depth */}
