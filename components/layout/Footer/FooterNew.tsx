@@ -638,7 +638,7 @@ export default function FooterNew() {
             before the values strip so it never enters the lower section. */}
         <div
           aria-hidden
-          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_30%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
+          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_28%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
         />
 
         {/* subtle inner green depth */}
