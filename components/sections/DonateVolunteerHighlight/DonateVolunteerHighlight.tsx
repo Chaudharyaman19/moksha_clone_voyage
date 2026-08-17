@@ -123,9 +123,6 @@ export default function DonateVolunteerHighlight() {
 
               <h2
                 className="max-w-[560px] text-[27px] font-normal leading-[1.08] text-[#2C1810] sm:text-[33px] lg:text-[37px]"
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
               >
                 Your Support Can Become Someone&apos;s{" "}
                 <span className="relative inline-block text-[#C85117]">
@@ -181,9 +178,6 @@ export default function DonateVolunteerHighlight() {
 
                     <h3
                       className="text-[19px] leading-tight text-white"
-                      style={{
-                        fontFamily: "Georgia, 'Times New Roman', serif",
-                      }}
                     >
                       Donate For Sewa
                     </h3>
@@ -236,9 +230,6 @@ export default function DonateVolunteerHighlight() {
 
                     <h3
                       className="text-[19px] leading-tight text-[#2C1810]"
-                      style={{
-                        fontFamily: "Georgia, 'Times New Roman', serif",
-                      }}
                     >
                       Become a Volunteer
                     </h3>
