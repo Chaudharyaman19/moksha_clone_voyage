@@ -70,13 +70,13 @@ export default function TopInfoBar() {
       {/* Explicit h-11 (44px) above — Navbar hardcodes its own top-11 offset assuming exactly
           this height, so this can't be left to size itself from content (padding/icon tweaks
           here would silently reopen a gap between the two bars otherwise). */}
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-2 px-3 sm:px-4 lg:px-6">
-        <div className="min-w-0 truncate text-[12px] font-medium text-white/90 sm:text-[14px] lg:text-[16px]">
+      <div className="mx-auto flex h-full w-full max-w-7xl items-center gap-3 px-4 sm:px-5 lg:gap-5 lg:px-0">
+        <div className="min-w-0 flex-1 truncate text-left text-[12px] font-medium text-white/90 sm:text-[14px] lg:text-[16px]">
           Sewa Available in Delhi NCR <span className="text-[#D4B996]">|</span> 24×7 Last-Rites Assistance <span className="text-[#D4B996]">|</span> Unclaimed &amp; Needy Family Support
         </div>
 
         {/* Utilities */}
-        <div className="flex shrink-0 items-center gap-1 md:gap-1.5">
+        <div className="ml-auto flex shrink-0 items-center justify-end gap-1 md:gap-1.5">
           <button
             onClick={toggleMusic}
             className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] transition-all hover:bg-[#755735] active:scale-95"
