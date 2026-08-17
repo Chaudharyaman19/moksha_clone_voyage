@@ -583,19 +583,19 @@ export default function FooterNew() {
     >
       {/* Slim action band attached directly above the footer content. */}
       <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-3 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
-        <div className="mx-auto flex min-h-[54px] w-full max-w-[1600px] flex-col items-center justify-between gap-3 sm:flex-row">
-          <div className="flex items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
+        <div className="mx-auto flex min-h-[54px] w-full max-w-7xl flex-col items-center justify-between gap-3 sm:flex-row">
+          <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
             <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
-            <span>Stand with dignity. Serve with compassion.</span>
+            <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
           </div>
 
-          <div className="flex w-full items-center justify-center gap-3 sm:w-auto sm:justify-end">
+          <div className="flex w-full shrink-0 items-center justify-center gap-3 sm:w-auto sm:justify-end">
             <Link
               href="/donation"
               className="inline-flex h-[40px] w-1/2 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:w-auto sm:min-w-[150px] sm:gap-2 sm:px-4 sm:text-[14px]"
             >
               <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span>Donate Now</span>
+              <span className="whitespace-nowrap">Donate Now</span>
             </Link>
 
             <Link
@@ -603,7 +603,7 @@ export default function FooterNew() {
               className="inline-flex h-[40px] w-1/2 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#A96F19] bg-white/75 px-3 text-[13px] font-bold text-[#6E4713] shadow-[0_3px_10px_rgba(110,71,19,0.10)] hover:bg-white sm:w-auto sm:min-w-[175px] sm:gap-2 sm:px-4 sm:text-[14px]"
             >
               <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-              <span>Become a Volunteer</span>
+              <span className="whitespace-nowrap">Become a Volunteer</span>
             </Link>
           </div>
         </div>
