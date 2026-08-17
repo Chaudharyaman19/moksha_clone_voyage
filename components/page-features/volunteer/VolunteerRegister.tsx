@@ -882,7 +882,6 @@ import {
   FaCalendarAlt,
   FaCheckCircle,
   FaEnvelope,
-  FaHandsHelping,
   FaHeart,
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -890,7 +889,6 @@ import {
   FaShieldAlt,
   FaStar,
   FaUser,
-  FaUsers,
 } from "react-icons/fa";
 
 import { PiFlowerLotus } from "react-icons/pi";
@@ -946,9 +944,7 @@ interface VolunteerForm {
 interface TrustItem {
   title: string;
   description: string;
-  icon: React.ComponentType<{
-    className?: string;
-  }>;
+  image: string;
 }
 
 const EMPTY_FORM: VolunteerForm = {
@@ -991,31 +987,31 @@ const trustItems: TrustItem[] = [
     title: "Make a Real Impact",
     description:
       "Your time and compassion will bring lasting comfort to families during their most difficult moments.",
-    icon: FaUsers,
+    image: "/assets/volunteer-card-1.png",
   },
   {
     title: "Serve with Dignity",
     description:
       "Serve with compassion, bringing dignity to the departed and meaningful comfort to grieving families.",
-    icon: FaHeart,
+    image: "/assets/volunteer-card-2.png",
   },
   {
     title: "Growth & Learning",
     description:
       "Develop leadership, empathy and real life skills while serving humanity with compassion and purpose.",
-    icon: FaShieldAlt,
+    image: "/assets/volunteer-card-3.png",
   },
   {
     title: "Join a Dedicated Team",
     description:
       "Work with kind, aligned people who support families through compassion, dignity and shared purpose.",
-    icon: FaHandsHelping,
+    image: "/assets/volunteer-card-4.png",
   },
   {
     title: "Be Part of a Purpose",
     description:
       "Join a compassionate community working together to support families whenever they need aid the most.",
-    icon: FaHandsHelping,
+    image: "/assets/volunteer-card-5.png",
   },
 ];
 
@@ -1815,27 +1811,34 @@ export default function VolunteerRegister() {
 
               <div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
                 {trustItems.map((item) => {
-                  const Icon = item.icon;
-
                   return (
-                    <div
+                    <article
                       key={item.title}
-                      className="flex gap-2.5 rounded-[10px] border border-[#EBDCC9] bg-white/65 p-3"
+                      className="flex h-full flex-col overflow-hidden border border-[#E2CDB4] bg-white shadow-[0_8px_22px_rgba(91,55,29,0.09)]"
                     >
-                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#EBD5BA] bg-white text-[#ED6B13] shadow-[0_4px_12px_rgba(89,57,31,0.07)]">
-                        <Icon className="h-4.5 w-4.5" />
-                      </span>
+                      <div className="relative aspect-square w-full overflow-hidden bg-[#F4E8D9]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                          className="object-cover transition-transform duration-500 hover:scale-[1.03]"
+                        />
+                        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#2C1810]/35 to-transparent" />
+                      </div>
 
-                      <div>
-                        <h3 className="font-serif text-[16px] leading-tight text-[#3E261B]">
+                      <div className="flex flex-1 flex-col p-3 text-center">
+                        <h3 className="font-serif text-[18px] font-semibold leading-tight text-[#3E261B]">
                           {item.title}
                         </h3>
 
-                        <p className="mt-1 text-[16px] leading-[1.45] text-[#715C4E]">
+                        <div className="mx-auto mt-2 h-px w-12 bg-[#E18438]" />
+
+                        <p className="mt-2 text-[16px] leading-[1.45] text-[#715C4E]">
                           {item.description}
                         </p>
                       </div>
-                    </div>
+                    </article>
                   );
                 })}
               </div>
