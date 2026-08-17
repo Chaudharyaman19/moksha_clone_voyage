@@ -234,10 +234,10 @@ function ReasonIcon({ type }: ReasonIconProps) {
 
 export default function WhyFamiliesTrust() {
   return (
-    <section className="w-full bg-[#F8F5EE] px-3 py-2 sm:px-4 lg:px-5 lg:py-3">
+    <section className="w-full bg-[#F8F5EE] px-3 py-5 sm:px-4 lg:px-5 lg:py-5">
       <div className="relative mx-auto w-full max-w-[1280px] overflow-hidden rounded-[14px] border border-[#E9DDC9] bg-[#FCFAF5] shadow-[0_8px_24px_rgba(92,63,28,0.08)]">
         {/* Header */}
-        <div className="relative min-h-[165px] overflow-hidden px-5 pb-2 pt-3 sm:px-8 lg:h-[165px] lg:min-h-0 lg:px-9 lg:pb-1 lg:pt-2">
+        <div className="relative min-h-[205px] overflow-hidden px-5 py-6 sm:px-8 lg:h-[205px] lg:min-h-0 lg:px-9 lg:py-6">
           {/* Right image */}
           <div className="absolute inset-y-0 right-0 hidden w-[50%] overflow-hidden lg:block">
             <Image
@@ -263,7 +263,7 @@ export default function WhyFamiliesTrust() {
             <TopOrnament />
 
             <h2
-              className="mt-1 text-center text-[24px] font-normal leading-tight text-[#321B10] sm:text-[28px] lg:text-[30px]"
+              className="mt-2 text-center text-[24px] font-normal leading-tight text-[#321B10] sm:text-[28px] lg:text-[30px]"
             >
               Why Families Trust Moksha Sewa
             </h2>
@@ -271,7 +271,7 @@ export default function WhyFamiliesTrust() {
             <TitleDivider />
 
             <p
-              className="mx-auto mt-2 max-w-[620px] text-center text-[16px] font-normal leading-[1.4] text-[#3F3028]"
+              className="mx-auto mt-4 max-w-[620px] text-center text-[16px] font-normal leading-[1.4] text-[#3F3028]"
             >
               Moksha Sewa is built for families who need real help,
               <br className="hidden sm:block" />
@@ -283,11 +283,11 @@ export default function WhyFamiliesTrust() {
         </div>
 
         {/* Cards */}
-        <div className="relative z-20 mx-auto grid w-[96%] grid-cols-1 gap-2 pb-2 sm:w-[94%] sm:grid-cols-2 lg:w-[93%] lg:grid-cols-4 lg:auto-rows-[145px] lg:gap-x-[14px] lg:gap-y-2 lg:pb-2">
+        <div className="relative z-20 mx-auto grid w-[96%] grid-cols-1 gap-3 py-3 sm:w-[94%] sm:grid-cols-2 lg:w-[93%] lg:grid-cols-4 lg:auto-rows-[150px] lg:gap-x-[14px] lg:gap-y-3">
           {reasons.map((reason) => (
             <article
               key={reason.title}
-              className="group flex min-h-[145px] flex-col items-center justify-center overflow-hidden rounded-[10px] border border-[#E6CFAB] bg-[rgba(255,253,248,0.95)] px-3 py-2 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] transition duration-300 hover:-translate-y-[1px] hover:border-[#C89543] hover:shadow-[0_5px_13px_rgba(104,70,25,0.06)] lg:h-[145px] lg:min-h-0 lg:px-3 lg:py-1.5"
+              className="group flex min-h-[150px] flex-col items-center justify-center overflow-hidden rounded-[10px] border border-[#E6CFAB] bg-[rgba(255,253,248,0.95)] px-3 py-3 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] transition duration-300 hover:-translate-y-[1px] hover:border-[#C89543] hover:shadow-[0_5px_13px_rgba(104,70,25,0.06)] lg:h-[150px] lg:min-h-0 lg:px-3 lg:py-3"
             >
               {/* Icon */}
               <div className="relative grid h-[43px] w-[64px] shrink-0 place-items-center text-[#AA7318]">
@@ -317,14 +317,14 @@ export default function WhyFamiliesTrust() {
         </div>
 
         {/* Bottom statement */}
-        <div className="relative flex h-[28px] items-center justify-center px-5 ">
+        <div className="relative flex min-h-[44px] items-center justify-center px-5 py-3">
           <div className="flex items-center justify-center gap-2.5 text-center">
             <span className="relative hidden h-px w-[44px] bg-[#D8A646] sm:block">
               <span className="absolute -left-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D8A646]" />
             </span>
 
             <p
-              className="text-[16px] font-normal text-[#4A392E] "
+              className="text-[16px] font-normal text-[#4A392E] pb-4"
             >
               When there is no support Moksha Sewa stands with the family.
             </p>
@@ -332,10 +332,6 @@ export default function WhyFamiliesTrust() {
             <span className="relative hidden h-px w-[24px] bg-[#D8A646] sm:block">
               <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D8A646]" />
             </span>
-          </div>
-
-          <div className="absolute -bottom-[7px] left-1/2 -translate-x-1/2 bg-[#FCFAF5] px-2 py-4">
-            <LotusMark className="h-[19px] w-[29px]" />
           </div>
         </div>
       </div>

@@ -248,7 +248,7 @@ function ActivityGroup({
 export default function Serving({}: ServingProps) {
   return (
     <section
-      className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] px-3 sm:px-4 lg:px-5 pb-3 pt-2 md:pb-3 md:pt-2`}
+      className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] px-3 py-5 sm:px-4 lg:px-5 md:py-5`}
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-24 w-[70%] -translate-x-1/2 rounded-full bg-[#B97A2A]/[0.035] blur-3xl" />
@@ -257,7 +257,7 @@ export default function Serving({}: ServingProps) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
-        <header className="mx-auto mb-2 max-w-3xl text-center">
+        <header className="mx-auto mb-4 max-w-3xl text-center">
           <LotusMark className="mx-auto h-5 w-8 text-[#C88B35]" />
 
           <div className="mb-1 mt-0.5 inline-flex items-center space-x-3">
@@ -278,7 +278,7 @@ export default function Serving({}: ServingProps) {
         </header>
 
         {/* Infinite marquee remains unchanged */}
-        <div className="marquee-wrapper relative mt-1 w-full overflow-hidden pb-2 pt-1">
+        <div className="marquee-wrapper relative mt-2 w-full overflow-hidden py-2">
           <div className="pointer-events-none absolute left-0 top-0 z-30 h-full w-5 bg-gradient-to-r from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
 
           <div className="pointer-events-none absolute right-0 top-0 z-30 h-full w-5 bg-gradient-to-l from-[#FFFCF8] via-[#FFFCF8]/85 to-transparent sm:w-8 lg:w-12" />
@@ -289,10 +289,10 @@ export default function Serving({}: ServingProps) {
           </div>
         </div>
 
-        <div className="mt-2 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <a
             href="/request-help"
-            className="inline-flex h-8 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[16px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
+            className="inline-flex h-10 min-w-[230px] items-center justify-center gap-2 rounded-md border border-[#C78B4D] bg-white px-5 text-[16px] font-normal text-[#A86722] transition-colors hover:bg-[#FBF4EA]"
           >
             <span>Request Help Now</span>
 

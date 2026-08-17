@@ -274,7 +274,7 @@ export default function HowWeCanHelp() {
       ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FCF8F0] px-4 pb-2 pt-2 sm:px-5 lg:px-6 lg:pb-3 lg:pt-3">
+    <section className="relative w-full overflow-hidden bg-[#FCF8F0] px-4 py-5 sm:px-5 lg:px-6 lg:py-5">
         <>
           <div
             className="pointer-events-none absolute inset-0 opacity-50"
@@ -339,7 +339,7 @@ export default function HowWeCanHelp() {
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/12 to-transparent" />
                 </div>
 
-                <div className="relative flex min-h-[230px] flex-1 flex-col px-4 pb-4 pt-6">
+                <div className="relative flex min-h-[240px] flex-1 flex-col px-4 pb-5 pt-6">
                   <div className="absolute left-4 top-0 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#C79045] bg-[#FFFDF8] text-[#A36B26] shadow-[0_6px_16px_rgba(102,61,20,0.14)]">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D8B57C] bg-white">
                       <CustomIcon name={card.icon} className="h-8 w-8" />
@@ -356,7 +356,7 @@ export default function HowWeCanHelp() {
 
                   <div className="my-2 h-px w-14 bg-gradient-to-r from-[#C08B43] to-transparent" />
 
-                  <div className="min-h-[66px] space-y-1">
+                  <div className="min-h-[66px] space-y-1 pb-3">
                     {card.features.map((feature) => (
                       <div
                         key={feature}
@@ -372,7 +372,7 @@ export default function HowWeCanHelp() {
 
                   <a
                     href={card.href || "/request-help"}
-                    className="relative top-1 mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[16px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
+                    className="mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[16px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
                   >
                     <span className="whitespace-nowrap">Learn More</span>
                     <CustomIcon name="FaArrowRight" className="h-3 w-3" />
@@ -382,12 +382,12 @@ export default function HowWeCanHelp() {
           )}
         </div>
 
-          <div className="mt-1 overflow-hidden rounded-[2px] border border-[#D9B983] bg-[#FFFDF9]/90 shadow-[0_12px_28px_rgba(86,52,22,0.10)] backdrop-blur-sm">
+          <div className="mt-4 overflow-hidden rounded-[2px] border border-[#D9B983] bg-[#FFFDF9]/90 shadow-[0_12px_28px_rgba(86,52,22,0.10)] backdrop-blur-sm">
             <div className="grid grid-cols-1 divide-y divide-[#DEC49C] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="flex min-h-[44px] items-center justify-center gap-2 px-4 py-0.5"
+                  className="flex min-h-[52px] items-center justify-center gap-2 px-4 py-2"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#D5B47D] bg-[#FFF9EE] text-[#9A6426] shadow-[0_4px_10px_rgba(91,54,20,0.08)]">
                     <CustomIcon name={stat.icon} className="h-[18px] w-[18px]" />
@@ -406,7 +406,7 @@ export default function HowWeCanHelp() {
             </div>
           </div>
 
-          <div className="mx-auto mt-1 flex w-fit items-center gap-3 text-[#B07B36] opacity-80">
+          <div className="mx-auto mt-4 flex w-fit items-center gap-3 text-[#B07B36] opacity-80">
             <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#B07B36]" />
             <svg
               viewBox="0 0 64 32"

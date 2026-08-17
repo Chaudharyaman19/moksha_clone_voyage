@@ -176,9 +176,9 @@ export default function VoicesOfGratitude() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px]">
         <header className="mx-auto mb-3 max-w-[760px] text-center">
-          <LotusMark className="mx-auto h-5 w-8" />
+          <LotusMark className="mx-auto h-5 w-8 mt-3" />
 
-          <div className="mt-0.5 flex items-center justify-center gap-3">
+          <div className="mt-5 flex items-center justify-center gap-3">
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-[#B9843D]" />
 
             <span className="text-[16px] font-medium uppercase tracking-[0.28em] text-[#93692E] sm:text-[16px]">
