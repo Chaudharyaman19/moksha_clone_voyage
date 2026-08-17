@@ -54,7 +54,7 @@ export default function FAQSection() {
     <section className="relative w-full overflow-hidden bg-[#FBF8F2] px-3 py-3 sm:px-4 sm:py-4 lg:px-5">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-2 inline-flex items-center space-x-3">

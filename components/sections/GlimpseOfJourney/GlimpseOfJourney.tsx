@@ -22,7 +22,7 @@ export default function GlimpseOfJourney() {
       {/* Subtle Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8B6A3E]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
         
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">

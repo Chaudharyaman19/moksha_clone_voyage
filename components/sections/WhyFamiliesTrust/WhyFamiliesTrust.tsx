@@ -235,7 +235,7 @@ function ReasonIcon({ type }: ReasonIconProps) {
 export default function WhyFamiliesTrust() {
   return (
     <section className="w-full bg-[#F8F5EE] px-3 py-5 sm:px-4 lg:px-5 lg:py-5">
-      <div className="relative mx-auto w-full max-w-[1280px] overflow-hidden rounded-[14px] border border-[#E9DDC9] bg-[#FCFAF5] shadow-[0_8px_24px_rgba(92,63,28,0.08)]">
+      <div className="relative mx-auto w-full max-w-[1344px] overflow-hidden rounded-[14px] border border-[#E9DDC9] bg-[#FCFAF5] shadow-[0_8px_24px_rgba(92,63,28,0.08)]">
         {/* Header */}
         <div className="relative min-h-[205px] overflow-hidden px-5 py-6 sm:px-8 lg:h-[205px] lg:min-h-0 lg:px-9 lg:py-6">
           {/* Right image */}

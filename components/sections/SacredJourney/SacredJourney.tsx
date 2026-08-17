@@ -261,7 +261,7 @@ export default function SacredJourney() {
         <div className="absolute -right-24 bottom-8 h-48 w-48 rounded-full border border-[#D98500]/10" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
         <header className="mx-auto mb-3 max-w-[820px] text-center">
           <TopLabel />
 

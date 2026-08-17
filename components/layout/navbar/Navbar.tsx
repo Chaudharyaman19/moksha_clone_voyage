@@ -107,7 +107,7 @@ export default function Navbar() {
       icon: <FaStar />,
       type: "dropdown",
       dropdown: [
-        { name: "Unclaimed Body Support", path: "/request-help", icon: <FaHandsHelping />, type: "page" },
+        { name: "Ground Support", path: "/prayerhallservices", icon: <FaPrayingHands />, type: "page" },
         { name: "Support for Needy Families", path: "/specialservices", icon: <FaHeart />, type: "page" },
         { name: "Ambulance & Body Transport", path: "/ambulanceservices", icon: <FaAmbulance />, type: "page" },
         { name: "Ritual Material Support", path: "/furalservices", icon: <FaHandHoldingHeart />, type: "page" },

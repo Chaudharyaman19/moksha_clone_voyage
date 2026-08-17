@@ -205,7 +205,7 @@ function HeroSection() {
         className="absolute inset-0 bg-[linear-gradient(90deg,#FAF7F0_0%,#FAF7F0_40%,rgba(250,247,240,0.98)_46%,rgba(250,247,240,0.84)_52%,rgba(250,247,240,0.35)_61%,transparent_70%)] max-[820px]:bg-[linear-gradient(180deg,transparent_0%,transparent_35%,rgba(250,247,240,0.9)_47%,#FAF7F0_58%,#FAF7F0_100%)]"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 lg:px-0">
         <div className="w-[52%] pb-[18px] pt-[85px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
           <div className="mb-3 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
@@ -259,7 +259,7 @@ function FeatureHighlights() {
   return (
     <section
       aria-label="Service highlights"
-      className="relative z-20 -mt-px mx-auto grid w-full max-w-7xl grid-cols-4 gap-[12px] bg-[#FBFAF7] px-5 pb-[5px] pt-[10px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1"
+      className="relative z-20 -mt-px mx-auto grid w-full max-w-7xl grid-cols-4 gap-[12px] bg-[#FBFAF7] px-5 pb-[5px] pt-[10px] lg:px-0 max-[820px]:grid-cols-2 max-[520px]:grid-cols-1"
     >
       {highlights.map((item) => (
         <article
@@ -285,7 +285,7 @@ function FeatureHighlights() {
 
 function HowItWorks() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-5 pb-1 pt-0">
+    <section className="mx-auto w-full max-w-7xl px-5 pb-1 pt-0 lg:px-0">
       <SectionTitle>How It Works</SectionTitle>
 
       <div className="grid grid-cols-4 gap-[12px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
@@ -318,7 +318,7 @@ function HowItWorks() {
 
 function SupportSection() {
   return (
-    <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] max-[820px]:grid-cols-1">
+    <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] lg:px-0 max-[820px]:grid-cols-1">
       <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
         <h2 className="font-serif text-[28px] font-normal leading-[1.1] text-[#28231E] md:text-[34px]">
           We Stand With You
@@ -374,7 +374,7 @@ function StoryCards() {
   return (
     <section
       aria-label="Ambulance support stories"
-      className="mx-auto grid w-full max-w-7xl grid-cols-3 gap-[10px] px-5 pb-[5px] pt-[8px] max-[820px]:grid-cols-1"
+      className="mx-auto grid w-full max-w-7xl grid-cols-3 gap-[10px] px-5 pb-[5px] pt-[8px] lg:px-0 max-[820px]:grid-cols-1"
     >
       {stories.map((story) => (
         <article
@@ -412,7 +412,7 @@ function StoryCards() {
 
 function ReceiveSection() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-5">
+    <section className="mx-auto w-full max-w-7xl px-5 lg:px-0">
       <SectionTitle compact>What Families Receive</SectionTitle>
       <InfoGrid items={receiveItems} />
     </section>
@@ -421,7 +421,7 @@ function ReceiveSection() {
 
 function TrustSection() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-5 pt-[4px]">
+    <section className="mx-auto w-full max-w-7xl px-5 pt-[4px] lg:px-0">
       <SectionTitle compact>Why Families Trust Namo Gange</SectionTitle>
       <InfoGrid compact items={trustItems} />
     </section>
@@ -431,7 +431,7 @@ function TrustSection() {
 function DonationSection() {
   return (
     <section
-      className="mx-auto mb-[14px] mt-[8px] w-full max-w-7xl px-5"
+      className="mx-auto mb-[14px] mt-[8px] w-full max-w-7xl px-5 lg:px-0"
       id="donate"
     >
       <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">

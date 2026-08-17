@@ -256,7 +256,7 @@ export default function Serving({}: ServingProps) {
         <div className="absolute bottom-[-65px] left-1/2 h-[110px] w-[75%] -translate-x-1/2 rounded-[50%] border border-[#D7AA68]/[0.07]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
         <header className="mx-auto mb-4 max-w-3xl text-center">
           <LotusMark className="mx-auto h-5 w-8 text-[#C88B35]" />
 

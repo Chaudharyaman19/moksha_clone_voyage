@@ -30,7 +30,7 @@ const boardMembers = [
 export default function BoardMembers() {
   return (
     <section className="bg-white py-2 md:py-3">
-      <div className="mx-auto w-full max-w-[1400px] px-0">
+      <div className="mx-auto w-full max-w-[1344px] px-4 lg:px-0">
         
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
@@ -56,7 +56,7 @@ export default function BoardMembers() {
         </header>
 
         {/* Board Members Marquee Container */}
-        <div className="mx-auto mt-3 w-full max-w-[1300px] px-2 md:px-4">
+        <div className="mx-auto mt-3 w-full max-w-[1344px]">
           <div className="relative overflow-hidden rounded-[24px] border border-[#E9DDCD] bg-[#FDFAF7] shadow-sm">
             
             {/* Subtle fade edges inside the rounded container */}

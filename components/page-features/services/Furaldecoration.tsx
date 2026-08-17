@@ -24,7 +24,7 @@ export default function Furaldecoration() {
 
       <main className="pt-28 pb-16 lg:pt-32 lg:pb-24">
         {/* Hero Section */}
-        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mb-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Text Content */}
             <div className="flex flex-col items-start relative z-10 order-2 lg:order-1">
@@ -65,7 +65,7 @@ export default function Furaldecoration() {
         </section>
 
         {/* Essential Services */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 mb-24">
           <div className="text-center mb-16">
             <h2 className="text-[28px] md:text-[34px] font-serif text-[#4A3D36] mb-4">Our Decoration Services</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent mx-auto rounded-full" />
