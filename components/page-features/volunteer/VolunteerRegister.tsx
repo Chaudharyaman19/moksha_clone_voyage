@@ -1484,7 +1484,7 @@ export default function VolunteerRegister() {
                   <p className={`${labelClass} mt-1.5`}>Preferred Areas of Volunteering</p>
                   <div className="grid gap-x-3 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
                     {SERVICE_AREAS.map((area) => (
-                      <label key={area} className="flex items-start gap-2 text-[12px] leading-4 text-[#5E4B3F]">
+                      <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
                         <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas,area)} className="mt-0.5 accent-[#ED6B13]"/>
                         {area}
                       </label>
@@ -1496,7 +1496,7 @@ export default function VolunteerRegister() {
                       <span className={labelClass}>Available Days</span>
                       <div className="flex flex-wrap gap-2">
                         {['Weekdays','Weekends','Flexible'].map(v => (
-                          <label key={v} className="text-[12px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
+                          <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
                         ))}
                       </div>
                     </div>
@@ -1505,7 +1505,7 @@ export default function VolunteerRegister() {
                       <span className={labelClass}>Preferred Time</span>
                       <div className="flex flex-wrap gap-2">
                         {['Morning','Day','Evening','Night'].map(v => (
-                          <label key={v} className="text-[12px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
+                          <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes,v)} className="mr-1 accent-[#ED6B13]"/>{v}</label>
                         ))}
                       </div>
                     </div>
@@ -1559,13 +1559,13 @@ export default function VolunteerRegister() {
                     <label>
                       <span className={labelClass}>Upload Photograph (optional)</span>
                       <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e)=>setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
-                      <span className="mt-0.5 block text-[10px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
+                      <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
                     </label>
 
                     <label className="sm:col-span-2">
                       <span className={labelClass}>Upload ID Proof (optional)</span>
                       <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e)=>setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`}/>
-                      <span className="mt-0.5 block text-[10px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
+                      <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
                     </label>
                   </div>
                 </div>
@@ -1616,7 +1616,7 @@ export default function VolunteerRegister() {
                                     skill,
                                   )
                                 }
-                                className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[13px] font-medium transition ${selected
+                                className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[16px] font-medium transition ${selected
                                     ? "border-[#ED6B13] bg-[#ED6B13] text-white"
                                     : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
                                   }`}
@@ -1635,7 +1635,7 @@ export default function VolunteerRegister() {
                   </div>
                 </div>
 
-                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-2 text-[13px] leading-4 text-[#5E4B3F]">
+                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-2 text-[16px] leading-5 text-[#5E4B3F]">
                   <input
                     type="checkbox"
                     checked={consent}
@@ -1657,7 +1657,7 @@ export default function VolunteerRegister() {
                 </label>
 
                 {error && (
-                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[14px] text-red-700">
+                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[16px] text-red-700">
                     {error}
                   </div>
                 )}
@@ -1665,7 +1665,7 @@ export default function VolunteerRegister() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group flex h-[39px] w-full items-center justify-center gap-2.5 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[14px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="group flex h-[39px] w-full items-center justify-center gap-2.5 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -1683,7 +1683,7 @@ export default function VolunteerRegister() {
                   )}
                 </button>
 
-                <p className="flex items-center justify-center gap-2 text-center text-[12px] text-[#75655A]">
+                <p className="flex items-center justify-center gap-2 text-center text-[16px] text-[#75655A]">
                   <FaShieldAlt className="text-[#726D67]" />
                   Your information is safe and
                   secure with us.
@@ -1713,11 +1713,11 @@ export default function VolunteerRegister() {
                       </span>
 
                       <div>
-                        <h3 className="font-serif text-[14px] leading-tight text-[#3E261B]">
+                        <h3 className="font-serif text-[16px] leading-tight text-[#3E261B]">
                           {item.title}
                         </h3>
 
-                        <p className="mt-1 text-[14px] leading-[1.45] text-[#715C4E]">
+                        <p className="mt-1 text-[16px] leading-[1.45] text-[#715C4E]">
                           {item.description}
                         </p>
                       </div>
