@@ -256,7 +256,7 @@ function Donation() {
       <Topbar />
       <Navbar />
 
-      <main>
+      <main className="[&_a]:text-[max(16px,1em)] [&_button]:text-[max(16px,1em)] [&_input]:text-[max(16px,1em)] [&_label]:text-[max(16px,1em)] [&_p]:text-[max(16px,1em)] [&_select]:text-[max(16px,1em)] [&_span]:text-[max(16px,1em)] [&_textarea]:text-[max(16px,1em)]">
         {/* ============ HERO ============ */}
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
@@ -296,13 +296,8 @@ function Donation() {
                 </span>
               </div>
 
-              <h1 className="font-serif leading-[0.95]">
-                <span className="block text-[36px] text-[#2C1810] sm:text-[44px] lg:text-[50px]">
-                  Support a
-                </span>
-                <span className="mt-1 block text-[44px]  text-[#8B6A3E] sm:text-[56px] lg:text-[66px]">
-                  Final Journey
-                </span>
+              <h1 className="whitespace-nowrap font-serif text-[30px] leading-none text-[#2C1810] sm:text-[44px] lg:text-[50px]">
+                Support a <span className="text-[#8B6A3E]">Final Journey</span>
               </h1>
 
               {/* diya flourish */}
@@ -380,7 +375,7 @@ function Donation() {
                         >
                           {item.value}
                         </div>
-                        <div className="mt-1 whitespace-nowrap text-[14px] font-medium uppercase tracking-[0.08em] text-white/90 lg:text-[15px]">
+                        <div className="mt-1 whitespace-nowrap text-[16px] font-medium uppercase tracking-[0.08em] text-white/90">
                           {item.label}
                         </div>
                       </div>
@@ -397,7 +392,7 @@ function Donation() {
           <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/10" />
 
           <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-0 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
+            <div className="mb-0 flex items-center justify-center gap-3 text-[16px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-10 bg-[#C9A574]" />
               <span>ॐ Where Your Donation Goes ॐ</span>
               <span className="h-px w-10 bg-[#C9A574]" />
@@ -511,7 +506,7 @@ function Donation() {
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
               <div className="mb-4">
-                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
+                <div className="flex items-center gap-2 text-[16px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                   <span>Make a Donation</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
@@ -519,11 +514,11 @@ function Donation() {
                   Your Support, <span className=" text-[#8B6A3E]">Their Dignity</span>
                 </h3>
                 <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[14px] font-semibold text-[#8B6A3E]">
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-[#E6D6BF] bg-[#FBF8F3] px-2.5 py-1 text-[16px] font-semibold text-[#8B6A3E]">
                     <activeCause.icon className="h-3 w-3" />
                     Selected: {activeCause.title}
                   </div>
-                  <div className="inline-flex items-center rounded-full bg-[#8B6A3E] px-3 py-1 text-[14px] font-bold text-white">
+                  <div className="inline-flex items-center rounded-full bg-[#8B6A3E] px-3 py-1 text-[16px] font-bold text-white">
                     ₹{activeCause.price.toLocaleString("en-IN")}
                   </div>
                 </div>
@@ -707,7 +702,7 @@ function Donation() {
                     <FaHandHoldingHeart className="relative h-5 w-5" />
                   </span>
                   <div>
-                    <div className="text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
+                    <div className="text-[16px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                       Your Impact
                     </div>
                     <h4 className="mt-1 font-serif text-xl">
