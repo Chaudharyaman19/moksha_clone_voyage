@@ -320,11 +320,11 @@ export default function HowWeCanHelp() {
             </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 items-stretch gap-3 md:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) =>
               <article
                 key={card.title}
-                className="group overflow-hidden rounded-[22px] border border-[#DEC7A6] bg-[#FFFCF7] shadow-[0_14px_34px_rgba(86,52,22,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(86,52,22,0.15)]"
+                className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[#DEC7A6] bg-[#FFFCF7] shadow-[0_14px_34px_rgba(86,52,22,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(86,52,22,0.15)]"
               >
                 <div className="relative h-[195px] overflow-hidden sm:h-[200px] lg:h-[195px] xl:h-[205px]">
                   <Image
@@ -339,24 +339,24 @@ export default function HowWeCanHelp() {
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/12 to-transparent" />
                 </div>
 
-                <div className="relative flex min-h-[218px] flex-col px-4 pb-4 pt-8 sm:min-h-[210px]">
+                <div className="relative flex min-h-[250px] flex-1 flex-col px-4 pb-4 pt-8">
                   <div className="absolute left-4 top-0 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#C79045] bg-[#FFFDF8] text-[#A36B26] shadow-[0_6px_16px_rgba(102,61,20,0.14)]">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D8B57C] bg-white">
                       <CustomIcon name={card.icon} className="h-8 w-8" />
                     </div>
                   </div>
 
-                  <h3 className="font-serif text-[18px] font-normal leading-tight text-[#2F1C12] xl:text-[19px]">
+                  <h3 className="min-h-[46px] font-serif text-[18px] font-normal leading-[1.2] text-[#2F1C12] xl:text-[19px]">
                     {card.title}
                   </h3>
 
-                  <p className="mt-1.5 min-h-[48px] text-[15px] leading-6 text-[#493326]">
+                  <p className="mt-1.5 min-h-[72px] text-[15px] leading-6 text-[#493326]">
                     {card.desc}
                   </p>
 
                   <div className="my-2 h-px w-14 bg-gradient-to-r from-[#C08B43] to-transparent" />
 
-                  <div className="space-y-1">
+                  <div className="min-h-[66px] space-y-1">
                     {card.features.map((feature) => (
                       <div
                         key={feature}
@@ -372,9 +372,9 @@ export default function HowWeCanHelp() {
 
                   <a
                     href={card.href || "/request-help"}
-                    className="mt-2 flex min-h-8 w-full items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-3 py-2 text-center font-serif text-[14px] leading-tight text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
+                    className="relative top-1 mt-auto flex h-[36px] w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#B8792D] bg-white/45 px-2.5 text-center font-serif text-[13px] leading-none text-[#7C4918] transition-colors hover:bg-[#FAF0E2]"
                   >
-                    <span>Learn More About {card.title}</span>
+                    <span className="whitespace-nowrap">Learn More</span>
                     <CustomIcon name="FaArrowRight" className="h-3 w-3" />
                   </a>
                 </div>
