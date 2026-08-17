@@ -579,7 +579,7 @@ export default function FooterNew() {
   return (
     <footer
       ref={footerRef}
-      className="relative isolate overflow-hidden bg-[#002D29] text-white"
+      className="relative isolate overflow-hidden bg-[#050706] text-white"
     >
       {/* =========================================================
           DESKTOP SCENE
@@ -603,7 +603,7 @@ export default function FooterNew() {
         {/* Dark circular mask blends into the footer; it intentionally has no outline. */}
         <div
           aria-hidden
-          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#00322D]"
+          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#050706]"
         />
 
         {/* Full left arc: bold and softly glowing. Its circle ends above the
@@ -626,7 +626,7 @@ export default function FooterNew() {
           sizes="100vw"
           className="object-cover object-center opacity-[0.13]"
         />
-        <div className="absolute inset-0 bg-[#002D29]/92" />
+        <div className="absolute inset-0 bg-black/95" />
       </div>
 
       <div className="footer-master relative z-10">
@@ -762,7 +762,7 @@ export default function FooterNew() {
 
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#002925]/96 px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(5,72,64,0.24)] lg:min-h-[370px] 2xl:min-h-[392px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)] lg:min-h-[370px] 2xl:min-h-[392px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -771,7 +771,7 @@ export default function FooterNew() {
                   className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
                 />
 
-                <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(13,92,80,0.28),rgba(0,42,39,0.82))]" />
+                <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(255,185,57,0.025),rgba(0,0,0,0.38))]" />
 
                 <div className="relative z-10">
                   <div className="flex items-start gap-3">
@@ -861,7 +861,7 @@ export default function FooterNew() {
         </div>
 
         {/* ========================= VALUES ROW ========================= */}
-        <div className="footer-values relative border-y border-[#B8862C] bg-[#00332E]/98">
+        <div className="footer-values relative border-y border-[#B8862C] bg-[#070A09]/[0.99]">
           <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
           <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
 
@@ -900,7 +900,7 @@ export default function FooterNew() {
         </div>
 
         {/* ========================= BOTTOM BAR ========================= */}
-        <div className="footer-bottom relative bg-[#00231F]">
+        <div className="footer-bottom relative bg-black">
           <div className="mx-auto grid min-h-[64px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-3 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-2">
             <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
               <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
