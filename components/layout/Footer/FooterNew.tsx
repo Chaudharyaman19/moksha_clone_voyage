@@ -579,7 +579,7 @@ export default function FooterNew() {
   return (
     <footer
       ref={footerRef}
-      className="relative isolate overflow-hidden bg-[#003a35] text-white"
+      className="relative isolate overflow-hidden bg-[#002D29] text-white"
     >
       {/* =========================================================
           DESKTOP SCENE
@@ -603,7 +603,7 @@ export default function FooterNew() {
         {/* Dark circular mask blends into the footer; it intentionally has no outline. */}
         <div
           aria-hidden
-          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#003a35]"
+          className="absolute left-[148px] top-[-88px] h-[628px] w-[628px] rounded-full bg-[#00322D]"
         />
 
         {/* Full left arc: bold and softly glowing. Its circle ends above the
@@ -614,7 +614,7 @@ export default function FooterNew() {
         />
 
         {/* subtle inner green depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_20%,rgba(14,91,80,0.15),transparent_32%),linear-gradient(90deg,transparent_0%,rgba(0,29,27,0.03)_50%,rgba(0,27,25,0.16)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_18%,rgba(15,92,78,0.18),transparent_34%),linear-gradient(90deg,transparent_0%,rgba(0,31,28,0.08)_48%,rgba(0,18,17,0.30)_100%)]" />
       </div>
 
       {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
@@ -626,7 +626,7 @@ export default function FooterNew() {
           sizes="100vw"
           className="object-cover object-center opacity-[0.13]"
         />
-        <div className="absolute inset-0 bg-[#003a35]/90" />
+        <div className="absolute inset-0 bg-[#002D29]/92" />
       </div>
 
       <div className="footer-master relative z-10">
@@ -762,7 +762,7 @@ export default function FooterNew() {
 
             {/* REQUEST SUPPORT */}
             <div className="footer-col flex items-start justify-center sm:col-span-2 lg:col-span-1 lg:justify-end 2xl:pl-5">
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#00342f]/95 px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(5,72,64,0.28)] lg:min-h-[370px] 2xl:min-h-[392px]">
+              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#002925]/96 px-5 pb-5 pt-5 shadow-[inset_0_0_40px_rgba(5,72,64,0.24)] lg:min-h-[370px] 2xl:min-h-[392px]">
                 <Image
                   src={requestSupportBg}
                   alt=""
@@ -859,7 +859,7 @@ export default function FooterNew() {
         </div>
 
         {/* ========================= VALUES ROW ========================= */}
-        <div className="footer-values relative border-y border-[#B8862C] bg-[#003c36]/96">
+        <div className="footer-values relative border-y border-[#B8862C] bg-[#00332E]/98">
           <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
           <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
 
@@ -898,7 +898,7 @@ export default function FooterNew() {
         </div>
 
         {/* ========================= BOTTOM BAR ========================= */}
-        <div className="footer-bottom relative bg-[#002f2b]">
+        <div className="footer-bottom relative bg-[#00231F]">
           <div className="mx-auto grid min-h-[64px] w-full max-w-[1540px] grid-cols-1 items-center gap-2 px-5 py-3 text-center sm:px-7 lg:grid-cols-[1.6fr_2.2fr_1.5fr_1.55fr] lg:gap-0 lg:px-8 lg:py-2">
             <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90 lg:justify-start">
               <PiFlowerLotus className="h-10 w-10 shrink-0 text-[#D9A33A]" />
