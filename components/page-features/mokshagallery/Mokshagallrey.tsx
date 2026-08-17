@@ -187,7 +187,7 @@ function MokshaGallery() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-4 md:pt-16 md:pb-5 overflow-hidden">
+      <section className="relative pt-28 pb-4 md:pt-32 md:pb-5 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#8B6A3E] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
