@@ -565,7 +565,6 @@ export default function WhoWeHelp() {
                   "
                   style={{
                     color: card.titleColor,
-                    fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
                   {card.title}
