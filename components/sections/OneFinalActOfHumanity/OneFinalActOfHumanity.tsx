@@ -33,7 +33,7 @@ export default function OneFinalActOfHumanity() {
             <div className="mb-6 flex items-center gap-5">
               {/* Moksha Sewa logo block */}
               <div className="flex min-w-[280px] flex-col items-center text-center">
-                <div className="relative h-[92px] w-[92px] shrink-0">
+                <div className="relative ml-3 h-[92px] w-[92px] shrink-0">
                   <Image
                     src="/assets/footer-moksha-mark.png"
                     alt="Moksha Sewa"
