@@ -25,9 +25,8 @@ import { ApiRequestError } from "@/lib/api";
 
 /* ---------- one source of truth so numbers never mismatch ---------- */
 const CONTACT = {
-  helpline: {
-    label: "+91 92201 47229, href: "tel: +919220147229" },
-  altPhone: { label: "+91 92201 47229", href: "tel:+ 919568259784" },
+  helpline: { label: "+91 92201 47229", href: "tel:+919220147229" },
+  altPhone: { label: "+91 95682 59784", href: "tel:+919568259784" },
   email: { label: "info@mokshasewa.org", href: "mailto:info@mokshasewa.org" },
 };
 
