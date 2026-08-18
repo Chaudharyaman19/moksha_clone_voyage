@@ -93,7 +93,7 @@ export default function WhoWeAre() {
           <span className="mt-[3%] h-px w-[33%] bg-[#c79536]" />
         </div>
 
-        <div className="absolute bottom-[3.2%] left-[51.1%] flex h-[15.3%] w-[45.8%] items-center rounded-[1.8vw] bg-[#103f31]/95 px-[5%] text-white shadow-[0_4px_7px_rgba(0,0,0,.25)]">
+        <div className="absolute bottom-[3.2%] left-[51.1%] flex h-[12.5%] w-[45.8%] items-center rounded-[1.8vw] bg-[#103f31]/95 px-[5%] text-white shadow-[0_4px_7px_rgba(0,0,0,.25)]">
           <PiHandsPraying className="h-auto w-[8%] shrink-0 text-[#d09a2d]" />
           <div className="ml-[5%] border-l border-[#c59a48] pl-[5%] text-[clamp(8px,1.05vw,18px)] leading-[1.45]">
             Together, we ensure that no one is left without <strong className="text-[#d09a2d]">dignity,<br />care and respect</strong> in their final journey.
