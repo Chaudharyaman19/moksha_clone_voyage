@@ -11,6 +11,7 @@ import Whyweexist from "./Whyweexist";
 import BehindMission from "./BehindMission";
 import Ourstory from "./Ourstory";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
+import HeartOfMoksha from "./HeartOfMoksha";
 import Responsiblesewa from "./Responsiblesewa";
 
 export default function About() {
@@ -31,6 +32,7 @@ export default function About() {
         <Ourstory />
         <AboutNamoGangeTrust />
         <Responsiblesewa />
+        <HeartOfMoksha />
       </main>
 
       <Footer />
