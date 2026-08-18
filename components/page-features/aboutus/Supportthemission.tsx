@@ -843,12 +843,12 @@ export default function SupportTheMission() {
                 group
                 inline-flex
                 h-[58px]
-                min-w-[395px]
+                min-w-[320px]
                 items-center
                 justify-between
                 rounded-[11px]
                 bg-[#004B38]
-                px-[28px]
+                px-[20px]
                 text-white
                 shadow-[0_7px_16px_rgba(0,62,44,0.14)]
                 transition

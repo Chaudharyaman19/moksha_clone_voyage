@@ -15,10 +15,11 @@ import HeartOfMoksha from "./HeartOfMoksha";
 import Responsiblesewa from "./Responsiblesewa";
 import AboutFaq from "./AboutFaq";
 import Supportthemission from "./Supportthemission";
+import JoinSewa from "@/components/sections/JoinSewa/JoinSewa";
 
 export default function About() {
   return (
-    <div className="overflow-x-clip bg-[#FBF8F3] text-[#2C1810]">
+    <div className="overflow-x-clip bg-[#FBF8F3] font-sans font-normal text-[#2C1810] [&_*]:!font-sans [&_.font-black]:font-normal [&_.font-bold]:font-normal [&_.font-extrabold]:font-normal [&_.font-medium]:font-normal [&_.font-semibold]:font-normal [&_b]:font-normal [&_strong]:font-normal">
       <Topbar />
       <Navbar />
 
@@ -35,6 +36,7 @@ export default function About() {
         <AboutNamoGangeTrust />
         <Responsiblesewa />
         <Supportthemission />
+        <JoinSewa />
         <AboutFaq />
         <HeartOfMoksha />
       </main>
