@@ -252,21 +252,6 @@ const SocialSidebar = () => {
             </span>
           </a>
 
-          {/* Phone */}
-          <a
-            href={phoneLink.url}
-            aria-label="Call Moksha Sewa"
-            className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#4CAF50]/10 flex items-center justify-center group-hover:bg-[#4CAF50]">
-              <FaPhone
-                size={16}
-                className="text-[#4CAF50] group-hover:text-white"
-              />
-            </div>
-            <span className="text-[16px] font-medium text-[#2D6E30]">CALL</span>
-          </a>
-
           {/* Social Menu Trigger */}
           <div className="group relative">
             <button className="flex min-h-11 min-w-11 flex-col items-center gap-1" aria-label="Open social links">

@@ -7,7 +7,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 export default function OneFinalActOfHumanity() {
   return (
     <section className="relative w-full overflow-hidden bg-[#F7F0E4]">
-      <div className="relative min-h-[520px] w-full sm:aspect-[16/6.3] sm:min-h-0">
+      <div className="relative min-h-[520px] w-full">
         {/* Background image stays the same */}
         <Image
           src="/hero-images/one-final-act-humanity.png"
@@ -27,13 +27,13 @@ export default function OneFinalActOfHumanity() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-4 py-6 sm:min-h-0 sm:px-5 lg:px-6">
+        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-4 py-8 sm:px-5 lg:px-6">
           <div className="w-full max-w-[680px]">
             {/* Logo row */}
-            <div className="mb-6 flex items-center gap-5">
+            <div className="mb-6 flex flex-wrap items-center justify-center gap-5 sm:justify-start">
               {/* Moksha Sewa logo block */}
-              <div className="flex min-w-[280px] flex-col items-center text-center">
-                <div className="relative ml-3 h-[92px] w-[92px] shrink-0">
+              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[280px]">
+                <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
                   <Image
                     src="/assets/footer-moksha-mark.png"
                     alt="Moksha Sewa"
@@ -51,11 +51,11 @@ export default function OneFinalActOfHumanity() {
                 </p>
               </div>
 
-              <span className="h-[128px] w-px shrink-0 self-center bg-[#D7B471]" />
+              <span className="hidden h-[128px] w-px shrink-0 self-center bg-[#D7B471] sm:block" />
 
               {/* Namo Gange logo */}
-              <div className="flex min-w-[280px] flex-col items-center text-center">
-                <div className="relative h-[86px] w-[290px] shrink-0">
+              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[280px]">
+                <div className="relative h-[68px] w-[230px] shrink-0 sm:h-[86px] sm:w-[290px]">
                   <Image
                     src="/assets/namo-gange-logo.webp"
                     alt="Namo Gange Trust"

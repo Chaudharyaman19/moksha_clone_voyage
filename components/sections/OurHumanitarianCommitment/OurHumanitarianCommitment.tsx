@@ -196,16 +196,16 @@ export default function HumanitarianCommitment() {
                   className="mb-[2px] h-[28px] w-[28px] text-[#B9780B]"
                 />
 
-                <div className="flex items-center justify-center gap-[9px]">
-                  <span className="relative h-px w-[72px] bg-[#B87A12]">
+                <div className="flex flex-wrap items-center justify-center gap-[9px]">
+                  <span className="relative hidden h-px w-[72px] bg-[#B87A12] sm:block">
                     <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
                   </span>
 
-                  <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.025em] text-[#B77912]">
+                  <span className="text-center text-[16px] font-semibold uppercase tracking-[0.025em] text-[#B77912]">
                     Our Humanitarian Commitment
                   </span>
 
-                  <span className="relative h-px w-[72px] bg-[#B87A12]">
+                  <span className="relative hidden h-px w-[72px] bg-[#B87A12] sm:block">
                     <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
                   </span>
                 </div>
@@ -293,13 +293,7 @@ export default function HumanitarianCommitment() {
             ================================================== */}
 
             <div className="relative min-h-[440px] lg:h-[575px]">
-              <div
-                className="absolute inset-0 overflow-hidden border-l-2 border-[#D5A148]"
-                style={{
-                  borderTopLeftRadius: "230px 54%",
-                  borderBottomLeftRadius: "230px 54%",
-                }}
-              >
+              <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
                 <Image
                   src="/assets/image.png"
                   alt="Moksha Sewa unclaimed body support"
@@ -316,25 +310,25 @@ export default function HumanitarianCommitment() {
               <div className="absolute bottom-[9px] left-[6px] right-[9px] z-20">
                 <a
                   href="/unclaimed-body-sewa"
-                  className="flex h-[88px] w-full items-center justify-between rounded-[24px] border-[3px] border-[#C69428] bg-[#005234] px-[18px] text-white shadow-[0_8px_18px_rgba(2,63,40,0.18)]"
+                  className="flex min-h-[64px] w-full items-center justify-between gap-[10px] rounded-[16px] border-[3px] border-[#C69428] bg-[#005234] px-[12px] py-[10px] text-white shadow-[0_8px_18px_rgba(2,63,40,0.18)] sm:min-h-[88px] sm:gap-0 sm:rounded-[24px] sm:px-[18px]"
                 >
-                  <div className="flex min-w-0 items-center gap-[15px]">
-                    <span className="flex h-[61px] w-[61px] shrink-0 items-center justify-center rounded-full border-[3px] border-[#C79428] text-[#D0A02D]">
+                  <div className="flex min-w-0 items-center gap-[10px] sm:gap-[15px]">
+                    <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border-[3px] border-[#C79428] text-[#D0A02D] sm:h-[61px] sm:w-[61px]">
                       <CustomIcon
                         name="Lotus"
-                        className="h-[36px] w-[36px]"
+                        className="h-[24px] w-[24px] sm:h-[36px] sm:w-[36px]"
                       />
                     </span>
 
-                    <span className="whitespace-nowrap text-[18px] font-semibold uppercase leading-none">
+                    <span className="text-[16px] font-semibold uppercase leading-tight sm:leading-none">
                       Know About Unclaimed Body Sewa
                     </span>
                   </div>
 
-                  <span className="flex h-[49px] w-[49px] shrink-0 items-center justify-center rounded-full bg-[#DEA516] text-white">
+                  <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#DEA516] text-white sm:h-[49px] sm:w-[49px]">
                     <CustomIcon
                       name="ArrowRight"
-                      className="h-[24px] w-[24px]"
+                      className="h-[18px] w-[18px] sm:h-[24px] sm:w-[24px]"
                     />
                   </span>
                 </a>
@@ -351,11 +345,11 @@ export default function HumanitarianCommitment() {
           <div className="grid min-h-[126px] grid-cols-1 lg:grid-cols-[48%_52%]">
             {/* ================= LEFT ================= */}
 
-            <div className="flex items-center gap-[24px] px-[38px] py-[14px]">
-              <div className="flex h-[82px] w-[82px] shrink-0 items-center justify-center rounded-full bg-[#004E34] text-[#D0A020]">
+            <div className="flex items-center gap-[16px] px-[20px] py-[14px] sm:gap-[24px] sm:px-[38px]">
+              <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#004E34] text-[#D0A020] sm:h-[82px] sm:w-[82px]">
                 <CustomIcon
                   name="Building"
-                  className="h-[45px] w-[45px]"
+                  className="h-[34px] w-[34px] sm:h-[45px] sm:w-[45px]"
                 />
               </div>
 
@@ -381,11 +375,11 @@ export default function HumanitarianCommitment() {
 
             {/* ================= RIGHT ================= */}
 
-            <div className="relative flex items-center gap-[26px] border-t border-[#E0D3BF] px-[38px] py-[14px] lg:border-t-0">
-              <div className="flex h-[82px] w-[82px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2] text-[#0D5539]">
+            <div className="relative flex items-center gap-[16px] border-t border-[#E0D3BF] px-[20px] py-[14px] sm:gap-[26px] sm:px-[38px] lg:border-t-0">
+              <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2] text-[#0D5539] sm:h-[82px] sm:w-[82px]">
                 <CustomIcon
                   name="ShieldCheck"
-                  className="h-[46px] w-[46px]"
+                  className="h-[34px] w-[34px] sm:h-[46px] sm:w-[46px]"
                 />
               </div>
 
