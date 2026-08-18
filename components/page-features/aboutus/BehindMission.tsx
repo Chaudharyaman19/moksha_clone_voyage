@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaArrowRight,
   FaExpand,
@@ -24,7 +24,19 @@ const missionLinks = [
 
 export default function BehindMission() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const mountedRef = useRef(false);
   const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  const updatePlaying = (value: boolean) => {
+    if (mountedRef.current) setPlaying(value);
+  };
 
   const toggleVideo = () => {
     const video = videoRef.current;
@@ -32,10 +44,10 @@ export default function BehindMission() {
 
     if (video.paused) {
       void video.play();
-      setPlaying(true);
+      updatePlaying(true);
     } else {
       video.pause();
-      setPlaying(false);
+      updatePlaying(false);
     }
   };
 
@@ -124,9 +136,9 @@ export default function BehindMission() {
                 loop
                 playsInline
                 preload="auto"
-                onPlay={() => setPlaying(true)}
-                onPause={() => setPlaying(false)}
-                onEnded={() => setPlaying(false)}
+                onPlay={() => updatePlaying(true)}
+                onPause={() => updatePlaying(false)}
+                onEnded={() => updatePlaying(false)}
               >
                 <source src="/vedio/taniya.mp4" type="video/mp4" />
               </video>
