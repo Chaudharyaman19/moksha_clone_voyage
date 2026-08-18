@@ -14,6 +14,7 @@ import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import HeartOfMoksha from "./HeartOfMoksha";
 import Responsiblesewa from "./Responsiblesewa";
 import AboutFaq from "./AboutFaq";
+import Supportthemission from "./Supportthemission";
 
 export default function About() {
   return (
@@ -33,6 +34,7 @@ export default function About() {
         <Ourstory />
         <AboutNamoGangeTrust />
         <Responsiblesewa />
+        <Supportthemission />
         <AboutFaq />
         <HeartOfMoksha />
       </main>
