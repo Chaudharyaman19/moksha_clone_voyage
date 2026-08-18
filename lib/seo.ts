@@ -203,6 +203,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "monthly",
   },
   {
+    path: "/unclaimed-body-sewa",
+    label: "Unclaimed Body Sewa",
+    title: "Unclaimed Body Sewa – Dignified Last Rites",
+    description:
+      "Moksha Sewa coordinates verified, legally authorised last rites for unclaimed and unidentified bodies, working with police, hospitals and municipal authorities.",
+    ogImage: "/unclaimed-body-sewa/hero-unclaimed-body-sewa.webp",
+    ogImageAlt: "Unclaimed body sewa dignified last rites support",
+    keywords: ["unclaimed body sewa", "unidentified body last rites", "unclaimed body cremation"],
+    priority: 0.86,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/mokshagallery",
     label: "Gallery",
     title: "Moksha Sewa Photo Gallery",

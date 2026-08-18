@@ -112,6 +112,7 @@ export default function Navbar() {
         { name: "Ambulance & Body Transport", path: "/ambulanceservices", icon: <FaAmbulance />, type: "page" },
         { name: "Ritual Material Support", path: "/furalservices", icon: <FaHandHoldingHeart />, type: "page" },
         { name: "Priest & Ritual Guidance", path: "/panditservices", icon: <FaPrayingHands />, type: "page" },
+        { name: "Unclaimed Body Sewa", path: "/unclaimed-body-sewa", icon: <FaHandHoldingHeart />, type: "page" },
       ],
     },
     {

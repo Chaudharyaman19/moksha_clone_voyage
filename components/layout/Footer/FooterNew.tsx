@@ -72,6 +72,7 @@ const services = [
   { label: "Ritual Material Support", href: "/furalservices" },
   { label: "Priest Guidance", href: "/panditservices" },
   { label: "Family Guidance", href: "/specialservices" },
+  { label: "Unclaimed Body Sewa", href: "/unclaimed-body-sewa" },
 ];
 
 const initiatives = [

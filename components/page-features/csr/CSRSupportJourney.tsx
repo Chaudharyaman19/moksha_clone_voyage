@@ -19,10 +19,10 @@ const steps: {
 
 export default function CSRSupportJourney() {
   return (
-    <section className="relative overflow-hidden bg-[#fbf8f1] px-5 py-8">
+    <section className="relative overflow-hidden bg-[#fbf8f1] px-5 py-5">
       <div
-        className="pointer-events-none absolute right-0 top-0 h-[390px] w-[420px] bg-cover bg-center opacity-30"
-        style={{ backgroundImage: "url('/assets/csr/journey-ghat-bg.jpg')" }}
+        className="pointer-events-none absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/assets/csr/meaningful-support-bg.jpeg')" }}
       />
       <div className="relative mx-auto max-w-7xl">
         <div className="text-center">
@@ -33,22 +33,22 @@ export default function CSRSupportJourney() {
             <span className="h-px w-16 bg-[#c08b31]" />
           </div>
           <h2
-            className="mt-3 text-[42px] font-medium leading-[1.08] text-[#064235] sm:text-[54px]"
+            className="mt-2 text-[42px] font-medium leading-[1.08] text-[#064235] sm:text-[54px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Meaningful Support at a Deeply Human Moment.
           </h2>
-          <div className="mt-3 flex items-center justify-center gap-3 text-[#b27a20]">
+          <div className="mt-2 flex items-center justify-center gap-3 text-[#b27a20]">
             <span className="h-px w-16 bg-[#c58e35]" /><CSRIcon name="Lotus" className="h-6 w-6" /><span className="h-px w-16 bg-[#c58e35]" />
           </div>
-          <p className="mx-auto mt-4 max-w-[800px] text-[19px] font-medium leading-[1.55] text-[#3b4550]">
+          <p className="mx-auto mt-2 max-w-[800px] text-[19px] font-medium leading-[1.45] text-[#3b4550]">
             CSR collaborations can help strengthen essential final-journey
             <br />
             assistance for eligible and verified humanitarian cases.
           </p>
         </div>
 
-        <div className="relative mt-7 grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-5 xl:gap-5">
+        <div className="relative mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cols-5 xl:gap-4">
           {steps.map((step, index) => (
             <div key={step.no} className="relative text-center">
               {index < steps.length - 1 && (
@@ -73,19 +73,19 @@ export default function CSRSupportJourney() {
                 {step.no}
               </div>
               <h3
-                className="mt-3 whitespace-pre-line text-[20px] font-semibold leading-[1.15]"
+                className="mt-2 whitespace-pre-line text-[20px] font-semibold leading-[1.1]"
                 style={{ color: step.accent, fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 {step.title}
               </h3>
-              <p className="mt-3 whitespace-pre-line text-[16px] font-medium leading-[1.45] text-[#4a5051]">{step.text}</p>
+              <p className="mt-1.5 whitespace-pre-line text-[16px] font-medium leading-[1.35] text-[#4a5051]">{step.text}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex min-h-[92px] flex-col items-start gap-4 rounded-[14px] border border-[#ded4c3] bg-[#f7f4ed]/95 px-5 py-5 sm:flex-row sm:items-center sm:px-8">
-          <span className="grid h-16 w-16 place-items-center rounded-full bg-[#f1efe7] text-[#0b4d3b]">
-            <CSRIcon name="ShieldCheck" className="h-12 w-12" />
+        <div className="mt-4 flex min-h-[76px] flex-col items-start gap-3 rounded-[14px] border border-[#ded4c3] bg-[#f7f4ed]/95 px-5 py-3 sm:flex-row sm:items-center sm:px-7">
+          <span className="grid h-12 w-12 place-items-center rounded-full bg-[#f1efe7] text-[#0b4d3b]">
+            <CSRIcon name="ShieldCheck" className="h-9 w-9" />
           </span>
           <span className="hidden h-12 w-px bg-[#ccb58e] sm:block" />
           <p className="text-[17px] leading-[1.45] text-[#44504e]">

@@ -69,7 +69,7 @@ export default function CSRPartnershipEnquiry() {
         bg-[#FBF7F0]
 
         px-4
-        py-[30px]
+        py-[20px]
 
         sm:px-5
         lg:px-6
@@ -79,7 +79,7 @@ export default function CSRPartnershipEnquiry() {
         className="
           mx-auto
           w-full
-          max-w-[1660px]
+          max-w-7xl
         "
       >
         {/* =====================================================
@@ -91,10 +91,10 @@ export default function CSRPartnershipEnquiry() {
             grid
             grid-cols-1
 
-            gap-[28px]
+            gap-[22px]
 
-            lg:grid-cols-[45%_55%]
-            lg:gap-[34px]
+            lg:grid-cols-[minmax(0,45fr)_minmax(0,55fr)]
+            lg:gap-[26px]
           "
         >
           {/* =================================================
@@ -104,14 +104,21 @@ export default function CSRPartnershipEnquiry() {
           <div
             className="
               relative
-
-              min-h-[760px]
+              h-full
+              min-h-[650px]
 
               overflow-hidden
+
+              [&>*:not(:first-child)]:hidden
 
               bg-[#FBF7F0]
             "
           >
+            <img
+              src="/assets/csr/responsible-partnership-conversation.png"
+              alt="Start a Conversation - Let's Build a Responsible Partnership"
+              className="absolute inset-0 h-full w-full object-fill"
+            />
             {/* ===============================================
                 BOTTOM SCENIC IMAGE
 
@@ -126,7 +133,7 @@ export default function CSRPartnershipEnquiry() {
                 inset-x-0
                 bottom-0
 
-                h-[370px]
+                h-[320px]
 
                 bg-cover
                 bg-bottom
@@ -145,11 +152,11 @@ export default function CSRPartnershipEnquiry() {
                 pointer-events-none
                 absolute
                 inset-x-0
-                bottom-[210px]
+                bottom-[170px]
 
                 z-[1]
 
-                h-[180px]
+                h-[150px]
 
                 bg-gradient-to-b
                 from-[#FBF7F0]
@@ -168,12 +175,12 @@ export default function CSRPartnershipEnquiry() {
                 z-10
 
                 px-[22px]
-                pt-[26px]
+                pt-[18px]
 
                 sm:px-[38px]
 
                 lg:px-[42px]
-                lg:pt-[32px]
+                lg:pt-[22px]
               "
             >
               {/* LABEL */}
@@ -215,20 +222,20 @@ export default function CSRPartnershipEnquiry() {
 
               <h2
                 className="
-                  mt-[29px]
+                  mt-[16px]
 
-                  max-w-[650px]
+                  max-w-[600px]
 
                   font-serif
-                  text-[44px]
+                  text-[38px]
                   font-medium
                   leading-[1.02]
                   tracking-[-0.025em]
 
                   text-[#064335]
 
-                  sm:text-[50px]
-                  xl:text-[57px]
+                  sm:text-[44px]
+                  xl:text-[48px]
                 "
                 style={{
                   fontFamily:
@@ -245,7 +252,7 @@ export default function CSRPartnershipEnquiry() {
 
               <span
                 className="
-                  mt-[28px]
+                  mt-[15px]
                   block
 
                   h-[2px]
@@ -259,13 +266,13 @@ export default function CSRPartnershipEnquiry() {
 
               <p
                 className="
-                  mt-[28px]
+                  mt-[14px]
 
-                  max-w-[630px]
+                  max-w-[580px]
 
                   text-[18px]
                   font-medium
-                  leading-[1.6]
+                  leading-[1.45]
 
                   text-[#3D4242]
                 "
@@ -284,12 +291,12 @@ export default function CSRPartnershipEnquiry() {
 
               <div
                 className="
-                  mt-[38px]
+                  mt-[22px]
 
                   grid
                   grid-cols-2
 
-                  gap-y-[24px]
+                  gap-y-[16px]
 
                   sm:grid-cols-4
                   sm:gap-y-0
@@ -322,8 +329,8 @@ export default function CSRPartnershipEnquiry() {
                           mx-auto
 
                           grid
-                          h-[66px]
-                          w-[66px]
+                          h-[54px]
+                          w-[54px]
 
                           place-items-center
 
@@ -340,8 +347,8 @@ export default function CSRPartnershipEnquiry() {
                         <CSRIcon
                           name={icon}
                           className="
-                            h-[40px]
-                            w-[40px]
+                            h-[32px]
+                            w-[32px]
                           "
                         />
                       </span>
@@ -350,7 +357,7 @@ export default function CSRPartnershipEnquiry() {
 
                       <h3
                         className="
-                          mt-[11px]
+                          mt-[7px]
 
                           whitespace-pre-line
 
@@ -369,7 +376,7 @@ export default function CSRPartnershipEnquiry() {
                       <span
                         className="
                           mx-auto
-                          mt-[8px]
+                          mt-[5px]
                           block
 
                           h-[2px]
@@ -383,7 +390,7 @@ export default function CSRPartnershipEnquiry() {
 
                       <p
                         className="
-                          mt-[9px]
+                          mt-[6px]
 
                           whitespace-pre-line
 
@@ -415,17 +422,17 @@ export default function CSRPartnershipEnquiry() {
               bg-white
 
               px-[30px]
-              pb-[32px]
-              pt-[28px]
+              pb-[22px]
+              pt-[22px]
 
               shadow-[0_7px_26px_rgba(50,39,22,0.08)]
 
               sm:px-[38px]
 
-              lg:min-h-[720px]
+              lg:min-h-[650px]
               lg:px-[42px]
-              lg:pb-[30px]
-              lg:pt-[30px]
+              lg:pb-[22px]
+              lg:pt-[22px]
             "
           >
             {/* =================================================
@@ -442,8 +449,8 @@ export default function CSRPartnershipEnquiry() {
               <span
                 className="
                   grid
-                  h-[68px]
-                  w-[68px]
+                  h-[56px]
+                  w-[56px]
                   shrink-0
 
                   place-items-center
@@ -458,8 +465,8 @@ export default function CSRPartnershipEnquiry() {
                 <CSRIcon
                   name="Form"
                   className="
-                    h-[41px]
-                    w-[41px]
+                    h-[34px]
+                    w-[34px]
                   "
                 />
               </span>
@@ -517,13 +524,13 @@ export default function CSRPartnershipEnquiry() {
 
             <div
               className="
-                mt-[28px]
+                mt-[18px]
 
                 grid
                 grid-cols-1
 
                 gap-x-[24px]
-                gap-y-[22px]
+                gap-y-[14px]
 
                 md:grid-cols-2
               "
@@ -535,7 +542,7 @@ export default function CSRPartnershipEnquiry() {
                 >
                   <span
                     className="
-                      mb-[8px]
+                      mb-[5px]
                       block
 
                       text-[16px]
@@ -559,7 +566,7 @@ export default function CSRPartnershipEnquiry() {
                     required={field.required}
                     placeholder={field.placeholder}
                     className="
-                      h-[54px]
+                      h-[48px]
                       w-full
 
                       rounded-[7px]
@@ -590,7 +597,7 @@ export default function CSRPartnershipEnquiry() {
               <label className="block min-w-0">
                 <span
                   className="
-                    mb-[8px]
+                    mb-[5px]
                     block
 
                     text-[16px]
@@ -604,7 +611,7 @@ export default function CSRPartnershipEnquiry() {
 
                 <select
                   className="
-                    h-[54px]
+                    h-[48px]
                     w-full
 
                     rounded-[7px]
@@ -649,13 +656,13 @@ export default function CSRPartnershipEnquiry() {
 
             <label
               className="
-                mt-[23px]
+                mt-[15px]
                 block
               "
             >
               <span
                 className="
-                  mb-[8px]
+                  mb-[5px]
                   block
 
                   text-[16px]
@@ -674,7 +681,7 @@ export default function CSRPartnershipEnquiry() {
                 required
                 placeholder="Tell us about your CSR goals and partnership requirements..."
                 className="
-                  h-[104px]
+                  h-[88px]
                   w-full
 
                   resize-none
@@ -703,7 +710,7 @@ export default function CSRPartnershipEnquiry() {
 
             <label
               className="
-                mt-[16px]
+                mt-[12px]
 
                 flex
                 items-start
@@ -745,7 +752,7 @@ export default function CSRPartnershipEnquiry() {
 
             <div
               className="
-                mt-[23px]
+                mt-[15px]
                 flex
                 justify-center
               "
@@ -756,9 +763,9 @@ export default function CSRPartnershipEnquiry() {
                   group
 
                   inline-flex
-                  h-[59px]
+                  h-[48px]
                   w-full
-                  max-w-[430px]
+                  max-w-[290px]
 
                   items-center
                   justify-between
@@ -767,9 +774,9 @@ export default function CSRPartnershipEnquiry() {
 
                   bg-[#004B39]
 
-                  px-[30px]
+                  px-[24px]
 
-                  text-[18px]
+                  text-[16px]
                   font-bold
                   uppercase
                   tracking-[0.06em]
@@ -801,7 +808,7 @@ export default function CSRPartnershipEnquiry() {
 
             <p
               className="
-                mt-[13px]
+                mt-[9px]
                 text-center
 
                 text-[16px]
@@ -821,14 +828,12 @@ export default function CSRPartnershipEnquiry() {
 
         <div
           className="
-            mt-[30px]
+            mt-[20px]
 
-            grid
-            grid-cols-1
-
-            items-center
-
-            gap-[24px]
+            flex
+            flex-col
+            items-start
+            gap-[12px]
 
             rounded-[14px]
 
@@ -837,59 +842,20 @@ export default function CSRPartnershipEnquiry() {
 
             bg-[#F6F8EF]
 
-            px-[28px]
-            py-[22px]
-
-            md:grid-cols-[34%_66%]
+            px-[24px]
+            py-[9px]
 
             lg:px-[40px]
+            sm:flex-row
+            sm:items-center
           "
         >
-          <div
-            className="
-              flex
-              items-center
-              gap-[28px]
-            "
-          >
-            <span
-              className="
-                grid
-                h-[108px]
-                w-[108px]
-                shrink-0
-
-                place-items-center
-
-                rounded-full
-
-                bg-[#E7F1D9]
-
-                text-[#084D3B]
-              "
-            >
-              <CSRIcon
-                name="CheckCircle"
-                className="
-                  h-[76px]
-                  w-[76px]
-                "
-              />
-            </span>
-
-            <span
-              className="
-                h-[92px]
-                w-px
-                bg-[#C7B996]
-              "
-            />
-
-            <div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-4">
               <h3
                 className="
                   font-serif
-                  text-[32px]
+                  text-[26px]
                   font-semibold
 
                   text-[#064536]
@@ -904,33 +870,21 @@ export default function CSRPartnershipEnquiry() {
 
               <span
                 className="
-                  mt-[10px]
                   block
-
-                  h-[2px]
-                  w-[62px]
-
+                  h-px
+                  w-[70px]
                   bg-[#C9912F]
                 "
               />
             </div>
+            <p className="mt-1 text-[17px] font-medium leading-[1.35] text-[#3D4443]">
+              Your CSR partnership enquiry has been received. Our team will review the information and respond through the contact details provided.
+            </p>
           </div>
 
-          <p
-            className="
-              text-[18px]
-              font-medium
-              leading-[1.55]
-
-              text-[#3D4443]
-            "
-          >
-            Your CSR partnership enquiry has been received.
-            <br />
-            Our team will review the information and respond
-            <br />
-            through the contact details provided.
-          </p>
+          <span className="grid h-[58px] w-[58px] shrink-0 place-items-center rounded-full bg-[#E7F1D9] text-[#084D3B] sm:ml-auto">
+            <CSRIcon name="HeartHands" className="h-[40px] w-[40px]" />
+          </span>
         </div>
       </div>
     </section>

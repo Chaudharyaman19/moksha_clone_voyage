@@ -34,7 +34,7 @@ export default function CSRHero() {
           max-w-[1660px]
           overflow-hidden
 
-          lg:min-h-[760px]
+          lg:min-h-[660px]
         "
       >
         {/* =====================================================
@@ -121,14 +121,14 @@ export default function CSRHero() {
             z-10
 
             px-5
-            pb-[38px]
-            pt-[42px]
+            pb-[24px]
+            pt-[30px]
 
             sm:px-8
 
             lg:w-[57%]
             lg:px-[74px]
-            lg:pb-[170px]
+            lg:pb-[100px]
             lg:pt-[72px]
 
             xl:px-[88px]
@@ -179,21 +179,21 @@ export default function CSRHero() {
 
           <h1
             className="
-              mt-[22px]
+              mt-[14px]
 
               max-w-[850px]
 
               font-serif
-              text-[40px]
+              text-[34px]
               font-medium
               leading-[1.04]
               tracking-[-0.025em]
 
               text-[#063F32]
 
-              sm:text-[49px]
-              lg:text-[57px]
-              xl:text-[62px]
+              sm:text-[42px]
+              lg:text-[48px]
+              xl:text-[52px]
             "
             style={{
               fontFamily:
@@ -219,7 +219,7 @@ export default function CSRHero() {
 
           <p
             className="
-              mt-[21px]
+              mt-[5px]
               text-[22px]
               font-medium
               leading-[1.2]
@@ -237,7 +237,7 @@ export default function CSRHero() {
 
           <div
             className="
-              mt-[21px]
+              mt-[10px]
               flex
               max-w-[610px]
               items-center
@@ -278,7 +278,7 @@ export default function CSRHero() {
 
           <p
             className="
-              mt-[21px]
+              mt-[6px]
 
               max-w-[620px]
 
@@ -304,10 +304,10 @@ export default function CSRHero() {
 
           <div
             className="
-              mt-[28px]
+              mt-[16px]
               flex
               flex-col
-              gap-[14px]
+              gap-[10px]
 
               sm:flex-row
               sm:flex-wrap
@@ -319,7 +319,7 @@ export default function CSRHero() {
                 group
 
                 inline-flex
-                h-[60px]
+                h-[52px]
                 w-full
 
                 items-center
@@ -329,7 +329,7 @@ export default function CSRHero() {
 
                 bg-[#004A39]
 
-                px-[27px]
+                px-[22px]
 
                 text-[16px]
                 font-bold
@@ -343,7 +343,7 @@ export default function CSRHero() {
                 hover:bg-[#003D30]
 
                 sm:w-auto
-                sm:min-w-[330px]
+                sm:min-w-[300px]
               "
             >
               Discuss a CSR Partnership
@@ -367,7 +367,7 @@ export default function CSRHero() {
                 group
 
                 inline-flex
-                h-[60px]
+                h-[52px]
                 w-full
 
                 items-center
@@ -380,7 +380,7 @@ export default function CSRHero() {
 
                 bg-[#FFFAF2]/90
 
-                px-[27px]
+                px-[22px]
 
                 text-[16px]
                 font-bold
@@ -389,7 +389,7 @@ export default function CSRHero() {
                 text-[#A76D1F]
 
                 sm:w-auto
-                sm:min-w-[355px]
+                sm:min-w-[325px]
               "
             >
               Request Organisation Profile
@@ -413,35 +413,34 @@ export default function CSRHero() {
 
           <div
             className="
-              mt-[27px]
+              mt-[14px]
 
               grid
-              max-w-[745px]
+              w-full
+              max-w-[920px]
               grid-cols-1
+
+              px-[12px]
 
               sm:grid-cols-2
 
-              xl:grid-cols-4
+              lg:grid-cols-4
             "
           >
-            {highlights.map(([icon, label], index) => (
+            {highlights.map(([icon, label]) => (
               <div
                 key={label}
-                className={`
+                className="
                   flex
                   min-h-[54px]
                   items-center
+                  justify-start
 
-                  gap-[11px]
+                  gap-[10px]
 
-                  px-[13px]
+                  px-[18px]
 
-                  ${
-                    index
-                      ? "xl:border-l xl:border-[#D9C8AF]"
-                      : ""
-                  }
-                `}
+                "
               >
                 <span
                   className="
@@ -490,7 +489,7 @@ export default function CSRHero() {
         <div
           className="
             relative
-            h-[430px]
+            h-[340px]
             w-full
 
             bg-cover
