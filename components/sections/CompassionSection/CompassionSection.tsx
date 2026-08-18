@@ -208,11 +208,11 @@ export default function CompassionSection() {
         <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
           <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-0 lg:py-8">
             {/* Brand row */}
-            <div className="mb-3 flex items-end gap-3">
-              <div className="flex h-11 w-11 items-center justify-center text-[#956A32]">
+            <div className="mb-3 flex flex-wrap items-end gap-2 sm:gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center text-[#956A32]">
                 <LotusIcon className="h-9 w-9" />
               </div>
-              <span className="pb-0.5 text-[16px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
+              <span className="pb-0.5 text-[16px] font-semibold uppercase tracking-[0.12em] text-[#7F5A2E] sm:tracking-[0.28em]">
                 CREMATION & LAST RITES SUPPORT
               </span>
             </div>
