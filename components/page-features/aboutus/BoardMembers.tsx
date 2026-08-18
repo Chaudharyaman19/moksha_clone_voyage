@@ -4,26 +4,30 @@ const boardMembers = [
   {
     name: "Madhukar Reddy Dasari",
     role: "Namo Gange Trust Leadership",
-    description: "Supports governance, finance and operational oversight for the mission.",
-    image: "/assets/about-optimized/madhukar-reddy-dasari.webp"
+    description:
+      "Supports governance, finance and operational oversight for the mission.",
+    image: "/assets/about-optimized/madhukar-reddy-dasari.webp",
   },
   {
     name: "Sandeep Singh",
     role: "Technology & Data Support",
-    description: "Supports technology, data security and platform infrastructure.",
-    image: "/assets/about-optimized/sandeep-singh.webp"
+    description:
+      "Supports technology, data security and platform infrastructure.",
+    image: "/assets/about-optimized/sandeep-singh.webp",
   },
   {
     name: "Vijay Sharma",
     role: "Operations Coordination",
-    description: "Supports on-ground coordination, field execution and case response.",
-    image: "/assets/vijay_sharma.jpg"
+    description:
+      "Supports on-ground coordination, field execution and case response.",
+    image: "/assets/vijay_sharma.jpg",
   },
   {
     name: "Srujana Paid",
     role: "Partnerships & Outreach",
-    description: "Supports partnerships, outreach and progressive mission expansion.",
-    image: "/assets/about-optimized/srujana-paid.webp"
+    description:
+      "Supports partnerships, outreach and progressive mission expansion.",
+    image: "/assets/about-optimized/srujana-paid.webp",
   },
 ];
 
@@ -35,22 +39,27 @@ export default function BoardMembers() {
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-            <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+
+            <span className="text-[16px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Leadership & Governance
             </span>
+
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
-          <h2 
+
+          <h2
             className="text-[32px] font-normal leading-tight text-[#2C1810] sm:text-[40px] md:text-[46px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Mission Leadership
           </h2>
-          
+
           {/* Elegant Diya Flourish */}
           <div className="mt-2 flex items-center gap-3">
             <span className="h-[2px] w-16 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
+
             <span className="h-2.5 w-2.5 rotate-45 border border-[#8B6A3E] bg-[#C9A574] shadow-[0_0_8px_rgba(201,165,116,0.6)]" />
+
             <span className="h-[2px] w-16 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
         </header>
@@ -58,9 +67,10 @@ export default function BoardMembers() {
         {/* Board Members Marquee Container */}
         <div className="mx-auto mt-3 w-full max-w-[1344px]">
           <div className="relative overflow-hidden rounded-[24px] border border-[#E9DDCD] bg-[#FDFAF7] shadow-sm">
-            
+
             {/* Subtle fade edges inside the rounded container */}
             <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-12 bg-gradient-to-r from-[#FDFAF7] to-transparent md:w-20" />
+
             <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-12 bg-gradient-to-l from-[#FDFAF7] to-transparent md:w-20" />
 
             <div className="overflow-hidden py-8">
@@ -88,13 +98,18 @@ export default function BoardMembers() {
 
                     {/* Text Content */}
                     <div className="flex flex-col items-center">
-                      <h3 className="font-sans text-[15px] font-bold text-[#0D3823] md:text-[17px]">
+                      <h3 className="font-sans text-[16px] font-bold text-[#0D3823] md:text-[17px]">
                         {member.name}
                       </h3>
 
-                      <p className="mt-2 text-[14px] leading-[1.4] text-[#333333] md:text-[15px]">
-                        <span className="font-medium block">{member.role}</span>
-                        <span className="mt-1 block text-[14px] text-[#666666] md:text-[15px]">{member.description}</span>
+                      <p className="mt-2 text-[16px] leading-[1.4] text-[#333333] md:text-[16px]">
+                        <span className="block font-medium">
+                          {member.role}
+                        </span>
+
+                        <span className="mt-1 block text-[16px] text-[#666666] md:text-[16px]">
+                          {member.description}
+                        </span>
                       </p>
                     </div>
                   </div>
