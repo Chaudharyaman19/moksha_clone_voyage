@@ -13,6 +13,7 @@ import Ourstory from "./Ourstory";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import HeartOfMoksha from "./HeartOfMoksha";
 import Responsiblesewa from "./Responsiblesewa";
+import AboutFaq from "./AboutFaq";
 
 export default function About() {
   return (
@@ -32,6 +33,7 @@ export default function About() {
         <Ourstory />
         <AboutNamoGangeTrust />
         <Responsiblesewa />
+        <AboutFaq />
         <HeartOfMoksha />
       </main>
 
