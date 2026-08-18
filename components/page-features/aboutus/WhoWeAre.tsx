@@ -75,7 +75,7 @@ export default function WhoWeAre() {
           </article>
         </div>
 
-        <div className="absolute left-[6.4%] top-[87.3%] flex w-[35.4%] items-center text-[#34493f]">
+        <div className="absolute left-[6.4%] top-[89%] flex w-[35.4%] items-center text-[#34493f]">
           {values.map(({ title, caption, icon: Icon }, index) => (
             <div key={title} className={`flex flex-1 items-center gap-[8%] px-[2.5%] ${index ? "border-l border-[#d2bd97]" : ""}`}>
               <Icon className="h-auto w-[25%] shrink-0 text-[#bd862a]" />
