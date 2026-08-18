@@ -18,7 +18,7 @@ import Supportthemission from "./Supportthemission";
 
 export default function About() {
   return (
-    <div className="overflow-x-clip bg-[#FBF8F3] text-[#2C1810]">
+    <div className="overflow-x-clip bg-[#FBF8F3] font-normal text-[#2C1810] [&_.font-black]:font-normal [&_.font-bold]:font-normal [&_.font-extrabold]:font-normal [&_.font-medium]:font-normal [&_.font-semibold]:font-normal [&_b]:font-normal [&_strong]:font-normal">
       <Topbar />
       <Navbar />
 
