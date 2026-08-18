@@ -344,7 +344,7 @@ export default function SupportTheMission() {
             "
             style={{
               backgroundImage:
-                "url('/assets/about/our-story/ghat-background.png')",
+                "url('/assets/about/our-story/arthi.jpeg')",
               backgroundSize: "100% 100%",
               backgroundPosition: "right center",
             }}
