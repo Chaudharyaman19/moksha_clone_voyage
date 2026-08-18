@@ -3,10 +3,14 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
 import DonateVolunteerHighlight from "@/components/sections/DonateVolunteerHighlight/DonateVolunteerHighlight";
-import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
+import OurSewa from "@/components/sections/OurSewa/HowHelp";
+import Howwehelp from "@/components/sections/Who We Help/WhoWeHelp";
+import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
+import OurHumanitarianCommitment from "@/components/sections/OurHumanitarianCommitment/OurHumanitarianCommitment";
 import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
 import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
+import HowSewaWorks from "@/components/sections/HowSewaWorks/HowSewaWorks";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
 import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
@@ -14,6 +18,8 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import FAQ from "@/components/sections/FAQ/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import SewaStories from "@/components/sections/SewaStories/SewaStories";
+import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/WhyYourSupportMatters";
 
 export const metadata = createPageMetadata("/");
 
@@ -25,14 +31,25 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
+          
+        <Howwehelp />
+          <OurSewa />
+          
         {/* Namo Gange Section */}
         {/* <AboutNamoGange /> */}
-
-        <CompassionSection />
-        <DonateVolunteerHighlight />
-        <HowWeHelp />
+{/* 
+     
+        {/* <DonateVolunteerHighlight /> */}
+    
+        <PracticalSewaSupport />
+        <OurHumanitarianCommitment />
+            <HowSewaWorks />
+               <CompassionSection /> 
+        <SewaStories/>
+        <WhyYourSupportMatters />
         <Serving />
         <HowItWorks />
+    
         <SacredJourney />
         <WhyFamiliesTrust />
         <VoicesOfGratitude />

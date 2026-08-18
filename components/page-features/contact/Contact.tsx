@@ -25,8 +25,9 @@ import { ApiRequestError } from "@/lib/api";
 
 /* ---------- one source of truth so numbers never mismatch ---------- */
 const CONTACT = {
-  helpline: { label: "+91 92201 47229", href: "tel:+919220147229" },
-  altPhone: { label: "+91 95682 59784", href: "tel:+919568259784" },
+  helpline: {
+    label: "+91 92201 47229, href: "tel: +919220147229" },
+  altPhone: { label: "+91 92201 47229", href: "tel:+ 919568259784" },
   email: { label: "info@mokshasewa.org", href: "mailto:info@mokshasewa.org" },
 };
 
@@ -374,9 +375,8 @@ function Contact() {
                         <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/24 via-transparent to-transparent" />
 
                         <span
-                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-md ${
-                            isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
-                          }`}
+                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-md ${isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
+                            }`}
                         >
                           {isMain ? "Head Office" : "Branch Office"}
                         </span>
@@ -387,11 +387,10 @@ function Contact() {
 
                         <div className="flex items-start gap-3">
                           <span
-                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
-                              isMain
-                                ? "border-[#F3C8A5] bg-[#FFF7F0] text-[#E56A18]"
-                                : "border-[#CADDBB] bg-[#F4F9EF] text-[#567F2C]"
-                            }`}
+                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isMain
+                              ? "border-[#F3C8A5] bg-[#FFF7F0] text-[#E56A18]"
+                              : "border-[#CADDBB] bg-[#F4F9EF] text-[#567F2C]"
+                              }`}
                           >
                             <FaMapMarkerAlt className="h-4 w-4" />
                           </span>
@@ -401,9 +400,8 @@ function Contact() {
                               {location.orgName}
                             </h3>
                             <p
-                              className={`mt-1 text-[10px] font-bold uppercase tracking-[0.12em] ${
-                                isMain ? "text-[#C96822]" : "text-[#567F2C]"
-                              }`}
+                              className={`mt-1 text-[10px] font-bold uppercase tracking-[0.12em] ${isMain ? "text-[#C96822]" : "text-[#567F2C]"
+                                }`}
                             >
                               {location.region}, {location.country}
                             </p>
@@ -418,9 +416,8 @@ function Contact() {
                           <div className="grid grid-cols-[1fr_auto] overflow-hidden rounded-xl border border-[#E9DDCE] bg-[#FCFAF7]">
                             <div className="flex min-w-0 items-center gap-2 px-3 py-2.5">
                               <FaClock
-                                className={`h-4 w-4 shrink-0 ${
-                                  isMain ? "text-[#E56A18]" : "text-[#567F2C]"
-                                }`}
+                                className={`h-4 w-4 shrink-0 ${isMain ? "text-[#E56A18]" : "text-[#567F2C]"
+                                  }`}
                               />
                               <span className="truncate text-[12px] font-medium text-[#4F4036]">
                                 {location.hours}
@@ -439,11 +436,10 @@ function Contact() {
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
-                              isMain
-                                ? "border-[#E56A18] text-[#C95C15] hover:bg-[#E56A18] hover:text-white"
-                                : "border-[#6C913E] text-[#567F2C] hover:bg-[#567F2C] hover:text-white"
-                            }`}
+                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${isMain
+                              ? "border-[#E56A18] text-[#C95C15] hover:bg-[#E56A18] hover:text-white"
+                              : "border-[#6C913E] text-[#567F2C] hover:bg-[#567F2C] hover:text-white"
+                              }`}
                           >
                             <FaDirections className="h-3.5 w-3.5" />
                             Get directions
@@ -588,11 +584,10 @@ function Contact() {
                   {submitStatus.type && (
                     <div
                       role="status"
-                      className={`rounded-xl border p-3 text-[16px] font-medium ${
-                        submitStatus.type === "success"
-                          ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
-                          : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
-                      }`}
+                      className={`rounded-xl border p-3 text-[16px] font-medium ${submitStatus.type === "success"
+                        ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
+                        : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
+                        }`}
                     >
                       {submitStatus.message}
                     </div>
@@ -750,7 +745,7 @@ function Contact() {
             </div>
 
             {/* SMALL CLOSING STRIP */}
-          
+
           </div>
         </section>
       </main>
