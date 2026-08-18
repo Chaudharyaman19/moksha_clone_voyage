@@ -495,7 +495,7 @@ export default function HowWeCanHelp() {
             className="
               mt-[1px]
               font-serif
-              text-[34px]
+              text-[30px]
               font-semibold
               leading-[0.98]
               text-[#21130D]
@@ -534,8 +534,10 @@ export default function HowWeCanHelp() {
               className="
                 relative
                 flex
-                h-[565px]
+                h-auto
+                min-h-[565px]
                 flex-col
+                lg:h-[565px]
                 overflow-hidden
                 rounded-[19px]
                 border
@@ -767,7 +769,7 @@ export default function HowWeCanHelp() {
           "
         >
           <div className="flex min-h-[82px] flex-col lg:flex-row lg:items-center">
-            <div className="flex flex-1 items-center gap-[14px] px-[28px] py-[11px]">
+            <div className="flex flex-1 items-center gap-[14px] px-[20px] py-[11px] sm:px-[28px]">
               <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full border-2 border-white text-white">
                 <CustomIcon
                   name="PhoneIcon"
@@ -795,11 +797,12 @@ export default function HowWeCanHelp() {
                 gap-[12px]
                 border-t
                 border-white/20
-                px-[28px]
+                px-[20px]
                 py-[11px]
                 sm:flex-row
                 sm:items-center
                 sm:justify-between
+                sm:px-[28px]
                 lg:border-t-0
               "
             >

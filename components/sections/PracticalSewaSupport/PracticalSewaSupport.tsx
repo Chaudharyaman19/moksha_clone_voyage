@@ -458,7 +458,7 @@ export default function HowWeCanHelp() {
           sizes="540px"
           className="
             object-cover
-            object-right
+            object-left
           "
         />
 
