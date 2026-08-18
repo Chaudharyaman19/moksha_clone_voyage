@@ -239,25 +239,29 @@ function RefundPolicyCard({
       )}
 
       <div className="flex flex-1 flex-col p-4">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1F3D2B] shadow-[0_6px_14px_rgba(31,61,43,0.25)]">
             <Icon size={19} strokeWidth={1.5} className="text-[#F2DCA2]" />
           </div>
 
-          {!isEven && (
-            <span className="rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-0.5 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
-              {String(card.number).padStart(2, "0")}
-            </span>
-          )}
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-serif text-[17px] font-bold leading-[1.35] text-[#1F3D2B]">
+                {card.title}
+              </h3>
+
+              {!isEven && (
+                <span className="shrink-0 rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-0.5 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
+                  {String(card.number).padStart(2, "0")}
+                </span>
+              )}
+            </div>
+
+            <p className="mt-1 text-[14px] leading-[1.55] text-[#72694A]">
+              {card.tagline}
+            </p>
+          </div>
         </div>
-
-        <h3 className="mt-3 font-serif text-[17px] font-bold leading-[1.35] text-[#1F3D2B]">
-          {card.title}
-        </h3>
-
-        <p className="mt-1 text-[14px] leading-[1.55] text-[#72694A]">
-          {card.tagline}
-        </p>
 
         <div className="mt-3 flex items-center gap-2" aria-hidden="true">
           <span className="h-px w-full bg-gradient-to-r from-[#C9A227]/60 via-[#C9A227]/25 to-transparent" />
