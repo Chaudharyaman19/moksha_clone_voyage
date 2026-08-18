@@ -77,8 +77,8 @@ const MokshaSewaIntro: React.FC = () => {
             </span>
           </h1>
 
-          {/* Gold lotus / divider — lotus + border absolute on the left, description aligned with title on lg */}
-          <div className="relative mt-7 flex lg:-ml-12">
+          {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}
+          <div className="relative mt-7 flex">
             {/* Border on the left of the text */}
             <div className="absolute left-12 top-0 h-full w-px bg-[#b9a17b]" />
 
@@ -87,8 +87,8 @@ const MokshaSewaIntro: React.FC = () => {
               <LotusIcon />
             </div>
 
-            {/* Description */}
-            <div className="ml-5 max-w-[505px] text-[16px] leading-[1.55] text-[#293436] lg:ml-0">
+            {/* Description — starts after the border */}
+            <div className="max-w-[505px] pl-14 text-[16px] leading-[1.55] text-[#293436]">
               <p>
                 Moksha Sewa is a humanitarian initiative created to stand
                 beside people during one of life’s most difficult and
