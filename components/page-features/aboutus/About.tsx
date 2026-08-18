@@ -8,6 +8,7 @@ import AboutMokshaSewa from "./AboutMokshaSewa";
 import Howwesupport from "./Howwesupport";
 import Whyweexist from "./Whyweexist";
 import BehindMission from "./BehindMission";
+import Ourstory from "./Ourstory";
 import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 
 export default function About() {
@@ -24,6 +25,7 @@ export default function About() {
         <Howwesupport />
         <Whyweexist />
         <BehindMission />
+        <Ourstory />
         <AboutNamoGangeTrust />
       </main>
 
