@@ -10,6 +10,10 @@ import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
 import AboutBanner from "@/components/sections/AboutBanner/AboutBanner";
 import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
+// import AboutHeroSlider from "./AboutHeroSlider";
+import WhoWeAre from "./WhoWeAre";
+import Howwesupport from "./Howwesupport";
+import Whyweexist from "./Whyweexist";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -281,10 +285,13 @@ export default function About() {
         {/* ============ ABOUT MOKSHA SEWA ============ */}
 
         <AboutMokshaSewa />
+        <Howwesupport />
+        <Whyweexist/>
 
         {/* ============ NAMO GANGE TRUST ============ */}
 
         <AboutNamoGangeTrust />
+
 
         {/* ============ FOUNDER'S VISION ============ */}
 
