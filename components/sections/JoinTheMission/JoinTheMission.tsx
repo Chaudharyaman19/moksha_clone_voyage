@@ -395,7 +395,7 @@ export default function JoinTheMission() {
             <span
               className="
                 text-[16px]
-                font-bold
+                font-semibold
                 uppercase
                 tracking-[0.055em]
                 text-[#9B6B25]
@@ -661,7 +661,7 @@ export default function JoinTheMission() {
                     px-[10px]
                     text-center
                     text-[16px]
-                    font-bold
+                    font-semibold
                     uppercase
                     leading-[1.15]
                     text-white

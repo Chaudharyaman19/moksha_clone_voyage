@@ -43,7 +43,7 @@ export default function OneFinalActOfHumanity() {
                   />
                 </div>
 
-                <p className="mt-1 font-serif text-[16px] font-bold uppercase tracking-[0.02em] text-[#2D3D35]">
+                <p className="mt-1 font-serif text-[16px] font-semibold uppercase tracking-[0.02em] text-[#2D3D35]">
                   Moksha Sewa
                 </p>
                 <p className="mt-0.5 text-[16px] text-[#A27B38]">
@@ -64,14 +64,14 @@ export default function OneFinalActOfHumanity() {
                     className="object-contain"
                   />
                 </div>
-                <p className="mt-0.5 text-[16px] font-bold uppercase tracking-[0.02em] text-[#1B3A63]">
+                <p className="mt-0.5 text-[16px] font-semibold uppercase tracking-[0.02em] text-[#1B3A63]">
                   Namo Gange Trust
                 </p>
               </div>
             </div>
 
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#A87327]">
+            <div className="flex items-center gap-3 text-[16px] font-semibold uppercase tracking-[0.1em] text-[#A87327]">
               <span className="h-px w-10 bg-[#C99A4B]" />
               <span className="h-1 w-1 rounded-full bg-[#B98231]" />
               One Final Act of Humanity
@@ -102,7 +102,7 @@ export default function OneFinalActOfHumanity() {
             <div className="mt-5 flex flex-wrap gap-4">
               <a
                 href="/request-help"
-                className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[#0B4B3C] px-6 text-[16px] font-bold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(11,75,60,0.18)] transition hover:bg-[#083E32]"
+                className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[#0B4B3C] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(11,75,60,0.18)] transition hover:bg-[#083E32]"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-[#D6A13E]" />
                 Request Sewa Help
@@ -111,7 +111,7 @@ export default function OneFinalActOfHumanity() {
 
               <a
                 href="/donation"
-                className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[linear-gradient(180deg,#D69D31_0%,#B47B1F_100%)] px-6 text-[16px] font-bold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(185,131,46,0.20)] transition hover:brightness-105"
+                className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[linear-gradient(180deg,#D69D31_0%,#B47B1F_100%)] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(185,131,46,0.20)] transition hover:brightness-105"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-white" />
                 Support This Mission

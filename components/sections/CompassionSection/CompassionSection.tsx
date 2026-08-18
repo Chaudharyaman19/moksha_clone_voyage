@@ -160,27 +160,27 @@ export default function CompassionSection() {
   const stats = sevaStats;
 
   const features = [
-        {
-          title: "Ambulance Support",
-          text: "Transport with respect",
-          icon: AmbulanceIcon,
-        },
-        {
-          title: "Ritual Essentials",
-          text: "Wood, cloth, flowers and samagri",
-          icon: PackageIcon,
-        },
-        {
-          title: "Priest Guidance",
-          text: "Final rites with proper guidance",
-          icon: BadgeCheckIcon,
-        },
-        {
-          title: "Volunteer Support",
-          text: "Help at hospital, home and ghat",
-          icon: UsersIcon,
-        },
-      ];
+    {
+      title: "Ambulance Support",
+      text: "Transport with respect",
+      icon: AmbulanceIcon,
+    },
+    {
+      title: "Ritual Essentials",
+      text: "Wood, cloth, flowers and samagri",
+      icon: PackageIcon,
+    },
+    {
+      title: "Priest Guidance",
+      text: "Final rites with proper guidance",
+      icon: BadgeCheckIcon,
+    },
+    {
+      title: "Volunteer Support",
+      text: "Help at hospital, home and ghat",
+      icon: UsersIcon,
+    },
+  ];
 
   return (
     <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
@@ -295,7 +295,7 @@ export default function CompassionSection() {
                 href="/request-help"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
                 Request Sewa Support
@@ -305,7 +305,7 @@ export default function CompassionSection() {
                 href="tel:+919810247319"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <PhoneIcon className="h-5 w-5" />
                 Call for Help

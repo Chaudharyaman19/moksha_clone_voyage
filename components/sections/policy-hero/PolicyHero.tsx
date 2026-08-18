@@ -315,9 +315,9 @@ const PolicyHero = ({
 
   return (
     <div ref={rootRef}>
-    <section
-      ref={sectionRef}
-      className="
+      <section
+        ref={sectionRef}
+        className="
         relative
         w-full
         min-h-[735px]
@@ -327,14 +327,14 @@ const PolicyHero = ({
         md:min-h-[570px]
         lg:min-h-[550px]
       "
-    >
-      {/* =====================================================
+      >
+        {/* =====================================================
           HERO IMAGE
       ====================================================== */}
 
-      <div
-        ref={imageWrapperRef}
-        className="
+        <div
+          ref={imageWrapperRef}
+          className="
           absolute
           inset-y-0
           left-0
@@ -342,23 +342,23 @@ const PolicyHero = ({
           z-10
           overflow-hidden
         "
-      >
-        <Image
-          src={imageSrc}
-          alt={imageAlt ?? title}
-          fill
-          priority
-          sizes="100vw"
-          className="
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? title}
+            fill
+            priority
+            sizes="100vw"
+            className="
             object-cover
             object-center
           "
-          ref={imageRef}
-        />
+            ref={imageRef}
+          />
 
-        {/* Soft image overlay */}
-        <div
-          className="
+          {/* Soft image overlay */}
+          <div
+            className="
             absolute
             inset-0
             bg-gradient-to-r
@@ -367,14 +367,14 @@ const PolicyHero = ({
             to-black/5
             pointer-events-none
           "
-        />
-      </div>
+          />
+        </div>
 
-      {/* =====================================================
+        {/* =====================================================
           LEFT CONTENT
       ====================================================== */}
 
-      {/* Smooth content-to-image blend */}
+        {/* Smooth content-to-image blend */}
         <div
           className="
             pointer-events-none
@@ -424,8 +424,8 @@ const PolicyHero = ({
             lg:min-h-[550px]
           "
         >
-        <div
-          className="
+          <div
+            className="
             relative
             h-full
             min-h-[735px]
@@ -436,13 +436,13 @@ const PolicyHero = ({
             md:min-h-[570px]
             lg:min-h-[550px]
           "
-        >
-          {/* =================================================
+          >
+            {/* =================================================
               CONTENT
           ================================================== */}
 
-          <div
-            className="
+            <div
+              className="
               relative
               z-20
               max-w-[680px]
@@ -453,12 +453,12 @@ const PolicyHero = ({
               lg:pt-24
               lg:px-0
             "
-          >
-            {/* Heading */}
+            >
+              {/* Heading */}
 
-            <h1
-              ref={titleRef}
-              className="
+              <h1
+                ref={titleRef}
+                className="
                 m-0
                 font-serif
                 text-[42px]
@@ -471,58 +471,58 @@ const PolicyHero = ({
                 md:text-[52px]
                 lg:text-[56px]
               "
-            >
-              {title}
-            </h1>
+              >
+                {title}
+              </h1>
 
-            {/* =================================================
+              {/* =================================================
                 DECORATIVE LINE
             ================================================== */}
 
-            <div
-              ref={decorationRef}
-              className="
+              <div
+                ref={decorationRef}
+                className="
                 mt-2.5
                 flex
                 items-center
               "
-            >
-              <Image
-                src="/assets/privacy-policy/title_decoration.webp"
-                alt=""
-                width={200}
-                height={40}
-                className="h-8 w-auto object-contain sm:h-10"
-              />
-            </div>
+              >
+                <Image
+                  src="/assets/privacy-policy/title_decoration.webp"
+                  alt=""
+                  width={200}
+                  height={40}
+                  className="h-8 w-auto object-contain sm:h-10"
+                />
+              </div>
 
-            {/* =================================================
+              {/* =================================================
                 DESCRIPTION
             ================================================== */}
 
-            <div
-              ref={descriptionRef}
-              className="
+              <div
+                ref={descriptionRef}
+                className="
                 mt-5
                 max-w-[490px]
                 text-[#2C1810]
               "
-            >
-              <p
-                className="
+              >
+                <p
+                  className="
                   mb-3
                   text-[20px]
-                  font-bold
+                  font-semibold
                   leading-relaxed
                   text-[#D95A06]
                   sm:text-[20px]
                 "
-              >
-                {subtitle}
-              </p>
+                >
+                  {subtitle}
+                </p>
 
-              <p
-                className="
+                <p
+                  className="
                   max-w-[480px]
                   text-[16px]
                   font-semibold
@@ -531,23 +531,23 @@ const PolicyHero = ({
                   drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]
                   sm:text-[16px]
                 "
-              >
-                {description}
-              </p>
+                >
+                  {description}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    {showInfoBanner && (
-      /* =====================================================
-          INFORMATION BANNER
-      ====================================================== */
+      {showInfoBanner && (
+        /* =====================================================
+            INFORMATION BANNER
+        ====================================================== */
 
-      <div
-        ref={infoBannerRef}
-        className="
+        <div
+          ref={infoBannerRef}
+          className="
           w-full
           border-b
           border-[#73532F]
@@ -558,9 +558,9 @@ const PolicyHero = ({
           py-2
           shadow-md
         "
-      >
-        <div
-          className="
+        >
+          <div
+            className="
             mx-auto
             grid
             max-w-[1600px]
@@ -571,35 +571,33 @@ const PolicyHero = ({
             sm:pr-6
             sm:pl-0
           "
-        >
-          {policyMeta.map((item, index) => {
-            const Icon = item.icon;
+          >
+            {policyMeta.map((item, index) => {
+              const Icon = item.icon;
 
-            return (
-              <div
-                key={item.label}
-                ref={addInfoItem}
-                className={`
+              return (
+                <div
+                  key={item.label}
+                  ref={addInfoItem}
+                  className={`
                   flex
                   items-center
                   justify-center
                   gap-3
                   py-0.5
                   ${index === 0 ? "pr-4" : "px-4"}
-                  ${
-                    index > 0
+                  ${index > 0
                       ? "md:border-l md:border-white/20"
                       : ""
-                  }
-                  ${
-                    index > 1
+                    }
+                  ${index > 1
                       ? "border-t border-white/20 md:border-t-0"
                       : ""
-                  }
+                    }
                 `}
-              >
-                <div
-                  className="
+                >
+                  <div
+                    className="
                     flex
                     h-8
                     w-8
@@ -611,17 +609,17 @@ const PolicyHero = ({
                     text-white
                     shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]
                   "
-                >
-                  <Icon
-                    size={16}
-                    strokeWidth={1.7}
-                    className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
-                  />
-                </div>
+                  >
+                    <Icon
+                      size={16}
+                      strokeWidth={1.7}
+                      className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
+                    />
+                  </div>
 
-                <div className="min-w-0 text-left">
-                  <p
-                    className="
+                  <div className="min-w-0 text-left">
+                    <p
+                      className="
                       max-w-[150px]
                       text-[16px]
                       font-medium
@@ -631,12 +629,12 @@ const PolicyHero = ({
                       lg:max-w-none
                       lg:text-[16px]
                     "
-                  >
-                    {item.label}
-                  </p>
+                    >
+                      {item.label}
+                    </p>
 
-                  <p
-                    className="
+                    <p
+                      className="
                       mt-1
                       text-[17px]
                       font-medium
@@ -645,16 +643,16 @@ const PolicyHero = ({
                       drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
                       lg:text-[19px]
                     "
-                  >
-                    {item.value}
-                  </p>
+                    >
+                      {item.value}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    )}
+      )}
     </div>
   );
 };

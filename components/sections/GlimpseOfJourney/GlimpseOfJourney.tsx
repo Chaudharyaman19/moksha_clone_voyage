@@ -23,21 +23,21 @@ export default function GlimpseOfJourney() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8B6A3E]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
-        
+
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-2 inline-flex items-center space-x-3">
             <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
-            <span className="text-[16px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+            <span className="text-[16px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Sewa Moments
             </span>
             <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
           </div>
-          <h2 
+          <h2
             className="text-[24px] font-normal leading-tight text-[#2C1810] sm:text-[28px] lg:text-[30px]"
           >
             Real Moments of Help and Antim Sewa
           </h2>
-          
+
           {/* Diya Flourish */}
           <div className="mt-2 flex items-center gap-2">
             <span className="h-[2px] w-12 bg-[#8B6A3E]" />
@@ -67,7 +67,7 @@ export default function GlimpseOfJourney() {
                   quality={90}
                   className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                 />
-                
+
                 {/* Stylish Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -84,7 +84,7 @@ export default function GlimpseOfJourney() {
           <button
             type="button"
             onClick={() => window.open("/mokshagallery", "_blank", "noopener,noreferrer")}
-            className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+            className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             <span>View Sewa Gallery</span>
           </button>

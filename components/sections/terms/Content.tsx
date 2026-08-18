@@ -155,7 +155,7 @@ function TermsHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#221512]">
+    <h2 className="font-serif text-[26px] font-semibold leading-tight text-[#221512]">
       {number}. {title}
     </h2>
   );
@@ -547,7 +547,7 @@ export default function TermsAndConditions() {
             {/* Header */}
 
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
-              <h2 className="text-[16px] font-bold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+              <h2 className="text-[16px] font-semibold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h2>
             </div>
@@ -567,11 +567,10 @@ export default function TermsAndConditions() {
                         activeIndex === index ? "location" : undefined
                       }
                       onClick={() => handleNavClick(index)}
-                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${
-                        activeIndex === index
+                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
-                      }`}
+                        }`}
                     >
                       <span className="w-[16px] shrink-0 font-medium">
                         {index + 1}.
@@ -599,7 +598,7 @@ export default function TermsAndConditions() {
                 />
               </div>
 
-              <h3 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Our Commitment
               </h3>
             </div>
@@ -647,11 +646,10 @@ export default function TermsAndConditions() {
                   {/* Content */}
 
                   <div
-                    className={`border-b border-[#E3D5B8] py-4 ${
-                      section.number === 10
+                    className={`border-b border-[#E3D5B8] py-4 ${section.number === 10
                         ? "border-b-0"
                         : ""
-                    }`}
+                      }`}
                   >
                     <TermsHeading
                       number={section.number}
@@ -706,7 +704,7 @@ export default function TermsAndConditions() {
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h2 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Questions About These Terms?
               </h2>
 
@@ -727,7 +725,7 @@ export default function TermsAndConditions() {
 
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-bold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-semibold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             Contact Us
 

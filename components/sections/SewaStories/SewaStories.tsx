@@ -380,7 +380,7 @@ export default function SewaStories() {
             <span
               className="
                 text-[16px]
-                font-bold
+                font-semibold
                 uppercase
                 tracking-[0.055em]
                 text-[#9C6D2C]
@@ -580,7 +580,7 @@ export default function SewaStories() {
                     <h3
                       className="
                         text-[16px]
-                        font-bold
+                        font-semibold
                         uppercase
                         leading-[1.18]
                         text-[#285E42]
@@ -784,7 +784,7 @@ export default function SewaStories() {
               bg-[#005039]
               px-[20px]
               text-[16px]
-              font-bold
+              font-semibold
               uppercase
               leading-none
               text-white
