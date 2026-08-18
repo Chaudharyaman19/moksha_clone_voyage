@@ -1,6 +1,8 @@
 import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
+import PrivacyHero from "@/components/sections/policy-hero/PolicyHero";
+import PrivacyPolicy from "@/components/sections/prlvacy-policy/Content";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
@@ -12,6 +14,13 @@ export default function PrivacyPolicyPage() {
       <JsonLd data={breadcrumbJsonLd("/privacy-policy")} />
       <Topbar />
       <Navbar />
+      <PrivacyHero
+        title="Privacy Policy"
+        subtitle="Your privacy is important to us."
+        description="This Privacy Policy explains how Moksh Sewa (an initiative of Namo Gange Trust) collects, uses, protects, and shares your personal information when you visit our website or use our services."
+      />
+      <PrivacyPolicy />
+      {/* OLD CONTENT - COMMENTED OUT
       <main className="mx-auto max-w-4xl px-5 pb-16 pt-28">
         <h1 className="font-serif text-[34px] leading-tight sm:text-[44px]">
           Privacy Policy
@@ -55,6 +64,7 @@ export default function PrivacyPolicyPage() {
           info@mokshasewa.org or call +91 9220147229.
         </p>
       </main>
+      */}
       <Footer />
     </div>
   );

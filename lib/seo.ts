@@ -263,6 +263,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "yearly",
   },
   {
+    path: "/refund-policy",
+    label: "Refund Policy",
+    title: "Refund Policy",
+    description:
+      "Read the Moksha Sewa refund policy for donations, payments and transactions, including when refunds may be considered.",
+    ogImage: "/assets/logo-moksha-seva.png",
+    ogImageAlt: "Moksha Sewa refund policy",
+    keywords: ["Moksha Sewa refund policy", "donation refund", "refund policy"],
+    priority: 0.3,
+    changeFrequency: "yearly",
+  },
+  {
     path: "/track",
     label: "Track Request",
     title: "Track Your Moksha Sewa Request",
