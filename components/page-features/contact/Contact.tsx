@@ -375,7 +375,7 @@ function Contact() {
                         <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/24 via-transparent to-transparent" />
 
                         <span
-                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-md ${isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
+                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white shadow-md ${isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
                             }`}
                         >
                           {isMain ? "Head Office" : "Branch Office"}
@@ -400,7 +400,7 @@ function Contact() {
                               {location.orgName}
                             </h3>
                             <p
-                              className={`mt-1 text-[10px] font-bold uppercase tracking-[0.12em] ${isMain ? "text-[#C96822]" : "text-[#567F2C]"
+                              className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${isMain ? "text-[#C96822]" : "text-[#567F2C]"
                                 }`}
                             >
                               {location.region}, {location.country}
@@ -424,7 +424,7 @@ function Contact() {
                               </span>
                             </div>
                             <div className="flex items-center border-l border-[#E9DDCE] px-3 py-2.5">
-                              <span className="whitespace-nowrap text-[11px] font-bold tracking-[0.08em] text-[#7C6249]">
+                              <span className="whitespace-nowrap text-[11px] font-semibold tracking-[0.08em] text-[#7C6249]">
                                 PIN {location.pincode}
                               </span>
                             </div>
@@ -436,7 +436,7 @@ function Contact() {
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${isMain
+                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 ${isMain
                               ? "border-[#E56A18] text-[#C95C15] hover:bg-[#E56A18] hover:text-white"
                               : "border-[#6C913E] text-[#567F2C] hover:bg-[#567F2C] hover:text-white"
                               }`}
@@ -463,7 +463,7 @@ function Contact() {
                 <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#C9A574]/10 blur-2xl" />
 
                 <div className="relative mb-4">
-                  <div className="inline-flex items-center gap-2 text-[16px] font-bold uppercase tracking-[0.14em] text-[#C96822]">
+                  <div className="inline-flex items-center gap-2 text-[16px] font-semibold uppercase tracking-[0.14em] text-[#C96822]">
                     <MdEmail className="h-4 w-4" />
                     Send a message
                   </div>
@@ -596,7 +596,7 @@ function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D76A1D] to-[#F07A24] px-4 text-[13px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(218,105,29,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(218,105,29,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D76A1D] to-[#F07A24] px-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(218,105,29,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(218,105,29,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <>
@@ -620,7 +620,7 @@ function Contact() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C99858] text-white">
                     <FaHeadset className="h-4 w-4" />
                   </span>
-                  <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9B681]">
+                  <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D9B681]">
                     24/7 Emergency Support
                   </p>
                   <a
@@ -642,7 +642,7 @@ function Contact() {
                       <MdEmail className="h-4 w-4" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         Email
                       </span>
                       <span className="mt-0.5 block break-all font-serif text-[14px] text-white/95">
@@ -659,7 +659,7 @@ function Contact() {
                       <FaPhoneAlt className="h-3.5 w-3.5" />
                     </span>
                     <span>
-                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         Alternate line
                       </span>
                       <span className="mt-0.5 block font-serif text-[15px] text-white/95">
@@ -673,7 +673,7 @@ function Contact() {
                       <FaClock className="h-3.5 w-3.5" />
                     </span>
                     <span>
-                      <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-white/55">
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         We are available
                       </span>
                       <span className="mt-0.5 block font-serif text-[15px] text-white/95">
@@ -693,7 +693,7 @@ function Contact() {
                 </div>
 
                 <div className="mt-auto border-t border-white/10 p-4 sm:p-5">
-                  <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/45">
+                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45">
                     Follow us
                   </p>
                   <div className="flex gap-2">
@@ -736,7 +736,7 @@ function Contact() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
+                  className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-semibold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
                 >
                   <FaDirections className="h-3.5 w-3.5" />
                   Open in Maps

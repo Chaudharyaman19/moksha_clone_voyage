@@ -221,7 +221,7 @@ export default function Navbar() {
                   ) : item.name === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                      className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                     >
                       <span className="donate-nav-shine" aria-hidden />
                       <span className="relative z-10">{item.name}</span>
@@ -331,7 +331,7 @@ export default function Navbar() {
                     className="donate-nav-sparkle relative flex w-full items-center space-x-2 overflow-hidden rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-2 text-white shadow-[0_0_18px_rgba(229,169,62,0.38)]"
                   >
                     <span className="donate-nav-shine" aria-hidden />
-                    <span className="relative z-10 text-[16px] font-bold">{item.name}</span>
+                    <span className="relative z-10 text-[16px] font-semibold">{item.name}</span>
                     <FaStar className="donate-star donate-star-one" aria-hidden />
                     <FaStar className="donate-star donate-star-two" aria-hidden />
                   </button>
@@ -380,7 +380,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      
+
     </>
   );
 }

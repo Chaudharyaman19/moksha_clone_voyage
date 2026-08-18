@@ -156,7 +156,7 @@ export default function Footer() {
                 <h2 className="footer-title-glow font-serif text-[23px] font-medium leading-none tracking-[0.02em] text-[#FFF9EF] sm:text-[26px]">
                   MOKSHA SEWA
                 </h2>
-                <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.06em] text-[#E9A22D] sm:text-[11px]">
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.06em] text-[#E9A22D] sm:text-[11px]">
                   {tagline}
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function Footer() {
 
             <Link
               href="/donation"
-              className="donate-nav-sparkle relative mt-3 inline-flex h-[42px] min-w-[154px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[14px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+              className="donate-nav-sparkle relative mt-3 inline-flex h-[42px] min-w-[154px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[14px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
             >
               <span className="donate-nav-shine" aria-hidden />
               <FaDonate className="relative z-10 h-3.5 w-3.5" />
@@ -220,7 +220,7 @@ export default function Footer() {
                 <FaMapMarkerAlt className="mt-1 h-5 w-5 shrink-0 text-[#E8A32E]" />
                 <p>
                   Delhi NCR,
-                
+
                   India
                 </p>
               </div>
@@ -245,7 +245,7 @@ export default function Footer() {
                 <FaRegClock className="mt-1 h-4 w-4 shrink-0 text-[#E8A32E]" />
                 <p>
                   We are available
-                  
+
                   24/7 for you
                 </p>
               </div>
@@ -293,11 +293,10 @@ export default function Footer() {
 
               <button
                 type="submit"
-                className={`relative inline-flex h-[32px] w-full items-center justify-center gap-2 overflow-hidden rounded-lg text-[12px] font-semibold text-white shadow-[0_5px_14px_rgba(0,0,0,0.18)] transition ${
-                  subscribed
+                className={`relative inline-flex h-[32px] w-full items-center justify-center gap-2 overflow-hidden rounded-lg text-[12px] font-semibold text-white shadow-[0_5px_14px_rgba(0,0,0,0.18)] transition ${subscribed
                     ? "bg-emerald-600"
                     : "bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] hover:brightness-110 hover:shadow-[0_0_20px_rgba(229,169,62,0.58)]"
-                }`}
+                  }`}
               >
                 {!subscribed && <span className="donate-nav-shine" aria-hidden />}
                 <span className="relative z-10">{subscribed ? "Submitted" : "Send"}</span>
@@ -360,7 +359,7 @@ interface FooterColumnProps {
 function FooterColumn({ title, children }: FooterColumnProps) {
   return (
     <div className="min-w-0">
-      <h3 className="footer-title-glow text-[13px] font-bold tracking-[0.02em] text-white">
+      <h3 className="footer-title-glow text-[13px] font-semibold tracking-[0.02em] text-white">
         {title}
       </h3>
       <div className="mt-1 h-[2px] w-12 bg-gradient-to-r from-[#E7A32D] to-transparent" />

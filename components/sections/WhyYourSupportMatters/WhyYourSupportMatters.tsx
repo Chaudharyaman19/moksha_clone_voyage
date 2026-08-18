@@ -49,7 +49,7 @@ export default function WhyYourSupportMatters() {
 
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
-                  <span className="text-[16px] font-bold uppercase tracking-[0.09em] text-[#A27B38]">
+                  <span className="text-[16px] font-semibold uppercase tracking-[0.09em] text-[#A27B38]">
                     Why Your Support Matters
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />

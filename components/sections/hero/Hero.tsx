@@ -239,12 +239,12 @@ export default function Hero() {
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
           className={`absolute inset-y-0 overflow-hidden ${isFamilySupportSlide
-              ? "left-0 right-0 md:left-[42%]"
-              : isJourneyPrayerSlide
-                ? "left-0 right-0 md:left-[40%]"
-                : isVolunteerImpactSlide
-                  ? "left-0 right-0 md:left-[36%]"
-                  : `left-0 ${currentIndex === 0 ? "right-0" : "right-0 md:right-[-80px]"}`
+            ? "left-0 right-0 md:left-[42%]"
+            : isJourneyPrayerSlide
+              ? "left-0 right-0 md:left-[40%]"
+              : isVolunteerImpactSlide
+                ? "left-0 right-0 md:left-[36%]"
+                : `left-0 ${currentIndex === 0 ? "right-0" : "right-0 md:right-[-80px]"}`
             }`}
         >
           <div className="absolute inset-0 min-w-full transition-opacity duration-1000 ease-out">
@@ -283,8 +283,8 @@ export default function Hero() {
         {/* Mobile content readability */}
         <div
           className={`pointer-events-none absolute inset-0 md:hidden ${isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
-              ? "bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/88 to-[#fbf5ea]/54"
-              : "bg-gradient-to-b from-[#fbf5ea]/92 via-[#fbf5ea]/68 to-[#fbf5ea]/16"
+            ? "bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/88 to-[#fbf5ea]/54"
+            : "bg-gradient-to-b from-[#fbf5ea]/92 via-[#fbf5ea]/68 to-[#fbf5ea]/16"
             }`}
         />
 
@@ -324,7 +324,7 @@ export default function Hero() {
         <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
           <div className="flex h-full items-start pt-[104px] sm:pt-[140px]">
             <div className="w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
-             
+
               <div className="mb-3 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
                   <Image
@@ -339,16 +339,16 @@ export default function Hero() {
                 </div>
 
                 <div className="mt-2 flex w-full items-center justify-start gap-3">
-                  
+
                   <div className="mt-3 shrink-0 text-left">
                     <span className="block text-[22px] leading-none tracking-[0.01em] text-[#2C1810] sm:text-[24px] lg:text-[26px]">
                       Moksha Sewa
                     </span>
-                    <span className="mt-1 block text-[11px] font-bold uppercase leading-tight tracking-[0.22em] text-[#73532F] sm:text-[12px]">
+                    <span className="mt-1 block text-[11px] font-semibold uppercase leading-tight tracking-[0.22em] text-[#73532F] sm:text-[12px]">
                       An Initiative of Namo Gange Trust
                     </span>
                   </div>
-                
+
                 </div>
               </div>
 
@@ -399,7 +399,7 @@ export default function Hero() {
                   activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
                     {activeSlide.description.split(activeSlide.descriptionHighlight)[0]}
-                    <span className="font-bold text-[#C85117]">
+                    <span className="font-semibold text-[#C85117]">
                       {activeSlide.descriptionHighlight}
                     </span>
                     {activeSlide.description.split(activeSlide.descriptionHighlight).slice(1).join(activeSlide.descriptionHighlight)}
@@ -414,7 +414,7 @@ export default function Hero() {
                   href={activeSlide.primaryButton?.href ?? "/request-help"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
                 >
                   <span className="whitespace-nowrap">
                     {activeSlide.primaryButton?.label ?? "Request Sewa Help"}
@@ -425,7 +425,7 @@ export default function Hero() {
                   href={activeSlide.secondaryButton?.href ?? "/donation"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
+                  className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
                 >
                   <span className="whitespace-nowrap">
                     {activeSlide.secondaryButton?.label ?? "Support This Mission"}
@@ -439,7 +439,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaHandHoldingHeart className="h-5 w-5" />
                     </span>
-                    <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                    <span className="text-[16px] font-semibold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                       Your Compassion
                       <br />
                       Brings Dignity
@@ -450,7 +450,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaUsers className="h-5 w-5" />
                     </span>
-                    <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                    <span className="text-[16px] font-semibold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                       Your Time
                       <br />
                       Creates Impact
@@ -461,7 +461,7 @@ export default function Hero() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaHandHoldingHeart className="h-5 w-5" />
                     </span>
-                    <span className="text-[16px] font-extrabold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
+                    <span className="text-[16px] font-semibold leading-[1.18] tracking-[0.01em] text-[#2C1810]">
                       Your Support
                       <br />
                       Gives Respect
@@ -481,7 +481,7 @@ export default function Hero() {
                 <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                   <FaPrayingHands className="h-7 w-7" />
                 </span>
-                <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
+                <span className="text-[16px] font-semibold leading-[1.25] text-[#2C1810]">
                   Volunteer
                   <br />
                   For Sewa
@@ -492,7 +492,7 @@ export default function Hero() {
                 <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                   <FaHandHoldingHeart className="h-7 w-7" />
                 </span>
-                <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
+                <span className="text-[16px] font-semibold leading-[1.25] text-[#2C1810]">
                   Donate
                   <br />
                   With Heart
@@ -503,7 +503,7 @@ export default function Hero() {
                 <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">
                   <FaUsers className="h-7 w-7" />
                 </span>
-                <span className="text-[16px] font-extrabold leading-[1.25] text-[#2C1810]">
+                <span className="text-[16px] font-semibold leading-[1.25] text-[#2C1810]">
                   Share
                   <br />
                   The Mission
@@ -515,7 +515,7 @@ export default function Hero() {
               <PiFlowerLotus className="h-5 w-5 shrink-0 text-[#D95A06]" />
               <p className="text-[16px] font-medium text-[#5B4635]">
                 Together, we ensure{" "}
-                <span className="font-bold text-[#D95A06]">
+                <span className="font-semibold text-[#D95A06]">
                   no one is left without dignity
                 </span>{" "}
                 in their final journey.

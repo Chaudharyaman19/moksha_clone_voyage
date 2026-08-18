@@ -201,7 +201,7 @@ function CardCornerLotus() {
  */
 function CardWhiteWave() {
   return (
-     <div
+    <div
       className="pointer-events-none absolute inset-x-0 top-[126px] z-10 h-[96px] sm:top-[136px] lg:top-[116px]"
       aria-hidden="true"
     >
@@ -325,7 +325,7 @@ export default function SacredJourney() {
                 <button
                   type="button"
                   onClick={() => handleCardClick(card.href)}
-                  className="absolute bottom-3 left-1/2 z-30 flex min-h-[36px] w-fit -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap rounded-[5px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-2 text-center text-[16px] font-bold leading-tight text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                  className="absolute bottom-3 left-1/2 z-30 flex min-h-[36px] w-fit -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap rounded-[5px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-2 text-center text-[16px] font-semibold leading-tight text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span>{card.button}</span>
 

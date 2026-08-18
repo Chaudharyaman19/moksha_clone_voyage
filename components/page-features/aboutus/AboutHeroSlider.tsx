@@ -44,11 +44,10 @@ export default function AboutHeroSlider() {
   return (
     <div className="relative overflow-hidden">
       <div
-        className={`flex ${
-          isTransitioning
-            ? "transition-transform duration-700 ease-out"
-            : ""
-        }`}
+        className={`flex ${isTransitioning
+          ? "transition-transform duration-700 ease-out"
+          : ""
+          }`}
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         <div className="w-full shrink-0">
@@ -150,7 +149,7 @@ function NewBanner() {
                 and those who have no one.
                 <br />
 
-                <strong className="font-bold">
+                <strong className="font-semibold">
                   Because no one should face their final journey alone.
                 </strong>
               </p>
@@ -158,7 +157,7 @@ function NewBanner() {
               <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
                 <a
                   href="/request-help"
-                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
                   <span>Request Help</span>
@@ -166,7 +165,7 @@ function NewBanner() {
 
                 <a
                   href="/donation"
-                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaFire className="h-5 w-5 shrink-0" />
                   <span>Support This Mission</span>
@@ -200,7 +199,7 @@ function NewBanner() {
                   </div>
 
                   <div>
-                    <h3 className="text-[16px] font-extrabold leading-5 text-[#17283a]">
+                    <h3 className="text-[16px] font-semibold leading-5 text-[#17283a]">
                       {feature.title}
                     </h3>
 
@@ -329,7 +328,7 @@ function PreviousBanner() {
           <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
             <a
               href="/request-help"
-              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
 
@@ -338,7 +337,7 @@ function PreviousBanner() {
 
             <a
               href="/donation"
-              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaFire className="h-5 w-5 shrink-0" />
 

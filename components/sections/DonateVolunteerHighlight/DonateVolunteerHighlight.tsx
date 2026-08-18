@@ -36,7 +36,7 @@ export default function DonateVolunteerHighlight() {
             <PiFlowerLotus className="h-4 w-4 text-[#C85117]" />
           </span>
 
-          <span className="text-[16px] font-extrabold uppercase tracking-[0.24em] text-[#72502F] sm:text-[16px]">
+          <span className="text-[16px] font-semibold uppercase tracking-[0.24em] text-[#72502F] sm:text-[16px]">
             Together For Dignity
           </span>
 
@@ -60,10 +60,10 @@ export default function DonateVolunteerHighlight() {
             />
 
             {/* Cinematic overlay */}
-          
+
 
             {/* Video content */}
-          
+
           </div>
 
           {/* =====================================================
@@ -93,11 +93,11 @@ export default function DonateVolunteerHighlight() {
                 </div>
 
                 <div>
-                  <span className="block text-[16px] font-bold uppercase tracking-[0.18em] text-[#A27549]">
+                  <span className="block text-[16px] font-semibold uppercase tracking-[0.18em] text-[#A27549]">
                     Moksha Sewa
                   </span>
 
-                  <span className="mt-0.5 block text-[16px] font-extrabold uppercase tracking-[0.22em] text-[#815B35]">
+                  <span className="mt-0.5 block text-[16px] font-semibold uppercase tracking-[0.22em] text-[#815B35]">
                     Join The Mission
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export default function DonateVolunteerHighlight() {
                         <FaHandHoldingHeart className="h-4 w-4" />
                       </div>
 
-                      <span className="border border-[#E6C18A]/30 bg-white/5 px-2 py-1 text-[16px] font-bold uppercase tracking-[0.16em] text-[#EBCB9A]">
+                      <span className="border border-[#E6C18A]/30 bg-white/5 px-2 py-1 text-[16px] font-semibold uppercase tracking-[0.16em] text-[#EBCB9A]">
                         Support
                       </span>
 
@@ -176,7 +176,7 @@ export default function DonateVolunteerHighlight() {
                       assistance.
                     </p>
 
-                    <span className="mt-2.5 inline-flex items-center gap-2 text-[16px] font-bold text-[#F2C986]">
+                    <span className="mt-2.5 inline-flex items-center gap-2 text-[16px] font-semibold text-[#F2C986]">
                       Donate Now
 
                       <span className="flex h-6 w-6 items-center justify-center border border-[#F2C986]/45 transition duration-300 group-hover:translate-x-1 group-hover:border-[#F2C986]">
@@ -213,7 +213,7 @@ export default function DonateVolunteerHighlight() {
                         <FaUsers className="h-4 w-4" />
                       </div>
 
-                      <span className="border border-[#C99152]/30 bg-[#9A6A2E]/5 px-2 py-1 text-[16px] font-bold uppercase tracking-[0.16em] text-[#8C5D2E]">
+                      <span className="border border-[#C99152]/30 bg-[#9A6A2E]/5 px-2 py-1 text-[16px] font-semibold uppercase tracking-[0.16em] text-[#8C5D2E]">
                         Volunteer
                       </span>
 
@@ -230,7 +230,7 @@ export default function DonateVolunteerHighlight() {
                       sewa.
                     </p>
 
-                    <span className="mt-2.5 inline-flex items-center gap-2 text-[16px] font-bold text-[#A85C20]">
+                    <span className="mt-2.5 inline-flex items-center gap-2 text-[16px] font-semibold text-[#A85C20]">
                       Register Now
 
                       <span className="flex h-6 w-6 items-center justify-center border border-[#C97A3A]/45 transition duration-300 group-hover:translate-x-1 group-hover:border-[#C97A3A]">

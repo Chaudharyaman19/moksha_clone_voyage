@@ -225,7 +225,7 @@ export default function FamilySupport() {
         <section className="max-w-7xl mx-auto px-4 lg:px-0 py-1">
           <div className="bg-[#FAF7F2] rounded-none border border-[#E8DCC8] overflow-hidden flex flex-col lg:flex-row shadow-sm">
             <div className="p-4 lg:p-6 lg:w-1/2 flex flex-col justify-center">
-              <span className="text-[#9A6A31] text-[14px] font-bold uppercase tracking-widest mb-3">Holistic Support System</span>
+              <span className="text-[#9A6A31] text-[14px] font-semibold uppercase tracking-widest mb-3">Holistic Support System</span>
               <h2 className="font-serif text-[28px] md:text-[34px] text-[#3A2418] leading-[1.15] mb-5">
                 An Extended Family <br />
                 <span className="text-[#9A6A31]">For Those Who Need One</span>
@@ -273,7 +273,7 @@ export default function FamilySupport() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[198px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[14px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+                <Link href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[198px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[14px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
                   <span className="donate-nav-shine" aria-hidden />
                   <FaHeart className="relative z-10 h-[14px] w-[14px]" />
                   <span className="relative z-10">Donate to Moksha Sewa</span>

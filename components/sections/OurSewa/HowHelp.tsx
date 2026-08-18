@@ -451,7 +451,7 @@ export default function HowWeCanHelp() {
           <div className="mb-1 flex items-center justify-center gap-4">
             <span className="h-px w-[72px] bg-[#A45918]" />
 
-            <span className="text-[16px] font-bold uppercase tracking-[0.14em] text-[#914C14]">
+            <span className="text-[16px] font-semibold uppercase tracking-[0.14em] text-[#914C14]">
               OUR SEWA
             </span>
 
@@ -729,7 +729,7 @@ export default function HowWeCanHelp() {
                         borderColor: card.accent,
                       }}
                     >
-                      <span className="text-[13px] font-bold">
+                      <span className="text-[13px] font-semibold">
                         ✓
                       </span>
                     </span>
@@ -832,7 +832,7 @@ export default function HowWeCanHelp() {
                     className="
                       text-[16px]
 
-                      font-bold
+                      font-semibold
 
                       leading-tight
 
@@ -1023,7 +1023,7 @@ export default function HowWeCanHelp() {
                 "
               >
 
-                <span className="text-[16px] font-bold">
+                <span className="text-[16px] font-semibold">
                   Need Immediate Help?
                 </span>
 
@@ -1093,7 +1093,7 @@ export default function HowWeCanHelp() {
 
                 <div>
 
-                  <div className="text-[16px] font-bold">
+                  <div className="text-[16px] font-semibold">
                     Support Our Mission
                   </div>
 
@@ -1133,7 +1133,7 @@ export default function HowWeCanHelp() {
 
                   text-[16px]
 
-                  font-bold
+                  font-semibold
 
                   uppercase
 
