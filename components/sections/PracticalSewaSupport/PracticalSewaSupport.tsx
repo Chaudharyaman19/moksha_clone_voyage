@@ -457,8 +457,10 @@ export default function HowWeCanHelp() {
           priority
           sizes="540px"
           className="
+            hidden
             object-cover
             object-left
+            md:block
           "
         />
 
