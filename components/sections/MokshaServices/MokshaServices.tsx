@@ -1,29 +1,20 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Ambulance,
-  Flame,
-  UserRound,
-  Package,
-  HeartHandshake,
-  MessageCircle,
-  ClipboardCheck,
-  Handshake,
-  Umbrella,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 type Service = {
   title: React.ReactNode;
   description: string;
-  icon: React.ReactNode;
+  image: string;
+  alt: string;
 };
 
 type Step = {
   number: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  image: string;
+  alt: string;
 };
 
 const services: Service[] = [
@@ -35,8 +26,10 @@ const services: Service[] = [
         Transport
       </>
     ),
-    description: "Dignified and timely transport to the cremation destination.",
-    icon: <Ambulance />,
+    description:
+      "Dignified and timely transport to the cremation destination.",
+    image: "/assets/about-optimized/final_journey_support.png",
+    alt: "Final journey transport",
   },
   {
     title: (
@@ -48,7 +41,8 @@ const services: Service[] = [
     ),
     description:
       "Complete support for cremation and essential last-rites arrangements.",
-    icon: <Flame />,
+    image: "/assets/about-optimized/cremation.png",
+    alt: "Cremation support",
   },
   {
     title: (
@@ -60,7 +54,8 @@ const services: Service[] = [
     ),
     description:
       "Arranging priests and guidance for all required rituals with respect.",
-    icon: <UserRound />,
+    image: "/assets/about-optimized/ritual.png",
+    alt: "Ritual and priest coordination",
   },
   {
     title: (
@@ -70,8 +65,10 @@ const services: Service[] = [
         Materials
       </>
     ),
-    description: "Providing all essential items required for the final rites.",
-    icon: <Package />,
+    description:
+      "Providing all essential items required for the final rites.",
+    image: "/assets/about-optimized/essentials.png",
+    alt: "Essential materials",
   },
   {
     title: (
@@ -83,7 +80,8 @@ const services: Service[] = [
     ),
     description:
       "Emotional support and guidance for families during difficult times.",
-    icon: <HeartHandshake />,
+    image: "/assets/about-optimized/family_guidance.png",
+    alt: "Family guidance",
   },
 ];
 
@@ -92,26 +90,30 @@ const steps: Step[] = [
     number: "01",
     title: "Understand",
     description: "We listen to the circumstances.",
-    icon: <MessageCircle />,
+    image: "/assets/about-optimized/understand.png",
+    alt: "Understand",
   },
   {
     number: "02",
     title: "Verify",
     description: "Eligibility and required formalities are reviewed.",
-    icon: <ClipboardCheck />,
+    image: "/assets/about-optimized/verify.png",
+    alt: "Verify",
   },
   {
     number: "03",
     title: "Coordinate",
     description: "Essential support is arranged as applicable.",
-    icon: <Handshake />,
+    image: "/assets/about-optimized/coordinate.png",
+    alt: "Coordinate",
   },
   {
     number: "04",
     title: "Stand Beside",
     description:
       "Compassionate on-ground guidance continues through the process.",
-    icon: <Umbrella />,
+    image: "/assets/about-optimized/stand_behind.png",
+    alt: "Stand beside",
   },
 ];
 
@@ -156,24 +158,16 @@ const DecorativeDivider = () => (
   </div>
 );
 
-const ServiceIcon = ({ children }: { children: React.ReactNode }) => (
-  <div
-    className="
-      absolute -top-[42px] left-1/2 z-20
-      flex h-[78px] w-[78px] -translate-x-1/2
-      items-center justify-center
-      rounded-full
-      border border-[#c9974a]/35
-      bg-[#faf7ee]/95
-      text-[#0d403c]
-      shadow-[0_2px_10px_rgba(120,85,35,0.10)]
-      sm:h-[82px] sm:w-[82px]
-    "
-  >
-    <div className="absolute inset-[5px] rounded-full border border-[#c9974a]/15" />
-
-    <div className="relative h-10 w-10 [&>svg]:h-full [&>svg]:w-full [&>svg]:stroke-[1.55]">
-      {children}
+const ServiceIcon = ({ image, alt }: { image: string; alt: string }) => (
+  <div className="absolute -top-[54px] left-1/2 z-20 -translate-x-1/2">
+    <div className="relative h-10 w-10">
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes="40px"
+        className="object-contain"
+      />
     </div>
   </div>
 );
@@ -324,7 +318,7 @@ const MokshaServices: React.FC = () => {
                 }
               `}
             >
-              <ServiceIcon>{service.icon}</ServiceIcon>
+              <ServiceIcon image={service.image} alt={service.alt} />
 
               <h3
                 className="
@@ -388,69 +382,64 @@ const MokshaServices: React.FC = () => {
           {/* =====================================================
               DESKTOP TIMELINE
           ====================================================== */}
-          <div className="relative mt-4 hidden lg:block">
-            {/* Main connecting line */}
-            <div
-              className="
-                absolute left-[9%] right-[9%] top-[51px]
-                h-px bg-[#0c3d39]
-              "
-            />
+<div className="relative mt-4 hidden lg:block">
+              {/* Main connecting line */}
+              <div
+                className="
+                  absolute left-[9%] right-[9%] top-[31px]
+                  h-px bg-[#0c3d39]
+                "
+              />
 
-            <div className="grid grid-cols-4">
-              {steps.map((step, index) => (
-                <div key={step.number} className="relative text-center">
-                  {/* circle */}
-                  <div
-                    className="
-                      relative mx-auto
-                      flex h-[120px] w-[120px]
-                      items-center justify-center
-                      rounded-full
-                      border border-[#c89543]
-                      bg-[#faf5e9]/90
-                    "
-                  >
-                    <div className="flex h-[62px] w-[62px] items-center justify-center text-[#123f3a] [&>svg]:h-full [&>svg]:w-full [&>svg]:stroke-[1.35]">
-                      {step.icon}
+              <div className="grid grid-cols-4">
+                {steps.map((step, index) => (
+                  <div key={step.number} className="relative text-center">
+                    {/* icon */}
+                    <div className="relative mx-auto h-[62px] w-[62px]">
+                      <Image
+                        src={step.image}
+                        alt={step.alt}
+                        fill
+                        sizes="62px"
+                        className="object-contain"
+                      />
+
+                      {/* number */}
+                      <div
+                        className="
+                          absolute -top-[12px]
+                          left-1/2
+                          flex h-[30px] w-[30px]
+                          -translate-x-1/2
+                          items-center justify-center
+                          rounded-full
+                          bg-[#0c403b]
+                          font-serif
+                          text-[14px]
+                          font-bold
+                          text-white
+                        "
+                      >
+                        {step.number}
+                      </div>
                     </div>
 
-                    {/* number */}
-                    <div
-                      className="
-                        absolute -top-[12px]
-                        left-1/2
-                        flex h-[30px] w-[30px]
-                        -translate-x-1/2
-                        items-center justify-center
-                        rounded-full
-                        bg-[#0c403b]
-                        font-serif
-                        text-[14px]
-                        font-bold
-                        text-white
-                      "
-                    >
-                      {step.number}
-                    </div>
-                  </div>
-
-                  {/* arrow between steps */}
-                  {index !== steps.length - 1 && (
-                    <div
-                      className="
-                        absolute right-[-9px] top-[39px] z-20
-                        flex h-8 w-8
-                        items-center justify-center
-                        rounded-full
-                        border border-[#bd8127]
-                        bg-[#fbf5e9]
-                        text-[#0b403c]
-                      "
-                    >
-                      <ArrowRight size={15} />
-                    </div>
-                  )}
+                    {/* arrow between steps */}
+                    {index !== steps.length - 1 && (
+                      <div
+                        className="
+                          absolute right-[-9px] top-[12px] z-20
+                          flex h-8 w-8
+                          items-center justify-center
+                          rounded-full
+                          border border-[#bd8127]
+                          bg-[#fbf5e9]
+                          text-[#0b403c]
+                        "
+                      >
+                        <ArrowRight size={15} />
+                      </div>
+                    )}
 
                   <h4
                     className="
@@ -494,33 +483,31 @@ const MokshaServices: React.FC = () => {
                   text-center
                 "
               >
-                <div
-                  className="
-                    relative flex h-[105px] w-[105px]
-                    items-center justify-center
-                    rounded-full
-                    border border-[#c89543]
-                    bg-[#faf5e9]/90
-                  "
-                >
-                  <div className="h-14 w-14 text-[#123f3a] [&>svg]:h-full [&>svg]:w-full">
-                    {step.icon}
-                  </div>
+                <div className="relative mx-auto h-14 w-14">
+                    <Image
+                      src={step.image}
+                      alt={step.alt}
+                      fill
+                      sizes="56px"
+                      className="object-contain"
+                    />
 
-                  <span
-                    className="
-                      absolute -top-3
-                      flex h-7 w-7
-                      items-center justify-center
-                      rounded-full
-                      bg-[#0c403b]
-                      text-[12px]
-                      font-bold text-white
-                    "
-                  >
-                    {step.number}
-                  </span>
-                </div>
+                    <span
+                      className="
+                        absolute -top-3
+                        left-1/2
+                        -translate-x-1/2
+                        flex h-7 w-7
+                        items-center justify-center
+                        rounded-full
+                        bg-[#0c403b]
+                        text-[12px]
+                        font-bold text-white
+                      "
+                    >
+                      {step.number}
+                    </span>
+                  </div>
 
                 <h4 className="mt-2 font-serif text-[16px] font-bold">
                   {step.title}
@@ -553,6 +540,20 @@ const MokshaServices: React.FC = () => {
                 height={64}
                 className="h-auto w-full max-w-[280px] object-contain"
               />
+
+              <span
+                className="
+                  absolute inset-0
+                  flex items-center justify-center
+                  font-serif
+                  text-[16px]
+                  font-semibold
+                  text-white
+                  drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]
+                "
+              >
+                Explore Our Sewa
+              </span>
             </a>
 
             <span className="hidden h-px flex-1 bg-[#b77b22]/60 sm:block" />
