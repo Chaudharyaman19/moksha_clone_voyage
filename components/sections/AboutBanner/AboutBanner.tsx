@@ -19,22 +19,22 @@ interface InfoItem {
 const supportItems: InfoItem[] = [
   {
     title: "For Those Unclaimed",
-    description: "Dignified last rites for authorised unclaimed cases.",
+    description: "Dignified rites for unclaimed.",
     icon: <UsersRound size={28} strokeWidth={1.8} />,
   },
   {
     title: "For Those Alone",
-    description: "Support for those with no family beside them.",
+    description: "Support for the alone.",
     icon: <HeartHandshake size={28} strokeWidth={1.8} />,
   },
   {
     title: "For Families in Need",
-    description: "Verified support for economically weaker families.",
+    description: "Help for families in need.",
     icon: <HeartHandshake size={28} strokeWidth={1.8} />,
   },
   {
     title: "With Dignity & Care",
-    description: "Compassionate care in every final journey.",
+    description: "Compassion in every farewell.",
     icon: <ShieldCheck size={28} strokeWidth={1.8} />,
   },
 ];
@@ -476,6 +476,7 @@ const AboutMokshaSewa: React.FC = () => {
                     <p
                       className="
                         mt-1
+                        whitespace-nowrap
                         text-base
                         leading-[1.4]
                         text-white/90
@@ -620,9 +621,9 @@ const AboutMokshaSewa: React.FC = () => {
             mx-auto
             max-w-7xl
             px-5
-            py-3
+            py-2
             sm:px-8
-            sm:py-4
+            sm:py-2.5
             md:px-10
             lg:px-8
             xl:px-0
@@ -642,11 +643,11 @@ const AboutMokshaSewa: React.FC = () => {
                 className={`
                   flex
                   items-center
-                  gap-4
-                  py-3
+                  gap-3
+                  py-2
                   md:px-5
                   lg:px-6
-                  lg:py-2.5
+                  lg:py-2
                   ${
                     index !== 0
                       ? "lg:border-l lg:border-[#e5d9c8]"
@@ -668,8 +669,8 @@ const AboutMokshaSewa: React.FC = () => {
                 <div
                   className="
                     flex
-                    h-14
-                    w-14
+                    h-12
+                    w-12
                     shrink-0
                     items-center
                     justify-center
@@ -697,9 +698,9 @@ const AboutMokshaSewa: React.FC = () => {
 
                   <p
                     className="
-                      mt-1
+                      mt-0.5
                       text-base
-                      leading-[1.45]
+                      leading-[1.4]
                       text-[#292929]
                     "
                   >

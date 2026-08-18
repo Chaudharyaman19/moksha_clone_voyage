@@ -285,13 +285,14 @@ const MokshaServices: React.FC = () => {
         <div
           className="
             relative z-10
-            mt-[68px]
+            mt-16
             grid grid-cols-1
-            gap-y-[60px]
+            gap-y-14
             rounded-[20px]
             bg-[#fffdf8]/90
             px-5 pb-6 pt-[52px]
             shadow-[0_4px_20px_rgba(89,64,30,0.05)]
+            sm:mt-[68px]
             sm:grid-cols-2
             sm:gap-y-[65px]
             sm:px-7
@@ -450,7 +451,7 @@ const MokshaServices: React.FC = () => {
           {/* =====================================================
               TABLET
           ====================================================== */}
-          <div className="mt-5 grid grid-cols-2 gap-8 lg:hidden">
+          <div className="mt-5 grid grid-cols-1 gap-6 sm:mt-6 sm:grid-cols-2 sm:gap-8 lg:hidden">
             {steps.map((step) => (
               <article
                 key={step.number}
@@ -461,7 +462,7 @@ const MokshaServices: React.FC = () => {
                   text-center
                 "
               >
-                <div className="relative mx-auto h-[105px] w-[105px]">
+                <div className="relative mx-auto h-[84px] w-[84px] sm:h-[105px] sm:w-[105px]">
                     <Image
                       src={step.image}
                       alt={step.alt}
