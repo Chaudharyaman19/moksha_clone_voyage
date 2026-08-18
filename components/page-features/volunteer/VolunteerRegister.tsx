@@ -417,7 +417,7 @@
 //               Volunteer Registration
 //             </h1>
 
-//             <div className="mt-2 flex items-center justify-center gap-2">
+//             <div className="mt-1 flex items-center justify-center gap-2">
 //               <span className="h-px w-14 bg-[#E39453]" />
 
 //               <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
@@ -425,7 +425,7 @@
 //               <span className="h-px w-14 bg-[#E39453]" />
 //             </div>
 
-//             <p className="mx-auto mt-2 max-w-[650px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
+//             <p className="mx-auto mt-1 max-w-[650px] text-[14px] leading-5 text-[#665246] sm:text-[15px]">
 //               Join our mission of serving
 //               families with care, respect and
 //               compassion.
@@ -762,7 +762,7 @@
 //                   </div>
 //                 </div>
 
-//                 <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-2 text-[13px] leading-4 text-[#5E4B3F]">
+//                 <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] mt-1 text-[13px] leading-4 text-[#5E4B3F]">
 //                   <input
 //                     type="checkbox"
 //                     checked={consent}
@@ -824,9 +824,9 @@
 //                 Why Volunteer With Us?
 //               </h2>
 
-//               <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#EA7C28] to-transparent" />
+//               <div className="mx-auto mt-1 h-px w-20 bg-gradient-to-r from-transparent via-[#EA7C28] to-transparent" />
 
-//               <div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+//               <div className="mt-1 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
 //                 {trustItems.map((item) => {
 //                   const Icon = item.icon;
 
@@ -869,7 +869,7 @@
 // }
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { lookupPincode } from "@/lib/pincode";
@@ -881,14 +881,25 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import {
   FaCalendarAlt,
   FaCheckCircle,
+  FaClipboardCheck,
+  FaClock,
   FaEnvelope,
+  FaFileAlt,
+  FaGraduationCap,
+  FaHandHoldingHeart,
+  FaHandsHelping,
   FaHeart,
+  FaIdCard,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaRegClock,
   FaShieldAlt,
   FaStar,
+  FaTruck,
   FaUser,
+  FaUserCheck,
+  FaUserFriends,
+  FaUsers,
 } from "react-icons/fa";
 
 import { PiFlowerLotus } from "react-icons/pi";
@@ -944,7 +955,9 @@ interface VolunteerForm {
 interface TrustItem {
   title: string;
   description: string;
-  image: string;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
 }
 
 const EMPTY_FORM: VolunteerForm = {
@@ -982,36 +995,32 @@ const SUGGESTED_SKILLS = [
 ];
 const SERVICE_AREAS = ["Field Volunteer", "Hospital & Authority Coordination", "Cremation & Ritual Assistance", "Unclaimed Body Support", "Economically Weaker Family Support", "24×7 Helpline Support", "Ambulance / Logistics Support", "Documentation & Case Support", "Community Awareness", "Social Media / Digital Volunteering", "Photography / Videography / Content", "Fundraising & Donor Outreach", "Professional / Pro-Bono Support", "Events & Campaign Support"];
 
+const REGISTRATION_STEPS = [
+  { title: "Basic Details", subtitle: "Tell us about yourself" },
+  { title: "Choose Your Seva", subtitle: "How would you like to serve?" },
+  { title: "Verification & Consent", subtitle: "Review & submit" },
+];
+
 const trustItems: TrustItem[] = [
   {
-    title: "Make a Real Impact",
-    description:
-      "Your time and compassion will bring lasting comfort to families during their most difficult moments.",
-    image: "/assets/volunteer-card-1.png",
+    title: "Make a Real Difference",
+    description: "Your time and compassion can bring dignity and peace.",
+    icon: FaUsers,
   },
   {
-    title: "Serve with Dignity",
-    description:
-      "Serve with compassion, bringing dignity to the departed and meaningful comfort to grieving families.",
-    image: "/assets/volunteer-card-2.png",
+    title: "Serve with Respect",
+    description: "Be part of a mission that honours every life.",
+    icon: FaHeart,
   },
   {
-    title: "Growth & Learning",
-    description:
-      "Develop leadership, empathy and real life skills while serving humanity with compassion and purpose.",
-    image: "/assets/volunteer-card-3.png",
+    title: "Learn & Grow",
+    description: "Receive training, guidance and real-life experience.",
+    icon: FaGraduationCap,
   },
   {
-    title: "Join a Dedicated Team",
-    description:
-      "Work with kind, aligned people who support families through compassion, dignity and shared purpose.",
-    image: "/assets/volunteer-card-4.png",
-  },
-  {
-    title: "Be Part of a Purpose",
-    description:
-      "Join a compassionate community working together to support families whenever they need aid the most.",
-    image: "/assets/volunteer-card-5.png",
+    title: "Be Part of a Family",
+    description: "Join a compassionate community that stands together.",
+    icon: FaHandsHelping,
   },
 ];
 
@@ -1116,9 +1125,32 @@ export default function VolunteerRegister() {
   const [error, setError] =
     useState("");
 
-  const [heroSlide, setHeroSlide] = useState(0);
-
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  const [step, setStep] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const scrollToForm = () => {
+    if (!formRef.current) return;
+    const top = formRef.current.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const goToNextStep = () => {
+    if (formRef.current && !formRef.current.checkValidity()) {
+      formRef.current.reportValidity();
+      return;
+    }
+    setStep((current) => Math.min(current + 1, REGISTRATION_STEPS.length - 1));
+    scrollToForm();
+  };
+
+  const goToPreviousStep = () => {
+    setStep((current) => Math.max(current - 1, 0));
+    scrollToForm();
+  };
+
+  const [heroSlide, setHeroSlide] = useState(0);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -1285,15 +1317,15 @@ export default function VolunteerRegister() {
 
         <div className="relative mx-auto w-full max-w-7xl">
           {/* Volunteer hero */}
-          <section className="relative left-1/2 mb-5 aspect-[16/7] min-h-[390px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3] lg:min-h-[620px]">
+          <section className="relative left-1/2 mb-5 aspect-[16/6.2] min-h-[430px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3] lg:min-h-[680px]">
             <div
               className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${heroSlide * 100}%)` }}
             >
               <div className="relative h-full w-full shrink-0">
                 <Image
-                  src="/hero-images/volunteer-impact-v2.png"
-                  alt="Moksha Sewa volunteers serving families with care and compassion"
+                  src="/hero-images/volunteer-elderly-woman.png"
+                  alt="Moksha Sewa volunteer sitting with and comforting an elderly woman"
                   fill
                   priority
                   sizes="100vw"
@@ -1337,8 +1369,8 @@ export default function VolunteerRegister() {
                   </div>
 
                   <div className="mt-1 flex flex-col items-start text-left">
-                    <span className="text-[15px] font-bold leading-tight text-[#2C1810]">Moksha Sewa</span>
-                    <span className="mt-0.5 text-[13px] font-medium leading-tight text-[#8F5A21]">
+                    <span className="text-[16px] font-semibold leading-tight text-[#2C1810]">Moksha Sewa</span>
+                    <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21]">
                       An Initiative of Namo Gange Trust
                     </span>
                   </div>
@@ -1349,7 +1381,7 @@ export default function VolunteerRegister() {
                   <span className="block text-[#DC671F]">Dignified Farewell.</span>
                 </h1>
 
-                <div className="mt-2 flex items-center gap-2">
+                <div className="mt-1 flex items-center gap-2">
                   <span className="h-[2px] w-14 bg-[#DC671F]" />
                   <span className="h-2 w-2 rotate-45 bg-[#DC671F]" />
                   <span className="h-px w-20 bg-gradient-to-r from-[#DC671F] to-transparent" />
@@ -1359,16 +1391,16 @@ export default function VolunteerRegister() {
                   Your time can bring comfort, care and compassion to families when they need it most.
                 </p>
 
-                <div className="mt-3 flex flex-wrap gap-2.5">
+                <div className="mt-1 flex flex-wrap gap-2.5">
                   <a
                     href="#volunteer-registration"
-                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                   >
                     Become a Volunteer
                   </a>
                   <a
                     href="/donation"
-                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                   >
                     Support This Mission
                   </a>
@@ -1377,476 +1409,794 @@ export default function VolunteerRegister() {
             </div>
           </section>
 
+          {/* Our Volunteers Primarily Support */}
+          <section className="mb-6 grid gap-3 rounded-[14px] border border-[#E7D9C9] bg-[#FBF3E7] p-3.5 lg:grid-cols-[1fr_0.32fr] lg:gap-4">
+            <div>
+              <h2 className="mb-2 text-center font-serif text-[20px] font-semibold text-[#3B2A20]">
+                Our Volunteers Primarily Support
+              </h2>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { icon: FaHandHoldingHeart, title: "Unclaimed Bodies", description: "Ensuring dignity for those with no one left by their side." },
+                  { icon: FaUserFriends, title: "People Without Family", description: "Standing beside those who have no family to call their own." },
+                  { icon: FaHandsHelping, title: "Economically Weaker Families", description: "Supporting families in need of a dignified last farewell." },
+                  { icon: FaHeart, title: "Humanity & Dignity", description: "Every life deserves respect, every journey deserves dignity." },
+                ].map(({ icon: Icon, title, description }) => (
+                  <div key={title} className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[#ED6B13] shadow-[0_4px_10px_rgba(89,57,31,0.08)]">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <h3 className="text-[16px] font-semibold leading-tight text-[#3B2A20]">{title}</h3>
+                    </div>
+                    <p className="text-[16px] leading-[1.35] text-[#75655A]">{description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-center rounded-[10px] border border-[#EDD9BF] bg-white/70 p-3">
+              <span className="font-serif text-[26px] leading-none text-[#ED6B13]">&ldquo;</span>
+              <p className="mt-1 text-[16px] font-medium leading-[1.4] text-[#3B2A20]">
+                Seva towards the last journey is the highest form of humanity.
+              </p>
+              <p className="mt-1.5 text-[16px] text-[#8F5A21]">– Namo Gange Trust</p>
+            </div>
+          </section>
+
           {/* Heading */}
-          <header id="volunteer-registration" className="mb-3 scroll-mt-32 text-center">
-            <div className="flex items-center justify-center gap-4">
-              <span className="hidden h-px w-28 bg-gradient-to-r from-transparent to-[#ED6B13] sm:block" />
-
-              <LotusOrnament className="h-9 w-12" />
-
-              <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
-            </div>
-
-            <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[41px] lg:text-[48px]">
-              Volunteer Registration Form
+          <header id="volunteer-registration" className="mb-3 scroll-mt-12 text-center">
+            <h1 className="font-serif text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
+              Volunteer Registration
             </h1>
-
-            <p className="mx-auto mt-2 max-w-[650px] text-[16px] leading-5 text-[#665246]">
-              Join our mission of serving
-              families with care, respect and
-              compassion.
-            </p>
-
-            <div className="mt-2 flex items-center justify-center gap-2">
-              <span className="h-px w-14 bg-[#E39453]" />
-
-              <span className="h-2 w-2 rotate-45 border border-[#ED6B13]" />
-
-              <span className="h-px w-14 bg-[#E39453]" />
-            </div>
           </header>
 
-          <div className="flex flex-col gap-3">
+          {/* Stepper progress */}
+          <div className="mb-4 flex items-start justify-center gap-3 sm:gap-6 lg:gap-10">
+            {REGISTRATION_STEPS.map((item, index) => {
+              const isActive = index === step;
+              const isComplete = index < step;
+
+              return (
+                <React.Fragment key={item.title}>
+                  <div className="flex flex-col items-center text-center">
+                    <span
+                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border text-[16px] font-semibold transition sm:h-10 sm:w-10 ${isActive
+                        ? "border-[#ED6B13] bg-[#ED6B13] text-white shadow-[0_6px_14px_rgba(229,78,11,0.28)]"
+                        : isComplete
+                          ? "border-[#ED6B13] bg-white text-[#ED6B13]"
+                          : "border-[#E2CDB4] bg-white text-[#A88E76]"
+                        }`}
+                    >
+                      {isComplete ? <FaCheckCircle className="h-4 w-4" /> : index + 1}
+                    </span>
+
+                    <span className={`mt-1.5 text-[16px] font-medium leading-none ${isActive ? "text-[#3B2A20]" : "text-[#9E9186]"}`}>
+                      {item.title}
+                    </span>
+                    <span className="mt-0.5 hidden text-[16px] leading-none text-[#B0A091] sm:block">
+                      {item.subtitle}
+                    </span>
+                  </div>
+
+                  {index < REGISTRATION_STEPS.length - 1 && (
+                    <span className={`mt-1 h-px w-8 shrink-0 sm:mt-1 sm:w-16 ${index < step ? "bg-[#ED6B13]" : "bg-[#E2CDB4]"}`} />
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[1fr_0.36fr] lg:items-stretch">
             {/* Registration form */}
             <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-2.5 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
               <form
+                ref={formRef}
                 onSubmit={handleSubmit}
                 className="space-y-1.5"
               >
 
-                <div>
-                  <div className="mb-1.5 flex items-center gap-2">
-                    <LotusOrnament className="h-6 w-8" />
-                    <h2 className="font-serif text-[18px] font-normal text-[#382117]">
-                      Personal Information
-                    </h2>
-                  </div>
-
-                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
+                {step === 0 && (
+                  <>
+                    <div className="mb-2 text-center">
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 1 of 3: Basic Details</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">Please provide your basic information.</p>
+                    </div>
                     <div>
-                      <label className={labelClass}>First Name *</label>
-                      <div className="relative">
-                        <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="firstName" value={form.firstName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter first name" />
+                      <div className="mb-1.5 flex items-center gap-2">
+                        <LotusOrnament className="h-6 w-8" />
+                        <h2 className="font-serif text-[18px] font-normal text-[#382117]">
+                          Personal Information
+                        </h2>
+                      </div>
+
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                          <label className={labelClass}>First Name *</label>
+                          <div className="relative">
+                            <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="firstName" value={form.firstName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter first name" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Last Name *</label>
+                          <div className="relative">
+                            <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="lastName" value={form.lastName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter last name" />
+                          </div>
+                        </div>
+
+
+                        <div>
+                          <label className={labelClass}>Mobile Number *</label>
+                          <div className="relative">
+                            <FaPhoneAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="phone" type="tel" required inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter mobile number" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Email Address *</label>
+                          <div className="relative">
+                            <FaEnvelope className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="email" type="email" required value={form.email ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter email address" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Date of Birth *</label>
+                          <div className="relative">
+                            <FaCalendarAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="dateOfBirth" type="date" required value={form.dateOfBirth ?? ""} onChange={handleChange} className={`${iconInputClass} pr-2`} />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Gender *</label>
+                          <select name="gender" value={form.gender ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
+                            <option value="">Select your gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Blood Group</label>
+                          <select name="bloodGroup" value={form.bloodGroup ?? ""} onChange={handleChange} className={`${inputClass} appearance-none`}>
+                            <option value="">Select blood group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
 
-                    <div>
-                      <label className={labelClass}>Last Name *</label>
-                      <div className="relative">
-                        <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="lastName" value={form.lastName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter last name" />
+                    <div className="border-t border-dashed border-[#EDB886] pt-1.5">
+                      <SectionTitle>Address Information</SectionTitle>
+
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                          <label className={labelClass}>Pincode *</label>
+                          <input name="pincode" type="tel" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" maxLength={6} pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder="6-digit pincode" />
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>State *</label>
+                          <input name="state" value={form.state ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>City *</label>
+                          <input name="city" value={form.city ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Address *</label>
+                          <div className="relative">
+                            <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <input name="address" value={form.address ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="House/flat, street, landmark" />
+                          </div>
+                        </div>
                       </div>
+
+                      {pincodeStatus === "loading" && (
+                        <p className="mt-1 text-[16px] text-[#9E9186]">Looking up state and city…</p>
+                      )}
+                      {pincodeStatus === "done" && (
+                        <p className="mt-1 text-[16px] text-emerald-600">Found: {form.city}, {form.state}</p>
+                      )}
+                      {pincodeStatus === "error" && (
+                        <p className="mt-1 text-[16px] text-[#C1502E]">Couldn&apos;t find this pincode — please enter state and city manually.</p>
+                      )}
                     </div>
 
-
-                    <div>
-                      <label className={labelClass}>Mobile Number *</label>
-                      <div className="relative">
-                        <FaPhoneAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="phone" type="tel" required inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter mobile number" />
+                    <div className="flex flex-col gap-3 border-t border-dashed border-[#EDB886] mt-1">
+                      <div className="flex items-start gap-2 text-[16px] text-[#75655A]">
+                        <FaShieldAlt className="mt-0.5 mb-1 h-3.5 w-3.5 shrink-0 text-[#ED6B13]" />
+                        <span>
+                          <span className="font-semibold text-[#3B2A20]">Your information is safe with us. </span>
+                          We respect your privacy and will never share your details without your consent.
+                        </span>
                       </div>
-                    </div>
 
-                    <div>
-                      <label className={labelClass}>Email Address *</label>
-                      <div className="relative">
-                        <FaEnvelope className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="email" type="email" required value={form.email ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter email address" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Date of Birth *</label>
-                      <div className="relative">
-                        <FaCalendarAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="dateOfBirth" type="date" required value={form.dateOfBirth ?? ""} onChange={handleChange} className={`${iconInputClass} pr-2`} />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Gender *</label>
-                      <select name="gender" value={form.gender ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                        <option value="">Select your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Blood Group</label>
-                      <select name="bloodGroup" value={form.bloodGroup ?? ""} onChange={handleChange} className={`${inputClass} appearance-none`}>
-                        <option value="">Select blood group</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <SectionTitle>Address Information</SectionTitle>
-
-                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    <div>
-                      <label className={labelClass}>Pincode *</label>
-                      <input name="pincode" type="tel" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" maxLength={6} pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder="6-digit pincode" />
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>State *</label>
-                      <input name="state" value={form.state ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>City *</label>
-                      <input name="city" value={form.city ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Address *</label>
-                      <div className="relative">
-                        <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <input name="address" value={form.address ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="House/flat, street, landmark" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {pincodeStatus === "loading" && (
-                    <p className="mt-1 text-[16px] text-[#9E9186]">Looking up state and city…</p>
-                  )}
-                  {pincodeStatus === "done" && (
-                    <p className="mt-1 text-[16px] text-emerald-600">Found: {form.city}, {form.state}</p>
-                  )}
-                  {pincodeStatus === "error" && (
-                    <p className="mt-1 text-[16px] text-[#C1502E]">Couldn&apos;t find this pincode — please enter state and city manually.</p>
-                  )}
-                </div>
-
-                <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <SectionTitle>About You</SectionTitle>
-
-                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    <div>
-                      <label className={labelClass}>Why do you want to volunteer with us? *</label>
-                      <div className="relative">
-                        <FaHeart className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                        <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Share your motivation" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Skills / Experience</label>
-                      <div className="relative">
-                        <FaStar className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                        <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Your skills or experience" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Availability *</label>
-                      <div className="relative">
-                        <FaRegClock className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                        <select name="availability" value={form.availability ?? ""} onChange={handleChange} required className={`${iconInputClass} appearance-none`}>
-                          <option value="">Select availability</option>
-                          <option value="Weekdays">Weekdays</option>
-                          <option value="Weekends">Weekends</option>
-                          <option value="Evenings">Evenings</option>
-                          <option value="Emergency Support">Emergency Support</option>
-                          <option value="Flexible">Flexible</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClass}>Preferred Role *</label>
-                      <select name="preferredRole" value={form.preferredRole ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                        <option value="">Select preferred role</option>
-                        <option value="Field Volunteer">Field Volunteer</option>
-                        <option value="Transport Support">Transport Support</option>
-                        <option value="Documentation">Documentation</option>
-                        <option value="Family Coordination">Family Coordination</option>
-                        <option value="Ritual Assistance">Ritual Assistance</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <SectionTitle>Service &amp; Availability Details</SectionTitle>
-
-                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['whatsappPhone', 'WhatsApp Number', 'tel'], ['occupation', 'Occupation / Profession', 'text'], ['organisation', 'Organisation / Institution', 'text'], ['languagesKnown', 'Languages Known', 'text'], ['hoursPerWeek', 'Approx. Hours / Week', 'text']].map(([name, text, type]) => (
-                      <label key={name}>
-                        <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={name === 'whatsappPhone' ? 'numeric' : undefined} maxLength={name === 'whatsappPhone' ? 10 : undefined} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
-                      </label>
-                    ))}
-                  </div>
-
-                  <p className={`${labelClass} mt-2 border-t border-dashed border-[#EDB886] pt-2.5`}>Preferred Areas of Volunteering</p>
-                  <div className="mt-1.5 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
-                    {SERVICE_AREAS.map((area) => (
-                      <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
-                        <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas, area)} className="mt-0.5 accent-[#ED6B13]" />
-                        {area}
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="mt-3 grid gap-3 border-t border-dashed border-[#EDB886] pt-2.5 sm:grid-cols-2 lg:gap-6">
-                    <div>
-                      <span className={labelClass}>Available Days</span>
-                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
-                        {['Weekdays', 'Weekends', 'Flexible'].map(v => (
-                          <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <span className={labelClass}>Preferred Time</span>
-                      <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
-                        {['Morning', 'Day', 'Evening', 'Night'].map(v => (
-                          <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 grid gap-1.5 border-t border-dashed border-[#EDB886] pt-2.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['emergencyOnCall', 'Emergency / On-Call Seva?'], ['canParticipateFieldCases', 'Can Participate in Field Cases?'], ['ownVehicle', 'Own Vehicle Available?'], ['volunteeredBefore', 'Volunteered with an NGO before?']].map(([name, text]) => (
-                      <label key={name}>
-                        <span className={labelClass}>{text}</span>
-                        <select name={name} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} required className={inputClass}>
-                          <option value="">Select</option>
-                          <option>Yes</option>
-                          <option>No</option>
-                        </select>
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="mt-1.5">
-                    <label>
-                      <span className={labelClass}>Previous Organisation &amp; Role</span>
-                      <input name="previousOrganisationRole" value={form.previousOrganisationRole ?? ""} onChange={handleChange} className={inputClass} />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <SectionTitle>Emergency Contact &amp; KYC Later</SectionTitle>
-
-                  <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
-                    {[['emergencyContactName', 'Contact Person *', 'text'], ['emergencyContactRelationship', 'Relationship *', 'text'], ['emergencyContactPhone', 'Emergency Mobile No. *', 'tel']].map(([name, text, type]) => (
-                      <label key={name}>
-                        <span className={labelClass}>{text}</span>
-                        <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={type === 'tel' ? 'numeric' : undefined} maxLength={type === 'tel' ? 10 : undefined} pattern={type === 'tel' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
-                      </label>
-                    ))}
-
-                    <label>
-                      <span className={labelClass}>ID Proof Type (optional)</span>
-                      <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
-                        <option value="">Select</option>
-                        {['Aadhaar', 'Voter ID', 'Driving Licence', 'Passport', 'Other'].map(v => <option key={v}>{v}</option>)}
-                      </select>
-                    </label>
-
-                    <label>
-                      <span className={labelClass}>ID Proof Number (optional)</span>
-                      <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass} />
-                    </label>
-
-                    <label>
-                      <span className={labelClass}>Upload Photograph (optional)</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
-                      <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
-                    </label>
-
-                    <label className="sm:col-span-2">
-                      <span className={labelClass}>Upload ID Proof (optional)</span>
-                      <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
-                      <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Password */}
-                <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                  <div className="grid gap-1.5 sm:grid-cols-[0.75fr_1.25fr]">
-                    <div>
-                      <label
-                        className={labelClass}
+                      <button
+                        type="button"
+                        onClick={goToNextStep}
+                        className="ml-auto inline-flex h-[39px] items-center justify-center gap-2 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-5 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95"
                       >
-                        Password *
-                      </label>
-
-                      <input
-                        name="password"
-                        type="password"
-                        required
-                        minLength={8}
-                        value={form.password}
-                        onChange={handleChange}
-                        className={inputClass}
-                        placeholder="At least 8 characters"
-                      />
+                        Save &amp; Continue
+                        <span>→</span>
+                      </button>
                     </div>
-
-                    <div>
-                      <label
-                        className={labelClass}
-                      >
-                        Skills
-                      </label>
-
-                      <div className="flex min-h-[36px] flex-wrap items-center gap-1">
-                        {SUGGESTED_SKILLS.map(
-                          (skill) => {
-                            const selected =
-                              skills.includes(
-                                skill,
-                              );
-
-                            return (
-                              <button
-                                key={skill}
-                                type="button"
-                                onClick={() =>
-                                  toggleSkill(
-                                    skill,
-                                  )
-                                }
-                                className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[16px] font-medium transition ${selected
-                                  ? "border-[#ED6B13] bg-[#ED6B13] text-white"
-                                  : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
-                                  }`}
-                              >
-                                {selected && (
-                                  <FaCheckCircle className="h-2.5 w-2.5" />
-                                )}
-
-                                {skill}
-                              </button>
-                            );
-                          },
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] pt-2 text-[16px] leading-5 text-[#5E4B3F]">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(event) =>
-                      setConsent(
-                        event.target.checked,
-                      )
-                    }
-                    className="mt-0.5 h-3.5 w-3.5 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
-                  />
-
-                  I agree to abide by
-                  Moksha Sewa&apos;s volunteer
-                  guidelines and code of
-                  conduct.
-                  <span className="text-red-500">
-                    *
-                  </span>
-                </label>
-
-                {error && (
-                  <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[16px] text-red-700">
-                    {error}
-                  </div>
+                  </>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="group flex h-[39px] w-full items-center justify-center gap-2.5 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                      Registering...
-                    </>
-                  ) : (
-                    <>
-                      <PiFlowerLotus className="h-5 w-5" />
-                      Register as Volunteer
-                      <span className="transition-transform group-hover:translate-x-1">
-                        →
-                      </span>
-                    </>
-                  )}
-                </button>
+                {step === 1 && (
+                  <>
+                    <div className="mb-2 text-center">
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 2 of 3: Choose Your Seva</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">How would you like to serve?</p>
+                    </div>
+                    <div className="border-t border-dashed border-[#EDB886] pt-1.5">
+                      <SectionTitle>About You</SectionTitle>
 
-                <p className="flex items-center justify-center gap-2 text-center text-[16px] text-[#75655A]">
-                  <FaShieldAlt className="text-[#726D67]" />
-                  Your information is safe and
-                  secure with us.
-                </p>
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                          <label className={labelClass}>Why Volunteer With Us? *</label>
+                          <div className="relative">
+                            <FaHeart className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
+                            <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Share your motivation" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Skills / Experience</label>
+                          <div className="relative">
+                            <FaStar className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
+                            <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Your skills or experience" />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Availability *</label>
+                          <div className="relative">
+                            <FaRegClock className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
+                            <select name="availability" value={form.availability ?? ""} onChange={handleChange} required className={`${iconInputClass} appearance-none`}>
+                              <option value="">Select availability</option>
+                              <option value="Weekdays">Weekdays</option>
+                              <option value="Weekends">Weekends</option>
+                              <option value="Evenings">Evenings</option>
+                              <option value="Emergency Support">Emergency Support</option>
+                              <option value="Flexible">Flexible</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className={labelClass}>Preferred Role *</label>
+                          <select name="preferredRole" value={form.preferredRole ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
+                            <option value="">Select preferred role</option>
+                            <option value="Field Volunteer">Field Volunteer</option>
+                            <option value="Transport Support">Transport Support</option>
+                            <option value="Documentation">Documentation</option>
+                            <option value="Family Coordination">Family Coordination</option>
+                            <option value="Ritual Assistance">Ritual Assistance</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-dashed border-[#EDB886] pt-1.5">
+                      <SectionTitle>Service &amp; Availability Details</SectionTitle>
+
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        {[['whatsappPhone', 'WhatsApp Number', 'tel'], ['occupation', 'Occupation / Profession', 'text'], ['organisation', 'Organisation / Institution', 'text'], ['languagesKnown', 'Languages Known', 'text'], ['hoursPerWeek', 'Approx. Hours / Week', 'text']].map(([name, text, type]) => (
+                          <label key={name}>
+                            <span className={labelClass}>{text}</span>
+                            <input name={name} type={type} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={name === 'whatsappPhone' ? 'numeric' : undefined} maxLength={name === 'whatsappPhone' ? 10 : undefined} pattern={name === 'whatsappPhone' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
+                          </label>
+                        ))}
+                      </div>
+
+                      <p className={`${labelClass} mt-4 border-t border-dashed border-[#EDB886] pt-3`}>Preferred Areas of Volunteering</p>
+                      <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
+                        {SERVICE_AREAS.map((area) => (
+                          <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
+                            <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas, area)} className="mt-0.5 accent-[#ED6B13]" />
+                            {area}
+                          </label>
+                        ))}
+                      </div>
+
+                      <div className="mt-4 grid gap-3 border-t border-dashed border-[#EDB886] pt-3 sm:grid-cols-2 lg:gap-6">
+                        <div>
+                          <span className={labelClass}>Available Days</span>
+                          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
+                            {['Weekdays', 'Weekends', 'Flexible'].map(v => (
+                              <label key={v} className="text-[16px]"><input type="checkbox" checked={availabilityDays.includes(v)} onChange={() => toggleList(setAvailabilityDays, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className={labelClass}>Preferred Time</span>
+                          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-2">
+                            {['Morning', 'Day', 'Evening', 'Night'].map(v => (
+                              <label key={v} className="text-[16px]"><input type="checkbox" checked={preferredTimes.includes(v)} onChange={() => toggleList(setPreferredTimes, v)} className="mr-1 accent-[#ED6B13]" />{v}</label>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 grid gap-x-4 gap-y-4 border-t border-dashed border-[#EDB886] pt-3 sm:grid-cols-2 lg:grid-cols-4">
+                        {[['emergencyOnCall', 'Emergency / On-Call Seva?'], ['canParticipateFieldCases', 'Can Participate in Field Cases?'], ['ownVehicle', 'Own Vehicle Available?'], ['volunteeredBefore', 'NGO Experience?']].map(([name, text]) => (
+                          <label key={name}>
+                            <span className={labelClass}>{text}</span>
+                            <select name={name} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} required className={inputClass}>
+                              <option value="">Select</option>
+                              <option>Yes</option>
+                              <option>No</option>
+                            </select>
+                          </label>
+                        ))}
+                      </div>
+
+                      <div className="mt-1.5">
+                        <label>
+                          <span className={labelClass}>Previous Organisation &amp; Role</span>
+                          <input name="previousOrganisationRole" value={form.previousOrganisationRole ?? ""} onChange={handleChange} className={inputClass} />
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between border-t border-dashed border-[#EDB886] mt-1">
+                      <button
+                        type="button"
+                        onClick={goToPreviousStep}
+                        className="inline-flex h-[39px] items-center justify-center gap-2 rounded-[6px] border border-[#E6D8C9] bg-white px-5 text-[16px] font-medium text-[#674E3E] transition hover:border-[#E9A166]"
+                      >
+                        <span>←</span>
+                        Back
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={goToNextStep}
+                        className="inline-flex h-[39px] items-center justify-center gap-2 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-5 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95"
+                      >
+                        Save &amp; Continue
+                        <span>→</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {step === 2 && (
+                  <>
+                    <div className="mb-2 text-center">
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 3 of 3: Verification &amp; Consent</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">Review your details and submit.</p>
+                    </div>
+                    <div className="border-t border-dashed border-[#EDB886] pt-1.5">
+                      <SectionTitle>Emergency Contact &amp; KYC Later</SectionTitle>
+
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+                        {[['emergencyContactName', 'Contact Person *', 'text'], ['emergencyContactRelationship', 'Relationship *', 'text'], ['emergencyContactPhone', 'Emergency Mobile No. *', 'tel']].map(([name, text, type]) => (
+                          <label key={name}>
+                            <span className={labelClass}>{text}</span>
+                            <input name={name} type={type} required value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} inputMode={type === 'tel' ? 'numeric' : undefined} maxLength={type === 'tel' ? 10 : undefined} pattern={type === 'tel' ? '[6-9][0-9]{9}' : undefined} className={inputClass} />
+                          </label>
+                        ))}
+
+                        <label>
+                          <span className={labelClass}>ID Proof Type (optional)</span>
+                          <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
+                            <option value="">Select</option>
+                            {['Aadhaar', 'Voter ID', 'Driving Licence', 'Passport', 'Other'].map(v => <option key={v}>{v}</option>)}
+                          </select>
+                        </label>
+
+                        <label>
+                          <span className={labelClass}>ID Proof Number (optional)</span>
+                          <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass} />
+                        </label>
+
+                        <label>
+                          <span className={labelClass}>Upload Photograph (optional)</span>
+                          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
+                          <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
+                        </label>
+
+                        <label className="sm:col-span-2">
+                          <span className={labelClass}>Upload ID Proof (optional)</span>
+                          <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
+                          <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Password */}
+                    <div className="border-t border-dashed border-[#EDB886] pt-1.5">
+                      <div className="grid gap-x-4 gap-y-4 sm:grid-cols-[0.75fr_1.25fr]">
+                        <div>
+                          <label
+                            className={labelClass}
+                          >
+                            Password *
+                          </label>
+
+                          <input
+                            name="password"
+                            type="password"
+                            required
+                            minLength={8}
+                            value={form.password}
+                            onChange={handleChange}
+                            className={inputClass}
+                            placeholder="At least 8 characters"
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            className={labelClass}
+                          >
+                            Skills
+                          </label>
+
+                          <div className="flex min-h-[36px] flex-wrap items-center gap-1">
+                            {SUGGESTED_SKILLS.map(
+                              (skill) => {
+                                const selected =
+                                  skills.includes(
+                                    skill,
+                                  );
+
+                                return (
+                                  <button
+                                    key={skill}
+                                    type="button"
+                                    onClick={() =>
+                                      toggleSkill(
+                                        skill,
+                                      )
+                                    }
+                                    className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[16px] font-medium transition ${selected
+                                      ? "border-[#ED6B13] bg-[#ED6B13] text-white"
+                                      : "border-[#E6D8C9] bg-[#FCF8F2] text-[#674E3E] hover:border-[#E9A166]"
+                                      }`}
+                                  >
+                                    {selected && (
+                                      <FaCheckCircle className="h-2.5 w-2.5" />
+                                    )}
+
+                                    {skill}
+                                  </button>
+                                );
+                              },
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <label className="flex cursor-pointer items-start gap-2 border-t border-dashed border-[#EDB886] mt-1 text-[16px] leading-5 text-[#5E4B3F]">
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(event) =>
+                          setConsent(
+                            event.target.checked,
+                          )
+                        }
+                        className="mt-0.5 h-3.5 w-3.5 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
+                      />
+
+                      I agree to abide by
+                      Moksha Sewa&apos;s volunteer
+                      guidelines and code of
+                      conduct.
+                      <span className="text-red-500">
+                        *
+                      </span>
+                    </label>
+
+                    {error && (
+                      <div className="rounded-[6px] border border-red-200 bg-red-50 px-3 py-2 text-[16px] text-red-700">
+                        {error}
+                      </div>
+                    )}
+
+                    <div className="flex gap-2.5">
+                      <button
+                        type="button"
+                        onClick={goToPreviousStep}
+                        className="inline-flex h-[39px] shrink-0 items-center justify-center gap-2 rounded-[6px] border border-[#E6D8C9] bg-white px-5 text-[16px] font-medium text-[#674E3E] transition hover:border-[#E9A166]"
+                      >
+                        <span>←</span>
+                        Back
+                      </button>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="group flex h-[39px] w-full items-center justify-center gap-2.5 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            Registering...
+                          </>
+                        ) : (
+                          <>
+                            <PiFlowerLotus className="h-5 w-5" />
+                            Register as Volunteer
+                            <span className="transition-transform group-hover:translate-x-1">
+                              →
+                            </span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    <p className="flex items-center justify-center gap-2 text-center text-[16px] text-[#75655A]">
+                      <FaShieldAlt className="text-[#726D67]" />
+                      Your information is safe and
+                      secure with us.
+                    </p>
+                  </>
+                )}
               </form>
             </section>
 
             {/* Right panel */}
-            <aside className="overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-3 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
-              <h2 className="text-center font-serif text-[17px] font-normal text-[#40271B]">
-                Why Volunteer With Us?
+            <aside className="flex h-full flex-col overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+              <h2 className="font-serif text-[17px] font-semibold text-[#40271B]">
+                Why Volunteer With Moksha Sewa?
               </h2>
 
-              <div className="mx-auto mt-2 h-px w-20 bg-gradient-to-r from-transparent via-[#EA7C28] to-transparent" />
-
-              <div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="mt-1 flex flex-col gap-3.5">
                 {trustItems.map((item) => {
-                  return (
-                    <article
-                      key={item.title}
-                      className="flex h-full flex-col overflow-hidden border border-[#E2CDB4] bg-white shadow-[0_8px_22px_rgba(91,55,29,0.09)]"
-                    >
-                      <div className="relative aspect-square w-full overflow-hidden bg-[#F4E8D9]">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                          className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#2C1810]/35 to-transparent" />
-                      </div>
+                  const Icon = item.icon;
 
-                      <div className="flex flex-1 flex-col p-3 text-center">
-                        <h3 className="font-serif text-[18px] font-semibold leading-tight text-[#3E261B]">
+                  return (
+                    <div key={item.title} className="flex items-start gap-3">
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#E7C59F] bg-white text-[#ED6B13]">
+                        <Icon className="h-4 w-4" />
+                      </span>
+
+                      <div className="min-w-0">
+                        <h3 className="text-[16px] font-semibold leading-tight text-[#3E261B]">
                           {item.title}
                         </h3>
 
-                        <div className="mx-auto mt-2 h-px w-12 bg-[#E18438]" />
-
-                        <p className="mt-2 text-[16px] leading-[1.45] text-[#715C4E]">
+                        <p className="mt-0.5 text-[16px] leading-[1.35] text-[#715C4E]">
                           {item.description}
                         </p>
                       </div>
-                    </article>
+                    </div>
                   );
                 })}
               </div>
 
+              {step === 1 && (
+                <div className="mt-3.5 grid grid-cols-2 gap-2.5 border-t border-dashed border-[#EDB886] pt-3.5">
+                  {[
+                    { value: "500+", label: "Active Volunteers" },
+                    { value: "24×7", label: "Support Available" },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-[10px] border border-[#E7C59F] bg-white/70 px-2.5 py-2 text-center">
+                      <div className="text-[18px] font-semibold leading-tight text-[#ED6B13]">{stat.value}</div>
+                      <div className="mt-0.5 text-[16px] leading-tight text-[#715C4E]">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
+              {step === 1 && (
+                <div className="relative mt-3.5 w-full flex-1 min-h-[160px] overflow-hidden rounded-[10px]">
+                  <Image
+                    src="/hero-images/image7.png"
+                    alt="Moksha Sewa volunteers comforting a grieving family at a river ghat"
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 90vw"
+                    className="object-cover object-[72%_48%]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                  <p className="absolute bottom-2.5 left-2.5 right-2.5 text-[16px] font-semibold leading-tight text-white">
+                    Every act of Seva creates a lasting impact.
+                  </p>
+                </div>
+              )}
 
+              {step === 1 && (
+                <div className="mt-3.5 flex items-start gap-2.5 rounded-[10px] border border-[#E7C59F] bg-white/70 px-3 py-2.5">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#FDEBD3] text-[#ED6B13]">
+                    <FaStar className="h-3.5 w-3.5" />
+                  </span>
+                  <p className="text-[16px] leading-[1.4] text-[#5E4B3F]">
+                    Tip: You can select multiple areas of volunteering that interest you.
+                  </p>
+                </div>
+              )}
             </aside>
           </div>
+
+          {/* Step 2 preview + What happens next */}
+          <div className="mt-6 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
+            <section className="rounded-[14px] border border-[#E7D9C9] bg-[#FBF3E7] p-4">
+              <h2 className="text-[16px] font-semibold text-[#3B2A20]">
+                Step 2 Preview: Choose Your Seva
+                <span className="ml-2 text-[16px] font-normal text-[#8F7A66]">(You can select multiple)</span>
+              </h2>
+
+              <div className="mt-1 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                {[
+                  { icon: FaHandHoldingHeart, title: "Field Sewa", description: "Cremation rites & family assistance" },
+                  { icon: FaUserFriends, title: "Unclaimed Body Support", description: "Hospital, police & authority support" },
+                  { icon: FaTruck, title: "Transport & Logistics", description: "Ambulance, mortuary & operational help" },
+                  { icon: FaPhoneAlt, title: "Helpline & Case Support", description: "Calls, documentation & case support" },
+                  { icon: FaUsers, title: "Community & Digital", description: "Awareness, social media & creative work" },
+                  { icon: FaUserCheck, title: "Professional Sewa", description: "Legal, medical & counselling expertise" },
+                ].map(({ icon: Icon, title, description }) => (
+                  <div key={title} className="flex flex-col items-center text-center">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#FDEBD3] text-[#ED6B13]">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="mt-1.5 text-[16px] font-semibold leading-tight text-[#3B2A20]">{title}</span>
+                    <span className="mt-0.5 text-[16px] leading-[1.3] text-[#8F7A66]">{description}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-4 border-t border-dashed border-[#EDB886] pt-2.5 text-center text-[16px] text-[#8F7A66]">
+                Flexible time commitment · On-call opportunities · Training &amp; orientation provided
+              </p>
+            </section>
+
+            <section className="rounded-[14px] border border-[#E7D9C9] bg-white p-4">
+              <h2 className="text-center text-[16px] font-semibold text-[#3B2A20]">What Happens Next?</h2>
+
+              <div className="mt-1 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                {[
+                  { icon: FaFileAlt, title: "Application", description: "Submit your volunteer registration" },
+                  { icon: FaShieldAlt, title: "Verification", description: "We carefully verify your details" },
+                  { icon: FaGraduationCap, title: "Orientation", description: "Attend our training & orientation" },
+                  { icon: FaClipboardCheck, title: "Approval", description: "Approved as an official volunteer" },
+                  { icon: FaIdCard, title: "ID & Kit", description: "Receive your ID card & volunteer kit" },
+                  { icon: FaHeart, title: "Sewa Assignment", description: "Start serving & make a real impact" },
+                ].map(({ icon: Icon, title, description }) => (
+                  <div key={title} className="flex flex-col items-center text-center">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#E7C59F] text-[#ED6B13]">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="mt-1.5 text-[16px] font-semibold leading-tight text-[#3B2A20]">{title}</span>
+                    <span className="mt-0.5 text-[16px] leading-[1.3] text-[#8F7A66]">{description}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-1 rounded-[6px] bg-[#FDEBD3] px-3 py-2 text-center text-[16px] text-[#8F5A21]">
+                We will contact you after reviewing your application.
+              </p>
+            </section>
+          </div>
+
+          {/* Bottom contact band */}
+          <section className="mt-6 grid gap-4 sm:grid-cols-[0.85fr_1fr_0.9fr_1.05fr]">
+            <div className="relative min-h-[220px] overflow-hidden border border-[#E7D9C9] bg-[#F4EDE3]">
+              <Image
+                src="/hero-images/volunteer-team-shirts.png"
+                alt="Two Moksha Sewa volunteers in branded polo shirts standing together"
+                fill
+                sizes="240px"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+              <p className="absolute bottom-4 left-4 right-4 text-[16px] font-medium leading-[1.4] text-white">
+                Your compassion can bring comfort. Your presence can bring hope. Your seva can bring dignity.
+              </p>
+            </div>
+
+            <div className="border border-[#E7D9C9] bg-[#FBF3E7] p-5">
+              <h3 className="text-[16px] font-semibold text-[#3B2A20]">What We Provide</h3>
+              <ul className="mt-3 flex flex-col gap-2.5">
+                {["Training & orientation", "Safety guidelines & support", "Identity card & volunteer kit", "Flexible opportunity to serve", "24x7 helpline & field support", "Recognition for your service", "Certificate of appreciation"].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-[16px] text-[#5E4B3F]">
+                    <FaCheckCircle className="mt-0.5 h-3 w-3 shrink-0 text-[#ED6B13]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border border-[#E7D9C9] bg-[#FBF3E7] p-5">
+              <h3 className="text-[16px] font-semibold text-[#3B2A20]">Need Help?</h3>
+              <p className="mt-0.5 text-[16px] text-[#8F7A66]">We&apos;re here to help you.</p>
+              <div className="mt-3 flex items-start gap-2 text-[16px] text-[#5E4B3F]">
+                <FaPhoneAlt className="mt-0.5 h-3 w-3 shrink-0 text-[#ED6B13]" />
+                <div>
+                  <a href="tel:+919220147229" className="hover:text-[#ED6B13]">+91 92201 47229</a>
+                  <div className="text-[16px] text-[#8F7A66]">24x7 Helpline</div>
+                </div>
+              </div>
+              <div className="mt-2.5 flex items-start gap-2 text-[16px] text-[#5E4B3F]">
+                <FaEnvelope className="mt-0.5 h-3 w-3 shrink-0 text-[#ED6B13]" />
+                <div>
+                  <a href="mailto:info@mokshasewa.org" className="hover:text-[#ED6B13]">info@mokshasewa.org</a>
+                  <div className="text-[16px] text-[#8F7A66]">Email Us</div>
+                </div>
+              </div>
+              <div className="mt-2.5 flex items-start gap-2 text-[16px] text-[#5E4B3F]">
+                <FaClock className="mt-0.5 h-3 w-3 shrink-0 text-[#ED6B13]" />
+                <div>
+                  Open 24 hours
+                  <div className="text-[16px] text-[#8F7A66]">Every day</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative min-h-[220px] overflow-hidden border border-[#E7D9C9]">
+              <Image
+                src="/hero-images/image4.png"
+                alt="Moksha Sewa volunteers supporting an elderly couple"
+                fill
+                sizes="(min-width: 1024px) 22vw, 45vw"
+                quality={90}
+                className="object-cover object-[80%_65%]"
+              />
+            </div>
+          </section>
+
+          {/* Thank you banner */}
+          <section className="mt-6 flex flex-col items-center gap-2.5 rounded-[14px] border border-[#EDD9BF] bg-gradient-to-r from-[#FBF3E7] to-[#FDEBD3] px-5 py-3 text-center sm:flex-row sm:justify-between sm:gap-3.5 sm:text-left">
+            <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:gap-3.5 sm:text-left">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-[#ED6B13] shadow-[0_4px_10px_rgba(89,57,31,0.10)]">
+                <FaHandsHelping className="h-5 w-5" />
+              </span>
+              <div className="leading-snug">
+                <p className="text-[16px] font-semibold text-[#3B2A20]">
+                  Thank you for taking the first step towards serving humanity.
+                </p>
+                <p className="text-[16px] text-[#75655A]">
+                  Together, let&apos;s ensure that no one is left alone in their final journey.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="#volunteer-registration"
+              className="inline-flex h-[39px] shrink-0 items-center justify-center gap-2 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-5 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95"
+            >
+              Register Now
+              <span>→</span>
+            </a>
+          </section>
+
+          {/* Footer disclaimer bar */}
+          <section className="mt-6 flex flex-col gap-2 rounded-[10px] bg-[#3B2A20] px-4 py-3 text-[16px] text-[#EBDCC9] sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-2">
+              <FaShieldAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#F0A860]" />
+              <span>
+                Registration does not automatically authorise field deployment. Volunteer assignments are subject to verification, orientation and approval by Moksha Sewa.
+              </span>
+            </div>
+            <div className="flex items-start gap-2">
+              <FaIdCard className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#F0A860]" />
+              <span>
+                By proceeding, you agree to our <a href="/privacy-policy" className="underline hover:text-white">Privacy Policy</a> and <a href="/code-of-conduct" className="underline hover:text-white">Code of Conduct</a>.
+              </span>
+            </div>
+          </section>
 
           {/* Bottom message */}
 
