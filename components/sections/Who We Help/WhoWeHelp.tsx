@@ -441,8 +441,10 @@ export default function WhoWeHelp() {
                 relative
 
                 flex
-                h-[455px]
+                h-auto
+                min-h-[455px]
                 flex-col
+                lg:h-[455px]
 
                 overflow-hidden
 
@@ -535,10 +537,12 @@ export default function WhoWeHelp() {
                   flex-1
                   flex-col
 
-                  px-7
+                  px-5
+                  sm:px-7
 
-                  pb-5
-                  pt-[50px]
+                  pb-4
+                  sm:pb-5
+                  pt-[46px]
 
                   text-center
                 "
@@ -555,7 +559,8 @@ export default function WhoWeHelp() {
 
                     font-serif
 
-                    text-[22px]
+                    text-[20px]
+                    sm:text-[22px]
 
                     font-semibold
 
