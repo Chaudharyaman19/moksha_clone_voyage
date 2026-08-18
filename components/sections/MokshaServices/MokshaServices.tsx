@@ -228,10 +228,9 @@ const MokshaServices: React.FC = () => {
 
             <span
               className="
-                text-[11px] font-semibold
+                text-[16px] font-semibold
                 tracking-[0.20em]
                 text-[#103e39]
-                sm:text-[13px]
               "
             >
               WHAT WE DO
@@ -270,9 +269,8 @@ const MokshaServices: React.FC = () => {
           <p
             className="
               mx-auto mt-2 max-w-[570px]
-              text-[12px] leading-[1.45]
+              text-[16px] leading-[1.5]
               text-[#303635]
-              sm:text-[14px]
             "
           >
             We provide compassionate and responsible support for every step
@@ -340,11 +338,10 @@ const MokshaServices: React.FC = () => {
 
               <p
                 className="
-                  mx-auto max-w-[180px]
-                  text-[11px]
+                  mx-auto max-w-[200px]
+                  text-[16px]
                   leading-[1.42]
                   text-[#343838]
-                  sm:text-[12px]
                 "
               >
                 {service.description}
@@ -403,25 +400,6 @@ const MokshaServices: React.FC = () => {
                         sizes="120px"
                         className="object-contain"
                       />
-
-                      {/* number */}
-                      <div
-                        className="
-                          absolute -top-[12px]
-                          left-1/2
-                          flex h-[30px] w-[30px]
-                          -translate-x-1/2
-                          items-center justify-center
-                          rounded-full
-                          bg-[#0c403b]
-                          font-serif
-                          text-[14px]
-                          font-bold
-                          text-white
-                        "
-                      >
-                        {step.number}
-                      </div>
                     </div>
 
                     {/* arrow between steps */}
@@ -456,9 +434,9 @@ const MokshaServices: React.FC = () => {
                   <p
                     className="
                       mx-auto mt-1
-                      max-w-[145px]
-                      text-[10px]
-                      leading-[1.4]
+                      max-w-[170px]
+                      text-[16px]
+                      leading-[1.42]
                       text-[#343737]
                     "
                   >
@@ -491,29 +469,13 @@ const MokshaServices: React.FC = () => {
                       sizes="105px"
                       className="object-contain"
                     />
-
-                    <span
-                      className="
-                        absolute -top-3
-                        left-1/2
-                        -translate-x-1/2
-                        flex h-7 w-7
-                        items-center justify-center
-                        rounded-full
-                        bg-[#0c403b]
-                        text-[12px]
-                        font-bold text-white
-                      "
-                    >
-                      {step.number}
-                    </span>
                   </div>
 
                 <h4 className="mt-2 font-serif text-[16px] font-bold">
                   {step.title}
                 </h4>
 
-                <p className="mt-1 max-w-[180px] text-[11px] leading-[1.4]">
+                <p className="mt-1 max-w-[200px] text-[16px] leading-[1.42]">
                   {step.description}
                 </p>
               </article>
@@ -526,7 +488,6 @@ const MokshaServices: React.FC = () => {
         ======================================================== */}
         <div className="mt-5 flex justify-center sm:mt-6">
           <div className="flex w-full max-w-[440px] items-center justify-center gap-3">
-            <span className="hidden h-px flex-1 bg-[#b77b22]/60 sm:block" />
 
             <a
               href="/sevas"
@@ -536,9 +497,9 @@ const MokshaServices: React.FC = () => {
               <Image
                 src="/assets/about-optimized/moksha_services_button.png"
                 alt="Explore Our Sewa"
-                width={280}
-                height={64}
-                className="h-auto w-full max-w-[280px] object-contain"
+                width={360}
+                height={82}
+                className="h-auto w-full max-w-[360px] object-contain"
               />
 
               <span
@@ -556,7 +517,6 @@ const MokshaServices: React.FC = () => {
               </span>
             </a>
 
-            <span className="hidden h-px flex-1 bg-[#b77b22]/60 sm:block" />
           </div>
         </div>
       </div>
