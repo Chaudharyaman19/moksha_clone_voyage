@@ -50,7 +50,7 @@ export default function TrustTransparency() {
       <div className="pointer-events-none absolute left-0 top-0 h-64 w-64 rounded-full bg-[#E9DFCE]/55 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#EAD9B5]/35 blur-3xl" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1360px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
         {/* Top layout */}
         <div className="grid grid-cols-1 gap-7 xl:grid-cols-[0.92fr_1.08fr] xl:gap-8">
           {/* LEFT COLUMN */}
