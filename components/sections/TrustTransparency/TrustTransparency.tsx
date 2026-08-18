@@ -440,9 +440,6 @@ export default function TrustTransparency() {
                 xl:text-left
                 xl:text-[62px]
               "
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-              }}
             >
               Trust &amp;
               <br />
@@ -539,9 +536,6 @@ export default function TrustTransparency() {
 
                   <h3
                     className="mt-[2px] font-serif text-[24px] font-semibold uppercase leading-none"
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                    }}
                   >
                     Moksha Sewa
                   </h3>
@@ -698,9 +692,6 @@ export default function TrustTransparency() {
                       leading-[1.1]
                       text-[#094B35]
                     "
-                    style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
-                    }}
                   >
                     {card.title}
                   </h3>

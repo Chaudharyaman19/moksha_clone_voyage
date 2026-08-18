@@ -215,9 +215,6 @@ export default function HumanitarianCommitment() {
 
               <h2
                 className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-semibold leading-[1.02] text-[#064A31] sm:text-[40px] lg:text-[49px]"
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
               >
                 <span className="block">
                   No One Should Leave
@@ -365,9 +362,6 @@ export default function HumanitarianCommitment() {
               <div className="min-w-0">
                 <h3
                   className="text-[22px] font-semibold leading-none text-[#124C36]"
-                  style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
-                  }}
                 >
                   Our Commitment
                 </h3>

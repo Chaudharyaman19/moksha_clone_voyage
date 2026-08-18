@@ -325,17 +325,13 @@ export default function SupportInAction() {
           <h2
             className="
               font-serif
-              text-[35px]
+              text-[30px]
               font-semibold
               leading-[1.02]
               text-[#06452F]
               sm:text-[42px]
               lg:text-[49px]
             "
-            style={{
-              fontFamily:
-                "Georgia, 'Times New Roman', serif",
-            }}
           >
             Helping Complete a Final Journey With Dignity
           </h2>
@@ -522,10 +518,6 @@ export default function SupportInAction() {
 
                       text-[#123E30]
                     "
-                    style={{
-                      fontFamily:
-                        "Georgia, 'Times New Roman', serif",
-                    }}
                   >
                     {card.title}
                   </h3>
@@ -675,10 +667,10 @@ export default function SupportInAction() {
         {/* =====================================================
             DONATE BUTTON
         ====================================================== */}
-<div className="mt-[12px] flex justify-center">
-  <a
-    href="/donation"
-    className="
+        <div className="mt-[12px] flex justify-center">
+          <a
+            href="/donation"
+            className="
       group
       inline-flex
       h-[50px]
@@ -697,32 +689,32 @@ export default function SupportInAction() {
       hover:-translate-y-[1px]
       hover:bg-[#003E2D]
     "
-  >
-    <span className="flex items-center gap-[12px]">
-      <CustomIcon
-        name="HeartHands"
-        className="
+          >
+            <span className="flex items-center gap-[12px]">
+              <CustomIcon
+                name="HeartHands"
+                className="
           h-[28px]
           w-[28px]
           text-[#D8A62A]
         "
-      />
+              />
 
-      <span
-        className="
+              <span
+                className="
           text-[18px]
           font-medium
           uppercase
           tracking-[0.02em]
         "
-      >
-        Donate For Sewa
-      </span>
-    </span>
+              >
+                Donate For Sewa
+              </span>
+            </span>
 
-    <CustomIcon
-      name="ArrowRight"
-      className="
+            <CustomIcon
+              name="ArrowRight"
+              className="
         h-[22px]
         w-[22px]
         text-[#D9A32B]
@@ -730,9 +722,9 @@ export default function SupportInAction() {
         duration-300
         group-hover:translate-x-[3px]
       "
-    />
-  </a>
-</div>
+            />
+          </a>
+        </div>
       </div>
     </section>
   );

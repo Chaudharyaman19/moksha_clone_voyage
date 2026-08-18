@@ -406,10 +406,6 @@ export default function SewaStories() {
               sm:text-[41px]
               lg:text-[48px]
             "
-            style={{
-              fontFamily:
-                "Georgia, 'Times New Roman', serif",
-            }}
           >
             Every Sewa Has a Human Story
           </h2>

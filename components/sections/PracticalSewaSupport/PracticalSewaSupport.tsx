@@ -528,9 +528,6 @@ export default function HowWeCanHelp() {
               sm:text-[42px]
               lg:text-[49px]
             "
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-            }}
           >
             Essential Support for a
 
@@ -628,7 +625,6 @@ export default function HowWeCanHelp() {
                   "
                   style={{
                     color: card.titleColor,
-                    fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
                   {card.title}

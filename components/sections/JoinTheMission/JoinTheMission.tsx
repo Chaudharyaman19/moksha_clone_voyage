@@ -421,10 +421,6 @@ export default function JoinTheMission() {
               sm:text-[42px]
               lg:text-[49px]
             "
-            style={{
-              fontFamily:
-                "Georgia, 'Times New Roman', serif",
-            }}
           >
             There Is a Place for Everyone in Sewa
           </h2>
@@ -610,8 +606,6 @@ export default function JoinTheMission() {
                     leading-[1.05]
                   "
                   style={{
-                    fontFamily:
-                      "Georgia, 'Times New Roman', serif",
                     color: card.accent,
                   }}
                 >
@@ -802,10 +796,6 @@ export default function JoinTheMission() {
                   leading-[1.25]
                   text-[#A76A27]
                 "
-                style={{
-                  fontFamily:
-                    "Georgia, 'Times New Roman', serif",
-                }}
               >
                 Together, we bring compassion to life.
               </p>
