@@ -502,12 +502,12 @@ export default function PracticalSewaSupport() {
             <div className="relative min-h-[450px] lg:h-[570px]">
 
               <Image
-                src="/assets/chatgpt.png"
-                alt="Moksha Sewa family support"
+                src="/assets/family-ghat-support.png"
+                alt="A grieving family being guided through rituals by a priest at a river ghat"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 54vw"
-                className="object-cover object-center"
+                className="object-cover object-[92%_42%]"
               />
 
               {/* VERY LIGHT JOIN — REFERENCE JAISA */}
