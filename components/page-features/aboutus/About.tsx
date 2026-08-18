@@ -5,7 +5,7 @@ import AboutBanner from "@/components/sections/AboutBanner/AboutBanner";
 import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
 import MokshaServices from "@/components/sections/MokshaServices/MokshaServices";
 import WhoWeAre from "./WhoWeAre";
-import AboutMokshaSewa from "./AboutMokshaSewa";
+// import AboutMokshaSewa from "./AboutMokshaSewa";
 import Howwesupport from "./Howwesupport";
 import Whyweexist from "./Whyweexist";
 import BehindMission from "./BehindMission";
@@ -23,7 +23,7 @@ export default function About() {
         <WhoWeAre />
         <MokshaSewaIntro />
         <MokshaServices />
-        <AboutMokshaSewa />
+        {/* <AboutMokshaSewa /> */}
         <Howwesupport />
         <Whyweexist />
         <BehindMission />
