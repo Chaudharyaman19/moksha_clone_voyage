@@ -3,8 +3,8 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
 import DonateVolunteerHighlight from "@/components/sections/DonateVolunteerHighlight/DonateVolunteerHighlight";
-import OurSewa from "@/components/sections/OurSewa/HowWeHelp";
-import Howwehelp from "@/components/sections/HowWeHelp/HowWeHelp";
+import OurSewa from "@/components/sections/OurSewa/HowHelp";
+import Howwehelp from "@/components/sections/Who We Help/WhoWeHelp";
 import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
 import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
@@ -29,18 +29,23 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
+          
+        <Howwehelp />
+          <OurSewa />
+          
         {/* Namo Gange Section */}
         {/* <AboutNamoGange /> */}
-
-        <CompassionSection />
-        <DonateVolunteerHighlight />
-        <OurSewa />
-        <Howwehelp />
+{/* 
+     
+        {/* <DonateVolunteerHighlight /> */}
+    
         <PracticalSewaSupport />
+            <HowSewaWorks />
+               <CompassionSection /> 
         <SewaStories/>
         <Serving />
         <HowItWorks />
-        <HowSewaWorks />
+    
         <SacredJourney />
         <WhyFamiliesTrust />
         <VoicesOfGratitude />
