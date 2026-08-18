@@ -515,8 +515,13 @@ export default function TrustTransparency() {
                   grid
                   h-full
                   min-h-[180px]
-                  grid-cols-[42%_1px_58%]
+                  grid-cols-1
                   items-center
+                  gap-[18px]
+                  py-[10px]
+                  sm:grid-cols-[42%_1px_58%]
+                  sm:gap-0
+                  sm:py-0
                 "
               >
                 {/* MOKSHA */}
@@ -558,7 +563,7 @@ export default function TrustTransparency() {
 
                 {/* VERTICAL LINE */}
 
-                <span className="h-[145px] w-px bg-[#D69A20]/55" />
+                <span className="hidden h-[145px] w-px bg-[#D69A20]/55 sm:block" />
 
                 {/* NAMO GANGE */}
 
@@ -649,7 +654,7 @@ export default function TrustTransparency() {
                   key={card.title}
                   className="
                     flex
-                    h-[277px]
+                    min-h-[277px]
                     flex-col
                     items-center
                     rounded-[13px]
@@ -719,7 +724,7 @@ export default function TrustTransparency() {
                 className="
                   group
                   flex
-                  h-[63px]
+                  min-h-[63px]
                   items-center
                   rounded-[8px]
                   bg-[#00482F]
@@ -761,7 +766,7 @@ export default function TrustTransparency() {
 
               {/* LEGAL */}
 
-              <div className="relative flex h-[63px] items-center pl-[15px]">
+              <div className="relative flex min-h-[63px] items-center py-[8px] pl-[15px]">
                 <span className="absolute left-0 top-[4px] h-[55px] w-px bg-[#D7C49C]" />
 
                 <CustomIcon
@@ -793,9 +798,11 @@ export default function TrustTransparency() {
           className="
             relative
             -mt-px
+            hidden
             h-[180px]
             overflow-hidden
             bg-[#00472F]
+            xl:block
           "
         >
           {/* =================================================
@@ -957,6 +964,72 @@ export default function TrustTransparency() {
         </div>
 
         {/* =====================================================
+            LOWER AREA — MOBILE / TABLET FALLBACK
+            The desktop version above is a hard-coded absolute
+            layout (percentage offsets tuned for a wide canvas),
+            it doesn't stack sanely, so this simpler flex version
+            covers everything below xl instead.
+        ====================================================== */}
+
+        <div
+          className="
+            mt-[14px]
+            flex
+            flex-col
+            gap-[14px]
+            rounded-[16px]
+            border
+            border-[#DED2BF]
+            bg-[#FFFDF8]
+            p-[16px]
+            xl:hidden
+          "
+        >
+          <div className="flex items-center gap-[14px]">
+            <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E2A633]">
+              <Image
+                src="/assets/about-reference/story-ghat-temple.png"
+                alt="Sacred river ghat"
+                fill
+                sizes="70px"
+                className="object-cover object-center"
+              />
+              <span className="absolute inset-0 flex items-center justify-center bg-[#004A35]/80 text-[#DCAA27]">
+                <CustomIcon name="Handshake" className="h-[34px] w-[34px]" />
+              </span>
+            </div>
+
+            <div>
+              <h3 className="text-[18px] font-bold leading-[1.2] text-[#174D39]">
+                Transparency in every step.
+              </h3>
+              <span className="mt-[6px] block h-[2px] w-[39px] bg-[#CB9638]" />
+            </div>
+          </div>
+
+          <p className="text-[16px] leading-[1.4] text-[#3D3935]">
+            Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust in every act of service.
+          </p>
+
+          <div className="grid grid-cols-2 gap-[14px] border-t border-[#DCC8A4] pt-[14px] sm:grid-cols-4">
+            {values.map((value) => (
+              <div key={value.title} className="flex flex-col items-center text-center">
+                <CustomIcon
+                  name={value.icon}
+                  className="h-[38px] w-[38px] text-[#15523C]"
+                />
+                <h4 className="mt-[6px] text-[16px] font-bold uppercase leading-[1.15] text-[#15523C]">
+                  {value.title}
+                </h4>
+                <p className="mt-[4px] whitespace-pre-line text-[16px] leading-[1.22] text-[#3E3A35]">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* =====================================================
             BOTTOM GREEN STRIP
         ====================================================== */}
 
@@ -964,19 +1037,21 @@ export default function TrustTransparency() {
           className="
             relative
             flex
-            h-[43px]
+            min-h-[43px]
+            flex-wrap
             items-center
             justify-center
-            overflow-hidden
+            gap-y-2
             bg-[#00472F]
             px-[16px]
+            py-[10px]
             text-center
             text-[16px]
             font-semibold
             text-[#F2E7C9]
           "
         >
-          <span className="h-px w-[145px] bg-gradient-to-r from-transparent to-[#D2A030]" />
+          <span className="hidden h-px w-[145px] bg-gradient-to-r from-transparent to-[#D2A030] sm:block" />
 
           <span className="mx-[12px] whitespace-nowrap">
             A mission of compassion.
@@ -997,7 +1072,7 @@ export default function TrustTransparency() {
             A promise of accountability.
           </span>
 
-          <span className="h-px w-[145px] bg-gradient-to-l from-transparent to-[#D2A030]" />
+          <span className="hidden h-px w-[145px] bg-gradient-to-l from-transparent to-[#D2A030] sm:block" />
         </div>
       </div>
     </section>
