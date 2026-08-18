@@ -33,9 +33,7 @@ const cards: JoinCard[] = [
         <br />
         Bring compassion.
         <br />
-        Be the reason
-        <br />
-        someone is not alone.
+        Be the reason someone is not alone.
       </>
     ),
     button: "JOIN AS VOLUNTEER",
@@ -75,13 +73,11 @@ const cards: JoinCard[] = [
     ),
     description: (
       <>
-        Your support helps
+        Your support helps ensure
         <br />
-        ensure dignity, care
+        dignity, care and respect
         <br />
-        and respect in every
-        <br />
-        final journey.
+        in every final journey.
       </>
     ),
     button: "SUPPORT THE MISSION",
@@ -143,7 +139,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-[300px] w-full flex-col p-4 sm:p-5 lg:min-h-[220px] lg:w-[63%]">
+      <div className="relative z-10 flex h-full min-h-[300px] w-full flex-col p-4 sm:p-5 lg:min-h-[220px] lg:w-[70%]">
         <div className="flex items-start gap-4">
           <CardIcon variant={card.variant}>
             {card.icon}
@@ -169,7 +165,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
 
         <p
           className="
-            mt-3
+            my-3
             text-base
             leading-[1.5]
             text-[#343735]
@@ -181,7 +177,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
         <button
           type="button"
           className={`
-            group/button mt-2
+            group/button mt-auto
             flex w-full items-center justify-center gap-3
             rounded-[7px]
             px-6 py-3
