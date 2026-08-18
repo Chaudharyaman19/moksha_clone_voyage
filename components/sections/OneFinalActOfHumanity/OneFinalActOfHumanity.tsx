@@ -27,7 +27,7 @@ export default function OneFinalActOfHumanity() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-5 py-6 sm:min-h-0 sm:px-7 lg:px-8">
+        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-4 py-6 sm:min-h-0 sm:px-5 lg:px-6">
           <div className="w-full max-w-[680px]">
             {/* Logo row */}
             <div className="mb-6 flex items-center gap-5">
