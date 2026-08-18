@@ -17,7 +17,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.8"
+        strokeWidth="2.7"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -32,21 +32,19 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.6"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="32" cy="19" r="5" />
-        <circle cx="20" cy="24" r="4" />
-        <circle cx="44" cy="24" r="4" />
+        <path d="M26 14c0-3.8 4-5.4 6-2 2-3.4 6-1.8 6 2 0 3.6-3.5 6.2-6 8.6-2.5-2.4-6-5-6-8.6Z" />
 
-        <path d="M24 43c.7-7 3.4-10.5 8-10.5S39.3 36 40 43" />
+        <path d="M10 36c5-1 9 1 13 5l6 7" />
+        <path d="M54 36c-5-1-9 1-13 5l-6 7" />
 
-        <path d="M11 43c.5-6 3-9 8-9 2.2 0 4 .7 5.5 2" />
-        <path d="M53 43c-.5-6-3-9-8-9-2.2 0-4 .7-5.5 2" />
+        <path d="M10 35v15" />
+        <path d="M54 35v15" />
 
-        <path d="M17 49c4-2 8-1 11 2" />
-        <path d="M47 49c-4-2-8-1-11 2" />
+        <path d="M20 31c3.5-3 7.5-4 12-4s8.5 1 12 4" />
       </svg>
     ),
 
@@ -56,19 +54,19 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.6"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="26" cy="19" r="5" />
-        <circle cx="39" cy="21" r="4.2" />
+        <circle cx="31" cy="18" r="5" />
+        <circle cx="20" cy="23" r="3.8" />
+        <circle cx="43" cy="23" r="3.8" />
 
-        <path d="M15 46c1-9 4.5-14 11-14s10 5 11 14" />
+        <path d="M22 45c.7-8 3.8-12 9-12s8.3 4 9 12" />
 
-        <path d="M32 46c.8-7 3.2-11 8-11s7.6 4 8.5 11" />
+        <path d="M9 45c.6-6.5 3.2-10 8.5-10 2.1 0 4 .7 5.5 2.1" />
 
-        <path d="M22 28c3 2 5 2 8 0" />
-        <path d="M37 27c2 1.5 4 1.5 6 0" />
+        <path d="M54 45c-.6-6.5-3.2-10-8.5-10-2.1 0-4 .7-5.5 2.1" />
       </svg>
     ),
 
@@ -78,22 +76,19 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.6"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="32" cy="19" r="5" />
+        <circle cx="32" cy="18" r="5" />
         <circle cx="19" cy="23" r="4" />
         <circle cx="45" cy="23" r="4" />
 
-        <path d="M23 46c.7-8 3.7-12 9-12s8.3 4 9 12" />
+        <path d="M23 44c.7-7.5 3.7-11.5 9-11.5s8.3 4 9 11.5" />
 
-        <path d="M9 46c.5-7 3-10 8-10 2.3 0 4.2.8 5.8 2.2" />
+        <path d="M9 44c.6-6.5 3.2-10 8.5-10 2.2 0 4 .7 5.5 2" />
 
-        <path d="M55 46c-.5-7-3-10-8-10-2.3 0-4.2.8-5.8 2.2" />
-
-        <path d="M32 50v5" />
-        <path d="M28 53h8" />
+        <path d="M55 44c-.6-6.5-3.2-10-8.5-10-2.2 0-4 .7-5.5 2" />
       </svg>
     ),
 
@@ -118,7 +113,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -133,14 +128,18 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="2.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
         <path d="M32 43c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
+
         <path d="M22 40c-8-2-13-7-14-15 7 0 13 3 17 8" />
+
         <path d="M42 40c8-2 13-7 14-15-7 0-13 3-17 8" />
+
         <path d="M16 46c5 2 10 3 16 3s11-1 16-3" />
+
         <path d="M24 49h16" />
       </svg>
     ),
@@ -171,7 +170,6 @@ interface StoryCard {
   location: string;
   services: string[];
   description: string;
-  accent: string;
 }
 
 const stories: StoryCard[] = [
@@ -180,10 +178,13 @@ const stories: StoryCard[] = [
     icon: "FamilyHands",
     title: "ECONOMICALLY WEAKER FAMILY",
     location: "Delhi NCR",
-    services: ["Transport", "Ritual Essentials", "Priest Coordination"],
+    services: [
+      "Transport",
+      "Ritual Essentials",
+      "Priest Coordination",
+    ],
     description:
       "An elderly father passed away unexpectedly. With no one to support the family, our team arranged transport, cremation and performed all rituals with dignity.",
-    accent: "#39694D",
   },
 
   {
@@ -191,10 +192,13 @@ const stories: StoryCard[] = [
     icon: "ElderlyCare",
     title: "ELDERLY WITHOUT SUPPORT",
     location: "Ghaziabad, UP",
-    services: ["Transport", "Cremation", "Rituals"],
+    services: [
+      "Transport",
+      "Cremation",
+      "Rituals",
+    ],
     description:
       "An elderly man with no close family passed away. Our team arranged cremation and performed all rituals with dignity and respect.",
-    accent: "#527258",
   },
 
   {
@@ -202,17 +206,20 @@ const stories: StoryCard[] = [
     icon: "UnclaimedCase",
     title: "UNCLAIMED BODY CASE",
     location: "Faridabad, Haryana",
-    services: ["Transport", "Cremation", "Rituals"],
+    services: [
+      "Transport",
+      "Cremation",
+      "Rituals",
+    ],
     description:
       "A legally authorised unclaimed body was given a respectful last journey by our team with complete dignity and proper rituals.",
-    accent: "#4B6B55",
   },
 ];
 
 const backgroundPattern = {
   backgroundImage:
-    "radial-gradient(circle at 20% 20%, rgba(154,111,50,0.055) 0 1px, transparent 1.2px)",
-  backgroundSize: "24px 24px",
+    "radial-gradient(circle, rgba(139,96,43,0.06) 0 1px, transparent 1.15px)",
+  backgroundSize: "22px 22px",
 };
 
 export default function SewaStories() {
@@ -222,52 +229,26 @@ export default function SewaStories() {
         relative
         w-full
         overflow-hidden
-        bg-[#FBF8F1]
+        bg-[#FCF8F0]
         px-4
-        py-6
+        py-[20px]
         sm:px-5
         lg:px-6
-        lg:py-8
+        lg:py-[24px]
       "
     >
-      {/* ===========================================
-          BACKGROUND
-      ============================================ */}
+      {/* ==========================================
+          BACKGROUND DOTS
+      =========================================== */}
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-50"
+        className="pointer-events-none absolute inset-0 opacity-45"
         style={backgroundPattern}
       />
 
-      {/* LEFT LEAF DECORATION */}
-
-      <svg
-        viewBox="0 0 180 180"
-        className="
-          pointer-events-none
-          absolute
-          -left-10
-          -top-4
-          h-[190px]
-          w-[190px]
-          text-[#B5BCA1]/28
-        "
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-      >
-        <path d="M22 148C43 109 72 69 138 28" />
-
-        <path d="M38 121C21 110 20 92 26 77c17 9 25 22 22 39" />
-
-        <path d="M55 99C40 84 43 66 52 53c15 12 19 26 12 41" />
-
-        <path d="M79 76C66 58 73 42 84 31c13 14 15 28 5 41" />
-
-        <path d="M103 55C95 36 105 23 120 17c9 16 6 29-7 39" />
-      </svg>
-
-      {/* RIGHT GHAT FADE */}
+      {/* ==========================================
+          TOP RIGHT GHAT — MORE VISIBLE
+      =========================================== */}
 
       <div
         className="
@@ -275,33 +256,125 @@ export default function SewaStories() {
           absolute
           right-0
           top-0
-          h-[210px]
-          w-[430px]
-          bg-[linear-gradient(to_left,rgba(178,151,111,0.15),transparent)]
+          h-[260px]
+          w-[610px]
+          overflow-hidden
         "
-      />
+      >
+        <Image
+          src="/assets/about-reference/story-evening-ghat.png"
+          alt=""
+          fill
+          sizes="610px"
+          className="
+            object-cover
+            object-[65%_center]
+            opacity-[0.32]
+          "
+        />
 
-      {/* ===========================================
-          MAIN
-      ============================================ */}
+        {/* left fade only */}
+        <div
+          className="
+            absolute
+            inset-y-0
+            left-0
+            w-[55%]
+            bg-gradient-to-r
+            from-[#FCF8F0]
+            via-[#FCF8F0]/75
+            to-transparent
+          "
+        />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
+        {/* bottom fade */}
+        <div
+          className="
+            absolute
+            inset-x-0
+            bottom-0
+            h-[74px]
+            bg-gradient-to-t
+            from-[#FCF8F0]
+            via-[#FCF8F0]/55
+            to-transparent
+          "
+        />
+      </div>
 
-        {/* ===========================================
+      {/* ==========================================
+          LEFT LEAF
+      =========================================== */}
+
+      <svg
+        viewBox="0 0 200 220"
+        className="
+          pointer-events-none
+          absolute
+          -left-[42px]
+          -top-[20px]
+          h-[215px]
+          w-[190px]
+          text-[#A7AF96]/45
+        "
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+      >
+        <path d="M25 205C47 155 80 95 165 28" />
+
+        <path d="M41 157c-25-10-31-34-23-54 24 7 39 25 38 48" />
+
+        <path d="M67 118c-21-15-22-38-10-56 21 12 31 30 25 51" />
+
+        <path d="M97 80c-15-20-9-41 6-56 18 17 21 36 9 53" />
+
+        <path d="M129 52c-9-20 2-36 19-43 12 17 8 32-7 44" />
+      </svg>
+
+      {/* ==========================================
+          SECTION WIDTH — HEADER ALIGN
+      =========================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1344px]
+        "
+      >
+        {/* ========================================
             HEADER
-        ============================================ */}
+        ========================================= */}
 
-        <header className="mx-auto mb-6 max-w-[960px] text-center">
-
+        <header
+          className="
+            mx-auto
+            mb-[25px]
+            max-w-[930px]
+            text-center
+          "
+        >
           {/* LABEL */}
 
-          <div className="mb-[6px] flex items-center justify-center gap-[10px]">
-
-            <span className="h-px w-[60px] bg-[#BD8C43]" />
+          <div
+            className="
+              mb-[5px]
+              flex
+              items-center
+              justify-center
+              gap-[9px]
+            "
+          >
+            <span className="relative h-px w-[54px] bg-[#B88335]">
+              <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B88335]" />
+            </span>
 
             <CustomIcon
               name="Lotus"
-              className="h-[23px] w-[23px] text-[#B88339]"
+              className="h-[23px] w-[23px] text-[#B27B29]"
             />
 
             <span
@@ -309,15 +382,16 @@ export default function SewaStories() {
                 text-[16px]
                 font-bold
                 uppercase
-                tracking-[0.06em]
-                text-[#9B6B2B]
+                tracking-[0.055em]
+                text-[#9C6D2C]
               "
             >
               Sewa Stories
             </span>
 
-            <span className="h-px w-[60px] bg-[#BD8C43]" />
-
+            <span className="relative h-px w-[54px] bg-[#B88335]">
+              <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B88335]" />
+            </span>
           </div>
 
           {/* HEADING */}
@@ -325,95 +399,101 @@ export default function SewaStories() {
           <h2
             className="
               font-serif
-              text-[35px]
+              text-[34px]
               font-semibold
               leading-[1.02]
-              text-[#174C32]
-              sm:text-[42px]
-              lg:text-[50px]
+              text-[#064A31]
+              sm:text-[41px]
+              lg:text-[48px]
             "
             style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontFamily:
+                "Georgia, 'Times New Roman', serif",
             }}
           >
             Every Sewa Has a Human Story
           </h2>
 
-          {/* SUBTITLE */}
+          {/* SUBTEXT */}
 
           <p
             className="
               mx-auto
-              mt-[9px]
-              max-w-[780px]
+              mt-[10px]
+              max-w-[760px]
               text-[16px]
               leading-[1.4]
-              text-[#55534E]
+              text-[#555550]
             "
           >
             Behind every case is a life, a family and a final journey deserving
             of respect.
           </p>
-
         </header>
 
-        {/* ===========================================
-            3 STORY CARDS
-        ============================================ */}
+        {/* ========================================
+            CARDS
+        ========================================= */}
 
         <div
           className="
             grid
             grid-cols-1
-            gap-[18px]
+            gap-[16px]
             md:grid-cols-2
             lg:grid-cols-3
           "
         >
-
           {stories.map((story) => (
             <article
               key={story.title}
               className="
-                relative
+                flex
+                h-[455px]
+                flex-col
                 overflow-hidden
-                rounded-[12px]
+                rounded-[11px]
                 border
-                border-[#E4DDD2]
+                border-[#DDD4C7]
                 bg-[#FFFCF7]
-                shadow-[0_7px_18px_rgba(64,43,25,0.09)]
+                shadow-[0_6px_16px_rgba(62,42,22,0.09)]
               "
             >
-
-              {/* ===================================
+              {/* ====================================
                   IMAGE
-              ==================================== */}
+              ===================================== */}
 
               <div
                 className="
                   relative
-                  h-[185px]
+                  h-[190px]
+                  shrink-0
                   overflow-hidden
                 "
               >
-
                 <Image
                   src={story.image}
                   alt={story.title}
                   fill
                   quality={95}
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
+                  sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1024px) 50vw,
+                    33vw
+                  "
+                  className="
+                    object-cover
+                    object-center
+                  "
                 />
-
-                {/* IMAGE SOFT GRADIENT */}
 
                 <div
                   className="
+                    pointer-events-none
                     absolute
                     inset-0
                     bg-gradient-to-t
-                    from-black/15
+                    from-black/10
                     via-transparent
                     to-transparent
                   "
@@ -424,83 +504,100 @@ export default function SewaStories() {
                 <div
                   className="
                     absolute
-                    left-[14px]
-                    top-[13px]
+                    left-[13px]
+                    top-[12px]
                     flex
-                    h-[30px]
+                    h-[31px]
                     items-center
-                    gap-[7px]
+                    gap-[6px]
                     rounded-[5px]
-                    bg-[#0E573A]
+                    bg-[#00543A]
                     px-[10px]
                     text-[16px]
                     font-semibold
+                    leading-none
                     text-white
-                    shadow-[0_3px_8px_rgba(19,69,48,0.20)]
+                    shadow-[0_3px_8px_rgba(0,64,42,0.18)]
                   "
                 >
                   <CustomIcon
                     name="ShieldCheck"
-                    className="h-[18px] w-[18px] text-[#D3B76B]"
+                    className="
+                      h-[17px]
+                      w-[17px]
+                      text-[#CDA126]
+                    "
                   />
 
                   Verified Case
                 </div>
-
               </div>
 
-              {/* ===================================
-                  CARD CONTENT
-              ==================================== */}
+              {/* ====================================
+                  CONTENT
+              ===================================== */}
 
-              <div className="px-[20px] pb-[20px] pt-[16px]">
-
+              <div
+                className="
+                  flex
+                  flex-1
+                  flex-col
+                  px-[18px]
+                  pb-[17px]
+                  pt-[13px]
+                "
+              >
                 {/* TITLE ROW */}
 
-                <div className="flex items-start gap-[12px]">
+                <div className="flex items-start gap-[10px]">
 
-                  {/* CATEGORY ICON */}
+                  {/* ICON */}
 
                   <span
                     className="
                       flex
-                      h-[47px]
-                      w-[47px]
+                      h-[44px]
+                      w-[44px]
                       shrink-0
                       items-center
                       justify-center
                       rounded-full
-                      bg-[#F1EEE3]
+                      bg-[#F0EEDF]
+                      text-[#496B55]
                     "
-                    style={{
-                      color: story.accent,
-                    }}
                   >
                     <CustomIcon
                       name={story.icon}
-                      className="h-[32px] w-[32px]"
+                      className="
+                        h-[29px]
+                        w-[29px]
+                      "
                     />
                   </span>
 
                   <div className="min-w-0 flex-1">
-
-                    {/* TITLE */}
 
                     <h3
                       className="
                         text-[16px]
                         font-bold
                         uppercase
-                        leading-[1.2]
+                        leading-[1.18]
+                        text-[#285E42]
                       "
-                      style={{
-                        color: story.accent,
-                      }}
                     >
                       {story.title}
                     </h3>
 
-                    {/* LOCATION */}
+                    <span
+                      className="
+                        mt-[3px]
+                        block
+                        h-[2px]
+                        w-[36px]
+                        bg-[#BF8A35]
+                      "
+                    />
 
                     <div
                       className="
@@ -510,38 +607,35 @@ export default function SewaStories() {
                         gap-[5px]
                         text-[16px]
                         leading-none
-                        text-[#504A42]
+                        text-[#514A42]
                       "
                     >
                       <CustomIcon
                         name="MapPin"
-                        className="h-[16px] w-[16px] text-[#C48C3C]"
+                        className="
+                          h-[15px]
+                          w-[15px]
+                          text-[#C58B30]
+                        "
                       />
 
-                      <span>
-                        {story.location}
-                      </span>
-
+                      {story.location}
                     </div>
-
                   </div>
-
                 </div>
 
                 {/* SERVICES */}
 
                 <div
                   className="
-                    mt-[11px]
+                    mt-[9px]
                     flex
                     flex-wrap
                     items-center
-                    gap-x-[7px]
-                    gap-y-[3px]
                     text-[16px]
                     font-medium
-                    leading-[1.25]
-                    text-[#4A443D]
+                    leading-[1.22]
+                    text-[#47413B]
                   "
                 >
                   {story.services.map((service, index) => (
@@ -550,7 +644,7 @@ export default function SewaStories() {
                       className="inline-flex items-center"
                     >
                       {index > 0 && (
-                        <span className="mr-[7px] text-[#B2843F]">
+                        <span className="mx-[6px] text-[#B17B2E]">
                           •
                         </span>
                       )}
@@ -560,109 +654,117 @@ export default function SewaStories() {
                   ))}
                 </div>
 
-                {/* COMPLETED BADGE */}
+                {/* COMPLETED */}
 
-                <div className="mt-[13px]">
-
+                <div className="mt-[11px]">
                   <span
                     className="
                       inline-flex
-                      h-[31px]
+                      h-[30px]
                       items-center
-                      gap-[7px]
+                      gap-[6px]
                       rounded-[6px]
-                      bg-[#EEF1E7]
-                      px-[10px]
+                      bg-[#EFF0E5]
+                      px-[9px]
                       text-[16px]
                       font-semibold
-                      text-[#466047]
+                      leading-none
+                      text-[#466149]
                     "
                   >
-
                     <CustomIcon
                       name="CheckCircle"
-                      className="h-[17px] w-[17px]"
+                      className="h-[16px] w-[16px]"
                     />
 
                     Sewa Completed
 
                     <CustomIcon
                       name="ArrowRight"
-                      className="h-[14px] w-[14px] text-[#B28946]"
+                      className="
+                        h-[13px]
+                        w-[13px]
+                        text-[#B28236]
+                      "
                     />
-
                   </span>
-
                 </div>
 
                 {/* DESCRIPTION */}
 
                 <p
                   className="
-                    mt-[15px]
+                    mt-[13px]
                     text-[16px]
-                    leading-[1.48]
-                    text-[#403B35]
+                    leading-[1.45]
+                    text-[#3B3936]
                   "
                 >
                   {story.description}
                 </p>
-
               </div>
-
             </article>
           ))}
-
         </div>
 
-        {/* ===========================================
-            BOTTOM CTA STRIP
-        ============================================ */}
+        {/* ========================================
+            BOTTOM CTA
+        ========================================= */}
 
         <div
           className="
             mx-auto
-            mt-[28px]
+            mt-[26px]
             flex
             min-h-[70px]
-            max-w-[880px]
+            w-full
+            max-w-[900px]
             flex-col
             items-center
             justify-between
             gap-4
-            rounded-[10px]
+            rounded-[9px]
             border
-            border-[#D9B77C]
-            bg-[#FFFDF8]
-            px-[24px]
-            py-[10px]
-            shadow-[0_4px_12px_rgba(78,52,26,0.05)]
+            border-[#CFA65E]
+            bg-[#FFFCF7]
+            px-[21px]
+            py-[8px]
+            shadow-[0_4px_10px_rgba(75,48,22,0.04)]
             sm:flex-row
           "
         >
-
           {/* LEFT */}
 
-          <div className="flex items-center gap-[18px]">
-
+          <div
+            className="
+              flex
+              min-w-0
+              items-center
+              gap-[16px]
+            "
+          >
             <CustomIcon
               name="Lotus"
-              className="h-[42px] w-[42px] shrink-0 text-[#B98535]"
+              className="
+                h-[40px]
+                w-[40px]
+                shrink-0
+                text-[#B87D22]
+              "
             />
 
-            <span className="h-[42px] w-px bg-[#E2D6C2]" />
+            <span className="h-[40px] w-px bg-[#DED1BD]" />
 
             <p
               className="
                 text-[16px]
                 font-medium
                 leading-[1.3]
-                text-[#3F3B35]
+                text-[#3E403F]
               "
             >
               Every life deserves dignity. Every story deserves respect.
             </p>
-
           </div>
 
           {/* BUTTON */}
@@ -670,38 +772,44 @@ export default function SewaStories() {
           <a
             href="/gallery"
             className="
+              group
               inline-flex
-              h-[42px]
-              min-w-[190px]
+              h-[43px]
+              min-w-[210px]
+              shrink-0
               items-center
               justify-center
-              gap-[18px]
+              gap-[22px]
               rounded-[6px]
-              bg-[#0C5139]
+              bg-[#005039]
               px-[20px]
               text-[16px]
               font-bold
               uppercase
+              leading-none
               text-white
-              shadow-[0_4px_10px_rgba(11,73,51,0.17)]
-              transition
-              hover:-translate-y-[1px]
-              hover:bg-[#093F2D]
+              shadow-[0_4px_10px_rgba(0,65,44,0.14)]
+              transition-all
+              duration-300
+              hover:bg-[#003F2D]
             "
           >
             View Our Work
 
             <CustomIcon
               name="ArrowRight"
-              className="h-[17px] w-[17px] text-[#D7A344]"
+              className="
+                h-[17px]
+                w-[17px]
+                text-[#D29A2B]
+                transition-transform
+                duration-300
+                group-hover:translate-x-[3px]
+              "
             />
-
           </a>
-
         </div>
-
       </div>
-
     </section>
   );
 }
