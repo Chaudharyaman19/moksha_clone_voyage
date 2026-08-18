@@ -1,8 +1,14 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFire, FaCheckCircle, FaPhoneAlt, FaHandHoldingHeart } from "react-icons/fa";
+import {
+  FaFire,
+  FaCheckCircle,
+  FaPhoneAlt,
+  FaHandHoldingHeart,
+} from "react-icons/fa";
 
 export default function AboutHeroSlider() {
   const [index, setIndex] = useState(0);
@@ -25,7 +31,9 @@ export default function AboutHeroSlider() {
         setIsTransitioning(false);
         setIndex(0);
       }, 700);
+
       const reset = setTimeout(() => setIsTransitioning(true), 750);
+
       return () => {
         clearTimeout(t);
         clearTimeout(reset);
@@ -36,15 +44,21 @@ export default function AboutHeroSlider() {
   return (
     <div className="relative overflow-hidden">
       <div
-        className={`flex ${isTransitioning ? "transition-transform duration-700 ease-out" : ""}`}
+        className={`flex ${
+          isTransitioning
+            ? "transition-transform duration-700 ease-out"
+            : ""
+        }`}
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         <div className="w-full shrink-0">
           <NewBanner />
         </div>
+
         <div className="w-full shrink-0">
           <PreviousBanner />
         </div>
+
         <div className="w-full shrink-0">
           <NewBanner />
         </div>
@@ -87,10 +101,11 @@ function NewBanner() {
               </div>
 
               <div className="mt-1 flex flex-col items-start text-left">
-                <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+                <span className="text-[22px] font-normal leading-tight text-[#2C1810]">
                   Moksha Sewa
                 </span>
-                <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+
+                <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21] sm:text-[16px]">
                   An Initiative of Namo Gange Trust
                 </span>
               </div>
@@ -121,9 +136,7 @@ function NewBanner() {
                 <span className="h-[2px] w-44 bg-[#dc671f]" />
 
                 <div className="relative flex h-9 w-9 items-center justify-center">
-                  <PiFlowerLotus
-                    className="h-9 w-9 text-[#dc671f]"
-                  />
+                  <PiFlowerLotus className="h-9 w-9 text-[#dc671f]" />
                 </div>
 
                 <span className="h-[2px] w-44 bg-[#dc671f]" />
@@ -145,14 +158,15 @@ function NewBanner() {
               <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
                 <a
                   href="/request-help"
-                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
                   <span>Request Help</span>
                 </a>
+
                 <a
                   href="/donation"
-                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+                  className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaFire className="h-5 w-5 shrink-0" />
                   <span>Support This Mission</span>
@@ -186,11 +200,11 @@ function NewBanner() {
                   </div>
 
                   <div>
-                    <h3 className="text-[13px] font-extrabold leading-5 text-[#17283a]">
+                    <h3 className="text-[16px] font-extrabold leading-5 text-[#17283a]">
                       {feature.title}
                     </h3>
 
-                    <p className="mt-1 text-[13px] leading-5 text-[#263746]">
+                    <p className="mt-1 text-[16px] leading-5 text-[#263746]">
                       {feature.description}
                     </p>
                   </div>
@@ -200,7 +214,6 @@ function NewBanner() {
           </div>
         </div>
       </div> */}
-
     </section>
   );
 }
@@ -227,6 +240,7 @@ function PreviousBanner() {
             "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
         }}
       />
+
       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
       {/* giant Devanagari watermark — the signature of the page */}
@@ -251,10 +265,11 @@ function PreviousBanner() {
             </div>
 
             <div className="mt-1 flex flex-col items-start text-left">
-              <span className="text-[15px] font-bold leading-tight text-[#2C1810]">
+              <span className="text-[22px] font-normal leading-tight text-[#2C1810]">
                 Moksha Sewa
               </span>
-              <span className="mt-0.5 text-[12px] font-medium leading-tight text-[#8F5A21] sm:text-[13px]">
+
+              <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21] sm:text-[16px]">
                 An Initiative of Namo Gange Trust
               </span>
             </div>
@@ -263,12 +278,15 @@ function PreviousBanner() {
           {/* layered display type */}
           <h1
             className="leading-[0.95]"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            style={{
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
           >
             <span className="block text-[38px] text-[#102b44] sm:text-[46px] lg:text-[52px]">
               A Promise of
             </span>
-            <span className="mt-1 block text-[46px]  text-[#dc671f] sm:text-[58px] lg:text-[68px]">
+
+            <span className="mt-1 block text-[46px] text-[#dc671f] sm:text-[58px] lg:text-[68px]">
               Moksha Sewa
             </span>
           </h1>
@@ -276,11 +294,13 @@ function PreviousBanner() {
           {/* diya-style flourish */}
           <div className="mt-1 flex items-center gap-2">
             <span className="h-[2px] w-12 bg-[#dc671f]" />
+
             <span className="h-2 w-2 rotate-45 border border-[#dc671f] bg-[#dc671f]" />
+
             <span className="h-px w-20 bg-gradient-to-r from-[#dc671f] to-transparent" />
           </div>
 
-          <p className="mt-1 max-w-[455px] text-sm leading-6 text-[#17283a] sm:text-[15px]">
+          <p className="mt-1 max-w-[455px] text-[16px] leading-6 text-[#17283a] sm:text-[16px]">
             Moksha Sewa is a humanitarian end-of-life support mission for
             economically weaker families and legally authorised unclaimed
             cases.
@@ -288,14 +308,19 @@ function PreviousBanner() {
 
           {/* trust row */}
           <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
-            {["Dignity First", "Eligibility-Based", "Always Available"].map((chip) => (
+            {[
+              "Dignity First",
+              "Eligibility-Based",
+              "Always Available",
+            ].map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#17283a]"
+                className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#17283a]"
               >
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#dc671f]/12">
                   <FaCheckCircle className="h-3 w-3 text-[#dc671f]" />
                 </span>
+
                 {chip}
               </span>
             ))}
@@ -304,16 +329,19 @@ function PreviousBanner() {
           <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
             <a
               href="/request-help"
-              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
+
               <span>Request Help</span>
             </a>
+
             <a
               href="/donation"
-              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[14px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
+              className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-bold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaFire className="h-5 w-5 shrink-0" />
+
               <span>Support This Mission</span>
             </a>
           </div>
@@ -327,13 +355,18 @@ function PreviousBanner() {
       >
         <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#dc671f] text-white">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#dc671f]/50" />
+
           <FaPhoneAlt className="relative h-4 w-4" />
         </span>
+
         <span>
-          <span className="block text-[14px] uppercase tracking-[0.2em] text-[#dc671f]">
+          <span className="block text-[16px] uppercase tracking-[0.2em] text-[#dc671f]">
             24/7 Helpline
           </span>
-          <span className="block font-serif text-sm text-[#2C1810]">+91 9220147229</span>
+
+          <span className="block font-serif text-[16px] text-[#2C1810]">
+            +91 9220147229
+          </span>
         </span>
       </a>
     </section>
