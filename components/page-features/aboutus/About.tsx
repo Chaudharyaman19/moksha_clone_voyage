@@ -14,6 +14,7 @@ import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaInt
 import WhoWeAre from "./WhoWeAre";
 import Howwesupport from "./Howwesupport";
 import Whyweexist from "./Whyweexist";
+import BehindMission from "./BehindMission";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -287,6 +288,7 @@ export default function About() {
         <AboutMokshaSewa />
         <Howwesupport />
         <Whyweexist/>
+        <BehindMission />
 
         {/* ============ NAMO GANGE TRUST ============ */}
 
