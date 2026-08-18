@@ -11,9 +11,6 @@ const CustomIcon = ({
   className = "h-6 w-6",
 }: CustomIconProps) => {
   const icons: Record<string, ReactElement> = {
-    /* =========================
-       AMBULANCE
-    ========================== */
     AmbulanceIcon: (
       <svg
         className={className}
@@ -26,23 +23,16 @@ const CustomIcon = ({
       >
         <rect x="8" y="24" width="33" height="22" rx="2.5" />
         <path d="M41 30h8l7 8v8H41z" />
-
         <circle cx="19" cy="49" r="4.5" />
         <circle cx="48" cy="49" r="4.5" />
-
         <path d="M21 28v12" />
         <path d="M15 34h12" />
-
         <path d="M47 19v6" />
         <path d="M44 22h6" />
-
         <path d="M12 27h18" />
       </svg>
     ),
 
-    /* =========================
-       CREMATION
-    ========================== */
     CremationIcon: (
       <svg
         className={className}
@@ -54,21 +44,15 @@ const CustomIcon = ({
         strokeLinejoin="round"
       >
         <path d="M32 7c8 9 10 16 10 21 0 6-4.4 10.5-10 10.5S22 34 22 28c0-5 2-12 10-21Z" />
-
         <path d="M32 18c3.5 4.5 4.3 7.5 4.3 9.5 0 2.7-1.8 4.7-4.3 4.7s-4.3-2-4.3-4.7c0-2 .8-5 4.3-9.5Z" />
-
         <path d="M13 46 27 38" />
         <path d="M21 51 35 43" />
         <path d="M29 43 43 51" />
         <path d="M37 38 51 46" />
-
         <path d="M12 54h40" />
       </svg>
     ),
 
-    /* =========================
-       RITUAL
-    ========================== */
     RitualIcon: (
       <svg
         className={className}
@@ -81,18 +65,13 @@ const CustomIcon = ({
       >
         <path d="M8 40c6 0 12-2 18-6 0 8-5 13-11 13-4 0-6-2-7-7Z" />
         <path d="M8 40h18" />
-
         <path d="M20 12c5 6 6 10 6 13a6 6 0 0 1-12 0c0-3 1-7 6-13Z" />
         <path d="M20 19c2 3 2.5 5 2.5 6.5a2.5 2.5 0 1 1-5 0c0-1.5.5-3.5 2.5-6.5Z" />
-
         <circle cx="43" cy="38" r="4" />
-
         <ellipse cx="43" cy="29" rx="4" ry="7" />
         <ellipse cx="43" cy="47" rx="4" ry="7" />
-
         <ellipse cx="34" cy="38" rx="7" ry="4" />
         <ellipse cx="52" cy="38" rx="7" ry="4" />
-
         <ellipse
           cx="36.5"
           cy="31.5"
@@ -100,7 +79,6 @@ const CustomIcon = ({
           ry="6"
           transform="rotate(-45 36.5 31.5)"
         />
-
         <ellipse
           cx="49.5"
           cy="44.5"
@@ -108,7 +86,6 @@ const CustomIcon = ({
           ry="6"
           transform="rotate(-45 49.5 44.5)"
         />
-
         <ellipse
           cx="49.5"
           cy="31.5"
@@ -116,7 +93,6 @@ const CustomIcon = ({
           ry="6"
           transform="rotate(45 49.5 31.5)"
         />
-
         <ellipse
           cx="36.5"
           cy="44.5"
@@ -127,9 +103,6 @@ const CustomIcon = ({
       </svg>
     ),
 
-    /* =========================
-       FAMILY
-    ========================== */
     FamilyIcon: (
       <svg
         className={className}
@@ -143,16 +116,12 @@ const CustomIcon = ({
         <circle cx="32" cy="18" r="6" />
         <circle cx="17" cy="24" r="5" />
         <circle cx="47" cy="24" r="5" />
-
         <path d="M23 48c.7-9 3.7-14 9-14s8.3 5 9 14" />
         <path d="M7 48c.5-8 3.8-12 10-12 3 0 5.3 1 7 3" />
         <path d="M57 48c-.5-8-3.8-12-10-12-3 0-5.3 1-7 3" />
       </svg>
     ),
 
-    /* =========================
-       HANDS HEART
-    ========================== */
     HandsHeartIcon: (
       <svg
         className={className}
@@ -164,20 +133,14 @@ const CustomIcon = ({
         strokeLinejoin="round"
       >
         <path d="M24 15c0-4 4.5-5.5 8-2 3.5-3.5 8-2 8 2 0 4-4.5 7-8 10-3.5-3-8-6-8-10Z" />
-
         <path d="M8 38c6-1 10 1 14 6l5 6" />
         <path d="M56 38c-6-1-10 1-14 6l-5 6" />
-
         <path d="M8 37v14" />
         <path d="M56 37v14" />
-
         <path d="M18 34c2-5 6-7 14-7s12 2 14 7" />
       </svg>
     ),
 
-    /* =========================
-       MAP PIN
-    ========================== */
     MapPinIcon: (
       <svg
         className={className}
@@ -193,9 +156,6 @@ const CustomIcon = ({
       </svg>
     ),
 
-    /* =========================
-       SHIELD
-    ========================== */
     ShieldIcon: (
       <svg
         className={className}
@@ -211,9 +171,6 @@ const CustomIcon = ({
       </svg>
     ),
 
-    /* =========================
-       HUMANITY
-    ========================== */
     HumanityIcon: (
       <svg
         className={className}
@@ -226,15 +183,11 @@ const CustomIcon = ({
       >
         <circle cx="23" cy="20" r="5" />
         <circle cx="41" cy="20" r="5" />
-
         <path d="M10 49c1-9 5-14 13-14s12 5 13 14" />
         <path d="M28 49c1-9 5-14 13-14s12 5 13 14" />
       </svg>
     ),
 
-    /* =========================
-       PHONE
-    ========================== */
     PhoneIcon: (
       <svg
         className={className}
@@ -249,9 +202,6 @@ const CustomIcon = ({
       </svg>
     ),
 
-    /* =========================
-       LOTUS
-    ========================== */
     LotusIcon: (
       <svg
         className={className}
@@ -263,18 +213,13 @@ const CustomIcon = ({
         strokeLinejoin="round"
       >
         <path d="M32 43c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
-
         <path d="M22 40c-8-2-13-7-14-15 7 0 13 3 17 8" />
         <path d="M42 40c8-2 13-7 14-15-7 0-13 3-17 8" />
-
         <path d="M16 46c5 2 10 3 16 3s11-1 16-3" />
         <path d="M24 49h16" />
       </svg>
     ),
 
-    /* =========================
-       ARROW
-    ========================== */
     ArrowRightIcon: (
       <svg
         className={className}
@@ -294,10 +239,6 @@ const CustomIcon = ({
   return icons[name] ?? <span className={className}>•</span>;
 };
 
-/* =========================================================
-   TYPES
-========================================================= */
-
 interface CardItem {
   icon: string;
   title: string;
@@ -316,163 +257,100 @@ interface BenefitItem {
   color: string;
 }
 
-/* =========================================================
-   CARD DATA
-========================================================= */
-
 const cards: CardItem[] = [
   {
     icon: "AmbulanceIcon",
-
     title: "Final Journey &\nTransport",
-
     desc: "Ambulance & hearse\ncoordination with care\nand dignity.",
-
     features: [
       "24x7 Availability",
       "Safe & Timely Transport",
       "Trained & Verified Partners",
     ],
-
     image: "/assets/how-we-help/five.png",
-
     accent: "#2F7A28",
-
     titleColor: "#225D23",
-
     featureBg: "#F1F7EA",
   },
-
   {
     icon: "CremationIcon",
-
     title: "Cremation &\nLast Rites",
-
     desc: "Ground and essential\narrangements for a\ndignified farewell.",
-
     features: [
       "Cremation Ground Support",
       "Essential Arrangements",
       "Clean & Respectful Process",
     ],
-
     image: "/assets/how-we-help/four.png",
-
     accent: "#F05B00",
-
     titleColor: "#D64D00",
-
     featureBg: "#FFF2E6",
   },
-
   {
     icon: "RitualIcon",
-
     title: "Ritual &\nPriest Support",
-
     desc: "Priest, wood, cloth, flowers\nand all ritual essentials\narranged.",
-
     features: [
       "Experienced Priests",
       "Ritual Essentials",
       "As Per Tradition & Customs",
     ],
-
     image: "/assets/how-we-help/pandit.png",
-
     accent: "#73318B",
-
     titleColor: "#682B80",
-
     featureBg: "#F6EDF8",
   },
-
   {
     icon: "FamilyIcon",
-
     title: "Family &\nOn-Ground Support",
-
     desc: "Guidance, volunteers and\ndocumentation assistance\nat every step.",
-
     features: [
       "Volunteer Support",
       "Documentation Help",
       "Emotional Support",
     ],
-
     image: "/assets/how-we-help/three.png",
-
     accent: "#0E5B99",
-
     titleColor: "#164F87",
-
     featureBg: "#EDF5FB",
   },
 ];
 
-/* =========================================================
-   BENEFITS
-========================================================= */
-
 const benefits: BenefitItem[] = [
   {
     icon: "HandsHeartIcon",
-
     title: "For Everyone",
-
     text:
       "We serve unclaimed bodies, elderly alone, and economically weaker families.",
-
     color: "#246833",
   },
-
   {
     icon: "MapPinIcon",
-
     title: "Pan India Service",
-
-    text:
-      "Expanding our network to reach more people in need.",
-
+    text: "Expanding our network to reach more people in need.",
     color: "#A86317",
   },
-
   {
     icon: "ShieldIcon",
-
     title: "Zero Financial Burden",
-
     text:
       "Our services are completely free for those who are unable to afford.",
-
     color: "#165A8D",
   },
-
   {
     icon: "HumanityIcon",
-
     title: "Humanity First",
-
     text:
       "Every life deserves dignity. Every family deserves support.",
-
     color: "#B42058",
   },
 ];
-
-/* =========================================================
-   BACKGROUND
-========================================================= */
 
 const decorativePattern = {
   backgroundImage:
     "radial-gradient(circle, rgba(170,112,48,0.055) 0 1px, transparent 1.15px)",
   backgroundSize: "22px 22px",
 };
-
-/* =========================================================
-   COMPONENT
-========================================================= */
 
 export default function HowWeCanHelp() {
   return (
@@ -481,25 +359,25 @@ export default function HowWeCanHelp() {
         relative
         w-full
         overflow-hidden
-        bg-[#FBF7EF]
         px-4
-        py-[18px]
+        pt-[2px]
+        pb-[18px]
         sm:px-5
         lg:px-6
-        lg:py-[22px]
+        lg:pt-[2px]
+        lg:pb-[22px]
       "
+      style={{
+        backgroundColor: "#FBF7EF",
+      }}
     >
-      {/* BACKGROUND DOTS */}
-
+      {/* base pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
         style={decorativePattern}
       />
 
-      {/* =====================================================
-          LEFT MANDALA
-      ====================================================== */}
-
+      {/* left mandala */}
       <svg
         viewBox="0 0 360 360"
         className="
@@ -541,20 +419,9 @@ export default function HowWeCanHelp() {
             transform={`rotate(${index * 22.5} 180 180)`}
           />
         ))}
-
-        {Array.from({ length: 20 }).map((_, index) => (
-          <path
-            key={`petal-${index}`}
-            d="M180 18c13 14 16 28 0 43-16-15-13-29 0-43Z"
-            transform={`rotate(${index * 18} 180 180)`}
-          />
-        ))}
       </svg>
 
-      {/* =====================================================
-          RIGHT BACKGROUND
-      ====================================================== */}
-
+      {/* top-right background image */}
       <div
         className="
           pointer-events-none
@@ -562,7 +429,7 @@ export default function HowWeCanHelp() {
           right-0
           top-0
           h-[355px]
-          w-[470px]
+          w-[480px]
           overflow-hidden
         "
       >
@@ -575,8 +442,7 @@ export default function HowWeCanHelp() {
             bg-no-repeat
           "
           style={{
-            backgroundImage:
-              "url('/assets/how-we-help/our-sewa-bg.png')",
+            backgroundImage: "url('/assets/how-we-help/our-sewa-bg.png')",
           }}
         />
 
@@ -585,10 +451,10 @@ export default function HowWeCanHelp() {
             absolute
             inset-y-0
             left-0
-            w-[52%]
+            w-[50%]
             bg-gradient-to-r
             from-[#FBF7EF]
-            via-[#FBF7EF]/70
+            via-[#FBF7EF]/72
             to-transparent
           "
         />
@@ -598,53 +464,36 @@ export default function HowWeCanHelp() {
             absolute
             inset-x-0
             bottom-0
-            h-[105px]
+            h-[110px]
             bg-gradient-to-t
             from-[#FBF7EF]
-            via-[#FBF7EF]/55
+            via-[#FBF7EF]/58
             to-transparent
           "
         />
       </div>
 
-      {/* =====================================================
-          MAIN CONTAINER
-      ====================================================== */}
-
       <div className="relative z-10 mx-auto w-full max-w-[1344px]">
-
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-
-        <header className="mx-auto mb-[18px] max-w-[840px] text-center">
-
-          <div className="mb-[2px] flex justify-center">
+        {/* header */}
+        <header className="mx-auto mb-[14px] max-w-[840px] text-center">
+          <div className="mb-0 flex justify-center">
             <CustomIcon
               name="LotusIcon"
-              className="h-[25px] w-[25px] text-[#D76113]"
+              className="h-[24px] w-[24px] text-[#E0A24B]"
             />
           </div>
 
-          <div className="flex items-center justify-center gap-[12px]">
-
-            <span className="relative h-px w-[62px] bg-[#D05A17]">
-              <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D05A17]" />
-            </span>
-
+          <div className="mt-0 flex items-center justify-center gap-[12px]">
+            <span className="h-px w-[62px] bg-[#D05A17]" />
             <span className="text-[16px] font-bold uppercase tracking-[0.04em] text-[#6E2C18]">
               Our Sewa
             </span>
-
-            <span className="relative h-px w-[62px] bg-[#D05A17]">
-              <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D05A17]" />
-            </span>
-
+            <span className="h-px w-[62px] bg-[#D05A17]" />
           </div>
 
           <h2
             className="
-              mt-[5px]
+              mt-[1px]
               font-serif
               text-[34px]
               font-semibold
@@ -653,28 +502,21 @@ export default function HowWeCanHelp() {
               sm:text-[42px]
               lg:text-[49px]
             "
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-            }}
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Essential Support for a
-
             <span className="mt-[2px] block text-[#D54200]">
               Dignified Final Journey
             </span>
           </h2>
 
           <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
-
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#DA7643]" />
-
             <CustomIcon
               name="LotusIcon"
-              className="h-[21px] w-[21px] text-[#D45D16]"
+              className="h-[20px] w-[20px] text-[#D45D16]"
             />
-
             <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#DA7643]" />
-
           </div>
 
           <p className="mx-auto mt-[7px] max-w-[700px] text-[16px] leading-[1.42] text-[#2C2825]">
@@ -682,22 +524,17 @@ export default function HowWeCanHelp() {
             circumstances—receives a respectful and dignified farewell with
             complete care and compassion.
           </p>
-
         </header>
 
-        {/* =====================================================
-            SERVICE CARDS
-        ====================================================== */}
-
+        {/* cards */}
         <div className="grid grid-cols-1 items-stretch gap-[20px] md:grid-cols-2 lg:grid-cols-4">
-
           {cards.map((card) => (
             <article
               key={card.title}
               className="
                 relative
                 flex
-                h-[520px]
+                h-[565px]
                 flex-col
                 overflow-hidden
                 rounded-[19px]
@@ -707,10 +544,7 @@ export default function HowWeCanHelp() {
                 shadow-[0_8px_22px_rgba(65,39,18,0.10)]
               "
             >
-              {/* ===============================================
-                  TOP CONTENT
-              ================================================ */}
-
+              {/* top */}
               <div
                 className="
                   relative
@@ -724,8 +558,6 @@ export default function HowWeCanHelp() {
                   text-center
                 "
               >
-                {/* ICON */}
-
                 <div
                   className="
                     absolute
@@ -743,17 +575,13 @@ export default function HowWeCanHelp() {
                     text-white
                     shadow-[0_5px_14px_rgba(42,29,17,0.20)]
                   "
-                  style={{
-                    backgroundColor: card.accent,
-                  }}
+                  style={{ backgroundColor: card.accent }}
                 >
                   <CustomIcon
                     name={card.icon}
                     className="h-[48px] w-[48px]"
                   />
                 </div>
-
-                {/* TITLE */}
 
                 <h3
                   className="
@@ -771,32 +599,21 @@ export default function HowWeCanHelp() {
                   {card.title}
                 </h3>
 
-                {/* LINE */}
-
                 <span
                   className="mt-[8px] h-[3px] w-[34px] shrink-0 rounded-full"
-                  style={{
-                    backgroundColor: card.accent,
-                  }}
+                  style={{ backgroundColor: card.accent }}
                 />
-
-                {/* DESCRIPTION */}
 
                 <p className="mt-[10px] whitespace-pre-line text-[16px] leading-[1.35] text-[#28211D]">
                   {card.desc}
                 </p>
-
               </div>
 
-              {/* =====================================================
-                  IMAGE
-                  HEIGHT INCREASED TO 190PX
-              ====================================================== */}
-
+              {/* image */}
               <div
                 className="
                   relative
-                  h-[190px]
+                  h-[214px]
                   w-full
                   shrink-0
                   overflow-hidden
@@ -807,35 +624,24 @@ export default function HowWeCanHelp() {
                   alt={card.title.replace("\n", " ")}
                   fill
                   quality={100}
-                  sizes="
-                    (max-width:768px) 100vw,
-                    (max-width:1024px) 50vw,
-                    25vw
-                  "
-                  className="
-                    object-cover
-                    object-center
-                  "
+                  sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 25vw"
+                  className="object-cover object-center"
                 />
               </div>
 
-              {/* =====================================================
-                  FEATURES
-              ====================================================== */}
-
+              {/* bottom features */}
               <div
                 className="
                   flex
                   flex-1
                   flex-col
-                  justify-center
-                  gap-[7px]
+                  justify-start
+                  gap-[10px]
                   px-[16px]
-                  py-[8px]
+                  pt-[12px]
+                  pb-[24px]
                 "
-                style={{
-                  backgroundColor: card.featureBg,
-                }}
+                style={{ backgroundColor: card.featureBg }}
               >
                 {card.features.map((feature) => (
                   <div
@@ -863,26 +669,19 @@ export default function HowWeCanHelp() {
                         leading-none
                         text-white
                       "
-                      style={{
-                        backgroundColor: card.accent,
-                      }}
+                      style={{ backgroundColor: card.accent }}
                     >
                       ✓
                     </span>
-
                     <span>{feature}</span>
                   </div>
                 ))}
               </div>
             </article>
           ))}
-
         </div>
 
-        {/* =====================================================
-            BENEFIT BAND
-        ====================================================== */}
-
+        {/* benefit band */}
         <div
           className="
             mt-[26px]
@@ -912,9 +711,7 @@ export default function HowWeCanHelp() {
               >
                 <div
                   className="flex h-[54px] w-[54px] shrink-0 items-center justify-center"
-                  style={{
-                    color: item.color,
-                  }}
+                  style={{ color: item.color }}
                 >
                   <CustomIcon
                     name={item.icon}
@@ -923,23 +720,17 @@ export default function HowWeCanHelp() {
                 </div>
 
                 <div className="min-w-0">
-
                   <h4 className="text-[16px] font-bold leading-[1.15] text-[#251D18]">
                     {item.title}
                   </h4>
-
                   <p className="mt-[5px] text-[16px] leading-[1.35] text-[#37302A]">
                     {item.text}
                   </p>
-
                 </div>
               </div>
             ))}
 
-            {/* SLOGAN */}
-
             <div className="flex min-h-[125px] flex-col items-center justify-center px-[12px] py-[10px] text-center">
-
               <CustomIcon
                 name="LotusIcon"
                 className="h-[35px] w-[35px] text-[#E4520E]"
@@ -948,29 +739,20 @@ export default function HowWeCanHelp() {
               <div className="mt-[3px] font-serif text-[18px] italic leading-tight text-[#A84F1D]">
                 Together,
               </div>
-
               <div className="font-serif text-[18px] italic leading-tight text-[#A84F1D]">
                 We Serve with Dignity
               </div>
 
               <div className="mt-[5px] flex items-center gap-[7px]">
-
                 <span className="h-px w-[31px] bg-[#B97032]" />
-
                 <span className="h-[6px] w-[6px] rotate-45 bg-[#B97032]" />
-
                 <span className="h-px w-[31px] bg-[#B97032]" />
-
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* =====================================================
-            BLUE CTA
-        ====================================================== */}
-
+        {/* bottom cta */}
         <div
           className="
             mt-[21px]
@@ -985,11 +767,7 @@ export default function HowWeCanHelp() {
           "
         >
           <div className="flex min-h-[82px] flex-col lg:flex-row lg:items-center">
-
-            {/* LEFT */}
-
             <div className="flex flex-1 items-center gap-[14px] px-[28px] py-[11px]">
-
               <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full border-2 border-white text-white">
                 <CustomIcon
                   name="PhoneIcon"
@@ -998,22 +776,16 @@ export default function HowWeCanHelp() {
               </span>
 
               <div>
-
                 <div className="text-[18px] font-bold leading-tight">
                   Need Immediate Help?
                 </div>
-
                 <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
                   Our team is available 24x7 to support you.
                 </div>
-
               </div>
-
             </div>
 
             <span className="hidden h-[50px] w-px bg-white/40 lg:block" />
-
-            {/* RIGHT */}
 
             <div
               className="
@@ -1031,28 +803,20 @@ export default function HowWeCanHelp() {
                 lg:border-t-0
               "
             >
-
               <div className="flex items-center gap-[15px]">
-
                 <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[26px] leading-none text-[#C62565]">
                   ♥
                 </span>
 
                 <div>
-
                   <div className="text-[18px] font-bold leading-tight">
                     Support Our Mission
                   </div>
-
                   <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
                     Your support can bring dignity to many final journeys.
                   </div>
-
                 </div>
-
               </div>
-
-              {/* SUPPORT BUTTON */}
 
               <a
                 href="/donation"
@@ -1086,20 +850,15 @@ export default function HowWeCanHelp() {
                 Support Now
 
                 <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full border border-white/90">
-
                   <CustomIcon
                     name="ArrowRightIcon"
                     className="h-[13px] w-[13px] transition-transform duration-300 group-hover:translate-x-[2px]"
                   />
-
                 </span>
-
               </a>
-
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
