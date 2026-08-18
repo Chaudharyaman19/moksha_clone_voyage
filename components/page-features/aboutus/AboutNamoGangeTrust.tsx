@@ -1,76 +1,87 @@
-import Image from "next/image";
+import { FaArrowRight, FaGlobeAmericas, FaShieldAlt, FaUsers } from "react-icons/fa";
+import { PiFlowerLotus, PiHandHeart } from "react-icons/pi";
+
+const trustValues = [
+  { label: "Social Service", icon: PiHandHeart },
+  { label: "Community Welfare", icon: FaUsers },
+  { label: "Humanitarian Action", icon: FaGlobeAmericas },
+  { label: "Responsible Governance", icon: FaShieldAlt },
+];
 
 export default function AboutNamoGangeTrust() {
   return (
-    <section className="bg-white py-3 md:py-4">
-      <div className="mx-auto w-full max-w-7xl px-0">
-        
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:gap-10 items-center">
-          
-          {/* Left: Text Content */}
-          <div className="order-2 lg:order-1">
-            <div className="mb-3 inline-flex items-center gap-2">
-              <span className="h-[1px] w-8 bg-[#8B6A3E]" />
-              <span className="text-[16px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                Our Parent Organization
-              </span>
+    <section className="relative overflow-hidden bg-[#faf4e9] px-6 lg:px-8 2xl:px-0">
+      <div className="mx-auto grid min-h-[410px] w-full max-w-7xl lg:grid-cols-2">
+        <div className="relative min-h-[330px] overflow-hidden lg:min-h-[410px]">
+          <video
+            src="/assets/videos/namoGange.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#322413]/10 via-transparent to-[#faf4e9]/25" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#1f2f24]/35 to-transparent" />
+
+        </div>
+
+        <div className="relative flex items-center px-6 py-8 sm:px-10 lg:px-12 lg:py-7 xl:px-16">
+          <PiFlowerLotus className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rotate-[-20deg] text-[#c5aa70]/15" />
+          <PiFlowerLotus className="pointer-events-none absolute -bottom-12 right-5 h-36 w-36 text-[#c5aa70]/12" />
+
+          <div className="relative z-10 w-full">
+            <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[#24483d] sm:text-[12px]">
+              <span className="h-px w-9 bg-[#c49a4e]" />
+              <span>The Organisation Behind Moksha Sewa</span>
+              <span className="h-px flex-1 bg-[#c49a4e]" />
             </div>
 
-            <h2 
-              className="mb-4 text-[28px] font-normal leading-[1.2] text-[#2C1810] sm:text-[34px] md:text-[38px]"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            >
-              Namo Gange Trust
+            <h2 className="mt-4 font-serif text-[36px] font-semibold leading-[.96] tracking-[-0.025em] text-[#123d31] sm:text-[43px]">
+              Rooted in Service.<br />
+              Driven by <span className="text-[#a66e2e]">Responsibility.</span>
             </h2>
 
-            {/* Diya Flourish */}
-         
+            <div className="mt-4 flex items-center gap-2 text-[#b98735]">
+              <span className="h-px w-16 bg-[#cba45c]" />
+              <PiFlowerLotus className="h-4 w-4" />
+              <span className="h-px w-16 bg-[#cba45c]" />
+            </div>
 
-            <div className="space-y-4 text-[16px] leading-relaxed text-[#5F4A3D] sm:text-[16px]">
+            <div className="mt-4 max-w-[590px] space-y-3 text-[13px] leading-[1.5] text-[#31463f] sm:text-[14px]">
               <p>
-                Moksha Sewa operates under the aegis of the Namo Gange Trust, a dedicated non-profit 
-                organization committed to preserving our rich cultural heritage and serving humanity.
+                Moksha Sewa is an initiative of Namo Gange Trust, an organisation committed to social service, community welfare and meaningful humanitarian action.
               </p>
               <p>
-                The trust has been at the forefront of various social initiatives, deeply rooted in 
-                Vedic traditions and modern welfare. Through Moksha Sewa, the trust extends its 
-                compassion to families dealing with loss, ensuring that every soul&apos;s final journey 
-                is honored with dignity, transparency, and deep respect for our ancient rituals.
+                Through Moksha Sewa, Namo Gange Trust extends this commitment to one of the most sensitive moments of human life—the final journey.
               </p>
             </div>
-            
-            <div className="mt-6">
-              <a 
-                href="https://www.namogange.org/" 
-                target="_blank" 
+
+            <div className="mt-5 flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+              <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4">
+                {trustValues.map(({ label, icon: Icon }) => (
+                  <div key={label} className="text-center">
+                    <span className="mx-auto grid h-12 w-12 place-items-center border border-[#d8c59e] bg-[#fbf7ef]/75 text-[#174a3b] shadow-[0_3px_7px_rgba(66,52,31,.08)]">
+                      <Icon className="h-7 w-7" />
+                    </span>
+                    <span className="mx-auto mt-1.5 block max-w-[100px] text-[10px] font-semibold leading-[1.15] text-[#263e36] sm:text-[11px]">{label}</span>
+                    <span className="mx-auto mt-2 block h-px w-5 bg-[#c79a48]" />
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://www.namogange.org/"
+                target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#8B6A3E] bg-transparent px-6 text-[16px] font-medium text-[#8B6A3E] transition-all hover:bg-[#8B6A3E] hover:text-white"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-4 bg-[#0d4939] px-5 font-serif text-[14px] text-white shadow-[0_5px_10px_rgba(20,63,48,.25)] transition hover:bg-[#093c2f]"
               >
-                Visit Namo Gange Trust
+                Know Namo Gange Trust
+                <FaArrowRight className="h-3 w-3 text-[#d2a342]" />
               </a>
             </div>
           </div>
-
-          {/* Right: Video (previously Logo) */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end w-full">
-            <div className="relative group w-full max-w-[650px] lg:max-w-none">
-              {/* Offset decorative box */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#8B6A3E]/20 to-transparent rounded-3xl opacity-50 transition-all duration-700 group-hover:scale-[1.02]" />
-              <div className="absolute -inset-2 rounded-2xl border border-[#8B6A3E]/20 translate-x-4 translate-y-4" />
-              
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(44,24,16,0.15)] border border-[#D9B681]/40 bg-[#1a0f09] z-10">
-                <video
-                  src="/assets/videos/namoGange.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
     </section>

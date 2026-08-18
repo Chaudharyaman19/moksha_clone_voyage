@@ -62,7 +62,7 @@ export default function BehindMission() {
             </div>
 
             {/* 06 video */}
-            <div className="mt-1 flex items-center justify-center gap-2 text-[16px] font-bold tracking-[0.08em] text-[#24483D] lg:justify-start">
+            <div className="mt-1 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
               <span className="h-px w-10 bg-[#C6A25C]" />
               <span>06 — VIDEO</span>
               <span className="h-px w-10 bg-[#C6A25C]" />
@@ -174,32 +174,32 @@ export default function BehindMission() {
           </div>
         </div>
 
-          {/* BOTTOM MISSION LINKS */}
-          <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
-            {missionLinks.map(({ eyebrow, label, icon: Icon }, index) => (
-              <div
-                key={`${eyebrow}-${label}`}
-                className={`flex min-h-[58px] items-center justify-center gap-3 px-4 py-1 ${index
-                    ? "border-t border-[#C29B50]/35 sm:border-l sm:border-t-0"
-                    : ""
-                  }`}
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center border border-[#D1A64B] text-[#D1A64B]">
-                  <Icon className="h-6 w-6" />
-                </span>
+        {/* BOTTOM MISSION LINKS */}
+        <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
+          {missionLinks.map(({ eyebrow, label, icon: Icon }, index) => (
+            <div
+              key={`${eyebrow}-${label}`}
+              className={`flex min-h-[58px] items-center justify-center gap-3 px-4 py-1 ${index
+                ? "border-t border-[#C29B50]/35 sm:border-l sm:border-t-0"
+                : ""
+                }`}
+            >
+              <span className="grid h-10 w-10 shrink-0 place-items-center border border-[#D1A64B] text-[#D1A64B]">
+                <Icon className="h-6 w-6" />
+              </span>
 
-                <span className="min-w-0">
-                  <span className="block whitespace-nowrap text-[16px] font-semibold text-[#D4AA52]">
-                    {eyebrow}
-                  </span>
-                  <span className="block whitespace-nowrap font-serif text-[16px] text-white">
-                    {label}
-                  </span>
+              <span className="min-w-0">
+                <span className="block whitespace-nowrap text-[16px] font-semibold text-[#D4AA52]">
+                  {eyebrow}
                 </span>
-              </div>
-            ))}
-          </div>
+                <span className="block whitespace-nowrap font-serif text-[16px] text-white">
+                  {label}
+                </span>
+              </span>
+            </div>
+          ))}
         </div>
+      </div>
     </section>
   );
 }
