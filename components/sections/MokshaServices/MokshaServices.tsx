@@ -159,13 +159,13 @@ const DecorativeDivider = () => (
 );
 
 const ServiceIcon = ({ image, alt }: { image: string; alt: string }) => (
-  <div className="absolute -top-[54px] left-1/2 z-20 -translate-x-1/2">
-    <div className="relative h-10 w-10">
+  <div className="absolute -top-[90px] left-1/2 z-20 -translate-x-1/2 sm:-top-[92px]">
+    <div className="relative h-[78px] w-[78px] sm:h-[82px] sm:w-[82px]">
       <Image
         src={image}
         alt={alt}
         fill
-        sizes="40px"
+        sizes="82px"
         className="object-contain"
       />
     </div>
@@ -386,7 +386,7 @@ const MokshaServices: React.FC = () => {
               {/* Main connecting line */}
               <div
                 className="
-                  absolute left-[9%] right-[9%] top-[31px]
+                  absolute left-[9%] right-[9%] top-[51px]
                   h-px bg-[#0c3d39]
                 "
               />
@@ -395,12 +395,12 @@ const MokshaServices: React.FC = () => {
                 {steps.map((step, index) => (
                   <div key={step.number} className="relative text-center">
                     {/* icon */}
-                    <div className="relative mx-auto h-[62px] w-[62px]">
+                    <div className="relative mx-auto h-[120px] w-[120px]">
                       <Image
                         src={step.image}
                         alt={step.alt}
                         fill
-                        sizes="62px"
+                        sizes="120px"
                         className="object-contain"
                       />
 
@@ -428,7 +428,7 @@ const MokshaServices: React.FC = () => {
                     {index !== steps.length - 1 && (
                       <div
                         className="
-                          absolute right-[-9px] top-[12px] z-20
+                          absolute right-[-9px] top-[39px] z-20
                           flex h-8 w-8
                           items-center justify-center
                           rounded-full
@@ -483,12 +483,12 @@ const MokshaServices: React.FC = () => {
                   text-center
                 "
               >
-                <div className="relative mx-auto h-14 w-14">
+                <div className="relative mx-auto h-[105px] w-[105px]">
                     <Image
                       src={step.image}
                       alt={step.alt}
                       fill
-                      sizes="56px"
+                      sizes="105px"
                       className="object-contain"
                     />
 
