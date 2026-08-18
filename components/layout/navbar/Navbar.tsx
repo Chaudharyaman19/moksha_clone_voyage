@@ -131,7 +131,7 @@ export default function Navbar() {
       type: "dropdown",
       dropdown: [
         { name: "Become a Volunteer", path: "/volunteer/register", icon: <FaHandsHelping />, type: "page" },
-        { name: "CSR Partnership", path: "#", icon: <FaStar />, type: "page", disabled: true },
+        { name: "CSR Partnership", path: "/csr", icon: <FaStar />, type: "page" },
         { name: "Partner With Us", path: "#", icon: <FaHandHoldingHeart />, type: "page", disabled: true },
       ],
     },
