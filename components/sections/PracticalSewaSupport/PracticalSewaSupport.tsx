@@ -185,9 +185,7 @@ const supportCards = [
 export default function PracticalSewaSupport() {
   return (
     <section className="w-full bg-[#F7F3EC] px-4 py-4 lg:px-6">
-
       <div className="mx-auto w-full max-w-[1344px]">
-
         {/* =================================================
             TOP MAIN PANEL
         ================================================= */}
@@ -203,9 +201,7 @@ export default function PracticalSewaSupport() {
             shadow-[0_7px_24px_rgba(71,44,22,0.07)]
           "
         >
-
-          <div className="grid lg:h-[570px] lg:grid-cols-[46%_54%]">
-
+          <div className="relative grid lg:h-[570px] lg:grid-cols-[46%_54%]">
             {/* =================================================
                 LEFT CONTENT
             ================================================= */}
@@ -224,20 +220,20 @@ export default function PracticalSewaSupport() {
                 lg:px-[42px]
               "
             >
-
-              {/* =============================================
-                  TOP LOTUS + LABEL
-              ============================================= */}
+              {/* TOP LOTUS + LABEL */}
 
               <div className="mb-[8px] flex flex-col items-center">
-
                 <CustomIcon
                   name="Lotus"
-                  className="mb-[3px] h-[31px] w-[31px] text-[#CF5B10]"
+                  className="
+                    mb-[3px]
+                    h-[36px]
+                    w-[36px]
+                    text-[#CF5B10]
+                  "
                 />
 
                 <div className="flex items-center justify-center gap-[12px]">
-
                   <span className="h-px w-[35px] bg-[#D45B0B]" />
 
                   <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.025em] text-[#1E602C]">
@@ -245,14 +241,10 @@ export default function PracticalSewaSupport() {
                   </span>
 
                   <span className="h-px w-[35px] bg-[#D45B0B]" />
-
                 </div>
-
               </div>
 
-              {/* =============================================
-                  HEADING - EXACT 2 LINES
-              ============================================= */}
+              {/* HEADING */}
 
               <h2
                 className="
@@ -276,23 +268,17 @@ export default function PracticalSewaSupport() {
                 </span>
               </h2>
 
-              {/* =============================================
-                  SMALL DECORATION
-              ============================================= */}
+              {/* SMALL DECORATION */}
 
               <div className="mt-[8px] flex items-center justify-center gap-[8px]">
-
                 <span className="h-px w-[65px] bg-gradient-to-r from-transparent to-[#D69A65]" />
 
                 <span className="h-[7px] w-[7px] rotate-45 bg-[#C65D13]" />
 
                 <span className="h-px w-[65px] bg-gradient-to-l from-transparent to-[#D69A65]" />
-
               </div>
 
-              {/* =============================================
-                  DESCRIPTION
-              ============================================= */}
+              {/* DESCRIPTION */}
 
               <p
                 className="
@@ -308,12 +294,9 @@ export default function PracticalSewaSupport() {
                 willing to stand beside them.
               </p>
 
-              {/* =============================================
-                  3 CARDS — SAME ROW / COMPACT
-              ============================================= */}
+              {/* 3 SUPPORT CARDS */}
 
               <div className="mt-[14px] grid grid-cols-3 gap-[13px]">
-
                 {supportCards.map((card) => (
                   <div
                     key={card.title}
@@ -328,19 +311,18 @@ export default function PracticalSewaSupport() {
                       border-[#E7DED2]
                       bg-white
                       px-[10px]
-                      py-[13px]
+                      py-[11px]
                       text-center
                       shadow-[0_6px_17px_rgba(66,41,20,0.05)]
                     "
                   >
-
-                    {/* ICON */}
+                    {/* BIGGER ICON */}
 
                     <div
                       className="
                         flex
-                        h-[54px]
-                        w-[54px]
+                        h-[66px]
+                        w-[66px]
                         shrink-0
                         items-center
                         justify-center
@@ -351,16 +333,17 @@ export default function PracticalSewaSupport() {
                     >
                       <CustomIcon
                         name={card.icon}
-                        className="h-[46px] w-[46px]"
+                        className="
+                          h-[58px]
+                          w-[58px]
+                        "
                       />
                     </div>
 
-                    {/* TITLE */}
-
                     <h3
                       className="
-                        mt-[7px]
-                        min-h-[40px]
+                        mt-[4px]
+                        min-h-[38px]
                         text-[16px]
                         font-semibold
                         leading-[1.2]
@@ -372,24 +355,20 @@ export default function PracticalSewaSupport() {
                       {card.title}
                     </h3>
 
-                    {/* TEXT */}
-
                     <p
                       className="
-                        mt-[3px]
+                        mt-[2px]
                         flex
-                        min-h-[48px]
+                        min-h-[44px]
                         items-center
                         justify-center
                         text-[16px]
-                        leading-[1.28]
+                        leading-[1.25]
                         text-[#37312D]
                       "
                     >
                       {card.text}
                     </p>
-
-                    {/* BOTTOM LINE */}
 
                     <span
                       className="
@@ -402,15 +381,11 @@ export default function PracticalSewaSupport() {
                         backgroundColor: card.color,
                       }}
                     />
-
                   </div>
                 ))}
-
               </div>
 
-              {/* =============================================
-                  BUTTON + HEADSET ROW
-              ============================================= */}
+              {/* BUTTON + HEADSET */}
 
               <div
                 className="
@@ -420,7 +395,6 @@ export default function PracticalSewaSupport() {
                   items-center
                 "
               >
-
                 <a
                   href="/request-help"
                   className="
@@ -444,15 +418,13 @@ export default function PracticalSewaSupport() {
                     hover:-translate-y-[1px]
                   "
                 >
-                  <span>
-                    Request Sewa Support
-                  </span>
+                  <span>Request Sewa Support</span>
 
                   <span
                     className="
                       flex
-                      h-[25px]
-                      w-[25px]
+                      h-[29px]
+                      w-[29px]
                       items-center
                       justify-center
                       rounded-full
@@ -462,24 +434,31 @@ export default function PracticalSewaSupport() {
                   >
                     <CustomIcon
                       name="ArrowRight"
-                      className="h-[13px] w-[13px]"
+                      className="h-[16px] w-[16px]"
                     />
                   </span>
-
                 </a>
-
-                {/* DIVIDER */}
 
                 <span className="mx-[18px] h-[46px] w-px shrink-0 bg-[#D6C9BB]" />
 
-                {/* HEADSET */}
-
                 <div className="flex min-w-0 items-center gap-[10px]">
-
-                  <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center text-[#256331]">
+                  <div
+                    className="
+                      flex
+                      h-[48px]
+                      w-[48px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      text-[#256331]
+                    "
+                  >
                     <CustomIcon
                       name="Headset"
-                      className="h-[35px] w-[35px]"
+                      className="
+                        h-[42px]
+                        w-[42px]
+                      "
                     />
                   </div>
 
@@ -488,19 +467,22 @@ export default function PracticalSewaSupport() {
                     <br />
                     to stand beside you.
                   </p>
-
                 </div>
-
               </div>
-
             </div>
 
             {/* =================================================
                 RIGHT IMAGE
             ================================================= */}
 
-            <div className="relative min-h-[450px] lg:h-[570px]">
-
+            <div
+              className="
+                relative
+                min-h-[450px]
+                overflow-hidden
+                lg:h-[570px]
+              "
+            >
               <Image
                 src="/assets/family-ghat-support.png"
                 alt="A grieving family being guided through rituals by a priest at a river ghat"
@@ -510,7 +492,25 @@ export default function PracticalSewaSupport() {
                 className="object-cover object-[92%_42%]"
               />
 
-              {/* VERY LIGHT JOIN — REFERENCE JAISA */}
+              {/* =================================================
+                  SOFT CENTER BLEND
+                  Hard center line ab show nahi hogi
+              ================================================= */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-y-0
+                  left-[-32px]
+                  z-10
+                  hidden
+                  w-[145px]
+                  bg-[#FCF7EF]/45
+                  blur-[18px]
+                  lg:block
+                "
+              />
 
               <div
                 className="
@@ -518,17 +518,34 @@ export default function PracticalSewaSupport() {
                   absolute
                   inset-y-0
                   left-0
-                  w-[60px]
+                  z-20
+                  hidden
+                  w-[125px]
                   bg-gradient-to-r
-                  from-[#FCF7EF]/35
+                  from-[#FCF7EF]
+                  via-[#FCF7EF]/70
                   to-transparent
+                  lg:block
                 "
               />
 
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-y-0
+                  left-[20px]
+                  z-20
+                  hidden
+                  w-[80px]
+                  bg-[#FCF7EF]/15
+                  backdrop-blur-[5px]
+                  [mask-image:linear-gradient(to_right,black,transparent)]
+                  lg:block
+                "
+              />
             </div>
-
           </div>
-
         </div>
 
         {/* =================================================
@@ -537,6 +554,7 @@ export default function PracticalSewaSupport() {
 
         <div
           className="
+            relative
             mt-[7px]
             overflow-hidden
             rounded-[12px]
@@ -546,28 +564,33 @@ export default function PracticalSewaSupport() {
             shadow-[0_5px_13px_rgba(73,47,25,0.04)]
           "
         >
-
-          <div className="grid min-h-[100px] grid-cols-1 lg:grid-cols-2">
-
-            {/* =============================================
-                LEFT
-            ============================================= */}
+          <div
+            className="
+              relative
+              grid
+              min-h-[100px]
+              grid-cols-1
+              lg:grid-cols-2
+            "
+          >
+            {/* LEFT */}
 
             <div
               className="
+                relative
+                z-10
                 flex
                 items-center
-                gap-[22px]
+                gap-[24px]
                 px-[44px]
                 py-[13px]
               "
             >
-
               <div
                 className="
                   flex
-                  h-[68px]
-                  w-[68px]
+                  h-[80px]
+                  w-[80px]
                   shrink-0
                   items-center
                   justify-center
@@ -576,12 +599,14 @@ export default function PracticalSewaSupport() {
               >
                 <CustomIcon
                   name="LotusHands"
-                  className="h-[60px] w-[60px]"
+                  className="
+                    h-[72px]
+                    w-[72px]
+                  "
                 />
               </div>
 
               <div>
-
                 <h3
                   className="
                     text-[18px]
@@ -611,35 +636,30 @@ export default function PracticalSewaSupport() {
                 >
                   You are not alone. We are with you.
                 </p>
-
               </div>
-
             </div>
 
-            {/* =============================================
-                RIGHT
-            ============================================= */}
+            {/* RIGHT */}
 
             <div
               className="
                 relative
+                z-10
                 flex
                 items-center
-                gap-[22px]
+                gap-[24px]
                 border-t
                 border-[#D8CDBD]
                 px-[44px]
                 py-[13px]
-                lg:border-l
                 lg:border-t-0
               "
             >
-
               <div
                 className="
                   flex
-                  h-[60px]
-                  w-[60px]
+                  h-[74px]
+                  w-[74px]
                   shrink-0
                   items-center
                   justify-center
@@ -648,12 +668,14 @@ export default function PracticalSewaSupport() {
               >
                 <CustomIcon
                   name="MapPin"
-                  className="h-[54px] w-[54px]"
+                  className="
+                    h-[66px]
+                    w-[66px]
+                  "
                 />
               </div>
 
               <div className="relative z-10">
-
                 <p className="text-[16px] leading-[1.3] text-[#385039]">
                   Currently serving with care in
                 </p>
@@ -672,32 +694,67 @@ export default function PracticalSewaSupport() {
                 >
                   Delhi • Ghaziabad • Noida
                 </h3>
-
               </div>
-
-              {/* LOTUS WATERMARK */}
 
               <CustomIcon
                 name="Lotus"
                 className="
                   pointer-events-none
                   absolute
-                  bottom-[-12px]
+                  bottom-[-16px]
                   right-[24px]
-                  h-[90px]
-                  w-[90px]
+                  h-[105px]
+                  w-[105px]
                   text-[#D9C794]/20
                 "
               />
-
             </div>
 
+            {/* =================================================
+                CENTER BLUR
+                lg:border-l hata diya
+            ================================================= */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                bottom-0
+                left-1/2
+                top-0
+                z-20
+                hidden
+                w-[80px]
+                -translate-x-1/2
+                bg-[#F8F5ED]/30
+                backdrop-blur-[7px]
+                [mask-image:linear-gradient(to_right,transparent,black_35%,black_65%,transparent)]
+                lg:block
+              "
+            />
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                bottom-0
+                left-1/2
+                top-0
+                z-20
+                hidden
+                w-[65px]
+                -translate-x-1/2
+                bg-gradient-to-r
+                from-transparent
+                via-[#F8F5ED]/95
+                to-transparent
+                blur-[7px]
+                lg:block
+              "
+            />
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 }
