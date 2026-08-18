@@ -372,7 +372,44 @@ export default function TermsAndConditions() {
       });
     }, pageRef);
 
-    return () => ctx.revert();
+    /*
+      Refresh triggers once images/fonts finish loading so start positions
+      are recalculated. Otherwise sections can remain stuck at low opacity.
+    */
+    const refreshTriggers = () => ScrollTrigger.refresh();
+
+    if (document.readyState === "complete") {
+      refreshTriggers();
+    } else {
+      window.addEventListener("load", refreshTriggers, { once: true });
+    }
+
+    document.fonts?.ready.then(refreshTriggers).catch(() => {});
+
+    const revealTimer = window.setTimeout(() => {
+      pageRef.current
+        ?.querySelectorAll<HTMLElement>(
+          ".terms-section, .terms-sidebar, .terms-main, .terms-commitment, .terms-view-button, .terms-contact",
+        )
+        .forEach((el) => {
+          if (Number(gsap.getProperty(el, "opacity")) < 1) {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              x: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          }
+        });
+    }, 3500);
+
+    return () => {
+      ctx.revert();
+      window.clearTimeout(revealTimer);
+      window.removeEventListener("load", refreshTriggers);
+    };
   }, []);
 
   /* =====================================================
@@ -457,12 +494,16 @@ export default function TermsAndConditions() {
       return;
     }
 
+    // Dim all other sections while scrolling to the target
     gsap.to(sections, {
-      opacity: 0.25,
-      duration: 0.45,
+      opacity: 0.3,
+      duration: 0.4,
       ease: "power2.out",
       overwrite: "auto",
     });
+
+    // Keep the target highlighted throughout the scroll
+    highlightTarget(target);
 
     const restoreSections = () => {
       gsap.to(sections, {

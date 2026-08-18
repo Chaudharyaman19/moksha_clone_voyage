@@ -602,12 +602,16 @@ export default function RefundPolicy() {
       return;
     }
 
+    // Dim all other sections while scrolling to the target
     gsap.to(sections, {
-      opacity: 0.25,
-      duration: 0.45,
+      opacity: 0.3,
+      duration: 0.4,
       ease: "power2.out",
       overwrite: "auto",
     });
+
+    // Keep the target highlighted throughout the scroll
+    highlightTarget(target);
 
     const restoreSections = () => {
       gsap.to(sections, {
