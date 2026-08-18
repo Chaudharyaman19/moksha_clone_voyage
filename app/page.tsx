@@ -4,7 +4,7 @@ import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
 import DonateVolunteerHighlight from "@/components/sections/DonateVolunteerHighlight/DonateVolunteerHighlight";
 import OurSewa from "@/components/sections/OurSewa/HowWeHelp";
-import Howwehelp from "@/components/sections/Howwehelp/Howwehelp";
+import Howwehelp from "@/components/sections/HowWeHelp/HowWeHelp";
 import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
 import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
