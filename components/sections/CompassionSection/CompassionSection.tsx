@@ -213,7 +213,7 @@ export default function CompassionSection() {
                 <LotusIcon className="h-9 w-9" />
               </div>
               <span className="pb-0.5 text-[16px] font-semibold uppercase tracking-[0.28em] text-[#7F5A2E]">
-                Moksha Sewa
+                CREMATION & LAST RITES SUPPORT
               </span>
             </div>
 

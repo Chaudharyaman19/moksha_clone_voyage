@@ -675,83 +675,64 @@ export default function SupportInAction() {
         {/* =====================================================
             DONATE BUTTON
         ====================================================== */}
+<div className="mt-[12px] flex justify-center">
+  <a
+    href="/donation"
+    className="
+      group
+      inline-flex
+      h-[50px]
+      min-w-[330px]
+      items-center
+      justify-between
+      rounded-[9px]
+      border-[2px]
+      border-[#D09A2D]
+      bg-[#004B36]
+      px-[20px]
+      text-white
+      shadow-[0_5px_12px_rgba(0,65,44,0.17)]
+      transition-all
+      duration-300
+      hover:-translate-y-[1px]
+      hover:bg-[#003E2D]
+    "
+  >
+    <span className="flex items-center gap-[12px]">
+      <CustomIcon
+        name="HeartHands"
+        className="
+          h-[28px]
+          w-[28px]
+          text-[#D8A62A]
+        "
+      />
 
-        <div
-          className="
-            mt-[15px]
-            flex
-            justify-center
-          "
-        >
-          <a
-            href="/donation"
-            className="
-              group
+      <span
+        className="
+          text-[18px]
+          font-medium
+          uppercase
+          tracking-[0.02em]
+        "
+      >
+        Donate For Sewa
+      </span>
+    </span>
 
-              inline-flex
-              h-[62px]
-              min-w-[420px]
-
-              items-center
-              justify-between
-
-              rounded-[11px]
-
-              border-[2px]
-              border-[#D09A2D]
-
-              bg-[#004B36]
-
-              px-[30px]
-
-              text-white
-
-              shadow-[0_7px_16px_rgba(0,65,44,0.19)]
-
-              transition-all
-              duration-300
-
-              hover:-translate-y-[1px]
-              hover:bg-[#003E2D]
-            "
-          >
-            <span className="flex items-center gap-[18px]">
-              <CustomIcon
-                name="HeartHands"
-                className="
-                  h-[38px]
-                  w-[38px]
-                  text-[#D8A62A]
-                "
-              />
-
-              <span
-                className="
-                  text-[24px]
-                  font-medium
-                  uppercase
-                  tracking-[0.02em]
-                "
-              >
-                Donate For Sewa
-              </span>
-            </span>
-
-            <CustomIcon
-              name="ArrowRight"
-              className="
-                h-[30px]
-                w-[30px]
-                text-[#D9A32B]
-
-                transition-transform
-                duration-300
-
-                group-hover:translate-x-[4px]
-              "
-            />
-          </a>
-        </div>
+    <CustomIcon
+      name="ArrowRight"
+      className="
+        h-[22px]
+        w-[22px]
+        text-[#D9A32B]
+        transition-transform
+        duration-300
+        group-hover:translate-x-[3px]
+      "
+    />
+  </a>
+</div>
       </div>
     </section>
   );

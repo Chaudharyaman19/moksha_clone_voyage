@@ -22,6 +22,7 @@ import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/W
 import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission";
 import OneFinalActOfHumanity from "@/components/sections/OneFinalActOfHumanity/OneFinalActOfHumanity";
 import YourSupportInAction from "@/components/sections/YourSupportInAction/YourSupportInAction";
+import TrustTransparency from "@/components/sections/TrustTransparency/TrustTransparency";
 
 export const metadata = createPageMetadata("/");
 
@@ -55,13 +56,14 @@ export default function Page() {
 
         <JoinTheMission />
         <YourSupportInAction />
+        <TrustTransparency />
 
-        <Serving />
-        <HowItWorks />
+        {/* <Serving /> */}
+        {/* <HowItWorks /> */}
 
-        <SacredJourney />
-        <WhyFamiliesTrust />
-        <VoicesOfGratitude />
+        {/* <SacredJourney /> */}
+        {/* <WhyFamiliesTrust /> */}
+        {/* <VoicesOfGratitude /> */}
         <GlimpseOfJourney />
         <OneFinalActOfHumanity />
         <FAQ />
