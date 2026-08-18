@@ -201,7 +201,7 @@ export default function ResponsibleSewa() {
         "
       >
         {/* =====================================================
-            MAIN HERO AREA
+            MAIN HERO
         ====================================================== */}
 
         <div
@@ -213,43 +213,8 @@ export default function ResponsibleSewa() {
           "
         >
           {/* =================================================
-              IMAGE AS BACKGROUND
-              NO OBJECT-COVER
-              NO RIGHT-SIDE CROP
-          ================================================= */}
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-0
-              hidden
-              bg-no-repeat
-              lg:block
-            "
-            style={{
-              backgroundImage:
-                "url('/assets/about/our-story/response.jpeg')",
-
-              /*
-               * Full image height preserve hogi.
-               * Right side crop nahi hogi.
-               */
-              backgroundSize: "auto 100%",
-
-              /*
-               * Image ka right edge hero ke
-               * right edge se lock rahega.
-               */
-              backgroundPosition: "right center",
-            }}
-          />
-
-          {/* =================================================
-              VERY SOFT IMAGE UNDERLAY
-
-              Agar source image thodi narrow ho to bhi
-              background cream hi rahega, koi hard line nahi.
+              BACKGROUND IMAGE
+              IMAGE LEFT SIDE TAK KHEENCHI HAI
           ================================================= */}
 
           <div
@@ -259,15 +224,27 @@ export default function ResponsibleSewa() {
               inset-y-0
               right-0
               hidden
-              w-[65%]
-              bg-[#EEE4D7]
-              lg:-z-[1]
+              w-[72%]
+              bg-no-repeat
               lg:block
             "
+            style={{
+              backgroundImage:
+                "url('/assets/about/our-story/response.jpeg')",
+
+              /*
+                Full available image area fill karegi.
+                Right side crop / empty space nahi.
+              */
+              backgroundSize: "100% 100%",
+              backgroundPosition: "right center",
+            }}
           />
 
           {/* =================================================
               LEFT CREAM FADE
+              PEHLE SE CHOTA KIYA HAI,
+              ISLIYE IMAGE LEFT TAK VISIBLE HAI
           ================================================= */}
 
           <div
@@ -278,17 +255,17 @@ export default function ResponsibleSewa() {
               left-0
               z-[1]
               hidden
-              w-[67%]
+              w-[59%]
               lg:block
             "
             style={{
               background:
-                "linear-gradient(90deg, #FBF7EF 0%, #FBF7EF 55%, rgba(251,247,239,0.97) 67%, rgba(251,247,239,0.82) 76%, rgba(251,247,239,0.42) 87%, rgba(251,247,239,0) 100%)",
+                "linear-gradient(90deg, #FBF7EF 0%, #FBF7EF 48%, rgba(251,247,239,0.98) 59%, rgba(251,247,239,0.84) 70%, rgba(251,247,239,0.44) 84%, rgba(251,247,239,0) 100%)",
             }}
           />
 
           {/* =================================================
-              EXTRA SOFT CENTER BLEND
+              CENTER SOFT BLEND
           ================================================= */}
 
           <div
@@ -296,12 +273,12 @@ export default function ResponsibleSewa() {
               pointer-events-none
               absolute
               inset-y-0
-              left-[43%]
+              left-[42%]
               z-[2]
               hidden
-              w-[17%]
+              w-[13%]
               bg-[#FBF7EF]/20
-              blur-[22px]
+              blur-[18px]
               lg:block
             "
           />
@@ -325,26 +302,28 @@ export default function ResponsibleSewa() {
 
               sm:px-[42px]
 
-              lg:w-[54%]
+              lg:w-[55%]
               lg:px-[58px]
               lg:pb-[34px]
               lg:pt-[48px]
             "
           >
-            {/* LABEL */}
+            {/* =================================================
+                LABEL
+            ================================================= */}
 
             <div className="flex items-center gap-[12px]">
               <CustomIcon
                 name="ShieldCheck"
                 className="
-                  h-[47px]
-                  w-[47px]
+                  h-[49px]
+                  w-[49px]
                   shrink-0
                   text-[#AD7922]
                 "
               />
 
-              <span className="relative h-px w-[27px] bg-[#C49B59]">
+              <span className="relative h-px w-[30px] bg-[#C49B59]">
                 <span
                   className="
                     absolute
@@ -361,7 +340,7 @@ export default function ResponsibleSewa() {
               <span
                 className="
                   whitespace-nowrap
-                  text-[16px]
+                  text-[18px]
                   font-bold
                   uppercase
                   tracking-[0.11em]
@@ -371,7 +350,7 @@ export default function ResponsibleSewa() {
                 Responsible Sewa
               </span>
 
-              <span className="relative h-px w-[27px] bg-[#C49B59]">
+              <span className="relative h-px w-[30px] bg-[#C49B59]">
                 <span
                   className="
                     absolute
@@ -387,7 +366,7 @@ export default function ResponsibleSewa() {
             </div>
 
             {/* =================================================
-                HEADING
+                HEADING - SLIGHTLY BIGGER
             ================================================= */}
 
             <h2
@@ -395,13 +374,13 @@ export default function ResponsibleSewa() {
                 mt-[17px]
 
                 font-serif
-                text-[42px]
+                text-[44px]
                 font-medium
                 leading-[1.02]
                 tracking-[-0.025em]
 
-                sm:text-[48px]
-                lg:text-[54px]
+                sm:text-[51px]
+                lg:text-[58px]
               "
               style={{
                 fontFamily: "Georgia, 'Times New Roman', serif",
@@ -420,25 +399,31 @@ export default function ResponsibleSewa() {
                 ORNAMENT
             ================================================= */}
 
-            <div className="mt-[18px] flex items-center gap-[10px]">
+            <div className="mt-[19px] flex items-center gap-[10px]">
               <span
                 className="
                   h-px
-                  w-[68px]
+                  w-[72px]
                   bg-gradient-to-r
                   from-[#C79546]
                   to-transparent
                 "
               />
 
-              <span className="text-[26px] leading-none text-[#B78127]">
+              <span
+                className="
+                  text-[27px]
+                  leading-none
+                  text-[#B78127]
+                "
+              >
                 ❖
               </span>
 
               <span
                 className="
                   h-px
-                  w-[68px]
+                  w-[72px]
                   bg-gradient-to-l
                   from-[#C79546]
                   to-transparent
@@ -447,24 +432,25 @@ export default function ResponsibleSewa() {
             </div>
 
             {/* =================================================
-                DESCRIPTION
+                DESCRIPTION - BIGGER
             ================================================= */}
 
             <p
               className="
-                mt-[22px]
-                max-w-[570px]
+                mt-[23px]
+                max-w-[650px]
 
-                text-[18px]
-                font-medium
-                leading-[1.55]
+                text-[21px]
+                font-semibold
+                leading-[1.5]
 
                 text-[#34393C]
+
+                lg:text-[24px]
               "
             >
-              At Moksha Sewa, every act of support is guided by
-              responsibility,
-              <br className="hidden xl:block" />
+              At Moksha Sewa, every act of support is guided by responsibility,
+              <br />
               respect and the highest standards of ethical service.
             </p>
           </div>
@@ -568,13 +554,8 @@ export default function ResponsibleSewa() {
           style={{
             backgroundImage:
               "url('/assets/about/our-story/response.jpeg')",
-
-            /*
-             * Mobile par poori image width visible.
-             * object-cover wali cropping nahi.
-             */
-            backgroundSize: "100% auto",
-            backgroundPosition: "center top",
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
           }}
         >
@@ -583,7 +564,7 @@ export default function ResponsibleSewa() {
               absolute
               inset-x-0
               top-0
-              h-[100px]
+              h-[90px]
 
               bg-gradient-to-b
               from-[#FBF7EF]
@@ -650,7 +631,7 @@ export default function ResponsibleSewa() {
                   ${index === 2 ? "sm:border-l-0 xl:border-l" : ""}
                 `}
               >
-                {/* ICON */}
+                {/* ICON CIRCLE */}
 
                 <div
                   className="
@@ -687,7 +668,6 @@ export default function ResponsibleSewa() {
                       text-[21px]
                       font-semibold
                       leading-[1.1]
-
                       text-[#0C4638]
                     "
                     style={{
@@ -773,16 +753,14 @@ export default function ResponsibleSewa() {
           <p
             className="
               flex-1
-
               text-[16px]
               font-medium
               leading-[1.4]
-
               text-[#46504E]
             "
           >
-            Moksha Sewa is a Namo Gange Trust initiative. Every step we
-            take is guided by responsibility, respect and humanity.
+            Moksha Sewa is a Namo Gange Trust initiative. Every step we take is
+            guided by responsibility, respect and humanity.
           </p>
 
           <span
@@ -793,7 +771,6 @@ export default function ResponsibleSewa() {
               w-px
               shrink-0
               bg-[#CABFAF]
-
               md:block
             "
           />
@@ -806,7 +783,6 @@ export default function ResponsibleSewa() {
               w-[47px]
               shrink-0
               text-[#B88A35]
-
               md:block
             "
           />
