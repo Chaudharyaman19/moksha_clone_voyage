@@ -9,6 +9,8 @@ import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
 import AboutHeroSlider from "./AboutHeroSlider";
+import Howwesupport from "./Howwesupport";
+import Whyweexist from "./Whyweexist";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -272,10 +274,13 @@ export default function About() {
         {/* ============ ABOUT MOKSHA SEWA ============ */}
 
         <AboutMokshaSewa />
+        <Howwesupport />
+        <Whyweexist/>
 
         {/* ============ NAMO GANGE TRUST ============ */}
 
         <AboutNamoGangeTrust />
+
 
         {/* ============ FOUNDER'S VISION ============ */}
 
