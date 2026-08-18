@@ -1,0 +1,96 @@
+import { UBSIcon } from "./UnclaimedBodyIcons";
+
+const proof = [
+  ["ShieldCheck", "Verification"],
+  ["FileCheck", "Authorisation"],
+  ["People", "Responsible Coordination"],
+  ["HeartHands", "Dignified Final Journey"],
+] as const;
+
+export default function UnclaimedBodyHero() {
+  return (
+    <section className="relative overflow-hidden bg-[#fbf6ec]">
+      <div className="relative mx-auto min-h-[650px] max-w-[1660px] overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-no-repeat lg:block"
+          style={{
+            backgroundImage: "url('/assets/unclaimed-body/unclaimed-hero.png')",
+            backgroundSize: "100% 100%",
+            backgroundPosition: "right center",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[63%] lg:block"
+          style={{
+            background:
+              "linear-gradient(90deg,#fbf6ec 0%,#fbf6ec 63%,rgba(251,246,236,.96) 74%,rgba(251,246,236,.68) 86%,transparent 100%)",
+          }}
+        />
+
+        <div className="relative z-10 px-6 pb-8 pt-14 sm:px-10 lg:w-[57%] lg:px-[86px] lg:pt-[70px]">
+          <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
+            <UBSIcon name="Lotus" className="h-8 w-8 text-[#b67c22]" />
+            Unclaimed Body Sewa
+          </div>
+
+          <h1
+            className="mt-5 text-[44px] font-medium leading-[1.03] text-[#064335] sm:text-[52px] lg:text-[60px]"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
+            Unclaimed Body Sewa
+            <br />
+            With Dignity &amp;
+            <br />
+            <span className="text-[#b87a16]">Responsible Support</span>
+          </h1>
+
+          <div className="mt-6 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
+            <span className="h-px flex-1 bg-[#c59b56]" />
+            <UBSIcon name="Lotus" className="h-7 w-7" />
+            <span className="h-px flex-1 bg-[#c59b56]" />
+          </div>
+
+          <p className="mt-6 max-w-[600px] text-[18px] font-semibold leading-[1.5] text-[#333a3c]">
+            Because every human being deserves a respectful final journey.
+          </p>
+
+          <p className="mt-4 max-w-[620px] text-[16px] font-medium leading-[1.55] text-[#454a4c]">
+            Moksha Sewa, an initiative of Namo Gange Trust, supports eligible
+            and legally authorised unclaimed-body cases through responsible
+            coordination, cremation and last-rites assistance, subject to
+            verification and applicable formalities.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a href="#request-unclaimed-help" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white">
+              Request Sewa Help
+              <UBSIcon name="ArrowRight" className="h-6 w-6 text-[#d3a03b]" />
+            </a>
+            <a href="#how-unclaimed-works" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] border border-[#c9a66b] bg-[#fffaf2]/90 px-6 text-[16px] font-bold uppercase text-[#16483a]">
+              How The Sewa Works
+              <UBSIcon name="ArrowRight" className="h-6 w-6" />
+            </a>
+          </div>
+
+          <div className="mt-8 grid max-w-[760px] grid-cols-2 gap-3 sm:grid-cols-4">
+            {proof.map(([icon, label]) => (
+              <div key={label} className="flex items-center gap-3 rounded-[8px] bg-[#fffdf7]/80 px-3 py-3">
+                <UBSIcon name={icon} className="h-7 w-7 shrink-0 text-[#0c4c3b]" />
+                <span className="text-[16px] font-semibold text-[#3d4443]">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className="h-[380px] bg-no-repeat lg:hidden"
+          style={{
+            backgroundImage: "url('/assets/unclaimed-body/unclaimed-hero.png')",
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center",
+          }}
+        />
+      </div>
+    </section>
+  );
+}
