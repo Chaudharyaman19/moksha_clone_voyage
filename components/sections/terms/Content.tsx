@@ -155,7 +155,7 @@ function TermsHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
+    <h2 className="font-serif text-[26px] font-bold leading-tight text-[#221512]">
       {number}. {title}
     </h2>
   );
@@ -630,7 +630,7 @@ export default function TermsAndConditions() {
               SECTIONS 1 - 10
           ================================================== */}
 
-          <div className="overflow-hidden rounded-[7px] border border-[#e8e4d8] bg-white/70">
+          <div className="overflow-hidden rounded-[7px] border border-[#E0D7C2] bg-white shadow-[0_2px_14px_rgba(66,57,15,0.06)]">
             {termsSections.map((section) => (
               <section
                 key={section.number}
@@ -647,7 +647,7 @@ export default function TermsAndConditions() {
                   {/* Content */}
 
                   <div
-                    className={`border-b border-[#eadbc3] py-4 ${
+                    className={`border-b border-[#E3D5B8] py-4 ${
                       section.number === 10
                         ? "border-b-0"
                         : ""
@@ -658,7 +658,7 @@ export default function TermsAndConditions() {
                       title={section.title}
                     />
 
-                    <p className="mt-1.5 max-w-[650px] text-[16px] leading-7 text-[#594236]">
+                    <p className="mt-2 max-w-[680px] text-[16px] font-normal leading-7 text-[#2F2216]">
                       {section.content}
                     </p>
                   </div>
