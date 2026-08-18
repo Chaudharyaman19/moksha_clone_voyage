@@ -401,9 +401,6 @@ export default function WhoWeHelp() {
               sm:text-[40px]
               lg:text-[46px]
             "
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-            }}
           >
             Standing Beside Those Who Need Us Most
           </h2>
