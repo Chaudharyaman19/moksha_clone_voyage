@@ -1410,7 +1410,7 @@ export default function VolunteerRegister() {
           </section>
 
           {/* Our Volunteers Primarily Support */}
-          <section className="mb-6 grid gap-3 rounded-[14px] border border-[#E7D9C9] bg-[#FBF3E7] p-3.5 lg:grid-cols-[1fr_0.32fr] lg:gap-4">
+          <section className="mb-6 grid gap-3 border border-[#E7D9C9] bg-[#FBF3E7] p-3.5 lg:grid-cols-[1fr_0.32fr] lg:gap-4">
             <div>
               <h2 className="mb-2 text-center font-serif text-[20px] font-semibold text-[#3B2A20]">
                 Our Volunteers Primarily Support
@@ -1436,7 +1436,7 @@ export default function VolunteerRegister() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center rounded-[10px] border border-[#EDD9BF] bg-white/70 p-3">
+            <div className="flex flex-col justify-center border border-[#EDD9BF] bg-white/70 p-3">
               <span className="font-serif text-[26px] leading-none text-[#ED6B13]">&ldquo;</span>
               <p className="mt-1 text-[16px] font-medium leading-[1.4] text-[#3B2A20]">
                 Seva towards the last journey is the highest form of humanity.
@@ -1490,7 +1490,7 @@ export default function VolunteerRegister() {
 
           <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[1fr_0.36fr] lg:items-stretch">
             {/* Registration form */}
-            <section className="relative overflow-hidden rounded-[15px] border border-[#E7D9C9] bg-white/95 px-4 py-2.5 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
+            <section className="relative overflow-hidden border border-[#E7D9C9] bg-white/95 px-4 py-2.5 shadow-[0_14px_38px_rgba(93,55,30,0.08)] sm:px-5">
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -1959,7 +1959,7 @@ export default function VolunteerRegister() {
             </section>
 
             {/* Right panel */}
-            <aside className="flex h-full flex-col overflow-hidden rounded-[15px] border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
+            <aside className="flex h-full flex-col overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
               <h2 className="font-serif text-[17px] font-semibold text-[#40271B]">
                 Why Volunteer With Moksha Sewa?
               </h2>
@@ -1994,7 +1994,7 @@ export default function VolunteerRegister() {
                     { value: "500+", label: "Active Volunteers" },
                     { value: "24×7", label: "Support Available" },
                   ].map((stat) => (
-                    <div key={stat.label} className="rounded-[10px] border border-[#E7C59F] bg-white/70 px-2.5 py-2 text-center">
+                    <div key={stat.label} className="border border-[#E7C59F] bg-white/70 px-2.5 py-2 text-center">
                       <div className="text-[18px] font-semibold leading-tight text-[#ED6B13]">{stat.value}</div>
                       <div className="mt-0.5 text-[16px] leading-tight text-[#715C4E]">{stat.label}</div>
                     </div>
@@ -2003,7 +2003,7 @@ export default function VolunteerRegister() {
               )}
 
               {step === 1 && (
-                <div className="relative mt-3.5 w-full flex-1 min-h-[160px] overflow-hidden rounded-[10px]">
+                <div className="relative mt-3.5 w-full flex-1 min-h-[160px] overflow-hidden">
                   <Image
                     src="/hero-images/image7.png"
                     alt="Moksha Sewa volunteers comforting a grieving family at a river ghat"
@@ -2019,7 +2019,7 @@ export default function VolunteerRegister() {
               )}
 
               {step === 1 && (
-                <div className="mt-3.5 flex items-start gap-2.5 rounded-[10px] border border-[#E7C59F] bg-white/70 px-3 py-2.5">
+                <div className="mt-3.5 flex items-start gap-2.5 border border-[#E7C59F] bg-white/70 px-3 py-2.5">
                   <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#FDEBD3] text-[#ED6B13]">
                     <FaStar className="h-3.5 w-3.5" />
                   </span>
@@ -2033,7 +2033,7 @@ export default function VolunteerRegister() {
 
           {/* Step 2 preview + What happens next */}
           <div className="mt-6 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
-            <section className="rounded-[14px] border border-[#E7D9C9] bg-[#FBF3E7] p-4">
+            <section className="border border-[#E7D9C9] bg-[#FBF3E7] p-4">
               <h2 className="text-[16px] font-semibold text-[#3B2A20]">
                 Step 2 Preview: Choose Your Seva
                 <span className="ml-2 text-[16px] font-normal text-[#8F7A66]">(You can select multiple)</span>
@@ -2063,7 +2063,7 @@ export default function VolunteerRegister() {
               </p>
             </section>
 
-            <section className="rounded-[14px] border border-[#E7D9C9] bg-white p-4">
+            <section className="border border-[#E7D9C9] bg-white p-4">
               <h2 className="text-center text-[16px] font-semibold text-[#3B2A20]">What Happens Next?</h2>
 
               <div className="mt-1 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -2158,7 +2158,7 @@ export default function VolunteerRegister() {
           </section>
 
           {/* Thank you banner */}
-          <section className="mt-6 flex flex-col items-center gap-2.5 rounded-[14px] border border-[#EDD9BF] bg-gradient-to-r from-[#FBF3E7] to-[#FDEBD3] px-5 py-3 text-center sm:flex-row sm:justify-between sm:gap-3.5 sm:text-left">
+          <section className="mt-6 flex flex-col items-center gap-2.5 border border-[#EDD9BF] bg-gradient-to-r from-[#FBF3E7] to-[#FDEBD3] px-5 py-3 text-center sm:flex-row sm:justify-between sm:gap-3.5 sm:text-left">
             <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:gap-3.5 sm:text-left">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-[#ED6B13] shadow-[0_4px_10px_rgba(89,57,31,0.10)]">
                 <FaHandsHelping className="h-5 w-5" />
@@ -2183,7 +2183,7 @@ export default function VolunteerRegister() {
           </section>
 
           {/* Footer disclaimer bar */}
-          <section className="mt-6 flex flex-col gap-2 rounded-[10px] bg-[#3B2A20] px-4 py-3 text-[16px] text-[#EBDCC9] sm:flex-row sm:items-center sm:justify-between">
+          <section className="mt-6 flex flex-col gap-2 bg-[#3B2A20] px-4 py-3 text-[16px] text-[#EBDCC9] sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-2">
               <FaShieldAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#F0A860]" />
               <span>
