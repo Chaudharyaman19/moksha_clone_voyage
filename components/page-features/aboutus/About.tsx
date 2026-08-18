@@ -1,8 +1,9 @@
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
-import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
 import AboutBanner from "@/components/sections/AboutBanner/AboutBanner";
+import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
+import MokshaServices from "@/components/sections/MokshaServices/MokshaServices";
 import WhoWeAre from "./WhoWeAre";
 import AboutMokshaSewa from "./AboutMokshaSewa";
 import Howwesupport from "./Howwesupport";
@@ -21,6 +22,7 @@ export default function About() {
         <AboutBanner />
         <WhoWeAre />
         <MokshaSewaIntro />
+        <MokshaServices />
         <AboutMokshaSewa />
         <Howwesupport />
         <Whyweexist />

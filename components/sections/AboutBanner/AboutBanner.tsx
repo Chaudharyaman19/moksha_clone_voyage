@@ -19,26 +19,22 @@ interface InfoItem {
 const supportItems: InfoItem[] = [
   {
     title: "For Those Unclaimed",
-    description:
-      "We support authorised unclaimed cases with dignity and respect.",
+    description: "Dignified last rites for authorised unclaimed cases.",
     icon: <UsersRound size={28} strokeWidth={1.8} />,
   },
   {
     title: "For Those Alone",
-    description:
-      "For individuals who have no family or support beside them.",
+    description: "Support for those with no family beside them.",
     icon: <HeartHandshake size={28} strokeWidth={1.8} />,
   },
   {
     title: "For Families in Need",
-    description:
-      "Case-based support for verified economically weaker families.",
+    description: "Verified support for economically weaker families.",
     icon: <HeartHandshake size={28} strokeWidth={1.8} />,
   },
   {
     title: "With Dignity & Care",
-    description:
-      "Ensuring every final journey is handled with compassion and responsibility.",
+    description: "Compassionate care in every final journey.",
     icon: <ShieldCheck size={28} strokeWidth={1.8} />,
   },
 ];
@@ -405,11 +401,11 @@ const AboutMokshaSewa: React.FC = () => {
               rounded-xl
               bg-[#142b40]
               px-5
-              py-3
+              py-2
               text-white
               shadow-[0_12px_35px_rgba(15,38,57,0.16)]
               sm:px-7
-              sm:py-4
+              sm:py-2.5
             "
           >
             <div
@@ -431,8 +427,8 @@ const AboutMokshaSewa: React.FC = () => {
                   className={`
                     flex
                     items-center
-                    gap-4
-                    py-3
+                    gap-3
+                    py-2.5
                     md:px-5
                     lg:px-6
                   ${
@@ -451,16 +447,14 @@ const AboutMokshaSewa: React.FC = () => {
                   <div
                     className="
                       flex
-                      h-14
-                      w-14
+                      h-12
+                      w-12
                       shrink-0
                       items-center
                       justify-center
                       rounded-full
                       bg-[#fffdf8]
                       text-[#e05c0b]
-                      sm:h-16
-                      sm:w-16
                     "
                   >
                     {item.icon}
@@ -481,9 +475,9 @@ const AboutMokshaSewa: React.FC = () => {
 
                     <p
                       className="
-                        mt-1.5
+                        mt-1
                         text-base
-                        leading-[1.45]
+                        leading-[1.4]
                         text-white/90
                       "
                     >
