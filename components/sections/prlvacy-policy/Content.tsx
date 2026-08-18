@@ -81,7 +81,7 @@ const informationCards = [
     ],
   },
   {
-    icon:  CircleHelp,
+    icon: CircleHelp,
     title: "Donation Information",
     items: [
       "Donation and payment related information",
@@ -166,7 +166,7 @@ function SectionTitle({
       id={id}
       className="section-title mb-3 flex scroll-mt-6 items-center gap-2"
     >
-      <h2 className="font-serif text-[26px] font-bold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
+      <h2 className="font-serif text-[26px] font-semibold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
         {number}. {title}
       </h2>
 
@@ -361,7 +361,7 @@ export default function PrivacyPolicy() {
       window.addEventListener("load", refreshTriggers, { once: true });
     }
 
-    document.fonts?.ready.then(refreshTriggers).catch(() => {});
+    document.fonts?.ready.then(refreshTriggers).catch(() => { });
 
     /*
       Safety net: if any animated element is still hidden after a few
@@ -558,7 +558,7 @@ export default function PrivacyPolicy() {
         <aside className="privacy-sidebar self-start lg:sticky lg:top-[100px]">
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="bg-[#8B6A3E] px-4 py-2.5 text-center">
-              <h3 className="text-[16px] font-bold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
+              <h3 className="text-[16px] font-semibold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 ON THIS PAGE
               </h3>
             </div>
@@ -576,13 +576,12 @@ export default function PrivacyPolicy() {
                         activeIndex === index ? "location" : undefined
                       }
                       onClick={() => handleNavClick(index)}
-                      className={`group flex w-full items-center gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${
-                        activeIndex === index
+                      className={`group flex w-full items-center gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${activeIndex === index
                           ? "bg-[#f5edda] font-semibold text-[#2C1810]"
                           : "text-[#5A4030] hover:bg-[#f8f4e9]"
-                      }`}
+                        }`}
                     >
-                      <span className="min-w-[16px] text-[16px] font-bold text-[#8B6A3E]">
+                      <span className="min-w-[16px] text-[16px] font-semibold text-[#8B6A3E]">
                         {index + 1}.
                       </span>
 
@@ -605,7 +604,7 @@ export default function PrivacyPolicy() {
                 />
               </div>
 
-              <h3 className="font-sans text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Our Commitment
               </h3>
             </div>
@@ -692,11 +691,10 @@ export default function PrivacyPolicy() {
                 return (
                   <div
                     key={card.title}
-                    className={`info-card grid grid-cols-1 p-2 md:grid-cols-[360px_minmax(0,1fr)] ${
-                      index !== informationCards.length - 1
+                    className={`info-card grid grid-cols-1 p-2 md:grid-cols-[360px_minmax(0,1fr)] ${index !== informationCards.length - 1
                         ? "border-b border-[#e8e4d8]"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start gap-3 px-4 py-4">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6]">
@@ -707,7 +705,7 @@ export default function PrivacyPolicy() {
                         />
                       </div>
 
-                      <h3 className="pt-1 text-[16px] font-bold leading-[1.4] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+                      <h3 className="pt-1 text-[16px] font-semibold leading-[1.4] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                         {card.title}
                       </h3>
                     </div>
@@ -820,11 +818,10 @@ export default function PrivacyPolicy() {
                 return (
                   <div
                     key={right.title}
-                    className={`flex min-h-[90px] flex-col items-center justify-center px-1 py-3 text-center ${
-                      index !== rights.length - 1
+                    className={`flex min-h-[90px] flex-col items-center justify-center px-1 py-3 text-center ${index !== rights.length - 1
                         ? "md:border-r md:border-[#ebe7db]"
                         : ""
-                    }`}
+                      }`}
                   >
                     <Icon
                       size={22}
@@ -857,7 +854,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h3 className="text-[16px] font-bold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 Have Questions About Your Privacy?
               </h3>
 
@@ -880,7 +877,7 @@ export default function PrivacyPolicy() {
 
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-bold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+            className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-semibold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             Contact Us
             <ArrowRight

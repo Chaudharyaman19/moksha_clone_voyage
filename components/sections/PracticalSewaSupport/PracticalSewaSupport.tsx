@@ -240,7 +240,7 @@ export default function PracticalSewaSupport() {
 
                   <span className="h-px w-[35px] bg-[#D45B0B]" />
 
-                  <span className="whitespace-nowrap text-[16px] font-bold uppercase tracking-[0.025em] text-[#1E602C]">
+                  <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.025em] text-[#1E602C]">
                     Practical Sewa Support
                   </span>
 
@@ -362,7 +362,7 @@ export default function PracticalSewaSupport() {
                         mt-[7px]
                         min-h-[40px]
                         text-[16px]
-                        font-bold
+                        font-semibold
                         leading-[1.2]
                       "
                       style={{
@@ -436,7 +436,7 @@ export default function PracticalSewaSupport() {
                     to-[#D44D06]
                     px-[18px]
                     text-[16px]
-                    font-bold
+                    font-semibold
                     uppercase
                     text-white
                     shadow-[0_7px_16px_rgba(185,69,5,0.18)]

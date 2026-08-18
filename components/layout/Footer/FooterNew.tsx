@@ -574,7 +574,7 @@ export default function FooterNew() {
             {pathname !== "/request-help" && (
               <Link
                 href="/request-help"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Request Help</span>
@@ -584,7 +584,7 @@ export default function FooterNew() {
             {pathname !== "/donation" && (
               <Link
                 href="/donation"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Donate Now</span>
@@ -594,7 +594,7 @@ export default function FooterNew() {
             {pathname !== "/volunteer/register" && (
               <Link
                 href="/volunteer/register"
-                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-bold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
               >
                 <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
                 <span className="whitespace-nowrap">Become a Volunteer</span>
@@ -629,7 +629,7 @@ export default function FooterNew() {
           className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
         />
 
-        {/* Controlled left circle arc: bold and softly glowing, clipped just
+        {/* Controlled left circle arc: semibold and softly glowing, clipped just
             before the values strip so it never enters the lower section. */}
         <div
           aria-hidden
@@ -669,7 +669,7 @@ export default function FooterNew() {
                 <ShineLayer sparks={4} gold />
               </div>
 
-              <h2 className="footer-brand-title mt-1 text-[20px] font-extrabold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
+              <h2 className="footer-brand-title mt-1 text-[20px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
                 {brandName}
               </h2>
 
@@ -685,7 +685,7 @@ export default function FooterNew() {
 
               <Link
                 href="/donation"
-                className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-bold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
+                className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
               >
                 <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
                   <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
@@ -794,7 +794,7 @@ export default function FooterNew() {
                   sizes="178px"
                 />
                 <div className="mt-1 text-center">
-                  <p className="text-[15px] font-bold leading-tight text-white">
+                  <p className="text-[15px] font-semibold leading-tight text-white">
                     Moksha Sewa
                   </p>
                   <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
@@ -825,7 +825,7 @@ export default function FooterNew() {
                     </span>
 
                     <div className="pt-1">
-                      <h3 className="footer-card-heading text-[17px] font-extrabold uppercase tracking-[0.01em] text-white">
+                      <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
                         Request <span className="text-[#E2AA3C]">Support</span>
                       </h3>
                       <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
@@ -856,7 +856,7 @@ export default function FooterNew() {
 
                     <button
                       type="submit"
-                      className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-bold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
+                      className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
                         }`}
                     >
                       <ShineLayer sparks={0} />
@@ -899,7 +899,7 @@ export default function FooterNew() {
                   </span>
 
                   <div>
-                    <h4 className="footer-value-heading text-[14px] font-bold uppercase tracking-[0.015em] text-[#F3D481]">
+                    <h4 className="footer-value-heading text-[14px] font-semibold uppercase tracking-[0.015em] text-[#F3D481]">
                       {value.title}
                     </h4>
                     <p className="footer-value-desc mt-1 whitespace-pre-line text-[12px] leading-[1.4] text-white/95">
@@ -1061,7 +1061,7 @@ function FloatingCard({
           <ShineLayer sparks={1} />
         </span>
 
-        <h3 className="footer-card-title mt-3 whitespace-nowrap text-center text-[14px] font-bold uppercase tracking-[0.015em] text-white">
+        <h3 className="footer-card-title mt-3 whitespace-nowrap text-center text-[14px] font-semibold uppercase tracking-[0.015em] text-white">
           {title}
         </h3>
 

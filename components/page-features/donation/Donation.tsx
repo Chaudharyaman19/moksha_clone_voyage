@@ -357,31 +357,31 @@ function Donation() {
         {/* ============ QUICK STATS — dark bar overlapping hero ============ */}
         <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
           <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
-                {STATS.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
+            {STATS.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.label}
+                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                    } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                    <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
+                  </div>
+                  <div className="min-w-0 text-left">
                     <div
-                      key={item.label}
-                      className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
-                        } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
+                      className="truncate whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+                      style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                     >
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                        <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
-                      </div>
-                      <div className="min-w-0 text-left">
-                        <div
-                          className="truncate whitespace-nowrap text-[17px] font-medium leading-none text-white lg:text-[19px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
-                          style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-                        >
-                          {item.value}
-                        </div>
-                        <div className="mt-1 whitespace-nowrap text-[16px] font-medium uppercase tracking-[0.08em] text-white/90">
-                          {item.label}
-                        </div>
-                      </div>
+                      {item.value}
                     </div>
-                  );
-                })}
+                    <div className="mt-1 whitespace-nowrap text-[16px] font-medium uppercase tracking-[0.08em] text-white/90">
+                      {item.label}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -417,14 +417,13 @@ function Donation() {
                     type="button"
                     onClick={() => handlePackageSelect(cause)}
                     aria-pressed={isSelected}
-                    className={`group relative overflow-visible rounded-[16px] border bg-[#FFFDF9] text-left shadow-[0_8px_20px_rgba(70,47,31,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(70,47,31,0.15)] ${
-                      isSelected
+                    className={`group relative overflow-visible rounded-[16px] border bg-[#FFFDF9] text-left shadow-[0_8px_20px_rgba(70,47,31,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(70,47,31,0.15)] ${isSelected
                         ? "border-[#B8792D] ring-2 ring-[#D9B681]/35"
                         : "border-[#E2C99F]"
-                    }`}
+                      }`}
                   >
                     {cause.badge && (
-                      <span className="absolute left-1/2 top-0 z-30 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#B8782D] via-[#D6A24F] to-[#B8782D] px-3 py-0.5 text-[10px] font-bold tracking-[0.08em] text-white shadow-md">
+                      <span className="absolute left-1/2 top-0 z-30 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#B8782D] via-[#D6A24F] to-[#B8782D] px-3 py-0.5 text-[10px] font-semibold tracking-[0.08em] text-white shadow-md">
                         ★ {cause.badge} ★
                       </span>
                     )}
@@ -456,7 +455,7 @@ function Donation() {
                       {/* price */}
                       <div className="mt-0.5 flex items-center justify-center gap-1.5">
                         <span className="h-px w-7 bg-[#C78C3B]/70" />
-                        <span className="font-serif text-[20px] font-bold leading-none text-[#B5742A]">
+                        <span className="font-serif text-[20px] font-semibold leading-none text-[#B5742A]">
                           ₹ {cause.price.toLocaleString("en-IN")}
                         </span>
                         <span className="h-px w-7 bg-[#C78C3B]/70" />
@@ -480,11 +479,10 @@ function Donation() {
 
                       <div className="mt-auto pt-1.5">
                         <div
-                          className={`flex h-[34px] w-full items-center justify-center gap-1.5 rounded-lg border text-[12px] font-semibold transition ${
-                            isSelected
+                          className={`flex h-[34px] w-full items-center justify-center gap-1.5 rounded-lg border text-[12px] font-semibold transition ${isSelected
                               ? "border-[#B56C20] bg-gradient-to-r from-[#A75A1D] via-[#C67F2B] to-[#A75A1D] text-white shadow-md"
                               : "border-[#D9A35A] bg-[#FFFDF9] text-[#9A5B24] group-hover:bg-[#FFF5E7]"
-                          }`}
+                            }`}
                         >
                           <Icon className="h-4 w-4" />
                           {isSelected ? "Selected Amount" : "Choose Amount"}
@@ -518,7 +516,7 @@ function Donation() {
                     <activeCause.icon className="h-3 w-3" />
                     Selected: {activeCause.title}
                   </div>
-                  <div className="inline-flex items-center rounded-full bg-[#8B6A3E] px-3 py-1 text-[16px] font-bold text-white">
+                  <div className="inline-flex items-center rounded-full bg-[#8B6A3E] px-3 py-1 text-[16px] font-semibold text-white">
                     ₹{activeCause.price.toLocaleString("en-IN")}
                   </div>
                 </div>
@@ -535,8 +533,8 @@ function Donation() {
                         type="button"
                         onClick={() => setFrequency(freq)}
                         className={`rounded-lg border px-3 py-2.5 text-sm font-semibold transition-all ${frequency === freq
-                            ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-md"
-                            : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
+                          ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-md"
+                          : "border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574]"
                           }`}
                       >
                         {freq === "once" ? "One-Time" : "Monthly"}
@@ -547,7 +545,7 @@ function Donation() {
 
                 {/* selected package price */}
                 <div>
-                <label className={labelClass}>Donation Amount</label>
+                  <label className={labelClass}>Donation Amount</label>
                   <div className="flex min-h-[48px] items-center justify-between rounded-lg border border-[#D7B98C] bg-[#FBF8F3] px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <activeCause.icon className="h-4 w-4 text-[#8B6A3E]" />
@@ -555,7 +553,7 @@ function Donation() {
                         {activeCause.title}
                       </span>
                     </div>
-                    <span className="font-serif text-[20px] font-bold text-[#8B6A3E]">
+                    <span className="font-serif text-[20px] font-semibold text-[#8B6A3E]">
                       ₹{activeCause.price.toLocaleString("en-IN")}
                     </span>
                   </div>
@@ -660,8 +658,8 @@ function Donation() {
                 {submitStatus.type && (
                   <div
                     className={`rounded-lg border p-3 text-sm font-medium ${submitStatus.type === "success"
-                        ? "border-green-200 bg-green-50 text-green-700"
-                        : "border-red-200 bg-red-50 text-red-700"
+                      ? "border-green-200 bg-green-50 text-green-700"
+                      : "border-red-200 bg-red-50 text-red-700"
                       }`}
                   >
                     {submitStatus.message}
@@ -728,7 +726,7 @@ function Donation() {
                   {/* Tax & Security */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-bold text-[14px]">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-semibold text-[14px]">
                         80G
                       </span>
                       <div>
@@ -736,7 +734,7 @@ function Donation() {
                         <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">Subject to applicable 80G approval.</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-start gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E]">
                         <FaShieldAlt className="h-4 w-4" />

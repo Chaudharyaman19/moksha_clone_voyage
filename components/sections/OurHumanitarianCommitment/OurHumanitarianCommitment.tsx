@@ -201,7 +201,7 @@ export default function HumanitarianCommitment() {
                     <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
                   </span>
 
-                  <span className="whitespace-nowrap text-[16px] font-bold uppercase tracking-[0.025em] text-[#B77912]">
+                  <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.025em] text-[#B77912]">
                     Our Humanitarian Commitment
                   </span>
 
@@ -273,7 +273,7 @@ export default function HumanitarianCommitment() {
 
                     {/* TITLE */}
 
-                    <h3 className="mt-[8px] min-h-[44px] text-[17px] font-bold leading-[1.15] text-[#125439]">
+                    <h3 className="mt-[8px] min-h-[44px] text-[17px] font-semibold leading-[1.15] text-[#125439]">
                       {item.title}
                     </h3>
 
@@ -329,7 +329,7 @@ export default function HumanitarianCommitment() {
                       />
                     </span>
 
-                    <span className="whitespace-nowrap text-[18px] font-bold uppercase leading-none">
+                    <span className="whitespace-nowrap text-[18px] font-semibold uppercase leading-none">
                       Know About Unclaimed Body Sewa
                     </span>
                   </div>

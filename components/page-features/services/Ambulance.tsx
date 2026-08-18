@@ -455,7 +455,7 @@ function DonationSection() {
 
           <div className="mt-3 flex gap-2 max-[520px]:flex-col">
             <a
-              className="donate-nav-sparkle relative inline-flex min-h-[38px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-sm font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+              className="donate-nav-sparkle relative inline-flex min-h-[38px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-sm font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               href="/donation"
             >
               <span className="donate-nav-shine" aria-hidden />

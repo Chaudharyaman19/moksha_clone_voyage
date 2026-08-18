@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
-interface ServingProps {}
+interface ServingProps { }
 
 interface ActivityItem {
   title: string;
@@ -245,7 +245,7 @@ function ActivityGroup({
   );
 }
 
-export default function Serving({}: ServingProps) {
+export default function Serving({ }: ServingProps) {
   return (
     <section
       className={`relative w-full overflow-hidden border-y border-[#E9DDCF] bg-[#FFFCF8] px-3 py-5 sm:px-4 lg:px-5 md:py-5`}
@@ -294,7 +294,7 @@ export default function Serving({}: ServingProps) {
             href="/request-help"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+            className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
             <span>Request Help Now</span>
 

@@ -296,7 +296,7 @@ export default function SupportInAction() {
             <span
               className="
                 text-[16px]
-                font-bold
+                font-semibold
                 uppercase
                 tracking-[0.035em]
                 text-[#A26B12]

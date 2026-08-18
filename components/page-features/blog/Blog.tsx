@@ -188,7 +188,7 @@ function Blog() {
                 <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   The Moksha   Blog
                 </span>
-           
+
               </h1>
 
               <div className="mt-2 flex items-center gap-2">
@@ -198,10 +198,10 @@ function Blog() {
               </div>
 
               <p className="mt-3 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[20px]">
-               Articles on rituals, pilgrimage,
+                Articles on rituals, pilgrimage,
                 sacred traditions, funeral guidance, and spiritual practices — timeless wisdom explained with warmth,
-                 clarity, and compassion for modern families seeking understanding, comfort,
-                  and meaningful cultural connection.
+                clarity, and compassion for modern families seeking understanding, comfort,
+                and meaningful cultural connection.
               </p>
             </div>
           </div>
@@ -235,8 +235,8 @@ function Blog() {
                       key={category}
                       onClick={() => setSelectedCategory(category)}
                       className={`rounded-full px-4 py-1.5 text-[14px] font-semibold transition-all duration-300 ${selectedCategory === category
-                          ? "bg-[#8B6A3E] text-white shadow-md"
-                          : "border border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
+                        ? "bg-[#8B6A3E] text-white shadow-md"
+                        : "border border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
                         }`}
                     >
                       {category}
@@ -278,7 +278,7 @@ function Blog() {
 
                     <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-white/60">
                       <span className="inline-flex items-center gap-1.5">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[14px] font-bold text-[#2C1810]">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[14px] font-semibold text-[#2C1810]">
                           {featuredPost.author.charAt(0)}
                         </span>
                         {featuredPost.author}
@@ -418,7 +418,7 @@ function Blog() {
 
                       <div className="mt-3 flex items-center justify-between border-t border-[#F0E5D3] pt-3">
                         <div className="flex items-center gap-1.5">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[14px] font-bold text-white">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[14px] font-semibold text-white">
                             {post.author.charAt(0)}
                           </span>
                           <span className="text-[14px] font-semibold text-[#4A3428]">
@@ -469,8 +469,8 @@ function Blog() {
                     <button
                       key={page}
                       className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm transition ${page === 1
-                          ? "bg-[#8B6A3E] font-semibold text-white shadow-md"
-                          : "border border-[#E4D5BE] bg-white text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
+                        ? "bg-[#8B6A3E] font-semibold text-white shadow-md"
+                        : "border border-[#E4D5BE] bg-white text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
                         }`}
                     >
                       {page}
@@ -488,7 +488,7 @@ function Blog() {
 
 
         {/* ============ NEWSLETTER — dark gold section ============ */}
-     
+
       </main>
 
       <Footer />

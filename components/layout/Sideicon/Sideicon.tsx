@@ -130,16 +130,16 @@ const SocialSidebar = () => {
                 aria-label={social.label}
                 className="group relative flex min-h-11 min-w-11 items-center justify-end"
               >
-                <div 
+                <div
                   className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[115px] hover:justify-between hover:px-3 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
                   style={{ backgroundColor: social.color }}
                 >
-                  <span 
-                    className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
+                  <span
+                    className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
                   >
                     {social.label}
                   </span>
-                  <span 
+                  <span
                     className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white"
                   >
                     {social.icon}
@@ -166,7 +166,7 @@ const SocialSidebar = () => {
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
                 <FaWhatsapp size={22} />
               </span>
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white text-right">
                 {whatsappLink.label}
               </span>
             </div>
@@ -184,7 +184,7 @@ const SocialSidebar = () => {
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
               style={{ backgroundColor: phoneLink.color }}
             >
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-bold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white">
                 {phoneLink.label}
               </span>
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">

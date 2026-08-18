@@ -376,7 +376,7 @@ export default function WhoWeHelp() {
 
             <span className="h-1.5 w-1.5 rounded-full bg-[#D36516]" />
 
-            <span className="text-[16px] font-bold uppercase tracking-[0.12em] text-[#C6520D]">
+            <span className="text-[16px] font-semibold uppercase tracking-[0.12em] text-[#C6520D]">
               Who We Help
             </span>
 
@@ -660,7 +660,7 @@ export default function WhoWeHelp() {
                           rounded-full
 
                           text-[12px]
-                          font-bold
+                          font-semibold
 
                           text-white
                         "
@@ -775,7 +775,7 @@ export default function WhoWeHelp() {
 
                       text-[16px]
 
-                      font-bold
+                      font-semibold
 
                       leading-[1.22]
                     "

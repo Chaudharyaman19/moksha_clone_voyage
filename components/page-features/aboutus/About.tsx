@@ -239,13 +239,11 @@ export default function About() {
               return (
                 <div
                   key={stat.title}
-                  className={`group/stat flex items-center justify-center gap-2 px-2 py-0.5 md:gap-3 md:px-4 md:py-1.5 ${
-                    index > 0 ? "md:border-l md:border-white/20" : ""
-                  } ${
-                    index > 1
+                  className={`group/stat flex items-center justify-center gap-2 px-2 py-0.5 md:gap-3 md:px-4 md:py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
+                    } ${index > 1
                       ? "border-t border-white/20 md:border-t-0"
                       : ""
-                  }`}
+                    }`}
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover/stat:scale-110">
                     <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
@@ -295,7 +293,7 @@ export default function About() {
               <div className="mb-2 inline-flex items-center space-x-3">
                 <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
 
-                <span className="text-[16px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[16px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
                   What Support We Coordinate
                 </span>
 
@@ -566,9 +564,8 @@ export default function About() {
                 return (
                   <div
                     key={step.title}
-                    className={`group relative h-full text-center transition-transform duration-300 ${
-                      isLifted ? "" : "md:translate-y-6"
-                    }`}
+                    className={`group relative h-full text-center transition-transform duration-300 ${isLifted ? "" : "md:translate-y-6"
+                      }`}
                   >
                     <div className="relative z-10 mx-auto h-[72px] w-[72px]">
                       <div className="absolute inset-0 rounded-full border border-dashed border-[#C9A574]/60 transition-transform duration-500 group-hover:rotate-45" />

@@ -35,12 +35,12 @@ export default function BoardMembers() {
   return (
     <section className="bg-white py-2 md:py-3">
       <div className="mx-auto w-full max-w-[1344px] px-4 lg:px-0">
-        
+
         <header className="mb-3 flex flex-col items-center text-center">
           <div className="mb-1 inline-flex items-center space-x-3">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
 
-            <span className="text-[16px] font-bold uppercase tracking-[0.3em] text-[#8B6A3E]">
+            <span className="text-[16px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
               Leadership & Governance
             </span>
 
@@ -98,7 +98,7 @@ export default function BoardMembers() {
 
                     {/* Text Content */}
                     <div className="flex flex-col items-center">
-                      <h3 className="font-sans text-[16px] font-bold text-[#0D3823] md:text-[17px]">
+                      <h3 className="font-sans text-[16px] font-semibold text-[#0D3823] md:text-[17px]">
                         {member.name}
                       </h3>
 
