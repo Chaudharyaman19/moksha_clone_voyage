@@ -397,7 +397,7 @@ export default function TrustTransparency() {
             grid-cols-1
             items-stretch
             gap-[24px]
-            xl:grid-cols-[41%_59%]
+            xl:grid-cols-[0.41fr_0.59fr]
             xl:gap-[28px]
           "
         >
@@ -713,7 +713,7 @@ export default function TrustTransparency() {
 
             {/* CTA */}
 
-            <div className="mt-[16px] grid grid-cols-1 gap-[13px] md:grid-cols-[58%_42%] md:items-center">
+            <div className="mt-[16px] grid grid-cols-1 gap-[13px] md:grid-cols-[0.58fr_0.42fr] md:items-center">
               <a
                 href="/about-us"
                 className="
