@@ -347,7 +347,50 @@ export default function PrivacyPolicy() {
       });
     }, pageRef);
 
-    return () => ctx.revert();
+    /*
+      Refresh triggers once images/fonts finish loading so their start
+      positions are recalculated. Otherwise sections below the fold can
+      remain stuck at opacity 0 because their trigger was created before
+      the layout shifted.
+    */
+    const refreshTriggers = () => ScrollTrigger.refresh();
+
+    if (document.readyState === "complete") {
+      refreshTriggers();
+    } else {
+      window.addEventListener("load", refreshTriggers, { once: true });
+    }
+
+    document.fonts?.ready.then(refreshTriggers).catch(() => {});
+
+    /*
+      Safety net: if any animated element is still hidden after a few
+      seconds, force it visible so the content can never be lost.
+    */
+    const revealTimer = window.setTimeout(() => {
+      pageRef.current
+        ?.querySelectorAll<HTMLElement>(
+          ".privacy-sidebar, .privacy-main, .section-title, .info-card, .use-item, .privacy-right, .privacy-contact",
+        )
+        .forEach((el) => {
+          if (Number(gsap.getProperty(el, "opacity")) < 1) {
+            gsap.to(el, {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          }
+        });
+    }, 3500);
+
+    return () => {
+      ctx.revert();
+      window.clearTimeout(revealTimer);
+      window.removeEventListener("load", refreshTriggers);
+    };
   }, []);
 
   const highlightTarget = (target: HTMLElement) => {
