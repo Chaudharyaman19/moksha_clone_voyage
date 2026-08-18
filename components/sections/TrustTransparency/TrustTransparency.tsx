@@ -1,270 +1,1158 @@
 "use client";
 
 import Image from "next/image";
-import {
-  FaArrowRight,
-  FaBalanceScale,
-  FaChartBar,
-  FaEye,
-  FaFileContract,
-  FaHandHoldingHeart,
-  FaShieldAlt,
-  FaUsers,
-} from "react-icons/fa";
-import { PiFlowerLotus } from "react-icons/pi";
+import type { ReactElement } from "react";
+
+interface IconProps {
+  name: string;
+  className?: string;
+}
+
+/* =========================================================
+   CUSTOM OUTLINE ICONS
+========================================================= */
+
+const CustomIcon = ({
+  name,
+  className = "h-6 w-6",
+}: IconProps) => {
+  const icons: Record<string, ReactElement> = {
+    Lotus: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 44c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
+        <path d="M22 41c-8-2-13-7-14-15 7 0 13 3 17 8" />
+        <path d="M42 41c8-2 13-7 14-15-7 0-13 3-17 8" />
+        <path d="M15 47c6 2 11 3 17 3s11-1 17-3" />
+      </svg>
+    ),
+
+    People: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="32" cy="17" r="6" />
+        <circle cx="17" cy="24" r="5" />
+        <circle cx="47" cy="24" r="5" />
+        <path d="M22 49c1-10 4-15 10-15s9 5 10 15" />
+        <path d="M7 49c1-8 4-12 10-12 3 0 5 1 7 3" />
+        <path d="M57 49c-1-8-4-12-10-12-3 0-5 1-7 3" />
+      </svg>
+    ),
+
+    Shield: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 7 50 14v14c0 13-7 21-18 27-11-6-18-14-18-27V14L32 7Z" />
+        <path d="m23 31 6 6 12-13" />
+      </svg>
+    ),
+
+    Report: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M16 7h24l9 9v41H16Z" />
+        <path d="M40 7v10h9" />
+        <path d="M24 45V34" />
+        <path d="M32 45V27" />
+        <path d="M40 45V21" />
+        <path d="M21 48h24" />
+      </svg>
+    ),
+
+    Policy: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M14 6h25l9 9v21" />
+        <path d="M39 6v10h9" />
+        <path d="M14 6v52h25" />
+        <path d="M21 24h16" />
+        <path d="M21 32h13" />
+        <path d="M21 40h10" />
+        <path d="M47 34 57 38v8c0 7-4 11-10 15-6-4-10-8-10-15v-8l10-4Z" />
+        <path d="m43 46 3 3 6-7" />
+      </svg>
+    ),
+
+    Handshake: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m8 29 13-11 9 6" />
+        <path d="m56 29-13-11-9 6" />
+        <path d="m22 31 8 7c2 2 5 2 7 0l6-6" />
+        <path d="m17 35 13 12c2 2 5 2 7 0l10-10" />
+        <path d="M8 28 17 39" />
+        <path d="M56 28 47 39" />
+      </svg>
+    ),
+
+    HeartHand: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M25 17c0-4 4-6 7-2 3-4 7-2 7 2 0 4-4 7-7 10-3-3-7-6-7-10Z" />
+        <path d="M7 42c8-2 12 0 17 6l7 7" />
+        <path d="M57 42c-8-2-12 0-17 6l-7 7" />
+        <path d="M7 41v15" />
+        <path d="M57 41v15" />
+      </svg>
+    ),
+
+    Scale: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 8v44" />
+        <path d="M18 15h28" />
+        <path d="m17 15-9 18h18Z" />
+        <path d="m47 15-9 18h18Z" />
+        <path d="M22 55h20" />
+      </svg>
+    ),
+
+    Eye: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 32s10-15 27-15 27 15 27 15-10 15-27 15S5 32 5 32Z" />
+        <circle cx="32" cy="32" r="8" />
+      </svg>
+    ),
+
+    Accountability: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="32" cy="17" r="5" />
+        <circle cx="18" cy="23" r="4.5" />
+        <circle cx="46" cy="23" r="4.5" />
+        <path d="M24 49c1-9 3-14 8-14s7 5 8 14" />
+        <path d="M8 49c1-8 4-12 10-12 3 0 5 1 7 3" />
+        <path d="M56 49c-1-8-4-12-10-12-3 0-5 1-7 3" />
+      </svg>
+    ),
+
+    DocumentShield: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M13 6h25l9 9v20" />
+        <path d="M38 6v10h9" />
+        <path d="M13 6v52h24" />
+        <path d="M20 25h16" />
+        <path d="M20 33h13" />
+        <path d="M46 37 57 41v8c0 7-4 11-11 15-7-4-11-8-11-15v-8l11-4Z" />
+        <path d="m42 49 3 3 6-7" />
+      </svg>
+    ),
+
+    ArrowRight: (
+      <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h13" />
+        <path d="m14 8 4 4-4 4" />
+      </svg>
+    ),
+  };
+
+  return icons[name] ?? null;
+};
+
+/* =========================================================
+   DATA
+========================================================= */
 
 const trustCards = [
   {
-    icon: FaUsers,
-    title: "About Namo Gange Trust",
-    description: "Learn about our vision, mission and the work we stand for.",
+    icon: "People",
+    title: "About\nNamo Gange Trust",
+    description:
+      "Learn about our vision,\nmission and the work\nwe stand for.",
   },
   {
-    icon: FaShieldAlt,
-    title: "Governance & Policies",
-    description: "Our governance structure, policies and commitment to ethical operations.",
+    icon: "Shield",
+    title: "Governance &\nPolicies",
+    description:
+      "Our governance structure,\npolicies and commitment\nto ethical operations.",
   },
   {
-    icon: FaChartBar,
-    title: "Impact / Reports",
-    description: "See our impact, case highlights and transparent reports.",
+    icon: "Report",
+    title: "Impact /\nReports",
+    description:
+      "See our impact, case\nhighlights and\ntransparent reports.",
   },
   {
-    icon: FaFileContract,
-    title: "Donation & Refund Policy",
-    description: "Clear information on donations, utilization and refund policy.",
+    icon: "Policy",
+    title: "Donation &\nRefund Policy",
+    description:
+      "Clear information on\ndonations, utilization\nand refund policy.",
   },
 ];
 
 const values = [
-  { icon: FaHandHoldingHeart, title: "Sewa", description: "Service with compassion" },
-  { icon: FaBalanceScale, title: "Integrity", description: "Ethical actions, honest intent" },
-  { icon: FaEye, title: "Transparency", description: "Open processes, clear communication" },
-  { icon: FaUsers, title: "Accountability", description: "Answerable to all, always improving" },
+  {
+    icon: "HeartHand",
+    title: "SEWA",
+    description: "Service with\ncompassion",
+  },
+  {
+    icon: "Scale",
+    title: "INTEGRITY",
+    description: "Ethical actions,\nhonest intent",
+  },
+  {
+    icon: "Eye",
+    title: "TRANSPARENCY",
+    description: "Open processes,\nclear communication",
+  },
+  {
+    icon: "Accountability",
+    title: "ACCOUNTABILITY",
+    description: "Answerable to all,\nalways improving",
+  },
 ];
+
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 export default function TrustTransparency() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#F4EEE4] px-4 pb-7 pt-14 sm:px-5 lg:px-6 lg:pb-8 lg:pt-16">
-      {/* soft background accents */}
-      <div className="pointer-events-none absolute left-0 top-0 h-64 w-64 rounded-full bg-[#E9DFCE]/55 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#EAD9B5]/35 blur-3xl" />
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#FCF7EF]
+        px-4
+        pb-[10px]
+        pt-[10px]
+        sm:px-5
+        lg:px-6
+      "
+    >
+      {/* =====================================================
+          SUBTLE DOT BACKGROUND
+      ====================================================== */}
+
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.42]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(163,116,61,0.06) 0 1px, transparent 1.2px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      {/* =====================================================
+          TOP LEFT LEAVES
+      ====================================================== */}
+
+      <svg
+        viewBox="0 0 180 250"
+        className="
+          pointer-events-none
+          absolute
+          -left-[44px]
+          top-[8px]
+          h-[235px]
+          w-[170px]
+          text-[#B6AA79]/35
+        "
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      >
+        <path d="M26 220C40 166 71 107 151 25" />
+
+        <path d="M37 174c-24-8-35-27-31-48 23 5 40 20 41 41" />
+        <path d="M61 135c-20-12-25-32-17-49 22 8 34 24 31 43" />
+        <path d="M91 95c-15-17-13-36-1-50 18 13 23 29 16 46" />
+        <path d="M124 58c-10-18-2-34 14-43 13 15 12 29-1 42" />
+
+        <path d="M45 161c20-9 38-5 49 10-18 10-34 9-48-2" />
+        <path d="M72 119c18-7 34-2 44 12-17 8-31 6-42-4" />
+        <path d="M105 79c15-6 29-1 37 11-14 7-26 5-36-3" />
+      </svg>
+
+      {/* =====================================================
+          BOTTOM RIGHT LEAVES
+      ====================================================== */}
+
+      <svg
+        viewBox="0 0 180 230"
+        className="
+          pointer-events-none
+          absolute
+          -bottom-[36px]
+          -right-[30px]
+          h-[210px]
+          w-[170px]
+          rotate-180
+          text-[#B6AA79]/35
+        "
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      >
+        <path d="M26 220C40 166 71 107 151 25" />
+        <path d="M37 174c-24-8-35-27-31-48 23 5 40 20 41 41" />
+        <path d="M61 135c-20-12-25-32-17-49 22 8 34 24 31 43" />
+        <path d="M91 95c-15-17-13-36-1-50 18 13 23 29 16 46" />
+        <path d="M124 58c-10-18-2-34 14-43 13 15 12 29-1 42" />
+      </svg>
+
+      {/* =====================================================
+          MAIN
+      ====================================================== */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1344px]">
-        {/* Top layout */}
-        <div className="grid grid-cols-1 gap-7 xl:grid-cols-[0.92fr_1.08fr] xl:gap-8">
-          {/* LEFT COLUMN */}
-          <div className="flex flex-col">
-            <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#A56F24]">
-              <span className="h-px w-12 bg-[#C99A4B]" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
-              Sewa With Responsibility
-              <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
-              <span className="h-px w-12 bg-[#C99A4B]" />
+
+        {/* =====================================================
+            TOP AREA
+        ====================================================== */}
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-[22px]
+            xl:grid-cols-[41.5%_58.5%]
+            xl:gap-[26px]
+          "
+        >
+          {/* =================================================
+              LEFT SIDE
+          ================================================= */}
+
+          <div className="flex min-w-0 flex-col">
+
+            {/* LABEL */}
+
+            <div
+              className="
+                flex
+                items-center
+                justify-center
+                gap-[11px]
+                xl:justify-start
+              "
+            >
+              <span className="relative h-px w-[34px] bg-[#B87C18]">
+                <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
+              </span>
+
+              <span
+                className="
+                  text-[16px]
+                  font-bold
+                  uppercase
+                  tracking-[0.06em]
+                  text-[#A66E16]
+                "
+              >
+                Sewa With Responsibility
+              </span>
+
+              <span className="relative h-px w-[34px] bg-[#B87C18]">
+                <span className="absolute -left-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
+              </span>
             </div>
 
-            <h2 className="mt-4 font-serif text-[46px] font-semibold leading-[0.98] tracking-[-0.025em] text-[#114B38] sm:text-[54px]">
+            {/* HEADING */}
+
+            <h2
+              className="
+                mt-[8px]
+                text-center
+                font-serif
+                text-[45px]
+                font-medium
+                leading-[0.89]
+                tracking-[-0.03em]
+                text-[#064631]
+                sm:text-[54px]
+                xl:text-left
+                xl:text-[63px]
+              "
+              style={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+              }}
+            >
               Trust &amp;
               <br />
               Transparency
             </h2>
 
-            <div className="mt-3 flex items-center gap-2 text-[#B9832E]">
-              <span className="h-px w-14 bg-[#C99A4B]" />
-              <PiFlowerLotus className="h-5 w-5" />
-              <span className="h-px w-14 bg-[#C99A4B]" />
+            {/* LOTUS DIVIDER */}
+
+            <div
+              className="
+                mt-[10px]
+                flex
+                items-center
+                justify-center
+                gap-[9px]
+                xl:justify-start
+                xl:pl-[146px]
+              "
+            >
+              <span className="h-px w-[56px] bg-gradient-to-r from-transparent to-[#C99234]" />
+
+              <CustomIcon
+                name="Lotus"
+                className="h-[29px] w-[29px] text-[#BE7D13]"
+              />
+
+              <span className="h-px w-[56px] bg-gradient-to-l from-transparent to-[#C99234]" />
             </div>
 
-            <p className="mt-4 max-w-[520px] text-[16px] leading-[1.55] text-[#625B52]">
-              Our commitment to transparency, integrity and responsible service.
+            {/* DESCRIPTION */}
+
+            <p
+              className="
+                mx-auto
+                mt-[9px]
+                max-w-[360px]
+                text-center
+                text-[16px]
+                leading-[1.4]
+                text-[#48433D]
+                xl:mx-0
+                xl:ml-[42px]
+              "
+            >
+              Our commitment to transparency,
+              <br />
+              integrity and responsible service.
             </p>
 
-            {/* Brand relationship panel */}
-            <div className="mt-5 rounded-[18px] bg-[#0A4D37] px-5 py-5 text-white shadow-[0_10px_26px_rgba(10,77,55,0.14)]">
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_auto_1.35fr] lg:items-center">
-                {/* Moksha Sewa */}
+            {/* =================================================
+                DARK GREEN BRAND PANEL
+            ================================================= */}
+
+            <div
+              className="
+                relative
+                mt-[16px]
+                min-h-[214px]
+                overflow-hidden
+                rounded-[34px_24px_0_0]
+                bg-[#00472F]
+                px-[24px]
+                py-[18px]
+                text-white
+                shadow-[0_7px_18px_rgba(0,59,40,0.16)]
+              "
+            >
+              {/* watermark leaves */}
+
+              <CustomIcon
+                name="Lotus"
+                className="
+                  pointer-events-none
+                  absolute
+                  -bottom-[26px]
+                  -left-[18px]
+                  h-[145px]
+                  w-[145px]
+                  text-white/[0.025]
+                "
+              />
+
+              <div
+                className="
+                  relative
+                  z-10
+                  grid
+                  min-h-[177px]
+                  grid-cols-[42%_1px_58%]
+                  items-center
+                "
+              >
+                {/* MOKSHA */}
+
                 <div className="flex flex-col items-center text-center">
-                  <div className="relative h-[88px] w-[170px]">
+                  <div className="relative h-[82px] w-[150px]">
                     <Image
                       src="/assets/footer-moksha-mark.png"
                       alt="Moksha Sewa"
                       fill
-                      sizes="170px"
+                      sizes="150px"
                       className="object-contain"
                     />
                   </div>
 
-                  <p className="mt-2 font-serif text-[26px] font-semibold uppercase leading-none">
+                  <h3
+                    className="
+                      mt-[1px]
+                      font-serif
+                      text-[25px]
+                      font-semibold
+                      uppercase
+                      leading-none
+                      text-white
+                    "
+                    style={{
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                    }}
+                  >
                     Moksha Sewa
-                  </p>
+                  </h3>
 
-                  <p className="mt-2 text-[16px] leading-[1.35] text-[#E3B94E]">
+                  <p className="mt-[7px] text-[16px] font-semibold text-[#DFA929]">
                     A Namo Gange Trust Initiative
                   </p>
+
+                  <div className="mt-[10px] flex items-center gap-[7px]">
+                    <span className="h-px w-[36px] bg-[#DCA72A]" />
+                    <span className="h-[5px] w-[5px] rounded-full bg-[#DCA72A]" />
+                    <span className="h-px w-[36px] bg-[#DCA72A]" />
+                  </div>
                 </div>
 
-                <span className="hidden h-[118px] w-px bg-[#D9A43C]/50 lg:block" />
+                {/* DIVIDER */}
 
-                {/* Namo Gange side */}
-                <div className="flex flex-col items-center text-center">
-                  <p className="text-[16px] font-semibold uppercase text-[#E3B94E]">
+                <span className="h-[145px] w-px bg-[#D69A20]/55" />
+
+                {/* NAMO GANGE */}
+
+                <div className="pl-[24px]">
+                  <p
+                    className="
+                      text-center
+                      text-[16px]
+                      font-bold
+                      uppercase
+                      text-[#E5AE24]
+                    "
+                  >
                     An Initiative Of
                   </p>
 
-                  <div className="relative mt-2 h-[78px] w-[165px]">
+                  <div className="relative mx-auto mt-[2px] h-[66px] w-[220px]">
                     <Image
                       src="/hero-images/namo-gange-logo.png"
-                      alt="Namo Gange Trust"
+                      alt="Namo Gange"
                       fill
-                      sizes="165px"
+                      sizes="220px"
                       className="object-contain"
                     />
                   </div>
 
-                  <p className="mt-2 text-[21px] font-bold uppercase leading-tight text-white">
-                    Namo Gange Trust
-                  </p>
-                  <p className="mt-2 max-w-[300px] text-[16px] leading-[1.45] text-white/90">
-                    Committed to Service, Sustainability and Social Responsibility.
-                  </p>
+                  <div className="mt-[6px] flex items-center gap-[12px]">
+                    <div
+                      className="
+                        relative
+                        h-[65px]
+                        w-[65px]
+                        shrink-0
+                        overflow-hidden
+                        rounded-full
+                        bg-white
+                      "
+                    >
+                      <Image
+                        src="/hero-images/namo-gange-logo.png"
+                        alt=""
+                        fill
+                        sizes="65px"
+                        className="object-contain p-[3px]"
+                      />
+                    </div>
+
+                    <div>
+                      <h3 className="text-[18px] font-bold uppercase leading-tight text-white">
+                        Namo Gange Trust
+                      </h3>
+
+                      <p className="mt-[3px] text-[16px] leading-[1.27] text-white/90">
+                        Committed to Service,
+                        <br />
+                        Sustainability and
+                        <br />
+                        Social Responsibility.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="flex flex-col">
-            <div className="mx-auto max-w-[760px] text-center">
-              <p className="text-[16px] font-medium leading-[1.55] text-[#342E28]">
-                <span className="mr-3 font-serif text-[34px] leading-none text-[#D2A04B]">&ldquo;</span>
-                We believe in being open, accountable and answerable
-                <br className="hidden sm:block" />
-                to all those who walk with us in this mission.
-                <span className="ml-3 font-serif text-[34px] leading-none text-[#D2A04B]">&rdquo;</span>
-              </p>
+          {/* =================================================
+              RIGHT SIDE
+          ================================================= */}
 
-              <div className="mt-2 flex items-center justify-center gap-1">
-                <span className="h-px w-28 bg-gradient-to-r from-transparent to-[#D2A044]" />
-                <span className="h-2 w-2 rounded-full bg-[#B67F22]" />
-                <span className="h-px w-28 bg-gradient-to-l from-transparent to-[#D2A044]" />
+          <div className="flex min-w-0 flex-col">
+
+            {/* QUOTE */}
+
+            <div className="mx-auto w-full max-w-[720px] text-center">
+              <div className="flex items-start justify-center">
+                <span
+                  className="
+                    -mt-[6px]
+                    mr-[17px]
+                    font-serif
+                    text-[55px]
+                    leading-none
+                    text-[#DFAC48]
+                  "
+                >
+                  “
+                </span>
+
+                <p className="pt-[5px] text-[18px] font-medium leading-[1.35] text-[#30343A]">
+                  We believe in being open, accountable and answerable
+                  <br />
+                  to all those who walk with us in this mission.
+                </p>
+
+                <span
+                  className="
+                    -mt-[6px]
+                    ml-[17px]
+                    font-serif
+                    text-[55px]
+                    leading-none
+                    text-[#DFAC48]
+                  "
+                >
+                  ”
+                </span>
+              </div>
+
+              <div className="mx-auto mt-[6px] flex max-w-[320px] items-center justify-center gap-[8px]">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D8B76D]" />
+
+                <span className="h-[8px] w-[8px] rounded-full bg-[#B87A08]" />
+
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D8B76D]" />
               </div>
             </div>
 
-            {/* Cards */}
-            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {trustCards.map((card) => {
-                const Icon = card.icon;
+            {/* =================================================
+                FOUR CARDS
+            ================================================= */}
 
-                return (
-                  <article
-                    key={card.title}
-                    className="flex min-h-[275px] flex-col items-center rounded-[16px] border border-[#DED2C0] bg-[#FFFDFC] px-4 py-5 text-center shadow-[0_6px_16px_rgba(92,67,32,0.05)]"
+            <div
+              className="
+                mt-[15px]
+                grid
+                grid-cols-1
+                gap-[12px]
+                sm:grid-cols-2
+                xl:grid-cols-4
+              "
+            >
+              {trustCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="
+                    flex
+                    h-[278px]
+                    flex-col
+                    items-center
+                    rounded-[13px]
+                    border
+                    border-[#E1D7CA]
+                    bg-[#FFFDF9]
+                    px-[12px]
+                    pb-[15px]
+                    pt-[15px]
+                    text-center
+                    shadow-[0_5px_14px_rgba(70,47,24,0.07)]
+                  "
+                >
+                  {/* ICON */}
+
+                  <div
+                    className="
+                      flex
+                      h-[78px]
+                      w-[78px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-[#004A35]
+                      text-[#DCA624]
+                      shadow-[0_4px_10px_rgba(0,58,40,0.15)]
+                    "
                   >
-                    <span className="grid h-16 w-16 place-items-center rounded-full bg-[#0D4E38] text-[#D79A32]">
-                      <Icon className="h-7 w-7" />
-                    </span>
+                    <CustomIcon
+                      name={card.icon}
+                      className="h-[50px] w-[50px]"
+                    />
+                  </div>
 
-                    <h3 className="mt-4 text-[16px] font-bold leading-[1.2] text-[#104A36]">
-                      {card.title}
-                    </h3>
+                  {/* TITLE */}
 
-                    <p className="mt-4 text-[16px] leading-[1.45] text-[#5F5952]">
-                      {card.description}
-                    </p>
+                  <h3
+                    className="
+                      mt-[9px]
+                      whitespace-pre-line
+                      font-serif
+                      text-[18px]
+                      font-semibold
+                      leading-[1.12]
+                      text-[#094B35]
+                    "
+                    style={{
+                      fontFamily: "Georgia, 'Times New Roman', serif",
+                    }}
+                  >
+                    {card.title}
+                  </h3>
 
-                    <span className="mx-auto mt-auto block h-px w-9 bg-[#CF9D4A]" />
-                  </article>
-                );
-              })}
+                  <span className="mt-[8px] h-px w-[38px] bg-[#C89537]" />
+
+                  {/* DESCRIPTION */}
+
+                  <p
+                    className="
+                      mt-[12px]
+                      whitespace-pre-line
+                      text-[16px]
+                      leading-[1.37]
+                      text-[#35312D]
+                    "
+                  >
+                    {card.description}
+                  </p>
+
+                  <span className="mt-auto h-[2px] w-[47px] bg-[#C68E25]" />
+                </article>
+              ))}
             </div>
 
-            {/* CTA + legal note */}
-            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+            {/* =================================================
+                CTA + LEGAL
+            ================================================= */}
+
+            <div
+              className="
+                mt-[16px]
+                grid
+                grid-cols-1
+                gap-[14px]
+                md:grid-cols-[58%_42%]
+                md:items-center
+              "
+            >
+              {/* CTA */}
+
               <a
                 href="/about-us"
-                className="inline-flex min-h-[60px] items-center gap-4 rounded-[8px] bg-[#0A4A34] px-5 text-[16px] font-bold uppercase tracking-[0.02em] text-white shadow-[0_6px_14px_rgba(10,74,52,0.15)] transition hover:bg-[#083D2B]"
+                className="
+                  group
+                  flex
+                  h-[64px]
+                  items-center
+                  rounded-[9px]
+                  bg-[#00482F]
+                  px-[22px]
+                  text-white
+                  shadow-[0_6px_14px_rgba(0,62,42,0.16)]
+                  transition
+                  hover:bg-[#003C28]
+                "
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#C99737] text-[#D4A23E]">
-                  <FaShieldAlt className="h-4 w-4" />
+                <CustomIcon
+                  name="Shield"
+                  className="
+                    h-[43px]
+                    w-[43px]
+                    shrink-0
+                    text-[#D6A227]
+                  "
+                />
+
+                <span
+                  className="
+                    ml-[16px]
+                    text-[18px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.01em]
+                  "
+                >
+                  Know About The Trust
                 </span>
 
-                <span>Know About the Trust</span>
-
-                <span className="ml-auto grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#D6A23D] text-[#0A4A34]">
-                  <FaArrowRight className="h-3.5 w-3.5" />
+                <span
+                  className="
+                    ml-auto
+                    flex
+                    h-[43px]
+                    w-[43px]
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#E0AE38]
+                    text-[#185039]
+                    shadow-[0_3px_8px_rgba(0,0,0,0.12)]
+                  "
+                >
+                  <CustomIcon
+                    name="ArrowRight"
+                    className="
+                      h-[22px]
+                      w-[22px]
+                      transition-transform
+                      group-hover:translate-x-[3px]
+                    "
+                  />
                 </span>
               </a>
 
-              <div className="flex items-start gap-3 rounded-[10px] bg-[#FBF7EF]/70 p-2">
-                <FaFileContract className="mt-1 h-8 w-8 shrink-0 text-[#7B775F]" />
-                <p className="text-[16px] leading-[1.4] text-[#615B52]">
-                  Applicable registration / tax information will be displayed after legal verification.
+              {/* LEGAL NOTE */}
+
+              <div className="relative flex min-h-[64px] items-center pl-[15px]">
+                <span
+                  className="
+                    absolute
+                    left-0
+                    top-[5px]
+                    h-[54px]
+                    w-px
+                    bg-[#D7C49C]
+                  "
+                />
+
+                <CustomIcon
+                  name="DocumentShield"
+                  className="
+                    h-[48px]
+                    w-[48px]
+                    shrink-0
+                    text-[#42614F]
+                  "
+                />
+
+                <p className="ml-[12px] text-[16px] leading-[1.28] text-[#393E3A]">
+                  Applicable registration / tax
+                  <br />
+                  information will be displayed
+                  <br />
+                  after legal verification.
                 </p>
+
+                <span
+                  className="
+                    ml-auto
+                    h-[55px]
+                    w-[9px]
+                    rounded-r-full
+                    border-r
+                    border-[#D9B36A]
+                  "
+                />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Lower trust strip */}
-        <div className="mt-6 rounded-[18px] border border-[#DED2BF] bg-[#FFFDFC] px-5 py-5 shadow-[0_4px_14px_rgba(90,64,30,0.03)]">
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.15fr_1.85fr] xl:items-stretch">
-            {/* Transparency intro */}
-            <div className="flex items-stretch gap-5">
-              <div className="relative -my-5 -ml-5 w-[38%] shrink-0 overflow-hidden rounded-l-[18px]">
+        {/* =====================================================
+            LOWER WHITE STRIP
+        ====================================================== */}
+
+        <div
+          className="
+            relative
+            mt-[14px]
+            overflow-hidden
+            rounded-[24px]
+            border
+            border-[#E2D6C5]
+            bg-[#FFFDF8]
+            shadow-[0_4px_12px_rgba(77,51,23,0.04)]
+          "
+        >
+          <div
+            className="
+              grid
+              min-h-[138px]
+              grid-cols-1
+              xl:grid-cols-[43%_57%]
+            "
+          >
+            {/* =================================================
+                LEFT IMAGE + TRANSPARENCY TEXT
+            ================================================= */}
+
+            <div className="relative flex min-h-[138px]">
+
+              {/* IMAGE */}
+
+              <div
+                className="
+                  relative
+                  w-[47%]
+                  shrink-0
+                  overflow-hidden
+                  rounded-l-[24px]
+                "
+              >
                 <Image
                   src="/hero-images/image3.png"
-                  alt="Moksha Sewa volunteers handing supplies to an elderly couple at a river ghat"
+                  alt="Moksha Sewa"
                   fill
-                  sizes="220px"
-                  className="object-cover object-[75%_45%]"
+                  sizes="280px"
+                  className="object-cover object-[70%_50%]"
+                />
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-r
+                    from-transparent
+                    to-[#FFFDF8]/5
+                  "
                 />
               </div>
 
-              <div className="flex flex-col justify-center py-5">
-                <p className="text-[16px] font-bold text-[#0E4A34]">
+              {/* OVERLAP ICON */}
+
+              <div
+                className="
+                  absolute
+                  left-[47%]
+                  top-1/2
+                  z-20
+                  flex
+                  h-[91px]
+                  w-[91px]
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  items-center
+                  justify-center
+                  rounded-full
+                  border-[4px]
+                  border-[#E1A734]
+                  bg-[#004A35]
+                  text-[#DCAA27]
+                  shadow-[0_5px_14px_rgba(0,51,35,0.20)]
+                "
+              >
+                <CustomIcon
+                  name="Handshake"
+                  className="h-[58px] w-[58px]"
+                />
+              </div>
+
+              {/* TEXT */}
+
+              <div
+                className="
+                  flex
+                  flex-1
+                  flex-col
+                  justify-center
+                  pl-[67px]
+                  pr-[22px]
+                  py-[15px]
+                "
+              >
+                <h3 className="text-[16px] font-bold text-[#174D39]">
                   Transparency in every step.
-                </p>
-                <span className="mt-2 block h-px w-10 bg-[#CF9D4A]" />
-                <p className="mt-3 max-w-[500px] text-[16px] leading-[1.45] text-[#605A53]">
-                  Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust in every act of service.
+                </h3>
+
+                <span className="mt-[5px] h-[2px] w-[35px] bg-[#CB9638]" />
+
+                <p className="mt-[7px] text-[16px] leading-[1.32] text-[#3D3935]">
+                  Moksha Sewa follows responsible
+                  <br />
+                  practices, transparency and applicable
+                  <br />
+                  legal norms to ensure trust in every
+                  <br />
+                  act of service.
                 </p>
               </div>
             </div>
 
-            {/* Values */}
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              {values.map((value, index) => {
-                const Icon = value.icon;
+            {/* =================================================
+                VALUES
+            ================================================= */}
 
-                return (
-                  <div
-                    key={value.title}
-                    className={`flex min-h-[138px] flex-col items-center justify-center px-3 text-center ${index < values.length - 1 ? "md:border-r md:border-[#DCCAA8]" : ""
-                      }`}
-                  >
-                    <Icon className="h-9 w-9 text-[#174B35]" />
-                    <p className="mt-3 text-[16px] font-bold uppercase text-[#174B35]">
-                      {value.title}
-                    </p>
-                    <p className="mt-2 text-[16px] leading-[1.3] text-[#57524B]">
-                      {value.description}
-                    </p>
-                  </div>
-                );
-              })}
+            <div
+              className="
+                grid
+                grid-cols-2
+                md:grid-cols-4
+              "
+            >
+              {values.map((value, index) => (
+                <div
+                  key={value.title}
+                  className={`
+                    flex
+                    min-h-[138px]
+                    flex-col
+                    items-center
+                    justify-center
+                    px-[12px]
+                    text-center
+
+                    ${
+                      index > 0
+                        ? "md:border-l md:border-[#DCC8A4]"
+                        : ""
+                    }
+                  `}
+                >
+                  <CustomIcon
+                    name={value.icon}
+                    className="
+                      h-[49px]
+                      w-[49px]
+                      text-[#15523C]
+                    "
+                  />
+
+                  <h4 className="mt-[5px] text-[16px] font-bold uppercase text-[#15523C]">
+                    {value.title}
+                  </h4>
+
+                  <p className="mt-[3px] whitespace-pre-line text-[16px] leading-[1.22] text-[#3E3A35]">
+                    {value.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom statement */}
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-[10px] bg-[#0E3D2C] px-5 py-3 text-center text-[16px] font-semibold text-[#F0E4C5]">
-          <span className="h-px w-20 bg-gradient-to-r from-transparent to-[#D0A13F]" />
-          <span>A mission of compassion.</span>
-          <span className="h-px w-10 bg-[#D0A13F]" />
-          <span>A commitment to transparency.</span>
-          <PiFlowerLotus className="h-5 w-5 text-[#D0A13F]" />
-          <span>A promise of accountability.</span>
-          <span className="h-px w-20 bg-gradient-to-l from-transparent to-[#D0A13F]" />
+        {/* =====================================================
+            BOTTOM GREEN LINE
+        ====================================================== */}
+
+        <div
+          className="
+            mt-0
+            flex
+            min-h-[42px]
+            items-center
+            justify-center
+            overflow-hidden
+            bg-[#00442F]
+            px-[16px]
+            text-center
+            text-[16px]
+            font-semibold
+            text-[#F2E7C9]
+          "
+        >
+          <span className="h-px w-[160px] bg-gradient-to-r from-transparent to-[#D2A030]" />
+
+          <span className="mx-[12px]">
+            A mission of compassion.
+          </span>
+
+          <span className="h-px w-[30px] bg-[#D2A030]" />
+
+          <span className="mx-[12px]">
+            A commitment to transparency.
+          </span>
+
+          <CustomIcon
+            name="Lotus"
+            className="
+              mx-[5px]
+              h-[22px]
+              w-[22px]
+              text-[#D1A02B]
+            "
+          />
+
+          <span className="mx-[12px]">
+            A promise of accountability.
+          </span>
+
+          <span className="h-px w-[160px] bg-gradient-to-l from-transparent to-[#D2A030]" />
         </div>
       </div>
     </section>
