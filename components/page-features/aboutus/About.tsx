@@ -15,6 +15,7 @@ import HeartOfMoksha from "./HeartOfMoksha";
 import Responsiblesewa from "./Responsiblesewa";
 import AboutFaq from "./AboutFaq";
 import Supportthemission from "./Supportthemission";
+import JoinSewa from "@/components/sections/JoinSewa/JoinSewa";
 
 export default function About() {
   return (
@@ -35,6 +36,7 @@ export default function About() {
         <AboutNamoGangeTrust />
         <Responsiblesewa />
         <Supportthemission />
+        <JoinSewa />
         <AboutFaq />
         <HeartOfMoksha />
       </main>
