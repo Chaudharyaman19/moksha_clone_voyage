@@ -212,11 +212,11 @@ export default function TrustTransparency() {
             <div className="flex items-stretch gap-5">
               <div className="relative -my-5 -ml-5 w-[38%] shrink-0 overflow-hidden rounded-l-[18px]">
                 <Image
-                  src="/hero-images/image2.png"
-                  alt="Ghat scene"
+                  src="/hero-images/image3.png"
+                  alt="Moksha Sewa volunteers handing supplies to an elderly couple at a river ghat"
                   fill
                   sizes="220px"
-                  className="object-cover"
+                  className="object-cover object-[75%_45%]"
                 />
               </div>
 
