@@ -8,7 +8,8 @@ import AboutNamoGangeTrust from "./AboutNamoGangeTrust";
 import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
-import AboutHeroSlider from "./AboutHeroSlider";
+import AboutBanner from "@/components/sections/AboutBanner/AboutBanner";
+import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -225,9 +226,13 @@ export default function About() {
       <Navbar />
 
       <main>
-        {/* ============ HERO SLIDER — new banner (1) + previous banner (2) ============ */}
+        {/* ============ HERO — new about banner ============ */}
 
-        <AboutHeroSlider />
+        <AboutBanner />
+
+        {/* ============ WHAT IS MOKSHA SEWA — intro ============ */}
+
+        <MokshaSewaIntro />
 
         {/* ============ STATS — inverted dark bar with gold numbers ============ */}
 
