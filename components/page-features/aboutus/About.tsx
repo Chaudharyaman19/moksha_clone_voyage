@@ -274,6 +274,10 @@ export default function About() {
           </div>
         </section>
 
+        {/* ============ WHO WE ARE ============ */}
+
+        <WhoWeAre />
+
         {/* ============ ABOUT MOKSHA SEWA ============ */}
 
         <AboutMokshaSewa />
