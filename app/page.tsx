@@ -20,6 +20,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import SewaStories from "@/components/sections/SewaStories/SewaStories";
 import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/WhyYourSupportMatters";
+import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission";
 
 export const metadata = createPageMetadata("/");
 
@@ -47,6 +48,7 @@ export default function Page() {
                <CompassionSection /> 
         <SewaStories/>
         <WhyYourSupportMatters />
+        <JoinTheMission />
         <Serving />
         <HowItWorks />
     

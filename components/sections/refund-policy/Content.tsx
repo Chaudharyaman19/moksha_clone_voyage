@@ -11,7 +11,6 @@ import {
   CalendarDays,
   Check,
   CircleAlert,
-  CircleDollarSign,
   ClipboardList,
   Clock3,
   CreditCard,
@@ -20,6 +19,7 @@ import {
   Gift,
   HandHeart,
   HeartHandshake,
+  IndianRupee,
   Info,
   Landmark,
   Mail,
@@ -28,6 +28,7 @@ import {
   RefreshCcw,
   ShieldCheck,
   ShoppingBag,
+  Sprout,
   TriangleAlert,
   UsersRound,
   WalletCards,
@@ -40,7 +41,7 @@ const HEADER_OFFSET = 150;
 
 const SECTIONS_SELECTOR = 'section[id^="refund-section-"]';
 
-const ITEMS_SELECTOR = ".refund-bottom-card";
+const ITEMS_SELECTOR = ".refund-policy-card";
 
 const navigationItems = [
   { number: 1, label: "Overview" },
@@ -111,14 +112,18 @@ const mainSections = [
   },
 ];
 
-const bottomCards = [
+const premiumCards = [
   {
     number: 9,
     title: "How to Request a Refund",
     icon: FileCheck2,
+    tagline: "Simple steps to request your refund hassle-free.",
     content: (
       <>
-        <p>To request a refund, contact us within 7 days of the transaction with your:</p>
+        <p>
+          To request a refund, contact us within 7 days of the transaction
+          with your:
+        </p>
         <ul className="mt-1.5 space-y-0.5">
           <li>• Full name</li>
           <li>• Transaction ID / Receipt</li>
@@ -132,6 +137,10 @@ const bottomCards = [
     number: 10,
     title: "Refund Process & Timeline",
     icon: Clock3,
+    tagline: "Know how long it takes to get your refund.",
+    image:
+      "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=900&auto=format&fit=crop",
+    imageAlt: "Hourglass measuring the refund processing timeline",
     content: (
       <p>
         Once your request is reviewed and approved, refunds will be processed
@@ -143,7 +152,8 @@ const bottomCards = [
   {
     number: 11,
     title: "Mode of Refund",
-    icon: CircleDollarSign,
+    icon: IndianRupee,
+    tagline: "Refunds through your original payment method.",
     content: (
       <p>
         Refunds will be made using the same method through which the original
@@ -151,16 +161,25 @@ const bottomCards = [
       </p>
     ),
   },
-];
-
-const finalCards = [
   {
     number: 12,
     title: "Chargebacks",
     icon: ShieldCheck,
-    content:
-      "Initiating a chargeback without contacting us first may affect your ability to make future donations and will incur additional charges, which will be deducted from the refundable amount (if any).",
+    tagline: "Understand the impact of chargebacks on future donations.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=900&auto=format&fit=crop",
+    imageAlt: "Financial security and payment protection",
+    content: (
+      <p>
+        Initiating a chargeback without contacting us first may affect your
+        ability to make future donations and will incur additional charges,
+        which will be deducted from the refundable amount (if any).
+      </p>
+    ),
   },
+];
+
+const addendumSections = [
   {
     number: 13,
     title: "Partial Refunds",
@@ -183,6 +202,102 @@ const finalCards = [
       "For any refund-related queries or grievances, please contact us.",
   },
 ];
+
+function RefundPolicyCard({
+  card,
+  isEven,
+}: {
+  card: (typeof premiumCards)[number];
+  isEven: boolean;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const Icon = card.icon;
+
+  return (
+    <article
+      className="refund-policy-card group flex h-full flex-col overflow-hidden rounded-[18px] border border-[#E6DCC4] bg-[#FFFDF8] shadow-[0_10px_28px_rgba(66,57,15,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(66,57,15,0.14)]"
+    >
+      {isEven && card.image && (
+        <div className="relative h-44 shrink-0 overflow-hidden">
+          <Image
+            src={card.image}
+            alt={card.imageAlt ?? ""}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          />
+
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-[#FFFDF8]/50 to-transparent"
+            aria-hidden="true"
+          />
+
+          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-[#C9A227]/50 bg-[#FFFDF8]/95 font-serif text-[15px] font-bold text-[#1F3D2B] shadow-[0_3px_10px_rgba(66,57,15,0.25)]">
+            {String(card.number).padStart(2, "0")}
+          </span>
+        </div>
+      )}
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1F3D2B] shadow-[0_6px_14px_rgba(31,61,43,0.25)]">
+            <Icon size={20} strokeWidth={1.5} className="text-[#F2DCA2]" />
+          </div>
+
+          {!isEven && (
+            <span className="rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-1 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
+              {String(card.number).padStart(2, "0")}
+            </span>
+          )}
+        </div>
+
+        <h3 className="mt-4 font-serif text-[19px] font-bold leading-[1.35] text-[#1F3D2B]">
+          {card.title}
+        </h3>
+
+        <p className="mt-1.5 text-[14px] leading-[1.6] text-[#72694A]">
+          {card.tagline}
+        </p>
+
+        <div className="mt-4 flex items-center gap-2" aria-hidden="true">
+          <span className="h-px w-full bg-gradient-to-r from-[#C9A227]/60 via-[#C9A227]/25 to-transparent" />
+          <Sprout size={13} className="shrink-0 text-[#C9A227]" />
+        </div>
+
+        <button
+          type="button"
+          aria-expanded={expanded}
+          onClick={() => setExpanded((value) => !value)}
+          className="mt-auto flex w-fit items-center gap-2 pt-5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#1F3D2B] transition-colors hover:text-[#B76B16]"
+        >
+          <span className="border-b-2 border-[#C9A227] pb-0.5 transition-all duration-300 group-hover:border-[#B76B16]">
+            {expanded ? "Show Less" : "Read More"}
+          </span>
+          <ArrowRight
+            size={14}
+            className={`transition-transform duration-300 ${
+              expanded ? "rotate-90" : "translate-x-0 group-hover:translate-x-1"
+            }`}
+          />
+        </button>
+
+        <div
+          className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${
+            expanded
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="mt-4 rounded-[10px] border border-[#EADFC4] bg-[#FAF4E4]/70 px-3.5 py-3 text-[14px] leading-[1.6] text-[#5F5836]">
+              {card.content}
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 function SectionIcon({
   icon: Icon,
@@ -219,17 +334,14 @@ export default function RefundPolicy() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const anchorFor = (number: number) => {
-    if (number >= 9 && number <= 11) return 9;
-    if (number >= 12) return 12;
+    if (number >= 9 && number <= 12) return 9;
     return number;
   };
 
   const sectionIds = navigationItems.map((item) =>
-    item.number >= 9 && item.number <= 11
+    item.number >= 9 && item.number <= 12
       ? "refund-section-9"
-      : item.number >= 12
-        ? "refund-section-12"
-        : `refund-section-${item.number}`,
+      : `refund-section-${item.number}`,
   );
 
   useEffect(() => {
@@ -354,9 +466,60 @@ export default function RefundPolicy() {
           });
         },
       );
+
+      gsap.utils
+        .toArray<HTMLElement>(".refund-policy-card")
+        .forEach((card, index) => {
+          gsap.from(card, {
+            y: 24,
+            opacity: 0,
+            duration: 0.6,
+            delay: index * 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              once: true,
+            },
+          });
+        });
     }, pageRef);
 
-    return () => context.revert();
+    /*
+      Refresh triggers once images/fonts finish loading so start positions
+      are recalculated. Otherwise cards can remain stuck at opacity 0.
+    */
+    const refreshTriggers = () => ScrollTrigger.refresh();
+
+    if (document.readyState === "complete") {
+      refreshTriggers();
+    } else {
+      window.addEventListener("load", refreshTriggers, { once: true });
+    }
+
+    document.fonts?.ready.then(refreshTriggers).catch(() => {});
+
+    const revealTimer = window.setTimeout(() => {
+      pageRef.current
+        ?.querySelectorAll<HTMLElement>(".refund-policy-card")
+        .forEach((el) => {
+          if (Number(gsap.getProperty(el, "opacity")) < 1) {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          }
+        });
+    }, 3500);
+
+    return () => {
+      context.revert();
+      window.clearTimeout(revealTimer);
+      window.removeEventListener("load", refreshTriggers);
+    };
   }, []);
 
   const highlightTarget = (target: HTMLElement) => {
@@ -692,76 +855,59 @@ export default function RefundPolicy() {
           </div>
 
           {/* =====================================================
-              9 - 11 CARDS
+              9 - 12 PREMIUM CARD GRID
           ====================================================== */}
           <section
             id="refund-section-9"
-            className="relative mt-6 grid grid-cols-1 gap-3 scroll-mt-4 overflow-hidden md:grid-cols-3"
+            className="relative mt-6 scroll-mt-4 overflow-hidden"
+            aria-label="How to request a refund, process, mode and chargebacks"
           >
-            {bottomCards.map((card) => {
-              const Icon = card.icon;
+            <h2 className="sr-only">How to Request a Refund</h2>
 
-              return (
-                <article
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {premiumCards.map((card, index) => (
+                <RefundPolicyCard
                   key={card.number}
-                  className="refund-bottom-card min-h-[130px] rounded-[7px] border border-[#e7e2d5] bg-[#fffef9] p-2 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_7px_18px_rgba(139,106,62,0.08)]"
-                >
-                  <div className="flex items-start gap-2.5">
-                    <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
-                      <Icon
-                        size={24}
-                        strokeWidth={1.5}
-                      />
-                    </div>
-
-                    <h2 className="text-[16px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                      {card.number}. {card.title}
-                    </h2>
-                  </div>
-
-                  <div className="mt-2 pl-[31px] text-[16px] leading-5 text-[#5B4635]">
-                    {card.content}
-                  </div>
-                </article>
-              );
-            })}
+                  card={card}
+                  isEven={index % 2 === 1}
+                />
+              ))}
+            </div>
           </section>
 
           {/* =====================================================
-              12 - 15 CARDS
+              13 - 15 ADDENDUM SECTIONS
           ====================================================== */}
-          <section
-            id="refund-section-12"
-            className="refund-final-grid relative mt-6 grid grid-cols-1 gap-3 scroll-mt-4 overflow-hidden sm:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_1fr]"
-          >
-            {finalCards.map((card) => {
-              const Icon = card.icon;
+          <div className="mt-6 space-y-0 border-t border-[#eadbc3] pt-4">
+            {addendumSections.map((section) => {
+              const Icon = section.icon;
 
               return (
-                <article
-                  key={card.number}
-                  className="refund-final-card min-h-[130px] rounded-[7px] border border-[#e7e2d5] bg-[#fffef9] px-4 py-3.5 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_7px_18px_rgba(139,106,62,0.08)]"
+                <section
+                  key={section.number}
+                  id={`refund-section-${section.number}`}
+                  className="refund-main-section relative scroll-mt-4 overflow-hidden"
                 >
-                  <div className="flex items-start gap-2.5">
-                    <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06] shadow-[0_3px_10px_rgba(185,90,6,0.12)]">
-                      <Icon
-                        size={23}
-                        strokeWidth={1.5}
-                      />
+                  <div className="grid grid-cols-[64px_minmax(0,1fr)]">
+                    <div className="flex justify-start pt-1">
+                      <SectionIcon icon={Icon} />
                     </div>
 
-                    <h2 className="text-[16px] font-bold leading-[1.35] text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                      {card.number}. {card.title}
-                    </h2>
-                  </div>
+                    <div className="border-b border-[#eadbc3] py-4">
+                      <SectionHeading
+                        number={section.number}
+                        title={section.title}
+                      />
 
-                  <p className="mt-2 pl-[31px] text-[16px] leading-5 text-[#5B4635]">
-                    {card.content}
-                  </p>
-                </article>
+                      <p className="mt-1.5 max-w-[650px] text-[16px] leading-7 text-[#594236]">
+                        {section.content}
+                      </p>
+                    </div>
+                  </div>
+                </section>
               );
             })}
-          </section>
+          </div>
         </article>
       </div>
 

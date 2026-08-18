@@ -2,180 +2,273 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import {
-  FaChevronDown,
-  FaHeart,
-  FaPhoneAlt,
-} from "react-icons/fa";
+import { ArrowRight, Minus, Plus } from "lucide-react";
 
 interface FAQItem {
+  id: number;
   question: string;
   answer: string;
+  icon: string;
 }
 
+const FAQ_DATA: FAQItem[] = [
+  {
+    id: 1,
+    question: "Who can request Moksha Sewa support?",
+    answer:
+      "Moksha Sewa support can be requested by families, authorised representatives, institutions and individuals who need assistance with last rites and related services.",
+    icon: "/assets/faq/request.png",
+  },
+  {
+    id: 2,
+    question:
+      "Does Moksha Sewa assist with legally authorised unclaimed bodies?",
+    answer:
+      "Yes. Subject to applicable legal permissions and local procedures, Moksha Sewa can assist with legally authorised unclaimed body cases.",
+    icon: "/assets/faq/legally.png",
+  },
+  {
+    id: 3,
+    question: "What cremation and last-rites assistance is available?",
+    answer:
+      "Moksha Sewa provides assistance and coordination for cremation, transportation, essential last-rites arrangements and other support based on the circumstances.",
+    icon: "/assets/faq/cremation.png",
+  },
+  {
+    id: 4,
+    question: "Where is Moksha Sewa currently available?",
+    answer:
+      "Moksha Sewa services are currently available in selected locations. Please contact the team to confirm availability in your area.",
+    icon: "/assets/faq/where_is_moksha.png",
+  },
+  {
+    id: 5,
+    question: "How can I become a volunteer?",
+    answer:
+      "You can express your interest in volunteering by contacting the Moksha Sewa team and sharing your basic details and preferred area of support.",
+    icon: "/assets/faq/volunteer.png",
+  },
+  {
+    id: 6,
+    question: "How can I support Moksha Sewa through a donation?",
+    answer:
+      "You can support Moksha Sewa through an authorised donation channel. Contact the organisation for current donation details and available donation options.",
+    icon: "/assets/faq/support.png",
+  },
+];
+
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openId, setOpenId] = useState<number | null>(null);
 
-  const faqItems: FAQItem[] = [
-          {
-            question: "Is assistance guaranteed for every case?",
-            answer:
-              "Assistance for eligible cases is subject to verification, availability and applicable local or legal requirements. Our team first verifies the case details and then confirms what support can be provided.",
-          },
-          {
-            question: "What services can your team arrange?",
-            answer:
-              "Depending on the need, we may help coordinate an ambulance, hearse van, cremation wood, shroud, flowers, ritual materials, a pandit, cremation-ground support, documentation guidance and food service.",
-          },
-          {
-            question: "Can you help in an unclaimed body case?",
-            answer:
-              "Yes. Support is undertaken only after completion of applicable police, hospital, municipal or other competent-authority formalities.",
-          },
-          {
-            question: "Can you arrange an ambulance or hearse van?",
-            answer:
-              "Yes. Ambulance and hearse-van coordination is provided based on the location, required time and vehicle availability.",
-          },
-          {
-            question: "Can you arrange a pandit and final rituals?",
-            answer:
-              "Yes. We help families in need arrange a pandit, ritual materials and guidance for the final rites, depending on the case and local availability.",
-          },
-        ];
-
-  const columns = [faqItems.slice(0, 3), faqItems.slice(3)];
-
-  const toggleItem = (index: number) => {
-    setOpenIndex((current) => (current === index ? null : index));
+  const toggleFAQ = (id: number) => {
+    setOpenId((prev) => (prev === id ? null : id));
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF8F2] px-3 py-3 sm:px-4 sm:py-4 lg:px-5">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(196,138,67,0.07),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,82,26,0.05),transparent_34%)]" />
+    <section className="relative w-full overflow-hidden bg-[#f8f1e3]">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/assets/faq/bg.png"
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-0">
-        {/* Heading */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-2 inline-flex items-center space-x-3">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+      {/* Soft overlay */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
-            <span className="text-[16px] font-medium uppercase tracking-[0.25em] text-[#8B6A3E]">
-              FAQs
+      {/* Main content */}
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-8 lg:px-10 lg:py-6 xl:px-12">
+        {/* Top header */}
+        <div className="relative mx-auto max-w-[1050px] text-center">
+          {/* Logos */}
+          <div className="mb-3 flex items-center justify-center gap-4 lg:absolute lg:left-[-390px] lg:top-[-2px] lg:mb-0 lg:justify-start">
+            <Image
+              src="/assets/logo-moksha-seva.png"
+              alt="Moksha Sewa"
+              width={64}
+              height={64}
+              className="h-[40px] w-auto object-contain sm:h-[48px] md:h-[54px]"
+            />
+          </div>
+
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <Image
+              src="/assets/faq/left.png"
+              alt=""
+              aria-hidden="true"
+              width={2819}
+              height={209}
+              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[140px]"
+            />
+
+            <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.15em] text-[#a67820] sm:tracking-[0.18em]">
+              Help &amp; Information
             </span>
 
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
+            <Image
+              src="/assets/faq/right.png"
+              alt=""
+              aria-hidden="true"
+              width={1992}
+              height={152}
+              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[140px]"
+            />
           </div>
 
-          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F2118] sm:text-[28px] lg:text-[30px]">
+          {/* Title */}
+          <h2 className="mt-1 font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#034b3c] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px]">
             Frequently Asked Questions
           </h2>
+
+          {/* Decorative image */}
+          <div className="mt-1 flex justify-center">
+            <Image
+              src="/assets/faq/title_decoration.png"
+              alt=""
+              aria-hidden="true"
+              width={2928}
+              height={269}
+              className="h-auto w-[200px] max-w-full object-contain sm:w-[260px] md:w-[320px]"
+            />
+          </div>
+
+          {/* Description */}
+          <p className="mx-auto mt-1 max-w-[720px] px-3 text-[16px] leading-6 text-[#40464a]">
+            Find quick answers to common questions about Moksha Sewa,
+            <br className="hidden sm:block" />
+            our services and how you can get involved.
+          </p>
         </div>
 
-        {/* Two-column accordion */}
-        <div className="mt-2 grid gap-x-10 lg:grid-cols-2">
-          {columns.map((column, columnIndex) => {
-            const offset = columnIndex === 0 ? 0 : 3;
+        {/* FAQ list */}
+        <div className="mx-auto mt-4 w-full max-w-[1035px]">
+          <div className="space-y-[5px]">
+            {FAQ_DATA.map((faq) => {
+              const isOpen = openId === faq.id;
 
-            return (
-              <div
-                key={columnIndex}
-                className="divide-y divide-[#E8DED2] border-y border-[#E8DED2] lg:border-t"
-              >
-                {column.map((item, itemIndex) => {
-                  const realIndex = offset + itemIndex;
-                  const isOpen = openIndex === realIndex;
+              return (
+                <div
+                  key={faq.id}
+                  className={`overflow-hidden rounded-[9px] border border-[#e7ddca] bg-[#fffdf9]/95 shadow-[0_2px_7px_rgba(71,55,25,0.10)] transition-all duration-300 ${
+                    isOpen ? "shadow-[0_5px_18px_rgba(71,55,25,0.14)]" : ""
+                  }`}
+                >
+                  {/* Question button */}
+                  <button
+                    type="button"
+                    onClick={() => toggleFAQ(faq.id)}
+                    aria-expanded={isOpen}
+                    className="group flex w-full items-center gap-3 px-3 py-1 text-left sm:px-4"
+                  >
+                    {/* Icon */}
+                    <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-[1.04] sm:h-[44px] sm:w-[44px]">
+                      <Image
+                        src={faq.icon}
+                        alt=""
+                        aria-hidden="true"
+                        width={44}
+                        height={44}
+                        className="h-full w-full object-contain"
+                      />
+                    </span>
 
-                  return (
-                    <div key={item.question} className="bg-white/25">
-                      <button
-                        type="button"
-                        onClick={() => toggleItem(realIndex)}
-                        className="flex min-h-[52px] w-full items-center justify-between gap-5 px-3 py-3 text-left sm:min-h-[56px] sm:px-4"
-                        aria-expanded={isOpen}
-                      >
-                        <span className="text-[16px] font-medium leading-6 text-[#3C2A20] sm:text-[16px]">
-                          {item.question}
-                        </span>
+                    {/* Vertical divider */}
+                    <span className="hidden h-[30px] w-px shrink-0 bg-[#d9c8a5] sm:block" />
 
-                        <FaChevronDown
-                          className={`h-4 w-4 shrink-0 text-[#5A4638] transition-transform duration-300 ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
+                    {/* Question */}
+                    <span className="min-w-0 flex-1 pr-2 font-serif text-[16px] font-semibold leading-6 text-[#174b3e] lg:text-[17px]">
+                      {faq.question}
+                    </span>
 
-                      <div
-                        className={`grid transition-[grid-template-rows,opacity] duration-300 ${
-                          isOpen
-                            ? "grid-rows-[1fr] opacity-100"
-                            : "grid-rows-[0fr] opacity-0"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <p className="px-3 pb-4 text-[16px] font-normal leading-6 text-[#6C5749] sm:px-4 sm:text-[16px]">
-                            {item.answer}
-                          </p>
-                        </div>
+                    {/* Plus / minus */}
+                    <span
+                      className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#b78b2d] text-[#a8791c] transition-all duration-300 sm:h-[32px] sm:w-[32px] ${
+                        isOpen ? "rotate-180 bg-[#00503f] text-white" : ""
+                      }`}
+                    >
+                      {isOpen ? (
+                        <Minus size={17} strokeWidth={1.8} />
+                      ) : (
+                        <Plus size={17} strokeWidth={1.8} />
+                      )}
+                    </span>
+                  </button>
+
+                  {/* Answer */}
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="border-t border-[#eee5d5] px-5 pb-3 pt-2 pl-[58px] text-[16px] leading-6 text-[#5a615e] sm:pl-[72px]">
+                        {faq.answer}
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Support banner */}
-        <div className="relative mt-3 min-h-[360px] w-full overflow-hidden rounded-[18px] border border-[#DDBE9A]/45 bg-[#B84A0B] shadow-[0_10px_32px_rgba(93,48,17,0.13)] sm:min-h-[300px] lg:min-h-[240px]">
-          <Image
-            src="/assets/faq/faq-support-banner-v3.png"
-            alt="Moksha Sewa compassionate support for unclaimed and vulnerable cases"
-            fill
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="object-cover object-center"
-          />
+        {/* Bottom CTA */}
+        <div className="relative mx-auto mt-3 flex w-full items-center justify-center">
+          <button
+            type="button"
+            className="group relative w-full max-w-[430px] overflow-hidden transition-all duration-300 hover:opacity-90 sm:max-w-[480px]"
+          >
+            <Image
+              src="/assets/faq/view_all_faq.png"
+              alt="View All FAQs"
+              width={2156}
+              height={222}
+              className="h-auto w-full object-cover"
+            />
 
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(103,45,12,0.80)_0%,rgba(103,45,12,0.70)_58%,rgba(0,0,0,0.20)_100%)] sm:bg-[linear-gradient(90deg,rgba(0,0,0,0.18)_0%,rgba(103,45,12,0.68)_36%,rgba(103,45,12,0.72)_64%,rgba(0,0,0,0.18)_100%)]" />
+            <span className="absolute inset-0 flex items-center justify-center gap-2.5 sm:gap-3">
+              <svg
+                viewBox="0 0 48 40"
+                fill="none"
+                className="h-[27px] w-[32px] shrink-0 text-[#d5a43e] sm:h-[29px] sm:w-[34px]"
+              >
+                <path
+                  d="M20 3C10.6 3 3 8.9 3 16.2C3 21.4 6.7 25.8 12.1 27.9L10 36L17.5 29.7C18.3 29.8 19.1 29.9 20 29.9C29.4 29.9 37 24 37 16.7C37 9.4 29.4 3 20 3Z"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                />
+                <path
+                  d="M29 11C37.8 11 45 16.3 45 22.8C45 27.2 41.9 30.8 37.2 32.5L39 38L32.5 33.2C31.4 33.4 30.2 33.5 29 33.5"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                />
+                <path
+                  d="M17.5 13.5C18.3 11.7 20 10.7 22 10.7C24.7 10.7 26.8 12.4 26.8 14.8C26.8 17 25.4 18.1 23.8 19.2C22.5 20.1 21.4 20.9 21.4 22.7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="21.5" cy="26.5" r="1.2" fill="currentColor" />
+              </svg>
 
-          <div className="relative z-10 flex min-h-[360px] items-center justify-center px-5 py-8 sm:min-h-[300px] sm:px-8 lg:min-h-[240px] lg:px-10">
-            <div className="w-full text-center text-white sm:w-[72%] lg:w-[48%]">
-              <h3 className="font-serif text-[22px] font-normal leading-tight sm:text-[28px] lg:text-[30px]">
-                For Unclaimed and Needy Cases,
-                <span className="block">
-                  A Respectful Final Farewell.
-                </span>
-              </h3>
+              <span className="whitespace-nowrap text-[17px] font-semibold uppercase tracking-[0.07em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[18px]">
+                View All FAQs
+              </span>
 
-              <p className="mx-auto mt-2 max-w-2xl text-[16px] font-normal leading-6 text-white/86 sm:text-[16px]">
-                One call can help you receive guidance for verified assistance,
-                local formalities, transport coordination and essential
-                final-rites support.
-              </p>
-
-              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-                <a
-                  href="tel:+919220147229"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 w-fit items-center justify-center gap-3 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-3 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
-                >
-                  Get Sewa Help
-                  <FaPhoneAlt className="h-4 w-4" />
-                </a>
-
-                <a
-                  href="/donation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 w-fit items-center justify-center gap-3 rounded-md border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 py-3 text-[16px] font-bold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
-                >
-                  Support This Mission
-                  <FaHeart className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </div>
+              <ArrowRight
+                size={24}
+                strokeWidth={1.8}
+                className="shrink-0 text-[#d5a43e] transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </span>
+          </button>
         </div>
       </div>
     </section>
