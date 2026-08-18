@@ -59,7 +59,7 @@ export default function GlimpseOfJourney() {
           fill
           priority
           sizes="100vw"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover md:object-fill"
         />
       </div>
 
@@ -67,7 +67,7 @@ export default function GlimpseOfJourney() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] py-8 sm:py-10 md:py-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-4 py-6 sm:px-5 lg:px-0">
         {/* Section header */}
         <header className="mx-auto mb-3 max-w-[760px] text-center">
           {/* Eyebrow */}
