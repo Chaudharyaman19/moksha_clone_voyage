@@ -104,18 +104,14 @@ export default function GlimpseOfJourney() {
           {SEWA_CARDS.map((card) => (
             <article
               key={card.id}
-              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_5px_16px_rgba(67,51,25,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(67,51,25,0.18)]"
+              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
+              style={{
+                backgroundImage: "url('/assets/sewa/card_image.png')",
+                backgroundSize: "100% 100%",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
             >
-              {/* Card background image */}
-              <Image
-                src="/assets/sewa/card_image.png"
-                alt=""
-                aria-hidden="true"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="pointer-events-none absolute inset-0 h-full w-full rounded-[17px] object-fill"
-              />
-
               {/* Image wrapper */}
               <div className="relative h-[230px] rounded-t-[17px] sm:h-[205px] md:h-[215px] lg:h-[230px] xl:h-[240px]">
                 <div
@@ -176,11 +172,11 @@ export default function GlimpseOfJourney() {
                 </p>
 
                 {/* Bottom decorative leaves */}
-                <div className="pointer-events-none absolute bottom-0 right-0 h-[72px] w-[85px] overflow-hidden opacity-[0.17]">
+                {/* <div className="pointer-events-none absolute bottom-0 right-0 h-[72px] w-[85px] overflow-hidden opacity-[0.17]">
                   <div className="absolute bottom-[-20px] right-[18px] h-[85px] w-[32px] rotate-[30deg] border-l border-[#a88b55]" />
                   <div className="absolute bottom-[10px] right-[42px] h-[30px] w-[15px] rotate-[-25deg] rounded-[100%] border border-[#a88b55]" />
                   <div className="absolute bottom-[30px] right-[20px] h-[28px] w-[14px] rotate-[28deg] rounded-[100%] border border-[#a88b55]" />
-                </div>
+                </div> */}
               </div>
             </article>
           ))}
