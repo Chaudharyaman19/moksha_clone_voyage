@@ -11,7 +11,7 @@ export default function AboutNamoGangeTrust() {
           <div className="order-2 lg:order-1">
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />
-              <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+              <span className="text-[16px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
                 Our Parent Organization
               </span>
             </div>
@@ -26,7 +26,7 @@ export default function AboutNamoGangeTrust() {
             {/* Diya Flourish */}
          
 
-            <div className="space-y-4 text-[14px] leading-relaxed text-[#5F4A3D] sm:text-[15px]">
+            <div className="space-y-4 text-[16px] leading-relaxed text-[#5F4A3D] sm:text-[16px]">
               <p>
                 Moksha Sewa operates under the aegis of the Namo Gange Trust, a dedicated non-profit 
                 organization committed to preserving our rich cultural heritage and serving humanity.
@@ -34,7 +34,7 @@ export default function AboutNamoGangeTrust() {
               <p>
                 The trust has been at the forefront of various social initiatives, deeply rooted in 
                 Vedic traditions and modern welfare. Through Moksha Sewa, the trust extends its 
-                compassion to families dealing with loss, ensuring that every soul's final journey 
+                compassion to families dealing with loss, ensuring that every soul&apos;s final journey 
                 is honored with dignity, transparency, and deep respect for our ancient rituals.
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function AboutNamoGangeTrust() {
                 href="https://www.namogange.org/" 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#8B6A3E] bg-transparent px-6 text-[14px] font-medium text-[#8B6A3E] transition-all hover:bg-[#8B6A3E] hover:text-white"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#8B6A3E] bg-transparent px-6 text-[16px] font-medium text-[#8B6A3E] transition-all hover:bg-[#8B6A3E] hover:text-white"
               >
                 Visit Namo Gange Trust
               </a>
