@@ -2,7 +2,6 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Hero from "@/components/sections/hero/Hero";
 import CompassionSection from "@/components/sections/CompassionSection/CompassionSection";
-import DonateVolunteerHighlight from "@/components/sections/DonateVolunteerHighlight/DonateVolunteerHighlight";
 import OurSewa from "@/components/sections/OurSewa/HowHelp";
 import Howwehelp from "@/components/sections/Who We Help/WhoWeHelp";
 import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
@@ -22,6 +21,7 @@ import SewaStories from "@/components/sections/SewaStories/SewaStories";
 import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/WhyYourSupportMatters";
 import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission";
 import OneFinalActOfHumanity from "@/components/sections/OneFinalActOfHumanity/OneFinalActOfHumanity";
+import YourSupportInAction from "@/components/sections/YourSupportInAction/YourSupportInAction";
 
 export const metadata = createPageMetadata("/");
 
@@ -33,26 +33,32 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
-          
+
         <Howwehelp />
-          <OurSewa />
-          
+        <OurSewa />
+
+
         {/* Namo Gange Section */}
         {/* <AboutNamoGange /> */}
-{/* 
+        {/* 
      
         {/* <DonateVolunteerHighlight /> */}
-    
+
         <PracticalSewaSupport />
+
+        <HowSewaWorks />
+        <CompassionSection />
         <OurHumanitarianCommitment />
-            <HowSewaWorks />
-               <CompassionSection /> 
-        <SewaStories/>
+        <SewaStories />
+
         <WhyYourSupportMatters />
+
         <JoinTheMission />
+        <YourSupportInAction />
+
         <Serving />
         <HowItWorks />
-    
+
         <SacredJourney />
         <WhyFamiliesTrust />
         <VoicesOfGratitude />
