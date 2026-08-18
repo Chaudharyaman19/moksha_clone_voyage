@@ -304,13 +304,13 @@ export default function HumanitarianCommitment() {
                 }}
               >
                 <Image
-                  src="/assets/humanitarian-commitment.png"
+                  src="/assets/image.png"
                   alt="Moksha Sewa unclaimed body support"
                   fill
                   priority
                   quality={100}
                   sizes="(max-width: 1024px) 100vw, 41vw"
-                  className="object-cover object-center"
+                  className="object-inherit object-center"
                 />
               </div>
 
