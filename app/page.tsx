@@ -36,7 +36,7 @@ export default function Page() {
         <Hero />
 
         <Howwehelp />
-        <OurSewa />
+        {/* <OurSewa /> */}
 
 
         {/* Namo Gange Section */}
