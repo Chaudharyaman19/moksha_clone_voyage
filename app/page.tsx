@@ -43,10 +43,12 @@ export default function Page() {
         {/* <DonateVolunteerHighlight /> */}
     
         <PracticalSewaSupport />
-        <OurHumanitarianCommitment />
+       
             <HowSewaWorks />
                <CompassionSection /> 
+                <OurHumanitarianCommitment />
         <SewaStories/>
+        
         <WhyYourSupportMatters />
         <JoinTheMission />
         <Serving />
