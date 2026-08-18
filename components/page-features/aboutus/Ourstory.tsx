@@ -1,0 +1,985 @@
+"use client";
+
+import Image from "next/image";
+import type { ReactElement } from "react";
+
+interface IconProps {
+  name: "Lotus" | "Founder" | "Ornament";
+  className?: string;
+}
+
+/* =========================================================
+   CUSTOM ICONS
+========================================================= */
+
+const CustomIcon = ({
+  name,
+  className = "h-6 w-6",
+}: IconProps): ReactElement | null => {
+  const icons: Record<IconProps["name"], ReactElement> = {
+    Lotus: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M32 42c-9-6-14-14-12-23 6 2 10 6 12 12 2-6 6-10 12-12 2 9-3 17-12 23Z" />
+        <path d="M23 40c-8-1-13-6-14-13 7 0 12 3 16 8" />
+        <path d="M41 40c8-1 13-6 14-13-7 0-12 3-16 8" />
+        <path d="M16 47c5 2 10 3 16 3s11-1 16-3" />
+        <path d="M23 51h18" />
+      </svg>
+    ),
+
+    Founder: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.35"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="27" cy="23" r="8" />
+        <path d="M12 49c1-11 6-17 15-17s14 6 15 17" />
+
+        <path d="M40 12h14v11H44l-5 5v-5h-3V16c0-2 2-4 4-4Z" />
+
+        <path d="M44 17h6" />
+      </svg>
+    ),
+
+    Ornament: (
+      <svg
+        className={className}
+        viewBox="0 0 120 28"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 14h38" />
+        <path d="M78 14h38" />
+
+        <path d="M60 4c6 6 8 10 8 14 0 5-4 8-8 8s-8-3-8-8c0-4 2-8 8-14Z" />
+
+        <path d="M47 18c5 5 9 7 13 8" />
+        <path d="M73 18c-5 5-9 7-13 8" />
+      </svg>
+    ),
+  };
+
+  return icons[name] ?? null;
+};
+
+/* =========================================================
+   COMPONENT
+========================================================= */
+
+export default function OurStory() {
+  return (
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#F7F0E5]
+        px-4
+        py-[18px]
+        sm:px-5
+        lg:px-6
+      "
+    >
+      <div
+        className="
+          relative
+          mx-auto
+          w-full
+          max-w-[1344px]
+          overflow-hidden
+          border
+          border-[#E6D9C5]
+          bg-[#FBF5EA]
+          shadow-[0_8px_26px_rgba(72,45,20,0.06)]
+
+          lg:min-h-[810px]
+        "
+      >
+        {/* =====================================================
+            TOP LEFT MANDALA
+        ====================================================== */}
+
+        <svg
+          className="
+            pointer-events-none
+            absolute
+            -left-[64px]
+            -top-[68px]
+            h-[230px]
+            w-[230px]
+            text-[#C9A15B]/20
+          "
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          aria-hidden="true"
+        >
+          <circle cx="100" cy="100" r="27" />
+          <circle cx="100" cy="100" r="52" />
+          <circle cx="100" cy="100" r="78" />
+
+          <path d="M100 12v176" />
+          <path d="M12 100h176" />
+
+          <path d="M38 38l124 124" />
+          <path d="M162 38 38 162" />
+
+          <path d="M100 22 115 70 100 92 85 70Z" />
+          <path d="M100 178 115 130 100 108 85 130Z" />
+
+          <path d="M22 100 70 85 92 100 70 115Z" />
+          <path d="M178 100 130 85 108 100 130 115Z" />
+        </svg>
+
+        {/* =====================================================
+            LEFT GHAT BACKGROUND
+        ====================================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            bottom-0
+            left-0
+            hidden
+            h-[63%]
+            w-[58%]
+            overflow-hidden
+            lg:block
+          "
+        >
+          <Image
+            src="/assets/about/our-story/ghat-background.png"
+            alt=""
+            fill
+            priority
+            sizes="58vw"
+            className="
+              scale-x-[-1]
+              object-cover
+              object-[76%_center]
+            "
+          />
+
+          {/* TOP FADE */}
+
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-b
+              from-[#FBF5EA]
+              via-[#FBF5EA]/80
+              via-[24%]
+              to-transparent
+            "
+          />
+
+          {/* RIGHT FADE */}
+
+          <div
+            className="
+              absolute
+              inset-y-0
+              right-0
+              w-[36%]
+              bg-gradient-to-r
+              from-transparent
+              to-[#FBF5EA]
+            "
+          />
+        </div>
+
+        {/* =====================================================
+            MAIN GRID
+        ====================================================== */}
+
+        <div
+          className="
+            relative
+            z-10
+            grid
+            grid-cols-1
+
+            lg:min-h-[810px]
+            lg:grid-cols-[54%_46%]
+          "
+        >
+          {/* =================================================
+              LEFT CONTENT
+          ================================================= */}
+
+          <div
+            className="
+              relative
+              px-[26px]
+              pb-[70px]
+              pt-[34px]
+
+              sm:px-[46px]
+
+              lg:px-[72px]
+              lg:pb-[54px]
+              lg:pt-[38px]
+            "
+          >
+            {/* TOP LOTUS */}
+
+            <div className="flex justify-center">
+              <CustomIcon
+                name="Lotus"
+                className="
+                  h-[44px]
+                  w-[44px]
+                  text-[#B47A16]
+                "
+              />
+            </div>
+
+            {/* OUR STORY */}
+
+            <div
+              className="
+                mt-[5px]
+                flex
+                items-center
+                justify-center
+                gap-[13px]
+              "
+            >
+              <span className="relative h-px w-[70px] bg-[#BF8B2E]">
+                <span
+                  className="
+                    absolute
+                    -right-[3px]
+                    -top-[3px]
+                    h-[7px]
+                    w-[7px]
+                    rotate-45
+                    bg-[#BF8B2E]
+                  "
+                />
+              </span>
+
+              <span
+                className="
+                  text-[17px]
+                  font-bold
+                  uppercase
+                  tracking-[0.18em]
+                  text-[#064638]
+                "
+              >
+                Our Story
+              </span>
+
+              <span className="relative h-px w-[70px] bg-[#BF8B2E]">
+                <span
+                  className="
+                    absolute
+                    -left-[3px]
+                    -top-[3px]
+                    h-[7px]
+                    w-[7px]
+                    rotate-45
+                    bg-[#BF8B2E]
+                  "
+                />
+              </span>
+            </div>
+
+            {/* =================================================
+                TITLE
+            ================================================= */}
+
+            <h2
+              className="
+                mx-auto
+                mt-[15px]
+                max-w-[560px]
+                text-center
+
+                font-serif
+                text-[43px]
+                font-medium
+                leading-[1.03]
+                tracking-[-0.025em]
+
+                sm:text-[49px]
+                lg:text-[54px]
+              "
+              style={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+              }}
+            >
+              <span className="text-[#063E33]">
+                One Question
+              </span>
+
+              <br />
+
+              <span className="text-[#063E33]">
+                Became a{" "}
+              </span>
+
+              <span className="text-[#B67712]">
+                Mission.
+              </span>
+            </h2>
+
+            {/* TITLE DIVIDER */}
+
+            <div
+              className="
+                mt-[17px]
+                flex
+                items-center
+                justify-center
+                gap-[10px]
+              "
+            >
+              <span
+                className="
+                  h-px
+                  w-[122px]
+                  bg-gradient-to-r
+                  from-transparent
+                  to-[#C69949]
+                "
+              />
+
+              <CustomIcon
+                name="Lotus"
+                className="
+                  h-[28px]
+                  w-[28px]
+                  text-[#B27C20]
+                "
+              />
+
+              <span
+                className="
+                  h-px
+                  w-[122px]
+                  bg-gradient-to-l
+                  from-transparent
+                  to-[#C69949]
+                "
+              />
+            </div>
+
+            {/* =================================================
+                MAIN QUESTION
+            ================================================= */}
+
+            <div
+              className="
+                relative
+                mx-auto
+                mt-[17px]
+                max-w-[560px]
+                px-[34px]
+                text-center
+              "
+            >
+              <span
+                className="
+                  absolute
+                  left-[4px]
+                  top-[-11px]
+
+                  font-serif
+                  text-[48px]
+                  leading-none
+
+                  text-[#B87A0B]
+                "
+              >
+                “
+              </span>
+
+              <p
+                className="
+                  font-serif
+                  text-[22px]
+                  italic
+                  leading-[1.45]
+
+                  text-[#17483D]
+
+                  sm:text-[24px]
+                "
+                style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                }}
+              >
+                What happens when someone passes away
+                <br />
+                and there is no one to stand beside them?
+              </p>
+
+              <span
+                className="
+                  absolute
+                  bottom-[-15px]
+                  right-[5px]
+
+                  font-serif
+                  text-[48px]
+                  leading-none
+
+                  text-[#B87A0B]
+                "
+              >
+                ”
+              </span>
+            </div>
+
+            <div
+              className="
+                mx-auto
+                mt-[18px]
+
+                h-px
+                w-[145px]
+
+                bg-gradient-to-r
+                from-transparent
+                via-[#C6943E]
+                to-transparent
+              "
+            />
+
+            {/* =================================================
+                BODY CONTENT
+            ================================================= */}
+
+            <div
+              className="
+                mx-auto
+                mt-[19px]
+                max-w-[520px]
+
+                space-y-[13px]
+
+                text-[16px]
+                font-medium
+                leading-[1.48]
+
+                text-[#33383A]
+              "
+            >
+              <p>
+                This question became the foundation of{" "}
+                <span
+                  className="
+                    font-semibold
+                    text-[#B8730E]
+                  "
+                >
+                  Moksha Sewa
+                </span>
+                —a mission created so that when someone is left
+                without family, support or resources, humanity can
+                still stand beside them.
+              </p>
+
+              <p>
+                We believe that every individual, regardless of
+                identity, status or circumstance, deserves a final
+                journey of dignity, respect and compassion.
+              </p>
+
+              <p>
+                Our mission is to ensure that no one faces their
+                final journey alone. Through sevabhav, community
+                support and responsible action, we stand beside the
+                most vulnerable—because every life deserves dignity.
+              </p>
+            </div>
+          </div>
+
+          {/* =================================================
+              RIGHT SIDE
+          ================================================= */}
+
+          <div
+            className="
+              relative
+              px-[22px]
+              pb-[28px]
+              pt-[34px]
+
+              lg:px-[28px]
+              lg:pb-[22px]
+              lg:pt-[34px]
+            "
+          >
+            {/* =================================================
+                FOUNDER IMAGE
+            ================================================= */}
+
+            <div
+              className="
+                relative
+                mx-auto
+
+                h-[410px]
+                w-full
+
+                overflow-hidden
+
+                rounded-t-[26px]
+                rounded-b-[18px]
+
+                border
+                border-[#D6B268]
+
+                bg-[#DED1BC]
+              "
+            >
+              <Image
+                src="/assets/about/our-story/founder-portrait.png"
+                alt="Vijay Sharma - Founder, Moksha Sewa"
+                fill
+                priority
+                quality={100}
+                sizes="(max-width:1024px) 100vw, 46vw"
+                className="
+                  object-cover
+                  object-center
+                "
+              />
+            </div>
+
+            {/* =================================================
+                GREEN MESSAGE CARD
+            ================================================= */}
+
+            <div
+              className="
+                relative
+                z-20
+
+                -mt-[14px]
+
+                min-h-[395px]
+
+                overflow-hidden
+
+                rounded-t-[52px]
+
+                border-[2px]
+                border-[#B7882A]
+
+                bg-[#004738]
+
+                px-[42px]
+                pb-[28px]
+                pt-[24px]
+
+                text-white
+
+                shadow-[0_10px_26px_rgba(0,51,40,0.16)]
+              "
+            >
+              {/* GOLD TOP INNER LINE */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[12px]
+                  right-[12px]
+                  top-[10px]
+
+                  h-[2px]
+
+                  rounded-full
+
+                  bg-[#C6922C]/70
+                "
+              />
+
+              {/* =================================================
+                  MANDALA WATERMARK
+              ================================================= */}
+
+              <svg
+                className="
+                  pointer-events-none
+                  absolute
+                  -bottom-[65px]
+                  -right-[56px]
+
+                  h-[250px]
+                  w-[250px]
+
+                  text-[#B88B31]/15
+                "
+                viewBox="0 0 200 200"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                aria-hidden="true"
+              >
+                <circle cx="100" cy="100" r="28" />
+                <circle cx="100" cy="100" r="53" />
+                <circle cx="100" cy="100" r="78" />
+
+                <path d="M100 13v174" />
+                <path d="M13 100h174" />
+                <path d="M38 38l124 124" />
+                <path d="M162 38 38 162" />
+
+                <path d="M100 21 116 70 100 93 84 70Z" />
+                <path d="M100 179 116 130 100 107 84 130Z" />
+
+                <path d="M21 100 70 84 93 100 70 116Z" />
+                <path d="M179 100 130 84 107 100 130 116Z" />
+              </svg>
+
+              {/* =================================================
+                  MESSAGE LABEL
+              ================================================= */}
+
+              <div
+                className="
+                  relative
+                  mx-auto
+
+                  flex
+                  h-[54px]
+                  max-w-[430px]
+
+                  items-center
+
+                  rounded-full
+
+                  border
+                  border-[#C09031]
+
+                  px-[64px]
+                "
+              >
+                <div
+                  className="
+                    absolute
+                    -left-[2px]
+                    top-1/2
+
+                    flex
+                    h-[66px]
+                    w-[66px]
+
+                    -translate-y-1/2
+
+                    items-center
+                    justify-center
+
+                    rounded-full
+
+                    border
+                    border-[#C09031]
+
+                    bg-[#004738]
+
+                    text-[#D19A2F]
+                  "
+                >
+                  <CustomIcon
+                    name="Founder"
+                    className="
+                      h-[38px]
+                      w-[38px]
+                    "
+                  />
+                </div>
+
+                <span
+                  className="
+                    w-full
+
+                    text-center
+                    text-[16px]
+                    font-bold
+                    uppercase
+                    tracking-[0.12em]
+
+                    text-[#E0A63A]
+                  "
+                >
+                  A Message From The Founder
+                </span>
+              </div>
+
+              {/* =================================================
+                  FOUNDER QUOTE
+              ================================================= */}
+
+              <div
+                className="
+                  relative
+                  mx-auto
+                  mt-[23px]
+
+                  max-w-[470px]
+
+                  px-[18px]
+                "
+              >
+                <span
+                  className="
+                    absolute
+                    -left-[6px]
+                    -top-[8px]
+
+                    font-serif
+                    text-[46px]
+                    leading-none
+
+                    text-[#C68412]
+                  "
+                >
+                  “
+                </span>
+
+                <p
+                  className="
+                    font-serif
+                    text-[23px]
+                    italic
+                    leading-[1.48]
+
+                    text-[#F8F1DF]
+                  "
+                  style={{
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                  }}
+                >
+                  Dignity should never depend on whether
+                  <br />
+                  someone has money, family or someone
+                  <br />
+                  standing beside them.
+                </p>
+
+                <span
+                  className="
+                    absolute
+                    bottom-[-18px]
+                    right-[4px]
+
+                    font-serif
+                    text-[46px]
+                    leading-none
+
+                    text-[#C68412]
+                  "
+                >
+                  ”
+                </span>
+              </div>
+
+              {/* GOLD ORNAMENT */}
+
+              <div
+                className="
+                  mt-[20px]
+                  flex
+                  justify-center
+                "
+              >
+                <CustomIcon
+                  name="Ornament"
+                  className="
+                    h-[28px]
+                    w-[150px]
+                    text-[#C9932E]
+                  "
+                />
+              </div>
+
+              {/* =================================================
+                  FOUNDER MESSAGE
+              ================================================= */}
+
+              <p
+                className="
+                  relative
+                  z-10
+
+                  mx-auto
+                  mt-[12px]
+
+                  max-w-[470px]
+
+                  text-[16px]
+                  leading-[1.48]
+
+                  text-[#F1EEE6]
+                "
+              >
+                Moksha Sewa is not just a service—it is a promise.
+                <br />
+                A promise that in someone&apos;s final moment, humanity
+                <br />
+                will not look away. Together, we can build a society
+                <br />
+                where compassion is stronger than circumstance.
+              </p>
+
+              {/* =================================================
+                  SIGNATURE
+              ================================================= */}
+
+              <div
+                className="
+                  relative
+                  z-10
+
+                  mx-auto
+                  mt-[14px]
+
+                  max-w-[470px]
+                "
+              >
+                <div
+                  className="
+                    font-serif
+                    text-[28px]
+                    leading-none
+
+                    text-[#C58B23]
+                  "
+                  style={{
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                  }}
+                >
+                  — Vijay Sharma
+                </div>
+
+                <div
+                  className="
+                    mt-[5px]
+                    text-[16px]
+                    text-[#F0E8D7]
+                  "
+                >
+                  Founder, Moksha Sewa
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =====================================================
+            MOBILE GHAT IMAGE
+        ====================================================== */}
+
+        <div
+          className="
+            relative
+            h-[360px]
+            w-full
+            overflow-hidden
+            lg:hidden
+          "
+        >
+          <Image
+            src="/assets/about/our-story/ghat-background.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="
+              object-cover
+              object-center
+            "
+          />
+
+          <div
+            className="
+              absolute
+              inset-x-0
+              top-0
+              h-[100px]
+
+              bg-gradient-to-b
+              from-[#FBF5EA]
+              to-transparent
+            "
+          />
+        </div>
+
+        {/* =====================================================
+            BOTTOM DECORATIVE STRIP
+        ====================================================== */}
+
+        <div
+          className="
+            absolute
+            inset-x-0
+            bottom-0
+            z-30
+          "
+        >
+          <div className="h-[4px] bg-[#C2932B]" />
+
+          <div
+            className="
+              relative
+              h-[30px]
+              overflow-hidden
+              bg-[#00452F]
+            "
+          >
+            <div
+              className="
+                absolute
+                inset-0
+                opacity-20
+              "
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, transparent 0 12px, rgba(198,157,55,.35) 12px 13px, transparent 13px 24px)",
+              }}
+            />
+
+            <div
+              className="
+                absolute
+                left-0
+                right-0
+                top-[3px]
+
+                h-px
+
+                bg-[#A97924]/65
+              "
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

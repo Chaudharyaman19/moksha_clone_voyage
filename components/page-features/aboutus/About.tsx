@@ -15,6 +15,7 @@ import WhoWeAre from "./WhoWeAre";
 import Howwesupport from "./Howwesupport";
 import Whyweexist from "./Whyweexist";
 import BehindMission from "./BehindMission";
+import Ourstory from "./Ourstory";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -289,7 +290,7 @@ export default function About() {
         <Howwesupport />
         <Whyweexist/>
         <BehindMission />
-
+        <Ourstory />
         {/* ============ NAMO GANGE TRUST ============ */}
 
         <AboutNamoGangeTrust />
