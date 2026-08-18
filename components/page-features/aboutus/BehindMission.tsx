@@ -1,8 +1,18 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { FaArrowRight, FaExpand, FaPlay, FaVolumeUp } from "react-icons/fa";
-import { PiFlowerLotus, PiHandHeart, PiHandsPraying, PiUsersThree } from "react-icons/pi";
+import {
+  FaArrowRight,
+  FaExpand,
+  FaPlay,
+  FaVolumeUp,
+} from "react-icons/fa";
+import {
+  PiFlowerLotus,
+  PiHandHeart,
+  PiHandsPraying,
+  PiUsersThree,
+} from "react-icons/pi";
 
 const missionLinks = [
   { eyebrow: "WHAT", label: "We Do", icon: PiHandHeart },
@@ -19,6 +29,7 @@ export default function BehindMission() {
   const toggleVideo = () => {
     const video = videoRef.current;
     if (!video) return;
+
     if (video.paused) {
       void video.play();
       setPlaying(true);
@@ -29,90 +40,166 @@ export default function BehindMission() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#fbf5e9] px-4 py-6 sm:px-6 lg:py-8">
-      <div className="pointer-events-none absolute -left-10 bottom-5 text-[#c5a968]/20">
-        <PiFlowerLotus className="h-40 w-40" />
+    <section className="relative overflow-hidden bg-[#F8F2E8] px-6 py-7 lg:px-8 lg:py-8 2xl:px-0">
+      {/* subtle decorative corner lotuses */}
+      <div className="pointer-events-none absolute -left-12 bottom-3 text-[#C7AA6C]/15">
+        <PiFlowerLotus className="h-44 w-44" />
       </div>
-      <div className="pointer-events-none absolute -right-12 -top-9 text-[#c5a968]/15">
-        <PiFlowerLotus className="h-44 w-44 rotate-[-22deg]" />
+      <div className="pointer-events-none absolute -right-12 -top-8 text-[#C7AA6C]/12">
+        <PiFlowerLotus className="h-48 w-48 rotate-[-20deg]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl">
-        <div className="grid items-center gap-6 lg:grid-cols-[.72fr_1.78fr] lg:gap-10">
+        {/* MAIN TOP AREA */}
+        <div className="grid items-center gap-7 lg:grid-cols-[0.78fr_1.62fr] lg:gap-10">
+          {/* LEFT COPY */}
           <div className="mx-auto w-full max-w-[330px] lg:mx-0">
-            <div className="flex items-center gap-2 text-[#214b3d]">
-              <span className="h-px w-12 bg-[#c6a25c]" />
-              <PiFlowerLotus className="h-8 w-8 text-[#bd842b]" />
-              <span className="h-px flex-1 bg-[#c6a25c]" />
+            {/* top decorative lotus */}
+            <div className="flex items-center justify-center gap-3 text-[#C18C36] lg:justify-start">
+              <span className="h-px w-12 bg-[#C6A25C]" />
+              <PiFlowerLotus className="h-8 w-8" />
+              <span className="h-px w-12 bg-[#C6A25C]" />
             </div>
 
-            <div className="mt-1 flex items-center gap-2 text-[12px] font-bold tracking-[0.12em] text-[#24483d]">
-              <span className="h-px w-11 bg-[#c6a25c]" />
+            {/* 06 video */}
+            <div className="mt-1 flex items-center justify-center gap-2 text-[16px] font-bold tracking-[0.08em] text-[#24483D] lg:justify-start">
+              <span className="h-px w-10 bg-[#C6A25C]" />
               <span>06 — VIDEO</span>
-              <span className="h-px flex-1 bg-[#c6a25c]" />
+              <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
-            <p className="mt-4 text-[15px] font-semibold tracking-[0.18em] text-[#a67532]">SEE THE MISSION</p>
-            <h2 className="mt-2 font-serif text-[42px] font-semibold leading-[.94] tracking-[-0.025em] text-[#123e32] sm:text-[48px]">
+            <p className="mt-4 text-center text-[16px] font-semibold uppercase tracking-[0.16em] text-[#A67532] lg:text-left">
+              See the Mission
+            </p>
+
+            <h2 className="mt-2 text-center font-serif text-[44px] font-semibold leading-[0.95] tracking-[-0.03em] text-[#123E32] sm:text-[50px] lg:text-left lg:text-[54px]">
               Behind
-              <span className="block text-[#9b672e]">Moksha Sewa</span>
+              <span className="block text-[#9B672E]">Moksha Sewa</span>
             </h2>
 
-            <p className="mt-5 max-w-[300px] text-[14px] leading-[1.7] text-[#334a43]">
-              Every final journey carries a story.<br />
+            <p className="mt-5 text-center text-[16px] leading-[1.62] text-[#334A43] lg:text-left">
+              Every final journey carries a story.
+              <br />
               This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.
             </p>
 
-            <button type="button" onClick={toggleVideo} className="mt-6 inline-flex h-12 items-center gap-3 rounded-[10px] bg-[#0f4938] px-5 text-[14px] text-white shadow-[0_7px_13px_rgba(22,67,52,.25)] transition hover:bg-[#0a3c2e]">
-              <PiFlowerLotus className="h-6 w-6 text-[#d1a23e]" />
-              <span>Explore Our Work</span>
-              <FaArrowRight className="ml-1 h-3 w-3 text-[#d1a23e]" />
-            </button>
-          </div>
-
-          <div className="relative aspect-[1.86/1] overflow-hidden rounded-[20px] border border-[#c19445] bg-[#10281f] shadow-[0_9px_18px_rgba(45,35,21,.35)]">
-            <video
-              ref={videoRef}
-              className="h-full w-full object-cover"
-              poster="/hero-images/support-mission-ghat.png"
-              preload="metadata"
-              onPlay={() => setPlaying(true)}
-              onPause={() => setPlaying(false)}
-              onEnded={() => setPlaying(false)}
-            >
-              <source src="/vedio/taniya.mp4" type="video/mp4" />
-            </video>
-
-            <span className="absolute right-4 top-4 rounded-full border border-[#d2aa4f] bg-[#113c31]/90 px-3 py-1 text-[10px] font-medium text-white">
-              ◷&nbsp; 60–90 seconds
-            </span>
-
-            {!playing && (
-              <button type="button" onClick={toggleVideo} aria-label="Play mission video" className="absolute left-1/2 top-1/2 grid h-[72px] w-[72px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-[#d1a84c] bg-[#0a332a]/95 text-white shadow-[0_4px_12px_rgba(0,0,0,.35)]">
-                <FaPlay className="ml-1 h-7 w-7" />
+            <div className="relative mt-6 flex justify-center lg:justify-start">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-[250px] -translate-x-1/2 -translate-y-1/2 opacity-75 blur-2xl lg:left-[120px]"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(214,162,61,0.34) 0%, rgba(214,162,61,0.14) 48%, transparent 76%)",
+                }}
+              />
+              <button
+                type="button"
+                onClick={toggleVideo}
+                className="inline-flex h-[52px] items-center gap-3 bg-[#0E4B3A] px-5 text-[16px] font-medium text-white shadow-[0_7px_14px_rgba(22,67,52,0.22)] transition hover:bg-[#0A3C2E]"
+              >
+                <PiFlowerLotus className="h-6 w-6 text-[#D1A23E]" />
+                <span>Explore Our Work</span>
+                <FaArrowRight className="ml-1 h-3.5 w-3.5 text-[#D1A23E]" />
               </button>
-            )}
+            </div>
+          </div>
 
-            <div className="absolute inset-x-0 bottom-0 flex h-11 items-center gap-3 bg-gradient-to-t from-black/80 to-transparent px-5 text-white">
-              <button type="button" onClick={toggleVideo} aria-label={playing ? "Pause video" : "Play video"} className="text-[15px]">{playing ? "Ⅱ" : <FaPlay className="h-3 w-3" />}</button>
-              <span className="text-[11px]">0:00 / 1:20</span>
-              <span className="relative h-[3px] flex-1 rounded-full bg-white/45"><span className="absolute left-0 top-0 h-full w-[35%] rounded-full bg-[#d5a74a]" /><span className="absolute left-[35%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#e9c466]" /></span>
-              <FaVolumeUp className="h-4 w-4" />
-              <span className="text-base">⚙</span>
-              <FaExpand className="h-3.5 w-3.5" />
+          {/* VIDEO CARD */}
+          <div className="relative">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-x-6 -inset-y-5 opacity-80 blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 50%, rgba(214,162,61,0.30) 0%, rgba(214,162,61,0.16) 34%, rgba(214,162,61,0.06) 58%, transparent 78%)",
+              }}
+            />
+            <div className="relative aspect-[1.98/1] overflow-hidden border border-[#B9893E] bg-[#10281F] shadow-[0_10px_22px_rgba(45,35,21,0.26),0_0_28px_rgba(202,145,46,0.16)]">
+              <video
+                ref={videoRef}
+                className="h-full w-full object-cover"
+                poster="/hero-images/support-mission-ghat.png"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+                onEnded={() => setPlaying(false)}
+              >
+                <source src="/vedio/taniya.mp4" type="video/mp4" />
+              </video>
+
+              {/* time badge */}
+              <span className="absolute right-4 top-4 border border-[#D2AA4F] bg-[#113C31]/90 px-3 py-1 text-[16px] font-medium text-white">
+                ◷&nbsp; 60–90 seconds
+              </span>
+
+              {/* central play */}
+              {!playing && (
+                <button
+                  type="button"
+                  onClick={toggleVideo}
+                  aria-label="Play mission video"
+                  className="absolute left-1/2 top-1/2 grid h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 place-items-center border-2 border-[#D1A84C] bg-[#0A332A]/95 text-white shadow-[0_4px_14px_rgba(0,0,0,.35)]"
+                >
+                  <FaPlay className="ml-1 h-8 w-8" />
+                </button>
+              )}
+
+              {/* control bar */}
+              <div className="absolute inset-x-0 bottom-0 flex h-12 items-center gap-3 bg-gradient-to-t from-black/80 to-transparent px-5 text-white">
+                <button
+                  type="button"
+                  onClick={toggleVideo}
+                  aria-label={playing ? "Pause video" : "Play video"}
+                  className="text-[16px]"
+                >
+                  {playing ? "Ⅱ" : <FaPlay className="h-3.5 w-3.5" />}
+                </button>
+
+                <span className="text-[16px]">0:00 / 1:20</span>
+
+                <span className="relative h-[3px] flex-1 bg-white/45">
+                  <span className="absolute left-0 top-0 h-full w-[35%] bg-[#D5A74A]" />
+                  <span className="absolute left-[35%] top-1/2 h-2.5 w-2.5 -translate-y-1/2 bg-[#E9C466]" />
+                </span>
+
+                <FaVolumeUp className="h-4 w-4" />
+                <span className="text-[16px]">⚙</span>
+                <FaExpand className="h-4 w-4" />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-7 grid overflow-hidden rounded-[17px] border border-[#b78938] bg-[#0d4939] px-3 py-3 text-white shadow-[0_7px_16px_rgba(22,60,46,.25)] sm:grid-cols-5 sm:px-5">
-          {missionLinks.map(({ eyebrow, label, icon: Icon }, index) => (
-            <div key={`${eyebrow}-${label}`} className={`flex items-center justify-center gap-3 px-3 py-2 ${index ? "border-t border-[#c29b50]/35 sm:border-l sm:border-t-0" : ""}`}>
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#d1a64b] text-[#d1a64b]"><Icon className="h-7 w-7" /></span>
-              <span className="min-w-0"><span className="block whitespace-nowrap text-[10px] font-semibold text-[#d4aa52]">{eyebrow}</span><span className="block whitespace-nowrap font-serif text-[15px]">{label}</span></span>
-            </div>
-          ))}
+          {/* BOTTOM MISSION LINKS */}
+          <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
+            {missionLinks.map(({ eyebrow, label, icon: Icon }, index) => (
+              <div
+                key={`${eyebrow}-${label}`}
+                className={`flex min-h-[58px] items-center justify-center gap-3 px-4 py-1 ${index
+                    ? "border-t border-[#C29B50]/35 sm:border-l sm:border-t-0"
+                    : ""
+                  }`}
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center border border-[#D1A64B] text-[#D1A64B]">
+                  <Icon className="h-6 w-6" />
+                </span>
+
+                <span className="min-w-0">
+                  <span className="block whitespace-nowrap text-[16px] font-semibold text-[#D4AA52]">
+                    {eyebrow}
+                  </span>
+                  <span className="block whitespace-nowrap font-serif text-[16px] text-white">
+                    {label}
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
     </section>
   );
 }
