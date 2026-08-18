@@ -218,7 +218,7 @@ function RefundPolicyCard({
       className="refund-policy-card group flex h-full flex-col overflow-hidden rounded-[18px] border border-[#E6DCC4] bg-[#FFFDF8] shadow-[0_10px_28px_rgba(66,57,15,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(66,57,15,0.14)]"
     >
       {isEven && card.image && (
-        <div className="relative h-44 shrink-0 overflow-hidden">
+        <div className="relative h-32 shrink-0 overflow-hidden">
           <Image
             src={card.image}
             alt={card.imageAlt ?? ""}
@@ -238,37 +238,37 @@ function RefundPolicyCard({
         </div>
       )}
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-4">
         <div className="flex items-center justify-between gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1F3D2B] shadow-[0_6px_14px_rgba(31,61,43,0.25)]">
-            <Icon size={20} strokeWidth={1.5} className="text-[#F2DCA2]" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1F3D2B] shadow-[0_6px_14px_rgba(31,61,43,0.25)]">
+            <Icon size={19} strokeWidth={1.5} className="text-[#F2DCA2]" />
           </div>
 
           {!isEven && (
-            <span className="rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-1 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
+            <span className="rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-0.5 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
               {String(card.number).padStart(2, "0")}
             </span>
           )}
         </div>
 
-        <h3 className="mt-4 font-serif text-[19px] font-bold leading-[1.35] text-[#1F3D2B]">
+        <h3 className="mt-3 font-serif text-[17px] font-bold leading-[1.35] text-[#1F3D2B]">
           {card.title}
         </h3>
 
-        <p className="mt-1.5 text-[14px] leading-[1.6] text-[#72694A]">
+        <p className="mt-1 text-[14px] leading-[1.55] text-[#72694A]">
           {card.tagline}
         </p>
 
-        <div className="mt-4 flex items-center gap-2" aria-hidden="true">
+        <div className="mt-3 flex items-center gap-2" aria-hidden="true">
           <span className="h-px w-full bg-gradient-to-r from-[#C9A227]/60 via-[#C9A227]/25 to-transparent" />
-          <Sprout size={13} className="shrink-0 text-[#C9A227]" />
+          <Sprout size={12} className="shrink-0 text-[#C9A227]" />
         </div>
 
         <button
           type="button"
           aria-expanded={expanded}
           onClick={() => setExpanded((value) => !value)}
-          className="mt-auto flex w-fit items-center gap-2 pt-5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#1F3D2B] transition-colors hover:text-[#B76B16]"
+          className="mt-auto flex w-fit items-center gap-2 pt-3 text-[13px] font-bold uppercase tracking-[0.14em] text-[#1F3D2B] transition-colors hover:text-[#B76B16]"
         >
           <span className="border-b-2 border-[#C9A227] pb-0.5 transition-all duration-300 group-hover:border-[#B76B16]">
             {expanded ? "Show Less" : "Read More"}
@@ -289,7 +289,7 @@ function RefundPolicyCard({
           }`}
         >
           <div className="overflow-hidden">
-            <div className="mt-4 rounded-[10px] border border-[#EADFC4] bg-[#FAF4E4]/70 px-3.5 py-3 text-[14px] leading-[1.6] text-[#5F5836]">
+            <div className="mt-2.5 rounded-[10px] border border-[#EADFC4] bg-[#FAF4E4]/70 px-3.5 py-2.5 text-[14px] leading-[1.6] text-[#5F5836]">
               {card.content}
             </div>
           </div>
@@ -864,7 +864,7 @@ export default function RefundPolicy() {
           >
             <h2 className="sr-only">How to Request a Refund</h2>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {premiumCards.map((card, index) => (
                 <RefundPolicyCard
                   key={card.number}
