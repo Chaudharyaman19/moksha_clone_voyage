@@ -10,6 +10,7 @@ import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
 import AboutBanner from "@/components/sections/AboutBanner/AboutBanner";
 import MokshaSewaIntro from "@/components/sections/MokshaSewaIntro/MokshaSewaIntro";
+import MokshaServices from "@/components/sections/MokshaServices/MokshaServices";
 // import AboutHeroSlider from "./AboutHeroSlider";
 import WhoWeAre from "./WhoWeAre";
 import Howwesupport from "./Howwesupport";
@@ -558,6 +559,10 @@ export default function About() {
             </div>
           </div>
         </section>
+
+        {/* ============ MOKSHA SERVICES — what we do ============ */}
+
+        <MokshaServices />
 
         {/* ============ OUR PROCESS — zigzag journey ============ */}
 
