@@ -5,6 +5,7 @@ import CompassionSection from "@/components/sections/CompassionSection/Compassio
 import OurSewa from "@/components/sections/OurSewa/HowHelp";
 import Howwehelp from "@/components/sections/Who We Help/WhoWeHelp";
 import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
+import FamilyNeed from "@/components/sections/FamilyNeed/FamilyNeed";
 import OurHumanitarianCommitment from "@/components/sections/OurHumanitarianCommitment/OurHumanitarianCommitment";
 import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
@@ -36,6 +37,8 @@ export default function Page() {
         <Hero />
 
         <Howwehelp />
+        <PracticalSewaSupport />
+        <FamilyNeed />
         {/* <OurSewa /> */}
 
 
@@ -45,7 +48,7 @@ export default function Page() {
      
         {/* <DonateVolunteerHighlight /> */}
 
-        <PracticalSewaSupport />
+   
 
         <HowSewaWorks />
         <CompassionSection />
