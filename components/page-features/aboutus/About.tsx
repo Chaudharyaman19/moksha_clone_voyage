@@ -9,6 +9,7 @@ import FoundersVision from "./FoundersVision";
 import BoardMembers from "./BoardMembers";
 import OurInitiatives from "./OurInitiatives";
 import AboutHeroSlider from "./AboutHeroSlider";
+import WhoWeAre from "./WhoWeAre";
 import {
   FaAmbulance,
   FaArrowRight,
@@ -268,6 +269,10 @@ export default function About() {
             })}
           </div>
         </section>
+
+        {/* ============ WHO WE ARE ============ */}
+
+        <WhoWeAre />
 
         {/* ============ ABOUT MOKSHA SEWA ============ */}
 
