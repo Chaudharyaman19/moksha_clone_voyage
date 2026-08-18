@@ -171,7 +171,7 @@ export default function GlimpseOfJourney() {
                 {/* Small gold divider */}
                 <div className="mt-2 h-[2px] w-[40px] bg-[#c49a43]" />
 
-                <p className="mt-2 max-w-[300px] text-[16px] leading-[1.55] text-[#3e4543]">
+                <p className="mt-2 max-w-[300px] text-[16px] font-medium leading-[1.55] text-[#333a38]">
                   {card.description}
                 </p>
 
@@ -202,7 +202,7 @@ export default function GlimpseOfJourney() {
             onClick={() =>
               window.open("/mokshagallery", "_blank", "noopener,noreferrer")
             }
-            className="group relative flex min-h-[57px] min-w-[300px] items-center justify-center gap-3 rounded-[15px] border-2 border-[#bb8d30] bg-[#0a3a2e] px-7 text-[16px] font-semibold uppercase tracking-[0.07em] text-white shadow-[0_5px_14px_rgba(0,61,48,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#053228] hover:shadow-[0_9px_22px_rgba(0,61,48,0.25)] sm:min-h-[62px] sm:min-w-[380px]"
+            className="group relative flex min-h-[48px] min-w-[300px] items-center justify-center gap-3 rounded-[15px] border-2 border-[#bb8d30] bg-[#0a3a2e] px-7 text-[16px] font-semibold uppercase tracking-[0.07em] text-white shadow-[0_5px_14px_rgba(0,61,48,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#053228] hover:shadow-[0_9px_22px_rgba(0,61,48,0.25)] sm:min-h-[52px] sm:min-w-[380px]"
           >
             {/* Gallery icon */}
             <span className="flex h-[30px] w-[30px] items-center justify-center text-[#d5a441]">
