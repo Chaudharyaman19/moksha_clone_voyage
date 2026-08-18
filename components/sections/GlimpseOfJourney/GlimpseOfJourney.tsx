@@ -67,7 +67,7 @@ export default function GlimpseOfJourney() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10 xl:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] py-8 sm:py-10 md:py-12">
         {/* Section header */}
         <header className="mx-auto mb-3 max-w-[760px] text-center">
           {/* Eyebrow */}
@@ -117,7 +117,7 @@ export default function GlimpseOfJourney() {
               />
 
               {/* Image wrapper */}
-              <div className="relative h-[200px] rounded-t-[17px] sm:h-[180px] md:h-[190px] lg:h-[200px] xl:h-[210px]">
+              <div className="relative h-[230px] rounded-t-[17px] sm:h-[205px] md:h-[215px] lg:h-[230px] xl:h-[240px]">
                 <div
                   className="absolute inset-0 overflow-hidden rounded-t-[17px]"
                   style={{ clipPath: "url(#sewa-card-curve)" }}
@@ -151,19 +151,19 @@ export default function GlimpseOfJourney() {
               </div>
 
               {/* Icon */}
-              <div className="absolute left-1/2 top-[163px] z-20 flex h-[74px] w-[74px] -translate-x-1/2 items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-105 sm:top-[143px] md:top-[153px] lg:top-[163px] xl:top-[173px]">
+              <div className="absolute left-1/2 top-[183px] z-20 flex h-[74px] w-[74px] -translate-x-1/2 items-center justify-center overflow-hidden rounded-full transition-transform duration-500 group-hover:scale-105 sm:top-[158px] md:top-[168px] lg:top-[183px] xl:top-[193px]">
                 <Image
                   src={card.icon}
                   alt=""
                   aria-hidden="true"
-                  width={64}
-                  height={64}
-                  className="h-full w-full object-cover"
+                  width={74}
+                  height={74}
+                  className="h-[74px] w-[74px] shrink-0 object-cover"
                 />
               </div>
 
               {/* Card content */}
-              <div className="relative flex min-h-[150px] flex-col items-center px-5 pb-4 pt-[57px] text-center sm:min-h-[145px] md:min-h-[150px] lg:min-h-[155px] lg:px-4 xl:px-6">
+              <div className="relative flex min-h-[150px] flex-col items-center px-5 pb-4 pt-[30px] text-center sm:min-h-[145px] md:min-h-[150px] lg:min-h-[155px] lg:px-4 xl:px-6">
                 <h3 className="font-serif text-[20px] font-semibold leading-tight text-[#104c3e] sm:text-[19px] md:text-[20px] lg:text-[20px] xl:text-[21px]">
                   {card.title}
                 </h3>
@@ -171,7 +171,7 @@ export default function GlimpseOfJourney() {
                 {/* Small gold divider */}
                 <div className="mt-2 h-[2px] w-[40px] bg-[#c49a43]" />
 
-                <p className="mt-3 max-w-[300px] text-[16px] leading-[1.55] text-[#3e4543]">
+                <p className="mt-2 max-w-[300px] text-[16px] font-medium leading-[1.55] text-[#333a38]">
                   {card.description}
                 </p>
 
@@ -202,7 +202,7 @@ export default function GlimpseOfJourney() {
             onClick={() =>
               window.open("/mokshagallery", "_blank", "noopener,noreferrer")
             }
-            className="group relative flex min-h-[57px] min-w-[300px] items-center justify-center gap-3 rounded-[15px] border-2 border-[#bb8d30] bg-[#00503f] px-7 text-[14px] font-semibold uppercase tracking-[0.07em] text-white shadow-[0_5px_14px_rgba(0,61,48,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#063f34] hover:shadow-[0_9px_22px_rgba(0,61,48,0.25)] sm:min-h-[62px] sm:min-w-[380px] sm:text-[16px]"
+            className="group relative flex min-h-[48px] min-w-[300px] items-center justify-center gap-3 rounded-[15px] border-2 border-[#bb8d30] bg-[#0a3a2e] px-7 text-[16px] font-semibold uppercase tracking-[0.07em] text-white shadow-[0_5px_14px_rgba(0,61,48,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#053228] hover:shadow-[0_9px_22px_rgba(0,61,48,0.25)] sm:min-h-[52px] sm:min-w-[380px]"
           >
             {/* Gallery icon */}
             <span className="flex h-[30px] w-[30px] items-center justify-center text-[#d5a441]">
