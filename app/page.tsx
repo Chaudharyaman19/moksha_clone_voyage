@@ -21,6 +21,7 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import SewaStories from "@/components/sections/SewaStories/SewaStories";
 import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/WhyYourSupportMatters";
 import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission";
+import OneFinalActOfHumanity from "@/components/sections/OneFinalActOfHumanity/OneFinalActOfHumanity";
 
 export const metadata = createPageMetadata("/");
 
@@ -56,6 +57,7 @@ export default function Page() {
         <WhyFamiliesTrust />
         <VoicesOfGratitude />
         <GlimpseOfJourney />
+        <OneFinalActOfHumanity />
         <FAQ />
       </main>
       <Footer />
