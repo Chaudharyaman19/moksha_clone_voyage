@@ -234,6 +234,10 @@ export default function About() {
 
         <AboutBanner />
 
+        {/* ============ WHO WE ARE ============ */}
+
+        <WhoWeAre />
+
         {/* ============ WHAT IS MOKSHA SEWA — intro ============ */}
 
         <MokshaSewaIntro />
@@ -277,10 +281,6 @@ export default function About() {
             })}
           </div>
         </section>
-
-        {/* ============ WHO WE ARE ============ */}
-
-        <WhoWeAre />
 
         {/* ============ ABOUT MOKSHA SEWA ============ */}
 
