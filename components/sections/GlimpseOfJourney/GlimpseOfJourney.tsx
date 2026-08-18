@@ -9,7 +9,7 @@ const SEWA_CARDS = [
     title: "On-Ground Sewa",
     description:
       "Compassionate support on the ground, ensuring every step of the journey is handled with care.",
-    image: "/assets/sewa/on-ground.png",
+    image: "/assets/sewa/on_ground_image.png",
     icon: "/assets/sewa/on-ground.png",
   },
   {
@@ -17,7 +17,7 @@ const SEWA_CARDS = [
     title: "Volunteer Sewa",
     description:
       "Dedicated volunteers selflessly giving their time and energy to serve those in need.",
-    image: "/assets/sewa/voluteer-seva.png",
+    image: "/assets/sewa/voluteer_sewa_image.png",
     icon: "/assets/sewa/voluteer-seva.png",
   },
   {
@@ -25,7 +25,7 @@ const SEWA_CARDS = [
     title: "Ritual Support",
     description:
       "Providing ritual essentials and guidance with dignity, respect and authenticity.",
-    image: "/assets/sewa/ritual-support.png",
+    image: "/assets/sewa/ritual_support_image.png",
     icon: "/assets/sewa/ritual-support.png",
   },
   {
@@ -33,7 +33,7 @@ const SEWA_CARDS = [
     title: "Community Outreach",
     description:
       "Building awareness, extending care and supporting communities with empathy.",
-    image: "/assets/sewa/community-outreach.png",
+    image: "/assets/sewa/community_outreach_image.png",
     icon: "/assets/sewa/community-outreach.png",
   },
 ];
@@ -67,9 +67,9 @@ export default function GlimpseOfJourney() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-10 lg:py-10 xl:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10 xl:px-12">
         {/* Section header */}
-        <header className="mx-auto max-w-[1250px] text-center">
+        <header className="mx-auto mb-3 max-w-[760px] text-center">
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-10 bg-[#b68a2d] sm:w-16 md:w-20" />
@@ -82,37 +82,44 @@ export default function GlimpseOfJourney() {
           </div>
 
           {/* Main heading */}
-          <h2 className="mt-2 font-serif text-[31px] font-semibold leading-[1.08] tracking-[-0.025em] text-[#034b3c] sm:text-[40px] md:text-[48px] lg:text-[53px] xl:text-[57px]">
+          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
             Moments of Compassion, Service &amp; Dignity
           </h2>
 
-          {/* Decorative divider */}
-          <div className="mt-4 flex items-center justify-center gap-3 sm:gap-4">
-            <span className="h-px w-16 bg-[#b8954b] sm:w-24 md:w-32" />
-
-            {/* Lotus-like decorative symbol */}
-            <span className="relative flex h-[30px] w-[30px] items-center justify-center text-[#b68a2d] sm:h-[34px] sm:w-[34px]">
-              <span className="absolute bottom-[2px] left-1/2 h-[11px] w-[21px] -translate-x-1/2 rounded-[50%] border-[1.5px] border-[#b68a2d]" />
-              <span className="absolute bottom-[5px] left-[4px] h-[17px] w-[12px] rotate-[-28deg] rounded-[50%] border-[1.5px] border-[#b68a2d]" />
-              <span className="absolute bottom-[5px] right-[4px] h-[17px] w-[12px] rotate-[28deg] rounded-[50%] border-[1.5px] border-[#b68a2d]" />
-              <span className="absolute left-1/2 top-[1px] h-[20px] w-[12px] -translate-x-1/2 rounded-[50%] border-[1.5px] border-[#b68a2d]" />
-            </span>
-
-            <span className="h-px w-16 bg-[#b8954b] sm:w-24 md:w-32" />
+          {/* Decorative image */}
+          <div className="mt-1 flex justify-center">
+            <Image
+              src="/assets/faq/title_decoration.png"
+              alt=""
+              aria-hidden="true"
+              width={2928}
+              height={269}
+              className="h-auto w-[200px] max-w-full object-contain sm:w-[260px] md:w-[320px]"
+            />
           </div>
         </header>
 
         {/* Cards */}
-        <div className="mx-auto mt-7 grid w-full max-w-[1440px] grid-cols-1 gap-5 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
+        <div className="mx-auto mt-5 grid w-full max-w-[1440px] grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
           {SEWA_CARDS.map((card) => (
             <article
               key={card.id}
-              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] bg-[#fffdf8] shadow-[0_5px_16px_rgba(67,51,25,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(67,51,25,0.18)]"
+              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_5px_16px_rgba(67,51,25,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(67,51,25,0.18)]"
             >
+              {/* Card background image */}
+              <Image
+                src="/assets/sewa/card_image.png"
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="pointer-events-none absolute inset-0 h-full w-full rounded-[17px] object-fill"
+              />
+
               {/* Image wrapper */}
-              <div className="relative h-[245px] rounded-t-[17px] sm:h-[220px] md:h-[230px] lg:h-[250px] xl:h-[260px]">
+              <div className="relative h-[200px] rounded-t-[17px] sm:h-[180px] md:h-[190px] lg:h-[200px] xl:h-[210px]">
                 <div
-                  className="absolute inset-0 overflow-hidden"
+                  className="absolute inset-0 overflow-hidden rounded-t-[17px]"
                   style={{ clipPath: "url(#sewa-card-curve)" }}
                 >
                   <Image
@@ -123,16 +130,28 @@ export default function GlimpseOfJourney() {
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.045]"
                   />
 
-                  {/* Image bottom fade */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#fffdf8]/80 to-transparent" />
-
                   {/* Gold image bottom border */}
                   <div className="absolute bottom-[-1px] left-0 h-[2px] w-full bg-[#c39b43]" />
                 </div>
+
+                {/* Golden border following the curve */}
+                <svg
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M0,82 C18,91 32,94 50,95 C68,94 82,91 100,82"
+                    fill="none"
+                    stroke="#c39b43"
+                    strokeWidth="1.5"
+                  />
+                </svg>
               </div>
 
               {/* Icon */}
-              <div className="absolute left-1/2 top-[218px] z-20 flex h-[74px] w-[74px] -translate-x-1/2 items-center justify-center rounded-full border-[3px] border-[#d1a348] bg-[#00503f] p-[5px] shadow-[0_3px_10px_rgba(0,0,0,0.20)] transition-transform duration-500 group-hover:scale-105 sm:top-[193px] md:top-[203px] lg:top-[223px] xl:top-[233px]">
+              <div className="absolute left-1/2 top-[163px] z-20 flex h-[74px] w-[74px] -translate-x-1/2 items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-105 sm:top-[143px] md:top-[153px] lg:top-[163px] xl:top-[173px]">
                 <Image
                   src={card.icon}
                   alt=""
@@ -144,7 +163,7 @@ export default function GlimpseOfJourney() {
               </div>
 
               {/* Card content */}
-              <div className="relative flex min-h-[178px] flex-col items-center px-5 pb-5 pt-[57px] text-center sm:min-h-[175px] md:min-h-[178px] lg:min-h-[180px] lg:px-4 xl:px-6">
+              <div className="relative flex min-h-[150px] flex-col items-center px-5 pb-4 pt-[57px] text-center sm:min-h-[145px] md:min-h-[150px] lg:min-h-[155px] lg:px-4 xl:px-6">
                 <h3 className="font-serif text-[20px] font-semibold leading-tight text-[#104c3e] sm:text-[19px] md:text-[20px] lg:text-[20px] xl:text-[21px]">
                   {card.title}
                 </h3>
@@ -152,7 +171,7 @@ export default function GlimpseOfJourney() {
                 {/* Small gold divider */}
                 <div className="mt-2 h-[2px] w-[40px] bg-[#c49a43]" />
 
-                <p className="mt-3 max-w-[300px] text-[13px] leading-[1.55] text-[#3e4543] sm:text-[12.5px] md:text-[13px] lg:text-[12.5px] xl:text-[13px]">
+                <p className="mt-3 max-w-[300px] text-[16px] leading-[1.55] text-[#3e4543]">
                   {card.description}
                 </p>
 
@@ -168,14 +187,14 @@ export default function GlimpseOfJourney() {
         </div>
 
         {/* Gallery CTA */}
-        <div className="relative mx-auto mt-6 flex w-full max-w-[900px] items-center justify-center sm:mt-7 md:mt-8">
+        <div className="relative mx-auto mt-5 flex w-full max-w-[900px] items-center justify-center md:mt-6">
           {/* Left decorative line */}
-          <div className="absolute left-0 hidden w-[28%] items-center md:flex">
+          {/* <div className="absolute left-0 hidden w-[28%] items-center md:flex">
             <span className="h-[9px] w-[9px] shrink-0 rounded-full bg-[#bb933e]" />
             <span className="h-px flex-1 bg-[#bb933e]" />
             <span className="mx-2 h-[7px] w-[7px] rotate-45 border border-[#bb933e]" />
             <span className="h-px w-6 bg-[#bb933e]" />
-          </div>
+          </div> */}
 
           {/* Button */}
           <button
@@ -200,12 +219,12 @@ export default function GlimpseOfJourney() {
           </button>
 
           {/* Right decorative line */}
-          <div className="absolute right-0 hidden w-[28%] items-center md:flex">
+          {/* <div className="absolute right-0 hidden w-[28%] items-center md:flex">
             <span className="h-px w-6 bg-[#bb933e]" />
             <span className="mx-2 h-[7px] w-[7px] rotate-45 border border-[#bb933e]" />
             <span className="h-px flex-1 bg-[#bb933e]" />
             <span className="h-[9px] w-[9px] shrink-0 rounded-full bg-[#bb933e]" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -123,7 +123,7 @@ export default function FAQSection() {
           </div>
 
           {/* Title */}
-          <h2 className="mt-1 font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#034b3c] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px]">
+          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
             Frequently Asked Questions
           </h2>
 
