@@ -491,30 +491,25 @@ export default function OurStory() {
             >
               <p>
                 This question became the foundation of{" "}
-                <span
-                  className="
-                    font-semibold
-                    text-[#B8730E]
-                  "
-                >
+                <span className="font-semibold text-[#B8730E]">
                   Moksha Sewa
                 </span>
-                —a mission created so that when someone is left
-                without family, support or resources, humanity can
-                still stand beside them.
+                —a mission created so that when someone is left without
+                family, support or resources, humanity can still stand beside
+                them.
               </p>
 
               <p>
-                We believe that every individual, regardless of
-                identity, status or circumstance, deserves a final
-                journey of dignity, respect and compassion.
+                We believe that every individual, regardless of identity,
+                status or circumstance, deserves a final journey of dignity,
+                respect and compassion.
               </p>
 
               <p>
-                Our mission is to ensure that no one faces their
-                final journey alone. Through sevabhav, community
-                support and responsible action, we stand beside the
-                most vulnerable—because every life deserves dignity.
+                Our mission is to ensure that no one faces their final journey
+                alone. Through sevabhav, community support and responsible
+                action, we stand beside the most vulnerable—because every life
+                deserves dignity.
               </p>
             </div>
           </div>
@@ -549,8 +544,7 @@ export default function OurStory() {
 
                 overflow-hidden
 
-                rounded-t-[26px]
-                rounded-b-[18px]
+                rounded-[26px]
 
                 border
                 border-[#D6B268]
@@ -559,7 +553,7 @@ export default function OurStory() {
               "
             >
               <Image
-                src="/assets/about/our-story/founder-portrait.png"
+                src="/assets/vijay_sharma.jpg"
                 alt="Vijay Sharma - Founder, Moksha Sewa"
                 fill
                 priority
@@ -573,7 +567,8 @@ export default function OurStory() {
             </div>
 
             {/* =================================================
-                GREEN MESSAGE CARD
+                GREEN FOUNDER MESSAGE CARD
+                REFERENCE STYLE
             ================================================= */}
 
             <div
@@ -581,61 +576,45 @@ export default function OurStory() {
                 relative
                 z-20
 
+                -mx-[12px]
                 -mt-[14px]
 
-                min-h-[395px]
+                min-h-[382px]
 
                 overflow-hidden
 
-                rounded-t-[52px]
+                rounded-t-[50px]
+                rounded-b-[3px]
 
-                border-[2px]
-                border-[#B7882A]
+                border
+                border-[#B88929]
 
-                bg-[#004738]
+                bg-[#004A39]
 
-                px-[42px]
-                pb-[28px]
+                px-[48px]
+                pb-[24px]
                 pt-[24px]
 
                 text-white
 
-                shadow-[0_10px_26px_rgba(0,51,40,0.16)]
+                shadow-[0_10px_24px_rgba(0,51,40,0.14)]
               "
             >
-              {/* GOLD TOP INNER LINE */}
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  left-[12px]
-                  right-[12px]
-                  top-[10px]
-
-                  h-[2px]
-
-                  rounded-full
-
-                  bg-[#C6922C]/70
-                "
-              />
-
               {/* =================================================
-                  MANDALA WATERMARK
+                  FAINT RIGHT MANDALA
               ================================================= */}
 
               <svg
                 className="
                   pointer-events-none
                   absolute
-                  -bottom-[65px]
-                  -right-[56px]
+                  -bottom-[75px]
+                  -right-[73px]
 
-                  h-[250px]
-                  w-[250px]
+                  h-[255px]
+                  w-[255px]
 
-                  text-[#B88B31]/15
+                  text-[#C49336]/12
                 "
                 viewBox="0 0 200 200"
                 fill="none"
@@ -643,20 +622,21 @@ export default function OurStory() {
                 strokeWidth="1"
                 aria-hidden="true"
               >
-                <circle cx="100" cy="100" r="28" />
-                <circle cx="100" cy="100" r="53" />
-                <circle cx="100" cy="100" r="78" />
+                <circle cx="100" cy="100" r="27" />
+                <circle cx="100" cy="100" r="50" />
+                <circle cx="100" cy="100" r="76" />
 
-                <path d="M100 13v174" />
-                <path d="M13 100h174" />
-                <path d="M38 38l124 124" />
-                <path d="M162 38 38 162" />
+                <path d="M100 15v170" />
+                <path d="M15 100h170" />
 
-                <path d="M100 21 116 70 100 93 84 70Z" />
-                <path d="M100 179 116 130 100 107 84 130Z" />
+                <path d="M40 40l120 120" />
+                <path d="M160 40 40 160" />
 
-                <path d="M21 100 70 84 93 100 70 116Z" />
-                <path d="M179 100 130 84 107 100 130 116Z" />
+                <path d="M100 22 116 70 100 92 84 70Z" />
+                <path d="M100 178 116 130 100 108 84 130Z" />
+
+                <path d="M22 100 70 84 92 100 70 116Z" />
+                <path d="M178 100 130 84 108 100 130 116Z" />
               </svg>
 
               {/* =================================================
@@ -669,19 +649,22 @@ export default function OurStory() {
                   mx-auto
 
                   flex
-                  h-[54px]
-                  max-w-[430px]
+                  h-[50px]
+                  max-w-[415px]
 
                   items-center
 
                   rounded-full
 
                   border
-                  border-[#C09031]
+                  border-[#C38F27]
 
-                  px-[64px]
+                  pl-[62px]
+                  pr-[18px]
                 "
               >
+                {/* LEFT CIRCLE */}
+
                 <div
                   className="
                     absolute
@@ -689,8 +672,8 @@ export default function OurStory() {
                     top-1/2
 
                     flex
-                    h-[66px]
-                    w-[66px]
+                    h-[62px]
+                    w-[62px]
 
                     -translate-y-1/2
 
@@ -700,18 +683,18 @@ export default function OurStory() {
                     rounded-full
 
                     border
-                    border-[#C09031]
+                    border-[#C38F27]
 
-                    bg-[#004738]
+                    bg-[#004A39]
 
-                    text-[#D19A2F]
+                    text-[#D09A30]
                   "
                 >
                   <CustomIcon
                     name="Founder"
                     className="
-                      h-[38px]
-                      w-[38px]
+                      h-[37px]
+                      w-[37px]
                     "
                   />
                 </div>
@@ -724,9 +707,9 @@ export default function OurStory() {
                     text-[16px]
                     font-bold
                     uppercase
-                    tracking-[0.12em]
+                    tracking-[0.105em]
 
-                    text-[#E0A63A]
+                    text-[#DDA33A]
                   "
                 >
                   A Message From The Founder
@@ -734,16 +717,16 @@ export default function OurStory() {
               </div>
 
               {/* =================================================
-                  FOUNDER QUOTE
+                  QUOTE
               ================================================= */}
 
               <div
                 className="
                   relative
                   mx-auto
-                  mt-[23px]
+                  mt-[24px]
 
-                  max-w-[470px]
+                  max-w-[455px]
 
                   px-[18px]
                 "
@@ -751,14 +734,14 @@ export default function OurStory() {
                 <span
                   className="
                     absolute
-                    -left-[6px]
-                    -top-[8px]
+                    -left-[4px]
+                    -top-[7px]
 
                     font-serif
-                    text-[46px]
+                    text-[44px]
                     leading-none
 
-                    text-[#C68412]
+                    text-[#C68511]
                   "
                 >
                   “
@@ -769,9 +752,9 @@ export default function OurStory() {
                     font-serif
                     text-[23px]
                     italic
-                    leading-[1.48]
+                    leading-[1.45]
 
-                    text-[#F8F1DF]
+                    text-[#F8F2E4]
                   "
                   style={{
                     fontFamily: "Georgia, 'Times New Roman', serif",
@@ -787,25 +770,27 @@ export default function OurStory() {
                 <span
                   className="
                     absolute
-                    bottom-[-18px]
-                    right-[4px]
+                    bottom-[-14px]
+                    right-[5px]
 
                     font-serif
-                    text-[46px]
+                    text-[44px]
                     leading-none
 
-                    text-[#C68412]
+                    text-[#C68511]
                   "
                 >
                   ”
                 </span>
               </div>
 
-              {/* GOLD ORNAMENT */}
+              {/* =================================================
+                  CENTER ORNAMENT
+              ================================================= */}
 
               <div
                 className="
-                  mt-[20px]
+                  mt-[19px]
                   flex
                   justify-center
                 "
@@ -813,9 +798,9 @@ export default function OurStory() {
                 <CustomIcon
                   name="Ornament"
                   className="
-                    h-[28px]
-                    w-[150px]
-                    text-[#C9932E]
+                    h-[24px]
+                    w-[135px]
+                    text-[#BF8B27]
                   "
                 />
               </div>
@@ -830,14 +815,14 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[12px]
+                  mt-[11px]
 
-                  max-w-[470px]
+                  max-w-[455px]
 
                   text-[16px]
-                  leading-[1.48]
+                  leading-[1.46]
 
-                  text-[#F1EEE6]
+                  text-[#F0EDE5]
                 "
               >
                 Moksha Sewa is not just a service—it is a promise.
@@ -859,9 +844,9 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[14px]
+                  mt-[13px]
 
-                  max-w-[470px]
+                  max-w-[455px]
                 "
               >
                 <div
@@ -870,7 +855,7 @@ export default function OurStory() {
                     text-[28px]
                     leading-none
 
-                    text-[#C58B23]
+                    text-[#C68B22]
                   "
                   style={{
                     fontFamily: "Georgia, 'Times New Roman', serif",
@@ -883,7 +868,7 @@ export default function OurStory() {
                   className="
                     mt-[5px]
                     text-[16px]
-                    text-[#F0E8D7]
+                    text-[#F0E7D8]
                   "
                 >
                   Founder, Moksha Sewa
