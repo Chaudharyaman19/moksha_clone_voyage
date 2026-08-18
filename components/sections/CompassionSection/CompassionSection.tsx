@@ -194,7 +194,7 @@ export default function CompassionSection() {
             quality={75}
             sizes="100vw"
             aria-hidden="true"
-            className="object-contain object-right"
+            className="hidden object-contain object-right md:block"
           />
 
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#FBF7EF_0%,#FBF7EF_37%,rgba(251,247,239,0.96)_44%,rgba(251,247,239,0.55)_53%,rgba(251,247,239,0)_68%)]" />

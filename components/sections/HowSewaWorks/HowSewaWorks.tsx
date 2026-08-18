@@ -197,7 +197,7 @@ export default function HowSewaWorks() {
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-[#D4A343]" />
           </div>
 
-          <h2 className="mx-auto mt-2 max-w-[980px] font-serif text-[27px] font-semibold leading-[1.04] text-[#302116] sm:text-[34px] lg:text-[38px]">
+          <h2 className="mx-auto mt-2 max-w-[980px] font-serif text-[24px] font-semibold leading-[1.04] text-[#302116] sm:text-[34px] lg:text-[38px]">
             Support With Care, Verification &amp; Responsibility
           </h2>
 
@@ -278,7 +278,7 @@ export default function HowSewaWorks() {
           <div className="flex items-center justify-center border-y border-[#E8DAC1] px-4 py-3 lg:border-y-0">
             <a
               href="/request-help"
-              className="inline-flex h-[50px] min-w-[320px] items-center justify-center gap-3 rounded-[4px] bg-[#495116] px-6 text-[16px] font-semibold uppercase tracking-[0.04em] text-[#F4E6BF] shadow-[0_3px_8px_rgba(70,80,20,0.18)] transition hover:bg-[#3E4612]"
+              className="inline-flex h-[50px] w-full min-w-0 items-center justify-center gap-3 rounded-[4px] bg-[#495116] px-6 text-[16px] font-semibold uppercase tracking-[0.04em] text-[#F4E6BF] shadow-[0_3px_8px_rgba(70,80,20,0.18)] transition hover:bg-[#3E4612] sm:w-auto sm:min-w-[320px]"
             >
               <LotusMark className="h-4 w-5 text-[#D6A441]" />
               Request Sewa Help
