@@ -42,25 +42,22 @@ const supportItems: InfoItem[] = [
 const values: InfoItem[] = [
   {
     title: "Humanity First",
-    description: "Every life is precious. Every soul deserves respect.",
+    description: "Every life is precious and deserves respect.",
     icon: <HeartHandshake size={28} strokeWidth={1.7} />,
   },
   {
     title: "Verification & Legal",
-    description:
-      "We follow required formalities and eligibility before assistance.",
+    description: "We follow formalities and check eligibility first.",
     icon: <Scale size={28} strokeWidth={1.7} />,
   },
   {
     title: "Transparent Sewa",
-    description:
-      "Accountable, responsible and compassionate in every step.",
+    description: "Accountable and compassionate at every step.",
     icon: <HeartHandshake size={28} strokeWidth={1.7} />,
   },
   {
     title: "Community Powered",
-    description:
-      "Volunteers, supporters and partners who believe in the power of seva.",
+    description: "Powered by volunteers, supporters and partners.",
     icon: <UsersRound size={28} strokeWidth={1.7} />,
   },
 ];
