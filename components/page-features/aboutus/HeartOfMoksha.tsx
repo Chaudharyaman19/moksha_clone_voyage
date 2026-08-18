@@ -31,7 +31,7 @@ export default function HeartOfMoksha() {
             </div>
 
             <div className="flex w-full max-w-[650px] flex-col items-start text-left">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#d8a43d] sm:text-[13px]">
+              <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-[#d8a43d]">
                 The Heart of Moksha Sewa
               </p>
 
@@ -46,13 +46,13 @@ export default function HeartOfMoksha() {
                 <span className="text-[#d39a3d]">Humanity</span> Must Stand Beside Them.
               </h2>
 
-              <p className="mt-4 w-full max-w-[610px] text-left text-[12px] leading-[1.6] text-white/90 sm:text-[13px]">
+              <p className="mt-4 w-full max-w-[610px] text-left text-[16px] leading-[1.6] text-white/90">
                 Because the final journey is not only about how life ends.<br />
                 It is about how we choose to stand beside one another until the very end.
               </p>
 
               <div className="mt-5 flex w-full flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-start">
-                <Link href="/volunteer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[12px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
+                <Link href="/volunteer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
                   Join the Mission
                   <FaArrowRight className="h-3 w-3" />
                 </Link>
@@ -63,7 +63,7 @@ export default function HeartOfMoksha() {
                       <span className="grid h-9 w-9 place-items-center border border-[#d0a346] text-[#d0a346]">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="mt-1 whitespace-pre-line text-[9px] leading-[1.15] text-white">{label}</span>
+                      <span className="mt-1 whitespace-pre-line text-[16px] leading-[1.15] text-white">{label}</span>
                     </div>
                   ))}
                 </div>

@@ -239,6 +239,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "monthly",
   },
   {
+    path: "/csr",
+    label: "CSR Partnership",
+    title: "CSR Partnership with Moksha Sewa",
+    description:
+      "Partner with Moksha Sewa through CSR support for verified final-rites assistance, community care and dignified humanitarian service.",
+    ogImage: "/assets/logo-moksha-seva.png",
+    ogImageAlt: "CSR partnership with Moksha Sewa",
+    keywords: ["CSR partnership", "Moksha Sewa CSR", "corporate social responsibility"],
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/privacy-policy",
     label: "Privacy Policy",
     title: "Privacy Policy",
