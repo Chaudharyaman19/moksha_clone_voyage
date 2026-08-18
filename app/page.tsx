@@ -56,12 +56,12 @@ export default function Page() {
         <JoinTheMission />
         <YourSupportInAction />
 
-        <Serving />
-        <HowItWorks />
+        {/* <Serving /> */}
+        {/* <HowItWorks /> */}
 
-        <SacredJourney />
-        <WhyFamiliesTrust />
-        <VoicesOfGratitude />
+        {/* <SacredJourney /> */}
+        {/* <WhyFamiliesTrust /> */}
+        {/* <VoicesOfGratitude /> */}
         <GlimpseOfJourney />
         <OneFinalActOfHumanity />
         <FAQ />
