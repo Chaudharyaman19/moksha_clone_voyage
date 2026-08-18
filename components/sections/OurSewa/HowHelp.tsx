@@ -20,23 +20,23 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M10 22h30v24H10z" />
-        <path d="M40 29h8l8 9v8H40z" />
+        <rect x="8" y="24" width="33" height="22" rx="2.5" />
+        <path d="M41 30h8l7 8v8H41z" />
 
-        <circle cx="21" cy="49" r="4.5" />
+        <circle cx="19" cy="49" r="4.5" />
         <circle cx="48" cy="49" r="4.5" />
 
-        <path d="M21 27v12" />
-        <path d="M15 33h12" />
+        <path d="M21 28v12" />
+        <path d="M15 34h12" />
 
-        <path d="M46 19v6" />
-        <path d="M43 22h6" />
+        <path d="M47 19v6" />
+        <path d="M44 22h6" />
 
-        <path d="M49 34h4" />
+        <path d="M12 27h18" />
       </svg>
     ),
 
@@ -49,25 +49,25 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M32 7c8 9 9 16 9 20.5 0 6-4 10.5-9 10.5s-9-4.5-9-10.5C23 23 24 16 32 7Z" />
+        <path d="M32 7c8 9 10 16 10 21 0 6-4.4 10.5-10 10.5S22 34 22 28c0-5 2-12 10-21Z" />
 
-        <path d="M32 18c3.5 4.5 4 7.5 4 9.5 0 2.7-1.8 4.8-4 4.8s-4-2.1-4-4.8c0-2 .5-5 4-9.5Z" />
+        <path d="M32 18c3.5 4.5 4.3 7.5 4.3 9.5 0 2.7-1.8 4.7-4.3 4.7s-4.3-2-4.3-4.7c0-2 .8-5 4.3-9.5Z" />
 
-        <path d="M13 45 28 37" />
-        <path d="M21 50 36 42" />
-        <path d="M28 42 43 50" />
-        <path d="M36 37 51 45" />
+        <path d="M13 46 27 38" />
+        <path d="M21 51 35 43" />
+        <path d="M29 43 43 51" />
+        <path d="M37 38 51 46" />
 
-        <path d="M13 53h38" />
+        <path d="M12 54h40" />
       </svg>
     ),
 
     /* =========================
-       RITUAL + DIYA + FLOWER
+       RITUAL
     ========================== */
     RitualIcon: (
       <svg
@@ -75,37 +75,23 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.8"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* diya */}
-        <path d="M8 39c6 0 12-2 18-6 0 8-5 13-11 13-4 0-6-2-7-7Z" />
-        <path d="M8 39h18" />
+        <path d="M8 40c6 0 12-2 18-6 0 8-5 13-11 13-4 0-6-2-7-7Z" />
+        <path d="M8 40h18" />
 
-        {/* flame */}
-        <path d="M20 13c5 6 6 10 6 13a6 6 0 0 1-12 0c0-3 1-7 6-13Z" />
-        <path d="M20 20c2 3 2.5 5 2.5 6.5a2.5 2.5 0 1 1-5 0c0-1.5.5-3.5 2.5-6.5Z" />
+        <path d="M20 12c5 6 6 10 6 13a6 6 0 0 1-12 0c0-3 1-7 6-13Z" />
+        <path d="M20 19c2 3 2.5 5 2.5 6.5a2.5 2.5 0 1 1-5 0c0-1.5.5-3.5 2.5-6.5Z" />
 
-        {/* flower */}
         <circle cx="43" cy="38" r="4" />
 
         <ellipse cx="43" cy="29" rx="4" ry="7" />
         <ellipse cx="43" cy="47" rx="4" ry="7" />
 
-        <ellipse
-          cx="34"
-          cy="38"
-          rx="7"
-          ry="4"
-        />
-
-        <ellipse
-          cx="52"
-          cy="38"
-          rx="7"
-          ry="4"
-        />
+        <ellipse cx="34" cy="38" rx="7" ry="4" />
+        <ellipse cx="52" cy="38" rx="7" ry="4" />
 
         <ellipse
           cx="36.5"
@@ -150,7 +136,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -159,18 +145,13 @@ const CustomIcon = ({
         <circle cx="47" cy="24" r="5" />
 
         <path d="M23 48c.7-9 3.7-14 9-14s8.3 5 9 14" />
-
         <path d="M7 48c.5-8 3.8-12 10-12 3 0 5.3 1 7 3" />
-
         <path d="M57 48c-.5-8-3.8-12-10-12-3 0-5.3 1-7 3" />
-
-        <path d="M13 48v-7" />
-        <path d="M51 48v-7" />
       </svg>
     ),
 
     /* =========================
-       HANDS / EVERYONE
+       HANDS HEART
     ========================== */
     HandsHeartIcon: (
       <svg
@@ -178,7 +159,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.8"
+        strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -195,7 +176,7 @@ const CustomIcon = ({
     ),
 
     /* =========================
-       MAP
+       MAP PIN
     ========================== */
     MapPinIcon: (
       <svg
@@ -203,7 +184,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -221,7 +202,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -239,7 +220,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -247,7 +228,6 @@ const CustomIcon = ({
         <circle cx="41" cy="20" r="5" />
 
         <path d="M10 49c1-9 5-14 13-14s12 5 13 14" />
-
         <path d="M28 49c1-9 5-14 13-14s12 5 13 14" />
       </svg>
     ),
@@ -261,14 +241,40 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="m17 12 9 14-6 6c5 9 12 16 21 21l6-6 14 9c1 1 1.4 3 .5 4.2-2.8 3.6-7 5.8-11.6 5.8C27 66 0 39 0 16.1 0 11.5 2.2 7.3 5.8 4.5 7 3.6 9 4 10 5Z" />
+        <path d="m18 10 9 14-6 6c5 9 12 16 21 21l6-6 14 9c1 1 1.4 3 .5 4.2-2.8 3.6-7 5.8-11.6 5.8C27 64 2 39 2 15.1 2 10.5 4.2 6.3 7.8 3.5 9 2.6 11 3 12 4Z" />
       </svg>
     ),
 
+    /* =========================
+       LOTUS
+    ========================== */
+    LotusIcon: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 43c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
+
+        <path d="M22 40c-8-2-13-7-14-15 7 0 13 3 17 8" />
+        <path d="M42 40c8-2 13-7 14-15-7 0-13 3-17 8" />
+
+        <path d="M16 46c5 2 10 3 16 3s11-1 16-3" />
+        <path d="M24 49h16" />
+      </svg>
+    ),
+
+    /* =========================
+       ARROW
+    ========================== */
     ArrowRightIcon: (
       <svg
         className={className}
@@ -288,6 +294,10 @@ const CustomIcon = ({
   return icons[name] ?? <span className={className}>•</span>;
 };
 
+/* =========================================================
+   TYPES
+========================================================= */
+
 interface CardItem {
   icon: string;
   title: string;
@@ -299,189 +309,375 @@ interface CardItem {
   featureBg: string;
 }
 
+interface BenefitItem {
+  icon: string;
+  title: string;
+  text: string;
+  color: string;
+}
+
+/* =========================================================
+   CARD DATA
+========================================================= */
+
 const cards: CardItem[] = [
   {
     icon: "AmbulanceIcon",
+
     title: "Final Journey &\nTransport",
+
     desc: "Ambulance & hearse\ncoordination with care\nand dignity.",
+
     features: [
       "24x7 Availability",
       "Safe & Timely Transport",
       "Trained & Verified Partners",
     ],
+
     image: "/assets/how-we-help/five.png",
-    accent: "#397A27",
-    titleColor: "#295E24",
-    featureBg: "#EFF6E9",
+
+    accent: "#2F7A28",
+
+    titleColor: "#225D23",
+
+    featureBg: "#F1F7EA",
   },
 
   {
     icon: "CremationIcon",
+
     title: "Cremation &\nLast Rites",
+
     desc: "Ground and essential\narrangements for a\ndignified farewell.",
+
     features: [
       "Cremation Ground Support",
       "Essential Arrangements",
       "Clean & Respectful Process",
     ],
+
     image: "/assets/how-we-help/four.png",
-    accent: "#EC7205",
-    titleColor: "#BE560D",
-    featureBg: "#FFF2E7",
+
+    accent: "#F05B00",
+
+    titleColor: "#D64D00",
+
+    featureBg: "#FFF2E6",
   },
 
   {
     icon: "RitualIcon",
+
     title: "Ritual &\nPriest Support",
+
     desc: "Priest, wood, cloth, flowers\nand all ritual essentials\narranged.",
+
     features: [
       "Experienced Priests",
       "Ritual Essentials",
       "As Per Tradition & Customs",
     ],
+
     image: "/assets/how-we-help/pandit.png",
-    accent: "#772E8B",
-    titleColor: "#69267B",
-    featureBg: "#F6EEF8",
+
+    accent: "#73318B",
+
+    titleColor: "#682B80",
+
+    featureBg: "#F6EDF8",
   },
 
   {
     icon: "FamilyIcon",
+
     title: "Family &\nOn-Ground Support",
+
     desc: "Guidance, volunteers and\ndocumentation assistance\nat every step.",
+
     features: [
       "Volunteer Support",
       "Documentation Help",
       "Emotional Support",
     ],
+
     image: "/assets/how-we-help/three.png",
-    accent: "#205B92",
-    titleColor: "#1C4F81",
-    featureBg: "#EDF4FA",
+
+    accent: "#0E5B99",
+
+    titleColor: "#164F87",
+
+    featureBg: "#EDF5FB",
   },
 ];
 
-const benefits = [
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+const benefits: BenefitItem[] = [
   {
     icon: "HandsHeartIcon",
+
     title: "For Everyone",
-    text: "We serve unclaimed bodies, elderly alone, and economically weaker families.",
-    color: "#2E6C45",
+
+    text:
+      "We serve unclaimed bodies, elderly alone, and economically weaker families.",
+
+    color: "#246833",
   },
+
   {
     icon: "MapPinIcon",
+
     title: "Pan India Service",
-    text: "Expanding our network to reach more people in need.",
-    color: "#A96C1E",
+
+    text:
+      "Expanding our network to reach more people in need.",
+
+    color: "#A86317",
   },
+
   {
     icon: "ShieldIcon",
+
     title: "Zero Financial Burden",
-    text: "Our services are completely free for those who are unable to afford.",
-    color: "#2C5D88",
+
+    text:
+      "Our services are completely free for those who are unable to afford.",
+
+    color: "#165A8D",
   },
+
   {
     icon: "HumanityIcon",
+
     title: "Humanity First",
-    text: "Every life deserves dignity. Every family deserves support.",
-    color: "#A43F63",
+
+    text:
+      "Every life deserves dignity. Every family deserves support.",
+
+    color: "#B42058",
   },
 ];
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 const decorativePattern = {
   backgroundImage:
-    "radial-gradient(circle at 20% 20%, rgba(168,111,44,0.06) 0 1px, transparent 1.2px)",
+    "radial-gradient(circle, rgba(170,112,48,0.055) 0 1px, transparent 1.15px)",
   backgroundSize: "22px 22px",
 };
 
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 export default function HowWeCanHelp() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF7EF] px-4 py-7 sm:px-5 lg:px-6 lg:py-8">
-
-      {/* ==================================
-          BACKGROUND
-      =================================== */}
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#FBF7EF]
+        px-4
+        py-[18px]
+        sm:px-5
+        lg:px-6
+        lg:py-[22px]
+      "
+    >
+      {/* BACKGROUND DOTS */}
 
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
         style={decorativePattern}
       />
 
-      {/* LEFT DECORATION */}
+      {/* =====================================================
+          LEFT MANDALA
+      ====================================================== */}
 
       <svg
-        viewBox="0 0 300 300"
-        className="pointer-events-none absolute -left-24 -top-16 h-[300px] w-[300px] text-[#DDB66F]/35"
+        viewBox="0 0 360 360"
+        className="
+          pointer-events-none
+          absolute
+          -left-[125px]
+          -top-[100px]
+          h-[385px]
+          w-[385px]
+          text-[#E0A24B]/45
+        "
         fill="none"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="1.15"
       >
-        <circle cx="150" cy="150" r="48" />
-        <circle cx="150" cy="150" r="85" />
-        <circle cx="150" cy="150" r="120" />
+        <circle cx="180" cy="180" r="38" />
+        <circle cx="180" cy="180" r="72" />
+        <circle cx="180" cy="180" r="108" />
+        <circle cx="180" cy="180" r="142" />
 
-        {Array.from({ length: 12 }).map((_, i) => (
+        {Array.from({ length: 12 }).map((_, index) => (
           <ellipse
-            key={i}
-            cx="150"
-            cy="67"
+            key={`inner-${index}`}
+            cx="180"
+            cy="104"
             rx="18"
             ry="55"
-            transform={`rotate(${i * 30} 150 150)`}
+            transform={`rotate(${index * 30} 180 180)`}
+          />
+        ))}
+
+        {Array.from({ length: 16 }).map((_, index) => (
+          <ellipse
+            key={`outer-${index}`}
+            cx="180"
+            cy="64"
+            rx="14"
+            ry="46"
+            transform={`rotate(${index * 22.5} 180 180)`}
+          />
+        ))}
+
+        {Array.from({ length: 20 }).map((_, index) => (
+          <path
+            key={`petal-${index}`}
+            d="M180 18c13 14 16 28 0 43-16-15-13-29 0-43Z"
+            transform={`rotate(${index * 18} 180 180)`}
           />
         ))}
       </svg>
 
-      {/* RIGHT SOFT GLOW */}
+      {/* =====================================================
+          RIGHT BACKGROUND
+      ====================================================== */}
 
-      <div className="pointer-events-none absolute right-0 top-0 h-[250px] w-[360px] bg-[radial-gradient(circle_at_75%_35%,rgba(226,164,72,0.32),rgba(226,164,72,0.10)_38%,transparent_72%)]" />
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-0
+          top-0
+          h-[355px]
+          w-[470px]
+          overflow-hidden
+        "
+      >
+        <div
+          className="
+            absolute
+            inset-0
+            bg-cover
+            bg-right-top
+            bg-no-repeat
+          "
+          style={{
+            backgroundImage:
+              "url('/assets/how-we-help/our-sewa-bg.png')",
+          }}
+        />
 
-      {/* ==================================
+        <div
+          className="
+            absolute
+            inset-y-0
+            left-0
+            w-[52%]
+            bg-gradient-to-r
+            from-[#FBF7EF]
+            via-[#FBF7EF]/70
+            to-transparent
+          "
+        />
+
+        <div
+          className="
+            absolute
+            inset-x-0
+            bottom-0
+            h-[105px]
+            bg-gradient-to-t
+            from-[#FBF7EF]
+            via-[#FBF7EF]/55
+            to-transparent
+          "
+        />
+      </div>
+
+      {/* =====================================================
           MAIN CONTAINER
-      =================================== */}
+      ====================================================== */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1344px]">
 
-        {/* ==================================
+        {/* =====================================================
             HEADER
-        =================================== */}
+        ====================================================== */}
 
-        <header className="mx-auto mb-5 max-w-[840px] text-center">
+        <header className="mx-auto mb-[18px] max-w-[840px] text-center">
 
-          <div className="mb-1 flex items-center justify-center gap-4">
-            <span className="h-px w-[72px] bg-[#A45918]" />
+          <div className="mb-[2px] flex justify-center">
+            <CustomIcon
+              name="LotusIcon"
+              className="h-[25px] w-[25px] text-[#D76113]"
+            />
+          </div>
 
-            <span className="text-[16px] font-bold uppercase tracking-[0.14em] text-[#914C14]">
-              OUR SEWA
+          <div className="flex items-center justify-center gap-[12px]">
+
+            <span className="relative h-px w-[62px] bg-[#D05A17]">
+              <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D05A17]" />
             </span>
 
-            <span className="h-px w-[72px] bg-[#A45918]" />
+            <span className="text-[16px] font-bold uppercase tracking-[0.04em] text-[#6E2C18]">
+              Our Sewa
+            </span>
+
+            <span className="relative h-px w-[62px] bg-[#D05A17]">
+              <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#D05A17]" />
+            </span>
+
           </div>
 
           <h2
-            className="font-serif text-[32px] font-semibold leading-[1] text-[#25150D] sm:text-[42px] lg:text-[48px]"
+            className="
+              mt-[5px]
+              font-serif
+              text-[34px]
+              font-semibold
+              leading-[0.98]
+              text-[#21130D]
+              sm:text-[42px]
+              lg:text-[49px]
+            "
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
             Essential Support for a
 
-            <span className="block text-[#AB4A0A]">
+            <span className="mt-[2px] block text-[#D54200]">
               Dignified Final Journey
             </span>
           </h2>
 
-          <div className="mx-auto mt-2 flex max-w-[230px] items-center gap-2">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#C08341]" />
+          <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
 
-            <span className="text-[18px] text-[#B05B1B]">
-              ❦
-            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#DA7643]" />
 
-            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#C08341]" />
+            <CustomIcon
+              name="LotusIcon"
+              className="h-[21px] w-[21px] text-[#D45D16]"
+            />
+
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#DA7643]" />
+
           </div>
 
-          <p className="mx-auto mt-2 max-w-[700px] text-[16px] leading-[1.4] text-[#29211D]">
+          <p className="mx-auto mt-[7px] max-w-[700px] text-[16px] leading-[1.42] text-[#2C2825]">
             Moksha Sewa ensures that every individual—regardless of their
             circumstances—receives a respectful and dignified farewell with
             complete care and compassion.
@@ -489,11 +685,11 @@ export default function HowWeCanHelp() {
 
         </header>
 
-        {/* ==================================
-            CARDS
-        =================================== */}
+        {/* =====================================================
+            SERVICE CARDS
+        ====================================================== */}
 
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 items-stretch gap-[20px] md:grid-cols-2 lg:grid-cols-4">
 
           {cards.map((card) => (
             <article
@@ -501,75 +697,51 @@ export default function HowWeCanHelp() {
               className="
                 relative
                 flex
-                h-[440px]
+                h-[520px]
                 flex-col
                 overflow-hidden
-
-                rounded-[18px]
-
+                rounded-[19px]
                 border
-                border-[#E6DDD2]
-
+                border-[#E8DDD0]
                 bg-white
-
-                shadow-[0_7px_20px_rgba(62,38,18,0.10)]
+                shadow-[0_8px_22px_rgba(65,39,18,0.10)]
               "
             >
-
-              {/* ==================================
-                  TOP WHITE CONTENT
-              =================================== */}
+              {/* ===============================================
+                  TOP CONTENT
+              ================================================ */}
 
               <div
                 className="
                   relative
-
                   flex
-                  h-[220px]
+                  h-[250px]
                   shrink-0
-
                   flex-col
-
                   items-center
-
-                  px-4
-
-                  pt-[94px]
-
+                  px-[14px]
+                  pt-[103px]
                   text-center
                 "
               >
-
-                {/* CIRCLE ICON
-                    IMPORTANT:
-                    top-0 = card ke andar.
-                    Negative top nahi hai.
-                */}
+                {/* ICON */}
 
                 <div
                   className="
                     absolute
                     left-1/2
-                    top-0
-
+                    top-[5px]
                     flex
-
-                    h-[90px]
-                    w-[90px]
-
+                    h-[91px]
+                    w-[91px]
                     -translate-x-1/2
-
                     items-center
                     justify-center
-
                     rounded-full
-
                     border-[5px]
                     border-white
-
                     text-white
-
-                    shadow-[0_5px_13px_rgba(42,28,16,0.18)]
+                    shadow-[0_5px_14px_rgba(42,29,17,0.20)]
                   "
                   style={{
                     backgroundColor: card.accent,
@@ -577,7 +749,7 @@ export default function HowWeCanHelp() {
                 >
                   <CustomIcon
                     name={card.icon}
-                    className="h-[43px] w-[43px]"
+                    className="h-[48px] w-[48px]"
                   />
                 </div>
 
@@ -586,14 +758,10 @@ export default function HowWeCanHelp() {
                 <h3
                   className="
                     whitespace-pre-line
-
                     font-serif
-
-                    text-[21px]
-
+                    text-[22px]
                     font-semibold
-
-                    leading-[1.05]
+                    leading-[1.04]
                   "
                   style={{
                     color: card.titleColor,
@@ -603,19 +771,10 @@ export default function HowWeCanHelp() {
                   {card.title}
                 </h3>
 
-                {/* SMALL COLOR LINE */}
+                {/* LINE */}
 
                 <span
-                  className="
-                    mt-[7px]
-
-                    h-[3px]
-                    w-[32px]
-
-                    shrink-0
-
-                    rounded-full
-                  "
+                  className="mt-[8px] h-[3px] w-[34px] shrink-0 rounded-full"
                   style={{
                     backgroundColor: card.accent,
                   }}
@@ -623,481 +782,269 @@ export default function HowWeCanHelp() {
 
                 {/* DESCRIPTION */}
 
-                <p
-                  className="
-                    mt-[9px]
-
-                    whitespace-pre-line
-
-                    text-[16px]
-
-                    leading-[1.27]
-
-                    text-[#241D19]
-                  "
-                >
+                <p className="mt-[10px] whitespace-pre-line text-[16px] leading-[1.35] text-[#28211D]">
                   {card.desc}
                 </p>
 
               </div>
 
-              {/* ==================================
+              {/* =====================================================
                   IMAGE
-                  NO GAP ABOVE / BELOW
-              =================================== */}
+                  HEIGHT INCREASED TO 190PX
+              ====================================================== */}
 
               <div
                 className="
                   relative
-
-                  h-[134px]
-
+                  h-[190px]
+                  w-full
                   shrink-0
-
                   overflow-hidden
                 "
               >
                 <Image
                   src={card.image}
-                  alt={card.title}
+                  alt={card.title.replace("\n", " ")}
                   fill
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
+                  quality={100}
+                  sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1024px) 50vw,
+                    25vw
+                  "
+                  className="
+                    object-cover
+                    object-center
+                  "
                 />
               </div>
 
-              {/* ==================================
+              {/* =====================================================
                   FEATURES
-              =================================== */}
+              ====================================================== */}
 
               <div
                 className="
                   flex
                   flex-1
                   flex-col
-
                   justify-center
-
-                  gap-[5px]
-
-                  px-4
+                  gap-[7px]
+                  px-[16px]
                   py-[8px]
                 "
                 style={{
                   backgroundColor: card.featureBg,
-                  borderBottom: `5px solid ${card.accent}`,
                 }}
               >
-
                 {card.features.map((feature) => (
                   <div
                     key={feature}
                     className="
                       flex
-
                       items-center
-
-                      gap-2
-
+                      gap-[9px]
                       text-[16px]
-
-                      leading-[1.05]
-
-                      text-[#28201B]
+                      leading-[1.08]
+                      text-[#28211D]
                     "
                   >
-
                     <span
                       className="
                         flex
-
-                        h-[18px]
-                        w-[18px]
-
+                        h-[19px]
+                        w-[19px]
                         shrink-0
-
                         items-center
                         justify-center
-
                         rounded-full
-
-                        border
+                        text-[16px]
+                        font-bold
+                        leading-none
+                        text-white
                       "
                       style={{
-                        color: card.accent,
-                        borderColor: card.accent,
+                        backgroundColor: card.accent,
                       }}
                     >
-                      <span className="text-[13px] font-bold">
-                        ✓
-                      </span>
+                      ✓
                     </span>
 
-                    <span>
-                      {feature}
-                    </span>
-
+                    <span>{feature}</span>
                   </div>
                 ))}
-
               </div>
-
             </article>
           ))}
 
         </div>
 
-        {/* ==================================
+        {/* =====================================================
             BENEFIT BAND
-        =================================== */}
+        ====================================================== */}
 
         <div
           className="
-            mt-[12px]
-
+            mt-[26px]
             overflow-hidden
-
-            rounded-[14px]
-
+            rounded-[15px]
             border
-            border-[#DFC292]
-
-            bg-[#FFF8ED]
-
-            shadow-[0_3px_10px_rgba(73,45,20,0.05)]
+            border-[#E5D2B4]
+            bg-[#FFF9F0]/95
+            shadow-[0_5px_14px_rgba(74,46,20,0.05)]
           "
         >
-
           <div
             className="
               grid
               grid-cols-1
-
               divide-y
-              divide-[#DCBF91]
-
+              divide-[#DBC3A0]
               md:grid-cols-5
               md:divide-x
               md:divide-y-0
             "
           >
-
             {benefits.map((item) => (
               <div
                 key={item.title}
-                className="
-                  flex
-
-                  min-h-[100px]
-
-                  items-center
-
-                  gap-3
-
-                  px-4
-                  py-3
-                "
+                className="flex min-h-[125px] items-center gap-[13px] px-[15px] py-[13px]"
               >
-
-                {/* BENEFIT ICON */}
-
                 <div
-                  className="
-                    flex
-
-                    h-[52px]
-                    w-[52px]
-
-                    shrink-0
-
-                    items-center
-                    justify-center
-                  "
+                  className="flex h-[54px] w-[54px] shrink-0 items-center justify-center"
                   style={{
                     color: item.color,
                   }}
                 >
                   <CustomIcon
                     name={item.icon}
-                    className="h-[42px] w-[42px]"
+                    className="h-[48px] w-[48px]"
                   />
                 </div>
 
-                {/* TEXT */}
+                <div className="min-w-0">
 
-                <div>
-
-                  <h4
-                    className="
-                      text-[16px]
-
-                      font-bold
-
-                      leading-tight
-
-                      text-[#251B15]
-                    "
-                  >
+                  <h4 className="text-[16px] font-bold leading-[1.15] text-[#251D18]">
                     {item.title}
                   </h4>
 
-                  <p
-                    className="
-                      mt-[4px]
-
-                      text-[16px]
-
-                      leading-[1.25]
-
-                      text-[#392D25]
-                    "
-                  >
+                  <p className="mt-[5px] text-[16px] leading-[1.35] text-[#37302A]">
                     {item.text}
                   </p>
 
                 </div>
-
               </div>
             ))}
 
-            {/* ==================================
-                SLOGAN
-            =================================== */}
+            {/* SLOGAN */}
 
-            <div
-              className="
-                flex
+            <div className="flex min-h-[125px] flex-col items-center justify-center px-[12px] py-[10px] text-center">
 
-                min-h-[100px]
+              <CustomIcon
+                name="LotusIcon"
+                className="h-[35px] w-[35px] text-[#E4520E]"
+              />
 
-                flex-col
-
-                items-center
-                justify-center
-
-                px-4
-                py-3
-
-                text-center
-              "
-            >
-
-              <div className="text-[26px] leading-none text-[#B4681E]">
-                ♨
-              </div>
-
-              <div
-                className="
-                  mt-1
-
-                  font-serif
-
-                  text-[18px]
-
-                  italic
-
-                  text-[#91501E]
-                "
-              >
+              <div className="mt-[3px] font-serif text-[18px] italic leading-tight text-[#A84F1D]">
                 Together,
               </div>
 
-              <div
-                className="
-                  font-serif
-
-                  text-[18px]
-
-                  italic
-
-                  text-[#91501E]
-                "
-              >
+              <div className="font-serif text-[18px] italic leading-tight text-[#A84F1D]">
                 We Serve with Dignity
               </div>
 
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-[5px] flex items-center gap-[7px]">
 
-                <span className="h-px w-9 bg-[#B77936]" />
+                <span className="h-px w-[31px] bg-[#B97032]" />
 
-                <span className="h-1.5 w-1.5 rotate-45 bg-[#B77936]" />
+                <span className="h-[6px] w-[6px] rotate-45 bg-[#B97032]" />
 
-                <span className="h-px w-9 bg-[#B77936]" />
+                <span className="h-px w-[31px] bg-[#B97032]" />
 
               </div>
 
             </div>
-
           </div>
-
         </div>
 
-        {/* ==================================
-            BLUE CTA BAR
-        =================================== */}
+        {/* =====================================================
+            BLUE CTA
+        ====================================================== */}
 
         <div
           className="
-            mt-[7px]
-
-            min-h-[64px]
-
+            mt-[21px]
             overflow-hidden
-
-            rounded-[12px]
-
-            bg-[#194E80]
-
+            rounded-[14px]
+            bg-gradient-to-r
+            from-[#003A68]
+            via-[#004C80]
+            to-[#003866]
             text-white
-
-            shadow-[0_7px_16px_rgba(21,67,108,0.20)]
+            shadow-[0_7px_17px_rgba(10,53,91,0.20)]
           "
         >
-
-          <div
-            className="
-              flex
-
-              min-h-[64px]
-
-              flex-col
-
-              lg:flex-row
-              lg:items-center
-            "
-          >
+          <div className="flex min-h-[82px] flex-col lg:flex-row lg:items-center">
 
             {/* LEFT */}
 
-            <div
-              className="
-                flex
+            <div className="flex flex-1 items-center gap-[14px] px-[28px] py-[11px]">
 
-                flex-1
-
-                items-center
-
-                gap-3
-
-                px-5
-                py-2
-              "
-            >
-
-              <span
-                className="
-                  flex
-
-                  h-[44px]
-                  w-[44px]
-
-                  shrink-0
-
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border-2
-                  border-white
-
-                  text-white
-                "
-              >
+              <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full border-2 border-white text-white">
                 <CustomIcon
                   name="PhoneIcon"
-                  className="h-[22px] w-[22px]"
+                  className="h-[25px] w-[25px]"
                 />
               </span>
 
-              <div
-                className="
-                  flex
-                  flex-wrap
+              <div>
 
-                  items-center
-
-                  gap-x-3
-                  gap-y-1
-                "
-              >
-
-                <span className="text-[16px] font-bold">
+                <div className="text-[18px] font-bold leading-tight">
                   Need Immediate Help?
-                </span>
+                </div>
 
-                <span className="text-[16px] text-white/90">
+                <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
                   Our team is available 24x7 to support you.
-                </span>
+                </div>
 
               </div>
 
             </div>
 
-            {/* DIVIDER */}
-
-            <span className="hidden h-10 w-px bg-white/35 lg:block" />
+            <span className="hidden h-[50px] w-px bg-white/40 lg:block" />
 
             {/* RIGHT */}
 
             <div
               className="
                 flex
-
-                flex-1
-
+                flex-[1.45]
                 flex-col
-
-                gap-3
-
+                gap-[12px]
                 border-t
                 border-white/20
-
-                px-5
-                py-2
-
+                px-[28px]
+                py-[11px]
                 sm:flex-row
                 sm:items-center
                 sm:justify-between
-
                 lg:border-t-0
               "
             >
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-[15px]">
 
-                <span
-                  className="
-                    flex
-
-                    h-[44px]
-                    w-[44px]
-
-                    shrink-0
-
-                    items-center
-                    justify-center
-
-                    rounded-full
-
-                    bg-white
-
-                    text-[24px]
-
-                    text-[#C22D66]
-                  "
-                >
+                <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[26px] leading-none text-[#C62565]">
                   ♥
                 </span>
 
                 <div>
 
-                  <div className="text-[16px] font-bold">
+                  <div className="text-[18px] font-bold leading-tight">
                     Support Our Mission
                   </div>
 
-                  <div className="text-[16px] text-white/90">
+                  <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
                     Your support can bring dignity to many final journeys.
                   </div>
 
@@ -1105,77 +1052,55 @@ export default function HowWeCanHelp() {
 
               </div>
 
-              {/* BUTTON */}
+              {/* SUPPORT BUTTON */}
 
               <a
                 href="/donation"
                 className="
+                  group
                   inline-flex
-
-                  h-[42px]
-
+                  h-[49px]
+                  min-w-[228px]
                   shrink-0
-
                   items-center
-
-                  gap-3
-
-                  rounded-[9px]
-
+                  justify-center
+                  gap-[15px]
+                  rounded-[10px]
                   border
-                  border-[#E28A27]
-
+                  border-[#F07019]
                   bg-gradient-to-r
-                  from-[#A9480B]
-                  to-[#D27012]
-
-                  px-6
-
+                  from-[#D44100]
+                  to-[#EA5A00]
+                  px-[21px]
                   text-[16px]
-
                   font-bold
-
                   uppercase
-
+                  leading-none
                   text-white
-
-                  shadow-[0_5px_12px_rgba(74,29,7,0.23)]
+                  shadow-[0_5px_13px_rgba(74,28,5,0.25)]
+                  transition
+                  duration-300
+                  hover:-translate-y-[1px]
                 "
               >
-                SUPPORT NOW
+                Support Now
 
-                <span
-                  className="
-                    flex
+                <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full border border-white/90">
 
-                    h-[21px]
-                    w-[21px]
-
-                    items-center
-                    justify-center
-
-                    rounded-full
-
-                    border
-                    border-white/90
-                  "
-                >
                   <CustomIcon
                     name="ArrowRightIcon"
-                    className="h-[11px] w-[11px]"
+                    className="h-[13px] w-[13px] transition-transform duration-300 group-hover:translate-x-[2px]"
                   />
+
                 </span>
 
               </a>
 
             </div>
-
           </div>
-
         </div>
 
       </div>
-
     </section>
   );
 }
