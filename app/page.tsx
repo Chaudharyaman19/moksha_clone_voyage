@@ -7,6 +7,7 @@ import HowWeHelp from "@/components/sections/HowWeHelp/HowWeHelp";
 import WhyFamiliesTrust from "@/components/sections/WhyFamiliesTrust/WhyFamiliesTrust";
 import Serving from "@/components/sections/Serving/Serving";
 import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
+import HowSewaWorks from "@/components/sections/HowSewaWorks/HowSewaWorks";
 import SacredJourney from "@/components/sections/SacredJourney/SacredJourney";
 import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfGratitude";
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
@@ -33,6 +34,7 @@ export default function Page() {
         <HowWeHelp />
         <Serving />
         <HowItWorks />
+        <HowSewaWorks />
         <SacredJourney />
         <WhyFamiliesTrust />
         <VoicesOfGratitude />
