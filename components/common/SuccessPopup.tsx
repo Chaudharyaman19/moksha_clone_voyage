@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { FiCheck, FiX } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
 
@@ -16,22 +17,25 @@ export default function SuccessPopup({
   title = "Thank You!",
   message = "Your form has been submitted successfully.",
 }: SuccessPopupProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
-      className="gallery-modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-[#2C1810]/55 p-4 backdrop-blur-sm"
+      className="gallery-modal-overlay fixed inset-0 z-[999] flex items-center justify-center bg-[#2C1810]/55 p-4 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="gallery-modal-panel relative w-full max-w-[248px] overflow-hidden rounded-2xl bg-white text-center shadow-[0_30px_70px_rgba(44,24,16,0.35)] ring-1 ring-[#E6D6BF]"
+        className="gallery-modal-panel relative w-full max-w-[260px] overflow-hidden rounded-2xl bg-white text-center shadow-[0_30px_70px_rgba(44,24,16,0.35)] ring-1 ring-[#E6D6BF]"
         onClick={(event) => event.stopPropagation()}
       >
         {/* signature gold accent line, matches other cards site-wide */}
@@ -82,6 +86,7 @@ export default function SuccessPopup({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
