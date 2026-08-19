@@ -31,7 +31,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Home",
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa, a Namo Gange Trust initiative, supports economically weaker families and legally authorised unclaimed cases with dignified last-rites assistance.",
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest and essential support for needy families.",
     ogImage: "/hero-images/3.png",
     ogImageAlt: "Moksha Sewa humanitarian last-rites assistance mission",
     keywords: [
@@ -48,9 +48,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/about",
     label: "About",
-    title: "About Moksha Sewa – Dignified Last Rites Support",
+    title: "About Moksha Sewa – Dignified Last Rites",
     description:
-      "Learn about Moksha Sewa, a Namo Gange Trust initiative supporting economically weaker families and legally authorised unclaimed cases.",
+      "Learn about Moksha Sewa, a Namo Gange Trust initiative supporting weaker families and legally authorised unclaimed cases.",
     ogImage: "/assets/about-reference/hero-priest-ghat.png",
     ogImageAlt: "Moksha Sewa mission and sacred final rites support",
     keywords: ["about Moksha Sewa", "Namo Gange Trust", "final rites support"],
@@ -61,7 +61,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/request-help",
     label: "Request Help",
-    title: "Request Sewa Help",
+    title: "Request Last Rites Help – Moksha Sewa Support",
     description:
       "Request verified last-rites assistance from Moksha Sewa for economically weaker families or legally authorised unclaimed cases.",
     ogImage: "/assets/family-support/hero-bg-2.png",
@@ -73,9 +73,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/donation",
     label: "Donation",
-    title: "Support a Final Journey",
+    title: "Donate for Final Journey – Moksha Sewa Support",
     description:
-      "Donate to Moksha Sewa, a Namo Gange Trust initiative, and support verified final-rites assistance for eligible families and authorised unclaimed cases.",
+      "Donate to Moksha Sewa and support dignified final rites for eligible families and verified unclaimed cases in need.",
     ogImage: "/hero-images/3.png",
     ogImageAlt: "Donate to Moksha Sewa humanitarian final journey support",
     keywords: ["donate for last rites", "Moksha Sewa donation", "charity for final rites"],
@@ -85,7 +85,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/contact",
     label: "Contact",
-    title: "Contact Moksha Sewa",
+    title: "Contact Moksha Sewa for Last Rites Assistance",
     description:
       "Contact Moksha Sewa for verified last-rites assistance, donation, volunteering and Delhi NCR launch-region coordination.",
     ogImage: "/assets/contact/contact-hero-new.png",
@@ -97,7 +97,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/blog",
     label: "Blog",
-    title: "Moksha Sewa Blog and Updates",
+    title: "Moksha Sewa Blog – Rituals, Guidance & Updates",
     description:
       "Read Moksha Sewa updates, guidance and stories about funeral support, dignity in final rites, volunteering and community service.",
     ogImage: "/assets/about-reference/story-evening-ghat.png",
@@ -109,9 +109,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/ambulanceservices",
     label: "Ambulance Services",
-    title: "Ambulance Services for Funeral Support",
+    title: "Ambulance Services for Final Journey Support",
     description:
-      "Arrange respectful ambulance support through Moksha Sewa for hospital transfer, final journey coordination and urgent family assistance.",
+      "Arrange respectful ambulance support through Moksha Sewa for hospital transfer, final journey and urgent family assistance.",
     ogImage: "/ambulance/hero-ambulance.webp",
     ogImageAlt: "Moksha Sewa ambulance service for final journey support",
     keywords: ["ambulance services", "funeral ambulance", "dead body ambulance"],
@@ -121,9 +121,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/harsevanservices",
     label: "Hearse Van Services",
-    title: "Hearse Van Services",
+    title: "Hearse Van Services for the Final Journey",
     description:
-      "Moksha Sewa helps families arrange hearse van support for respectful transport during the final journey.",
+      "Moksha Sewa arranges respectful hearse van transport for the final journey with dignity and care for families.",
     ogImage: "/assets/harse.jpeg",
     ogImageAlt: "Moksha Sewa hearse van service for respectful transport",
     keywords: ["hearse van service", "funeral van", "dead body transport"],
@@ -133,7 +133,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/panditservices",
     label: "Pandit Services",
-    title: "Pandit Services for Last Rites",
+    title: "Pandit Services for Last Rites & Rituals",
     description:
       "Arrange experienced pandit support for antim sanskar, puja, prayer guidance and traditional last rites with Moksha Sewa.",
     ogImage: "/assets/panditservices/hero-real.png",
@@ -145,7 +145,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/prayerhallservices",
     label: "Prayer Hall Services",
-    title: "Pandit Services for Last Rites & Ritual Guidance",
+    title: "Prayer Hall Services for Sacred Final Rites",
     description:
       "Moksha Sewa helps coordinate prayer hall arrangements, ground support and peaceful spaces for families during final rites.",
     ogImage: "/assets/prayerhallservices/hero-real.png",
@@ -157,7 +157,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/furalservices",
     label: "Funeral Samagri",
-    title: "Funeral Samagri and Cremation Essentials",
+    title: "Funeral Samagri & Cremation Essentials",
     description:
       "Arrange cremation wood, shroud cloth, flowers, prayer items and essential funeral samagri through Moksha Sewa.",
     ogImage: "/woodrituals/hero.webp",
@@ -169,9 +169,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/furaldecoration",
     label: "Floral Decoration",
-    title: "Funeral Floral Decoration Services",
+    title: "Funeral Floral Decoration Services for Rites",
     description:
-      "Moksha Sewa helps arrange simple and respectful floral decoration for funeral rites and the final journey.",
+      "Moksha Sewa helps arrange simple and dignified floral decoration for funeral rites and final journeys with care.",
     ogImage: "/assets/funeraldecoration.jpeg",
     ogImageAlt: "Funeral floral decoration for a respectful final journey",
     keywords: ["funeral decoration", "floral decoration", "last journey flowers"],
@@ -181,9 +181,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/callingrelativesservices",
     label: "Calling Relatives",
-    title: "Calling Relatives and Family Coordination",
+    title: "Calling Relatives & Family Coordination",
     description:
-      "Get support in informing relatives, coordinating family communication and arranging guidance during difficult final-rites moments.",
+      "Get support in informing relatives, coordinating family communication and guidance during difficult final-rites moments.",
     ogImage: "/assets/callingrelative.jpeg",
     ogImageAlt: "Family coordination and calling relatives support",
     keywords: ["calling relatives service", "family coordination", "funeral support"],
@@ -207,7 +207,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Unclaimed Body Sewa",
     title: "Unclaimed Body Sewa – Dignified Last Rites",
     description:
-      "Moksha Sewa coordinates verified, legally authorised last rites for unclaimed and unidentified bodies, working with police, hospitals and municipal authorities.",
+      "Moksha Sewa provides verified and legally authorised last rites for unclaimed and unidentified bodies with dignity.",
     ogImage: "/unclaimed-body-sewa/hero-unclaimed-body-sewa.webp",
     ogImageAlt: "Unclaimed body sewa dignified last rites support",
     keywords: ["unclaimed body sewa", "unidentified body last rites", "unclaimed body cremation"],
@@ -217,7 +217,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/mokshagallery",
     label: "Gallery",
-    title: "Moksha Sewa Photo Gallery",
+    title: "Moksha Sewa Photo Gallery – Seva Moments",
     description:
       "View Moksha Sewa photos showing community service, funeral support, volunteer care and dignified final-rites assistance.",
     ogImage: "/gallary/g1.png",
@@ -229,7 +229,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/mokshavediogallery",
     label: "Video Gallery",
-    title: "Moksha Sewa Video Gallery",
+    title: "Moksha Sewa Video Gallery – Seva Activities",
     description:
       "Watch Moksha Sewa videos covering seva activities, community outreach, volunteer support and dignified assistance work.",
     ogImage: "/gallary/gg5.png",
@@ -241,7 +241,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/volunteer/register",
     label: "Volunteer",
-    title: "Register as a Moksha Sewa Volunteer",
+    title: "Register as a Moksha Sewa Volunteer Today",
     description:
       "Register as a Moksha Sewa volunteer and support families with practical help, coordination and compassionate service.",
     ogImage: "/assets/activities/community-outreach.webp",
@@ -253,9 +253,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/csr",
     label: "CSR Partnership",
-    title: "CSR Partnership with Moksha Sewa",
+    title: "CSR Partnership with Moksha Sewa – For Business",
     description:
-      "Partner with Moksha Sewa through CSR support for verified final-rites assistance, community care and dignified humanitarian service.",
+      "Partner with Moksha Sewa through CSR support for verified final-rites assistance and dignified humanitarian service.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "CSR partnership with Moksha Sewa",
     keywords: ["CSR partnership", "Moksha Sewa CSR", "corporate social responsibility"],
@@ -265,9 +265,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/partnership",
     label: "Partner With Us",
-    title: "Partner With Moksha Sewa",
+    title: "Partner With Moksha Sewa – Humanitarian Impact",
     description:
-      "Partner with Moksha Sewa as a service provider, community organisation or institutional supporter for dignified final-rites assistance.",
+      "Partner with Moksha Sewa as a service provider, organisation or institutional supporter for dignified final-rites assistance.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "Partner with Moksha Sewa",
     keywords: ["partner with Moksha Sewa", "Moksha Sewa partnership", "service partner"],
@@ -277,7 +277,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/privacy-policy",
     label: "Privacy Policy",
-    title: "Privacy Policy",
+    title: "Moksha Sewa Privacy Policy – Data Handling",
     description:
       "Read the Moksha Sewa privacy policy for how enquiry, donation, volunteer and assistance request information is handled.",
     ogImage: "/assets/logo-moksha-seva.png",
@@ -289,7 +289,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/terms",
     label: "Terms",
-    title: "Terms and Conditions",
+    title: "Moksha Sewa Terms and Conditions for Users",
     description:
       "Read the Moksha Sewa terms and conditions for using the website, requesting assistance, donating and volunteering.",
     ogImage: "/assets/logo-moksha-seva.png",
@@ -301,7 +301,7 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/refund-policy",
     label: "Refund Policy",
-    title: "Refund Policy",
+    title: "Moksha Sewa Refund Policy – Donation Payments",
     description:
       "Read the Moksha Sewa refund policy for donations, payments and transactions, including when refunds may be considered.",
     ogImage: "/assets/logo-moksha-seva.png",
@@ -313,9 +313,9 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/track",
     label: "Track Request",
-    title: "Track Your Moksha Sewa Request",
+    title: "Track Your Moksha Sewa Request Status",
     description:
-      "Track your Moksha Sewa request status using your case details and phone number.",
+      "Track your Moksha Sewa request status online using your case details and phone number for real-time updates and support.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "Track your Moksha Sewa request status",
     keywords: ["track request", "Moksha Sewa case status"],
@@ -326,8 +326,8 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/login",
     label: "Login",
-    title: "Login to Moksha Sewa",
-    description: "Sign in to Moksha Sewa to manage service requests and volunteer activity.",
+    title: "Login to Moksha Sewa – Manage Your Account",
+    description: "Sign in to Moksha Sewa to manage your service requests, volunteer activities and account details safely and securely.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "Login to Moksha Sewa",
     keywords: ["Moksha Sewa login"],
@@ -338,8 +338,8 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/donation/history",
     label: "Donation History",
-    title: "Donation History",
-    description: "View your Moksha Sewa donation history.",
+    title: "Moksha Sewa Donation History – Your Records",
+    description: "View your complete Moksha Sewa donation history with transaction details and contribution records for each donation.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "Moksha Sewa donation history",
     keywords: ["donation history"],
@@ -350,8 +350,8 @@ export const seoRoutes: RouteSeo[] = [
   {
     path: "/volunteer/dashboard",
     label: "Volunteer Dashboard",
-    title: "Volunteer Dashboard",
-    description: "Moksha Sewa volunteer dashboard for managing assigned requests.",
+    title: "Moksha Sewa Volunteer Dashboard – My Tasks",
+    description: "Moksha Sewa volunteer dashboard for managing assigned requests, tasks and community service activities efficiently.",
     ogImage: "/assets/logo-moksha-seva.png",
     ogImageAlt: "Moksha Sewa volunteer dashboard",
     keywords: ["volunteer dashboard"],
