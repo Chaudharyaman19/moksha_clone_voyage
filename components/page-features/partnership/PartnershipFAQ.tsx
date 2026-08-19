@@ -61,10 +61,10 @@ export default function PartnershipFAQ() {
             ))}
           </div>
 
-          <a href="#" className="mx-auto mt-5 inline-flex h-[44px] min-w-[145px] items-center justify-between rounded-[5px] border border-[#cba469] px-4 text-[16px] font-bold uppercase text-[#0a4a3b]">
+          {/* <a href="#" className="mx-auto mt-5 inline-flex h-[44px] min-w-[145px] items-center justify-between rounded-[5px] border border-[#cba469] px-4 text-[16px] font-bold uppercase text-[#0a4a3b]">
             View All FAQs
             <PartnershipIcon name="ArrowRight" className="h-5 w-5" />
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
