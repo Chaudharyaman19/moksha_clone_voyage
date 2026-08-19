@@ -29,38 +29,38 @@ export default function PartnershipHero() {
       />
 
       <div className="relative mx-auto w-full max-w-[1344px]">
-        <div className="relative z-10 px-5 pb-8 pt-10 sm:px-7 lg:min-h-[510px] lg:w-[58%] lg:px-10 lg:pt-20">
+        <div className="relative z-10 px-5 pb-5 pt-8 sm:px-7 lg:min-h-[440px] lg:w-[58%] lg:px-10 lg:pt-14">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a22]">
             <PartnershipIcon name="Handshake" className="h-7 w-7" />
             Partner With Moksha Sewa
             <span className="h-px w-12 bg-[#c6923c]" />
           </div>
 
-          <h1 className="mt-5 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h1 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Together, We Can
             <br />
             Serve With Greater Purpose.
           </h1>
 
-          <p className="mt-4 text-[20px] font-semibold leading-[1.35] text-[#b77a1d]">
+          <p className="mt-3 text-[20px] font-semibold leading-[1.35] text-[#b77a1d]">
             Build responsible partnerships around dignity,
             <br />
             compassion and humanitarian service.
           </p>
 
-          <div className="mt-4 flex items-center gap-3 text-[#c4933a]">
+          <div className="mt-3 flex items-center gap-3 text-[#c4933a]">
             <span className="h-px w-44 bg-[#c4933a]" />
             <PartnershipIcon name="Lotus" className="h-6 w-6" />
             <span className="h-px w-44 bg-[#c4933a]" />
           </div>
 
-          <p className="mt-5 max-w-[610px] text-[16px] font-medium leading-[1.55] text-[#44494a]">
+          <p className="mt-3 max-w-[610px] text-[16px] font-medium leading-[1.45] text-[#44494a]">
             Partner with Moksha Sewa, an initiative of Namo Gange Trust, to
             explore meaningful collaborations that strengthen support for
             eligible individuals and families during the final journey.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-3">
             <a href="#partnership-enquiry" className="inline-flex h-[52px] min-w-[220px] items-center justify-between rounded-[6px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white">
               Become a Partner
               <PartnershipIcon name="ArrowRight" className="h-5 w-5 text-[#d2a03c]" />
@@ -72,7 +72,7 @@ export default function PartnershipHero() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-5 mb-6 grid overflow-hidden rounded-[10px] border border-[#ddd3c3] bg-[#f7f4ed]/95 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="relative z-20 mx-5 mb-4 grid overflow-hidden rounded-[10px] border border-[#ddd3c3] bg-[#f7f4ed]/95 sm:grid-cols-2 xl:grid-cols-4">
           {benefits.map(([icon, title, text], index) => (
             <div key={title} className={`flex min-h-[92px] items-center gap-4 px-5 py-4 ${index ? "xl:border-l xl:border-[#ded3c4]" : ""}`}>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#eef0e8] text-[#0a4b3b]">

@@ -94,7 +94,7 @@ export default function PartnershipResponsibility() {
         overflow-hidden
         bg-[#FBF8F2]
         px-4
-        py-[20px]
+        py-[12px]
         sm:px-5
         lg:px-6
       "
@@ -164,8 +164,8 @@ export default function PartnershipResponsibility() {
             relative
             z-10
             px-[32px]
-            pb-[75px]
-            pt-[26px]
+            pb-[42px]
+            pt-[16px]
             sm:px-[44px]
             lg:px-[76px]
           "
@@ -248,7 +248,7 @@ export default function PartnershipResponsibility() {
 
           <div
             className="
-              mt-[16px]
+              mt-[10px]
               flex
               items-center
               justify-center
@@ -270,10 +270,10 @@ export default function PartnershipResponsibility() {
 
           <div
             className="
-              mt-[24px]
+              mt-[16px]
               grid
               grid-cols-1
-              gap-y-[24px]
+              gap-y-[16px]
               sm:grid-cols-2
               xl:grid-cols-4
               xl:gap-y-0
@@ -300,8 +300,8 @@ export default function PartnershipResponsibility() {
                 <span
                   className="
                     grid
-                    h-[92px]
-                    w-[92px]
+                    h-[78px]
+                    w-[78px]
                     shrink-0
                     place-items-center
                     rounded-full
@@ -313,7 +313,7 @@ export default function PartnershipResponsibility() {
                 >
                   <PartnershipIcon
                     name={item.icon}
-                    className="h-[52px] w-[52px]"
+                    className="h-[42px] w-[42px]"
                   />
                 </span>
 
@@ -368,8 +368,8 @@ export default function PartnershipResponsibility() {
             overflow-visible
             bg-[#003E31]
             px-[28px]
-            pb-[18px]
-            pt-[65px]
+            pb-[14px]
+            pt-[48px]
             text-white
             sm:px-[36px]
             lg:px-[42px]
@@ -481,7 +481,7 @@ export default function PartnershipResponsibility() {
               grid
               grid-cols-1
               items-center
-              gap-[30px]
+                gap-[18px]
 
               lg:grid-cols-[22%_56%_22%]
               lg:gap-0
@@ -494,7 +494,7 @@ export default function PartnershipResponsibility() {
             <div
               className="
                 flex
-                min-h-[250px]
+                min-h-[200px]
                 flex-col
                 items-center
                 justify-center
@@ -510,7 +510,7 @@ export default function PartnershipResponsibility() {
                 alt="Moksha Sewa"
                 className="
                   h-auto
-                  max-h-[120px]
+                  max-h-[100px]
                   w-auto
                   max-w-[205px]
                   object-contain
@@ -637,7 +637,7 @@ export default function PartnershipResponsibility() {
 
               <div
                 className="
-                  mt-[18px]
+                  mt-[12px]
                   flex
                   w-full
                   flex-nowrap
