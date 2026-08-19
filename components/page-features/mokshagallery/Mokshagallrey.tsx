@@ -10,6 +10,7 @@ import {
   FiDownload,
   FiX,
   FiEye,
+  FiLoader,
 } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
 import { publicGalleryApi } from "@/lib/galleryApi";
@@ -175,6 +176,11 @@ function MokshaGallery() {
       ? images
       : images.filter((img) => img.category === selectedCategory);
   const filteredImages = allFilteredImages.slice(0, visibleCount);
+
+  useEffect(() => {
+    document.body.style.overflow = selectedImage ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [selectedImage]);
 
   useEffect(() => { setVisibleCount(16); }, [selectedCategory, managedImages]);
   useEffect(() => {
@@ -376,16 +382,16 @@ function MokshaGallery() {
       {/* Enhanced Modal with more information */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
+          className="gallery-modal-overlay fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative max-w-5xl w-full max-h-[90vh] bg-white rounded-xl overflow-hidden"
+            className="gallery-modal-panel relative max-w-5xl w-full max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 z-20 text-gray-700 bg-white/90 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl"
+              className="absolute top-4 right-4 z-20 text-gray-700 bg-white/90 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
               aria-label="Close modal"
             >
               <FiX className="w-5 h-5" />
@@ -393,7 +399,7 @@ function MokshaGallery() {
 
             <div className="flex flex-col lg:flex-row h-full">
               {/* Image section */}
-              <div className="relative lg:w-3/5 h-[40vh] lg:h-[80vh] bg-black/5">
+              <div className="relative lg:w-3/5 h-[42vh] lg:h-[82vh] bg-[#EFE8DD]">
                 <Image
                   src={selectedImage.src}
                   alt={selectedImage.alt}
@@ -405,32 +411,34 @@ function MokshaGallery() {
               </div>
 
               {/* Details section */}
-              <div className="lg:w-2/5 p-6 lg:p-8 bg-white overflow-y-auto">
+              <div className="lg:w-2/5 p-6 lg:p-8 bg-gradient-to-b from-white to-[#FBF8F3] overflow-y-auto">
                 <div className="space-y-6">
                   <div>
-                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3">
+                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3 tracking-wide">
                       {selectedImage.category.charAt(0).toUpperCase() +
                         selectedImage.category.slice(1)}
                     </span>
-                    <h2 className="text-2xl lg:text-3xl font-serif text-[#2C1810] mb-2">
+                    <h2 className="text-2xl lg:text-3xl font-serif text-[#2C1810] mb-2 leading-snug">
                       {selectedImage.title}
                     </h2>
-                    <p className="text-[#5A3E2B]/70 text-sm">
+                    <p className="text-[#5A3E2B]/70 text-sm leading-relaxed">
                       {selectedImage.description}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 py-4 border-y border-[#F5E9D9]">
                     <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
-                        Photographer
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1 flex items-center gap-1">
+                        <FiUser className="w-3 h-3" /> Photographer
                       </p>
                       <p className="text-sm font-medium text-[#2C1810]">
                         {selectedImage.photographer}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">Year</p>
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1 flex items-center gap-1">
+                        <FiCalendar className="w-3 h-3" /> Year
+                      </p>
                       <p className="text-sm font-medium text-[#2C1810]">
                         {selectedImage.date}
                       </p>
@@ -446,8 +454,16 @@ function MokshaGallery() {
                   </div>
 
                   {downloadError && <p className="text-[14px] font-medium text-red-600">{downloadError}</p>}
-                  <button onClick={downloadSelectedImage} disabled={downloading} className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-60">
-                    <FiDownload className="w-4 h-4" />
+                  <button
+                    onClick={downloadSelectedImage}
+                    disabled={downloading}
+                    className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-60 shadow-sm hover:shadow-md"
+                  >
+                    {downloading ? (
+                      <FiLoader className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <FiDownload className="w-4 h-4" />
+                    )}
                     {downloading ? "Downloading..." : "Download High Resolution"}
                   </button>
                 </div>
