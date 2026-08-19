@@ -6,10 +6,7 @@ interface IconProps {
   className?: string;
 }
 
-const CustomIcon = ({
-  name,
-  className = "h-6 w-6",
-}: IconProps) => {
+const CustomIcon = ({ name, className = "h-6 w-6" }: IconProps) => {
   const icons: Record<string, ReactElement> = {
     Lotus: (
       <svg
@@ -213,18 +210,12 @@ export default function HumanitarianCommitment() {
 
               {/* ================= HEADING ================= */}
 
-              <h2
-                className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]"
-              >
-                <span className="block">
-                  No One Should Leave
-                </span>
+              <h2 className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
+                <span className="block">No One Should Leave</span>
 
                 <span className="block">
                   This World Without{" "}
-                  <span className="text-[#BA790F]">
-                    Dignity.
-                  </span>
+                  <span className="text-[#BA790F]">Dignity.</span>
                 </span>
               </h2>
 
@@ -246,7 +237,13 @@ export default function HumanitarianCommitment() {
               <p className="relative z-10 mx-auto mt-[10px] max-w-[690px] text-center text-[16px] leading-[1.5] text-[#465365]">
                 Moksha Sewa supports legally authorised unclaimed cases with
                 respectful final-rites coordination after completion of
-                applicable police, hospital and authority formalities.
+                applicable police, hospital and authority formalities. Our team
+                works carefully with the concerned authorities and service
+                partners to help ensure that each final journey is handled with
+                dignity, compassion, proper coordination and due respect.
+                Support is provided only within the approved legal process and
+                after the required documentation, verification and permissions
+                have been completed.
               </p>
 
               {/* =================================================
@@ -354,17 +351,15 @@ export default function HumanitarianCommitment() {
               </div>
 
               <div className="min-w-0">
-                <h3
-                  className="text-[22px] font-semibold leading-none text-[#124C36]"
-                >
+                <h3 className="text-[22px] font-semibold leading-none text-[#124C36]">
                   Our Commitment
                 </h3>
 
                 <span className="mt-[7px] block h-[2px] w-[88px] bg-[#C68E2D]" />
 
                 <p className="mt-[8px] max-w-[540px] text-[16px] leading-[1.45] text-[#45505E]">
-                  We follow all legal requirements and work in coordination
-                  with authorities to ensure dignity and responsibility.
+                  We follow all legal requirements and work in coordination with
+                  authorities to ensure dignity and responsibility.
                 </p>
               </div>
             </div>
