@@ -915,7 +915,7 @@ export default function VolunteerRegister() {
                         </div>
                       </div>
 
-                      <div className="mt-4 grid gap-x-4 gap-y-4 border-t border-dashed border-[#EDB886] pt-3 sm:grid-cols-2 lg:grid-cols-4">
+                      <div className="mt-4 grid gap-x-4 gap-y-4 border-t border-dashed border-[#EDB886] pt-3 sm:grid-cols-2 lg:grid-cols-[1fr_1.2fr_1fr_1fr]">
                         {[['emergencyOnCall', 'Emergency / On-Call Seva? *'], ['canParticipateFieldCases', 'Can Participate in Field Cases? *'], ['ownVehicle', 'Own Vehicle Available? *'], ['volunteeredBefore', 'NGO Experience? *']].map(([name, text]) => (
                           <label key={name}>
                             <span className={labelClass}>{text}</span>
