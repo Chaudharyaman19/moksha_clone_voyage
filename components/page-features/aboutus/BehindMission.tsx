@@ -74,7 +74,7 @@ export default function BehindMission() {
             </div>
 
             {/* 06 video */}
-            <div className="mt-1 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
+            <div className="mt-0 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
               <span className="h-px w-10 bg-[#C6A25C]" />
               <span>06 — VIDEO</span>
               <span className="h-px w-10 bg-[#C6A25C]" />

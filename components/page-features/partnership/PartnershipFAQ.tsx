@@ -11,20 +11,20 @@ const faqs = [
 
 export default function PartnershipFAQ() {
   return (
-    <section className="bg-[#fbf7ef] px-5 py-9">
+    <section className="bg-[#fbf7ef] px-5 py-5">
       <div className="mx-auto grid max-w-[1344px] grid-cols-1 overflow-hidden rounded-[12px] border border-[#ded1bf] lg:grid-cols-[42%_58%]">
-        <div className="bg-[#004132] px-7 py-8 text-white">
+        <div className="bg-[#004132] px-7 py-6 text-white">
           <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#d1a03b]">Together In Sewa</p>
-          <h2 className="mt-4 text-[38px] font-medium leading-[1.05]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="mt-3 text-[38px] font-medium leading-[1.05]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             Bring Your Strengths
             <br />
             to a Mission of Dignity.
           </h2>
-          <p className="mt-5 text-[16px] leading-[1.5] text-[#e8e4db]">
+          <p className="mt-3 text-[16px] leading-[1.45] text-[#e8e4db]">
             Explore how your organisation, services or network can contribute to responsible humanitarian Sewa.
           </p>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-4 space-y-3">
             {([
               ["People", "Shared Purpose", "Work together for a common mission and responsible Sewa."],
               ["ShieldCheck", "Responsible Collaboration", "Defined roles, clear processes and mutual accountability."],
@@ -44,11 +44,11 @@ export default function PartnershipFAQ() {
           </div>
         </div>
 
-        <div className="bg-[#fffdf8] px-7 py-8">
+        <div className="bg-[#fffdf8] px-7 py-6">
           <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#b47a22]">Partnership Questions</p>
           <h2 className="mt-2 text-[34px] font-medium text-[#064335]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>Frequently Asked Questions</h2>
 
-          <div className="mt-6 space-y-3">
+          <div className="mt-4 space-y-2.5">
             {faqs.map(([q, a], index) => (
               <details key={q} open={index === 0} className="group rounded-[7px] border border-[#e1d7c8] bg-white px-4 py-3">
                 <summary className="flex cursor-pointer list-none items-center gap-3 text-[16px] font-bold text-[#34403f]">

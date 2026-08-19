@@ -98,7 +98,7 @@ export default function PartnershipProcess() {
         bg-[#FBF8F2]
 
         px-4
-        py-[24px]
+        py-[14px]
 
         sm:px-5
         lg:px-6
@@ -117,8 +117,8 @@ export default function PartnershipProcess() {
           bg-[#FFFCF6]
 
           px-[24px]
-          pb-[28px]
-          pt-[18px]
+          pb-[20px]
+          pt-[12px]
 
           sm:px-[34px]
           lg:px-[38px]
@@ -189,7 +189,7 @@ export default function PartnershipProcess() {
 
         <div
           className="
-            mt-[24px]
+            mt-[14px]
             text-center
           "
         >
@@ -237,7 +237,7 @@ export default function PartnershipProcess() {
 
           <h2
             className="
-              mt-[10px]
+              mt-[7px]
 
               text-[38px]
               font-medium
@@ -261,7 +261,7 @@ export default function PartnershipProcess() {
 
           <div
             className="
-              mt-[14px]
+              mt-[8px]
 
               flex
               items-center
@@ -303,14 +303,14 @@ export default function PartnershipProcess() {
 
         <div
           className="
-            mt-[36px]
+            mt-[22px]
 
             grid
             grid-cols-1
 
             items-start
 
-            gap-y-[34px]
+            gap-y-[22px]
 
             md:grid-cols-2
             md:gap-x-[40px]
@@ -345,8 +345,8 @@ export default function PartnershipProcess() {
                     relative
 
                     grid
-                    h-[170px]
-                    w-[170px]
+                    h-[146px]
+                    w-[146px]
                     shrink-0
 
                     place-items-center
@@ -366,8 +366,8 @@ export default function PartnershipProcess() {
                   <div
                     className="
                       grid
-                      h-[145px]
-                      w-[145px]
+                      h-[122px]
+                      w-[122px]
 
                       place-items-center
 
@@ -384,8 +384,8 @@ export default function PartnershipProcess() {
                     <PartnershipIcon
                       name={step.icon}
                       className="
-                        h-[72px]
-                        w-[72px]
+                        h-[58px]
+                        w-[58px]
                       "
                     />
                   </div>
@@ -489,7 +489,7 @@ export default function PartnershipProcess() {
 
                 <h3
                   className="
-                    mt-[16px]
+                    mt-[10px]
 
                     text-[27px]
                     font-medium
@@ -508,7 +508,7 @@ export default function PartnershipProcess() {
 
                 <span
                   className="
-                    mt-[10px]
+                    mt-[7px]
 
                     h-[2px]
                     w-[42px]
@@ -521,9 +521,9 @@ export default function PartnershipProcess() {
 
                 <p
                   className="
-                    mt-[12px]
+                    mt-[8px]
 
-                    min-h-[50px]
+                    min-h-[42px]
 
                     whitespace-pre-line
 
@@ -556,7 +556,7 @@ export default function PartnershipProcess() {
             relative
 
             mx-auto
-            mt-[36px]
+            mt-[22px]
 
             w-full
             max-w-[1100px]

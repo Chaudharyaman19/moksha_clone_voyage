@@ -529,7 +529,7 @@ export default function SupportTheMission() {
                 mt-[18px]
                 max-w-[600px]
 
-                text-[17px]
+                text-[22px]
                 font-medium
                 leading-[1.52]
 

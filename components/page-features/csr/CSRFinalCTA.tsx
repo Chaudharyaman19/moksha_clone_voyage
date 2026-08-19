@@ -25,11 +25,11 @@ export default function CSRFinalCTA() {
           and humanitarian service together with dignity and accountability.
         </p>
         <div className="mt-3 flex flex-wrap justify-center gap-3">
-          <a href="#csr-enquiry" className="inline-flex h-[46px] w-full max-w-[290px] items-center justify-between rounded-[7px] bg-[#f0b64e] px-5 text-[16px] font-bold uppercase text-[#0a4335]">
+          <a href="#csr-enquiry" className="inline-flex h-[46px] w-full max-w-[290px] items-center justify-between rounded-[7px] bg-[#f0b64e] px-5 text-[13px] font-bold uppercase text-[#0a4335]">
             Discuss a CSR Partnership
             <CSRIcon name="ArrowRight" className="h-7 w-7" />
           </a>
-          <a href="#organisation" className="inline-flex h-[46px] w-full max-w-[320px] items-center justify-between rounded-[7px] border-2 border-[#c89132] bg-transparent px-5 text-[16px] font-bold uppercase text-white">
+          <a href="#organisation" className="inline-flex h-[46px] w-full max-w-[320px] items-center justify-between rounded-[7px] border-2 border-[#c89132] bg-transparent px-5 text-[13px] font-bold uppercase text-white">
             Request Organisation Profile
             <CSRIcon name="ArrowRight" className="h-7 w-7" />
           </a>

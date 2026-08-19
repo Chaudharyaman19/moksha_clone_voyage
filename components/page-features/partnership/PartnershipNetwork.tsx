@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const leftGroups = [
@@ -118,8 +117,8 @@ function PartnerItem({
           relative
 
           grid
-          h-[146px]
-          w-[146px]
+          h-[128px]
+          w-[128px]
           shrink-0
 
           place-items-center
@@ -133,15 +132,15 @@ function PartnerItem({
 
           shadow-[0_3px_12px_rgba(66,44,19,0.035)]
 
-          xl:h-[154px]
-          xl:w-[154px]
+          xl:h-[136px]
+          xl:w-[136px]
         "
       >
         <PartnershipIcon
           name={icon}
           className="
-            h-[76px]
-            w-[76px]
+            h-[64px]
+            w-[64px]
             text-[#194F40]
           "
         />
@@ -151,7 +150,7 @@ function PartnerItem({
 
       <h3
         className="
-          mt-[13px]
+          mt-[9px]
 
           min-h-[48px]
 
@@ -171,7 +170,7 @@ function PartnerItem({
 
       <span
         className="
-          mt-[10px]
+          mt-[7px]
           block
           h-[2px]
           w-[38px]
@@ -183,7 +182,7 @@ function PartnerItem({
 
       <p
         className="
-          mt-[11px]
+          mt-[8px]
 
           whitespace-pre-line
 
@@ -212,7 +211,7 @@ export default function PartnershipNetwork() {
         bg-[#FBF8F2]
 
         px-4
-        py-[32px]
+        py-[18px]
 
         sm:px-5
         lg:px-6
@@ -312,7 +311,7 @@ export default function PartnershipNetwork() {
 
         <h2
           className="
-            mt-[13px]
+            mt-[8px]
 
             text-[38px]
             font-medium
@@ -337,7 +336,7 @@ export default function PartnershipNetwork() {
 
         <div
           className="
-            mt-[12px]
+            mt-[8px]
 
             flex
             items-center
@@ -379,7 +378,7 @@ export default function PartnershipNetwork() {
         <p
           className="
             mx-auto
-            mt-[15px]
+            mt-[10px]
 
             max-w-[760px]
 
@@ -402,13 +401,13 @@ export default function PartnershipNetwork() {
 
         <div
           className="
-            mt-[31px]
+            mt-[20px]
 
             grid
             grid-cols-1
             items-start
 
-            gap-y-[34px]
+            gap-y-[22px]
 
             md:grid-cols-2
             md:gap-x-[42px]
@@ -455,8 +454,8 @@ export default function PartnershipNetwork() {
                 relative
 
                 grid
-                h-[178px]
-                w-[178px]
+                h-[154px]
+                w-[154px]
 
                 place-items-center
 
@@ -490,8 +489,8 @@ export default function PartnershipNetwork() {
                   name="Lotus"
                   className="
                     mx-auto
-                    h-[60px]
-                    w-[60px]
+                    h-[50px]
+                    w-[50px]
 
                     text-[#D59A27]
                   "
@@ -573,7 +572,7 @@ export default function PartnershipNetwork() {
 
             <p
               className="
-                mt-[18px]
+                mt-[12px]
 
                 max-w-[250px]
 
@@ -612,7 +611,7 @@ export default function PartnershipNetwork() {
 
         <div
           className="
-            mt-[28px]
+            mt-[18px]
 
             flex
             items-center
