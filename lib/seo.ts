@@ -263,6 +263,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "monthly",
   },
   {
+    path: "/partnership",
+    label: "Partner With Us",
+    title: "Partner With Moksha Sewa",
+    description:
+      "Partner with Moksha Sewa as a service provider, community organisation or institutional supporter for dignified final-rites assistance.",
+    ogImage: "/assets/logo-moksha-seva.png",
+    ogImageAlt: "Partner with Moksha Sewa",
+    keywords: ["partner with Moksha Sewa", "Moksha Sewa partnership", "service partner"],
+    priority: 0.65,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/privacy-policy",
     label: "Privacy Policy",
     title: "Privacy Policy",

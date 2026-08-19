@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 import { useRouter, usePathname } from "next/navigation";
@@ -17,6 +18,15 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 
+type NavItem = {
+  name: string;
+  path: string;
+  icon: ReactNode;
+  type: "page" | "dropdown";
+  disabled?: boolean;
+  dropdown?: NavItem[];
+};
+
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
@@ -28,7 +38,7 @@ export default function Navbar() {
     if (path.startsWith("#")) return false;
     return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
   };
-  const isItemActive = (item: { path: string; dropdown?: { path: string }[] }) =>
+  const isItemActive = (item: Pick<NavItem, "path" | "dropdown">) =>
     isPathActive(item.path) || Boolean(item.dropdown?.some((child) => isPathActive(child.path)));
 
   useEffect(() => {
@@ -88,7 +98,7 @@ export default function Navbar() {
     }
   };
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       name: "Home",
       path: "/",
@@ -133,7 +143,7 @@ export default function Navbar() {
       dropdown: [
         { name: "Become a Volunteer", path: "/volunteer/register", icon: <FaHandsHelping />, type: "page" },
         { name: "CSR Partnership", path: "/csr", icon: <FaStar />, type: "page" },
-        { name: "Partner With Us", path: "#", icon: <FaHandHoldingHeart />, type: "page", disabled: true },
+        { name: "Partner With Us", path: "/partnership", icon: <FaHandHoldingHeart />, type: "page" },
       ],
     },
     {
