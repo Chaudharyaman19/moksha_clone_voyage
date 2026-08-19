@@ -311,10 +311,7 @@ export default function PartnershipProcess() {
           "
         >
           {steps.map((step, index) => (
-            <div
-              key={step.no}
-              className="contents"
-            >
+            <div key={step.no} className="contents">
               {/* ===============================================
                   STEP
               =============================================== */}
@@ -465,8 +462,7 @@ export default function PartnershipProcess() {
                     text-[#064335]
                   "
                   style={{
-                    fontFamily:
-                      "Georgia, 'Times New Roman', serif",
+                    fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
                   {step.title}
@@ -508,9 +504,7 @@ export default function PartnershipProcess() {
                   icon circles ke center se jaate hain.
               =============================================== */}
 
-              {index < steps.length - 1 && (
-                <ProcessConnector />
-              )}
+              {index < steps.length - 1 && <ProcessConnector />}
             </div>
           ))}
         </div>
@@ -716,8 +710,8 @@ export default function PartnershipProcess() {
               text-[#414748]
             "
           >
-            Submitting an enquiry does not itself create or imply a
-            formal partnership.
+            Submitting an enquiry does not itself create or imply a formal
+            partnership.
           </p>
         </div>
 
