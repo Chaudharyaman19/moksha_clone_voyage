@@ -514,8 +514,8 @@ const AboutMokshaSewa: React.FC = () => {
           "
         >
           {/* Left decoration */}
-          <div className="hidden shrink-0 text-[#df6a27] md:block">
-            <LeafDecoration />
+          <div className="hidden shrink-0 md:block">
+            <Image src="/assets/about-optimized/about_banner_deco_left.png" alt="" width={100} height={100} className="h-auto w-[100px]" />
           </div>
 
           <div className="min-w-0 text-center">
@@ -597,8 +597,8 @@ const AboutMokshaSewa: React.FC = () => {
           </div>
 
           {/* Right decoration */}
-          <div className="hidden shrink-0 text-[#df6a27] md:block">
-            <LeafDecoration flip />
+          <div className="hidden shrink-0 md:block">
+            <Image src="/assets/about-optimized/about_banner_deco_right.png" alt="" width={100} height={100} className="h-auto w-[100px]" />
           </div>
         </div>
       </div>

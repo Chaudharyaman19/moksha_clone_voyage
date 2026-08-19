@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const principles = [
@@ -37,9 +38,9 @@ export default function PartnershipResponsibility() {
         <div className="mt-7 rounded-[10px] bg-[#004132] px-6 py-7 text-white">
           <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-[28%_44%_28%]">
             <div className="text-center">
-              <PartnershipIcon name="Lotus" className="mx-auto h-14 w-14 text-[#d1a03b]" />
-              <h3 className="mt-2 text-[22px] font-bold">MOKSHA SEWA</h3>
-              <p className="text-[16px] text-[#e7e1d8]">A Namo Gange Trust Initiative</p>
+              <Image src="/assets/footer-moksha-mark.png" alt="Moksha Sewa" width={120} height={96} className="mx-auto h-auto w-[120px]" />
+              <h3 className="mt-2 text-[18px] font-semibold uppercase text-white">Moksha Sewa</h3>
+              <p className="mt-1 text-[16px] text-[#e7e1d8]">A Namo Gange Trust Initiative</p>
             </div>
             <div className="border-y border-[#7d7958] py-5 text-center lg:border-x lg:border-y-0 lg:px-7 lg:py-0">
               <h3 className="text-[20px] font-bold">MOKSHA SEWA</h3>
@@ -54,9 +55,8 @@ export default function PartnershipResponsibility() {
               </div>
             </div>
             <div className="text-center">
-              <PartnershipIcon name="Lotus" className="mx-auto h-14 w-14 text-[#d1a03b]" />
-              <h3 className="mt-2 text-[22px] font-bold">NAMO GANGE TRUST</h3>
-              <p className="text-[16px] text-[#e7e1d8]">A Journey to Healthy World...</p>
+              <Image src="/assets/namo-gange-logo.webp" alt="Namo Gange Trust" width={200} height={160} className="mx-auto h-auto w-[200px]" />
+              <p className="mt-2 text-[16px] text-[#e7e1d8]">A Journey to Healthy World...</p>
             </div>
           </div>
         </div>

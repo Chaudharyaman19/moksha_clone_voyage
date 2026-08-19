@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const groups = [
@@ -44,7 +45,7 @@ export default function PartnershipNetwork() {
                 <div className="hidden xl:flex items-center justify-center">
                   <span className="grid h-[112px] w-[112px] place-items-center rounded-full bg-[#004b39] text-white shadow-[0_7px_18px_rgba(0,62,45,.16)]">
                     <div>
-                      <PartnershipIcon name="Lotus" className="mx-auto h-10 w-10 text-[#d0a03c]" />
+                      <Image src="/assets/footer-moksha-mark.png" alt="Moksha Sewa" width={48} height={48} className="mx-auto h-auto w-[48px]" />
                       <p className="mt-2 text-[16px] font-bold">MOKSHA SEWA</p>
                     </div>
                   </span>
