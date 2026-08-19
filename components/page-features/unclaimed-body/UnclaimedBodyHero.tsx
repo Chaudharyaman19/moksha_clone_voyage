@@ -10,7 +10,7 @@ const proof = [
 export default function UnclaimedBodyHero() {
   return (
     <section className="relative overflow-hidden bg-[#fbf6ec]">
-      <div className="relative mx-auto min-h-[650px] max-w-[1660px] overflow-hidden">
+      <div className="relative min-h-[600px] w-full overflow-hidden">
         <div
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-no-repeat lg:block"
           style={{
@@ -27,14 +27,14 @@ export default function UnclaimedBodyHero() {
           }}
         />
 
-        <div className="relative z-10 px-6 pb-8 pt-14 sm:px-10 lg:w-[57%] lg:px-[86px] lg:pt-[70px]">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-10 lg:px-0 lg:pt-14">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
             <UBSIcon name="Lotus" className="h-8 w-8 text-[#b67c22]" />
             Unclaimed Body Sewa
           </div>
 
           <h1
-            className="mt-5 text-[44px] font-medium leading-[1.03] text-[#064335] sm:text-[52px] lg:text-[60px]"
+            className="mt-2 text-[40px] font-medium leading-[1.02] text-[#064335] sm:text-[48px] lg:text-[54px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
             Unclaimed Body Sewa
@@ -44,24 +44,24 @@ export default function UnclaimedBodyHero() {
             <span className="text-[#b87a16]">Responsible Support</span>
           </h1>
 
-          <div className="mt-6 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
+          <div className="mt-2 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
             <span className="h-px flex-1 bg-[#c59b56]" />
             <UBSIcon name="Lotus" className="h-7 w-7" />
             <span className="h-px flex-1 bg-[#c59b56]" />
           </div>
 
-          <p className="mt-6 max-w-[600px] text-[18px] font-semibold leading-[1.5] text-[#333a3c]">
+          <p className="mt-2 max-w-[600px] text-[16px] font-semibold leading-[1.4] text-[#333a3c]">
             Because every human being deserves a respectful final journey.
           </p>
 
-          <p className="mt-4 max-w-[620px] text-[16px] font-medium leading-[1.55] text-[#454a4c]">
+          <p className="mt-1.5 max-w-[620px] text-[16px] font-medium leading-[1.4] text-[#454a4c]">
             Moksha Sewa, an initiative of Namo Gange Trust, supports eligible
             and legally authorised unclaimed-body cases through responsible
             coordination, cremation and last-rites assistance, subject to
             verification and applicable formalities.
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-3 flex flex-wrap gap-3">
             <a href="#request-unclaimed-help" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white">
               Request Sewa Help
               <UBSIcon name="ArrowRight" className="h-6 w-6 text-[#d3a03b]" />
@@ -72,7 +72,7 @@ export default function UnclaimedBodyHero() {
             </a>
           </div>
 
-          <div className="mt-8 grid max-w-[760px] grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-3 grid max-w-[760px] grid-cols-2 gap-2 sm:grid-cols-4">
             {proof.map(([icon, label]) => (
               <div key={label} className="flex items-center gap-3 rounded-[8px] bg-[#fffdf7]/80 px-3 py-3">
                 <UBSIcon name={icon} className="h-7 w-7 shrink-0 text-[#0c4c3b]" />

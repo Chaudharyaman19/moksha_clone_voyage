@@ -3,7 +3,7 @@ import { UBSIcon } from "./UnclaimedBodyIcons";
 export default function MokshaFooter() {
   return (
     <footer className="bg-[#00372d] px-5 py-6 text-white">
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-8 lg:grid-cols-[28%_16%_18%_18%_20%]">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[28%_16%_18%_18%_20%]">
         <div>
           <UBSIcon name="Lotus" className="h-16 w-16 text-[#d3a13d]" />
           <h3 className="mt-2 text-[28px] font-bold">MOKSHA SEWA</h3>
@@ -35,7 +35,7 @@ export default function MokshaFooter() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-6 flex max-w-[1500px] flex-wrap items-center justify-between gap-3 border-t border-[#526b5e] pt-4 text-[16px] text-[#d3d0c7]">
+      <div className="mx-auto mt-6 flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-[#526b5e] pt-4 text-[16px] text-[#d3d0c7]">
         <p>© 2026 Moksha Sewa. All Rights Reserved.</p>
         <p>Sewa • Samman • Sanrakshan</p>
       </div>
