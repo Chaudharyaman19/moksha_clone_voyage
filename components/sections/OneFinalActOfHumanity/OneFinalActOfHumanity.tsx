@@ -30,9 +30,9 @@ export default function OneFinalActOfHumanity() {
         <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-4 py-8 sm:px-5 lg:px-6">
           <div className="w-full max-w-[680px]">
             {/* Logo row */}
-            <div className="mb-6 flex flex-wrap items-center justify-center gap-5 sm:justify-start">
+            <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:grid sm:w-fit sm:grid-cols-[240px_1px_250px] sm:gap-0">
               {/* Moksha Sewa logo block */}
-              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[280px]">
+              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[240px]">
                 <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
                   <Image
                     src="/assets/footer-moksha-mark.png"
@@ -51,22 +51,22 @@ export default function OneFinalActOfHumanity() {
                 </p>
               </div>
 
-              <span className="hidden h-[128px] w-px shrink-0 self-center bg-[#D7B471] sm:block" />
+              <span className="hidden h-[128px] w-px self-center justify-self-center bg-[#D7B471] sm:block" />
 
               {/* Namo Gange logo */}
-              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[280px]">
-                <div className="relative h-[68px] w-[230px] shrink-0 sm:h-[86px] sm:w-[290px]">
+              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[250px]">
+                <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:-translate-x-3">
                   <Image
                     src="/assets/namo-gange-logo.webp"
                     alt="Namo Gange Trust"
                     fill
-                    sizes="290px"
+                    sizes="330px"
                     className="object-contain"
                   />
                 </div>
-                <p className="mt-0.5 text-[16px] font-semibold uppercase tracking-[0.02em] text-[#1B3A63]">
+                {/* <p className="mt-0.5 text-[16px] font-semibold uppercase tracking-[0.02em] text-[#1B3A63]">
                   Namo Gange Trust
-                </p>
+                </p> */}
               </div>
             </div>
 
