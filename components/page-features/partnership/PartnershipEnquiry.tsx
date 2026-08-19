@@ -40,7 +40,7 @@ export default function PartnershipEnquiry() {
   }
   return (
     <section id="partnership-enquiry" className="bg-[#fbf7ef] px-5 py-5">
-      <div className="mx-auto grid max-w-[1344px] grid-cols-1 gap-5 lg:grid-cols-[44%_56%]">
+      <div className="mx-auto grid max-w-[1344px] grid-cols-1 gap-5 lg:grid-cols-[44%_54%]">
         <div className="px-2">
           <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a20]"><span className="mr-3">—</span> Start a Conversation</p>
           <h2 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
