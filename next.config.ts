@@ -9,7 +9,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self' data:",
-  `connect-src 'self' ${apiOrigin} https://*.razorpay.com`,
+  `connect-src 'self' ${apiOrigin} https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us`,
   "frame-src https://*.razorpay.com https://checkout.razorpay.com https://maps.google.com https://www.google.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   images: {
-    qualities: [25, 50, 75, 95, 100],
+    qualities: [25, 50, 75, 90, 95, 100],
     remotePatterns: [
       {
         protocol: "https",
