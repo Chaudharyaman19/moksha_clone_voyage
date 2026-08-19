@@ -602,10 +602,10 @@ export default function HowSewaWorks() {
               text-[32px]
               font-semibold
               leading-[1.03]
-              text-[#321C12]
+                 text-[#145728]
 
               sm:text-[40px]
-              lg:text-[48px]
+              lg:text-[40px]
             "
           >
             Support With Care, Verification &amp; Responsibility
