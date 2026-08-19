@@ -90,7 +90,7 @@ export default function UnclaimedBodyRequest() {
             {[
               ["name", "Full Name", "Enter your full name", "text", true],
               ["phone", "Phone Number", "Enter your phone number", "tel", true],
-              ["email", "Email", "Enter your email address", "email", false],
+              ["email", "Email", "Enter your email address", "email", true],
               ["city", "City / Location", "Enter city or location", "text", true],
               ["organization", "Organisation / Institution (If applicable)", "Enter organisation or institution", "text", false],
               ["authority", "Hospital / Police Station / Authority (If applicable)", "Enter hospital, police station or authority", "text", false],
