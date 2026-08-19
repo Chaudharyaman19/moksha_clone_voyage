@@ -144,7 +144,7 @@ function Blog() {
 
       <main>
         {/* ============ HERO — visual banner first ============ */}
-        <section className="relative w-full aspect-[16/6] min-h-[400px] overflow-hidden bg-[#F4EDE3]">
+        <section className="relative w-full aspect-[16/6] min-h-[400px] overflow-hidden bg-[#F4EDE3] px-5 sm:px-6 lg:px-0">
           <div className="absolute inset-0">
             <Image
               src={blogImages.hero}
@@ -170,45 +170,41 @@ function Blog() {
             ज्ञान
           </div>
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-28 lg:pt-32">
-            <div className="max-w-[540px] translate-y-2 lg:translate-y-3">
+          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-20 lg:pt-32">
+            <div className="max-w-[540px]">
               <div className="inline-flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PiFlowerLotus className="h-4 w-4" />
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
+                  <PiFlowerLotus className="h-3.5 w-3.5" />
                 </span>
-                <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
+                <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E] sm:text-[14px]">
                   Wisdom & Insights
                 </span>
               </div>
 
               <h1
-                className="mt-3 leading-[0.95]"
+                className="mt-2 leading-[1.1] sm:mt-3"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                <span className="block text-[38px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  The Moksha   Blog
+                <span className="block text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
+                  The Moksha Blog
                 </span>
-
               </h1>
 
               <div className="mt-2 flex items-center gap-2">
-                <span className="h-[2px] w-12 bg-[#8B6A3E]" />
-                <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-                <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
+                <span className="h-[2px] w-10 bg-[#8B6A3E] sm:w-12" />
+                <span className="h-1.5 w-1.5 rotate-45 border border-[#8B6A3E] bg-[#C9A574] sm:h-2 sm:w-2" />
+                <span className="h-px w-16 bg-gradient-to-r from-[#C9A574] to-transparent sm:w-20" />
               </div>
 
-              <p className="mt-3 max-w-[455px] text-sm leading-6 text-[#4F3A2D] sm:text-[20px]">
-                Articles on rituals, pilgrimage,
-                sacred traditions, funeral guidance, and spiritual practices — timeless wisdom explained with warmth,
-                clarity, and compassion for modern families seeking understanding, comfort,
-                and meaningful cultural connection.
+              <p className="mt-4 max-w-[455px] text-[15px] leading-6 text-[#4F3A2D] sm:text-[18px] lg:text-[20px]">
+                Articles on rituals, pilgrimage, sacred traditions, and spiritual practices — wisdom explained with clarity and compassion for modern families.
               </p>
             </div>
           </div>
         </section>
 
         {/* ============ FILTER TOOLBAR ============ */}
-        <section className="border-b border-[#E9DDCD] bg-[#F8F3EC] py-5">
+        <section className="border-b border-[#E9DDCD] bg-[#F8F3EC] py-5 px-5 lg:px-0">
           <div className="mx-auto w-full max-w-7xl px-0">
             <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#E4D5BE] bg-white p-3 shadow-[0_14px_36px_rgba(73,49,31,0.10)] sm:p-3.5">
               <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
@@ -250,7 +246,7 @@ function Blog() {
 
         {/* ============ FEATURED SPOTLIGHT ============ */}
         {showFeatured && (
-          <section className="pt-5 lg:pt-6">
+          <section className="pt-5 lg:pt-6 px-5 lg:px-0">
             <div className="mx-auto w-full max-w-7xl px-0">
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)]">
                 <span className="absolute inset-y-0 left-0 z-10 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
@@ -319,7 +315,7 @@ function Blog() {
         )}
 
         {/* ============ ALL POSTS ============ */}
-        <section className="py-5 lg:py-6">
+        <section className="py-5 lg:py-6 px-5 lg:px-0">
           <div className="mx-auto w-full max-w-7xl px-0">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
               <div>
@@ -341,6 +337,7 @@ function Blog() {
                 {filteredPosts.length} articles found
               </span>
             </div>
+
 
             {filteredPosts.length === 0 ? (
               /* ---- empty state ---- */
