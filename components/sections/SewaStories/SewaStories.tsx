@@ -766,7 +766,7 @@ export default function SewaStories() {
           {/* BUTTON */}
 
           <a
-            href="/gallery"
+            href="/mokshagallery"
             className="
               group
               inline-flex
