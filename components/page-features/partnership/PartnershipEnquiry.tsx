@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
+import SuccessPopup from "@/components/common/SuccessPopup";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const types = [
@@ -14,6 +15,7 @@ const types = [
 export default function PartnershipEnquiry() {
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,6 +32,7 @@ export default function PartnershipEnquiry() {
       form.reset();
       setSubmitState("success");
       setSubmitMessage("Thank you. Your partnership enquiry has been received.");
+      setShowSuccessPopup(true);
     } catch (error) {
       setSubmitState("error");
       setSubmitMessage(error instanceof Error ? error.message : "Could not submit your enquiry.");
@@ -132,6 +135,12 @@ export default function PartnershipEnquiry() {
           {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0a4b3b]"}`}>{submitMessage}</p>}
         </form>
       </div>
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        message="Your partnership enquiry has been received. Our team will review the information and get back to you."
+      />
     </section>
   );
 }

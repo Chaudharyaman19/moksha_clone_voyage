@@ -19,6 +19,7 @@ import footerBg from "../../../public/assets/footer-ghat-sunset.png";
 import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
+import SuccessPopup from "@/components/common/SuccessPopup";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -120,6 +121,7 @@ export default function FooterNew() {
   const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -550,6 +552,7 @@ export default function FooterNew() {
       await newsletterApi.subscribe(email.trim(), "footer-request-support");
       setSubscribed(true);
       setEmail("");
+      setShowSuccessPopup(true);
 
       window.setTimeout(() => {
         setSubscribed(false);
@@ -560,6 +563,7 @@ export default function FooterNew() {
   };
 
   return (
+    <>
     <footer
       ref={footerRef}
       className="relative isolate overflow-hidden bg-[#050706] text-white"
@@ -948,6 +952,12 @@ export default function FooterNew() {
         </div>
       </div>
     </footer>
+    <SuccessPopup
+      open={showSuccessPopup}
+      onClose={() => setShowSuccessPopup(false)}
+      message="Thank you for reaching out. Our support team will contact you shortly."
+    />
+    </>
   );
 }
 

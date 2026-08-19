@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
+import SuccessPopup from "@/components/common/SuccessPopup";
 import { UBSIcon } from "./UnclaimedBodyIcons";
 
 const mini = [
@@ -14,6 +15,7 @@ const mini = [
 export default function UnclaimedBodyRequest() {
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -27,6 +29,7 @@ export default function UnclaimedBodyRequest() {
       form.reset();
       setSubmitState("success");
       setSubmitMessage("Thank you. Your Sewa request has been received. Our team will review the information and respond further.");
+      setShowSuccessPopup(true);
     } catch (error) {
       setSubmitState("error");
       setSubmitMessage(error instanceof Error ? error.message : "Could not submit your Sewa request.");
@@ -135,6 +138,12 @@ export default function UnclaimedBodyRequest() {
         <p className="flex gap-4 text-[16px] leading-[1.45]"><UBSIcon name="ShieldCheck" className="h-9 w-9 shrink-0 text-[#d4a13b]" />Submitting a request does not guarantee acceptance of a case. Assistance is subject to verification, required authorisation, applicable formalities and availability.</p>
         <p className="flex gap-4 text-[16px] leading-[1.45]"><UBSIcon name="Check" className="h-9 w-9 shrink-0 text-[#d4a13b]" />Thank you. Your Sewa request has been received. Our team will review the information and respond further.</p>
       </div>
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        message="Your Sewa request has been received. Our team will review the information and respond further."
+      />
     </section>
   );
 }

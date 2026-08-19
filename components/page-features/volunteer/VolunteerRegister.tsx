@@ -914,6 +914,7 @@ import {
   VolunteerPreferredRole,
 } from "@/lib/volunteerApi";
 import { ApiRequestError } from "@/lib/api";
+import SuccessPopup from "@/components/common/SuccessPopup";
 
 interface VolunteerForm {
   firstName: string;
@@ -1125,6 +1126,8 @@ export default function VolunteerRegister() {
   const [error, setError] =
     useState("");
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   const [step, setStep] = useState(0);
@@ -1285,9 +1288,7 @@ export default function VolunteerRegister() {
         }),
       );
 
-      router.push(
-        "/volunteer/dashboard",
-      );
+      setShowSuccessPopup(true);
     } catch (caughtError) {
       setError(
         caughtError instanceof
@@ -2204,6 +2205,16 @@ export default function VolunteerRegister() {
       </main>
 
       <Footer />
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => {
+          setShowSuccessPopup(false);
+          router.push("/volunteer/dashboard");
+        }}
+        title="Welcome to the Team!"
+        message="Your volunteer registration has been submitted successfully. Taking you to your dashboard."
+      />
     </div>
   );
 }
