@@ -70,6 +70,8 @@ export const metadata: Metadata = {
     icon: DEFAULT_OG_IMAGE,
   },
 };
+import SmoothScrolling from "@/components/common/SmoothScrolling";
+
 export default function RootLayout({
   children,
 }: {
@@ -82,7 +84,9 @@ export default function RootLayout({
           <JsonLd data={organizationJsonLd()} />
           <JsonLd data={websiteJsonLd()} />
           <Sideicon />
-          {children}
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
         </StoreProvider>
       </body>
     </html>
