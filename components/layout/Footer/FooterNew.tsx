@@ -113,6 +113,7 @@ const values = [
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
+  { label: "Volunteer Code of Conduct", href: "/code-of-conduct" },
   { label: "Refund Policy", href: "/refund-policy" },
 ];
 
