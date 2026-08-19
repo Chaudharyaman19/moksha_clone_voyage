@@ -156,9 +156,8 @@ export default function FAQSection() {
               return (
                 <div
                   key={faq.id}
-                  className={`overflow-hidden rounded-[9px] border border-[#e7ddca] bg-[#fffdf9]/95 shadow-[0_2px_7px_rgba(71,55,25,0.10)] transition-all duration-300 ${
-                    isOpen ? "shadow-[0_5px_18px_rgba(71,55,25,0.14)]" : ""
-                  }`}
+                  className={`overflow-hidden rounded-[9px] border border-[#e7ddca] bg-[#fffdf9]/95 shadow-[0_2px_7px_rgba(71,55,25,0.10)] transition-all duration-300 ${isOpen ? "shadow-[0_5px_18px_rgba(71,55,25,0.14)]" : ""
+                    }`}
                 >
                   {/* Question button */}
                   <button
@@ -189,9 +188,8 @@ export default function FAQSection() {
 
                     {/* Plus / minus */}
                     <span
-                      className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#b78b2d] text-[#a8791c] transition-all duration-300 sm:h-[32px] sm:w-[32px] ${
-                        isOpen ? "rotate-180 bg-[#00503f] text-white" : ""
-                      }`}
+                      className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#b78b2d] text-[#a8791c] transition-all duration-300 sm:h-[32px] sm:w-[32px] ${isOpen ? "rotate-180 bg-[#00503f] text-white" : ""
+                        }`}
                     >
                       {isOpen ? (
                         <Minus size={17} strokeWidth={1.8} />
@@ -203,9 +201,8 @@ export default function FAQSection() {
 
                   {/* Answer */}
                   <div
-                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
+                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
                   >
                     <div className="overflow-hidden">
                       <div className="border-t border-[#eee5d5] px-5 pb-3 pt-2 pl-[58px] text-[16px] leading-6 text-[#5a615e] sm:pl-[72px]">
@@ -220,7 +217,7 @@ export default function FAQSection() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="relative mx-auto mt-3 flex w-full items-center justify-center">
+        {/* <div className="relative mx-auto mt-3 flex w-full items-center justify-center">
           <button
             type="button"
             className="group relative w-full max-w-[430px] overflow-hidden transition-all duration-300 hover:opacity-90 sm:max-w-[480px]"
@@ -269,7 +266,7 @@ export default function FAQSection() {
               />
             </span>
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -54,10 +54,10 @@ export default function AboutFaq() {
           </div>
         </div>
 
-        <div className="mt-5 grid border border-[#ebe6dc] bg-[#f4f4ef] px-3 py-1 sm:grid-cols-2 lg:grid-cols-[repeat(4,1fr)_auto]">
+        {/* <div className="mt-5 grid border border-[#ebe6dc] bg-[#f4f4ef] px-3 py-1 sm:grid-cols-2 lg:grid-cols-[repeat(4,1fr)_auto]">
           {trustPoints.map(([title, text, Icon], index) => <div key={title} className={`flex items-center gap-2.5 px-3 py-1 ${index ? "border-t border-[#dcd6ca] sm:border-l sm:border-t-0" : ""}`}><Icon className="h-6 w-6 shrink-0 text-[#315548]" /><span><span className="block text-[16px] font-semibold leading-[1.15] text-[#315047]">{title}</span><span className="mt-0.5 block text-[16px] leading-[1.15] text-[#5a6862]">{text}</span></span></div>)}
           <Link href="/faq" className="flex items-center justify-center gap-3 border-t border-[#dcd6ca] px-5 py-3 text-[16px] font-bold uppercase text-[#a76f2b] sm:col-span-2 lg:col-span-1 lg:border-l lg:border-t-0"><span className="grid h-8 w-8 place-items-center rounded-full border border-[#bf8b3d]">→</span>View All FAQs<FaArrowRight className="h-3 w-3" /></Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );
