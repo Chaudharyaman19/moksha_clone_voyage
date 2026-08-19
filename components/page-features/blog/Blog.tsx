@@ -375,10 +375,7 @@ function Blog() {
                     key={post.id}
                     className="group overflow-hidden rounded-xl border border-[#E6D6BF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#C9A574] hover:shadow-[0_16px_32px_rgba(70,47,31,0.14)]"
                   >
-                    <Link
-                      href={`/blog/${post.id}`}
-                      className="relative block h-44 w-full overflow-hidden"
-                    >
+                    <div className="relative block h-44 w-full overflow-hidden">
                       <Image
                         src={post.image}
                         alt={post.title}
@@ -390,7 +387,7 @@ function Blog() {
                       <span className="absolute bottom-2.5 left-3 z-10 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-white shadow">
                         {post.category}
                       </span>
-                    </Link>
+                    </div>
 
                     <div className="p-4">
                       <div className="flex items-center gap-2 text-[14px] text-[#8A7460]">
@@ -404,12 +401,7 @@ function Blog() {
                       </div>
 
                       <h3 className="mt-2 line-clamp-2 font-serif text-base leading-snug text-[#2C1810]">
-                        <Link
-                          href={`/blog/${post.id}`}
-                          className="transition hover:text-[#8B6A3E]"
-                        >
-                          {post.title}
-                        </Link>
+                        {post.title}
                       </h3>
 
                       <p className="mt-1.5 line-clamp-2 text-[14px] leading-5 text-[#6B584B]">

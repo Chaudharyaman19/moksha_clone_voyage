@@ -88,7 +88,7 @@ const MokshaSewaIntro: React.FC = () => {
             </div>
 
             {/* Description — starts after the border */}
-            <div className="max-w-[505px] pl-14 text-[16px] leading-[1.55] text-[#293436]">
+            <div className="max-w-[505px] pl-20 text-[16px] leading-[1.55] text-[#293436]">
               <p>
                 Moksha Sewa is a humanitarian initiative created to stand
                 beside people during one of life’s most difficult and
