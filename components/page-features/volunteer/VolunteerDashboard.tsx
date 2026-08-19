@@ -244,14 +244,16 @@ function VolunteerDashboard() {
 
   const load = () => {
     setLoading(true);
+    setError("");
     Promise.all([volunteerApi.myProfile(), volunteerApi.myAssignments()])
       .then(([p, a]) => {
         setProfile(p);
         setAssignments(a);
       })
-      .catch(() => {
+      .catch((err) => {
         setProfile(null);
         setAssignments([]);
+        setError(err instanceof ApiRequestError ? err.message : "Could not load your volunteer dashboard. Please try again.");
       })
       .finally(() => setLoading(false));
   };
@@ -421,7 +423,14 @@ function VolunteerDashboard() {
         </div>
 
         {error && (
-          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">{error}</div>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+            <span>{error}</span>
+            {!loading && !profile && (
+              <button type="button" onClick={load} className="rounded-md border border-red-300 px-3 py-1 text-[14px] hover:bg-red-100">
+                Try Again
+              </button>
+            )}
+          </div>
         )}
 
         {loading ? (
@@ -500,7 +509,7 @@ function VolunteerDashboard() {
               </div>
             )}
 
-            {assignments.length === 0 ? (
+            {profile && assignments.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-[#E4D5BE] bg-white p-10 text-center">
                 <p className="text-sm text-[#7A685B]">No assignments yet — our team will reach out when a case near you needs support.</p>
               </div>

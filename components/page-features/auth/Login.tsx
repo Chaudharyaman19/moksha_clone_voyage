@@ -13,7 +13,6 @@ import { authApi } from "@/lib/authApi";
 import { ApiRequestError } from "@/lib/api";
 
 type Mode = "otp" | "password";
-type PasswordSubMode = "login" | "register";
 type OtpStep = "phone" | "otp";
 
 const inputClass =
@@ -29,7 +28,6 @@ function Login() {
   const redirectTo = searchParams.get("redirect") || "/";
 
   const [mode, setMode] = useState<Mode>("otp");
-  const [passwordSubMode, setPasswordSubMode] = useState<PasswordSubMode>("login");
   const [otpStep, setOtpStep] = useState<OtpStep>("phone");
 
   const [phone, setPhone] = useState("");
@@ -37,7 +35,8 @@ function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [regPhone, setRegPhone] = useState("");
+  const [totpCode, setTotpCode] = useState("");
+  const [requiresTwoFactor, setRequiresTwoFactor] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -95,26 +94,16 @@ function Login() {
     setError("");
     setIsSubmitting(true);
     try {
-      const result = await authApi.login(email, password);
+      const result = await authApi.login(email, password, requiresTwoFactor ? totpCode : undefined);
       dispatch(setCredentials(result));
       router.push(result.user.userType === "VOLUNTEER" ? "/volunteer/dashboard" : redirectTo);
     } catch (err) {
-      setError(err instanceof ApiRequestError ? err.message : "Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setIsSubmitting(true);
-    try {
-      const result = await authApi.register({ name, phone: regPhone, email, password });
-      dispatch(setCredentials(result));
-      router.push(redirectTo);
-    } catch (err) {
-      setError(err instanceof ApiRequestError ? err.message : "Something went wrong. Please try again.");
+      if (err instanceof ApiRequestError && err.message.toLowerCase().includes("two-factor code required")) {
+        setRequiresTwoFactor(true);
+        setError("Enter the code from your authenticator app to continue.");
+      } else {
+        setError(err instanceof ApiRequestError ? err.message : "Something went wrong. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -124,6 +113,8 @@ function Login() {
     setMode(next);
     setError("");
     setOtpStep("phone");
+    setRequiresTwoFactor(false);
+    setTotpCode("");
   };
 
   return (
@@ -251,27 +242,7 @@ function Login() {
             )}
 
             {mode === "password" && (
-              <>
-                <div className="mb-4 flex justify-center gap-4 text-[14px] font-semibold">
-                  <button
-                    type="button"
-                    onClick={() => setPasswordSubMode("login")}
-                    className={passwordSubMode === "login" ? "text-[#8B6A3E]" : "text-[#A8937E]"}
-                  >
-                    Login
-                  </button>
-                  <span className="text-[#E4D5BE]">|</span>
-                  <button
-                    type="button"
-                    onClick={() => setPasswordSubMode("register")}
-                    className={passwordSubMode === "register" ? "text-[#8B6A3E]" : "text-[#A8937E]"}
-                  >
-                    Create Account
-                  </button>
-                </div>
-
-                {passwordSubMode === "login" ? (
-                  <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleLogin} className="space-y-4">
                     <div>
                       <label className={labelClass}>Email Address</label>
                       <input
@@ -294,71 +265,29 @@ function Login() {
                         className={inputClass}
                       />
                     </div>
+                    {requiresTwoFactor && (
+                      <div>
+                        <label className={labelClass}>Authenticator Code</label>
+                        <input
+                          type="text"
+                          inputMode="numeric"
+                          autoComplete="one-time-code"
+                          required
+                          value={totpCode}
+                          onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                          placeholder="6-digit code or backup code"
+                          className={inputClass}
+                        />
+                      </div>
+                    )}
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || (requiresTwoFactor && totpCode.length < 6)}
                       className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {isSubmitting ? "Logging in..." : "Login"}
                     </button>
                   </form>
-                ) : (
-                  <form onSubmit={handleRegister} className="space-y-4">
-                    <div>
-                      <label className={labelClass}>Full Name</label>
-                      <input
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label className={labelClass}>Phone Number</label>
-                      <input
-                        type="tel"
-                        required
-                        value={regPhone}
-                        onChange={(e) => setRegPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                        placeholder="98765 43210"
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label className={labelClass}>Email Address</label>
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label className={labelClass}>Password</label>
-                      <input
-                        type="password"
-                        required
-                        minLength={6}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="At least 6 characters"
-                        className={inputClass}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#8B6A3E] px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#73532F] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {isSubmitting ? "Creating account..." : "Create Account"}
-                    </button>
-                  </form>
-                )}
-              </>
             )}
           </div>
         </div>
