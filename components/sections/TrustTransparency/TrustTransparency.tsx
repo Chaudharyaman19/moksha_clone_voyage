@@ -711,7 +711,7 @@ export default function TrustTransparency() {
 
             <div className="mt-[16px] grid grid-cols-1 gap-[13px] md:grid-cols-[0.58fr_0.42fr] md:items-center">
               <a
-                href="/about-us"
+                href="/about"
                 className="
                   group
                   flex

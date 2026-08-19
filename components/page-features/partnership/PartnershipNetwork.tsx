@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const leftGroups = [

@@ -188,7 +188,7 @@ const cards: MissionCard[] = [
     description:
       "Give your time, presence and compassion.",
     buttonLabel: "Become a Volunteer",
-    buttonHref: "/volunteer",
+    buttonHref: "/volunteer/register",
     accent: "#B24E11",
   },
 
