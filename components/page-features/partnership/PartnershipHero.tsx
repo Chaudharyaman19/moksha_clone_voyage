@@ -30,7 +30,7 @@ export default function PartnershipHero() {
 
       <div className="relative mx-auto w-full max-w-[1344px]">
         <div className="relative z-10 px-5 pb-5 pt-8 sm:px-7 lg:min-h-[440px] lg:w-[58%] lg:px-10 lg:pt-14">
-          <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a22]">
+          <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a22] pt-8">
             <PartnershipIcon name="Handshake" className="h-7 w-7" />
             Partner With Moksha Sewa
             <span className="h-px w-12 bg-[#c6923c]" />
