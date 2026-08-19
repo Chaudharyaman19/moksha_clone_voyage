@@ -105,7 +105,7 @@ export default function FAQSection() {
               aria-hidden="true"
               width={2819}
               height={209}
-              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[140px]"
+              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[100px]"
             />
 
             <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.15em] text-[#a67820] sm:tracking-[0.18em]">
@@ -118,7 +118,7 @@ export default function FAQSection() {
               aria-hidden="true"
               width={1992}
               height={152}
-              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[140px]"
+              className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[100px]"
             />
           </div>
 
