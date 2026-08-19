@@ -20,7 +20,13 @@ function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const redirectTo = searchParams.get("redirect") || "/";
+  // Only ever redirect to a path within this site. A value like "//evil.com" or
+  // "https://evil.com" is protocol-relative/absolute and would otherwise send a just-authenticated
+  // user off-site — restrict to strings that start with a single "/" and nothing that looks like
+  // the start of another origin.
+  const requestedRedirect = searchParams.get("redirect");
+  const redirectTo =
+    requestedRedirect && /^\/(?!\/)/.test(requestedRedirect) ? requestedRedirect : "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
