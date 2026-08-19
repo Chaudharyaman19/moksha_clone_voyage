@@ -637,7 +637,7 @@ export default function PrivacyPolicy() {
           {/* Section 1 */}
           <section
             id="privacy-section-1"
-            className="relative mb-4 scroll-mt-4 overflow-hidden"
+            className="relative mb-4 scroll-mt-4 overflow-hidden p-2 rounded-lg"
           >
             <SectionTitle number="1" title="About Moksha Sewa" />
 
@@ -675,7 +675,7 @@ export default function PrivacyPolicy() {
           {/* Section 2 */}
           <section
             id="privacy-section-2"
-            className="relative mb-4 scroll-mt-4 overflow-hidden"
+            className="relative mb-4 scroll-mt-4 overflow-hidden p-2 rounded-lg"
           >
             <SectionTitle number="2" title="Information We Collect" />
 
@@ -752,7 +752,7 @@ export default function PrivacyPolicy() {
           {/* Section 3 */}
           <section
             id="privacy-section-3"
-            className="relative mb-4 scroll-mt-4 overflow-hidden"
+            className="relative mb-4 scroll-mt-4 overflow-hidden p-2 rounded-lg"
           >
             <SectionTitle number="3" title="How We Use Your Information" />
 
@@ -802,7 +802,7 @@ export default function PrivacyPolicy() {
           {/* Section 4 */}
           <section
             id="privacy-section-4"
-            className="relative mb-4 scroll-mt-4 overflow-hidden"
+            className="relative mb-4 scroll-mt-4 overflow-hidden p-2 rounded-lg"
           >
             <SectionTitle number="4" title="Your Privacy Rights" />
 

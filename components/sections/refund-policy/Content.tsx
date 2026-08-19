@@ -814,7 +814,7 @@ export default function RefundPolicy() {
                 <section
                   key={section.number}
                   id={`refund-section-${section.number}`}
-                  className="refund-main-section relative scroll-mt-4 overflow-hidden"
+                  className="refund-main-section relative scroll-mt-4 overflow-hidden p-2 rounded-lg"
                 >
                   <div className="grid grid-cols-[64px_minmax(0,1fr)]">
                     <div className="flex justify-start pt-1">
