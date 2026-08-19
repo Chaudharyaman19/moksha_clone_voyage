@@ -28,7 +28,7 @@ export default function ComplianceAccountability() {
           }}
         />
 
-        <div className="relative z-10 min-h-[330px] px-4 pt-2 lg:w-[55%]">
+        <div className="relative z-10 min-h-[330px] px-4 pt-2 lg:w-[55%] mt-6">
           <div className="flex items-center gap-6 text-[17px] font-bold uppercase tracking-[0.12em] text-[#07483a]">
             <span className="h-px w-20 bg-[#bd8835]" />
             Compliance & Accountability
@@ -47,9 +47,9 @@ export default function ComplianceAccountability() {
           </h2>
           <span className="mt-3 block h-[2px] w-[100px] bg-[#c28b32]" />
           <p className="mt-3 text-[18px] font-medium leading-[1.45] text-[#3b4142]">
-            Our approach to CSR partnerships is guided by accountability,
-            <br />
-            transparency and well-defined processes at every step.
+         Our approach to CSR partnerships is guided by accountability,<br/>
+transparency and well-defined processes at every step.<br/> From initial
+discussions to implementation
           </p>
         </div>
 
