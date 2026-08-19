@@ -33,31 +33,37 @@ const values = [
 
 const fields = [
   {
-    name: "designation",
+    name: "name",
     label: "Full Name",
     placeholder: "Enter your full name",
     required: true,
     type: "text",
   },
   {
+    name: "organization",
     label: "Company / Organisation",
     placeholder: "Enter company / organisation name",
     required: true,
     type: "text",
   },
   {
+    name: "email",
     label: "Official Email",
     placeholder: "Enter official email address",
     required: true,
     type: "email",
   },
   {
+    name: "phone",
     label: "Phone Number",
-    placeholder: "Enter phone number",
+    placeholder: "Enter 10-digit phone number",
     required: true,
     type: "tel",
+    maxLength: 10,
+    inputMode: "numeric" as const,
   },
   {
+    name: "designation",
     label: "Designation",
     placeholder: "Enter your designation",
     required: false,
@@ -597,6 +603,15 @@ export default function CSRPartnershipEnquiry() {
                     type={field.type}
                     required={field.required}
                     placeholder={field.placeholder}
+                    maxLength={"maxLength" in field ? field.maxLength : undefined}
+                    inputMode={"inputMode" in field ? field.inputMode : undefined}
+                    onInput={
+                      field.name === "phone"
+                        ? (e) => {
+                            e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "").slice(0, 10);
+                          }
+                        : undefined
+                    }
                     className="
                       h-[48px]
                       w-full
