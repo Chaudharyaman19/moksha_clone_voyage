@@ -96,8 +96,14 @@ const CardIcon = ({
 }) => (
   <div
     className={`
-      flex h-[66px] w-[66px] shrink-0 items-center justify-center
+      flex
+      h-[66px]
+      w-[66px]
+      shrink-0
+      items-center
+      justify-center
       rounded-full
+
       ${
         variant === "gold"
           ? "bg-[#f6ead8] text-[#bd7c1e]"
@@ -105,7 +111,15 @@ const CardIcon = ({
       }
     `}
   >
-    <div className="h-[37px] w-[37px] [&>svg]:h-full [&>svg]:w-full [&>svg]:stroke-[1.35]">
+    <div
+      className="
+        h-[37px]
+        w-[37px]
+        [&>svg]:h-full
+        [&>svg]:w-full
+        [&>svg]:stroke-[1.35]
+      "
+    >
       {children}
     </div>
   </div>
@@ -115,22 +129,33 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
   return (
     <article
       className="
-        group relative min-h-[220px]
-        overflow-hidden rounded-[9px]
-        border border-[#ded8ca]
+        group
+        relative
+        min-h-[220px]
+        overflow-hidden
+        rounded-[9px]
+        border
+        border-[#ded8ca]
         bg-[#faf8f2]
         shadow-[0_4px_16px_rgba(53,48,35,0.08)]
-        transition duration-300
+        transition
+        duration-300
+
         hover:-translate-y-1
         hover:shadow-[0_10px_28px_rgba(53,48,35,0.14)]
       "
     >
-      {/* Card image — full card background */}
+      {/* CARD IMAGE */}
+
       <div
         className="
-          absolute inset-0
-          bg-cover bg-center
-          transition-transform duration-500
+          absolute
+          inset-0
+          bg-cover
+          bg-center
+          transition-transform
+          duration-500
+
           group-hover:scale-[1.03]
         "
         style={{
@@ -138,8 +163,25 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 flex h-full min-h-[300px] w-full flex-col p-4 sm:p-5 lg:min-h-[220px] lg:w-[70%]">
+      {/* CARD CONTENT */}
+
+      <div
+        className="
+          relative
+          z-10
+          flex
+          h-full
+          min-h-[300px]
+          w-full
+          flex-col
+          p-4
+
+          sm:p-5
+
+          lg:min-h-[220px]
+          lg:w-[70%]
+        "
+      >
         <div className="flex items-start gap-4">
           <CardIcon variant={card.variant}>
             {card.icon}
@@ -153,6 +195,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
                 font-bold
                 leading-[1.03]
                 text-[#10423c]
+
                 sm:text-[21px]
               "
             >
@@ -177,17 +220,31 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
         <button
           type="button"
           className={`
-            group/button mt-auto
-            flex w-full items-center justify-center gap-3
+            group/button
+            mt-auto
+
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-3
+
             rounded-[7px]
-            px-6 py-3
+
+            px-6
+            py-3
+
             text-[14px]
             font-bold
             tracking-[0.04em]
+
             text-white
+
             transition
+
             sm:w-auto
             sm:min-w-[230px]
+
             ${
               card.variant === "gold"
                 ? "bg-[#bf7c1e] hover:bg-[#a96816]"
@@ -199,7 +256,10 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
 
           <ArrowRight
             size={16}
-            className="transition-transform group-hover/button:translate-x-1"
+            className="
+              transition-transform
+              group-hover/button:translate-x-1
+            "
           />
         </button>
       </div>
@@ -211,137 +271,215 @@ const JoinSewa: React.FC = () => {
   return (
     <section
       className="
-        relative isolate
-        w-full overflow-hidden
+        relative
+        isolate
+        w-full
+        overflow-hidden
         bg-[#f7f1e6]
         text-[#103f3a]
       "
     >
       {/* =====================================================
-          HERO BACKGROUND — only behind the hero text
+          HERO BACKGROUND
       ====================================================== */}
-      <div className="absolute inset-x-0 top-0 -z-20 aspect-[1728/623] min-h-[365px]">
+
+      <div
+        className="
+          absolute
+          inset-x-0
+          top-0
+          -z-20
+
+          aspect-[1728/623]
+          min-h-[365px]
+        "
+      >
         <Image
           src="/assets/about-optimized/be_part.png"
           alt=""
           fill
           sizes="100vw"
-          className="h-full w-full object-cover object-center"
+          className="
+            h-full
+            w-full
+            object-cover
+            object-center
+          "
         />
       </div>
 
       {/* =====================================================
           HERO
       ====================================================== */}
-      <div className="relative mx-auto w-full aspect-[1728/623] min-h-[365px]">
+
+      <div
+        className="
+          relative
+          mx-auto
+          w-full
+
+          aspect-[1728/623]
+          min-h-[365px]
+        "
+      >
         <div
           className="
-            mx-auto flex h-full w-full max-w-7xl
-            flex-col justify-center
+            mx-auto
+            flex
+            h-full
+            w-full
+            max-w-7xl
+            flex-col
+            justify-center
+
             px-6
+
             sm:px-8
             lg:px-8
             2xl:px-0
           "
         >
-          <div className="max-w-[570px]">
-          {/* JOIN */}
-          <div className="flex items-center gap-3">
-            <span className="h-px w-12 bg-[#bd7b20]" />
+          {/* =================================================
+              HERO TEXT MOVED UP
+          ================================================= */}
 
-            <span className="h-px w-12 bg-[#bd7b20]" />
-
-            <span
-              className="
-                ml-1
-                text-base
-                font-semibold
-                tracking-[0.20em]
-                text-[#0b403b]
-              "
-            >
-              JOIN
-            </span>
-
-            <span className="h-px w-12 bg-[#bd7b20]" />
-          </div>
-
-          {/* eyebrow */}
           <div
             className="
-              mt-3
-              text-base
-              font-semibold
-              tracking-[0.19em]
-              text-[#b66f16]
+              max-w-[640px]
+
+              -translate-y-[32px]
+
+              sm:-translate-y-[38px]
+              lg:-translate-y-[42px]
             "
           >
-            BE PART OF THE SEWA
+            {/* JOIN */}
+
+            <div className="flex items-center gap-3">
+             
+
+              <span className="h-px w-12 bg-[#bd7b20]" />
+
+              <span
+                className="
+                  ml-1
+                  text-base
+                  font-semibold
+                  tracking-[0.20em]
+                  text-[#0b403b]
+                "
+              >
+                JOIN
+              </span>
+
+              <span className="h-px w-12 bg-[#bd7b20]" />
+            </div>
+
+            {/* EYEBROW */}
+
+            <div
+              className="
+                mt-3
+                text-base
+                font-semibold
+                tracking-[0.19em]
+                text-[#b66f16]
+              "
+            >
+              BE PART OF THE SEWA
+            </div>
+
+            {/* MAIN HEADING */}
+
+            <h1
+              className="
+                mt-3
+
+                font-serif
+
+                text-[42px]
+                font-semibold
+                leading-[0.98]
+                tracking-[-0.025em]
+
+                text-[#0b403b]
+
+                sm:text-[48px]
+                md:text-[54px]
+                lg:text-[52px]
+              "
+            >
+              You Don’t Have to
+              <br />
+
+              <span className="text-[#b56e17]">
+                Do Everything.
+              </span>
+            </h1>
+
+            {/* SECOND HEADING */}
+
+            <h2
+              className="
+                mt-3
+
+                font-serif
+
+                text-[23px]
+                font-semibold
+                leading-tight
+
+                text-[#17443e]
+
+                sm:text-[25px]
+              "
+            >
+              You Can Simply Do Something.
+            </h2>
+
+            {/* =================================================
+                UPDATED LONG DESCRIPTION
+            ================================================= */}
+
+            <p
+              className="
+                mt-4
+                max-w-[620px]
+
+                text-[22px]
+                font-medium
+                leading-[1.5]
+
+                text-[#333735]
+
+                sm:text-[24px]
+              "
+            >
+              Every act of kindness creates a ripple of dignity,
+              compassion and respect. Even a small contribution of
+              time, care or support can bring comfort to someone
+              during their most difficult moments and help ensure
+              that no one has to face.
+            </p>
           </div>
-
-          {/* heading */}
-          <h1
-            className="
-              mt-3
-              font-serif
-              text-[42px]
-              font-semibold
-              leading-[0.98]
-              tracking-[-0.025em]
-              text-[#0b403b]
-              sm:text-[48px]
-              md:text-[54px]
-              lg:text-[52px]
-            "
-          >
-            You Don’t Have to
-            <br />
-            <span className="text-[#b56e17]">
-              Do Everything.
-            </span>
-          </h1>
-
-          <h2
-            className="
-              mt-3
-              font-serif
-              text-[23px]
-              font-semibold
-              leading-tight
-              text-[#17443e]
-              sm:text-[25px]
-            "
-          >
-            You Can Simply Do Something.
-          </h2>
-
-          <p
-            className="
-              mt-4
-              max-w-[400px]
-              text-base
-              leading-[1.5]
-              text-[#333735]
-            "
-          >
-            Every act of kindness creates a ripple of dignity,
-            <br className="hidden sm:block" />
-            compassion and respect.
-          </p>
         </div>
-      </div>
       </div>
 
       {/* =====================================================
           CARDS
       ====================================================== */}
+
       <div
         className="
-          relative z-20
+          relative
+          z-20
+
           mx-auto
           max-w-7xl
+
           px-6
           pb-3
+
           sm:px-8
           lg:px-8
           2xl:px-0
@@ -349,8 +487,10 @@ const JoinSewa: React.FC = () => {
       >
         <div
           className="
-            grid grid-cols-1
+            grid
+            grid-cols-1
             gap-3
+
             md:grid-cols-3
             md:gap-4
           "
@@ -367,14 +507,19 @@ const JoinSewa: React.FC = () => {
       {/* =====================================================
           BOTTOM MESSAGE BAR
       ====================================================== */}
+
       <div
         className="
-          relative z-20
+          relative
+          z-20
+
           mx-auto
           mt-2
           max-w-7xl
+
           px-6
           pb-4
+
           sm:px-8
           lg:px-8
           2xl:px-0
@@ -387,29 +532,54 @@ const JoinSewa: React.FC = () => {
             items-center
             justify-between
             gap-5
+
             rounded-[8px]
-            border border-[#e5dfd2]
+
+            border
+            border-[#e5dfd2]
+
             bg-[#f4f1ea]/95
-            px-5 py-3
+
+            px-5
+            py-3
+
             shadow-[0_2px_8px_rgba(60,50,35,.04)]
+
             sm:px-7
           "
         >
-          {/* Left */}
+          {/* LEFT */}
+
           <div className="flex items-center gap-4">
             <div
               className="
-                flex h-10 w-10 shrink-0
-                items-center justify-center
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
                 rounded-full
                 bg-[#06443d]
                 text-white
               "
             >
-              <ShieldCheck size={23} strokeWidth={1.4} />
+              <ShieldCheck
+                size={23}
+                strokeWidth={1.4}
+              />
             </div>
 
-            <div className="hidden h-8 w-px bg-[#cfc7b7] sm:block" />
+            <div
+              className="
+                hidden
+                h-8
+                w-px
+                bg-[#cfc7b7]
+
+                sm:block
+              "
+            />
 
             <p
               className="
@@ -426,10 +596,22 @@ const JoinSewa: React.FC = () => {
             </p>
           </div>
 
-          {/* Right */}
-          <div className="hidden items-center gap-3 md:flex">
+          {/* RIGHT */}
+
+          <div
+            className="
+              hidden
+              items-center
+              gap-3
+
+              md:flex
+            "
+          >
             <div className="text-[#b87920]">
-              <Users size={32} strokeWidth={1.3} />
+              <Users
+                size={32}
+                strokeWidth={1.3}
+              />
             </div>
 
             <div className="h-8 w-px bg-[#cfc7b7]" />
@@ -438,6 +620,7 @@ const JoinSewa: React.FC = () => {
               <div className="text-[#17443e]">
                 Be Part of the Sewa.
               </div>
+
               <div className="font-medium text-[#b87920]">
                 Be the change.
               </div>
