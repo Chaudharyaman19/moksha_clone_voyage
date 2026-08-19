@@ -201,7 +201,7 @@ export default function HumanitarianCommitment() {
                     <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
                   </span>
 
-                  <span className="text-center text-[16px] font-semibold uppercase tracking-[0.025em] text-[#B77912]">
+                  <span className="text-center font-sans text-[16px] font-semibold uppercase text-[#B77912]">
                     Our Humanitarian Commitment
                   </span>
 
@@ -214,7 +214,7 @@ export default function HumanitarianCommitment() {
               {/* ================= HEADING ================= */}
 
               <h2
-                className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-semibold leading-[1.02] text-[#064A31] sm:text-[40px] lg:text-[49px]"
+                className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]"
               >
                 <span className="block">
                   No One Should Leave

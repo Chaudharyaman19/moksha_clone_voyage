@@ -394,10 +394,10 @@ export default function JoinTheMission() {
 
             <span
               className="
+                font-sans
                 text-[16px]
                 font-semibold
                 uppercase
-                tracking-[0.055em]
                 text-[#9B6B25]
               "
             >
@@ -413,13 +413,12 @@ export default function JoinTheMission() {
 
           <h2
             className="
-              font-serif
-              text-[35px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[1.02]
+              leading-[1.05]
               text-[#074A31]
-              sm:text-[42px]
-              lg:text-[49px]
+              sm:text-[30px]
             "
           >
             There Is a Place for Everyone in Sewa

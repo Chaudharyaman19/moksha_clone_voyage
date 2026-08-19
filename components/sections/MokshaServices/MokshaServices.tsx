@@ -243,15 +243,12 @@ const MokshaServices: React.FC = () => {
           <h2
             className="
               mt-1
-              font-serif
-              text-[31px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[0.98]
-              tracking-[-0.025em]
+              leading-[1.05]
               text-[#083e3a]
-              sm:text-[42px]
-              md:text-[48px]
-              lg:text-[50px]
+              sm:text-[30px]
             "
           >
             Supporting the

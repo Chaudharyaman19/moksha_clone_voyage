@@ -415,7 +415,7 @@ export default function TrustTransparency() {
                 <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
               </span>
 
-              <span className="text-[16px] font-bold uppercase tracking-[0.06em] text-[#A66E16]">
+              <span className="font-sans text-[16px] font-semibold uppercase text-[#A66E16]">
                 Sewa With Responsibility
               </span>
 
@@ -430,15 +430,13 @@ export default function TrustTransparency() {
               className="
                 mt-[7px]
                 text-center
-                font-serif
-                text-[46px]
-                font-medium
-                leading-[0.9]
-                tracking-[-0.03em]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
                 text-[#064631]
-                sm:text-[54px]
+                sm:text-[30px]
                 xl:text-left
-                xl:text-[62px]
               "
             >
               Trust &amp;

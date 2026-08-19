@@ -564,10 +564,10 @@ export default function HowSewaWorks() {
                 inline-flex
                 items-center
                 gap-[7px]
+                font-sans
                 text-[16px]
-                font-bold
+                font-semibold
                 uppercase
-                tracking-[0.06em]
                 text-[#3F332B]
               "
             >
@@ -598,14 +598,13 @@ export default function HowSewaWorks() {
               mx-auto
               mt-[7px]
               max-w-[1120px]
-              font-serif
-              text-[32px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[1.03]
+              leading-[1.05]
               text-[#321C12]
 
-              sm:text-[40px]
-              lg:text-[48px]
+              sm:text-[30px]
             "
           >
             Support With Care, Verification &amp; Responsibility

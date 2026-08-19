@@ -38,7 +38,7 @@ export default function AboutNamoGangeTrust() {
               <span className="h-px flex-1 bg-[#c49a4e]" />
             </div>
 
-            <h2 className="mt-4 font-serif text-[36px] font-semibold leading-[.96] tracking-[-0.025em] text-[#123d31] sm:text-[43px]">
+            <h2 className="mt-4 font-sans text-[24px] font-semibold leading-[1.05] text-[#123d31] sm:text-[30px]">
               Rooted in Service.<br />
               Driven by <span className="text-[#a66e2e]">Responsibility.</span>
             </h2>

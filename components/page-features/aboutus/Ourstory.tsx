@@ -319,14 +319,12 @@ export default function OurStory() {
                 max-w-[560px]
                 text-center
 
-                font-serif
-                text-[43px]
-                font-medium
-                leading-[1.03]
-                tracking-[-0.025em]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
 
-                sm:text-[49px]
-                lg:text-[54px]
+                sm:text-[30px]
               "
               style={{
                 fontFamily: "Georgia, 'Times New Roman', serif",

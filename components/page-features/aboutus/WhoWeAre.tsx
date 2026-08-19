@@ -43,7 +43,7 @@ export default function WhoWeAre() {
             <span className="h-px flex-1 bg-[#d4aa63]" />
           </div>
 
-          <h2 id="who-we-are-title" className="mt-[2.2%] font-serif text-[clamp(21px,2.8vw,49px)] font-normal leading-[1.14] tracking-[-0.015em]">
+          <h2 id="who-we-are-title" className="mt-[2.2%] font-sans text-[24px] font-semibold leading-[1.05] sm:text-[30px]">
             <span className="block">Moksha Sewa Is a</span>
             <span className="block whitespace-nowrap">Namo Gange Trust Initiative.</span>
           </h2>

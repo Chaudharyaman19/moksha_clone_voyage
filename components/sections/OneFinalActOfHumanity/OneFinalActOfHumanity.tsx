@@ -71,7 +71,7 @@ export default function OneFinalActOfHumanity() {
             </div>
 
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 text-[16px] font-semibold uppercase tracking-[0.1em] text-[#A87327]">
+            <div className="flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#A87327]">
               <span className="h-px w-10 bg-[#C99A4B]" />
               <span className="h-1 w-1 rounded-full bg-[#B98231]" />
               One Final Act of Humanity
@@ -80,7 +80,7 @@ export default function OneFinalActOfHumanity() {
             </div>
 
             {/* Heading */}
-            <h2 className="mt-4 max-w-[600px] font-serif text-[38px] font-semibold leading-[1.06] tracking-[-0.02em] text-[#163F31] sm:text-[44px] lg:text-[48px]">
+            <h2 className="mt-4 max-w-[600px] font-sans text-[24px] font-semibold leading-[1.05] text-[#163F31] sm:text-[30px]">
               When No One Else Is There,
               <br />
               Humanity Must Be.

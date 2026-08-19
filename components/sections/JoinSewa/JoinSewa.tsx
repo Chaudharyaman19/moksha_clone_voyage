@@ -423,15 +423,15 @@ const JoinSewa: React.FC = () => {
               className="
                 mt-3
 
-                font-serif
+                font-sans
 
-                text-[23px]
+                text-[24px]
                 font-semibold
-                leading-tight
+                leading-[1.05]
 
                 text-[#17443e]
 
-                sm:text-[25px]
+                sm:text-[30px]
               "
             >
               You Can Simply Do Something.

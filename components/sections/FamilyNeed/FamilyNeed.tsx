@@ -314,10 +314,10 @@ export default function PracticalSewaSupport() {
                   <span
                     className="
                       whitespace-nowrap
+                      font-sans
                       text-[16px]
                       font-semibold
                       uppercase
-                      tracking-[0.025em]
                       text-[#1D622E]
                     "
                   >
@@ -333,17 +333,13 @@ export default function PracticalSewaSupport() {
               <h2
                 className="
                   mt-[10px]
-                  font-serif
-                  text-[32px]
+                  font-sans
+                  text-[24px]
                   font-semibold
-                  leading-[1.06]
+                  leading-[1.05]
                   text-[#145728]
-                  sm:text-[35px]
-                  lg:text-[37px]
+                  sm:text-[30px]
                 "
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
               >
                 <span className="block lg:whitespace-nowrap">
                   When a Family Needs Help,

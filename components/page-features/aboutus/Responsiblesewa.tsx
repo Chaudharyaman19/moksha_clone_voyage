@@ -373,18 +373,13 @@ export default function ResponsibleSewa() {
               className="
                 mt-[17px]
 
-                font-serif
-                text-[44px]
-                font-medium
-                leading-[1.02]
-                tracking-[-0.025em]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
 
-                sm:text-[51px]
-                lg:text-[58px]
+                sm:text-[30px]
               "
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-              }}
             >
               <span className="block text-[#073F32]">
                 Compassion

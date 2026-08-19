@@ -208,7 +208,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Unclaimed Body Sewa – Dignified Last Rites",
     description:
       "Moksha Sewa provides verified and legally authorised last rites for unclaimed and unidentified bodies with dignity.",
-    ogImage: "/unclaimed-body-sewa/hero-unclaimed-body-sewa.webp",
+    ogImage: "/assets/unclaimed-body/unclaimed-hero.png",
     ogImageAlt: "Unclaimed body sewa dignified last rites support",
     keywords: ["unclaimed body sewa", "unidentified body last rites", "unclaimed body cremation"],
     priority: 0.86,

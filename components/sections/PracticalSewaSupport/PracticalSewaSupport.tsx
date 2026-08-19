@@ -512,7 +512,7 @@ export default function HowWeCanHelp() {
           <div className="flex items-center justify-center gap-[12px]">
             <span className="h-px w-[62px] bg-[#D05A17]" />
 
-            <span className="text-[16px] font-bold uppercase tracking-[0.04em] text-[#6E2C18]">
+            <span className="font-sans text-[16px] font-semibold uppercase text-[#6E2C18]">
               Our Sewa
             </span>
 
@@ -522,13 +522,12 @@ export default function HowWeCanHelp() {
           <h2
             className="
               mt-[1px]
-              font-serif
-              text-[34px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[0.98]
+              leading-[1.05]
               text-[#21130D]
-              sm:text-[42px]
-              lg:text-[49px]
+              sm:text-[30px]
             "
           >
             Essential Support for a

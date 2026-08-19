@@ -376,7 +376,7 @@ export default function WhoWeHelp() {
 
             <span className="h-1.5 w-1.5 rounded-full bg-[#D36516]" />
 
-            <span className="text-[16px] font-semibold uppercase tracking-[0.12em] text-[#C6520D]">
+            <span className="font-sans text-[16px] font-semibold uppercase text-[#C6520D]">
               Who We Help
             </span>
 
@@ -388,9 +388,9 @@ export default function WhoWeHelp() {
 
           <h2
             className="
-              font-serif
+              font-sans
 
-              text-[32px]
+              text-[24px]
 
               font-semibold
 
@@ -398,8 +398,7 @@ export default function WhoWeHelp() {
 
               text-[#28120E]
 
-              sm:text-[40px]
-              lg:text-[46px]
+              sm:text-[30px]
             "
           >
             Standing Beside Those Who Need Us Most

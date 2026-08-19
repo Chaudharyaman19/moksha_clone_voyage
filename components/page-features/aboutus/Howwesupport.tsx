@@ -253,15 +253,15 @@ export default function Howwesupport() {
               whitespace-nowrap
               text-center
 
+              font-sans
               text-[24px]
               font-semibold
               uppercase
-              tracking-[0.34em]
+              leading-[1.05]
 
               text-[#004E3A]
 
-              sm:text-[28px]
-              lg:text-[31px]
+              sm:text-[30px]
             "
           >
             Who We Support

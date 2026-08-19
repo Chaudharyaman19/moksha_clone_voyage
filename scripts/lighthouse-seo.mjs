@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-const baseUrl = (process.env.SITE_URL || "https://moksha-clone-voyage.vercel.app").replace(/\/$/, "");
+const baseUrl = (process.env.SITE_URL || "https://mokshasewa.org").replace(/\/$/, "");
 const chromePath = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const reportDir = process.env.LIGHTHOUSE_REPORT_DIR || ".lighthouse";
 const minScore = Number(process.env.LIGHTHOUSE_SEO_MIN_SCORE || "100");
