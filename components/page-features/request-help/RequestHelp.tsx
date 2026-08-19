@@ -27,6 +27,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 import { lookupPincode } from "@/lib/pincode";
+import SuccessPopup from "@/components/common/SuccessPopup";
 
 type RequestType = "NORMAL" | "EMERGENCY";
 
@@ -228,6 +229,8 @@ export default function RequestHelp() {
   const [error, setError] =
     useState<string | null>(null);
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   // Pincode-first lookup: once 6 digits are typed, auto-fill state/city — a grieving family
@@ -367,6 +370,7 @@ export default function RequestHelp() {
       setResult({
         requestNo: request.requestNo,
       });
+      setShowSuccessPopup(true);
 
       setForm(EMPTY_FORM);
       setConsent(false);
@@ -1039,6 +1043,13 @@ export default function RequestHelp() {
       </main>
 
       <Footer />
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        title="Request Received!"
+        message={`Your assistance request has been received. Reference: ${result?.requestNo ?? ""}`}
+      />
     </div>
   );
 }

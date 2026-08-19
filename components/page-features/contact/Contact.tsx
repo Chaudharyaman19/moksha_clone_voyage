@@ -22,6 +22,7 @@ import { MdVerified, MdEmail } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
+import SuccessPopup from "@/components/common/SuccessPopup";
 
 /* ---------- one source of truth so numbers never mismatch ---------- */
 const CONTACT = {
@@ -105,6 +106,7 @@ function Contact() {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -138,6 +140,7 @@ function Contact() {
         type: "success",
         message: "Message sent. Our team will get back to you shortly.",
       });
+      setShowSuccessPopup(true);
       setFormData({
         firstName: "",
         lastName: "",
@@ -750,6 +753,12 @@ function Contact() {
       </main>
 
       <Footer />
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        message="Message sent. Our team will get back to you shortly."
+      />
     </div>
   );
 }

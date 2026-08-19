@@ -22,6 +22,7 @@ import { MdVerified } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
+import SuccessPopup from "@/components/common/SuccessPopup";
 
 type Cause = {
   id: string;
@@ -124,6 +125,7 @@ function Donation() {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const activeCause = CAUSES.find((c) => c.id === selectedCause) ?? CAUSES[0];
   const effectiveAmount = customAmount ? Number(customAmount) : activeCause.price;
@@ -167,6 +169,7 @@ function Donation() {
         type: "success",
         message: "🙏 Thank you for your generosity. Your contribution has been received.",
       });
+      setShowSuccessPopup(true);
       resetForm();
     } catch (err) {
       setSubmitStatus({
@@ -843,6 +846,13 @@ function Donation() {
       </main>
 
       <Footer />
+
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        title="Thank You for Your Generosity!"
+        message="Your contribution has been received. A receipt has been emailed to you."
+      />
     </div>
   );
 }
