@@ -459,17 +459,17 @@ const AboutMokshaSewa: React.FC = () => {
 
                   {/* Content */}
                   <div className="min-w-0">
-                    <h2
+                    <h3
                       className="
-                        text-[24px]
+                        text-[18px]
                         font-semibold
                         leading-[1.1]
                         text-white
-                        sm:text-[30px]
+                        sm:text-[18px]
                       "
                     >
                       {item.title}
-                    </h2>
+                    </h3>
 
                     <p
                       className="
@@ -685,11 +685,11 @@ const AboutMokshaSewa: React.FC = () => {
                 <div className="min-w-0">
                   <h2
                     className="
-                      text-[24px]
+                      text-[18px]
                       font-semibold
                       leading-[1.1]
                       text-[#171717]
-                      sm:text-[30px]
+                      sm:text-[18px]
                     "
                   >
                     {item.title}
