@@ -74,11 +74,26 @@ export default function PartnershipEnquiry() {
               ["name", "Full Name", "Enter your full name", "text"],
               ["organization", "Organisation / Institution", "Enter organisation / institution", "text"],
               ["email", "Official Email", "Enter official email address", "email"],
-              ["phone", "Phone Number", "Enter phone number", "tel"],
+              ["phone", "Phone Number", "Enter 10-digit phone number", "tel"],
             ].map(([name, label, placeholder, type]) => (
               <label key={label} className="block">
                 <span className="mb-1.5 block text-[16px] font-semibold text-[#222]">{label} <span className="text-red-600">*</span></span>
-                <input name={name} type={type} required placeholder={placeholder} className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]" />
+                <input
+                  name={name}
+                  type={type}
+                  required
+                  placeholder={placeholder}
+                  maxLength={name === "phone" ? 10 : undefined}
+                  inputMode={name === "phone" ? "numeric" : undefined}
+                  onInput={
+                    name === "phone"
+                      ? (e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "").slice(0, 10);
+                        }
+                      : undefined
+                  }
+                  className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]"
+                />
               </label>
             ))}
 

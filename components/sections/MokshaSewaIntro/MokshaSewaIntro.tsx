@@ -18,11 +18,13 @@ const MokshaSewaIntro: React.FC = () => {
       <div
         className="
           absolute inset-y-0 left-0 z-10
-          w-[53%]
+          w-full
+          lg:w-[53%]
           bg-gradient-to-r
           from-[#faf4e9]
           via-[#faf4e9]/95
-          to-[#faf4e9]/35
+          to-[#faf4e9]/80
+          lg:to-[#faf4e9]/35
         "
       />
 
