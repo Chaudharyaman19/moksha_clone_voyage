@@ -224,29 +224,29 @@ const helpCards: HelpCard[] = [
 const trustItems = [
   {
     icon: "ShieldCheckIcon",
-    title: "Verified & Transparent",
-    text: "Every request is carefully verified before assistance.",
+    title: "Verified &\nTransparent",
+    text: "Every sewa request is carefully verified before providing help.",
     color: "#8E1916",
   },
 
   {
     icon: "CompassionIcon",
     title: "Compassion is Our\nCommitment",
-    text: "We serve every life with respect, care and complete sensitivity.",
+    text: "We serve every life with deep respect, care and full dignity.",
     color: "#53419B",
   },
 
   {
     icon: "HandshakeIcon",
     title: "Support with\nResponsibility",
-    text: "Support is subject to verification, availability and applicable legal requirements.",
+    text: "Our support is subject to verification and legal requirements.",
     color: "#26713D",
   },
 
   {
     icon: "MapPinIcon",
-    title: "Local Sewa Network",
-    text: "Our teams are available across Delhi NCR for timely help.",
+    title: "Local Sewa\nNetwork",
+    text: "Our dedicated teams are available across Delhi NCR for support.",
     color: "#E25F07",
   },
 ];
@@ -716,11 +716,9 @@ export default function WhoWeHelp() {
               divide-y
               divide-[#DDD7D0]
 
-              md:grid-cols-2
-
-              lg:grid-cols-4
-              lg:divide-x
-              lg:divide-y-0
+              md:grid-cols-4
+              md:divide-x
+              md:divide-y-0
             "
           >
 
