@@ -398,7 +398,7 @@ export default function TrustTransparency() {
             items-stretch
             gap-[24px]
             xl:grid-cols-[0.41fr_0.59fr]
-            xl:gap-[28px]
+            xl:gap-[16px]
           "
         >
           {/* =================================================
@@ -440,7 +440,6 @@ export default function TrustTransparency() {
               "
             >
               Trust &amp;
-              <br />
               Transparency
             </h2>
 
