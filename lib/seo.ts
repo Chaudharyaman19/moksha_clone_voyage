@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://moksha-clone-voyage.vercel.app";
+export const SITE_URL = "https://mokshasewa.org";
 export const SITE_NAME = "Moksha Sewa";
 export const DEFAULT_OG_IMAGE = "/assets/logo-moksha-seva.png";
 
@@ -383,7 +383,7 @@ export function createPageMetadata(path: string): Metadata {
     description: route.description,
     keywords: route.keywords,
     alternates: {
-      canonical: route.path,
+      canonical: absoluteUrl(route.path),
     },
     robots: {
       index: isIndexable,
