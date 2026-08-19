@@ -279,7 +279,7 @@ export default function WhyWeExist() {
               MAIN HEADING
           ================================================= */}
 
-          <h1
+          <h2
             className="
               mt-[22px]
               font-serif
@@ -311,7 +311,7 @@ export default function WhyWeExist() {
                 Them.
               </span>
             </span>
-          </h1>
+          </h2>
 
           {/* =================================================
               HEADING DIVIDER

@@ -391,7 +391,7 @@ const JoinSewa: React.FC = () => {
 
             {/* MAIN HEADING */}
 
-            <h1
+            <h2
               className="
                 mt-3
 
@@ -415,7 +415,7 @@ const JoinSewa: React.FC = () => {
               <span className="text-[#b56e17]">
                 Do Everything.
               </span>
-            </h1>
+            </h2>
 
             {/* SECOND HEADING */}
 
