@@ -1,24 +1,30 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import { CSRIcon } from "./CSRIcons";
 
 const values = [
   {
+    name: "name",
     icon: "Handshake" as const,
     title: "Meaningful\nImpact",
     text: "Support dignified\nhumanitarian\ninitiatives.",
   },
   {
+    name: "organization",
     icon: "ShieldCheck" as const,
     title: "Responsible\nCollaboration",
     text: "Built on trust, compliance\nand accountability.",
   },
   {
+    name: "email",
     icon: "People" as const,
     title: "Community\nDriven",
     text: "Strengthen support\nwhere it’s needed\nmost.",
   },
   {
+    name: "phone",
     icon: "Report" as const,
     title: "Transparent\nReporting",
     text: "Clear updates and\nimpact reporting\nas agreed.",
@@ -27,6 +33,7 @@ const values = [
 
 const fields = [
   {
+    name: "designation",
     label: "Full Name",
     placeholder: "Enter your full name",
     required: true,
@@ -59,6 +66,29 @@ const fields = [
 ];
 
 export default function CSRPartnershipEnquiry() {
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setSubmitState("loading");
+    setSubmitMessage("");
+    try {
+      await websiteSubmissionsApi.csr({
+        name: data.get("name"), organization: data.get("organization"), email: data.get("email"),
+        phone: data.get("phone"), designation: data.get("designation"), interest: data.get("interest"),
+        message: data.get("message"), consent: data.get("consent") === "on",
+      });
+      form.reset();
+      setSubmitState("success");
+      setSubmitMessage("Thank you. Your CSR partnership enquiry has been received.");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(error instanceof Error ? error.message : "Could not submit your enquiry.");
+    }
+  }
   return (
     <section
       id="csr-enquiry"
@@ -414,6 +444,7 @@ export default function CSRPartnershipEnquiry() {
           ================================================= */}
 
           <form
+            onSubmit={handleSubmit}
             className="
               self-start
 
@@ -562,6 +593,7 @@ export default function CSRPartnershipEnquiry() {
                   </span>
 
                   <input
+                    name={field.name}
                     type={field.type}
                     required={field.required}
                     placeholder={field.placeholder}
@@ -610,6 +642,7 @@ export default function CSRPartnershipEnquiry() {
                 </span>
 
                 <select
+                  name="interest"
                   className="
                     h-[48px]
                     w-full
@@ -678,6 +711,7 @@ export default function CSRPartnershipEnquiry() {
               </span>
 
               <textarea
+                name="message"
                 required
                 placeholder="Tell us about your CSR goals and partnership requirements..."
                 className="
@@ -723,6 +757,8 @@ export default function CSRPartnershipEnquiry() {
               "
             >
               <input
+                name="consent"
+                required
                 type="checkbox"
                 className="
                   mt-[2px]
@@ -759,6 +795,7 @@ export default function CSRPartnershipEnquiry() {
             >
               <button
                 type="submit"
+                disabled={submitState === "loading"}
                 className="
                   group
 
@@ -790,7 +827,7 @@ export default function CSRPartnershipEnquiry() {
                   hover:bg-[#003D30]
                 "
               >
-                Submit CSR Enquiry
+                {submitState === "loading" ? "Submitting..." : "Submit CSR Enquiry"}
 
                 <CSRIcon
                   name="ArrowRight"
@@ -880,6 +917,7 @@ export default function CSRPartnershipEnquiry() {
             <p className="mt-1 text-[17px] font-medium leading-[1.35] text-[#3D4443]">
               Your CSR partnership enquiry has been received. Our team will review the information and respond through the contact details provided.
             </p>
+            {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0A4C3A]"}`}>{submitMessage}</p>}
           </div>
 
           <span className="grid h-[58px] w-[58px] shrink-0 place-items-center rounded-full bg-[#E7F1D9] text-[#084D3B] sm:ml-auto">

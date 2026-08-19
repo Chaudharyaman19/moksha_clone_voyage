@@ -1,5 +1,7 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import { PartnershipIcon } from "./PartnershipIcons";
 
 const types = [
@@ -10,6 +12,29 @@ const types = [
 ] as const;
 
 export default function PartnershipEnquiry() {
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setSubmitState("loading");
+    setSubmitMessage("");
+    try {
+      await websiteSubmissionsApi.partnership({
+        name: data.get("name"), organization: data.get("organization"), email: data.get("email"),
+        phone: data.get("phone"), interest: data.get("interest"), city: data.get("city"),
+        message: data.get("message"), consent: data.get("consent") === "on",
+      });
+      form.reset();
+      setSubmitState("success");
+      setSubmitMessage("Thank you. Your partnership enquiry has been received.");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(error instanceof Error ? error.message : "Could not submit your enquiry.");
+    }
+  }
   return (
     <section id="partnership-enquiry" className="bg-[#fbf7ef] px-5 py-9">
       <div className="mx-auto grid max-w-[1344px] grid-cols-1 gap-7 lg:grid-cols-[44%_56%]">
@@ -43,24 +68,24 @@ export default function PartnershipEnquiry() {
           </div>
         </div>
 
-        <form className="rounded-[14px] bg-white p-6 shadow-[0_8px_25px_rgba(50,38,20,.08)]">
+        <form onSubmit={handleSubmit} className="rounded-[14px] bg-white p-6 shadow-[0_8px_25px_rgba(50,38,20,.08)]">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {[
-              ["Full Name", "Enter your full name"],
-              ["Organisation / Institution", "Enter organisation / institution"],
-              ["Official Email", "Enter official email address"],
-              ["Phone Number", "Enter phone number"],
-            ].map(([label, placeholder]) => (
+              ["name", "Full Name", "Enter your full name", "text"],
+              ["organization", "Organisation / Institution", "Enter organisation / institution", "text"],
+              ["email", "Official Email", "Enter official email address", "email"],
+              ["phone", "Phone Number", "Enter phone number", "tel"],
+            ].map(([name, label, placeholder, type]) => (
               <label key={label} className="block">
                 <span className="mb-2 block text-[16px] font-semibold text-[#222]">{label} <span className="text-red-600">*</span></span>
-                <input placeholder={placeholder} className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]" />
+                <input name={name} type={type} required placeholder={placeholder} className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]" />
               </label>
             ))}
 
             <label className="block">
               <span className="mb-2 block text-[16px] font-semibold text-[#222]">Partnership Interest <span className="text-red-600">*</span></span>
-              <select className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] bg-white px-4 text-[16px] text-[#777]">
-                <option>Select partnership interest</option>
+              <select name="interest" required defaultValue="" className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] bg-white px-4 text-[16px] text-[#777]">
+                <option value="" disabled>Select partnership interest</option>
                 <option>Institutional Collaboration</option>
                 <option>CSR Partnership</option>
                 <option>Volunteer Network</option>
@@ -69,26 +94,27 @@ export default function PartnershipEnquiry() {
 
             <label className="block">
               <span className="mb-2 block text-[16px] font-semibold text-[#222]">City / Area</span>
-              <input placeholder="Enter city / area" className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]" />
+              <input name="city" placeholder="Enter city / area" className="h-[50px] w-full rounded-[6px] border border-[#e0ccb0] px-4 text-[16px] outline-none focus:border-[#a97a31]" />
             </label>
           </div>
 
           <label className="mt-4 block">
             <span className="mb-2 block text-[16px] font-semibold text-[#222]">Message / Partnership Proposal <span className="text-red-600">*</span></span>
-            <textarea placeholder="Tell us about your organisation and how you would like to collaborate..." className="h-[110px] w-full resize-none rounded-[6px] border border-[#e0ccb0] p-4 text-[16px] outline-none focus:border-[#a97a31]" />
+            <textarea name="message" required placeholder="Tell us about your organisation and how you would like to collaborate..." className="h-[110px] w-full resize-none rounded-[6px] border border-[#e0ccb0] p-4 text-[16px] outline-none focus:border-[#a97a31]" />
           </label>
 
           <label className="mt-4 flex gap-3 text-[16px] leading-[1.45] text-[#3e4443]">
-            <input type="checkbox" className="mt-1 h-5 w-5 shrink-0" />
+            <input name="consent" required type="checkbox" className="mt-1 h-5 w-5 shrink-0" />
             <span>I consent to being contacted regarding this enquiry and acknowledge the Privacy Policy.</span>
           </label>
 
-          <button type="submit" className="mt-5 inline-flex h-[52px] w-full items-center justify-between rounded-[6px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white">
-            Submit Partnership Enquiry
+          <button type="submit" disabled={submitState === "loading"} className="mt-5 inline-flex h-[52px] w-full items-center justify-between rounded-[6px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white disabled:opacity-60">
+            {submitState === "loading" ? "Submitting..." : "Submit Partnership Enquiry"}
             <PartnershipIcon name="ArrowRight" className="h-5 w-5" />
           </button>
 
           <p className="mt-3 text-center text-[16px] text-[#666]">Your information is secure and will only be used for partnership communication.</p>
+          {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0a4b3b]"}`}>{submitMessage}</p>}
         </form>
       </div>
     </section>
