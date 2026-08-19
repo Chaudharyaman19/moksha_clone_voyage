@@ -295,10 +295,10 @@ export default function SupportInAction() {
 
             <span
               className="
+                font-sans
                 text-[16px]
                 font-semibold
                 uppercase
-                tracking-[0.035em]
                 text-[#A26B12]
               "
             >
@@ -324,13 +324,12 @@ export default function SupportInAction() {
 
           <h2
             className="
-              font-serif
-              text-[30px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[1.02]
+              leading-[1.05]
               text-[#06452F]
-              sm:text-[42px]
-              lg:text-[49px]
+              sm:text-[30px]
             "
           >
             Helping Complete a Final Journey With Dignity

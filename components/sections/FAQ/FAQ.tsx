@@ -108,7 +108,7 @@ export default function FAQSection() {
               className="h-auto w-[90px] object-contain sm:w-[120px] md:w-[100px]"
             />
 
-            <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.15em] text-[#a67820] sm:tracking-[0.18em]">
+            <span className="whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
               Help &amp; Information
             </span>
 
@@ -123,7 +123,7 @@ export default function FAQSection() {
           </div>
 
           {/* Title */}
-          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
+          <h2 className="mt-1 font-sans text-[24px] font-semibold leading-[1.05] text-[#352218] sm:text-[30px]">
             Frequently Asked Questions
           </h2>
 

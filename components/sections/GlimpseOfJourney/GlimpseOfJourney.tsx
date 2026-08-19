@@ -74,7 +74,7 @@ export default function GlimpseOfJourney() {
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-10 bg-[#b68a2d] sm:w-16 md:w-20" />
 
-            <span className="whitespace-nowrap text-[16px] font-semibold uppercase tracking-[0.15em] text-[#a67820] sm:tracking-[0.18em]">
+            <span className="whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
               Sewa In Action
             </span>
 
@@ -82,7 +82,7 @@ export default function GlimpseOfJourney() {
           </div>
 
           {/* Main heading */}
-          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
+          <h2 className="mt-1 font-sans text-[24px] font-semibold leading-[1.05] text-[#352218] sm:text-[30px]">
             Moments of Compassion, Service &amp; Dignity
           </h2>
 

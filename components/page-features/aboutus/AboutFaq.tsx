@@ -29,7 +29,7 @@ export default function AboutFaq() {
       <div className="mx-auto w-full max-w-7xl">
         <header className="text-center">
           <div className="flex items-center justify-center gap-3 text-[16px] font-bold uppercase tracking-[0.16em] text-[#315448]"><span className="h-px w-12 bg-[#c69a4c]" /><span>Help &amp; Information</span><span className="h-px w-12 bg-[#c69a4c]" /></div>
-          <h2 className="mt-2 font-serif text-[34px] font-semibold leading-none text-[#123e31] sm:text-[42px]">Frequently <span className="text-[#aa7330]">Asked Questions</span></h2>
+          <h2 className="mt-2 font-sans text-[24px] font-semibold leading-[1.05] text-[#123e31] sm:text-[30px]">Frequently <span className="text-[#aa7330]">Asked Questions</span></h2>
           <p className="mt-2 text-[16px] leading-[1.45] text-[#4b5c55]">Here are answers to some common questions about Moksha Sewa.<br />If you need more help, we are here for you.</p>
         </header>
 

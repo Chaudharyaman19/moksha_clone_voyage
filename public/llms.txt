@@ -4,15 +4,15 @@ Moksha Sewa helps families in India request dignified cremation assistance, ambu
 
 ## Key Pages
 
-- Home: https://moksha-clone-voyage.vercel.app/
-- About Moksha Sewa: https://moksha-clone-voyage.vercel.app/about
-- Request Cremation Assistance: https://moksha-clone-voyage.vercel.app/request-help
-- Volunteer Registration: https://moksha-clone-voyage.vercel.app/volunteer/register
-- Contact Support: https://moksha-clone-voyage.vercel.app/contact
-- Blog and Ritual Guides: https://moksha-clone-voyage.vercel.app/blog
-- Photo Gallery: https://moksha-clone-voyage.vercel.app/mokshagallery
-- Video Gallery: https://moksha-clone-voyage.vercel.app/mokshavediogallery
-- Donation Support: https://moksha-clone-voyage.vercel.app/donation
+- Home: https://mokshasewa.org/
+- About Moksha Sewa: https://mokshasewa.org/about
+- Request Cremation Assistance: https://mokshasewa.org/request-help
+- Volunteer Registration: https://mokshasewa.org/volunteer/register
+- Contact Support: https://mokshasewa.org/contact
+- Blog and Ritual Guides: https://mokshasewa.org/blog
+- Photo Gallery: https://mokshasewa.org/mokshagallery
+- Video Gallery: https://mokshasewa.org/mokshavediogallery
+- Donation Support: https://mokshasewa.org/donation
 
 ## Main Actions
 

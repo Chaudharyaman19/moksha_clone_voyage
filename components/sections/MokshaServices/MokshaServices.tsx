@@ -159,8 +159,8 @@ const DecorativeDivider = () => (
 );
 
 const ServiceIcon = ({ image, alt }: { image: string; alt: string }) => (
-  <div className="absolute -top-[90px] left-1/2 z-20 -translate-x-1/2 sm:-top-[92px]">
-    <div className="relative h-[78px] w-[78px] sm:h-[82px] sm:w-[82px]">
+  <div className="absolute -top-[64px] left-1/2 z-20 -translate-x-1/2 sm:-top-[92px]">
+    <div className="relative h-[62px] w-[62px] sm:h-[82px] sm:w-[82px]">
       <Image
         src={image}
         alt={alt}
@@ -243,15 +243,12 @@ const MokshaServices: React.FC = () => {
           <h2
             className="
               mt-1
-              font-serif
-              text-[31px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[0.98]
-              tracking-[-0.025em]
+              leading-[1.05]
               text-[#083e3a]
-              sm:text-[42px]
-              md:text-[48px]
-              lg:text-[50px]
+              sm:text-[30px]
             "
           >
             Supporting the
@@ -287,14 +284,14 @@ const MokshaServices: React.FC = () => {
             relative z-10
             mt-16
             grid grid-cols-1
-            gap-y-14
+            gap-y-[76px]
             rounded-[20px]
             bg-[#fffdf8]/90
             px-5 pb-6 pt-[52px]
             shadow-[0_4px_20px_rgba(89,64,30,0.05)]
             sm:mt-[68px]
             sm:grid-cols-2
-            sm:gap-y-[65px]
+            sm:gap-y-[106px]
             sm:px-7
             lg:mt-[66px]
             lg:grid-cols-5

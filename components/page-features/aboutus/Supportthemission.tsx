@@ -451,18 +451,13 @@ export default function SupportTheMission() {
               className="
                 mt-[17px]
 
-                font-serif
-                text-[42px]
-                font-medium
-                leading-[1.03]
-                tracking-[-0.025em]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
 
-                sm:text-[49px]
-                lg:text-[55px]
+                sm:text-[30px]
               "
-              style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-              }}
             >
               <span className="block text-[#063F33]">
                 Help Namo Gange Trust
@@ -711,7 +706,7 @@ export default function SupportTheMission() {
 
             <div
               className="
-                flex
+                flex flex-col md:flex-row
                 min-h-[158px]
                 overflow-hidden
                 rounded-[12px]
@@ -722,8 +717,8 @@ export default function SupportTheMission() {
 
               <div
                 className="
-                  flex
-                  w-[128px]
+                  flex w-full
+                  md:w-[128px]
                   shrink-0
                   items-center
                   justify-center

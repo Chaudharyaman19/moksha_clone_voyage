@@ -379,10 +379,10 @@ export default function SewaStories() {
 
             <span
               className="
+                font-sans
                 text-[16px]
                 font-semibold
                 uppercase
-                tracking-[0.055em]
                 text-[#9C6D2C]
               "
             >
@@ -398,13 +398,12 @@ export default function SewaStories() {
 
           <h2
             className="
-              font-serif
-              text-[34px]
+              font-sans
+              text-[24px]
               font-semibold
-              leading-[1.02]
+              leading-[1.05]
               text-[#064A31]
-              sm:text-[41px]
-              lg:text-[48px]
+              sm:text-[30px]
             "
           >
             Every Sewa Has a Human Story

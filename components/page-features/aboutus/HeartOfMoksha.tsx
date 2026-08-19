@@ -41,7 +41,7 @@ export default function HeartOfMoksha() {
                 <span className="h-px w-24 bg-[#cda24a]/65" />
               </div>
 
-              <h2 className="mt-3 w-full text-left font-serif text-[28px] font-semibold leading-[1.03] tracking-[-0.02em] sm:text-[34px] xl:text-[38px]">
+              <h2 className="mt-3 w-full text-left font-sans text-[24px] font-semibold leading-[1.05] sm:text-[30px]">
                 When Someone Has No One,<br />
                 <span className="text-[#d39a3d]">Humanity</span> Must Stand Beside Them.
               </h2>

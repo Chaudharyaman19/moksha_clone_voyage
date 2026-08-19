@@ -49,7 +49,7 @@ export default function WhyYourSupportMatters() {
 
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
-                  <span className="text-[16px] font-semibold uppercase tracking-[0.09em] text-[#A27B38]">
+                  <span className="font-sans text-[16px] font-semibold uppercase text-[#A27B38]">
                     Why Your Support Matters
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
@@ -60,7 +60,7 @@ export default function WhyYourSupportMatters() {
             </div>
 
             {/* main heading */}
-            <h2 className="mx-auto mt-5 max-w-[475px] text-center font-serif text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-[#0E4A3F] sm:text-[38px] lg:text-[40px]">
+            <h2 className="mx-auto mt-5 max-w-[475px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#0E4A3F] sm:text-[30px]">
               A Dignified Farewell
               <br />
               Should Never Depend on

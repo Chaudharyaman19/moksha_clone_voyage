@@ -434,16 +434,13 @@ export default function WhyWeExist() {
             <div>
               <h2
                 className="
-                  font-serif
-                  text-[36px]
-                  font-medium
-                  leading-none
+                  font-sans
+                  text-[24px]
+                  font-semibold
+                  leading-[1.05]
                   text-[#064334]
-                  lg:text-[40px]
+                  sm:text-[30px]
                 "
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
               >
                 Moksha Sewa
               </h2>

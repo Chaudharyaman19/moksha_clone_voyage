@@ -212,14 +212,14 @@ export default function CompassionSection() {
               <div className="flex h-11 w-11 shrink-0 items-center justify-center text-[#956A32]">
                 <LotusIcon className="h-9 w-9" />
               </div>
-              <span className="pb-0.5 text-[16px] font-semibold uppercase tracking-[0.12em] text-[#7F5A2E] sm:tracking-[0.28em]">
+              <span className="pb-0.5 font-sans text-[16px] font-semibold uppercase text-[#7F5A2E]">
                 CREMATION & LAST RITES SUPPORT
               </span>
             </div>
 
             {/* Heading */}
             <h2
-              className="mb-2.5 text-[31px] font-normal leading-[1.08] text-[#26140D] sm:text-[38px] lg:text-[44px]"
+              className="mb-2.5 font-sans text-[24px] font-semibold leading-[1.05] text-[#26140D] sm:text-[30px]"
             >
               <span className="block">
                 When a Family Needs Help

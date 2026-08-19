@@ -84,7 +84,7 @@ export default function BehindMission() {
               See the Mission
             </p>
 
-            <h2 className="mt-2 text-center font-serif text-[44px] font-semibold leading-[0.95] tracking-[-0.03em] text-[#123E32] sm:text-[50px] lg:text-left lg:text-[54px]">
+            <h2 className="mt-2 text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#123E32] sm:text-[30px] lg:text-left">
               Behind
               <span className="block text-[#9B672E]">Moksha Sewa</span>
             </h2>
