@@ -291,13 +291,12 @@ function Blog() {
                       </span>
                     </div>
 
-                    <Link
-                      href={`/blog/${featuredPost.id}`}
+                    <span
                       className="group mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-5 py-2.5 text-[14px] font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
                     >
                       Read Full Article
                       <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </Link>
+                    </span>
                   </div>
 
                   {/* image — clean rounded frame */}
