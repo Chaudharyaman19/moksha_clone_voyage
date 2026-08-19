@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
@@ -10,9 +9,8 @@ import {
 import {
   GiLotusFlower, GiCandleHolder
 } from "react-icons/gi";
-import { BsBook, BsClipboardCheck, BsTelephone } from "react-icons/bs";
-import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlinePeopleAlt, MdTempleHindu, MdHandshake } from "react-icons/md";
+import { BsTelephone } from "react-icons/bs";
+import { MdOutlinePeopleAlt, MdHandshake } from "react-icons/md";
 import { TbHeartHandshake } from "react-icons/tb";
 
 const ritualCards = [
@@ -25,21 +23,13 @@ const ritualCards = [
 ];
 
 export default function PriestSupport() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <div className="min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
       <Navbar />
 
       <main className="overflow-hidden pb-4 pt-24 lg:pb-6 lg:pt-24">
-        <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[400px] overflow-hidden">
+        <section className="relative min-h-[620px] w-full overflow-hidden bg-[#FAF8F4] sm:min-h-[560px] lg:aspect-[16/5] lg:min-h-[390px]">
           <div className="absolute inset-0">
             <Image
               src="/assets/panditservices/hero-real.png"
@@ -47,21 +37,26 @@ export default function PriestSupport() {
               fill
               priority
               quality={100}
-              className="object-cover object-right"
+              sizes="100vw"
+              className="object-cover object-[68%_center] sm:object-[72%_center] lg:object-right"
             />
           </div>
 
-          {/* Gradient to ensure text readability on the left */}
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.9) 35%, rgba(250,248,244,0.40) 60%, rgba(250,248,244,0.05) 85%)"
+              background:
+                "linear-gradient(180deg, rgba(250,248,244,0.96) 0%, rgba(250,248,244,0.88) 45%, rgba(250,248,244,0.62) 100%)",
             }}
           />
+          <div className="absolute inset-0 hidden lg:block" style={{
+            background:
+              "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.92) 35%, rgba(250,248,244,0.46) 60%, rgba(250,248,244,0.08) 85%)",
+          }} />
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-4 sm:pt-4 lg:px-0 lg:pt-4">
-            <div className="max-w-[540px]">
-              <div className="mb-6 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
+          <div className="relative mx-auto flex min-h-[620px] w-full max-w-7xl items-center px-5 py-8 sm:min-h-[560px] sm:px-6 lg:min-h-0 lg:px-0 lg:py-0">
+            <div className="w-full max-w-[560px] rounded-[14px] bg-[#FAF8F4]/88 p-5 shadow-[0_14px_38px_rgba(50,26,16,0.10)] backdrop-blur-[2px] sm:p-6 lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-0">
+              <div className="mb-4 flex flex-wrap items-center gap-2 text-sm font-medium tracking-wide text-[#321A10] sm:mb-6">
                 <span className="opacity-70">Moksha Sewa</span>
                 <span className="opacity-50">›</span>
                 <span className="opacity-70">Our Services</span>
@@ -69,22 +64,22 @@ export default function PriestSupport() {
                 <span className="font-semibold text-[#C99A4A]">Priest Support</span>
               </div>
 
-              <div className="flex items-center gap-2 mb-4 text-[#C99A4A]">
-                <GiLotusFlower className="w-5 h-5" />
-                <span className="font-medium text-[15px] tracking-wide">Guided by Dharma. Supported by Compassion.</span>
+              <div className="mb-3 flex items-center gap-2 text-[#C99A4A] sm:mb-4">
+                <GiLotusFlower className="h-5 w-5 shrink-0" />
+                <span className="text-[15px] font-medium tracking-wide">Guided by Dharma. Supported by Compassion.</span>
               </div>
 
-              <h1 className="text-[38px] sm:text-[46px] lg:text-[52px] font-serif text-[#321A10] mb-5 leading-[1.1]">
+              <h1 className="mb-4 font-serif text-[38px] leading-[1.08] text-[#321A10] sm:text-[46px] lg:mb-5 lg:text-[52px]">
                 Priest Support
               </h1>
 
-              <p className="text-[15px] sm:text-[16px] text-[#321A10]/80 leading-relaxed mb-8 max-w-[480px]">
-                Experienced Pandit Ji's guide your family with compassion, clarity and reverence — in every sacred ritual of your loved one's journey.
+              <p className="mb-6 max-w-[480px] text-[15px] leading-7 text-[#321A10]/85 sm:text-[16px] lg:mb-8">
+                Experienced Pandit Ji&apos;s guide your family with compassion, clarity and reverence in every sacred ritual of your loved one&apos;s journey.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a href="/request-help" className="inline-flex items-center justify-center gap-2 bg-[#321A10] text-[#FAF8F4] px-6 md:px-8 py-3 rounded-md font-semibold text-sm hover:bg-[#4A2E1B] transition-all shadow-sm">
-                  <GiLotusFlower className="w-4 h-4 text-[#C99A4A]" />
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <a href="/request-help" className="inline-flex items-center justify-center gap-2 rounded-md bg-[#321A10] px-6 py-3 text-sm font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8">
+                  <GiLotusFlower className="h-4 w-4 text-[#C99A4A]" />
                   Request Priest Support
                 </a>
                 <a href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-sm font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
