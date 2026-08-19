@@ -500,7 +500,7 @@ export default function PartnershipNetwork() {
                   className="
                     mt-[2px]
 
-                    text-[19px]
+                    text-[15px]
                     font-medium
                     uppercase
 
