@@ -491,7 +491,7 @@ const MokshaServices: React.FC = () => {
           <div className="flex w-full max-w-[440px] items-center justify-center gap-3">
 
             <a
-              href="/sevas"
+              href="/prayerhallservices"
               aria-label="Explore Our Sewa"
               className="group relative block transition-transform duration-300 hover:-translate-y-0.5"
             >
