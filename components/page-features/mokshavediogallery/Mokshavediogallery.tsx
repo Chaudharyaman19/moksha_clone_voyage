@@ -1,9 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
-import Image from "next/image";
 import {
   FiHeart,
   FiUser,
@@ -16,9 +15,10 @@ import {
 } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
 import { FaFacebook, FaTwitter, FaPinterest, FaLinkedin } from "react-icons/fa";
+import { publicGalleryApi } from "@/lib/galleryApi";
 
 interface GalleryVideo {
-  id: number;
+  id: string | number;
   src: string;
   poster?: string;
   alt: string;
@@ -32,85 +32,90 @@ interface GalleryVideo {
   duration?: string;
 }
 
+const fallbackVideos: GalleryVideo[] = [
+  {
+    id: 1,
+    src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    poster: "/assets/route-optimized/video-body-transport.webp",
+    alt: "Body Transport Service",
+    category: "services",
+    title: "Dignified Body Transport Service",
+    description:
+      "Respectful and compassionate body transport services with trained professionals handling all logistics with care.",
+    videographer: "Moksha Sewa Team",
+    likes: 234,
+    date: "2024",
+    height: 380,
+    duration: "2:45",
+  },
+  {
+    id: 2,
+    src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    poster: "/assets/route-optimized/video-funeral-decoration.webp",
+    alt: "Funeral Decoration",
+    category: "services",
+    title: "Traditional Funeral Decoration",
+    description:
+      "Beautiful floral arrangements and traditional decor for funeral ceremonies, creating a serene and sacred atmosphere.",
+    videographer: "Moksha Sewa Team",
+    likes: 567,
+    date: "2024",
+    height: 520,
+    duration: "3:30",
+  },
+  {
+    id: 3,
+    src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    poster: "/assets/route-optimized/video-hearse.webp",
+    alt: "Hearse Van Service",
+    category: "services",
+    title: "Hearse Van Transport",
+    description:
+      "Well-maintained hearse vans for respectful transportation, ensuring dignity throughout the journey.",
+    videographer: "Moksha Sewa Team",
+    likes: 189,
+    date: "2024",
+    height: 420,
+    duration: "2:15",
+  },
+  {
+    id: 4,
+    src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    poster: "/assets/route-optimized/video-prayer-hall.webp",
+    alt: "Prayer Hall",
+    category: "facilities",
+    title: "Sacred Prayer Hall",
+    description:
+      "Peaceful and serene prayer hall for last rites and ceremonies, accommodating families with comfort and dignity.",
+    videographer: "Moksha Sewa Team",
+    likes: 892,
+    date: "2024",
+    height: 480,
+    duration: "4:20",
+  },
+  {
+    id: 5,
+    src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    poster: "/assets/route-optimized/video-calling-relative.webp",
+    alt: "Calling Relatives",
+    category: "support",
+    title: "Family Notification Services",
+    description:
+      "Compassionate assistance in notifying and coordinating with family members during difficult times.",
+    videographer: "Moksha Sewa Team",
+    likes: 445,
+    date: "2024",
+    height: 350,
+    duration: "3:45",
+  },
+  // Only 5 videos now - one for each unique image
+];
+
 function MokshaGallery() {
-  const [videos] = useState<GalleryVideo[]>([
-    {
-      id: 1,
-      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      poster: "/assets/route-optimized/video-body-transport.webp",
-      alt: "Body Transport Service",
-      category: "services",
-      title: "Dignified Body Transport Service",
-      description:
-        "Respectful and compassionate body transport services with trained professionals handling all logistics with care.",
-      videographer: "Moksha Sewa Team",
-      likes: 234,
-      date: "2024",
-      height: 380,
-      duration: "2:45",
-    },
-    {
-      id: 2,
-      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      poster: "/assets/route-optimized/video-funeral-decoration.webp",
-      alt: "Funeral Decoration",
-      category: "services",
-      title: "Traditional Funeral Decoration",
-      description:
-        "Beautiful floral arrangements and traditional decor for funeral ceremonies, creating a serene and sacred atmosphere.",
-      videographer: "Moksha Sewa Team",
-      likes: 567,
-      date: "2024",
-      height: 520,
-      duration: "3:30",
-    },
-    {
-      id: 3,
-      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-      poster: "/assets/route-optimized/video-hearse.webp",
-      alt: "Hearse Van Service",
-      category: "services",
-      title: "Hearse Van Transport",
-      description:
-        "Well-maintained hearse vans for respectful transportation, ensuring dignity throughout the journey.",
-      videographer: "Moksha Sewa Team",
-      likes: 189,
-      date: "2024",
-      height: 420,
-      duration: "2:15",
-    },
-    {
-      id: 4,
-      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-      poster: "/assets/route-optimized/video-prayer-hall.webp",
-      alt: "Prayer Hall",
-      category: "facilities",
-      title: "Sacred Prayer Hall",
-      description:
-        "Peaceful and serene prayer hall for last rites and ceremonies, accommodating families with comfort and dignity.",
-      videographer: "Moksha Sewa Team",
-      likes: 892,
-      date: "2024",
-      height: 480,
-      duration: "4:20",
-    },
-    {
-      id: 5,
-      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-      poster: "/assets/route-optimized/video-calling-relative.webp",
-      alt: "Calling Relatives",
-      category: "support",
-      title: "Family Notification Services",
-      description:
-        "Compassionate assistance in notifying and coordinating with family members during difficult times.",
-      videographer: "Moksha Sewa Team",
-      likes: 445,
-      date: "2024",
-      height: 350,
-      duration: "3:45",
-    },
-    // Only 5 videos now - one for each unique image
-  ]);
+  const [managedVideos, setManagedVideos] = useState<GalleryVideo[]>([]);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const videos = managedVideos.length > 0 ? managedVideos : fallbackVideos;
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedVideo, setSelectedVideo] = useState<GalleryVideo | null>(null);
@@ -120,8 +125,10 @@ function MokshaGallery() {
   useEffect(() => {
     const updateColumns = () => {
       if (window.innerWidth < 640) {
-        setColumns(2);
+        setColumns(1);
       } else if (window.innerWidth < 1024) {
+        setColumns(2);
+      } else if (window.innerWidth < 1280) {
         setColumns(3);
       } else {
         setColumns(4);
@@ -133,10 +140,31 @@ function MokshaGallery() {
     return () => window.removeEventListener("resize", updateColumns);
   }, []);
 
-  const filteredVideos =
+  useEffect(() => {
+    publicGalleryApi.list("video").then((items) => setManagedVideos(items.map((item, index) => ({
+      id: item._id, src: item.url, poster: item.thumbnailUrl, alt: item.alt || item.caption || "Moksha Sewa gallery video",
+      category: item.category || "services", title: item.caption || item.alt,
+      description: item.description || "Moksha Sewa video gallery", videographer: item.credit || "Moksha Sewa Team",
+      likes: 0, date: new Date(item.createdAt).getFullYear().toString(), height: [380, 440, 410, 470][index % 4],
+    })))).catch(() => setManagedVideos([]));
+  }, []);
+
+  const allFilteredVideos =
     selectedCategory === "all"
       ? videos
       : videos.filter((vid) => vid.category === selectedCategory);
+  const filteredVideos = allFilteredVideos.slice(0, visibleCount);
+
+  useEffect(() => { setVisibleCount(12); }, [selectedCategory, managedVideos]);
+  useEffect(() => {
+    const node = loadMoreRef.current;
+    if (!node || visibleCount >= allFilteredVideos.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) setVisibleCount((count) => Math.min(count + 8, allFilteredVideos.length));
+    }, { rootMargin: "600px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [visibleCount, allFilteredVideos.length]);
 
   const getMasonryColumns = () => {
     const columnHeights = new Array(columns).fill(0);
@@ -154,12 +182,7 @@ function MokshaGallery() {
     return columnVideos;
   };
 
-  const categories = [
-    { id: "all", name: "All Videos" },
-    { id: "services", name: "Funeral Services" },
-    { id: "facilities", name: "Facilities" },
-    { id: "support", name: "Family Support" },
-  ];
+  const categories = [{ id: "all", name: `All Videos (${videos.length})` }, ...Array.from(new Set(videos.map((video) => video.category))).map((category) => ({ id: category, name: category.charAt(0).toUpperCase() + category.slice(1) }))];
 
   const masonryColumns = getMasonryColumns();
 
@@ -205,11 +228,10 @@ function MokshaGallery() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${
-                selectedCategory === category.id
+              className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${selectedCategory === category.id
                   ? "bg-[#8B6A3E] text-white shadow-md"
                   : "bg-white text-[#5A3E2B] border border-[#E7D5C2] hover:bg-[#F5E9D9]"
-              }`}
+                }`}
             >
               {category.name}
             </button>
@@ -239,17 +261,16 @@ function MokshaGallery() {
                     key={video.id}
                     className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 bg-white cursor-pointer hover:-translate-y-1"
                     onClick={() => setSelectedVideo(video)}
-                    style={{
-                      height: `${video.height}px`,
-                    }}
                   >
-                    <div className="relative w-full h-full overflow-hidden">
-                      <Image
-                        src={video.poster ?? "/assets/route-optimized/video-body-transport.webp"}
-                        alt={video.alt}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    <div className="relative w-full overflow-hidden bg-black">
+                      <video
+                        src={video.src}
+                        poster={video.poster}
+                        preload="metadata"
+                        muted
+                        playsInline
+                        aria-label={video.alt}
+                        className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
                       />
 
                       {/* Gradient overlay */}
@@ -257,7 +278,7 @@ function MokshaGallery() {
 
                       {/* Category tag */}
                       <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
+                        <span className="px-2.5 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
                           {video.category.charAt(0).toUpperCase() +
                             video.category.slice(1)}
                         </span>
@@ -265,7 +286,7 @@ function MokshaGallery() {
 
                       {/* Duration badge */}
                       {video.duration && (
-                        <div className="absolute top-3 right-3 px-0 py-1 bg-black/60 text-white text-[14px] font-medium rounded-full backdrop-blur-sm z-10 flex items-center gap-1">
+                        <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/60 text-white text-[14px] font-medium rounded-full backdrop-blur-sm z-10 flex items-center gap-1">
                           <FiClock className="w-2.5 h-2.5" />
                           {video.duration}
                         </div>
@@ -325,26 +346,9 @@ function MokshaGallery() {
           </div>
         )}
 
-        {/* View More Button */}
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B6A3E] text-white rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            <span>View Complete Portfolio</span>
-            <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
-        </div>
       </div>
+
+      <div ref={loadMoreRef} className="h-px" aria-hidden="true" />
 
       {/* Modal with video player */}
       {selectedVideo && (
