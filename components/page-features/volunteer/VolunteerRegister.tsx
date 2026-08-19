@@ -915,6 +915,12 @@ import {
 } from "@/lib/volunteerApi";
 import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";
+import { X } from "lucide-react";
+import {
+  ConductBanner,
+  ConductDeclaration,
+  ConductGrid,
+} from "./VolunteerCodeOfConduct";
 
 interface VolunteerForm {
   firstName: string;
@@ -1128,6 +1134,8 @@ export default function VolunteerRegister() {
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  const [showConductModal, setShowConductModal] = useState(false);
+
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   const [step, setStep] = useState(0);
@@ -1162,6 +1170,24 @@ export default function VolunteerRegister() {
 
     return () => window.clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    if (!showConductModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowConductModal(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [showConductModal]);
 
   // Pincode-first lookup: once 6 digits are typed, auto-fill state/city so the volunteer doesn't
   // have to type them by hand. Both stay editable afterward in case the lookup gets it wrong.
@@ -1221,18 +1247,9 @@ export default function VolunteerRegister() {
     }));
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
+  const submitRegistration = async () => {
     setError("");
 
-    if (!consent) {
-      setError(
-        "Please accept the volunteer guidelines and code of conduct.",
-      );
-      return;
-    }
     setIsSubmitting(true);
 
     try {
@@ -1299,6 +1316,20 @@ export default function VolunteerRegister() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+    setError("");
+
+    if (!consent) {
+      setShowConductModal(true);
+      return;
+    }
+
+    await submitRegistration();
   };
 
   return (
@@ -2183,28 +2214,65 @@ export default function VolunteerRegister() {
             </a>
           </section>
 
-          {/* Footer disclaimer bar */}
-          <section className="mt-6 flex flex-col gap-2 bg-[#3B2A20] px-4 py-3 text-[16px] text-[#EBDCC9] sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-start gap-2">
-              <FaShieldAlt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#F0A860]" />
-              <span>
-                Registration does not automatically authorise field deployment. Volunteer assignments are subject to verification, orientation and approval by Moksha Sewa.
-              </span>
-            </div>
-            <div className="flex items-start gap-2">
-              <FaIdCard className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#F0A860]" />
-              <span>
-                By proceeding, you agree to our <a href="/privacy-policy" className="underline hover:text-white">Privacy Policy</a> and <a href="/code-of-conduct" className="underline hover:text-white">Code of Conduct</a>.
-              </span>
-            </div>
-          </section>
-
           {/* Bottom message */}
 
         </div>
       </main>
 
       <Footer />
+
+      {/* Code of Conduct modal */}
+      {showConductModal && (
+        <div
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowConductModal(false);
+            }
+          }}
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/65 p-2 sm:p-4"
+        >
+          <div className="flex max-h-[92vh] w-full flex-col overflow-hidden rounded-[10px] border border-[#C49535] bg-[#FBF8F2] shadow-[0_24px_70px_rgba(0,0,0,0.45)] sm:w-[60vw]">
+            {/* Modal header */}
+            <div className="sticky top-0 z-20 flex shrink-0 items-center justify-between gap-3 border-b-2 border-[#C98A1C] bg-[#004435] px-3 py-2 sm:px-5 sm:py-3">
+              <div className="min-w-0">
+                <h2 className="text-[14px] font-bold uppercase tracking-[0.03em] text-white sm:text-[16px]">
+                  Volunteer Code of Conduct
+                </h2>
+                <p className="mt-0.5 text-[12px] leading-[1.3] text-[#E6DED1] sm:text-[13px]">
+                  Please review and agree to continue registration
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowConductModal(false)}
+                aria-label="Close code of conduct"
+                className="grid h-8 w-8 shrink-0 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/25 sm:h-9 sm:w-9"
+              >
+                <X className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
+              </button>
+            </div>
+
+            {/* Modal body */}
+            <div className="overflow-y-auto bg-[#FBF8F2] p-2 sm:p-3">
+              <ConductBanner compact />
+
+              <ConductGrid compact />
+
+              <ConductDeclaration
+                compact
+                asLink={false}
+                submitLabel="Submit Registration"
+                onSubmit={() => {
+                  setConsent(true);
+                  setShowConductModal(false);
+                  void submitRegistration();
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <SuccessPopup
         open={showSuccessPopup}
