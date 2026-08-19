@@ -1,3 +1,7 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import { UBSIcon } from "./UnclaimedBodyIcons";
 
 const mini = [
@@ -8,6 +12,26 @@ const mini = [
 ] as const;
 
 export default function UnclaimedBodyRequest() {
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    data.set("consent", String(data.get("consent") === "on"));
+    setSubmitState("loading");
+    setSubmitMessage("");
+    try {
+      await websiteSubmissionsApi.unclaimedBody(data);
+      form.reset();
+      setSubmitState("success");
+      setSubmitMessage("Thank you. Your Sewa request has been received. Our team will review the information and respond further.");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(error instanceof Error ? error.message : "Could not submit your Sewa request.");
+    }
+  }
   return (
     <section id="request-unclaimed-help" className="relative overflow-hidden bg-[#fbf6ed] px-5 py-4">
       <div
@@ -56,7 +80,7 @@ export default function UnclaimedBodyRequest() {
           </div>
         </div>
 
-        <form className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(50,38,20,.08)]">
+        <form onSubmit={handleSubmit} className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(50,38,20,.08)]">
           <div className="flex items-center gap-4">
             <span className="grid h-11 w-11 place-items-center rounded-full bg-[#004b39] text-[#d39b31]"><UBSIcon name="Clipboard" className="h-7 w-7" /></span>
             <h3 className="text-[18px] font-bold uppercase tracking-[0.08em] text-[#0a4b3b]">Share The Details</h3>
@@ -64,44 +88,46 @@ export default function UnclaimedBodyRequest() {
 
           <div className="mt-3 grid grid-cols-1 gap-x-4 gap-y-2 md:grid-cols-2">
             {[
-              ["Full Name", "Enter your full name"],
-              ["Phone Number", "Enter your phone number"],
-              ["Email", "Enter your email address"],
-              ["City / Location", "Enter city or location"],
-              ["Organisation / Institution (If applicable)", "Enter organisation or institution"],
-              ["Hospital / Police Station / Authority (If applicable)", "Enter hospital, police station or authority"],
-            ].map(([label, placeholder]) => (
-              <label key={label} className="block">
-                <span className="mb-1 block text-[16px] font-semibold text-[#222]">{label}</span>
-                <input placeholder={placeholder} className="h-[42px] w-full rounded-[7px] border border-[#dfc9ab] px-3 text-[16px] outline-none focus:border-[#a97a31]" />
+              ["name", "Full Name", "Enter your full name", "text", true],
+              ["phone", "Phone Number", "Enter your phone number", "tel", true],
+              ["email", "Email", "Enter your email address", "email", false],
+              ["city", "City / Location", "Enter city or location", "text", true],
+              ["organization", "Organisation / Institution (If applicable)", "Enter organisation or institution", "text", false],
+              ["authority", "Hospital / Police Station / Authority (If applicable)", "Enter hospital, police station or authority", "text", false],
+            ].map(([name, label, placeholder, type, required]) => (
+              <label key={String(label)} className="block">
+                <span className="mb-1 block text-[16px] font-semibold text-[#222]">{String(label)}</span>
+                <input name={String(name)} type={String(type)} required={Boolean(required)} placeholder={String(placeholder)} className="h-[42px] w-full rounded-[7px] border border-[#dfc9ab] px-3 text-[16px] outline-none focus:border-[#a97a31]" />
               </label>
             ))}
           </div>
 
           <label className="mt-2 block">
             <span className="mb-1 block text-[16px] font-semibold text-[#222]">Case / Authority Reference (If available)</span>
-            <input placeholder="Enter case or authority reference" className="h-[42px] w-full rounded-[7px] border border-[#dfc9ab] px-3 text-[16px] outline-none focus:border-[#a97a31]" />
+            <input name="reference" placeholder="Enter case or authority reference" className="h-[42px] w-full rounded-[7px] border border-[#dfc9ab] px-3 text-[16px] outline-none focus:border-[#a97a31]" />
           </label>
 
           <label className="mt-2 block">
             <span className="mb-1 block text-[16px] font-semibold text-[#222]">Brief Case Details</span>
-            <textarea placeholder="Please share available case details..." className="h-[64px] w-full resize-none rounded-[7px] border border-[#dfc9ab] p-3 text-[16px] outline-none focus:border-[#a97a31]" />
+            <textarea name="message" required placeholder="Please share available case details..." className="h-[64px] w-full resize-none rounded-[7px] border border-[#dfc9ab] p-3 text-[16px] outline-none focus:border-[#a97a31]" />
           </label>
 
           <div className="mt-2 rounded-[8px] border border-dashed border-[#cdb28b] bg-[#fbf7ef] px-4 py-2 text-center">
             <p className="text-[16px] font-semibold text-[#3f4545]">Supporting Document Upload</p>
             <p className="mt-1 text-[16px] text-[#666]">Click to upload or drag and drop PDF, JPG, PNG up to 10MB</p>
+            <input name="file" type="file" accept=".pdf,.jpg,.jpeg,.png" className="mx-auto mt-2 block max-w-full text-[16px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#e9dfcc] file:px-3 file:py-1.5" />
           </div>
 
           <label className="mt-2 flex gap-3 text-[16px] leading-[1.3] text-[#3c4342]">
-            <input type="checkbox" className="mt-1 h-5 w-5 shrink-0" />
+            <input name="consent" required type="checkbox" className="mt-1 h-5 w-5 shrink-0" />
             <span>I confirm that the information provided is accurate to the best of my knowledge and consent to being contacted regarding this Sewa request.</span>
           </label>
 
-          <button type="submit" className="mx-auto mt-3 flex h-[44px] w-full max-w-[300px] items-center justify-between rounded-[7px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white">
-            Submit Sewa Request
+          <button type="submit" disabled={submitState === "loading"} className="mx-auto mt-3 flex h-[44px] w-full max-w-[300px] items-center justify-between rounded-[7px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white disabled:opacity-60">
+            {submitState === "loading" ? "Submitting..." : "Submit Sewa Request"}
             <UBSIcon name="ArrowRight" className="h-6 w-6" />
           </button>
+          {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0a4b3b]"}`}>{submitMessage}</p>}
         </form>
       </div>
 
