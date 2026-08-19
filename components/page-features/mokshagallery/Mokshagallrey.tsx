@@ -5,7 +5,6 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
 import {
-  FiHeart,
   FiUser,
   FiCalendar,
   FiDownload,
@@ -13,10 +12,10 @@ import {
   FiEye,
 } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFacebook, FaTwitter, FaPinterest, FaLinkedin } from "react-icons/fa";
+import { publicGalleryApi } from "@/lib/galleryApi";
 
 interface GalleryImage {
-  id: number;
+  id: string | number;
   src: string;
   alt: string;
   category: string;
@@ -129,10 +128,15 @@ const galleryImages: GalleryImage[] = galleryImageSources.map((src, index) => ({
 }));
 
 function MokshaGallery() {
-  const images = galleryImages;
+  const [managedImages, setManagedImages] = useState<GalleryImage[]>([]);
+  const [visibleCount, setVisibleCount] = useState(16);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const images = managedImages.length > 0 ? managedImages : galleryImages;
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
   const [columns, setColumns] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -140,8 +144,10 @@ function MokshaGallery() {
   useEffect(() => {
     const updateColumns = () => {
       if (window.innerWidth < 640) {
-        setColumns(2);
+        setColumns(1);
       } else if (window.innerWidth < 1024) {
+        setColumns(2);
+      } else if (window.innerWidth < 1280) {
         setColumns(3);
       } else {
         setColumns(4);
@@ -153,10 +159,33 @@ function MokshaGallery() {
     return () => window.removeEventListener("resize", updateColumns);
   }, []);
 
-  const filteredImages =
+  useEffect(() => {
+    publicGalleryApi.list("image").then((items) => {
+      setManagedImages(items.map((item, index) => ({
+        id: item._id, src: item.url, alt: item.alt || item.caption || "Moksha Sewa gallery image", category: item.category || "Gallery",
+        title: item.caption || item.alt, description: item.description || "Moksha Sewa gallery",
+        photographer: item.credit || "Moksha Sewa Team", likes: 0,
+        date: new Date(item.createdAt).getFullYear().toString(), height: [340, 390, 430, 370][index % 4],
+      })));
+    }).catch(() => setManagedImages([]));
+  }, []);
+
+  const allFilteredImages =
     selectedCategory === "all"
       ? images
       : images.filter((img) => img.category === selectedCategory);
+  const filteredImages = allFilteredImages.slice(0, visibleCount);
+
+  useEffect(() => { setVisibleCount(16); }, [selectedCategory, managedImages]);
+  useEffect(() => {
+    const node = loadMoreRef.current;
+    if (!node || visibleCount >= allFilteredImages.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) setVisibleCount((count) => Math.min(count + 12, allFilteredImages.length));
+    }, { rootMargin: "500px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [visibleCount, allFilteredImages.length]);
 
   // Distribute images into columns for masonry layout
   const getMasonryColumns = () => {
@@ -175,11 +204,33 @@ function MokshaGallery() {
     return columnImages;
   };
 
-  const categories = [
-    { id: "all", name: `All Images (${images.length})` },
-  ];
+  const categories = [{ id: "all", name: `All Images (${images.length})` }, ...Array.from(new Set(images.map((image) => image.category))).map((category) => ({ id: category, name: category }))];
 
   const masonryColumns = getMasonryColumns();
+
+  const downloadSelectedImage = async () => {
+    if (!selectedImage || downloading) return;
+    setDownloading(true);
+    setDownloadError("");
+    try {
+      const response = await fetch(selectedImage.src);
+      if (!response.ok) throw new Error("Download failed");
+      const blob = await response.blob();
+      if (typeof selectedImage.id === "string") await publicGalleryApi.registerDownload(selectedImage.id);
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = `${selectedImage.title.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() || "moksha-sewa-image"}.${blob.type.split("/")[1]?.replace("jpeg", "jpg") || "jpg"}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      setDownloadError("Image could not be downloaded. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">
@@ -223,11 +274,10 @@ function MokshaGallery() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${
-                selectedCategory === category.id
+              className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 ${selectedCategory === category.id
                   ? "bg-[#8B6A3E] text-white shadow-md"
                   : "bg-white text-[#5A3E2B] border border-[#E7D5C2] hover:bg-[#F5E9D9]"
-              }`}
+                }`}
             >
               {category.name}
             </button>
@@ -251,17 +301,16 @@ function MokshaGallery() {
                   key={image.id}
                   className="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-500 bg-white cursor-pointer hover:-translate-y-1"
                   onClick={() => setSelectedImage(image)}
-                  style={{
-                    height: `${image.height}px`,
-                  }}
                 >
-                  <div className="relative w-full h-full overflow-hidden">
-                    <Image
+                  <div className="relative w-full overflow-hidden bg-[#EFE8DD]">
+                    {/* Native dimensions preserve portrait, square and ultra-wide uploads without cropping. */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={image.src}
                       alt={image.alt}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.03]"
                     />
 
                     {/* Gradient overlay */}
@@ -269,7 +318,7 @@ function MokshaGallery() {
 
                     {/* Category tag */}
                     <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <span className="px-0 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
+                      <span className="px-2.5 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
                         {image.category.charAt(0).toUpperCase() +
                           image.category.slice(1)}
                       </span>
@@ -288,15 +337,11 @@ function MokshaGallery() {
                           </p>
                         </div>
 
-                        {/* Photographer and likes */}
+                        {/* Photographer and date */}
                         <div className="flex items-center justify-between pt-2 border-t border-white/20">
                           <span className="text-white/70 text-[14px] flex items-center gap-1">
                             <FiUser className="w-2.5 h-2.5" />
                             {image.photographer}
-                          </span>
-                          <span className="text-white/70 text-[14px] flex items-center gap-1">
-                            <FiHeart className="w-2.5 h-2.5" />
-                            {image.likes}
                           </span>
                           <span className="text-white/70 text-[14px] flex items-center gap-1">
                             <FiCalendar className="w-2.5 h-2.5" />
@@ -324,25 +369,8 @@ function MokshaGallery() {
           ))}
         </div>
 
-        {/* View More Button */}
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B6A3E] text-white rounded-lg text-sm font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            <span>View Complete Portfolio</span>
-            <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
-        </div>
+        <div ref={loadMoreRef} className="h-px" aria-hidden="true" />
+
       </div>
 
       {/* Enhanced Modal with more information */}
@@ -409,15 +437,6 @@ function MokshaGallery() {
                     </div>
                     <div>
                       <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
-                        Likes
-                      </p>
-                      <p className="text-sm font-medium text-[#2C1810] flex items-center gap-1">
-                        <FiHeart className="w-4 h-4 text-red-500" />
-                        {selectedImage.likes.toLocaleString()}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
                         Category
                       </p>
                       <p className="text-sm font-medium text-[#2C1810]">
@@ -426,34 +445,10 @@ function MokshaGallery() {
                     </div>
                   </div>
 
-                  <div>
-                    <h3 className="text-sm font-serif text-[#2C1810] mb-3">
-                      Share this image
-                    </h3>
-                    <div className="flex gap-2">
-                      {[
-                        { icon: FaFacebook, color: "#1877F2" },
-                        { icon: FaTwitter, color: "#1DA1F2" },
-                        { icon: FaPinterest, color: "#E60023" },
-                        { icon: FaLinkedin, color: "#0A66C2" },
-                      ].map((social, idx) => {
-                        const Icon = social.icon;
-                        return (
-                          <button
-                            key={idx}
-                            className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#8B6A3E] hover:text-white transition-colors duration-200 flex items-center justify-center text-gray-600"
-                            style={{ color: social.color }}
-                          >
-                            <Icon className="w-5 h-5" />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <button className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2">
+                  {downloadError && <p className="text-[14px] font-medium text-red-600">{downloadError}</p>}
+                  <button onClick={downloadSelectedImage} disabled={downloading} className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-60">
                     <FiDownload className="w-4 h-4" />
-                    Download High Resolution
+                    {downloading ? "Downloading..." : "Download High Resolution"}
                   </button>
                 </div>
               </div>
