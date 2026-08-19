@@ -445,7 +445,11 @@ function VolunteerDashboard() {
                   <div className="flex items-center gap-3">
                     {profile.avatarUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={profile.avatarUrl} alt="" className="h-12 w-12 rounded-full object-cover" />
+                      <img
+                        src={profile.avatarUrl}
+                        alt={`${profile.name ?? "Volunteer"} profile`}
+                        className="h-12 w-12 rounded-full object-cover"
+                      />
                     ) : (
                       <FaUserCircle className="h-12 w-12 text-[#C9A574]" />
                     )}
