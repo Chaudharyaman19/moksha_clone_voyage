@@ -31,7 +31,7 @@ export default function HeartOfMoksha() {
             </div>
 
             <div className="flex w-full max-w-[650px] flex-col items-start text-left">
-              <p className="text-[16px] font-semibold uppercase tracking-[0.15em] text-[#d8a43d]">
+              <p className="font-sans text-[16px] font-semibold uppercase text-[#d8a43d]">
                 The Heart of Moksha Sewa
               </p>
 

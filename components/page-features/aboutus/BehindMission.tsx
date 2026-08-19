@@ -80,7 +80,7 @@ export default function BehindMission() {
               <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
-            <p className="mt-4 text-center text-[16px] font-semibold uppercase tracking-[0.16em] text-[#A67532] lg:text-left">
+            <p className="mt-4 text-center font-sans text-[16px] font-semibold uppercase text-[#A67532] lg:text-left">
               See the Mission
             </p>
 

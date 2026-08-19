@@ -1,42 +1,15 @@
 import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
-import PolicyHero from "@/components/sections/policy-hero/PolicyHero";
+import PolicyHero, { conductPolicyMeta } from "@/components/sections/policy-hero/PolicyHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import {
-  CalendarDays,
-  ClipboardCheck,
-  Globe2,
   HeartHandshake,
-  Scale,
   ShieldCheck,
 } from "lucide-react";
 
 export const metadata = createPageMetadata("/code-of-conduct");
-
-const conductMeta = [
-  {
-    icon: CalendarDays,
-    label: "Effective Date",
-    value: "17 August 2026",
-  },
-  {
-    icon: ClipboardCheck,
-    label: "Applies To",
-    value: "All Volunteers",
-  },
-  {
-    icon: Scale,
-    label: "Governing Law",
-    value: "Laws of India",
-  },
-  {
-    icon: Globe2,
-    label: "Scope",
-    value: "Field & Online Conduct",
-  },
-];
 
 const conductSections = [
   {
@@ -83,7 +56,7 @@ export default function CodeOfConductPage() {
         title="Volunteer Code of Conduct"
         subtitle="Guidelines for responsible seva"
         description="This Code of Conduct explains the standards expected from every Moksha Sewa volunteer while serving families, coordinating field support and representing the mission."
-        policyMeta={conductMeta}
+        policyMeta={conductPolicyMeta}
       />
 
       <main className="mx-auto max-w-[1180px] px-5 py-10 sm:py-12">

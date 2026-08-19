@@ -32,7 +32,7 @@ export default function AboutNamoGangeTrust() {
           <PiFlowerLotus className="pointer-events-none absolute -bottom-12 right-5 h-36 w-36 text-[#c5aa70]/12" />
 
           <div className="relative z-10 w-full">
-            <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[#24483d] sm:text-[12px]">
+            <div className="flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#24483d]">
               <span className="h-px w-9 bg-[#c49a4e]" />
               <span>The Organisation Behind Moksha Sewa</span>
               <span className="h-px flex-1 bg-[#c49a4e]" />

@@ -5,8 +5,10 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import {
   CalendarDays,
+  ClipboardCheck,
   Clock3,
   Globe2,
+  HeartHandshake,
   History,
   Scale,
   ShieldCheck,
@@ -94,6 +96,29 @@ export const refundPolicyMeta: PolicyMetaItem[] = [
     icon: Globe2,
     label: "Applies To",
     value: "Donations & Transactions",
+  },
+];
+
+export const conductPolicyMeta: PolicyMetaItem[] = [
+  {
+    icon: CalendarDays,
+    label: "Effective Date",
+    value: "17 August 2026",
+  },
+  {
+    icon: ClipboardCheck,
+    label: "Applies To",
+    value: "All Volunteers",
+  },
+  {
+    icon: Scale,
+    label: "Governing Law",
+    value: "Laws of India",
+  },
+  {
+    icon: Globe2,
+    label: "Scope",
+    value: "Field & Online Conduct",
   },
 ];
 

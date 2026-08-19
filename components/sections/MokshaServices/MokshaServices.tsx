@@ -228,8 +228,7 @@ const MokshaServices: React.FC = () => {
 
             <span
               className="
-                text-[16px] font-semibold
-                tracking-[0.20em]
+                font-sans text-[16px] font-semibold
                 text-[#103e39]
               "
             >
