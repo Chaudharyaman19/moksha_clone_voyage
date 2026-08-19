@@ -222,10 +222,10 @@ const AboutMokshaSewa: React.FC = () => {
                 flex
                 items-center
                 gap-1.5
-                font-sans
-                text-[16px]
+                text-base
                 font-semibold
                 uppercase
+                tracking-[0.08em]
                 text-[#df5b0b]
               "
             >
@@ -238,12 +238,15 @@ const AboutMokshaSewa: React.FC = () => {
               id="about-moksha-title"
               className="
                 max-w-[620px]
-                font-sans
-                text-[24px]
+                font-serif
+                text-[34px]
                 font-semibold
                 leading-[1.05]
+                tracking-[-0.025em]
                 text-[#12263b]
-                sm:text-[30px]
+                sm:text-[42px]
+                lg:text-[48px]
+                xl:text-[52px]
               "
             >
               Every Final Journey
@@ -458,10 +461,11 @@ const AboutMokshaSewa: React.FC = () => {
                   <div className="min-w-0">
                     <h2
                       className="
-                        text-[16px]
+                        text-[24px]
                         font-semibold
-                        leading-[1.25]
+                        leading-[1.1]
                         text-white
+                        sm:text-[30px]
                       "
                     >
                       {item.title}
@@ -681,10 +685,11 @@ const AboutMokshaSewa: React.FC = () => {
                 <div className="min-w-0">
                   <h2
                     className="
-                      text-[16px]
+                      text-[24px]
                       font-semibold
-                      leading-[1.25]
+                      leading-[1.1]
                       text-[#171717]
+                      sm:text-[30px]
                     "
                   >
                     {item.title}
