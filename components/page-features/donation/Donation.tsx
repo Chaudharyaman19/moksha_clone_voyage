@@ -525,6 +525,16 @@ function Donation() {
                 </div>
               </div>
 
+              {/* Floating QR Code */}
+              <div className="absolute right-4 top-2 h-40 w-40 shrink-0 overflow-hidden rounded-xl border border-[#E6D6BF] shadow-sm">
+                <Image
+                  src="/assets/qr.jpeg"
+                  alt="Donate QR"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* frequency toggle */}
                 <div>
