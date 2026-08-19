@@ -12,7 +12,7 @@ const faqs = [
 export default function PartnershipFAQ() {
   return (
     <section className="bg-[#fbf7ef] px-5 py-5">
-      <div className="mx-auto grid max-w-[1344px] grid-cols-1 overflow-hidden rounded-[12px] border border-[#ded1bf] lg:grid-cols-[46%_50%]">
+      <div className="mx-auto grid max-w-[1344px] grid-cols-1 overflow-hidden rounded-[12px] border border-[#ded1bf] lg:grid-cols-[46%_54%]">
         <div className="bg-[#004132] px-7 py-6 text-white">
           <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#d1a03b]">Together In Sewa</p>
           <h2 className="mt-3 text-[38px] font-medium leading-[1.05]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
