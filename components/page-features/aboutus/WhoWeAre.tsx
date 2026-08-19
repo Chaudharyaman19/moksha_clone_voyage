@@ -21,7 +21,64 @@ function LeafDecoration({ className }: { className: string }) {
 export default function WhoWeAre() {
   return (
     <section className="w-full overflow-hidden bg-[#faf4eb]" aria-labelledby="who-we-are-title">
-      <div className="relative mx-auto aspect-[2.32/1] w-full max-w-[1774px] min-w-[720px] origin-top-left max-md:left-1/2 max-md:-translate-x-1/2">
+      <div className="lg:hidden px-5 py-8 text-[#123d31]">
+        <div className="mx-auto max-w-xl text-center">
+          <PiFlowerLotus className="mx-auto h-8 w-8 text-[#c28b2c]" aria-hidden="true" />
+          <div className="mt-3 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.14em] text-[#b47a20]">
+            <span className="h-px flex-1 bg-[#d4aa63]" />
+            <span className="shrink-0">WHO WE ARE</span>
+            <span className="h-px flex-1 bg-[#d4aa63]" />
+          </div>
+          <h2 id="who-we-are-title" className="mt-4 text-[26px] font-semibold leading-tight sm:text-[30px]">
+            Moksha Sewa Is a Namo Gange Trust Initiative.
+          </h2>
+          <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[18px] border border-[#e1d0b6]">
+            <Image
+              src="/assets/about-reference/who-we-are-background-v2.png"
+              alt="Moksha Sewa community support"
+              fill
+              sizes="100vw"
+              className="object-cover object-[68%_center]"
+            />
+          </div>
+          <div className="mt-5 space-y-4 text-left text-[16px] leading-7 text-[#263830]">
+            <article className="flex gap-3 rounded-[12px] bg-white/70 p-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#f1e8d5] text-[#c58b26]">
+                <FaHandHoldingHeart className="h-5 w-5" />
+              </span>
+              <p>
+                Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide <strong>compassionate and responsible support</strong> for authorised unclaimed cases, people without family support, and verified families facing financial hardship.
+              </p>
+            </article>
+            <article className="flex gap-3 rounded-[12px] bg-white/70 p-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#f1e8d5] text-[#c58b26]">
+                <FaUsers className="h-5 w-5" />
+              </span>
+              <p>
+                The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support <strong>dignified final journeys</strong>.
+              </p>
+            </article>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-3 text-left text-[#34493f]">
+            {values.map(({ title, caption, icon: Icon }) => (
+              <div key={title} className="flex items-center gap-3 rounded-[10px] border border-[#e0cfb2] bg-[#fffaf2] p-3">
+                <Icon className="h-6 w-6 shrink-0 text-[#bd862a]" />
+                <span className="text-[14px] leading-tight">
+                  <span className="block font-semibold">{title}</span>{caption}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 flex items-start gap-4 rounded-[14px] bg-[#103f31] p-4 text-left text-white">
+            <PiHandsPraying className="mt-1 h-8 w-8 shrink-0 text-[#d09a2d]" />
+            <p className="text-[16px] leading-7">
+              Together, we ensure that no one is left without <strong className="text-[#d09a2d]">dignity, care and respect</strong> in their final journey.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto hidden aspect-[2.32/1] w-full max-w-[1774px] lg:block">
         <Image
           src="/assets/about-reference/who-we-are-background-v2.png"
           alt=""

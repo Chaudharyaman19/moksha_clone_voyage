@@ -322,9 +322,10 @@ export default function SupportTheMission() {
         <div
           className="
             relative
-            min-h-[430px]
+            min-h-0
             overflow-hidden
             bg-[#FBF6ED]
+            lg:min-h-[430px]
           "
         >
           {/* =================================================
@@ -380,7 +381,7 @@ export default function SupportTheMission() {
               relative
               z-10
               w-full
-              px-[30px]
+              px-[18px]
               pb-[30px]
               pt-[25px]
 
@@ -398,10 +399,13 @@ export default function SupportTheMission() {
               className="
                 flex
                 items-center
-                gap-[13px]
+                justify-center
+                gap-[10px]
+                sm:justify-start
+                sm:gap-[13px]
               "
             >
-              <span className="relative h-px w-[78px] bg-[#C18E39]">
+              <span className="relative hidden h-px w-[78px] bg-[#C18E39] sm:block">
                 <span
                   className="
                     absolute
@@ -417,7 +421,7 @@ export default function SupportTheMission() {
 
               <span
                 className="
-                  whitespace-nowrap
+                  text-center
                   text-[17px]
                   font-bold
                   uppercase
@@ -428,7 +432,7 @@ export default function SupportTheMission() {
                 Support The Mission
               </span>
 
-              <span className="relative h-px w-[78px] bg-[#C18E39]">
+              <span className="relative hidden h-px w-[78px] bg-[#C18E39] sm:block">
                 <span
                   className="
                     absolute
@@ -449,13 +453,15 @@ export default function SupportTheMission() {
 
             <h2
               className="
-                mt-[17px]
+                mt-[14px]
 
                 font-sans
-                text-[24px]
+                text-center
+                text-[25px]
                 font-semibold
                 leading-[1.05]
 
+                sm:text-left
                 sm:text-[30px]
               "
             >
@@ -480,7 +486,7 @@ export default function SupportTheMission() {
 
             <div
               className="
-                mt-[18px]
+                mt-[14px]
                 flex
                 items-center
                 gap-[10px]
@@ -489,7 +495,9 @@ export default function SupportTheMission() {
               <span
                 className="
                   h-px
-                  w-[220px]
+                  flex-1
+                  sm:w-[220px]
+                  sm:flex-none
                   bg-gradient-to-r
                   from-[#C2913E]
                   to-transparent
@@ -509,7 +517,9 @@ export default function SupportTheMission() {
               <span
                 className="
                   h-px
-                  w-[190px]
+                  flex-1
+                  sm:w-[190px]
+                  sm:flex-none
                   bg-gradient-to-l
                   from-transparent
                   to-[#C2913E]
@@ -521,22 +531,26 @@ export default function SupportTheMission() {
 
             <p
               className="
-                mt-[18px]
+                mt-[14px]
                 max-w-[600px]
 
-                text-[22px]
+                text-center
+                text-[17px]
                 font-medium
-                leading-[1.52]
+                leading-7
 
                 text-[#343A3D]
+                sm:text-left
+                sm:text-[22px]
+                sm:leading-[1.52]
               "
             >
               Moksha Sewa is a humanitarian initiative of Namo Gange Trust.
-              <br />
+              <br className="hidden sm:block" />
               Your contribution helps support the Trust&apos;s efforts to provide
-              <br />
+              <br className="hidden sm:block" />
               dignified and responsible final-journey assistance through the
-              <br />
+              <br className="hidden sm:block" />
               Moksha Sewa initiative.
             </p>
           </div>
@@ -551,12 +565,15 @@ export default function SupportTheMission() {
             relative
             z-20
             -mt-[5px]
-            mx-[18px]
-            rounded-t-[30px]
+            mx-0
+            rounded-t-[18px]
             bg-[#FCF9F3]/98
-            px-[25px]
+            px-[14px]
             pb-[16px]
             pt-[12px]
+            sm:mx-[18px]
+            sm:rounded-t-[30px]
+            sm:px-[25px]
           "
         >
           {/* =================================================
@@ -568,10 +585,11 @@ export default function SupportTheMission() {
               flex
               items-center
               justify-center
-              gap-[18px]
+              gap-[10px]
+              sm:gap-[18px]
             "
           >
-            <span className="relative h-px w-[76px] bg-[#BD8C38]">
+            <span className="relative hidden h-px w-[76px] bg-[#BD8C38] sm:block">
               <span
                 className="
                   absolute
@@ -588,17 +606,19 @@ export default function SupportTheMission() {
             <span
               className="
                 text-center
-                text-[17px]
+                text-[15px]
                 font-bold
                 uppercase
-                tracking-[0.08em]
+                tracking-[0.05em]
                 text-[#074939]
+                sm:text-[17px]
+                sm:tracking-[0.08em]
               "
             >
               How Your Support May Help
             </span>
 
-            <span className="relative h-px w-[76px] bg-[#BD8C38]">
+            <span className="relative hidden h-px w-[76px] bg-[#BD8C38] sm:block">
               <span
                 className="
                   absolute
@@ -637,7 +657,8 @@ export default function SupportTheMission() {
                 grid-cols-1
                 gap-0
 
-                sm:grid-cols-3
+                sm:grid-cols-2
+                md:grid-cols-3
                 xl:grid-cols-5
               "
             >
@@ -647,10 +668,11 @@ export default function SupportTheMission() {
                   className={`
                     relative
                     flex
-                    min-h-[145px]
+                    min-h-[118px]
                     flex-col
                     items-center
-                    px-[12px]
+                    px-[10px]
+                    py-3
                     text-center
 
                     ${

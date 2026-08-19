@@ -229,17 +229,21 @@ export default function Howwesupport() {
 
         <div
           className="
-            mb-[22px]
+            mb-[18px]
             flex
             items-center
             justify-center
-            gap-[26px]
+            gap-[14px]
+            sm:gap-[26px]
           "
         >
           <span
             className="
               h-px
-              w-[165px]
+              hidden
+              w-[80px]
+              sm:block
+              lg:w-[165px]
 
               bg-gradient-to-r
               from-transparent
@@ -250,7 +254,6 @@ export default function Howwesupport() {
 
           <h2
             className="
-              whitespace-nowrap
               text-center
 
               font-sans
@@ -270,7 +273,10 @@ export default function Howwesupport() {
           <span
             className="
               h-px
-              w-[165px]
+              hidden
+              w-[80px]
+              sm:block
+              lg:w-[165px]
 
               bg-gradient-to-l
               from-transparent
@@ -299,7 +305,7 @@ export default function Howwesupport() {
               className="
                 relative
 
-                h-[310px]
+                min-h-[310px]
 
                 overflow-hidden
 
@@ -371,9 +377,11 @@ export default function Howwesupport() {
                   h-full
                   flex-col
 
-                  px-[24px]
+                  px-[18px]
                   pb-[18px]
-                  pt-[24px]
+                  pt-[20px]
+                  sm:px-[24px]
+                  sm:pt-[24px]
                 "
               >
                 {/* =============================================
@@ -482,21 +490,22 @@ export default function Howwesupport() {
 
                 <p
                   className="
-                    mt-[22px]
+                    mt-[18px]
 
-                    w-[315px]
-                    max-w-[72%]
+                    w-full
+                    max-w-[78%]
 
                     whitespace-pre-line
 
                     text-left
-                    text-[19px]
+                    text-[17px]
                     font-semibold
 
                     leading-[1.43]
                     tracking-[-0.008em]
 
                     text-[#343B3C]
+                    sm:text-[19px]
                   "
                 >
                   {card.description}
