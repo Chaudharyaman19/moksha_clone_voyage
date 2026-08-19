@@ -465,6 +465,37 @@ body {
   }
 }
 
+@keyframes gallery-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gallery-modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gallery-modal-overlay {
+  animation: gallery-modal-fade-in 0.2s ease-out;
+}
+
+.gallery-modal-panel {
+  animation: gallery-modal-scale-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-modal-overlay,
+  .gallery-modal-panel {
+    animation: none;
+  }
+}
+
 /* Keep the primary site grid consistently closer to the viewport edges.
    Tailwind's default max-w-7xl is 1280px; 1344px gives all page sections,
    the navbar and the topbar the same slightly wider desktop alignment. */
