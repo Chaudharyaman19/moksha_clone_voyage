@@ -298,6 +298,18 @@ export const seoRoutes: RouteSeo[] = [
     priority: 0.3,
     changeFrequency: "yearly",
   },
+    {
+    path: "/code-of-conduct",
+    label: "Volunteer Code of Conduct",
+    title: "Volunteer Code of Conduct",
+    description:
+      "Read the Moksha Sewa volunteer code of conduct covering dignity, privacy, safety, responsible communication and field behaviour.",
+    ogImage: "/assets/logo-moksha-seva.png",
+    ogImageAlt: "Moksha Sewa volunteer code of conduct",
+    keywords: ["Moksha Sewa volunteer code of conduct", "volunteer guidelines", "sewa conduct"],
+    priority: 0.3,
+    changeFrequency: "yearly",
+  },
   {
     path: "/refund-policy",
     label: "Refund Policy",

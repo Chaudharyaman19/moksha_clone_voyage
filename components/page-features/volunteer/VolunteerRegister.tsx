@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { lookupPincode } from "@/lib/pincode";
@@ -257,6 +257,21 @@ export default function VolunteerRegister() {
   const [consent, setConsent] =
     useState(false);
 
+  const [conductAgreed, setConductAgreed] = useState(false);
+
+  const conductAgreedRef = useRef(false);
+
+  useEffect(() => {
+    conductAgreedRef.current = conductAgreed;
+  }, [conductAgreed]);
+
+  const closeConductModal = useCallback(() => {
+    setShowConductModal(false);
+    if (!conductAgreedRef.current) {
+      setConsent(false);
+    }
+  }, []);
+
   const [isSubmitting, setIsSubmitting] =
     useState(false);
 
@@ -307,7 +322,7 @@ export default function VolunteerRegister() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setShowConductModal(false);
+        closeConductModal();
       }
     };
 
@@ -318,7 +333,7 @@ export default function VolunteerRegister() {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [showConductModal]);
+  }, [showConductModal, closeConductModal]);
 
   // Pincode-first lookup: once 6 digits are typed, auto-fill state/city so the volunteer doesn't
   // have to type them by hand. Both stay editable afterward in case the lookup gets it wrong.
@@ -455,7 +470,7 @@ export default function VolunteerRegister() {
     event.preventDefault();
     setError("");
 
-    if (!consent) {
+    if (!consent || !conductAgreed) {
       setShowConductModal(true);
       return;
     }
@@ -901,7 +916,7 @@ export default function VolunteerRegister() {
                       </div>
 
                       <div className="mt-4 grid gap-x-4 gap-y-4 border-t border-dashed border-[#EDB886] pt-3 sm:grid-cols-2 lg:grid-cols-4">
-                        {[['emergencyOnCall', 'Emergency / On-Call Seva?'], ['canParticipateFieldCases', 'Can Participate in Field Cases?'], ['ownVehicle', 'Own Vehicle Available?'], ['volunteeredBefore', 'NGO Experience?']].map(([name, text]) => (
+                        {[['emergencyOnCall', 'Emergency / On-Call Seva? *'], ['canParticipateFieldCases', 'Can Participate in Field Cases? *'], ['ownVehicle', 'Own Vehicle Available? *'], ['volunteeredBefore', 'NGO Experience? *']].map(([name, text]) => (
                           <label key={name}>
                             <span className={labelClass}>{text}</span>
                             <select name={name} value={form[name as keyof VolunteerForm] ?? ""} onChange={handleChange} required className={inputClass}>
@@ -961,27 +976,27 @@ export default function VolunteerRegister() {
                         ))}
 
                         <label>
-                          <span className={labelClass}>ID Proof Type (optional)</span>
-                          <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} className={inputClass}>
+                          <span className={labelClass}>ID Proof Type *</span>
+                          <select name="idProofType" value={form.idProofType ?? ""} onChange={handleChange} required className={inputClass}>
                             <option value="">Select</option>
                             {['Aadhaar', 'Voter ID', 'Driving Licence', 'Passport', 'Other'].map(v => <option key={v}>{v}</option>)}
                           </select>
                         </label>
 
                         <label>
-                          <span className={labelClass}>ID Proof Number (optional)</span>
-                          <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} className={inputClass} />
+                          <span className={labelClass}>ID Proof Number *</span>
+                          <input name="idProofNumber" value={form.idProofNumber ?? ""} onChange={handleChange} required className={inputClass} />
                         </label>
 
                         <label>
-                          <span className={labelClass}>Upload Photograph (optional)</span>
-                          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
+                          <span className={labelClass}>Upload Photograph *</span>
+                          <input type="file" accept="image/jpeg,image/png,image/webp" required onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                           <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
                         </label>
 
                         <label className="sm:col-span-2">
-                          <span className={labelClass}>Upload ID Proof (optional)</span>
-                          <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
+                          <span className={labelClass}>Upload ID Proof *</span>
+                          <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                           <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
                         </label>
                       </div>
@@ -1056,12 +1071,15 @@ export default function VolunteerRegister() {
                       <input
                         type="checkbox"
                         checked={consent}
-                        onChange={(event) =>
-                          setConsent(
-                            event.target.checked,
-                          )
-                        }
-                        className="mt-0.5 h-3.5 w-3.5 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
+                        onChange={(event) => {
+                          const checked = event.target.checked;
+                          setConsent(checked);
+                          if (checked) {
+                            setConductAgreed(false);
+                            setShowConductModal(true);
+                          }
+                        }}
+                        className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
                       />
 
                       I agree to abide by
@@ -1091,7 +1109,8 @@ export default function VolunteerRegister() {
 
                       <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !consent || !conductAgreed}
+                        title={!conductAgreed ? "Please agree to the Code of Conduct to continue" : undefined}
                         className="group flex h-[39px] w-full items-center justify-center gap-2.5 rounded-[6px] bg-gradient-to-r from-[#FF6A13] to-[#EF4E0A] px-4 text-[16px] font-medium text-white shadow-[0_7px_18px_rgba(229,78,11,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {isSubmitting ? (
@@ -1354,14 +1373,7 @@ export default function VolunteerRegister() {
 
       {/* Code of Conduct modal */}
       {showConductModal && (
-        <div
-          onClick={(event) => {
-            if (event.target === event.currentTarget) {
-              setShowConductModal(false);
-            }
-          }}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/65 p-2 sm:p-4"
-        >
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/65 p-2 sm:p-4">
           <div className="flex max-h-[92vh] w-full flex-col overflow-hidden rounded-[10px] border border-[#C49535] bg-[#FBF8F2] shadow-[0_24px_70px_rgba(0,0,0,0.45)] sm:w-[60vw]">
             {/* Modal header */}
             <div className="sticky top-0 z-20 flex shrink-0 items-center justify-between gap-3 border-b-2 border-[#C98A1C] bg-[#004435] px-3 py-2 sm:px-5 sm:py-3">
@@ -1376,7 +1388,7 @@ export default function VolunteerRegister() {
 
               <button
                 type="button"
-                onClick={() => setShowConductModal(false)}
+                onClick={closeConductModal}
                 aria-label="Close code of conduct"
                 className="grid h-8 w-8 shrink-0 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/25 sm:h-9 sm:w-9"
               >
@@ -1393,12 +1405,9 @@ export default function VolunteerRegister() {
               <ConductDeclaration
                 compact
                 asLink={false}
-                submitLabel="Submit Registration"
-                onSubmit={() => {
-                  setConsent(true);
-                  setShowConductModal(false);
-                  void submitRegistration();
-                }}
+                submitLabel="Continue"
+                onCheckedChange={setConductAgreed}
+                onSubmit={() => setShowConductModal(false)}
               />
             </div>
           </div>

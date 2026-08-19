@@ -768,11 +768,13 @@ export function ConductDeclaration({
   submitLabel = "Continue Registration",
   asLink = true,
   compact = false,
+  onCheckedChange,
 }: {
   onSubmit?: () => void;
   submitLabel?: string;
   asLink?: boolean;
   compact?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
 }) {
   const [checked, setChecked] = useState(false);
 
@@ -1037,9 +1039,11 @@ export function ConductDeclaration({
             <input
               type="checkbox"
               checked={checked}
-              onChange={(event) =>
-                setChecked(event.target.checked)
-              }
+              onChange={(event) => {
+                const next = event.target.checked;
+                setChecked(next);
+                onCheckedChange?.(next);
+              }}
               className={
                 compact
                   ? `
