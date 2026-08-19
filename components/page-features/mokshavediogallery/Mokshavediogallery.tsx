@@ -4,7 +4,6 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import {
-  FiHeart,
   FiUser,
   FiCalendar,
   FiDownload,
@@ -12,9 +11,9 @@ import {
   FiEye,
   FiPlay,
   FiClock,
+  FiLoader,
 } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
-import { FaFacebook, FaTwitter, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { publicGalleryApi } from "@/lib/galleryApi";
 
 interface GalleryVideo {
@@ -120,6 +119,8 @@ function MokshaGallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedVideo, setSelectedVideo] = useState<GalleryVideo | null>(null);
   const [columns, setColumns] = useState(4);
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
 
   // Update columns based on screen size
   useEffect(() => {
@@ -155,6 +156,11 @@ function MokshaGallery() {
       : videos.filter((vid) => vid.category === selectedCategory);
   const filteredVideos = allFilteredVideos.slice(0, visibleCount);
 
+  useEffect(() => {
+    document.body.style.overflow = selectedVideo ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [selectedVideo]);
+
   useEffect(() => { setVisibleCount(12); }, [selectedCategory, managedVideos]);
   useEffect(() => {
     const node = loadMoreRef.current;
@@ -185,6 +191,30 @@ function MokshaGallery() {
   const categories = [{ id: "all", name: `All Videos (${videos.length})` }, ...Array.from(new Set(videos.map((video) => video.category))).map((category) => ({ id: category, name: category.charAt(0).toUpperCase() + category.slice(1) }))];
 
   const masonryColumns = getMasonryColumns();
+
+  const downloadSelectedVideo = async () => {
+    if (!selectedVideo || downloading) return;
+    setDownloading(true);
+    setDownloadError("");
+    try {
+      const response = await fetch(selectedVideo.src);
+      if (!response.ok) throw new Error("Download failed");
+      const blob = await response.blob();
+      if (typeof selectedVideo.id === "string") await publicGalleryApi.registerDownload(selectedVideo.id);
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = `${selectedVideo.title.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() || "moksha-sewa-video"}.${blob.type.split("/")[1] || "mp4"}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      setDownloadError("Video could not be downloaded. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] to-white">
@@ -317,10 +347,6 @@ function MokshaGallery() {
                               {video.videographer}
                             </span>
                             <span className="text-white/70 text-[14px] flex items-center gap-1">
-                              <FiHeart className="w-2.5 h-2.5" />
-                              {video.likes}
-                            </span>
-                            <span className="text-white/70 text-[14px] flex items-center gap-1">
                               <FiCalendar className="w-2.5 h-2.5" />
                               {video.date}
                             </span>
@@ -353,16 +379,16 @@ function MokshaGallery() {
       {/* Modal with video player */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
+          className="gallery-modal-overlay fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={() => setSelectedVideo(null)}
         >
           <div
-            className="relative max-w-5xl w-full max-h-[90vh] bg-white rounded-xl overflow-hidden"
+            className="gallery-modal-panel relative max-w-5xl w-full max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-20 text-gray-700 bg-white/90 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg hover:shadow-xl"
+              className="absolute top-4 right-4 z-20 text-gray-700 bg-white/90 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
               aria-label="Close modal"
             >
               <FiX className="w-5 h-5" />
@@ -370,7 +396,7 @@ function MokshaGallery() {
 
             <div className="flex flex-col lg:flex-row h-full">
               {/* Video section */}
-              <div className="relative lg:w-3/5 h-[40vh] lg:h-[80vh] bg-black">
+              <div className="relative lg:w-3/5 h-[42vh] lg:h-[82vh] bg-black">
                 <video
                   key={selectedVideo.id}
                   src={selectedVideo.src}
@@ -383,32 +409,34 @@ function MokshaGallery() {
               </div>
 
               {/* Details section */}
-              <div className="lg:w-2/5 p-6 lg:p-8 bg-white overflow-y-auto">
+              <div className="lg:w-2/5 p-6 lg:p-8 bg-gradient-to-b from-white to-[#FBF8F3] overflow-y-auto">
                 <div className="space-y-6">
                   <div>
-                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3">
+                    <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3 tracking-wide">
                       {selectedVideo.category.charAt(0).toUpperCase() +
                         selectedVideo.category.slice(1)}
                     </span>
-                    <h2 className="text-2xl lg:text-3xl font-serif text-[#2C1810] mb-2">
+                    <h2 className="text-2xl lg:text-3xl font-serif text-[#2C1810] mb-2 leading-snug">
                       {selectedVideo.title}
                     </h2>
-                    <p className="text-[#5A3E2B]/70 text-sm">
+                    <p className="text-[#5A3E2B]/70 text-sm leading-relaxed">
                       {selectedVideo.description}
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 py-4 border-y border-[#F5E9D9]">
+                  <div className="grid grid-cols-3 gap-4 py-4 border-y border-[#F5E9D9]">
                     <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
-                        Videographer
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1 flex items-center gap-1">
+                        <FiUser className="w-3 h-3" /> Videographer
                       </p>
                       <p className="text-sm font-medium text-[#2C1810]">
                         {selectedVideo.videographer}
                       </p>
                     </div>
                     <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">Year</p>
+                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1 flex items-center gap-1">
+                        <FiCalendar className="w-3 h-3" /> Year
+                      </p>
                       <p className="text-sm font-medium text-[#2C1810]">
                         {selectedVideo.date}
                       </p>
@@ -422,45 +450,20 @@ function MokshaGallery() {
                         {selectedVideo.duration}
                       </p>
                     </div>
-                    <div>
-                      <p className="text-[14px] text-[#5A3E2B]/60 mb-1">
-                        Likes
-                      </p>
-                      <p className="text-sm font-medium text-[#2C1810] flex items-center gap-1">
-                        <FiHeart className="w-4 h-4 text-red-500" />
-                        {selectedVideo.likes.toLocaleString()}
-                      </p>
-                    </div>
                   </div>
 
-                  <div>
-                    <h3 className="text-sm font-serif text-[#2C1810] mb-3">
-                      Share this video
-                    </h3>
-                    <div className="flex gap-2">
-                      {[
-                        { icon: FaFacebook, color: "#1877F2" },
-                        { icon: FaTwitter, color: "#1DA1F2" },
-                        { icon: FaPinterest, color: "#E60023" },
-                        { icon: FaLinkedin, color: "#0A66C2" },
-                      ].map((social, idx) => {
-                        const Icon = social.icon;
-                        return (
-                          <button
-                            key={idx}
-                            className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#8B6A3E] hover:text-white transition-colors duration-200 flex items-center justify-center text-gray-600"
-                            style={{ color: social.color }}
-                          >
-                            <Icon className="w-5 h-5" />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <button className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2">
-                    <FiDownload className="w-4 h-4" />
-                    Download High Resolution
+                  {downloadError && <p className="text-[14px] font-medium text-red-600">{downloadError}</p>}
+                  <button
+                    onClick={downloadSelectedVideo}
+                    disabled={downloading}
+                    className="w-full py-3 bg-[#8B6A3E] text-white rounded-lg hover:bg-[#5A3E2B] transition-colors duration-200 font-medium text-sm flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-60 shadow-sm hover:shadow-md"
+                  >
+                    {downloading ? (
+                      <FiLoader className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <FiDownload className="w-4 h-4" />
+                    )}
+                    {downloading ? "Downloading..." : "Download Video"}
                   </button>
                 </div>
               </div>
