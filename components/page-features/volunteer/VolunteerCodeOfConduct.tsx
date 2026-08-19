@@ -109,7 +109,7 @@ export function ConductBanner({
       }
     >
       <Image
-        src="/assets/code_of_conduct.jpeg"
+        src="/assets/code_of_conduct.png"
         alt="Volunteer Code of Conduct"
         width={759}
         height={334}
@@ -791,7 +791,7 @@ export function ConductDeclaration({
         mt-[16px]
 
         w-full
-        max-w-[1280px]
+        max-w-[1344px]
 
         px-4
 
