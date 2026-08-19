@@ -28,14 +28,23 @@ const rightGroups = [
   },
 ];
 
+/* =========================================================
+   CONNECTOR
+   h-[136px] = icon circle ki exact desktop height
+   Isliye ↔ icon circle ke exact center me aayega
+========================================================= */
+
 function Connector() {
   return (
     <div
       className="
         hidden
+        h-[136px]
         min-w-0
         flex-1
+        shrink-0
         items-center
+        justify-center
         xl:flex
       "
     >
@@ -57,19 +66,14 @@ function Connector() {
           w-[54px]
           shrink-0
           place-items-center
-
           rounded-full
-
           border
           border-dashed
           border-[#91927C]
-
           bg-[#FBF8F2]
-
           text-[25px]
           font-medium
           leading-none
-
           text-[#C48317]
         "
       >
@@ -115,21 +119,15 @@ function PartnerItem({
       <div
         className="
           relative
-
           grid
           h-[128px]
           w-[128px]
           shrink-0
-
           place-items-center
-
           rounded-full
-
           border-[2px]
           border-[#D6C69E]
-
           bg-[#FFFDF8]
-
           shadow-[0_3px_12px_rgba(66,44,19,0.035)]
 
           xl:h-[136px]
@@ -151,15 +149,11 @@ function PartnerItem({
       <h3
         className="
           mt-[9px]
-
           min-h-[48px]
-
           whitespace-pre-line
-
           text-[19px]
           font-bold
           leading-[1.17]
-
           text-[#064B3A]
         "
       >
@@ -183,13 +177,10 @@ function PartnerItem({
       <p
         className="
           mt-[8px]
-
           whitespace-pre-line
-
           text-[16px]
           font-medium
           leading-[1.48]
-
           text-[#454B4C]
         "
       >
@@ -207,9 +198,7 @@ export default function PartnershipNetwork() {
         relative
         w-full
         overflow-hidden
-
         bg-[#FBF8F2]
-
         px-4
         py-[18px]
 
@@ -228,10 +217,8 @@ export default function PartnershipNetwork() {
           absolute
           -bottom-[55px]
           -left-[44px]
-
           h-[190px]
           w-[190px]
-
           text-[#D9C496]/20
         "
       />
@@ -243,10 +230,8 @@ export default function PartnershipNetwork() {
           absolute
           -bottom-[55px]
           -right-[44px]
-
           h-[190px]
           w-[190px]
-
           text-[#D9C496]/20
         "
       />
@@ -255,11 +240,9 @@ export default function PartnershipNetwork() {
         className="
           relative
           z-10
-
           mx-auto
           w-full
           max-w-[1344px]
-
           text-center
         "
       >
@@ -289,7 +272,6 @@ export default function PartnershipNetwork() {
               font-bold
               uppercase
               tracking-[0.08em]
-
               text-[#B47B22]
             "
           >
@@ -312,12 +294,10 @@ export default function PartnershipNetwork() {
         <h2
           className="
             mt-[8px]
-
             text-[38px]
             font-medium
             leading-[1.04]
             tracking-[-0.018em]
-
             text-[#064335]
 
             sm:text-[44px]
@@ -337,12 +317,10 @@ export default function PartnershipNetwork() {
         <div
           className="
             mt-[8px]
-
             flex
             items-center
             justify-center
             gap-[11px]
-
             text-[#C48925]
           "
         >
@@ -379,13 +357,10 @@ export default function PartnershipNetwork() {
           className="
             mx-auto
             mt-[10px]
-
             max-w-[760px]
-
             text-[16px]
             font-medium
             leading-[1.55]
-
             text-[#464C4D]
           "
         >
@@ -402,11 +377,9 @@ export default function PartnershipNetwork() {
         <div
           className="
             mt-[20px]
-
             grid
             grid-cols-1
             items-start
-
             gap-y-[22px]
 
             md:grid-cols-2
@@ -416,17 +389,13 @@ export default function PartnershipNetwork() {
             xl:gap-x-0
           "
         >
-          {/* =================================================
-              LEFT ITEM 01
-          ================================================= */}
+          {/* LEFT ITEM 01 */}
 
           <PartnerItem {...leftGroups[0]} />
 
           <Connector />
 
-          {/* =================================================
-              LEFT ITEM 02
-          ================================================= */}
+          {/* LEFT ITEM 02 */}
 
           <PartnerItem {...leftGroups[1]} />
 
@@ -445,27 +414,20 @@ export default function PartnershipNetwork() {
               text-center
 
               md:col-span-2
-
               xl:col-span-1
             "
           >
             <div
               className="
                 relative
-
                 grid
                 h-[154px]
                 w-[154px]
-
                 place-items-center
-
                 rounded-full
-
                 border-[7px]
                 border-[#E2B45C]
-
                 bg-[#004A3A]
-
                 shadow-[0_7px_18px_rgba(0,60,43,0.15)]
               "
             >
@@ -476,9 +438,7 @@ export default function PartnershipNetwork() {
                   pointer-events-none
                   absolute
                   inset-[4px]
-
                   rounded-full
-
                   border
                   border-[#D3A249]
                 "
@@ -491,7 +451,6 @@ export default function PartnershipNetwork() {
                     mx-auto
                     h-[50px]
                     w-[50px]
-
                     text-[#D59A27]
                   "
                 />
@@ -499,11 +458,9 @@ export default function PartnershipNetwork() {
                 <p
                   className="
                     mt-[2px]
-
                     text-[15px]
                     font-medium
                     uppercase
-
                     text-white
                   "
                 >
@@ -513,11 +470,9 @@ export default function PartnershipNetwork() {
                 <p
                   className="
                     mt-[3px]
-
                     text-[10px]
                     font-semibold
                     leading-[1.3]
-
                     text-[#D7A23A]
                   "
                 >
@@ -534,17 +489,12 @@ export default function PartnershipNetwork() {
                   absolute
                   left-[-10px]
                   top-1/2
-
                   h-[18px]
                   w-[18px]
-
                   -translate-y-1/2
-
                   rounded-full
-
                   border-[4px]
                   border-[#C99A3A]
-
                   bg-[#004A3A]
                 "
               />
@@ -554,17 +504,12 @@ export default function PartnershipNetwork() {
                   absolute
                   right-[-10px]
                   top-1/2
-
                   h-[18px]
                   w-[18px]
-
                   -translate-y-1/2
-
                   rounded-full
-
                   border-[4px]
                   border-[#C99A3A]
-
                   bg-[#004A3A]
                 "
               />
@@ -573,13 +518,10 @@ export default function PartnershipNetwork() {
             <p
               className="
                 mt-[12px]
-
                 max-w-[250px]
-
                 text-[16px]
                 font-medium
                 leading-[1.42]
-
                 text-[#4A5051]
               "
             >
@@ -590,17 +532,13 @@ export default function PartnershipNetwork() {
 
           <Connector />
 
-          {/* =================================================
-              RIGHT ITEM 01
-          ================================================= */}
+          {/* RIGHT ITEM 01 */}
 
           <PartnerItem {...rightGroups[0]} />
 
           <Connector />
 
-          {/* =================================================
-              RIGHT ITEM 02
-          ================================================= */}
+          {/* RIGHT ITEM 02 */}
 
           <PartnerItem {...rightGroups[1]} />
         </div>
@@ -612,7 +550,6 @@ export default function PartnershipNetwork() {
         <div
           className="
             mt-[18px]
-
             flex
             items-center
             justify-center
@@ -638,9 +575,7 @@ export default function PartnershipNetwork() {
               h-[8px]
               w-[8px]
               shrink-0
-
               rotate-45
-
               bg-[#C9891E]
 
               md:block
@@ -651,34 +586,25 @@ export default function PartnershipNetwork() {
             href="#partnership-enquiry"
             className="
               group
-
               inline-flex
               h-[54px]
               w-full
               max-w-[360px]
-
               items-center
               justify-between
-
               rounded-[6px]
-
               border
               border-[#C79030]
-
               bg-[#004B39]
-
               px-[25px]
-
               text-[17px]
               font-medium
               uppercase
               tracking-[0.025em]
-
               text-white
-
               shadow-[0_5px_13px_rgba(0,64,45,0.12)]
-
               transition
+
               hover:bg-[#003D30]
             "
           >
@@ -689,8 +615,8 @@ export default function PartnershipNetwork() {
               className="
                 h-[22px]
                 w-[22px]
-
                 transition-transform
+
                 group-hover:translate-x-[3px]
               "
             />
@@ -702,9 +628,7 @@ export default function PartnershipNetwork() {
               h-[8px]
               w-[8px]
               shrink-0
-
               rotate-45
-
               bg-[#C9891E]
 
               md:block
@@ -733,22 +657,15 @@ export default function PartnershipNetwork() {
           className="
             mx-auto
             mt-[17px]
-
             flex
             max-w-[820px]
-
             items-center
-
             rounded-[8px]
-
             border
             border-[#E0D8C9]
-
             bg-[#F5F2EA]
-
             px-[20px]
             py-[13px]
-
             text-left
           "
         >
@@ -758,13 +675,9 @@ export default function PartnershipNetwork() {
               h-[46px]
               w-[46px]
               shrink-0
-
               place-items-center
-
               rounded-full
-
               bg-[#FAF8F2]
-
               text-[#0A4B3B]
             "
           >
@@ -780,10 +693,8 @@ export default function PartnershipNetwork() {
           <span
             className="
               mx-[16px]
-
               h-[42px]
               w-px
-
               bg-[#CDB98F]
             "
           />
@@ -792,7 +703,6 @@ export default function PartnershipNetwork() {
             className="
               text-[16px]
               leading-[1.45]
-
               text-[#4A504F]
             "
           >
