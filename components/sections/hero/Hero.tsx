@@ -174,7 +174,7 @@ export default function Hero() {
         journeyPrayerLayout: true,
         primaryButton: {
           label: "Explore Our Sewa",
-          href: "/sevas",
+          href: "/prayerhallservices",
         },
         secondaryButton: {
           label: "Support This Mission",
