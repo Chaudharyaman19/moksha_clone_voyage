@@ -12,23 +12,23 @@ const benefits = [
 export default function PartnershipHero() {
   return (
     <section className="relative overflow-hidden bg-[#fbf7ef] ">
-      <div className="relative mx-auto w-full max-w-[1344px] overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] bg-no-repeat lg:block"
-          style={{
-            backgroundImage: "url('/assets/partnership/hero.png')",
-            backgroundSize: "auto 100%",
-            backgroundPosition: "right center",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[61%] lg:block"
-          style={{
-            background:
-              "linear-gradient(90deg,#fbf7ef 0%,#fbf7ef 62%,rgba(251,247,239,.97) 72%,rgba(251,247,239,.72) 84%,transparent 100%)",
-          }}
-        />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] bg-no-repeat lg:block"
+        style={{
+          backgroundImage: "url('/assets/partnership/hero.png')",
+          backgroundSize: "auto 100%",
+          backgroundPosition: "right center",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[61%] lg:block"
+        style={{
+          background:
+            "linear-gradient(90deg,#fbf7ef 0%,#fbf7ef 62%,rgba(251,247,239,.97) 72%,rgba(251,247,239,.72) 84%,transparent 100%)",
+        }}
+      />
 
+      <div className="relative mx-auto w-full max-w-[1344px]">
         <div className="relative z-10 px-5 pb-8 pt-10 sm:px-7 lg:min-h-[510px] lg:w-[58%] lg:px-10 lg:pt-20">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a22]">
             <PartnershipIcon name="Handshake" className="h-7 w-7" />
