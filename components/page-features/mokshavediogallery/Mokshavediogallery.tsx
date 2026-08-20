@@ -383,7 +383,7 @@ function MokshaGallery() {
           onClick={() => setSelectedVideo(null)}
         >
           <div
-            className="gallery-modal-panel relative max-w-5xl w-full max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
+            className="gallery-modal-panel relative max-w-5xl w-full h-[92vh] max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -394,9 +394,9 @@ function MokshaGallery() {
               <FiX className="w-5 h-5" />
             </button>
 
-            <div className="flex flex-col lg:flex-row h-full">
+            <div className="flex flex-col lg:flex-row h-full min-h-0">
               {/* Video section */}
-              <div className="relative lg:w-3/5 h-[42vh] lg:h-[82vh] bg-black">
+              <div className="relative shrink-0 lg:w-3/5 h-[42vh] lg:h-[82vh] bg-black">
                 <video
                   key={selectedVideo.id}
                   src={selectedVideo.src}
@@ -409,7 +409,10 @@ function MokshaGallery() {
               </div>
 
               {/* Details section */}
-              <div className="lg:w-2/5 p-6 lg:p-8 bg-gradient-to-b from-white to-[#FBF8F3] overflow-y-auto">
+              <div
+                data-lenis-prevent
+                className="lg:w-2/5 flex-1 min-h-0 p-6 lg:p-8 bg-gradient-to-b from-white to-[#FBF8F3] overflow-y-auto overscroll-contain"
+              >
                 <div className="space-y-6">
                   <div>
                     <span className="inline-block px-3 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium mb-3 tracking-wide">
