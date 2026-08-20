@@ -282,6 +282,26 @@ export default function VolunteerRegister() {
 
   const [showConductModal, setShowConductModal] = useState(false);
 
+  useEffect(() => {
+    if (!showConductModal) return;
+
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousHtmlOverscrollBehavior = document.documentElement.style.overscrollBehavior;
+    const previousOverflow = document.body.style.overflow;
+    const previousOverscrollBehavior = document.body.style.overscrollBehavior;
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.overscrollBehavior = "none";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+
+    return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.documentElement.style.overscrollBehavior = previousHtmlOverscrollBehavior;
+      document.body.style.overflow = previousOverflow;
+      document.body.style.overscrollBehavior = previousOverscrollBehavior;
+    };
+  }, [showConductModal]);
+
   const [pincodeStatus, setPincodeStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   const [step, setStep] = useState(0);
@@ -1382,8 +1402,16 @@ export default function VolunteerRegister() {
 
       {/* Code of Conduct modal */}
       {showConductModal && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/65 p-2 sm:p-4">
-          <div className="flex max-h-[92vh] w-full flex-col rounded-[10px] border border-[#C49535] bg-[#FBF8F2] shadow-[0_24px_70px_rgba(0,0,0,0.45)] sm:w-[60vw]">
+        <div
+          data-lenis-prevent
+          data-lenis-prevent-touch
+          className="fixed inset-0 z-[80] flex items-center justify-center overflow-hidden bg-black/65 p-2 sm:p-4"
+        >
+          <div
+            data-lenis-prevent
+            data-lenis-prevent-touch
+            className="flex h-[calc(100dvh-1rem)] min-h-0 w-full flex-col overflow-hidden rounded-[10px] border border-[#C49535] bg-[#FBF8F2] shadow-[0_24px_70px_rgba(0,0,0,0.45)] sm:h-auto sm:max-h-[92dvh] sm:w-[60vw]"
+          >
             {/* Modal header */}
             <div className="sticky top-0 z-20 flex shrink-0 items-center justify-between gap-3 border-b-2 border-[#C98A1C] bg-[#004435] px-3 py-2 sm:px-5 sm:py-3 rounded-t-[8px]">
               <div className="min-w-0">
@@ -1406,7 +1434,15 @@ export default function VolunteerRegister() {
             </div>
 
             {/* Modal body */}
-            <div className="flex-1 overflow-y-auto bg-[#FBF8F2] p-2 sm:p-3">
+            <div
+              data-lenis-prevent
+              data-lenis-prevent-wheel
+              data-lenis-prevent-touch
+              className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain bg-[#FBF8F2] p-2 [-webkit-overflow-scrolling:touch] sm:p-3"
+              tabIndex={0}
+              role="region"
+              aria-label="Volunteer Code of Conduct details"
+            >
               <ConductBanner compact />
 
               <ConductGrid compact />
