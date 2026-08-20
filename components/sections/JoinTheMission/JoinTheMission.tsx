@@ -174,7 +174,7 @@ const cards: MissionCard[] = [
     icon: "GiveIcon",
     title: "Give in Sewa",
     description:
-      "Help extend dignified final-rites support to eligible cases.",
+      "Help extend dignified final-rites\nsupport to eligible cases.",
     buttonLabel: "Donate",
     buttonHref: "/donation",
     accent: "#004A30",
@@ -186,8 +186,8 @@ const cards: MissionCard[] = [
     icon: "ServeIcon",
     title: "Serve in Sewa",
     description:
-      "Give your time, presence and compassion.",
-    buttonLabel: "Become a Volunteer",
+      "Give your valuable time, presence,\nand compassionate support.",
+    buttonLabel: "Volunteer",
     buttonHref: "/volunteer/register",
     accent: "#B24E11",
   },
@@ -198,17 +198,12 @@ const cards: MissionCard[] = [
     icon: "PartnerIcon",
     title: "Partner in Sewa",
     description:
-      "CSR, institutions, hospitals, organisations and community partners.",
-    buttonLabel: "Partner With Us",
-    buttonHref: "/contact",
+      "CSR, institutions, hospitals, and\nvarious community partners.",
+    buttonLabel: "Partner",
+    buttonHref: "/partnership",
     accent: "#004A30",
   },
 ];
-
-/* =========================================================
-   COMPONENT
-========================================================= */
-
 export default function JoinTheMission() {
   return (
     <section
@@ -629,6 +624,7 @@ export default function JoinTheMission() {
                 <p
                   className="
                     mt-[12px]
+                    whitespace-pre-line
                     text-[16px]
                     leading-[1.42]
                     text-[#4B4944]
@@ -641,6 +637,8 @@ export default function JoinTheMission() {
 
                 <a
                   href={card.buttonHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     group
                     mt-auto

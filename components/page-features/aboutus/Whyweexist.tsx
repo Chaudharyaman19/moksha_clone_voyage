@@ -471,7 +471,7 @@ export default function WhyWeExist() {
             className="
               relative
               mt-[27px]
-              max-w-[535px]
+              w-fit
               rounded-[12px]
               border
               border-[#D4AA67]

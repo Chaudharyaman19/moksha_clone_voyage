@@ -100,7 +100,7 @@ const FAQS = [
 
 const STATS = [
   { icon: FaHandHoldingHeart, value: "Verified", label: "Case Support" },
-  { icon: FaMapMarkedAlt, value: "Delhi NCR", label: "Launch Region" },
+  { icon: FaMapMarkedAlt, value: "Delhi • Ghaziabad • Noida", label: "Launch Region" },
   { icon: FaUtensils, value: "Need-Based", label: "Relief Assistance" },
   { icon: FaHandsHelping, value: "Trust-Led", label: "Sewa Mission" },
 ];
@@ -421,8 +421,8 @@ function Donation() {
                     onClick={() => handlePackageSelect(cause)}
                     aria-pressed={isSelected}
                     className={`group relative overflow-visible rounded-[16px] border bg-[#FFFDF9] text-left shadow-[0_8px_20px_rgba(70,47,31,0.10)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(70,47,31,0.15)] ${isSelected
-                        ? "border-[#B8792D] ring-2 ring-[#D9B681]/35"
-                        : "border-[#E2C99F]"
+                      ? "border-[#B8792D] ring-2 ring-[#D9B681]/35"
+                      : "border-[#E2C99F]"
                       }`}
                   >
                     {cause.badge && (
@@ -483,8 +483,8 @@ function Donation() {
                       <div className="mt-auto pt-1.5">
                         <div
                           className={`flex h-[34px] w-full items-center justify-center gap-1.5 rounded-lg border text-[12px] font-semibold transition ${isSelected
-                              ? "border-[#B56C20] bg-gradient-to-r from-[#A75A1D] via-[#C67F2B] to-[#A75A1D] text-white shadow-md"
-                              : "border-[#D9A35A] bg-[#FFFDF9] text-[#9A5B24] group-hover:bg-[#FFF5E7]"
+                            ? "border-[#B56C20] bg-gradient-to-r from-[#A75A1D] via-[#C67F2B] to-[#A75A1D] text-white shadow-md"
+                            : "border-[#D9A35A] bg-[#FFFDF9] text-[#9A5B24] group-hover:bg-[#FFF5E7]"
                             }`}
                         >
                           <Icon className="h-4 w-4" />

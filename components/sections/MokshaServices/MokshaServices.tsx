@@ -488,6 +488,8 @@ const MokshaServices: React.FC = () => {
 
             <a
               href="/prayerhallservices"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Explore Our Sewa"
               className="group relative block transition-transform duration-300 hover:-translate-y-0.5"
             >

@@ -563,399 +563,415 @@ export default function FooterNew() {
 
   return (
     <>
-    <footer
-      ref={footerRef}
-      className="relative isolate overflow-hidden bg-[#050706] text-white"
-    >
-      {/* Slim action band attached directly above the footer content. */}
-      <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-2 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
-        <div className="mx-auto flex min-h-[44px] w-full max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
-          <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
-            <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
-            <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
-          </div>
+      <footer
+        ref={footerRef}
+        className="relative isolate overflow-hidden bg-[#050706] text-white"
+      >
+        {/* Slim action band attached directly above the footer content. */}
+        <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-2 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
+          <div className="mx-auto flex min-h-[44px] w-full max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
+            <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
+              <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
+              <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
+            </div>
 
-          <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
-            {pathname !== "/request-help" && (
-              <Link
-                href="/request-help"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-              >
-                <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
-                <span className="whitespace-nowrap">Request Help</span>
-              </Link>
-            )}
+            <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
+              {pathname !== "/request-help" && (
+                <Link
+                  href="/request-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                >
+                  <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
+                  <span className="whitespace-nowrap">Request Help</span>
+                </Link>
+              )}
 
-            {pathname !== "/donation" && (
-              <Link
-                href="/donation"
-                className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-              >
-                <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-                <span className="whitespace-nowrap">Donate Now</span>
-              </Link>
-            )}
+              {pathname !== "/donation" && (
+                <Link
+                  href="/donation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                >
+                  <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
+                  <span className="whitespace-nowrap">Donate Now</span>
+                </Link>
+              )}
 
-            {pathname !== "/volunteer/register" && (
-              <Link
-                href="/volunteer/register"
-                className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-              >
-                <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-                <span className="whitespace-nowrap">Become a Volunteer</span>
-              </Link>
-            )}
+              {pathname !== "/volunteer/register" && (
+                <Link
+                  href="/volunteer/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
+                >
+                  <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
+                  <span className="whitespace-nowrap">Become a Volunteer</span>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* =========================================================
+        {/* =========================================================
           DESKTOP SCENE
           The reference has the river/temple photo only on the left.
           A large dark circle masks it and creates the curved gold edge.
       ========================================================== */}
-      <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block">
-        <div className="absolute inset-y-0 left-0 w-[500px] overflow-hidden">
+        <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block">
+          <div className="absolute inset-y-0 left-0 w-[500px] overflow-hidden">
+            <Image
+              src={footerBg}
+              alt=""
+              fill
+              priority={false}
+              sizes="500px"
+              className="object-cover object-left"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,20,0.03),rgba(0,35,33,0.08))]" />
+          </div>
+
+          {/* Creates the exact concave photo boundary seen in the reference */}
+          {/* Perfect circular mask blends into the footer; it intentionally has no outline. */}
+          <div
+            aria-hidden
+            className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
+          />
+
+          {/* Controlled left circle arc: semibold and softly glowing, clipped just
+            before the values strip so it never enters the lower section. */}
+          <div
+            aria-hidden
+            className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_28%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
+          />
+
+          {/* subtle inner green depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_18%,rgba(15,92,78,0.18),transparent_34%),linear-gradient(90deg,transparent_0%,rgba(0,31,28,0.08)_48%,rgba(0,18,17,0.30)_100%)]" />
+        </div>
+
+        {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
+        <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
           <Image
             src={footerBg}
             alt=""
             fill
-            priority={false}
-            sizes="500px"
-            className="object-cover object-left"
+            sizes="100vw"
+            className="object-cover object-center opacity-[0.13]"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,20,0.03),rgba(0,35,33,0.08))]" />
+          <div className="absolute inset-0 bg-black/95" />
         </div>
 
-        {/* Creates the exact concave photo boundary seen in the reference */}
-        {/* Perfect circular mask blends into the footer; it intentionally has no outline. */}
-        <div
-          aria-hidden
-          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
-        />
-
-        {/* Controlled left circle arc: semibold and softly glowing, clipped just
-            before the values strip so it never enters the lower section. */}
-        <div
-          aria-hidden
-          className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_28%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
-        />
-
-        {/* subtle inner green depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_18%,rgba(15,92,78,0.18),transparent_34%),linear-gradient(90deg,transparent_0%,rgba(0,31,28,0.08)_48%,rgba(0,18,17,0.30)_100%)]" />
-      </div>
-
-      {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
-      <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
-        <Image
-          src={footerBg}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-[0.13]"
-        />
-        <div className="absolute inset-0 bg-black/95" />
-      </div>
-
-      <div className="footer-master relative z-10">
-        {/* ========================= MAIN ROW ========================= */}
-        <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
-            {/* BRAND */}
-            <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
-              <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
-                <Image
-                  src={footerMokshaLogo}
-                  alt={brandName}
-                  width={145}
-                  height={127}
-                  className="h-[105px] w-auto max-w-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.16)] sm:h-[112px]"
-                />
-                <ShineLayer sparks={4} gold />
-              </div>
-
-              <h2 className="footer-brand-title mt-1 text-[20px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
-                {brandName}
-              </h2>
-
-              <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
-                A Namo Gange Trust Initiative
-              </p>
-
-              <GoldDivider className="footer-brand-divider mt-0.5" />
-
-              <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
-                {description}
-              </p>
-
-              <Link
-                href="/donation"
-                className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
-              >
-                <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
-                  <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
-                  <ShineLayer sparks={1} />
-                </span>
-                Donate Now
-                <FaArrowRight className="footer-donate-arrow h-3.5 w-3.5" />
-                <ShineLayer sparks={0} />
-              </Link>
-            </div>
-
-            {/* QUICK LINKS */}
-            <FloatingCard icon={ReferenceChainIcon} title="Quick Links">
-              <ul className="space-y-[5px]">
-                {quickLinks.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="footer-link inline-flex items-center gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                    >
-                      <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </FloatingCard>
-
-            {/* SERVICES */}
-            <FloatingCard icon={ReferenceHandHeartIcon} title="Our Services">
-              <ul className="space-y-[5px]">
-                {services.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                    >
-                      <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </FloatingCard>
-
-            {/* INITIATIVES */}
-            <FloatingCard icon={ReferenceLotusIcon} title="Our Initiatives">
-              <ul className="space-y-[5px]">
-                {initiatives.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                    >
-                      <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </FloatingCard>
-
-            {/* CONTACT */}
-            <FloatingCard icon={ReferencePhoneIcon} title="Contact Us">
-              <div className="space-y-2.5">
-                <ContactItem icon={MapPin}>
-                  <p>Delhi NCR, India</p>
-                </ContactItem>
-
-                <ContactItem icon={ReferencePhoneIcon}>
-                  <a
-                    href={`tel:+91${contactNumber}`}
-                    className="transition hover:text-[#E5B14A]"
-                  >
-                    +91 {contactNumber}
-                  </a>
-                </ContactItem>
-
-                <ContactItem icon={Mail}>
-                  <a
-                    href={`mailto:${contactEmail}`}
-                    className="whitespace-nowrap transition hover:text-[#E5B14A]"
-                  >
-                    {contactEmail}
-                  </a>
-                </ContactItem>
-
-                <ContactItem icon={Clock}>
-                  <p>
-                    We are available
-                    <br />
-                    24/7 for you
-                  </p>
-                </ContactItem>
-              </div>
-            </FloatingCard>
-
-            {/* REQUEST SUPPORT */}
-            <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
-              <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
-
-                <Image
-                  src={namoGangeLogo}
-                  alt="Namo Gange"
-                  className="h-auto w-[178px] object-contain"
-                  sizes="178px"
-                />
-                <div className="mt-1 text-center">
-                  <p className="text-[15px] font-semibold leading-tight text-white">
-                    Moksha Sewa
-                  </p>
-                  <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
-                    An Initiative of Namo Gange Trust
-                  </p>
+        <div className="footer-master relative z-10">
+          {/* ========================= MAIN ROW ========================= */}
+          <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
+              {/* BRAND */}
+              <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
+                <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
+                  <Image
+                    src={footerMokshaLogo}
+                    alt={brandName}
+                    width={145}
+                    height={127}
+                    className="h-[105px] w-auto max-w-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.16)] sm:h-[112px]"
+                  />
+                  <ShineLayer sparks={4} gold />
                 </div>
-              </div>
 
-              <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
-                <Image
-                  src={requestSupportBg}
-                  alt=""
-                  fill
-                  sizes="390px"
-                  className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
-                />
+                <h2 className="footer-brand-title mt-1 text-[20px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
+                  {brandName}
+                </h2>
 
-                <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(255,185,57,0.025),rgba(0,0,0,0.38))]" />
+                <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
+                  A Namo Gange Trust Initiative
+                </p>
 
-                <div className="relative z-10">
-                  <div className="flex items-start gap-3">
-                    <span className="relative inline-flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
-                      <ReferenceHandHeartIcon
-                        className="footer-card-icon h-[54px] w-[54px]"
-                        strokeWidth={1.55}
-                      />
-                      <ShineLayer sparks={2} />
-                    </span>
+                <GoldDivider className="footer-brand-divider mt-0.5" />
 
-                    <div className="pt-1">
-                      <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
-                        Request <span className="text-[#E2AA3C]">Support</span>
-                      </h3>
-                      <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
-                        Share your email and our support team will contact you.
-                      </p>
-                    </div>
-                  </div>
+                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
+                  {description}
+                </p>
 
-                  <GoldDivider className="mt-2" />
-
-                  <form onSubmit={handleSubscribe} className="mt-2.5">
-                    <label htmlFor="footer-email" className="sr-only">
-                      Email address
-                    </label>
-
-                    <div className="footer-card-input relative">
-                      <FaEnvelope className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#697A78]" />
-                      <input
-                        id="footer-email"
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        placeholder="Your email address"
-                        className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
-                        required
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
-                        }`}
-                    >
-                      <ShineLayer sparks={0} />
-                      <span className="relative z-10">
-                        {subscribed ? "Submitted" : "Send Request"}
-                      </span>
-                      <FaPaperPlane className="footer-send-icon relative z-10 h-5 w-5" />
-                    </button>
-                  </form>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ========================= VALUES ROW ========================= */}
-        <div className="footer-values relative border-y border-[#B8862C] bg-[#070A09]/[0.99]">
-          <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
-          <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
-
-          <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-
-              return (
-                <div
-                  key={value.title}
-                  className={`footer-value flex min-h-[52px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
-                    ? "lg:border-r lg:border-[#C39438]/45"
-                    : ""
-                    }`}
+                <Link
+                  href="/donation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
                 >
-                  <span className="relative inline-flex shrink-0">
-                    <Icon
-                      strokeWidth={1.45}
-                      className="footer-value-icon h-11 w-11 text-[#E3B44E] lg:h-[46px] lg:w-[46px]"
-                    />
+                  <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
+                    <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
                     <ShineLayer sparks={1} />
                   </span>
+                  Donate Now
+                  <FaArrowRight className="footer-donate-arrow h-3.5 w-3.5" />
+                  <ShineLayer sparks={0} />
+                </Link>
+              </div>
 
-                  <div>
-                    <h4 className="footer-value-heading text-[14px] font-semibold uppercase tracking-[0.015em] text-[#F3D481]">
-                      {value.title}
-                    </h4>
-                    <p className="footer-value-desc mt-1 whitespace-pre-line text-[12px] leading-[1.4] text-white/95">
-                      {value.description}
+              {/* QUICK LINKS */}
+              <FloatingCard icon={ReferenceChainIcon} title="Quick Links">
+                <ul className="space-y-[5px]">
+                  {quickLinks.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-link inline-flex items-center gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
+                      >
+                        <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </FloatingCard>
+
+              {/* SERVICES */}
+              <FloatingCard icon={ReferenceHandHeartIcon} title="Our Services">
+                <ul className="space-y-[5px]">
+                  {services.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
+                      >
+                        <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </FloatingCard>
+
+              {/* INITIATIVES */}
+              <FloatingCard icon={ReferenceLotusIcon} title="Our Initiatives">
+                <ul className="space-y-[5px]">
+                  {initiatives.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
+                      >
+                        <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </FloatingCard>
+
+              {/* CONTACT */}
+              <FloatingCard icon={ReferencePhoneIcon} title="Contact Us">
+                <div className="space-y-2.5">
+                  <ContactItem icon={MapPin}>
+                    <p>Delhi • Ghaziabad • Noida, India</p>
+                  </ContactItem>
+
+                  <ContactItem icon={ReferencePhoneIcon}>
+                    <a
+                      href={`tel:+91${contactNumber}`}
+                      className="transition hover:text-[#E5B14A]"
+                    >
+                      +91 {contactNumber}
+                    </a>
+                  </ContactItem>
+
+                  <ContactItem icon={Mail}>
+                    <a
+                      href={`mailto:${contactEmail}`}
+                      className="whitespace-nowrap transition hover:text-[#E5B14A]"
+                    >
+                      {contactEmail}
+                    </a>
+                  </ContactItem>
+
+                  <ContactItem icon={Clock}>
+                    <p>
+                      We are available
+                      <br />
+                      24/7 for you
+                    </p>
+                  </ContactItem>
+                </div>
+              </FloatingCard>
+
+              {/* REQUEST SUPPORT */}
+              <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
+                <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
+
+                  <Image
+                    src={namoGangeLogo}
+                    alt="Namo Gange"
+                    className="h-auto w-[178px] object-contain"
+                    sizes="178px"
+                  />
+                  <div className="mt-1 text-center">
+                    <p className="text-[15px] font-semibold leading-tight text-white">
+                      Moksha Sewa
+                    </p>
+                    <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
+                      An Initiative of Namo Gange Trust
                     </p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
 
-        {/* ========================= BOTTOM BAR ========================= */}
-        <div className="footer-bottom relative bg-black">
-          <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
-            <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
-              <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
-              <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
+                <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
+                  <Image
+                    src={requestSupportBg}
+                    alt=""
+                    fill
+                    sizes="390px"
+                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
+                  />
+
+                  <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(255,185,57,0.025),rgba(0,0,0,0.38))]" />
+
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-3">
+                      <span className="relative inline-flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
+                        <ReferenceHandHeartIcon
+                          className="footer-card-icon h-[54px] w-[54px]"
+                          strokeWidth={1.55}
+                        />
+                        <ShineLayer sparks={2} />
+                      </span>
+
+                      <div className="pt-1">
+                        <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
+                          Request <span className="text-[#E2AA3C]">Support</span>
+                        </h3>
+                        <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
+                          Share your email and our support team will contact you.
+                        </p>
+                      </div>
+                    </div>
+
+                    <GoldDivider className="mt-2" />
+
+                    <form onSubmit={handleSubscribe} className="mt-2.5">
+                      <label htmlFor="footer-email" className="sr-only">
+                        Email address
+                      </label>
+
+                      <div className="footer-card-input relative">
+                        <FaEnvelope className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#697A78]" />
+                        <input
+                          id="footer-email"
+                          type="email"
+                          value={email}
+                          onChange={(event) => setEmail(event.target.value)}
+                          placeholder="Your email address"
+                          className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
+                          required
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
+                          }`}
+                      >
+                        <ShineLayer sparks={0} />
+                        <span className="relative z-10">
+                          {subscribed ? "Submitted" : "Send Request"}
+                        </span>
+                        <FaPaperPlane className="footer-send-icon relative z-10 h-5 w-5" />
+                      </button>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div className="footer-bottom-center flex flex-wrap items-center justify-center gap-y-2">
-              {legalLinks.map((item, index) => (
-                <span key={item.label} className="flex items-center">
-                  <Link
-                    href={item.href}
-                    className="px-3 text-[12px] text-white/90 transition hover:text-[#E5B14A]"
+          {/* ========================= VALUES ROW ========================= */}
+          <div className="footer-values relative border-y border-[#B8862C] bg-[#070A09]/[0.99]">
+            <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
+            <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
+
+            <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4">
+              {values.map((value, index) => {
+                const Icon = value.icon;
+
+                return (
+                  <div
+                    key={value.title}
+                    className={`footer-value flex min-h-[52px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
+                      ? "lg:border-r lg:border-[#C39438]/45"
+                      : ""
+                      }`}
                   >
-                    {item.label}
-                  </Link>
-                  {index < legalLinks.length - 1 && (
-                    <span className="h-6 w-px bg-[#C79A3D]/50" />
-                  )}
-                </span>
-              ))}
-            </div>
+                    <span className="relative inline-flex shrink-0">
+                      <Icon
+                        strokeWidth={1.45}
+                        className="footer-value-icon h-11 w-11 text-[#E3B44E] lg:h-[46px] lg:w-[46px]"
+                      />
+                      <ShineLayer sparks={1} />
+                    </span>
 
-            <div className="footer-bottom-seva flex flex-col items-center justify-center">
-              <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
-                Seva • Samman • Samarpan
-              </p>
+                    <div>
+                      <h4 className="footer-value-heading text-[14px] font-semibold uppercase tracking-[0.015em] text-[#F3D481]">
+                        {value.title}
+                      </h4>
+                      <p className="footer-value-desc mt-1 whitespace-pre-line text-[12px] leading-[1.4] text-white/95">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
+          </div>
 
+          {/* ========================= BOTTOM BAR ========================= */}
+          <div className="footer-bottom relative bg-black">
+            <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
+              <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
+                <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
+                <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
+              </div>
+
+              <div className="footer-bottom-center flex flex-wrap items-center justify-center gap-y-2">
+                {legalLinks.map((item, index) => (
+                  <span key={item.label} className="flex items-center">
+                    <Link
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 text-[12px] text-white/90 transition hover:text-[#E5B14A]"
+                    >
+                      {item.label}
+                    </Link>
+                    {index < legalLinks.length - 1 && (
+                      <span className="h-6 w-px bg-[#C79A3D]/50" />
+                    )}
+                  </span>
+                ))}
+              </div>
+
+              <div className="footer-bottom-seva flex flex-col items-center justify-center">
+                <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
+                  Seva • Samman • Samarpan
+                </p>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
-    <SuccessPopup
-      open={showSuccessPopup}
-      onClose={() => setShowSuccessPopup(false)}
-      message="Thank you for reaching out. Our support team will contact you shortly."
-    />
+      </footer>
+      <SuccessPopup
+        open={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+        message="Thank you for reaching out. Our support team will contact you shortly."
+      />
     </>
   );
 }

@@ -996,6 +996,8 @@ export default function HowSewaWorks() {
           >
             <a
               href="/request-help"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 group
 

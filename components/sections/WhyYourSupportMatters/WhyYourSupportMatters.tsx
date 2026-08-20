@@ -99,6 +99,8 @@ export default function WhyYourSupportMatters() {
             <div className="mt-3 flex justify-center">
               <a
                 href="/donation"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[52px] min-w-[290px] items-center justify-center gap-4 rounded-[5px] bg-[#0E4A3F] px-7 text-[16px] font-semibold uppercase tracking-[0.035em] text-white shadow-[0_4px_10px_rgba(14,74,63,0.20)] transition duration-200 hover:bg-[#0B3F35]"
               >
                 Support This Mission

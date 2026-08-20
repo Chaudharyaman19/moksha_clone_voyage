@@ -111,7 +111,7 @@ export default function OurStory() {
           bg-[#FBF5EA]
           shadow-[0_8px_26px_rgba(72,45,20,0.06)]
 
-          lg:min-h-[810px]
+          lg:min-h-[650px]
         "
       >
         {/* =====================================================
@@ -221,7 +221,7 @@ export default function OurStory() {
             grid
             grid-cols-1
 
-            lg:min-h-[810px]
+            lg:min-h-[650px]
             lg:grid-cols-[54%_46%]
           "
         >
@@ -478,11 +478,17 @@ export default function OurStory() {
                 mt-[19px]
                 max-w-[520px]
 
-                space-y-[13px]
+                space-y-[15px]
 
-                text-[16px]
+                bg-white/80
+                backdrop-blur-sm
+                p-5
+                rounded-xl
+                shadow-sm
+
+                text-[18px]
                 font-medium
-                leading-[1.48]
+                leading-[1.6]
 
                 text-[#33383A]
               "
@@ -521,11 +527,11 @@ export default function OurStory() {
               relative
               px-[22px]
               pb-[28px]
-              pt-[34px]
+              pt-0
 
               lg:px-[28px]
               lg:pb-[22px]
-              lg:pt-[34px]
+              lg:pt-0
             "
           >
             {/* =================================================
@@ -537,12 +543,12 @@ export default function OurStory() {
                 relative
                 mx-auto
 
-                h-[410px]
+                h-[350px]
+                sm:h-[420px]
+                lg:h-[540px]
                 w-full
 
                 overflow-hidden
-
-                rounded-[26px]
 
                 border
                 border-[#D6B268]
@@ -574,24 +580,20 @@ export default function OurStory() {
                 relative
                 z-20
 
-                -mx-[12px]
                 -mt-[14px]
 
-                min-h-[382px]
+                min-h-[320px]
 
                 overflow-hidden
-
-                rounded-t-[50px]
-                rounded-b-[3px]
 
                 border
                 border-[#B88929]
 
                 bg-[#004A39]
 
-                px-[48px]
-                pb-[24px]
-                pt-[24px]
+                px-[32px]
+                pb-[16px]
+                pt-[16px]
 
                 text-white
 
@@ -722,9 +724,9 @@ export default function OurStory() {
                 className="
                   relative
                   mx-auto
-                  mt-[24px]
+                  mt-[8px]
 
-                  max-w-[455px]
+                  w-fit
 
                   px-[18px]
                 "
@@ -748,7 +750,7 @@ export default function OurStory() {
                 <p
                   className="
                     font-serif
-                    text-[23px]
+                    text-[20px]
                     italic
                     leading-[1.45]
 
@@ -788,7 +790,7 @@ export default function OurStory() {
 
               <div
                 className="
-                  mt-[19px]
+                  mt-[10px]
                   flex
                   justify-center
                 "
@@ -813,11 +815,11 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[11px]
+                  mt-[6px]
 
                   max-w-[455px]
 
-                  text-[16px]
+                  text-[15px]
                   leading-[1.46]
 
                   text-[#F0EDE5]
@@ -842,7 +844,7 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[13px]
+                  mt-[8px]
 
                   max-w-[455px]
                 "
@@ -850,7 +852,7 @@ export default function OurStory() {
                 <div
                   className="
                     font-serif
-                    text-[28px]
+                    text-[24px]
                     leading-none
 
                     text-[#C68B22]
@@ -864,8 +866,8 @@ export default function OurStory() {
 
                 <div
                   className="
-                    mt-[5px]
-                    text-[16px]
+                    mt-[2px]
+                    text-[14px]
                     text-[#F0E7D8]
                   "
                 >

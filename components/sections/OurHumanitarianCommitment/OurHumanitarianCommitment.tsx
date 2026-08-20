@@ -307,6 +307,8 @@ export default function HumanitarianCommitment() {
               <div className="absolute bottom-[9px] left-[6px] right-[9px] z-20">
                 <a
                   href="/unclaimed-body-sewa"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex min-h-[64px] w-full items-center justify-between gap-[10px] rounded-[16px] border-[3px] border-[#C69428] bg-[#005234] px-[12px] py-[10px] text-white shadow-[0_8px_18px_rgba(2,63,40,0.18)] sm:min-h-[88px] sm:gap-0 sm:rounded-[24px] sm:px-[18px]"
                 >
                   <div className="flex min-w-0 items-center gap-[10px] sm:gap-[15px]">

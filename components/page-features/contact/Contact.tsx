@@ -245,7 +245,7 @@ function Contact() {
               </p>
 
               <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-1.5">
-                {["24/7 guidance", "Delhi NCR launch", "Verified cases"].map(
+                {["24/7 guidance", "Delhi • Ghaziabad • Noida launch", "Verified cases"].map(
                   (chip) => (
                     <span
                       key={chip}
