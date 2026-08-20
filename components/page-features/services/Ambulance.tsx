@@ -235,6 +235,8 @@ function HeroSection() {
             <a
               className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[20px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
               href="/request-help"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Icon name="heart" size={17} />
               <span>Request Support</span>
@@ -271,7 +273,7 @@ function FeatureHighlights() {
           </div>
 
           <div>
-            <h3 className="mb-[3px] text-[30px] font-normal leading-[1.15] text-[#2F2A24]">
+            <h3 className="mb-[3px] text-[20px] font-semibold leading-[1.15] text-[#2F2A24]">
               {item.title}
             </h3>
 
@@ -302,7 +304,7 @@ function HowItWorks() {
                 <Icon name={step.icon} size={33} />
               </div>
 
-              <h3 className="mb-[3px] text-[30px] font-normal">
+              <h3 className="mb-[3px] text-[20px] font-semibold">
                 {step.title}
               </h3>
 
@@ -403,7 +405,7 @@ function StoryCards() {
             </span>
 
             <div className="min-w-0">
-              <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15] text-[#E2BD78]">
+              <h3 className="mb-[2px] text-[20px] font-semibold leading-[1.15] text-[#E2BD78]">
                 {story.title}
               </h3>
 
@@ -445,7 +447,7 @@ function DonationSection() {
       <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 right-0 w-[48%] bg-[url('/ambulance/donation-prayer.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          className="absolute inset-y-0 left-[10%] right-0 bg-[url('/ambulance/donation-prayer.webp')] bg-cover bg-right bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
@@ -466,6 +468,8 @@ function DonationSection() {
             <a
               className="donate-nav-sparkle relative inline-flex min-h-[38px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               href="/donation"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="donate-nav-shine" aria-hidden />
               <span className="relative z-10 shrink-0">
@@ -486,7 +490,7 @@ function DonationSection() {
           </div>
         </div>
 
-        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
+        <div className="absolute left-[53%] top-[18px] z-20 flex h-[132px] w-[132px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
           <span className="mb-[7px] text-[#DCB56F]">
             <Icon name="heart" size={16} />
           </span>
@@ -527,7 +531,7 @@ function InfoGrid({
           </div>
 
           <div>
-            <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15]">
+            <h3 className="mb-[2px] text-[20px] font-semibold leading-[1.15]">
               {item.title}
             </h3>
 
