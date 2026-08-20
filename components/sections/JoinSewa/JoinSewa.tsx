@@ -294,7 +294,7 @@ const JoinSewa: React.FC = () => {
           mx-auto
           w-full
           aspect-[1728/623]
-          min-h-[320px]
+          min-h-[620px]
         "
       >
         {/* HERO BACKGROUND — kept at the image's native aspect
@@ -311,6 +311,8 @@ const JoinSewa: React.FC = () => {
               w-full
               object-cover
               object-center
+              blur-[3px]
+              sm:blur-none
             "
           />
         </div>
