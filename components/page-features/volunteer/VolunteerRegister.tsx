@@ -578,6 +578,8 @@ export default function VolunteerRegister() {
                   </a>
                   <a
                     href="/donation"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                   >
                     Support This Mission
