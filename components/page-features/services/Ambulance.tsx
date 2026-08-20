@@ -164,11 +164,11 @@ const supportBullets = [
 ];
 
 const primaryButton =
-  "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-sm font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
+  "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-[20px] font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
 
 export default function AmbulanceService() {
   return (
-    <div className="min-h-screen bg-[#FDFBF7] font-sans text-[#2F2922]">
+    <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#2F2922]">
       <Topbar />
       <Navbar />
 
@@ -192,29 +192,27 @@ export default function AmbulanceService() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[550px] overflow-hidden bg-[#FBF8F1] max-[820px]:min-h-[700px]">
-      {/* Full-bleed image: no max-width wrapper, so no empty strip on the right. */}
+    <section className="service-banner relative min-h-[500px] overflow-hidden bg-[#FBF8F1] max-[820px]:min-h-[700px]">
       <div
         aria-hidden="true"
         className="absolute inset-y-0 left-[40%] right-0 bg-[url('/ambulance/hero-ambulance.webp')] bg-[length:100%_100%] bg-right-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:top-0 max-[820px]:h-[310px]"
       />
 
-      {/* Wide overlap removes the visible join between content and image. */}
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(90deg,#FAF7F0_0%,#FAF7F0_40%,rgba(250,247,240,0.98)_46%,rgba(250,247,240,0.84)_52%,rgba(250,247,240,0.35)_61%,transparent_70%)] max-[820px]:bg-[linear-gradient(180deg,transparent_0%,transparent_35%,rgba(250,247,240,0.9)_47%,#FAF7F0_58%,#FAF7F0_100%)]"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 lg:px-0">
-        <div className="w-[52%] pb-[18px] pt-[85px] max-[820px]:w-auto max-[820px]:pb-7 max-[820px]:pt-[350px]">
-          <div className="mb-3 flex items-center gap-[9px] text-[15px] font-normal tracking-wide text-[#8B682F]">
+      <div className="relative z-10 mx-auto flex min-h-[500px] w-full max-w-7xl items-center px-5 py-[20px] lg:px-0">
+        <div className="w-[52%] max-[820px]:w-auto max-[820px]:pt-[350px]">
+          <div className="mb-[2px] flex items-center gap-[9px] text-[24px] font-normal tracking-wide text-[#8B682F]">
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
               <Icon name="drop" size={14} />
             </span>
             <span>24×7 Last Journey Support</span>
           </div>
 
-          <h1 className="font-serif text-[38px] font-normal leading-[1.1] text-[#2B251F] sm:text-[46px] lg:text-[52px]">
+          <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             Ambulance &amp; Hearse
             <br />
             Support with Dignity
@@ -222,7 +220,7 @@ function HeroSection() {
 
           <Divider className="my-3 w-[127px]" />
 
-          <p className="w-full max-w-[440px] text-[15px] leading-relaxed text-[#50483F] max-[820px]:max-w-none sm:text-[16px]">
+          <p className="w-full max-w-[440px] text-[18px] leading-relaxed text-[#50483F] max-[820px]:max-w-none">
             Namo Gange coordinates ambulance and hearse support for eligible
             last-journey cases with dignified transfer, calm guidance and timely
             assistance, subject to verification and availability.
@@ -235,7 +233,7 @@ function HeroSection() {
             </a>
 
             <a
-              className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-sm font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
+              className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[20px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
               href="/request-help"
             >
               <Icon name="heart" size={17} />
@@ -243,11 +241,13 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-4 flex items-center gap-[6px] text-[14px] font-normal text-[#756858]">
+          <div className="mt-4 flex items-center gap-[6px] text-[18px] font-normal text-[#756858]">
             <span className="text-[#A87935]">
               <Icon name="shield" size={16} />
             </span>
-            <span>Serving families with compassion, respect and timely support.</span>
+            <span>
+              Serving families with compassion, respect and timely support.
+            </span>
           </div>
         </div>
       </div>
@@ -263,17 +263,19 @@ function FeatureHighlights() {
     >
       {highlights.map((item) => (
         <article
-          className="flex min-h-[68px] items-center gap-[9px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[11px] py-[8px] shadow-[0_4px_10px_rgba(79,55,24,0.045),inset_0_0_0_1px_rgba(255,255,255,0.55)]"
+          className="flex h-full min-h-[68px] items-center gap-[9px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[11px] py-[8px] shadow-[0_4px_10px_rgba(79,55,24,0.045),inset_0_0_0_1px_rgba(255,255,255,0.55)]"
           key={item.title}
         >
           <div className="grid h-[36px] min-w-[36px] place-items-center text-[#9C6D2A]">
             <Icon name={item.icon} size={35} />
           </div>
+
           <div>
-            <h3 className="mb-[3px] text-[15px] font-normal leading-[1.15] text-[#2F2A24]">
+            <h3 className="mb-[3px] text-[30px] font-normal leading-[1.15] text-[#2F2A24]">
               {item.title}
             </h3>
-            <p className="text-[14px] leading-snug text-[#5A5148]">
+
+            <p className="text-[18px] leading-snug text-[#5A5148]">
               {item.copy}
             </p>
           </div>
@@ -291,15 +293,20 @@ function HowItWorks() {
       <div className="grid grid-cols-4 gap-[12px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
         {steps.map((step, index) => (
           <div className="relative" key={step.title}>
-            <article className="relative min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
-              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[14px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+            <article className="relative h-full min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
+              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
                 {index + 1}
               </span>
+
               <div className="mx-auto mb-1 grid h-[34px] place-items-center text-[#9C6D2A]">
                 <Icon name={step.icon} size={33} />
               </div>
-              <h3 className="mb-[3px] text-[15px] font-normal">{step.title}</h3>
-              <p className="text-[14px] leading-snug text-[#514A42]">
+
+              <h3 className="mb-[3px] text-[30px] font-normal">
+                {step.title}
+              </h3>
+
+              <p className="text-[18px] leading-snug text-[#514A42]">
                 {step.copy}
               </p>
             </article>
@@ -320,7 +327,7 @@ function SupportSection() {
   return (
     <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] lg:px-0 max-[820px]:grid-cols-1">
       <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
-        <h2 className="font-serif text-[28px] font-normal leading-[1.1] text-[#28231E] md:text-[34px]">
+        <h2 className="py-[20px] font-serif text-[30px] font-normal leading-[1.1] text-[#28231E]">
           We Stand With You
           <br />
           When It Matters Most
@@ -328,7 +335,7 @@ function SupportSection() {
 
         <span className="my-[11px] block h-px w-[145px] bg-gradient-to-r from-[#9C6D2A] to-transparent" />
 
-        <p className="text-[15px] leading-relaxed text-[#554C43] sm:text-[16px]">
+        <p className="text-[18px] leading-relaxed text-[#554C43]">
           In your most difficult moments, we stand beside you. Our ambulance and
           hearse support services are designed to bring relief, care and dignity.
         </p>
@@ -336,10 +343,10 @@ function SupportSection() {
         <ul className="mt-[11px] grid gap-[7px]">
           {supportBullets.map((item) => (
             <li
-              className="flex items-start gap-[7px] text-[15px] leading-[1.3] text-[#3F3831]"
+              className="flex items-start gap-[7px] text-[18px] leading-[1.3] text-[#3F3831]"
               key={item}
             >
-              <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[14px] font-normal text-white">
+              <span className="mt-px grid size-[16px] shrink-0 place-items-center rounded-full bg-[#9C6D2A] text-[20px] font-normal text-white">
                 ✓
               </span>
               <span>{item}</span>
@@ -348,7 +355,7 @@ function SupportSection() {
         </ul>
 
         <a
-          className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-sm`}
+          className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-[20px]`}
           href="tel:+919654900525"
         >
           <span>We Are Here For You</span>
@@ -378,7 +385,7 @@ function StoryCards() {
     >
       {stories.map((story) => (
         <article
-          className="w-full overflow-hidden rounded-[10px] bg-[#392719] shadow-[0_4px_10px_rgba(58,38,16,0.14)]"
+          className="flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-[#392719] shadow-[0_4px_10px_rgba(58,38,16,0.14)]"
           key={story.title}
         >
           <Image
@@ -390,16 +397,17 @@ function StoryCards() {
             src={story.image}
           />
 
-          <div className="flex min-h-[58px] items-center gap-[10px] bg-gradient-to-b from-[#4A2D17] to-[#351F0E] px-[12px] py-[8px] text-[#F6E8C9]">
+          <div className="flex min-h-[58px] flex-1 items-center gap-[10px] bg-gradient-to-b from-[#4A2D17] to-[#351F0E] px-[12px] py-[8px] text-[#F6E8C9]">
             <span className="grid size-[34px] shrink-0 place-items-center rounded-full border border-[#DAB471]/70 text-[#D8B372]">
               <Icon name={story.icon} size={23} />
             </span>
 
             <div className="min-w-0">
-              <h3 className="mb-[2px] text-[15px] font-normal leading-[1.15] text-[#E2BD78]">
+              <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15] text-[#E2BD78]">
                 {story.title}
               </h3>
-              <p className="text-[14px] leading-snug text-[#F5EEE2]">
+
+              <p className="text-[18px] leading-snug text-[#F5EEE2]">
                 {story.copy}
               </p>
             </div>
@@ -443,42 +451,46 @@ function DonationSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
 
         <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
-          <h2 className="mb-[7px] font-serif text-[28px] font-normal text-[#FFF4DE] md:text-[34px]">
+          <h2 className="mb-[7px] py-[20px] font-serif text-[30px] font-normal text-[#FFF4DE]">
             Your Donation Brings Peace
           </h2>
-          <p className="text-[15px] leading-relaxed text-[#FFF6E9] sm:text-[16px]">
+
+          <p className="text-[18px] leading-relaxed text-[#FFF6E9]">
             Your kind contribution helps us provide ambulance, hearse and
             last-journey support to families who cannot afford it. Together, we
             can bring comfort, dignity and peace in their most difficult
             moments.
           </p>
 
-          <div className="mt-3 flex gap-2 max-[520px]:flex-col">
+          <div className="mt-3 flex flex-nowrap items-center gap-2 max-[820px]:flex-wrap">
             <a
-              className="donate-nav-sparkle relative inline-flex min-h-[38px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-sm font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+              className="donate-nav-sparkle relative inline-flex min-h-[38px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               href="/donation"
             >
               <span className="donate-nav-shine" aria-hidden />
-              <span className="relative z-10">
+              <span className="relative z-10 shrink-0">
                 <Icon name="heart" size={16} />
               </span>
-              <span className="relative z-10">Donate for Ambulance Service</span>
+              <span className="relative z-10 whitespace-nowrap">
+                Donate for Ambulance Service
+              </span>
             </a>
 
             <a
-              className="inline-flex min-h-[31px] items-center justify-center gap-2 rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-sm font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
+              className="inline-flex min-h-[31px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-[20px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
               href="tel:+919654900525"
             >
               <Icon name="hands" size={16} />
-              <span>Support Our Sewa</span>
+              <span className="whitespace-nowrap">Support Our Sewa</span>
             </a>
           </div>
         </div>
 
-        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.25] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
+        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
           <span className="mb-[7px] text-[#DCB56F]">
             <Icon name="heart" size={16} />
           </span>
+
           <span>
             Every
             <br />
@@ -486,7 +498,8 @@ function DonationSection() {
             <br />
             Brings Peace
           </span>
-          <i className="mt-[5px] text-[16px] not-">❦</i>
+
+          <i className="mt-[5px] text-[14px]">❦</i>
         </div>
       </div>
     </section>
@@ -504,24 +517,21 @@ function InfoGrid({
     <div className="grid grid-cols-5 gap-[6px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
       {items.map((item) => (
         <article
-          className={`flex items-center gap-[6px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[8px] py-[6px] shadow-[0_3px_8px_rgba(71,47,19,0.035)] ${compact ? "min-h-[58px] py-[5px]" : "min-h-[64px]"
-            }`}
+          className={`flex h-full items-center gap-[6px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[8px] py-[6px] shadow-[0_3px_8px_rgba(71,47,19,0.035)] ${
+            compact ? "min-h-[58px] py-[5px]" : "min-h-[64px]"
+          }`}
           key={item.title}
         >
           <div className="grid min-w-[32px] place-items-center text-[#9C6D2A]">
             <Icon name={item.icon} size={compact ? 30 : 33} />
           </div>
+
           <div>
-            <h3
-              className={`mb-[2px] font-normal leading-[1.15] ${compact ? "text-[15px]" : "text-[15px]"
-                }`}
-            >
+            <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15]">
               {item.title}
             </h3>
-            <p
-              className={`leading-snug text-[#51483F] ${compact ? "text-[14px]" : "text-[14px]"
-                }`}
-            >
+
+            <p className="text-[18px] leading-snug text-[#51483F]">
               {item.copy}
             </p>
           </div>
@@ -540,14 +550,14 @@ function SectionTitle({
 }) {
   return (
     <div
-      className={`flex flex-col items-center ${compact ? "mb-[7px]" : "mb-[11px]"}`}
+      className={`flex flex-col items-center ${
+        compact ? "mb-[7px]" : "mb-[11px]"
+      }`}
     >
-      <h2
-        className={`text-center font-serif font-normal leading-[1.08] ${compact ? "text-[28px] md:text-[34px]" : "text-[28px] md:text-[34px]"
-          }`}
-      >
+      <h2 className="py-[20px] text-center font-serif text-[30px] font-normal leading-[1.08]">
         {children}
       </h2>
+
       {!compact ? <Divider className="mt-[7px] w-[70px]" small /> : null}
     </div>
   );
@@ -566,9 +576,13 @@ function Divider({
       className={`flex items-center text-[#9C6D2A] ${className}`}
     >
       <i className="h-px flex-1 bg-current opacity-60" />
+
       <b
-        className={`${small ? "mx-[6px] size-[5px]" : "mx-2 size-[7px]"} rotate-45 bg-current`}
+        className={`${
+          small ? "mx-[6px] size-[5px]" : "mx-2 size-[7px]"
+        } rotate-45 bg-current`}
       />
+
       <i className="h-px flex-1 bg-current opacity-60" />
     </span>
   );
@@ -593,18 +607,21 @@ function Icon({ name, size = 28, ...props }: IconProps) {
         <path {...commonStroke} d="M9.5 14.5c.5 1.6 1.5 2.4 3.1 2.5" />
       </>
     ),
+
     phone: (
       <path
         {...commonStroke}
         d="M7.4 3.8 10 7.2 8.2 9.4c1.5 3 3.8 5.3 6.8 6.8l2.2-1.8 3.4 2.6c.4.3.5.9.2 1.4l-1.1 1.8c-.5.8-1.4 1.2-2.3 1-8.4-1.6-15-8.2-16.6-16.6-.2-.9.2-1.8 1-2.3l1.8-1.1c.5-.3 1.1-.2 1.4.2Z"
       />
     ),
+
     heart: (
       <path
         {...commonStroke}
         d="M12 20.5 4.7 13.4a4.8 4.8 0 0 1 6.8-6.8L12 7l.5-.4a4.8 4.8 0 0 1 6.8 6.8L12 20.5Z"
       />
     ),
+
     shield: (
       <>
         <path
@@ -614,13 +631,18 @@ function Icon({ name, size = 28, ...props }: IconProps) {
         <path {...commonStroke} d="m8.6 12.2 2.2 2.2 4.8-5" />
       </>
     ),
+
     clock: (
       <>
         <circle {...commonStroke} cx="12" cy="12" r="8.5" />
         <path {...commonStroke} d="M12 7.2v5.2l3.5 2" />
-        <path {...commonStroke} d="M7.2 2.8 5.8 1.6M16.8 2.8l1.4-1.2" />
+        <path
+          {...commonStroke}
+          d="M7.2 2.8 5.8 1.6M16.8 2.8l1.4-1.2"
+        />
       </>
     ),
+
     ambulance: (
       <>
         <path {...commonStroke} d="M3 8h11.5l3.2 3.2H21v6.3h-2" />
@@ -631,21 +653,30 @@ function Icon({ name, size = 28, ...props }: IconProps) {
         <path {...commonStroke} d="M8.5 10.7h3M10 9.2v3" />
       </>
     ),
+
     team: (
       <>
         <circle {...commonStroke} cx="8" cy="8" r="2.6" />
         <circle {...commonStroke} cx="16.3" cy="8.8" r="2.2" />
-        <path {...commonStroke} d="M2.8 18c.5-4 2.5-6 5.2-6 2.8 0 4.8 2 5.3 6" />
+        <path
+          {...commonStroke}
+          d="M2.8 18c.5-4 2.5-6 5.2-6 2.8 0 4.8 2 5.3 6"
+        />
         <path {...commonStroke} d="M13.5 13c3.6-.5 6.2 1.3 6.8 5" />
       </>
     ),
+
     timer: (
       <>
         <circle {...commonStroke} cx="12" cy="13" r="7.5" />
-        <path {...commonStroke} d="M12 8.8v4.6l-3.3 1.7M9 2.5h6M12 2.5v3" />
+        <path
+          {...commonStroke}
+          d="M12 8.8v4.6l-3.3 1.7M9 2.5h6M12 2.5v3"
+        />
         <path {...commonStroke} d="M4.4 8.1 2.8 6.6" />
       </>
     ),
+
     hands: (
       <>
         <path
@@ -667,38 +698,67 @@ function Icon({ name, size = 28, ...props }: IconProps) {
         />
       </>
     ),
+
     leaf: (
       <>
-        <path {...commonStroke} d="M12 21c0-7.8 3.4-13 9-16-1 8.2-3.9 13-9 14.3" />
-        <path {...commonStroke} d="M12 21C12 13.2 8.6 8 3 5c1 8.2 3.9 13 9 14.3" />
+        <path
+          {...commonStroke}
+          d="M12 21c0-7.8 3.4-13 9-16-1 8.2-3.9 13-9 14.3"
+        />
+        <path
+          {...commonStroke}
+          d="M12 21C12 13.2 8.6 8 3 5c1 8.2 3.9 13 9 14.3"
+        />
         <path {...commonStroke} d="M12 21v-9" />
       </>
     ),
+
     ritual: (
       <>
         <path {...commonStroke} d="M7 20h10M9 17h6l1-7H8l1 7Z" />
-        <path {...commonStroke} d="M12 10V5M10 7h4M9.5 5.2c.7-2.2 1.5-3 2.5-3 1 0 1.8.8 2.5 3" />
+        <path
+          {...commonStroke}
+          d="M12 10V5M10 7h4M9.5 5.2c.7-2.2 1.5-3 2.5-3 1 0 1.8.8 2.5 3"
+        />
       </>
     ),
+
     pin: (
       <>
-        <path {...commonStroke} d="M12 21s6-5.8 6-11a6 6 0 1 0-12 0c0 5.2 6 11 6 11Z" />
+        <path
+          {...commonStroke}
+          d="M12 21s6-5.8 6-11a6 6 0 1 0-12 0c0 5.2 6 11 6 11Z"
+        />
         <circle {...commonStroke} cx="12" cy="10" r="2" />
       </>
     ),
+
     family: (
       <>
         <circle {...commonStroke} cx="12" cy="7" r="3" />
-        <path {...commonStroke} d="M6.5 20c.4-4.4 2.4-7 5.5-7s5.1 2.6 5.5 7" />
+        <path
+          {...commonStroke}
+          d="M6.5 20c.4-4.4 2.4-7 5.5-7s5.1 2.6 5.5 7"
+        />
         <circle {...commonStroke} cx="5" cy="10" r="2" />
         <circle {...commonStroke} cx="19" cy="10" r="2" />
-        <path {...commonStroke} d="M1.5 20c.2-3.4 1.4-5.3 3.5-5.3 1.4 0 2.5.8 3.1 2.3M22.5 20c-.2-3.4-1.4-5.3-3.5-5.3-1.4 0-2.5.8-3.1 2.3" />
+        <path
+          {...commonStroke}
+          d="M1.5 20c.2-3.4 1.4-5.3 3.5-5.3 1.4 0 2.5.8 3.1 2.3M22.5 20c-.2-3.4-1.4-5.3-3.5-5.3-1.4 0-2.5.8-3.1 2.3"
+        />
       </>
     ),
+
     support: (
       <>
-        <path {...commonStroke} d="M12 21c-4.9-2.4-8-5.4-8-10.5V6.2l8-3.3 8 3.3v4.3c0 5.1-3.1 8.1-8 10.5Z" />
-        <path {...commonStroke} d="M8.5 12.2c1.4-1.2 2.5-1.7 3.5-1.7s2.1.5 3.5 1.7M12 10.5V7.8" />
+        <path
+          {...commonStroke}
+          d="M12 21c-4.9-2.4-8-5.4-8-10.5V6.2l8-3.3 8 3.3v4.3c0 5.1-3.1 8.1-8 10.5Z"
+        />
+        <path
+          {...commonStroke}
+          d="M8.5 12.2c1.4-1.2 2.5-1.7 3.5-1.7s2.1.5 3.5 1.7M12 10.5V7.8"
+        />
       </>
     ),
   };

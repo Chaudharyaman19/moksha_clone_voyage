@@ -2,34 +2,49 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
-import {
-  FaHandHoldingHeart, FaOm, FaStar
-} from "react-icons/fa";
-import {
-  GiLotusFlower, GiCandleHolder
-} from "react-icons/gi";
+import { FaHandHoldingHeart, FaOm, FaStar } from "react-icons/fa";
+import { GiLotusFlower, GiCandleHolder } from "react-icons/gi";
 import { BsTelephone } from "react-icons/bs";
-import { MdOutlinePeopleAlt, MdHandshake, MdOutlineLocalFlorist } from "react-icons/md";
+import { MdHandshake, MdOutlineLocalFlorist } from "react-icons/md";
 import { BiBuildingHouse } from "react-icons/bi";
 import { TbHeartHandshake } from "react-icons/tb";
 
 const supportCards = [
-  { src: "/assets/prayerhallservices/support-1.png", title: "Ground Booking" },
-  { src: "/assets/prayerhallservices/support-2.png", title: "Floral Setup" },
-  { src: "/assets/prayerhallservices/support-3.png", title: "Seating Arrangements" },
-  { src: "/assets/prayerhallservices/support-4.png", title: "Audio & Mic Setup" },
-  { src: "/assets/prayerhallservices/support-5.png", title: "Pandit Ji Coordination" },
-  { src: "/assets/prayerhallservices/support-6.png", title: "Guest Management" },
+  {
+    src: "/assets/prayerhallservices/support-1.png",
+    title: "Ground Booking",
+  },
+  {
+    src: "/assets/prayerhallservices/support-2.png",
+    title: "Floral Setup",
+  },
+  {
+    src: "/assets/prayerhallservices/support-3.png",
+    title: "Seating Arrangements",
+  },
+  {
+    src: "/assets/prayerhallservices/support-4.png",
+    title: "Audio & Mic Setup",
+  },
+  {
+    src: "/assets/prayerhallservices/support-5.png",
+    title: "Pandit Ji Coordination",
+  },
+  {
+    src: "/assets/prayerhallservices/support-6.png",
+    title: "Guest Management",
+  },
 ];
 
 export default function PrayerHallServices() {
   return (
-    <div className="min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
+    <div className="service-page min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
       <Navbar />
 
       <main className="overflow-hidden pb-6 pt-24 lg:pb-6 lg:pt-24">
-        <section className="relative w-full aspect-[16/5] min-h-[350px] sm:min-h-[530px] overflow-hidden">
+        {/* Hero Section */}
+        <section className="service-banner relative min-h-[500px] w-full overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/assets/prayerhallservices/hero-real.png"
@@ -44,110 +59,144 @@ export default function PrayerHallServices() {
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.9) 35%, rgba(250,248,244,0.40) 60%, rgba(250,248,244,0.05) 85%)"
+              background:
+                "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.9) 35%, rgba(250,248,244,0.40) 60%, rgba(250,248,244,0.05) 85%)",
             }}
           />
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-4 sm:pt-4 lg:px-0 lg:pt-4">
+          <div className="relative mx-auto flex min-h-[500px] w-full max-w-7xl items-center px-4 py-[20px] lg:px-0">
             <div className="max-w-[540px]">
-              <div className="mb-1 text-sm text-[#321A10] font-medium tracking-wide flex items-center gap-2">
+              <div className="mb-1 flex items-center gap-2 text-[18px] font-medium tracking-wide text-[#321A10]">
                 <span className="opacity-70">Moksha Sewa</span>
                 <span className="opacity-50">›</span>
                 <span className="opacity-70">Our Services</span>
                 <span className="opacity-50">›</span>
-                <span className="font-semibold text-[#C99A4A]">Ground & Prayer Support</span>
+                <span className="font-semibold text-[#C99A4A]">
+                  Ground &amp; Prayer Support
+                </span>
               </div>
 
-              <div className="flex items-center gap-2 mb-4 text-[#C99A4A]">
-                <GiLotusFlower className="w-5 h-5" />
-                <span className="font-medium text-[15px] tracking-wide">Creating A Space For Peace.</span>
+              <div className="mb-[2px] flex items-center gap-2 text-[#C99A4A]">
+                <GiLotusFlower className="h-5 w-5" />
+
+                <span className="text-[18px] font-medium tracking-wide">
+                  Creating A Space For Peace.
+                </span>
               </div>
 
-              <h1 className="text-[38px] sm:text-[46px] lg:text-[52px] font-serif text-[#321A10] mb-5 leading-[1.1]">
-                Ground & Prayer Support
+              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
+                Ground &amp; Prayer Support
               </h1>
 
-              <p className="text-[15px] sm:text-[16px] text-[#321A10]/80 leading-relaxed mb-8 max-w-[480px]">
-                Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.
+              <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#321A10]/80">
+                Finding the right place to grieve and pray is essential. We
+                assist with cremation-ground coordination, setting up serene
+                prayer halls, and providing calm guidance for the entire family.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a href="/request-help" className="inline-flex items-center justify-center gap-2 bg-[#321A10] text-[#FAF8F4] px-6 md:px-8 py-3 rounded-md font-semibold text-sm hover:bg-[#4A2E1B] transition-all shadow-sm">
-                  <GiLotusFlower className="w-4 h-4 text-[#C99A4A]" />
-                  Request Support
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <a
+                  href="/request-help"
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#321A10] px-6 py-3 text-[20px] font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8"
+                >
+                  <GiLotusFlower className="h-4 w-4 text-[#C99A4A]" />
+                  <span>Request Support</span>
                 </a>
-                <a href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-sm font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+
+                <a
+                  href="/donation"
+                  className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                >
                   <span className="donate-nav-shine" aria-hidden />
-                  <GiCandleHolder className="relative z-10 w-5 h-5" />
-                  <span className="relative z-10">Donate for Support</span>
-                  <FaStar className="donate-star donate-star-one" aria-hidden />
-                  <FaStar className="donate-star donate-star-two" aria-hidden />
+                  <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
+
+                  <span className="relative z-10 whitespace-nowrap">
+                    Donate for Support
+                  </span>
+
+                  <FaStar
+                    className="donate-star donate-star-one"
+                    aria-hidden
+                  />
+                  <FaStar
+                    className="donate-star donate-star-two"
+                    aria-hidden
+                  />
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Feature Cards (Compact, equal height, single row) */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0 mb-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 h-full">
+        {/* Feature Cards */}
+        <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
+          <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard
               imageSrc="/assets/prayerhallservices/feature-ground.png"
               title="Ground Coordination"
-              desc="Seamless logistics with staff"
+              desc="Seamless coordination with ground staff and family members."
             />
+
             <FeatureCard
               imageSrc="/assets/prayerhallservices/feature-setup.png"
               title="Prayer Setup"
-              desc="Beautiful, serene arrangements"
+              desc="Serene prayer arrangements prepared with care and respect."
             />
+
             <FeatureCard
               imageSrc="/assets/prayerhallservices/feature-family.png"
               title="Family Support"
-              desc="Guiding members gently"
+              desc="Gentle guidance and assistance for family members throughout."
             />
+
             <FeatureCard
               imageSrc="/assets/prayerhallservices/feature-peace.png"
               title="Peaceful Environment"
-              desc="Calm space for mourning"
+              desc="A calm and respectful space for prayer, mourning and remembrance."
             />
           </div>
         </section>
 
         {/* How It Works Section */}
-        <section className="pt-2 pb-4 bg-[#FAF8F4] relative">
-          <div className="max-w-7xl mx-auto px-4 lg:px-0">
-            <div className="text-center mb-6 relative">
-              <h2 className="text-[28px] md:text-[34px] font-serif text-[#321A10] inline-flex items-center gap-3">
-                <span className="text-[#C99A4A]/80 text-xl">✹</span>
+        <section className="relative bg-[#FAF8F4] pb-4 pt-2">
+          <div className="mx-auto max-w-7xl px-4 lg:px-0">
+            <div className="relative mb-6 text-center">
+              <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
+                <span className="text-[20px] text-[#C99A4A]/80">✹</span>
                 How It Works
-                <span className="text-[#C99A4A]/80 text-xl">✹</span>
+                <span className="text-[20px] text-[#C99A4A]/80">✹</span>
               </h2>
             </div>
 
             <div className="relative">
-              {/* Dotted Line connector */}
-              <div className="hidden lg:block absolute top-[36px] left-[15%] right-[15%] border-t-[1.5px] border-dashed border-[#C99A4A]/40" />
+              <div className="absolute left-[15%] right-[15%] top-[36px] hidden border-t-[1.5px] border-dashed border-[#C99A4A]/40 lg:block" />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+              <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <StepItem
                   num="1"
-                  icon={<BsTelephone className="w-6 h-6 text-[#321A10]" />}
+                  icon={<BsTelephone className="h-6 w-6 text-[#321A10]" />}
                   title="Call or Request Support"
                 />
+
                 <StepItem
                   num="2"
-                  icon={<BiBuildingHouse className="w-7 h-7 text-[#321A10]" />}
+                  icon={
+                    <BiBuildingHouse className="h-7 w-7 text-[#321A10]" />
+                  }
                   title="Ground Coordination"
                 />
+
                 <StepItem
                   num="3"
-                  icon={<MdOutlineLocalFlorist className="w-7 h-7 text-[#321A10]" />}
+                  icon={
+                    <MdOutlineLocalFlorist className="h-7 w-7 text-[#321A10]" />
+                  }
                   title="Prayer Hall Setup"
                 />
+
                 <StepItem
                   num="4"
-                  icon={<MdHandshake className="w-7 h-7 text-[#321A10]" />}
+                  icon={<MdHandshake className="h-7 w-7 text-[#321A10]" />}
                   title="Guidance During Ceremony"
                 />
               </div>
@@ -155,8 +204,8 @@ export default function PrayerHallServices() {
           </div>
         </section>
 
-        {/* Our Complete Support (Marquee) */}
-        <section className="w-full max-w-7xl mx-auto px-4 lg:px-0 pt-4 pb-2 overflow-hidden">
+        {/* Our Complete Support */}
+        <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
           <SectionHeader title="Our Complete Support" />
 
           <style>{`
@@ -164,20 +213,25 @@ export default function PrayerHallServices() {
               0% { transform: translateX(0); }
               100% { transform: translateX(-50%); }
             }
+
             .marquee-track {
               display: flex;
               width: max-content;
               animation: scrollMarquee 25s linear infinite reverse;
             }
+
             .marquee-track:hover {
               animation-play-state: paused;
             }
           `}</style>
 
-          <div className="mt-8 relative w-full overflow-hidden">
+          <div className="relative mt-8 w-full overflow-hidden">
             <div className="marquee-track gap-4 lg:gap-5">
               {[...supportCards, ...supportCards].map((card, idx) => (
-                <div key={idx} className="w-[160px] sm:w-[180px] shrink-0">
+                <div
+                  key={idx}
+                  className="w-[160px] shrink-0 sm:w-[180px]"
+                >
                   <MarqueeCircleCard src={card.src} title={card.title} />
                 </div>
               ))}
@@ -185,61 +239,69 @@ export default function PrayerHallServices() {
           </div>
         </section>
 
-        {/* Ground Support Roles (4x1 Grid) */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0 pt-0 pb-2 mb-2">
+        {/* Ground Support Roles */}
+        <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
           <SectionHeader title="Ground Support Roles" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-6">
+          <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             <RoleSquareCard
               src="/assets/prayerhallservices/roles-1.png"
               title="Venue Coordination"
-              desc="Right venue for every sacred ritual."
+              desc="Suitable venue coordination for every sacred ritual."
             />
+
             <RoleSquareCard
               src="/assets/prayerhallservices/roles-2.png"
               title="Setup & Decor"
-              desc="Arrangements conducted with peace."
+              desc="Peaceful arrangements prepared with care and dignity."
             />
+
             <RoleSquareCard
               src="/assets/prayerhallservices/roles-3.png"
               title="Guest Assistance"
-              desc="Simple guidance at every step."
+              desc="Clear and compassionate guidance for guests at every step."
             />
+
             <RoleSquareCard
               src="/assets/prayerhallservices/roles-4.png"
               title="Post-Prayer Cleanup"
-              desc="Respectful clearing after rituals."
+              desc="Respectful clearing and coordination after rituals conclude."
             />
           </div>
         </section>
 
-        {/* Trust Cards (3 items) */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0 mt-2 mb-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Trust Cards */}
+        <section className="mx-auto mb-4 mt-2 max-w-7xl px-4 lg:px-0">
+          <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
             <TrustCard
-              icon={<FaHandHoldingHeart className="w-10 h-10 text-[#C99A4A]" />}
+              icon={
+                <FaHandHoldingHeart className="h-10 w-10 text-[#C99A4A]" />
+              }
               title="Compassionate Guidance"
               desc="Care, sensitivity and respect in every moment."
             />
+
             <TrustCard
-              icon={<FaOm className="w-10 h-10 text-[#C99A4A]" />}
+              icon={<FaOm className="h-10 w-10 text-[#C99A4A]" />}
               title="Authentic Arrangements"
-              desc="Setups tailored to Shastra and tradition."
+              desc="Setups tailored carefully to Shastra and family traditions."
             />
+
             <TrustCard
-              icon={<TbHeartHandshake className="w-10 h-10 text-[#C99A4A]" />}
+              icon={
+                <TbHeartHandshake className="h-10 w-10 text-[#C99A4A]" />
+              }
               title="Support Beyond Ceremony"
-              desc="Continued spiritual guidance after the ceremony."
+              desc="Continued guidance and support even after the ceremony."
             />
           </div>
         </section>
 
         {/* Final Donation CTA */}
-        <section className="max-w-7xl mx-auto px-4 lg:px-0">
-          <div className="bg-[#E7D5B8]/30 rounded-none overflow-hidden border border-[#E7D5B8] flex flex-col lg:flex-row items-stretch shadow-sm">
-
-            {/* Left Image (Decorative crop) */}
-            <div className="w-full lg:w-1/5 h-[160px] lg:h-auto relative hidden lg:block">
+        <section className="mx-auto max-w-7xl px-4 lg:px-0">
+          <div className="flex flex-col items-stretch overflow-hidden rounded-none border border-[#E7D5B8] bg-[#E7D5B8]/30 shadow-sm lg:flex-row">
+            {/* Left Image */}
+            <div className="relative hidden h-[160px] w-full lg:block lg:h-auto lg:w-1/5">
               <Image
                 src="/assets/prayerhallservices/hero.png"
                 alt="Decorative brass items"
@@ -249,29 +311,43 @@ export default function PrayerHallServices() {
             </div>
 
             {/* Center Content */}
-            <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center items-center text-center lg:text-left lg:items-start z-10 bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent">
-              <h2 className="text-2xl lg:text-[28px] font-serif text-[#321A10] mb-5 max-w-lg leading-tight">
-                Your Support Helps Families Receive Dignified & Sacred Final Rites
+            <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
+              <h2 className="max-w-lg py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
+                Your Support Helps Families Receive Dignified &amp; Sacred Final
+                Rites
               </h2>
-              <a href="/donation" className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[15px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]">
+
+              <a
+                href="/donation"
+                className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+              >
                 <span className="donate-nav-shine" aria-hidden />
-                <span className="relative z-10">Donate for Support</span>
-                <FaStar className="donate-star donate-star-one" aria-hidden />
-                <FaStar className="donate-star donate-star-two" aria-hidden />
+
+                <span className="relative z-10 whitespace-nowrap">
+                  Donate for Support
+                </span>
+
+                <FaStar
+                  className="donate-star donate-star-one"
+                  aria-hidden
+                />
+                <FaStar
+                  className="donate-star donate-star-two"
+                  aria-hidden
+                />
               </a>
             </div>
 
-            {/* Right Side Icon & Text */}
-            <div className="w-full lg:w-1/4 p-6 flex flex-col justify-center items-center text-center border-t lg:border-t-0 lg:border-l border-[#E7D5B8]/50 bg-[#FAF8F4]/50">
-              <FaHandHoldingHeart className="w-10 h-10 text-[#C99A4A] mb-3" />
-              <p className="text-[#321A10] font-medium text-[16px] leading-relaxed max-w-[150px]">
+            {/* Right Side */}
+            <div className="flex w-full flex-col items-center justify-center border-t border-[#E7D5B8]/50 bg-[#FAF8F4]/50 p-6 text-center lg:w-1/4 lg:border-l lg:border-t-0">
+              <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
+
+              <p className="max-w-[180px] text-[18px] font-medium leading-relaxed text-[#321A10]">
                 Every act of kindness becomes a blessing for many.
               </p>
             </div>
-
           </div>
         </section>
-
       </main>
 
       <Footer />
@@ -283,27 +359,43 @@ export default function PrayerHallServices() {
 
 function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="text-center flex items-center justify-center gap-4 mb-4">
-      <GiLotusFlower className="w-5 h-5 text-[#C99A4A] opacity-60 rotate-90" />
-      <h2 className="text-3xl lg:text-4xl font-serif text-[#321A10]">{title}</h2>
-      <GiLotusFlower className="w-5 h-5 text-[#C99A4A] opacity-60 -rotate-90" />
+    <div className="mb-4 flex items-center justify-center gap-4 text-center">
+      <GiLotusFlower className="h-5 w-5 rotate-90 text-[#C99A4A] opacity-60" />
+
+      <h2 className="py-[20px] font-serif text-[30px] text-[#321A10]">
+        {title}
+      </h2>
+
+      <GiLotusFlower className="h-5 w-5 -rotate-90 text-[#C99A4A] opacity-60" />
     </div>
   );
 }
 
-function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: string, desc: string }) {
+function FeatureCard({
+  imageSrc,
+  title,
+  desc,
+}: {
+  imageSrc: string;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div className="relative w-full aspect-[5/4] rounded-sm overflow-hidden group cursor-pointer border border-black/10">
+    <div className="group relative h-full min-h-[260px] w-full cursor-pointer overflow-hidden rounded-sm border border-black/10 aspect-[5/4]">
       <Image
         src={imageSrc}
         alt={title}
         fill
-        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/5 flex flex-col justify-end items-center p-5 text-center">
-        <h4 className="text-[20px] font-semibold text-white mb-2">{title}</h4>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-black/90 via-black/30 to-black/5 p-5 text-center">
+        <h4 className="flex min-h-[69px] items-end justify-center text-[30px] font-semibold leading-[1.15] text-white">
+          {title}
+        </h4>
+
         {desc && (
-          <p className="text-white/90 text-[16px] leading-snug">
+          <p className="mt-2 min-h-[44px] text-[18px] leading-snug text-white/90">
             {desc}
           </p>
         )}
@@ -312,56 +404,115 @@ function FeatureCard({ imageSrc, title, desc }: { imageSrc: string, title: strin
   );
 }
 
-function StepItem({ num, icon, title }: { num: string, icon: React.ReactNode, title: string }) {
+function StepItem({
+  num,
+  icon,
+  title,
+}: {
+  num: string;
+  icon: React.ReactNode;
+  title: string;
+}) {
   return (
-    <div className="flex flex-col items-center text-center group">
+    <div className="group flex h-full flex-col items-center text-center">
       <div className="relative mb-4">
-        <div className="w-[72px] h-[72px] rounded-full bg-white border border-[#E7D5B8]/80 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all">
+        <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full border border-[#E7D5B8]/80 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.03)] transition-all group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)]">
           {icon}
         </div>
-        <div className="absolute -top-1 -right-1 w-[26px] h-[26px] bg-[#C99A4A] rounded-full flex items-center justify-center text-white text-[14px] font-semibold border-2 border-white">
+
+        <div className="absolute -right-1 -top-1 flex h-[26px] w-[26px] items-center justify-center rounded-full border-2 border-white bg-[#C99A4A] text-[20px] font-semibold text-white">
           {num}
         </div>
       </div>
-      <h4 className="text-[15px] font-medium text-[#321A10] leading-[1.3] px-2 max-w-[150px] mx-auto">{title}</h4>
+
+      <h4 className="mx-auto max-w-[220px] px-2 text-[30px] font-medium leading-[1.15] text-[#321A10]">
+        {title}
+      </h4>
     </div>
   );
 }
 
-function MarqueeCircleCard({ src, title }: { src: string, title: string }) {
+function MarqueeCircleCard({
+  src,
+  title,
+}: {
+  src: string;
+  title: string;
+}) {
   return (
-    <div className="flex flex-col items-center group cursor-pointer px-2">
-      <div className="relative w-full aspect-square rounded-full overflow-hidden border-4 border-[#E7D5B8]/40 group-hover:border-[#C99A4A]/50 shadow-sm transition-all duration-300 mb-3 bg-white">
-        <Image src={src} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+    <div className="group flex h-full cursor-pointer flex-col items-center px-2">
+      <div className="relative mb-3 aspect-square w-full overflow-hidden rounded-full border-4 border-[#E7D5B8]/40 bg-white shadow-sm transition-all duration-300 group-hover:border-[#C99A4A]/50">
+        <Image
+          src={src}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
-      <h4 className="text-[14px] sm:text-[15px] font-medium text-[#321A10] leading-snug text-center">{title}</h4>
+
+      <h4 className="flex min-h-[69px] items-center justify-center text-center text-[30px] font-medium leading-[1.15] text-[#321A10]">
+        {title}
+      </h4>
     </div>
   );
 }
 
-function RoleSquareCard({ src, title, desc }: { src: string, title: string, desc: string }) {
+function RoleSquareCard({
+  src,
+  title,
+  desc,
+}: {
+  src: string;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div className="bg-white rounded-none overflow-hidden border border-[#E7D5B8]/60 flex flex-col hover:shadow-md transition-shadow duration-300 group">
-      <div className="relative w-full aspect-[4/3] overflow-hidden">
-        <Image src={src} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+    <div className="group flex h-full flex-col overflow-hidden rounded-none border border-[#E7D5B8]/60 bg-white transition-shadow duration-300 hover:shadow-md">
+      <div className="relative aspect-[4/3] w-full overflow-hidden">
+        <Image
+          src={src}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
-      <div className="p-4 text-center flex-1 bg-white border-t border-[#E7D5B8]/30">
-        <h4 className="text-[15px] font-medium text-[#321A10] mb-1">{title}</h4>
-        <p className="text-[#321A10]/70 text-[16px] leading-snug">{desc}</p>
+
+      <div className="flex flex-1 flex-col border-t border-[#E7D5B8]/30 bg-white p-4 text-center">
+        <h4 className="flex min-h-[69px] items-center justify-center text-[30px] font-medium leading-[1.15] text-[#321A10]">
+          {title}
+        </h4>
+
+        <p className="mt-1 flex-1 text-[18px] leading-relaxed text-[#321A10]/70">
+          {desc}
+        </p>
       </div>
     </div>
   );
 }
 
-function TrustCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
+function TrustCard({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div className="bg-white p-6 rounded-none border border-[#E7D5B8] flex flex-col lg:flex-row gap-5 items-center lg:items-start text-center lg:text-left h-full">
-      <div className="shrink-0 p-3 bg-[#FAF8F4] rounded-full border border-[#E7D5B8]/50">
+    <div className="flex h-full flex-col items-center gap-5 rounded-none border border-[#E7D5B8] bg-white p-6 text-center lg:flex-row lg:items-start lg:text-left">
+      <div className="shrink-0 rounded-full border border-[#E7D5B8]/50 bg-[#FAF8F4] p-3">
         {icon}
       </div>
-      <div>
-        <h4 className="text-base font-semibold text-[#321A10] mb-1">{title}</h4>
-        <p className="text-[#321A10]/70 text-sm leading-relaxed">{desc}</p>
+
+      <div className="flex h-full flex-1 flex-col">
+        <h4 className="min-h-[69px] text-[30px] font-semibold leading-[1.15] text-[#321A10]">
+          {title}
+        </h4>
+
+        <p className="mt-1 flex-1 text-[18px] leading-relaxed text-[#321A10]/70">
+          {desc}
+        </p>
       </div>
     </div>
   );
