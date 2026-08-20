@@ -192,13 +192,13 @@ function SupportFeatureCard({
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[10px] border border-[#DDBF95] bg-[#FFFEFB] shadow-[0_4px_14px_rgba(87,53,19,0.05)]">
       <div className="relative bg-[#FFFEFB]">
-        <div className="relative h-[190px] w-full overflow-hidden sm:h-[200px]">
+        <div className="relative aspect-[5/3] w-full overflow-hidden">
           <Image
             src={image}
             alt={title}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain object-center"
+            className="object-cover object-center"
           />
         </div>
 
