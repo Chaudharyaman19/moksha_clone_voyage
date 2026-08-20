@@ -53,11 +53,16 @@ function FlowArrow() {
     <div
       className="
         flex
-        h-[70px]
-        w-[45px]
+        h-[38px]
+        w-[70px]
         shrink-0
         items-center
         justify-center
+        rotate-90
+
+        md:h-[70px]
+        md:w-[45px]
+        md:rotate-0
       "
     >
       <span className="h-px w-[7px] bg-[#B88728]" />
@@ -640,10 +645,16 @@ export default function PartnershipResponsibility() {
                   mt-[12px]
                   flex
                   w-full
-                  flex-nowrap
-                  items-start
+                  flex-col
+                  items-center
                   justify-center
+                  gap-[2px]
                   overflow-visible
+
+                  md:flex-row
+                  md:flex-nowrap
+                  md:items-start
+                  md:gap-0
                 "
               >
                 {institutionalFlow.map((item, index) => (
@@ -651,8 +662,12 @@ export default function PartnershipResponsibility() {
                     key={item.label}
                     className="
                       flex
+                      flex-col
                       shrink-0
-                      items-start
+                      items-center
+
+                      md:flex-row
+                      md:items-start
                     "
                   >
                     <div

@@ -57,19 +57,19 @@ export default function InstitutionalResponsibility() {
           </div>
         </div>
 
-        <div className="relative z-20 mt-6 rounded-[12px] bg-[#004c39] px-4 pb-3 pt-8 text-white">
-          <div className="absolute left-1/2 top-[-18px] -translate-x-1/2 rounded-[7px] bg-[#e7b752] px-10 py-2 text-[16px] font-bold uppercase tracking-[0.04em] text-[#164534] shadow">
+        <div className="relative z-20 mt-6 rounded-[12px] bg-[#004c39] px-4 pb-4 pt-12 text-white sm:pb-3 sm:pt-8">
+          <div className="absolute left-1/2 top-[-18px] w-[calc(100%-32px)] max-w-[340px] -translate-x-1/2 rounded-[7px] bg-[#e7b752] px-4 py-2 text-center text-[16px] font-bold uppercase tracking-[0.04em] text-[#164534] shadow sm:w-auto sm:max-w-none sm:px-10">
             Our Institutional Pillars
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
             {pillars.map(([icon, title, text], index) => (
-              <div key={title} className={`min-h-[150px] px-6 py-2 text-center ${index ? "border-l border-[#8b8a55]" : ""}`}>
+              <div key={title} className={`min-h-[150px] px-6 py-4 text-center sm:py-2 ${index ? "sm:border-l sm:border-[#8b8a55]" : ""}`}>
                 <span className="mx-auto grid h-[58px] w-[58px] place-items-center rounded-full border-2 border-[#c69431] text-[#d6a33d]">
                   <CSRIcon name={icon as CSRIconName} className="h-11 w-11" />
                 </span>
-                <h3 className="mt-1.5 text-[19px] font-semibold" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>{title}</h3>
-                <span className="mx-auto mt-1.5 block h-[2px] w-10 bg-[#c89633]" />
-                <p className="mt-1.5 whitespace-pre-line text-[16px] leading-[1.3] text-[#f1eee4]">{text}</p>
+                <h3 className="mt-2.5 text-[19px] font-semibold leading-[1.2] sm:mt-1.5" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>{title}</h3>
+                <span className="mx-auto mt-2 block h-[2px] w-10 bg-[#c89633] sm:mt-1.5" />
+                <p className="mt-2 whitespace-pre-line text-[16px] leading-[1.35] text-[#f1eee4] sm:mt-1.5 sm:leading-[1.3]">{text}</p>
               </div>
             ))}
           </div>
