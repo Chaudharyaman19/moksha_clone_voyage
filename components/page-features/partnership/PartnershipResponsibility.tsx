@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { PartnershipIcon } from "./PartnershipIcons";
 
-import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
+import namoGangeLogo from "../../../public/hero-images/namo-gange-logo.webp";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 
 const principles = [
@@ -797,29 +797,12 @@ export default function PartnershipResponsibility() {
                 alt="Namo Gange Trust"
                 className="
                   h-auto
-                  max-h-[110px]
+                  max-h-[145px]
                   w-auto
-                  max-w-[215px]
+                  max-w-[260px]
                   object-contain
                 "
               />
-
-              <h3
-                className="
-                  mt-[7px]
-                  whitespace-nowrap
-                  text-[21px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.01em]
-                  text-white
-                "
-                style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                }}
-              >
-                Namo Gange Trust
-              </h3>
 
               <p
                 className="

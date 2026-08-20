@@ -37,7 +37,7 @@ export default function WhoWeAre() {
               src="/assets/about-reference/who-we-are-background-v2.png"
               alt="Moksha Sewa community support"
               fill
-              sizes="(max-width: 640px) 100vw, 576px"
+              sizes="(max-width: 640px) calc(100vw - 40px), 576px"
               className="object-cover object-[68%_center]"
             />
           </div>
@@ -83,8 +83,7 @@ export default function WhoWeAre() {
           src="/assets/about-reference/who-we-are-background-v2.png"
           alt=""
           fill
-          priority
-          sizes="100vw"
+          sizes="(min-width: 1774px) 1774px, 100vw"
           className="object-cover"
         />
 

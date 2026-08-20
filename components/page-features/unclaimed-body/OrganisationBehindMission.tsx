@@ -1,5 +1,5 @@
 import Image from "next/image";
-import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
+import namoGangeLogo from "../../../public/hero-images/namo-gange-logo.webp";
 import { UBSIcon } from "./UnclaimedBodyIcons";
 
 const pillars = [
@@ -25,17 +25,17 @@ export default function OrganisationBehindMission() {
             <Image src={namoGangeLogo} alt="Namo Gange Trust" className="h-auto w-full max-w-[210px] object-contain sm:max-w-[280px] lg:max-w-[340px]" sizes="(max-width: 640px) 210px, (max-width: 1024px) 280px, 340px" />
           </div>
 
-          <div className="pt-1 text-center lg:pt-2 lg:text-left">
-            <div className="flex items-center justify-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#b27a21] lg:gap-4">
+          <div className="pt-1 text-left lg:pt-2">
+            <div className="flex items-center justify-start gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#b27a21] lg:gap-4">
               <span className="h-px w-10 bg-[#c48f38]" /><UBSIcon name="Lotus" className="h-7 w-7 sm:h-8 sm:w-8" /><span className="h-px w-10 bg-[#c48f38]" />
             </div>
-            <p className="mx-auto mt-2 max-w-[320px] text-center text-[14px] font-bold uppercase leading-snug tracking-[0.06em] text-[#b27a21] sm:max-w-none sm:text-[18px]">The Organisation Behind Moksha Sewa</p>
-            <h2 className="mt-3 text-center text-[30px] font-medium leading-tight text-[#064335] sm:text-[40px] lg:text-left lg:text-[50px] lg:leading-[1.05]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+            <p className="mt-2 max-w-[320px] text-left text-[14px] font-bold uppercase leading-snug tracking-[0.06em] text-[#b27a21] sm:max-w-none sm:text-[18px]">The Organisation Behind Moksha Sewa</p>
+            <h2 className="mt-3 text-left text-[30px] font-medium leading-tight text-[#064335] sm:text-[40px] lg:text-[50px] lg:leading-[1.05]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
               A Humanitarian Initiative of
               <br className="hidden sm:block" />
               <span className="text-[#b67a16]">Namo Gange Trust.</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-[800px] text-center text-[16px] font-medium leading-7 text-[#404647] lg:mx-0 lg:text-left lg:text-[17px] lg:leading-[1.4]">
+            <p className="mt-3 max-w-[800px] text-left text-[16px] font-medium leading-7 text-[#404647] lg:text-[17px] lg:leading-[1.4]">
               Moksha Sewa is an initiative of Namo Gange Trust. Through this institutional framework, the initiative works to bring humanitarian service, responsible processes and dignity together in support of eligible final journeys.
             </p>
           </div>
