@@ -58,7 +58,7 @@ export default function OrganisationBehindMission() {
         </div>
 
         <div className="mt-3 flex justify-center">
-          <a href="#" className="inline-flex h-[48px] w-full max-w-[320px] items-center justify-between rounded-[7px] border border-[#c89230] bg-[#004b39] px-5 text-[15px] font-bold uppercase text-white sm:min-w-[320px] sm:text-[16px]">
+          <a href="/about" target="_blank" rel="noopener noreferrer" className="inline-flex h-[48px] w-full max-w-[320px] items-center justify-between rounded-[7px] border border-[#c89230] bg-[#004b39] px-5 text-[15px] font-bold uppercase text-white sm:min-w-[320px] sm:text-[16px]">
             Know Namo Gange Trust
             <UBSIcon name="ArrowRight" className="h-6 w-6 text-[#d4a03b]" />
           </a>

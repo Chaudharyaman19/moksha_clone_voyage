@@ -32,10 +32,6 @@ export default function UnclaimedBodyFAQ() {
           ))}
         </div>
 
-        <a href="#" className="mx-auto mt-4 inline-flex h-[44px] min-w-[170px] items-center justify-between rounded-[7px] border border-[#c89a56] bg-[#fffaf2] px-5 text-[16px] font-bold uppercase text-[#0b4b3b]">
-          View All FAQs
-          <UBSIcon name="ArrowRight" className="h-5 w-5" />
-        </a>
       </div>
 
       <div
@@ -53,7 +49,7 @@ export default function UnclaimedBodyFAQ() {
         <p className="mt-1.5 text-center text-[16px] text-[#edeae2]">Every final journey deserves dignity, care and respect.</p>
         <div className="mt-3 flex flex-wrap justify-center gap-3">
           <a href="#request-unclaimed-help" className="inline-flex h-[44px] min-w-[180px] items-center justify-between rounded-[6px] bg-[#d39b37] px-4 text-[16px] font-bold uppercase text-[#0a4335]">Request Sewa Help<UBSIcon name="ArrowRight" className="h-5 w-5" /></a>
-          <a href="#" className="inline-flex h-[44px] min-w-[180px] items-center justify-between rounded-[6px] border border-[#c69336] bg-transparent px-4 text-[16px] font-bold uppercase text-white">Support The Mission<UBSIcon name="ArrowRight" className="h-5 w-5" /></a>
+          <a href="/donation" target="_blank" rel="noopener noreferrer" className="inline-flex h-[44px] min-w-[180px] items-center justify-between rounded-[6px] border border-[#c69336] bg-transparent px-4 text-[16px] font-bold uppercase text-white">Support The Mission<UBSIcon name="ArrowRight" className="h-5 w-5" /></a>
         </div>
       </div>
     </section>

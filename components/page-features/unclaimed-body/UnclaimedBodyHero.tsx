@@ -66,7 +66,7 @@ export default function UnclaimedBodyHero() {
               Request Sewa Help
               <UBSIcon name="ArrowRight" className="h-6 w-6 text-[#d3a03b]" />
             </a>
-            <a href="#how-unclaimed-works" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] border border-[#c9a66b] bg-[#fffaf2]/90 px-6 text-[16px] font-bold uppercase text-[#16483a]">
+            <a href="/about" target="_blank" rel="noopener noreferrer" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] border border-[#c9a66b] bg-[#fffaf2]/90 px-6 text-[16px] font-bold uppercase text-[#16483a]">
               How The Sewa Works
               <UBSIcon name="ArrowRight" className="h-6 w-6" />
             </a>
