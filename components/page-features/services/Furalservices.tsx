@@ -144,6 +144,8 @@ function HeroSection() {
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <a
               href="/request-help"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-[52px] items-center justify-center gap-3 whitespace-nowrap rounded-[7px] bg-[#A66317] px-7 text-[20px] font-medium text-white shadow-[0_8px_18px_rgba(116,68,18,0.14)] transition hover:bg-[#884E10]"
             >
               <FaHandsHelping className="h-5 w-5" />
@@ -281,7 +283,7 @@ function ArrangeCard({
           {icon}
         </div>
 
-        <h3 className="mt-2 min-h-[69px] font-serif text-[30px] leading-[1.15] text-[#351D12]">
+        <h3 className="mt-2 min-h-[69px] font-serif text-[20px] font-semibold leading-[1.15] text-[#351D12]">
           {title}
         </h3>
 

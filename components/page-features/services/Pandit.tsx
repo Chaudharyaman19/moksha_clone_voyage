@@ -107,6 +107,8 @@ export default function PriestSupport() {
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <a
                   href="/request-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#321A10] px-6 py-3 text-[20px] font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8"
                 >
                   <GiLotusFlower className="h-4 w-4 text-[#C99A4A]" />
@@ -115,6 +117,8 @@ export default function PriestSupport() {
 
                 <a
                   href="/donation"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="donate-nav-shine" aria-hidden />
@@ -330,6 +334,8 @@ export default function PriestSupport() {
 
               <a
                 href="/donation"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               >
                 <span className="donate-nav-shine" aria-hidden />
@@ -401,7 +407,7 @@ function FeatureCard({
       />
 
       <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-black/90 via-black/30 to-black/5 p-5 text-center">
-        <h4 className="flex min-h-[69px] items-end justify-center text-[30px] font-semibold leading-[1.15] text-white">
+        <h4 className="flex min-h-[69px] items-end justify-center text-[20px] font-semibold leading-[1.15] text-white">
           {title}
         </h4>
 
@@ -436,7 +442,7 @@ function StepItem({
         </div>
       </div>
 
-      <h4 className="mx-auto max-w-[220px] px-2 text-[30px] font-medium leading-[1.15] text-[#321A10]">
+      <h4 className="mx-auto max-w-[220px] px-2 text-[20px] font-semibold leading-[1.15] text-[#321A10]">
         {title}
       </h4>
     </div>
@@ -462,7 +468,7 @@ function SquareImageCard({
       </div>
 
       <div className="flex min-h-[100px] flex-1 items-center justify-center border-t border-[#E7D5B8]/30 bg-white p-4 text-center">
-        <h4 className="text-[30px] font-medium leading-[1.15] text-[#321A10]">
+        <h4 className="text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
       </div>
@@ -491,7 +497,7 @@ function RoleSquareCard({
       </div>
 
       <div className="flex flex-1 flex-col border-t border-[#E7D5B8]/30 bg-white p-4 text-center">
-        <h4 className="flex min-h-[69px] items-center justify-center text-[30px] font-medium leading-[1.15] text-[#321A10]">
+        <h4 className="flex min-h-[69px] items-center justify-center text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
 
@@ -519,7 +525,7 @@ function TrustCard({
       </div>
 
       <div className="flex h-full flex-1 flex-col">
-        <h4 className="min-h-[69px] text-[30px] font-semibold leading-[1.15] text-[#321A10]">
+        <h4 className="min-h-[69px] text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
 

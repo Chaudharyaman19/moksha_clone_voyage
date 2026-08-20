@@ -91,6 +91,8 @@ export default function FamilySupport() {
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row md:gap-4">
                 <Link
                   href="/request-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#8B6A3E] px-6 py-3 text-[20px] font-semibold text-white shadow-sm transition-colors hover:bg-[#73532F] md:px-8"
                 >
                   <FaHandHoldingHeart size={16} />
@@ -345,6 +347,8 @@ export default function FamilySupport() {
 
               <Link
                 href="/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group/cta inline-flex h-[46px] w-fit min-w-[182px] items-center justify-center gap-2.5 whitespace-nowrap rounded-lg bg-[#8B6A3E] px-6 text-[20px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
               >
                 Know More About Our Work
@@ -382,6 +386,8 @@ export default function FamilySupport() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/donation"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[198px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                 >
                   <span className="donate-nav-shine" aria-hidden />
@@ -405,6 +411,8 @@ export default function FamilySupport() {
 
                 <Link
                   href="/volunteer/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-[#B89564] bg-transparent px-6 text-[20px] font-semibold text-white transition hover:border-[#EED8A1] hover:bg-white/10"
                 >
                   Support Our Seva
@@ -458,7 +466,7 @@ function FeatureCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/30" />
 
       <div className="relative z-10 flex min-h-[125px] flex-col items-center justify-end p-6 text-center">
-        <h3 className="flex min-h-[69px] items-end justify-center font-serif text-[30px] font-medium leading-[1.15] text-white transition-transform duration-500 group-hover:-translate-y-2">
+        <h3 className="flex min-h-[69px] items-end justify-center font-serif text-[20px] font-semibold leading-[1.15] text-white transition-transform duration-500 group-hover:-translate-y-2">
           {title}
         </h3>
 
@@ -495,7 +503,7 @@ function StepCard({
         {icon}
       </div>
 
-      <h3 className="mb-1.5 flex min-h-[69px] items-center justify-center font-serif text-[30px] leading-[1.15] text-[#3A2418]">
+      <h3 className="mb-1.5 flex min-h-[69px] items-center justify-center font-serif text-[20px] font-semibold leading-[1.15] text-[#3A2418]">
         {title}
       </h3>
 

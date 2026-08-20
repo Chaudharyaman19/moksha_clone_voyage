@@ -235,6 +235,8 @@ function HeroSection() {
             <a
               className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[20px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
               href="/request-help"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Icon name="heart" size={17} />
               <span>Request Support</span>
@@ -272,7 +274,7 @@ function FeatureHighlights() {
           </div>
 
           <div>
-            <h3 className="mb-[3px] text-[30px] font-normal leading-[1.15] text-[#2F2A24]">
+            <h3 className="mb-[3px] text-[20px] font-semibold leading-[1.15] text-[#2F2A24]">
               {item.title}
             </h3>
 
@@ -303,7 +305,7 @@ function HowItWorks() {
                 <Icon name={step.icon} size={33} />
               </div>
 
-              <h3 className="mb-[3px] text-[30px] font-normal">
+              <h3 className="mb-[3px] text-[20px] font-semibold">
                 {step.title}
               </h3>
 
@@ -406,7 +408,7 @@ function StoryCards() {
             </span>
 
             <div className="min-w-0">
-              <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15] text-[#E2BD78]">
+              <h3 className="mb-[2px] text-[20px] font-semibold leading-[1.15] text-[#E2BD78]">
                 {story.title}
               </h3>
 
@@ -468,6 +470,8 @@ function DonationSection() {
             <a
               className="donate-nav-sparkle relative inline-flex min-h-[38px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               href="/donation"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="donate-nav-shine" aria-hidden />
 
@@ -531,7 +535,7 @@ function InfoGrid({
           </div>
 
           <div>
-            <h3 className="mb-[2px] text-[30px] font-normal leading-[1.15]">
+            <h3 className="mb-[2px] text-[20px] font-semibold leading-[1.15]">
               {item.title}
             </h3>
 

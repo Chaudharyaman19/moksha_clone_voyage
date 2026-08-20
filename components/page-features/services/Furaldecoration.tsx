@@ -48,6 +48,8 @@ export default function Furaldecoration() {
               <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
                 <a
                   href="/request-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center justify-center gap-3 rounded-full bg-[#8B6A3E] px-6 py-3 text-[20px] font-medium text-white shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] transition-all duration-300 hover:bg-[#73532F] md:px-8"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 transition-transform group-hover:scale-110" />
@@ -113,7 +115,7 @@ export default function Furaldecoration() {
           <div className="mx-auto max-w-4xl text-center">
             <GiFlowerHat className="mx-auto mb-8 h-10 w-10 text-[#A0522D]/30" />
 
-            <h3 className="py-[20px] text-[30px] font-light leading-relaxed text-[#5D4037]">
+            <h3 className="py-[20px] text-[20px] font-semibold leading-relaxed text-[#5D4037]">
               &quot;Flowers speak the language of peace, honoring a beautiful
               life that has moved on.&quot;
             </h3>
@@ -147,7 +149,7 @@ function ItemCard({
         {icon}
       </div>
 
-      <h4 className="mb-4 min-h-[69px] text-[30px] font-semibold leading-[1.15] text-[#3E2723]">
+      <h4 className="mb-4 min-h-[69px] text-[20px] font-semibold leading-[1.15] text-[#3E2723]">
         {title}
       </h4>
 
