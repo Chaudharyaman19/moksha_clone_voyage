@@ -227,7 +227,7 @@ export default function Hero() {
   }, [images.length]);
 
   useEffect(() => {
-    const timer = window.setInterval(nextSlide, 58500);
+    const timer = window.setInterval(nextSlide, 5500);
     return () => window.clearInterval(timer);
   }, [nextSlide]);
 
