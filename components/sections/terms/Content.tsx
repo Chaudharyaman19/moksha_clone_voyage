@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowDown,
   ArrowRight,
@@ -22,18 +19,14 @@ import {
   UsersRound,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
 const HEADER_OFFSET = 150;
 
 const SECTIONS_SELECTOR = ".terms-section";
 
 const ITEMS_SELECTOR = ".terms-round-icon";
 
-/* =========================================================
-   SIDEBAR CONTENT
-========================================================= */
-
+const REVEAL_SELECTOR =
+  ".terms-section, .terms-commitment, .terms-view-button, .terms-contact";
 const navigationItems = [
   "Acceptance of Terms",
   "About Moksha Sewa",
@@ -46,11 +39,6 @@ const navigationItems = [
   "Volunteer Engagement",
   "Content & Intellectual Property",
 ];
-
-/* =========================================================
-   VISIBLE TERMS CONTENT
-========================================================= */
-
 const termsSections = [
   {
     number: 1,
@@ -123,11 +111,6 @@ const termsSections = [
       "All content on this website, including text, images, logos and graphics, is the property of Moksha Sewa or its licensors. You may not copy, reproduce or use our content without prior written permission.",
   },
 ];
-
-/* =========================================================
-   ICON COMPONENT
-========================================================= */
-
 function RoundIcon({
   icon: Icon,
 }: {
@@ -171,7 +154,13 @@ export default function TermsAndConditions() {
   const isProgrammaticScroll = useRef(false);
   const lastHighlighted = useRef<HTMLElement | null>(null);
   const reducedMotion = useRef(false);
+  const highlightTimers = useRef<number[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia(
@@ -219,6 +208,25 @@ export default function TermsAndConditions() {
 
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    const targets = pageRef.current?.querySelectorAll<HTMLElement>(REVEAL_SELECTOR);
+    if (!targets || targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -252,230 +260,44 @@ export default function TermsAndConditions() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      /* -----------------------------------------------
-         Initial page entrance
-      ------------------------------------------------ */
-
-      const intro = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-        },
-      });
-
-      intro
-        .from(".terms-sidebar", {
-          x: -24,
-          opacity: 0,
-          duration: 0.65,
-        })
-        .from(
-          ".terms-main",
-          {
-            x: 24,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=0.5",
-        );
-
-      /* -----------------------------------------------
-         Section reveal
-      ------------------------------------------------ */
-
-      gsap.utils
-        .toArray<HTMLElement>(".terms-section")
-        .forEach((section) => {
-          gsap.from(section, {
-            y: 18,
-            opacity: 0,
-            duration: 0.55,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 90%",
-              once: true,
-            },
-          });
-        });
-
-      /* -----------------------------------------------
-         Icons subtle floating animation
-      ------------------------------------------------ */
-
-      gsap.utils
-        .toArray<HTMLElement>(".terms-round-icon")
-        .forEach((icon, index) => {
-          gsap.to(icon, {
-            y: -2,
-            duration: 2.2 + index * 0.04,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          });
-        });
-
-      /* -----------------------------------------------
-         Sidebar items stagger
-      ------------------------------------------------ */
-
-      gsap.from(".terms-nav-item", {
-        x: -8,
-        opacity: 0,
-        duration: 0.35,
-        stagger: 0.025,
-        delay: 0.35,
-        ease: "power2.out",
-      });
-
-      /* -----------------------------------------------
-         Commitment card
-      ------------------------------------------------ */
-
-      gsap.from(".terms-commitment", {
-        y: 18,
-        opacity: 0,
-        duration: 0.6,
-        delay: 0.45,
-        ease: "power3.out",
-      });
-
-      /* -----------------------------------------------
-         View all button
-      ------------------------------------------------ */
-
-      gsap.from(".terms-view-button", {
-        y: 8,
-        opacity: 0,
-        duration: 0.4,
-        scrollTrigger: {
-          trigger: ".terms-view-button",
-          start: "top 92%",
-          once: true,
-        },
-      });
-
-      /* -----------------------------------------------
-         Contact section
-      ------------------------------------------------ */
-
-      gsap.from(".terms-contact", {
-        y: 18,
-        opacity: 0,
-        duration: 0.6,
-        scrollTrigger: {
-          trigger: ".terms-contact",
-          start: "top 92%",
-          once: true,
-        },
-      });
-    }, pageRef);
-
-    /*
-      Refresh triggers once images/fonts finish loading so start positions
-      are recalculated. Otherwise sections can remain stuck at low opacity.
-    */
-    const refreshTriggers = () => ScrollTrigger.refresh();
-
-    if (document.readyState === "complete") {
-      refreshTriggers();
-    } else {
-      window.addEventListener("load", refreshTriggers, { once: true });
-    }
-
-    document.fonts?.ready.then(refreshTriggers).catch(() => {});
-
-    const revealTimer = window.setTimeout(() => {
-      pageRef.current
-        ?.querySelectorAll<HTMLElement>(
-          ".terms-section, .terms-sidebar, .terms-main, .terms-commitment, .terms-view-button, .terms-contact",
-        )
-        .forEach((el) => {
-          if (Number(gsap.getProperty(el, "opacity")) < 1) {
-            gsap.to(el, {
-              opacity: 1,
-              y: 0,
-              x: 0,
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          }
-        });
-    }, 3500);
-
+  useEffect(() => {
     return () => {
-      ctx.revert();
-      window.clearTimeout(revealTimer);
-      window.removeEventListener("load", refreshTriggers);
+      highlightTimers.current.forEach((id) => window.clearTimeout(id));
     };
   }, []);
 
-  /* =====================================================
-     PORTRAIT FOCUS + SCROLL TO SECTION
-  ===================================================== */
+  const pulseHighlight = (el: HTMLElement) => {
+    el.classList.remove("terms-glow");
+    void el.offsetWidth;
+    el.classList.add("terms-glow");
+    const timer = window.setTimeout(() => el.classList.remove("terms-glow"), 1500);
+    highlightTimers.current.push(timer);
+  };
 
   const highlightTarget = (target: HTMLElement) => {
     if (reducedMotion.current) return;
 
-    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
-      gsap.killTweensOf(el);
-      el.remove();
-    });
-
-    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
-      gsap.killTweensOf(section);
-      gsap.set(section, {
-        boxShadow: "0 0 0 rgba(215,140,40,0)",
-        backgroundColor: "rgba(255,250,240,0)",
-      });
-    });
+    pulseHighlight(target);
 
     const items = Array.from(
       target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
     );
+    items.forEach((item, index) => {
+      window.setTimeout(() => pulseHighlight(item), index * 60);
+    });
+  };
 
-    gsap.killTweensOf(target);
-    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
+  const highlightNavItem = (index: number) => {
+    if (reducedMotion.current) return;
 
-    gsap.fromTo(
-      target,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
+    const item = navItemRefs.current[index];
+    if (!item) return;
 
-    if (items.length > 0) {
-      gsap.killTweensOf(items);
-      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-
-      gsap.to(items, {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        stagger: 0.06,
-        onComplete: () => {
-          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      });
-    }
+    pulseHighlight(item);
   };
 
   const scrollToTarget = (target: HTMLElement) => {
     isProgrammaticScroll.current = true;
-
-    gsap.killTweensOf(window);
 
     const targetY = Math.max(
       target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
@@ -495,69 +317,24 @@ export default function TermsAndConditions() {
     }
 
     // Dim all other sections while scrolling to the target
-    gsap.to(sections, {
-      opacity: 0.3,
-      duration: 0.4,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-
-    // Keep the target highlighted throughout the scroll
+    sections.forEach((section) => section.classList.add("terms-dim"));
     highlightTarget(target);
 
-    const restoreSections = () => {
-      gsap.to(sections, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    };
-
     const distance = Math.abs(targetY - window.scrollY);
-    const duration = Math.min(0.75 + distance / 2600, 1.15);
+    const durationMs = Math.min(750 + distance / 2.6, 1150);
 
-    gsap.to(window, {
-      duration,
-      scrollTo: { y: targetY, autoKill: false },
-      ease: "power3.inOut",
-      overwrite: true,
-      onComplete: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-        gsap.delayedCall(0.15, () => {
-          lastHighlighted.current = target;
-          highlightTarget(target);
-        });
-      },
-      onInterrupt: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-      },
-    });
-  };
+    window.scrollTo({ top: targetY, behavior: "smooth" });
 
-  const highlightNavItem = (index: number) => {
-    if (reducedMotion.current) return;
-
-    const item = navItemRefs.current[index];
-    if (!item) return;
-
-    gsap.killTweensOf(item);
-    gsap.fromTo(
-      item,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
+    const timer = window.setTimeout(() => {
+      isProgrammaticScroll.current = false;
+      sections.forEach((section) => section.classList.remove("terms-dim"));
+      const settleTimer = window.setTimeout(() => {
+        lastHighlighted.current = target;
+        highlightTarget(target);
+      }, 150);
+      highlightTimers.current.push(settleTimer);
+    }, durationMs);
+    highlightTimers.current.push(timer);
   };
 
   const handleNavClick = (index: number) => {
@@ -578,12 +355,61 @@ export default function TermsAndConditions() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
+      <style>{`
+        .terms-section, .terms-commitment, .terms-view-button, .terms-contact {
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+        }
+        .terms-section.is-revealed, .terms-commitment.is-revealed,
+        .terms-view-button.is-revealed, .terms-contact.is-revealed {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .terms-section.terms-dim { opacity: 0.3; }
+        .terms-sidebar, .terms-main {
+          opacity: 0;
+          transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+        }
+        .terms-sidebar { transform: translateX(-24px); }
+        .terms-main { transform: translateX(24px); transition-delay: 0.15s; }
+        .terms-sidebar.is-mounted, .terms-main.is-mounted {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .terms-nav-item {
+          opacity: 0;
+          transform: translateX(-8px);
+          transition: opacity 0.35s ease-out, transform 0.35s ease-out, background-color 0.2s, color 0.2s;
+        }
+        .terms-nav-item.is-mounted { opacity: 1; transform: translateX(0); }
+        .terms-round-icon { animation: terms-icon-float 2.4s ease-in-out infinite alternate; }
+        @keyframes terms-icon-float {
+          from { transform: translateY(0); }
+          to { transform: translateY(-2px); }
+        }
+        .terms-glow { animation: terms-glow-pulse 0.5s ease-out 3; }
+        @keyframes terms-glow-pulse {
+          0%, 100% { box-shadow: 0 0 0 rgba(215,140,40,0); }
+          50% { box-shadow: 0 0 14px rgba(215,140,40,0.45); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .terms-section, .terms-commitment, .terms-view-button, .terms-contact,
+          .terms-sidebar, .terms-main, .terms-nav-item {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
+          .terms-round-icon, .terms-glow { animation: none !important; }
+        }
+      `}</style>
+
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =================================================
             LEFT SIDEBAR
         ================================================== */}
 
-        <aside className="terms-sidebar self-start lg:sticky lg:top-[100px]">
+        <aside className={`terms-sidebar self-start lg:sticky lg:top-[100px] ${mounted ? "is-mounted" : ""}`}>
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             {/* Header */}
 
@@ -608,9 +434,10 @@ export default function TermsAndConditions() {
                         activeIndex === index ? "location" : undefined
                       }
                       onClick={() => handleNavClick(index)}
-                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] transition-colors ${activeIndex === index
-                          ? "bg-[#f5edda] font-semibold text-[#2C1810]"
-                          : "text-[#5A4030] hover:bg-[#f8f4e9]"
+                      style={{ transitionDelay: mounted ? `${0.35 + index * 0.025}s` : undefined }}
+                      className={`terms-nav-item flex w-full items-start gap-2 px-3 py-1.5 text-left text-[16px] leading-[1.4] ${mounted ? "is-mounted" : ""} ${activeIndex === index
+                        ? "bg-[#f5edda] font-semibold text-[#2C1810]"
+                        : "text-[#5A4030] hover:bg-[#f8f4e9]"
                         }`}
                     >
                       <span className="w-[16px] shrink-0 font-medium">
@@ -624,11 +451,6 @@ export default function TermsAndConditions() {
               </ol>
             </nav>
           </div>
-
-          {/* =================================================
-              OUR COMMITMENT
-          ================================================== */}
-
           <div className="terms-commitment mt-4 overflow-hidden rounded-[7px] border border-[#e8e1d1] bg-[#fffef9] px-4 pt-4 pb-0 shadow-[0_2px_10px_rgba(29,65,53,0.035)]">
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] bg-[#FFF8EE]">
@@ -665,11 +487,7 @@ export default function TermsAndConditions() {
             MAIN CONTENT
         ================================================== */}
 
-        <article className="terms-main min-w-0">
-          {/* =================================================
-              SECTIONS 1 - 10
-          ================================================== */}
-
+        <article className={`terms-main min-w-0 ${mounted ? "is-mounted" : ""}`}>
           <div className="overflow-hidden rounded-[7px] border border-[#E0D7C2] bg-white shadow-[0_2px_14px_rgba(66,57,15,0.06)]">
             {termsSections.map((section) => (
               <section
@@ -688,8 +506,8 @@ export default function TermsAndConditions() {
 
                   <div
                     className={`border-b border-[#E3D5B8] py-4 ${section.number === 10
-                        ? "border-b-0"
-                        : ""
+                      ? "border-b-0"
+                      : ""
                       }`}
                   >
                     <TermsHeading
@@ -705,11 +523,6 @@ export default function TermsAndConditions() {
               </section>
             ))}
           </div>
-
-          {/* =================================================
-              VIEW ALL TERMS BUTTON
-          ================================================== */}
-
           <div className="flex justify-center">
             <button
               type="button"
@@ -726,11 +539,6 @@ export default function TermsAndConditions() {
           </div>
         </article>
       </div>
-
-      {/* =================================================
-          CONTACT CTA
-      ================================================== */}
-
       <section className="terms-contact w-full border-t border-[#e7e2d5] bg-white/65 px-4 py-3 sm:px-5 lg:px-0">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3.5">
