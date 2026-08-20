@@ -63,7 +63,7 @@ const officeLocations = [
     imageWidth: 1448,
     imageHeight: 1086,
     mapQuery: "6 Liddel Close, Luton, Bedfordshire LU3 1TW, United Kingdom",
-    orgName: "enCodency Pvt. Ltd.",
+    orgName: "Namo Gange Wellness",
   },
 ];
 
