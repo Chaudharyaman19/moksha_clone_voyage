@@ -549,7 +549,7 @@ function Contact() {
 
                     <div>
                       <label htmlFor="phone" className={labelClass}>
-                        Phone number
+                        Phone number *
                       </label>
                       <input
                         id="phone"
@@ -557,6 +557,7 @@ function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        required
                         inputMode="numeric"
                         maxLength={10}
                         pattern="[6-9][0-9]{9}"
