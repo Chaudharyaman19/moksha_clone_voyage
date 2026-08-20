@@ -147,7 +147,7 @@ const trustItems: InfoItem[] = [
   {
     icon: "pin",
     title: "Wide Service Network",
-    copy: "Help across Delhi NCR and nearby regions.",
+    copy: "Help across Delhi • Ghaziabad • Noida and nearby regions.",
   },
   {
     icon: "support",

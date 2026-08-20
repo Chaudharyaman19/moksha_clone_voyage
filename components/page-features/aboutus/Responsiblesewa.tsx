@@ -448,6 +448,22 @@ export default function ResponsibleSewa() {
               <br />
               respect and the highest standards of ethical service.
             </p>
+
+            <p
+              className="
+                mt-[14px]
+                max-w-[650px]
+                
+                text-[17px]
+                leading-[1.65]
+                
+                text-[#4D5A57]
+              "
+            >
+              We ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most. 
+              Our commitment goes beyond just final rites—we strive to build a community that stands together in humanity, 
+              bringing solace and care to the most vulnerable in society.
+            </p>
           </div>
 
           {/* =================================================

@@ -71,6 +71,8 @@ const SocialSidebar = () => {
             <div className="group relative">
               <Link
                 href="/contact"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block"
               >
                 <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
@@ -202,6 +204,8 @@ const SocialSidebar = () => {
           {/* Enquiry */}
           <Link
             href="/contact"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Contact Moksha Sewa"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
           >

@@ -15,13 +15,13 @@ type RouteSeo = {
   titleSuffix?: string;
   priority: number;
   changeFrequency:
-    | "always"
-    | "hourly"
-    | "daily"
-    | "weekly"
-    | "monthly"
-    | "yearly"
-    | "never";
+  | "always"
+  | "hourly"
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "yearly"
+  | "never";
   index?: boolean;
 };
 
@@ -40,7 +40,7 @@ export const seoRoutes: RouteSeo[] = [
       "end-of-life support mission",
       "last rites assistance",
       "unclaimed case support",
-      "Delhi NCR sewa",
+      "Delhi • Ghaziabad • Noida sewa",
     ],
     priority: 1,
     changeFrequency: "weekly",
@@ -87,7 +87,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Contact",
     title: "Contact Moksha Sewa for Last Rites Assistance",
     description:
-      "Contact Moksha Sewa for verified last-rites assistance, donation, volunteering and Delhi NCR launch-region coordination.",
+      "Contact Moksha Sewa for verified last-rites assistance, donation, volunteering and Delhi • Ghaziabad • Noida launch-region coordination.",
     ogImage: "/assets/contact/contact-hero-new.png",
     ogImageAlt: "Contact Moksha Sewa for humanitarian last-rites support",
     keywords: ["contact Moksha Sewa", "sewa helpline", "last rites support contact"],
@@ -412,7 +412,7 @@ export function createPageMetadata(path: string): Metadata {
       locale: "en_IN",
       type: "website",
     },
-  twitter: {
+    twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description: route.description,

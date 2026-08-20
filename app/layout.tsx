@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
+    "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi • Ghaziabad • Noida.",
   keywords: [
     "Moksha Sewa",
     "Namo Gange Trust",
     "end-of-life support mission",
     "last rites assistance",
     "unclaimed case support",
-    "Delhi NCR sewa",
+    "Delhi • Ghaziabad • Noida sewa",
   ],
   alternates: {
     canonical: "/",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi • Ghaziabad • Noida.",
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
-      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi NCR.",
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi • Ghaziabad • Noida.",
     images: [`${SITE_URL}${DEFAULT_OG_IMAGE}`],
   },
   icons: {

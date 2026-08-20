@@ -219,7 +219,7 @@ export default function Footer() {
               <div className="footer-contact-glow flex items-start gap-2 rounded-lg px-1 py-0.5">
                 <FaMapMarkerAlt className="mt-1 h-5 w-5 shrink-0 text-[#E8A32E]" />
                 <p>
-                  Delhi NCR,
+                  Delhi • Ghaziabad • Noida,
 
                   India
                 </p>
@@ -294,8 +294,8 @@ export default function Footer() {
               <button
                 type="submit"
                 className={`relative inline-flex h-[32px] w-full items-center justify-center gap-2 overflow-hidden rounded-lg text-[12px] font-semibold text-white shadow-[0_5px_14px_rgba(0,0,0,0.18)] transition ${subscribed
-                    ? "bg-emerald-600"
-                    : "bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] hover:brightness-110 hover:shadow-[0_0_20px_rgba(229,169,62,0.58)]"
+                  ? "bg-emerald-600"
+                  : "bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] hover:brightness-110 hover:shadow-[0_0_20px_rgba(229,169,62,0.58)]"
                   }`}
               >
                 {!subscribed && <span className="donate-nav-shine" aria-hidden />}

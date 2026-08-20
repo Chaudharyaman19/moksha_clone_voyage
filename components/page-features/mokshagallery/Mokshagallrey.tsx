@@ -259,9 +259,9 @@ function MokshaGallery() {
             </span>
           </div>
 
-          <h1 className="flex items-center text-center justify-center text-4xl md:text-5xl font-light text-[#2C1810] mb-2 tracking-tight">
+          <h1 className="flex flex-col items-center text-center justify-center text-3xl sm:text-4xl md:text-5xl font-light text-[#2C1810] mb-2 tracking-tight">
             Moksha
-            <span className="block text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-1">
+            <span className="block text-4xl sm:text-5xl md:text-6xl font-serif text-[#8B6A3E] mt-1">
               Gallery
             </span>
           </h1>
@@ -319,26 +319,26 @@ function MokshaGallery() {
                       className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.03]"
                     />
 
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Gradient overlay — always visible on mobile (no hover there), reveals on hover from sm+ */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500"></div>
 
                     {/* Category tag */}
-                    <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-3 left-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
                       <span className="px-2.5 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
                         {image.category.charAt(0).toUpperCase() +
                           image.category.slice(1)}
                       </span>
                     </div>
 
-                    {/* Hover overlay with detailed info */}
-                    <div className="absolute inset-x-0 bottom-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {/* Info panel — shown by default on touch devices, hover-reveal on sm+ */}
+                    <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 transform translate-y-0 sm:translate-y-full sm:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                       <div className="space-y-2">
                         {/* Title and description */}
                         <div>
                           <h3 className="text-sm font-serif text-white mb-1 line-clamp-1">
                             {image.title}
                           </h3>
-                          <p className="text-white/80 text-[14px] line-clamp-2 mb-2">
+                          <p className="hidden sm:block text-white/80 text-[14px] line-clamp-2 mb-2">
                             {image.description}
                           </p>
                         </div>

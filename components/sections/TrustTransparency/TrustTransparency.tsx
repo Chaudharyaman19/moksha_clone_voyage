@@ -260,25 +260,25 @@ const trustCards = [
     icon: "People",
     title: "About\nNamo Gange Trust",
     description:
-      "Learn about our vision,\nmission and the work\nwe stand for.",
+      "Our guiding vision,\ncore mission, values,\nand the work we do.",
   },
   {
     icon: "Shield",
     title: "Governance &\nPolicies",
     description:
-      "Our governance structure,\npolicies and commitment\nto ethical operations.",
+      "Our strict governance,\nfirm policies, and\ncommitment to ethics.",
   },
   {
     icon: "Report",
     title: "Impact /\nReports",
     description:
-      "See our impact, case\nhighlights and\ntransparent reports.",
+      "See our real impact,\nkey case highlights,\nand open reporting.",
   },
   {
     icon: "Policy",
     title: "Donation &\nRefund Policy",
     description:
-      "Clear information on\ndonations, utilization\nand refund policy.",
+      "Clear information on\nall donations, fund\nuse, and refund rules.",
   },
 ];
 
@@ -415,7 +415,7 @@ export default function TrustTransparency() {
                 <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
               </span>
 
-              <span className="font-sans text-[16px] font-semibold uppercase text-[#A66E16]">
+              <span className="font-sans text-[16px] font-bold uppercase tracking-[0.04em] text-[#A66E16]">
                 Sewa With Responsibility
               </span>
 
@@ -428,24 +428,24 @@ export default function TrustTransparency() {
 
             <h2
               className="
-                mt-[7px]
+                mt-[6px]
                 text-center
                 font-sans
-                text-[24px]
-                font-semibold
-                leading-[1.05]
+                text-[28px]
+                font-bold
+                leading-[1.1]
                 text-[#064631]
-                sm:text-[30px]
+                sm:text-[32px]
                 xl:text-left
+                xl:text-[36px]
               "
             >
-              Trust &amp;
-              Transparency
+              Trust & Transparency
             </h2>
 
             {/* DIVIDER */}
 
-            <div className="mt-[10px] flex items-center justify-center gap-[8px] xl:justify-start xl:pl-[145px]">
+            <div className="mt-[12px] flex items-center justify-center gap-[8px] xl:justify-start">
               <span className="h-px w-[55px] bg-gradient-to-r from-transparent to-[#C99234]" />
 
               <CustomIcon
@@ -458,11 +458,11 @@ export default function TrustTransparency() {
 
             {/* DESCRIPTION */}
 
-            <p className="mx-auto mt-[7px] max-w-[350px] text-center text-[16px] leading-[1.38] text-[#48433D] xl:mx-0 xl:ml-[40px]">
-              Our commitment to transparency,
-              <br />
-              integrity and responsible service.
-            </p>
+            <div className="mx-auto mt-[14px] max-w-[450px] text-center xl:mx-0 xl:text-left">
+              <p className="text-[17px] font-medium leading-[1.5] text-[#48433D]">
+                Our commitment to transparency, integrity and responsible service.
+              </p>
+            </div>
 
             {/* =================================================
                 GREEN BRAND AREA
@@ -521,12 +521,12 @@ export default function TrustTransparency() {
                 {/* MOKSHA */}
 
                 <div className="flex h-full flex-col items-center justify-center text-center">
-                  <div className="relative h-[74px] w-[145px]">
+                  <div className="relative h-[74px] w-[155px]">
                     <Image
                       src="/assets/footer-moksha-mark.png"
                       alt="Moksha Sewa"
                       fill
-                      sizes="145px"
+                      sizes="155px"
                       className="object-contain"
                     />
                   </div>
@@ -563,12 +563,12 @@ export default function TrustTransparency() {
                     An Initiative Of
                   </p>
 
-                  <div className="relative mx-auto mt-[2px] h-[56px] w-[210px]">
+                  <div className="relative mx-auto mt-[4px] h-[75px] w-[280px]">
                     <Image
-                      src="/hero-images/namo-gange-logo.png"
+                      src="/hero-images/namo-gange-logo.webp"
                       alt="Namo Gange"
                       fill
-                      sizes="210px"
+                      sizes="280px"
                       className="object-contain"
                     />
                   </div>
@@ -585,9 +585,6 @@ export default function TrustTransparency() {
                     </div>
 
                     <div>
-                      <h3 className="text-[18px] font-bold uppercase leading-tight">
-                        Namo Gange Trust
-                      </h3>
 
                       <p className="mt-[2px] text-[16px] leading-[1.22] text-white/90">
                         Committed to Service,
@@ -709,6 +706,8 @@ export default function TrustTransparency() {
             <div className="mt-[16px] grid grid-cols-1 gap-[13px] md:grid-cols-[0.58fr_0.42fr] md:items-center">
               <a
                 href="/about"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   group
                   flex
@@ -865,13 +864,13 @@ export default function TrustTransparency() {
 
               <span className="mt-[6px] h-[2px] w-[39px] shrink-0 bg-[#CB9638] ml-7" />
 
-             <p className="mt-[7px] text-[18px] leading-[1.34] text-[#3D3935] pl-8">
-  Moksha Sewa follows responsible
-  <br />
-  practices, transparency.
-  <br />
+              <p className="mt-[7px] text-[18px] leading-[1.34] text-[#3D3935] pl-8">
+                Moksha Sewa follows responsible
+                <br />
+                practices, transparency.
+                <br />
 
-</p>
+              </p>
             </div>
 
             {/* VALUES */}

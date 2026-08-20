@@ -204,7 +204,7 @@ export default function Hero() {
 
   const stats: StatItem[] = [
     { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
-    { value: "Delhi NCR", label: "Launch Region", icon: FaLandmark },
+    { value: "Delhi • Ghaziabad • Noida", label: "Launch Region", icon: FaLandmark },
     { value: "Verified", label: "Case-Based Support", icon: FaSmile },
     { value: "Subject", label: "To Eligibility", icon: FaShieldAlt },
   ];

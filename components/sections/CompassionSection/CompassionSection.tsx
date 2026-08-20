@@ -149,8 +149,8 @@ const sevaStats = [
     icon: PriestIcon,
   },
   {
-    value: "Delhi NCR",
-    title: "Cremation Ground Support",
+    value: "Delhi • Ghaziabad • Noida",
+    // title: "Cremation Ground Support",
     caption: "Family Guidance",
     icon: FlameIcon,
   },
@@ -250,20 +250,23 @@ export default function CompassionSection() {
               {stats.map(({ value, title, caption, icon: StatIcon }) => (
                 <article
                   key={title}
-                  className="group rounded-lg border border-[#CDAF86]/35 bg-white/65 px-2.5 py-2 text-center shadow-[0_8px_24px_rgba(83,55,28,0.08)] backdrop-blur-sm transition-transform hover:-translate-y-0.5"
+                  className="flex h-full flex-col justify-center group rounded-lg border border-[#CDAF86]/35 bg-white/65 px-2.5 py-3 text-center shadow-[0_8px_24px_rgba(83,55,28,0.08)] backdrop-blur-sm transition-transform hover:-translate-y-0.5"
                 >
-                  <div className="mx-auto mb-1 grid h-10 w-10 place-items-center text-[#A87531]">
+                  <div className="mx-auto mb-1 grid h-10 w-10 shrink-0 place-items-center text-[#A87531]">
                     <StatIcon className="h-9 w-9" />
                   </div>
                   <div
-                    className="text-[24px] font-semibold leading-none text-[#392116]"
+                    className={`${value.length > 12
+                      ? "text-[17px] leading-[1.15]"
+                      : "text-[24px] leading-none"
+                      } font-semibold text-[#392116]`}
                   >
                     {value}
                   </div>
-                  <div className="mt-1 text-[16px] font-medium leading-tight text-[#39261B]">
+                  <div className="mt-1 text-[15px] font-medium leading-tight text-[#39261B]">
                     {title}
                   </div>
-                  <div className="mt-1 text-[16px] leading-tight text-[#786254]">
+                  <div className="mt-1 text-[14px] leading-tight text-[#786254]">
                     {caption}
                   </div>
                 </article>
@@ -302,7 +305,7 @@ export default function CompassionSection() {
               </a>
 
               <a
-                href="tel:+919810247319"
+                href="tel:+919220147229"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"

@@ -321,27 +321,27 @@ const benefits: BenefitItem[] = [
     icon: "HandsHeartIcon",
     title: "For Everyone",
     text:
-      "We serve unclaimed bodies, elderly alone, and economically weaker families.",
+      "We serve unclaimed bodies, elderly alone, and families in financial distress.",
     color: "#246833",
   },
   {
     icon: "MapPinIcon",
-    title: "Pan India Service",
-    text: "Expanding our network to reach more people in need.",
+    title: "Delhi • Ghaziabad • Noida",
+    text: "Expanding our network and reach to support more vulnerable people in need.",
     color: "#A86317",
   },
   {
     icon: "ShieldIcon",
     title: "Zero Financial Burden",
     text:
-      "Our services are completely free for those who are unable to afford.",
+      "Our services are completely free for all those who are unable to afford them.",
     color: "#165A8D",
   },
   {
     icon: "HumanityIcon",
     title: "Humanity First",
     text:
-      "Every life deserves dignity. Every family deserves support.",
+      "Every single life deserves dignity. Every family deserves complete support.",
     color: "#B42058",
   },
 ];

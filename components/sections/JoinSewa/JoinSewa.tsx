@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   HeartHandshake,
@@ -13,6 +14,7 @@ type JoinCard = {
   title: React.ReactNode;
   description: React.ReactNode;
   button: string;
+  href: string;
   icon: React.ReactNode;
   image: string;
   variant: "green" | "gold";
@@ -37,6 +39,7 @@ const cards: JoinCard[] = [
       </>
     ),
     button: "JOIN AS VOLUNTEER",
+    href: "/volunteer/register",
     icon: <HeartHandshake />,
     image: "/assets/about-optimized/volunteer.png",
     variant: "green",
@@ -59,6 +62,7 @@ const cards: JoinCard[] = [
       </>
     ),
     button: "EXPLORE PARTNERSHIP",
+    href: "/partnership",
     icon: <Handshake />,
     image: "/assets/about-optimized/partner.png",
     variant: "gold",
@@ -81,6 +85,7 @@ const cards: JoinCard[] = [
       </>
     ),
     button: "SUPPORT THE MISSION",
+    href: "/donation",
     icon: <Leaf />,
     image: "/assets/about-optimized/support.png",
     variant: "green",
@@ -104,10 +109,9 @@ const CardIcon = ({
       justify-center
       rounded-full
 
-      ${
-        variant === "gold"
-          ? "bg-[#f6ead8] text-[#bd7c1e]"
-          : "bg-[#e7eee5] text-[#0b403b]"
+      ${variant === "gold"
+        ? "bg-[#f6ead8] text-[#bd7c1e]"
+        : "bg-[#e7eee5] text-[#0b403b]"
       }
     `}
   >
@@ -131,7 +135,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
       className="
         group
         relative
-        min-h-[220px]
+        min-h-[190px]
         overflow-hidden
         rounded-[9px]
         border
@@ -171,14 +175,14 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
           z-10
           flex
           h-full
-          min-h-[300px]
+          min-h-[260px]
           w-full
           flex-col
           p-4
 
           sm:p-5
 
-          lg:min-h-[220px]
+          lg:min-h-[190px]
           lg:w-[70%]
         "
       >
@@ -217,8 +221,10 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
           {card.description}
         </p>
 
-        <button
-          type="button"
+        <Link
+          href={card.href}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`
             group/button
             mt-auto
@@ -245,10 +251,9 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
             sm:w-auto
             sm:min-w-[230px]
 
-            ${
-              card.variant === "gold"
-                ? "bg-[#bf7c1e] hover:bg-[#a96816]"
-                : "bg-[#06443d] hover:bg-[#07554d]"
+            ${card.variant === "gold"
+              ? "bg-[#bf7c1e] hover:bg-[#a96816]"
+              : "bg-[#06443d] hover:bg-[#07554d]"
             }
           `}
         >
@@ -261,7 +266,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
               group-hover/button:translate-x-1
             "
           />
-        </button>
+        </Link>
       </div>
     </article>
   );
@@ -280,35 +285,6 @@ const JoinSewa: React.FC = () => {
       "
     >
       {/* =====================================================
-          HERO BACKGROUND
-      ====================================================== */}
-
-      <div
-        className="
-          absolute
-          inset-x-0
-          top-0
-          -z-20
-
-          aspect-[1728/623]
-          min-h-[365px]
-        "
-      >
-        <Image
-          src="/assets/about-optimized/be_part.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="
-            h-full
-            w-full
-            object-cover
-            object-center
-          "
-        />
-      </div>
-
-      {/* =====================================================
           HERO
       ====================================================== */}
 
@@ -317,13 +293,31 @@ const JoinSewa: React.FC = () => {
           relative
           mx-auto
           w-full
-
           aspect-[1728/623]
-          min-h-[365px]
+          min-h-[320px]
         "
       >
+        {/* HERO BACKGROUND — kept at the image's native aspect
+            ratio so the artwork's curve/icon detailing near the
+            bottom edge is never cropped off by object-cover. */}
+        <div className="absolute inset-0 -z-20">
+          <Image
+            src="/assets/about-optimized/be_part.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
+          />
+        </div>
+
         <div
           className="
+            relative
             mx-auto
             flex
             h-full
@@ -333,30 +327,24 @@ const JoinSewa: React.FC = () => {
             justify-center
 
             px-6
+            py-6
 
             sm:px-8
+            sm:py-7
             lg:px-8
+            lg:py-8
             2xl:px-0
           "
         >
-          {/* =================================================
-              HERO TEXT MOVED UP
-          ================================================= */}
-
           <div
             className="
               max-w-[640px]
-
-              -translate-y-[32px]
-
-              sm:-translate-y-[38px]
-              lg:-translate-y-[42px]
             "
           >
             {/* JOIN */}
 
             <div className="flex items-center gap-3">
-             
+
 
               <span className="h-px w-12 bg-[#bd7b20]" />
 
@@ -393,20 +381,20 @@ const JoinSewa: React.FC = () => {
 
             <h2
               className="
-                mt-3
+                mt-2
 
                 font-serif
 
-                text-[42px]
+                text-[32px]
                 font-semibold
                 leading-[0.98]
                 tracking-[-0.025em]
 
                 text-[#0b403b]
 
-                sm:text-[48px]
-                md:text-[54px]
-                lg:text-[52px]
+                sm:text-[38px]
+                md:text-[42px]
+                lg:text-[40px]
               "
             >
               You Don’t Have to
@@ -421,17 +409,17 @@ const JoinSewa: React.FC = () => {
 
             <h2
               className="
-                mt-3
+                mt-2
 
                 font-sans
 
-                text-[24px]
+                text-[20px]
                 font-semibold
                 leading-[1.05]
 
                 text-[#17443e]
 
-                sm:text-[30px]
+                sm:text-[24px]
               "
             >
               You Can Simply Do Something.
@@ -443,16 +431,16 @@ const JoinSewa: React.FC = () => {
 
             <p
               className="
-                mt-4
+                mt-2
                 max-w-[620px]
 
-                text-[22px]
+                text-[16px]
                 font-medium
                 leading-[1.5]
 
                 text-[#333735]
 
-                sm:text-[24px]
+                sm:text-[17px]
               "
             >
               Every act of kindness creates a ripple of dignity,
@@ -478,9 +466,11 @@ const JoinSewa: React.FC = () => {
           max-w-7xl
 
           px-6
-          pb-3
+          pt-1
+          pb-2
 
           sm:px-8
+          sm:pt-2
           lg:px-8
           2xl:px-0
         "
@@ -518,7 +508,7 @@ const JoinSewa: React.FC = () => {
           max-w-7xl
 
           px-6
-          pb-4
+          pb-3
 
           sm:px-8
           lg:px-8

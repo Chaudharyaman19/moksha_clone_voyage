@@ -58,7 +58,7 @@ export default function AboutNamoGangeTrust() {
               </p>
             </div>
 
-            <div className="mt-5 flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+            <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4">
                 {trustValues.map(({ label, icon: Icon }) => (
                   <div key={label} className="text-center">

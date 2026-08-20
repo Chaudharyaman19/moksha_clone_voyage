@@ -177,7 +177,7 @@ const stories: StoryCard[] = [
     image: "/assets/about-optimized/family-support.webp",
     icon: "FamilyHands",
     title: "ECONOMICALLY WEAKER FAMILY",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     services: [
       "Transport",
       "Ritual Essentials",
@@ -766,6 +766,8 @@ export default function SewaStories() {
 
           <a
             href="/mokshagallery"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               group
               inline-flex

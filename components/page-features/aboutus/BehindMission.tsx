@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   FaArrowRight,
   FaExpand,
@@ -75,8 +76,8 @@ export default function BehindMission() {
 
             {/* 06 video */}
             <div className="mt-0 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
-              <span className="h-px w-10 bg-[#C6A25C]" />
-              <span>06 — VIDEO</span>
+              {/* <span className="h-px w-10 bg-[#C6A25C]" /> */}
+              <span>VIDEO</span>
               <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
@@ -104,15 +105,16 @@ export default function BehindMission() {
                     "radial-gradient(circle, rgba(214,162,61,0.34) 0%, rgba(214,162,61,0.14) 48%, transparent 76%)",
                 }}
               />
-              <button
-                type="button"
-                onClick={toggleVideo}
+              <Link
+                href="/mokshagallery"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[52px] items-center gap-3 bg-[#0E4B3A] px-5 text-[16px] font-medium text-white shadow-[0_7px_14px_rgba(22,67,52,0.22)] transition hover:bg-[#0A3C2E]"
               >
                 <PiFlowerLotus className="h-6 w-6 text-[#D1A23E]" />
                 <span>Explore Our Work</span>
                 <FaArrowRight className="ml-1 h-3.5 w-3.5 text-[#D1A23E]" />
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -132,7 +134,6 @@ export default function BehindMission() {
                 className="h-full w-full object-cover"
                 poster="/hero-images/support-mission-ghat.png"
                 autoPlay
-                muted
                 loop
                 playsInline
                 preload="auto"

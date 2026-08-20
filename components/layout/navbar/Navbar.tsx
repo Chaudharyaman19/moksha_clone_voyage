@@ -94,7 +94,7 @@ export default function Navbar() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } else {
-      router.push(path);
+      window.open(path, "_blank", "noopener,noreferrer");
     }
   };
 

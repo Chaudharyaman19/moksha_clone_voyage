@@ -516,6 +516,8 @@ export default function PracticalSewaSupport() {
 
                 <a
                   href="/request-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     group
                     inline-flex
