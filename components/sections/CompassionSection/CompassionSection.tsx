@@ -149,9 +149,9 @@ const sevaStats = [
     icon: PriestIcon,
   },
   {
-    value: "Delhi • Ghaziabad • Noida",
-    title: "Cremation Ground Support",
-    caption: "Family Guidance",
+    value: "Available",
+    title: "Ground Support",
+    caption: "Delhi • Ghaziabad • Noida",
     icon: FlameIcon,
   },
 ];
