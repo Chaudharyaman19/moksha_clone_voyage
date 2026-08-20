@@ -531,62 +531,69 @@ export default function VolunteerRegister() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
-            <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-5 lg:px-0">
-              <div className="max-w-[540px] translate-y-4 sm:translate-y-5">
-                <div className="mb-2 flex w-full max-w-[440px] flex-col items-start text-left">
-                  <div className="w-[150px] self-center sm:w-[190px] lg:w-[220px]">
-                    <Image
-                      src="/hero-images/image6.png"
-                      alt="Namo Gange"
-                      width={420}
-                      height={150}
-                      priority
-                      sizes="220px"
-                      className="h-auto w-full object-contain"
-                    />
-                  </div>
+       <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-5 lg:px-0">
+  <div className="max-w-[540px] translate-y-2 sm:translate-y-5">
+    <div className="mb-1 flex w-full max-w-[440px] flex-col items-start text-left sm:mb-2">
+      <div className="hidden w-[150px] self-center sm:block sm:w-[190px] lg:w-[220px]">
+        <Image
+          src="/hero-images/image6.png"
+          alt="Namo Gange"
+          width={420}
+          height={150}
+          priority
+          sizes="220px"
+          className="h-auto w-full object-contain"
+        />
+      </div>
 
-                  <div className="mt-1 flex flex-col items-start text-left">
-                    <span className="text-[16px] font-semibold leading-tight text-[#2C1810]">Moksha Sewa</span>
-                    <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21]">
-                      An Initiative of Namo Gange Trust
-                    </span>
-                  </div>
-                </div>
+      <div className="relative top-[12px] mt-0 flex flex-col items-start text-left sm:top-0 sm:mt-[30px]">
+        <span className="text-[14px] font-semibold leading-[1.1] text-[#2C1810] sm:text-[16px]">
+          Moksha Sewa
+        </span>
 
-                <h1 className="font-serif text-[32px] font-medium leading-[1.03] text-[#102B44] sm:text-[42px] lg:text-[52px]">
-                  Be the Reason Someone Receives a
-                  <span className="block text-[#DC671F]">Dignified Farewell.</span>
-                </h1>
+        <span className="mt-[2px] text-[13px] font-medium leading-[1.15] text-[#8F5A21] sm:text-[16px]">
+          An Initiative of Namo Gange Trust
+        </span>
+      </div>
+    </div>
 
-                <div className="mt-1 flex items-center gap-2">
-                  <span className="h-[2px] w-14 bg-[#DC671F]" />
-                  <span className="h-2 w-2 rotate-45 bg-[#DC671F]" />
-                  <span className="h-px w-20 bg-gradient-to-r from-[#DC671F] to-transparent" />
-                </div>
+    <h1 className="mt-3 font-serif text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
+      Be the Reason Someone Receives a
+      <span className="block text-[#DC671F]">
+        Dignified Farewell.
+      </span>
+    </h1>
 
-                <p className="mt-2 max-w-[510px] text-[16px] leading-6 text-[#17283A] sm:text-[17px]">
-                  Your time can bring comfort, care and compassion to families when they need it most.
-                </p>
+    <div className="mt-1 flex items-center gap-1.5 sm:gap-2">
+      <span className="h-[2px] w-10 bg-[#DC671F] sm:w-14" />
+      <span className="h-1.5 w-1.5 rotate-45 bg-[#DC671F] sm:h-2 sm:w-2" />
+      <span className="h-px w-14 bg-gradient-to-r from-[#DC671F] to-transparent sm:w-20" />
+    </div>
 
-                <div className="mt-1 flex flex-wrap gap-2.5">
-                  <a
-                    href="#volunteer-registration"
-                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
-                  >
-                    Become a Volunteer
-                  </a>
-                  <a
-                    href="/donation"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-[46px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-5 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
-                  >
-                    Support This Mission
-                  </a>
-                </div>
-              </div>
-            </div>
+    <p className="mt-1.5 max-w-[510px] text-[14px] leading-[1.4] text-[#17283A] sm:mt-2 sm:text-[17px] sm:leading-6">
+      Your time can bring comfort, care and compassion to families when they
+      need it most.
+    </p>
+
+    <div className="mt-2 flex flex-wrap gap-2 sm:mt-1 sm:gap-2.5">
+      <a
+        href="#volunteer-registration"
+        className="inline-flex h-[40px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:h-[46px] sm:px-5 sm:text-[16px]"
+      >
+        Become a Volunteer
+      </a>
+
+      <a
+        href="/donation"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex h-[40px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:h-[46px] sm:px-5 sm:text-[16px]"
+      >
+        Support This Mission
+      </a>
+    </div>
+  </div>
+</div>
           </section>
 
           {/* Our Volunteers Primarily Support */}
