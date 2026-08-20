@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   FaArrowRight,
-  FaExpand,
   FaPlay,
   FaVolumeMute,
   FaVolumeUp,
@@ -210,12 +209,7 @@ export default function BehindMission() {
                   {playing ? "Ⅱ" : <FaPlay className="h-3.5 w-3.5" />}
                 </button>
 
-                <span className="text-[16px]">0:00 / 1:20</span>
-
-                <span className="relative h-[3px] flex-1 bg-white/45">
-                  <span className="absolute left-0 top-0 h-full w-[35%] bg-[#D5A74A]" />
-                  <span className="absolute left-[35%] top-1/2 h-2.5 w-2.5 -translate-y-1/2 bg-[#E9C466]" />
-                </span>
+                <span className="flex-1" />
 
                 <button
                   type="button"
@@ -228,8 +222,6 @@ export default function BehindMission() {
                     <FaVolumeUp className="h-4 w-4" />
                   )}
                 </button>
-                <span className="text-[16px]">⚙</span>
-                <FaExpand className="h-4 w-4" />
               </div>
             </div>
           </div>
