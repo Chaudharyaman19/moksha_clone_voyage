@@ -199,7 +199,7 @@ const SocialSidebar = () => {
       </div>
 
       {/* Mobile View - Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-[#8B6A3E]/20 shadow-2xl">
+      <div className="hidden">
         <div className="flex items-center justify-around py-2 px-1">
           {/* Enquiry */}
           <Link
