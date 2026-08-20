@@ -303,11 +303,11 @@ function MokshaGallery() {
                         className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
                       />
 
-                      {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      {/* Gradient overlay — always visible on mobile (no hover there), reveals on hover from sm+ */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500"></div>
 
                       {/* Category tag */}
-                      <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-3 left-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
                         <span className="px-2.5 py-1 bg-[#8B6A3E] text-white rounded-full text-[14px] font-medium shadow-lg">
                           {video.category.charAt(0).toUpperCase() +
                             video.category.slice(1)}
@@ -322,21 +322,21 @@ function MokshaGallery() {
                         </div>
                       )}
 
-                      {/* Play button overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="w-12 h-12 bg-[#8B6A3E]/80 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-white/50 transform group-hover:scale-110 transition-transform">
-                          <FiPlay className="w-6 h-6 text-white ml-1" />
+                      {/* Play button overlay — always visible on mobile so it's clear these are videos */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#8B6A3E]/80 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-white/50 transform sm:group-hover:scale-110 transition-transform">
+                          <FiPlay className="w-5 h-5 sm:w-6 sm:h-6 text-white ml-1" />
                         </div>
                       </div>
 
-                      {/* Hover overlay with details */}
-                      <div className="absolute inset-x-0 bottom-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      {/* Info panel — shown by default on touch devices, hover-reveal on sm+ */}
+                      <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 transform translate-y-0 sm:translate-y-full sm:group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         <div className="space-y-2">
                           <div>
                             <h3 className="text-sm font-serif text-white mb-1 line-clamp-1">
                               {video.title}
                             </h3>
-                            <p className="text-white/80 text-[14px] line-clamp-2 mb-2">
+                            <p className="hidden sm:block text-white/80 text-[14px] line-clamp-2 mb-2">
                               {video.description}
                             </p>
                           </div>
@@ -424,7 +424,7 @@ function MokshaGallery() {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 py-4 border-y border-[#F5E9D9]">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 py-4 border-y border-[#F5E9D9]">
                     <div>
                       <p className="text-[14px] text-[#5A3E2B]/60 mb-1 flex items-center gap-1">
                         <FiUser className="w-3 h-3" /> Videographer
