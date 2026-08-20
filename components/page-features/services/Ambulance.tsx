@@ -296,7 +296,7 @@ function HowItWorks() {
         {steps.map((step, index) => (
           <div className="relative" key={step.title}>
             <article className="relative h-full min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
-              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+              <span className="absolute -top-[19px] left-1/2 grid size-[34px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
                 {index + 1}
               </span>
 
@@ -447,7 +447,7 @@ function DonationSection() {
       <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 left-[10%] right-0 bg-[url('/ambulance/donation-prayer.webp')] bg-cover bg-right bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          className="absolute inset-y-0 right-0 w-[48%] bg-[url('/ambulance/donation-prayer.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
