@@ -44,11 +44,8 @@ const CustomIcon = ({
         <circle cx="32" cy="17" r="6" />
         <circle cx="17" cy="24" r="5" />
         <circle cx="47" cy="24" r="5" />
-
         <path d="M22 49c1-10 4-15 10-15s9 5 10 15" />
-
         <path d="M7 49c1-8 4-12 10-12 3 0 5 1 7 3" />
-
         <path d="M57 49c-1-8-4-12-10-12-3 0-5 1-7 3" />
       </svg>
     ),
@@ -80,11 +77,9 @@ const CustomIcon = ({
       >
         <path d="M16 7h24l9 9v41H16Z" />
         <path d="M40 7v10h9" />
-
         <path d="M24 45V34" />
         <path d="M32 45V27" />
         <path d="M40 45V21" />
-
         <path d="M21 48h24" />
       </svg>
     ),
@@ -102,11 +97,9 @@ const CustomIcon = ({
         <path d="M14 6h25l9 9v21" />
         <path d="M39 6v10h9" />
         <path d="M14 6v52h25" />
-
         <path d="M21 24h16" />
         <path d="M21 32h13" />
         <path d="M21 40h10" />
-
         <path d="M47 34 57 38v8c0 7-4 11-10 15-6-4-10-8-10-15v-8l10-4Z" />
         <path d="m43 46 3 3 6-7" />
       </svg>
@@ -124,10 +117,8 @@ const CustomIcon = ({
       >
         <path d="m8 29 13-11 9 6" />
         <path d="m56 29-13-11-9 6" />
-
         <path d="m22 31 8 7c2 2 5 2 7 0l6-6" />
         <path d="m17 35 13 12c2 2 5 2 7 0l10-10" />
-
         <path d="M8 28 17 39" />
         <path d="M56 28 47 39" />
       </svg>
@@ -144,10 +135,8 @@ const CustomIcon = ({
         strokeLinejoin="round"
       >
         <path d="M25 17c0-4 4-6 7-2 3-4 7-2 7 2 0 4-4 7-7 10-3-3-7-6-7-10Z" />
-
         <path d="M7 42c8-2 12 0 17 6l7 7" />
         <path d="M57 42c-8-2-12 0-17 6l-7 7" />
-
         <path d="M7 41v15" />
         <path d="M57 41v15" />
       </svg>
@@ -165,10 +154,8 @@ const CustomIcon = ({
       >
         <path d="M32 8v44" />
         <path d="M18 15h28" />
-
         <path d="m17 15-9 18h18Z" />
         <path d="m47 15-9 18h18Z" />
-
         <path d="M22 55h20" />
       </svg>
     ),
@@ -201,11 +188,8 @@ const CustomIcon = ({
         <circle cx="32" cy="17" r="5" />
         <circle cx="18" cy="23" r="4.5" />
         <circle cx="46" cy="23" r="4.5" />
-
         <path d="M24 49c1-9 3-14 8-14s7 5 8 14" />
-
         <path d="M8 49c1-8 4-12 10-12 3 0 5 1 7 3" />
-
         <path d="M56 49c-1-8-4-12-10-12-3 0-5 1-7 3" />
       </svg>
     ),
@@ -223,10 +207,8 @@ const CustomIcon = ({
         <path d="M13 6h25l9 9v20" />
         <path d="M38 6v10h9" />
         <path d="M13 6v52h24" />
-
         <path d="M20 25h16" />
         <path d="M20 33h13" />
-
         <path d="M46 37 57 41v8c0 7-4 11-11 15-7-4-11-8-11-15v-8l11-4Z" />
         <path d="m42 49 3 3 6-7" />
       </svg>
@@ -251,34 +233,30 @@ const CustomIcon = ({
   return icons[name] ?? null;
 };
 
-/* =========================================================
-   DATA
-========================================================= */
-
 const trustCards = [
   {
     icon: "People",
     title: "About\nNamo Gange Trust",
     description:
-      "Our guiding vision,\ncore mission, values,\nand the work we do.",
+      "Learn about our vision, mission, values, community purpose, commitment while staying connected.",
   },
   {
     icon: "Shield",
     title: "Governance &\nPolicies",
     description:
-      "Our strict governance,\nfirm policies, and\ncommitment to ethics.",
+      "Understand our governance, policies, ethical standards, accountability,  and processes clearly.",
   },
   {
     icon: "Report",
     title: "Impact /\nReports",
     description:
-      "See our real impact,\nkey case highlights,\nand open reporting.",
+      "Explore our impact, reports, case highlights, progress, outcomes and shared responsibility clearly.",
   },
   {
     icon: "Policy",
     title: "Donation &\nRefund Policy",
     description:
-      "Clear information on\nall donations, fund\nuse, and refund rules.",
+      "Read about donations, fund use, refunds, policies, transparency and responsible management clearly.",
   },
 ];
 
@@ -305,27 +283,10 @@ const values = [
   },
 ];
 
-/* =========================================================
-   COMPONENT
-========================================================= */
-
 export default function TrustTransparency() {
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#FBF7EF]
-        px-4
-        pb-0
-        pt-[8px]
-        sm:px-5
-        lg:px-6
-      "
-    >
-      {/* BACKGROUND DOTS */}
-
+    <section className="relative w-full overflow-hidden bg-[#FBF7EF] px-4 pb-0 pt-[18px]">
+      {/* BACKGROUND TEXTURE */}
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
@@ -335,19 +296,10 @@ export default function TrustTransparency() {
         }}
       />
 
-      {/* LEFT DECORATIVE LEAVES */}
-
+      {/* LEFT LEAF */}
       <svg
         viewBox="0 0 180 250"
-        className="
-          pointer-events-none
-          absolute
-          -left-[44px]
-          top-[6px]
-          h-[235px]
-          w-[170px]
-          text-[#B6AA79]/30
-        "
+        className="pointer-events-none absolute -left-[46px] top-[0px] h-[220px] w-[155px] text-[#B6AA79]/30"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.2"
@@ -359,20 +311,10 @@ export default function TrustTransparency() {
         <path d="M124 58c-10-18-2-34 14-43 13 15 12 29-1 42" />
       </svg>
 
-      {/* RIGHT DECORATIVE LEAVES */}
-
+      {/* RIGHT LEAF */}
       <svg
         viewBox="0 0 180 250"
-        className="
-          pointer-events-none
-          absolute
-          -bottom-[60px]
-          -right-[35px]
-          h-[220px]
-          w-[170px]
-          rotate-180
-          text-[#B6AA79]/30
-        "
+        className="pointer-events-none absolute -bottom-[52px] -right-[36px] h-[205px] w-[155px] rotate-180 text-[#B6AA79]/30"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.2"
@@ -383,210 +325,131 @@ export default function TrustTransparency() {
         <path d="M91 95c-15-17-13-36-1-50 18 13 23 29 16 46" />
       </svg>
 
-      {/* MAIN */}
-
-      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
-
-        {/* =====================================================
-            TOP GRID
-        ====================================================== */}
-
-        <div
-          className="
-            grid
-            grid-cols-1
-            items-stretch
-            gap-[24px]
-            xl:grid-cols-[0.41fr_0.59fr]
-            xl:gap-[16px]
-          "
-        >
-          {/* =================================================
-              LEFT COLUMN
-              h-full important hai
-          ================================================= */}
-
-          <div className="flex h-full flex-col">
-
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        {/* TOP AREA */}
+        <div className="grid grid-cols-1 gap-[24px] xl:grid-cols-[41.5fr_58.5fr] xl:gap-[28px]">
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col">
             {/* LABEL */}
-
-            <div className="flex items-center justify-center gap-[10px] xl:justify-start">
-              <span className="relative h-px w-[35px] bg-[#B87C18]">
+            <div className="flex items-center justify-center gap-[10px]">
+              <span className="relative h-px w-[36px] bg-[#B87C18]">
                 <span className="absolute -right-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
               </span>
 
-              <span className="font-sans text-[16px] font-bold uppercase tracking-[0.04em] text-[#A66E16]">
+              <span className="text-[16px] font-bold uppercase tracking-[0.045em] text-[#A66E16]">
                 Sewa With Responsibility
               </span>
 
-              <span className="relative h-px w-[35px] bg-[#B87C18]">
+              <span className="relative h-px w-[36px] bg-[#B87C18]">
                 <span className="absolute -left-[2px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87C18]" />
               </span>
             </div>
 
-            {/* TITLE */}
-
-            <h2
-              className="
-                mt-[6px]
-                text-center
-                font-sans
-                text-[28px]
-                font-bold
-                leading-[1.1]
-                text-[#064631]
-                sm:text-[32px]
-                xl:text-left
-                xl:text-[36px]
-              "
-            >
-              Trust & Transparency
+            {/* MAIN TITLE */}
+            <h2 className="mx-auto mt-[7px] max-w-[440px] text-center font-serif text-[52px] font-semibold leading-[0.96] tracking-[-0.025em] text-[#064631]">
+              Trust &amp;
+              <br />
+              Transparency
             </h2>
 
-            {/* DIVIDER */}
-
-            <div className="mt-[12px] flex items-center justify-center gap-[8px] xl:justify-start">
-              <span className="h-px w-[55px] bg-gradient-to-r from-transparent to-[#C99234]" />
+            {/* TITLE DIVIDER */}
+            <div className="mt-[12px] flex items-center justify-center gap-[8px]">
+              <span className="h-px w-[92px] bg-gradient-to-r from-transparent to-[#C99234]" />
 
               <CustomIcon
                 name="Lotus"
-                className="h-[28px] w-[28px] text-[#BE7D13]"
+                className="h-[27px] w-[27px] text-[#BE7D13]"
               />
 
-              <span className="h-px w-[55px] bg-gradient-to-l from-transparent to-[#C99234]" />
+              <span className="h-px w-[92px] bg-gradient-to-l from-transparent to-[#C99234]" />
             </div>
 
             {/* DESCRIPTION */}
+            <p className="mx-auto mt-[7px] max-w-[390px] text-center text-[17px] font-medium leading-[1.35] text-[#48433D]">
+              Our commitment to transparency,
+              <br />
+              integrity and responsible service.
+            </p>
 
-            <div className="mx-auto mt-[14px] max-w-[450px] text-center xl:mx-0 xl:text-left">
-              <p className="text-[17px] font-medium leading-[1.5] text-[#48433D]">
-                Our commitment to transparency, integrity and responsible service.
-              </p>
-            </div>
-
-            {/* =================================================
-                GREEN BRAND AREA
-
-                IMPORTANT:
-                flex-1 means jo empty space tha wo bhi green hoga.
-            ================================================= */}
-
-            <div
-              className="
-                relative
-                mt-[14px]
-                min-h-[212px]
-                flex-1
-                overflow-hidden
-                rounded-tl-[46px]
-                rounded-tr-[22px]
-                bg-[#00472F]
-                px-[20px]
-                py-[16px]
-                text-white
-                shadow-[0_7px_18px_rgba(0,59,40,0.16)]
-              "
-            >
-              {/* WATERMARK */}
-
+            {/* GREEN BRAND CARD */}
+            <div className="relative mt-[14px] h-[212px] overflow-hidden rounded-tl-[48px] rounded-tr-[24px] bg-[#00472F] text-white shadow-[0_7px_18px_rgba(0,59,40,0.16)]">
               <CustomIcon
                 name="Lotus"
-                className="
-                  pointer-events-none
-                  absolute
-                  -bottom-[30px]
-                  -left-[20px]
-                  h-[150px]
-                  w-[150px]
-                  text-white/[0.025]
-                "
+                className="pointer-events-none absolute -bottom-[34px] -left-[24px] h-[150px] w-[150px] text-white/[0.025]"
               />
 
-              <div
-                className="
-                  relative
-                  z-10
-                  grid
-                  h-full
-                  min-h-[180px]
-                  grid-cols-1
-                  items-center
-                  gap-[18px]
-                  py-[10px]
-                  sm:grid-cols-[42%_1px_58%]
-                  sm:gap-0
-                  sm:py-0
-                "
-              >
+              <div className="relative z-10 grid h-full grid-cols-[46%_1px_54%] items-center">
                 {/* MOKSHA */}
-
-                <div className="flex h-full flex-col items-center justify-center text-center">
-                  <div className="relative h-[74px] w-[155px]">
+                <div className="flex h-full flex-col items-center justify-center px-[10px] text-center">
+                  <div className="relative h-[90px] w-[180px]">
                     <Image
                       src="/assets/footer-moksha-mark.png"
                       alt="Moksha Sewa"
                       fill
-                      sizes="155px"
+                      sizes="180px"
                       className="object-contain"
                     />
                   </div>
 
-                  <h3
-                    className="mt-[2px] font-serif text-[24px] font-semibold uppercase leading-none"
-                  >
+                  <h3 className="mt-[3px] font-serif text-[25px] font-semibold uppercase leading-none text-white">
                     Moksha Sewa
                   </h3>
 
-                  <p className="mt-[7px] text-[16px] font-semibold leading-[1.25] text-[#DFA929]">
-                    A Namo Gange Trust
-                    <br />
-                    Initiative
+                  <p className="mt-[7px] text-[15px] font-semibold leading-[1.15] text-[#DFA929]">
+                    A Namo Gange Trust Initiative
                   </p>
 
                   <div className="mt-[9px] flex items-center gap-[6px]">
-                    <span className="h-px w-[35px] bg-[#DCA72A]" />
-
+                    <span className="h-px w-[38px] bg-[#DCA72A]" />
                     <span className="h-[5px] w-[5px] rounded-full bg-[#DCA72A]" />
-
-                    <span className="h-px w-[35px] bg-[#DCA72A]" />
+                    <span className="h-px w-[38px] bg-[#DCA72A]" />
                   </div>
                 </div>
 
-                {/* VERTICAL LINE */}
-
-                <span className="hidden h-[145px] w-px bg-[#D69A20]/55 sm:block" />
+                {/* ORIGINAL VERTICAL LINE */}
+                <span className="h-[168px] w-px bg-[#D69A20]/55" />
 
                 {/* NAMO GANGE */}
-
-                <div className="flex h-full flex-col justify-center pl-[22px]">
-                  <p className="text-center text-[16px] font-bold uppercase text-[#E5AE24]">
+                <div className="flex h-full flex-col justify-center px-[18px]">
+                  <p className="text-center text-[11px] font-bold uppercase tracking-[0.02em] text-[#E5AE24]">
                     An Initiative Of
                   </p>
 
-                  <div className="relative mx-auto mt-[4px] h-[75px] w-[280px]">
+                  {/* NAMO GANGE LOGO */}
+                  <div className="relative mx-auto mt-[1px] h-[73px] w-full max-w-[235px]">
                     <Image
                       src="/hero-images/namo-gange-logo.webp"
                       alt="Namo Gange"
                       fill
-                      sizes="280px"
+                      sizes="235px"
                       className="object-contain"
                     />
+
+                    {/* COVER ORIGINAL BLUE TAGLINE */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-1/2 z-10 h-[17px] w-[215px] -translate-x-1/2 bg-[#00472F]"
+                    />
+
+                    {/* WHITE TAGLINE */}
+                    <p className="absolute bottom-[1px] left-1/2 z-20 w-full -translate-x-1/2 whitespace-nowrap text-center text-[10px] font-semibold uppercase tracking-[0.03em] text-white">
+                      A Journey To Healthy World...
+                    </p>
                   </div>
 
-                  <div className="mt-[4px] flex items-center gap-[11px]">
-                    <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-full bg-white">
+                  <div className="mt-[0px] flex items-center justify-center gap-[9px]">
+                    <div className="relative mt-4 h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full bg-white">
                       <Image
                         src="/hero-images/namo-gange-logo.png"
-                        alt=""
+                        alt="Namo Gange Trust"
                         fill
-                        sizes="60px"
+                        sizes="57px"
                         className="object-contain p-[3px]"
                       />
                     </div>
 
                     <div>
-
-                      <p className="mt-[2px] text-[16px] leading-[1.22] text-white/90">
+                      <p className="mt-[4px] text-[13px] leading-[1.2] text-white/90">
                         Committed to Service,
                         <br />
                         Sustainability and
@@ -600,99 +463,54 @@ export default function TrustTransparency() {
             </div>
           </div>
 
-          {/* =================================================
-              RIGHT COLUMN
-          ================================================= */}
-
+          {/* RIGHT COLUMN */}
           <div className="flex flex-col">
-
             {/* QUOTE */}
-
             <div className="mx-auto w-full text-center">
               <div className="flex items-start justify-center">
-                <span className="-mt-[5px] mr-[15px] font-serif text-[52px] leading-none text-[#DFAC48]">
+                <span className="-mt-[8px] mr-[15px] font-serif text-[52px] leading-none text-[#DFAC48]">
                   “
                 </span>
 
-                <p className="pt-[5px] text-[18px] font-medium leading-[1.32] text-[#30343A]">
+                <p className="pt-[4px] text-[18px] font-medium leading-[1.28] text-[#30343A]">
                   We believe in being open, accountable and answerable
                   <br />
                   to all those who walk with us in this mission.
                 </p>
 
-                <span className="-mt-[5px] ml-[15px] font-serif text-[52px] leading-none text-[#DFAC48]">
+                <span className="-mt-[8px] ml-[15px] font-serif text-[52px] leading-none text-[#DFAC48]">
                   ”
                 </span>
               </div>
 
-              <div className="mx-auto mt-[5px] flex max-w-[315px] items-center gap-[7px]">
+              <div className="mx-auto mt-[3px] flex max-w-[315px] items-center gap-[7px]">
                 <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D8B76D]" />
-
                 <span className="h-[8px] w-[8px] rounded-full bg-[#B87A08]" />
-
                 <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D8B76D]" />
               </div>
             </div>
 
-            {/* FOUR CARDS */}
-
-            <div className="mt-[14px] grid grid-cols-1 gap-[12px] sm:grid-cols-2 xl:grid-cols-4">
+            {/* 4 CARDS */}
+            <div className="mt-[13px] grid grid-cols-1 gap-[12px] sm:grid-cols-2 xl:grid-cols-4">
               {trustCards.map((card) => (
                 <article
                   key={card.title}
-                  className="
-                    flex
-                    min-h-[277px]
-                    flex-col
-                    items-center
-                    rounded-[13px]
-                    border
-                    border-[#E1D7CA]
-                    bg-[#FFFDF9]
-                    px-[11px]
-                    pb-[15px]
-                    pt-[15px]
-                    text-center
-                    shadow-[0_5px_14px_rgba(70,47,24,0.07)]
-                  "
+                  className="flex h-[277px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FFFDF9] px-[10px] pb-[15px] pt-[15px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.07)]"
                 >
-                  <div
-                    className="
-                      flex
-                      h-[78px]
-                      w-[78px]
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#004A35]
-                      text-[#DCA624]
-                      shadow-[0_4px_10px_rgba(0,58,40,0.14)]
-                    "
-                  >
+                  <div className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-[#004A35] text-[#DCA624] shadow-[0_4px_10px_rgba(0,58,40,0.14)]">
                     <CustomIcon
                       name={card.icon}
-                      className="h-[49px] w-[49px]"
+                      className="h-[48px] w-[48px]"
                     />
                   </div>
 
-                  <h3
-                    className="
-                      mt-[8px]
-                      whitespace-pre-line
-                      font-serif
-                      text-[18px]
-                      font-semibold
-                      leading-[1.1]
-                      text-[#094B35]
-                    "
-                  >
+                  <h3 className="mt-[8px] whitespace-pre-line font-serif text-[18px] font-semibold leading-[1.08] text-[#094B35]">
                     {card.title}
                   </h3>
 
                   <span className="mt-[7px] h-px w-[35px] bg-[#C89537]" />
 
-                  <p className="mt-[11px] whitespace-pre-line text-[16px] leading-[1.34] text-[#35312D]">
+                  <p className="mt-[10px] whitespace-pre-line text-[14px] leading-[1.36] text-[#35312D]">
                     {card.description}
                   </p>
 
@@ -701,49 +519,22 @@ export default function TrustTransparency() {
               ))}
             </div>
 
-            {/* CTA */}
-
-            <div className="mt-[16px] grid grid-cols-1 gap-[13px] md:grid-cols-[0.58fr_0.42fr] md:items-center">
+            {/* CTA + LEGAL */}
+            <div className="mt-[16px] grid grid-cols-[58%_42%] items-center gap-[13px]">
               <a
                 href="/about"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  flex
-                  min-h-[63px]
-                  items-center
-                  rounded-[8px]
-                  bg-[#00482F]
-                  px-[21px]
-                  text-white
-                  shadow-[0_6px_14px_rgba(0,62,42,0.16)]
-                  transition
-                  hover:bg-[#003C28]
-                "
+                className="group flex h-[64px] items-center rounded-[8px] bg-[#00482F] px-[22px] text-white shadow-[0_6px_14px_rgba(0,62,42,0.16)] transition hover:bg-[#003C28]"
               >
                 <CustomIcon
                   name="Shield"
                   className="h-[42px] w-[42px] shrink-0 text-[#D6A227]"
                 />
 
-                <span className="ml-[15px] text-[18px] font-semibold uppercase">
+                <span className="ml-[15px] whitespace-nowrap text-[17px] font-semibold uppercase">
                   Know About The Trust
                 </span>
 
-                <span
-                  className="
-                    ml-auto
-                    flex
-                    h-[42px]
-                    w-[42px]
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#E0AE38]
-                    text-[#185039]
-                  "
-                >
+                <span className="ml-auto flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#E0AE38] text-[#185039]">
                   <CustomIcon
                     name="ArrowRight"
                     className="h-[21px] w-[21px] transition-transform group-hover:translate-x-[3px]"
@@ -751,17 +542,15 @@ export default function TrustTransparency() {
                 </span>
               </a>
 
-              {/* LEGAL */}
-
-              <div className="relative flex min-h-[63px] items-center py-[8px] pl-[15px]">
-                <span className="absolute left-0 top-[4px] h-[55px] w-px bg-[#D7C49C]" />
+              <div className="relative flex h-[64px] items-center pl-[17px]">
+                <span className="absolute left-0 top-[5px] h-[54px] w-px bg-[#D7C49C]" />
 
                 <CustomIcon
                   name="DocumentShield"
-                  className="h-[47px] w-[47px] shrink-0 text-[#42614F]"
+                  className="h-[45px] w-[45px] shrink-0 text-[#42614F]"
                 />
 
-                <p className="ml-[11px] text-[16px] leading-[1.25] text-[#393E3A]">
+                <p className="ml-[11px] text-[13px] leading-[1.25] text-[#393E3A]">
                   Applicable registration / tax
                   <br />
                   information will be displayed
@@ -773,143 +562,63 @@ export default function TrustTransparency() {
           </div>
         </div>
 
-        {/* =====================================================
-            LOWER AREA
-
-            IMPORTANT:
-            NO MARGIN TOP.
-            Ye upper green ke saath directly touch karega.
-        ====================================================== */}
-
-        <div
-          className="
-            relative
-            -mt-px
-            hidden
-            h-[180px]
-            overflow-hidden
-            bg-[#00472F]
-            xl:block
-          "
-        >
-          {/* =================================================
-              LEFT IMAGE
-              target ke close ~22% width
-          ================================================= */}
-
-          <div
-            className="
-              absolute
-              bottom-0
-              left-0
-              top-0
-              z-[1]
-              w-[23%]
-              overflow-hidden
-            "
-          >
+        {/* LOWER DESKTOP AREA */}
+        <div className="relative -mt-px hidden h-[145px] overflow-hidden bg-[#00472F] xl:block">
+          {/* IMAGE */}
+          <div className="absolute inset-y-0 left-[22px] z-[1] w-[23%] overflow-hidden rounded-l-[30px]">
             <Image
               src="/assets/about-reference/story-ghat-temple.png"
               alt="Sacred river ghat"
               fill
-              sizes="310px"
+              sizes="315px"
               className="object-cover object-center"
             />
           </div>
 
-          {/* =================================================
-              WHITE BEND PANEL
-              Green underneath full hai
-          ================================================= */}
-
+          {/* WHITE CURVED PANEL */}
           <div
-            className="
-              absolute
-              bottom-0
-              right-0
-              top-0
-              z-[2]
-              left-[19%]
-              border
-              border-[#E1D3BE]
-              bg-[#FFFDF8]
-            "
+            className="absolute bottom-0 left-[18%] right-[4px] top-0 z-[2] border border-[#E1D3BE] bg-[#FFFDF8]"
             style={{
-              borderTopLeftRadius: "112px 90px",
-              borderBottomLeftRadius: "112px 90px",
-              borderTopRightRadius: "22px",
-              borderBottomRightRadius: "22px",
+              borderTopLeftRadius: "108px 74px",
+              borderBottomLeftRadius: "108px 74px",
+              borderTopRightRadius: "24px",
+              borderBottomRightRadius: "24px",
             }}
           >
-            {/* TRANSPARENCY CONTENT */}
-
-            <div
-              className="
-                absolute
-                bottom-0
-                left-0
-                top-0
-                flex
-                w-[29%]
-                flex-col
-                justify-center
-                pl-[82px]
-                pr-[16px]
-                py-[14px]
-              "
-            >
-              <h3 className="text-[18px] font-bold leading-[1.2] text-[#174D39] pl-4">
+            {/* TRANSPARENCY TEXT */}
+            <div className="absolute inset-y-0 left-0 flex w-[29%] flex-col justify-center pb-[8px] pl-[96px] pr-[12px] pt-[8px]">
+              <h3 className="text-[16px] font-bold leading-[1.16] text-[#174D39]">
                 Transparency in every step.
               </h3>
 
-              <span className="mt-[6px] h-[2px] w-[39px] shrink-0 bg-[#CB9638] ml-7" />
+              <span className="mt-[5px] h-[2px] w-[38px] bg-[#CB9638]" />
 
-              <p className="mt-[7px] text-[18px] leading-[1.34] text-[#3D3935] pl-8">
+              <p className="mt-[6px] text-[13px] leading-[1.33] text-[#3D3935]">
                 Moksha Sewa follows responsible
                 <br />
-                practices, transparency.
+                practices, transparency and applicable
                 <br />
-
+                legal norms to ensure trust.
               </p>
             </div>
 
             {/* VALUES */}
-
-            <div
-              className="
-                absolute
-                bottom-0
-                right-0
-                top-0
-                grid
-                w-[71%]
-                grid-cols-4
-              "
-            >
+            <div className="absolute inset-y-0 right-0 grid w-[71%] grid-cols-4">
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    border-l
-                    border-[#DCC8A4]
-                    px-[10px]
-                    text-center
-                  "
+                  className="flex flex-col items-center justify-center border-l border-[#DCC8A4] px-[8px] text-center"
                 >
                   <CustomIcon
                     name={value.icon}
-                    className="h-[49px] w-[49px] text-[#15523C]"
+                    className="h-[40px] w-[40px] text-[#15523C]"
                   />
 
-                  <h4 className="mt-[6px] text-[16px] font-bold uppercase leading-[1.15] text-[#15523C]">
+                  <h4 className="mt-[4px] text-[15px] font-bold uppercase leading-[1.15] text-[#15523C]">
                     {value.title}
                   </h4>
 
-                  <p className="mt-[4px] whitespace-pre-line text-[16px] leading-[1.22] text-[#3E3A35]">
+                  <p className="mt-[3px] whitespace-pre-line text-[14px] leading-[1.22] text-[#3E3A35]">
                     {value.description}
                   </p>
                 </div>
@@ -917,61 +626,17 @@ export default function TrustTransparency() {
             </div>
           </div>
 
-          {/* =================================================
-              HANDSHAKE
-              Exactly bend ke join par
-          ================================================= */}
-
-          <div
-            className="
-              absolute
-              left-[23%]
-              top-1/2
-              z-[5]
-              flex
-              h-[98px]
-              w-[98px]
-              -translate-x-1/2
-              -translate-y-1/2
-              items-center
-              justify-center
-              rounded-full
-              border-[5px]
-              border-[#E2A633]
-              bg-[#004A35]
-              text-[#DCAA27]
-              shadow-[0_8px_20px_rgba(0,51,35,0.22)]
-            "
-          >
+          {/* HANDSHAKE */}
+          <div className="absolute left-[21%] top-1/2 z-[5] flex h-[94px] w-[94px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-[#E2A633] bg-[#004A35] text-[#DCAA27] shadow-[0_8px_20px_rgba(0,51,35,0.22)]">
             <CustomIcon
               name="Handshake"
-              className="h-[61px] w-[61px]"
+              className="h-[58px] w-[58px]"
             />
           </div>
         </div>
 
-        {/* =====================================================
-            LOWER AREA — MOBILE / TABLET FALLBACK
-            The desktop version above is a hard-coded absolute
-            layout (percentage offsets tuned for a wide canvas),
-            it doesn't stack sanely, so this simpler flex version
-            covers everything below xl instead.
-        ====================================================== */}
-
-        <div
-          className="
-            mt-[14px]
-            flex
-            flex-col
-            gap-[14px]
-            rounded-[16px]
-            border
-            border-[#DED2BF]
-            bg-[#FFFDF8]
-            p-[16px]
-            xl:hidden
-          "
-        >
+        {/* MOBILE / TABLET */}
+        <div className="mt-[14px] flex flex-col gap-[14px] rounded-[16px] border border-[#DED2BF] bg-[#FFFDF8] p-[16px] xl:hidden">
           <div className="flex items-center gap-[14px]">
             <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E2A633]">
               <Image
@@ -981,8 +646,12 @@ export default function TrustTransparency() {
                 sizes="70px"
                 className="object-cover object-center"
               />
+
               <span className="absolute inset-0 flex items-center justify-center bg-[#004A35]/80 text-[#DCAA27]">
-                <CustomIcon name="Handshake" className="h-[34px] w-[34px]" />
+                <CustomIcon
+                  name="Handshake"
+                  className="h-[34px] w-[34px]"
+                />
               </span>
             </div>
 
@@ -990,24 +659,31 @@ export default function TrustTransparency() {
               <h3 className="text-[18px] font-bold leading-[1.2] text-[#174D39]">
                 Transparency in every step.
               </h3>
+
               <span className="mt-[6px] block h-[2px] w-[39px] bg-[#CB9638]" />
             </div>
           </div>
 
           <p className="text-[16px] leading-[1.4] text-[#3D3935]">
-            Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust in every act of service.
+            Moksha Sewa follows responsible practices, transparency and
+            applicable legal norms to ensure trust in every act of service.
           </p>
 
           <div className="grid grid-cols-2 gap-[14px] border-t border-[#DCC8A4] pt-[14px] sm:grid-cols-4">
             {values.map((value) => (
-              <div key={value.title} className="flex flex-col items-center text-center">
+              <div
+                key={value.title}
+                className="flex flex-col items-center text-center"
+              >
                 <CustomIcon
                   name={value.icon}
                   className="h-[38px] w-[38px] text-[#15523C]"
                 />
+
                 <h4 className="mt-[6px] text-[16px] font-bold uppercase leading-[1.15] text-[#15523C]">
                   {value.title}
                 </h4>
+
                 <p className="mt-[4px] whitespace-pre-line text-[16px] leading-[1.22] text-[#3E3A35]">
                   {value.description}
                 </p>
@@ -1016,50 +692,30 @@ export default function TrustTransparency() {
           </div>
         </div>
 
-        {/* =====================================================
-            BOTTOM GREEN STRIP
-        ====================================================== */}
+        {/* BOTTOM STRIP */}
+        <div className="relative flex min-h-[43px] flex-wrap items-center justify-center gap-y-2 bg-[#00472F] px-[16px] py-[9px] text-center text-[13px] font-semibold text-[#F2E7C9]">
+          <span className="hidden h-px w-[170px] bg-gradient-to-r from-transparent to-[#D2A030] sm:block" />
 
-        <div
-          className="
-            relative
-            flex
-            min-h-[43px]
-            flex-wrap
-            items-center
-            justify-center
-            gap-y-2
-            bg-[#00472F]
-            px-[16px]
-            py-[10px]
-            text-center
-            text-[16px]
-            font-semibold
-            text-[#F2E7C9]
-          "
-        >
-          <span className="hidden h-px w-[145px] bg-gradient-to-r from-transparent to-[#D2A030] sm:block" />
-
-          <span className="mx-[12px] whitespace-nowrap">
+          <span className="mx-[10px] whitespace-nowrap">
             A mission of compassion.
           </span>
 
-          <span className="h-px w-[31px] bg-[#D2A030]" />
+          <span className="h-px w-[28px] bg-[#D2A030]" />
 
-          <span className="mx-[12px] whitespace-nowrap">
+          <span className="mx-[10px] whitespace-nowrap">
             A commitment to transparency.
           </span>
 
           <CustomIcon
             name="Lotus"
-            className="mx-[6px] h-[22px] w-[22px] shrink-0 text-[#D1A02B]"
+            className="mx-[4px] h-[19px] w-[19px] shrink-0 text-[#D1A02B]"
           />
 
-          <span className="mx-[12px] whitespace-nowrap">
+          <span className="mx-[10px] whitespace-nowrap">
             A promise of accountability.
           </span>
 
-          <span className="hidden h-px w-[145px] bg-gradient-to-l from-transparent to-[#D2A030] sm:block" />
+          <span className="hidden h-px w-[170px] bg-gradient-to-l from-transparent to-[#D2A030] sm:block" />
         </div>
       </div>
     </section>
