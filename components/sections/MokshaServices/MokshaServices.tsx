@@ -497,7 +497,7 @@ const MokshaServices: React.FC = () => {
                 src="/assets/about-optimized/moksha_services_button.png"
                 alt="Explore Our Sewa"
                 width={360}
-                height={82}
+                height={42}
                 className="h-auto w-full max-w-[360px] object-contain"
               />
 
