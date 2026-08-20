@@ -107,6 +107,8 @@ function Contact() {
     message: string;
   }>({ type: null, message: "" });
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [activeMapIndex, setActiveMapIndex] = useState(0);
+  const activeMapLocation = officeLocations[activeMapIndex];
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -716,33 +718,54 @@ function Contact() {
               </div>
 
               {/* MAP */}
-              <div className="group relative min-h-[360px] overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_14px_42px_rgba(69,45,28,0.08)]">
-                <iframe
-                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                    HEAD_OFFICE_QUERY,
-                  )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full grayscale-[0.08] transition duration-500 group-hover:grayscale-0"
-                  title="Head office location on map"
-                />
+              <div className="group relative flex min-h-[360px] flex-col overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_14px_42px_rgba(69,45,28,0.08)]">
+                {/* LOCATION TOGGLE */}
+                <div className="relative z-10 flex shrink-0 border-b border-[#E7D9C7] bg-white">
+                  {officeLocations.map((location, index) => (
+                    <button
+                      key={location.city}
+                      type="button"
+                      onClick={() => setActiveMapIndex(index)}
+                      className={`flex-1 px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                        activeMapIndex === index
+                          ? "bg-[#8B6A3E] text-white"
+                          : "bg-white text-[#7C6249] hover:bg-[#F4EDE3]"
+                      }`}
+                    >
+                      {location.city}
+                    </button>
+                  ))}
+                </div>
 
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2C1810]/16 to-transparent" />
+                <div className="relative flex-1">
+                  <iframe
+                    key={activeMapLocation.city}
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      activeMapLocation.mapQuery,
+                    )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full grayscale-[0.08] transition duration-500 group-hover:grayscale-0"
+                    title={`${activeMapLocation.city} location on map`}
+                  />
 
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(
-                    HEAD_OFFICE_QUERY,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-semibold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
-                >
-                  <FaDirections className="h-3.5 w-3.5" />
-                  Open in Maps
-                </a>
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2C1810]/16 to-transparent" />
+
+                  <a
+                    href={`https://maps.google.com/?q=${encodeURIComponent(
+                      activeMapLocation.mapQuery,
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-semibold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
+                  >
+                    <FaDirections className="h-3.5 w-3.5" />
+                    Open in Maps
+                  </a>
+                </div>
               </div>
             </div>
 
