@@ -14,11 +14,13 @@ export default function UnclaimedBodyHero() {
         <div
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-no-repeat lg:block"
           style={{
-            backgroundImage: "url('/assets/unclaimed-body/unclaimed-hero.png')",
-            backgroundSize: "100% 100%",
+            backgroundImage:
+              "url('/assets/unclaimed-body/first.png')",
+            backgroundSize: "cover",
             backgroundPosition: "right center",
           }}
         />
+
         <div
           className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[63%] lg:block"
           style={{
@@ -29,24 +31,36 @@ export default function UnclaimedBodyHero() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-10 lg:px-0 lg:pt-14">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
-            <UBSIcon name="Lotus" className="h-8 w-8 text-[#b67c22]" />
+            <UBSIcon
+              name="Lotus"
+              className="h-8 w-8 text-[#b67c22]"
+            />
             Unclaimed Body Sewa
           </div>
 
           <h1
             className="mt-2 text-[40px] font-medium leading-[1.02] text-[#064335] sm:text-[48px] lg:text-[54px]"
-            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            style={{
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
           >
             Unclaimed Body Sewa
             <br />
             With Dignity &amp;
             <br />
-            <span className="text-[#b87a16]">Responsible Support</span>
+            <span className="text-[#b87a16]">
+              Responsible Support
+            </span>
           </h1>
 
           <div className="mt-2 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
             <span className="h-px flex-1 bg-[#c59b56]" />
-            <UBSIcon name="Lotus" className="h-7 w-7" />
+
+            <UBSIcon
+              name="Lotus"
+              className="h-7 w-7"
+            />
+
             <span className="h-px flex-1 bg-[#c59b56]" />
           </div>
 
@@ -62,32 +76,60 @@ export default function UnclaimedBodyHero() {
           </p>
 
           <div className="mt-3 flex flex-wrap gap-3">
-            <a href="#request-unclaimed-help" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white">
+            <a
+              href="#request-unclaimed-help"
+              className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white"
+            >
               Request Sewa Help
-              <UBSIcon name="ArrowRight" className="h-6 w-6 text-[#d3a03b]" />
+
+              <UBSIcon
+                name="ArrowRight"
+                className="h-6 w-6 text-[#d3a03b]"
+              />
             </a>
-            <a href="/about" target="_blank" rel="noopener noreferrer" className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] border border-[#c9a66b] bg-[#fffaf2]/90 px-6 text-[16px] font-bold uppercase text-[#16483a]">
+
+            <a
+              href="/about"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] border border-[#c9a66b] bg-[#fffaf2]/90 px-6 text-[16px] font-bold uppercase text-[#16483a]"
+            >
               How The Sewa Works
-              <UBSIcon name="ArrowRight" className="h-6 w-6" />
+
+              <UBSIcon
+                name="ArrowRight"
+                className="h-6 w-6"
+              />
             </a>
           </div>
 
           <div className="mt-3 grid max-w-[760px] grid-cols-2 gap-2 sm:grid-cols-4">
             {proof.map(([icon, label]) => (
-              <div key={label} className="flex items-center gap-3 rounded-[8px] bg-[#fffdf7]/80 px-3 py-3">
-                <UBSIcon name={icon} className="h-7 w-7 shrink-0 text-[#0c4c3b]" />
-                <span className="text-[16px] font-semibold text-[#3d4443]">{label}</span>
+              <div
+                key={label}
+                className="flex items-center gap-3 rounded-[8px] bg-[#fffdf7]/80 px-3 py-3"
+              >
+                <UBSIcon
+                  name={icon}
+                  className="h-7 w-7 shrink-0 text-[#0c4c3b]"
+                />
+
+                <span className="text-[16px] font-semibold text-[#3d4443]">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
+        {/* MOBILE HERO BACKGROUND */}
         <div
           className="h-[380px] bg-no-repeat lg:hidden"
           style={{
-            backgroundImage: "url('/assets/unclaimed-body/unclaimed-hero.png')",
-            backgroundSize: "100% 100%",
-            backgroundPosition: "center",
+            backgroundImage:
+              "url('/assets/unclaimed-body/unclaimed-hero-bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "right center",
           }}
         />
       </div>
