@@ -244,7 +244,7 @@ const trustCards = [
     icon: "Shield",
     title: "Governance &\nPolicies",
     description:
-      "Understand our governance, policies, ethical standards, accountability,  and processes clearly.",
+      "Understand our governance, policies, ethical standards, accountability, and processes clearly.",
   },
   {
     icon: "Report",
@@ -285,7 +285,7 @@ const values = [
 
 export default function TrustTransparency() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF7EF] px-4 pb-0 pt-[18px]">
+    <section className="relative w-full overflow-hidden bg-[#FAF5EE] px-4 pb-0 pt-[18px]">
       {/* BACKGROUND TEXTURE */}
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
@@ -372,7 +372,7 @@ export default function TrustTransparency() {
             </p>
 
             {/* GREEN BRAND CARD */}
-            <div className="relative mt-[14px] h-[212px] overflow-hidden rounded-tl-[48px] rounded-tr-[24px] bg-[#00472F] text-white shadow-[0_7px_18px_rgba(0,59,40,0.16)]">
+            <div className="relative mt-[14px] h-[212px] overflow-hidden rounded-tl-[48px] rounded-tr-[24px] bg-[#02311E] text-white shadow-[0_7px_18px_rgba(0,59,40,0.16)]">
               <CustomIcon
                 name="Lotus"
                 className="pointer-events-none absolute -bottom-[34px] -left-[24px] h-[150px] w-[150px] text-white/[0.025]"
@@ -406,7 +406,7 @@ export default function TrustTransparency() {
                   </div>
                 </div>
 
-                {/* ORIGINAL VERTICAL LINE */}
+                {/* VERTICAL LINE */}
                 <span className="h-[168px] w-px bg-[#D69A20]/55" />
 
                 {/* NAMO GANGE */}
@@ -415,7 +415,6 @@ export default function TrustTransparency() {
                     An Initiative Of
                   </p>
 
-                  {/* NAMO GANGE LOGO */}
                   <div className="relative mx-auto mt-[1px] h-[73px] w-full max-w-[235px]">
                     <Image
                       src="/hero-images/namo-gange-logo.webp"
@@ -425,13 +424,11 @@ export default function TrustTransparency() {
                       className="object-contain"
                     />
 
-                    {/* COVER ORIGINAL BLUE TAGLINE */}
                     <div
                       aria-hidden="true"
-                      className="absolute bottom-0 left-1/2 z-10 h-[17px] w-[215px] -translate-x-1/2 bg-[#00472F]"
+                      className="absolute bottom-0 left-1/2 z-10 h-[17px] w-[215px] -translate-x-1/2 bg-[#02311E]"
                     />
 
-                    {/* WHITE TAGLINE */}
                     <p className="absolute bottom-[1px] left-1/2 z-20 w-full -translate-x-1/2 whitespace-nowrap text-center text-[10px] font-semibold uppercase tracking-[0.03em] text-white">
                       A Journey To Healthy World...
                     </p>
@@ -490,21 +487,21 @@ export default function TrustTransparency() {
               </div>
             </div>
 
-            {/* 4 CARDS */}
+            {/* 4 CARDS - SAME BACKGROUND AS MAIN SECTION */}
             <div className="mt-[13px] grid grid-cols-1 gap-[12px] sm:grid-cols-2 xl:grid-cols-4">
               {trustCards.map((card) => (
                 <article
                   key={card.title}
-                  className="flex h-[277px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FFFDF9] px-[10px] pb-[15px] pt-[15px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.07)]"
+                  className="flex h-[277px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FAF5EE] px-[10px] pb-[15px] pt-[15px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.045)]"
                 >
-                  <div className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-[#004A35] text-[#DCA624] shadow-[0_4px_10px_rgba(0,58,40,0.14)]">
+                  <div className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-[#02311E] text-[#D8A326] shadow-[0_4px_10px_rgba(0,58,40,0.14)]">
                     <CustomIcon
                       name={card.icon}
                       className="h-[48px] w-[48px]"
                     />
                   </div>
 
-                  <h3 className="mt-[8px] whitespace-pre-line font-serif text-[18px] font-semibold leading-[1.08] text-[#094B35]">
+                  <h3 className="mt-[8px] whitespace-pre-line font-serif text-[18px] font-semibold leading-[1.08] text-[#0A4936]">
                     {card.title}
                   </h3>
 
@@ -523,7 +520,7 @@ export default function TrustTransparency() {
             <div className="mt-[16px] grid grid-cols-[58%_42%] items-center gap-[13px]">
               <a
                 href="/about"
-                className="group flex h-[64px] items-center rounded-[8px] bg-[#00482F] px-[22px] text-white shadow-[0_6px_14px_rgba(0,62,42,0.16)] transition hover:bg-[#003C28]"
+                className="group flex h-[64px] items-center rounded-[8px] bg-[#02311E] px-[22px] text-white shadow-[0_6px_14px_rgba(0,62,42,0.16)] transition hover:bg-[#01291A]"
               >
                 <CustomIcon
                   name="Shield"
@@ -534,7 +531,7 @@ export default function TrustTransparency() {
                   Know About The Trust
                 </span>
 
-                <span className="ml-auto flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#E0AE38] text-[#185039]">
+                <span className="ml-auto flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#DFAE3B] text-[#174A36]">
                   <CustomIcon
                     name="ArrowRight"
                     className="h-[21px] w-[21px] transition-transform group-hover:translate-x-[3px]"
@@ -563,9 +560,9 @@ export default function TrustTransparency() {
         </div>
 
         {/* LOWER DESKTOP AREA */}
-        <div className="relative -mt-px hidden h-[145px] overflow-hidden bg-[#00472F] xl:block">
+        <div className="relative -mt-px hidden h-[145px] overflow-hidden bg-[#FAF5EE] xl:block">
           {/* IMAGE */}
-          <div className="absolute inset-y-0 left-[22px] z-[1] w-[23%] overflow-hidden rounded-l-[30px]">
+          <div className="absolute bottom-[3px] left-[18px] top-[3px] z-[1] w-[23%] overflow-hidden rounded-[29px] border border-[#D6A13A]">
             <Image
               src="/assets/about-reference/story-ghat-temple.png"
               alt="Sacred river ghat"
@@ -575,9 +572,9 @@ export default function TrustTransparency() {
             />
           </div>
 
-          {/* WHITE CURVED PANEL */}
+          {/* WARM CURVED PANEL */}
           <div
-            className="absolute bottom-0 left-[18%] right-[4px] top-0 z-[2] border border-[#E1D3BE] bg-[#FFFDF8]"
+            className="absolute bottom-[3px] left-[18%] right-[2px] top-[3px] z-[2] border border-[#E4D6C1] bg-[#FAF6F0]"
             style={{
               borderTopLeftRadius: "108px 74px",
               borderBottomLeftRadius: "108px 74px",
@@ -607,11 +604,11 @@ export default function TrustTransparency() {
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="flex flex-col items-center justify-center border-l border-[#DCC8A4] px-[8px] text-center"
+                  className="flex flex-col items-center justify-center border-l border-[#E0CEAD] px-[8px] text-center"
                 >
                   <CustomIcon
                     name={value.icon}
-                    className="h-[40px] w-[40px] text-[#15523C]"
+                    className="h-[36px] w-[36px] text-[#15523C]"
                   />
 
                   <h4 className="mt-[4px] text-[15px] font-bold uppercase leading-[1.15] text-[#15523C]">
@@ -627,16 +624,16 @@ export default function TrustTransparency() {
           </div>
 
           {/* HANDSHAKE */}
-          <div className="absolute left-[21%] top-1/2 z-[5] flex h-[94px] w-[94px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-[#E2A633] bg-[#004A35] text-[#DCAA27] shadow-[0_8px_20px_rgba(0,51,35,0.22)]">
+          <div className="absolute left-[21%] top-1/2 z-[5] flex h-[90px] w-[90px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[4px] border-[#DFA52F] bg-[#02311E] text-[#DCA725] shadow-[0_6px_16px_rgba(0,49,31,0.18)]">
             <CustomIcon
               name="Handshake"
-              className="h-[58px] w-[58px]"
+              className="h-[52px] w-[52px]"
             />
           </div>
         </div>
 
         {/* MOBILE / TABLET */}
-        <div className="mt-[14px] flex flex-col gap-[14px] rounded-[16px] border border-[#DED2BF] bg-[#FFFDF8] p-[16px] xl:hidden">
+        <div className="mt-[14px] flex flex-col gap-[14px] rounded-[16px] border border-[#E3D5C1] bg-[#FAF6F0] p-[16px] xl:hidden">
           <div className="flex items-center gap-[14px]">
             <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E2A633]">
               <Image
@@ -647,7 +644,7 @@ export default function TrustTransparency() {
                 className="object-cover object-center"
               />
 
-              <span className="absolute inset-0 flex items-center justify-center bg-[#004A35]/80 text-[#DCAA27]">
+              <span className="absolute inset-0 flex items-center justify-center bg-[#02311E]/80 text-[#DCAA27]">
                 <CustomIcon
                   name="Handshake"
                   className="h-[34px] w-[34px]"
@@ -693,7 +690,7 @@ export default function TrustTransparency() {
         </div>
 
         {/* BOTTOM STRIP */}
-        <div className="relative flex min-h-[43px] flex-wrap items-center justify-center gap-y-2 bg-[#00472F] px-[16px] py-[9px] text-center text-[13px] font-semibold text-[#F2E7C9]">
+        <div className="relative flex min-h-[43px] flex-wrap items-center justify-center gap-y-2 bg-[#02311E] px-[16px] py-[9px] text-center text-[13px] font-semibold text-[#F2E7C9]">
           <span className="hidden h-px w-[170px] bg-gradient-to-r from-transparent to-[#D2A030] sm:block" />
 
           <span className="mx-[10px] whitespace-nowrap">
