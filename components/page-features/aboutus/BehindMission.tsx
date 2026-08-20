@@ -6,6 +6,7 @@ import {
   FaArrowRight,
   FaExpand,
   FaPlay,
+  FaVolumeMute,
   FaVolumeUp,
 } from "react-icons/fa";
 import {
@@ -26,12 +27,40 @@ const missionLinks = [
 export default function BehindMission() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const mountedRef = useRef(false);
+  const hasAutoUnmutedRef = useRef(false);
   const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+    };
+  }, []);
+  useEffect(() => {
+    // Only real user-gesture events (click/tap/key) count toward a browser's
+    // "user activation" — a scroll event does not, and unmuting off one gets
+    // the browser to silently pause playback instead of allowing audio.
+    const unmuteOnFirstInteraction = () => {
+      if (hasAutoUnmutedRef.current) return;
+      hasAutoUnmutedRef.current = true;
+      const video = videoRef.current;
+      if (video) {
+        video.muted = false;
+        if (video.paused) void video.play();
+      }
+      if (mountedRef.current) setMuted(false);
+    };
+
+    const events: (keyof DocumentEventMap)[] = ["click", "touchstart", "keydown"];
+    events.forEach((event) =>
+      document.addEventListener(event, unmuteOnFirstInteraction, { once: true, passive: true }),
+    );
+
+    return () => {
+      events.forEach((event) =>
+        document.removeEventListener(event, unmuteOnFirstInteraction),
+      );
     };
   }, []);
 
@@ -50,6 +79,14 @@ export default function BehindMission() {
       video.pause();
       updatePlaying(false);
     }
+  };
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    hasAutoUnmutedRef.current = true;
+    video.muted = !video.muted;
+    setMuted(video.muted);
   };
 
   return (
@@ -134,6 +171,7 @@ export default function BehindMission() {
                 className="h-full w-full object-cover"
                 poster="/hero-images/support-mission-ghat.png"
                 autoPlay
+                muted={muted}
                 loop
                 playsInline
                 preload="auto"
@@ -179,7 +217,17 @@ export default function BehindMission() {
                   <span className="absolute left-[35%] top-1/2 h-2.5 w-2.5 -translate-y-1/2 bg-[#E9C466]" />
                 </span>
 
-                <FaVolumeUp className="h-4 w-4" />
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  aria-label={muted ? "Unmute video" : "Mute video"}
+                >
+                  {muted ? (
+                    <FaVolumeMute className="h-4 w-4" />
+                  ) : (
+                    <FaVolumeUp className="h-4 w-4" />
+                  )}
+                </button>
                 <span className="text-[16px]">⚙</span>
                 <FaExpand className="h-4 w-4" />
               </div>

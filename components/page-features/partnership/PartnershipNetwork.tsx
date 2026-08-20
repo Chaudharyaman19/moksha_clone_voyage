@@ -11,7 +11,7 @@ const leftGroups = [
   {
     icon: "Community" as const,
     title: "NGOs &\nCommunity Networks",
-    text: "Strengthen community reach,\nreferrals and humanitarian\ncoordination.",
+    text: "Strengthen community reach,\nreferrals and humanitarian\ncoordination for families.",
   },
 ];
 
@@ -19,7 +19,7 @@ const rightGroups = [
   {
     icon: "Gear" as const,
     title: "Service & Professional\nPartners",
-    text: "Contribute relevant logistics,\nfinal-journey services, professional\nexpertise or operational capabilities.",
+    text: "Contribute logistics and\nfinal-journey services or\nrelevant professional expertise.",
   },
   {
     icon: "Volunteer" as const,
