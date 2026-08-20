@@ -140,35 +140,44 @@ export default function CSRHero() {
             className="
               flex
               items-center
-              gap-[12px]
+              justify-center
+              gap-[8px]
 
-              text-[16px]
+              text-[14px]
               font-bold
               uppercase
               tracking-[0.08em]
 
               text-[#A86E20]
+
+              sm:justify-start
+              sm:gap-[12px]
+              sm:text-[16px]
             "
           >
             <span
               className="
                 h-px
-                w-[62px]
+                w-[28px]
                 shrink-0
                 bg-[#BF8B37]
+
+                sm:w-[62px]
               "
             />
 
-            <span className="whitespace-nowrap">
+            <span className="text-center leading-[1.25] sm:whitespace-nowrap">
               Corporate Social Responsibility
             </span>
 
             <span
               className="
                 h-px
-                w-[62px]
+                w-[28px]
                 shrink-0
                 bg-[#BF8B37]
+
+                sm:w-[62px]
               "
             />
           </div>
