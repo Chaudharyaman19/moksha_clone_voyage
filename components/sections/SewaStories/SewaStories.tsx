@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import type { ReactElement } from "react";
 
 interface IconProps {
@@ -165,6 +168,7 @@ const CustomIcon = ({
 
 interface StoryCard {
   image: string;
+  images?: string[];
   icon: string;
   title: string;
   location: string;
@@ -175,6 +179,10 @@ interface StoryCard {
 const stories: StoryCard[] = [
   {
     image: "/assets/about-optimized/family-support.webp",
+    images: [
+      "/assets/sewa-stories/family-support-1.jpg",
+      "/assets/sewa-stories/family-support-2.jpg",
+    ],
     icon: "FamilyHands",
     title: "ECONOMICALLY WEAKER FAMILY",
     location: "Delhi • Ghaziabad • Noida",
@@ -189,6 +197,11 @@ const stories: StoryCard[] = [
 
   {
     image: "/assets/about-optimized/hearse-van.webp",
+    images: [
+      "/assets/sewa-stories/elderly-support-1.jpg",
+      "/assets/sewa-stories/elderly-support-2.jpg",
+      "/assets/sewa-stories/elderly-support-3.jpg",
+    ],
     icon: "ElderlyCare",
     title: "ELDERLY WITHOUT SUPPORT",
     location: "Ghaziabad, UP",
@@ -215,6 +228,56 @@ const stories: StoryCard[] = [
       "A legally authorised unclaimed body was given a respectful last journey by our team with complete dignity and proper rituals.",
   },
 ];
+
+function StoryImage({
+  image,
+  images,
+  alt,
+}: {
+  image: string;
+  images?: string[];
+  alt: string;
+}) {
+  const slides = images && images.length > 1 ? images : [image];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % slides.length);
+    }, 3500);
+
+    return () => window.clearInterval(timer);
+  }, [slides.length]);
+
+  return (
+    <>
+      {slides.map((src, index) => (
+        <Image
+          key={src}
+          src={src}
+          alt={alt}
+          fill
+          quality={95}
+          sizes="
+            (max-width:768px) 100vw,
+            (max-width:1024px) 50vw,
+            33vw
+          "
+          className={`
+            object-cover
+            object-center
+            transition-opacity
+            duration-700
+            ease-in-out
+            ${index === activeIndex ? "opacity-100" : "opacity-0"}
+          `}
+        />
+      ))}
+    </>
+  );
+}
 
 const backgroundPattern = {
   backgroundImage:
@@ -443,8 +506,8 @@ export default function SewaStories() {
             <article
               key={story.title}
               className="
+                group
                 flex
-                h-[455px]
                 flex-col
                 overflow-hidden
                 rounded-[11px]
@@ -461,25 +524,15 @@ export default function SewaStories() {
               <div
                 className="
                   relative
-                  h-[190px]
+                  h-[300px]
                   shrink-0
                   overflow-hidden
                 "
               >
-                <Image
-                  src={story.image}
+                <StoryImage
+                  image={story.image}
+                  images={story.images}
                   alt={story.title}
-                  fill
-                  quality={95}
-                  sizes="
-                    (max-width:768px) 100vw,
-                    (max-width:1024px) 50vw,
-                    33vw
-                  "
-                  className="
-                    object-cover
-                    object-center
-                  "
                 />
 
                 <div
@@ -525,6 +578,43 @@ export default function SewaStories() {
                   />
 
                   Verified Case
+                </div>
+
+                {/* DESCRIPTION — hidden until hover, so the photo
+                    shows in full by default */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-0
+                    bottom-0
+                    translate-y-full
+                    bg-gradient-to-t
+                    from-black/92
+                    via-black/70
+                    to-transparent
+                    px-[16px]
+                    pb-[14px]
+                    pt-[34px]
+                    opacity-0
+                    transition-all
+                    duration-500
+                    ease-out
+                    group-hover:translate-y-0
+                    group-hover:opacity-100
+                    group-hover:pointer-events-auto
+                  "
+                >
+                  <p
+                    className="
+                      text-[15px]
+                      leading-[1.45]
+                      text-white
+                    "
+                  >
+                    {story.description}
+                  </p>
                 </div>
               </div>
 
@@ -684,19 +774,6 @@ export default function SewaStories() {
                     />
                   </span>
                 </div>
-
-                {/* DESCRIPTION */}
-
-                <p
-                  className="
-                    mt-[13px]
-                    text-[16px]
-                    leading-[1.45]
-                    text-[#3B3936]
-                  "
-                >
-                  {story.description}
-                </p>
               </div>
             </article>
           ))}
