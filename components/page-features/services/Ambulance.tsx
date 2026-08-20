@@ -296,7 +296,7 @@ function HowItWorks() {
         {steps.map((step, index) => (
           <div className="relative" key={step.title}>
             <article className="relative h-full min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
-              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+              <span className="absolute -top-[19px] left-1/2 grid size-[34px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
                 {index + 1}
               </span>
 

@@ -190,11 +190,11 @@ export default function FamilySupport() {
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-7xl px-4 pb-1 pt-1 lg:px-0">
           <div className="mb-1 text-center">
-            <h2 className="py-[20px] font-serif text-[30px] text-[#3A2418]">
+            <h2 className="pt-[20px] font-serif text-[30px] text-[#3A2418]">
               How We Extend Our Help
             </h2>
 
-            <div className="mx-auto mt-3 h-1 w-24 rounded-full bg-[#DCC4A5]" />
+            <div className="mx-auto mt-3 mb-4 h-1 w-24 rounded-full bg-[#DCC4A5]" />
           </div>
 
           <div className="relative flex flex-col items-stretch justify-between gap-1 pt-1 md:flex-row md:gap-1 lg:gap-1">
@@ -202,7 +202,7 @@ export default function FamilySupport() {
               num={1}
               icon={<FaPhoneAlt size={22} />}
               title="Contact Us"
-              desc="Reach out through our 24x7 helpline whenever your family needs post-cremation assistance."
+              desc="Reach out through our 24x7 helpline whenever your family needs help."
             />
 
             <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
@@ -213,7 +213,7 @@ export default function FamilySupport() {
               num={2}
               icon={<FaCommentDots size={22} />}
               title="Needs Assessment"
-              desc="We carefully understand your family's specific emotional, practical and financial support needs."
+              desc="We understand your family's emotional, practical and financial needs."
             />
 
             <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
@@ -224,7 +224,7 @@ export default function FamilySupport() {
               num={3}
               icon={<FaClipboardCheck size={22} />}
               title="Arrange Support"
-              desc="We coordinate meals, important paperwork and compassionate family support based on the case."
+              desc="We arrange meals, paperwork and compassionate support for your family."
             />
 
             <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
@@ -235,7 +235,7 @@ export default function FamilySupport() {
               num={4}
               icon={<FaUsers size={22} />}
               title="Ongoing Care"
-              desc="Our support continues beyond the cremation ground with guidance and compassionate assistance."
+              desc="Our support continues beyond the cremation ground with care each step."
             />
           </div>
         </section>
@@ -494,7 +494,7 @@ function StepCard({
   desc: string;
 }) {
   return (
-    <div className="relative z-10 mx-auto flex h-full w-full max-w-[260px] flex-col items-center rounded-none border border-[#E8DCC8] bg-white p-6 text-center shadow-sm transition-colors duration-300 hover:border-[#DCC4A5]">
+    <div className="relative z-10 mx-auto flex h-full min-h-[240px] w-full max-w-[260px] flex-1 flex-col items-center rounded-none border border-[#E8DCC8] bg-white p-6 text-center shadow-sm transition-colors duration-300 hover:border-[#DCC4A5]">
       <div className="absolute -top-4 left-1/2 z-20 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border-2 border-white bg-[#8B6A3E] text-[20px] font-semibold text-white">
         {num}
       </div>
@@ -503,7 +503,7 @@ function StepCard({
         {icon}
       </div>
 
-      <h3 className="mb-1.5 flex min-h-[69px] items-center justify-center font-serif text-[20px] font-semibold leading-[1.15] text-[#3A2418]">
+      <h3 className="mb-1.5 flex items-center justify-center font-serif text-[20px] font-semibold leading-[1.15] text-[#3A2418]">
         {title}
       </h3>
 

@@ -396,7 +396,7 @@ function FeatureCard({
       />
 
       <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-black/90 via-black/30 to-black/5 p-5 text-center">
-        <h4 className="flex min-h-[69px] items-end justify-center text-[20px] font-semibold leading-[1.15] text-white">
+        <h4 className="flex items-end justify-center text-[20px] font-semibold leading-[1.15] text-white">
           {title}
         </h4>
 
@@ -456,7 +456,7 @@ function MarqueeCircleCard({
         />
       </div>
 
-      <h4 className="flex min-h-[69px] items-center justify-center text-center text-[20px] font-semibold leading-[1.15] text-[#321A10]">
+      <h4 className="flex items-center justify-center text-center text-[20px] font-semibold leading-[1.15] text-[#321A10]">
         {title}
       </h4>
     </div>
@@ -484,7 +484,7 @@ function RoleSquareCard({
       </div>
 
       <div className="flex flex-1 flex-col border-t border-[#E7D5B8]/30 bg-white p-4 text-center">
-        <h4 className="flex min-h-[69px] items-center justify-center text-[20px] font-semibold leading-[1.15] text-[#321A10]">
+        <h4 className="flex items-center justify-center text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
 
@@ -512,7 +512,7 @@ function TrustCard({
       </div>
 
       <div className="flex h-full flex-1 flex-col">
-        <h4 className="min-h-[69px] text-[20px] font-semibold leading-[1.15] text-[#321A10]">
+        <h4 className="text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
 
