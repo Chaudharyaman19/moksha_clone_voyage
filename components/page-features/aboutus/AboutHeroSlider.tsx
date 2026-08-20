@@ -78,6 +78,7 @@ function NewBanner() {
             alt="Moksha Sewa compassionate funeral support"
             fill
             priority
+            sizes="100vw"
             className="object-cover object-center"
           />
         </div>

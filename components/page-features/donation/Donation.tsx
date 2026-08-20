@@ -531,6 +531,7 @@ function Donation() {
                   src="/assets/qr.jpeg"
                   alt="Donate QR"
                   fill
+                  sizes="160px"
                   className="object-cover"
                 />
               </div>
@@ -799,6 +800,7 @@ function Donation() {
                   src="/assets/namo-gange/vol6.png"
                   alt="Moksha Sewa team helping community"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>

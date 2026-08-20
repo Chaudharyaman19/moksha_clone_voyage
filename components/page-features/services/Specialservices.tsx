@@ -35,6 +35,7 @@ export default function FamilySupport() {
               fill
               priority
               quality={100}
+              sizes="100vw"
               className="object-cover object-center"
             />
           </div>
@@ -293,6 +294,7 @@ export default function FamilySupport() {
                         src={src}
                         alt={`Namo Gange Volunteer ${i + 1}`}
                         fill
+                        sizes="300px"
                         className="object-cover transition-transform duration-500 hover:scale-105"
                       />
                     </div>
@@ -362,6 +364,7 @@ export default function FamilySupport() {
                 src="/assets/serving/hospital-support.png"
                 alt="Compassion Support"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -427,6 +430,7 @@ export default function FamilySupport() {
                 src="/assets/serving/counseling-support.png"
                 alt="Donate Support"
                 fill
+                sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover"
               />
 
@@ -460,6 +464,7 @@ function FeatureCard({
         src={imageSrc}
         alt={title}
         fill
+        sizes="240px"
         className="object-cover transition-transform duration-700 group-hover:scale-110"
       />
 

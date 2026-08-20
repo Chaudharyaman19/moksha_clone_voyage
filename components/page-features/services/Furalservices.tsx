@@ -274,6 +274,7 @@ function ArrangeCard({
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 43vw, 14vw"
           className="object-cover"
         />
       </div>

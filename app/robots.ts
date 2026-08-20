@@ -12,6 +12,7 @@ export default function robots(): MetadataRoute.Robots {
           "/track",
           "/donation/history",
           "/volunteer/dashboard",
+          "/mortal-records",
           "/api/",
         ],
       },

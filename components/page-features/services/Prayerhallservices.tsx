@@ -52,6 +52,7 @@ export default function PrayerHallServices() {
               fill
               priority
               quality={100}
+              sizes="100vw"
               className="object-cover object-right"
             />
           </div>
@@ -310,6 +311,7 @@ export default function PrayerHallServices() {
                 src="/assets/prayerhallservices/hero.png"
                 alt="Decorative brass items"
                 fill
+                sizes="20vw"
                 className="object-cover object-bottom opacity-90"
               />
             </div>
@@ -392,6 +394,7 @@ function FeatureCard({
         src={imageSrc}
         alt={title}
         fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
 
@@ -452,6 +455,7 @@ function MarqueeCircleCard({
           src={src}
           alt={title}
           fill
+          sizes="180px"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
@@ -479,6 +483,7 @@ function RoleSquareCard({
           src={src}
           alt={title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

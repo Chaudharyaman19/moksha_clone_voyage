@@ -4,6 +4,7 @@ import Sideicon from "@/components/layout/Sideicon/Sideicon";
 import StoreProvider from "@/store/StoreProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import {
+  DEFAULT_OG_CARD_IMAGE,
   DEFAULT_OG_IMAGE,
   SITE_NAME,
   SITE_URL,
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
+        url: `${SITE_URL}${DEFAULT_OG_CARD_IMAGE}`,
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} logo`,
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
     title: "Moksha Sewa - Humanitarian End-of-Life Support Mission",
     description:
       "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi • Ghaziabad • Noida.",
-    images: [`${SITE_URL}${DEFAULT_OG_IMAGE}`],
+    images: [`${SITE_URL}${DEFAULT_OG_CARD_IMAGE}`],
   },
   icons: {
     icon: DEFAULT_OG_IMAGE,

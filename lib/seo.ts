@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://mokshasewa.org";
 export const SITE_NAME = "Moksha Sewa";
 export const DEFAULT_OG_IMAGE = "/assets/logo-moksha-seva.png";
+export const DEFAULT_OG_CARD_IMAGE = "/assets/og/logo-moksha-seva-og.png";
 
 type RouteSeo = {
   path: string;
@@ -256,7 +257,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "CSR Partnership with Moksha Sewa – For Business",
     description:
       "Partner with Moksha Sewa through CSR support for verified final-rites assistance and dignified humanitarian service.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "CSR partnership with Moksha Sewa",
     keywords: ["CSR partnership", "Moksha Sewa CSR", "corporate social responsibility"],
     priority: 0.65,
@@ -268,7 +269,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Partner With Moksha Sewa – Humanitarian Impact",
     description:
       "Partner with Moksha Sewa as a service provider, organisation or institutional supporter for dignified final-rites assistance.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Partner with Moksha Sewa",
     keywords: ["partner with Moksha Sewa", "Moksha Sewa partnership", "service partner"],
     priority: 0.65,
@@ -280,7 +281,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Privacy Policy – Data Handling",
     description:
       "Read the Moksha Sewa privacy policy for how enquiry, donation, volunteer and assistance request information is handled.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa privacy policy",
     keywords: ["Moksha Sewa privacy policy", "privacy policy"],
     priority: 0.3,
@@ -292,7 +293,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Terms and Conditions for Users",
     description:
       "Read the Moksha Sewa terms and conditions for using the website, requesting assistance, donating and volunteering.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa terms and conditions",
     keywords: ["Moksha Sewa terms", "terms and conditions"],
     priority: 0.3,
@@ -304,7 +305,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Refund Policy – Donation Payments",
     description:
       "Read the Moksha Sewa refund policy for donations, payments and transactions, including when refunds may be considered.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa refund policy",
     keywords: ["Moksha Sewa refund policy", "donation refund", "refund policy"],
     priority: 0.3,
@@ -316,7 +317,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Track Your Moksha Sewa Request Status",
     description:
       "Track your Moksha Sewa request status online using your case details and phone number for real-time updates and support.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Track your Moksha Sewa request status",
     keywords: ["track request", "Moksha Sewa case status"],
     priority: 0.35,
@@ -328,7 +329,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Login",
     title: "Login to Moksha Sewa – Manage Your Account",
     description: "Sign in to Moksha Sewa to manage your service requests, volunteer activities and account details safely and securely.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Login to Moksha Sewa",
     keywords: ["Moksha Sewa login"],
     priority: 0.2,
@@ -340,7 +341,7 @@ export const seoRoutes: RouteSeo[] = [
     label: "Donation History",
     title: "Moksha Sewa Donation History – Your Records",
     description: "View your complete Moksha Sewa donation history with transaction details and contribution records for each donation.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa donation history",
     keywords: ["donation history"],
     priority: 0.1,
@@ -352,9 +353,21 @@ export const seoRoutes: RouteSeo[] = [
     label: "Volunteer Dashboard",
     title: "Moksha Sewa Volunteer Dashboard – My Tasks",
     description: "Moksha Sewa volunteer dashboard for managing assigned requests, tasks and community service activities efficiently.",
-    ogImage: "/assets/logo-moksha-seva.png",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa volunteer dashboard",
     keywords: ["volunteer dashboard"],
+    priority: 0.1,
+    changeFrequency: "yearly",
+    index: false,
+  },
+  {
+    path: "/mortal-records",
+    label: "Mortal Records",
+    title: "Mortal Records – Moksha Sewa",
+    description: "Moksha Sewa mortal records page. This section is being prepared and will be available soon.",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa mortal records",
+    keywords: ["mortal records"],
     priority: 0.1,
     changeFrequency: "yearly",
     index: false,
@@ -376,7 +389,9 @@ export function createPageMetadata(path: string): Metadata {
   const isIndexable = route.index !== false;
   const url = absoluteUrl(route.path);
   const ogImageUrl = absoluteUrl(route.ogImage);
-  const socialTitle = route.path === "/" ? route.title : `${route.title} | ${route.titleSuffix ?? SITE_NAME}`;
+  const suffix = route.titleSuffix ?? SITE_NAME;
+  const skipSuffix = route.path === "/" || (suffix === SITE_NAME && route.title.includes(SITE_NAME));
+  const socialTitle = skipSuffix ? route.title : `${route.title} | ${suffix}`;
 
   return {
     title: { absolute: socialTitle },
