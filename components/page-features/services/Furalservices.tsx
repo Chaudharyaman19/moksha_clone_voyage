@@ -21,25 +21,29 @@ const supportFeatures = [
     image: "/woodrituals/c.webp",
     icon: <FaUsers className="h-8 w-8" />,
     title: "Compassionate Support",
-    description: "Families are never alone",
+    description:
+      "Families receive caring guidance and respectful support throughout the final journey.",
   },
   {
     image: "/woodrituals/timely-arrangements.webp",
     icon: <GiLotusFlower className="h-8 w-8" />,
     title: "Timely Arrangements",
-    description: "Everything reaches on time",
+    description:
+      "Essential ritual materials are coordinated carefully so everything reaches on time.",
   },
   {
     image: "/woodrituals/free-service.webp",
     icon: <FaHandHoldingHeart className="h-8 w-8" />,
     title: "Free Service",
-    description: "No cost for families in need",
+    description:
+      "Eligible families in need receive essential support without additional financial burden.",
   },
   {
     image: "/woodrituals/with-dignity.webp",
     icon: <FaPrayingHands className="h-8 w-8" />,
     title: "With Dignity",
-    description: "Respect for every soul",
+    description:
+      "Every arrangement is handled with respect, compassion and dignity for every soul.",
   },
 ];
 
@@ -49,27 +53,27 @@ const arrangedItems = [
     icon: <GiWoodPile className="h-9 w-9" />,
     title: "Cremation Wood",
     description:
-      "We provide sufficient, dry wood required for a complete and respectful cremation ceremony without any cost.",
+      "We provide sufficient dry wood required for a complete and respectful cremation ceremony, subject to verification and availability.",
   },
   {
     image: "/woodrituals/shroud-flowers.webp",
     icon: <IoFlower className="h-9 w-9" />,
     title: "Shroud & Flowers",
     description:
-      "Pure white shroud cloth (Kafan), garlands, and loose flowers are arranged to honor the departed soul with purity.",
+      "Pure white shroud cloth, garlands and fresh flowers are arranged carefully to honour the departed soul with dignity and purity.",
   },
   {
     image: "/woodrituals/prayer-items.webp",
     icon: <GiCandleHolder className="h-9 w-9" />,
     title: "Prayer Items",
     description:
-      "Ghee, sandalwood, incense, earthen lamps (Diyas), and all necessary Pooja Samagri are carefully put together.",
+      "Ghee, sandalwood, incense, earthen lamps and essential Pooja Samagri are carefully arranged for the final rites and prayers.",
   },
 ];
 
 export default function WoodRitualItemsPage() {
   return (
-    <div className="min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
+    <div className="service-page min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
       <Topbar />
       <Navbar />
 
@@ -87,7 +91,7 @@ export default function WoodRitualItemsPage() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[470px] w-full overflow-hidden lg:min-h-[500px]">
+    <section className="service-banner relative min-h-[470px] w-full overflow-hidden lg:min-h-[500px]">
       <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
         <Image
           src="/woodrituals/hero.webp"
@@ -104,7 +108,7 @@ function HeroSection() {
 
       <div className="relative mx-auto flex min-h-[470px] w-full max-w-7xl items-center px-5 pb-6 pt-4 sm:px-7 lg:min-h-[500px] lg:px-0 lg:pt-4">
         <div className="w-full max-w-[575px]">
-          <div className="mb-1 flex flex-wrap items-center gap-2 text-[14px] text-[#351D12]/85 mt-10">
+          <div className="mb-1 mt-10 flex flex-wrap items-center gap-2 text-[18px] text-[#351D12]/85">
             <span>Moksha Sewa</span>
             <span className="text-[#B67824]">›</span>
             <span>Our Services</span>
@@ -114,23 +118,23 @@ function HeroSection() {
             </span>
           </div>
 
-          <div className="mb-2 flex items-center gap-2 text-[#A96619]">
+          <div className="mb-[2px] flex items-center gap-2 text-[#A96619]">
             <GiLotusFlower className="h-5 w-5" />
 
-            <span className="text-[15px]">
+            <span className="text-[18px]">
               Guided by Dharma. Supported by Compassion.
             </span>
           </div>
 
-          <h1 className="font-serif text-[38px] leading-[1.1] text-[#321A10] sm:text-[46px] lg:text-[52px]">
+          <h1 className="pb-[8px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
             Wood &amp; Ritual Items
           </h1>
 
-          <p className="mt-1 font-serif text-[28px]  leading-tight text-[#A66D2D] md:text-[34px]">
+          <p className="font-serif text-[30px] leading-tight text-[#A66D2D]">
             Arranged With Deep Respect.
           </p>
 
-          <p className="mt-4 max-w-[560px] text-[15px] leading-relaxed text-[#321A10]/90 sm:text-[16px]">
+          <p className="mt-4 max-w-[560px] text-[18px] leading-relaxed text-[#321A10]/90">
             At Moksha Sewa, we understand the financial and emotional burden of
             the final rites. We help eligible families coordinate cremation
             wood, shroud cloth (Kafan), flowers, lamps, and essential prayer
@@ -140,7 +144,7 @@ function HeroSection() {
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <a
               href="/request-help"
-              className="inline-flex min-h-[52px] items-center justify-center gap-3 rounded-[7px] bg-[#A66317] px-7 text-[15px] font-medium text-white shadow-[0_8px_18px_rgba(116,68,18,0.14)] transition hover:bg-[#884E10]"
+              className="inline-flex min-h-[52px] items-center justify-center gap-3 whitespace-nowrap rounded-[7px] bg-[#A66317] px-7 text-[20px] font-medium text-white shadow-[0_8px_18px_rgba(116,68,18,0.14)] transition hover:bg-[#884E10]"
             >
               <FaHandsHelping className="h-5 w-5" />
               Request Wood &amp; Items
@@ -148,7 +152,7 @@ function HeroSection() {
 
             <a
               href="tel:+919999999999"
-              className="inline-flex min-h-[52px] items-center justify-center gap-3 rounded-[7px] border border-[#A66317] bg-[#FBF8F1]/92 px-7 text-[15px] font-medium text-[#72420F] transition hover:bg-white"
+              className="inline-flex min-h-[52px] items-center justify-center gap-3 whitespace-nowrap rounded-[7px] border border-[#A66317] bg-[#FBF8F1]/92 px-7 text-[24px] font-medium text-[#72420F] transition hover:bg-white"
             >
               <FaPhoneAlt className="h-4 w-4" />
               24x7 Helpline
@@ -163,7 +167,7 @@ function HeroSection() {
 function SupportFeatures() {
   return (
     <section className="border-y border-[#EADBC3] bg-[#FCFAF5] py-3">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-3 px-5 sm:grid-cols-2 sm:px-7 lg:grid-cols-4 lg:px-0">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-stretch gap-3 px-5 sm:grid-cols-2 sm:px-7 lg:grid-cols-4 lg:px-0">
         {supportFeatures.map((item) => (
           <SupportFeatureCard key={item.title} {...item} />
         ))}
@@ -184,7 +188,7 @@ function SupportFeatureCard({
   description: string;
 }) {
   return (
-    <article className="overflow-hidden rounded-[10px] border border-[#DDBF95] bg-[#FFFEFB] shadow-[0_4px_14px_rgba(87,53,19,0.05)]">
+    <article className="flex h-full flex-col overflow-hidden rounded-[10px] border border-[#DDBF95] bg-[#FFFEFB] shadow-[0_4px_14px_rgba(87,53,19,0.05)]">
       <div className="relative">
         <div className="relative h-[190px] w-full overflow-hidden">
           <Image
@@ -195,11 +199,9 @@ function SupportFeatureCard({
             className="object-cover object-top"
           />
 
-          {/* Hide baked icon area */}
           <div className="absolute inset-x-0 bottom-0 z-10 h-[34px] bg-[#FFFEFB]" />
         </div>
 
-        {/* Center icon */}
         <div className="absolute bottom-0 left-1/2 z-20 grid h-[60px] w-[60px] -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-[#D7A96B] bg-[#FFFEFB] text-[#9A5618] shadow-[0_3px_8px_rgba(87,53,19,0.1)]">
           <span className="grid h-full w-full place-items-center leading-none [&>svg]:block [&>svg]:h-6 [&>svg]:w-6">
             {icon}
@@ -207,25 +209,26 @@ function SupportFeatureCard({
         </div>
       </div>
 
-      <div className="flex min-h-[102px] flex-col items-center justify-center px-4 pb-3 pt-8 text-center">
-        <h2 className="font-serif text-[15px] leading-[1.3] text-[#3C1E10]">
+      <div className="flex flex-1 flex-col items-center px-4 pb-4 pt-8 text-center">
+        <h2 className="flex min-h-[69px] items-center justify-center font-serif text-[30px] leading-[1.15] text-[#3C1E10]">
           {title}
         </h2>
 
-        <p className="mt-[3px] text-[14px] leading-snug text-[#4B2F23]/80">
+        <p className="mt-[3px] flex-1 text-[18px] leading-relaxed text-[#4B2F23]/80">
           {description}
         </p>
       </div>
     </article>
   );
 }
+
 function ArrangeSection() {
   return (
     <section className="bg-[radial-gradient(circle_at_center,#FFFDF8_0%,#FBF5E8_72%,#F7EEDC_100%)] px-5 py-5 sm:px-7 lg:px-0">
       <div className="mx-auto w-full max-w-7xl">
         <SectionTitle title="What We Arrange" />
 
-        <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 items-stretch gap-3 md:grid-cols-3">
           {arrangedItems.map((item) => (
             <ArrangeCard key={item.title} {...item} />
           ))}
@@ -238,7 +241,7 @@ function ArrangeSection() {
 function SectionTitle({ title }: { title: string }) {
   return (
     <div className="text-center">
-      <h2 className="font-serif text-[28px] leading-none text-[#351D12] md:text-[34px]">
+      <h2 className="py-[20px] font-serif text-[30px] leading-none text-[#351D12]">
         {title}
       </h2>
 
@@ -263,7 +266,7 @@ function ArrangeCard({
   description: string;
 }) {
   return (
-    <article className="grid min-h-[220px] grid-cols-[43%_57%] overflow-hidden rounded-[12px] border border-[#D9BD91] bg-[#FFFEFB]/95 shadow-[0_5px_16px_rgba(83,48,15,0.04)]">
+    <article className="grid h-full min-h-[220px] grid-cols-[43%_57%] overflow-hidden rounded-[12px] border border-[#D9BD91] bg-[#FFFEFB]/95 shadow-[0_5px_16px_rgba(83,48,15,0.04)]">
       <div className="relative min-h-[220px]">
         <Image
           src={image}
@@ -273,16 +276,16 @@ function ArrangeCard({
         />
       </div>
 
-      <div className="flex flex-col justify-center px-4 py-3">
-        <div className="grid h-[50px] w-[50px] place-items-center rounded-full border border-[#D9BD91] bg-[#FFF9EF] text-[#8B4F18]">
+      <div className="flex h-full flex-col justify-center px-4 py-3">
+        <div className="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-full border border-[#D9BD91] bg-[#FFF9EF] text-[#8B4F18]">
           {icon}
         </div>
 
-        <h3 className="mt-2 font-serif text-[15px] leading-tight text-[#351D12]">
+        <h3 className="mt-2 min-h-[69px] font-serif text-[30px] leading-[1.15] text-[#351D12]">
           {title}
         </h3>
 
-        <p className="mt-1 text-[14px] leading-snug text-[#422A20]/88">
+        <p className="mt-1 flex-1 text-[18px] leading-relaxed text-[#422A20]/88">
           {description}
         </p>
       </div>
@@ -300,15 +303,15 @@ function ClosingMessage() {
       <div className="relative mx-auto max-w-5xl text-center">
         <GiLotusFlower className="mx-auto h-8 w-8 text-[#B97827]" />
 
-        <blockquote className="mx-auto mt-3 max-w-4xl font-serif text-[24px]  leading-[1.42] text-[#482414] sm:text-[28px]">
-          “We believe that no family should have to worry about the expenses of a
-          final farewell while grieving the loss of their loved one.”
+        <blockquote className="mx-auto max-w-4xl py-[20px] font-serif text-[30px] leading-[1.42] text-[#482414]">
+          “We believe that no family should have to worry about the expenses of
+          a final farewell while grieving the loss of their loved one.”
         </blockquote>
 
-        <p className="mx-auto mt-3 max-w-3xl text-[15px] leading-[1.55] text-[#3D291F]/88">
+        <p className="mx-auto mt-3 max-w-3xl text-[18px] leading-[1.55] text-[#3D291F]/88">
           Our volunteers work tirelessly to ensure that every necessary item
-          reaches the cremation ground on time. You mourn in peace, let us handle
-          the arrangements.
+          reaches the cremation ground on time. You mourn in peace, let us
+          handle the arrangements.
         </p>
       </div>
     </section>
