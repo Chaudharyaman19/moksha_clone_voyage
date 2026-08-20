@@ -6,7 +6,7 @@ import DignityComesFirst from "./DignityComesFirst";
 import OrganisationBehindMission from "./OrganisationBehindMission";
 import UnclaimedBodyRequest from "./UnclaimedBodyRequest";
 import UnclaimedBodyFAQ from "./UnclaimedBodyFAQ";
-import MokshaFooter from "./MokshaFooter";
+import Footer from "@/components/layout/Footer/FooterNew";
 
 export default function UnclaimedBodyPageSections() {
   return (
@@ -19,7 +19,7 @@ export default function UnclaimedBodyPageSections() {
       <OrganisationBehindMission />
       <UnclaimedBodyRequest />
       <UnclaimedBodyFAQ />
-      <MokshaFooter />
+      <Footer />
     </div>
   );
 }
