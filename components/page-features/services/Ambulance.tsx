@@ -478,35 +478,35 @@ function DonationSection() {
             moments.
           </p>
 
-          <div className="mt-3 flex flex-nowrap items-center gap-2 max-[820px]:flex-wrap">
-            <a
-              className="donate-nav-sparkle relative inline-flex min-h-[38px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
-              href="/donation"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="donate-nav-shine" aria-hidden />
+        <div className="mt-3 flex flex-nowrap items-center gap-2 max-[820px]:flex-wrap">
+  <a
+    className="donate-nav-sparkle relative inline-flex h-[46px] w-[320px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-none border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] max-[820px]:w-full"
+    href="/donation"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <span className="donate-nav-shine" aria-hidden />
 
-              <span className="relative z-10 shrink-0">
-                <Icon name="heart" size={16} />
-              </span>
+    <span className="relative z-10 shrink-0">
+      <Icon name="heart" size={16} />
+    </span>
 
-              <span className="relative z-10 whitespace-nowrap">
-                Donate for Ambulance Service
-              </span>
-            </a>
+    <span className="relative z-10 whitespace-nowrap">
+      Donate for Ambulance Service
+    </span>
+  </a>
 
-            <a
-              className="inline-flex min-h-[31px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[5px] border border-[#FFEED1]/65 bg-[#381F0C]/20 px-[11px] text-[20px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px"
-              href="tel:+919654900525"
-            >
-              <Icon name="hands" size={16} />
+  <a
+    className="inline-flex h-[46px] w-[320px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-none border border-[#FFEED1]/65 bg-[#381F0C]/20 px-4 text-[20px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px max-[820px]:w-full"
+    href="tel:+919654900525"
+  >
+    <Icon name="hands" size={16} />
 
-              <span className="whitespace-nowrap">
-                Support Our Sewa
-              </span>
-            </a>
-          </div>
+    <span className="whitespace-nowrap">
+      Support Our Sewa
+    </span>
+  </a>
+</div>
         </div>
 
         {/* CENTER BADGE */}
