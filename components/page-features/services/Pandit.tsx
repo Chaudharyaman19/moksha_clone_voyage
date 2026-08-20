@@ -548,7 +548,7 @@ function TrustCard({
       </div>
 
       <div className="flex h-full flex-1 flex-col">
-        <h4 className="min-h-[69px] text-[20px] font-semibold leading-[1.15] text-[#321A10]">
+        <h4 className="text-[20px] font-semibold leading-[1.15] text-[#321A10]">
           {title}
         </h4>
 
