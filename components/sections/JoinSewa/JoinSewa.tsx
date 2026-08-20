@@ -447,7 +447,27 @@ const JoinSewa: React.FC = () => {
               compassion and respect. Even a small contribution of
               time, care or support can bring comfort to someone
               during their most difficult moments and help ensure
-              that no one has to face.
+              that no one has to face their final journey alone.
+            </p>
+
+            <p
+              className="
+                mt-3
+                max-w-[620px]
+
+                text-[16px]
+                font-medium
+                leading-[1.5]
+
+                text-[#333735]
+
+                sm:text-[17px]
+              "
+            >
+              Whether you give your time as a volunteer, partner with
+              us as an organisation, or support a family directly,
+              every contribution helps us stand beside those who
+              need it most — with dignity, care and respect.
             </p>
           </div>
         </div>
