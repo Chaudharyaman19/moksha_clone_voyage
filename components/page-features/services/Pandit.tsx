@@ -44,8 +44,9 @@ export default function PriestSupport() {
       <Navbar />
 
       <main className="overflow-hidden pb-4 pt-24 lg:pb-6 lg:pt-24">
-        {/* Hero Section */}
+        {/* ================= HERO ================= */}
         <section className="service-banner relative min-h-[500px] w-full overflow-hidden bg-[#FAF8F4]">
+          {/* HERO IMAGE */}
           <div className="absolute inset-0">
             <Image
               src="/assets/panditservices/hero-real.png"
@@ -54,28 +55,31 @@ export default function PriestSupport() {
               priority
               quality={100}
               sizes="100vw"
-              className="object-cover object-[68%_center] sm:object-[72%_center] lg:object-right"
+              className="object-cover object-[67%_center] sm:object-[70%_center] lg:object-right"
             />
           </div>
 
+          {/* LIGHT LEFT GRADIENT ONLY - IMAGE WILL STAY CLEAR */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(250,248,244,0.96) 0%, rgba(250,248,244,0.88) 45%, rgba(250,248,244,0.62) 100%)",
+                "linear-gradient(90deg, rgba(250,248,244,0.98) 0%, rgba(250,248,244,0.96) 28%, rgba(250,248,244,0.84) 40%, rgba(250,248,244,0.52) 52%, rgba(250,248,244,0.18) 64%, rgba(250,248,244,0.02) 76%, rgba(250,248,244,0) 100%)",
             }}
           />
 
+          {/* MOBILE READABILITY */}
           <div
-            className="absolute inset-0 hidden lg:block"
+            className="absolute inset-0 lg:hidden"
             style={{
               background:
-                "linear-gradient(90deg, rgba(250,248,244,1) 0%, rgba(250,248,244,0.92) 35%, rgba(250,248,244,0.46) 60%, rgba(250,248,244,0.08) 85%)",
+                "linear-gradient(180deg, rgba(250,248,244,0.75) 0%, rgba(250,248,244,0.87) 55%, rgba(250,248,244,0.96) 100%)",
             }}
           />
 
-          <div className="relative mx-auto flex min-h-[500px] w-full max-w-7xl items-center px-4 py-[20px] lg:px-0">
-            <div className="w-full max-w-[560px]">
+          <div className="relative z-10 mx-auto flex min-h-[500px] w-full max-w-7xl items-center px-4 py-[20px] lg:px-0">
+            <div className="w-full max-w-[650px]">
+              {/* Breadcrumb */}
               <div className="mb-3 flex flex-wrap items-center gap-2 text-[18px] font-medium tracking-wide text-[#321A10]">
                 <span className="opacity-70">Moksha Sewa</span>
                 <span className="opacity-50">›</span>
@@ -86,6 +90,7 @@ export default function PriestSupport() {
                 </span>
               </div>
 
+              {/* Small heading */}
               <div className="mb-[2px] flex items-center gap-2 text-[#C99A4A]">
                 <GiLotusFlower className="h-5 w-5 shrink-0" />
 
@@ -94,28 +99,34 @@ export default function PriestSupport() {
                 </span>
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.08] text-[#321A10]">
+              {/* Hero Heading */}
+              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
                 Priest Support
               </h1>
 
-              <p className="mb-6 max-w-[480px] text-[18px] leading-relaxed text-[#321A10]/85 lg:mb-8">
+              {/* Hero Description */}
+              <p className="mb-7 max-w-[590px] text-[18px] leading-relaxed text-[#321A10]/90">
                 Experienced Pandit Ji&apos;s guide your family with compassion,
                 clarity and reverence in every sacred ritual of your loved
                 one&apos;s journey.
               </p>
 
-              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              {/* EQUAL BUTTONS */}
+              <div className="flex w-full flex-col gap-3 sm:flex-row">
                 <a
                   href="/request-help"
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#321A10] px-6 py-3 text-[20px] font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8"
+                  className="inline-flex h-[52px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-[7px] bg-[#321A10] px-5 text-[20px] font-semibold text-[#FAF8F4] shadow-[0_5px_12px_rgba(50,26,16,0.16)] transition-all duration-200 hover:-translate-y-px hover:bg-[#4A2E1B] sm:w-[300px]"
                 >
-                  <GiLotusFlower className="h-4 w-4 text-[#C99A4A]" />
-                  <span>Request Priest Support</span>
+                  <GiLotusFlower className="h-5 w-5 shrink-0 text-[#C99A4A]" />
+
+                  <span className="whitespace-nowrap">
+                    Request Priest Support
+                  </span>
                 </a>
 
                 <a
                   href="/donation"
-                  className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                  className="donate-nav-sparkle relative inline-flex h-[52px] w-full items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-[7px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[300px]"
                 >
                   <span className="donate-nav-shine" aria-hidden />
 
@@ -129,6 +140,7 @@ export default function PriestSupport() {
                     className="donate-star donate-star-one"
                     aria-hidden
                   />
+
                   <FaStar
                     className="donate-star donate-star-two"
                     aria-hidden
@@ -139,7 +151,7 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* Feature Cards */}
+        {/* ================= FEATURE CARDS ================= */}
         <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard
@@ -168,7 +180,7 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* How It Works Section */}
+        {/* ================= HOW IT WORKS ================= */}
         <section className="relative bg-[#FAF8F4] pb-4 pt-2">
           <div className="mx-auto max-w-7xl px-4 lg:px-0">
             <div className="relative mb-6 text-center">
@@ -215,14 +227,19 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* Ritual Support at Every Step */}
+        {/* ================= RITUAL MARQUEE ================= */}
         <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
           <SectionHeader title="Ritual Support at Every Step" />
 
           <style>{`
             @keyframes scrollMarquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
+              0% {
+                transform: translateX(0);
+              }
+
+              100% {
+                transform: translateX(-50%);
+              }
             }
 
             .marquee-track {
@@ -250,7 +267,7 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* Pandit Ji Roles */}
+        {/* ================= PANDIT ROLES ================= */}
         <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
           <SectionHeader title="Pandit Ji Roles" />
 
@@ -281,7 +298,7 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* Trust Cards */}
+        {/* ================= TRUST ================= */}
         <section className="mx-auto mb-4 mt-2 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
             <TrustCard
@@ -308,7 +325,7 @@ export default function PriestSupport() {
           </div>
         </section>
 
-        {/* Final Donation CTA */}
+        {/* ================= DONATION CTA ================= */}
         <section className="mx-auto max-w-7xl px-4 lg:px-0">
           <div className="flex flex-col items-stretch overflow-hidden rounded-none border border-[#E7D5B8] bg-[#E7D5B8]/30 shadow-sm lg:flex-row">
             {/* Left Image */}
@@ -321,18 +338,20 @@ export default function PriestSupport() {
               />
             </div>
 
-            {/* Center Content */}
+            {/* Center */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
-              <h2 className="max-w-lg py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
+              <h2 className="max-w-xl py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
                 Your Support Helps Families Receive Dignified &amp; Sacred Final
                 Rites
               </h2>
 
               <a
                 href="/donation"
-                className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
+                className="donate-nav-sparkle relative inline-flex h-[50px] min-w-[280px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
               >
                 <span className="donate-nav-shine" aria-hidden />
+
+                <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
 
                 <span className="relative z-10 whitespace-nowrap">
                   Donate for Ritual Support
@@ -342,6 +361,7 @@ export default function PriestSupport() {
                   className="donate-star donate-star-one"
                   aria-hidden
                 />
+
                 <FaStar
                   className="donate-star donate-star-two"
                   aria-hidden
@@ -349,11 +369,11 @@ export default function PriestSupport() {
               </a>
             </div>
 
-            {/* Right Side */}
+            {/* Right */}
             <div className="flex w-full flex-col items-center justify-center border-t border-[#E7D5B8]/50 bg-[#FAF8F4]/50 p-6 text-center lg:w-1/4 lg:border-l lg:border-t-0">
               <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
 
-              <p className="max-w-[180px] text-[18px] font-medium leading-relaxed text-[#321A10]">
+              <p className="max-w-[190px] text-[18px] font-medium leading-relaxed text-[#321A10]">
                 Every act of kindness becomes a blessing for many.
               </p>
             </div>
@@ -366,7 +386,9 @@ export default function PriestSupport() {
   );
 }
 
-// ---------------- Components ----------------
+/* =========================================================
+   COMPONENTS
+========================================================= */
 
 function SectionHeader({ title }: { title: string }) {
   return (
@@ -392,7 +414,7 @@ function FeatureCard({
   desc: string;
 }) {
   return (
-    <div className="group relative h-full min-h-[260px] w-full cursor-pointer overflow-hidden rounded-sm border border-black/10 aspect-[5/4]">
+    <div className="group relative aspect-[5/4] h-full min-h-[260px] w-full cursor-pointer overflow-hidden rounded-sm border border-black/10">
       <Image
         src={imageSrc}
         alt={title}
@@ -405,11 +427,9 @@ function FeatureCard({
           {title}
         </h4>
 
-        {desc && (
-          <p className="mt-2 min-h-[44px] text-[18px] leading-snug text-white/90">
-            {desc}
-          </p>
-        )}
+        <p className="mt-2 min-h-[44px] text-[18px] leading-snug text-white/90">
+          {desc}
+        </p>
       </div>
     </div>
   );
@@ -436,7 +456,7 @@ function StepItem({
         </div>
       </div>
 
-      <h4 className="mx-auto max-w-[220px] px-2 text-[30px] font-medium leading-[1.15] text-[#321A10]">
+      <h4 className="mx-auto max-w-[230px] px-2 text-[30px] font-medium leading-[1.15] text-[#321A10]">
         {title}
       </h4>
     </div>
