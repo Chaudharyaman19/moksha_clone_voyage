@@ -359,14 +359,14 @@ function Donation() {
 
         {/* ============ QUICK STATS — dark bar overlapping hero ============ */}
         <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
-          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {STATS.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.label}
-                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
-                    } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
+                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "border-t border-white/20 sm:border-t-0 md:border-l" : ""
+                    } ${index > 1 ? "sm:border-t sm:border-white/20 md:border-t-0" : ""}`}
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
                     <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
@@ -506,7 +506,7 @@ function Donation() {
             <div className="relative overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white p-6 shadow-[0_16px_42px_rgba(73,49,31,0.08)]">
               <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
 
-              <div className="mb-4">
+              <div className="mb-4 mt-[160px] sm:mt-0">
                 <div className="flex items-center gap-2 text-[16px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
                   <span>Make a Donation</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
