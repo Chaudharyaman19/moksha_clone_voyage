@@ -447,7 +447,7 @@ function DonationSection() {
       <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 left-[10%] right-0 bg-[url('/ambulance/donation-prayer.webp')] bg-cover bg-right bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          className="absolute inset-y-0 right-0 w-[48%] bg-[url('/ambulance/donation-prayer.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />

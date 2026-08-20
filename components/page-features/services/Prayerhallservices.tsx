@@ -401,7 +401,7 @@ function FeatureCard({
         </h4>
 
         {desc && (
-          <p className="mt-2 min-h-[44px] text-[18px] leading-snug text-white/90">
+          <p className="max-h-0 overflow-hidden text-[18px] leading-snug text-white/90 opacity-0 transition-all duration-500 group-hover:mt-2 group-hover:max-h-[44px] group-hover:opacity-100">
             {desc}
           </p>
         )}
