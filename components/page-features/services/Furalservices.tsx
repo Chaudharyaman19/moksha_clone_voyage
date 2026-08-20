@@ -18,28 +18,28 @@ import { IoFlower } from "react-icons/io5";
 
 const supportFeatures = [
   {
-    image: "/woodrituals/c.webp",
+    image: "/woodrituals/compassionate-support.png",
     icon: <FaUsers className="h-8 w-8" />,
     title: "Compassionate Support",
     description:
       "Families receive caring guidance and respectful support throughout the final journey.",
   },
   {
-    image: "/woodrituals/timely-arrangements.webp",
+    image: "/woodrituals/timely-arrangements-new.png",
     icon: <GiLotusFlower className="h-8 w-8" />,
     title: "Timely Arrangements",
     description:
       "Essential ritual materials are coordinated carefully so everything reaches on time.",
   },
   {
-    image: "/woodrituals/free-service.webp",
+    image: "/woodrituals/free-service.png",
     icon: <FaHandHoldingHeart className="h-8 w-8" />,
     title: "Free Service",
     description:
       "Eligible families in need receive essential support without additional financial burden.",
   },
   {
-    image: "/woodrituals/with-dignity.webp",
+    image: "/woodrituals/with-dignity.png",
     icon: <FaPrayingHands className="h-8 w-8" />,
     title: "With Dignity",
     description:
@@ -191,17 +191,15 @@ function SupportFeatureCard({
 }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[10px] border border-[#DDBF95] bg-[#FFFEFB] shadow-[0_4px_14px_rgba(87,53,19,0.05)]">
-      <div className="relative">
-        <div className="relative h-[190px] w-full overflow-hidden">
+      <div className="relative bg-[#FFFEFB]">
+        <div className="relative h-[190px] w-full overflow-hidden sm:h-[200px]">
           <Image
             src={image}
             alt={title}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover object-top"
+            className="object-contain object-center"
           />
-
-          <div className="absolute inset-x-0 bottom-0 z-10 h-[34px] bg-[#FFFEFB]" />
         </div>
 
         <div className="absolute bottom-0 left-1/2 z-20 grid h-[60px] w-[60px] -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-[#D7A96B] bg-[#FFFEFB] text-[#9A5618] shadow-[0_3px_8px_rgba(87,53,19,0.1)]">
@@ -211,12 +209,12 @@ function SupportFeatureCard({
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col items-center px-4 pb-4 pt-8 text-center">
-        <h2 className="flex min-h-[69px] items-center justify-center font-serif text-[30px] leading-[1.15] text-[#3C1E10]">
+      <div className="flex flex-1 flex-col items-center px-4 pb-3 pt-8 text-center">
+        <h2 className="flex min-h-[34px] items-center justify-center font-serif text-[24px] leading-[1.1] text-[#3C1E10]">
           {title}
         </h2>
 
-        <p className="mt-[3px] flex-1 text-[18px] leading-relaxed text-[#4B2F23]/80">
+        <p className="mt-1 flex-1 text-[17px] leading-[1.4] text-[#4B2F23]/80">
           {description}
         </p>
       </div>
