@@ -13,7 +13,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 
 const SocialSidebar = () => {
   const whatsappLink = {
-    url: "https://wa.me/919310219283?text=Hello%20I%20need%20information",
+    url: "https://wa.me/919220147229?text=Hello%20I%20need%20information",
     color: "#25D366",
     label: "WhatsApp",
   };
@@ -57,7 +57,7 @@ const SocialSidebar = () => {
   ];
 
   const phoneLink = {
-    url: "tel:+919310219283",
+    url: "tel:+919220147229",
     color: "#4CAF50",
     label: "Call Us 24/7",
     hoverColor: "#3D8B40",
