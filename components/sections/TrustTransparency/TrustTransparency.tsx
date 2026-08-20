@@ -614,11 +614,11 @@ export default function TrustTransparency() {
                     className="h-[40px] w-[40px] text-[#15523C]"
                   />
 
-                  <h4 className="mt-[4px] text-[13px] font-bold uppercase leading-[1.15] text-[#15523C]">
+                  <h4 className="mt-[4px] text-[15px] font-bold uppercase leading-[1.15] text-[#15523C]">
                     {value.title}
                   </h4>
 
-                  <p className="mt-[3px] whitespace-pre-line text-[12px] leading-[1.22] text-[#3E3A35]">
+                  <p className="mt-[3px] whitespace-pre-line text-[14px] leading-[1.22] text-[#3E3A35]">
                     {value.description}
                   </p>
                 </div>
