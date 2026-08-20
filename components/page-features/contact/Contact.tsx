@@ -43,6 +43,7 @@ const officeLocations = [
       "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh, India",
     pincode: "201007",
     hours: "Open 24 hours · every day",
+    phone: { label: "+91 98183 53841", href: "tel:+919818353841" },
     type: "main",
     image: "/assets/contact/im.png",
     imageWidth: 1448,
@@ -58,6 +59,7 @@ const officeLocations = [
       "Registration address: 6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW",
     pincode: "LU3 1TW",
     hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
+    phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
     type: "branch",
     image: "/assets/contact/en.png",
     imageWidth: 1448,
@@ -415,6 +417,18 @@ function Contact() {
                         <p className="mt-3 text-[13px] leading-5 text-[#5F4A3D]">
                           {location.address}
                         </p>
+
+                        <a
+                          href={location.phone.href}
+                          className={`mt-2.5 inline-flex items-center gap-2 text-[13px] font-semibold text-[#4F4036] transition-colors ${isMain ? "hover:text-[#C95C15]" : "hover:text-[#567F2C]"
+                            }`}
+                        >
+                          <FaPhoneAlt
+                            className={`h-3 w-3 shrink-0 ${isMain ? "text-[#E56A18]" : "text-[#567F2C]"
+                              }`}
+                          />
+                          {location.phone.label}
+                        </a>
 
                         <div className="mt-auto pt-3">
                           <div className="grid grid-cols-[1fr_auto] overflow-hidden rounded-xl border border-[#E9DDCE] bg-[#FCFAF7]">
