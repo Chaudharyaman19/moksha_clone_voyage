@@ -444,14 +444,28 @@ function DonationSection() {
       className="mx-auto mb-[14px] mt-[8px] w-full max-w-7xl px-5 lg:px-0"
       id="donate"
     >
-      <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#83561F] via-[#6F471C] to-[#4D2F18] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
+      <div className="relative min-h-[168px] w-full overflow-hidden rounded-[11px] bg-gradient-to-r from-[#A97734] via-[#94612A] to-[#73502C] text-[#FFF5E6] shadow-[0_6px_14px_rgba(64,39,15,0.13)] max-[820px]:min-h-[330px]">
+        
+        {/* RIGHT IMAGE - THODA LEFT OVERLAP */}
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 right-0 w-[48%] bg-[url('/ambulance/donation-prayer.webp')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          className="absolute inset-y-0 right-0 w-[58%] bg-[url('/assets/km.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
+        {/* SMOOTH CENTER BLEND - NO VERTICAL LINE */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 max-[820px]:hidden"
+          style={{
+            background:
+              "linear-gradient(90deg, #9A672D 0%, #94612A 40%, rgba(148,97,42,0.98) 46%, rgba(148,97,42,0.88) 50%, rgba(148,97,42,0.62) 54%, rgba(148,97,42,0.30) 58%, rgba(148,97,42,0.10) 62%, transparent 67%)",
+          }}
+        />
 
+        {/* MOBILE GRADIENT */}
+        <div className="absolute inset-0 hidden max-[820px]:block max-[820px]:bg-gradient-to-b max-[820px]:from-[#8E612A]/95 max-[820px]:via-[#855724]/70 max-[820px]:to-transparent" />
+
+        {/* CONTENT */}
         <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
           <h2 className="mb-[7px] py-[20px] font-serif text-[30px] font-normal text-[#FFF4DE]">
             Your Donation Brings Peace
@@ -472,9 +486,11 @@ function DonationSection() {
               rel="noopener noreferrer"
             >
               <span className="donate-nav-shine" aria-hidden />
+
               <span className="relative z-10 shrink-0">
                 <Icon name="heart" size={16} />
               </span>
+
               <span className="relative z-10 whitespace-nowrap">
                 Donate for Ambulance Service
               </span>
@@ -485,11 +501,15 @@ function DonationSection() {
               href="tel:+919654900525"
             >
               <Icon name="hands" size={16} />
-              <span className="whitespace-nowrap">Support Our Sewa</span>
+
+              <span className="whitespace-nowrap">
+                Support Our Sewa
+              </span>
             </a>
           </div>
         </div>
 
+        {/* CENTER BADGE */}
         <div className="absolute left-[53%] top-[18px] z-20 flex h-[132px] w-[132px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
           <span className="mb-[7px] text-[#DCB56F]">
             <Icon name="heart" size={16} />
