@@ -37,7 +37,7 @@ export default function WhoWeAre() {
               src="/assets/about-reference/who-we-are-background-v2.png"
               alt="Moksha Sewa community support"
               fill
-              sizes="100vw"
+              sizes="(max-width: 640px) 100vw, 576px"
               className="object-cover object-[68%_center]"
             />
           </div>

@@ -379,11 +379,11 @@ function MokshaGallery() {
       {/* Modal with video player */}
       {selectedVideo && (
         <div
-          className="gallery-modal-overlay fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+          className="gallery-modal-overlay fixed inset-0 bg-black/90 backdrop-blur-sm z-[100] flex items-center justify-center p-2 sm:p-4"
           onClick={() => setSelectedVideo(null)}
         >
           <div
-            className="gallery-modal-panel relative max-w-5xl w-full h-[92vh] max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
+            className="gallery-modal-panel relative max-w-5xl w-full h-[92dvh] max-h-[92dvh] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -396,14 +396,15 @@ function MokshaGallery() {
 
             <div className="flex flex-col lg:flex-row h-full min-h-0">
               {/* Video section */}
-              <div className="relative shrink-0 lg:w-3/5 h-[42vh] lg:h-[82vh] bg-black">
+              <div className="relative shrink-0 lg:w-3/5 h-[42dvh] lg:h-[82dvh] bg-black">
                 <video
                   key={selectedVideo.id}
                   src={selectedVideo.src}
                   poster={selectedVideo.poster}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   controls
                   autoPlay
+                  muted
                   playsInline
                 />
               </div>
