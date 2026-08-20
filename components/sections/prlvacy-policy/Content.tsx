@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowRight,
   BookOpen,
@@ -36,13 +33,14 @@ import {
   X,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
 const HEADER_OFFSET = 150;
 
 const SECTIONS_SELECTOR = 'section[id^="privacy-section-"]';
 
 const ITEMS_SELECTOR = ".info-card";
+
+const REVEAL_SELECTOR =
+  ".section-title, .info-card, .use-item, .privacy-right, .privacy-contact";
 
 const sections = [
   "About Moksha Sewa",
@@ -186,7 +184,13 @@ export default function PrivacyPolicy() {
   const isProgrammaticScroll = useRef(false);
   const lastHighlighted = useRef<HTMLElement | null>(null);
   const reducedMotion = useRef(false);
+  const highlightTimers = useRef<number[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia(
@@ -235,6 +239,28 @@ export default function PrivacyPolicy() {
     return () => observer.disconnect();
   }, []);
 
+  // Reveal-on-scroll — CSS-only replacement for the previous GSAP
+  // ScrollTrigger reveal.
+  useEffect(() => {
+    const targets = pageRef.current?.querySelectorAll<HTMLElement>(REVEAL_SELECTOR);
+    if (!targets || targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
     if (!hash) return;
@@ -267,192 +293,35 @@ export default function PrivacyPolicy() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".privacy-sidebar", {
-        x: -30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      });
-
-      gsap.from(".privacy-main", {
-        x: 30,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.1,
-        ease: "power3.out",
-      });
-
-      gsap.from(".section-title", {
-        y: 18,
-        opacity: 0,
-        duration: 0.65,
-        stagger: 0.06,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".privacy-main",
-          start: "top 82%",
-        },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".info-card").forEach((card) => {
-        gsap.from(card, {
-          y: 20,
-          opacity: 0,
-          duration: 0.55,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
-            once: true,
-          },
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".use-item").forEach((item) => {
-        gsap.from(item, {
-          x: -12,
-          opacity: 0,
-          duration: 0.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 90%",
-            once: true,
-          },
-        });
-      });
-
-      gsap.from(".privacy-right", {
-        y: 18,
-        opacity: 0,
-        duration: 0.7,
-        scrollTrigger: {
-          trigger: ".privacy-right",
-          start: "top 88%",
-          once: true,
-        },
-      });
-
-      gsap.from(".privacy-contact", {
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        scrollTrigger: {
-          trigger: ".privacy-contact",
-          start: "top 90%",
-          once: true,
-        },
-      });
-    }, pageRef);
-
-    /*
-      Refresh triggers once images/fonts finish loading so their start
-      positions are recalculated. Otherwise sections below the fold can
-      remain stuck at opacity 0 because their trigger was created before
-      the layout shifted.
-    */
-    const refreshTriggers = () => ScrollTrigger.refresh();
-
-    if (document.readyState === "complete") {
-      refreshTriggers();
-    } else {
-      window.addEventListener("load", refreshTriggers, { once: true });
-    }
-
-    document.fonts?.ready.then(refreshTriggers).catch(() => { });
-
-    /*
-      Safety net: if any animated element is still hidden after a few
-      seconds, force it visible so the content can never be lost.
-    */
-    const revealTimer = window.setTimeout(() => {
-      pageRef.current
-        ?.querySelectorAll<HTMLElement>(
-          ".privacy-sidebar, .privacy-main, .section-title, .info-card, .use-item, .privacy-right, .privacy-contact",
-        )
-        .forEach((el) => {
-          if (Number(gsap.getProperty(el, "opacity")) < 1) {
-            gsap.to(el, {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          }
-        });
-    }, 3500);
-
+  useEffect(() => {
     return () => {
-      ctx.revert();
-      window.clearTimeout(revealTimer);
-      window.removeEventListener("load", refreshTriggers);
+      highlightTimers.current.forEach((id) => window.clearTimeout(id));
     };
   }, []);
+
+  const pulseHighlight = (el: HTMLElement) => {
+    el.classList.remove("terms-glow");
+    void el.offsetWidth;
+    el.classList.add("terms-glow");
+    const timer = window.setTimeout(() => el.classList.remove("terms-glow"), 1500);
+    highlightTimers.current.push(timer);
+  };
 
   const highlightTarget = (target: HTMLElement) => {
     if (reducedMotion.current) return;
 
-    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
-      gsap.killTweensOf(el);
-      el.remove();
-    });
-
-    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
-      gsap.killTweensOf(section);
-      gsap.set(section, {
-        boxShadow: "0 0 0 rgba(215,140,40,0)",
-        backgroundColor: "rgba(255,250,240,0)",
-      });
-    });
+    pulseHighlight(target);
 
     const items = Array.from(
       target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
     );
-
-    gsap.killTweensOf(target);
-    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-
-    gsap.fromTo(
-      target,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
-
-    if (items.length > 0) {
-      gsap.killTweensOf(items);
-      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-
-      gsap.to(items, {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        stagger: 0.06,
-        onComplete: () => {
-          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      });
-    }
+    items.forEach((item, index) => {
+      window.setTimeout(() => pulseHighlight(item), index * 60);
+    });
   };
 
   const scrollToTarget = (target: HTMLElement) => {
     isProgrammaticScroll.current = true;
-
-    gsap.killTweensOf(window);
 
     const targetY = Math.max(
       target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
@@ -471,43 +340,23 @@ export default function PrivacyPolicy() {
       return;
     }
 
-    gsap.to(sections, {
-      opacity: 0.25,
-      duration: 0.45,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-
-    const restoreSections = () => {
-      gsap.to(sections, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    };
+    sections.forEach((section) => section.classList.add("privacy-dim"));
 
     const distance = Math.abs(targetY - window.scrollY);
-    const duration = Math.min(0.75 + distance / 2600, 1.15);
+    const durationMs = Math.min(750 + distance / 2.6, 1150);
 
-    gsap.to(window, {
-      duration,
-      scrollTo: { y: targetY, autoKill: false },
-      ease: "power3.inOut",
-      overwrite: true,
-      onComplete: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-        gsap.delayedCall(0.15, () => {
-          lastHighlighted.current = target;
-          highlightTarget(target);
-        });
-      },
-      onInterrupt: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-      },
-    });
+    window.scrollTo({ top: targetY, behavior: "smooth" });
+
+    const timer = window.setTimeout(() => {
+      isProgrammaticScroll.current = false;
+      sections.forEach((section) => section.classList.remove("privacy-dim"));
+      const settleTimer = window.setTimeout(() => {
+        lastHighlighted.current = target;
+        highlightTarget(target);
+      }, 150);
+      highlightTimers.current.push(settleTimer);
+    }, durationMs);
+    highlightTimers.current.push(timer);
   };
 
   const highlightNavItem = (index: number) => {
@@ -516,21 +365,7 @@ export default function PrivacyPolicy() {
     const item = navItemRefs.current[index];
     if (!item) return;
 
-    gsap.killTweensOf(item);
-    gsap.fromTo(
-      item,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
+    pulseHighlight(item);
   };
 
   const handleNavClick = (index: number) => {
@@ -551,11 +386,49 @@ export default function PrivacyPolicy() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
+      <style>{`
+        .section-title, .info-card, .use-item, .privacy-right, .privacy-contact {
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-title.is-revealed, .info-card.is-revealed, .use-item.is-revealed,
+        .privacy-right.is-revealed, .privacy-contact.is-revealed {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        section[id^="privacy-section-"].privacy-dim { opacity: 0.25; transition: opacity 0.45s ease-out; }
+        .privacy-sidebar, .privacy-main {
+          opacity: 0;
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .privacy-sidebar { transform: translateX(-30px); }
+        .privacy-main { transform: translateX(30px); transition-delay: 0.1s; }
+        .privacy-sidebar.is-mounted, .privacy-main.is-mounted {
+          opacity: 1;
+          transform: none;
+        }
+        .terms-glow { animation: terms-glow-pulse 0.5s ease-out 3; }
+        @keyframes terms-glow-pulse {
+          0%, 100% { box-shadow: 0 0 0 rgba(215,140,40,0); }
+          50% { box-shadow: 0 0 14px rgba(215,140,40,0.45); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .section-title, .info-card, .use-item, .privacy-right, .privacy-contact,
+          .privacy-sidebar, .privacy-main {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
+          .terms-glow { animation: none !important; }
+        }
+      `}</style>
+
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =========================
             LEFT SIDEBAR
         ========================== */}
-        <aside className="privacy-sidebar self-start lg:sticky lg:top-[100px]">
+        <aside className={`privacy-sidebar self-start lg:sticky lg:top-[100px] ${mounted ? "is-mounted" : ""}`}>
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="bg-[#8B6A3E] px-4 py-2.5 text-center">
               <h3 className="text-[16px] font-semibold uppercase tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
@@ -633,7 +506,7 @@ export default function PrivacyPolicy() {
         {/* =========================
             MAIN CONTENT
         ========================== */}
-        <article className="privacy-main min-w-0">
+        <article className={`privacy-main min-w-0 ${mounted ? "is-mounted" : ""}`}>
           {/* Section 1 */}
           <section
             id="privacy-section-1"

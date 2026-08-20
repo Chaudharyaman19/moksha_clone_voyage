@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   ArrowRight,
   CalendarDays,
@@ -34,8 +31,6 @@ import {
   WalletCards,
   XCircle,
 } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const HEADER_OFFSET = 150;
 
@@ -333,7 +328,13 @@ export default function RefundPolicy() {
   const isProgrammaticScroll = useRef(false);
   const lastHighlighted = useRef<HTMLElement | null>(null);
   const reducedMotion = useRef(false);
+  const highlightTimers = useRef<number[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const anchorFor = (number: number) => {
     if (number >= 9 && number <= 12) return 9;
@@ -392,6 +393,28 @@ export default function RefundPolicy() {
     return () => observer.disconnect();
   }, []);
 
+  // Reveal-on-scroll — CSS-only replacement for the previous GSAP
+  // ScrollTrigger reveal on the premium card grid.
+  useEffect(() => {
+    const targets = pageRef.current?.querySelectorAll<HTMLElement>(ITEMS_SELECTOR);
+    if (!targets || targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
     if (!hash) return;
@@ -425,165 +448,35 @@ export default function RefundPolicy() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  useLayoutEffect(() => {
-    const context = gsap.context(() => {
-      const introTimeline = gsap.timeline();
-
-      introTimeline
-        .from(".refund-sidebar", {
-          x: -24,
-          opacity: 0,
-          duration: 0.65,
-          ease: "power3.out",
-        })
-        .from(
-          ".refund-main",
-          {
-            x: 24,
-            opacity: 0,
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          "-=0.5",
-        )
-        .from(
-          ".refund-intro",
-          {
-            y: -12,
-            opacity: 0,
-            duration: 0.45,
-            ease: "power2.out",
-          },
-          "-=0.35",
-        );
-
-      gsap.utils.toArray<HTMLElement>(".refund-section-icon").forEach(
-        (icon) => {
-          gsap.to(icon, {
-            y: -2,
-            duration: 2.4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          });
-        },
-      );
-
-      gsap.utils
-        .toArray<HTMLElement>(".refund-policy-card")
-        .forEach((card, index) => {
-          gsap.from(card, {
-            y: 24,
-            opacity: 0,
-            duration: 0.6,
-            delay: index * 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              once: true,
-            },
-          });
-        });
-    }, pageRef);
-
-    /*
-      Refresh triggers once images/fonts finish loading so start positions
-      are recalculated. Otherwise cards can remain stuck at opacity 0.
-    */
-    const refreshTriggers = () => ScrollTrigger.refresh();
-
-    if (document.readyState === "complete") {
-      refreshTriggers();
-    } else {
-      window.addEventListener("load", refreshTriggers, { once: true });
-    }
-
-    document.fonts?.ready.then(refreshTriggers).catch(() => { });
-
-    const revealTimer = window.setTimeout(() => {
-      pageRef.current
-        ?.querySelectorAll<HTMLElement>(".refund-policy-card")
-        .forEach((el) => {
-          if (Number(gsap.getProperty(el, "opacity")) < 1) {
-            gsap.to(el, {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          }
-        });
-    }, 3500);
-
+  useEffect(() => {
     return () => {
-      context.revert();
-      window.clearTimeout(revealTimer);
-      window.removeEventListener("load", refreshTriggers);
+      highlightTimers.current.forEach((id) => window.clearTimeout(id));
     };
   }, []);
+
+  const pulseHighlight = (el: HTMLElement) => {
+    el.classList.remove("terms-glow");
+    void el.offsetWidth;
+    el.classList.add("terms-glow");
+    const timer = window.setTimeout(() => el.classList.remove("terms-glow"), 1500);
+    highlightTimers.current.push(timer);
+  };
 
   const highlightTarget = (target: HTMLElement) => {
     if (reducedMotion.current) return;
 
-    document.querySelectorAll(".scroll-target-highlight").forEach((el) => {
-      gsap.killTweensOf(el);
-      el.remove();
-    });
-
-    gsap.utils.toArray<HTMLElement>(SECTIONS_SELECTOR).forEach((section) => {
-      gsap.killTweensOf(section);
-      gsap.set(section, {
-        boxShadow: "0 0 0 rgba(215,140,40,0)",
-        backgroundColor: "rgba(255,250,240,0)",
-      });
-    });
+    pulseHighlight(target);
 
     const items = Array.from(
       target.querySelectorAll<HTMLElement>(ITEMS_SELECTOR),
     );
-
-    gsap.killTweensOf(target);
-    gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-
-    gsap.fromTo(
-      target,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(target, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
-
-    if (items.length > 0) {
-      gsap.killTweensOf(items);
-      gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-
-      gsap.to(items, {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        stagger: 0.06,
-        onComplete: () => {
-          gsap.set(items, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      });
-    }
+    items.forEach((item, index) => {
+      window.setTimeout(() => pulseHighlight(item), index * 60);
+    });
   };
 
   const scrollToTarget = (target: HTMLElement) => {
     isProgrammaticScroll.current = true;
-
-    gsap.killTweensOf(window);
 
     const targetY = Math.max(
       target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
@@ -602,47 +495,24 @@ export default function RefundPolicy() {
       return;
     }
 
-    // Dim all other sections while scrolling to the target
-    gsap.to(sections, {
-      opacity: 0.3,
-      duration: 0.4,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-
-    // Keep the target highlighted throughout the scroll
+    sections.forEach((section) => section.classList.add("refund-dim"));
     highlightTarget(target);
 
-    const restoreSections = () => {
-      gsap.to(sections, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    };
-
     const distance = Math.abs(targetY - window.scrollY);
-    const duration = Math.min(0.75 + distance / 2600, 1.15);
+    const durationMs = Math.min(750 + distance / 2.6, 1150);
 
-    gsap.to(window, {
-      duration,
-      scrollTo: { y: targetY, autoKill: false },
-      ease: "power3.inOut",
-      overwrite: true,
-      onComplete: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-        gsap.delayedCall(0.15, () => {
-          lastHighlighted.current = target;
-          highlightTarget(target);
-        });
-      },
-      onInterrupt: () => {
-        isProgrammaticScroll.current = false;
-        restoreSections();
-      },
-    });
+    window.scrollTo({ top: targetY, behavior: "smooth" });
+
+    const timer = window.setTimeout(() => {
+      isProgrammaticScroll.current = false;
+      sections.forEach((section) => section.classList.remove("refund-dim"));
+      const settleTimer = window.setTimeout(() => {
+        lastHighlighted.current = target;
+        highlightTarget(target);
+      }, 150);
+      highlightTimers.current.push(settleTimer);
+    }, durationMs);
+    highlightTimers.current.push(timer);
   };
 
   const highlightNavItem = (index: number) => {
@@ -651,21 +521,7 @@ export default function RefundPolicy() {
     const item = navItemRefs.current[index];
     if (!item) return;
 
-    gsap.killTweensOf(item);
-    gsap.fromTo(
-      item,
-      { boxShadow: "0 0 0 rgba(215,140,40,0)" },
-      {
-        boxShadow: "0 0 14px rgba(215,140,40,0.45)",
-        duration: 0.5,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 2,
-        onComplete: () => {
-          gsap.set(item, { boxShadow: "0 0 0 rgba(215,140,40,0)" });
-        },
-      },
-    );
+    pulseHighlight(item);
   };
 
   const handleNavClick = (index: number) => {
@@ -691,11 +547,50 @@ export default function RefundPolicy() {
       ref={pageRef}
       className="min-h-screen bg-[#FBF8F2] text-[#2C1810]"
     >
+      <style>{`
+        .refund-policy-card {
+          opacity: 0;
+          transform: translateY(24px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .refund-policy-card.is-revealed { opacity: 1; transform: translateY(0); }
+        section[id^="refund-section-"].refund-dim { opacity: 0.3; transition: opacity 0.4s ease-out; }
+        .refund-sidebar, .refund-main, .refund-intro {
+          opacity: 0;
+          transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+        }
+        .refund-sidebar { transform: translateX(-24px); }
+        .refund-main { transform: translateX(24px); transition-delay: 0.15s; }
+        .refund-intro { transform: translateY(-12px); transition-delay: 0.5s; }
+        .refund-sidebar.is-mounted, .refund-main.is-mounted, .refund-intro.is-mounted {
+          opacity: 1;
+          transform: none;
+        }
+        .refund-section-icon { animation: terms-icon-float 2.4s ease-in-out infinite alternate; }
+        @keyframes terms-icon-float {
+          from { transform: translateY(0); }
+          to { transform: translateY(-2px); }
+        }
+        .terms-glow { animation: terms-glow-pulse 0.5s ease-out 3; }
+        @keyframes terms-glow-pulse {
+          0%, 100% { box-shadow: 0 0 0 rgba(215,140,40,0); }
+          50% { box-shadow: 0 0 14px rgba(215,140,40,0.45); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .refund-policy-card, .refund-sidebar, .refund-main, .refund-intro {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
+          .refund-section-icon, .terms-glow { animation: none !important; }
+        }
+      `}</style>
+
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
         {/* =====================================================
             SIDEBAR
         ====================================================== */}
-        <aside className="refund-sidebar self-start lg:sticky lg:top-[100px]">
+        <aside className={`refund-sidebar self-start lg:sticky lg:top-[100px] ${mounted ? "is-mounted" : ""}`}>
           <div className="overflow-hidden rounded-[7px] border border-[#e9e4d5] bg-[#fffef9] shadow-[0_2px_10px_rgba(29,65,53,0.04)]">
             <div className="flex h-[40px] items-center justify-center bg-[#8B6A3E]">
               <h2 className="text-[16px] font-semibold tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
@@ -774,10 +669,10 @@ export default function RefundPolicy() {
         {/* =====================================================
             MAIN CONTENT
         ====================================================== */}
-        <article className="refund-main min-w-0">
+        <article className={`refund-main min-w-0 ${mounted ? "is-mounted" : ""}`}>
           {/* INTRO NOTICE */}
           <section
-            className="refund-intro mb-4 flex items-center gap-3 rounded-[7px] border border-[#E2AE73] bg-[#FFF8EE] px-4 py-3"
+            className={`refund-intro mb-4 flex items-center gap-3 rounded-[7px] border border-[#E2AE73] bg-[#FFF8EE] px-4 py-3 ${mounted ? "is-mounted" : ""}`}
             aria-label="Refund policy introduction"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF8EE]">

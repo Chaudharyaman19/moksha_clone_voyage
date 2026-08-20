@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
 import {
   CalendarDays,
   ClipboardCheck,
@@ -131,217 +130,14 @@ const PolicyHero = ({
   showInfoBanner = true,
   policyMeta = defaultPolicyMeta,
 }: PolicyHeroProps) => {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const rootRef = useRef<HTMLDivElement | null>(null);
-
-  const imageWrapperRef = useRef<HTMLDivElement | null>(null);
-  const imageRef = useRef<HTMLImageElement | null>(null);
-
-  const contentRef = useRef<HTMLDivElement | null>(null);
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
-  const decorationRef = useRef<HTMLDivElement | null>(null);
-  const descriptionRef = useRef<HTMLDivElement | null>(null);
-
-  const infoBannerRef = useRef<HTMLDivElement | null>(null);
-  const infoItemsRef = useRef<HTMLDivElement[]>([]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-        },
-      });
-
-      /*
-       * -----------------------------------------
-       * INITIAL STATES
-       * -----------------------------------------
-       */
-
-      gsap.set(imageWrapperRef.current, {
-        clipPath: "inset(0 100% 0 0)",
-      });
-
-      gsap.set(imageRef.current, {
-        scale: 1.12,
-      });
-
-      gsap.set(contentRef.current, {
-        opacity: 0,
-        x: -70,
-      });
-
-      gsap.set(
-        [
-          titleRef.current,
-          decorationRef.current,
-          descriptionRef.current,
-        ],
-        {
-          opacity: 0,
-          y: 30,
-        }
-      );
-
-      if (showInfoBanner) {
-        gsap.set(infoBannerRef.current, {
-          opacity: 0,
-          y: 40,
-        });
-
-        gsap.set(infoItemsRef.current, {
-          opacity: 0,
-          y: 15,
-        });
-      }
-
-      /*
-       * -----------------------------------------
-       * 1. IMAGE REVEAL
-       * -----------------------------------------
-       */
-
-      tl.to(imageWrapperRef.current, {
-        clipPath: "inset(0 0% 0 0)",
-        duration: 0.7,
-        ease: "power4.inOut",
-      });
-
-      /*
-       * -----------------------------------------
-       * 2. IMAGE ZOOM
-       * -----------------------------------------
-       */
-
-      tl.to(
-        imageRef.current,
-        {
-          scale: 1,
-          duration: 0.9,
-          ease: "power3.out",
-        },
-        "<"
-      );
-
-      /*
-       * -----------------------------------------
-       * 3. LEFT CONTENT
-       * -----------------------------------------
-       */
-
-      tl.to(
-        contentRef.current,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power3.out",
-        },
-        0.4
-      );
-
-      /*
-       * -----------------------------------------
-       * 4. TITLE
-       * -----------------------------------------
-       */
-
-      tl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.45,
-          ease: "power4.out",
-        },
-        0.5
-      );
-
-      /*
-       * -----------------------------------------
-       * 5. DECORATION
-       * -----------------------------------------
-       */
-
-      tl.to(
-        decorationRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-        },
-        0.55
-      );
-
-      /*
-       * -----------------------------------------
-       * 6. DESCRIPTION
-       * -----------------------------------------
-       */
-
-      tl.to(
-        descriptionRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.6
-      );
-
-      /*
-       * -----------------------------------------
-       * 8. FLOATING INFO BANNER
-       * -----------------------------------------
-       */
-
-      if (showInfoBanner) {
-        tl.to(
-          infoBannerRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            ease: "back.out(1.2)",
-          },
-          0.65
-        );
-
-        /*
-         * -----------------------------------------
-         * 9. INFO ITEMS STAGGER
-         * -----------------------------------------
-         */
-
-        tl.to(
-          infoItemsRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35,
-            stagger: 0.05,
-            ease: "power3.out",
-          },
-          0.75
-        );
-      }
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, [showInfoBanner]);
-
-  const addInfoItem = (el: HTMLDivElement | null) => {
-    if (el && !infoItemsRef.current.includes(el)) {
-      infoItemsRef.current.push(el);
-    }
-  };
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
-    <div ref={rootRef}>
+    <div>
       <section
-        ref={sectionRef}
         className="
         relative
         w-full
@@ -358,7 +154,6 @@ const PolicyHero = ({
       ====================================================== */}
 
         <div
-          ref={imageWrapperRef}
           className="
           absolute
           inset-y-0
@@ -367,6 +162,10 @@ const PolicyHero = ({
           z-10
           overflow-hidden
         "
+          style={{
+            clipPath: mounted ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
+            transition: "clip-path 0.7s cubic-bezier(0.65,0,0.35,1)",
+          }}
         >
           <Image
             src={imageSrc}
@@ -374,11 +173,8 @@ const PolicyHero = ({
             fill
             priority
             sizes="100vw"
-            className="
-            object-cover
-            object-center
-          "
-            ref={imageRef}
+            className={`object-cover object-center transition-transform duration-[900ms] ease-out ${mounted ? "scale-100" : "scale-[1.12]"
+              }`}
           />
 
           {/* Soft image overlay */}
@@ -433,8 +229,7 @@ const PolicyHero = ({
         />
 
         <div
-          ref={contentRef}
-          className="
+          className={`
             relative
             z-20
             mx-auto
@@ -444,10 +239,15 @@ const PolicyHero = ({
             w-full
             max-w-7xl
             items-center
+            transition-all
+            duration-500
+            ease-out
             sm:min-h-[570px]
             md:min-h-[570px]
             lg:min-h-[550px]
-          "
+            ${mounted ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-[70px]"}
+          `}
+          style={{ transitionDelay: "0.4s" }}
         >
           <div
             className="
@@ -482,8 +282,7 @@ const PolicyHero = ({
               {/* Heading */}
 
               <h1
-                ref={titleRef}
-                className="
+                className={`
                 m-0
                 font-serif
                 text-[42px]
@@ -492,10 +291,15 @@ const PolicyHero = ({
                 tracking-[-2px]
                 text-[#2C1810]
                 drop-shadow-[0_2px_8px_rgba(92,58,27,0.06)]
+                transition-all
+                duration-[450ms]
+                ease-out
                 sm:text-[48px]
                 md:text-[52px]
                 lg:text-[56px]
-              "
+                ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}
+              `}
+                style={{ transitionDelay: "0.5s" }}
               >
                 {title}
               </h1>
@@ -505,12 +309,16 @@ const PolicyHero = ({
             ================================================== */}
 
               <div
-                ref={decorationRef}
-                className="
+                className={`
                 mt-2.5
                 flex
                 items-center
-              "
+                transition-all
+                duration-[350ms]
+                ease-out
+                ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}
+              `}
+                style={{ transitionDelay: "0.55s" }}
               >
                 <Image
                   src="/assets/privacy-policy/title_decoration.webp"
@@ -526,12 +334,16 @@ const PolicyHero = ({
             ================================================== */}
 
               <div
-                ref={descriptionRef}
-                className="
+                className={`
                 mt-5
                 max-w-[490px]
                 text-[#2C1810]
-              "
+                transition-all
+                duration-[400ms]
+                ease-out
+                ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"}
+              `}
+                style={{ transitionDelay: "0.6s" }}
               >
                 <p
                   className="
@@ -571,8 +383,7 @@ const PolicyHero = ({
         ====================================================== */
 
         <div
-          ref={infoBannerRef}
-          className="
+          className={`
           w-full
           border-b
           border-[#73532F]
@@ -582,7 +393,12 @@ const PolicyHero = ({
           to-[#8B6A3E]
           py-2
           shadow-md
-        "
+          transition-all
+          duration-[450ms]
+          ease-out
+          ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+        `}
+          style={{ transitionDelay: "0.65s" }}
         >
           <div
             className="
@@ -603,13 +419,15 @@ const PolicyHero = ({
               return (
                 <div
                   key={item.label}
-                  ref={addInfoItem}
                   className={`
                   flex
                   items-center
                   justify-center
                   gap-3
                   py-0.5
+                  transition-all
+                  duration-[350ms]
+                  ease-out
                   ${index === 0 ? "pr-4" : "px-4"}
                   ${index > 0
                       ? "md:border-l md:border-white/20"
@@ -619,7 +437,9 @@ const PolicyHero = ({
                       ? "border-t border-white/20 md:border-t-0"
                       : ""
                     }
+                  ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[15px]"}
                 `}
+                  style={{ transitionDelay: `${0.75 + index * 0.05}s` }}
                 >
                   <div
                     className="
