@@ -649,8 +649,8 @@ export default function OurStory() {
                   mx-auto
 
                   flex
-                  h-[50px]
-                  max-w-[415px]
+                  w-[92%]
+                  max-w-[300px]
 
                   items-center
 
@@ -659,8 +659,16 @@ export default function OurStory() {
                   border
                   border-[#C38F27]
 
-                  pl-[62px]
-                  pr-[18px]
+                  py-2
+                  pl-[48px]
+                  pr-[14px]
+
+                  sm:h-[50px]
+                  sm:w-auto
+                  sm:max-w-[415px]
+                  sm:py-0
+                  sm:pl-[62px]
+                  sm:pr-[18px]
                 "
               >
                 {/* LEFT CIRCLE */}
@@ -672,8 +680,8 @@ export default function OurStory() {
                     top-1/2
 
                     flex
-                    h-[62px]
-                    w-[62px]
+                    h-[42px]
+                    w-[42px]
 
                     -translate-y-1/2
 
@@ -688,13 +696,19 @@ export default function OurStory() {
                     bg-[#004A39]
 
                     text-[#D09A30]
+
+                    sm:h-[62px]
+                    sm:w-[62px]
                   "
                 >
                   <CustomIcon
                     name="Founder"
                     className="
-                      h-[37px]
-                      w-[37px]
+                      h-[24px]
+                      w-[24px]
+
+                      sm:h-[37px]
+                      sm:w-[37px]
                     "
                   />
                 </div>
@@ -704,12 +718,15 @@ export default function OurStory() {
                     w-full
 
                     text-center
-                    text-[16px]
+                    text-[11px]
                     font-bold
                     uppercase
-                    tracking-[0.105em]
+                    tracking-[0.04em]
 
                     text-[#DDA33A]
+
+                    sm:text-[16px]
+                    sm:tracking-[0.105em]
                   "
                 >
                   A Message From The Founder

@@ -804,9 +804,12 @@ export default function SupportTheMission() {
             className="
               mt-[12px]
               flex
+              flex-col
               items-center
               justify-center
-              gap-[14px]
+              gap-3
+              sm:flex-row
+              sm:gap-[14px]
             "
           >
             <span
@@ -834,7 +837,7 @@ export default function SupportTheMission() {
 
             <div
               className="
-                flex
+                hidden
                 h-[70px]
                 w-[70px]
                 shrink-0
@@ -843,6 +846,7 @@ export default function SupportTheMission() {
                 rounded-full
                 bg-[#F1EFE7]
                 text-[#B78221]
+                sm:flex
               "
             >
               <CustomIcon
@@ -862,26 +866,31 @@ export default function SupportTheMission() {
                 group
                 inline-flex
                 h-[58px]
-                min-w-[320px]
+                w-full
                 items-center
                 justify-between
                 rounded-[11px]
                 bg-[#004B38]
-                px-[20px]
+                px-[18px]
                 text-white
                 shadow-[0_7px_16px_rgba(0,62,44,0.14)]
                 transition
                 duration-300
                 hover:-translate-y-[1px]
                 hover:bg-[#003D2E]
+                sm:w-auto
+                sm:min-w-[320px]
+                sm:px-[20px]
               "
             >
               <span
                 className="
-                  text-[22px]
+                  text-[16px]
                   font-semibold
                   uppercase
                   tracking-[0.04em]
+                  sm:text-[20px]
+                  md:text-[22px]
                 "
               >
                 Support The Mission
@@ -890,12 +899,15 @@ export default function SupportTheMission() {
               <CustomIcon
                 name="ArrowRight"
                 className="
-                  h-[29px]
-                  w-[29px]
+                  h-[22px]
+                  w-[22px]
+                  shrink-0
                   text-[#D09B31]
                   transition-transform
                   duration-300
                   group-hover:translate-x-[3px]
+                  sm:h-[29px]
+                  sm:w-[29px]
                 "
               />
             </a>

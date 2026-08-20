@@ -207,9 +207,10 @@ export default function ResponsibleSewa() {
         <div
           className="
             relative
-            min-h-[490px]
+            min-h-0
             overflow-hidden
             bg-[#FBF7EF]
+            lg:min-h-[490px]
           "
         >
           {/* =================================================
@@ -292,7 +293,7 @@ export default function ResponsibleSewa() {
               relative
               z-10
               flex
-              min-h-[490px]
+              min-h-0
               w-full
               flex-col
 
@@ -303,6 +304,7 @@ export default function ResponsibleSewa() {
               sm:px-[42px]
 
               lg:w-[55%]
+              lg:min-h-[490px]
               lg:px-[58px]
               lg:pb-[34px]
               lg:pt-[48px]
@@ -312,18 +314,20 @@ export default function ResponsibleSewa() {
                 LABEL
             ================================================= */}
 
-            <div className="flex items-center gap-[12px]">
+            <div className="flex items-center gap-[10px] sm:gap-[12px]">
               <CustomIcon
                 name="ShieldCheck"
                 className="
-                  h-[49px]
-                  w-[49px]
+                  h-[36px]
+                  w-[36px]
                   shrink-0
                   text-[#AD7922]
+                  sm:h-[49px]
+                  sm:w-[49px]
                 "
               />
 
-              <span className="relative h-px w-[30px] bg-[#C49B59]">
+              <span className="relative hidden h-px w-[30px] bg-[#C49B59] sm:block">
                 <span
                   className="
                     absolute
@@ -340,17 +344,19 @@ export default function ResponsibleSewa() {
               <span
                 className="
                   whitespace-nowrap
-                  text-[18px]
+                  text-[14px]
                   font-bold
                   uppercase
-                  tracking-[0.11em]
+                  tracking-[0.08em]
                   text-[#064A38]
+                  sm:text-[18px]
+                  sm:tracking-[0.11em]
                 "
               >
                 Responsible Sewa
               </span>
 
-              <span className="relative h-px w-[30px] bg-[#C49B59]">
+              <span className="relative hidden h-px w-[30px] bg-[#C49B59] sm:block">
                 <span
                   className="
                     absolute
@@ -435,17 +441,18 @@ export default function ResponsibleSewa() {
                 mt-[23px]
                 max-w-[650px]
 
-                text-[21px]
+                text-[17px]
                 font-semibold
                 leading-[1.5]
 
                 text-[#34393C]
 
+                sm:text-[21px]
                 lg:text-[24px]
               "
             >
               At Moksha Sewa, every act of support is guided by responsibility,
-              <br />
+              <br className="hidden sm:block" />
               respect and the highest standards of ethical service.
             </p>
 
