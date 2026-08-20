@@ -52,7 +52,7 @@ export default function HeartOfMoksha() {
               </p>
 
               <div className="mt-5 flex w-full flex-col items-start gap-5 xl:flex-row xl:items-center xl:justify-start">
-                <Link href="/volunteer" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
+                <Link href="/volunteer/register" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
                   Join the Mission
                   <FaArrowRight className="h-3 w-3" />
                 </Link>
