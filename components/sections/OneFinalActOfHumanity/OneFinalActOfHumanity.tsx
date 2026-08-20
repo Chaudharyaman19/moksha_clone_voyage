@@ -55,9 +55,9 @@ export default function OneFinalActOfHumanity() {
 
               {/* Namo Gange logo */}
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[250px]">
-                <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:-translate-x-3">
+                <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
                   <Image
-                    src="/assets/namo-gange-logo.webp"
+                    src="/hero-images/namo-gange-logo.webp"
                     alt="Namo Gange Trust"
                     fill
                     sizes="330px"
@@ -102,6 +102,8 @@ export default function OneFinalActOfHumanity() {
             <div className="mt-5 flex flex-wrap gap-4">
               <a
                 href="/request-help"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[#0B4B3C] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(11,75,60,0.18)] transition hover:bg-[#083E32]"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-[#D6A13E]" />
@@ -111,6 +113,8 @@ export default function OneFinalActOfHumanity() {
 
               <a
                 href="/donation"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[linear-gradient(180deg,#D69D31_0%,#B47B1F_100%)] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(185,131,46,0.20)] transition hover:brightness-105"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-white" />

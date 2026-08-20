@@ -72,7 +72,7 @@ export default function TopInfoBar() {
           here would silently reopen a gap between the two bars otherwise). */}
       <div className="mx-auto flex h-full w-full max-w-7xl items-center gap-3 px-4 sm:px-5 lg:gap-5 lg:px-0">
         <div className="min-w-0 flex-1 truncate text-left text-[12px] font-medium text-white/90 sm:text-[14px] lg:text-[16px]">
-          Sewa Available in Delhi NCR <span className="text-[#D4B996]">|</span> 24×7 Last-Rites Assistance <span className="text-[#D4B996]">|</span> Unclaimed &amp; Needy Family Support
+          Sewa Available in Delhi • Ghaziabad • Noida <span className="text-[#D4B996]">|</span> 24×7 Last-Rites Assistance <span className="text-[#D4B996]">|</span> Unclaimed &amp; Needy Family Support
         </div>
 
         {/* Utilities */}

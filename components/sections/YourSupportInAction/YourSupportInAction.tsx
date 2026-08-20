@@ -669,6 +669,8 @@ export default function SupportInAction() {
         <div className="mt-[12px] flex justify-center">
           <a
             href="/donation"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
       group
       inline-flex

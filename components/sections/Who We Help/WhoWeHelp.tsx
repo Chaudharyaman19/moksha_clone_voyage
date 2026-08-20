@@ -246,7 +246,7 @@ const trustItems = [
   {
     icon: "MapPinIcon",
     title: "Local Sewa\nNetwork",
-    text: "Our dedicated teams are available across Delhi NCR for support.",
+    text: "Our dedicated teams are available across Delhi • Ghaziabad • Noida for support.",
     color: "#E25F07",
   },
 ];

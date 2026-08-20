@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -325,8 +326,10 @@ const AboutMokshaSewa: React.FC = () => {
                 />
               </button>
 
-              <button
-                type="button"
+              <Link
+                href="/request-help"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
                   group
                   flex
@@ -356,7 +359,7 @@ const AboutMokshaSewa: React.FC = () => {
                     group-hover:translate-x-1
                   "
                 />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

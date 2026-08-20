@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     quote:
       "Essential ritual materials and priest guidance were coordinated for an economically weaker family after case verification.",
     name: "Verified Case Record",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     image: "/assets/girl.jpg",
     position: "50% 38%",
   },
@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
     quote:
       "Transport and cremation-ground guidance were supported for a family that needed urgent last-rites coordination.",
     name: "Verified Case Record",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     image: "/assets/man1.jpg",
     position: "72% 35%",
   },
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     quote:
       "Wood, shroud cloth, flowers and basic ritual items were coordinated for a verified eligible case.",
     name: "Verified Case Record",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     image: "/assets/im1.jpeg",
     position: "50% 50%",
   },
@@ -55,7 +55,7 @@ const testimonials: Testimonial[] = [
     quote:
       "Food and basic relief support were coordinated where verified need and availability permitted.",
     name: "Verified Case Record",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     image: "/assets/girl.jpg",
     position: "50% 38%",
   },
@@ -64,7 +64,7 @@ const testimonials: Testimonial[] = [
     quote:
       "Guidance was provided for an unclaimed case only after applicable authority formalities were completed.",
     name: "Verified Case Record",
-    location: "Delhi NCR",
+    location: "Delhi • Ghaziabad • Noida",
     image: "/assets/man1.jpg",
     position: "72% 35%",
   },
@@ -273,11 +273,10 @@ export default function VoicesOfGratitude() {
                 className="grid h-11  place-items-center rounded-full transition"
               >
                 <span
-                  className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${
-                    selected
+                  className={`h-2.5 w-2.5 rounded-full border transition-all duration-300 ${selected
                       ? "border-[#D89A32] bg-[#D89A32]"
                       : "border-[#C7954B] bg-transparent hover:bg-[#EAD3AC]"
-                  }`}
+                    }`}
                 />
               </button>
             );

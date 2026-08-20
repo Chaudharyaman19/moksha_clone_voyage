@@ -856,6 +856,8 @@ export default function SupportTheMission() {
 
             <a
               href="/donation"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 group
                 inline-flex

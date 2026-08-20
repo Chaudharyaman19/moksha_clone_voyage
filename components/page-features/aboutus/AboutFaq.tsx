@@ -9,7 +9,7 @@ const faqs = [
   ["Who can request Moksha Sewa support?", "Moksha Sewa provides support for legally authorised unclaimed bodies, people without family support and verified families facing financial hardship. All requests are subject to verification and eligibility."],
   ["Does Moksha Sewa assist with legally authorised unclaimed bodies?", "Yes. We coordinate support only after the required authority clearance, documentation and legal formalities have been completed."],
   ["What kind of assistance does Moksha Sewa provide?", "Depending on verified need and availability, support may include final-journey transport, ritual materials, priest coordination, cremation-ground support and family guidance."],
-  ["Is Moksha Sewa available in my area?", "Moksha Sewa currently focuses on Delhi NCR and is expanding progressively. Contact our team with the case location to confirm availability."],
+  ["Is Moksha Sewa available in my area?", "Moksha Sewa currently focuses on Delhi • Ghaziabad • Noida and is expanding progressively. Contact our team with the case location to confirm availability."],
   ["How can I become a volunteer with Moksha Sewa?", "Submit the volunteer form through our website. Our team will review your details and contact you when a suitable verified opportunity is available."],
   ["How can I support Moksha Sewa through donations?", "You can support verified cases through the official donation page. Contributions are used responsibly for eligible mission activities and case-based assistance."],
 ];
@@ -39,7 +39,7 @@ export default function AboutFaq() {
             <div className="grid min-h-[88px] grid-cols-[48px_1fr] items-center gap-x-3 border border-[#e7ded0] bg-white px-4 py-2 shadow-[0_5px_14px_rgba(65,49,30,.09)] sm:grid-cols-[48px_1fr_auto]">
               <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d4c3a5] bg-[#faf7f0] text-[#17493a]"><FaUsers className="h-6 w-6" /></span>
               <div className="flex h-full min-w-0 flex-col justify-center"><p className="text-[16px] font-semibold leading-[1.2] text-[#24483d]">Need more help?</p><p className="mt-1 max-w-[310px] text-[16px] leading-[1.25] text-[#56645e]">Our team is here to assist you with any questions or support you may need.</p></div>
-              <Link href="/contact" className="col-span-2 mt-4 flex min-h-12 items-center justify-center gap-3 border-t border-[#ded1bb] pt-3 text-[#24483d] sm:col-span-1 sm:ml-4 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0"><FaPhoneAlt className="h-5 w-5 shrink-0 text-[#a97931]" /><span className="whitespace-nowrap text-[16px] font-bold uppercase leading-[1.2]">Request Sewa Help</span><FaArrowRight className="h-4 w-4 shrink-0 text-[#b27b2e]" /></Link>
+              <Link href="/contact" target="_blank" rel="noopener noreferrer" className="col-span-2 mt-4 flex min-h-12 items-center justify-center gap-3 border-t border-[#ded1bb] pt-3 text-[#24483d] sm:col-span-1 sm:ml-4 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0"><FaPhoneAlt className="h-5 w-5 shrink-0 text-[#a97931]" /><span className="whitespace-nowrap text-[16px] font-bold uppercase leading-[1.2]">Request Sewa Help</span><FaArrowRight className="h-4 w-4 shrink-0 text-[#b27b2e]" /></Link>
             </div>
           </div>
 
