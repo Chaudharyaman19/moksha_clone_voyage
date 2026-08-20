@@ -150,7 +150,7 @@ const sevaStats = [
   },
   {
     value: "Delhi • Ghaziabad • Noida",
-    // title: "Cremation Ground Support",
+    title: "Cremation Ground Support",
     caption: "Family Guidance",
     icon: FlameIcon,
   },
