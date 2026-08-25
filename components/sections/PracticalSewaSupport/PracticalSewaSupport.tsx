@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface CustomIconProps {
   name: string;
@@ -366,6 +369,29 @@ const decorativePattern = {
 };
 
 export default function HowWeCanHelp() {
+  const websiteSection = useWebsiteSection("practical-support");
+  const managedCards = cards.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, {
+      title: fallback.title,
+      description: fallback.desc,
+      image: fallback.image,
+    });
+    return {
+      ...fallback,
+      title: textOrFallback(item.title, fallback.title, 80),
+      desc: textOrFallback(item.description, fallback.desc, 180),
+      image: item.image || fallback.image,
+    };
+  });
+  const managedBenefits = benefits.map((fallback, index) => {
+    const item = websiteSection?.items?.[index + cards.length];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 70),
+      text: textOrFallback(item?.description, fallback.text, 160),
+    };
+  });
+
   return (
     <section
       className="
@@ -513,7 +539,7 @@ export default function HowWeCanHelp() {
             <span className="h-px w-[62px] bg-[#D05A17]" />
 
             <span className="font-sans text-[16px] font-semibold uppercase text-[#6E2C18]">
-              Our Sewa
+              {textOrFallback(websiteSection?.eyebrow, "Our Sewa", 60)}
             </span>
 
             <span className="h-px w-[62px] bg-[#D05A17]" />
@@ -530,10 +556,10 @@ export default function HowWeCanHelp() {
               sm:text-[30px]
             "
           >
-            Essential Support for a
+            {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[0]}
 
             <span className="mt-[2px] block text-[#D54200]">
-              Dignified Final Journey
+              {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[1] ?? ""}
             </span>
           </h2>
 
@@ -549,16 +575,18 @@ export default function HowWeCanHelp() {
           </div>
 
           <p className="mx-auto mt-[7px] max-w-[700px] text-[16px] leading-[1.42] text-[#2C2825]">
-            Moksha Sewa ensures that every individual—regardless of their
-            circumstances—receives a respectful and dignified farewell with
-            complete care and compassion.
+            {textOrFallback(
+              websiteSection?.description,
+              "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.",
+              220
+            )}
           </p>
         </header>
 
         {/* SERVICE CARDS */}
 
         <div className="grid grid-cols-1 items-stretch gap-[20px] md:grid-cols-2 lg:grid-cols-4">
-          {cards.map((card) => (
+          {managedCards.map((card) => (
             <article
               key={card.title}
               className="
@@ -742,7 +770,7 @@ export default function HowWeCanHelp() {
               md:divide-y-0
             "
           >
-            {benefits.map((item) => (
+            {managedBenefits.map((item) => (
               <div
                 key={item.title}
                 className="flex min-h-[125px] items-center gap-[13px] px-[15px] py-[13px]"

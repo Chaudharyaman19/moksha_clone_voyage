@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface FAQItem {
   id: number;
@@ -58,7 +59,21 @@ const FAQ_DATA: FAQItem[] = [
 ];
 
 export default function FAQSection() {
+  const websiteSection = useWebsiteSection("faq");
   const [openId, setOpenId] = useState<number | null>(null);
+  const faqData = FAQ_DATA.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, {
+      title: fallback.question,
+      description: fallback.answer,
+      image: fallback.icon,
+    });
+    return {
+      ...fallback,
+      question: textOrFallback(item.title, fallback.question, 120),
+      answer: textOrFallback(item.description, fallback.answer, 260),
+      icon: item.image || fallback.icon,
+    };
+  });
 
   const toggleFAQ = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -109,7 +124,7 @@ export default function FAQSection() {
             />
 
             <span className="whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
-              Help &amp; Information
+              {textOrFallback(websiteSection?.eyebrow, "Help & Information", 60)}
             </span>
 
             <Image
@@ -124,7 +139,7 @@ export default function FAQSection() {
 
           {/* Title */}
           <h2 className="mt-1 font-sans text-[24px] font-semibold leading-[1.05] text-[#352218] sm:text-[30px]">
-            Frequently Asked Questions
+            {textOrFallback(websiteSection?.title, "Frequently Asked Questions", 95)}
           </h2>
 
           {/* Decorative image */}
@@ -141,16 +156,18 @@ export default function FAQSection() {
 
           {/* Description */}
           <p className="mx-auto mt-1 max-w-[720px] px-3 text-[16px] leading-6 text-[#40464a]">
-            Find quick answers to common questions about Moksha Sewa,
-            <br className="hidden sm:block" />
-            our services and how you can get involved.
+            {textOrFallback(
+              websiteSection?.description,
+              "Find quick answers to common questions about Moksha Sewa, our services and how you can get involved.",
+              180
+            )}
           </p>
         </div>
 
         {/* FAQ list */}
         <div className="mx-auto mt-4 w-full max-w-[1035px]">
           <div className="space-y-[5px]">
-            {FAQ_DATA.map((faq) => {
+            {faqData.map((faq) => {
               const isOpen = openId === faq.id;
 
               return (

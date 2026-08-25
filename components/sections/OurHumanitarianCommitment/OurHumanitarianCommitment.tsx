@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -151,6 +154,16 @@ const features = [
 ];
 
 export default function HumanitarianCommitment() {
+  const websiteSection = useWebsiteSection("humanitarian-commitment");
+  const managedFeatures = features.map((fallback, index) => {
+    const item = websiteSection?.items?.[index];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 70),
+      text: textOrFallback(item?.description, fallback.text, 160),
+    };
+  });
+
   return (
     <section className="w-full bg-[#F7F3EC] px-3 py-3 sm:px-4 lg:px-5">
       <div className="mx-auto w-full max-w-[1344px]">
@@ -199,7 +212,7 @@ export default function HumanitarianCommitment() {
                   </span>
 
                   <span className="text-center font-sans text-[16px] font-semibold uppercase text-[#B77912]">
-                    Our Humanitarian Commitment
+                    {textOrFallback(websiteSection?.eyebrow, "Our Humanitarian Commitment", 70)}
                   </span>
 
                   <span className="relative hidden h-px w-[72px] bg-[#B87A12] sm:block">
@@ -211,12 +224,20 @@ export default function HumanitarianCommitment() {
               {/* ================= HEADING ================= */}
 
               <h2 className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
-                <span className="block">No One Should Leave</span>
-
-                <span className="block">
-                  This World Without{" "}
-                  <span className="text-[#BA790F]">Dignity.</span>
-                </span>
+                {textOrFallback(websiteSection?.title, "No One Should Leave\nThis World Without Dignity.", 95)
+                  .split("\n")
+                  .map((line, index) => (
+                    <span key={line} className="block">
+                      {index === 1 && line.includes("Dignity") ? (
+                        <>
+                          {line.replace("Dignity", "")}
+                          <span className="text-[#BA790F]">Dignity.</span>
+                        </>
+                      ) : (
+                        line
+                      )}
+                    </span>
+                  ))}
               </h2>
 
               {/* ================= LOTUS DIVIDER ================= */}
@@ -251,7 +272,7 @@ export default function HumanitarianCommitment() {
               ================================================== */}
 
               <div className="relative z-10 mt-auto grid grid-cols-1 divide-y divide-[#DDBF91] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-                {features.map((item) => (
+                {managedFeatures.map((item) => (
                   <div
                     key={item.title}
                     className="flex min-h-[205px] flex-col items-center justify-start px-[18px] pt-[4px] text-center"

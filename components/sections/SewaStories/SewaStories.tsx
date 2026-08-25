@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { ReactElement } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -286,6 +287,18 @@ const backgroundPattern = {
 };
 
 export default function SewaStories() {
+  const websiteSection = useWebsiteSection("sewa-stories");
+  const managedStories = stories.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, fallback);
+    return {
+      ...fallback,
+      title: textOrFallback(item.title, fallback.title, 80),
+      description: textOrFallback(item.description, fallback.description, 220),
+      image: item.image || fallback.image,
+      images: item.image ? [item.image] : fallback.images,
+    };
+  });
+
   return (
     <section
       className="
@@ -502,7 +515,7 @@ export default function SewaStories() {
             lg:grid-cols-3
           "
         >
-          {stories.map((story) => (
+          {managedStories.map((story) => (
             <article
               key={story.title}
               className="

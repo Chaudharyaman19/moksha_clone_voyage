@@ -3,14 +3,16 @@
 import Image from "next/image";
 import { FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function WhyYourSupportMatters() {
+  const websiteSection = useWebsiteSection("support-matters");
   return (
     <section className="relative w-full overflow-hidden bg-[#F8F2E8]">
       <div className="relative min-h-[540px] w-full sm:min-h-[480px] lg:min-h-[480px]">
         {/* Background image — kept exactly as your current image */}
         <Image
-          src="/hero-images/support-mission-ghat.png"
+          src={websiteSection?.image || "/hero-images/support-mission-ghat.png"}
           alt="A volunteer sitting beside an elderly woman, watching the sunset over a river ghat"
           fill
           priority
@@ -50,7 +52,7 @@ export default function WhyYourSupportMatters() {
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
                   <span className="font-sans text-[16px] font-semibold uppercase text-[#A27B38]">
-                    Why Your Support Matters
+                    {textOrFallback(websiteSection?.eyebrow, "Why Your Support Matters", 60)}
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
                 </div>
@@ -61,11 +63,11 @@ export default function WhyYourSupportMatters() {
 
             {/* main heading */}
             <h2 className="mx-auto mt-5 max-w-[475px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#0E4A3F] sm:text-[30px]">
-              A Dignified Farewell
-              <br />
-              Should Never Depend on
-              <br />
-              a Family&apos;s Ability to Pay.
+              {textOrFallback(websiteSection?.title, "A Dignified Farewell\nShould Never Depend on\na Family's Ability to Pay.", 95)
+                .split("\n")
+                .map((line) => (
+                  <span key={line} className="block">{line}</span>
+                ))}
             </h2>
 
             {/* divider */}
@@ -77,7 +79,11 @@ export default function WhyYourSupportMatters() {
 
             {/* supporting copy */}
             <p className="mx-auto mt-4 max-w-[460px] text-center text-[16px] leading-[1.5] text-[#696158]">
-              Your contribution helps extend verified last-rites assistance where support is genuinely needed.
+              {textOrFallback(
+                websiteSection?.subtitle,
+                "Your contribution helps extend verified last-rites assistance where support is genuinely needed.",
+                150
+              )}
             </p>
 
             {/* info card */}
@@ -89,21 +95,23 @@ export default function WhyYourSupportMatters() {
               <div className="h-14 w-px shrink-0 bg-[#D9BE8D]" />
 
               <p className="pl-5 text-[16px] leading-[1.7] text-[#60594F]">
-                Your support helps us coordinate essential assistance,
-                mobilise volunteers and stand beside eligible families
-                during a difficult final journey.
+                {textOrFallback(
+                  websiteSection?.description,
+                  "Your support helps us coordinate essential assistance, mobilise volunteers and stand beside eligible families during a difficult final journey.",
+                  220
+                )}
               </p>
             </div>
 
             {/* CTA */}
             <div className="mt-3 flex justify-center">
               <a
-                href="/donation"
+                href={websiteSection?.buttonHref || "/donation"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[52px] min-w-[290px] items-center justify-center gap-4 rounded-[5px] bg-[#0E4A3F] px-7 text-[16px] font-semibold uppercase tracking-[0.035em] text-white shadow-[0_4px_10px_rgba(14,74,63,0.20)] transition duration-200 hover:bg-[#0B3F35]"
               >
-                Support This Mission
+                {textOrFallback(websiteSection?.buttonLabel, "Support This Mission", 36)}
                 <FaArrowRight className="h-4 w-4 text-[#D7A24A]" />
               </a>
             </div>

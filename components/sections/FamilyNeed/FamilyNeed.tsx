@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -169,6 +170,16 @@ const supportCards = [
 ========================================================= */
 
 export default function PracticalSewaSupport() {
+  const websiteSection = useWebsiteSection("family-need");
+  const managedSupportCards = supportCards.map((fallback, index) => {
+    const item = websiteSection?.items?.[index];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 60),
+      text: textOrFallback(item?.description, fallback.text, 100),
+    };
+  });
+
   return (
     <section
       className="
@@ -321,7 +332,7 @@ export default function PracticalSewaSupport() {
                       text-[#1D622E]
                     "
                   >
-                    Practical Sewa Support
+                    {textOrFallback(websiteSection?.eyebrow, "Practical Sewa Support", 60)}
                   </span>
 
                   <span className="h-px w-[38px] bg-[#D45B0B]" />
@@ -342,7 +353,7 @@ export default function PracticalSewaSupport() {
                 "
               >
                 <span className="block lg:whitespace-nowrap">
-                  When a Family Needs Help,
+                  {textOrFallback(websiteSection?.title, "When a Family Needs Help,\nWe Arrange the Essentials", 95).split("\n")[0]}
                 </span>
 
                 <span
@@ -353,7 +364,7 @@ export default function PracticalSewaSupport() {
                     lg:whitespace-nowrap
                   "
                 >
-                  We Arrange the Essentials
+                  {textOrFallback(websiteSection?.title, "When a Family Needs Help,\nWe Arrange the Essentials", 95).split("\n")[1] ?? ""}
                 </span>
               </h2>
 
@@ -386,9 +397,11 @@ export default function PracticalSewaSupport() {
                   text-[#35302C]
                 "
               >
-                During a difficult final journey, families may need more than
-                arrangements—they may need guidance, coordination and someone
-                willing to stand beside them.
+                {textOrFallback(
+                  websiteSection?.description,
+                  "During a difficult final journey, families may need more than arrangements—they may need guidance, coordination and someone willing to stand beside them.",
+                  220
+                )}
               </p>
 
               {/* =================================================
@@ -404,7 +417,7 @@ export default function PracticalSewaSupport() {
                   sm:grid-cols-3
                 "
               >
-                {supportCards.map((card) => (
+                {managedSupportCards.map((card) => (
                   <div
                     key={card.title}
                     className="

@@ -13,6 +13,7 @@ import {
   FaHandHoldingHeart,
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -81,9 +82,10 @@ type SlideContent = {
 };
 
 export default function Hero() {
+  const websiteSection = useWebsiteSection("hero");
   const images = useMemo(
     () => [
-      "/hero-images/dignity-in-every-final-journey-bg.png",
+      websiteSection?.image || "/hero-images/dignity-in-every-final-journey-bg.png",
       "/hero-images/image2.png",
       "/hero-images/image3.png",
       "/hero-images/image7.png",
@@ -95,27 +97,28 @@ export default function Hero() {
       // "/hero-images/4.png",
       // "/hero-images/9.png",
     ],
-    [],
+    [websiteSection?.image],
   );
 
   const slideContent = useMemo<SlideContent[]>(
-    () => [
-      {
-        heading: ["Dignity in Every", "Final Journey"],
-        description:
-          "Supporting weaker families with compassionate last-rites assistance.",
-        descriptionHighlight: "compassionate last-rites assistance.",
-        alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
-        primaryButton: {
-          label: "Request Sewa Help",
-          href: "/request-help",
+    () => {
+      const fallbackSlides: SlideContent[] = [
+        {
+          heading: ["Dignity in Every", "Final Journey"],
+          description:
+            "Supporting weaker families with compassionate last-rites assistance.",
+          descriptionHighlight: "compassionate last-rites assistance.",
+          alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
+          primaryButton: {
+            label: "Request Sewa Help",
+            href: "/request-help",
+          },
+          secondaryButton: {
+            label: "Support This Mission",
+            href: "/donation",
+          },
         },
-        secondaryButton: {
-          label: "Support This Mission",
-          href: "/donation",
-        },
-      },
-      {
+        {
         heading: ["No One Leaves", "Without Final Dignity."],
         headingHighlight: "Without Final Dignity.",
         description:
@@ -130,8 +133,8 @@ export default function Hero() {
           label: "Support This Mission",
           href: "/donation",
         },
-      },
-      {
+        },
+        {
         heading: ["Be the Reason", "Dignity Reaches Someone."],
         headingHighlight: "Dignity Reaches Someone.",
         description:
@@ -146,8 +149,8 @@ export default function Hero() {
           label: "Become a Volunteer",
           href: "/volunteer/register",
         },
-      },
-      {
+        },
+        {
         heading: ["When a Family Cannot", "Afford a Final Farewell."],
         headingHighlight: "Afford a Final Farewell.",
         description:
@@ -163,8 +166,8 @@ export default function Hero() {
           label: "Support a Family",
           href: "/donation",
         },
-      },
-      {
+        },
+        {
         heading: ["Final Journey to Prayer", "We Stand Beside Them."],
         headingHighlight: "We Stand Beside Them.",
         description:
@@ -180,8 +183,8 @@ export default function Hero() {
           label: "Support This Mission",
           href: "/donation",
         },
-      },
-      {
+        },
+        {
         heading: ["Be the Reason", "Dignity Reaches Someone."],
         headingHighlight: "Dignity Reaches Someone.",
         description:
@@ -198,16 +201,50 @@ export default function Hero() {
           href: "/donation",
         },
       },
-    ],
-    [],
+      ];
+
+      const hasAdminHeroContent = Boolean(
+        websiteSection?.title ||
+        websiteSection?.subtitle ||
+        websiteSection?.buttonLabel ||
+        websiteSection?.secondaryButtonLabel
+      );
+      if (!hasAdminHeroContent) return fallbackSlides;
+
+      return fallbackSlides.map((slide) => ({
+        ...slide,
+        heading: textOrFallback(websiteSection?.title, slide.heading.join("\n"), 95).split(/\n|(?<=Every) /).filter(Boolean),
+        headingHighlight: undefined,
+        description: textOrFallback(websiteSection?.subtitle, slide.description, 150),
+        descriptionHighlight: undefined,
+        alt: textOrFallback(websiteSection?.description, slide.alt, 150),
+        primaryButton: {
+          label: textOrFallback(websiteSection?.buttonLabel, slide.primaryButton?.label ?? "Request Sewa Help", 36),
+          href: websiteSection?.buttonHref || slide.primaryButton?.href || "/request-help",
+        },
+        secondaryButton: {
+          label: textOrFallback(websiteSection?.secondaryButtonLabel, slide.secondaryButton?.label ?? "Support This Mission", 36),
+          href: websiteSection?.secondaryButtonHref || slide.secondaryButton?.href || "/donation",
+        },
+      }));
+    },
+    [websiteSection],
   );
 
-  const stats: StatItem[] = [
+  const statFallbacks: StatItem[] = [
     { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
     { value: "Delhi • Ghaziabad • Noida", label: "Launch Region", icon: FaLandmark },
     { value: "Verified", label: "Case-Based Support", icon: FaSmile },
     { value: "Subject", label: "To Eligibility", icon: FaShieldAlt },
   ];
+  const stats: StatItem[] = statFallbacks.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, fallback);
+    return {
+      ...fallback,
+      value: textOrFallback(item.value, fallback.value, 40),
+      label: textOrFallback(item.label, fallback.label, 60),
+    };
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
@@ -342,7 +379,7 @@ export default function Hero() {
 
                   <div className="mt-3 shrink-0 text-left">
                     <span className="block text-[22px] leading-none tracking-[0.01em] text-[#2C1810] sm:text-[24px] lg:text-[26px]">
-                      Moksha Sewa
+                      {textOrFallback(websiteSection?.eyebrow, "Moksha Sewa", 40)}
                     </span>
                     <span className="mt-1 block text-[11px] font-semibold uppercase leading-tight tracking-[0.22em] text-[#73532F] sm:text-[12px]">
                       An Initiative of Namo Gange Trust

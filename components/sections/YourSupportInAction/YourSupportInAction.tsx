@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -219,6 +222,17 @@ const cards = [
 ========================================================= */
 
 export default function SupportInAction() {
+  const websiteSection = useWebsiteSection("support-in-action");
+  const managedCards = cards.map((fallback, index) => {
+    const item = websiteSection?.items?.[index];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 80),
+      text: textOrFallback(item?.description, fallback.text, 170),
+      image: item?.image || fallback.image,
+    };
+  });
+
   return (
     <section
       className="
@@ -393,7 +407,7 @@ export default function SupportInAction() {
             lg:grid-cols-5
           "
         >
-          {cards.map((card, index) => (
+          {managedCards.map((card, index) => (
             <div
               key={card.title}
               className="relative"
@@ -668,7 +682,7 @@ export default function SupportInAction() {
         ====================================================== */}
         <div className="mt-[12px] flex justify-center">
           <a
-            href="/donation"
+            href={websiteSection?.buttonHref || "/donation"}
             target="_blank"
             rel="noopener noreferrer"
             className="

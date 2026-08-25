@@ -5,6 +5,7 @@ import {
   FaHeadset,
   FaShieldAlt,
 } from "react-icons/fa";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface StepItem {
   number: string;
@@ -434,6 +435,21 @@ const steps: StepItem[] = [
 ];
 
 export default function HowSewaWorks() {
+  const websiteSection = useWebsiteSection("how-sewa-works");
+  const managedSteps = steps.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, {
+      title: fallback.title,
+      description: fallback.description,
+      value: fallback.number,
+    });
+    return {
+      ...fallback,
+      number: textOrFallback(item.value, fallback.number, 8),
+      title: textOrFallback(item.title, fallback.title, 60),
+      description: textOrFallback(item.description, fallback.description, 140),
+    };
+  });
+
   return (
     <section
       className="
@@ -579,7 +595,7 @@ export default function HowSewaWorks() {
                 "
               />
 
-              How Sewa Works
+              {textOrFallback(websiteSection?.eyebrow, "How Sewa Works", 60)}
             </span>
 
             <span
@@ -607,7 +623,7 @@ export default function HowSewaWorks() {
               sm:text-[30px]
             "
           >
-            Support With Care, Verification &amp; Responsibility
+            {textOrFallback(websiteSection?.title, "Support With Care, Verification & Responsibility", 95)}
           </h2>
 
           <div
@@ -636,8 +652,11 @@ export default function HowSewaWorks() {
               text-[#596068]
             "
           >
-            A simple process. Compassionate support. Dignified final
-            journey.
+            {textOrFallback(
+              websiteSection?.description,
+              "A simple process. Compassionate support. Dignified final journey.",
+              150
+            )}
           </p>
         </header>
 
@@ -694,7 +713,7 @@ export default function HowSewaWorks() {
               lg:gap-[82px]
             "
           >
-            {steps.map((step, index) => {
+            {managedSteps.map((step, index) => {
               const Icon = ICONS[step.icon];
 
               return (

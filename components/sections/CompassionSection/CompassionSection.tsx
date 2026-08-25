@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode, SVGProps } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -157,9 +158,22 @@ const sevaStats = [
 ];
 
 export default function CompassionSection() {
-  const stats = sevaStats;
+  const websiteSection = useWebsiteSection("compassion");
+  const stats = sevaStats.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, {
+      value: fallback.value,
+      title: fallback.title,
+      description: fallback.caption,
+    });
+    return {
+      ...fallback,
+      value: textOrFallback(item.value, fallback.value, 40),
+      title: textOrFallback(item.title, fallback.title, 60),
+      caption: textOrFallback(item.description, fallback.caption, 80),
+    };
+  });
 
-  const features = [
+  const featureFallbacks = [
     {
       title: "Ambulance Support",
       text: "Transport with respect",
@@ -181,6 +195,14 @@ export default function CompassionSection() {
       icon: UsersIcon,
     },
   ];
+  const features = featureFallbacks.map((fallback, index) => {
+    const item = websiteSection?.items?.[index + sevaStats.length];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 60),
+      text: textOrFallback(item?.description, fallback.text, 100),
+    };
+  });
 
   return (
     <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
@@ -213,7 +235,7 @@ export default function CompassionSection() {
                 <LotusIcon className="h-9 w-9" />
               </div>
               <span className="pb-0.5 font-sans text-[16px] font-semibold uppercase text-[#7F5A2E]">
-                CREMATION & LAST RITES SUPPORT
+                {textOrFallback(websiteSection?.eyebrow, "CREMATION & LAST RITES SUPPORT", 70)}
               </span>
             </div>
 
@@ -222,10 +244,10 @@ export default function CompassionSection() {
               className="mb-2.5 font-sans text-[24px] font-semibold leading-[1.05] text-[#26140D] sm:text-[30px]"
             >
               <span className="block">
-                When a Family Needs Help
+                {textOrFallback(websiteSection?.title, "When a Family Needs Help\nWe Arrange the Essentials", 95).split("\n")[0]}
               </span>
               <span className="mt-1 block text-[#956A32]">
-                We Arrange the Essentials
+                {textOrFallback(websiteSection?.title, "When a Family Needs Help\nWe Arrange the Essentials", 95).split("\n")[1] ?? ""}
               </span>
             </h2>
 
@@ -238,11 +260,11 @@ export default function CompassionSection() {
 
             {/* Description */}
             <p className="mb-4 max-w-[600px] text-[16px] font-normal leading-[1.6] text-[#3F2A1F] sm:text-[16px]">
-              At{" "}
-              <span className="font-semibold text-[#865E30]">
-                Moksha Sewa
-              </span>
-              , we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.
+              {textOrFallback(
+                websiteSection?.description,
+                "At Moksha Sewa, we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.",
+                240
+              )}
             </p>
 
             {/* Stat cards */}
@@ -295,13 +317,13 @@ export default function CompassionSection() {
             {/* CTA buttons */}
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <a
-                href="/request-help"
+                href={websiteSection?.buttonHref || "/request-help"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
-                Request Sewa Support
+                {textOrFallback(websiteSection?.buttonLabel, "Request Sewa Support", 36)}
               </a>
 
               <a

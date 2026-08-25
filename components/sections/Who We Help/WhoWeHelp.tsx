@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface CustomIconProps {
   name: string;
@@ -258,6 +261,25 @@ const backgroundPattern = {
 };
 
 export default function WhoWeHelp() {
+  const websiteSection = useWebsiteSection("who-we-help");
+  const managedHelpCards = helpCards.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, fallback);
+    return {
+      ...fallback,
+      title: textOrFallback(item.title, fallback.title, 95),
+      description: textOrFallback(item.description, fallback.description, 220),
+      image: item.image || fallback.image,
+    };
+  });
+  const managedTrustItems = trustItems.map((fallback, index) => {
+    const item = websiteSection?.items?.[index + helpCards.length];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 80),
+      text: textOrFallback(item?.description, fallback.text, 180),
+    };
+  });
+
   return (
     <section className="relative w-full overflow-hidden bg-[#FBF8F3] px-4 py-7 sm:px-5 lg:px-6 lg:py-8">
 
@@ -430,7 +452,7 @@ export default function WhoWeHelp() {
 
         <div className="grid grid-cols-1 gap-[18px] lg:grid-cols-3">
 
-          {helpCards.map((card) => (
+          {managedHelpCards.map((card) => (
             <article
               key={card.title}
               className="
@@ -722,7 +744,7 @@ export default function WhoWeHelp() {
             "
           >
 
-            {trustItems.map((item) => (
+            {managedTrustItems.map((item) => (
               <div
                 key={item.title}
                 className="

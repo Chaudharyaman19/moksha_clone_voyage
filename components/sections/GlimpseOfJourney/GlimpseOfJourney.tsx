@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, Image as ImageIcon } from "lucide-react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const SEWA_CARDS = [
   {
@@ -39,6 +40,17 @@ const SEWA_CARDS = [
 ];
 
 export default function GlimpseOfJourney() {
+  const websiteSection = useWebsiteSection("journey-glimpse");
+  const managedCards = SEWA_CARDS.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, fallback);
+    return {
+      ...fallback,
+      title: textOrFallback(item.title, fallback.title, 70),
+      description: textOrFallback(item.description, fallback.description, 160),
+      image: item.image || fallback.image,
+    };
+  });
+
   return (
     <section className="relative w-full overflow-hidden bg-[#f8f1e3]">
       {/* Curved image clip-path definition (scales at every breakpoint) */}
@@ -75,7 +87,7 @@ export default function GlimpseOfJourney() {
             <span className="h-px w-10 bg-[#b68a2d] sm:w-16 md:w-20" />
 
             <span className="whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
-              Sewa In Action
+              {textOrFallback(websiteSection?.eyebrow, "Sewa In Action", 60)}
             </span>
 
             <span className="h-px w-10 bg-[#b68a2d] sm:w-16 md:w-20" />
@@ -83,7 +95,7 @@ export default function GlimpseOfJourney() {
 
           {/* Main heading */}
           <h2 className="mt-1 font-sans text-[24px] font-semibold leading-[1.05] text-[#352218] sm:text-[30px]">
-            Moments of Compassion, Service &amp; Dignity
+            {textOrFallback(websiteSection?.title, "Moments of Compassion, Service & Dignity", 95)}
           </h2>
 
           {/* Decorative image */}
@@ -101,7 +113,7 @@ export default function GlimpseOfJourney() {
 
         {/* Cards */}
         <div className="mx-auto mt-5 grid w-full max-w-[1440px] grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
-          {SEWA_CARDS.map((card) => (
+          {managedCards.map((card) => (
             <article
               key={card.id}
               className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
@@ -205,7 +217,7 @@ export default function GlimpseOfJourney() {
               <ImageIcon size={29} strokeWidth={1.5} />
             </span>
 
-            <span className="whitespace-nowrap">View Sewa Gallery</span>
+            <span className="whitespace-nowrap">{textOrFallback(websiteSection?.buttonLabel, "View Sewa Gallery", 36)}</span>
 
             <ArrowRight
               size={25}

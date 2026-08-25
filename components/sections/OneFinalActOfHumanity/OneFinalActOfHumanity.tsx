@@ -3,14 +3,16 @@
 import Image from "next/image";
 import { FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function OneFinalActOfHumanity() {
+  const websiteSection = useWebsiteSection("final-act");
   return (
     <section className="relative w-full overflow-hidden bg-[#F7F0E4]">
       <div className="relative min-h-[520px] w-full">
         {/* Background image stays the same */}
         <Image
-          src="/hero-images/one-final-act-humanity.png"
+          src={websiteSection?.image || "/hero-images/one-final-act-humanity.png"}
           alt="Two Moksha Sewa volunteers carrying a body along a river ghat at sunset"
           fill
           sizes="100vw"
@@ -74,16 +76,21 @@ export default function OneFinalActOfHumanity() {
             <div className="flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#A87327]">
               <span className="h-px w-10 bg-[#C99A4B]" />
               <span className="h-1 w-1 rounded-full bg-[#B98231]" />
-              One Final Act of Humanity
+              {textOrFallback(websiteSection?.eyebrow, "One Final Act of Humanity", 60)}
               <span className="h-1 w-1 rounded-full bg-[#B98231]" />
               <span className="h-px w-10 bg-[#C99A4B]" />
             </div>
 
             {/* Heading */}
             <h2 className="mt-4 max-w-[600px] font-sans text-[24px] font-semibold leading-[1.05] text-[#163F31] sm:text-[30px]">
-              When No One Else Is There,
-              <br />
-              Humanity Must Be.
+              {textOrFallback(websiteSection?.title, "When No One Else Is There,\nHumanity Must Be.", 95)
+                .split("\n")
+                .map((line, index) => (
+                  <span key={line} className="block">
+                    {line}
+                    {index === 0 ? null : null}
+                  </span>
+                ))}
             </h2>
 
             {/* Divider */}
@@ -95,30 +102,34 @@ export default function OneFinalActOfHumanity() {
 
             {/* Subtitle */}
             <p className="mt-4 max-w-[560px] text-[16px] leading-[1.5] text-[#665F56]">
-              Stand with Moksha Sewa in helping ensure dignity, compassion and respect in the final journey of those we are able to support.
+              {textOrFallback(
+                websiteSection?.description,
+                "Stand with Moksha Sewa in helping ensure dignity, compassion and respect in the final journey of those we are able to support.",
+                180
+              )}
             </p>
 
             {/* CTAs */}
             <div className="mt-5 flex flex-wrap gap-4">
               <a
-                href="/request-help"
+                href={websiteSection?.buttonHref || "/request-help"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[#0B4B3C] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(11,75,60,0.18)] transition hover:bg-[#083E32]"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-[#D6A13E]" />
-                Request Sewa Help
+                {textOrFallback(websiteSection?.buttonLabel, "Request Sewa Help", 36)}
                 <FaArrowRight className="h-3.5 w-3.5 text-[#D6A13E]" />
               </a>
 
               <a
-                href="/donation"
+                href={websiteSection?.secondaryButtonHref || "/donation"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[54px] items-center justify-center gap-3 whitespace-nowrap rounded-[5px] bg-[linear-gradient(180deg,#D69D31_0%,#B47B1F_100%)] px-6 text-[16px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_10px_rgba(185,131,46,0.20)] transition hover:brightness-105"
               >
                 <FaHandHoldingHeart className="h-[18px] w-[18px] text-white" />
-                Support This Mission
+                {textOrFallback(websiteSection?.secondaryButtonLabel, "Support This Mission", 36)}
                 <FaArrowRight className="h-3.5 w-3.5 text-white" />
               </a>
             </div>

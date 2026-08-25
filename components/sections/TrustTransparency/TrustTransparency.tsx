@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -284,6 +285,24 @@ const values = [
 ];
 
 export default function TrustTransparency() {
+  const websiteSection = useWebsiteSection("trust-transparency");
+  const managedTrustCards = trustCards.map((fallback, index) => {
+    const item = websiteSection?.items?.[index];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 70),
+      description: textOrFallback(item?.description, fallback.description, 160),
+    };
+  });
+  const managedValues = values.map((fallback, index) => {
+    const item = websiteSection?.items?.[index + trustCards.length];
+    return {
+      ...fallback,
+      title: textOrFallback(item?.title, fallback.title, 50),
+      description: textOrFallback(item?.description, fallback.description, 90),
+    };
+  });
+
   return (
     <section className="relative w-full overflow-hidden bg-[#FAF5EE] px-4 pb-0 pt-[18px] max-md:px-3 max-md:pt-[16px]">
       {/* BACKGROUND TEXTURE */}
@@ -489,7 +508,7 @@ export default function TrustTransparency() {
 
             {/* 4 CARDS - SAME BACKGROUND AS MAIN SECTION */}
             <div className="mt-[13px] grid grid-cols-1 gap-[12px] sm:grid-cols-2 xl:grid-cols-4 max-md:gap-[10px]">
-              {trustCards.map((card) => (
+              {managedTrustCards.map((card) => (
                 <article
                   key={card.title}
                   className="flex h-[277px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FAF5EE] px-[10px] pb-[15px] pt-[15px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.045)] max-md:h-auto max-md:min-h-[235px] max-md:px-[18px] max-md:pb-[16px] max-md:pt-[16px]"
@@ -601,7 +620,7 @@ export default function TrustTransparency() {
 
             {/* VALUES */}
             <div className="absolute inset-y-0 right-0 grid w-[71%] grid-cols-4">
-              {values.map((value) => (
+              {managedValues.map((value) => (
                 <div
                   key={value.title}
                   className="flex flex-col items-center justify-center border-l border-[#E0CEAD] px-[8px] text-center"
@@ -667,7 +686,7 @@ export default function TrustTransparency() {
           </p>
 
           <div className="grid grid-cols-2 gap-[14px] border-t border-[#DCC8A4] pt-[14px] sm:grid-cols-4 max-md:gap-x-[8px] max-md:gap-y-[16px]">
-            {values.map((value) => (
+            {managedValues.map((value) => (
               <div
                 key={value.title}
                 className="flex flex-col items-center text-center"

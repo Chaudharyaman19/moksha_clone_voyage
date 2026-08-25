@@ -24,21 +24,26 @@ import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission"
 import OneFinalActOfHumanity from "@/components/sections/OneFinalActOfHumanity/OneFinalActOfHumanity";
 import YourSupportInAction from "@/components/sections/YourSupportInAction/YourSupportInAction";
 import TrustTransparency from "@/components/sections/TrustTransparency/TrustTransparency";
+import { getWebsiteSections } from "@/lib/websiteSettingsApi";
+import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export const metadata = createPageMetadata("/");
 
-export default function Page() {
+export default async function Page() {
+  const websiteSections = await getWebsiteSections();
+
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/")} />
       <Topbar />
       <Navbar />
+      <WebsiteContentProvider sections={websiteSections}>
       <main>
-        <Hero />
+        <WebsiteSection name="hero"><Hero /></WebsiteSection>
 
-        <Howwehelp />
-        <PracticalSewaSupport />
-        <FamilyNeed />
+        <WebsiteSection name="who-we-help"><Howwehelp /></WebsiteSection>
+        <WebsiteSection name="practical-support"><PracticalSewaSupport /></WebsiteSection>
+        <WebsiteSection name="family-need"><FamilyNeed /></WebsiteSection>
         {/* <OurSewa /> */}
 
 
@@ -50,16 +55,16 @@ export default function Page() {
 
    
 
-        <HowSewaWorks />
-        <CompassionSection />
-        <OurHumanitarianCommitment />
-        <SewaStories />
+        <WebsiteSection name="how-sewa-works"><HowSewaWorks /></WebsiteSection>
+        <WebsiteSection name="compassion"><CompassionSection /></WebsiteSection>
+        <WebsiteSection name="humanitarian-commitment"><OurHumanitarianCommitment /></WebsiteSection>
+        <WebsiteSection name="sewa-stories"><SewaStories /></WebsiteSection>
 
-        <WhyYourSupportMatters />
+        <WebsiteSection name="support-matters"><WhyYourSupportMatters /></WebsiteSection>
 
-        <JoinTheMission />
-        <YourSupportInAction />
-        <TrustTransparency />
+        <WebsiteSection name="join-mission"><JoinTheMission /></WebsiteSection>
+        <WebsiteSection name="support-in-action"><YourSupportInAction /></WebsiteSection>
+        <WebsiteSection name="trust-transparency"><TrustTransparency /></WebsiteSection>
 
         {/* <Serving /> */}
         {/* <HowItWorks /> */}
@@ -67,10 +72,11 @@ export default function Page() {
         {/* <SacredJourney /> */}
         {/* <WhyFamiliesTrust /> */}
         {/* <VoicesOfGratitude /> */}
-        <GlimpseOfJourney />
-        <OneFinalActOfHumanity />
-        <FAQ />
+        <WebsiteSection name="journey-glimpse"><GlimpseOfJourney /></WebsiteSection>
+        <WebsiteSection name="final-act"><OneFinalActOfHumanity /></WebsiteSection>
+        <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </main>
+      </WebsiteContentProvider>
       <Footer />
     </div>
   );

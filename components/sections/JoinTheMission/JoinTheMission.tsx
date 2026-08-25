@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 /* =========================================================
    TYPES
@@ -205,6 +206,27 @@ const cards: MissionCard[] = [
   },
 ];
 export default function JoinTheMission() {
+  const websiteSection = useWebsiteSection("join-mission");
+  const missionCards = cards.map((fallback, index) => {
+    const item = itemOrFallback(websiteSection?.items, index, {
+      title: fallback.title,
+      label: fallback.buttonLabel,
+      description: fallback.description,
+      image: fallback.image,
+      href: fallback.buttonHref,
+    });
+
+    return {
+      ...fallback,
+      image: item.image || fallback.image,
+      alt: textOrFallback(item.title, fallback.alt, 120),
+      title: textOrFallback(item.title, fallback.title, 60),
+      description: textOrFallback(item.description, fallback.description, 140),
+      buttonLabel: textOrFallback(item.label, fallback.buttonLabel, 36),
+      buttonHref: item.href || fallback.buttonHref,
+    };
+  });
+
   return (
     <section
       className="
@@ -396,7 +418,7 @@ export default function JoinTheMission() {
                 text-[#9B6B25]
               "
             >
-              Join The Mission
+              {textOrFallback(websiteSection?.eyebrow, "Join The Mission", 60)}
             </span>
 
             <span className="relative h-px w-[58px] bg-[#B77E26]">
@@ -416,7 +438,7 @@ export default function JoinTheMission() {
               sm:text-[30px]
             "
           >
-            There Is a Place for Everyone in Sewa
+            {textOrFallback(websiteSection?.title, "There Is a Place for Everyone in Sewa", 95)}
           </h2>
 
           {/* LOTUS DIVIDER */}
@@ -474,8 +496,11 @@ export default function JoinTheMission() {
               text-[#50504B]
             "
           >
-            Every act of kindness helps us bring dignity, compassion and
-            support to those who need it most in their final journey.
+            {textOrFallback(
+              websiteSection?.description,
+              "Every act of kindness helps us bring dignity, compassion and support to those who need it most in their final journey.",
+              180
+            )}
           </p>
         </header>
 
@@ -491,7 +516,7 @@ export default function JoinTheMission() {
             lg:grid-cols-3
           "
         >
-          {cards.map((card) => (
+          {missionCards.map((card) => (
             <article
               key={card.title}
               className="
