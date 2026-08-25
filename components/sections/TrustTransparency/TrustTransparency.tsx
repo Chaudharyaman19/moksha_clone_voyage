@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { ReactElement } from "react";
-import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -286,6 +286,9 @@ const values = [
 
 export default function TrustTransparency() {
   const websiteSection = useWebsiteSection("trust-transparency");
+  const quote = textOrFallback(websiteSection?.quote, "We believe in being open, accountable and answerable\nto all those who walk with us in this mission.", 220);
+  const legalNotice = textOrFallback(websiteSection?.legalNotice, "Applicable registration / tax\ninformation will be displayed\nafter legal verification.", 160);
+  const bottomStatements = textOrFallback(websiteSection?.bottomStatement, "A mission of compassion. | A commitment to transparency. | A promise of accountability.", 220).split("|").map((statement) => statement.trim());
   const managedTrustCards = [
     ...trustCards.map((fallback, index) => {
     const item = websiteSection?.items?.[index];
@@ -363,7 +366,7 @@ export default function TrustTransparency() {
               </span>
 
               <span className="text-[16px] font-bold uppercase tracking-[0.045em] text-[#A66E16] max-md:text-[12px] max-md:tracking-[0.035em] max-md:text-center">
-                Sewa With Responsibility
+                {textOrFallback(websiteSection?.eyebrow, "Sewa With Responsibility", 70)}
               </span>
 
               <span className="relative h-px w-[36px] bg-[#B87C18] max-md:w-[22px]">
@@ -373,9 +376,7 @@ export default function TrustTransparency() {
 
             {/* MAIN TITLE */}
             <h2 className="mx-auto mt-[7px] max-w-[440px] text-center font-serif text-[52px] font-semibold leading-[0.96] tracking-[-0.025em] text-[#064631] max-md:text-[38px] max-md:leading-[1]">
-              Trust &amp;
-              <br />
-              Transparency
+              {textOrFallback(websiteSection?.title, "Trust &\nTransparency", 80).split("\n").map((line) => <span key={line} className="block">{line}</span>)}
             </h2>
 
             {/* TITLE DIVIDER */}
@@ -392,9 +393,7 @@ export default function TrustTransparency() {
 
             {/* DESCRIPTION */}
             <p className="mx-auto mt-[7px] max-w-[390px] text-center text-[17px] font-medium leading-[1.35] text-[#48433D] max-md:px-2 max-md:text-[15px] max-md:leading-[1.45]">
-              Our commitment to transparency,
-              <br className="max-md:hidden" />
-              integrity and responsible service.
+              {textOrFallback(websiteSection?.description, "Our commitment to transparency, integrity and responsible service.", 160)}
             </p>
 
             {/* GREEN BRAND CARD */}
@@ -409,7 +408,7 @@ export default function TrustTransparency() {
                 <div className="flex h-full flex-col items-center justify-center px-[10px] text-center max-md:px-[16px] max-md:pb-[18px] max-md:pt-[20px]">
                   <div className="relative h-[90px] w-[180px] max-md:h-[76px] max-md:w-[155px]">
                     <Image
-                      src="/assets/footer-moksha-mark.png"
+                      src={imageOrFallback(websiteSection?.logoImage, "/assets/footer-moksha-mark.png")}
                       alt="Moksha Sewa"
                       fill
                       sizes="180px"
@@ -421,8 +420,8 @@ export default function TrustTransparency() {
                     Moksha Sewa
                   </h3>
 
-                  <p className="mt-[7px] text-[15px] font-semibold leading-[1.15] text-[#DFA929] max-md:text-[13px] max-md:leading-[1.2]">
-                    A Namo Gange Trust Initiative
+                    <p className="mt-[7px] text-[15px] font-semibold leading-[1.15] text-[#DFA929] max-md:text-[13px] max-md:leading-[1.2]">
+                    {textOrFallback(websiteSection?.eyebrow, "A Namo Gange Trust Initiative", 70)}
                   </p>
 
                   <div className="mt-[9px] flex items-center gap-[6px]">
@@ -443,7 +442,7 @@ export default function TrustTransparency() {
 
                   <div className="relative mx-auto mt-[1px] h-[73px] w-full max-w-[235px] max-md:h-[68px] max-md:max-w-[220px]">
                     <Image
-                      src="/hero-images/namo-gange-logo.webp"
+                      src={imageOrFallback(websiteSection?.partnerLogoImage, "/hero-images/namo-gange-logo.webp")}
                       alt="Namo Gange"
                       fill
                       sizes="235px"
@@ -463,7 +462,7 @@ export default function TrustTransparency() {
                   <div className="mt-[0px] flex items-center justify-center gap-[9px] max-md:mt-[2px] max-md:gap-[10px]">
                     <div className="relative mt-4 h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full bg-white max-md:mt-2 max-md:h-[52px] max-md:w-[52px]">
                       <Image
-                        src="/hero-images/namo-gange-logo.png"
+                        src={imageOrFallback(websiteSection?.secondaryLogoImage, "/hero-images/namo-gange-logo.png")}
                         alt="Namo Gange Trust"
                         fill
                         sizes="57px"
@@ -496,9 +495,7 @@ export default function TrustTransparency() {
                 </span>
 
                 <p className="pt-[4px] text-[18px] font-medium leading-[1.28] text-[#30343A] max-md:max-w-[290px] max-md:pt-[2px] max-md:text-[15px] max-md:leading-[1.4]">
-                  We believe in being open, accountable and answerable
-                  <br className="max-md:hidden" />
-                  to all those who walk with us in this mission.
+                  {quote.split("\n").map((line) => <span key={line} className="block">{line}</span>)}
                 </p>
 
                 <span className="-mt-[8px] ml-[15px] font-serif text-[52px] leading-none text-[#DFAC48] max-md:-mt-[5px] max-md:ml-[7px] max-md:text-[38px]">
@@ -545,7 +542,7 @@ export default function TrustTransparency() {
             {/* CTA + LEGAL */}
             <div className="mt-[16px] grid grid-cols-[58%_42%] items-center gap-[13px] max-md:mt-[14px] max-md:grid-cols-1 max-md:items-stretch max-md:gap-[10px]">
               <a
-                href="/about"
+                href={websiteSection?.buttonHref || "/about"}
                 className="group flex h-[64px] items-center rounded-[8px] bg-[#02311E] px-[22px] text-white shadow-[0_6px_14px_rgba(0,62,42,0.16)] transition hover:bg-[#01291A] max-md:h-auto max-md:min-h-[58px] max-md:w-full max-md:px-[16px] max-md:py-[10px]"
               >
                 <CustomIcon
@@ -554,7 +551,7 @@ export default function TrustTransparency() {
                 />
 
                 <span className="ml-[15px] whitespace-nowrap text-[17px] font-semibold uppercase max-md:ml-[10px] max-md:whitespace-normal max-md:text-[14px]">
-                  Know About The Trust
+                  {textOrFallback(websiteSection?.buttonLabel, "Know About The Trust", 50)}
                 </span>
 
                 <span className="ml-auto flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#DFAE3B] text-[#174A36] max-md:h-[36px] max-md:w-[36px]">
@@ -574,11 +571,7 @@ export default function TrustTransparency() {
                 />
 
                 <p className="ml-[11px] text-[13px] leading-[1.25] text-[#393E3A] max-md:ml-[10px] max-md:text-[12px] max-md:leading-[1.35]">
-                  Applicable registration / tax
-                  <br />
-                  information will be displayed
-                  <br />
-                  after legal verification.
+                  {legalNotice.split("\n").map((line) => <span key={line} className="block">{line}</span>)}
                 </p>
               </div>
             </div>
@@ -590,7 +583,7 @@ export default function TrustTransparency() {
           {/* IMAGE */}
           <div className="absolute bottom-[3px] left-[18px] top-[3px] z-[1] w-[23%] overflow-hidden rounded-[29px] border border-[#D6A13A]">
             <Image
-              src="/assets/about-reference/story-ghat-temple.png"
+              src={imageOrFallback(websiteSection?.secondaryImage, "/assets/about-reference/story-ghat-temple.png")}
               alt="Sacred river ghat"
               fill
               sizes="315px"
@@ -611,17 +604,13 @@ export default function TrustTransparency() {
             {/* TRANSPARENCY TEXT */}
             <div className="absolute inset-y-0 left-0 flex w-[29%] flex-col justify-center pb-[8px] pl-[96px] pr-[12px] pt-[8px]">
               <h3 className="text-[16px] font-bold leading-[1.16] text-[#174D39]">
-                Transparency in every step.
+                {textOrFallback(websiteSection?.lowerTitle, "Transparency in every step.", 70)}
               </h3>
 
               <span className="mt-[5px] h-[2px] w-[38px] bg-[#CB9638]" />
 
               <p className="mt-[6px] text-[13px] leading-[1.33] text-[#3D3935]">
-                Moksha Sewa follows responsible
-                <br />
-                practices, transparency and applicable
-                <br />
-                legal norms to ensure trust.
+                {textOrFallback(websiteSection?.lowerDescription, "Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust.", 180)}
               </p>
             </div>
 
@@ -680,7 +669,7 @@ export default function TrustTransparency() {
 
             <div>
               <h3 className="text-[18px] font-bold leading-[1.2] text-[#174D39] max-md:text-[17px]">
-                Transparency in every step.
+                {textOrFallback(websiteSection?.lowerTitle, "Transparency in every step.", 70)}
               </h3>
 
               <span className="mt-[6px] block h-[2px] w-[39px] bg-[#CB9638]" />
@@ -688,8 +677,7 @@ export default function TrustTransparency() {
           </div>
 
           <p className="text-[16px] leading-[1.4] text-[#3D3935] max-md:text-[14px] max-md:leading-[1.5]">
-            Moksha Sewa follows responsible practices, transparency and
-            applicable legal norms to ensure trust in every act of service.
+            {textOrFallback(websiteSection?.lowerDescription, "Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust in every act of service.", 180)}
           </p>
 
           <div className="grid grid-cols-2 gap-[14px] border-t border-[#DCC8A4] pt-[14px] sm:grid-cols-4 max-md:gap-x-[8px] max-md:gap-y-[16px]">
@@ -720,13 +708,13 @@ export default function TrustTransparency() {
           <span className="hidden h-px w-[170px] bg-gradient-to-r from-transparent to-[#D2A030] sm:block" />
 
           <span className="mx-[10px] whitespace-nowrap max-md:mx-[4px] max-md:whitespace-normal">
-            A mission of compassion.
+            {bottomStatements[0] || "A mission of compassion."}
           </span>
 
           <span className="h-px w-[28px] bg-[#D2A030]" />
 
           <span className="mx-[10px] whitespace-nowrap max-md:mx-[4px] max-md:whitespace-normal">
-            A commitment to transparency.
+            {bottomStatements[1] || "A commitment to transparency."}
           </span>
 
           <CustomIcon
@@ -735,7 +723,7 @@ export default function TrustTransparency() {
           />
 
           <span className="mx-[10px] whitespace-nowrap max-md:mx-[4px] max-md:whitespace-normal">
-            A promise of accountability.
+            {bottomStatements[2] || "A promise of accountability."}
           </span>
 
           <span className="hidden h-px w-[170px] bg-gradient-to-l from-transparent to-[#D2A030] sm:block" />

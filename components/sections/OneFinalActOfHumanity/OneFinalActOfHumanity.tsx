@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
-import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function OneFinalActOfHumanity() {
   const websiteSection = useWebsiteSection("final-act");
@@ -37,7 +37,7 @@ export default function OneFinalActOfHumanity() {
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[240px]">
                 <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
                   <Image
-                    src="/assets/footer-moksha-mark.png"
+                    src={imageOrFallback(websiteSection?.logoImage, "/assets/footer-moksha-mark.png")}
                     alt="Moksha Sewa"
                     fill
                     sizes="92px"
@@ -59,7 +59,7 @@ export default function OneFinalActOfHumanity() {
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[250px]">
                 <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
                   <Image
-                    src="/hero-images/namo-gange-logo.webp"
+                    src={imageOrFallback(websiteSection?.partnerLogoImage, "/hero-images/namo-gange-logo.webp")}
                     alt="Namo Gange Trust"
                     fill
                     sizes="330px"

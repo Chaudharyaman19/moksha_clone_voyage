@@ -237,7 +237,7 @@ export default function SupportInAction() {
       ...cards[cards.length - 1],
       title: item.title || "New Support Item",
       image: item.image || cards[cards.length - 1].image,
-      description: item.description || "Additional support information.",
+      text: item.description || "Additional support information.",
     })),
   ];
 
@@ -731,7 +731,7 @@ export default function SupportInAction() {
           tracking-[0.02em]
         "
               >
-                Donate For Sewa
+                {textOrFallback(websiteSection?.buttonLabel, "Donate For Sewa", 36)}
               </span>
             </span>
 

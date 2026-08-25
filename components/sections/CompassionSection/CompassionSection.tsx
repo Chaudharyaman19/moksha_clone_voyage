@@ -334,13 +334,13 @@ export default function CompassionSection() {
               </a>
 
               <a
-                href="tel:+919220147229"
+                href={`tel:+91${websiteSection?.phoneNumber || "9220147229"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
               >
                 <PhoneIcon className="h-5 w-5" />
-                Call for Help
+                {textOrFallback(websiteSection?.phoneLabel, "Call for Help", 36)}
               </a>
             </div>
 
@@ -352,10 +352,10 @@ export default function CompassionSection() {
                 </div>
                 <div>
                   <div className="text-[16px] font-semibold text-[#4A3020]">
-                    Priest Support
+                    {textOrFallback(websiteSection?.secondaryTitle, "Priest Support", 60)}
                   </div>
                   <div className="text-[16px] text-[#796556]">
-                    Experienced & Verified
+                    {textOrFallback(websiteSection?.secondaryDescription, "Experienced & Verified", 80)}
                   </div>
                 </div>
               </div>

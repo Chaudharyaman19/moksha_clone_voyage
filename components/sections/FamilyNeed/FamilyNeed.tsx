@@ -729,9 +729,7 @@ export default function PracticalSewaSupport() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  We are here to support with care,
-                  <br />
-                  respect and compassion.
+                  {textOrFallback(websiteSection?.supportTitle, "We are here to support with care, respect and compassion.", 160)}
                 </h3>
 
                 <p
@@ -746,7 +744,7 @@ export default function PracticalSewaSupport() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  You are not alone. We are with you.
+                  {textOrFallback(websiteSection?.supportDescription, "You are not alone. We are with you.", 80)}
                 </p>
               </div>
             </div>
@@ -814,7 +812,7 @@ export default function PracticalSewaSupport() {
                     text-[#385039]
                   "
                 >
-                  Currently serving with care in
+                  {textOrFallback(websiteSection?.regionDescription, "Currently serving with care in", 80)}
                 </p>
 
                 <h3
@@ -829,7 +827,7 @@ export default function PracticalSewaSupport() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  Delhi • Ghaziabad • Noida
+                    {textOrFallback(websiteSection?.regionTitle, "Delhi • Ghaziabad • Noida", 80)}
                 </h3>
               </div>
 
