@@ -256,15 +256,7 @@ export default function HumanitarianCommitment() {
               {/* ================= PARAGRAPH ================= */}
 
               <p className="relative z-10 mx-auto mt-[10px] max-w-[690px] text-center text-[16px] leading-[1.5] text-[#465365]">
-                Moksha Sewa supports legally authorised unclaimed cases with
-                respectful final-rites coordination after completion of
-                applicable police, hospital and authority formalities. Our team
-                works carefully with the concerned authorities and service
-                partners to help ensure that each final journey is handled with
-                dignity, compassion, proper coordination and due respect.
-                Support is provided only within the approved legal process and
-                after the required documentation, verification and permissions
-                have been completed.
+                {textOrFallback(websiteSection?.description, "Moksha Sewa supports legally authorised unclaimed cases with respectful final-rites coordination after completion of applicable police, hospital and authority formalities. Our team works carefully with the concerned authorities and service partners to help ensure that each final journey is handled with dignity, compassion, proper coordination and due respect. Support is provided only within the approved legal process and after the required documentation, verification and permissions have been completed.", 600)}
               </p>
 
               {/* =================================================
@@ -313,8 +305,8 @@ export default function HumanitarianCommitment() {
             <div className="relative min-h-[440px] lg:h-[575px]">
               <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
                 <Image
-                  src="/assets/image.png"
-                  alt="Moksha Sewa unclaimed body support"
+                  src={websiteSection?.image || "/assets/image.png"}
+                  alt={textOrFallback(websiteSection?.title, "Moksha Sewa unclaimed body support", 120)}
                   fill
                   priority
                   quality={100}
@@ -327,7 +319,7 @@ export default function HumanitarianCommitment() {
 
               <div className="absolute bottom-[9px] left-[6px] right-[9px] z-20">
                 <a
-                  href="/unclaimed-body-sewa"
+                  href={websiteSection?.buttonHref || "/unclaimed-body-sewa"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex min-h-[64px] w-full items-center justify-between gap-[10px] rounded-[16px] border-[3px] border-[#C69428] bg-[#005234] px-[12px] py-[10px] text-white shadow-[0_8px_18px_rgba(2,63,40,0.18)] sm:min-h-[88px] sm:gap-0 sm:rounded-[24px] sm:px-[18px]"
@@ -341,7 +333,7 @@ export default function HumanitarianCommitment() {
                     </span>
 
                     <span className="text-[16px] font-semibold uppercase leading-tight sm:leading-none">
-                      Know About Unclaimed Body Sewa
+                      {textOrFallback(websiteSection?.buttonLabel, "Know About Unclaimed Body Sewa", 60)}
                     </span>
                   </div>
 

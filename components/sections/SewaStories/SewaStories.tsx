@@ -288,7 +288,8 @@ const backgroundPattern = {
 
 export default function SewaStories() {
   const websiteSection = useWebsiteSection("sewa-stories");
-  const managedStories = stories.map((fallback, index) => {
+  const managedStories = [
+    ...stories.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, fallback);
     return {
       ...fallback,
@@ -297,7 +298,14 @@ export default function SewaStories() {
       image: item.image || fallback.image,
       images: item.image ? [item.image] : fallback.images,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(stories.length) ?? []).map((item) => ({
+      ...stories[stories.length - 1],
+      title: item.title || "New Sewa Story",
+      image: item.image || stories[stories.length - 1].image,
+      description: item.description || "Additional Sewa story.",
+    })),
+  ];
 
   return (
     <section
@@ -462,7 +470,7 @@ export default function SewaStories() {
                 text-[#9C6D2C]
               "
             >
-              Sewa Stories
+              {textOrFallback(websiteSection?.eyebrow, "Sewa Stories", 60)}
             </span>
 
             <span className="relative h-px w-[54px] bg-[#B88335]">
@@ -482,7 +490,7 @@ export default function SewaStories() {
               sm:text-[30px]
             "
           >
-            Every Sewa Has a Human Story
+            {textOrFallback(websiteSection?.subtitle, "Every Sewa Has a Human Story", 95)}
           </h2>
 
           {/* SUBTEXT */}
@@ -497,8 +505,7 @@ export default function SewaStories() {
               text-[#555550]
             "
           >
-            Behind every case is a life, a family and a final journey deserving
-            of respect.
+            {textOrFallback(websiteSection?.description, "Behind every case is a life, a family and a final journey deserving of respect.", 180)}
           </p>
         </header>
 

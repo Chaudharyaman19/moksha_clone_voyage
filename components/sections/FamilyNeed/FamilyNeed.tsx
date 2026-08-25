@@ -171,14 +171,21 @@ const supportCards = [
 
 export default function PracticalSewaSupport() {
   const websiteSection = useWebsiteSection("family-need");
-  const managedSupportCards = supportCards.map((fallback, index) => {
+  const managedSupportCards = [
+    ...supportCards.map((fallback, index) => {
     const item = websiteSection?.items?.[index];
     return {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 60),
       text: textOrFallback(item?.description, fallback.text, 100),
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(supportCards.length) ?? []).map((item) => ({
+      ...supportCards[supportCards.length - 1],
+      title: item.title || "New Support Card",
+      text: item.description || "Additional support information.",
+    })),
+  ];
 
   return (
     <section
@@ -222,7 +229,7 @@ export default function PracticalSewaSupport() {
               bg-no-repeat
             "
             style={{
-              backgroundImage: "url('/assets/manish.jpeg')",
+              backgroundImage: `url('${websiteSection?.image || "/assets/manish.jpeg"}')`,
               backgroundSize: "cover",
               backgroundPosition: "76% 50%",
             }}
@@ -528,7 +535,7 @@ export default function PracticalSewaSupport() {
                 {/* BUTTON */}
 
                 <a
-                  href="/request-help"
+                  href={websiteSection?.buttonHref || "/request-help"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
@@ -556,7 +563,7 @@ export default function PracticalSewaSupport() {
                     hover:-translate-y-[1px]
                   "
                 >
-                  <span>Request Sewa Support</span>
+                  <span>{textOrFallback(websiteSection?.buttonLabel, "Request Sewa Support", 36)}</span>
 
                   <span
                     className="

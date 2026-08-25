@@ -223,7 +223,8 @@ const cards = [
 
 export default function SupportInAction() {
   const websiteSection = useWebsiteSection("support-in-action");
-  const managedCards = cards.map((fallback, index) => {
+  const managedCards = [
+    ...cards.map((fallback, index) => {
     const item = websiteSection?.items?.[index];
     return {
       ...fallback,
@@ -231,7 +232,14 @@ export default function SupportInAction() {
       text: textOrFallback(item?.description, fallback.text, 170),
       image: item?.image || fallback.image,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(cards.length) ?? []).map((item) => ({
+      ...cards[cards.length - 1],
+      title: item.title || "New Support Item",
+      image: item.image || cards[cards.length - 1].image,
+      description: item.description || "Additional support information.",
+    })),
+  ];
 
   return (
     <section
@@ -316,7 +324,7 @@ export default function SupportInAction() {
                 text-[#A26B12]
               "
             >
-              Your Support In Action
+              {textOrFallback(websiteSection?.eyebrow, "Your Support In Action", 60)}
             </span>
 
             <span className="relative h-px w-[52px] bg-[#B47A1F]">
@@ -346,7 +354,7 @@ export default function SupportInAction() {
               sm:text-[30px]
             "
           >
-            Helping Complete a Final Journey With Dignity
+            {textOrFallback(websiteSection?.title, "Helping Complete a Final Journey With Dignity", 95)}
           </h2>
 
           {/* FLOWER DIVIDER */}

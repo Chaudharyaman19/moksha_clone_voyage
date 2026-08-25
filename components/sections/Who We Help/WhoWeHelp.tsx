@@ -262,7 +262,8 @@ const backgroundPattern = {
 
 export default function WhoWeHelp() {
   const websiteSection = useWebsiteSection("who-we-help");
-  const managedHelpCards = helpCards.map((fallback, index) => {
+  const managedHelpCards = [
+    ...helpCards.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, fallback);
     return {
       ...fallback,
@@ -270,7 +271,14 @@ export default function WhoWeHelp() {
       description: textOrFallback(item.description, fallback.description, 220),
       image: item.image || fallback.image,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(helpCards.length) ?? []).map((item) => ({
+      ...helpCards[helpCards.length - 1],
+      title: item.title || "New Help Card",
+      description: item.description || "Additional support information.",
+      image: item.image || helpCards[helpCards.length - 1].image,
+    })),
+  ];
   const managedTrustItems = trustItems.map((fallback, index) => {
     const item = websiteSection?.items?.[index + helpCards.length];
     return {
@@ -399,7 +407,7 @@ export default function WhoWeHelp() {
             <span className="h-1.5 w-1.5 rounded-full bg-[#D36516]" />
 
             <span className="font-sans text-[16px] font-semibold uppercase text-[#C6520D]">
-              Who We Help
+              {textOrFallback(websiteSection?.eyebrow, "Who We Help", 60)}
             </span>
 
             <span className="h-1.5 w-1.5 rounded-full bg-[#D36516]" />
@@ -423,7 +431,7 @@ export default function WhoWeHelp() {
               sm:text-[30px]
             "
           >
-            Standing Beside Those Who Need Us Most
+            {textOrFallback(websiteSection?.subtitle, "Standing Beside Those Who Need Us Most", 95)}
           </h2>
 
           <p
@@ -439,9 +447,7 @@ export default function WhoWeHelp() {
               text-[#252020]
             "
           >
-            Moksha Sewa provides compassionate last-rites support for unclaimed
-            cases and families in need with dignity, respect and complete
-            sensitivity.
+            {textOrFallback(websiteSection?.description, "Moksha Sewa provides compassionate last-rites support for unclaimed cases and families in need with dignity, respect and complete sensitivity.", 220)}
           </p>
 
         </header>

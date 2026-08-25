@@ -17,6 +17,7 @@ import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -114,16 +115,28 @@ const legalLinks = [
 ];
 
 export default function FooterNew() {
+  const websiteSection = useWebsiteSection("footer");
   const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const brandName = "Moksha Sewa";
-  const description =
-    "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.";
+  const brandName = textOrFallback(websiteSection?.title, "Moksha Sewa", 60);
+  const description = textOrFallback(websiteSection?.description, "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.", 240);
 
   const contactEmail = "info@mokshasewa.org";
   const contactNumber = "9220147229";
+  const footerItems = websiteSection?.items ?? [];
+  const managedQuickLinks = quickLinks.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index, item) }));
+  const managedServices = services.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length, item) }));
+  const managedInitiatives = [
+    ...initiatives.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length + services.length, item) })),
+    ...footerItems.slice(quickLinks.length + services.length + initiatives.length + values.length + legalLinks.length).map((item) => ({
+      label: item.label || item.title || "Footer Link",
+      href: item.href || "#",
+    })),
+  ];
+  const managedValues = values.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 14, { title: item.title, description: item.description }) }));
+  const managedLegalLinks = legalLinks.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 19, item) }));
 
   const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -203,8 +216,8 @@ export default function FooterNew() {
       ========================================================== */}
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block">
           <div className="absolute inset-y-0 left-0 w-[500px] overflow-hidden">
-            <Image
-              src={footerBg}
+              <Image
+                src={websiteSection?.image || footerBg}
               alt=""
               fill
               priority={false}
@@ -234,8 +247,8 @@ export default function FooterNew() {
 
         {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
-          <Image
-            src={footerBg}
+              <Image
+                src={websiteSection?.image || footerBg}
             alt=""
             fill
             sizes="100vw"
@@ -252,7 +265,7 @@ export default function FooterNew() {
               <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
                 <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                   <Image
-                    src={footerMokshaLogo}
+                    src={websiteSection?.logoImage || footerMokshaLogo}
                     alt={brandName}
                     width={145}
                     height={127}
@@ -266,7 +279,7 @@ export default function FooterNew() {
                 </h2>
 
                 <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
-                  A Namo Gange Trust Initiative
+                  {textOrFallback(websiteSection?.eyebrow, "A Namo Gange Trust Initiative", 70)}
                 </p>
 
                 <GoldDivider className="footer-brand-divider mt-0.5" />
@@ -276,7 +289,7 @@ export default function FooterNew() {
                 </p>
 
                 <Link
-                  href="/donation"
+                  href={websiteSection?.buttonHref || "/donation"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
@@ -285,7 +298,7 @@ export default function FooterNew() {
                     <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
                     <ShineLayer sparks={1} />
                   </span>
-                  Donate Now
+                  {textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}
                   <FaArrowRight className="footer-donate-arrow h-3.5 w-3.5" />
                   <ShineLayer sparks={0} />
                 </Link>
@@ -294,7 +307,7 @@ export default function FooterNew() {
               {/* QUICK LINKS */}
               <FloatingCard icon={ReferenceChainIcon} title="Quick Links">
                 <ul className="space-y-[5px]">
-                  {quickLinks.map((item) => (
+                  {managedQuickLinks.map((item) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
@@ -313,7 +326,7 @@ export default function FooterNew() {
               {/* SERVICES */}
               <FloatingCard icon={ReferenceHandHeartIcon} title="Our Services">
                 <ul className="space-y-[5px]">
-                  {services.map((item) => (
+                  {managedServices.map((item) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
@@ -332,7 +345,7 @@ export default function FooterNew() {
               {/* INITIATIVES */}
               <FloatingCard icon={ReferenceLotusIcon} title="Our Initiatives">
                 <ul className="space-y-[5px]">
-                  {initiatives.map((item) => (
+                  {managedInitiatives.map((item) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
@@ -388,8 +401,10 @@ export default function FooterNew() {
                 <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
 
                   <Image
-                    src={namoGangeLogo}
+                    src={websiteSection?.partnerLogoImage || namoGangeLogo}
                     alt="Namo Gange"
+                    width={178}
+                    height={100}
                     className="h-auto w-[178px] object-contain"
                     sizes="178px"
                   />
@@ -479,7 +494,7 @@ export default function FooterNew() {
             <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
 
             <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4">
-              {values.map((value, index) => {
+              {managedValues.map((value, index) => {
                 const Icon = value.icon;
 
                 return (
@@ -521,7 +536,7 @@ export default function FooterNew() {
               </div>
 
               <div className="footer-bottom-center flex flex-wrap items-center justify-center gap-y-2">
-                {legalLinks.map((item, index) => (
+                {managedLegalLinks.map((item, index) => (
                   <span key={item.label} className="flex items-center">
                     <Link
                       href={item.href}
@@ -540,7 +555,7 @@ export default function FooterNew() {
 
               <div className="footer-bottom-seva flex flex-col items-center justify-center">
                 <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
-                  Seva • Samman • Samarpan
+                  {textOrFallback(websiteSection?.subtitle, "Seva • Samman • Samarpan", 60)}
                 </p>
               </div>
 

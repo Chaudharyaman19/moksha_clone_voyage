@@ -370,7 +370,8 @@ const decorativePattern = {
 
 export default function HowWeCanHelp() {
   const websiteSection = useWebsiteSection("practical-support");
-  const managedCards = cards.map((fallback, index) => {
+  const managedCards = [
+    ...cards.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, {
       title: fallback.title,
       description: fallback.desc,
@@ -382,15 +383,24 @@ export default function HowWeCanHelp() {
       desc: textOrFallback(item.description, fallback.desc, 180),
       image: item.image || fallback.image,
     };
-  });
-  const managedBenefits = benefits.map((fallback, index) => {
+    }),
+    ...(websiteSection?.items?.slice(cards.length + benefits.length) ?? []).map((item) => ({
+      ...cards[cards.length - 1],
+      title: item.title || "New Support Service",
+      desc: item.description || "Additional support service.",
+      image: item.image || cards[cards.length - 1].image,
+    })),
+  ];
+  const managedBenefits = [
+    ...benefits.map((fallback, index) => {
     const item = websiteSection?.items?.[index + cards.length];
     return {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 70),
       text: textOrFallback(item?.description, fallback.text, 160),
     };
-  });
+    }),
+  ];
 
   return (
     <section
@@ -477,7 +487,7 @@ export default function HowWeCanHelp() {
         "
       >
         <Image
-          src="/assets/km.jpeg"
+          src={websiteSection?.image || "/assets/km.jpeg"}
           alt=""
           fill
           priority

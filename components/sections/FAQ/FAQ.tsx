@@ -61,7 +61,8 @@ const FAQ_DATA: FAQItem[] = [
 export default function FAQSection() {
   const websiteSection = useWebsiteSection("faq");
   const [openId, setOpenId] = useState<number | null>(null);
-  const faqData = FAQ_DATA.map((fallback, index) => {
+  const faqData = [
+    ...FAQ_DATA.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, {
       title: fallback.question,
       description: fallback.answer,
@@ -73,7 +74,14 @@ export default function FAQSection() {
       answer: textOrFallback(item.description, fallback.answer, 260),
       icon: item.image || fallback.icon,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(FAQ_DATA.length) ?? []).map((item, index) => ({
+      id: FAQ_DATA.length + index + 1,
+      question: item.title || "New Question",
+      answer: item.description || "Additional answer.",
+      icon: item.image || FAQ_DATA[FAQ_DATA.length - 1].icon,
+    })),
+  ];
 
   const toggleFAQ = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));

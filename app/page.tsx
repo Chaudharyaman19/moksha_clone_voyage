@@ -76,8 +76,8 @@ export default async function Page() {
         <WebsiteSection name="final-act"><OneFinalActOfHumanity /></WebsiteSection>
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </main>
+        <WebsiteSection name="footer"><Footer /></WebsiteSection>
       </WebsiteContentProvider>
-      <Footer />
     </div>
   );
 }

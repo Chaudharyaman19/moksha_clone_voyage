@@ -7,6 +7,18 @@ export interface LandingSectionItem {
   href?: string;
 }
 
+export interface LandingHeroSlide {
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  secondaryButtonLabel?: string;
+  secondaryButtonHref?: string;
+  variant?: "default" | "family-support" | "journey-prayer" | "volunteer-impact";
+}
+
 export interface LandingSectionContent {
   key: string;
   name: string;
@@ -16,10 +28,13 @@ export interface LandingSectionContent {
   subtitle?: string;
   description?: string;
   image?: string;
+  logoImage?: string;
+  partnerLogoImage?: string;
   buttonLabel?: string;
   buttonHref?: string;
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
+  slides?: LandingHeroSlide[];
   items?: LandingSectionItem[];
 }
 
@@ -73,6 +88,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     enabled: true,
     eyebrow: "Our Sewa",
     title: "Essential Support for a\nDignified Final Journey",
+    image: "/assets/km.jpeg",
     description:
       "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.",
     items: [
@@ -88,6 +104,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     enabled: true,
     eyebrow: "Practical Sewa Support",
     title: "When a Family Needs Help,\nWe Arrange the Essentials",
+    image: "/assets/manish.jpeg",
     description:
       "During a difficult final journey, families may need more than arrangements—they may need guidance, coordination and someone willing to stand beside them.",
     items: [
@@ -116,6 +133,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     enabled: true,
     eyebrow: "CREMATION & LAST RITES SUPPORT",
     title: "When a Family Needs Help\nWe Arrange the Essentials",
+    image: "/assets/chatgpt.png",
     description:
       "At Moksha Sewa, we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.",
     buttonLabel: "Request Sewa Support",
@@ -273,6 +291,27 @@ export const defaultLandingSections: LandingSectionContent[] = [
       },
     ],
   },
+  {
+    key: "footer",
+    name: "Footer",
+    enabled: true,
+    eyebrow: "A Namo Gange Trust Initiative",
+    title: "Moksha Sewa",
+    subtitle: "Seva • Samman • Samarpan",
+    description: "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.",
+    image: "/assets/footer-ghat-sunset.png",
+    logoImage: "/assets/footer-moksha-mark.png",
+    partnerLogoImage: "/assets/namo-gange-logo.webp",
+    buttonLabel: "Donate Now",
+    buttonHref: "/donation",
+    items: [
+      { label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Gallery", href: "/mokshagallery" }, { label: "Blog", href: "/blog" }, { label: "Contact Us", href: "/contact" },
+      { label: "Request Sewa Help", href: "/request-help" }, { label: "Transport Coordination", href: "/ambulanceservices" }, { label: "Ritual Material Support", href: "/furalservices" }, { label: "Priest Guidance", href: "/panditservices" }, { label: "Family Guidance", href: "/specialservices" }, { label: "Unclaimed Body Sewa", href: "/unclaimed-body-sewa" },
+      { label: "Unclaimed Bodies Support", href: "/mortal-records" }, { label: "Volunteer Programme", href: "/volunteer/register" }, { label: "Awareness & Outreach", href: "/blog" },
+      { title: "Compassion", description: "We serve with\nempathy and humanity." }, { title: "Dignity", description: "Every life is treated\nwith respect." }, { title: "Service", description: "We support every step\nof the final journey." }, { title: "Trust", description: "Transparent, accountable\nand responsible." }, { title: "Together", description: "United for a more\ncompassionate world." },
+      { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms & Conditions", href: "/terms" }, { label: "Refund Policy", href: "/refund-policy" },
+    ],
+  },
 ];
 
 export function mergeLandingSections(sections?: LandingSectionContent[]): LandingSectionContent[] {
@@ -289,6 +328,19 @@ export function mergeLandingSections(sections?: LandingSectionContent[]): Landin
     ) {
       return fallback;
     }
-    return saved ? { ...fallback, ...saved, items: saved.items?.length ? saved.items : fallback.items, enabled: saved.enabled !== false } : fallback;
+    if (!saved) return fallback;
+    const items = fallback.items?.length
+      ? [
+          ...fallback.items.map((item, index) => ({ ...item, ...(saved.items?.[index] ?? {}) })),
+          ...(saved.items?.slice(fallback.items.length) ?? []),
+        ]
+      : saved.items;
+    const slides = fallback.slides?.length
+      ? [
+          ...fallback.slides.map((slide, index) => ({ ...slide, ...(saved.slides?.[index] ?? {}) })),
+          ...(saved.slides?.slice(fallback.slides.length) ?? []),
+        ]
+      : saved.slides;
+    return { ...fallback, ...saved, items, slides, enabled: saved.enabled !== false };
   });
 }

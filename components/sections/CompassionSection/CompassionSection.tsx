@@ -195,14 +195,21 @@ export default function CompassionSection() {
       icon: UsersIcon,
     },
   ];
-  const features = featureFallbacks.map((fallback, index) => {
+  const features = [
+    ...featureFallbacks.map((fallback, index) => {
     const item = websiteSection?.items?.[index + sevaStats.length];
     return {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 60),
       text: textOrFallback(item?.description, fallback.text, 100),
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(sevaStats.length + featureFallbacks.length) ?? []).map((item) => ({
+      ...featureFallbacks[featureFallbacks.length - 1],
+      title: item.title || "New Support Feature",
+      text: item.description || "Additional support information.",
+    })),
+  ];
 
   return (
     <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
@@ -210,7 +217,7 @@ export default function CompassionSection() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
           <Image
-            src="/assets/chatgpt.png"
+            src={websiteSection?.image || "/assets/chatgpt.png"}
             alt=""
             fill
             quality={75}

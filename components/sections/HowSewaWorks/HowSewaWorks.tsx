@@ -436,7 +436,8 @@ const steps: StepItem[] = [
 
 export default function HowSewaWorks() {
   const websiteSection = useWebsiteSection("how-sewa-works");
-  const managedSteps = steps.map((fallback, index) => {
+  const managedSteps = [
+    ...steps.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, {
       title: fallback.title,
       description: fallback.description,
@@ -448,7 +449,14 @@ export default function HowSewaWorks() {
       title: textOrFallback(item.title, fallback.title, 60),
       description: textOrFallback(item.description, fallback.description, 140),
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(steps.length) ?? []).map((item, index) => ({
+      ...steps[steps.length - 1],
+      number: String(steps.length + index + 1).padStart(2, "0"),
+      title: item.title || "New Sewa Step",
+      description: item.description || "Additional process information.",
+    })),
+  ];
 
   return (
     <section
@@ -1014,7 +1022,7 @@ export default function HowSewaWorks() {
             "
           >
             <a
-              href="/request-help"
+              href={websiteSection?.buttonHref || "/request-help"}
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -1066,7 +1074,7 @@ export default function HowSewaWorks() {
                   "
                 />
 
-                Request Sewa Help
+                {textOrFallback(websiteSection?.buttonLabel, "Request Sewa Help", 36)}
               </span>
 
               <FaArrowRight

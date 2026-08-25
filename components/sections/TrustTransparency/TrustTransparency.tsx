@@ -286,14 +286,21 @@ const values = [
 
 export default function TrustTransparency() {
   const websiteSection = useWebsiteSection("trust-transparency");
-  const managedTrustCards = trustCards.map((fallback, index) => {
+  const managedTrustCards = [
+    ...trustCards.map((fallback, index) => {
     const item = websiteSection?.items?.[index];
     return {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 70),
       description: textOrFallback(item?.description, fallback.description, 160),
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(trustCards.length + values.length) ?? []).map((item) => ({
+      ...trustCards[trustCards.length - 1],
+      title: item.title || "New Trust Item",
+      description: item.description || "Additional trust information.",
+    })),
+  ];
   const managedValues = values.map((fallback, index) => {
     const item = websiteSection?.items?.[index + trustCards.length];
     return {

@@ -207,7 +207,8 @@ const cards: MissionCard[] = [
 ];
 export default function JoinTheMission() {
   const websiteSection = useWebsiteSection("join-mission");
-  const missionCards = cards.map((fallback, index) => {
+  const missionCards = [
+    ...cards.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, {
       title: fallback.title,
       label: fallback.buttonLabel,
@@ -225,7 +226,16 @@ export default function JoinTheMission() {
       buttonLabel: textOrFallback(item.label, fallback.buttonLabel, 36),
       buttonHref: item.href || fallback.buttonHref,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(cards.length) ?? []).map((item) => ({
+      ...cards[cards.length - 1],
+      title: item.title || "New Mission",
+      label: item.label || "Support",
+      description: item.description || "Additional mission information.",
+      image: item.image || cards[cards.length - 1].image,
+      href: item.href || "/",
+    })),
+  ];
 
   return (
     <section

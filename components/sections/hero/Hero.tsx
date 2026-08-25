@@ -84,7 +84,7 @@ type SlideContent = {
 export default function Hero() {
   const websiteSection = useWebsiteSection("hero");
   const images = useMemo(
-    () => [
+    () => websiteSection?.slides?.length ? websiteSection.slides.map((slide) => slide.image) : [
       websiteSection?.image || "/hero-images/dignity-in-every-final-journey-bg.png",
       "/hero-images/image2.png",
       "/hero-images/image3.png",
@@ -97,7 +97,7 @@ export default function Hero() {
       // "/hero-images/4.png",
       // "/hero-images/9.png",
     ],
-    [websiteSection?.image],
+    [websiteSection?.image, websiteSection?.slides],
   );
 
   const slideContent = useMemo<SlideContent[]>(
@@ -204,11 +204,30 @@ export default function Hero() {
       ];
 
       const hasAdminHeroContent = Boolean(
+        websiteSection?.slides?.length ||
         websiteSection?.title ||
         websiteSection?.subtitle ||
         websiteSection?.buttonLabel ||
         websiteSection?.secondaryButtonLabel
       );
+      if (websiteSection?.slides?.length) {
+        return websiteSection.slides.map((slide, index) => {
+          const fallback = fallbackSlides[index] ?? fallbackSlides[0];
+          return {
+            ...fallback,
+            heading: slide.title.split(/\n|(?<=Every) /).filter(Boolean),
+            headingHighlight: undefined,
+            description: slide.description,
+            descriptionHighlight: undefined,
+            alt: slide.alt,
+            familySupportLayout: slide.variant === "family-support",
+            journeyPrayerLayout: slide.variant === "journey-prayer",
+            volunteerImpactLayout: slide.variant === "volunteer-impact",
+            primaryButton: slide.buttonLabel ? { label: slide.buttonLabel, href: slide.buttonHref || "/request-help" } : fallback.primaryButton,
+            secondaryButton: slide.secondaryButtonLabel ? { label: slide.secondaryButtonLabel, href: slide.secondaryButtonHref || "/donation" } : fallback.secondaryButton,
+          };
+        });
+      }
       if (!hasAdminHeroContent) return fallbackSlides;
 
       return fallbackSlides.map((slide) => ({

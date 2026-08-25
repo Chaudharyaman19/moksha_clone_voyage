@@ -41,7 +41,8 @@ const SEWA_CARDS = [
 
 export default function GlimpseOfJourney() {
   const websiteSection = useWebsiteSection("journey-glimpse");
-  const managedCards = SEWA_CARDS.map((fallback, index) => {
+  const managedCards = [
+    ...SEWA_CARDS.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, fallback);
     return {
       ...fallback,
@@ -49,7 +50,14 @@ export default function GlimpseOfJourney() {
       description: textOrFallback(item.description, fallback.description, 160),
       image: item.image || fallback.image,
     };
-  });
+    }),
+    ...(websiteSection?.items?.slice(SEWA_CARDS.length) ?? []).map((item) => ({
+      ...SEWA_CARDS[SEWA_CARDS.length - 1],
+      title: item.title || "New Journey Moment",
+      description: item.description || "Additional journey moment.",
+      image: item.image || SEWA_CARDS[SEWA_CARDS.length - 1].image,
+    })),
+  ];
 
   return (
     <section className="relative w-full overflow-hidden bg-[#f8f1e3]">
@@ -208,7 +216,7 @@ export default function GlimpseOfJourney() {
           <button
             type="button"
             onClick={() =>
-              window.open("/mokshagallery", "_blank", "noopener,noreferrer")
+              window.open(websiteSection?.buttonHref || "/mokshagallery", "_blank", "noopener,noreferrer")
             }
             className="group relative flex min-h-[48px] min-w-[300px] items-center justify-center gap-3 rounded-[15px] border-2 border-[#bb8d30] bg-[#0a3a2e] px-7 text-[16px] font-semibold uppercase tracking-[0.07em] text-white shadow-[0_5px_14px_rgba(0,61,48,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#053228] hover:shadow-[0_9px_22px_rgba(0,61,48,0.25)] sm:min-h-[52px] sm:min-w-[380px]"
           >
