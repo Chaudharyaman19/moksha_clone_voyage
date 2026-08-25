@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface FAQItem {
   id: number;
@@ -72,14 +72,14 @@ export default function FAQSection() {
       ...fallback,
       question: textOrFallback(item.title, fallback.question, 120),
       answer: textOrFallback(item.description, fallback.answer, 260),
-      icon: item.image || fallback.icon,
+      icon: imageOrFallback(item.image, fallback.icon),
     };
     }),
     ...(websiteSection?.items?.slice(FAQ_DATA.length) ?? []).map((item, index) => ({
       id: FAQ_DATA.length + index + 1,
       question: item.title || "New Question",
       answer: item.description || "Additional answer.",
-      icon: item.image || FAQ_DATA[FAQ_DATA.length - 1].icon,
+      icon: imageOrFallback(item.image, FAQ_DATA[FAQ_DATA.length - 1].icon),
     })),
   ];
 

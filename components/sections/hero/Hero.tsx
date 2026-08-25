@@ -83,8 +83,29 @@ type SlideContent = {
 
 export default function Hero() {
   const websiteSection = useWebsiteSection("hero");
+  const itemSlides = useMemo(
+    () =>
+      (websiteSection?.items ?? [])
+        .filter((item) => item.image)
+        .map((item) => ({
+          title: item.title || "New Hero Slide",
+          description: item.description || "",
+          image: item.image as string,
+          alt: item.title || "Hero slide image",
+          buttonLabel: item.label || websiteSection?.buttonLabel || "Learn More",
+          buttonHref: item.href || websiteSection?.buttonHref || "/",
+          secondaryButtonLabel: websiteSection?.secondaryButtonLabel || "Support This Mission",
+          secondaryButtonHref: websiteSection?.secondaryButtonHref || "/donation",
+          variant: "default" as const,
+        })),
+    [websiteSection],
+  );
+  const managedSlides = useMemo(
+    () => [...(websiteSection?.slides ?? []), ...itemSlides],
+    [itemSlides, websiteSection?.slides],
+  );
   const images = useMemo(
-    () => websiteSection?.slides?.length ? websiteSection.slides.map((slide) => slide.image) : [
+    () => managedSlides.length ? managedSlides.map((slide) => slide.image) : [
       websiteSection?.image || "/hero-images/dignity-in-every-final-journey-bg.png",
       "/hero-images/image2.png",
       "/hero-images/image3.png",
@@ -97,7 +118,7 @@ export default function Hero() {
       // "/hero-images/4.png",
       // "/hero-images/9.png",
     ],
-    [websiteSection?.image, websiteSection?.slides],
+    [managedSlides, websiteSection?.image],
   );
 
   const slideContent = useMemo<SlideContent[]>(
@@ -204,14 +225,14 @@ export default function Hero() {
       ];
 
       const hasAdminHeroContent = Boolean(
-        websiteSection?.slides?.length ||
+        managedSlides.length ||
         websiteSection?.title ||
         websiteSection?.subtitle ||
         websiteSection?.buttonLabel ||
         websiteSection?.secondaryButtonLabel
       );
-      if (websiteSection?.slides?.length) {
-        return websiteSection.slides.map((slide, index) => {
+      if (managedSlides.length) {
+        return managedSlides.map((slide, index) => {
           const fallback = fallbackSlides[index] ?? fallbackSlides[0];
           return {
             ...fallback,
@@ -247,7 +268,7 @@ export default function Hero() {
         },
       }));
     },
-    [websiteSection],
+    [managedSlides, websiteSection],
   );
 
   const statFallbacks: StatItem[] = [

@@ -73,6 +73,18 @@ export function textOrFallback(value: string | undefined, fallback: string, maxL
   return `${next.slice(0, Math.max(0, maxLength - 3)).trimEnd()}...`;
 }
 
+export function imageOrFallback(value: string | undefined, fallback: string) {
+  const source = value?.trim();
+  if (!source) return fallback;
+  if (source.startsWith("/")) return source;
+  try {
+    const url = new URL(source);
+    return url.protocol === "http:" || url.protocol === "https:" ? source : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 export function itemOrFallback<T extends LandingSectionItem>(items: LandingSectionItem[] | undefined, index: number, fallback: T): T {
   return { ...fallback, ...(items?.[index] ?? {}) };
 }
