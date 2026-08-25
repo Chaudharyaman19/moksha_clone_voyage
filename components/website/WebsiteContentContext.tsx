@@ -69,8 +69,17 @@ export function WebsiteSection({
 
 export function textOrFallback(value: string | undefined, fallback: string, maxLength?: number) {
   const next = value?.trim() || fallback;
+  const fallbackText = fallback.trim();
+  if (next.startsWith(fallbackText) && next.slice(fallbackText.length).trim()) {
+    const truncatedFallback = fallbackText.trimEnd().replace(/[.\u2026]+$/g, "");
+    return `${truncatedFallback}...`;
+  }
   if (!maxLength || next.length <= maxLength) return next;
-  return `${next.slice(0, Math.max(0, maxLength - 3)).trimEnd()}...`;
+  const truncated = next
+    .slice(0, Math.max(0, maxLength - 3))
+    .trimEnd()
+    .replace(/[.\u2026]+$/g, "");
+  return `${truncated}...`;
 }
 
 export function imageOrFallback(value: string | undefined, fallback: string) {

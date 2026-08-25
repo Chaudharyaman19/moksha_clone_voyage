@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   FaHandHoldingHeart,
   FaStar,
@@ -30,7 +30,6 @@ type NavItem = {
 
 export default function Navbar() {
   const websiteSection = useWebsiteSection("navbar");
-  const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -179,14 +178,18 @@ export default function Navbar() {
   ];
   const usedCmsIndexes = new Set<number>();
   const findCmsItem = (item: NavItem) => {
-    const index = websiteSection?.items?.findIndex(
-      (cmsItem, cmsIndex) =>
-        !usedCmsIndexes.has(cmsIndex) &&
-        (cmsItem.href === item.path || cmsItem.label === item.name)
-    ) ?? -1;
+    const cmsItems = websiteSection?.items ?? [];
+    let index = cmsItems.findIndex(
+      (cmsItem, cmsIndex) => !usedCmsIndexes.has(cmsIndex) && cmsItem.label === item.name
+    );
+    if (index < 0 && !item.dropdown) {
+      index = cmsItems.findIndex(
+        (cmsItem, cmsIndex) => !usedCmsIndexes.has(cmsIndex) && cmsItem.href === item.path
+      );
+    }
     if (index < 0) return undefined;
     usedCmsIndexes.add(index);
-    return websiteSection?.items?.[index];
+    return cmsItems[index];
   };
   const applyCmsItems = (item: NavItem): NavItem => {
     const cmsItem = findCmsItem(item);
@@ -205,6 +208,7 @@ export default function Navbar() {
     type: "page",
   }));
   const allNavItems = [...managedNavItems, ...extraNavItems];
+  const navKey = (item: Pick<NavItem, "name" | "path">, index: number) => `${item.name}:${item.path}:${index}`;
 
   const toggleDropdown = (itemName: string) => {
     setOpenDropdown(openDropdown === itemName ? null : itemName);
@@ -236,9 +240,9 @@ export default function Navbar() {
               </button>
             </div>
             <div className="hidden lg:flex items-center space-x-0 dropdown-container ml-auto h-full">
-              {allNavItems.map((item) => (
+              {allNavItems.map((item, index) => (
                 <div
-                  key={item.name}
+                  key={navKey(item, index)}
                   className="relative group flex items-center h-full"
                 >
                   {item.dropdown ? (
@@ -302,9 +306,9 @@ export default function Navbar() {
                         }`}
                     >
                       <div className="py-2">
-                        {item.dropdown.map((subItem) => (
+                        {item.dropdown.map((subItem, subIndex) => (
                           <button
-                            key={subItem.name}
+                            key={navKey(subItem, subIndex)}
                             onClick={() => !subItem.disabled && handleNavigation(subItem.path)}
                             disabled={subItem.disabled}
                             aria-current={isPathActive(subItem.path) ? "page" : undefined}
@@ -346,8 +350,8 @@ export default function Navbar() {
             } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 font-sans`}
         >
           <div className="px-3 py-3 space-y-0.5">
-            {allNavItems.map((item) => (
-              <div key={item.name} className="dropdown-container">
+            {allNavItems.map((item, index) => (
+              <div key={navKey(item, index)} className="dropdown-container">
                 {item.dropdown ? (
                   <button
                     onClick={() => toggleDropdown(item.name)}
@@ -392,9 +396,9 @@ export default function Navbar() {
 
                 {openDropdown === item.name && item.dropdown && (
                   <div className="ml-5 mt-1 space-y-0.5 bg-white rounded-lg p-1.5 border border-gray-100">
-                    {item.dropdown.map((subItem) => (
+                    {item.dropdown.map((subItem, subIndex) => (
                       <button
-                        key={subItem.name}
+                        key={navKey(subItem, subIndex)}
                         onClick={() => {
                           if (!subItem.disabled) {
                             handleNavigation(subItem.path);

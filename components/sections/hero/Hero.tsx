@@ -13,7 +13,7 @@ import {
   FaHandHoldingHeart,
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -90,7 +90,7 @@ export default function Hero() {
         .map((item) => ({
           title: item.title || "New Hero Slide",
           description: item.description || "",
-          image: item.image as string,
+          image: imageOrFallback(item.image, "/hero-images/dignity-in-every-final-journey-bg.png"),
           alt: item.title || "Hero slide image",
           buttonLabel: item.label || websiteSection?.buttonLabel || "Learn More",
           buttonHref: item.href || websiteSection?.buttonHref || "/",
@@ -105,8 +105,8 @@ export default function Hero() {
     [itemSlides, websiteSection?.slides],
   );
   const images = useMemo(
-    () => managedSlides.length ? managedSlides.map((slide) => slide.image) : [
-      websiteSection?.image || "/hero-images/dignity-in-every-final-journey-bg.png",
+    () => managedSlides.length ? managedSlides.map((slide) => imageOrFallback(slide.image, "/hero-images/dignity-in-every-final-journey-bg.png")) : [
+      imageOrFallback(websiteSection?.image, "/hero-images/dignity-in-every-final-journey-bg.png"),
       "/hero-images/image2.png",
       "/hero-images/image3.png",
       "/hero-images/image7.png",
@@ -285,6 +285,7 @@ export default function Hero() {
       label: textOrFallback(item.label, fallback.label, 60),
     };
   });
+  const heroLogo = imageOrFallback(websiteSection?.logoImage, "/hero-images/image6.png");
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
@@ -405,7 +406,7 @@ export default function Hero() {
               <div className="mb-3 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
                   <Image
-                    src="/hero-images/image6.png"
+                    src={heroLogo}
                     alt="Namo Gange"
                     width={420}
                     height={150}
@@ -422,7 +423,7 @@ export default function Hero() {
                       {textOrFallback(websiteSection?.eyebrow, "Moksha Sewa", 40)}
                     </span>
                     <span className="mt-1 block text-[11px] font-semibold uppercase leading-tight tracking-[0.22em] text-[#73532F] sm:text-[12px]">
-                      An Initiative of Namo Gange Trust
+                      {textOrFallback(websiteSection?.initiativeLabel, "An Initiative of Namo Gange Trust", 80)}
                     </span>
                   </div>
 
@@ -444,7 +445,7 @@ export default function Hero() {
 
                   return (
                     <span
-                      key={line}
+                      key={`hero-heading-${currentIndex}-${index}`}
                       className={`block ${isLastLine ? "mt-1" : ""} text-[#2C1810] md:whitespace-nowrap`}
                     >
                       {highlightedHeading ? (
@@ -609,7 +610,7 @@ export default function Hero() {
             const Icon = stat.icon;
             return (
               <div
-                key={stat.label}
+                key={`hero-stat-${index}`}
                 className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
                   } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
               >

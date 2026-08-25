@@ -376,11 +376,13 @@ export default function HowWeCanHelp() {
       title: fallback.title,
       description: fallback.desc,
       image: fallback.image,
+      features: fallback.features,
     });
     return {
       ...fallback,
       title: textOrFallback(item.title, fallback.title, 80),
       desc: textOrFallback(item.description, fallback.desc, 180),
+      features: item.features?.length ? item.features : fallback.features,
       image: item.image || fallback.image,
     };
     }),
@@ -818,11 +820,11 @@ export default function HowWeCanHelp() {
               />
 
               <div className="mt-[3px] font-serif text-[18px] italic leading-tight text-[#A84F1D]">
-                Together,
+                {textOrFallback(websiteSection?.sloganTitle, "Together,\nWe Serve with Dignity", 80).split("\n")[0]}
               </div>
 
               <div className="font-serif text-[18px] italic leading-tight text-[#A84F1D]">
-                We Serve with Dignity
+                {textOrFallback(websiteSection?.sloganTitle, "Together,\nWe Serve with Dignity", 80).split("\n")[1] ?? ""}
               </div>
 
               <div className="mt-[5px] flex items-center gap-[7px]">
@@ -862,11 +864,11 @@ export default function HowWeCanHelp() {
 
               <div>
                 <div className="text-[18px] font-bold leading-tight">
-                  Need Immediate Help?
+                  {textOrFallback(websiteSection?.immediateHelpTitle, "Need Immediate Help?", 60)}
                 </div>
 
                 <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
-                  Our team is available 24x7 to support you.
+                  {textOrFallback(websiteSection?.immediateHelpDescription, "Our team is available 24x7 to support you.", 100)}
                 </div>
               </div>
             </div>
@@ -898,17 +900,17 @@ export default function HowWeCanHelp() {
 
                 <div>
                   <div className="text-[18px] font-bold leading-tight">
-                    Support Our Mission
+                    {textOrFallback(websiteSection?.supportMissionTitle, "Support Our Mission", 50)}
                   </div>
 
                   <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
-                    Your support can bring dignity to many final journeys.
+                    {textOrFallback(websiteSection?.supportMissionDescription, "Your support can bring dignity to many final journeys.", 120)}
                   </div>
                 </div>
               </div>
 
               <a
-                href="/donation"
+                href={websiteSection?.buttonHref || "/donation"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -938,7 +940,7 @@ export default function HowWeCanHelp() {
                   hover:-translate-y-[1px]
                 "
               >
-                Support Now
+                {textOrFallback(websiteSection?.supportNowLabel, "Support Now", 36)}
 
                 <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full border border-white/90">
                   <CustomIcon

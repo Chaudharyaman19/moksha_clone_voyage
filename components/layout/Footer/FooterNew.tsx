@@ -14,10 +14,9 @@ import { MapPin, Mail, Clock } from "lucide-react";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 import footerBg from "../../../public/assets/footer-ghat-sunset.png";
 import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
-import requestSupportBg from "../../../public/assets/request_support.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -123,8 +122,17 @@ export default function FooterNew() {
   const brandName = textOrFallback(websiteSection?.title, "Moksha Sewa", 60);
   const description = textOrFallback(websiteSection?.description, "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.", 240);
 
-  const contactEmail = "info@mokshasewa.org";
-  const contactNumber = "9220147229";
+  const contactEmail = textOrFallback(websiteSection?.contactEmail, "info@mokshasewa.org", 120);
+  const contactNumber = textOrFallback(websiteSection?.phoneNumber, "9220147229", 24);
+  const contactAddress = textOrFallback(websiteSection?.contactAddress, "Delhi • Ghaziabad • Noida, India", 160);
+  const availabilityText = textOrFallback(websiteSection?.availabilityText, "We are available\n24/7 for you", 80);
+  const actionTitle = textOrFallback(websiteSection?.actionTitle, "Stand with dignity. Serve with compassion.", 90);
+  const requestTitle = textOrFallback(websiteSection?.requestTitle, "Request Support", 50);
+  const requestDescription = textOrFallback(websiteSection?.requestDescription, "Share your email and our support team will contact you.", 140);
+  const inputPlaceholder = textOrFallback(websiteSection?.inputPlaceholder, "Your email address", 50);
+  const submitLabel = textOrFallback(websiteSection?.submitLabel, "Send Request", 36);
+  const submittedLabel = textOrFallback(websiteSection?.submittedLabel, "Submitted", 36);
+  const requestSupportImage = imageOrFallback(websiteSection?.secondaryImage, "/assets/request_support.webp");
   const footerItems = websiteSection?.items ?? [];
   const managedQuickLinks = quickLinks.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index, item) }));
   const managedServices = services.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length, item) }));
@@ -166,43 +174,43 @@ export default function FooterNew() {
           <div className="mx-auto flex min-h-[44px] w-full max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
             <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
               <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
-              <span className="sm:whitespace-nowrap">Stand with dignity. Serve with compassion.</span>
+              <span className="sm:whitespace-nowrap">{actionTitle}</span>
             </div>
 
             <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
               {pathname !== "/request-help" && (
                 <Link
-                  href="/request-help"
+                  href={websiteSection?.secondaryButtonHref || "/request-help"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
                 >
                   <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">Request Help</span>
+                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.secondaryButtonLabel, "Request Help", 36)}</span>
                 </Link>
               )}
 
               {pathname !== "/donation" && (
                 <Link
-                  href="/donation"
+                  href={websiteSection?.buttonHref || "/donation"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
                 >
                   <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">Donate Now</span>
+                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}</span>
                 </Link>
               )}
 
               {pathname !== "/volunteer/register" && (
                 <Link
-                  href="/volunteer/register"
+                  href={websiteSection?.tertiaryButtonHref || "/volunteer/register"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
                 >
                   <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">Become a Volunteer</span>
+                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.tertiaryButtonLabel, "Become a Volunteer", 50)}</span>
                 </Link>
               )}
             </div>
@@ -305,7 +313,7 @@ export default function FooterNew() {
               </div>
 
               {/* QUICK LINKS */}
-              <FloatingCard icon={ReferenceChainIcon} title="Quick Links">
+              <FloatingCard icon={ReferenceChainIcon} title={textOrFallback(websiteSection?.quickLinksTitle, "Quick Links", 50)}>
                 <ul className="space-y-[5px]">
                   {managedQuickLinks.map((item) => (
                     <li key={item.label}>
@@ -324,7 +332,7 @@ export default function FooterNew() {
               </FloatingCard>
 
               {/* SERVICES */}
-              <FloatingCard icon={ReferenceHandHeartIcon} title="Our Services">
+              <FloatingCard icon={ReferenceHandHeartIcon} title={textOrFallback(websiteSection?.servicesTitle, "Our Services", 50)}>
                 <ul className="space-y-[5px]">
                   {managedServices.map((item) => (
                     <li key={item.label}>
@@ -343,7 +351,7 @@ export default function FooterNew() {
               </FloatingCard>
 
               {/* INITIATIVES */}
-              <FloatingCard icon={ReferenceLotusIcon} title="Our Initiatives">
+              <FloatingCard icon={ReferenceLotusIcon} title={textOrFallback(websiteSection?.initiativesTitle, "Our Initiatives", 50)}>
                 <ul className="space-y-[5px]">
                   {managedInitiatives.map((item) => (
                     <li key={item.label}>
@@ -362,10 +370,10 @@ export default function FooterNew() {
               </FloatingCard>
 
               {/* CONTACT */}
-              <FloatingCard icon={ReferencePhoneIcon} title="Contact Us">
+              <FloatingCard icon={ReferencePhoneIcon} title={textOrFallback(websiteSection?.contactTitle, "Contact Us", 50)}>
                 <div className="space-y-2.5">
                   <ContactItem icon={MapPin}>
-                    <p>Delhi • Ghaziabad • Noida, India</p>
+                    <p className="whitespace-pre-line">{contactAddress}</p>
                   </ContactItem>
 
                   <ContactItem icon={ReferencePhoneIcon}>
@@ -388,9 +396,9 @@ export default function FooterNew() {
 
                   <ContactItem icon={Clock}>
                     <p>
-                      We are available
-                      <br />
-                      24/7 for you
+                      {availabilityText.split("\n").map((line) => (
+                        <span key={line} className="block">{line}</span>
+                      ))}
                     </p>
                   </ContactItem>
                 </div>
@@ -410,17 +418,17 @@ export default function FooterNew() {
                   />
                   <div className="mt-1 text-center">
                     <p className="text-[15px] font-semibold leading-tight text-white">
-                      Moksha Sewa
+                      {textOrFallback(websiteSection?.secondaryTitle, "Moksha Sewa", 50)}
                     </p>
                     <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
-                      An Initiative of Namo Gange Trust
+                      {textOrFallback(websiteSection?.initiativeLabel, "An Initiative of Namo Gange Trust", 80)}
                     </p>
                   </div>
                 </div>
 
                 <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
                   <Image
-                    src={requestSupportBg}
+                    src={requestSupportImage}
                     alt=""
                     fill
                     sizes="390px"
@@ -441,10 +449,15 @@ export default function FooterNew() {
 
                       <div className="pt-1">
                         <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
-                          Request <span className="text-[#E2AA3C]">Support</span>
+                          {requestTitle.includes(" ") ? (
+                            <>
+                              {requestTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                              <span className="text-[#E2AA3C]">{requestTitle.split(" ").slice(-1)[0]}</span>
+                            </>
+                          ) : requestTitle}
                         </h3>
                         <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
-                          Share your email and our support team will contact you.
+                          {requestDescription}
                         </p>
                       </div>
                     </div>
@@ -463,7 +476,7 @@ export default function FooterNew() {
                           type="email"
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          placeholder="Your email address"
+                          placeholder={inputPlaceholder}
                           className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
                           required
                         />
@@ -476,7 +489,7 @@ export default function FooterNew() {
                       >
                         <ShineLayer sparks={0} />
                         <span className="relative z-10">
-                          {subscribed ? "Submitted" : "Send Request"}
+                          {subscribed ? submittedLabel : submitLabel}
                         </span>
                         <FaPaperPlane className="footer-send-icon relative z-10 h-5 w-5" />
                       </button>
@@ -566,7 +579,7 @@ export default function FooterNew() {
       <SuccessPopup
         open={showSuccessPopup}
         onClose={() => setShowSuccessPopup(false)}
-        message="Thank you for reaching out. Our support team will contact you shortly."
+        message={textOrFallback(websiteSection?.successMessage, "Thank you for reaching out. Our support team will contact you shortly.", 180)}
       />
     </>
   );

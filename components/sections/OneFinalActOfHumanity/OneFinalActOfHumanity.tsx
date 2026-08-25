@@ -46,10 +46,10 @@ export default function OneFinalActOfHumanity() {
                 </div>
 
                 <p className="mt-1 font-serif text-[16px] font-semibold uppercase tracking-[0.02em] text-[#2D3D35]">
-                  Moksha Sewa
+                  {textOrFallback(websiteSection?.secondaryTitle, "Moksha Sewa", 50)}
                 </p>
                 <p className="mt-0.5 text-[16px] text-[#A27B38]">
-                  A Namo Gange Trust Initiative
+                  {textOrFallback(websiteSection?.initiativeLabel, "A Namo Gange Trust Initiative", 80)}
                 </p>
               </div>
 

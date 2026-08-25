@@ -92,7 +92,7 @@ export default function FAQSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/faq/bg.png"
+          src={imageOrFallback(websiteSection?.image, "/assets/faq/bg.png")}
           alt=""
           aria-hidden="true"
           fill
@@ -112,7 +112,7 @@ export default function FAQSection() {
           {/* Logos */}
           <div className="mb-3 flex items-center justify-center gap-4 lg:absolute lg:left-[-390px] lg:top-[-2px] lg:mb-0 lg:justify-start">
             <Image
-              src="/assets/logo-moksha-seva.png"
+              src={imageOrFallback(websiteSection?.logoImage, "/assets/logo-moksha-seva.png")}
               alt="Moksha Sewa"
               width={64}
               height={64}
