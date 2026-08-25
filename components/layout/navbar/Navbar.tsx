@@ -17,6 +17,7 @@ import {
   FaDonate,
   FaHandsHelping,
 } from "react-icons/fa";
+import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type NavItem = {
   name: string;
@@ -28,6 +29,7 @@ type NavItem = {
 };
 
 export default function Navbar() {
+  const websiteSection = useWebsiteSection("navbar");
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -175,6 +177,34 @@ export default function Navbar() {
       type: "page",
     },
   ];
+  const usedCmsIndexes = new Set<number>();
+  const findCmsItem = (item: NavItem) => {
+    const index = websiteSection?.items?.findIndex(
+      (cmsItem, cmsIndex) =>
+        !usedCmsIndexes.has(cmsIndex) &&
+        (cmsItem.href === item.path || cmsItem.label === item.name)
+    ) ?? -1;
+    if (index < 0) return undefined;
+    usedCmsIndexes.add(index);
+    return websiteSection?.items?.[index];
+  };
+  const applyCmsItems = (item: NavItem): NavItem => {
+    const cmsItem = findCmsItem(item);
+    return {
+      ...item,
+      name: cmsItem?.label || item.name,
+      path: cmsItem?.href || item.path,
+      dropdown: item.dropdown?.map(applyCmsItems),
+    };
+  };
+  const managedNavItems = navItems.map(applyCmsItems);
+  const extraNavItems: NavItem[] = (websiteSection?.items ?? []).filter((_, index) => !usedCmsIndexes.has(index)).map((item) => ({
+    name: item.label || "New Link",
+    path: item.href || "/",
+    icon: <FaBookOpen />,
+    type: "page",
+  }));
+  const allNavItems = [...managedNavItems, ...extraNavItems];
 
   const toggleDropdown = (itemName: string) => {
     setOpenDropdown(openDropdown === itemName ? null : itemName);
@@ -194,7 +224,7 @@ export default function Navbar() {
               <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
                 <div className="h-[52px] w-[52px] rounded-md border border-[#D8B982] bg-white p-1.5 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80 sm:h-[104px] sm:w-[104px] sm:p-2">
                   <Image
-                    src="/assets/logo-moksha-seva.png"
+                    src={websiteSection?.image || "/assets/logo-moksha-seva.png"}
                     alt="Moksha Sewa Logo"
                     width={96}
                     height={96}
@@ -206,7 +236,7 @@ export default function Navbar() {
               </button>
             </div>
             <div className="hidden lg:flex items-center space-x-0 dropdown-container ml-auto h-full">
-              {navItems.map((item) => (
+              {allNavItems.map((item) => (
                 <div
                   key={item.name}
                   className="relative group flex items-center h-full"
@@ -316,7 +346,7 @@ export default function Navbar() {
             } w-full max-h-[calc(100vh-48px)] overflow-y-auto bg-white/95 backdrop-blur-xl shadow-lg z-40 font-sans`}
         >
           <div className="px-3 py-3 space-y-0.5">
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <div key={item.name} className="dropdown-container">
                 {item.dropdown ? (
                   <button

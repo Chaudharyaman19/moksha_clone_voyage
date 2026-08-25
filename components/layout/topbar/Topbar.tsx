@@ -3,11 +3,13 @@
 import { FaChevronDown, FaUser, FaShieldAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const utilityLink =
   "flex items-center justify-center gap-1.5 rounded-md text-white/90 transition-all hover:bg-white/10 hover:text-white active:scale-95 h-7 w-7 shrink-0 md:h-auto md:w-auto md:px-2.5 md:py-1.5";
 
 export default function TopInfoBar() {
+  const websiteSection = useWebsiteSection("topbar");
   const [isMusicOn, setIsMusicOn] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -72,7 +74,7 @@ export default function TopInfoBar() {
           here would silently reopen a gap between the two bars otherwise). */}
       <div className="mx-auto flex h-full w-full max-w-7xl items-center gap-3 px-4 sm:px-5 lg:gap-5 lg:px-0">
         <div className="min-w-0 flex-1 truncate text-left text-[12px] font-medium text-white/90 sm:text-[14px] lg:text-[16px]">
-          Sewa Available in Delhi • Ghaziabad • Noida <span className="text-[#D4B996]">|</span> 24×7 Last-Rites Assistance <span className="text-[#D4B996]">|</span> Unclaimed &amp; Needy Family Support
+          {textOrFallback(websiteSection?.title, "Sewa Available in Delhi • Ghaziabad • Noida | 24×7 Last-Rites Assistance | Unclaimed & Needy Family Support", 220)}
         </div>
 
         {/* Utilities */}

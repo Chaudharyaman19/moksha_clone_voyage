@@ -35,10 +35,10 @@ export default async function Page() {
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/")} />
-      <Topbar />
-      <Navbar />
       <WebsiteContentProvider sections={websiteSections}>
-      <main>
+        <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
+        <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
+        <main>
         <WebsiteSection name="hero"><Hero /></WebsiteSection>
 
         <WebsiteSection name="who-we-help"><Howwehelp /></WebsiteSection>
@@ -75,7 +75,7 @@ export default async function Page() {
         <WebsiteSection name="journey-glimpse"><GlimpseOfJourney /></WebsiteSection>
         <WebsiteSection name="final-act"><OneFinalActOfHumanity /></WebsiteSection>
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
-      </main>
+        </main>
         <WebsiteSection name="footer"><Footer /></WebsiteSection>
       </WebsiteContentProvider>
     </div>
