@@ -2,6 +2,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import { FaHandHoldingHeart, FaOm, FaStar } from "react-icons/fa";
 import { GiLotusFlower, GiCandleHolder } from "react-icons/gi";
 import { BsTelephone } from "react-icons/bs";
@@ -37,6 +38,15 @@ const supportCards = [
 ];
 
 export default function PrayerHallServices() {
+  const section = useWebsiteSection("services-prayer-hall");
+  const heroImage = imageOrFallback(section?.image, "/assets/prayerhallservices/hero-real.png");
+  const title = textOrFallback(section?.title, "Ground & Prayer Support");
+  const subtitle = textOrFallback(section?.subtitle, "Creating A Space For Peace.");
+  const description = textOrFallback(section?.description, "Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.");
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support");
+  const primaryHref = section?.buttonHref || "/request-help";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Support");
+  const secondaryHref = section?.secondaryButtonHref || "/donation";
   return (
     <div className="service-page min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
@@ -46,9 +56,9 @@ export default function PrayerHallServices() {
         {/* Hero Section */}
         <section className="service-banner relative min-h-[500px] w-full overflow-hidden">
           <div className="absolute inset-0">
-            <Image
-              src="/assets/prayerhallservices/hero-real.png"
-              alt="Prayer Hall Setup"
+              <Image
+              src={heroImage}
+              alt={title}
               fill
               priority
               quality={100}
@@ -73,7 +83,7 @@ export default function PrayerHallServices() {
                 <span className="opacity-70">Our Services</span>
                 <span className="opacity-50">›</span>
                 <span className="font-semibold text-[#C99A4A]">
-                  Ground &amp; Prayer Support
+                  {title}
                 </span>
               </div>
 
@@ -81,33 +91,31 @@ export default function PrayerHallServices() {
                 <GiLotusFlower className="h-5 w-5" />
 
                 <span className="text-[18px] font-medium tracking-wide">
-                  Creating A Space For Peace.
+                  {subtitle}
                 </span>
               </div>
 
               <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
-                Ground &amp; Prayer Support
+                {title}
               </h1>
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#321A10]/80">
-                Finding the right place to grieve and pray is essential. We
-                assist with cremation-ground coordination, setting up serene
-                prayer halls, and providing calm guidance for the entire family.
+                {description}
               </p>
 
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <a
-                  href="/request-help"
+                  href={primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#321A10] px-6 py-3 text-[20px] font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8"
                 >
                   <GiLotusFlower className="h-4 w-4 text-[#C99A4A]" />
-                  <span>Request Support</span>
+                  <span>{primaryLabel}</span>
                 </a>
 
                 <a
-                  href="/donation"
+                  href={secondaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -116,7 +124,7 @@ export default function PrayerHallServices() {
                   <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
 
                   <span className="relative z-10 whitespace-nowrap">
-                    Donate for Support
+                    {secondaryLabel}
                   </span>
 
                   <FaStar

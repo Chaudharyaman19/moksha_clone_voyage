@@ -1,14 +1,21 @@
 import Callingrelativesservices from "@/components/page-features/services/Callingrelativesservices";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { getMergedWebsiteSections } from "@/lib/websiteSettingsApi";
+import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
 export const metadata = createPageMetadata("/callingrelativesservices");
 
-function page() {
+async function page() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
+  const body = response.ok ? await response.json() : {};
+  const sections = getMergedWebsiteSections("services", body.data);
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/callingrelativesservices")} />
-      <Callingrelativesservices />
+      <WebsiteContentProvider page="services" sections={sections}>
+        <Callingrelativesservices />
+      </WebsiteContentProvider>
     </div>
   );
 }

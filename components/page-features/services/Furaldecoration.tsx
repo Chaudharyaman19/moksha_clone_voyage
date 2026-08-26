@@ -14,8 +14,18 @@ import {
   MdNaturePeople,
 } from "react-icons/md";
 import { GiFlowerHat } from "react-icons/gi";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function Furaldecoration() {
+  const section = useWebsiteSection("services-decoration");
+  const heroImage = imageOrFallback(section?.image, "/assets/how-we-help/three.png");
+  const title = textOrFallback(section?.title, "Funeral Decoration");
+  const subtitle = textOrFallback(section?.subtitle, "A Beautiful Final Journey.");
+  const description = textOrFallback(section?.description, "We believe in bidding farewell with utmost respect and serenity. Our volunteers arrange traditional floral decorations for the hearse van, pyre, and prayer hall using fresh and sacred flowers to honor the departed soul.");
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Decoration");
+  const primaryHref = section?.buttonHref || "/request-help";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -32,36 +42,33 @@ export default function Furaldecoration() {
               </div>
 
               <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
-                Funeral Decoration
+                {title}
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
-                  A Beautiful Final Journey.
+                  {subtitle}
                 </span>
               </h1>
 
               <p className="mb-8 text-[18px] leading-relaxed text-[#5D4037] opacity-95">
-                We believe in bidding farewell with utmost respect and serenity.
-                Our volunteers arrange traditional floral decorations for the
-                hearse van, pyre, and prayer hall using fresh and sacred flowers
-                to honor the departed soul.
+                {description}
               </p>
 
               <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
                 <a
-                  href="/request-help"
+                  href={primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center gap-3 rounded-full bg-[#8B6A3E] px-6 py-3 text-[20px] font-medium text-white shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] transition-all duration-300 hover:bg-[#73532F] md:px-8"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 transition-transform group-hover:scale-110" />
-                  Request Decoration
+                  {primaryLabel}
                 </a>
 
                 <a
-                  href="tel:+919999999999"
+                  href={secondaryHref}
                   className="flex items-center justify-center gap-3 whitespace-nowrap rounded-full border border-[#D7CCC8] bg-white px-6 py-3 text-[24px] font-medium text-[#8B6A3E] shadow-sm transition-all duration-300 hover:bg-[#F9F5F0] md:px-8"
                 >
                   <FaPhoneAlt className="h-4 w-4" />
-                  24x7 Helpline
+                  {secondaryLabel}
                 </a>
               </div>
             </div>
@@ -69,8 +76,8 @@ export default function Furaldecoration() {
             {/* Image */}
             <div className="relative order-1 h-[400px] w-full overflow-hidden rounded-[2.5rem] shadow-2xl lg:order-2 lg:h-[550px]">
               <Image
-                src="/assets/how-we-help/three.png"
-                alt="Funeral Floral Decoration"
+                src={heroImage}
+                alt={title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 hover:scale-105"

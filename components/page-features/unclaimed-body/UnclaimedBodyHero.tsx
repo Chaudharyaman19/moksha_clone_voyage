@@ -11,9 +11,7 @@ export default function UnclaimedBodyHero() {
   return (
     <section className="relative overflow-hidden bg-[#fbf6ec]">
       <div className="relative min-h-[600px] w-full overflow-hidden">
-        {/* =====================================================
-            DESKTOP BACKGROUND - SAME AS BEFORE
-        ====================================================== */}
+
         <div
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-no-repeat lg:block"
           style={{
@@ -24,9 +22,6 @@ export default function UnclaimedBodyHero() {
           }}
         />
 
-        {/* =====================================================
-            DESKTOP LEFT GRADIENT - SAME AS BEFORE
-        ====================================================== */}
         <div
           className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[63%] lg:block"
           style={{
@@ -35,10 +30,7 @@ export default function UnclaimedBodyHero() {
           }}
         />
 
-        {/* =====================================================
-            MOBILE BACKGROUND IMAGE
-            ONLY MOBILE CHANGE
-        ====================================================== */}
+
         <div
           className="pointer-events-none absolute inset-0 z-0 bg-no-repeat lg:hidden"
           style={{
@@ -49,7 +41,7 @@ export default function UnclaimedBodyHero() {
           }}
         />
 
-        {/* MOBILE READABILITY GRADIENT */}
+
         <div
           className="pointer-events-none absolute inset-0 z-[1] lg:hidden"
           style={{
@@ -58,9 +50,7 @@ export default function UnclaimedBodyHero() {
           }}
         />
 
-        {/* =====================================================
-            CONTENT
-        ====================================================== */}
+
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-10 lg:px-0 lg:pt-14">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
             <UBSIcon

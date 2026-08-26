@@ -1,20 +1,18 @@
 "use client";
 
 import { createContext, useEffect, useState, useContext } from "react";
+import { getMergedWebsiteSections, type WebsitePageKey } from "@/lib/websiteSettingsApi";
 import { mergeLandingSections, type LandingSectionContent, type LandingSectionItem } from "@/lib/landingContent";
-import { mergeAboutSections } from "@/lib/aboutContent";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
 const WebsiteContentContext = createContext<LandingSectionContent[]>(mergeLandingSections());
 
-type WebsiteContentPage = "landing" | "about";
-
-async function fetchLatestSections(page: WebsiteContentPage) {
+async function fetchLatestSections(page: WebsitePageKey) {
   try {
     const response = await fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
     if (!response.ok) return null;
-    const body = (await response.json()) as { data?: { landingPage?: { sections?: LandingSectionContent[] }; aboutPage?: { sections?: LandingSectionContent[] } } };
-    return page === "about" ? mergeAboutSections(body.data?.aboutPage?.sections) : mergeLandingSections(body.data?.landingPage?.sections);
+    const body = (await response.json()) as { data?: Record<string, { sections?: LandingSectionContent[] }> };
+    return getMergedWebsiteSections(page, body.data as never);
   } catch {
     return null;
   }
@@ -27,7 +25,7 @@ export function WebsiteContentProvider({
 }: {
   sections: LandingSectionContent[];
   children: React.ReactNode;
-  page?: WebsiteContentPage;
+  page?: WebsitePageKey;
 }) {
   const [latestSections, setLatestSections] = useState(sections);
 

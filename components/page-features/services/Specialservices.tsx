@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
 import Link from "next/link";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import {
   FaArrowRight,
   FaCheck,
@@ -20,6 +21,16 @@ import {
 import Marquee from "react-fast-marquee";
 
 export default function FamilySupport() {
+  const section = useWebsiteSection("services-special");
+  const heroImage = imageOrFallback(section?.image, "/assets/family-support/hero-bg-2.png");
+  const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support");
+  const title = textOrFallback(section?.title, "Family Support");
+  const subtitle = textOrFallback(section?.subtitle, "Standing Beside You.");
+  const description = textOrFallback(section?.description, "Beyond the final rites, Moksha Sewa helps eligible families with case-based guidance, relief coordination and compassionate support, subject to verification and availability.");
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support");
+  const primaryHref = section?.buttonHref || "/request-help";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryHref = section?.secondaryButtonHref || "tel:+919220147229";
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -29,9 +40,9 @@ export default function FamilySupport() {
         {/* HERO SECTION */}
         <section className="service-banner relative min-h-[500px] w-full overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
-            <Image
-              src="/assets/family-support/hero-bg-2.png"
-              alt="Family Support"
+              <Image
+              src={heroImage}
+              alt={title}
               fill
               priority
               quality={100}
@@ -59,7 +70,7 @@ export default function FamilySupport() {
                 </span>
 
                 <span className="text-[18px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  Extended Family Support
+                  {eyebrow}
                 </span>
               </div>
 
@@ -69,11 +80,11 @@ export default function FamilySupport() {
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 <span className="block text-[30px] text-[#2C1810]">
-                  Family Support
+                  {title}
                 </span>
 
                 <span className="mt-1 block text-[30px] text-[#8B6A3E]">
-                  Standing Beside You.
+                  {subtitle}
                 </span>
               </h1>
 
@@ -84,28 +95,26 @@ export default function FamilySupport() {
               </div>
 
               <p className="mb-3 max-w-[480px] text-[18px] leading-relaxed text-[#4F3A2D]">
-                Beyond the final rites, Moksha Sewa helps eligible families with
-                case-based guidance, relief coordination and compassionate
-                support, subject to verification and availability.
+                {description}
               </p>
 
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row md:gap-4">
                 <Link
-                  href="/request-help"
+                  href={primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#8B6A3E] px-6 py-3 text-[20px] font-semibold text-white shadow-sm transition-colors hover:bg-[#73532F] md:px-8"
                 >
                   <FaHandHoldingHeart size={16} />
-                  <span>Request Support</span>
+                  <span>{primaryLabel}</span>
                 </Link>
 
                 <a
-                  href="tel:+919220147229"
+                  href={secondaryHref}
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[#E8DCC8] bg-white px-6 py-3 text-[24px] font-semibold text-[#8B6A3E] shadow-sm transition-colors hover:bg-[#F9F5F0] md:px-8"
                 >
                   <FaPhoneAlt size={14} />
-                  <span>24x7 Helpline</span>
+                  <span>{secondaryLabel}</span>
                 </a>
               </div>
             </div>

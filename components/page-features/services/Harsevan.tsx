@@ -3,6 +3,7 @@
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import {
   FaHandHoldingHeart,
   FaLeaf,
@@ -14,6 +15,15 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { GiSteeringWheel } from "react-icons/gi";
 
 export default function HearseVanServices() {
+  const section = useWebsiteSection("services-harsevan");
+  const heroImage = imageOrFallback(section?.image, "/assets/serving/emergency-transport.png");
+  const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)");
+  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
+  const description = textOrFallback(section?.description, "The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.");
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Hearse Van");
+  const primaryHref = section?.buttonHref || "/request-help";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -30,38 +40,36 @@ export default function HearseVanServices() {
               </div>
 
               <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
-                Hearse Van (Shav Vahan)
+                {title}
 
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
-                  For a Dignified Final Journey.
+                  {subtitle}
                 </span>
               </h1>
 
               <p className="mb-8 text-[18px] leading-relaxed text-[#5D4037] opacity-95">
-                The final journey should be carried out with the utmost dignity.
-                We help coordinate Hearse Van (Shav Vahan) support for eligible
-                cases, subject to verification, location and availability.
+                {description}
               </p>
 
               <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
                 <a
-                  href="/request-help"
+                  href={primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center gap-3 whitespace-nowrap rounded-full bg-[#8B6A3E] px-6 py-3 text-[20px] font-medium text-white shadow-[0_8px_20px_-6px_rgba(139,106,62,0.5)] transition-all duration-300 hover:bg-[#73532F] md:px-8"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 transition-transform group-hover:scale-110" />
 
-                  <span>Request Hearse Van</span>
+                  <span>{primaryLabel}</span>
                 </a>
 
                 <a
-                  href="tel:+919999999999"
+                  href={secondaryHref}
                   className="flex items-center justify-center gap-3 whitespace-nowrap rounded-full border border-[#D7CCC8] bg-white px-6 py-3 text-[24px] font-medium text-[#8B6A3E] shadow-sm transition-all duration-300 hover:bg-[#F9F5F0] md:px-8"
                 >
                   <FaPhoneAlt className="h-4 w-4" />
 
-                  <span>24x7 Helpline</span>
+                  <span>{secondaryLabel}</span>
                 </a>
               </div>
             </div>

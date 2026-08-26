@@ -4,6 +4,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import { FaHandHoldingHeart, FaOm, FaStar } from "react-icons/fa";
 import { GiLotusFlower, GiCandleHolder } from "react-icons/gi";
 import { BsTelephone } from "react-icons/bs";
@@ -38,6 +39,15 @@ const ritualCards = [
 ];
 
 export default function PriestSupport() {
+  const section = useWebsiteSection("services-pandit");
+  const heroImage = imageOrFallback(section?.image, "/assets/panditservices/hero-real.png");
+  const title = textOrFallback(section?.title, "Priest Support");
+  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
+  const description = textOrFallback(section?.description, "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.");
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Priest Support");
+  const primaryHref = section?.buttonHref || "/request-help";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Ritual Support");
+  const secondaryHref = section?.secondaryButtonHref || "/donation";
   return (
     <div className="service-page min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
       <Topbar />
@@ -49,8 +59,8 @@ export default function PriestSupport() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="/assets/panditservices/hero-real.png"
-              alt="Pandit Ji guiding family"
+              src={heroImage}
+              alt={title}
               fill
               priority
               quality={100}
@@ -87,7 +97,7 @@ export default function PriestSupport() {
                 <span className="opacity-70">Our Services</span>
                 <span className="opacity-50">›</span>
                 <span className="font-semibold text-[#C99A4A]">
-                  Priest Support
+                  {title}
                 </span>
               </div>
 
@@ -96,26 +106,24 @@ export default function PriestSupport() {
                 <GiLotusFlower className="h-5 w-5 shrink-0" />
 
                 <span className="text-[18px] font-medium tracking-wide">
-                  Guided by Dharma. Supported by Compassion.
+                  {subtitle}
                 </span>
               </div>
 
               {/* Heading */}
               <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
-                Priest Support
+                {title}
               </h1>
 
               {/* Description */}
               <p className="mb-7 max-w-[590px] text-[18px] leading-relaxed text-[#321A10]/90">
-                Experienced Pandit Ji&apos;s guide your family with compassion,
-                clarity and reverence in every sacred ritual of your loved
-                one&apos;s journey.
+                {description}
               </p>
 
               {/* HERO BUTTONS - EXACT SAME HEIGHT & WIDTH */}
               <div className="flex w-full flex-col gap-3 sm:flex-row">
                 <a
-                  href="/request-help"
+                  href={primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[#321A10] px-6 py-3 text-[20px] font-semibold text-[#FAF8F4] shadow-sm transition-all hover:bg-[#4A2E1B] md:px-8"
@@ -123,12 +131,12 @@ export default function PriestSupport() {
                   <GiLotusFlower className="h-5 w-5 shrink-0 text-[#C99A4A]" />
 
                   <span className="whitespace-nowrap">
-                    Request Priest Support
+                    {primaryLabel}
                   </span>
                 </a>
 
                 <a
-                  href="/donation"
+                  href={secondaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -138,7 +146,7 @@ export default function PriestSupport() {
                   <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
 
                   <span className="relative z-10 whitespace-nowrap">
-                    Donate for Ritual Support
+                    {secondaryLabel}
                   </span>
 
                   <FaStar

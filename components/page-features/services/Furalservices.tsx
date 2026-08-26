@@ -5,6 +5,7 @@ import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 import {
   FaHandHoldingHeart,
@@ -72,15 +73,24 @@ const arrangedItems = [
 ];
 
 export default function WoodRitualItemsPage() {
+  const section = useWebsiteSection("services-funeral");
+  const supportSection = useWebsiteSection("services-ambulance");
+  const heroImage = imageOrFallback(section?.image, "/woodrituals/hero.webp");
+  const heroTitle = textOrFallback(section?.title, "Wood & Ritual Items");
+  const heroSubtitle = textOrFallback(section?.subtitle, "Arranged With Deep Respect.");
+  const heroDescription = textOrFallback(section?.description, "At Moksha Sewa, we understand the financial and emotional burden of the final rites. We help eligible families coordinate cremation wood, shroud cloth (Kafan), flowers, lamps, and essential prayer items subject to verification and availability.");
+  const heroButtonLabel = textOrFallback(section?.buttonLabel, "Request Wood & Items");
+  const heroButtonHref = section?.buttonHref || "/request-help";
+  const supportTitle = textOrFallback(supportSection?.title, "What We Arrange");
+  const supportItems = (section?.items?.length ? section.items : arrangedItems.map((item) => ({ title: item.title, description: item.description, image: item.image }))).slice(0, 3);
   return (
     <div className="service-page min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
       <Topbar />
       <Navbar />
 
       <main className="overflow-hidden pt-24 lg:pt-24">
-        <HeroSection />
-        <SupportFeatures />
-        <ArrangeSection />
+        <HeroSection image={heroImage} title={heroTitle} subtitle={heroSubtitle} description={heroDescription} buttonLabel={heroButtonLabel} buttonHref={heroButtonHref} />
+        <ArrangeSection title={supportTitle} items={supportItems} />
         <ClosingMessage />
       </main>
 
@@ -89,13 +99,13 @@ export default function WoodRitualItemsPage() {
   );
 }
 
-function HeroSection() {
+function HeroSection({ image, title, subtitle, description, buttonLabel, buttonHref }: { image: string; title: string; subtitle: string; description: string; buttonLabel: string; buttonHref: string; }) {
   return (
     <section className="service-banner relative min-h-[470px] w-full overflow-hidden lg:min-h-[500px]">
       <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
         <Image
-          src="/woodrituals/hero.webp"
-          alt="Cremation wood, white shroud cloth, flowers and prayer items by a river"
+          src={image}
+          alt={title}
           fill
           priority
           quality={100}
@@ -122,23 +132,20 @@ function HeroSection() {
             <GiLotusFlower className="h-5 w-5" />
 
             <span className="text-[18px]">
-              Guided by Dharma. Supported by Compassion.
+              {subtitle}
             </span>
           </div>
 
           <h1 className="pb-[8px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
-            Wood &amp; Ritual Items
+            {title}
           </h1>
 
           <p className="font-serif text-[30px] leading-tight text-[#A66D2D]">
-            Arranged With Deep Respect.
+            {subtitle}
           </p>
 
           <p className="mt-4 max-w-[560px] text-[18px] leading-relaxed text-[#321A10]/90">
-            At Moksha Sewa, we understand the financial and emotional burden of
-            the final rites. We help eligible families coordinate cremation
-            wood, shroud cloth (Kafan), flowers, lamps, and essential prayer
-            items subject to verification and availability.
+            {description}
           </p>
 
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -149,7 +156,7 @@ function HeroSection() {
               className="inline-flex min-h-[52px] items-center justify-center gap-3 whitespace-nowrap rounded-[7px] bg-[#A66317] px-7 text-[20px] font-medium text-white shadow-[0_8px_18px_rgba(116,68,18,0.14)] transition hover:bg-[#884E10]"
             >
               <FaHandsHelping className="h-5 w-5" />
-              Request Wood &amp; Items
+              {buttonLabel}
             </a>
 
             <a
@@ -166,29 +173,7 @@ function HeroSection() {
   );
 }
 
-function SupportFeatures() {
-  return (
-    <section className="border-y border-[#EADBC3] bg-[#FCFAF5] py-3">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-stretch gap-3 px-5 sm:grid-cols-2 sm:px-7 lg:grid-cols-4 lg:px-0">
-        {supportFeatures.map((item) => (
-          <SupportFeatureCard key={item.title} {...item} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function SupportFeatureCard({
-  image,
-  icon,
-  title,
-  description,
-}: {
-  image: string;
-  icon: ReactNode;
-  title: string;
-  description: string;
-}) {
+function SupportFeatureCard({ image, icon, title, description }: { image: string; icon: ReactNode; title: string; description: string; }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[10px] border border-[#DDBF95] bg-[#FFFEFB] shadow-[0_4px_14px_rgba(87,53,19,0.05)]">
       <div className="relative bg-[#FFFEFB]">
@@ -222,15 +207,15 @@ function SupportFeatureCard({
   );
 }
 
-function ArrangeSection() {
+function ArrangeSection({ title, items }: { title: string; items: { title?: string; description?: string; image?: string }[] }) {
   return (
     <section className="bg-[radial-gradient(circle_at_center,#FFFDF8_0%,#FBF5E8_72%,#F7EEDC_100%)] px-5 py-5 sm:px-7 lg:px-0">
       <div className="mx-auto w-full max-w-7xl">
-        <SectionTitle title="What We Arrange" />
+        <SectionTitle title={title} />
 
         <div className="mt-5 grid grid-cols-1 items-stretch gap-3 md:grid-cols-3">
-          {arrangedItems.map((item) => (
-            <ArrangeCard key={item.title} {...item} />
+          {items.map((item) => (
+            <ArrangeCard key={item.title} image={imageOrFallback(item.image, "/woodrituals/cremation-wood.webp")} icon={<GiWoodPile className="h-9 w-9" />} title={item.title || "Item"} description={item.description || ""} />
           ))}
         </div>
       </div>
