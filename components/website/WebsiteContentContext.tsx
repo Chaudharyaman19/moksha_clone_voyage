@@ -2,16 +2,19 @@
 
 import { createContext, useEffect, useState, useContext } from "react";
 import { mergeLandingSections, type LandingSectionContent, type LandingSectionItem } from "@/lib/landingContent";
+import { mergeAboutSections } from "@/lib/aboutContent";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
 const WebsiteContentContext = createContext<LandingSectionContent[]>(mergeLandingSections());
 
-async function fetchLatestSections() {
+type WebsiteContentPage = "landing" | "about";
+
+async function fetchLatestSections(page: WebsiteContentPage) {
   try {
     const response = await fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
     if (!response.ok) return null;
-    const body = (await response.json()) as { data?: { landingPage?: { sections?: LandingSectionContent[] } } };
-    return mergeLandingSections(body.data?.landingPage?.sections);
+    const body = (await response.json()) as { data?: { landingPage?: { sections?: LandingSectionContent[] }; aboutPage?: { sections?: LandingSectionContent[] } } };
+    return page === "about" ? mergeAboutSections(body.data?.aboutPage?.sections) : mergeLandingSections(body.data?.landingPage?.sections);
   } catch {
     return null;
   }
@@ -20,16 +23,18 @@ async function fetchLatestSections() {
 export function WebsiteContentProvider({
   sections,
   children,
+  page = "landing",
 }: {
   sections: LandingSectionContent[];
   children: React.ReactNode;
+  page?: WebsiteContentPage;
 }) {
   const [latestSections, setLatestSections] = useState(sections);
 
   useEffect(() => {
     let cancelled = false;
     const sync = async () => {
-      const latest = await fetchLatestSections();
+      const latest = await fetchLatestSections(page);
       if (!cancelled && latest) setLatestSections(latest);
     };
 
@@ -40,7 +45,7 @@ export function WebsiteContentProvider({
       window.clearInterval(interval);
       window.removeEventListener("focus", sync);
     };
-  }, []);
+  }, [page]);
 
   return <WebsiteContentContext.Provider value={latestSections}>{children}</WebsiteContentContext.Provider>;
 }
@@ -69,11 +74,6 @@ export function WebsiteSection({
 
 export function textOrFallback(value: string | undefined, fallback: string, maxLength?: number) {
   const next = value?.trim() || fallback;
-  const fallbackText = fallback.trim();
-  if (next.startsWith(fallbackText) && next.slice(fallbackText.length).trim()) {
-    const truncatedFallback = fallbackText.trimEnd().replace(/[.\u2026]+$/g, "");
-    return `${truncatedFallback}...`;
-  }
   if (!maxLength || next.length <= maxLength) return next;
   const truncated = next
     .slice(0, Math.max(0, maxLength - 3))

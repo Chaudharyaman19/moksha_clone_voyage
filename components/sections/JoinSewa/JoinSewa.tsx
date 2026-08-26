@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +11,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type JoinCard = {
   title: React.ReactNode;
@@ -273,6 +276,20 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
 };
 
 const JoinSewa: React.FC = () => {
+  const section = useWebsiteSection("about-join-sewa");
+  const activeCards = (section?.items?.length ? section.items : cards).map((item: any, index) => {
+    const fallback = cards[index % cards.length];
+    return {
+      title: item.title || fallback.title,
+      description: item.description || fallback.description,
+      button: item.buttonLabel || item.button || fallback.button,
+      href: item.buttonHref || item.href || fallback.href,
+      icon: fallback.icon,
+      image: item.image || fallback.image,
+      variant: fallback.variant,
+    };
+  });
+
   return (
     <section
       className="
@@ -302,7 +319,7 @@ const JoinSewa: React.FC = () => {
             bottom edge is never cropped off by object-cover. */}
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/assets/about-optimized/be_part.png"
+            src={imageOrFallback(section?.image, "/assets/about-optimized/be_part.png")}
             alt=""
             fill
             sizes="100vw"
@@ -376,7 +393,7 @@ const JoinSewa: React.FC = () => {
                 text-[#b66f16]
               "
             >
-              BE PART OF THE SEWA
+              {textOrFallback(section?.eyebrow, "BE PART OF THE SEWA")}
             </div>
 
             {/* MAIN HEADING */}
@@ -399,12 +416,7 @@ const JoinSewa: React.FC = () => {
                 lg:text-[40px]
               "
             >
-              You Don’t Have to
-              <br />
-
-              <span className="text-[#b56e17]">
-                Do Everything.
-              </span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "You Don't Have to\nDo Everything.")}</span>
             </h2>
 
             {/* SECOND HEADING */}
@@ -424,7 +436,7 @@ const JoinSewa: React.FC = () => {
                 sm:text-[24px]
               "
             >
-              You Can Simply Do Something.
+              <span className="whitespace-pre-line">{textOrFallback(section?.subtitle, "You Can Simply Do Something.")}</span>
             </h2>
 
             {/* =================================================
@@ -435,7 +447,7 @@ const JoinSewa: React.FC = () => {
               className="
                 mt-2
                 max-w-[620px]
-
+                whitespace-pre-line
                 text-[16px]
                 font-medium
                 leading-[1.5]
@@ -445,31 +457,7 @@ const JoinSewa: React.FC = () => {
                 sm:text-[17px]
               "
             >
-              Every act of kindness creates a ripple of dignity,
-              compassion and respect. Even a small contribution of
-              time, care or support can bring comfort to someone
-              during their most difficult moments and help ensure
-              that no one has to face their final journey alone.
-            </p>
-
-            <p
-              className="
-                mt-3
-                max-w-[620px]
-
-                text-[16px]
-                font-medium
-                leading-[1.5]
-
-                text-[#333735]
-
-                sm:text-[17px]
-              "
-            >
-              Whether you give your time as a volunteer, partner with
-              us as an organisation, or support a family directly,
-              every contribution helps us stand beside those who
-              need it most — with dignity, care and respect.
+              {textOrFallback(section?.description, "Every act of kindness creates a ripple of dignity, compassion and respect. Even a small contribution of time, care or support can bring comfort to someone during their most difficult moments and help ensure that no one has to face their final journey alone.\n\nWhether you give your time as a volunteer, partner with us as an organisation, or support a family directly, every contribution helps us stand beside those who need it most — with dignity, care and respect.")}
             </p>
           </div>
         </div>
@@ -507,7 +495,7 @@ const JoinSewa: React.FC = () => {
             md:gap-4
           "
         >
-          {cards.map((card) => (
+          {activeCards.map((card) => (
             <JoinCard
               key={card.button}
               card={card}
@@ -596,15 +584,12 @@ const JoinSewa: React.FC = () => {
             <p
               className="
                 text-base
+                whitespace-pre-line
                 leading-[1.4]
                 text-[#173f3a]
               "
             >
-              Together, we can make sure that{" "}
-              <span className="font-semibold text-[#b87920]">
-                no one
-              </span>{" "}
-              has to face their final journey alone.
+              {textOrFallback(section?.bottomStatement, "Together, we can make sure that no one has to face their final journey alone. Be Part of the Sewa. Be the change.")}
             </p>
           </div>
 

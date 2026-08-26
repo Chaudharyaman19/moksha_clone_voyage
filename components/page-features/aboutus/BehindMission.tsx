@@ -14,6 +14,7 @@ import {
   PiHandsPraying,
   PiUsersThree,
 } from "react-icons/pi";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const missionLinks = [
   { eyebrow: "WHAT", label: "We Do", icon: PiHandHeart },
@@ -24,6 +25,12 @@ const missionLinks = [
 ];
 
 export default function BehindMission() {
+  const section = useWebsiteSection("about-behind-mission");
+  const linkItems = missionLinks.map((link, index) => ({
+    ...link,
+    eyebrow: itemOrFallback(section?.items, index, { title: link.eyebrow }).title || link.eyebrow,
+    label: itemOrFallback(section?.items, index, { label: link.label }).label || link.label,
+  }));
   const videoRef = useRef<HTMLVideoElement>(null);
   const mountedRef = useRef(false);
   const hasAutoUnmutedRef = useRef(false);
@@ -64,7 +71,9 @@ export default function BehindMission() {
   }, []);
 
   const updatePlaying = (value: boolean) => {
-    if (mountedRef.current) setPlaying(value);
+    setTimeout(() => {
+      if (mountedRef.current) setPlaying(value);
+    }, 0);
   };
 
   const toggleVideo = () => {
@@ -113,23 +122,20 @@ export default function BehindMission() {
             {/* 06 video */}
             <div className="mt-0 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
               {/* <span className="h-px w-10 bg-[#C6A25C]" /> */}
-              <span>VIDEO</span>
+              <span>{textOrFallback(section?.eyebrow, "VIDEO")}</span>
               <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
             <p className="mt-4 text-center font-sans text-[16px] font-semibold uppercase text-[#A67532] lg:text-left">
-              See the Mission
+              {textOrFallback(section?.subtitle, "See the Mission")}
             </p>
 
             <h2 className="mt-2 text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#123E32] sm:text-[30px] lg:text-left">
-              Behind
-              <span className="block text-[#9B672E]">Moksha Sewa</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Behind\nMoksha Sewa")}</span>
             </h2>
 
             <p className="mt-5 text-center text-[16px] leading-[1.62] text-[#334A43] lg:text-left">
-              Every final journey carries a story.
-              <br />
-              This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.
+              {textOrFallback(section?.description, "Every final journey carries a story. This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.")}
             </p>
 
             <div className="relative mt-6 flex justify-center lg:justify-start">
@@ -142,13 +148,13 @@ export default function BehindMission() {
                 }}
               />
               <Link
-                href="/mokshagallery"
+                href={textOrFallback(section?.buttonHref, "/mokshagallery")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[52px] items-center gap-3 bg-[#0E4B3A] px-5 text-[16px] font-medium text-white shadow-[0_7px_14px_rgba(22,67,52,0.22)] transition hover:bg-[#0A3C2E]"
               >
                 <PiFlowerLotus className="h-6 w-6 text-[#D1A23E]" />
-                <span>Explore Our Work</span>
+                <span>{textOrFallback(section?.buttonLabel, "Explore Our Work")}</span>
                 <FaArrowRight className="ml-1 h-3.5 w-3.5 text-[#D1A23E]" />
               </Link>
             </div>
@@ -168,7 +174,7 @@ export default function BehindMission() {
               <video
                 ref={videoRef}
                 className="h-full w-full object-cover"
-                poster="/hero-images/support-mission-ghat.png"
+                poster={textOrFallback(section?.secondaryImage, "/hero-images/support-mission-ghat.png")}
                 autoPlay
                 muted={muted}
                 loop
@@ -178,12 +184,12 @@ export default function BehindMission() {
                 onPause={() => updatePlaying(false)}
                 onEnded={() => updatePlaying(false)}
               >
-                <source src="/vedio/taniya.mp4" type="video/mp4" />
+                <source src={textOrFallback(section?.image, "/vedio/taniya.mp4")} type="video/mp4" />
               </video>
 
               {/* time badge */}
               <span className="absolute right-4 top-4 border border-[#D2AA4F] bg-[#113C31]/90 px-3 py-1 text-[16px] font-medium text-white">
-                ◷&nbsp; 60–90 seconds
+                {textOrFallback(section?.availabilityText, "60-90 seconds")}
               </span>
 
               {/* central play */}
@@ -229,7 +235,7 @@ export default function BehindMission() {
 
         {/* BOTTOM MISSION LINKS */}
         <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
-          {missionLinks.map(({ eyebrow, label, icon: Icon }, index) => (
+          {linkItems.map(({ eyebrow, label, icon: Icon }, index) => (
             <div
               key={`${eyebrow}-${label}`}
               className={`flex min-h-[58px] items-center justify-center gap-3 px-4 py-1 ${index

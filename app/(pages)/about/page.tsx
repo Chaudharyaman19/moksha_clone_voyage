@@ -1,14 +1,20 @@
 import About from "@/components/page-features/aboutus/About";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { getAboutSections } from "@/lib/websiteSettingsApi";
+import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
 export const metadata = createPageMetadata("/about");
 
-function page() {
+async function page() {
+  const aboutSections = await getAboutSections();
+
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/about")} />
-      <About />
+      <WebsiteContentProvider page="about" sections={aboutSections}>
+        <About />
+      </WebsiteContentProvider>
     </div>
   );
 }

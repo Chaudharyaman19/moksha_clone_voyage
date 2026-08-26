@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type Service = {
   title: React.ReactNode;
@@ -173,6 +176,25 @@ const ServiceIcon = ({ image, alt }: { image: string; alt: string }) => (
 );
 
 const MokshaServices: React.FC = () => {
+  const section = useWebsiteSection("about-services");
+  const serviceItems = services.map((service, index) => {
+    const item = itemOrFallback(section?.items, index, {
+      title: typeof service.title === "string" ? service.title : "",
+      description: service.description,
+      image: service.image,
+    });
+    return { ...service, title: item.title || service.title, description: item.description || service.description, image: imageOrFallback(item.image, service.image) };
+  });
+  const stepItems = steps.map((step, index) => {
+    const item = itemOrFallback(section?.items, index + services.length, {
+      value: step.number,
+      title: step.title,
+      description: step.description,
+      image: step.image,
+    });
+    return { ...step, number: item.value || step.number, title: item.title || step.title, description: item.description || step.description, image: imageOrFallback(item.image, step.image) };
+  });
+
   return (
     <section
       className="
@@ -185,7 +207,7 @@ const MokshaServices: React.FC = () => {
           BACKGROUND
       ========================================================== */}
       <Image
-        src="/assets/about-optimized/moksha_services_bg.png"
+        src={imageOrFallback(section?.image, "/assets/about-optimized/moksha_services_bg.png")}
         alt=""
         fill
         sizes="100vw"
@@ -232,7 +254,7 @@ const MokshaServices: React.FC = () => {
                 text-[#103e39]
               "
             >
-              WHAT WE DO
+              {textOrFallback(section?.eyebrow, "WHAT WE DO")}
             </span>
 
             <span className="hidden h-px w-14 bg-[#b77b22]/70 sm:block" />
@@ -250,12 +272,7 @@ const MokshaServices: React.FC = () => {
               sm:text-[30px]
             "
           >
-            Supporting the
-            <br />
-            Final Journey{" "}
-            <span className="text-[#ae721e]">
-              With Care.
-            </span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Supporting the\nFinal Journey With Care.")}</span>
           </h2>
 
           <div className="mt-3">
@@ -269,9 +286,7 @@ const MokshaServices: React.FC = () => {
               text-[#303635]
             "
           >
-            We provide compassionate and responsible support for every step
-            <br className="hidden sm:block" />
-            of the final journey.
+            {textOrFallback(section?.description, "We provide compassionate and responsible support for every step of the final journey.")}
           </p>
         </header>
 
@@ -300,7 +315,7 @@ const MokshaServices: React.FC = () => {
             lg:pt-[53px]
           "
         >
-          {services.map((service, index) => (
+          {serviceItems.map((service, index) => (
             <article
               key={index}
               className={`
@@ -386,7 +401,7 @@ const MokshaServices: React.FC = () => {
               />
 
               <div className="grid grid-cols-4">
-                {steps.map((step, index) => (
+                {stepItems.map((step, index) => (
                   <div key={step.number} className="relative text-center">
                     {/* icon */}
                     <div className="relative mx-auto h-[120px] w-[120px]">
@@ -448,7 +463,7 @@ const MokshaServices: React.FC = () => {
               TABLET
           ====================================================== */}
           <div className="mt-5 grid grid-cols-1 gap-6 sm:mt-6 sm:grid-cols-2 sm:gap-8 lg:hidden">
-            {steps.map((step) => (
+            {stepItems.map((step) => (
               <article
                 key={step.number}
                 className="
@@ -487,10 +502,10 @@ const MokshaServices: React.FC = () => {
           <div className="flex w-full max-w-[440px] items-center justify-center gap-3">
 
             <a
-              href="/prayerhallservices"
+              href={textOrFallback(section?.buttonHref, "/prayerhallservices")}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Explore Our Sewa"
+              aria-label={textOrFallback(section?.buttonLabel, "Explore Our Sewa")}
               className="group relative block transition-transform duration-300 hover:-translate-y-0.5"
             >
               <Image
@@ -512,7 +527,7 @@ const MokshaServices: React.FC = () => {
                   drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]
                 "
               >
-                Explore Our Sewa
+                {textOrFallback(section?.buttonLabel, "Explore Our Sewa")}
               </span>
             </a>
 

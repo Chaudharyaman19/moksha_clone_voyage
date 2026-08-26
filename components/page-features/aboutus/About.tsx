@@ -16,6 +16,7 @@ import Responsiblesewa from "./Responsiblesewa";
 import AboutFaq from "./AboutFaq";
 import Supportthemission from "./Supportthemission";
 import JoinSewa from "@/components/sections/JoinSewa/JoinSewa";
+import { WebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function About() {
   return (
@@ -24,21 +25,20 @@ export default function About() {
       <Navbar />
 
       <main className="overflow-x-clip bg-[#FBF8F3] font-sans font-normal text-[#2C1810] [&_*]:!font-sans [&_.font-black]:font-normal [&_.font-bold]:font-normal [&_.font-extrabold]:font-normal [&_.font-medium]:font-normal [&_.font-semibold]:font-normal [&_b]:font-normal [&_strong]:font-normal">
-        <AboutBanner />
-        <WhoWeAre />
-        <MokshaSewaIntro />
-        <MokshaServices />
-        {/* <AboutMokshaSewa /> */}
-        <Howwesupport />
-        <Whyweexist />
-        <BehindMission />
-        <Ourstory />
-        <AboutNamoGangeTrust />
-        <Responsiblesewa />
-        <Supportthemission />
-        <JoinSewa />
-        <AboutFaq />
-        <HeartOfMoksha />
+        <WebsiteSection name="about-hero"><AboutBanner /></WebsiteSection>
+        <WebsiteSection name="about-who-we-are"><WhoWeAre /></WebsiteSection>
+        <WebsiteSection name="about-moksha-sewa"><MokshaSewaIntro /></WebsiteSection>
+        <WebsiteSection name="about-services"><MokshaServices /></WebsiteSection>
+        <WebsiteSection name="about-how-support"><Howwesupport /></WebsiteSection>
+        <WebsiteSection name="about-why-exist"><Whyweexist /></WebsiteSection>
+        <WebsiteSection name="about-behind-mission"><BehindMission /></WebsiteSection>
+        <WebsiteSection name="about-our-story"><Ourstory /></WebsiteSection>
+        <WebsiteSection name="about-namo-gange"><AboutNamoGangeTrust /></WebsiteSection>
+        <WebsiteSection name="about-responsible-sewa"><Responsiblesewa /></WebsiteSection>
+        <WebsiteSection name="about-support-mission"><Supportthemission /></WebsiteSection>
+        <WebsiteSection name="about-join-sewa"><JoinSewa /></WebsiteSection>
+        <WebsiteSection name="about-faq"><AboutFaq /></WebsiteSection>
+        <WebsiteSection name="about-heart"><HeartOfMoksha /></WebsiteSection>
       </main>
 
       <Footer />

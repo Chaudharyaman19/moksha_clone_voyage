@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name:
@@ -288,6 +289,16 @@ const trustItems = [
 ========================================================= */
 
 export default function SupportTheMission() {
+  const section = useWebsiteSection("about-support-mission");
+  const activeSupportItems = (section?.items?.length ? section.items : supportItems).map((item, index) => {
+    const fallback = supportItems[index % supportItems.length];
+    const itemObj = item as Record<string, any>;
+    return {
+      icon: itemObj.icon || fallback.icon,
+      text: itemObj.title || itemObj.description || itemObj.text || fallback.text,
+    };
+  });
+
   return (
     <section
       className="
@@ -345,7 +356,7 @@ export default function SupportTheMission() {
             "
             style={{
               backgroundImage:
-                "url('/assets/about/our-story/arthi.jpeg')",
+                `url("${imageOrFallback(section?.image, "/assets/about/our-story/arthi.jpeg")}")`,
               backgroundSize: "100% 100%",
               backgroundPosition: "right center",
             }}
@@ -429,7 +440,7 @@ export default function SupportTheMission() {
                   text-[#06483A]
                 "
               >
-                Support The Mission
+                {textOrFallback(section?.eyebrow, "Support The Mission")}
               </span>
 
               <span className="relative hidden h-px w-[78px] bg-[#C18E39] sm:block">
@@ -465,19 +476,7 @@ export default function SupportTheMission() {
                 sm:text-[30px]
               "
             >
-              <span className="block text-[#063F33]">
-                Help Namo Gange Trust
-              </span>
-
-              <span className="mt-[3px] block">
-                <span className="text-[#063F33]">
-                  Continue{" "}
-                </span>
-
-                <span className="text-[#B87916]">
-                  Moksha Sewa.
-                </span>
-              </span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Help Namo Gange Trust\nContinue Moksha Sewa.")}</span>
             </h2>
 
             {/* =================================================
@@ -533,7 +532,7 @@ export default function SupportTheMission() {
               className="
                 mt-[14px]
                 max-w-[600px]
-
+                whitespace-pre-line
                 text-center
                 text-[17px]
                 font-medium
@@ -545,13 +544,7 @@ export default function SupportTheMission() {
                 sm:leading-[1.52]
               "
             >
-              Moksha Sewa is a humanitarian initiative of Namo Gange Trust.
-              <br className="hidden sm:block" />
-              Your contribution helps support the Trust&apos;s efforts to provide
-              <br className="hidden sm:block" />
-              dignified and responsible final-journey assistance through the
-              <br className="hidden sm:block" />
-              Moksha Sewa initiative.
+              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust.\nYour contribution helps support the Trust's efforts to provide\ndignified and responsible final-journey assistance through the\nMoksha Sewa initiative.")}
             </p>
           </div>
         </div>
@@ -615,7 +608,7 @@ export default function SupportTheMission() {
                 sm:tracking-[0.08em]
               "
             >
-              How Your Support May Help
+              {textOrFallback(section?.subtitle, "How Your Support May Help")}
             </span>
 
             <span className="relative hidden h-px w-[76px] bg-[#BD8C38] sm:block">
@@ -662,7 +655,7 @@ export default function SupportTheMission() {
                 xl:grid-cols-5
               "
             >
-              {supportItems.map((item, index) => (
+              {activeSupportItems.map((item, index) => (
                 <div
                   key={item.text}
                   className={`

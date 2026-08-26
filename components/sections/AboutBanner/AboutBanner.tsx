@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +12,7 @@ import {
   ShieldCheck,
   UsersRound,
 } from "lucide-react";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface InfoItem {
   title: string;
@@ -149,6 +152,27 @@ const RightLeafDecoration = () => {
 };
 
 const AboutMokshaSewa: React.FC = () => {
+  const section = useWebsiteSection("about-hero");
+  const activeSupport = section?.items?.length
+    ? section.items.slice(0, Math.min(section.items.length, supportItems.length + 4)).slice(0, supportItems.length < section.items.length ? section.items.length : supportItems.length)
+    : supportItems.map(i => ({ title: i.title, description: i.description }));
+  // support items = first N items, value items = remaining items after support
+  const supportCount = supportItems.length;
+  const activeSupportItems = (section?.items?.length ? section.items.slice(0, supportCount) : supportItems.map(i => ({ title: i.title, description: i.description })));
+  const activeValueItems = (section?.items?.length ? section.items.slice(supportCount) : values.map(i => ({ title: i.title, description: i.description })));
+
+  const supportCards = activeSupportItems.map((item, index) => {
+    const itemObj = item as Record<string, any>;
+    const fallback = supportItems[index % supportItems.length];
+    return { ...fallback, title: itemObj.title || fallback.title, description: itemObj.description || fallback.description };
+  });
+  const valueCards = activeValueItems.map((item, index) => {
+    const itemObj = item as Record<string, any>;
+    const fallback = values[index % values.length];
+    return { ...fallback, title: itemObj.title || fallback.title, description: itemObj.description || fallback.description };
+  });
+  const quoteText = textOrFallback(section?.quote, "We do not see a case. We see a human life that deserves respect.");
+
   return (
     <section
       aria-labelledby="about-moksha-title"
@@ -161,7 +185,7 @@ const AboutMokshaSewa: React.FC = () => {
         {/* Full-width background image */}
         <div className="absolute inset-0 min-h-[320px] sm:min-h-[380px] md:min-h-[440px] lg:min-h-[540px]">
           <Image
-            src="/hero-images/dignity-in-every-final-journey-bg.png"
+            src={imageOrFallback(section?.image, "/hero-images/dignity-in-every-final-journey-bg.png")}
             alt="Moksha Sewa volunteer supporting an elderly person"
             fill
             priority
@@ -231,7 +255,7 @@ const AboutMokshaSewa: React.FC = () => {
               "
             >
               <span aria-hidden="true">—</span>
-              <span>About Moksha Sewa</span>
+              <span>{textOrFallback(section?.eyebrow, "About Moksha Sewa")}</span>
             </div>
 
             {/* Heading */}
@@ -250,11 +274,13 @@ const AboutMokshaSewa: React.FC = () => {
                 xl:text-[52px]
               "
             >
-              Every Final Journey
-              <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>
-              Deserves Dignity
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Every Final Journey\nDeserves Dignity")}</span>
             </h1>
+
+            {/* Subtitle */}
+            <p className="mt-2 text-base font-semibold text-[#df5b0b] sm:text-lg">
+              {textOrFallback(section?.subtitle, "A humanitarian initiative of Namo Gange Trust.")}
+            </p>
 
             {/* Description */}
             <p
@@ -268,10 +294,7 @@ const AboutMokshaSewa: React.FC = () => {
                 sm:text-lg
               "
             >
-              Moksha Sewa is a humanitarian initiative of Namo Gange Trust,
-              created to stand beside unclaimed and unsupported persons, and
-              families facing financial hardship—so that dignity, care and
-              respectful final rites are never denied when they matter most.
+              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust, created to stand beside unclaimed and unsupported persons, and families facing financial hardship - so that dignity, care and respectful final rites are never denied when they matter most.")}
             </p>
 
             {/* CTA */}
@@ -313,7 +336,7 @@ const AboutMokshaSewa: React.FC = () => {
                   focus:ring-offset-2
                 "
               >
-                <span>Know Our Mission</span>
+                <span>{textOrFallback(section?.buttonLabel, "Know Our Mission")}</span>
 
                 <ArrowDown
                   size={22}
@@ -327,7 +350,7 @@ const AboutMokshaSewa: React.FC = () => {
               </button>
 
               <Link
-                href="/request-help"
+                href={textOrFallback(section?.secondaryButtonHref, "/request-help")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -348,7 +371,7 @@ const AboutMokshaSewa: React.FC = () => {
                   focus-visible:ring-[#df5b0b]
                 "
               >
-                <span>Need Sewa Support?</span>
+                <span>{textOrFallback(section?.secondaryButtonLabel, "Need Sewa Support?")}</span>
 
                 <ArrowRight
                   size={21}
@@ -421,7 +444,7 @@ const AboutMokshaSewa: React.FC = () => {
                 lg:divide-y-0
               "
             >
-              {supportItems.map((item, index) => (
+              {supportCards.map((item, index) => (
                 <div
                   key={item.title}
                   className={`
@@ -437,7 +460,7 @@ const AboutMokshaSewa: React.FC = () => {
                         : ""
                     }
                     ${
-                      index === supportItems.length - 1
+                      index === supportCards.length - 1
                         ? "lg:pr-0"
                         : ""
                     }
@@ -557,9 +580,7 @@ const AboutMokshaSewa: React.FC = () => {
                   lg:text-[1.65rem]
                 "
               >
-                We do not see a case. We see a human life
-                <br className="hidden sm:block" />
-                that deserves respect.
+                {quoteText}
               </blockquote>
 
               <span
@@ -638,7 +659,7 @@ const AboutMokshaSewa: React.FC = () => {
               lg:grid-cols-4
             "
           >
-            {values.map((item, index) => (
+            {valueCards.map((item, index) => (
               <div
                 key={item.title}
                 className={`
@@ -660,7 +681,7 @@ const AboutMokshaSewa: React.FC = () => {
                       : ""
                   }
                   ${
-                    index === values.length - 1
+                    index === valueCards.length - 1
                       ? "lg:pr-0"
                       : ""
                   }

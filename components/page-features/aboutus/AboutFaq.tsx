@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaArrowRight, FaFileAlt, FaHeart, FaLock, FaPhoneAlt, FaShieldAlt, FaUsers } from "react-icons/fa";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const faqs = [
   ["Who can request Moksha Sewa support?", "Moksha Sewa provides support for legally authorised unclaimed bodies, people without family support and verified families facing financial hardship. All requests are subject to verification and eligibility."],
@@ -23,28 +24,36 @@ const trustPoints = [
 
 export default function AboutFaq() {
   const [openIndex, setOpenIndex] = useState(0);
+  const section = useWebsiteSection("about-faq");
+  const activeFaqs = (section?.items?.length ? section.items : faqs.map(([q, a]) => ({ title: q, description: a })));
+  const faqItems = activeFaqs.map((item) => {
+    const itemObj = item as Record<string, any>;
+    const question = itemObj.title || "";
+    const answer = itemObj.description || "";
+    return [question, answer] as const;
+  });
 
   return (
     <section className="bg-[#fbfaf7] px-6 py-8 lg:px-8 lg:py-10 2xl:px-0">
       <div className="mx-auto w-full max-w-7xl">
         <header className="text-center">
-          <div className="flex items-center justify-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#315448]"><span className="h-px w-12 bg-[#c69a4c]" /><span>Help &amp; Information</span><span className="h-px w-12 bg-[#c69a4c]" /></div>
-          <h2 className="mt-2 font-sans text-[24px] font-semibold leading-[1.05] text-[#123e31] sm:text-[30px]">Frequently <span className="text-[#aa7330]">Asked Questions</span></h2>
-          <p className="mt-2 text-[16px] leading-[1.45] text-[#4b5c55]">Here are answers to some common questions about Moksha Sewa.<br />If you need more help, we are here for you.</p>
+          <div className="flex items-center justify-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#315448]"><span className="h-px w-12 bg-[#c69a4c]" /><span>{textOrFallback(section?.eyebrow, "Help & Information")}</span><span className="h-px w-12 bg-[#c69a4c]" /></div>
+          <h2 className="mt-2 font-sans text-[24px] font-semibold leading-[1.05] text-[#123e31] sm:text-[30px]">{textOrFallback(section?.title, "Frequently Asked Questions")}</h2>
+          <p className="mt-2 whitespace-pre-line text-[16px] leading-[1.45] text-[#4b5c55]">{textOrFallback(section?.description, "Here are answers to some common questions about Moksha Sewa.\nIf you need more help, we are here for you.")}</p>
         </header>
 
         <div className="mt-5 grid gap-3 lg:grid-cols-[.88fr_1.12fr]">
           <div className="flex h-full flex-col">
-            <div className="relative min-h-[290px] flex-1 overflow-hidden rounded-tl-[72px]"><Image src="/assets/about-reference/faq-support-final.png" alt="Moksha Sewa volunteer supporting an elderly person" fill unoptimized priority sizes="(max-width:1024px) 100vw,44vw" className="object-cover object-center" /></div>
+            <div className="relative min-h-[290px] flex-1 overflow-hidden rounded-tl-[72px]"><Image src={imageOrFallback(section?.image, "/assets/about-reference/faq-support-final.png")} alt="Moksha Sewa volunteer supporting an elderly person" fill unoptimized priority sizes="(max-width:1024px) 100vw,44vw" className="object-cover object-center" /></div>
             <div className="grid min-h-[88px] grid-cols-[48px_1fr] items-center gap-x-3 border border-[#e7ded0] bg-white px-4 py-2 shadow-[0_5px_14px_rgba(65,49,30,.09)] sm:grid-cols-[48px_1fr_auto]">
               <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d4c3a5] bg-[#faf7f0] text-[#17493a]"><FaUsers className="h-6 w-6" /></span>
-              <div className="flex h-full min-w-0 flex-col justify-center"><p className="text-[16px] font-semibold leading-[1.2] text-[#24483d]">Need more help?</p><p className="mt-1 max-w-[310px] text-[16px] leading-[1.25] text-[#56645e]">Our team is here to assist you with any questions or support you may need.</p></div>
-              <Link href="/contact" target="_blank" rel="noopener noreferrer" className="col-span-2 mt-4 flex min-h-12 items-center justify-center gap-3 border-t border-[#ded1bb] pt-3 text-[#24483d] sm:col-span-1 sm:ml-4 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0"><FaPhoneAlt className="h-5 w-5 shrink-0 text-[#a97931]" /><span className="whitespace-nowrap text-[16px] font-bold uppercase leading-[1.2]">Request Sewa Help</span><FaArrowRight className="h-4 w-4 shrink-0 text-[#b27b2e]" /></Link>
+              <div className="flex h-full min-w-0 flex-col justify-center"><p className="text-[16px] font-semibold leading-[1.2] text-[#24483d]">{textOrFallback(section?.requestTitle, "Need more help?")}</p><p className="mt-1 max-w-[310px] text-[16px] leading-[1.25] text-[#56645e]">{textOrFallback(section?.requestDescription, "Our team is here to assist you with any questions or support you may need.")}</p></div>
+              <Link href={textOrFallback(section?.buttonHref, "/contact")} target="_blank" rel="noopener noreferrer" className="col-span-2 mt-4 flex min-h-12 items-center justify-center gap-3 border-t border-[#ded1bb] pt-3 text-[#24483d] sm:col-span-1 sm:ml-4 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0"><FaPhoneAlt className="h-5 w-5 shrink-0 text-[#a97931]" /><span className="whitespace-nowrap text-[16px] font-bold uppercase leading-[1.2]">{textOrFallback(section?.buttonLabel, "Request Sewa Help")}</span><FaArrowRight className="h-4 w-4 shrink-0 text-[#b27b2e]" /></Link>
             </div>
           </div>
 
           <div className="space-y-2">
-            {faqs.map(([question, answer], index) => {
+            {faqItems.map(([question, answer], index) => {
               const open = openIndex === index;
               return <div key={question} className="border border-[#e8e1d7] bg-white shadow-[0_3px_10px_rgba(65,49,30,.06)]">
                 <button type="button" onClick={() => setOpenIndex(open ? -1 : index)} className="flex min-h-[50px] w-full items-center gap-3 px-4 text-left"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#f0f2ed] text-[16px] font-semibold text-[#315448]">{String(index + 1).padStart(2, "0")}</span><span className="flex-1 text-[16px] font-semibold text-[#30493f]">{question}</span><span className="text-lg font-light text-[#b57b2d]">{open ? "−" : "+"}</span></button>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactElement } from "react";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: "Lotus" | "Founder" | "Ornament";
@@ -86,6 +87,8 @@ const CustomIcon = ({
 ========================================================= */
 
 export default function OurStory() {
+  const section = useWebsiteSection("about-our-story");
+
   return (
     <section
       className="
@@ -290,7 +293,7 @@ export default function OurStory() {
                   text-[#064638]
                 "
               >
-                Our Story
+                {textOrFallback(section?.eyebrow, "Our Story")}
               </span>
 
               <span className="relative h-px w-[70px] bg-[#BF8B2E]">
@@ -330,19 +333,7 @@ export default function OurStory() {
                 fontFamily: "Georgia, 'Times New Roman', serif",
               }}
             >
-              <span className="text-[#063E33]">
-                One Question
-              </span>
-
-              <br />
-
-              <span className="text-[#063E33]">
-                Became a{" "}
-              </span>
-
-              <span className="text-[#B67712]">
-                Mission.
-              </span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "One Question\nBecame a Mission.")}</span>
             </h2>
 
             {/* TITLE DIVIDER */}
@@ -421,6 +412,7 @@ export default function OurStory() {
                   font-serif
                   text-[22px]
                   italic
+                  whitespace-pre-line
                   leading-[1.45]
 
                   text-[#17483D]
@@ -431,9 +423,7 @@ export default function OurStory() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                What happens when someone passes away
-                <br />
-                and there is no one to stand beside them?
+                {textOrFallback(section?.subtitle, "What happens when someone passes away\nand there is no one to stand beside them?")}
               </p>
 
               <span
@@ -491,29 +481,11 @@ export default function OurStory() {
                 leading-[1.6]
 
                 text-[#33383A]
+                whitespace-pre-line
               "
             >
               <p>
-                This question became the foundation of{" "}
-                <span className="font-semibold text-[#B8730E]">
-                  Moksha Sewa
-                </span>
-                —a mission created so that when someone is left without
-                family, support or resources, humanity can still stand beside
-                them.
-              </p>
-
-              <p>
-                We believe that every individual, regardless of identity,
-                status or circumstance, deserves a final journey of dignity,
-                respect and compassion.
-              </p>
-
-              <p>
-                Our mission is to ensure that no one faces their final journey
-                alone. Through sevabhav, community support and responsible
-                action, we stand beside the most vulnerable—because every life
-                deserves dignity.
+                {textOrFallback(section?.description, "This question became the foundation of Moksha Sewa—a mission created so that when someone is left without family, support or resources, humanity can still stand beside them.\n\nWe believe that every individual, regardless of identity, status or circumstance, deserves a final journey of dignity, respect and compassion.\n\nOur mission is to ensure that no one faces their final journey alone.")}
               </p>
             </div>
           </div>
@@ -557,7 +529,7 @@ export default function OurStory() {
               "
             >
               <Image
-                src="/assets/vijay_sharma.jpg"
+                src={imageOrFallback(section?.image, "/assets/vijay_sharma.jpg")}
                 alt="Vijay Sharma - Founder, Moksha Sewa"
                 fill
                 priority
@@ -769,6 +741,7 @@ export default function OurStory() {
                     font-serif
                     text-[20px]
                     italic
+                    whitespace-pre-line
                     leading-[1.45]
 
                     text-[#F8F2E4]
@@ -777,11 +750,7 @@ export default function OurStory() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  Dignity should never depend on whether
-                  <br />
-                  someone has money, family or someone
-                  <br />
-                  standing beside them.
+                  {textOrFallback(section?.quote, "Dignity should never depend on whether someone has money, family or someone standing beside them.")}
                 </p>
 
                 <span

@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 /* =========================================================
    TYPES
@@ -192,6 +193,20 @@ const supportCards: SupportCard[] = [
 ========================================================= */
 
 export default function Howwesupport() {
+  const section = useWebsiteSection("about-how-support");
+  const activeItems = section?.items?.length ? section.items : supportCards.map(c => ({ value: c.number, title: c.title, description: c.description, image: c.image }));
+  const cards = activeItems.map((item, index) => {
+    const itemObj = item as Record<string, any>;
+    const fallback = supportCards[index % supportCards.length];
+    return {
+      ...fallback,
+      number: itemObj.value || fallback.number,
+      title: itemObj.title || fallback.title,
+      description: itemObj.description || fallback.description,
+      image: imageOrFallback(itemObj.image, fallback.image),
+    };
+  });
+
   return (
     <section
       className="
@@ -267,7 +282,7 @@ export default function Howwesupport() {
               sm:text-[30px]
             "
           >
-            Who We Support
+            {textOrFallback(section?.title, "Who We Support")}
           </h2>
 
           <span
@@ -299,7 +314,7 @@ export default function Howwesupport() {
             lg:grid-cols-3
           "
         >
-          {supportCards.map((card) => (
+          {cards.map((card) => (
             <article
               key={card.number}
               className="
@@ -626,7 +641,7 @@ export default function Howwesupport() {
                 lg:mt-0
               "
             >
-              Important Note
+              {textOrFallback(section?.legalNotice, "Important Note")}
             </div>
 
             {/* DIVIDER */}
@@ -665,8 +680,7 @@ export default function Howwesupport() {
                 lg:text-[18px]
               "
             >
-              Support is case-based and subject to applicable verification,
-              eligibility, required formalities and available resources.
+              {textOrFallback(section?.bottomStatement, "Support is case-based and subject to applicable verification, eligibility, required formalities and available resources.")}
             </p>
           </div>
         </div>

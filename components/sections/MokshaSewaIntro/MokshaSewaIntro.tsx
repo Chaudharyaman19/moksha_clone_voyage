@@ -1,12 +1,17 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const MokshaSewaIntro: React.FC = () => {
+  const section = useWebsiteSection("about-moksha-sewa");
+
   return (
     <section className="relative min-h-[360px] w-full overflow-hidden bg-[#f7efe3]">
       {/* Background Image */}
       <Image
-        src="/assets/about-optimized/a_mission.png"
+        src={imageOrFallback(section?.image, "/assets/about-optimized/a_mission.png")}
         alt="Moksha Sewa at the ghats"
         fill
         priority
@@ -51,7 +56,7 @@ const MokshaSewaIntro: React.FC = () => {
                 text-[#16443f]
               "
             >
-              WHAT IS MOKSHA SEWA?
+              {textOrFallback(section?.eyebrow, "WHAT IS MOKSHA SEWA?")}
             </span>
 
             <span className="h-px w-12 bg-[#b89a68]" />
@@ -71,12 +76,7 @@ const MokshaSewaIntro: React.FC = () => {
               lg:text-[50px]
             "
           >
-            A Mission Built
-            <br />
-            Around{" "}
-            <span className="text-[#a96819]">
-              Dignity.
-            </span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.")}</span>
           </h1>
 
           {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}
@@ -92,18 +92,11 @@ const MokshaSewaIntro: React.FC = () => {
             {/* Description — starts after the border */}
             <div className="max-w-[505px] pl-20 text-[16px] leading-[1.55] text-[#293436]">
               <p>
-                Moksha Sewa is a humanitarian initiative created to stand
-                beside people during one of life’s most difficult and
-                sensitive moments—
-                <br />
-                the final journey.
+                {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative created to stand beside people during one of life's most difficult and sensitive moments - the final journey.")}
               </p>
 
               <p className="mt-4">
-                It focuses on authorised unclaimed cases, people without
-                available family support, and verified families who may face
-                financial hardship in arranging essential final-journey
-                requirements.
+                {textOrFallback(section?.secondaryDescription, "It focuses on authorised unclaimed cases, people without available family support, and verified families who may face financial hardship in arranging essential final-journey requirements.")}
               </p>
             </div>
           </div>

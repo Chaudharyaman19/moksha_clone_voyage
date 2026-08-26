@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaHandshake, FaUsers } from "react-icons/fa";
 import { PiFlowerLotus, PiHandHeart, PiHandsPraying } from "react-icons/pi";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const actions = [
   { label: "Be a\nVolunteer", icon: FaUsers },
@@ -10,10 +13,13 @@ const actions = [
 ];
 
 export default function HeartOfMoksha() {
+  const section = useWebsiteSection("about-heart");
+  const actionItems = actions.map((action, index) => ({ ...action, label: itemOrFallback(section?.items, index, { label: action.label }).label || action.label }));
+
   return (
     <section className="relative min-h-[620px] w-full overflow-hidden bg-[#003a2f] sm:min-h-[560px] lg:aspect-[4/1] lg:min-h-0">
         <Image
-          src="/assets/about-reference/heart-of-moksha-sewa.png"
+          src={imageOrFallback(section?.image, "/assets/about-reference/heart-of-moksha-sewa.png")}
           alt="Moksha Sewa volunteers beside a sacred river ghat at sunset"
           fill
           sizes="(max-width: 1344px) 100vw, 1344px"
@@ -32,7 +38,7 @@ export default function HeartOfMoksha() {
 
             <div className="flex w-full max-w-[650px] flex-col items-start text-left">
               <p className="font-sans text-[16px] font-semibold uppercase text-[#d8a43d]">
-                The Heart of Moksha Sewa
+                {textOrFallback(section?.eyebrow, "The Heart of Moksha Sewa")}
               </p>
 
               <div className="mt-2 flex w-full max-w-[260px] items-center justify-start gap-2 text-[#cda24a] sm:max-w-none">
@@ -42,23 +48,21 @@ export default function HeartOfMoksha() {
               </div>
 
               <h2 className="mt-3 w-full text-left font-sans text-[26px] font-semibold leading-tight sm:text-[30px]">
-                When Someone Has No One,<br className="hidden sm:block" />
-                <span className="text-[#d39a3d]">Humanity</span> Must Stand Beside Them.
+                <span className="whitespace-pre-line">{textOrFallback(section?.title, "When Someone Has No One,\nHumanity Must Stand Beside Them.")}</span>
               </h2>
 
               <p className="mt-4 w-full max-w-[610px] text-left text-[16px] leading-7 text-white/90">
-                Because the final journey is not only about how life ends.<br className="hidden sm:block" />
-                It is about how we choose to stand beside one another until the very end.
+                {textOrFallback(section?.description, "Because the final journey is not only about how life ends. It is about how we choose to stand beside one another until the very end.")}
               </p>
 
               <div className="mt-5 flex w-full flex-col items-start gap-5 xl:flex-row xl:items-center xl:justify-start">
-                <Link href="/volunteer/register" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
-                  Join the Mission
+                <Link href={textOrFallback(section?.buttonHref, "/volunteer/register")} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
+                  {textOrFallback(section?.buttonLabel, "Join the Mission")}
                   <FaArrowRight className="h-3 w-3" />
                 </Link>
 
                 <div className="grid w-full grid-cols-3 items-stretch sm:w-auto">
-                  {actions.map(({ label, icon: Icon }, index) => (
+                  {actionItems.map(({ label, icon: Icon }, index) => (
                     <div key={label} className={`flex min-w-0 flex-col items-center px-2 text-center sm:min-w-[92px] sm:px-3 ${index ? "border-l border-[#d4aa53]/35" : ""}`}>
                       <span className="grid h-9 w-9 place-items-center border border-[#d0a346] text-[#d0a346]">
                         <Icon className="h-5 w-5" />

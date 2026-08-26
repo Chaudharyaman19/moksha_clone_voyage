@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name:
@@ -173,6 +174,17 @@ const features = [
 ========================================================= */
 
 export default function ResponsibleSewa() {
+  const section = useWebsiteSection("about-responsible-sewa");
+  const activeFeatures = (section?.items?.length ? section.items : features).map((item, index) => {
+    const fallback = features[index % features.length];
+    const itemObj = item as Record<string, any>;
+    return {
+      icon: itemObj.icon || fallback.icon,
+      title: itemObj.title || fallback.title,
+      text: itemObj.description || itemObj.text || fallback.text,
+    };
+  });
+
   return (
     <section
       className="
@@ -353,7 +365,7 @@ export default function ResponsibleSewa() {
                   sm:tracking-[0.11em]
                 "
               >
-                Responsible Sewa
+                {textOrFallback(section?.eyebrow, "Responsible Sewa")}
               </span>
 
               <span className="relative hidden h-px w-[30px] bg-[#C49B59] sm:block">
@@ -387,13 +399,7 @@ export default function ResponsibleSewa() {
                 sm:text-[30px]
               "
             >
-              <span className="block text-[#073F32]">
-                Compassion
-              </span>
-
-              <span className="mt-[3px] block text-[#B87817]">
-                With Accountability.
-              </span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Compassion\nWith Accountability.")}</span>
             </h2>
 
             {/* =================================================
@@ -440,7 +446,7 @@ export default function ResponsibleSewa() {
               className="
                 mt-[23px]
                 max-w-[650px]
-
+                whitespace-pre-line
                 text-[17px]
                 font-semibold
                 leading-[1.5]
@@ -451,25 +457,7 @@ export default function ResponsibleSewa() {
                 lg:text-[24px]
               "
             >
-              At Moksha Sewa, every act of support is guided by responsibility,
-              <br className="hidden sm:block" />
-              respect and the highest standards of ethical service.
-            </p>
-
-            <p
-              className="
-                mt-[14px]
-                max-w-[650px]
-                
-                text-[17px]
-                leading-[1.65]
-                
-                text-[#4D5A57]
-              "
-            >
-              We ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most. 
-              Our commitment goes beyond just final rites—we strive to build a community that stands together in humanity, 
-              bringing solace and care to the most vulnerable in society.
+              {textOrFallback(section?.description, "At Moksha Sewa, every act of support is guided by responsibility, respect and the highest standards of ethical service.\n\nWe ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most.")}
             </p>
           </div>
 
@@ -519,28 +507,13 @@ export default function ResponsibleSewa() {
             <p
               className="
                 mt-[8px]
+                whitespace-pre-line
                 text-[16px]
                 leading-[1.35]
                 text-[#2F3434]
               "
             >
-              We serve
-              <br />
-
-              <span
-                className="
-                  font-bold
-                  text-[#164D3E]
-                "
-              >
-                with responsibility.
-              </span>
-
-              <br />
-
-              Because dignity
-              <br />
-              comes first.
+              {textOrFallback(section?.subtitle, "We serve with responsibility. Because dignity comes first.")}
             </p>
 
             <span
@@ -571,7 +544,7 @@ export default function ResponsibleSewa() {
           "
           style={{
             backgroundImage:
-              "url('/assets/about/our-story/response.jpeg')",
+              `url("${imageOrFallback(section?.image, "/assets/about/our-story/response.jpeg")}")`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
@@ -624,7 +597,7 @@ export default function ResponsibleSewa() {
               xl:grid-cols-4
             "
           >
-            {features.map((feature, index) => (
+            {activeFeatures.map((feature, index) => (
               <div
                 key={feature.title}
                 className={`

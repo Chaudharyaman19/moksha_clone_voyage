@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
   name: string;
@@ -87,6 +88,8 @@ const CustomIcon = ({
 ========================================================= */
 
 export default function WhyWeExist() {
+  const section = useWebsiteSection("about-why-exist");
+
   return (
     <section
       className="
@@ -134,7 +137,7 @@ export default function WhyWeExist() {
           "
           style={{
             backgroundImage:
-              "url('/assets/about-optimized/existimage.png')",
+              `url('${imageOrFallback(section?.image, "/assets/about-optimized/existimage.png")}')`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center center",
           }}
@@ -257,7 +260,7 @@ export default function WhyWeExist() {
                 text-[#064A38]
               "
             >
-              Why We Exist
+              {textOrFallback(section?.eyebrow, "Why We Exist")}
             </span>
 
             <span className="relative h-px w-[61px] bg-[#BC882B]">
@@ -294,23 +297,7 @@ export default function WhyWeExist() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            <span className="block text-[#063E31]">
-              Because Sometimes,
-            </span>
-
-            <span className="mt-[5px] block text-[#B77B16]">
-              There Is No One Left
-            </span>
-
-            <span className="mt-[5px] block">
-              <span className="text-[#B77B16]">
-                to Stand Beside{" "}
-              </span>
-
-              <span className="text-[#063E31]">
-                Them.
-              </span>
-            </span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Because Sometimes,\nThere Is No One Left\nto Stand Beside Them.")}</span>
           </h2>
 
           {/* =================================================
@@ -364,21 +351,14 @@ export default function WhyWeExist() {
             className="
               mt-[19px]
               max-w-[520px]
+              whitespace-pre-line
               text-[18px]
               font-medium
               leading-[1.52]
               text-[#303437]
             "
           >
-            Some people leave this world without family or support.
-            <br />
-            Some cases remain unclaimed. And some families have
-            <br />
-            the love and willingness to perform the final rites, but
-            <br />
-            do not have the financial means to manage everything
-            <br />
-            on their own.
+            {textOrFallback(section?.description, "Some people leave this world without family or support.\nSome cases remain unclaimed. And some families have the love and willingness to perform the final rites, but do not have the financial means to manage everything on their own.")}
           </p>
 
           {/* =================================================
@@ -449,6 +429,7 @@ export default function WhyWeExist() {
                 className="
                   mt-[5px]
                   font-serif
+                  whitespace-pre-line
                   text-[31px]
                   leading-[1.08]
                   text-[#B67B18]
@@ -458,7 +439,7 @@ export default function WhyWeExist() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                Exists for These Moments.
+                {textOrFallback(section?.subtitle, "Exists for These Moments.")}
               </p>
             </div>
           </div>
@@ -515,6 +496,7 @@ export default function WhyWeExist() {
             <p
               className="
                 font-serif
+                whitespace-pre-line
                 text-[26px]
                 leading-[1.2]
                 text-[#263235]
@@ -524,13 +506,7 @@ export default function WhyWeExist() {
                 fontFamily: "Georgia, 'Times New Roman', serif",
               }}
             >
-              When support disappears,
-              <br />
-
-              <span className="text-[#AF7014]">
-                humanity
-              </span>{" "}
-              must step forward.
+              {textOrFallback(section?.quote, "When support disappears,\nhumanity must step forward.")}
             </p>
 
             {/* ORNAMENT */}
@@ -566,7 +542,7 @@ export default function WhyWeExist() {
           "
           style={{
             backgroundImage:
-              "url('/assets/about-optimized/existimage.png')",
+              `url('${imageOrFallback(section?.image, "/assets/about-optimized/existimage.png")}')`,
             backgroundPosition: "74% center",
           }}
         />
