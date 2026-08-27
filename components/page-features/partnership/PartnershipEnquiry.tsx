@@ -3,16 +3,23 @@
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { PartnershipIcon } from "./PartnershipIcons";
+import { PartnershipIcon, type PartnershipIconName } from "./PartnershipIcons";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const types = [
-  ["People", "Purpose-Driven Partnerships", "We collaborate with organisations that share our commitment to dignity and humanitarian service."],
-  ["ShieldCheck", "Clear Roles & Responsibility", "Partnerships are built on transparency, defined roles and mutual understanding."],
-  ["Handshake", "Responsible & Accountable", "We ensure all collaboration follows due process, privacy and accountability standards."],
-  ["HeartHands", "Mission First", "Every partnership supports our mission to ensure dignity in the final journey of those in need."],
+const defaultTypes = [
+  { icon: "People" as const, title: "Purpose-Driven Partnerships", text: "We collaborate with organisations that share our commitment to dignity and humanitarian service." },
+  { icon: "ShieldCheck" as const, title: "Clear Roles & Responsibility", text: "Partnerships are built on transparency, defined roles and mutual understanding." },
+  { icon: "Handshake" as const, title: "Responsible & Accountable", text: "We ensure all collaboration follows due process, privacy and accountability standards." },
+  { icon: "HeartHands" as const, title: "Mission First", text: "Every partnership supports our mission to ensure dignity in the final journey of those in need." },
 ] as const;
 
 export default function PartnershipEnquiry() {
+  const section = useWebsiteSection("partnership-enquiry");
+  const eyebrow = textOrFallback(section?.eyebrow, "Start a Conversation", 50);
+  const title = textOrFallback(section?.title, "Let's Explore What\nWe Can Do Together.", 100);
+  const description = textOrFallback(section?.description, "Tell us about your organisation and how you would like to collaborate. Our team will review your enquiry and get back to you.", 200);
+  const disclaimer = textOrFallback(section?.legalNotice, "Moksha Sewa partnerships are structured strictly for humanitarian service, transparency and non-commercial impact. Submitting an enquiry does not constitute a formal agreement.", 200);
+
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -42,32 +49,40 @@ export default function PartnershipEnquiry() {
     <section id="partnership-enquiry" className="bg-[#fbf7ef] px-5 py-5">
       <div className="mx-auto grid max-w-[1344px] grid-cols-1 gap-5 lg:grid-cols-[44%_54%]">
         <div className="px-2">
-          <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a20]"><span className="mr-3">—</span> Start a Conversation</p>
+          <p className="text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a20]"><span className="mr-3">—</span> {eyebrow}</p>
           <h2 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            Let’s Explore What
-            <br />
-            We Can Do Together.
+            {title.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </h2>
           <p className="mt-3 max-w-[520px] text-[16px] font-medium leading-[1.45] text-[#444a49]">
-            Tell us about your organisation and how you would like to collaborate. Our team will review your enquiry and get back to you.
+            {description}
           </p>
 
           <div className="mt-4 space-y-3">
-            {types.map(([icon, title, text]) => (
-              <div key={title} className="flex gap-4">
+            {defaultTypes.map((defaultType, index) => {
+              const item = itemOrFallback(section?.items, index, { title: defaultType.title, description: defaultType.text, value: defaultType.icon });
+              const itemTitle = item.title || defaultType.title;
+              const itemText = item.description || defaultType.text;
+              const itemIcon = (item.value || defaultType.icon) as PartnershipIconName;
+              return (
+              <div key={defaultType.title} className="flex gap-4">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#004b39] text-[#d3a03a]">
-                  <PartnershipIcon name={icon} className="h-8 w-8" />
+                  <PartnershipIcon name={itemIcon} className="h-8 w-8" />
                 </span>
                 <div>
-                  <h3 className="text-[16px] font-bold text-[#0b4a3b]">{title}</h3>
-                  <p className="mt-1 text-[16px] leading-[1.4] text-[#505554]">{text}</p>
+                  <h3 className="text-[16px] font-bold text-[#0b4a3b]">{itemTitle}</h3>
+                  <p className="mt-1 text-[16px] leading-[1.4] text-[#505554]">{itemText}</p>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
 
           <div className="mt-4 rounded-[8px] bg-[#004b39] px-5 py-3 text-white">
-            <p className="text-[16px] leading-[1.45]">Submitting an enquiry does not constitute acceptance, affiliation or formal partnership with Moksha Sewa or Namo Gange Trust.</p>
+            <p className="text-[16px] leading-[1.45]">{disclaimer}</p>
           </div>
         </div>
 

@@ -23,6 +23,7 @@ import { PiFlowerLotus } from "react-icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 /* ---------- one source of truth so numbers never mismatch ---------- */
 const CONTACT = {
@@ -94,6 +95,9 @@ const socials = [
 ];
 
 function Contact() {
+  const heroSection = useWebsiteSection("contact-hero");
+  const formSection = useWebsiteSection("contact-form");
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -228,12 +232,14 @@ function Contact() {
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
                 <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  संपर्क करें · We&apos;re Listening
+                  {textOrFallback(heroSection?.eyebrow, "संपर्क करें · We're Listening", 50)}
                 </span>
               </div>
 
-              <h1 className="mt-3 whitespace-nowrap font-serif text-[32px] leading-none text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                Contact <span className="text-[#8B6A3E]">Us</span>
+              <h1 className="mt-3 font-serif text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
+                {textOrFallback(heroSection?.title, "Contact Us", 100).split("\n").map((line, i) => (
+                  <span key={i} className="block">{line}</span>
+                ))}
               </h1>
 
               <div className="mt-2 flex items-center gap-2">
@@ -243,9 +249,7 @@ function Contact() {
               </div>
 
               <p className="mt-3 hidden max-w-[460px] text-[15px] leading-6 text-[#4F3A2D] md:block">
-                Ek call ya ek message — baaki sab hum sambhaal lenge. Our team
-                answers round the clock and stays with you until the last ritual
-                is complete.
+                {textOrFallback(heroSection?.description, "Ek call ya ek message — baaki sab hum sambhaal lenge. Our team answers round the clock and stays with you until the last ritual is complete.", 250)}
               </p>
 
               <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-1.5">
@@ -483,15 +487,16 @@ function Contact() {
                 <div className="relative mb-4">
                   <div className="inline-flex items-center gap-2 text-[16px] font-semibold uppercase tracking-[0.14em] text-[#C96822]">
                     <MdEmail className="h-4 w-4" />
-                    Send a message
+                    {textOrFallback(formSection?.eyebrow, "Send a message", 50)}
                   </div>
                   <h3 className="mt-1.5 font-serif text-[27px] leading-tight text-[#2C1810]">
-                    We&apos;d love to{" "}
-                    <span className="text-[#E56A18]">hear from you</span>
+                    {textOrFallback(formSection?.title, "We'd love to hear from you", 100).replace("hear from you", "")}
+                    {textOrFallback(formSection?.title, "We'd love to hear from you", 100).includes("hear from you") && (
+                      <span className="text-[#E56A18]">hear from you</span>
+                    )}
                   </h3>
                   <p className="mt-1.5 max-w-[500px] text-[13px] leading-5 text-[#7A685B]">
-                    We reply within one business day. For anything urgent, the
-                    helpline is answered day and night.
+                    {textOrFallback(formSection?.description, "We reply within one business day. For anything urgent, the helpline is answered day and night.", 200)}
                   </p>
                 </div>
 

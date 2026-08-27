@@ -22,6 +22,7 @@ import {
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 /* =========================================================
    LOTUS
@@ -88,6 +89,7 @@ export function ConductBanner({
 }: {
   compact?: boolean;
 }) {
+  const codeSection = useWebsiteSection("volunteer-code");
   return (
     <section
       className={

@@ -28,6 +28,7 @@ import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 import { lookupPincode } from "@/lib/pincode";
 import SuccessPopup from "@/components/common/SuccessPopup";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type RequestType = "NORMAL" | "EMERGENCY";
 
@@ -209,6 +210,9 @@ function LotusOrnament({
 }
 
 export default function RequestHelp() {
+  const heroSection = useWebsiteSection("request-help-hero");
+  const formSection = useWebsiteSection("request-help-form");
+
   const [requestType, setRequestType] =
     useState<RequestType>("NORMAL");
 
@@ -411,11 +415,11 @@ export default function RequestHelp() {
               </div>
 
               <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
-                Request Cremation Assistance
+                {textOrFallback(heroSection?.title, "Request Cremation Assistance", 100)}
               </h1>
 
               <p className="mx-auto mt-1 max-w-[680px] leading-6 text-[#665246]">
-                We are here to support you with compassion, dignity and care in your time of need.
+                {textOrFallback(heroSection?.description, "We are here to support you with compassion, dignity and care in your time of need.", 200)}
               </p>
 
               <div className="mt-1 flex items-center justify-center gap-2">
@@ -494,7 +498,7 @@ export default function RequestHelp() {
                     <LotusOrnament className="h-6 w-8" />
 
                     <h2 className="font-serif text-[24px] font-normal leading-tight text-[#3A2117] sm:text-[28px] lg:text-[30px]">
-                      Request Assistance
+                      {textOrFallback(formSection?.title, "Request Assistance", 100)}
                     </h2>
 
                     <div className="ml-auto flex rounded-md border border-[#E7D9C9] bg-[#FCF8F2] p-0.5">

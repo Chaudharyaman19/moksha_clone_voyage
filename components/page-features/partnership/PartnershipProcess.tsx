@@ -1,8 +1,9 @@
 "use client";
 
-import { PartnershipIcon } from "./PartnershipIcons";
+import { PartnershipIcon, type PartnershipIconName } from "./PartnershipIcons";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const steps = [
+const defaultSteps = [
   {
     no: "01",
     icon: "Chat" as const,
@@ -97,6 +98,11 @@ function ProcessConnector() {
 }
 
 export default function PartnershipProcess() {
+  const section = useWebsiteSection("partnership-process");
+  const eyebrow = textOrFallback(section?.eyebrow, "A Responsible Process", 50);
+  const title = textOrFallback(section?.title, "From Conversation to Collaboration.", 100);
+  const bottomStatement = textOrFallback(section?.bottomStatement, "Submitting an enquiry does not itself create or imply a formal partnership.", 150);
+
   return (
     <section
       className="
@@ -220,7 +226,7 @@ export default function PartnershipProcess() {
                 text-[#B77A18]
               "
             >
-              A Responsible Process
+              {eyebrow}
             </p>
 
             <span
@@ -249,8 +255,8 @@ export default function PartnershipProcess() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            From Conversation to Collaboration
-            <span className="text-[#B87917]">.</span>
+            {title.replace(/\.$/, "")}
+            <span className="text-[#B87917]">{title.endsWith(".") ? "." : ""}</span>
           </h2>
 
           {/* LOTUS DIVIDER */}
@@ -310,8 +316,13 @@ export default function PartnershipProcess() {
             xl:gap-x-0
           "
         >
-          {steps.map((step, index) => (
-            <div key={step.no} className="contents">
+          {defaultSteps.map((defaultStep, index) => {
+            const item = itemOrFallback(section?.items, index, { title: defaultStep.title, description: defaultStep.text, value: defaultStep.icon });
+            const title = item.title || defaultStep.title;
+            const text = item.description || defaultStep.text;
+            const icon = (item.value || defaultStep.icon) as PartnershipIconName;
+            return (
+            <div key={defaultStep.no} className="contents">
               {/* ===============================================
                   STEP
               =============================================== */}
@@ -361,7 +372,7 @@ export default function PartnershipProcess() {
                     "
                   >
                     <PartnershipIcon
-                      name={step.icon}
+                      name={icon}
                       className="
                         h-[68px]
                         w-[68px]
@@ -391,7 +402,7 @@ export default function PartnershipProcess() {
                       shadow-[0_3px_9px_rgba(170,103,0,0.2)]
                     "
                   >
-                    {step.no}
+                    {defaultStep.no}
                   </span>
 
                   {/* =============================================
@@ -465,7 +476,7 @@ export default function PartnershipProcess() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  {step.title}
+                  {title}
                 </h3>
 
                 {/* UNDERLINE */}
@@ -492,7 +503,7 @@ export default function PartnershipProcess() {
                     text-[#464C4D]
                   "
                 >
-                  {step.text}
+                  {text}
                 </p>
               </div>
 
@@ -504,9 +515,9 @@ export default function PartnershipProcess() {
                   icon circles ke center se jaate hain.
               =============================================== */}
 
-              {index < steps.length - 1 && <ProcessConnector />}
+              {index < defaultSteps.length - 1 && <ProcessConnector />}
             </div>
-          ))}
+          )})}
         </div>
 
         {/* =====================================================
@@ -710,8 +721,7 @@ export default function PartnershipProcess() {
               text-[#414748]
             "
           >
-            Submitting an enquiry does not itself create or imply a formal
-            partnership.
+            {bottomStatement}
           </p>
         </div>
 

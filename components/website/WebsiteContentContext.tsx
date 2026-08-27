@@ -36,12 +36,10 @@ export function WebsiteContentProvider({
       if (!cancelled && latest) setLatestSections(latest);
     };
 
-    const interval = window.setInterval(sync, 5000);
-    window.addEventListener("focus", sync);
+    sync();
+
     return () => {
       cancelled = true;
-      window.clearInterval(interval);
-      window.removeEventListener("focus", sync);
     };
   }, [page]);
 

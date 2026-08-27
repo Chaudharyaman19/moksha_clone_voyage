@@ -8,6 +8,7 @@ import { lookupPincode } from "@/lib/pincode";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { itemOrFallback, textOrFallback, imageOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 import {
   FaCalendarAlt,
@@ -242,6 +243,31 @@ function SectionTitle({
 export default function VolunteerRegister() {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const heroSection = useWebsiteSection("volunteer-hero");
+  const registerSection = useWebsiteSection("volunteer-register");
+
+  const stepsSection = useWebsiteSection("volunteer-registration-steps");
+  const skillsSection = useWebsiteSection("volunteer-skills");
+  const areasSection = useWebsiteSection("volunteer-service-areas");
+
+  const activeSteps = React.useMemo(() => {
+    const rawItems = stepsSection?.items?.length ? stepsSection.items : [
+      { title: "Basic Details", description: "Tell us about yourself" },
+      { title: "Choose Your Seva", description: "How would you like to serve?" },
+      { title: "Verification & Consent", description: "Review & submit" },
+    ];
+    return rawItems.map(item => ({ title: item.title || "", subtitle: item.description || "" }));
+  }, [stepsSection]);
+
+  const activeSkills = React.useMemo(() => {
+    const rawItems = skillsSection?.items?.length ? skillsSection.items : SUGGESTED_SKILLS.map(s => ({ title: s }));
+    return rawItems.map(item => item.title || "");
+  }, [skillsSection]);
+
+  const activeAreas = React.useMemo(() => {
+    const rawItems = areasSection?.items?.length ? areasSection.items : SERVICE_AREAS.map(s => ({ title: s }));
+    return rawItems.map(item => item.title || "");
+  }, [areasSection]);
 
   const [form, setForm] =
     useState<VolunteerForm>(EMPTY_FORM);
@@ -568,20 +594,17 @@ export default function VolunteerRegister() {
 
       <div className="relative top-[12px] mt-0 flex flex-col items-start text-left sm:top-0 sm:mt-[30px]">
         <span className="text-[14px] font-semibold leading-[1.1] text-[#2C1810] sm:text-[16px]">
-          Moksha Sewa
+          {textOrFallback(heroSection?.eyebrow, "Moksha Sewa", 50)}
         </span>
 
         <span className="mt-[2px] text-[13px] font-medium leading-[1.15] text-[#8F5A21] sm:text-[16px]">
-          An Initiative of Namo Gange Trust
+          {textOrFallback(heroSection?.subtitle, "An Initiative of Namo Gange Trust", 60)}
         </span>
       </div>
     </div>
 
     <h1 className="mt-3 font-serif text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
-      Be the Reason Someone Receives a
-      <span className="block text-[#DC671F]">
-        Dignified Farewell.
-      </span>
+      {textOrFallback(heroSection?.title, "Be the Reason Someone Receives a Dignified Farewell.", 100)}
     </h1>
 
     <div className="mt-1 flex items-center gap-1.5 sm:gap-2">
@@ -591,16 +614,22 @@ export default function VolunteerRegister() {
     </div>
 
     <p className="mt-1.5 max-w-[510px] text-[14px] leading-[1.4] text-[#17283A] sm:mt-2 sm:text-[17px] sm:leading-6">
-      Your time can bring comfort, care and compassion to families when they
-      need it most.
+      {textOrFallback(heroSection?.description, "Your time can bring comfort, care and compassion to families when they need it most.", 200)}
     </p>
 
     <div className="mt-2 flex flex-wrap gap-2 sm:mt-1 sm:gap-2.5">
       <a
-        href="#volunteer-registration"
-        className="inline-flex h-[40px] items-center justify-center border border-[#C6520A] bg-[#D95A06] px-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03] sm:h-[46px] sm:px-5 sm:text-[16px]"
+        href={heroSection?.buttonHref || "#volunteer-registration"}
+        onClick={(e) => {
+          if (!heroSection?.buttonHref || heroSection.buttonHref.startsWith("#")) {
+            e.preventDefault();
+            const el = document.getElementById("volunteer-registration");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+        className="flex h-[42px] items-center justify-center rounded-[6px] bg-[#DC671F] px-5 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#C25816] sm:h-[48px] sm:px-6 sm:text-[16px]"
       >
-        Become a Volunteer
+        {textOrFallback(heroSection?.buttonLabel, "Register as a Volunteer", 40)}
       </a>
 
       <a
@@ -655,13 +684,13 @@ export default function VolunteerRegister() {
           {/* Heading */}
           <header id="volunteer-registration" className="mb-3 scroll-mt-12 text-center">
             <h1 className="font-serif text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
-              Volunteer Registration
+              {textOrFallback(registerSection?.title, "Volunteer Registration", 50)}
             </h1>
           </header>
 
           {/* Stepper progress */}
           <div className="mb-4 flex items-start justify-center gap-3 sm:gap-6 lg:gap-10">
-            {REGISTRATION_STEPS.map((item, index) => {
+            {activeSteps.map((item, index) => {
               const isActive = index === step;
               const isComplete = index < step;
 
@@ -687,7 +716,7 @@ export default function VolunteerRegister() {
                     </span>
                   </div>
 
-                  {index < REGISTRATION_STEPS.length - 1 && (
+                  {index < activeSteps.length - 1 && (
                     <span className={`mt-1 h-px w-8 shrink-0 sm:mt-1 sm:w-16 ${index < step ? "bg-[#ED6B13]" : "bg-[#E2CDB4]"}`} />
                   )}
                 </React.Fragment>
@@ -916,7 +945,7 @@ export default function VolunteerRegister() {
 
                       <p className={`${labelClass} mt-4 border-t border-dashed border-[#EDB886] pt-3`}>Preferred Areas of Volunteering</p>
                       <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
-                        {SERVICE_AREAS.map((area) => (
+                        {activeAreas.map((area) => (
                           <label key={area} className="flex items-start gap-2 text-[16px] leading-5 text-[#5E4B3F]">
                             <input type="checkbox" checked={volunteerAreas.includes(area)} onChange={() => toggleList(setVolunteerAreas, area)} className="mt-0.5 accent-[#ED6B13]" />
                             {area}
@@ -1061,8 +1090,7 @@ export default function VolunteerRegister() {
                           </label>
 
                           <div className="flex min-h-[36px] flex-wrap items-center gap-1">
-                            {SUGGESTED_SKILLS.map(
-                              (skill) => {
+                            {activeSkills.map((skill) => {
                                 const selected =
                                   skills.includes(
                                     skill,

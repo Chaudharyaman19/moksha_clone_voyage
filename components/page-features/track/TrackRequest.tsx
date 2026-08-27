@@ -18,6 +18,7 @@ import {
 } from "react-icons/fa";
 import { requestApi, TrackedCase } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const inputClass =
   "h-[46px] w-full rounded-[9px] border border-[#E2C79F] bg-[#FFFCF7] px-3.5 text-[14px] text-[#2C1810] placeholder:text-[#A99A8C] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all focus:border-[#B9843E] focus:outline-none focus:ring-2 focus:ring-[#C9A574]/25";
@@ -52,28 +53,7 @@ const STATUS_ORDER = [
   "CLOSED",
 ];
 
-const HOW_IT_WORKS = [
-  {
-    icon: FaKeyboard,
-    text: "Enter your Case ID or Request Number with your phone number.",
-  },
-  {
-    icon: FaHourglassHalf,
-    text: "We match it against your submission — no login, no waiting on hold.",
-  },
-  {
-    icon: FaShieldAlt,
-    text: "Your request details are checked securely against our records.",
-  },
-  {
-    icon: FaFileAlt,
-    text: "View the latest case stage, support activity and service progress.",
-  },
-  {
-    icon: FaCheckCircle,
-    text: "See exactly where things stand, updated the moment our team acts.",
-  },
-];
+
 
 function LotusOrnament({
   className = "h-8 w-11",
@@ -134,6 +114,25 @@ function FineDiamond() {
 }
 
 function TrackRequest() {
+  const heroSection = useWebsiteSection("track-hero");
+  const infoSection = useWebsiteSection("track-info");
+  const howItWorksSection = useWebsiteSection("track-how-it-works");
+  
+  const activeHowItWorks = React.useMemo(() => {
+    const rawItems = howItWorksSection?.items?.length ? howItWorksSection.items : [
+      { title: "Enter Details", description: "Enter your Case ID or Request Number with your phone number." },
+      { title: "Match", description: "We match it against your submission — no login, no waiting on hold." },
+      { title: "Secure", description: "Your request details are checked securely against our records." },
+      { title: "View", description: "View the latest case stage, support activity and service progress." },
+      { title: "Track", description: "See exactly where things stand, updated the moment our team acts." },
+    ];
+    const ICONS = [FaKeyboard, FaHourglassHalf, FaShieldAlt, FaFileAlt, FaCheckCircle];
+    return rawItems.map((item, i) => ({
+      icon: ICONS[i % ICONS.length],
+      text: item.description || item.title || "",
+    }));
+  }, [howItWorksSection]);
+
   const [caseId, setCaseId] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -213,8 +212,10 @@ function TrackRequest() {
             className="mt-1.5 text-[36px] font-normal leading-[1] text-[#2C1810] sm:text-[43px] lg:text-[48px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Track Your{" "}
-            <span className="text-[#A07032]">Request</span>
+            {textOrFallback(heroSection?.title, "Track Your Request", 100).replace("Request", "")}
+            {textOrFallback(heroSection?.title, "Track Your Request", 100).includes("Request") && (
+              <span className="text-[#A07032]">Request</span>
+            )}
           </h1>
 
           <div className="mt-1.5 flex items-center justify-center gap-2 text-[#A66E2E]">
@@ -224,9 +225,7 @@ function TrackRequest() {
           </div>
 
           <p className="mx-auto mt-2 max-w-[620px] text-[14px] leading-5 text-[#4F382A] sm:text-[15px]">
-            Enter your Case ID or Request Number along with your phone number
-            <br className="hidden sm:block" /> to check the latest status of your
-            support request.
+            {textOrFallback(heroSection?.description, "Enter your Case ID or Request Number along with your phone number to check the latest status of your support request.", 250)}
           </p>
         </section>
 
@@ -359,7 +358,7 @@ function TrackRequest() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  How Tracking Works
+                  {textOrFallback(infoSection?.eyebrow, "How Tracking Works", 50)}
                 </h3>
 
                 <div className="mt-1 flex items-center justify-center gap-2">
@@ -367,11 +366,19 @@ function TrackRequest() {
                   <FineDiamond />
                   <span className="h-px w-14 bg-[#C79A58]" />
                 </div>
+                
+                <h4 className="mt-3 text-center text-[15px] font-medium text-[#2C1810]">
+                  {textOrFallback(infoSection?.title, "Complete Transparency At Every Milestone", 80)}
+                </h4>
+                
+                <p className="mt-1.5 text-center text-[14px] text-[#4F382A]">
+                  {textOrFallback(infoSection?.description, "Every step is logged from initial intake to final certificate upload.", 200)}
+                </p>
 
-                <div className="relative mt-3 space-y-2.5">
-                  {HOW_IT_WORKS.map(({ icon: Icon, text }, i) => (
+                <div className="mt-6 flex flex-col gap-6">
+                  {activeHowItWorks.map(({ icon: Icon, text }, i) => (
                     <div key={i} className="relative flex gap-4">
-                      {i < HOW_IT_WORKS.length - 1 && (
+                      {i < activeHowItWorks.length - 1 && (
                         <span className="absolute left-[21px] top-[38px] h-[18px] border-l border-dashed border-[#CDAA75]" />
                       )}
 

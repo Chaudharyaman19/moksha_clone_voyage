@@ -2,21 +2,35 @@
 
 import { CSRIcon } from "./CSRIcons";
 
-const highlights = [
-  ["Target", "Defined Scope"],
-  ["ShieldCheck", "Due Diligence"],
-  ["ClipboardCheck", "Documentation"],
-  ["Report", "Impact Reporting"],
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+
+const defaultHighlights = [
+  { icon: "Target", label: "Defined Scope" },
+  { icon: "ShieldCheck", label: "Due Diligence" },
+  { icon: "ClipboardCheck", label: "Documentation" },
+  { icon: "Report", label: "Impact Reporting" },
 ] as const;
 
-const benefits = [
-  ["HeartHands", "Strengthen essential", "final-journey assistance"],
-  ["People", "Stand beside eligible", "& verified families"],
-  ["Handshake", "Build long-term,", "responsible partnerships"],
-  ["ClipboardCheck", "Create measurable", "human impact"],
+const defaultBenefits = [
+  { icon: "HeartHands", title: "Strengthen essential", description: "final-journey assistance" },
+  { icon: "People", title: "Stand beside eligible", description: "& verified families" },
+  { icon: "Handshake", title: "Build long-term,", description: "responsible partnerships" },
+  { icon: "ClipboardCheck", title: "Create measurable", description: "human impact" },
 ] as const;
 
 export default function CSRHero() {
+  const section = useWebsiteSection("csr-hero");
+  const eyebrow = textOrFallback(section?.eyebrow, "Corporate Social Responsibility", 60);
+  const title = textOrFallback(section?.title, "CSR Partnership for\nDignified Humanitarian Support", 150);
+  const subtitle = textOrFallback(section?.subtitle, "Partner for Dignity. Create Human Impact.", 100);
+  const description = textOrFallback(section?.description, "Partner with Moksha Sewa, an initiative of\nNamo Gange Trust,\nto explore responsible humanitarian\ncollaborations designed\naround dignity, accountability and verified need.", 500);
+  const heroImage = imageOrFallback(section?.image, "/assets/csr/csr-hero-photo.jpg");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Discuss a CSR Partnership", 50);
+  const buttonHref = section?.buttonHref || "#csr-enquiry";
+  const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Request Organisation Profile", 50);
+  const secondaryButtonHref = section?.secondaryButtonHref || "#organisation";
+
+  const titleLines = title.split("\n");
   return (
     <section
       className="
@@ -57,7 +71,7 @@ export default function CSRHero() {
           "
           style={{
             backgroundImage:
-              "url('/assets/csr/csr-hero-photo.jpg')",
+              `url('${heroImage}')`,
 
             backgroundSize: "cover",
 
@@ -167,7 +181,7 @@ export default function CSRHero() {
             />
 
             <span className="text-center leading-[1.25] sm:whitespace-nowrap">
-              Corporate Social Responsibility
+              {eyebrow}
             </span>
 
             <span
@@ -210,7 +224,7 @@ export default function CSRHero() {
             }}
           >
             <span className="block">
-              CSR Partnership for
+              {titleLines[0] || "CSR Partnership for"}
             </span>
 
             <span
@@ -220,7 +234,7 @@ export default function CSRHero() {
                 xl:whitespace-nowrap
               "
             >
-              Dignified Humanitarian Support
+              {titleLines.slice(1).join(" ") || "Dignified Humanitarian Support"}
             </span>
           </h1>
 
@@ -237,7 +251,7 @@ export default function CSRHero() {
               lg:text-[25px]
             "
           >
-            Partner for Dignity. Create Human Impact.
+            {subtitle}
           </p>
 
           {/* =================================================
@@ -298,13 +312,12 @@ export default function CSRHero() {
               text-[#343A3D]
             "
           >
-            Partner with Moksha Sewa, an initiative of
-            Namo Gange Trust,
-            <br className="hidden xl:block" />
-            to explore responsible humanitarian
-            collaborations designed
-            <br className="hidden xl:block" />
-            around dignity, accountability and verified need.
+            {description.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br className="hidden xl:block" />
+              </span>
+            ))}
           </p>
 
           {/* =================================================
@@ -323,7 +336,7 @@ export default function CSRHero() {
             "
           >
             <a
-              href="#csr-enquiry"
+              href={buttonHref}
               className="
                 group
 
@@ -355,7 +368,7 @@ export default function CSRHero() {
                 sm:min-w-[300px]
               "
             >
-              Discuss a CSR Partnership
+              {buttonLabel}
 
               <CSRIcon
                 name="ArrowRight"
@@ -371,7 +384,7 @@ export default function CSRHero() {
             </a>
 
             <a
-              href="#organisation"
+              href={secondaryButtonHref}
               className="
                 group
 
@@ -401,7 +414,7 @@ export default function CSRHero() {
                 sm:min-w-[325px]
               "
             >
-              Request Organisation Profile
+              {secondaryButtonLabel}
 
               <CSRIcon
                 name="ArrowRight"
@@ -436,10 +449,14 @@ export default function CSRHero() {
               lg:grid-cols-4
             "
           >
-            {highlights.map(([icon, label]) => (
-              <div
-                key={label}
-                className="
+            {defaultHighlights.map((defaultItem, index) => {
+              const item = itemOrFallback(section?.items, index, { label: defaultItem.label, value: defaultItem.icon });
+              const label = item.label || defaultItem.label;
+              const icon = (item.value || defaultItem.icon) as any;
+              return (
+                <div
+                  key={index}
+                  className="
                   flex
                   min-h-[54px]
                   items-center
@@ -450,9 +467,9 @@ export default function CSRHero() {
                   px-[18px]
 
                 "
-              >
-                <span
-                  className="
+                >
+                  <span
+                    className="
                     grid
                     h-[42px]
                     w-[42px]
@@ -466,28 +483,29 @@ export default function CSRHero() {
 
                     text-[#0A4B3A]
                   "
-                >
-                  <CSRIcon
-                    name={icon}
-                    className="
+                  >
+                    <CSRIcon
+                      name={icon}
+                      className="
                       h-[27px]
                       w-[27px]
                     "
-                  />
-                </span>
+                    />
+                  </span>
 
-                <span
-                  className="
+                  <span
+                    className="
                     whitespace-nowrap
                     text-[16px]
                     font-semibold
                     text-[#35403E]
                   "
-                >
-                  {label}
-                </span>
-              </div>
-            ))}
+                  >
+                    {label}
+                  </span>
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -509,7 +527,7 @@ export default function CSRHero() {
           "
           style={{
             backgroundImage:
-              "url('/assets/csr/csr-hero-photo.jpg')",
+              `url('${heroImage}')`,
           }}
         />
 
@@ -537,12 +555,10 @@ export default function CSRHero() {
 
             bg-[#F7F4ED]/95
 
-            shadow-[0_5px_13px_rgba(60,40,20,0.04)]
-
             sm:grid-cols-2
 
             lg:absolute
-            lg:bottom-[26px]
+            lg:bottom-[0px]
             lg:left-[5.2%]
             lg:right-[5.2%]
             lg:mx-0
@@ -552,11 +568,16 @@ export default function CSRHero() {
             xl:grid-cols-4
           "
         >
-          {benefits.map(
-            ([icon, line1, line2], index) => (
-              <div
-                key={line1}
-                className={`
+          {defaultBenefits.map(
+            (defaultItem, index) => {
+              const item = itemOrFallback(section?.items, index + 4, { title: defaultItem.title, description: defaultItem.description, value: defaultItem.icon });
+              const title = item.title || defaultItem.title;
+              const description = item.description || defaultItem.description;
+              const icon = (item.value || defaultItem.icon) as any;
+              return (
+                <div
+                  key={index}
+                  className={`
                   flex
                   min-h-[96px]
                   items-center
@@ -566,39 +587,39 @@ export default function CSRHero() {
                   px-[30px]
                   py-[15px]
 
-                  ${
-                    index
+                  ${index
                       ? "xl:border-l xl:border-[#DED3C4]"
                       : ""
-                  }
+                    }
                 `}
-              >
-                <CSRIcon
-                  name={icon}
-                  className="
+                >
+                  <CSRIcon
+                    name={icon}
+                    className="
                     h-[48px]
                     w-[48px]
                     shrink-0
 
                     text-[#155042]
                   "
-                />
+                  />
 
-                <p
-                  className="
+                  <p
+                    className="
                     text-[16px]
                     font-semibold
                     leading-[1.4]
 
                     text-[#34403F]
                   "
-                >
-                  {line1}
-                  <br />
-                  {line2}
-                </p>
-              </div>
-            )
+                  >
+                    {title}
+                    <br />
+                    {description}
+                  </p>
+                </div>
+              )
+            }
           )}
         </div>
       </div>

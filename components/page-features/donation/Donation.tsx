@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Topbar from "@/components/layout/topbar/Topbar";
@@ -17,12 +17,19 @@ import {
   FaShieldAlt,
   FaMapMarkedAlt,
   FaHandsHelping,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaYoutube,
+  FaHeart,
 } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
 import SuccessPopup from "@/components/common/SuccessPopup";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type Cause = {
   id: string;
@@ -75,37 +82,60 @@ const CAUSES: Cause[] = [
   },
 ];
 
-const FAQS = [
-  {
-    q: "Will I receive a receipt for my donation?",
-    a: "Yes. A donation receipt is generated for every contribution and emailed to you — please keep it for your records.",
-  },
-  {
-    q: "How is my donation used?",
-    a: "Your selected amount is an indicative contribution toward programme activities. Actual utilisation may vary according to verified case requirements, availability and applicable local or legal requirements.",
-  },
-  {
-    q: "Can I donate in memory of someone?",
-    a: "Yes — add their name in the ‘Donate in memory of’ field and we will honour it respectfully in our records.",
-  },
-  {
-    q: "Is my payment secure?",
-    a: "Yes. Payments are processed through encrypted, secure payment gateways — your card and bank details are never stored on our servers.",
-  },
-  {
-    q: "Can I set up a monthly donation?",
-    a: "Yes — choose ‘Monthly’ while donating and our team will coordinate recurring contributions on your behalf.",
-  },
-];
-
-const STATS = [
-  { icon: FaHandHoldingHeart, value: "Verified", label: "Case Support" },
-  { icon: FaMapMarkedAlt, value: "Delhi • Ghaziabad • Noida", label: "Launch Region" },
-  { icon: FaUtensils, value: "Need-Based", label: "Relief Assistance" },
-  { icon: FaHandsHelping, value: "Trust-Led", label: "Sewa Mission" },
-];
 
 function Donation() {
+  const heroSection = useWebsiteSection("donation-hero");
+  const causesSection = useWebsiteSection("donation-causes");
+  const taxBenefitSection = useWebsiteSection("donation-tax-benefit");
+
+  const statsSection = useWebsiteSection("donation-stats");
+  const faqSection = useWebsiteSection("donation-faq");
+
+  const ICONS = [PiFlowerLotus, FaFire, FaAmbulance, FaUtensils];
+
+  const activeStats = useMemo(() => {
+    const rawItems = statsSection?.items?.length ? statsSection.items : [
+      { value: "Verified", label: "Case Support" },
+      { value: "Delhi • Ghaziabad • Noida", label: "Launch Region" },
+      { value: "Need-Based", label: "Relief Assistance" },
+      { value: "Trust-Led", label: "Sewa Mission" },
+    ];
+    const statIcons = [FaHandHoldingHeart, FaMapMarkedAlt, FaUtensils, FaHandsHelping];
+    return rawItems.map((item, i) => ({
+      value: item.value || "N/A",
+      label: item.label || "Metric",
+      icon: statIcons[i % statIcons.length],
+    }));
+  }, [statsSection]);
+
+  const activeFaqs = useMemo(() => {
+    const rawItems = faqSection?.items?.length ? faqSection.items : [
+      { title: "Will I receive a receipt for my donation?", description: "Yes. A donation receipt is generated for every contribution and emailed to you — please keep it for your records." },
+      { title: "Is my contribution tax-exempt?", description: "Yes. All contributions made to Namo Gange Trust are eligible for tax exemption under Section 80G of the Income Tax Act." },
+      { title: "How are the funds utilized?", description: "Your support goes directly toward the specific cause you select—whether for cremation rites, ambulance coordination, or essential relief." },
+      { title: "Is my payment information secure?", description: "Yes. Payments are processed through encrypted, secure payment gateways — your card and bank details are never stored on our servers." },
+      { title: "Can I set up a monthly donation?", description: "Yes — choose ‘Monthly’ while donating and our team will coordinate recurring contributions on your behalf." },
+    ];
+    return rawItems.map(item => ({ q: item.title || "", a: item.description || "" }));
+  }, [faqSection]);
+
+  const activeCauses = useMemo(() => {
+    const rawItems = causesSection?.items?.length ? causesSection.items : CAUSES;
+    return rawItems.map((item, i) => {
+      const isFallback = "price" in item;
+      return {
+        id: isFallback ? (item as Cause).id : `cause-${i}`,
+        title: item.title || "",
+        description: item.description || "",
+        image: item.image || (isFallback ? (item as Cause).image : "/assets/namo-gange/vol2.png"),
+        icon: isFallback ? (item as Cause).icon : ICONS[i % ICONS.length],
+        price: parseInt((item as any).value || (isFallback ? (item as Cause).price.toString() : "0"), 10),
+        badge: (item as any).label || (isFallback ? (item as Cause).badge : undefined),
+        features: item.features || (isFallback ? (item as Cause).features : []),
+      };
+    });
+  }, [causesSection]);
+
   const [selectedCause, setSelectedCause] = useState(CAUSES[0].id);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
@@ -127,7 +157,7 @@ function Donation() {
   }>({ type: null, message: "" });
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  const activeCause = CAUSES.find((c) => c.id === selectedCause) ?? CAUSES[0];
+  const activeCause = activeCauses.find((c) => c.id === selectedCause) ?? activeCauses[0];
   const effectiveAmount = customAmount ? Number(customAmount) : activeCause.price;
   const impactNote =
     activeCause.id === "general"
@@ -144,7 +174,7 @@ function Donation() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlePackageSelect = (cause: Cause) => {
+  const handlePackageSelect = (cause: any) => {
     setSelectedCause(cause.id);
     setCustomAmount("");
   };
@@ -156,7 +186,7 @@ function Donation() {
 
   const resetForm = () => {
     setFormData({ name: "", email: "", phone: "", pan: "", dedication: "" });
-    setSelectedCause(CAUSES[0].id);
+    setSelectedCause(activeCauses[0].id);
     setCustomAmount("");
     setIsAnonymous(false);
   };
@@ -264,8 +294,8 @@ function Donation() {
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
-              src="/hero-images/3.png"
-              alt="Donate to Moksha Sewa"
+              src={imageOrFallback(heroSection?.image, "/hero-images/3.png")}
+              alt="Moksha Sewa Donation"
               fill
               priority
               quality={100}
@@ -295,12 +325,14 @@ function Donation() {
                   <PiFlowerLotus className="h-4 w-4" />
                 </span>
                 <span className="text-[14px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  दान · A Namo Gange Trust Initiative
+                  {textOrFallback(heroSection?.eyebrow, "दान · A Namo Gange Trust Initiative", 50)}
                 </span>
               </div>
 
-              <h1 className="whitespace-nowrap font-serif text-[30px] leading-none text-[#2C1810] sm:text-[44px] lg:text-[50px]">
-                Support a <span className="text-[#8B6A3E]">Final Journey</span>
+              <h1 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
+                {textOrFallback(heroSection?.title, "Support a Final Journey", 100).split("\n").map((line, i) => (
+                  <span key={i} className="block">{line}</span>
+                ))}
               </h1>
 
               {/* diya flourish */}
@@ -311,9 +343,7 @@ function Donation() {
               </div>
 
               <p className="mt-5 max-w-[460px] text-sm leading-6 text-[#4F3A2D] sm:text-[15px]">
-                Your contribution supports a humanitarian end-of-life mission
-                for economically weaker families and legally authorised
-                unclaimed cases.
+                {textOrFallback(heroSection?.description, "Your contribution supports a humanitarian end-of-life mission for economically weaker families and legally authorised unclaimed cases.", 250)}
               </p>
 
               <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -360,7 +390,7 @@ function Donation() {
         {/* ============ QUICK STATS — dark bar overlapping hero ============ */}
         <section className="w-full bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md border-b border-[#73532F]">
           <div className="mx-auto grid max-w-[1600px] grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
-            {STATS.map((item, index) => {
+            {activeStats.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
@@ -390,27 +420,27 @@ function Donation() {
 
         {/* ============ SUPPORT PACKAGES — exact package selector layout ============ */}
         <section className="relative overflow-hidden bg-[#FBF8F3] pb-3 pt-4 lg:pb-4 lg:pt-4">
-          {/* subtle corner mandala feel */}
           <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/10" />
           <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-[#C9A574]/10" />
 
           <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
             <div className="mb-0 flex items-center justify-center gap-3 text-[16px] font-semibold uppercase tracking-[0.24em] text-[#8B6A3E]">
               <span className="h-px w-10 bg-[#C9A574]" />
-              <span>ॐ Where Your Donation Goes ॐ</span>
+              <span>{textOrFallback(causesSection?.eyebrow, "ॐ Where Your Donation Goes ॐ", 50)}</span>
               <span className="h-px w-10 bg-[#C9A574]" />
             </div>
 
             <h2 className="-mt-0.5 text-center font-serif text-[30px] leading-[1.02] text-[#2C1810] sm:text-[36px]">
-              Support a <span className="text-[#A36B2B]">Final Journey</span>
+              {textOrFallback(causesSection?.title, "Support a Final Journey", 100).split("Final Journey")[0]}
+              {textOrFallback(causesSection?.title, "Support a Final Journey", 100).includes("Final Journey") && <span className="text-[#A36B2B]">Final Journey</span>}
             </h2>
 
             <p className="mx-auto mt-0 max-w-3xl text-center text-[13px] leading-5 text-[#6E5A4C] sm:text-[14px]">
-              Amounts are indicative contributions toward programme activities; actual utilisation may vary according to verified case requirements.
+              {textOrFallback(causesSection?.description, "Amounts are indicative contributions toward programme activities; actual utilisation may vary according to verified case requirements.", 250)}
             </p>
 
             <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 mt-5">
-              {CAUSES.map((cause) => {
+              {activeCauses.map((cause) => {
                 const Icon = cause.icon;
                 const isSelected = cause.id === selectedCause;
 
@@ -741,11 +771,11 @@ function Donation() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-start gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-semibold text-[14px]">
-                        80G
+                        {textOrFallback(taxBenefitSection?.eyebrow, "80G", 20)}
                       </span>
                       <div>
-                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Tax Receipt</span>
-                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">Subject to applicable 80G approval.</span>
+                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">{textOrFallback(taxBenefitSection?.title, "Tax Receipt", 50)}</span>
+                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">{textOrFallback(taxBenefitSection?.subtitle, "Subject to applicable 80G approval.", 100)}</span>
                       </div>
                     </div>
 
@@ -754,8 +784,8 @@ function Donation() {
                         <FaShieldAlt className="h-4 w-4" />
                       </span>
                       <div>
-                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">Secure Payment</span>
-                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">100% encrypted & safe.</span>
+                        <span className="block text-[14px] font-semibold uppercase tracking-[0.14em] text-[#8A7460]">{textOrFallback(taxBenefitSection?.items?.[0]?.title, "Secure Payment", 50)}</span>
+                        <span className="block text-[14px] text-[#2C1810] mt-0.5 leading-tight">{textOrFallback(taxBenefitSection?.items?.[0]?.description, "100% encrypted & safe.", 100)}</span>
                       </div>
                     </div>
                   </div>
@@ -768,11 +798,12 @@ function Donation() {
                       <PiFlowerLotus className="h-3.5 w-3.5" />
                     </span>
                     <p className="text-[14px] leading-[1.45] text-[#5F4A3D]">
-                      <span className="font-serif text-[14px]  text-[#8B6A3E]">
-                        Daan se badhkar koi punya nahi.
-                      </span>
-                      <br />
-                      Moksha Sewa is an initiative of Namo Gange Trust. Donations are used for verified programme requirements.
+                      {textOrFallback(taxBenefitSection?.description, "Daan se badhkar koi punya nahi.\nMoksha Sewa is an initiative of Namo Gange Trust. Donations are used for verified programme requirements.", 300).split('\n').map((line, i) => (
+                        <span key={i} className={i === 0 ? "font-serif text-[14px] text-[#8B6A3E]" : ""}>
+                          {line}
+                          {i === 0 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
 
@@ -812,16 +843,16 @@ function Donation() {
         <section className="border-t border-[#E9DCCB] bg-[#FBF7F0] py-8 lg:py-10">
           <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 xl:px-0">
             <div className="text-center">
-              <p className="text-[14px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E] sm:text-[15px]">
-                FAQs
-              </p>
-              <h2 className="mt-1 font-serif text-[28px] font-normal leading-tight text-[#2C1810] sm:text-[32px]">
-                Donation <span className=" text-[#8B6A3E]">Questions</span>
+              <h2 className="font-serif text-[28px] font-semibold leading-tight text-[#2C1810] sm:text-[34px]">
+                {textOrFallback(faqSection?.title, "Frequently Asked Questions", 100)}
               </h2>
+              <p className="mt-3 text-[14px] leading-relaxed text-[#4F3A2D] sm:text-[15px]">
+                {textOrFallback(faqSection?.description, "Find quick answers regarding receipts, tax benefits, security, and fund utilisation.", 300)}
+              </p>
             </div>
 
             <div className="mt-6 divide-y divide-[#E8DED2] border-y border-[#E8DED2]">
-              {FAQS.map((item, index) => {
+              {activeFaqs.map((item, index) => {
                 const isOpen = openFaq === index;
                 return (
                   <div key={item.q} className="bg-white/25">

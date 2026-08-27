@@ -3,9 +3,10 @@
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { CSRIcon } from "./CSRIcons";
+import { CSRIcon, type CSRIconName } from "./CSRIcons";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const values = [
+const defaultValues = [
   {
     name: "name",
     icon: "Handshake" as const,
@@ -73,6 +74,12 @@ const fields = [
 ];
 
 export default function CSRPartnershipEnquiry() {
+  const section = useWebsiteSection("csr-enquiry");
+  const eyebrow = textOrFallback(section?.eyebrow, "Start a Conversation", 60);
+  const title = textOrFallback(section?.title, "Let's Build a\nResponsible Partnership.", 100);
+  const description = textOrFallback(section?.description, "Tell us a little about your organisation and CSR\npriorities.\nOur team can connect with you to explore\nan appropriate collaboration.", 300);
+  const bgImage = imageOrFallback(section?.image, "/assets/csr/responsible-partnership-conversation.png");
+  
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -154,7 +161,7 @@ export default function CSRPartnershipEnquiry() {
             "
           >
             <img
-              src="/assets/csr/responsible-partnership-conversation.png"
+              src={bgImage}
               alt="Start a Conversation - Let's Build a Responsible Partnership"
               className="absolute inset-0 h-full w-full object-fill"
             />
@@ -251,7 +258,7 @@ export default function CSRPartnershipEnquiry() {
                     text-[#0B4A3C]
                   "
                 >
-                  Start a Conversation
+                  {eyebrow}
                 </p>
               </div>
 
@@ -281,12 +288,12 @@ export default function CSRPartnershipEnquiry() {
                     "Georgia, 'Times New Roman', serif",
                 }}
               >
-                Let&apos;s Build a
-                <br />
-                Responsible Partnership
-                <span className="text-[#BD7C18]">
-                  .
-                </span>
+                {title.split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </h2>
 
               <span
@@ -316,12 +323,12 @@ export default function CSRPartnershipEnquiry() {
                   text-[#3D4242]
                 "
               >
-                Tell us a little about your organisation and CSR
-                priorities.
-                <br />
-                Our team can connect with you to explore
-                <br />
-                an appropriate collaboration.
+                {description.split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </p>
 
               {/* =================================================
@@ -341,8 +348,13 @@ export default function CSRPartnershipEnquiry() {
                   sm:gap-y-0
                 "
               >
-                {values.map(
-                  ({ icon, title, text }, index) => (
+                {defaultValues.map(
+                  (defaultValue, index) => {
+                    const item = itemOrFallback(section?.items, index, { title: defaultValue.title, description: defaultValue.text, value: defaultValue.icon });
+                    const title = item.title || defaultValue.title;
+                    const text = item.description || defaultValue.text;
+                    const icon = (item.value || defaultValue.icon) as CSRIconName;
+                    return (
                     <div
                       key={title}
                       className={`
@@ -442,7 +454,7 @@ export default function CSRPartnershipEnquiry() {
                         {text}
                       </p>
                     </div>
-                  )
+                  )}
                 )}
               </div>
             </div>

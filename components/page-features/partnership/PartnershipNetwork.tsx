@@ -1,8 +1,9 @@
 "use client";
 
-import { PartnershipIcon } from "./PartnershipIcons";
+import { PartnershipIcon, type PartnershipIconName } from "./PartnershipIcons";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const leftGroups = [
+const defaultPartners = [
   {
     icon: "Hospital" as const,
     title: "Hospitals &\nInstitutions",
@@ -13,9 +14,6 @@ const leftGroups = [
     title: "NGOs &\nCommunity Networks",
     text: "Strengthen community reach,\nreferrals and humanitarian\ncoordination for families.",
   },
-];
-
-const rightGroups = [
   {
     icon: "Gear" as const,
     title: "Service & Professional\nPartners",
@@ -28,11 +26,7 @@ const rightGroups = [
   },
 ];
 
-/* =========================================================
-   CONNECTOR
-   h-[136px] = icon circle ki exact desktop height
-   Isliye ↔ icon circle ke exact center me aayega
-========================================================= */
+
 
 function Connector() {
   return (
@@ -98,7 +92,7 @@ function PartnerItem({
   title,
   text,
 }: {
-  icon: "Hospital" | "Community" | "Gear" | "Volunteer";
+  icon: PartnershipIconName;
   title: string;
   text: string;
 }) {
@@ -191,6 +185,33 @@ function PartnerItem({
 }
 
 export default function PartnershipNetwork() {
+  const section = useWebsiteSection("partnership-network");
+  const eyebrow = textOrFallback(section?.eyebrow, "Work Together", 40);
+  const title = textOrFallback(section?.title, "Different Strengths. One Human Purpose.", 100);
+  const description = textOrFallback(section?.description, "Moksha Sewa seeks to work with organisations and professionals whose\ncapabilities, services or networks can responsibly strengthen\nhumanitarian support.", 250);
+  const centerDescription = textOrFallback(section?.secondaryDescription, "We are building a coordinated ecosystem where institutions, communities and professionals work together to ensure that no one is denied a dignified final journey due to a lack of resources, support or guidance.", 300);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Explore a Partnership", 50);
+  const buttonHref = section?.buttonHref || "#partnership-enquiry";
+  const bottomNote = textOrFallback(section?.bottomStatement, "Potential partner categories do not imply an existing affiliation, endorsement or formal partnership with any institution or authority.", 200);
+
+  // Build dynamic partner items
+  const p0 = itemOrFallback(section?.items, 0, { title: defaultPartners[0].title, description: defaultPartners[0].text, value: defaultPartners[0].icon });
+  const partner0Title = p0.title || defaultPartners[0].title;
+  const partner0Text = p0.description || defaultPartners[0].text;
+  const partner0Icon = (p0.value || defaultPartners[0].icon) as PartnershipIconName;
+  const p1 = itemOrFallback(section?.items, 1, { title: defaultPartners[1].title, description: defaultPartners[1].text, value: defaultPartners[1].icon });
+  const partner1Title = p1.title || defaultPartners[1].title;
+  const partner1Text = p1.description || defaultPartners[1].text;
+  const partner1Icon = (p1.value || defaultPartners[1].icon) as PartnershipIconName;
+  const p2 = itemOrFallback(section?.items, 2, { title: defaultPartners[2].title, description: defaultPartners[2].text, value: defaultPartners[2].icon });
+  const partner2Title = p2.title || defaultPartners[2].title;
+  const partner2Text = p2.description || defaultPartners[2].text;
+  const partner2Icon = (p2.value || defaultPartners[2].icon) as PartnershipIconName;
+  const p3 = itemOrFallback(section?.items, 3, { title: defaultPartners[3].title, description: defaultPartners[3].text, value: defaultPartners[3].icon });
+  const partner3Title = p3.title || defaultPartners[3].title;
+  const partner3Text = p3.description || defaultPartners[3].text;
+  const partner3Icon = (p3.value || defaultPartners[3].icon) as PartnershipIconName;
+
   return (
     <section
       id="partnership-network"
@@ -275,7 +296,7 @@ export default function PartnershipNetwork() {
               text-[#B47B22]
             "
           >
-            Work Together
+            {eyebrow}
           </span>
 
           <span
@@ -307,7 +328,7 @@ export default function PartnershipNetwork() {
             fontFamily: "Georgia, 'Times New Roman', serif",
           }}
         >
-          Different Strengths. One Human Purpose.
+          {title}
         </h2>
 
         {/* =====================================================
@@ -364,10 +385,12 @@ export default function PartnershipNetwork() {
             text-[#464C4D]
           "
         >
-          Moksha Sewa seeks to work with organisations and professionals whose
-          <br className="hidden md:block" />
-          capabilities, services or networks can responsibly strengthen
-          humanitarian support.
+          {description.split("\n").map((line, i) => (
+            <span key={i}>
+              {line}
+              <br className="hidden md:block" />
+            </span>
+          ))}
         </p>
 
         {/* =====================================================
@@ -391,13 +414,13 @@ export default function PartnershipNetwork() {
         >
           {/* LEFT ITEM 01 */}
 
-          <PartnerItem {...leftGroups[0]} />
+          <PartnerItem icon={partner0Icon} title={partner0Title} text={partner0Text} />
 
           <Connector />
 
           {/* LEFT ITEM 02 */}
 
-          <PartnerItem {...leftGroups[1]} />
+          <PartnerItem icon={partner1Icon} title={partner1Title} text={partner1Text} />
 
           <Connector />
 
@@ -525,8 +548,7 @@ export default function PartnershipNetwork() {
                 text-[#4A5051]
               "
             >
-              Facilitating responsible partnerships that ensure dignity,
-              compassion and coordinated humanitarian support.
+              {centerDescription}
             </p>
           </div>
 
@@ -534,13 +556,13 @@ export default function PartnershipNetwork() {
 
           {/* RIGHT ITEM 01 */}
 
-          <PartnerItem {...rightGroups[0]} />
+          <PartnerItem icon={partner2Icon} title={partner2Title} text={partner2Text} />
 
           <Connector />
 
           {/* RIGHT ITEM 02 */}
 
-          <PartnerItem {...rightGroups[1]} />
+          <PartnerItem icon={partner3Icon} title={partner3Title} text={partner3Text} />
         </div>
 
         {/* =====================================================
@@ -583,7 +605,7 @@ export default function PartnershipNetwork() {
           />
 
           <a
-            href="#partnership-enquiry"
+            href={buttonHref}
             className="
               group
               inline-flex
@@ -608,7 +630,7 @@ export default function PartnershipNetwork() {
               hover:bg-[#003D30]
             "
           >
-            Explore a Partnership
+            {buttonLabel}
 
             <PartnershipIcon
               name="ArrowRight"
@@ -706,8 +728,7 @@ export default function PartnershipNetwork() {
               text-[#4A504F]
             "
           >
-            Potential partner categories do not imply an existing affiliation,
-            endorsement or formal partnership with any institution or authority.
+            {bottomNote}
           </p>
         </div>
       </div>

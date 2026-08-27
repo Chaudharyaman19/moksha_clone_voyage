@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { PartnershipIcon } from "./PartnershipIcons";
+import { PartnershipIcon, type PartnershipIconName } from "./PartnershipIcons";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 import namoGangeLogo from "../../../public/hero-images/namo-gange-logo.webp";
 import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
 
-const principles = [
+const defaultPrinciples = [
   {
     icon: "HeartHands" as const,
     title: "Dignity First",
@@ -91,6 +92,13 @@ function FlowArrow() {
 }
 
 export default function PartnershipResponsibility() {
+  const section = useWebsiteSection("partnership-responsibility");
+  const eyebrow = textOrFallback(section?.eyebrow, "Trust & Responsibility", 60);
+  const title = textOrFallback(section?.title, "Partnerships Built on Purpose. Guided by Responsibility.", 100);
+  const description = textOrFallback(section?.description, "Moksha Sewa operates within the institutional framework\nof Namo Gange Trust, bringing responsible processes\nand humanitarian service together.", 200);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 50);
+  const buttonHref = section?.buttonHref || "#";
+
   return (
     <section
       className="
@@ -196,7 +204,7 @@ export default function PartnershipResponsibility() {
                 text-[#B67A1D]
               "
             >
-              Trust &amp; Responsibility
+              {eyebrow}
             </p>
 
             <span className="h-px w-[44px] bg-[#D2A056]" />
@@ -245,8 +253,8 @@ export default function PartnershipResponsibility() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            Partnerships Built on Purpose. Guided by Responsibility
-            <span className="text-[#B97A15]">.</span>
+            {title.replace(/\.$/, "")}
+            <span className="text-[#B97A15]">{title.endsWith(".") ? "." : ""}</span>
           </h2>
 
           {/* LOTUS DIVIDER */}
@@ -284,9 +292,14 @@ export default function PartnershipResponsibility() {
               xl:gap-y-0
             "
           >
-            {principles.map((item, index) => (
+            {defaultPrinciples.map((defaultPrinciple, index) => {
+              const item = itemOrFallback(section?.items, index, { title: defaultPrinciple.title, description: defaultPrinciple.text, value: defaultPrinciple.icon });
+              const title = item.title || defaultPrinciple.title;
+              const text = item.description || defaultPrinciple.text;
+              const icon = (item.value || defaultPrinciple.icon) as PartnershipIconName;
+              return (
               <div
-                key={item.title}
+                key={defaultPrinciple.title}
                 className={`
                   relative
                   flex
@@ -317,7 +330,7 @@ export default function PartnershipResponsibility() {
                   "
                 >
                   <PartnershipIcon
-                    name={item.icon}
+                    name={icon}
                     className="h-[42px] w-[42px]"
                   />
                 </span>
@@ -332,7 +345,7 @@ export default function PartnershipResponsibility() {
                       text-[#064838]
                     "
                   >
-                    {item.title}
+                    {title}
                   </h3>
 
                   <span
@@ -355,11 +368,11 @@ export default function PartnershipResponsibility() {
                       text-[#4C5151]
                     "
                   >
-                    {item.text}
+                    {text}
                   </p>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
 
@@ -629,11 +642,12 @@ export default function PartnershipResponsibility() {
                   text-[#F0ECE4]
                 "
               >
-                Moksha Sewa operates within the institutional framework
-                <br className="hidden lg:block" />
-                of Namo Gange Trust, bringing responsible processes
-                <br className="hidden lg:block" />
-                and humanitarian service together.
+                {description.split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br className="hidden lg:block" />
+                  </span>
+                ))}
               </p>
 
               {/* =================================================
@@ -743,7 +757,7 @@ export default function PartnershipResponsibility() {
                 />
 
                 <a
-                  href="#"
+                  href={buttonHref}
                   className="
                     group
                     inline-flex
@@ -764,7 +778,7 @@ export default function PartnershipResponsibility() {
                     hover:bg-[#00372C]
                   "
                 >
-                  Know Namo Gange Trust
+                  {buttonLabel}
 
                   <PartnershipIcon
                     name="ArrowRight"

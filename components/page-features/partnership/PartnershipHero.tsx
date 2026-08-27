@@ -1,21 +1,33 @@
 "use client";
 
-import { PartnershipIcon } from "./PartnershipIcons";
+import { PartnershipIcon, type PartnershipIconName } from "./PartnershipIcons";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const benefits = [
-  ["People", "Shared Purpose", "Working together for a common mission."],
-  ["ShieldCheck", "Defined Roles", "Clear understanding of responsibilities."],
-  ["Handshake", "Responsible Coordination", "Collaborating with care, process and accountability."],
-  ["HeartHands", "Human Dignity", "Respect and compassion at the heart of every action."],
+const defaultBenefits = [
+  { icon: "People", title: "Shared Purpose", text: "Working together for a common mission." },
+  { icon: "ShieldCheck", title: "Defined Roles", text: "Clear understanding of responsibilities." },
+  { icon: "Handshake", title: "Responsible Coordination", text: "Collaborating with care, process and accountability." },
+  { icon: "HeartHands", title: "Human Dignity", text: "Respect and compassion at the heart of every action." },
 ] as const;
 
 export default function PartnershipHero() {
+  const section = useWebsiteSection("partnership-hero");
+  const eyebrow = textOrFallback(section?.eyebrow, "Partner With Moksha Sewa", 60);
+  const title = textOrFallback(section?.title, "Together, We Can\nServe With Greater Purpose.", 100);
+  const subtitle = textOrFallback(section?.subtitle, "Build responsible partnerships around dignity,\ncompassion and humanitarian service.", 150);
+  const description = textOrFallback(section?.description, "Partner with Moksha Sewa, an initiative of Namo Gange Trust, to\nexplore meaningful collaborations that strengthen support for\neligible individuals and families during the final journey.", 300);
+  const bgImage = imageOrFallback(section?.image, "/assets/partnership/hero.png");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Become a Partner", 50);
+  const buttonHref = section?.buttonHref || "#partnership-enquiry";
+  const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Explore Partnerships", 50);
+  const secondaryButtonHref = section?.secondaryButtonHref || "#partnership-network";
+
   return (
     <section className="relative overflow-hidden bg-[#fbf7ef] ">
       <div
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] bg-no-repeat lg:block"
         style={{
-          backgroundImage: "url('/assets/partnership/hero.png')",
+          backgroundImage: `url('${bgImage}')`,
           backgroundSize: "auto 100%",
           backgroundPosition: "right center",
         }}
@@ -32,20 +44,26 @@ export default function PartnershipHero() {
         <div className="relative z-10 px-5 pb-5 pt-8 sm:px-7 lg:min-h-[440px] lg:w-[58%] lg:px-10 lg:pt-14">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.08em] text-[#b37a22] pt-8">
             <PartnershipIcon name="Handshake" className="h-7 w-7" />
-            Partner With Moksha Sewa
+            {eyebrow}
             <span className="h-px w-12 bg-[#c6923c]" />
           </div>
 
           <h1 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            Together, We Can
-            <br />
-            Serve With Greater Purpose.
+            {title.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </h1>
 
           <p className="mt-3 text-[20px] font-semibold leading-[1.35] text-[#b77a1d]">
-            Build responsible partnerships around dignity,
-            <br />
-            compassion and humanitarian service.
+            {subtitle.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </p>
 
           <div className="mt-3 flex items-center gap-3 text-[#c4933a]">
@@ -55,25 +73,33 @@ export default function PartnershipHero() {
           </div>
 
           <p className="mt-3 max-w-[610px] text-[16px] font-medium leading-[1.45] text-[#44494a]">
-            Partner with Moksha Sewa, an initiative of Namo Gange Trust, to
-            explore meaningful collaborations that strengthen support for
-            eligible individuals and families during the final journey.
+            {description.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                <br />
+              </span>
+            ))}
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            <a href="#partnership-enquiry" className="inline-flex h-[52px] min-w-[220px] items-center justify-between rounded-[6px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white">
-              Become a Partner
+            <a href={buttonHref} className="inline-flex h-[52px] min-w-[220px] items-center justify-between rounded-[6px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white">
+              {buttonLabel}
               <PartnershipIcon name="ArrowRight" className="h-5 w-5 text-[#d2a03c]" />
             </a>
-            <a href="#partnership-network" className="inline-flex h-[52px] min-w-[220px] items-center justify-between rounded-[6px] border border-[#c99d5b] bg-[#fffaf2]/90 px-5 text-[16px] font-bold uppercase text-[#0a4b3b]">
-              Explore Partnerships
+            <a href={secondaryButtonHref} className="inline-flex h-[52px] min-w-[220px] items-center justify-between rounded-[6px] border border-[#c99d5b] bg-[#fffaf2]/90 px-5 text-[16px] font-bold uppercase text-[#0a4b3b]">
+              {secondaryButtonLabel}
               <PartnershipIcon name="ArrowRight" className="h-5 w-5" />
             </a>
           </div>
         </div>
 
         <div className="relative z-20 mx-5 mb-4 grid overflow-hidden rounded-[10px] border border-[#ddd3c3] bg-[#f7f4ed]/95 sm:grid-cols-2 xl:grid-cols-4">
-          {benefits.map(([icon, title, text], index) => (
+          {defaultBenefits.map((defaultBenefit, index) => {
+            const item = itemOrFallback(section?.items, index, { title: defaultBenefit.title, description: defaultBenefit.text, value: defaultBenefit.icon });
+            const title = item.title || defaultBenefit.title;
+            const text = item.description || defaultBenefit.text;
+            const icon = (item.value || defaultBenefit.icon) as PartnershipIconName;
+            return (
             <div key={title} className={`flex min-h-[92px] items-center gap-4 px-5 py-4 ${index ? "xl:border-l xl:border-[#ded3c4]" : ""}`}>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#eef0e8] text-[#0a4b3b]">
                 <PartnershipIcon name={icon} className="h-7 w-7" />
@@ -83,7 +109,7 @@ export default function PartnershipHero() {
                 <p className="mt-1 text-[16px] leading-[1.35] text-[#535756]">{text}</p>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </section>
