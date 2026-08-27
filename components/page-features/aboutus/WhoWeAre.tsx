@@ -37,11 +37,11 @@ export default function WhoWeAre() {
           <PiFlowerLotus className="mx-auto h-8 w-8 text-[#c28b2c]" aria-hidden="true" />
           <div className="mt-3 flex items-center justify-center gap-3 text-[14px] font-semibold uppercase tracking-[0.14em] text-[#b47a20]">
             <span className="h-px flex-1 bg-[#d4aa63]" />
-            <span className="shrink-0">{textOrFallback(section?.eyebrow, "WHO WE ARE")}</span>
+            <span className="shrink-0">{textOrFallback(section?.eyebrow, "WHO WE ARE", 60)}</span>
             <span className="h-px flex-1 bg-[#d4aa63]" />
           </div>
           <h2 id="who-we-are-title" className="mt-4 text-[26px] font-semibold leading-tight sm:text-[30px]">
-            {textOrFallback(section?.title, "Moksha Sewa Is a Namo Gange Trust Initiative.")}
+            {textOrFallback(section?.title, "Moksha Sewa Is a Namo Gange Trust Initiative.", 150)}
           </h2>
           <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[18px] border border-[#e1d0b6]">
             <Image
@@ -58,7 +58,7 @@ export default function WhoWeAre() {
                 <FaHandHoldingHeart className="h-5 w-5" />
               </span>
               <p>
-                {textOrFallback(section?.description, "Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide compassionate and responsible support for authorised unclaimed cases, people without family support, and verified families facing financial hardship.")}
+                {textOrFallback(section?.description, "Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide compassionate and responsible support for authorised unclaimed cases, people without family support, and verified families facing financial hardship.", 2000)}
               </p>
             </article>
             <article className="flex gap-3 rounded-[12px] bg-white/70 p-4">
@@ -66,7 +66,7 @@ export default function WhoWeAre() {
                 <FaUsers className="h-5 w-5" />
               </span>
               <p>
-                {textOrFallback(section?.secondaryDescription, "The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support dignified final journeys.")}
+                {textOrFallback(section?.secondaryDescription, "The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support dignified final journeys.", 2000)}
               </p>
             </article>
           </div>
@@ -83,7 +83,7 @@ export default function WhoWeAre() {
           <div className="mt-5 flex items-start gap-4 rounded-[14px] bg-[#103f31] p-4 text-left text-white">
             <PiHandsPraying className="mt-1 h-8 w-8 shrink-0 text-[#d09a2d]" />
             <p className="text-[16px] leading-7">
-              {textOrFallback(section?.bottomStatement, "Together, we ensure that no one is left without dignity, care and respect in their final journey.")}
+              {textOrFallback(section?.bottomStatement, "Together, we ensure that no one is left without dignity, care and respect in their final journey.", 600)}
             </p>
           </div>
         </div>
@@ -106,12 +106,12 @@ export default function WhoWeAre() {
 
           <div className="mt-[1.1%] flex w-[68%] items-center gap-[3%] text-[clamp(10px,1.38vw,24px)] font-semibold tracking-[0.16em] text-[#b47a20]">
             <span className="h-px flex-1 bg-[#d4aa63]" />
-            <span className="whitespace-nowrap">{textOrFallback(section?.eyebrow, "WHO WE ARE")}</span>
+            <span className="whitespace-nowrap">{textOrFallback(section?.eyebrow, "WHO WE ARE", 60)}</span>
             <span className="h-px flex-1 bg-[#d4aa63]" />
           </div>
 
           <h2 id="who-we-are-title" className="mt-[2.2%] font-sans text-[24px] font-semibold leading-[1.05] sm:text-[30px]">
-            <span className="block whitespace-pre-line">{textOrFallback(section?.title, "Moksha Sewa Is a\nNamo Gange Trust Initiative.")}</span>
+            <span className="block whitespace-pre-line">{textOrFallback(section?.title, "Moksha Sewa Is a\nNamo Gange Trust Initiative.", 150)}</span>
           </h2>
 
           <div className="mt-[3.2%] flex w-[38%] items-center gap-[5%] text-[#c38c2b]">
@@ -127,7 +127,7 @@ export default function WhoWeAre() {
               <FaHandHoldingHeart className="h-auto w-[53%]" />
             </div>
             <p className="border-l border-[#d9a957] pl-[4%] text-[clamp(9px,1.12vw,20px)] leading-[1.48]">
-              {textOrFallback(section?.description, "Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide compassionate and responsible support for authorised unclaimed cases, people without family support, and verified families facing financial hardship.")}
+              {textOrFallback(section?.description, "Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide compassionate and responsible support for authorised unclaimed cases, people without family support, and verified families facing financial hardship.", 2000)}
             </p>
           </article>
 
@@ -136,7 +136,7 @@ export default function WhoWeAre() {
               <FaUsers className="h-auto w-[51%]" />
             </div>
             <p className="border-l border-[#d9a957] pl-[4%] text-[clamp(9px,1.12vw,20px)] leading-[1.48]">
-              {textOrFallback(section?.secondaryDescription, "The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support dignified final journeys.")}
+              {textOrFallback(section?.secondaryDescription, "The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support dignified final journeys.", 2000)}
             </p>
           </article>
         </div>
@@ -154,15 +154,15 @@ export default function WhoWeAre() {
 
         <div className="absolute left-[57.5%] top-[10.5%] flex w-[14%] flex-col items-center text-center">
           <Image src={imageOrFallback(section?.logoImage, "/assets/logo-moksha-seva.png")} alt="Moksha Sewa" width={200} height={160} className="h-auto w-[31%] mix-blend-multiply" />
-          <p className="mt-[-1%] font-serif text-[clamp(9px,1.15vw,20px)] font-semibold text-[#183d3b]">MOKSHA SEWA</p>
-          <p className="text-[clamp(6px,.7vw,12px)] text-[#b47a20]">A Namo Gange Trust Initiative</p>
+          <p className="mt-[-1%] font-serif text-[clamp(9px,1.15vw,20px)] font-semibold text-[#183d3b]">{textOrFallback(section?.supportTitle, "MOKSHA SEWA", 40)}</p>
+          <p className="text-[clamp(6px,.7vw,12px)] text-[#b47a20]">{textOrFallback(section?.supportDescription, "A Namo Gange Trust Initiative", 60)}</p>
           <span className="mt-[3%] h-px w-[33%] bg-[#c79536]" />
         </div>
 
         <div className="absolute bottom-[3.2%] left-[51.1%] flex h-[12.5%] w-[45.8%] items-center rounded-[1.8vw] bg-[#103f31]/95 px-[5%] text-white shadow-[0_4px_7px_rgba(0,0,0,.25)]">
           <PiHandsPraying className="h-auto w-[8%] shrink-0 text-[#d09a2d]" />
           <div className="ml-[5%] border-l border-[#c59a48] pl-[5%] text-[clamp(8px,1.05vw,18px)] leading-[1.45]">
-            {textOrFallback(section?.bottomStatement, "Together, we ensure that no one is left without dignity, care and respect in their final journey.")}
+            {textOrFallback(section?.bottomStatement, "Together, we ensure that no one is left without dignity, care and respect in their final journey.", 600)}
           </div>
         </div>
       </div>

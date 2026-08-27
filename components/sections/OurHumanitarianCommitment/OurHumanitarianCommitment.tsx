@@ -373,8 +373,7 @@ export default function HumanitarianCommitment() {
                 <span className="mt-[7px] block h-[2px] w-[88px] bg-[#C68E2D]" />
 
                 <p className="mt-[8px] max-w-[540px] text-[16px] leading-[1.45] text-[#45505E]">
-                  We follow all legal requirements and work in coordination with
-                  authorities to ensure dignity and responsibility.
+                  {textOrFallback(websiteSection?.bottomStatement, "We follow all legal requirements and work in coordination with authorities to ensure dignity and responsibility.", 200)}
                 </p>
               </div>
             </div>
@@ -394,8 +393,7 @@ export default function HumanitarianCommitment() {
               </div>
 
               <p className="relative z-10 max-w-[500px] text-[16px] leading-[1.48] text-[#46505E]">
-                All support is subject to verification, applicable legal
-                requirements and availability of resources.
+                {textOrFallback(websiteSection?.secondaryDescription, "All support is subject to verification, applicable legal requirements and availability of resources.", 200)}
               </p>
 
               {/* RIGHT LEAF WATERMARK */}

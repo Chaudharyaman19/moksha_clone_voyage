@@ -254,7 +254,7 @@ const MokshaServices: React.FC = () => {
                 text-[#103e39]
               "
             >
-              {textOrFallback(section?.eyebrow, "WHAT WE DO")}
+              {textOrFallback(section?.eyebrow, "WHAT WE DO", 60)}
             </span>
 
             <span className="hidden h-px w-14 bg-[#b77b22]/70 sm:block" />
@@ -272,7 +272,7 @@ const MokshaServices: React.FC = () => {
               sm:text-[30px]
             "
           >
-            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Supporting the\nFinal Journey With Care.")}</span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Supporting the\nFinal Journey With Care.", 150)}</span>
           </h2>
 
           <div className="mt-3">
@@ -286,7 +286,7 @@ const MokshaServices: React.FC = () => {
               text-[#303635]
             "
           >
-            {textOrFallback(section?.description, "We provide compassionate and responsible support for every step of the final journey.")}
+            {textOrFallback(section?.description, "We provide compassionate and responsible support for every step of the final journey.", 600)}
           </p>
         </header>
 
@@ -502,10 +502,10 @@ const MokshaServices: React.FC = () => {
           <div className="flex w-full max-w-[440px] items-center justify-center gap-3">
 
             <a
-              href={textOrFallback(section?.buttonHref, "/prayerhallservices")}
+              href={textOrFallback(section?.buttonHref, "/prayerhallservices", 60)}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={textOrFallback(section?.buttonLabel, "Explore Our Sewa")}
+              aria-label={textOrFallback(section?.buttonLabel, "Explore Our Sewa", 60)}
               className="group relative block transition-transform duration-300 hover:-translate-y-0.5"
             >
               <Image
@@ -527,7 +527,7 @@ const MokshaServices: React.FC = () => {
                   drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]
                 "
               >
-                {textOrFallback(section?.buttonLabel, "Explore Our Sewa")}
+                {textOrFallback(section?.buttonLabel, "Explore Our Sewa", 60)}
               </span>
             </a>
 

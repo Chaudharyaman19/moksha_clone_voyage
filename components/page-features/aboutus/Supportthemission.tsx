@@ -440,7 +440,7 @@ export default function SupportTheMission() {
                   text-[#06483A]
                 "
               >
-                {textOrFallback(section?.eyebrow, "Support The Mission")}
+                {textOrFallback(section?.eyebrow, "Support The Mission", 60)}
               </span>
 
               <span className="relative hidden h-px w-[78px] bg-[#C18E39] sm:block">
@@ -476,7 +476,7 @@ export default function SupportTheMission() {
                 sm:text-[30px]
               "
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Help Namo Gange Trust\nContinue Moksha Sewa.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Help Namo Gange Trust\nContinue Moksha Sewa.", 150)}</span>
             </h2>
 
             {/* =================================================
@@ -544,7 +544,7 @@ export default function SupportTheMission() {
                 sm:leading-[1.52]
               "
             >
-              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust.\nYour contribution helps support the Trust's efforts to provide\ndignified and responsible final-journey assistance through the\nMoksha Sewa initiative.")}
+              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust.\nYour contribution helps support the Trust's efforts to provide\ndignified and responsible final-journey assistance through the\nMoksha Sewa initiative.", 2000)}
             </p>
           </div>
         </div>
@@ -608,7 +608,7 @@ export default function SupportTheMission() {
                 sm:tracking-[0.08em]
               "
             >
-              {textOrFallback(section?.subtitle, "How Your Support May Help")}
+              {textOrFallback(section?.subtitle, "How Your Support May Help", 60)}
             </span>
 
             <span className="relative hidden h-px w-[76px] bg-[#BD8C38] sm:block">

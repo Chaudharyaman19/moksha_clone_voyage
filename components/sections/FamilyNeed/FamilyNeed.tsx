@@ -639,9 +639,7 @@ export default function PracticalSewaSupport() {
                       text-[#3B3733]
                     "
                   >
-                    We are available 24x7
-                    <br />
-                    to stand beside you.
+                    <span className="whitespace-pre-line">{textOrFallback(websiteSection?.secondaryDescription, "We are available 24x7\nto stand beside you.", 100)}</span>
                   </p>
                 </div>
               </div>

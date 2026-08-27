@@ -393,7 +393,7 @@ const JoinSewa: React.FC = () => {
                 text-[#b66f16]
               "
             >
-              {textOrFallback(section?.eyebrow, "BE PART OF THE SEWA")}
+              {textOrFallback(section?.eyebrow, "BE PART OF THE SEWA", 60)}
             </div>
 
             {/* MAIN HEADING */}
@@ -416,7 +416,7 @@ const JoinSewa: React.FC = () => {
                 lg:text-[40px]
               "
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "You Don't Have to\nDo Everything.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "You Don't Have to\nDo Everything.", 150)}</span>
             </h2>
 
             {/* SECOND HEADING */}
@@ -436,7 +436,7 @@ const JoinSewa: React.FC = () => {
                 sm:text-[24px]
               "
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.subtitle, "You Can Simply Do Something.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.subtitle, "You Can Simply Do Something.", 60)}</span>
             </h2>
 
             {/* =================================================
@@ -457,7 +457,7 @@ const JoinSewa: React.FC = () => {
                 sm:text-[17px]
               "
             >
-              {textOrFallback(section?.description, "Every act of kindness creates a ripple of dignity, compassion and respect. Even a small contribution of time, care or support can bring comfort to someone during their most difficult moments and help ensure that no one has to face their final journey alone.\n\nWhether you give your time as a volunteer, partner with us as an organisation, or support a family directly, every contribution helps us stand beside those who need it most — with dignity, care and respect.")}
+              {textOrFallback(section?.description, "Every act of kindness creates a ripple of dignity, compassion and respect. Even a small contribution of time, care or support can bring comfort to someone during their most difficult moments and help ensure that no one has to face their final journey alone.\n\nWhether you give your time as a volunteer, partner with us as an organisation, or support a family directly, every contribution helps us stand beside those who need it most — with dignity, care and respect.", 2000)}
             </p>
           </div>
         </div>
@@ -589,7 +589,7 @@ const JoinSewa: React.FC = () => {
                 text-[#173f3a]
               "
             >
-              {textOrFallback(section?.bottomStatement, "Together, we can make sure that no one has to face their final journey alone. Be Part of the Sewa. Be the change.")}
+              {textOrFallback(section?.bottomStatement, "Together, we can make sure that no one has to face their final journey alone. Be Part of the Sewa. Be the change.", 600)}
             </p>
           </div>
 

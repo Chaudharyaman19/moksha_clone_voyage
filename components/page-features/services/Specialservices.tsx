@@ -24,13 +24,13 @@ import Marquee from "react-fast-marquee";
 export default function FamilySupport() {
   const section = useWebsiteSection("specialService-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/family-support/hero-bg-2.png");
-  const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support");
-  const title = textOrFallback(section?.title, "Family Support");
-  const subtitle = textOrFallback(section?.subtitle, "Standing Beside You.");
-  const description = textOrFallback(section?.description, "Beyond the final rites, Moksha Sewa helps eligible families with case-based guidance, relief coordination and compassionate support, subject to verification and availability.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support");
+  const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support", 60);
+  const title = textOrFallback(section?.title, "Family Support", 60);
+  const subtitle = textOrFallback(section?.subtitle, "Standing Beside You.", 60);
+  const description = textOrFallback(section?.description, "Beyond the final rites, Moksha Sewa helps eligible families with case-based guidance, relief coordination and compassionate support, subject to verification and availability.", 600);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline", 60);
   const secondaryHref = section?.secondaryButtonHref || "tel:+919220147229";
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
@@ -157,7 +157,7 @@ export default function FamilySupport() {
         <section className="mx-auto max-w-7xl px-4 pb-1 pt-1 lg:px-0">
           <div className="mb-1 text-center">
             <h2 className="pt-[20px] font-serif text-[30px] text-[#3A2418]">
-              {textOrFallback(useWebsiteSection("specialService-how-it-works")?.title, "How We Extend Our Help")}
+              {textOrFallback(useWebsiteSection("specialService-how-it-works")?.title, "How We Extend Our Help", 60)}
             </h2>
 
             <div className="mx-auto mt-3 mb-4 h-1 w-24 rounded-full bg-[#DCC4A5]" />
@@ -207,10 +207,10 @@ export default function FamilySupport() {
                 />
               </div>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-tight text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-support")?.title, "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>") }} />
+              <h2 className="py-[20px] font-serif text-[30px] leading-tight text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-support")?.title, "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>", 600) }} />
 
               <p className="max-w-[400px] text-[18px] leading-relaxed text-[#624C3F]">
-                {textOrFallback(useWebsiteSection("specialService-support")?.description, "Our widespread network of dedicated volunteers is always ready to mobilize. They step forward to organize meals, manage hospital formalities, and support grieving families.")}
+                {textOrFallback(useWebsiteSection("specialService-support")?.description, "Our widespread network of dedicated volunteers is always ready to mobilize. They step forward to organize meals, manage hospital formalities, and support grieving families.", 600)}
               </p>
             </div>
 
@@ -255,13 +255,13 @@ export default function FamilySupport() {
           <div className="flex flex-col overflow-hidden rounded-none border border-[#E8DCC8] bg-[#FAF7F2] shadow-sm lg:flex-row">
             <div className="flex flex-col justify-center p-4 lg:w-1/2 lg:p-6">
               <span className="mb-3 text-[18px] font-semibold uppercase tracking-widest text-[#9A6A31]">
-                {textOrFallback(useWebsiteSection("specialService-receive")?.eyebrow, "Holistic Support System")}
+                {textOrFallback(useWebsiteSection("specialService-receive")?.eyebrow, "Holistic Support System", 60)}
               </span>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.15] text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-receive")?.title, "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>") }} />
+              <h2 className="py-[20px] font-serif text-[30px] leading-[1.15] text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-receive")?.title, "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>", 600) }} />
 
               <p className="mb-6 max-w-[500px] text-[18px] leading-relaxed text-[#624C3F]">
-                {textOrFallback(useWebsiteSection("specialService-receive")?.description, "&quot;Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.&quot;")}
+                {textOrFallback(useWebsiteSection("specialService-receive")?.description, "&quot;Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.&quot;", 600)}
               </p>
 
               <ul className="mb-8 flex flex-col gap-3.5">
@@ -290,7 +290,7 @@ export default function FamilySupport() {
                 rel="noopener noreferrer"
                 className="group/cta inline-flex h-[46px] w-fit min-w-[182px] items-center justify-center gap-2.5 whitespace-nowrap rounded-lg bg-[#8B6A3E] px-6 text-[20px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
               >
-                {textOrFallback(useWebsiteSection("specialService-receive")?.buttonLabel, "Know More About Our Work")}
+                {textOrFallback(useWebsiteSection("specialService-receive")?.buttonLabel, "Know More About Our Work", 60)}
 
                 <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
               </Link>
@@ -312,10 +312,10 @@ export default function FamilySupport() {
         <section className="mx-auto max-w-7xl px-4 pb-4 pt-1 lg:px-0">
           <div className="relative flex flex-col overflow-hidden rounded-none bg-[#4E3827] shadow-sm md:flex-row">
             <div className="z-10 flex flex-col justify-center p-4 md:w-3/5 lg:p-6">
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.2] text-[#EED8A1]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-donation")?.title, "Your Support Helps Us <br />Feed Grieving Families") }} />
+              <h2 className="py-[20px] font-serif text-[30px] leading-[1.2] text-[#EED8A1]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-donation")?.title, "Your Support Helps Us <br />Feed Grieving Families", 150) }} />
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#FDFBF7] opacity-90">
-                {textOrFallback(useWebsiteSection("specialService-donation")?.description, "By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.")}
+                {textOrFallback(useWebsiteSection("specialService-donation")?.description, "By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.", 600)}
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -330,7 +330,7 @@ export default function FamilySupport() {
                   <FaHeart className="relative z-10 h-[14px] w-[14px]" />
 
                   <span className="relative z-10 whitespace-nowrap">
-                    {textOrFallback(useWebsiteSection("specialService-donation")?.buttonLabel, "Donate to Moksha Sewa")}
+                    {textOrFallback(useWebsiteSection("specialService-donation")?.buttonLabel, "Donate to Moksha Sewa", 60)}
                   </span>
 
                   <FaStar
@@ -350,7 +350,7 @@ export default function FamilySupport() {
                   rel="noopener noreferrer"
                   className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-[#B89564] bg-transparent px-6 text-[20px] font-semibold text-white transition hover:border-[#EED8A1] hover:bg-white/10"
                 >
-                  {textOrFallback(useWebsiteSection("specialService-donation")?.secondaryButtonLabel, "Support Our Seva")}
+                  {textOrFallback(useWebsiteSection("specialService-donation")?.secondaryButtonLabel, "Support Our Seva", 60)}
 
                   <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                 </Link>

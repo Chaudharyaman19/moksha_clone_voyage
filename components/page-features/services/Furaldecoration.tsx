@@ -19,16 +19,16 @@ import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components
 export default function Furaldecoration() {
   const section = useWebsiteSection("funeralDecoration-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/how-we-help/three.png");
-  const title = textOrFallback(section?.title, "Funeral Decoration");
-  const subtitle = textOrFallback(section?.subtitle, "A Beautiful Final Journey.");
-  const description = textOrFallback(section?.description, "We believe in bidding farewell with utmost respect and serenity. Our volunteers arrange traditional floral decorations for the hearse van, pyre, and prayer hall using fresh and sacred flowers to honor the departed soul.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Decoration");
+  const title = textOrFallback(section?.title, "Funeral Decoration", 60);
+  const subtitle = textOrFallback(section?.subtitle, "A Beautiful Final Journey.", 60);
+  const description = textOrFallback(section?.description, "We believe in bidding farewell with utmost respect and serenity. Our volunteers arrange traditional floral decorations for the hearse van, pyre, and prayer hall using fresh and sacred flowers to honor the departed soul.", 2000);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Decoration", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline", 60);
   const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
   
   const servicesSection = useWebsiteSection("funeralDecoration-how-it-works");
-  const servicesTitle = textOrFallback(servicesSection?.title, "Our Decoration Services");
+  const servicesTitle = textOrFallback(servicesSection?.title, "Our Decoration Services", 60);
   const servicesItems = servicesSection?.items?.length ? servicesSection.items.map(it => ({ title: it.title || "", desc: it.description || "", label: it.label || "florist" })) : [
     { title: "Hearse Van Decoration", desc: "Elegant and respectful floral decoration for the ambulance or hearse van, creating a dignified setting for the final journey.", label: "florist" },
     { title: "Pyre & Pathway Setup", desc: "Fresh flowers and sacred leaves are arranged around the cremation area to create a peaceful and respectful environment.", label: "leaf" },
@@ -36,8 +36,8 @@ export default function Furaldecoration() {
   ];
 
   const emotionalSection = useWebsiteSection("funeralDecoration-trust");
-  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;Flowers speak the language of peace, honoring a beautiful life that has moved on.&quot;");
-  const emotionalDesc = textOrFallback(emotionalSection?.description, "Our volunteers carefully handpick fresh flowers, ensuring the final journey of your loved one is surrounded by purity, respect, and unconditional love.");
+  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;Flowers speak the language of peace, honoring a beautiful life that has moved on.&quot;", 600);
+  const emotionalDesc = textOrFallback(emotionalSection?.description, "Our volunteers carefully handpick fresh flowers, ensuring the final journey of your loved one is surrounded by purity, respect, and unconditional love.", 600);
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />

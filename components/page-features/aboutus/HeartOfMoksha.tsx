@@ -38,7 +38,7 @@ export default function HeartOfMoksha() {
 
             <div className="flex w-full max-w-[650px] flex-col items-start text-left">
               <p className="font-sans text-[16px] font-semibold uppercase text-[#d8a43d]">
-                {textOrFallback(section?.eyebrow, "The Heart of Moksha Sewa")}
+                {textOrFallback(section?.eyebrow, "The Heart of Moksha Sewa", 60)}
               </p>
 
               <div className="mt-2 flex w-full max-w-[260px] items-center justify-start gap-2 text-[#cda24a] sm:max-w-none">
@@ -48,16 +48,16 @@ export default function HeartOfMoksha() {
               </div>
 
               <h2 className="mt-3 w-full text-left font-sans text-[26px] font-semibold leading-tight sm:text-[30px]">
-                <span className="whitespace-pre-line">{textOrFallback(section?.title, "When Someone Has No One,\nHumanity Must Stand Beside Them.")}</span>
+                <span className="whitespace-pre-line">{textOrFallback(section?.title, "When Someone Has No One,\nHumanity Must Stand Beside Them.", 150)}</span>
               </h2>
 
               <p className="mt-4 w-full max-w-[610px] text-left text-[16px] leading-7 text-white/90">
-                {textOrFallback(section?.description, "Because the final journey is not only about how life ends. It is about how we choose to stand beside one another until the very end.")}
+                {textOrFallback(section?.description, "Because the final journey is not only about how life ends. It is about how we choose to stand beside one another until the very end.", 600)}
               </p>
 
               <div className="mt-5 flex w-full flex-col items-start gap-5 xl:flex-row xl:items-center xl:justify-start">
-                <Link href={textOrFallback(section?.buttonHref, "/volunteer/register")} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
-                  {textOrFallback(section?.buttonLabel, "Join the Mission")}
+                <Link href={textOrFallback(section?.buttonHref, "/volunteer/register", 60)} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 w-fit items-center gap-4 bg-[#dda546] px-6 text-[16px] font-bold uppercase tracking-[0.08em] text-[#113e31] shadow-[0_4px_8px_rgba(0,0,0,.2)] transition hover:bg-[#ebba61]">
+                  {textOrFallback(section?.buttonLabel, "Join the Mission", 60)}
                   <FaArrowRight className="h-3 w-3" />
                 </Link>
 

@@ -20,16 +20,16 @@ import { RiEmpathizeLine } from "react-icons/ri";
 export default function Callingrelativesservices() {
   const section = useWebsiteSection("callingRelatives-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/serving/counseling-support.png");
-  const title = textOrFallback(section?.title, "Family & Relative Support");
-  const subtitle = textOrFallback(section?.subtitle, "Compassionate Communication.");
-  const description = textOrFallback(section?.description, "In times of sudden loss, making phone calls to inform relatives can be emotionally draining. Our compassionate volunteers take this burden off your shoulders, respectfully notifying all extended family members and friends.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Assistance");
+  const title = textOrFallback(section?.title, "Family & Relative Support", 60);
+  const subtitle = textOrFallback(section?.subtitle, "Compassionate Communication.", 60);
+  const description = textOrFallback(section?.description, "In times of sudden loss, making phone calls to inform relatives can be emotionally draining. Our compassionate volunteers take this burden off your shoulders, respectfully notifying all extended family members and friends.", 2000);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Assistance", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline", 60);
   const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
   
   const servicesSection = useWebsiteSection("callingRelatives-how-it-works");
-  const servicesTitle = textOrFallback(servicesSection?.title, "How We Assist You");
+  const servicesTitle = textOrFallback(servicesSection?.title, "How We Assist You", 60);
   const servicesItems = servicesSection?.items?.length ? servicesSection.items.map(it => ({ title: it.title || "", desc: it.description || "", label: it.label || "users" })) : [
     { title: "Respectful Notifications", desc: "We thoughtfully convey the news and Antim Sanskar details to relatives and friends with sensitivity, clarity and complete respect.", label: "users" },
     { title: "Coordinating Arrivals", desc: "We help guide relatives travelling from outside the city so they receive timely information and can reach the family without confusion.", label: "connect" },
@@ -37,8 +37,8 @@ export default function Callingrelativesservices() {
   ];
 
   const emotionalSection = useWebsiteSection("callingRelatives-trust");
-  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;You have lost someone precious. Focus on saying goodbye, let us handle the words for the rest.&quot;");
-  const emotionalDesc = textOrFallback(emotionalSection?.description, "Our volunteers step in as your extended family, offering support that lets you grieve without the added burden of coordination and communication.");
+  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;You have lost someone precious. Focus on saying goodbye, let us handle the words for the rest.&quot;", 600);
+  const emotionalDesc = textOrFallback(emotionalSection?.description, "Our volunteers step in as your extended family, offering support that lets you grieve without the added burden of coordination and communication.", 600);
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />

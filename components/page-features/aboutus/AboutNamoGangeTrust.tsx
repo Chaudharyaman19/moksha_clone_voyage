@@ -20,7 +20,7 @@ export default function AboutNamoGangeTrust() {
       <div className="mx-auto grid min-h-[410px] w-full max-w-7xl lg:grid-cols-2">
         <div className="relative min-h-[330px] overflow-hidden lg:min-h-[410px]">
           <video
-            src={textOrFallback(section?.image, "/assets/videos/namoGange.mp4")}
+            src={textOrFallback(section?.image, "/assets/videos/namoGange.mp4", 60)}
             autoPlay
             muted
             loop
@@ -40,12 +40,12 @@ export default function AboutNamoGangeTrust() {
           <div className="relative z-10 w-full">
             <div className="flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#24483d]">
               <span className="h-px w-9 bg-[#c49a4e]" />
-              <span>{textOrFallback(section?.eyebrow, "The Organisation Behind Moksha Sewa")}</span>
+              <span>{textOrFallback(section?.eyebrow, "The Organisation Behind Moksha Sewa", 150)}</span>
               <span className="h-px flex-1 bg-[#c49a4e]" />
             </div>
 
             <h2 className="mt-4 font-sans text-[24px] font-semibold leading-[1.05] text-[#123d31] sm:text-[30px]">
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Rooted in Service.\nDriven by Responsibility.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Rooted in Service.\nDriven by Responsibility.", 150)}</span>
             </h2>
 
             <div className="mt-4 flex items-center gap-2 text-[#b98735]">
@@ -56,10 +56,10 @@ export default function AboutNamoGangeTrust() {
 
             <div className="mt-4 max-w-[590px] space-y-3 text-[13px] leading-[1.5] text-[#31463f] sm:text-[14px]">
               <p>
-                {textOrFallback(section?.description, "Moksha Sewa is an initiative of Namo Gange Trust, an organisation committed to social service, community welfare and meaningful humanitarian action.")}
+                {textOrFallback(section?.description, "Moksha Sewa is an initiative of Namo Gange Trust, an organisation committed to social service, community welfare and meaningful humanitarian action.", 600)}
               </p>
               <p>
-                {textOrFallback(section?.secondaryDescription, "Through Moksha Sewa, Namo Gange Trust extends this commitment to one of the most sensitive moments of human life - the final journey.")}
+                {textOrFallback(section?.secondaryDescription, "Through Moksha Sewa, Namo Gange Trust extends this commitment to one of the most sensitive moments of human life - the final journey.", 600)}
               </p>
             </div>
 
@@ -77,12 +77,12 @@ export default function AboutNamoGangeTrust() {
               </div>
 
               <a
-                href={textOrFallback(section?.buttonHref, "https://www.namogange.org/")}
+                href={textOrFallback(section?.buttonHref, "https://www.namogange.org/", 60)}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-11 shrink-0 items-center justify-center gap-4 bg-[#0d4939] px-5 font-serif text-[14px] text-white shadow-[0_5px_10px_rgba(20,63,48,.25)] transition hover:bg-[#093c2f]"
               >
-                {textOrFallback(section?.buttonLabel, "Know Namo Gange Trust")}
+                {textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 60)}
                 <FaArrowRight className="h-3 w-3 text-[#d2a342]" />
               </a>
             </div>

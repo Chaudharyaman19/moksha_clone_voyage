@@ -260,7 +260,7 @@ export default function WhyWeExist() {
                 text-[#064A38]
               "
             >
-              {textOrFallback(section?.eyebrow, "Why We Exist")}
+              {textOrFallback(section?.eyebrow, "Why We Exist", 60)}
             </span>
 
             <span className="relative h-px w-[61px] bg-[#BC882B]">
@@ -297,7 +297,7 @@ export default function WhyWeExist() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Because Sometimes,\nThere Is No One Left\nto Stand Beside Them.")}</span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Because Sometimes,\nThere Is No One Left\nto Stand Beside Them.", 600)}</span>
           </h2>
 
           {/* =================================================
@@ -358,7 +358,7 @@ export default function WhyWeExist() {
               text-[#303437]
             "
           >
-            {textOrFallback(section?.description, "Some people leave this world without family or support.\nSome cases remain unclaimed. And some families have the love and willingness to perform the final rites, but do not have the financial means to manage everything on their own.")}
+            {textOrFallback(section?.description, "Some people leave this world without family or support.\nSome cases remain unclaimed. And some families have the love and willingness to perform the final rites, but do not have the financial means to manage everything on their own.", 2000)}
           </p>
 
           {/* =================================================
@@ -439,7 +439,7 @@ export default function WhyWeExist() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                {textOrFallback(section?.subtitle, "Exists for These Moments.")}
+                {textOrFallback(section?.subtitle, "Exists for These Moments.", 60)}
               </p>
             </div>
           </div>
@@ -506,7 +506,7 @@ export default function WhyWeExist() {
                 fontFamily: "Georgia, 'Times New Roman', serif",
               }}
             >
-              {textOrFallback(section?.quote, "When support disappears,\nhumanity must step forward.")}
+              {textOrFallback(section?.quote, "When support disappears,\nhumanity must step forward.", 150)}
             </p>
 
             {/* ORNAMENT */}

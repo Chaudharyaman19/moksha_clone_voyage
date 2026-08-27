@@ -41,12 +41,12 @@ const ritualCards = [
 export default function PriestSupport() {
   const section = useWebsiteSection("pandit-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/panditservices/hero-real.png");
-  const title = textOrFallback(section?.title, "Priest Support");
-  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
-  const description = textOrFallback(section?.description, "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Priest Support");
+  const title = textOrFallback(section?.title, "Priest Support", 60);
+  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.", 150);
+  const description = textOrFallback(section?.description, "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.", 600);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Priest Support", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Ritual Support");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Ritual Support", 60);
   const secondaryHref = section?.secondaryButtonHref || "/donation";
   return (
     <div className="service-page min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
@@ -190,7 +190,7 @@ export default function PriestSupport() {
               <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
 
-                {textOrFallback(useWebsiteSection("pandit-how-it-works")?.title, "How It Works")}
+                {textOrFallback(useWebsiteSection("pandit-how-it-works")?.title, "How It Works", 60)}
 
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
               </h2>
@@ -220,7 +220,7 @@ export default function PriestSupport() {
 
         {/* ================= RITUAL MARQUEE ================= */}
         <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
-          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-stories")?.title, "Ritual Support at Every Step")} />
+          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-stories")?.title, "Ritual Support at Every Step", 60)} />
 
           <style>{`
             @keyframes scrollMarquee {
@@ -260,7 +260,7 @@ export default function PriestSupport() {
 
         {/* ================= PANDIT JI ROLES ================= */}
         <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
-          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-receive")?.title, "Pandit Ji Roles")} />
+          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-receive")?.title, "Pandit Ji Roles", 60)} />
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("pandit-receive")?.items || [
@@ -318,7 +318,7 @@ export default function PriestSupport() {
             {/* Center Content */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
               <h2 className="max-w-xl py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
-                {textOrFallback(useWebsiteSection("pandit-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites")}
+                {textOrFallback(useWebsiteSection("pandit-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites", 600)}
               </h2>
 
               <a
@@ -332,7 +332,7 @@ export default function PriestSupport() {
                 <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
 
                 <span className="relative z-10 whitespace-nowrap">
-                  {textOrFallback(useWebsiteSection("pandit-donation")?.buttonLabel, "Donate for Ritual Support")}
+                  {textOrFallback(useWebsiteSection("pandit-donation")?.buttonLabel, "Donate for Ritual Support", 60)}
                 </span>
 
                 <FaStar
@@ -352,7 +352,7 @@ export default function PriestSupport() {
               <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
 
               <p className="max-w-[190px] text-[18px] font-medium leading-relaxed text-[#321A10]">
-                {textOrFallback(useWebsiteSection("pandit-donation")?.description, "Every act of kindness becomes a blessing for many.")}
+                {textOrFallback(useWebsiteSection("pandit-donation")?.description, "Every act of kindness becomes a blessing for many.", 150)}
               </p>
             </div>
           </div>

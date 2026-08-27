@@ -56,7 +56,7 @@ const MokshaSewaIntro: React.FC = () => {
                 text-[#16443f]
               "
             >
-              {textOrFallback(section?.eyebrow, "WHAT IS MOKSHA SEWA?")}
+              {textOrFallback(section?.eyebrow, "WHAT IS MOKSHA SEWA?", 60)}
             </span>
 
             <span className="h-px w-12 bg-[#b89a68]" />
@@ -76,7 +76,7 @@ const MokshaSewaIntro: React.FC = () => {
               lg:text-[50px]
             "
           >
-            <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.")}</span>
+            <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.", 150)}</span>
           </h1>
 
           {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}
@@ -92,11 +92,11 @@ const MokshaSewaIntro: React.FC = () => {
             {/* Description — starts after the border */}
             <div className="max-w-[505px] pl-20 text-[16px] leading-[1.55] text-[#293436]">
               <p>
-                {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative created to stand beside people during one of life's most difficult and sensitive moments - the final journey.")}
+                {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative created to stand beside people during one of life's most difficult and sensitive moments - the final journey.", 600)}
               </p>
 
               <p className="mt-4">
-                {textOrFallback(section?.secondaryDescription, "It focuses on authorised unclaimed cases, people without available family support, and verified families who may face financial hardship in arranging essential final-journey requirements.")}
+                {textOrFallback(section?.secondaryDescription, "It focuses on authorised unclaimed cases, people without available family support, and verified families who may face financial hardship in arranging essential final-journey requirements.", 600)}
               </p>
             </div>
           </div>

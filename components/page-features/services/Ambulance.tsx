@@ -193,12 +193,12 @@ export default function AmbulanceService() {
 
 function HeroSection() {
   const section = useWebsiteSection("ambulance-hero");
-  const eyebrow = textOrFallback(section?.eyebrow, "24×7 Last Journey Support");
-  const title = textOrFallback(section?.title, "Ambulance & Hearse\nSupport with Dignity");
-  const description = textOrFallback(section?.description, "Namo Gange coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.");
-  const buttonLabel = textOrFallback(section?.buttonLabel, "Call for Ambulance");
+  const eyebrow = textOrFallback(section?.eyebrow, "24×7 Last Journey Support", 60);
+  const title = textOrFallback(section?.title, "Ambulance & Hearse\nSupport with Dignity", 150);
+  const description = textOrFallback(section?.description, "Namo Gange coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.", 600);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Call for Ambulance", 60);
   const buttonHref = section?.buttonHref || "tel:+919654900525";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Request Support");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Request Support", 60);
   const secondaryHref = section?.secondaryButtonHref || "/request-help";
   const image = imageOrFallback(section?.image, "/ambulance/hero-ambulance.webp");
   
@@ -260,7 +260,7 @@ function HeroSection() {
               <Icon name="shield" size={16} />
             </span>
             <span>
-              {textOrFallback(section?.bottomStatement, "Serving families with compassion, respect and timely support.")}
+              {textOrFallback(section?.bottomStatement, "Serving families with compassion, respect and timely support.", 600)}
             </span>
           </div>
         </div>
@@ -304,7 +304,7 @@ function FeatureHighlights() {
 
 function HowItWorks() {
   const section = useWebsiteSection("ambulance-how-it-works");
-  const title = textOrFallback(section?.title, "How It Works");
+  const title = textOrFallback(section?.title, "How It Works", 60);
   const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "phone") as IconName })) : steps;
 
   return (
@@ -346,13 +346,13 @@ function HowItWorks() {
 
 function SupportSection() {
   const section = useWebsiteSection("ambulance-support");
-  const title = textOrFallback(section?.title, "We Stand With You\nWhen It Matters Most");
-  const description = textOrFallback(section?.description, "In your most difficult moments, we stand beside you. Our ambulance and hearse support services are designed to bring relief, care and dignity.");
+  const title = textOrFallback(section?.title, "We Stand With You\nWhen It Matters Most", 150);
+  const description = textOrFallback(section?.description, "In your most difficult moments, we stand beside you. Our ambulance and hearse support services are designed to bring relief, care and dignity.", 600);
   const image = imageOrFallback(section?.image, "/ambulance/family-support.webp");
   const items = section?.items?.length ? section.items.map(it => it.title || "") : supportBullets;
-  const buttonLabel = textOrFallback(section?.buttonLabel, "We Are Here For You");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "We Are Here For You", 60);
   const buttonHref = section?.buttonHref || "tel:+919654900525";
-  const imageAlt = textOrFallback(section?.secondaryDescription, "Support team standing with a family");
+  const imageAlt = textOrFallback(section?.secondaryDescription, "Support team standing with a family", 150);
   
   const titleParts = title.split('\n');
 
@@ -454,7 +454,7 @@ function StoryCards() {
 
 function ReceiveSection() {
   const section = useWebsiteSection("ambulance-receive");
-  const title = textOrFallback(section?.title, "What Families Receive");
+  const title = textOrFallback(section?.title, "What Families Receive", 60);
   const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "ambulance") as IconName })) : receiveItems;
   return (
     <section className="mx-auto w-full max-w-7xl px-5 lg:px-0">
@@ -466,7 +466,7 @@ function ReceiveSection() {
 
 function TrustSection() {
   const section = useWebsiteSection("ambulance-trust");
-  const title = textOrFallback(section?.title, "Why Families Trust Namo Gange");
+  const title = textOrFallback(section?.title, "Why Families Trust Namo Gange", 60);
   const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "shield") as IconName })) : trustItems;
   return (
     <section className="mx-auto w-full max-w-7xl px-5 pt-[4px] lg:px-0">
@@ -478,14 +478,14 @@ function TrustSection() {
 
 function DonationSection() {
   const section = useWebsiteSection("ambulance-donation");
-  const title = textOrFallback(section?.title, "Your Donation Brings Peace");
-  const description = textOrFallback(section?.description, "Your kind contribution helps us provide ambulance, hearse and last-journey support to families who cannot afford it. Together, we can bring comfort, dignity and peace in their most difficult moments.");
+  const title = textOrFallback(section?.title, "Your Donation Brings Peace", 60);
+  const description = textOrFallback(section?.description, "Your kind contribution helps us provide ambulance, hearse and last-journey support to families who cannot afford it. Together, we can bring comfort, dignity and peace in their most difficult moments.", 600);
   const image = imageOrFallback(section?.image, "/assets/km.jpeg");
-  const buttonLabel = textOrFallback(section?.buttonLabel, "Donate for Ambulance Service");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Donate for Ambulance Service", 60);
   const buttonHref = section?.buttonHref || "/donation";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Support Our Sewa");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Support Our Sewa", 60);
   const secondaryHref = section?.secondaryButtonHref || "tel:+919654900525";
-  const quoteTitle = textOrFallback(section?.secondaryTitle, "Every\nContribution\nBrings Peace");
+  const quoteTitle = textOrFallback(section?.secondaryTitle, "Every\nContribution\nBrings Peace", 150);
   const quoteParts = quoteTitle.split('\n');
 
   return (

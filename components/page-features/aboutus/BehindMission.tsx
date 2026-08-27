@@ -122,20 +122,20 @@ export default function BehindMission() {
             {/* 06 video */}
             <div className="mt-0 flex items-center justify-center gap-2 text-[16px] font-semibold tracking-[0.08em] text-[#24483D] lg:justify-start">
               {/* <span className="h-px w-10 bg-[#C6A25C]" /> */}
-              <span>{textOrFallback(section?.eyebrow, "VIDEO")}</span>
+              <span>{textOrFallback(section?.eyebrow, "VIDEO", 60)}</span>
               <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
             <p className="mt-4 text-center font-sans text-[16px] font-semibold uppercase text-[#A67532] lg:text-left">
-              {textOrFallback(section?.subtitle, "See the Mission")}
+              {textOrFallback(section?.subtitle, "See the Mission", 60)}
             </p>
 
             <h2 className="mt-2 text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#123E32] sm:text-[30px] lg:text-left">
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Behind\nMoksha Sewa")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Behind\nMoksha Sewa", 60)}</span>
             </h2>
 
             <p className="mt-5 text-center text-[16px] leading-[1.62] text-[#334A43] lg:text-left">
-              {textOrFallback(section?.description, "Every final journey carries a story. This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.")}
+              {textOrFallback(section?.description, "Every final journey carries a story. This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.", 600)}
             </p>
 
             <div className="relative mt-6 flex justify-center lg:justify-start">
@@ -148,13 +148,13 @@ export default function BehindMission() {
                 }}
               />
               <Link
-                href={textOrFallback(section?.buttonHref, "/mokshagallery")}
+                href={textOrFallback(section?.buttonHref, "/mokshagallery", 60)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-[52px] items-center gap-3 bg-[#0E4B3A] px-5 text-[16px] font-medium text-white shadow-[0_7px_14px_rgba(22,67,52,0.22)] transition hover:bg-[#0A3C2E]"
               >
                 <PiFlowerLotus className="h-6 w-6 text-[#D1A23E]" />
-                <span>{textOrFallback(section?.buttonLabel, "Explore Our Work")}</span>
+                <span>{textOrFallback(section?.buttonLabel, "Explore Our Work", 60)}</span>
                 <FaArrowRight className="ml-1 h-3.5 w-3.5 text-[#D1A23E]" />
               </Link>
             </div>
@@ -174,7 +174,7 @@ export default function BehindMission() {
               <video
                 ref={videoRef}
                 className="h-full w-full object-cover"
-                poster={textOrFallback(section?.secondaryImage, "/hero-images/support-mission-ghat.png")}
+                poster={textOrFallback(section?.secondaryImage, "/hero-images/support-mission-ghat.png", 150)}
                 autoPlay
                 muted={muted}
                 loop
@@ -184,12 +184,12 @@ export default function BehindMission() {
                 onPause={() => updatePlaying(false)}
                 onEnded={() => updatePlaying(false)}
               >
-                <source src={textOrFallback(section?.image, "/vedio/taniya.mp4")} type="video/mp4" />
+                <source src={textOrFallback(section?.image, "/vedio/taniya.mp4", 60)} type="video/mp4" />
               </video>
 
               {/* time badge */}
               <span className="absolute right-4 top-4 border border-[#D2AA4F] bg-[#113C31]/90 px-3 py-1 text-[16px] font-medium text-white">
-                {textOrFallback(section?.availabilityText, "60-90 seconds")}
+                {textOrFallback(section?.availabilityText, "60-90 seconds", 60)}
               </span>
 
               {/* central play */}

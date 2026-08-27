@@ -171,7 +171,7 @@ const AboutMokshaSewa: React.FC = () => {
     const fallback = values[index % values.length];
     return { ...fallback, title: itemObj.title || fallback.title, description: itemObj.description || fallback.description };
   });
-  const quoteText = textOrFallback(section?.quote, "We do not see a case. We see a human life that deserves respect.");
+  const quoteText = textOrFallback(section?.quote, "We do not see a case. We see a human life that deserves respect.", 600);
 
   return (
     <section
@@ -255,7 +255,7 @@ const AboutMokshaSewa: React.FC = () => {
               "
             >
               <span aria-hidden="true">—</span>
-              <span>{textOrFallback(section?.eyebrow, "About Moksha Sewa")}</span>
+              <span>{textOrFallback(section?.eyebrow, "About Moksha Sewa", 60)}</span>
             </div>
 
             {/* Heading */}
@@ -274,12 +274,12 @@ const AboutMokshaSewa: React.FC = () => {
                 xl:text-[52px]
               "
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Every Final Journey\nDeserves Dignity")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Every Final Journey\nDeserves Dignity", 150)}</span>
             </h1>
 
             {/* Subtitle */}
             <p className="mt-2 text-base font-semibold text-[#df5b0b] sm:text-lg">
-              {textOrFallback(section?.subtitle, "A humanitarian initiative of Namo Gange Trust.")}
+              {textOrFallback(section?.subtitle, "A humanitarian initiative of Namo Gange Trust.", 150)}
             </p>
 
             {/* Description */}
@@ -294,7 +294,7 @@ const AboutMokshaSewa: React.FC = () => {
                 sm:text-lg
               "
             >
-              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust, created to stand beside unclaimed and unsupported persons, and families facing financial hardship - so that dignity, care and respectful final rites are never denied when they matter most.")}
+              {textOrFallback(section?.description, "Moksha Sewa is a humanitarian initiative of Namo Gange Trust, created to stand beside unclaimed and unsupported persons, and families facing financial hardship - so that dignity, care and respectful final rites are never denied when they matter most.", 2000)}
             </p>
 
             {/* CTA */}
@@ -336,7 +336,7 @@ const AboutMokshaSewa: React.FC = () => {
                   focus:ring-offset-2
                 "
               >
-                <span>{textOrFallback(section?.buttonLabel, "Know Our Mission")}</span>
+                <span>{textOrFallback(section?.buttonLabel, "Know Our Mission", 60)}</span>
 
                 <ArrowDown
                   size={22}
@@ -350,7 +350,7 @@ const AboutMokshaSewa: React.FC = () => {
               </button>
 
               <Link
-                href={textOrFallback(section?.secondaryButtonHref, "/request-help")}
+                href={textOrFallback(section?.secondaryButtonHref, "/request-help", 60)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -371,7 +371,7 @@ const AboutMokshaSewa: React.FC = () => {
                   focus-visible:ring-[#df5b0b]
                 "
               >
-                <span>{textOrFallback(section?.secondaryButtonLabel, "Need Sewa Support?")}</span>
+                <span>{textOrFallback(section?.secondaryButtonLabel, "Need Sewa Support?", 60)}</span>
 
                 <ArrowRight
                   size={21}

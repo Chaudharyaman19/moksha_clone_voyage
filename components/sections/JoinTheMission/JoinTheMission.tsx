@@ -788,9 +788,7 @@ export default function JoinTheMission() {
                   text-[#4D4A44]
                 "
               >
-                Whether you give, serve or partner – your support creates a
-                meaningful difference in ensuring dignity and respect in every
-                final journey we are able to support.
+                {textOrFallback(websiteSection?.bottomStatement, "Whether you give, serve or partner – your support creates a meaningful difference in ensuring dignity and respect in every final journey we are able to support.", 300)}
               </p>
             </div>
 

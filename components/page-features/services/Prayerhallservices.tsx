@@ -42,12 +42,12 @@ const supportCards = [
 export default function PrayerHallServices() {
   const section = useWebsiteSection("prayerHall-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/prayerhallservices/hero-real.png");
-  const title = textOrFallback(section?.title, "Ground & Prayer Support");
-  const subtitle = textOrFallback(section?.subtitle, "Creating A Space For Peace.");
-  const description = textOrFallback(section?.description, "Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support");
+  const title = textOrFallback(section?.title, "Ground & Prayer Support", 60);
+  const subtitle = textOrFallback(section?.subtitle, "Creating A Space For Peace.", 60);
+  const description = textOrFallback(section?.description, "Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.", 600);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Support", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Support");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Support", 60);
   const secondaryHref = section?.secondaryButtonHref || "/donation";
   return (
     <div className="service-page min-h-screen bg-[#FAF8F4] font-sans text-[#321A10]">
@@ -168,7 +168,7 @@ export default function PrayerHallServices() {
             <div className="relative mb-6 text-center">
               <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
-                {textOrFallback(useWebsiteSection("prayerHall-how-it-works")?.title, "How It Works")}
+                {textOrFallback(useWebsiteSection("prayerHall-how-it-works")?.title, "How It Works", 60)}
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
               </h2>
             </div>
@@ -202,7 +202,7 @@ export default function PrayerHallServices() {
 
         {/* Our Complete Support */}
         <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
-          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-stories")?.title, "Our Complete Support")} />
+          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-stories")?.title, "Our Complete Support", 60)} />
 
           <style>{`
             @keyframes scrollMarquee {
@@ -237,7 +237,7 @@ export default function PrayerHallServices() {
 
         {/* Ground Support Roles */}
         <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
-          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-receive")?.title, "Ground Support Roles")} />
+          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-receive")?.title, "Ground Support Roles", 60)} />
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("prayerHall-receive")?.items || [
@@ -295,7 +295,7 @@ export default function PrayerHallServices() {
             {/* Center Content */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
               <h2 className="max-w-lg py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
-                {textOrFallback(useWebsiteSection("prayerHall-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites")}
+                {textOrFallback(useWebsiteSection("prayerHall-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites", 600)}
               </h2>
 
               <a
@@ -307,7 +307,7 @@ export default function PrayerHallServices() {
                 <span className="donate-nav-shine" aria-hidden />
 
                 <span className="relative z-10 whitespace-nowrap">
-                  {textOrFallback(useWebsiteSection("prayerHall-donation")?.buttonLabel, "Donate for Support")}
+                  {textOrFallback(useWebsiteSection("prayerHall-donation")?.buttonLabel, "Donate for Support", 60)}
                 </span>
 
                 <FaStar
@@ -326,7 +326,7 @@ export default function PrayerHallServices() {
               <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
 
               <p className="max-w-[180px] text-[18px] font-medium leading-relaxed text-[#321A10]">
-                {textOrFallback(useWebsiteSection("prayerHall-donation")?.description, "Every act of kindness becomes a blessing for many.")}
+                {textOrFallback(useWebsiteSection("prayerHall-donation")?.description, "Every act of kindness becomes a blessing for many.", 150)}
               </p>
             </div>
           </div>

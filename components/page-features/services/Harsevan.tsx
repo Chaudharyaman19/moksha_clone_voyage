@@ -17,16 +17,16 @@ import { GiSteeringWheel } from "react-icons/gi";
 export default function HearseVanServices() {
   const section = useWebsiteSection("harsevan-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/serving/emergency-transport.png");
-  const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)");
-  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
-  const description = textOrFallback(section?.description, "The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.");
-  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Hearse Van");
+  const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)", 60);
+  const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.", 150);
+  const description = textOrFallback(section?.description, "The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.", 600);
+  const primaryLabel = textOrFallback(section?.buttonLabel, "Request Hearse Van", 60);
   const primaryHref = section?.buttonHref || "/request-help";
-  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline", 60);
   const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
   
   const servicesSection = useWebsiteSection("harsevan-how-it-works");
-  const servicesTitle = textOrFallback(servicesSection?.title, "How We Assist You");
+  const servicesTitle = textOrFallback(servicesSection?.title, "How We Assist You", 60);
   const servicesItems = servicesSection?.items?.length ? servicesSection.items.map(it => ({ title: it.title || "", desc: it.description || "", label: it.label || "car" })) : [
     { title: "Immediate Availability", desc: "Our hearse vans are coordinated promptly across service areas to provide timely and dignified transportation when families need support.", label: "car" },
     { title: "Professional Drivers", desc: "Experienced and empathetic drivers understand the sensitivity of the moment and ensure every journey is handled carefully and respectfully.", label: "wheel" },
@@ -34,8 +34,8 @@ export default function HearseVanServices() {
   ];
 
   const emotionalSection = useWebsiteSection("harsevan-trust");
-  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;We ensure their final journey is as peaceful and dignified as the life they lived.&quot;");
-  const emotionalDesc = textOrFallback(emotionalSection?.description, "You should never have to worry about transportation logistics while mourning. Moksha Sewa stands ready to help you navigate this difficult time.");
+  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;We ensure their final journey is as peaceful and dignified as the life they lived.&quot;", 600);
+  const emotionalDesc = textOrFallback(emotionalSection?.description, "You should never have to worry about transportation logistics while mourning. Moksha Sewa stands ready to help you navigate this difficult time.", 600);
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />

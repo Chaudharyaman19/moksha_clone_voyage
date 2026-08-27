@@ -293,7 +293,7 @@ export default function OurStory() {
                   text-[#064638]
                 "
               >
-                {textOrFallback(section?.eyebrow, "Our Story")}
+                {textOrFallback(section?.eyebrow, "Our Story", 60)}
               </span>
 
               <span className="relative h-px w-[70px] bg-[#BF8B2E]">
@@ -333,7 +333,7 @@ export default function OurStory() {
                 fontFamily: "Georgia, 'Times New Roman', serif",
               }}
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "One Question\nBecame a Mission.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "One Question\nBecame a Mission.", 150)}</span>
             </h2>
 
             {/* TITLE DIVIDER */}
@@ -423,7 +423,7 @@ export default function OurStory() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                {textOrFallback(section?.subtitle, "What happens when someone passes away\nand there is no one to stand beside them?")}
+                {textOrFallback(section?.subtitle, "What happens when someone passes away\nand there is no one to stand beside them?", 600)}
               </p>
 
               <span
@@ -485,7 +485,7 @@ export default function OurStory() {
               "
             >
               <p>
-                {textOrFallback(section?.description, "This question became the foundation of Moksha Sewa—a mission created so that when someone is left without family, support or resources, humanity can still stand beside them.\n\nWe believe that every individual, regardless of identity, status or circumstance, deserves a final journey of dignity, respect and compassion.\n\nOur mission is to ensure that no one faces their final journey alone.")}
+                {textOrFallback(section?.description, "This question became the foundation of Moksha Sewa—a mission created so that when someone is left without family, support or resources, humanity can still stand beside them.\n\nWe believe that every individual, regardless of identity, status or circumstance, deserves a final journey of dignity, respect and compassion.\n\nOur mission is to ensure that no one faces their final journey alone.", 2000)}
               </p>
             </div>
           </div>
@@ -750,7 +750,7 @@ export default function OurStory() {
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
                 >
-                  {textOrFallback(section?.quote, "Dignity should never depend on whether someone has money, family or someone standing beside them.")}
+                  {textOrFallback(section?.quote, "Dignity should never depend on whether someone has money, family or someone standing beside them.", 600)}
                 </p>
 
                 <span

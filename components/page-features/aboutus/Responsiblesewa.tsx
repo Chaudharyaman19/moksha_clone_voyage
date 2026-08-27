@@ -365,7 +365,7 @@ export default function ResponsibleSewa() {
                   sm:tracking-[0.11em]
                 "
               >
-                {textOrFallback(section?.eyebrow, "Responsible Sewa")}
+                {textOrFallback(section?.eyebrow, "Responsible Sewa", 60)}
               </span>
 
               <span className="relative hidden h-px w-[30px] bg-[#C49B59] sm:block">
@@ -399,7 +399,7 @@ export default function ResponsibleSewa() {
                 sm:text-[30px]
               "
             >
-              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Compassion\nWith Accountability.")}</span>
+              <span className="whitespace-pre-line">{textOrFallback(section?.title, "Compassion\nWith Accountability.", 150)}</span>
             </h2>
 
             {/* =================================================
@@ -457,7 +457,7 @@ export default function ResponsibleSewa() {
                 lg:text-[24px]
               "
             >
-              {textOrFallback(section?.description, "At Moksha Sewa, every act of support is guided by responsibility, respect and the highest standards of ethical service.\n\nWe ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most.")}
+              {textOrFallback(section?.description, "At Moksha Sewa, every act of support is guided by responsibility, respect and the highest standards of ethical service.\n\nWe ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most.", 2000)}
             </p>
           </div>
 
@@ -513,7 +513,7 @@ export default function ResponsibleSewa() {
                 text-[#2F3434]
               "
             >
-              {textOrFallback(section?.subtitle, "We serve with responsibility. Because dignity comes first.")}
+              {textOrFallback(section?.subtitle, "We serve with responsibility. Because dignity comes first.", 150)}
             </p>
 
             <span

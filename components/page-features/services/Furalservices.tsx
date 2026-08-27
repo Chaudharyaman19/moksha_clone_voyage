@@ -76,12 +76,12 @@ export default function WoodRitualItemsPage() {
   const section = useWebsiteSection("funeral-hero");
   const supportSection = useWebsiteSection("funeral-receive");
   const heroImage = imageOrFallback(section?.image, "/woodrituals/hero.webp");
-  const heroTitle = textOrFallback(section?.title, "Wood & Ritual Items");
-  const heroSubtitle = textOrFallback(section?.subtitle, "Arranged With Deep Respect.");
-  const heroDescription = textOrFallback(section?.description, "At Moksha Sewa, we understand the financial and emotional burden of the final rites. We help eligible families coordinate cremation wood, shroud cloth (Kafan), flowers, lamps, and essential prayer items subject to verification and availability.");
-  const heroButtonLabel = textOrFallback(section?.buttonLabel, "Request Wood & Items");
+  const heroTitle = textOrFallback(section?.title, "Wood & Ritual Items", 60);
+  const heroSubtitle = textOrFallback(section?.subtitle, "Arranged With Deep Respect.", 60);
+  const heroDescription = textOrFallback(section?.description, "At Moksha Sewa, we understand the financial and emotional burden of the final rites. We help eligible families coordinate cremation wood, shroud cloth (Kafan), flowers, lamps, and essential prayer items subject to verification and availability.", 2000);
+  const heroButtonLabel = textOrFallback(section?.buttonLabel, "Request Wood & Items", 60);
   const heroButtonHref = section?.buttonHref || "/request-help";
-  const supportTitle = textOrFallback(supportSection?.title, "What We Arrange");
+  const supportTitle = textOrFallback(supportSection?.title, "What We Arrange", 60);
   const supportItems = (supportSection?.items?.length ? supportSection.items : arrangedItems).slice(0, 3);
   return (
     <div className="service-page min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
@@ -281,8 +281,8 @@ function ArrangeCard({
 
 function ClosingMessage() {
   const section = useWebsiteSection("funeral-trust");
-  const quote = textOrFallback(section?.title, "“We believe that no family should have to worry about the expenses of a final farewell while grieving the loss of their loved one.”");
-  const desc = textOrFallback(section?.description, "Our volunteers work tirelessly to ensure that every necessary item reaches the cremation ground on time. You mourn in peace, let us handle the arrangements.");
+  const quote = textOrFallback(section?.title, "“We believe that no family should have to worry about the expenses of a final farewell while grieving the loss of their loved one.”", 600);
+  const desc = textOrFallback(section?.description, "Our volunteers work tirelessly to ensure that every necessary item reaches the cremation ground on time. You mourn in peace, let us handle the arrangements.", 600);
 
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(90deg,#F5E7CB_0%,#FFF9EE_18%,#FFF9EE_82%,#F5E7CB_100%)] px-5 py-6 sm:px-7">

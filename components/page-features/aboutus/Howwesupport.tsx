@@ -282,7 +282,7 @@ export default function Howwesupport() {
               sm:text-[30px]
             "
           >
-            {textOrFallback(section?.title, "Who We Support")}
+            {textOrFallback(section?.title, "Who We Support", 60)}
           </h2>
 
           <span
@@ -641,7 +641,7 @@ export default function Howwesupport() {
                 lg:mt-0
               "
             >
-              {textOrFallback(section?.legalNotice, "Important Note")}
+              {textOrFallback(section?.legalNotice, "Important Note", 60)}
             </div>
 
             {/* DIVIDER */}
@@ -680,7 +680,7 @@ export default function Howwesupport() {
                 lg:text-[18px]
               "
             >
-              {textOrFallback(section?.bottomStatement, "Support is case-based and subject to applicable verification, eligibility, required formalities and available resources.")}
+              {textOrFallback(section?.bottomStatement, "Support is case-based and subject to applicable verification, eligibility, required formalities and available resources.", 600)}
             </p>
           </div>
         </div>
