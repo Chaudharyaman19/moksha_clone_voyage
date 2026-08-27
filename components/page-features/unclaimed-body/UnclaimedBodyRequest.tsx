@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { UBSIcon } from "./UnclaimedBodyIcons";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const mini = [
   ["01", "Receive", "We receive the request and details."],
@@ -13,6 +14,7 @@ const mini = [
 ] as const;
 
 export default function UnclaimedBodyRequest() {
+  const section = useWebsiteSection("unclaimed-request");
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -52,14 +54,12 @@ export default function UnclaimedBodyRequest() {
               "linear-gradient(rgba(255,250,242,.84), rgba(255,250,242,.84)), url('/assets/unclaimed-body/request-background.png')",
           }}
         >
-          <p className="text-[16px] font-bold uppercase tracking-[0.12em] text-[#b47a20]"><span className="mr-3">—</span> Request Sewa Help</p>
+          <p className="text-[16px] font-bold uppercase tracking-[0.12em] text-[#b47a20]"><span className="mr-3">—</span> {textOrFallback(section?.eyebrow, "Need Assistance With", 60)}</p>
           <h2 className="mt-1.5 text-[36px] font-medium leading-[1.02] text-[#064335] sm:text-[42px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            Need Assistance With
-            <br />
-            an Unclaimed Body Case?
+            {textOrFallback(section?.title, "an Unclaimed Body Case?", 150)}
           </h2>
-          <p className="mt-2 max-w-[600px] text-[16px] font-medium leading-[1.3] text-[#414748]">
-            Share the available details so our team can understand the situation and review the appropriate next step.
+          <p className="mt-2 max-w-[600px] text-[16px] font-medium leading-[1.3] text-[#414748] whitespace-pre-line">
+            {textOrFallback(section?.description, "Share the available details so our team can understand the situation and review the appropriate next step.\nIf the matter is currently with a hospital, police station or other competent authority, please complete the applicable official process and obtain the required authorisation before final-journey assistance can proceed.", 600)}
           </p>
 
           <div className="mt-2.5 rounded-[12px] border border-[#d9c4a0] bg-[#fffaf2]/90 px-4 py-2">
@@ -127,7 +127,7 @@ export default function UnclaimedBodyRequest() {
           </label>
 
           <button type="submit" disabled={submitState === "loading"} className="mx-auto mt-3 flex h-[44px] w-full max-w-[300px] items-center justify-between rounded-[7px] bg-[#004b39] px-5 text-[16px] font-bold uppercase text-white disabled:opacity-60">
-            {submitState === "loading" ? "Submitting..." : "Submit Sewa Request"}
+            {submitState === "loading" ? "Submitting..." : textOrFallback(section?.buttonLabel, "Submit Sewa Request", 36)}
             <UBSIcon name="ArrowRight" className="h-6 w-6" />
           </button>
           {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0a4b3b]"}`}>{submitMessage}</p>}

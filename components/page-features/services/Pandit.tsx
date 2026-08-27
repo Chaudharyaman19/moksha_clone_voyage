@@ -39,7 +39,7 @@ const ritualCards = [
 ];
 
 export default function PriestSupport() {
-  const section = useWebsiteSection("services-pandit");
+  const section = useWebsiteSection("pandit-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/panditservices/hero-real.png");
   const title = textOrFallback(section?.title, "Priest Support");
   const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
@@ -167,29 +167,19 @@ export default function PriestSupport() {
         {/* ================= FEATURE CARDS ================= */}
         <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            <FeatureCard
-              imageSrc="/assets/panditservices/feature-pandit.png"
-              title="Experienced Pandit Ji"
-              desc="Learned and compassionate guidance"
-            />
-
-            <FeatureCard
-              imageSrc="/assets/panditservices/feature-vedic.png"
-              title="Vedic Guidance"
-              desc="Guidance based on Hindu traditions"
-            />
-
-            <FeatureCard
-              imageSrc="/assets/panditservices/feature-planning.png"
-              title="Ritual Planning"
-              desc="Complete ritual planning and coordination"
-            />
-
-            <FeatureCard
-              imageSrc="/assets/panditservices/feature-traditions.png"
-              title="Regional Traditions"
-              desc="Rituals according to family customs"
-            />
+            {(useWebsiteSection("pandit-highlights")?.items || [
+              { title: "Experienced Pandit Ji", description: "Learned and compassionate guidance", image: "/assets/panditservices/feature-pandit.png" },
+              { title: "Vedic Guidance", description: "Guidance based on Hindu traditions", image: "/assets/panditservices/feature-vedic.png" },
+              { title: "Ritual Planning", description: "Complete ritual planning and coordination", image: "/assets/panditservices/feature-planning.png" },
+              { title: "Regional Traditions", description: "Rituals according to family customs", image: "/assets/panditservices/feature-traditions.png" }
+            ]).map((item, idx) => (
+              <FeatureCard
+                key={idx}
+                imageSrc={imageOrFallback(item.image, "/assets/panditservices/feature-pandit.png")}
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
@@ -200,7 +190,7 @@ export default function PriestSupport() {
               <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
 
-                How It Works
+                {textOrFallback(useWebsiteSection("pandit-how-it-works")?.title, "How It Works")}
 
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
               </h2>
@@ -210,33 +200,19 @@ export default function PriestSupport() {
               <div className="absolute left-[15%] right-[15%] top-[36px] hidden border-t-[1.5px] border-dashed border-[#C99A4A]/40 lg:block" />
 
               <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                <StepItem
-                  num="1"
-                  icon={<BsTelephone className="h-6 w-6 text-[#321A10]" />}
-                  title="Call or Request Support"
-                />
-
-                <StepItem
-                  num="2"
-                  icon={
-                    <MdOutlinePeopleAlt className="h-7 w-7 text-[#321A10]" />
-                  }
-                  title="Pandit Ji Consultation"
-                />
-
-                <StepItem
-                  num="3"
-                  icon={
-                    <GiCandleHolder className="h-7 w-7 text-[#321A10]" />
-                  }
-                  title="Ritual Arrangement"
-                />
-
-                <StepItem
-                  num="4"
-                  icon={<MdHandshake className="h-7 w-7 text-[#321A10]" />}
-                  title="Guidance Through Every Ceremony"
-                />
+                {(useWebsiteSection("pandit-how-it-works")?.items || [
+                  { title: "Call or Request Support", label: "phone" },
+                  { title: "Pandit Ji Consultation", label: "team" },
+                  { title: "Ritual Arrangement", label: "hands" },
+                  { title: "Guidance Through Every Ceremony", label: "hands" }
+                ]).map((item, idx) => (
+                  <StepItem
+                    key={idx}
+                    num={(idx + 1).toString()}
+                    icon={item.label === "phone" ? <BsTelephone className="h-6 w-6 text-[#321A10]" /> : item.label === "team" ? <MdOutlinePeopleAlt className="h-7 w-7 text-[#321A10]" /> : item.label === "hands" ? <MdHandshake className="h-7 w-7 text-[#321A10]" /> : <GiCandleHolder className="h-7 w-7 text-[#321A10]" />}
+                    title={item.title || ""}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -244,7 +220,7 @@ export default function PriestSupport() {
 
         {/* ================= RITUAL MARQUEE ================= */}
         <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
-          <SectionHeader title="Ritual Support at Every Step" />
+          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-stories")?.title, "Ritual Support at Every Step")} />
 
           <style>{`
             @keyframes scrollMarquee {
@@ -270,12 +246,12 @@ export default function PriestSupport() {
 
           <div className="relative mt-8 w-full overflow-hidden">
             <div className="marquee-track gap-4 lg:gap-5">
-              {[...ritualCards, ...ritualCards].map((card, idx) => (
+              {[...(useWebsiteSection("pandit-stories")?.items || ritualCards), ...(useWebsiteSection("pandit-stories")?.items || ritualCards)].map((card, idx) => (
                 <div
                   key={idx}
                   className="w-[180px] shrink-0 sm:w-[220px]"
                 >
-                  <SquareImageCard src={card.src} title={card.title} />
+                  <SquareImageCard src={imageOrFallback((card as any).image || (card as any).src, "/assets/panditservices/ritual-1.png")} title={card.title || ""} />
                 </div>
               ))}
             </div>
@@ -284,59 +260,44 @@ export default function PriestSupport() {
 
         {/* ================= PANDIT JI ROLES ================= */}
         <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
-          <SectionHeader title="Pandit Ji Roles" />
+          <SectionHeader title={textOrFallback(useWebsiteSection("pandit-receive")?.title, "Pandit Ji Roles")} />
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            <RoleSquareCard
-              src="/assets/panditservices/roles-1.png"
-              title="Samagri Guidance"
-              desc="Right samagri for every sacred ritual."
-            />
-
-            <RoleSquareCard
-              src="/assets/panditservices/roles-2.png"
-              title="Prayer Hall Ceremony"
-              desc="Rituals conducted with peace and reverence."
-            />
-
-            <RoleSquareCard
-              src="/assets/panditservices/roles-3.png"
-              title="Family Ritual Explanation"
-              desc="Simple guidance at every sacred step."
-            />
-
-            <RoleSquareCard
-              src="/assets/panditservices/roles-4.png"
-              title="Post-Ritual Support"
-              desc="Guidance for remaining rituals and timelines."
-            />
+            {(useWebsiteSection("pandit-receive")?.items || [
+              { title: "Samagri Guidance", description: "Right samagri for every sacred ritual.", image: "/assets/panditservices/roles-1.png" },
+              { title: "Prayer Hall Ceremony", description: "Rituals conducted with peace and reverence.", image: "/assets/panditservices/roles-2.png" },
+              { title: "Family Ritual Explanation", description: "Simple guidance at every sacred step.", image: "/assets/panditservices/roles-3.png" },
+              { title: "Post-Ritual Support", description: "Guidance for remaining rituals and timelines.", image: "/assets/panditservices/roles-4.png" }
+            ]).map((item, idx) => (
+              <RoleSquareCard
+                key={idx}
+                src={imageOrFallback(item.image, "/assets/panditservices/roles-1.png")}
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
         {/* ================= TRUST CARDS ================= */}
         <section className="mx-auto mb-4 mt-2 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
-            <TrustCard
-              icon={
-                <FaHandHoldingHeart className="h-10 w-10 text-[#C99A4A]" />
-              }
-              title="Compassionate Guidance"
-              desc="Care, sensitivity and respect in every moment."
-            />
-
-            <TrustCard
-              icon={<FaOm className="h-10 w-10 text-[#C99A4A]" />}
-              title="Authentic Hindu Rituals"
-              desc="Rituals performed according to Shastra and tradition."
-            />
-
-            <TrustCard
-              icon={
-                <TbHeartHandshake className="h-10 w-10 text-[#C99A4A]" />
-              }
-              title="Support Beyond Ceremony"
-              desc="Continued spiritual guidance after the ceremony."
-            />
+            {(useWebsiteSection("pandit-trust")?.items || [
+              { title: "Compassionate Guidance", description: "Care, sensitivity and respect in every moment.", label: "heart" },
+              { title: "Authentic Hindu Rituals", description: "Rituals performed according to Shastra and tradition.", label: "om" },
+              { title: "Support Beyond Ceremony", description: "Continued spiritual guidance after the ceremony.", label: "handshake" }
+            ]).map((item, idx) => (
+              <TrustCard
+                key={idx}
+                icon={
+                  item.label === "heart" ? <FaHandHoldingHeart className="h-10 w-10 text-[#C99A4A]" /> :
+                  item.label === "om" ? <FaOm className="h-10 w-10 text-[#C99A4A]" /> :
+                  <TbHeartHandshake className="h-10 w-10 text-[#C99A4A]" />
+                }
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
@@ -346,7 +307,7 @@ export default function PriestSupport() {
             {/* Left Image */}
             <div className="relative hidden h-[160px] w-full lg:block lg:h-auto lg:w-1/5">
               <Image
-                src="/assets/panditservices/hero.png"
+                src={imageOrFallback(useWebsiteSection("pandit-donation")?.image, "/assets/panditservices/hero.png")}
                 alt="Decorative brass items"
                 fill
                 sizes="20vw"
@@ -357,12 +318,11 @@ export default function PriestSupport() {
             {/* Center Content */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
               <h2 className="max-w-xl py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
-                Your Support Helps Families Receive Dignified &amp; Sacred Final
-                Rites
+                {textOrFallback(useWebsiteSection("pandit-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites")}
               </h2>
 
               <a
-                href="/donation"
+                href={useWebsiteSection("pandit-donation")?.buttonHref || "/donation"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[210px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -372,7 +332,7 @@ export default function PriestSupport() {
                 <GiCandleHolder className="relative z-10 h-5 w-5 shrink-0" />
 
                 <span className="relative z-10 whitespace-nowrap">
-                  Donate for Ritual Support
+                  {textOrFallback(useWebsiteSection("pandit-donation")?.buttonLabel, "Donate for Ritual Support")}
                 </span>
 
                 <FaStar
@@ -392,7 +352,7 @@ export default function PriestSupport() {
               <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
 
               <p className="max-w-[190px] text-[18px] font-medium leading-relaxed text-[#321A10]">
-                Every act of kindness becomes a blessing for many.
+                {textOrFallback(useWebsiteSection("pandit-donation")?.description, "Every act of kindness becomes a blessing for many.")}
               </p>
             </div>
           </div>

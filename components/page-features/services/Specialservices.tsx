@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
@@ -21,7 +22,7 @@ import {
 import Marquee from "react-fast-marquee";
 
 export default function FamilySupport() {
-  const section = useWebsiteSection("services-special");
+  const section = useWebsiteSection("specialService-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/family-support/hero-bg-2.png");
   const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support");
   const title = textOrFallback(section?.title, "Family Support");
@@ -130,69 +131,24 @@ export default function FamilySupport() {
             className="py-1"
           >
             <div className="flex gap-2 px-1">
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/counseling-support.png"
-                  title="Emotional Support"
-                  desc="Counseling and a sympathetic ear for grieving families."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/food-essentials.png"
-                  title="Tehravi Khana"
-                  desc="Respectful management of the 13th-day meal for grieving families."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/document-assistance.png"
-                  title="Formalities"
-                  desc="Help with death certificates and important legal procedures."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/emergency-transport.png"
-                  title="Ambulance"
-                  desc="Transport support for eligible cases after required verification."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/community-outreach.png"
-                  title="Eligibility Based"
-                  desc="Assistance is provided subject to verification and availability."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/hospital-support.png"
-                  title="Hospital Care"
-                  desc="On-ground help and coordination during hospital discharge formalities."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/on-ground-support.png"
-                  title="Ground Help"
-                  desc="Volunteers support and guide families carefully at every step."
-                />
-              </div>
-
-              <div className="w-[240px]">
-                <FeatureCard
-                  imageSrc="/assets/serving/rural-remote-reach.png"
-                  title="Remote Reach"
-                  desc="Extending compassionate and dignified support to remote areas."
-                />
-              </div>
+              {(useWebsiteSection("specialService-highlights")?.items || [
+                { title: "Emotional Support", description: "Counseling and a sympathetic ear for grieving families.", image: "/assets/serving/counseling-support.png" },
+                { title: "Tehravi Khana", description: "Respectful management of the 13th-day meal for grieving families.", image: "/assets/serving/food-essentials.png" },
+                { title: "Formalities", description: "Help with death certificates and important legal procedures.", image: "/assets/serving/document-assistance.png" },
+                { title: "Ambulance", description: "Transport support for eligible cases after required verification.", image: "/assets/serving/emergency-transport.png" },
+                { title: "Eligibility Based", description: "Assistance is provided subject to verification and availability.", image: "/assets/serving/community-outreach.png" },
+                { title: "Hospital Care", description: "On-ground help and coordination during hospital discharge formalities.", image: "/assets/serving/hospital-support.png" },
+                { title: "Ground Help", description: "Volunteers support and guide families carefully at every step.", image: "/assets/serving/on-ground-support.png" },
+                { title: "Remote Reach", description: "Extending compassionate and dignified support to remote areas.", image: "/assets/serving/rural-remote-reach.png" }
+              ]).map((item, idx) => (
+                <div className="w-[240px]" key={idx}>
+                  <FeatureCard
+                    imageSrc={imageOrFallback(item.image, "/assets/serving/counseling-support.png")}
+                    title={item.title || ""}
+                    desc={item.description || ""}
+                  />
+                </div>
+              ))}
             </div>
           </Marquee>
         </section>
@@ -201,52 +157,39 @@ export default function FamilySupport() {
         <section className="mx-auto max-w-7xl px-4 pb-1 pt-1 lg:px-0">
           <div className="mb-1 text-center">
             <h2 className="pt-[20px] font-serif text-[30px] text-[#3A2418]">
-              How We Extend Our Help
+              {textOrFallback(useWebsiteSection("specialService-how-it-works")?.title, "How We Extend Our Help")}
             </h2>
 
             <div className="mx-auto mt-3 mb-4 h-1 w-24 rounded-full bg-[#DCC4A5]" />
           </div>
 
           <div className="relative flex flex-col items-stretch justify-between gap-1 pt-1 md:flex-row md:gap-1 lg:gap-1">
-            <StepCard
-              num={1}
-              icon={<FaPhoneAlt size={22} />}
-              title="Contact Us"
-              desc="Reach out through our 24x7 helpline whenever your family needs help."
-            />
+            {(useWebsiteSection("specialService-how-it-works")?.items || [
+              { title: "Contact Us", description: "Reach out through our 24x7 helpline whenever your family needs help.", label: "phone" },
+              { title: "Needs Assessment", description: "We understand your family's emotional, practical and financial needs.", label: "comment" },
+              { title: "Arrange Support", description: "We arrange meals, paperwork and compassionate support for your family.", label: "clipboard" },
+              { title: "Ongoing Care", description: "Our support continues beyond the cremation ground with care each step.", label: "users" }
+            ]).map((item, idx) => (
+              <React.Fragment key={idx}>
+                <StepCard
+                  num={idx + 1}
+                  icon={
+                    item.label === "phone" ? <FaPhoneAlt size={22} /> :
+                    item.label === "comment" ? <FaCommentDots size={22} /> :
+                    item.label === "clipboard" ? <FaClipboardCheck size={22} /> :
+                    <FaUsers size={22} />
+                  }
+                  title={item.title || ""}
+                  desc={item.description || ""}
+                />
 
-            <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
-              <FaArrowRight size={18} />
-            </div>
-
-            <StepCard
-              num={2}
-              icon={<FaCommentDots size={22} />}
-              title="Needs Assessment"
-              desc="We understand your family's emotional, practical and financial needs."
-            />
-
-            <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
-              <FaArrowRight size={18} />
-            </div>
-
-            <StepCard
-              num={3}
-              icon={<FaClipboardCheck size={22} />}
-              title="Arrange Support"
-              desc="We arrange meals, paperwork and compassionate support for your family."
-            />
-
-            <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
-              <FaArrowRight size={18} />
-            </div>
-
-            <StepCard
-              num={4}
-              icon={<FaUsers size={22} />}
-              title="Ongoing Care"
-              desc="Our support continues beyond the cremation ground with care each step."
-            />
+                {idx < ((useWebsiteSection("specialService-how-it-works")?.items?.length) || 4) - 1 && (
+                  <div className="z-10 hidden self-center text-[#DCC4A5] md:flex">
+                    <FaArrowRight size={18} />
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </section>
 
@@ -264,17 +207,10 @@ export default function FamilySupport() {
                 />
               </div>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-tight text-[#3A2418]">
-                Empowered by <br className="hidden lg:block" />
-                <span className="text-[#9A6A31]">
-                  Namo Gange Volunteers
-                </span>
-              </h2>
+              <h2 className="py-[20px] font-serif text-[30px] leading-tight text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-support")?.title, "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>") }} />
 
               <p className="max-w-[400px] text-[18px] leading-relaxed text-[#624C3F]">
-                Our widespread network of dedicated volunteers is always ready
-                to mobilize. They step forward to organize meals, manage hospital
-                formalities, and support grieving families.
+                {textOrFallback(useWebsiteSection("specialService-support")?.description, "Our widespread network of dedicated volunteers is always ready to mobilize. They step forward to organize meals, manage hospital formalities, and support grieving families.")}
               </p>
             </div>
 
@@ -319,30 +255,22 @@ export default function FamilySupport() {
           <div className="flex flex-col overflow-hidden rounded-none border border-[#E8DCC8] bg-[#FAF7F2] shadow-sm lg:flex-row">
             <div className="flex flex-col justify-center p-4 lg:w-1/2 lg:p-6">
               <span className="mb-3 text-[18px] font-semibold uppercase tracking-widest text-[#9A6A31]">
-                Holistic Support System
+                {textOrFallback(useWebsiteSection("specialService-receive")?.eyebrow, "Holistic Support System")}
               </span>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.15] text-[#3A2418]">
-                An Extended Family <br />
-                <span className="text-[#9A6A31]">
-                  For Those Who Need One
-                </span>
-              </h2>
+              <h2 className="py-[20px] font-serif text-[30px] leading-[1.15] text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-receive")?.title, "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>") }} />
 
               <p className="mb-6 max-w-[500px] text-[18px] leading-relaxed text-[#624C3F]">
-                &quot;Our service does not end at the cremation ground. We
-                believe in providing holistic support that helps a family get
-                back on its feet while remembering their departed with love and
-                peace.&quot;
+                {textOrFallback(useWebsiteSection("specialService-receive")?.description, "&quot;Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.&quot;")}
               </p>
 
               <ul className="mb-8 flex flex-col gap-3.5">
-                {[
+                {(useWebsiteSection("specialService-receive")?.items?.length ? useWebsiteSection("specialService-receive")!.items!.map(it => it.title) : [
                   "Sympathetic ear for intense grief and trauma",
                   "Assistance with death certificates and formalities",
                   "Relief coordination for verified family needs",
                   "Assistance subject to eligibility and availability",
-                ].map((item, idx) => (
+                ]).map((item, idx) => (
                   <li
                     key={idx}
                     className="flex items-start gap-3 text-[18px] font-medium text-[#4A3D36]"
@@ -357,12 +285,12 @@ export default function FamilySupport() {
               </ul>
 
               <Link
-                href="/contact"
+                href={useWebsiteSection("specialService-receive")?.buttonHref || "/contact"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group/cta inline-flex h-[46px] w-fit min-w-[182px] items-center justify-center gap-2.5 whitespace-nowrap rounded-lg bg-[#8B6A3E] px-6 text-[20px] font-semibold text-white shadow-[0_8px_20px_rgba(107,74,32,0.22)] transition hover:-translate-y-0.5 hover:bg-[#73532F] hover:shadow-[0_12px_26px_rgba(107,74,32,0.28)]"
               >
-                Know More About Our Work
+                {textOrFallback(useWebsiteSection("specialService-receive")?.buttonLabel, "Know More About Our Work")}
 
                 <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
               </Link>
@@ -370,7 +298,7 @@ export default function FamilySupport() {
 
             <div className="relative min-h-[340px] lg:min-h-0 lg:w-1/2">
               <Image
-                src="/assets/serving/hospital-support.png"
+                src={imageOrFallback(useWebsiteSection("specialService-receive")?.image, "/assets/serving/hospital-support.png")}
                 alt="Compassion Support"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -384,20 +312,15 @@ export default function FamilySupport() {
         <section className="mx-auto max-w-7xl px-4 pb-4 pt-1 lg:px-0">
           <div className="relative flex flex-col overflow-hidden rounded-none bg-[#4E3827] shadow-sm md:flex-row">
             <div className="z-10 flex flex-col justify-center p-4 md:w-3/5 lg:p-6">
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.2] text-[#EED8A1]">
-                Your Support Helps Us <br />
-                Feed Grieving Families
-              </h2>
+              <h2 className="py-[20px] font-serif text-[30px] leading-[1.2] text-[#EED8A1]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-donation")?.title, "Your Support Helps Us <br />Feed Grieving Families") }} />
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#FDFBF7] opacity-90">
-                By donating, you help us organize Tehravi Khana and provide
-                continued assistance for families who cannot afford the
-                post-cremation rituals and meals.
+                {textOrFallback(useWebsiteSection("specialService-donation")?.description, "By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.")}
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/donation"
+                  href={useWebsiteSection("specialService-donation")?.buttonHref || "/donation"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[198px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -407,7 +330,7 @@ export default function FamilySupport() {
                   <FaHeart className="relative z-10 h-[14px] w-[14px]" />
 
                   <span className="relative z-10 whitespace-nowrap">
-                    Donate to Moksha Sewa
+                    {textOrFallback(useWebsiteSection("specialService-donation")?.buttonLabel, "Donate to Moksha Sewa")}
                   </span>
 
                   <FaStar
@@ -422,12 +345,12 @@ export default function FamilySupport() {
                 </Link>
 
                 <Link
-                  href="/volunteer/register"
+                  href={useWebsiteSection("specialService-donation")?.secondaryButtonHref || "/volunteer/register"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group/cta inline-flex h-[46px] min-w-[182px] items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-[#B89564] bg-transparent px-6 text-[20px] font-semibold text-white transition hover:border-[#EED8A1] hover:bg-white/10"
                 >
-                  Support Our Seva
+                  {textOrFallback(useWebsiteSection("specialService-donation")?.secondaryButtonLabel, "Support Our Seva")}
 
                   <FaArrowRight className="h-[14px] w-[14px] transition-transform duration-300 group-hover/cta:translate-x-0.5" />
                 </Link>
@@ -436,7 +359,7 @@ export default function FamilySupport() {
 
             <div className="relative min-h-[300px] md:w-2/5">
               <Image
-                src="/assets/serving/counseling-support.png"
+                src={imageOrFallback(useWebsiteSection("specialService-donation")?.image, "/assets/serving/counseling-support.png")}
                 alt="Donate Support"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

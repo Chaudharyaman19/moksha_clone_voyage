@@ -2,6 +2,14 @@ import { mergeLandingSections, type LandingSectionContent } from "./landingConte
 import { mergeAboutSections, type AboutSectionContent } from "./aboutContent";
 import {
   mergeServicesSections,
+  mergeAmbulanceSections,
+  mergePanditSections,
+  mergeFuneralSections,
+  mergeFuneralDecorationSections,
+  mergePrayerHallSections,
+  mergeSpecialServiceSections,
+  mergeCallingRelativesSections,
+  mergeHarsevanSections,
   mergeUnclaimedBodySections,
   mergeVolunteerSections,
   mergePartnershipSections,
@@ -24,6 +32,14 @@ interface SettingsResponse {
   landingPage?: { sections?: LandingSectionContent[] };
   aboutPage?: { sections?: AboutSectionContent[] };
   servicesPage?: { sections?: ExtraSectionContent[] };
+  ambulancePage?: { sections?: ExtraSectionContent[] };
+  panditPage?: { sections?: ExtraSectionContent[] };
+  funeralPage?: { sections?: ExtraSectionContent[] };
+  funeralDecorationPage?: { sections?: ExtraSectionContent[] };
+  prayerHallPage?: { sections?: ExtraSectionContent[] };
+  specialServicePage?: { sections?: ExtraSectionContent[] };
+  callingRelativesPage?: { sections?: ExtraSectionContent[] };
+  harsevanPage?: { sections?: ExtraSectionContent[] };
   unclaimedBodyPage?: { sections?: ExtraSectionContent[] };
   volunteerPage?: { sections?: ExtraSectionContent[] };
   partnershipPage?: { sections?: ExtraSectionContent[] };
@@ -38,6 +54,14 @@ export type WebsitePageKey =
   | "landing"
   | "about"
   | "services"
+  | "ambulance"
+  | "pandit"
+  | "funeral"
+  | "funeralDecoration"
+  | "prayerHall"
+  | "specialService"
+  | "callingRelatives"
+  | "harsevan"
   | "unclaimed-body"
   | "volunteer"
   | "partnership"
@@ -53,6 +77,22 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
       return mergeAboutSections(settings?.aboutPage?.sections);
     case "services":
       return mergeServicesSections(settings?.servicesPage?.sections);
+    case "ambulance":
+      return mergeAmbulanceSections(settings?.ambulancePage?.sections);
+    case "pandit":
+      return mergePanditSections(settings?.panditPage?.sections);
+    case "funeral":
+      return mergeFuneralSections(settings?.funeralPage?.sections);
+    case "funeralDecoration":
+      return mergeFuneralDecorationSections(settings?.funeralDecorationPage?.sections);
+    case "prayerHall":
+      return mergePrayerHallSections(settings?.prayerHallPage?.sections);
+    case "specialService":
+      return mergeSpecialServiceSections(settings?.specialServicePage?.sections);
+    case "callingRelatives":
+      return mergeCallingRelativesSections(settings?.callingRelativesPage?.sections);
+    case "harsevan":
+      return mergeHarsevanSections(settings?.harsevanPage?.sections);
     case "unclaimed-body":
       return mergeUnclaimedBodySections(settings?.unclaimedBodyPage?.sections);
     case "volunteer":

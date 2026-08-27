@@ -73,8 +73,8 @@ const arrangedItems = [
 ];
 
 export default function WoodRitualItemsPage() {
-  const section = useWebsiteSection("services-funeral");
-  const supportSection = useWebsiteSection("services-ambulance");
+  const section = useWebsiteSection("funeral-hero");
+  const supportSection = useWebsiteSection("funeral-receive");
   const heroImage = imageOrFallback(section?.image, "/woodrituals/hero.webp");
   const heroTitle = textOrFallback(section?.title, "Wood & Ritual Items");
   const heroSubtitle = textOrFallback(section?.subtitle, "Arranged With Deep Respect.");
@@ -82,7 +82,7 @@ export default function WoodRitualItemsPage() {
   const heroButtonLabel = textOrFallback(section?.buttonLabel, "Request Wood & Items");
   const heroButtonHref = section?.buttonHref || "/request-help";
   const supportTitle = textOrFallback(supportSection?.title, "What We Arrange");
-  const supportItems = (section?.items?.length ? section.items : arrangedItems.map((item) => ({ title: item.title, description: item.description, image: item.image }))).slice(0, 3);
+  const supportItems = (supportSection?.items?.length ? supportSection.items : arrangedItems).slice(0, 3);
   return (
     <div className="service-page min-h-screen bg-[#FBF8F1] font-sans text-[#351D12]">
       <Topbar />
@@ -280,6 +280,10 @@ function ArrangeCard({
 }
 
 function ClosingMessage() {
+  const section = useWebsiteSection("funeral-trust");
+  const quote = textOrFallback(section?.title, "“We believe that no family should have to worry about the expenses of a final farewell while grieving the loss of their loved one.”");
+  const desc = textOrFallback(section?.description, "Our volunteers work tirelessly to ensure that every necessary item reaches the cremation ground on time. You mourn in peace, let us handle the arrangements.");
+
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(90deg,#F5E7CB_0%,#FFF9EE_18%,#FFF9EE_82%,#F5E7CB_100%)] px-5 py-6 sm:px-7">
       <GiLotusFlower className="pointer-events-none absolute -bottom-16 -left-14 h-52 w-52 rotate-12 text-[#B98B55]/10" />
@@ -289,15 +293,10 @@ function ClosingMessage() {
       <div className="relative mx-auto max-w-5xl text-center">
         <GiLotusFlower className="mx-auto h-8 w-8 text-[#B97827]" />
 
-        <blockquote className="mx-auto max-w-4xl py-[20px] font-serif text-[30px] leading-[1.42] text-[#482414]">
-          “We believe that no family should have to worry about the expenses of
-          a final farewell while grieving the loss of their loved one.”
-        </blockquote>
+        <blockquote className="mx-auto max-w-4xl py-[20px] font-serif text-[30px] leading-[1.42] text-[#482414]" dangerouslySetInnerHTML={{ __html: quote.replace(/\n/g, '<br />') }} />
 
         <p className="mx-auto mt-3 max-w-3xl text-[18px] leading-[1.55] text-[#3D291F]/88">
-          Our volunteers work tirelessly to ensure that every necessary item
-          reaches the cremation ground on time. You mourn in peace, let us
-          handle the arrangements.
+          {desc}
         </p>
       </div>
     </section>

@@ -17,7 +17,7 @@ import { GiFlowerHat } from "react-icons/gi";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function Furaldecoration() {
-  const section = useWebsiteSection("services-decoration");
+  const section = useWebsiteSection("funeralDecoration-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/how-we-help/three.png");
   const title = textOrFallback(section?.title, "Funeral Decoration");
   const subtitle = textOrFallback(section?.subtitle, "A Beautiful Final Journey.");
@@ -26,6 +26,18 @@ export default function Furaldecoration() {
   const primaryHref = section?.buttonHref || "/request-help";
   const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
   const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
+  
+  const servicesSection = useWebsiteSection("funeralDecoration-how-it-works");
+  const servicesTitle = textOrFallback(servicesSection?.title, "Our Decoration Services");
+  const servicesItems = servicesSection?.items?.length ? servicesSection.items.map(it => ({ title: it.title || "", desc: it.description || "", label: it.label || "florist" })) : [
+    { title: "Hearse Van Decoration", desc: "Elegant and respectful floral decoration for the ambulance or hearse van, creating a dignified setting for the final journey.", label: "florist" },
+    { title: "Pyre & Pathway Setup", desc: "Fresh flowers and sacred leaves are arranged around the cremation area to create a peaceful and respectful environment.", label: "leaf" },
+    { title: "Prayer Hall Serenity", desc: "Calming floral arrangements for the Shanti Path and prayer area, creating a serene atmosphere for family and grieving guests.", label: "nature" }
+  ];
+
+  const emotionalSection = useWebsiteSection("funeralDecoration-trust");
+  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;Flowers speak the language of peace, honoring a beautiful life that has moved on.&quot;");
+  const emotionalDesc = textOrFallback(emotionalSection?.description, "Our volunteers carefully handpick fresh flowers, ensuring the final journey of your loved one is surrounded by purity, respect, and unconditional love.");
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -91,30 +103,21 @@ export default function Furaldecoration() {
         <section className="mx-auto mb-24 max-w-7xl px-4 sm:px-6 lg:px-0">
           <div className="mb-16 text-center">
             <h2 className="py-[20px] font-serif text-[30px] text-[#4A3D36]">
-              Our Decoration Services
+              {servicesTitle}
             </h2>
 
             <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-3">
-            <ItemCard
-              icon={<MdOutlineLocalFlorist className="h-8 w-8" />}
-              title="Hearse Van Decoration"
-              desc="Elegant and respectful floral decoration for the ambulance or hearse van, creating a dignified setting for the final journey."
-            />
-
-            <ItemCard
-              icon={<FaLeaf className="h-8 w-8" />}
-              title="Pyre & Pathway Setup"
-              desc="Fresh flowers and sacred leaves are arranged around the cremation area to create a peaceful and respectful environment."
-            />
-
-            <ItemCard
-              icon={<MdNaturePeople className="h-8 w-8" />}
-              title="Prayer Hall Serenity"
-              desc="Calming floral arrangements for the Shanti Path and prayer area, creating a serene atmosphere for family and grieving guests."
-            />
+            {servicesItems.map((item, idx) => (
+              <ItemCard
+                key={idx}
+                icon={item.label === "leaf" ? <FaLeaf className="h-8 w-8" /> : item.label === "nature" ? <MdNaturePeople className="h-8 w-8" /> : <MdOutlineLocalFlorist className="h-8 w-8" />}
+                title={item.title}
+                desc={item.desc}
+              />
+            ))}
           </div>
         </section>
 
@@ -123,15 +126,10 @@ export default function Furaldecoration() {
           <div className="mx-auto max-w-4xl text-center">
             <GiFlowerHat className="mx-auto mb-8 h-10 w-10 text-[#A0522D]/30" />
 
-            <h3 className="py-[20px] text-[20px] font-semibold leading-relaxed text-[#5D4037]">
-              &quot;Flowers speak the language of peace, honoring a beautiful
-              life that has moved on.&quot;
-            </h3>
+            <h3 className="py-[20px] text-[20px] font-semibold leading-relaxed text-[#5D4037]" dangerouslySetInnerHTML={{ __html: emotionalQuote.replace(/\n/g, '<br />') }} />
 
             <p className="mx-auto max-w-2xl text-[18px] leading-relaxed text-[#795548]">
-              Our volunteers carefully handpick fresh flowers, ensuring the
-              final journey of your loved one is surrounded by purity, respect,
-              and unconditional love.
+              {emotionalDesc}
             </p>
           </div>
         </section>

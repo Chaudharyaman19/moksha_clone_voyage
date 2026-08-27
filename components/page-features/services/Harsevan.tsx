@@ -15,7 +15,7 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { GiSteeringWheel } from "react-icons/gi";
 
 export default function HearseVanServices() {
-  const section = useWebsiteSection("services-harsevan");
+  const section = useWebsiteSection("harsevan-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/serving/emergency-transport.png");
   const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)");
   const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.");
@@ -24,6 +24,18 @@ export default function HearseVanServices() {
   const primaryHref = section?.buttonHref || "/request-help";
   const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "24x7 Helpline");
   const secondaryHref = section?.secondaryButtonHref || "tel:+919999999999";
+  
+  const servicesSection = useWebsiteSection("harsevan-how-it-works");
+  const servicesTitle = textOrFallback(servicesSection?.title, "How We Assist You");
+  const servicesItems = servicesSection?.items?.length ? servicesSection.items.map(it => ({ title: it.title || "", desc: it.description || "", label: it.label || "car" })) : [
+    { title: "Immediate Availability", desc: "Our hearse vans are coordinated promptly across service areas to provide timely and dignified transportation when families need support.", label: "car" },
+    { title: "Professional Drivers", desc: "Experienced and empathetic drivers understand the sensitivity of the moment and ensure every journey is handled carefully and respectfully.", label: "wheel" },
+    { title: "Seamless Coordination", desc: "Our volunteers help coordinate between the family, hospital and cremation ground to reduce confusion and unnecessary logistical burden.", label: "phone" }
+  ];
+
+  const emotionalSection = useWebsiteSection("harsevan-trust");
+  const emotionalQuote = textOrFallback(emotionalSection?.title, "&quot;We ensure their final journey is as peaceful and dignified as the life they lived.&quot;");
+  const emotionalDesc = textOrFallback(emotionalSection?.description, "You should never have to worry about transportation logistics while mourning. Moksha Sewa stands ready to help you navigate this difficult time.");
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#4A3D36]">
       <Topbar />
@@ -77,7 +89,7 @@ export default function HearseVanServices() {
             {/* Image */}
             <div className="relative order-1 h-[400px] w-full overflow-hidden rounded-[2.5rem] shadow-2xl lg:order-2 lg:h-[550px]">
               <Image
-                src="/assets/serving/emergency-transport.png"
+                src={heroImage}
                 alt="Moksha Sewa Hearse Van"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -93,30 +105,21 @@ export default function HearseVanServices() {
         <section className="mx-auto mb-24 max-w-7xl px-4 sm:px-6 lg:px-0">
           <div className="mb-16 text-center">
             <h2 className="py-[20px] font-serif text-[30px] text-[#4A3D36]">
-              How We Assist You
+              {servicesTitle}
             </h2>
 
             <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-3">
-            <ItemCard
-              icon={<FaCarSide className="h-8 w-8" />}
-              title="Immediate Availability"
-              desc="Our hearse vans are coordinated promptly across service areas to provide timely and dignified transportation when families need support."
-            />
-
-            <ItemCard
-              icon={<GiSteeringWheel className="h-8 w-8" />}
-              title="Professional Drivers"
-              desc="Experienced and empathetic drivers understand the sensitivity of the moment and ensure every journey is handled carefully and respectfully."
-            />
-
-            <ItemCard
-              icon={<MdOutlineLocalPhone className="h-8 w-8" />}
-              title="Seamless Coordination"
-              desc="Our volunteers help coordinate between the family, hospital and cremation ground to reduce confusion and unnecessary logistical burden."
-            />
+            {servicesItems.map((item, idx) => (
+              <ItemCard
+                key={idx}
+                icon={item.label === "wheel" ? <GiSteeringWheel className="h-8 w-8" /> : item.label === "phone" ? <MdOutlineLocalPhone className="h-8 w-8" /> : <FaCarSide className="h-8 w-8" />}
+                title={item.title}
+                desc={item.desc}
+              />
+            ))}
           </div>
         </section>
 
@@ -125,15 +128,10 @@ export default function HearseVanServices() {
           <div className="mx-auto max-w-4xl text-center">
             <FaLeaf className="mx-auto mb-8 h-10 w-10 text-[#A0522D]/30" />
 
-            <h3 className="py-[20px] text-[20px] font-semibold leading-relaxed text-[#5D4037]">
-              &quot;We ensure their final journey is as peaceful and dignified
-              as the life they lived.&quot;
-            </h3>
+            <h3 className="py-[20px] text-[20px] font-semibold leading-relaxed text-[#5D4037]" dangerouslySetInnerHTML={{ __html: emotionalQuote.replace(/\n/g, '<br />') }} />
 
             <p className="mx-auto max-w-2xl text-[18px] leading-relaxed text-[#795548]">
-              You should never have to worry about transportation logistics
-              while mourning. Moksha Sewa stands ready to help you navigate this
-              difficult time.
+              {emotionalDesc}
             </p>
           </div>
         </section>

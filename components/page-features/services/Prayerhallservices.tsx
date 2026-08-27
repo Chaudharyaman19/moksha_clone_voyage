@@ -1,3 +1,5 @@
+"use client";
+
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
@@ -38,7 +40,7 @@ const supportCards = [
 ];
 
 export default function PrayerHallServices() {
-  const section = useWebsiteSection("services-prayer-hall");
+  const section = useWebsiteSection("prayerHall-hero");
   const heroImage = imageOrFallback(section?.image, "/assets/prayerhallservices/hero-real.png");
   const title = textOrFallback(section?.title, "Ground & Prayer Support");
   const subtitle = textOrFallback(section?.subtitle, "Creating A Space For Peace.");
@@ -144,29 +146,19 @@ export default function PrayerHallServices() {
         {/* Feature Cards */}
         <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            <FeatureCard
-              imageSrc="/assets/prayerhallservices/feature-ground.png"
-              title="Ground Coordination"
-              desc="Seamless coordination with ground staff and family members."
-            />
-
-            <FeatureCard
-              imageSrc="/assets/prayerhallservices/feature-setup.png"
-              title="Prayer Setup"
-              desc="Serene prayer arrangements prepared with care and respect."
-            />
-
-            <FeatureCard
-              imageSrc="/assets/prayerhallservices/feature-family.png"
-              title="Family Support"
-              desc="Gentle guidance and assistance for family members throughout."
-            />
-
-            <FeatureCard
-              imageSrc="/assets/prayerhallservices/feature-peace.png"
-              title="Peaceful Environment"
-              desc="A calm and respectful space for prayer, mourning and remembrance."
-            />
+            {(useWebsiteSection("prayerHall-highlights")?.items || [
+              { title: "Ground Coordination", description: "Seamless coordination with ground staff and family members.", image: "/assets/prayerhallservices/feature-ground.png" },
+              { title: "Prayer Setup", description: "Serene prayer arrangements prepared with care and respect.", image: "/assets/prayerhallservices/feature-setup.png" },
+              { title: "Family Support", description: "Gentle guidance and assistance for family members throughout.", image: "/assets/prayerhallservices/feature-family.png" },
+              { title: "Peaceful Environment", description: "A calm and respectful space for prayer, mourning and remembrance.", image: "/assets/prayerhallservices/feature-peace.png" }
+            ]).map((item, idx) => (
+              <FeatureCard
+                key={idx}
+                imageSrc={imageOrFallback(item.image, "/assets/prayerhallservices/feature-ground.png")}
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
@@ -176,7 +168,7 @@ export default function PrayerHallServices() {
             <div className="relative mb-6 text-center">
               <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
-                How It Works
+                {textOrFallback(useWebsiteSection("prayerHall-how-it-works")?.title, "How It Works")}
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
               </h2>
             </div>
@@ -185,33 +177,24 @@ export default function PrayerHallServices() {
               <div className="absolute left-[15%] right-[15%] top-[36px] hidden border-t-[1.5px] border-dashed border-[#C99A4A]/40 lg:block" />
 
               <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                <StepItem
-                  num="1"
-                  icon={<BsTelephone className="h-6 w-6 text-[#321A10]" />}
-                  title="Call or Request Support"
-                />
-
-                <StepItem
-                  num="2"
-                  icon={
-                    <BiBuildingHouse className="h-7 w-7 text-[#321A10]" />
-                  }
-                  title="Ground Coordination"
-                />
-
-                <StepItem
-                  num="3"
-                  icon={
-                    <MdOutlineLocalFlorist className="h-7 w-7 text-[#321A10]" />
-                  }
-                  title="Prayer Hall Setup"
-                />
-
-                <StepItem
-                  num="4"
-                  icon={<MdHandshake className="h-7 w-7 text-[#321A10]" />}
-                  title="Guidance During Ceremony"
-                />
+                {(useWebsiteSection("prayerHall-how-it-works")?.items || [
+                  { title: "Call or Request Support", label: "phone" },
+                  { title: "Ground Coordination", label: "building" },
+                  { title: "Prayer Hall Setup", label: "florist" },
+                  { title: "Guidance During Ceremony", label: "hands" }
+                ]).map((item, idx) => (
+                  <StepItem
+                    key={idx}
+                    num={(idx + 1).toString()}
+                    icon={
+                      item.label === "phone" ? <BsTelephone className="h-6 w-6 text-[#321A10]" /> :
+                      item.label === "building" ? <BiBuildingHouse className="h-7 w-7 text-[#321A10]" /> :
+                      item.label === "florist" ? <MdOutlineLocalFlorist className="h-7 w-7 text-[#321A10]" /> :
+                      <MdHandshake className="h-7 w-7 text-[#321A10]" />
+                    }
+                    title={item.title || ""}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -219,7 +202,7 @@ export default function PrayerHallServices() {
 
         {/* Our Complete Support */}
         <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 pb-2 pt-4 lg:px-0">
-          <SectionHeader title="Our Complete Support" />
+          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-stories")?.title, "Our Complete Support")} />
 
           <style>{`
             @keyframes scrollMarquee {
@@ -240,12 +223,12 @@ export default function PrayerHallServices() {
 
           <div className="relative mt-8 w-full overflow-hidden">
             <div className="marquee-track gap-4 lg:gap-5">
-              {[...supportCards, ...supportCards].map((card, idx) => (
+              {[...(useWebsiteSection("prayerHall-stories")?.items || supportCards), ...(useWebsiteSection("prayerHall-stories")?.items || supportCards)].map((card, idx) => (
                 <div
                   key={idx}
                   className="w-[160px] shrink-0 sm:w-[180px]"
                 >
-                  <MarqueeCircleCard src={card.src} title={card.title} />
+                  <MarqueeCircleCard src={imageOrFallback((card as any).image || (card as any).src, "/assets/prayerhallservices/support-1.png")} title={card.title || ""} />
                 </div>
               ))}
             </div>
@@ -254,59 +237,44 @@ export default function PrayerHallServices() {
 
         {/* Ground Support Roles */}
         <section className="mx-auto mb-2 max-w-7xl px-4 pb-2 pt-0 lg:px-0">
-          <SectionHeader title="Ground Support Roles" />
+          <SectionHeader title={textOrFallback(useWebsiteSection("prayerHall-receive")?.title, "Ground Support Roles")} />
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            <RoleSquareCard
-              src="/assets/prayerhallservices/roles-1.png"
-              title="Venue Coordination"
-              desc="Suitable venue coordination for every sacred ritual."
-            />
-
-            <RoleSquareCard
-              src="/assets/prayerhallservices/roles-2.png"
-              title="Setup & Decor"
-              desc="Peaceful arrangements prepared with care and dignity."
-            />
-
-            <RoleSquareCard
-              src="/assets/prayerhallservices/roles-3.png"
-              title="Guest Assistance"
-              desc="Clear and compassionate guidance for guests at every step."
-            />
-
-            <RoleSquareCard
-              src="/assets/prayerhallservices/roles-4.png"
-              title="Post-Prayer Cleanup"
-              desc="Respectful clearing and coordination after rituals conclude."
-            />
+            {(useWebsiteSection("prayerHall-receive")?.items || [
+              { title: "Venue Coordination", description: "Suitable venue coordination for every sacred ritual.", image: "/assets/prayerhallservices/roles-1.png" },
+              { title: "Setup & Decor", description: "Peaceful arrangements prepared with care and dignity.", image: "/assets/prayerhallservices/roles-2.png" },
+              { title: "Guest Assistance", description: "Clear and compassionate guidance for guests at every step.", image: "/assets/prayerhallservices/roles-3.png" },
+              { title: "Post-Prayer Cleanup", description: "Respectful clearing and coordination after rituals conclude.", image: "/assets/prayerhallservices/roles-4.png" }
+            ]).map((item, idx) => (
+              <RoleSquareCard
+                key={idx}
+                src={imageOrFallback(item.image, "/assets/prayerhallservices/roles-1.png")}
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
         {/* Trust Cards */}
         <section className="mx-auto mb-4 mt-2 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
-            <TrustCard
-              icon={
-                <FaHandHoldingHeart className="h-10 w-10 text-[#C99A4A]" />
-              }
-              title="Compassionate Guidance"
-              desc="Care, sensitivity and respect in every moment."
-            />
-
-            <TrustCard
-              icon={<FaOm className="h-10 w-10 text-[#C99A4A]" />}
-              title="Authentic Arrangements"
-              desc="Setups tailored carefully to Shastra and family traditions."
-            />
-
-            <TrustCard
-              icon={
-                <TbHeartHandshake className="h-10 w-10 text-[#C99A4A]" />
-              }
-              title="Support Beyond Ceremony"
-              desc="Continued guidance and support even after the ceremony."
-            />
+            {(useWebsiteSection("prayerHall-trust")?.items || [
+              { title: "Compassionate Guidance", description: "Care, sensitivity and respect in every moment.", label: "heart" },
+              { title: "Authentic Arrangements", description: "Setups tailored carefully to Shastra and family traditions.", label: "om" },
+              { title: "Support Beyond Ceremony", description: "Continued guidance and support even after the ceremony.", label: "handshake" }
+            ]).map((item, idx) => (
+              <TrustCard
+                key={idx}
+                icon={
+                  item.label === "heart" ? <FaHandHoldingHeart className="h-10 w-10 text-[#C99A4A]" /> :
+                  item.label === "om" ? <FaOm className="h-10 w-10 text-[#C99A4A]" /> :
+                  <TbHeartHandshake className="h-10 w-10 text-[#C99A4A]" />
+                }
+                title={item.title || ""}
+                desc={item.description || ""}
+              />
+            ))}
           </div>
         </section>
 
@@ -316,7 +284,7 @@ export default function PrayerHallServices() {
             {/* Left Image */}
             <div className="relative hidden h-[160px] w-full lg:block lg:h-auto lg:w-1/5">
               <Image
-                src="/assets/prayerhallservices/hero.png"
+                src={imageOrFallback(useWebsiteSection("prayerHall-donation")?.image, "/assets/prayerhallservices/hero.png")}
                 alt="Decorative brass items"
                 fill
                 sizes="20vw"
@@ -327,12 +295,11 @@ export default function PrayerHallServices() {
             {/* Center Content */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
               <h2 className="max-w-lg py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
-                Your Support Helps Families Receive Dignified &amp; Sacred Final
-                Rites
+                {textOrFallback(useWebsiteSection("prayerHall-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites")}
               </h2>
 
               <a
-                href="/donation"
+                href={useWebsiteSection("prayerHall-donation")?.buttonHref || "/donation"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="donate-nav-sparkle relative inline-flex h-[46px] min-w-[190px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -340,7 +307,7 @@ export default function PrayerHallServices() {
                 <span className="donate-nav-shine" aria-hidden />
 
                 <span className="relative z-10 whitespace-nowrap">
-                  Donate for Support
+                  {textOrFallback(useWebsiteSection("prayerHall-donation")?.buttonLabel, "Donate for Support")}
                 </span>
 
                 <FaStar
@@ -359,7 +326,7 @@ export default function PrayerHallServices() {
               <FaHandHoldingHeart className="mb-3 h-10 w-10 text-[#C99A4A]" />
 
               <p className="max-w-[180px] text-[18px] font-medium leading-relaxed text-[#321A10]">
-                Every act of kindness becomes a blessing for many.
+                {textOrFallback(useWebsiteSection("prayerHall-donation")?.description, "Every act of kindness becomes a blessing for many.")}
               </p>
             </div>
           </div>

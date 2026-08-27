@@ -5,6 +5,7 @@ import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { textOrFallback, imageOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type IconName =
   | "drop"
@@ -191,11 +192,24 @@ export default function AmbulanceService() {
 }
 
 function HeroSection() {
+  const section = useWebsiteSection("ambulance-hero");
+  const eyebrow = textOrFallback(section?.eyebrow, "24×7 Last Journey Support");
+  const title = textOrFallback(section?.title, "Ambulance & Hearse\nSupport with Dignity");
+  const description = textOrFallback(section?.description, "Namo Gange coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Call for Ambulance");
+  const buttonHref = section?.buttonHref || "tel:+919654900525";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Request Support");
+  const secondaryHref = section?.secondaryButtonHref || "/request-help";
+  const image = imageOrFallback(section?.image, "/ambulance/hero-ambulance.webp");
+  
+  const titleParts = title.split('\n');
+
   return (
     <section className="service-banner relative min-h-[500px] overflow-hidden bg-[#FBF8F1] max-[820px]:min-h-[700px]">
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-[40%] right-0 bg-[url('/ambulance/hero-ambulance.webp')] bg-[length:100%_100%] bg-right-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:top-0 max-[820px]:h-[310px]"
+        className="absolute inset-y-0 left-[40%] right-0 bg-[length:100%_100%] bg-right-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:top-0 max-[820px]:h-[310px]"
+        style={{ backgroundImage: `url('${image}')` }}
       />
 
       <div
@@ -209,37 +223,35 @@ function HeroSection() {
             <span className="grid size-[21px] place-items-center rounded-full bg-[#9C6D2A] text-white shadow-[0_3px_8px_rgba(106,70,24,0.18)]">
               <Icon name="drop" size={14} />
             </span>
-            <span>24×7 Last Journey Support</span>
+            <span>{eyebrow}</span>
           </div>
 
           <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
-            Ambulance &amp; Hearse
-            <br />
-            Support with Dignity
+            {titleParts[0]}
+            {titleParts.length > 1 && <br />}
+            {titleParts.slice(1).join('\n')}
           </h1>
 
           <Divider className="my-3 w-[127px]" />
 
-          <p className="w-full max-w-[440px] text-[18px] leading-relaxed text-[#50483F] max-[820px]:max-w-none">
-            Namo Gange coordinates ambulance and hearse support for eligible
-            last-journey cases with dignified transfer, calm guidance and timely
-            assistance, subject to verification and availability.
+          <p className="w-full max-w-[440px] whitespace-pre-wrap text-[18px] leading-relaxed text-[#50483F] max-[820px]:max-w-none">
+            {description}
           </p>
 
           <div className="mt-4 flex gap-3 max-[520px]:flex-col">
-            <a className={primaryButton} href="tel:+919654900525">
+            <a className={primaryButton} href={buttonHref}>
               <Icon name="phone" size={18} />
-              <span>Call for Ambulance</span>
+              <span>{buttonLabel}</span>
             </a>
 
             <a
               className="inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-[#B68B50] bg-white/80 px-[15px] text-[20px] font-medium text-[#7D561F] shadow-[0_3px_9px_rgba(86,59,25,0.08)] transition-all duration-200 hover:-translate-y-px hover:bg-white"
-              href="/request-help"
+              href={secondaryHref}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Icon name="heart" size={17} />
-              <span>Request Support</span>
+              <span>{secondaryLabel}</span>
             </a>
           </div>
 
@@ -248,7 +260,7 @@ function HeroSection() {
               <Icon name="shield" size={16} />
             </span>
             <span>
-              Serving families with compassion, respect and timely support.
+              {textOrFallback(section?.bottomStatement, "Serving families with compassion, respect and timely support.")}
             </span>
           </div>
         </div>
@@ -258,12 +270,15 @@ function HeroSection() {
 }
 
 function FeatureHighlights() {
+  const section = useWebsiteSection("ambulance-highlights");
+  const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "clock") as IconName })) : highlights;
+
   return (
     <section
       aria-label="Service highlights"
       className="relative z-20 -mt-px mx-auto grid w-full max-w-7xl grid-cols-4 gap-[12px] bg-[#FBFAF7] px-5 pb-[5px] pt-[10px] lg:px-0 max-[820px]:grid-cols-2 max-[520px]:grid-cols-1"
     >
-      {highlights.map((item) => (
+      {items.map((item) => (
         <article
           className="flex h-full min-h-[68px] items-center gap-[9px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDF9]/90 px-[11px] py-[8px] shadow-[0_4px_10px_rgba(79,55,24,0.045),inset_0_0_0_1px_rgba(255,255,255,0.55)]"
           key={item.title}
@@ -288,12 +303,16 @@ function FeatureHighlights() {
 }
 
 function HowItWorks() {
+  const section = useWebsiteSection("ambulance-how-it-works");
+  const title = textOrFallback(section?.title, "How It Works");
+  const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "phone") as IconName })) : steps;
+
   return (
     <section className="mx-auto w-full max-w-7xl px-5 pb-1 pt-0 lg:px-0">
-      <SectionTitle>How It Works</SectionTitle>
+      <SectionTitle>{title}</SectionTitle>
 
       <div className="grid grid-cols-4 gap-[12px] max-[820px]:grid-cols-2 max-[520px]:grid-cols-1">
-        {steps.map((step, index) => (
+        {items.map((step, index) => (
           <div className="relative" key={step.title}>
             <article className="relative h-full min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
               <span className="absolute -top-[19px] left-1/2 grid size-[34px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
@@ -313,7 +332,7 @@ function HowItWorks() {
               </p>
             </article>
 
-            {index < steps.length - 1 ? (
+            {index < items.length - 1 ? (
               <span className="absolute -right-[11px] top-1/2 z-20 -translate-y-1/2 text-[22px] font-normal text-[#9C6D2A] [text-shadow:0_1px_#fff] max-[820px]:hidden">
                 →
               </span>
@@ -326,24 +345,34 @@ function HowItWorks() {
 }
 
 function SupportSection() {
+  const section = useWebsiteSection("ambulance-support");
+  const title = textOrFallback(section?.title, "We Stand With You\nWhen It Matters Most");
+  const description = textOrFallback(section?.description, "In your most difficult moments, we stand beside you. Our ambulance and hearse support services are designed to bring relief, care and dignity.");
+  const image = imageOrFallback(section?.image, "/ambulance/family-support.webp");
+  const items = section?.items?.length ? section.items.map(it => it.title || "") : supportBullets;
+  const buttonLabel = textOrFallback(section?.buttonLabel, "We Are Here For You");
+  const buttonHref = section?.buttonHref || "tel:+919654900525";
+  const imageAlt = textOrFallback(section?.secondaryDescription, "Support team standing with a family");
+  
+  const titleParts = title.split('\n');
+
   return (
     <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] lg:px-0 max-[820px]:grid-cols-1">
       <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
         <h2 className="py-[20px] font-serif text-[30px] font-normal leading-[1.1] text-[#28231E]">
-          We Stand With You
-          <br />
-          When It Matters Most
+          {titleParts[0]}
+          {titleParts.length > 1 && <br />}
+          {titleParts.slice(1).join('\n')}
         </h2>
 
         <span className="my-[11px] block h-px w-[145px] bg-gradient-to-r from-[#9C6D2A] to-transparent" />
 
-        <p className="text-[18px] leading-relaxed text-[#554C43]">
-          In your most difficult moments, we stand beside you. Our ambulance and
-          hearse support services are designed to bring relief, care and dignity.
+        <p className="text-[18px] whitespace-pre-wrap leading-relaxed text-[#554C43]">
+          {description}
         </p>
 
         <ul className="mt-[11px] grid gap-[7px]">
-          {supportBullets.map((item) => (
+          {items.map((item) => (
             <li
               className="flex items-start gap-[7px] text-[18px] leading-[1.3] text-[#3F3831]"
               key={item}
@@ -358,21 +387,21 @@ function SupportSection() {
 
         <a
           className={`${primaryButton} mt-[13px] min-h-[36px] self-start px-[15px] text-[20px]`}
-          href="tel:+919654900525"
+          href={buttonHref}
         >
-          <span>We Are Here For You</span>
+          <span>{buttonLabel}</span>
           <Icon name="heart" size={15} />
         </a>
       </div>
 
       <div className="self-center overflow-hidden rounded-xl bg-[#E8D8C4] shadow-[inset_0_0_0_1px_rgba(95,63,25,0.1),0_5px_12px_rgba(70,47,20,0.07)]">
         <Image
-          alt="Support team standing with a family"
+          alt={imageAlt}
           className="block h-auto w-full"
           width={1100}
           height={620}
           sizes="(max-width: 820px) 100vw, 50vw"
-          src="/ambulance/family-support.webp"
+          src={image}
         />
       </div>
     </section>
@@ -380,12 +409,15 @@ function SupportSection() {
 }
 
 function StoryCards() {
+  const section = useWebsiteSection("ambulance-stories");
+  const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", image: it.image || "", icon: (it.label || "clock") as IconName })) : stories;
+
   return (
     <section
       aria-label="Ambulance support stories"
       className="mx-auto grid w-full max-w-7xl grid-cols-3 gap-[10px] px-5 pb-[5px] pt-[8px] lg:px-0 max-[820px]:grid-cols-1"
     >
-      {stories.map((story) => (
+      {items.map((story) => (
         <article
           className="flex h-full w-full flex-col overflow-hidden rounded-[10px] bg-[#392719] shadow-[0_4px_10px_rgba(58,38,16,0.14)]"
           key={story.title}
@@ -421,24 +453,41 @@ function StoryCards() {
 }
 
 function ReceiveSection() {
+  const section = useWebsiteSection("ambulance-receive");
+  const title = textOrFallback(section?.title, "What Families Receive");
+  const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "ambulance") as IconName })) : receiveItems;
   return (
     <section className="mx-auto w-full max-w-7xl px-5 lg:px-0">
-      <SectionTitle compact>What Families Receive</SectionTitle>
-      <InfoGrid items={receiveItems} />
+      <SectionTitle compact>{title}</SectionTitle>
+      <InfoGrid items={items} />
     </section>
   );
 }
 
 function TrustSection() {
+  const section = useWebsiteSection("ambulance-trust");
+  const title = textOrFallback(section?.title, "Why Families Trust Namo Gange");
+  const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "shield") as IconName })) : trustItems;
   return (
     <section className="mx-auto w-full max-w-7xl px-5 pt-[4px] lg:px-0">
-      <SectionTitle compact>Why Families Trust Namo Gange</SectionTitle>
-      <InfoGrid compact items={trustItems} />
+      <SectionTitle compact>{title}</SectionTitle>
+      <InfoGrid compact items={items} />
     </section>
   );
 }
 
 function DonationSection() {
+  const section = useWebsiteSection("ambulance-donation");
+  const title = textOrFallback(section?.title, "Your Donation Brings Peace");
+  const description = textOrFallback(section?.description, "Your kind contribution helps us provide ambulance, hearse and last-journey support to families who cannot afford it. Together, we can bring comfort, dignity and peace in their most difficult moments.");
+  const image = imageOrFallback(section?.image, "/assets/km.jpeg");
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Donate for Ambulance Service");
+  const buttonHref = section?.buttonHref || "/donation";
+  const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Support Our Sewa");
+  const secondaryHref = section?.secondaryButtonHref || "tel:+919654900525";
+  const quoteTitle = textOrFallback(section?.secondaryTitle, "Every\nContribution\nBrings Peace");
+  const quoteParts = quoteTitle.split('\n');
+
   return (
     <section
       className="mx-auto mb-[14px] mt-[8px] w-full max-w-7xl px-5 lg:px-0"
@@ -449,7 +498,8 @@ function DonationSection() {
         {/* RIGHT IMAGE - THODA LEFT OVERLAP */}
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 right-0 w-[58%] bg-[url('/assets/km.jpeg')] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          className="absolute inset-y-0 right-0 w-[58%] bg-[length:100%_100%] bg-center bg-no-repeat max-[820px]:inset-x-0 max-[820px]:bottom-0 max-[820px]:top-auto max-[820px]:h-[170px] max-[820px]:w-full"
+          style={{ backgroundImage: `url('${image}')` }}
         />
 
         {/* SMOOTH CENTER BLEND - NO VERTICAL LINE */}
@@ -468,20 +518,17 @@ function DonationSection() {
         {/* CONTENT */}
         <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
           <h2 className="mb-[7px] py-[20px] font-serif text-[30px] font-normal text-[#FFF4DE]">
-            Your Donation Brings Peace
+            {title}
           </h2>
 
-          <p className="text-[18px] leading-relaxed text-[#FFF6E9]">
-            Your kind contribution helps us provide ambulance, hearse and
-            last-journey support to families who cannot afford it. Together, we
-            can bring comfort, dignity and peace in their most difficult
-            moments.
+          <p className="whitespace-pre-wrap text-[18px] leading-relaxed text-[#FFF6E9]">
+            {description}
           </p>
 
         <div className="mt-3 flex flex-nowrap items-center gap-2 max-[820px]:flex-wrap">
   <a
     className="donate-nav-sparkle relative inline-flex h-[46px] w-[320px] shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-none border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-4 text-[20px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] max-[820px]:w-full"
-    href="/donation"
+    href={buttonHref}
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -492,18 +539,18 @@ function DonationSection() {
     </span>
 
     <span className="relative z-10 whitespace-nowrap">
-      Donate for Ambulance Service
+      {buttonLabel}
     </span>
   </a>
 
   <a
     className="inline-flex h-[46px] w-[320px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-none border border-[#FFEED1]/65 bg-[#381F0C]/20 px-4 text-[20px] font-medium text-[#FFF7E9] transition-transform hover:-translate-y-px max-[820px]:w-full"
-    href="tel:+919654900525"
+    href={secondaryHref}
   >
     <Icon name="hands" size={16} />
 
     <span className="whitespace-nowrap">
-      Support Our Sewa
+      {secondaryLabel}
     </span>
   </a>
 </div>
@@ -516,11 +563,11 @@ function DonationSection() {
           </span>
 
           <span>
-            Every
+            {quoteParts[0]}
             <br />
-            Contribution
+            {quoteParts[1] || ""}
             <br />
-            Brings Peace
+            {quoteParts[2] || ""}
           </span>
 
           <i className="mt-[5px] text-[14px]">❦</i>

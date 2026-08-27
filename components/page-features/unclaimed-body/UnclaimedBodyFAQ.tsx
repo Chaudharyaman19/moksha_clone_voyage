@@ -1,6 +1,9 @@
-import { UBSIcon } from "./UnclaimedBodyIcons";
+"use client";
 
-const faqs = [
+import { UBSIcon } from "./UnclaimedBodyIcons";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+
+const defaultFaqs = [
   ["What is an unclaimed body?", "The legal or administrative status of a deceased person is determined by competent authorities under applicable procedures. Moksha Sewa does not independently declare a body to be unclaimed."],
   ["Who can request Unclaimed Body Sewa?", "Requests may come from competent authorities, hospitals, recognised institutions or people with verifiable information, depending on the circumstances."],
   ["What documents or authorisation may be required?", "Requirements depend on the case and applicable local process. Assistance can proceed only after the required formalities and authorisation are available."],
@@ -10,24 +13,27 @@ const faqs = [
 ];
 
 export default function UnclaimedBodyFAQ() {
+  const section = useWebsiteSection("unclaimed-faq");
+  const items = section?.items?.length ? section.items : defaultFaqs.map(f => ({ title: f[0], description: f[1] }));
+
   return (
     <section className="relative overflow-hidden bg-[#fbf7ef] px-5 py-6">
       <div className="mx-auto max-w-7xl text-center">
-        <div className="flex items-center justify-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#b37b22]"><span className="h-px w-14 bg-[#c69139]" />Help &amp; Information<span className="h-px w-14 bg-[#c69139]" /></div>
+        <div className="flex items-center justify-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#b37b22]"><span className="h-px w-14 bg-[#c69139]" />{textOrFallback(section?.eyebrow, "Help & Information", 60)}<span className="h-px w-14 bg-[#c69139]" /></div>
         <h2 className="mt-2 text-[40px] font-medium leading-[1.05] text-[#064335] sm:text-[48px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
-          Frequently Asked Questions
+          {textOrFallback(section?.title, "Frequently Asked Questions", 150)}
         </h2>
-        <p className="mt-1 text-[18px] font-medium text-[#3f4546]">About Unclaimed Body Sewa</p>
+        <p className="mt-1 text-[18px] font-medium text-[#3f4546]">{textOrFallback(section?.description, "About Unclaimed Body Sewa", 160)}</p>
 
         <div className="mx-auto mt-4 max-w-[900px] space-y-2 text-left">
-          {faqs.map(([q, a], index) => (
-            <details key={q} open={index === 0} className="group rounded-[8px] border border-[#ddd3c4] bg-white px-4 py-2.5">
+          {items.map((item, index) => (
+            <details key={item.title} open={index === 0} className="group rounded-[8px] border border-[#ddd3c4] bg-white px-4 py-2.5">
               <summary className="flex cursor-pointer list-none items-center gap-4 text-[16px] font-bold text-[#34403e]">
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-[#004b39] text-white"><UBSIcon name="ShieldCheck" className="h-4 w-4" /></span>
-                <span className="flex-1">{q}</span>
+                <span className="flex-1">{textOrFallback(item.title, "", 150)}</span>
                 <span className="text-[#8e7b58] group-open:rotate-180">⌄</span>
               </summary>
-              <p className="pl-11 pt-2 text-[16px] leading-[1.35] text-[#555b5a]">{a}</p>
+              <p className="pl-11 pt-2 text-[16px] leading-[1.35] text-[#555b5a]">{textOrFallback(item.description, "", 600)}</p>
             </details>
           ))}
         </div>

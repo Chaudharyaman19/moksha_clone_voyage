@@ -1,31 +1,36 @@
+"use client";
+
 import { UBSIcon } from "./UnclaimedBodyIcons";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function WhatIsUnclaimedBody() {
+  const section = useWebsiteSection("unclaimed-what-is");
+  const title = textOrFallback(section?.title, "What Is Unclaimed\nBody Sewa?", 150);
+  const description = textOrFallback(section?.description, "In some circumstances, a deceased person may remain unclaimed or may have no available family or support system to undertake the final journey.\n\nMoksha Sewa seeks to support eligible cases after the required legal or administrative process and appropriate authorisation from the competent authority.", 600);
+  const descParts = description.split("\n\n");
+  const titleParts = title.split("\n");
+
   return (
     <section className="relative overflow-hidden bg-[#faf6ef] px-5 pb-5 pt-2">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 lg:grid-cols-[58%_42%]">
         <div className="relative rounded-[16px] bg-[#fffaf2] px-6 py-2">
           <div className="flex items-center gap-4 text-[#ad7421]">
             <span className="h-px w-14 bg-[#c28d35]" />
-            <span className="text-[16px] font-bold uppercase tracking-[0.1em]">Understanding The Sewa</span>
+            <span className="text-[16px] font-bold uppercase tracking-[0.1em]">{textOrFallback(section?.eyebrow, "Understanding The Sewa", 60)}</span>
           </div>
           <h2
             className="mt-1.5 text-[38px] font-medium leading-[1] text-[#064335] sm:text-[46px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            What Is Unclaimed
+            {titleParts[0]}
             <br />
-            Body Sewa?
+            {titleParts[1] || ""}
           </h2>
           <p className="mt-1.5 max-w-[720px] text-[16px] font-medium leading-[1.3] text-[#41484a]">
-            In some circumstances, a deceased person may remain unclaimed or
-            may have no available family or support system to undertake the
-            final journey.
+            {descParts[0]}
           </p>
           <p className="mt-1 max-w-[720px] text-[16px] font-medium leading-[1.3] text-[#41484a]">
-            Moksha Sewa seeks to support eligible cases after the required legal
-            or administrative process and appropriate authorisation from the
-            competent authority.
+            {descParts[1] || ""}
           </p>
         </div>
 
@@ -47,9 +52,17 @@ export default function WhatIsUnclaimedBody() {
             other competent authorities.
           </p>
           <ul className="mt-1.5 grid gap-1 text-[16px] leading-[1.25] text-[#454b4a]">
-            <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Support proceeds only after the required verification and authorisation from the competent authority.</span></li>
-            <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Police, hospital, municipal and legal procedures must be completed wherever applicable.</span></li>
-            <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Case information and documents are handled responsibly, with privacy and dignity.</span></li>
+            {section?.items?.length ? (
+              section.items.map((item, i) => (
+                <li key={i} className="flex gap-2"><span className="text-[#b27b20]">•</span><span>{item.description}</span></li>
+              ))
+            ) : (
+              <>
+                <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Support proceeds only after the required verification and authorisation from the competent authority.</span></li>
+                <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Police, hospital, municipal and legal procedures must be completed wherever applicable.</span></li>
+                <li className="flex gap-2"><span className="text-[#b27b20]">•</span><span>Case information and documents are handled responsibly, with privacy and dignity.</span></li>
+              </>
+            )}
           </ul>
         </div>
       </div>

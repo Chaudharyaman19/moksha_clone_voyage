@@ -1,5 +1,7 @@
-import { UBSIcon } from "./UnclaimedBodyIcons";
+"use client";
 
+import { UBSIcon } from "./UnclaimedBodyIcons";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 const proof = [
   ["ShieldCheck", "Verification"],
   ["FileCheck", "Authorisation"],
@@ -8,6 +10,16 @@ const proof = [
 ] as const;
 
 export default function UnclaimedBodyHero() {
+  const section = useWebsiteSection("unclaimed-hero");
+  const eyebrow = textOrFallback(section?.eyebrow, "Unclaimed Body Sewa", 60);
+  const heroImage = imageOrFallback(section?.image, "/assets/unclaimed-body/first.png");
+  const title = textOrFallback(section?.title, "Unclaimed Body Sewa\nWith Dignity &\nResponsible Support", 150);
+  const description = textOrFallback(section?.description, "Because every human being deserves a respectful final journey.\n\nMoksha Sewa, an initiative of Namo Gange Trust, supports eligible and legally authorised unclaimed-body cases through responsible coordination, cremation and last-rites assistance, subject to verification and applicable formalities.", 600);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Report Unclaimed Case", 36);
+  const buttonHref = section?.buttonHref || "#request-unclaimed-help";
+
+  const titleParts = title.split("\n");
+
   return (
     <section className="relative overflow-hidden bg-[#fbf6ec]">
       <div className="relative min-h-[600px] w-full overflow-hidden">
@@ -15,8 +27,7 @@ export default function UnclaimedBodyHero() {
         <div
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] bg-no-repeat lg:block"
           style={{
-            backgroundImage:
-              "url('/assets/unclaimed-body/first.png')",
+            backgroundImage: `url('${heroImage}')`,
             backgroundSize: "cover",
             backgroundPosition: "right center",
           }}
@@ -34,8 +45,7 @@ export default function UnclaimedBodyHero() {
         <div
           className="pointer-events-none absolute inset-0 z-0 bg-no-repeat lg:hidden"
           style={{
-            backgroundImage:
-              "url('/assets/unclaimed-body/first.png')",
+            backgroundImage: `url('${heroImage}')`,
             backgroundSize: "cover",
             backgroundPosition: "right bottom",
           }}
@@ -51,14 +61,14 @@ export default function UnclaimedBodyHero() {
         />
 
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-10 lg:px-0 lg:pt-14">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-16 lg:px-0 lg:pt-28">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
             <UBSIcon
               name="Lotus"
               className="h-8 w-8 text-[#b67c22]"
             />
 
-            Unclaimed Body Sewa
+            {eyebrow}
           </div>
 
           <h1
@@ -67,13 +77,13 @@ export default function UnclaimedBodyHero() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            Unclaimed Body Sewa
+            {titleParts[0]}
             <br />
-            With Dignity &amp;
+            {titleParts[1] || ""}
             <br />
 
             <span className="text-[#b87a16]">
-              Responsible Support
+              {titleParts[2] || ""}
             </span>
           </h1>
 
@@ -88,24 +98,17 @@ export default function UnclaimedBodyHero() {
             <span className="h-px flex-1 bg-[#c59b56]" />
           </div>
 
-          <p className="mt-2 max-w-[600px] text-[16px] font-semibold leading-[1.4] text-[#333a3c]">
-            Because every human being deserves a respectful final journey.
-          </p>
-
-          <p className="mt-1.5 max-w-[620px] text-[16px] font-medium leading-[1.4] text-[#454a4c]">
-            Moksha Sewa, an initiative of Namo Gange Trust, supports eligible
-            and legally authorised unclaimed-body cases through responsible
-            coordination, cremation and last-rites assistance, subject to
-            verification and applicable formalities.
+          <p className="mt-2 max-w-[620px] whitespace-pre-wrap text-[16px] font-medium leading-[1.4] text-[#454a4c]">
+            {description}
           </p>
 
           {/* BUTTONS */}
           <div className="mt-3 flex flex-wrap gap-3">
             <a
-              href="#request-unclaimed-help"
+              href={buttonHref}
               className="inline-flex h-[56px] min-w-[245px] items-center justify-between rounded-[7px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white"
             >
-              Request Sewa Help
+              {buttonLabel}
 
               <UBSIcon
                 name="ArrowRight"
