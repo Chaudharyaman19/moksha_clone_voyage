@@ -290,21 +290,23 @@ export default function SewaStories() {
   const websiteSection = useWebsiteSection("sewa-stories");
   const managedStories = [
     ...stories.map((fallback, index) => {
-    const item = itemOrFallback(websiteSection?.items, index, fallback);
-    return {
-      ...fallback,
-      title: textOrFallback(item.title, fallback.title, 80),
-      description: textOrFallback(item.description, fallback.description, 220),
-      image: item.image || fallback.image,
-      images: item.image ? [item.image] : fallback.images,
-    };
+      const item = itemOrFallback(websiteSection?.items, index, fallback);
+      const itemImages = [item.image, (item as any).secondaryImage, (item as any).tertiaryImage, (item as any).quaternaryImage].filter(Boolean) as string[];
+      return {
+        ...fallback,
+        title: textOrFallback(item.title, fallback.title, 80),
+        description: textOrFallback(item.description, fallback.description, 220),
+        image: item.image || fallback.image,
+        images: itemImages.length > 0 ? itemImages : fallback.images,
+      };
     }),
     ...(websiteSection?.items?.slice(stories.length) ?? []).map((item) => ({
       ...stories[stories.length - 1],
       title: item.title || "New Sewa Story",
       image: item.image || stories[stories.length - 1].image,
+      images: [item.image, (item as any).secondaryImage, (item as any).tertiaryImage, (item as any).quaternaryImage].filter(Boolean) as string[],
       description: item.description || "Additional Sewa story.",
-    })),
+    }))
   ];
 
   return (
@@ -346,7 +348,7 @@ export default function SewaStories() {
         "
       >
         <Image
-          src="/assets/about-reference/story-evening-ghat.png"
+          src={websiteSection?.image || "/assets/about-reference/story-evening-ghat.png"}
           alt=""
           fill
           sizes="610px"
@@ -416,9 +418,7 @@ export default function SewaStories() {
         <path d="M129 52c-9-20 2-36 19-43 12 17 8 32-7 44" />
       </svg>
 
-      {/* ==========================================
-          SECTION WIDTH — HEADER ALIGN
-      =========================================== */}
+
 
       <div
         className="

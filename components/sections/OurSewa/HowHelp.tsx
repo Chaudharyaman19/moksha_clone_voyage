@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import type { ReactElement } from "react";
 
 interface CustomIconProps {
@@ -353,6 +355,24 @@ const decorativePattern = {
 };
 
 export default function HowWeCanHelp() {
+  const websiteSection = useWebsiteSection("practical-support");
+  const managedCards = cards.map((card, index) => {
+    const item = websiteSection?.items?.[index];
+    return {
+      ...card,
+      title: textOrFallback(item?.title, card.title, 80),
+      desc: textOrFallback(item?.description, card.desc, 150),
+      image: item?.image || card.image,
+    };
+  });
+  const managedBenefits = benefits.map((benefit, index) => {
+    const item = websiteSection?.items?.[index + cards.length];
+    return {
+      ...benefit,
+      title: textOrFallback(item?.title, benefit.title, 80),
+      text: textOrFallback(item?.description, benefit.text, 150),
+    };
+  });
   return (
     <section
       className="
@@ -442,7 +462,7 @@ export default function HowWeCanHelp() {
             bg-no-repeat
           "
           style={{
-            backgroundImage: "url('/assets/how-we-help/our-sewa-bg.png')",
+            backgroundImage: `url('${websiteSection?.image || "/assets/how-we-help/our-sewa-bg.png"}')`,
           }}
         />
 
@@ -486,7 +506,7 @@ export default function HowWeCanHelp() {
           <div className="mt-0 flex items-center justify-center gap-[12px]">
             <span className="h-px w-[62px] bg-[#D05A17]" />
             <span className="text-[16px] font-bold uppercase tracking-[0.04em] text-[#6E2C18]">
-              Our Sewa
+              {textOrFallback(websiteSection?.eyebrow, "Our Sewa", 50)}
             </span>
             <span className="h-px w-[62px] bg-[#D05A17]" />
           </div>
@@ -504,10 +524,9 @@ export default function HowWeCanHelp() {
             "
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Essential Support for a
-            <span className="mt-[2px] block text-[#D54200]">
-              Dignified Final Journey
-            </span>
+            {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 150).split('\n').map((line, i) => 
+              i === 1 ? <span key={line} className="mt-[2px] block text-[#D54200]">{line}</span> : line
+            )}
           </h2>
 
           <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
@@ -520,15 +539,13 @@ export default function HowWeCanHelp() {
           </div>
 
           <p className="mx-auto mt-[7px] max-w-[700px] text-[16px] leading-[1.42] text-[#2C2825]">
-            Moksha Sewa ensures that every individual—regardless of their
-            circumstances—receives a respectful and dignified farewell with
-            complete care and compassion.
+            {textOrFallback(websiteSection?.description, "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.", 300)}
           </p>
         </header>
 
         {/* cards */}
         <div className="grid grid-cols-1 items-stretch gap-[20px] md:grid-cols-2 lg:grid-cols-4">
-          {cards.map((card) => (
+          {managedCards.map((card) => (
             <article
               key={card.title}
               className="
@@ -706,7 +723,7 @@ export default function HowWeCanHelp() {
               md:divide-y-0
             "
           >
-            {benefits.map((item) => (
+            {managedBenefits.map((item) => (
               <div
                 key={item.title}
                 className="flex min-h-[125px] items-center gap-[13px] px-[15px] py-[13px]"

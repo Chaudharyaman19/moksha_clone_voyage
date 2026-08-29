@@ -1,52 +1,25 @@
 import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
-import TermsAndConditions from "@/components/sections/terms/Content";
-import PolicyHero, {
-  termsPolicyMeta,
-} from "@/components/sections/policy-hero/PolicyHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { getPageSections } from "@/lib/websiteSettingsApi";
+import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
 export const metadata = createPageMetadata("/terms");
+import TermsPageContent from "./TermsPageContent";
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const sections = await getPageSections("terms");
   return (
-    <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
-      <JsonLd data={breadcrumbJsonLd("/terms")} />
-      <Topbar />
-      <Navbar />
-      <PolicyHero
-        title="Terms & Conditions"
-        subtitle="Please read these terms carefully"
-        description="Welcome to Moksha Sewa. By accessing our website or using our services, you agree to comply with and be bound by the following Terms & Conditions."
-        policyMeta={termsPolicyMeta}
-      />
-      <TermsAndConditions />
-      {/* OLD CONTENT - COMMENTED OUT
-      <main className="mx-auto max-w-4xl px-5 pb-16 pt-28">
-        <h1 className="font-serif text-[34px] leading-tight sm:text-[44px]">
-          Terms and Conditions
-        </h1>
-        <p className="mt-4 text-[16px] leading-7 text-[#594236]">
-          By using the Moksha Sewa website, you agree to provide accurate
-          information when requesting help, making donations, volunteering or
-          contacting the team.
-        </p>
-        <h2 className="mt-8 font-serif text-[26px]">Service Requests</h2>
-        <p className="mt-3 text-[16px] leading-7 text-[#594236]">
-          Assistance depends on case verification, local availability and team
-          coordination. Moksha Sewa will make reasonable efforts to guide and
-          support eligible families.
-        </p>
-        <h2 className="mt-8 font-serif text-[26px]">Donations</h2>
-        <p className="mt-3 text-[16px] leading-7 text-[#594236]">
-          Donations are used to support seva activities, cremation essentials,
-          transport support, volunteer coordination and related welfare work.
-        </p>
-      </main>
-      */}
-      <Footer />
-    </div>
+    <WebsiteContentProvider sections={sections as any} page="terms">
+      <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
+        <JsonLd data={breadcrumbJsonLd("/terms")} />
+        <Topbar />
+        <Navbar />
+        <TermsPageContent />
+        <Footer />
+      </div>
+    </WebsiteContentProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, Image as ImageIcon } from "lucide-react";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const SEWA_CARDS = [
   {
@@ -73,7 +73,7 @@ export default function GlimpseOfJourney() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/sewa/sewa_in_action_bg.png"
+          src={imageOrFallback(websiteSection?.image, "/assets/sewa/sewa_in_action_bg.png")}
           alt=""
           aria-hidden="true"
           fill

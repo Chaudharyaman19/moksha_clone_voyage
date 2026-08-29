@@ -548,7 +548,7 @@ export default function VolunteerRegister() {
             >
               <div className="relative h-full w-full shrink-0">
                 <Image
-                  src="/hero-images/volunteer-elderly-woman.png"
+                  src={heroSection?.image || "/hero-images/volunteer-elderly-woman.png"}
                   alt="Moksha Sewa volunteer sitting with and comforting an elderly woman"
                   fill
                   priority
@@ -559,7 +559,7 @@ export default function VolunteerRegister() {
 
               <div className="relative h-full w-full shrink-0">
                 <Image
-                  src="/hero-images/volunteer-hero-second.png"
+                  src={heroSection?.secondaryImage || "/hero-images/volunteer-hero-second.png"}
                   alt="Moksha Sewa volunteer carrying ritual materials at a sacred river ghat"
                   fill
                   sizes="100vw"
@@ -582,7 +582,7 @@ export default function VolunteerRegister() {
     <div className="mb-1 flex w-full max-w-[440px] flex-col items-start text-left sm:mb-2">
       <div className="hidden w-[150px] self-center sm:block sm:w-[190px] lg:w-[220px]">
         <Image
-          src="/hero-images/image6.png"
+          src={heroSection?.logoImage || "/hero-images/image6.png"}
           alt="Namo Gange"
           width={420}
           height={150}

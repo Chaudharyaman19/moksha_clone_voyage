@@ -1,6 +1,7 @@
 export interface LandingSectionItem {
   title?: string;
   label?: string;
+  subtitle?: string;
   value?: string;
   description?: string;
   image?: string;
@@ -50,6 +51,7 @@ export interface LandingSectionContent {
   phoneNumber?: string;
   contactEmail?: string;
   contactAddress?: string;
+  altPhoneNumber?: string;
   availabilityText?: string;
   actionTitle?: string;
   requestTitle?: string;
@@ -504,6 +506,7 @@ const genericTextLimits: Partial<Record<keyof LandingSectionContent, number>> = 
   phoneNumber: 24,
   contactEmail: 100,
   contactAddress: 180,
+  altPhoneNumber: 24,
   availabilityText: 120,
   actionTitle: 90,
   requestTitle: 90,
@@ -531,6 +534,7 @@ const genericTextLimits: Partial<Record<keyof LandingSectionContent, number>> = 
 const itemTextLimits: Partial<Record<keyof LandingSectionItem, number>> = {
   title: 120,
   label: 70,
+  subtitle: 120,
   value: 50,
   description: 260,
 };

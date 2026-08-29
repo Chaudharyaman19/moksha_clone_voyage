@@ -6,18 +6,18 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-export const metadata = createPageMetadata("/refund-policy");
-import RefundPageContent from "./RefundPageContent";
+export const metadata = createPageMetadata("/code-of-conduct");
+import ConductPageContent from "./ConductPageContent";
 
-export default async function RefundPolicyPage() {
-  const sections = await getPageSections("refund-policy");
+export default async function ConductPage() {
+  const sections = await getPageSections("code-of-conduct");
   return (
-    <WebsiteContentProvider sections={sections as any} page="refund-policy">
+    <WebsiteContentProvider sections={sections as any} page="code-of-conduct">
       <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
-        <JsonLd data={breadcrumbJsonLd("/refund-policy")} />
+        <JsonLd data={breadcrumbJsonLd("/code-of-conduct")} />
         <Topbar />
         <Navbar />
-        <RefundPageContent />
+        <ConductPageContent />
         <Footer />
       </div>
     </WebsiteContentProvider>

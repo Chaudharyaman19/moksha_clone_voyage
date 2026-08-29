@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -35,174 +35,21 @@ import {
 const HEADER_OFFSET = 150;
 
 const SECTIONS_SELECTOR = 'section[id^="refund-section-"]';
-
 const ITEMS_SELECTOR = ".refund-policy-card";
 
-const navigationItems = [
-  { number: 1, label: "Overview" },
-  { number: 2, label: "Donations" },
-  { number: 3, label: "Payment Failure or Deduction Without Successful Donation" },
-  { number: 4, label: "Duplicate Transactions" },
-  { number: 5, label: "Event / Campaign Registrations" },
-  { number: 6, label: "Merchandise / Products" },
-  { number: 7, label: "Volunteer or Other Services" },
-  { number: 9, label: "How to Request a Refund" },
-  { number: 10, label: "Refund Process & Timeline" },
-  { number: 11, label: "Mode of Refund" },
-  { number: 12, label: "Chargebacks" },
-  { number: 13, label: "Partial Refunds" },
-  { number: 14, label: "Changes to This Policy" },
-  { number: 15, label: "Grievance / Contact" },
-];
 
-const mainSections = [
-  {
-    number: 1,
-    title: "Overview",
-    icon: HeartHandshake,
-    content:
-      "This Refund Policy applies to all donations, payments, registrations and transactions made on the Moksha Sewa website or through authorised channels.",
-  },
-  {
-    number: 2,
-    title: "Donations",
-    icon: HandHeart,
-    content:
-      "Donations made towards our cause are voluntary and non-refundable. We utilize these funds towards verified humanitarian activities and operational expenses to support our mission.",
-  },
-  {
-    number: 3,
-    title: "Payment Failure or Deduction Without Successful Donation",
-    icon: CreditCard,
-    content:
-      "If an amount is deducted from your account but the donation is not recorded by us due to a technical error or gateway failure, the full amount will be refunded to your original payment method within 7–10 working days.",
-  },
-  {
-    number: 4,
-    title: "Duplicate Transactions",
-    icon: ReceiptText,
-    content:
-      "In case of duplicate transactions / multiple deductions for the same donation or payment, you are eligible for a full refund of the duplicate amount.",
-  },
-  {
-    number: 5,
-    title: "Event / Campaign Registrations",
-    icon: CalendarDays,
-    content:
-      "Registration fees for events, campaigns or programmes are generally non-refundable. However, if an event is cancelled or postponed by us, we will issue a full refund to registered participants.",
-  },
-  {
-    number: 6,
-    title: "Merchandise / Products",
-    icon: Package,
-    content:
-      "Refunds are not applicable on purchases of merchandise, books, or other items unless the product is damaged, defective or significantly different from the description provided.",
-  },
-  {
-    number: 7,
-    title: "Volunteer or Other Services",
-    icon: UsersRound,
-    content:
-      "No refund is applicable for volunteer registrations, membership, or other non-monetary services.",
-  },
-];
 
-const premiumCards = [
-  {
-    number: 9,
-    title: "How to Request a Refund",
-    icon: FileCheck2,
-    tagline: "Simple steps to request your refund hassle-free.",
-    content: (
-      <>
-        <p>
-          To request a refund, contact us within 7 days of the transaction
-          with your:
-        </p>
-        <ul className="mt-1.5 space-y-0.5">
-          <li>• Full name</li>
-          <li>• Transaction ID / Receipt</li>
-          <li>• Reason for refund</li>
-          <li>• Supporting details (if any)</li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    number: 10,
-    title: "Refund Process & Timeline",
-    icon: Clock3,
-    tagline: "Know how long it takes to get your refund.",
-    image:
-      "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=900&auto=format&fit=crop",
-    imageAlt: "Hourglass measuring the refund processing timeline",
-    content: (
-      <p>
-        Once your request is reviewed and approved, refunds will be processed
-        within <strong>7–10 working days</strong> to the original payment
-        method.
-      </p>
-    ),
-  },
-  {
-    number: 11,
-    title: "Mode of Refund",
-    icon: IndianRupee,
-    tagline: "Refunds through your original payment method.",
-    content: (
-      <p>
-        Refunds will be made using the same method through which the original
-        payment was made.
-      </p>
-    ),
-  },
-  {
-    number: 12,
-    title: "Chargebacks",
-    icon: ShieldCheck,
-    tagline: "Understand the impact of chargebacks on future donations.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=900&auto=format&fit=crop",
-    imageAlt: "Financial security and payment protection",
-    content: (
-      <p>
-        Initiating a chargeback without contacting us first may affect your
-        ability to make future donations and will incur additional charges,
-        which will be deducted from the refundable amount (if any).
-      </p>
-    ),
-  },
-];
+import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const addendumSections = [
-  {
-    number: 13,
-    title: "Partial Refunds",
-    icon: FileText,
-    content:
-      "In certain situations, a partial refund may be considered at our sole discretion depending on the nature of the request and the services or benefits provided.",
-  },
-  {
-    number: 14,
-    title: "Changes to This Policy",
-    icon: RefreshCcw,
-    content:
-      "We may update this Refund Policy from time to time. The updated version will be posted on our website.",
-  },
-  {
-    number: 15,
-    title: "Grievance / Contact",
-    icon: Mail,
-    content:
-      "For any refund-related queries or grievances, please contact us.",
-  },
-];
+const mainIcons = [HeartHandshake, HandHeart, CreditCard, ReceiptText, CalendarDays, Package, UsersRound];
+const premiumIcons = [FileCheck2, Clock3, IndianRupee, ShieldCheck];
+const addendumIcons = [FileText, RefreshCcw, Mail];
 
 function RefundPolicyCard({
   card,
   isEven,
 }: {
-  card: (typeof premiumCards)[number];
+  card: { number: number; title: string; icon: any; tagline?: string; content: React.ReactNode; image?: string; imageAlt?: string };
   isEven: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -323,6 +170,74 @@ function SectionHeading({
 }
 
 export default function RefundPolicy() {
+  const mainSec = useWebsiteSection("refund-content");
+  const premiumSec = useWebsiteSection("refund-premium-cards");
+  const addendumSec = useWebsiteSection("refund-addendum-sections");
+  const refundContact = useWebsiteSection("refund-contact");
+  const refundSidebar = useWebsiteSection("refund-sidebar");
+  const refundIntro = useWebsiteSection("refund-intro");
+
+  const noteItem = refundSidebar?.items?.[0] || {
+    title: "Note",
+    description: "Refunds are processed only in eligible cases as per this policy.\n\nWe request you to read this policy carefully before making any donation or payment.",
+  };
+
+  const commitment = refundSidebar?.items?.[1] || {
+    title: "Our Commitment",
+    description: "We are committed to transparency and accountability in managing all donations.\n\nEvery contribution directly supports our mission to serve humanity.",
+    image: "/assets/privacy-policy/our_commitment.webp",
+  };
+
+  const introText = refundIntro?.description || (
+    <>
+      Moksha Sewa (an initiative of{" "}
+      <a
+        href="https://namogange.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-[#8B6A3E] underline underline-offset-4 transition-colors hover:text-[#B76B16]"
+      >
+        Namo Gange Trust
+      </a>
+      ) is a non-profit
+      organisation. Donations made to support our humanitarian
+      activities are voluntary and non-refundable except as provided
+      in this Refund Policy.
+    </>
+  );
+
+  const mainSections = (mainSec?.items || []).map((item, index) => ({
+    number: index + 1,
+    title: item.title || `Section ${index + 1}`,
+    icon: mainIcons[index % mainIcons.length],
+    content: item.description || "",
+  }));
+
+  const premiumCards = (premiumSec?.items || []).map((item, index) => ({
+    number: index + 9,
+    title: item.title || `Premium ${index + 1}`,
+    icon: premiumIcons[index % premiumIcons.length],
+    tagline: item.label || "",
+    content: <p className="whitespace-pre-wrap">{item.description}</p>,
+    image: item.image,
+    imageAlt: item.title,
+  }));
+
+  const addendumSections = (addendumSec?.items || []).map((item, index) => ({
+    number: index + 13,
+    title: item.title || `Addendum ${index + 1}`,
+    icon: addendumIcons[index % addendumIcons.length],
+    content: item.description || "",
+  }));
+
+  const navigationItems = useMemo(() => {
+    return [
+      ...mainSections.map((s) => ({ number: s.number, label: s.title })),
+      ...premiumCards.map((s) => ({ number: s.number, label: s.title })),
+      ...addendumSections.map((s) => ({ number: s.number, label: s.title })),
+    ];
+  }, [mainSections, premiumCards, addendumSections]);
+
   const pageRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const isProgrammaticScroll = useRef(false);
@@ -638,26 +553,27 @@ export default function RefundPolicy() {
               />
 
               <h3 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                Note
+                {noteItem.title}
               </h3>
             </div>
 
-            <div className="mt-3 space-y-2 text-[16px] leading-6 text-[#5B4635]">
-              <p>
-                Refunds are processed only in eligible cases as per this
-                policy.
-              </p>
+            <div className="mt-3 space-y-2 text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
+              <p>{noteItem.description}</p>
+            </div>
 
-              <p>
-                We request you to read this policy carefully before making any
-                donation or payment.
+            <div className="mt-4 flex flex-col items-center">
+              <h3 className="w-full text-left font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+                {commitment.title}
+              </h3>
+              <p className="mt-2 w-full text-left text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
+                {commitment.description}
               </p>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-end mt-2">
               <Image
-                src="/assets/privacy-policy/our_commitment.webp"
-                alt="Our Commitment"
+                src={commitment.image || "/assets/privacy-policy/our_commitment.webp"}
+                alt={commitment.title || "Our Commitment"}
                 width={240}
                 height={160}
                 className="h-auto w-1/2 object-cover"
@@ -684,19 +600,7 @@ export default function RefundPolicy() {
             </div>
 
             <p className="text-[16px] font-medium leading-6 text-[#2C1810]">
-              Moksha Sewa (an initiative of{" "}
-              <a
-                href="https://namogange.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#8B6A3E] underline underline-offset-4 transition-colors hover:text-[#B76B16]"
-              >
-                Namo Gange Trust
-              </a>
-              ) is a non-profit
-              organisation. Donations made to support our humanitarian
-              activities are voluntary and non-refundable except as provided
-              in this Refund Policy.
+              {introText}
             </p>
           </section>
 
@@ -828,12 +732,11 @@ export default function RefundPolicy() {
 
             <div>
               <h2 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                Have Questions About a Refund?
+                {refundContact?.title || "Have Questions About a Refund?"}
               </h2>
 
-              <p className="mt-1 text-[16px] leading-6 text-[#5B4635]">
-                We are here to help you with any refund-related queries or
-                concerns.
+              <p className="mt-1 text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
+                {refundContact?.description || "We are here to help you with any refund-related queries or concerns."}
               </p>
             </div>
 
@@ -847,12 +750,12 @@ export default function RefundPolicy() {
           </div>
 
           <Link
-            href="/contact"
+            href={refundContact?.buttonHref || "/contact"}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-semibold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
-            Contact Us
+            {refundContact?.buttonLabel || "Contact Us"}
 
             <ArrowRight
               size={14}

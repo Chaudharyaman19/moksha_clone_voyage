@@ -652,7 +652,7 @@ export default function TrustTransparency() {
           <div className="flex items-center gap-[14px] max-md:gap-[12px]">
             <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E2A633] max-md:h-[62px] max-md:w-[62px]">
               <Image
-                src="/assets/about-reference/story-ghat-temple.png"
+                src={imageOrFallback(websiteSection?.secondaryImage, "/assets/about-reference/story-ghat-temple.png")}
                 alt="Sacred river ghat"
                 fill
                 sizes="70px"

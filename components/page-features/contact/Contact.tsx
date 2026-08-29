@@ -25,13 +25,6 @@ import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-/* ---------- one source of truth so numbers never mismatch ---------- */
-const CONTACT = {
-  helpline: { label: "+91 92201 47229", href: "tel:+919220147229" },
-  altPhone: { label: "+91 96549 00525", href: "tel:+919654900525" },
-  email: { label: "info@mokshasewa.org", href: "mailto:info@mokshasewa.org" },
-};
-
 const HEAD_OFFICE_QUERY =
   "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad";
 
@@ -97,6 +90,35 @@ const socials = [
 function Contact() {
   const heroSection = useWebsiteSection("contact-hero");
   const formSection = useWebsiteSection("contact-form");
+  const locationsSection = useWebsiteSection("contact-locations");
+
+  const CONTACT = {
+    helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "92201 47229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
+    altPhone: { label: `+91 ${textOrFallback(heroSection?.altPhoneNumber, "96549 00525", 20)}`, href: `tel:+91${textOrFallback(heroSection?.altPhoneNumber, "9654900525", 20).replace(/\D/g, "")}` },
+    email: { label: textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50), href: `mailto:${textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50)}` },
+  };
+
+  const managedLocations = [
+    ...officeLocations.map((fallback, index) => {
+      const item = locationsSection?.items?.[index];
+      return {
+        ...fallback,
+        city: textOrFallback(item?.title, fallback.city, 40),
+        region: textOrFallback(item?.subtitle, fallback.region, 60),
+        address: textOrFallback(item?.description, fallback.address, 150),
+        phone: item?.value ? { label: item.value, href: `tel:${item.value.replace(/\D/g, "")}` } : fallback.phone,
+        image: item?.image || fallback.image,
+      };
+    }),
+    ...(locationsSection?.items?.slice(officeLocations.length) ?? []).map((item) => ({
+      ...officeLocations[officeLocations.length - 1],
+      city: item.title || "New Office",
+      region: item.subtitle || "New Region",
+      address: item.description || "Address not provided",
+      phone: item.value ? { label: item.value, href: `tel:${item.value.replace(/\D/g, "")}` } : officeLocations[officeLocations.length - 1].phone,
+      image: item.image || officeLocations[officeLocations.length - 1].image,
+    })),
+  ];
   
   const [formData, setFormData] = useState({
     firstName: "",
@@ -114,7 +136,7 @@ function Contact() {
   }>({ type: null, message: "" });
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [activeMapIndex, setActiveMapIndex] = useState(0);
-  const activeMapLocation = officeLocations[activeMapIndex];
+  const activeMapLocation = managedLocations[activeMapIndex];
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -364,7 +386,7 @@ function Contact() {
             </div>
 
             <div className="grid gap-3 lg:grid-cols-2">
-              {officeLocations.map((location) => {
+              {managedLocations.map((location) => {
                 const isMain = location.type === "main";
 
                 return (
@@ -741,7 +763,7 @@ function Contact() {
               <div className="group relative flex min-h-[360px] flex-col overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_14px_42px_rgba(69,45,28,0.08)]">
                 {/* LOCATION TOGGLE */}
                 <div className="relative z-10 flex shrink-0 border-b border-[#E7D9C7] bg-white">
-                  {officeLocations.map((location, index) => (
+                  {managedLocations.map((location, index) => (
                     <button
                       key={location.city}
                       type="button"

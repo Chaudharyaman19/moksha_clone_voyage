@@ -310,7 +310,7 @@ export default function JoinTheMission() {
         "
       >
         <Image
-          src="/assets/about-reference/story-evening-ghat.png"
+          src={websiteSection?.image || "/assets/about-reference/story-evening-ghat.png"}
           alt=""
           fill
           sizes="570px"

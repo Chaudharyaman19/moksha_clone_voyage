@@ -42,113 +42,10 @@ const ITEMS_SELECTOR = ".info-card";
 const REVEAL_SELECTOR =
   ".section-title, .info-card, .use-item, .privacy-right, .privacy-contact";
 
-const sections = [
-  "About Moksha Sewa",
-  "Information We Collect",
-  "How We Use Your Information",
-  "Your Privacy Rights",
-];
+import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const informationCards = [
-  {
-    icon: UserRound,
-    title: "Contact Information",
-    items: [
-      "Name, mobile number, email address",
-      "Communication preferences",
-      "City/location and address or service location where required",
-    ],
-  },
-  {
-    icon: ClipboardList,
-    title: "Seva / Assistance Information",
-    items: [
-      "Nature of assistance required and details of the case",
-      "Location, hospital / cremation-ground details",
-      "Information necessary for verification and coordination",
-      "Documents or details required for legal / authority formalities",
-    ],
-  },
-  {
-    icon: UsersRound,
-    title: "Volunteer Information",
-    items: [
-      "Name, contact details, location, availability",
-      "Skills, experience and preferred activities",
-      "Any other information you voluntarily provide",
-    ],
-  },
-  {
-    icon: CircleHelp,
-    title: "Donation Information",
-    items: [
-      "Donation and payment related information",
-      "Transaction details processed through authorised payment gateways",
-    ],
-    note: "Note: We do not store your card details.",
-  },
-  {
-    icon: Monitor,
-    title: "Technical Information",
-    items: [
-      "IP address, browser type, device information",
-      "Pages visited, date/time of access, referral/source",
-      "Cookies and usage data collected automatically",
-    ],
-  },
-];
-
-const useInformationLeft = [
-  "Respond to requests for Seva assistance.",
-  "Verify and assess assistance requests.",
-  "Coordinate eligible support with families, volunteers, hospitals, cremation grounds and authorities.",
-  "Coordinate ambulance/hearse-van services.",
-  "Arrange ritual materials and priest guidance.",
-  "Communicate with families regarding their request.",
-  "Process volunteer applications and manage volunteers.",
-  "Process donations through authorised payment providers.",
-];
-
-const useInformationRight = [
-  "Maintain records relating to donations, assistance and enquiries.",
-  "Prevent fraud, misuse and unauthorised activity.",
-  "Maintain website security and improve our services.",
-  "Respond to complaints and enquiries.",
-  "Meet applicable legal, regulatory or governmental requirements.",
-  "Send service-related communications.",
-  "Send updates, campaigns or fundraising communications where legally permitted and, where required, with your consent.",
-];
-
-const rights = [
-  {
-    icon: FileText,
-    title: "Right to be\nInformed",
-  },
-  {
-    icon: Search,
-    title: "Right to Access",
-  },
-  {
-    icon: ClipboardList,
-    title: "Right to\nCorrection",
-  },
-  {
-    icon: Trash2,
-    title: "Right to\nErasure",
-  },
-  {
-    icon: X,
-    title: "Right to Withdraw\nConsent",
-  },
-  {
-    icon: Network,
-    title: "Right to Grievance\nRedressal",
-  },
-  {
-    icon: UsersRound,
-    title: "Right to Nominate\n(Where applicable)",
-  },
-];
+const defaultInfoIcons = [UserRound, ClipboardList, UsersRound, CircleHelp, Monitor];
+const defaultRightIcons = [FileText, Search, ClipboardList, Trash2, X, Network, UsersRound];
 
 function SectionTitle({
   number,
@@ -179,6 +76,57 @@ function SectionTitle({
 }
 
 export default function PrivacyPolicy() {
+  const privacyContent = useWebsiteSection("privacy-content");
+  const privacyContact = useWebsiteSection("privacy-contact");
+  const privacySidebar = useWebsiteSection("privacy-sidebar");
+  const commitment = privacySidebar?.items?.[0] || {
+    title: "Our Commitment",
+    description: "We are committed to transparency and protecting your personal information.\n\nWe collect only what we need and use it responsibly to serve humanity.",
+    image: "/assets/privacy-policy/our_commitment.webp"
+  };
+  const items = privacyContent?.items || [];
+
+  const aboutItem = items[0] || { title: "About Moksha Sewa", description: "" };
+  const infoCollectItem = items[1] || { title: "Information We Collect", description: "" };
+  const howWeUseItem = items[2] || { title: "How We Use Your Information", description: "" };
+  const rightsItem = items[3] || { title: "Your Privacy Rights", description: "" };
+
+  const sections = [
+    aboutItem.title,
+    infoCollectItem.title,
+    howWeUseItem.title,
+    rightsItem.title,
+  ];
+
+  function parseSection(description: string = "") {
+    const parts = description.split(/\n/);
+    const preamble = parts[0];
+    const bullets = parts.slice(1).map(p => p.replace(/^•\s*/, '').trim()).filter(Boolean);
+    return { preamble, bullets };
+  }
+
+  const parsedInfo = parseSection(infoCollectItem.description);
+  const informationCards = [{
+    icon: defaultInfoIcons[0],
+    title: "Data Collection Details",
+    items: parsedInfo.bullets,
+    note: "",
+  }];
+  const infoPreamble = parsedInfo.preamble;
+
+  const parsedHow = parseSection(howWeUseItem.description);
+  const howWeUseItems = parsedHow.bullets;
+  const howPreamble = parsedHow.preamble;
+  const halfLength = Math.max(1, Math.ceil(howWeUseItems.length / 2));
+  const useInformationLeft = howWeUseItems.slice(0, halfLength);
+  const useInformationRight = howWeUseItems.slice(halfLength);
+
+  const parsedRights = parseSection(rightsItem.description);
+  const rightsPreamble = parsedRights.preamble;
+  const rights = parsedRights.bullets.map((title, index) => ({
+    icon: defaultRightIcons[index % defaultRightIcons.length],
+    title: title,
+  }));
   const pageRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const isProgrammaticScroll = useRef(false);
@@ -478,23 +426,18 @@ export default function PrivacyPolicy() {
               </div>
 
               <h3 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                Our Commitment
+                {commitment.title}
               </h3>
             </div>
 
-            <p className="mt-3 text-[16px] leading-6 text-[#5B4635]">
-              We are committed to transparency and protecting your personal
-              information.
-              <br />
-              <br />
-              We collect only what we need and use it responsibly to serve
-              humanity.
+            <p className="mt-3 text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
+              {commitment.description}
             </p>
 
             <div className="flex justify-end">
               <Image
-                src="/assets/privacy-policy/our_commitment.webp"
-                alt="Our Commitment"
+                src={commitment.image || "/assets/privacy-policy/our_commitment.webp"}
+                alt={commitment.title || "Our Commitment"}
                 width={240}
                 height={160}
                 className="h-auto w-1/2 object-cover"
@@ -514,20 +457,8 @@ export default function PrivacyPolicy() {
           >
             <SectionTitle number="1" title="About Moksha Sewa" />
 
-            <p className="text-[16px] leading-7 text-[#594236]">
-              Moksha Sewa provides humanitarian assistance relating to
-              dignified final-rites support, particularly for eligible
-              economically weaker families and legally authorised unclaimed
-              cases.
-            </p>
-
-            <p className="mt-4 text-[16px] leading-7 text-[#594236]">
-              Our services include ambulance/hearse-van coordination,
-              cremation-ground support, wood, cloth, flowers and
-              ritual-material assistance, priest and ritual guidance, family
-              guidance, hospital and ground coordination, food and
-              basic-essentials assistance, volunteer support and documentation
-              guidance.
+            <p className="text-[16px] leading-7 text-[#594236] whitespace-pre-wrap">
+              {aboutItem.description || "Moksha Sewa provides humanitarian assistance relating to dignified final-rites support, particularly for eligible economically weaker families and legally authorised unclaimed cases."}
             </p>
 
             <div className="mt-4 flex items-start gap-2 rounded-[7px] border border-[#E2AE73] bg-[#FFF8EE] px-4 py-3">
@@ -553,8 +484,7 @@ export default function PrivacyPolicy() {
             <SectionTitle number="2" title="Information We Collect" />
 
             <p className="mb-4 text-[16px] leading-7 text-[#594236]">
-              We collect only the information that is necessary for providing
-              our services and improving our experience.
+              {infoPreamble || "We collect only the information that is necessary for providing our services and improving our experience."}
             </p>
 
             <div className="overflow-hidden rounded-[7px] border border-[#e8e4d8] bg-white/70">
@@ -630,7 +560,7 @@ export default function PrivacyPolicy() {
             <SectionTitle number="3" title="How We Use Your Information" />
 
             <p className="mb-4 text-[16px] leading-7 text-[#594236]">
-              We may use your personal information to:
+              {howPreamble || "We may use your personal information to:"}
             </p>
 
             <div className="grid grid-cols-1 gap-x-7 gap-y-3 md:grid-cols-2">
@@ -680,8 +610,7 @@ export default function PrivacyPolicy() {
             <SectionTitle number="4" title="Your Privacy Rights" />
 
             <p className="mb-4 text-[16px] leading-7 text-[#594236]">
-              Subject to applicable law, you may have the following rights
-              regarding your personal data:
+              {rightsPreamble || "Subject to applicable law, you may have the following rights regarding your personal data:"}
             </p>
 
             <div className="privacy-right grid grid-cols-2 overflow-hidden rounded-[7px] border border-[#e7e3d7] bg-white/75 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
@@ -728,14 +657,11 @@ export default function PrivacyPolicy() {
 
             <div>
               <h3 className="text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                Have Questions About Your Privacy?
+                {privacyContact?.title || "Have Questions About Your Privacy?"}
               </h3>
 
-              <p className="mt-1 text-[16px] leading-6 text-[#5B4635]">
-                If you have any questions, requests or concerns regarding
-                this policy or your personal
-                <br className="hidden sm:block" />
-                information, please contact our Grievance Officer.
+              <p className="mt-1 text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
+                {privacyContact?.description || "If you have any questions, requests or concerns regarding this policy or your personal information, please contact our Grievance Officer."}
               </p>
             </div>
 
@@ -749,12 +675,12 @@ export default function PrivacyPolicy() {
           </div>
 
           <Link
-            href="/contact"
+            href={privacyContact?.buttonHref || "/contact"}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-semibold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
-            Contact Us
+            {privacyContact?.buttonLabel || "Contact Us"}
             <ArrowRight
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-1"

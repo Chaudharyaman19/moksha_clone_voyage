@@ -18,6 +18,10 @@ import {
   mergeDonationSections,
   mergeContactSections,
   mergeTrackSections,
+  mergePrivacySections,
+  mergeTermsSections,
+  mergeRefundSections,
+  mergeConductSections,
   type ExtraSectionContent,
 } from "./extraPagesContent";
 
@@ -48,6 +52,10 @@ interface SettingsResponse {
   donationPage?: { sections?: ExtraSectionContent[] };
   contactPage?: { sections?: ExtraSectionContent[] };
   trackPage?: { sections?: ExtraSectionContent[] };
+  privacyPage?: { sections?: ExtraSectionContent[] };
+  termsPage?: { sections?: ExtraSectionContent[] };
+  refundPage?: { sections?: ExtraSectionContent[] };
+  conductPage?: { sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =
@@ -69,7 +77,11 @@ export type WebsitePageKey =
   | "request-help"
   | "donation"
   | "contact"
-  | "track";
+  | "track"
+  | "privacy-policy"
+  | "terms"
+  | "refund-policy"
+  | "code-of-conduct";
 
 export function getMergedWebsiteSections(page: WebsitePageKey, settings?: SettingsResponse) {
   switch (page) {
@@ -109,6 +121,14 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
       return mergeContactSections(settings?.contactPage?.sections);
     case "track":
       return mergeTrackSections(settings?.trackPage?.sections);
+    case "privacy-policy":
+      return mergePrivacySections(settings?.privacyPage?.sections);
+    case "terms":
+      return mergeTermsSections(settings?.termsPage?.sections);
+    case "refund-policy":
+      return mergeRefundSections(settings?.refundPage?.sections);
+    case "code-of-conduct":
+      return mergeConductSections(settings?.conductPage?.sections);
     case "landing":
     default:
       return mergeLandingSections(settings?.landingPage?.sections);

@@ -41,78 +41,15 @@ const navigationItems = [
   "Content & Intellectual Property",
 ];
 
-const fallbackTermsSections = [
+const fallbackConductSections = [
   {
     number: 1,
-    title: "Acceptance of Terms",
+    title: "Dignity and Respect",
     icon: ScrollText,
-    content:
-      "By accessing or using the Moksha Sewa website and our services, you agree to these Terms & Conditions and our Privacy Policy. If you do not agree, please do not use our website or services.",
-  },
-  {
-    number: 2,
-    title: "About Moksha Sewa",
-    icon: CircleUserRound,
-    content:
-      "Moksha Sewa, an initiative of Namo Gange Trust, is dedicated to providing dignified final-rites support and humanitarian assistance to eligible individuals and families, especially for unclaimed and underprivileged cases. Our services are subject to verification, availability and applicable laws.",
-  },
-  {
-    number: 3,
-    title: "Use of Our Website",
-    icon: UserCheck,
-    content:
-      "You agree to use our website only for lawful purposes and in a manner that does not infringe the rights of, restrict or inhibit anyone else's use. You must not attempt to gain unauthorized access, interfere with the functioning of the website or introduce harmful code.",
-  },
-  {
-    number: 4,
-    title: "Our Services",
-    icon: UsersRound,
-    content:
-      "Services include assistance with ambulance/hearse-van, cremation-ground support, ritual materials, priest guidance, documentation support, food and basic-essentials assistance, volunteer support and related humanitarian services. All services are subject to verification, availability and legal requirements.",
-  },
-  {
-    number: 5,
-    title: "Eligibility",
-    icon: HandHeart,
-    content:
-      "Our services are intended for individuals/families in genuine need. We may request information and documents for verification. We reserve the right to accept or decline any request at our sole discretion.",
-  },
-  {
-    number: 6,
-    title: "User Responsibilities",
-    icon: FileCheck2,
-    content:
-      "You agree to provide accurate, complete and current information. You must not misuse our services, provide false information or engage in any activity that may harm our organisation, beneficiaries, volunteers or service partners.",
-  },
-  {
-    number: 7,
-    title: "Requests for Assistance",
-    icon: ClipboardCheck,
-    content:
-      "All requests are subject to verification and availability of resources. Assistance will be provided in accordance with our policies, priorities and capacity. We do not guarantee immediate or specific outcomes.",
-  },
-  {
-    number: 8,
-    title: "Donations & Payments",
-    icon: Landmark,
-    content:
-      "Donations are voluntary and non-refundable. Transactions are processed securely through authorised payment gateways. We do not store your card details, CVV, UPI PIN or net-banking passwords.",
-  },
-  {
-    number: 9,
-    title: "Volunteer Engagement",
-    icon: HeartHandshake,
-    content:
-      "Volunteers must act with compassion, integrity and respect. We reserve the right to accept, assign or terminate volunteer participation based on suitability and conduct.",
-  },
-  {
-    number: 10,
-    title: "Content & Intellectual Property",
-    icon: BookOpen,
-    content:
-      "All content on this website, including text, images, logos and graphics, is the property of Moksha Sewa or its licensors. You may not copy, reproduce or use our content without prior written permission.",
-  },
+    content: "Every individual, regardless of their background, caste, religion, or economic status, must be treated with absolute dignity and respect, especially during their final journey.",
+  }
 ];
+
 function RoundIcon({
   icon: Icon,
 }: {
@@ -150,7 +87,7 @@ function TermsHeading({
    MAIN COMPONENT
 ========================================================= */
 
-export default function TermsAndConditions() {
+export default function CodeOfConduct() {
   const pageRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const isProgrammaticScroll = useRef(false);
@@ -160,23 +97,22 @@ export default function TermsAndConditions() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  const sectionContent = useWebsiteSection("terms-content");
-  const termsContact = useWebsiteSection("terms-contact");
-  const termsSidebar = useWebsiteSection("terms-sidebar");
-  const commitment = termsSidebar?.items?.[0] || {
+  const conductContent = useWebsiteSection("conduct-content");
+  const conductContact = useWebsiteSection("conduct-contact");
+  const conductSidebar = useWebsiteSection("conduct-sidebar");
+  const commitment = conductSidebar?.items?.[0] || {
     title: "Our Commitment",
-    description: "We are committed to transparency, compassion and dignity in every service we deliver.",
+    description: "We are committed to maintaining a respectful, safe, and supportive environment.\n\nBy engaging with our community, you agree to uphold these values.",
     image: "/assets/privacy-policy/our_commitment.webp"
   };
-
   const defaultIcons = [ScrollText, CircleUserRound, UserCheck, UsersRound, HandHeart, FileCheck2, ClipboardCheck, Landmark, HeartHandshake, BookOpen];
   
-  const termsSections = sectionContent?.items?.length ? sectionContent.items.map((item, index) => ({
+  const termsSections = conductContent?.items?.length ? conductContent.items.map((item, index) => ({
     number: index + 1,
     title: item.title ?? `Section ${index + 1}`,
     icon: defaultIcons[index % defaultIcons.length],
     content: item.description ?? "",
-  })) : fallbackTermsSections;
+  })) : fallbackConductSections;
 
   const dynamicNavigationItems = termsSections.map(s => s.title);
 
@@ -575,11 +511,11 @@ export default function TermsAndConditions() {
 
             <div>
               <h2 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
-                {termsContact?.title || "Questions About These Terms?"}
+                {conductContact?.title || "Questions About These Terms?"}
               </h2>
 
               <p className="mt-1 text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
-                {termsContact?.description || "If you have any questions about these Terms & Conditions, please reach out to us."}
+                {conductContact?.description || "If you have any questions about these Terms & Conditions, please reach out to us."}
               </p>
             </div>
 
@@ -593,12 +529,12 @@ export default function TermsAndConditions() {
           </div>
 
           <Link
-            href={termsContact?.buttonHref || "/contact"}
+            href={conductContact?.buttonHref || "/contact"}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex shrink-0 items-center gap-3 rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 py-3 text-[16px] font-semibold uppercase tracking-wide text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
           >
-            {termsContact?.buttonLabel || "Contact Us"}
+            {conductContact?.buttonLabel || "Contact Us"}
 
             <ArrowRight
               size={14}
