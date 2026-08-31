@@ -79,7 +79,14 @@ export default function CSRPartnershipEnquiry() {
   const title = textOrFallback(section?.title, "Let's Build a\nResponsible Partnership.", 100);
   const description = textOrFallback(section?.description, "Tell us a little about your organisation and CSR\npriorities.\nOur team can connect with you to explore\nan appropriate collaboration.", 300);
   const bgImage = imageOrFallback(section?.image, "/assets/csr/responsible-partnership-conversation.png");
-  
+  const contactTitle = textOrFallback(section?.contactTitle, "CSR Partnership Enquiry", 80);
+  const submitLabel = textOrFallback(section?.submitLabel, "Submit CSR Enquiry", 50);
+  const submittedLabel = textOrFallback(section?.submittedLabel, "Inquiry Submitted", 50);
+  const formNote = textOrFallback(section?.supportDescription, "For CSR, institutional and corporate partnership enquiries.", 150);
+  const thankYouTitle = textOrFallback(section?.secondaryTitle, "Thank you!", 50);
+  const thankYouDesc = textOrFallback(section?.secondaryDescription, "Your CSR partnership enquiry has been received. Our team will review the information and respond through the contact details provided.", 300);
+  const consentText = textOrFallback(section?.legalNotice, "I consent to being contacted regarding this enquiry and acknowledge the Privacy Policy.", 200);
+
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -155,8 +162,6 @@ export default function CSRPartnershipEnquiry() {
 
               overflow-hidden
 
-              [&>*:not(:first-child)]:hidden
-
               bg-[#FBF7F0]
             "
           >
@@ -187,7 +192,7 @@ export default function CSRPartnershipEnquiry() {
               "
               style={{
                 backgroundImage:
-                  "url('/assets/csr/enquiry-team-bg.jpg')",
+                  `url('${imageOrFallback(section?.secondaryImage, "/assets/csr/enquiry-team-bg.jpg")}')`,
               }}
             />
 
@@ -537,7 +542,7 @@ export default function CSRPartnershipEnquiry() {
                   sm:text-[20px]
                 "
               >
-                CSR Partnership Enquiry
+                {contactTitle}
               </h3>
 
               <span
@@ -803,12 +808,12 @@ export default function CSRPartnershipEnquiry() {
               />
 
               <span>
-                I consent to being contacted regarding this
-                enquiry and acknowledge the{" "}
-
-                <strong className="text-[#0A4C3A]">
-                  Privacy Policy.
-                </strong>
+                {consentText.includes("Privacy Policy") ? (
+                  <>
+                    {consentText.split("Privacy Policy")[0]}
+                    <strong className="text-[#0A4C3A]">Privacy Policy.</strong>
+                  </>
+                ) : consentText}
               </span>
             </label>
 
@@ -857,7 +862,7 @@ export default function CSRPartnershipEnquiry() {
                   hover:bg-[#003D30]
                 "
               >
-                {submitState === "loading" ? "Submitting..." : "Submit CSR Enquiry"}
+                {submitState === "loading" ? "Submitting..." : (submitState === "success" ? submittedLabel : submitLabel)}
 
                 <CSRIcon
                   name="ArrowRight"
@@ -883,8 +888,7 @@ export default function CSRPartnershipEnquiry() {
                 text-[#555]
               "
             >
-              For CSR, institutional and corporate partnership
-              enquiries.
+              {formNote}
             </p>
           </form>
         </div>
@@ -932,7 +936,7 @@ export default function CSRPartnershipEnquiry() {
                     "Georgia, 'Times New Roman', serif",
                 }}
               >
-                Thank you!
+                {thankYouTitle}
               </h3>
 
               <span
@@ -945,7 +949,7 @@ export default function CSRPartnershipEnquiry() {
               />
             </div>
             <p className="mt-1 text-[17px] font-medium leading-[1.35] text-[#3D4443]">
-              Your CSR partnership enquiry has been received. Our team will review the information and respond through the contact details provided.
+              {thankYouDesc}
             </p>
             {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0A4C3A]"}`}>{submitMessage}</p>}
           </div>

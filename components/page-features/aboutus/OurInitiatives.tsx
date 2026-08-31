@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const initiatives = [
+const defaultInitiatives = [
   { title: "Meri Beti Mera Abhiman", image: "/assets/initiatives/meri beti mera abhiman.webp" },
   { title: "Arogya Mantra", image: "/assets/initiatives/Arogya Mantra.webp" },
   { title: "The Yogshala Expo", image: "/assets/initiatives/The Yogshala Expo.webp" },
@@ -24,10 +27,22 @@ const initiatives = [
   { title: "Ayush Abhinandanam", image: "/assets/initiatives/Ayush Abhinandanam.webp" },
   { title: "MP Development Expo", image: "/assets/initiatives/MP Development Expo.webp" },
   { title: "Shrimad Bhagwat Katha", image: "/assets/initiatives/Shrimad Bhagwat Katha.webp" },
-  { title: "The Yogshala Clinic", image: "/assets/initiatives/The Yogshala Clinic.webp" }
+  { title: "The Yogshala Clinic", image: "/assets/initiatives/The Yogshala Clinic.webp" },
 ];
 
 export default function OurInitiatives() {
+  const section = useWebsiteSection("about-our-initiatives");
+  const eyebrow = textOrFallback(section?.eyebrow, "Our Expanding Horizon", 60);
+  const title = textOrFallback(section?.title, "Our Namo Gange Initiatives", 80);
+
+  const initiatives = defaultInitiatives.map((def, i) => {
+    const item = itemOrFallback(section?.items, i, { title: def.title, image: def.image });
+    return {
+      title: item.title || def.title,
+      image: item.image || def.image,
+    };
+  });
+
   return (
     <section className="bg-[#FBF8F3] py-2 lg:py-3 overflow-hidden border-t border-[#8B6A3E]/10">
       <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12">
@@ -35,7 +50,7 @@ export default function OurInitiatives() {
           <div className="mb-2 inline-flex items-center gap-2">
             <span className="h-[1px] w-8 bg-[#8B6A3E]" />
             <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-              Our Expanding Horizon
+              {eyebrow}
             </span>
             <span className="h-[1px] w-8 bg-[#8B6A3E]" />
           </div>
@@ -43,7 +58,7 @@ export default function OurInitiatives() {
             className="text-[32px] font-normal leading-tight text-[#2C1810] sm:text-[38px] md:text-[44px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Our Namo Gange Initiatives
+            {title}
           </h2>
         </header>
 

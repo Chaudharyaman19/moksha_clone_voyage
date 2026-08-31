@@ -176,37 +176,30 @@ export default function Navbar() {
       type: "page",
     },
   ];
-  const usedCmsIndexes = new Set<number>();
-  const findCmsItem = (item: NavItem) => {
-    const cmsItems = websiteSection?.items ?? [];
-    let index = cmsItems.findIndex(
-      (cmsItem, cmsIndex) => !usedCmsIndexes.has(cmsIndex) && cmsItem.label === item.name
-    );
-    if (index < 0 && !item.dropdown) {
-      index = cmsItems.findIndex(
-        (cmsItem, cmsIndex) => !usedCmsIndexes.has(cmsIndex) && cmsItem.href === item.path
-      );
-    }
-    if (index < 0) return undefined;
-    usedCmsIndexes.add(index);
-    return cmsItems[index];
-  };
+  let globalIndex = 0;
+  const cmsItems = websiteSection?.items ?? [];
+  
   const applyCmsItems = (item: NavItem): NavItem => {
-    const cmsItem = findCmsItem(item);
+    const currentIndex = globalIndex++;
+    const cmsItem = cmsItems[currentIndex];
     return {
       ...item,
+      originalName: item.name,
       name: cmsItem?.label || item.name,
       path: cmsItem?.href || item.path,
       dropdown: item.dropdown?.map(applyCmsItems),
-    };
+    } as NavItem & { originalName?: string };
   };
+
   const managedNavItems = navItems.map(applyCmsItems);
-  const extraNavItems: NavItem[] = (websiteSection?.items ?? []).filter((_, index) => !usedCmsIndexes.has(index)).map((item) => ({
+  
+  const extraNavItems = cmsItems.slice(globalIndex).map((item) => ({
     name: item.label || "New Link",
+    originalName: "Extra",
     path: item.href || "/",
     icon: <FaBookOpen />,
-    type: "page",
-  }));
+    type: "page" as const,
+  } as NavItem & { originalName?: string }));
   const allNavItems = [...managedNavItems, ...extraNavItems];
   const navKey = (item: Pick<NavItem, "name" | "path">, index: number) => `${item.name}:${item.path}:${index}`;
 
@@ -263,7 +256,7 @@ export default function Navbar() {
                           }`}
                       />
                     </button>
-                  ) : item.name === "Donate" ? (
+                  ) : (item as any).originalName === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -273,7 +266,7 @@ export default function Navbar() {
                       <FaStar className="donate-star donate-star-one" aria-hidden />
                       <FaStar className="donate-star donate-star-two" aria-hidden />
                     </button>
-                  ) : item.name === "Request Help" ? (
+                  ) : (item as any).originalName === "Request Help" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
@@ -369,7 +362,7 @@ export default function Navbar() {
                         }`}
                     />
                   </button>
-                ) : item.name === "Donate" ? (
+                ) : (item as any).originalName === "Donate" ? (
                   <button
                     onClick={() => handleNavigation(item.path)}
                     aria-current={isItemActive(item) ? "page" : undefined}
@@ -387,9 +380,7 @@ export default function Navbar() {
                     className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
                       }`}
                   >
-                    {item.name !== "Request Help" && (
-                      <span className="text-base">{item.icon}</span>
-                    )}
+                    <span className="text-base">{item.icon}</span>
                     <span className="text-[16px] font-medium">{item.name}</span>
                   </button>
                 )}

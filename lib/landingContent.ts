@@ -9,6 +9,9 @@ export interface LandingSectionItem {
   buttonLabel?: string;
   buttonHref?: string;
   features?: string[];
+  secondaryImage?: string;
+  tertiaryImage?: string;
+  quaternaryImage?: string;
 }
 
 export interface LandingHeroSlide {
@@ -36,6 +39,10 @@ export interface LandingSectionContent {
   partnerLogoImage?: string;
   secondaryLogoImage?: string;
   secondaryImage?: string;
+  tertiaryImage?: string;
+  quaternaryImage?: string;
+  videoUrl?: string;
+  secondaryVideoUrl?: string;
   quote?: string;
   legalNotice?: string;
   lowerTitle?: string;
@@ -386,6 +393,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     logoImage: "/assets/footer-moksha-mark.png",
     partnerLogoImage: "/assets/namo-gange-logo.webp",
     secondaryImage: "/assets/request_support.webp",
+    bottomStatement: "© 2026 Moksha Sewa. All Rights Reserved.",
     actionTitle: "Stand with dignity. Serve with compassion.",
     contactAddress: "Delhi • Ghaziabad • Noida, India",
     phoneNumber: "9220147229",

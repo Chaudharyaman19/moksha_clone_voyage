@@ -576,7 +576,7 @@ export default function PartnershipProcess() {
                 text-white
               "
             >
-              Connect
+              {itemOrFallback(section?.items, 0, { title: defaultSteps[0].title }).title || defaultSteps[0].title}
             </span>
 
             <PartnershipIcon
@@ -600,7 +600,7 @@ export default function PartnershipProcess() {
                 text-white
               "
             >
-              Explore
+              {itemOrFallback(section?.items, 1, { title: defaultSteps[1].title }).title || defaultSteps[1].title}
             </span>
 
             <PartnershipIcon
@@ -624,7 +624,7 @@ export default function PartnershipProcess() {
                 text-white
               "
             >
-              Define
+              {itemOrFallback(section?.items, 2, { title: defaultSteps[2].title }).title || defaultSteps[2].title}
             </span>
 
             <PartnershipIcon
@@ -648,7 +648,7 @@ export default function PartnershipProcess() {
                 text-white
               "
             >
-              Collaborate
+              {itemOrFallback(section?.items, 3, { title: defaultSteps[3].title }).title || defaultSteps[3].title}
             </span>
 
             {/* RIGHT LOTUS */}

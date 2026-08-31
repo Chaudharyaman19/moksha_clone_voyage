@@ -172,7 +172,7 @@ export default function OurStory() {
           "
         >
           <Image
-            src="/assets/about/our-story/ghat-background.png"
+            src={imageOrFallback(section?.secondaryImage, "/assets/about/our-story/ghat-background.png")}
             alt=""
             fill
             priority
@@ -701,7 +701,7 @@ export default function OurStory() {
                     sm:tracking-[0.105em]
                   "
                 >
-                  A Message From The Founder
+                  {textOrFallback(section?.secondaryTitle, "A Message From The Founder", 60)}
                 </span>
               </div>
 
@@ -811,13 +811,7 @@ export default function OurStory() {
                   text-[#F0EDE5]
                 "
               >
-                Moksha Sewa is not just a service—it is a promise.
-                <br />
-                A promise that in someone&apos;s final moment, humanity
-                <br />
-                will not look away. Together, we can build a society
-                <br />
-                where compassion is stronger than circumstance.
+                <span className="whitespace-pre-line">{textOrFallback(section?.secondaryDescription, "Moksha Sewa is not just a service—it is a promise.\nA promise that in someone's final moment, humanity\nwill not look away. Together, we can build a society\nwhere compassion is stronger than circumstance.", 2000)}</span>
               </p>
 
               {/* =================================================

@@ -330,7 +330,7 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-col items-center gap-3 text-center text-[12px] font-medium text-white/88 sm:flex-row sm:gap-6">
-              <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
+              <p className="whitespace-pre-line">© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
               <span className="hidden h-4 w-px bg-white/55 sm:block" />
               <Link href="/privacy-policy" className="footer-link-glow rounded-md px-1.5 py-0.5 transition hover:text-[#E8A32E]">
                 Privacy Policy

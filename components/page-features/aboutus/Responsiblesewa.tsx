@@ -750,8 +750,7 @@ export default function ResponsibleSewa() {
               text-[#46504E]
             "
           >
-            Moksha Sewa is a Namo Gange Trust initiative. Every step we take is
-            guided by responsibility, respect and humanity.
+            {textOrFallback(section?.bottomStatement, "Moksha Sewa is a Namo Gange Trust initiative. Every step we take is guided by responsibility, respect and humanity.", 600)}
           </p>
 
           <span

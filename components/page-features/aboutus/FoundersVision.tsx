@@ -1,7 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import { FaQuoteLeft } from "react-icons/fa";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function FoundersVision() {
+  const section = useWebsiteSection("about-founders-vision");
+  const eyebrow = textOrFallback(section?.eyebrow, "Founder's Vision", 60);
+  const title = textOrFallback(section?.title, "The Thought Behind Moksha Sewa", 120);
+  const description = textOrFallback(section?.description, "When a family loses a loved one, they are overwhelmed with grief. At that critical moment, dealing with the logistics of rituals, cremation, and arrangements should not add to their burden. Moksha Sewa was born out of this very realization.", 600);
+  const secondaryDescription = textOrFallback(section?.secondaryDescription, "Our vision is to provide absolute dignity, complete transparency, and compassionate care to families during their toughest times. Every ritual is guided by deep respect for our traditions, ensuring that the final journey is peaceful and honorable.", 600);
+  const founderName = textOrFallback(section?.supportTitle, "Vijay Sharma", 60);
+  const founderRole = textOrFallback(section?.supportDescription, "Founder", 60);
+  const founderImage = imageOrFallback(section?.image, "/assets/vijay_sharma.jpg");
+
   return (
     <section className="relative overflow-hidden bg-[#FBF8F3] py-3 md:py-4">
       {/* Decorative background circle */}
@@ -14,10 +26,9 @@ export default function FoundersVision() {
           <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
             <div className="relative z-10 overflow-hidden rounded-2xl border-4 border-white bg-white shadow-xl">
               <div className="relative aspect-square md:aspect-[4/3] lg:aspect-[1.25/1] w-full">
-                {/* Placeholder for Vijay Sharma's photo */}
                 <Image
-                  src="/assets/vijay_sharma.jpg"
-                  alt="Vijay Sharma - Founder"
+                  src={founderImage}
+                  alt={`${founderName} - ${founderRole}`}
                   fill
                   sizes="(max-width: 1024px) 384px, 500px"
                   className="object-cover"
@@ -27,8 +38,8 @@ export default function FoundersVision() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
 
                 <div className="absolute bottom-6 left-6">
-                  <h3 className="font-serif text-2xl font-medium text-white sm:text-3xl">Vijay Sharma</h3>
-                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">Founder</p>
+                  <h3 className="font-serif text-2xl font-medium text-white sm:text-3xl">{founderName}</h3>
+                  <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">{founderRole}</p>
                 </div>
               </div>
             </div>
@@ -43,7 +54,7 @@ export default function FoundersVision() {
             <div className="mb-3 inline-flex items-center gap-2">
               <span className="h-[1px] w-8 bg-[#8B6A3E]" />
               <span className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-                Founder&apos;s Vision
+                {eyebrow}
               </span>
             </div>
 
@@ -51,7 +62,13 @@ export default function FoundersVision() {
               className="mb-3 text-[26px] font-normal leading-[1.2] text-[#2C1810] sm:text-[32px] md:text-[38px]"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
-              The Thought Behind <span className=" text-[#8B6A3E]">Moksha Sewa</span>
+              {title.includes("Moksha Sewa") ? (
+                <>
+                  {title.split("Moksha Sewa")[0]}
+                  <span className="text-[#8B6A3E]">Moksha Sewa</span>
+                  {title.split("Moksha Sewa").slice(1).join("Moksha Sewa")}
+                </>
+              ) : title}
             </h2>
 
             {/* Diya Flourish */}
@@ -62,23 +79,15 @@ export default function FoundersVision() {
             </div>
 
             <div className="space-y-3 text-[14px] leading-relaxed text-[#5F4A3D] sm:text-[15px]">
-              <p>
-                &quot;When a family loses a loved one, they are overwhelmed with grief.
-                At that critical moment, dealing with the logistics of rituals, cremation,
-                and arrangements should not add to their burden. Moksha Sewa was born out
-                of this very realization.&quot;
-              </p>
-              <p>
-                &quot;Our vision is to provide absolute dignity, complete transparency, and
-                compassionate care to families during their toughest times. Every ritual
-                is guided by deep respect for our traditions, ensuring that the final journey
-                is peaceful and honorable.&quot;
-              </p>
+              <p>&quot;{description}&quot;</p>
+              {secondaryDescription && (
+                <p>&quot;{secondaryDescription}&quot;</p>
+              )}
             </div>
 
             <div className="mt-4">
-              <p className="font-serif text-lg  text-[#8B6A3E]">Vijay Sharma</p>
-              <p className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">Founder</p>
+              <p className="font-serif text-lg text-[#8B6A3E]">{founderName}</p>
+              <p className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">{founderRole}</p>
             </div>
           </div>
 

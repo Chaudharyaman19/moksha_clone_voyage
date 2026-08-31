@@ -92,6 +92,13 @@ function Contact() {
   const formSection = useWebsiteSection("contact-form");
   const locationsSection = useWebsiteSection("contact-locations");
 
+  const fieldFirstName = itemOrFallback(formSection?.items, 0, { title: "First name *", description: "Rahul" });
+  const fieldLastName = itemOrFallback(formSection?.items, 1, { title: "Last name *", description: "Sharma" });
+  const fieldEmail = itemOrFallback(formSection?.items, 2, { title: "Email address *", description: "rahul@example.com" });
+  const fieldPhone = itemOrFallback(formSection?.items, 3, { title: "Phone number *", description: "Enter 10 digit mobile number" });
+  const fieldSubject = itemOrFallback(formSection?.items, 4, { title: "Subject *", description: "What do you need help with?" });
+  const fieldMessage = itemOrFallback(formSection?.items, 5, { title: "Message *", description: "Share the details — city, timing, and what you need arranged." });
+
   const CONTACT = {
     helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "92201 47229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
     altPhone: { label: `+91 ${textOrFallback(heroSection?.altPhoneNumber, "96549 00525", 20)}`, href: `tel:+91${textOrFallback(heroSection?.altPhoneNumber, "9654900525", 20).replace(/\D/g, "")}` },
@@ -526,7 +533,7 @@ function Contact() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="firstName" className={labelClass}>
-                        First name *
+                        {fieldFirstName.title}
                       </label>
                       <input
                         id="firstName"
@@ -536,13 +543,13 @@ function Contact() {
                         onChange={handleChange}
                         required
                         className={`${inputClass} rounded-xl`}
-                        placeholder="Rahul"
+                        placeholder={fieldFirstName.description}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="lastName" className={labelClass}>
-                        Last name *
+                        {fieldLastName.title}
                       </label>
                       <input
                         id="lastName"
@@ -552,7 +559,7 @@ function Contact() {
                         onChange={handleChange}
                         required
                         className={`${inputClass} rounded-xl`}
-                        placeholder="Sharma"
+                        placeholder={fieldLastName.description}
                       />
                     </div>
                   </div>
@@ -560,7 +567,7 @@ function Contact() {
                   <div className="grid gap-3.5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="email" className={labelClass}>
-                        Email address *
+                        {fieldEmail.title}
                       </label>
                       <input
                         id="email"
@@ -570,13 +577,13 @@ function Contact() {
                         onChange={handleChange}
                         required
                         className={`${inputClass} rounded-xl`}
-                        placeholder="rahul@example.com"
+                        placeholder={fieldEmail.description}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className={labelClass}>
-                        Phone number *
+                        {fieldPhone.title}
                       </label>
                       <input
                         id="phone"
@@ -590,14 +597,14 @@ function Contact() {
                         pattern="[6-9][0-9]{9}"
                         title="Enter a valid 10-digit mobile number"
                         className={`${inputClass} rounded-xl`}
-                        placeholder="Enter 10 digit mobile number"
+                        placeholder={fieldPhone.description}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="subject" className={labelClass}>
-                      Subject *
+                      {fieldSubject.title}
                     </label>
                     <input
                       id="subject"
@@ -607,13 +614,13 @@ function Contact() {
                       onChange={handleChange}
                       required
                       className={`${inputClass} rounded-xl`}
-                      placeholder="What do you need help with?"
+                      placeholder={fieldSubject.description}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="message" className={labelClass}>
-                      Message *
+                      {fieldMessage.title}
                     </label>
                     <textarea
                       id="message"
@@ -623,7 +630,7 @@ function Contact() {
                       required
                       rows={5}
                       className={`${inputClass} min-h-[95px] resize-none rounded-xl`}
-                      placeholder="Share the details — city, timing, and what you need arranged."
+                      placeholder={fieldMessage.description}
                     />
                   </div>
 
@@ -652,7 +659,7 @@ function Contact() {
                     ) : (
                       <>
                         <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        Send message
+                        {textOrFallback(formSection?.buttonLabel, "Send message", 30)}
                       </>
                     )}
                   </button>

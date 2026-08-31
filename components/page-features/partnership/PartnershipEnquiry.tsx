@@ -19,6 +19,8 @@ export default function PartnershipEnquiry() {
   const title = textOrFallback(section?.title, "Let's Explore What\nWe Can Do Together.", 100);
   const description = textOrFallback(section?.description, "Tell us about your organisation and how you would like to collaborate. Our team will review your enquiry and get back to you.", 200);
   const disclaimer = textOrFallback(section?.legalNotice, "Moksha Sewa partnerships are structured strictly for humanitarian service, transparency and non-commercial impact. Submitting an enquiry does not constitute a formal agreement.", 200);
+  const submitLabel = textOrFallback(section?.submitLabel, "Submit Partnership Enquiry", 50);
+  const privacyNote = textOrFallback(section?.quote, "Your information is secure and will only be used for partnership communication.", 150);
 
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [submitMessage, setSubmitMessage] = useState("");
@@ -142,11 +144,11 @@ export default function PartnershipEnquiry() {
           </label>
 
           <button type="submit" disabled={submitState === "loading"} className="mt-4 inline-flex h-[50px] w-full items-center justify-between rounded-[6px] bg-[#004b39] px-6 text-[16px] font-bold uppercase text-white disabled:opacity-60">
-            {submitState === "loading" ? "Submitting..." : "Submit Partnership Enquiry"}
+            {submitState === "loading" ? "Submitting..." : submitLabel}
             <PartnershipIcon name="ArrowRight" className="h-5 w-5" />
           </button>
 
-          <p className="mt-2 text-center text-[16px] text-[#666]">Your information is secure and will only be used for partnership communication.</p>
+          <p className="mt-2 text-center text-[16px] text-[#666]">{privacyNote}</p>
           {submitMessage && <p role="status" className={`mt-2 text-center text-[16px] ${submitState === "error" ? "text-red-700" : "text-[#0a4b3b]"}`}>{submitMessage}</p>}
         </form>
       </div>

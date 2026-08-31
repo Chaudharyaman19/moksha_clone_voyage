@@ -9,6 +9,7 @@ import {
   FaPhoneAlt,
   FaHandHoldingHeart,
 } from "react-icons/fa";
+import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function AboutHeroSlider() {
   const [index, setIndex] = useState(0);
@@ -67,6 +68,29 @@ export default function AboutHeroSlider() {
 }
 
 function NewBanner() {
+  const section = useWebsiteSection("about-hero-slider");
+  const title = textOrFallback(section?.title, "Every Life Deserves Dignity. Always.", 120);
+  const description = textOrFallback(section?.description, "Moksha Sewa stands for compassion in action. We are here for the forgotten, the unclaimed, and those who have no one. Because no one should face their final journey alone.", 400);
+  const bgImage = imageOrFallback(section?.image, "/assets/about-optimized/about.webp");
+  const logoImage = imageOrFallback(section?.logoImage, "/hero-images/image6.png");
+  const brandName = textOrFallback(section?.supportTitle, "Moksha Sewa", 60);
+  const brandSubtitle = textOrFallback(section?.supportDescription, "An Initiative of Namo Gange Trust", 80);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Request Help", 50);
+  const buttonHref = section?.buttonHref || "/request-help";
+  const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Support This Mission", 50);
+  const secondaryButtonHref = section?.secondaryButtonHref || "/donation";
+  const phoneNumber = textOrFallback(section?.phoneNumber, "+91 9220147229", 30);
+  const phoneLabel = textOrFallback(section?.phoneLabel, "24/7 Helpline", 30);
+
+  const badge0 = itemOrFallback(section?.items, 0, { title: "Dignity First" }).title || "Dignity First";
+  const badge1 = itemOrFallback(section?.items, 1, { title: "Eligibility-Based" }).title || "Eligibility-Based";
+  const badge2 = itemOrFallback(section?.items, 2, { title: "Always Available" }).title || "Always Available";
+
+  // Split title at the last ". " or just take "Dignity. Always." as second part
+  const titleParts = title.includes("Dignity.") 
+    ? [title.split("Dignity.")[0] + "Dignity.", title.split("Dignity.").slice(1).join("Dignity.").trim()]
+    : [title, ""];
+
   return (
     <section className="relative w-full aspect-[16/7] min-h-[350px] overflow-hidden bg-[#F4EDE3]">
       {/* Main Hero */}
@@ -74,7 +98,7 @@ function NewBanner() {
         {/* Background / Main Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/about-optimized/about.webp"
+            src={bgImage}
             alt="Moksha Sewa compassionate funeral support"
             fill
             priority
@@ -90,7 +114,7 @@ function NewBanner() {
             <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-start text-left">
               <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
                 <Image
-                  src="/hero-images/image6.png"
+                  src={logoImage}
                   alt="Namo Gange"
                   width={420}
                   height={150}
@@ -102,11 +126,11 @@ function NewBanner() {
 
               <div className="mt-1 flex flex-col items-start text-left">
                 <span className="text-[22px] font-normal leading-tight text-[#2C1810]">
-                  Moksha Sewa
+                  {brandName}
                 </span>
 
                 <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21] sm:text-[16px]">
-                  An Initiative of Namo Gange Trust
+                  {brandSubtitle}
                 </span>
               </div>
             </div>
@@ -120,11 +144,11 @@ function NewBanner() {
                   fontWeight: 500,
                 }}
               >
-                Every Life Deserves
+                {titleParts[0]}
                 <br />
 
                 <span className="text-[#dc671f]">
-                  Dignity. Always.
+                  {titleParts[1]}
                   <span className="ml-1 inline-block text-[34px] font-normal sm:text-[42px]">
                     ♡
                   </span>
@@ -143,87 +167,58 @@ function NewBanner() {
               </div>
 
               <p className="mt-2 max-w-[570px] text-[16px] leading-6 text-[#17283a] sm:text-[17px]">
-                Moksha Sewa stands for compassion in action.
-                <br />
-                We are here for the forgotten, the unclaimed,
-                <br />
-                and those who have no one.
-                <br />
-
-                <strong className="font-semibold">
-                  Because no one should face their final journey alone.
-                </strong>
+                {description}
               </p>
 
               <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
                 <a
-                  href="/request-help"
+                  href={buttonHref}
                   className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
-                  <span>Request Help</span>
+                  <span>{buttonLabel}</span>
                 </a>
 
                 <a
-                  href="/donation"
+                  href={secondaryButtonHref}
                   className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
                 >
                   <FaFire className="h-5 w-5 shrink-0" />
-                  <span>Support This Mission</span>
+                  <span>{secondaryButtonLabel}</span>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom Feature Strip — NOT STATS (commented out) */}
-      {/* <div className="relative z-30 mx-auto -mt-[95px] max-w-[1470px] px-5 pb-7 sm:px-8 lg:px-10">
-        <div className="overflow-hidden rounded-[28px] border border-white/70 bg-white/95 shadow-[0_15px_45px_rgba(10,35,55,0.15)] backdrop-blur-md">
-          <div className="grid grid-cols-1 divide-y divide-[#dedbd5] sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-
-              return (
-                <div
-                  key={feature.title}
-                  className={`flex min-h-[112px] items-center gap-4 px-5 py-5 ${
-                    index === 4 ? "sm:col-span-2 lg:col-span-1" : ""
-                  }`}
-                >
-                  <div className="flex h-[62px] w-[62px] shrink-0 items-center justify-center rounded-full bg-[#fff7ef]">
-                    <Icon
-                      size={31}
-                      strokeWidth={1.5}
-                      className="text-[#df6b22]"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="text-[16px] font-semibold leading-5 text-[#17283a]">
-                      {feature.title}
-                    </h3>
-
-                    <p className="mt-1 text-[16px] leading-5 text-[#263746]">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div> */}
     </section>
   );
 }
 
 function PreviousBanner() {
+  const section = useWebsiteSection("about-hero-slider");
+  const subtitle = textOrFallback(section?.subtitle, "A Promise of Moksha Sewa", 80);
+  const secondaryDescription = textOrFallback(section?.secondaryDescription, "Moksha Sewa is a humanitarian end-of-life support mission for economically weaker families and legally authorised unclaimed cases.", 400);
+  const bgImage = imageOrFallback(section?.secondaryImage, "/assets/about-optimized/about-hero-new.webp");
+  const logoImage = imageOrFallback(section?.logoImage, "/hero-images/image6.png");
+  const brandName = textOrFallback(section?.supportTitle, "Moksha Sewa", 60);
+  const brandSubtitle = textOrFallback(section?.supportDescription, "An Initiative of Namo Gange Trust", 80);
+  const buttonLabel = textOrFallback(section?.buttonLabel, "Request Help", 50);
+  const buttonHref = section?.buttonHref || "/request-help";
+  const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Support This Mission", 50);
+  const secondaryButtonHref = section?.secondaryButtonHref || "/donation";
+  const phoneNumber = textOrFallback(section?.phoneNumber, "+91 9220147229", 30);
+  const phoneLabel = textOrFallback(section?.phoneLabel, "24/7 Helpline", 30);
+
+  const badge0 = itemOrFallback(section?.items, 0, { title: "Dignity First" }).title || "Dignity First";
+  const badge1 = itemOrFallback(section?.items, 1, { title: "Eligibility-Based" }).title || "Eligibility-Based";
+  const badge2 = itemOrFallback(section?.items, 2, { title: "Always Available" }).title || "Always Available";
+
   return (
     <section className="relative w-full aspect-[16/7] min-h-[350px] overflow-hidden bg-[#F4EDE3]">
       <div className="absolute inset-0">
         <Image
-          src="/assets/about-optimized/about-hero-new.webp"
+          src={bgImage}
           alt="Moksha Sewa ritual support at a sacred river ghat"
           fill
           priority
@@ -254,7 +249,7 @@ function PreviousBanner() {
           <div className="mb-2 mt-14 flex w-full max-w-[440px] flex-col items-start text-left">
             <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
               <Image
-                src="/hero-images/image6.png"
+                src={logoImage}
                 alt="Namo Gange"
                 width={420}
                 height={150}
@@ -266,11 +261,11 @@ function PreviousBanner() {
 
             <div className="mt-1 flex flex-col items-start text-left">
               <span className="text-[22px] font-normal leading-tight text-[#2C1810]">
-                Moksha Sewa
+                {brandName}
               </span>
 
               <span className="mt-0.5 text-[16px] font-medium leading-tight text-[#8F5A21] sm:text-[16px]">
-                An Initiative of Namo Gange Trust
+                {brandSubtitle}
               </span>
             </div>
           </div>
@@ -287,7 +282,7 @@ function PreviousBanner() {
             </span>
 
             <span className="mt-1 block text-[46px] text-[#dc671f] sm:text-[58px] lg:text-[68px]">
-              Moksha Sewa
+              {subtitle.replace("A Promise of ", "")}
             </span>
           </h1>
 
@@ -301,18 +296,12 @@ function PreviousBanner() {
           </div>
 
           <p className="mt-1 max-w-[455px] text-[16px] leading-6 text-[#17283a] sm:text-[16px]">
-            Moksha Sewa is a humanitarian end-of-life support mission for
-            economically weaker families and legally authorised unclaimed
-            cases.
+            {secondaryDescription}
           </p>
 
           {/* trust row */}
           <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
-            {[
-              "Dignity First",
-              "Eligibility-Based",
-              "Always Available",
-            ].map((chip) => (
+            {[badge0, badge1, badge2].map((chip) => (
               <span
                 key={chip}
                 className="inline-flex items-center gap-2 text-[16px] font-semibold text-[#17283a]"
@@ -328,21 +317,21 @@ function PreviousBanner() {
 
           <div className="mt-3 flex flex-col gap-2.5 sm:flex-row">
             <a
-              href="/request-help"
+              href={buttonHref}
               className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaHandHoldingHeart className="h-5 w-5 shrink-0" />
 
-              <span>Request Help</span>
+              <span>{buttonLabel}</span>
             </a>
 
             <a
-              href="/donation"
+              href={secondaryButtonHref}
               className="inline-flex h-[46px] items-center justify-center gap-2 rounded-[7px] border border-[#C6520A] bg-[#D95A06] px-4 text-[16px] font-semibold text-white shadow-[0_8px_18px_rgba(190,74,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#C94F03]"
             >
               <FaFire className="h-5 w-5 shrink-0" />
 
-              <span>Support This Mission</span>
+              <span>{secondaryButtonLabel}</span>
             </a>
           </div>
         </div>
@@ -350,7 +339,7 @@ function PreviousBanner() {
 
       {/* floating helpline card — bottom right */}
       <a
-        href="tel:+919220147229"
+        href={`tel:${phoneNumber.replace(/\s/g, "")}`}
         className="group absolute bottom-24 right-16 hidden items-center gap-3 rounded-2xl border border-[#E8D9C8] bg-white/95 px-4 py-3 text-[#2C1810] shadow-[0_16px_40px_rgba(44,24,16,0.18)] backdrop-blur-md transition hover:bg-white lg:flex lg:right-24 xl:right-32"
       >
         <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#dc671f] text-white">
@@ -361,11 +350,11 @@ function PreviousBanner() {
 
         <span>
           <span className="block text-[16px] uppercase tracking-[0.2em] text-[#dc671f]">
-            24/7 Helpline
+            {phoneLabel}
           </span>
 
           <span className="block font-serif text-[16px] text-[#2C1810]">
-            +91 9220147229
+            {phoneNumber}
           </span>
         </span>
       </a>

@@ -249,6 +249,50 @@ export default function VolunteerRegister() {
   const stepsSection = useWebsiteSection("volunteer-registration-steps");
   const skillsSection = useWebsiteSection("volunteer-skills");
   const areasSection = useWebsiteSection("volunteer-service-areas");
+  const formContent = useWebsiteSection("volunteer-form-content");
+  const formDropdowns = useWebsiteSection("volunteer-form-dropdowns");
+
+  const fc = React.useCallback((index: number, defaultTitle: string, defaultDesc?: string) => {
+    const item = formContent?.items?.[index] || { title: defaultTitle, description: defaultDesc || "" };
+    return { title: item.title || defaultTitle, description: item.description || defaultDesc || "" };
+  }, [formContent]);
+
+  const textStep1 = fc(0, "Step 1 of 3: Basic Details", "Please provide your basic information.");
+  const labelFirstName = fc(1, "First Name *");
+  const labelLastName = fc(2, "Last Name *");
+  const labelMobile = fc(3, "Mobile Number *");
+  const labelEmail = fc(4, "Email Address *");
+  const labelDOB = fc(5, "Date of Birth *");
+  const labelGender = fc(6, "Gender *");
+  const labelBloodGroup = fc(7, "Blood Group");
+  const textAddressInfo = fc(8, "Address Information");
+  const labelPincode = fc(9, "Pincode *");
+  const labelState = fc(10, "State *");
+  const labelCity = fc(11, "City *");
+  const labelAddress = fc(12, "Address *");
+  const textInfoSafe = fc(13, "Your information is safe with us.");
+  const textStep2 = fc(14, "Step 2 of 3: Choose Your Seva", "How would you like to serve?");
+  const textAboutYou = fc(15, "About You");
+  const labelWhyVolunteer = fc(16, "Why Volunteer With Us? *");
+  const labelSkillsExp = fc(17, "Skills / Experience");
+  const labelAvailability = fc(18, "Availability *");
+  const labelPreferredRole = fc(19, "Preferred Role *");
+  const textStep3 = fc(20, "Step 3 of 3: Verification & Consent", "Almost there.");
+  const textIdentity = fc(21, "Identity Verification");
+  const labelPhoto = fc(22, "Upload Photograph *");
+  const labelIDProof = fc(23, "Upload ID Proof (Aadhaar / PAN) *");
+  const labelAgree = fc(24, "I agree to the Moksha Sewa");
+  const labelCodeOfConduct = fc(25, "Volunteer Code of Conduct");
+
+  const fd = React.useCallback((index: number, defaultDesc: string) => {
+    const item = formDropdowns?.items?.[index] || { description: defaultDesc };
+    return (item.description || defaultDesc).split(",").map(s => s.trim()).filter(Boolean);
+  }, [formDropdowns]);
+
+  const genderOptions = fd(0, "Male, Female, Other");
+  const bloodGroupOptions = fd(1, "A+, A-, B+, B-, AB+, AB-, O+, O-");
+  const availabilityOptions = fd(2, "Weekdays, Weekends, Evenings, Emergency Support, Flexible");
+  const roleOptions = fd(3, "Field Volunteer, Transport Support, Documentation, Family Coordination, Ritual Assistance");
 
   const activeSteps = React.useMemo(() => {
     const rawItems = stepsSection?.items?.length ? stepsSection.items : [
@@ -736,8 +780,8 @@ export default function VolunteerRegister() {
                 {step === 0 && (
                   <>
                     <div className="mb-2 text-center">
-                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 1 of 3: Basic Details</h2>
-                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">Please provide your basic information.</p>
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">{textStep1.title}</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">{textStep1.description}</p>
                     </div>
                     <div>
                       <div className="mb-1.5 flex items-center gap-2">
@@ -749,40 +793,40 @@ export default function VolunteerRegister() {
 
                       <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
                         <div>
-                          <label className={labelClass}>First Name *</label>
+                          <label className={labelClass}>{labelFirstName.title}</label>
                           <div className="relative">
                             <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                            <input name="firstName" value={form.firstName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter first name" />
+                            <input name="firstName" value={form.firstName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder={labelFirstName.description} />
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Last Name *</label>
+                          <label className={labelClass}>{labelLastName.title}</label>
                           <div className="relative">
                             <FaUser className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                            <input name="lastName" value={form.lastName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="Enter last name" />
+                            <input name="lastName" value={form.lastName ?? ""} onChange={handleChange} required className={iconInputClass} placeholder={labelLastName.description} />
                           </div>
                         </div>
 
 
                         <div>
-                          <label className={labelClass}>Mobile Number *</label>
+                          <label className={labelClass}>{labelMobile.title}</label>
                           <div className="relative">
                             <FaPhoneAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                            <input name="phone" type="tel" required inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter mobile number" />
+                            <input name="phone" type="tel" required inputMode="numeric" maxLength={10} pattern="[6-9][0-9]{9}" value={form.phone ?? ""} onChange={handleChange} className={iconInputClass} placeholder={labelMobile.description} />
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Email Address *</label>
+                          <label className={labelClass}>{labelEmail.title}</label>
                           <div className="relative">
                             <FaEnvelope className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                            <input name="email" type="email" required value={form.email ?? ""} onChange={handleChange} className={iconInputClass} placeholder="Enter email address" />
+                            <input name="email" type="email" required value={form.email ?? ""} onChange={handleChange} className={iconInputClass} placeholder={labelEmail.description} />
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Date of Birth *</label>
+                          <label className={labelClass}>{labelDOB.title}</label>
                           <div className="relative">
                             <FaCalendarAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
                             <input name="dateOfBirth" type="date" required value={form.dateOfBirth ?? ""} onChange={handleChange} className={`${iconInputClass} pr-2`} />
@@ -790,56 +834,51 @@ export default function VolunteerRegister() {
                         </div>
 
                         <div>
-                          <label className={labelClass}>Gender *</label>
+                          <label className={labelClass}>{labelGender.title}</label>
                           <select name="gender" value={form.gender ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                            <option value="">Select your gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                            <option value="">{labelGender.description || "Select"}</option>
+                            {genderOptions.map((opt) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
                           </select>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Blood Group</label>
+                          <label className={labelClass}>{labelBloodGroup.title}</label>
                           <select name="bloodGroup" value={form.bloodGroup ?? ""} onChange={handleChange} className={`${inputClass} appearance-none`}>
-                            <option value="">Select blood group</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
+                            <option value="">{labelBloodGroup.description || "Select"}</option>
+                            {bloodGroupOptions.map((opt) => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
                           </select>
                         </div>
                       </div>
                     </div>
 
                     <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                      <SectionTitle>Address Information</SectionTitle>
+                      <SectionTitle>{textAddressInfo.title}</SectionTitle>
 
                       <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
                         <div>
-                          <label className={labelClass}>Pincode *</label>
-                          <input name="pincode" type="tel" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" maxLength={6} pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder="6-digit pincode" />
+                          <label className={labelClass}>{labelPincode.title}</label>
+                          <input name="pincode" type="tel" value={form.pincode ?? ""} onChange={handleChange} required inputMode="numeric" maxLength={6} pattern="[0-9]{6}" title="Enter a valid 6-digit pincode" className={inputClass} placeholder={labelPincode.description || "6-digit pincode"} />
                         </div>
 
                         <div>
-                          <label className={labelClass}>State *</label>
-                          <input name="state" value={form.state ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
+                          <label className={labelClass}>{labelState.title}</label>
+                          <input name="state" value={form.state ?? ""} onChange={handleChange} required className={inputClass} placeholder={labelState.description || "Auto-filled"} />
                         </div>
 
                         <div>
-                          <label className={labelClass}>City *</label>
-                          <input name="city" value={form.city ?? ""} onChange={handleChange} required className={inputClass} placeholder="Auto-filled from pincode" />
+                          <label className={labelClass}>{labelCity.title}</label>
+                          <input name="city" value={form.city ?? ""} onChange={handleChange} required className={inputClass} placeholder={labelCity.description || "Auto-filled"} />
                         </div>
 
                         <div>
-                          <label className={labelClass}>Address *</label>
+                          <label className={labelClass}>{labelAddress.title}</label>
                           <div className="relative">
                             <FaMapMarkerAlt className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
-                            <input name="address" value={form.address ?? ""} onChange={handleChange} required className={iconInputClass} placeholder="House/flat, street, landmark" />
+                            <input name="address" value={form.address ?? ""} onChange={handleChange} required className={iconInputClass} placeholder={labelAddress.description || "House/flat, street"} />
                           </div>
                         </div>
                       </div>
@@ -859,8 +898,8 @@ export default function VolunteerRegister() {
                       <div className="flex items-start gap-2 text-[16px] text-[#75655A]">
                         <FaShieldAlt className="mt-0.5 mb-1 h-3.5 w-3.5 shrink-0 text-[#ED6B13]" />
                         <span>
-                          <span className="font-semibold text-[#3B2A20]">Your information is safe with us. </span>
-                          We respect your privacy and will never share your details without your consent.
+                          <span className="font-semibold text-[#3B2A20]">{textInfoSafe.title} </span>
+                          {textInfoSafe.description || "We respect your privacy and will never share your details without your consent."}
                         </span>
                       </div>
 
@@ -879,53 +918,49 @@ export default function VolunteerRegister() {
                 {step === 1 && (
                   <>
                     <div className="mb-2 text-center">
-                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 2 of 3: Choose Your Seva</h2>
-                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">How would you like to serve?</p>
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">{textStep2.title}</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">{textStep2.description}</p>
                     </div>
                     <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                      <SectionTitle>About You</SectionTitle>
+                      <SectionTitle>{textAboutYou.title}</SectionTitle>
 
                       <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
                         <div>
-                          <label className={labelClass}>Why Volunteer With Us? *</label>
+                          <label className={labelClass}>{labelWhyVolunteer.title}</label>
                           <div className="relative">
                             <FaHeart className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                            <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Share your motivation" />
+                            <textarea name="motivation" value={form.motivation ?? ""} onChange={handleChange} required rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder={labelWhyVolunteer.description || "Share your motivation"} />
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Skills / Experience</label>
+                          <label className={labelClass}>{labelSkillsExp.title}</label>
                           <div className="relative">
                             <FaStar className="pointer-events-none absolute left-3 top-2.5 h-3 w-3 text-[#A45331]" />
-                            <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder="Your skills or experience" />
+                            <textarea name="experience" value={form.experience ?? ""} onChange={handleChange} rows={1} className="min-h-[36px] w-full resize-none rounded-[6px] border border-[#E6D8C9] bg-white py-1 pl-9 pr-3 text-[16px] text-[#35241B] outline-none placeholder:text-[#9E9186] focus:border-[#EC711A] focus:ring-2 focus:ring-[#EC711A]/10" placeholder={labelSkillsExp.description || "Your skills or experience"} />
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Availability *</label>
+                          <label className={labelClass}>{labelAvailability.title}</label>
                           <div className="relative">
                             <FaRegClock className="pointer-events-none absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2 text-[#A45331]" />
                             <select name="availability" value={form.availability ?? ""} onChange={handleChange} required className={`${iconInputClass} appearance-none`}>
-                              <option value="">Select availability</option>
-                              <option value="Weekdays">Weekdays</option>
-                              <option value="Weekends">Weekends</option>
-                              <option value="Evenings">Evenings</option>
-                              <option value="Emergency Support">Emergency Support</option>
-                              <option value="Flexible">Flexible</option>
+                              <option value="">{labelAvailability.description || "Select"}</option>
+                              {availabilityOptions.map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
                             </select>
                           </div>
                         </div>
 
                         <div>
-                          <label className={labelClass}>Preferred Role *</label>
+                          <label className={labelClass}>{labelPreferredRole.title}</label>
                           <select name="preferredRole" value={form.preferredRole ?? ""} onChange={handleChange} required className={`${inputClass} appearance-none`}>
-                            <option value="">Select preferred role</option>
-                            <option value="Field Volunteer">Field Volunteer</option>
-                            <option value="Transport Support">Transport Support</option>
-                            <option value="Documentation">Documentation</option>
-                            <option value="Family Coordination">Family Coordination</option>
-                            <option value="Ritual Assistance">Ritual Assistance</option>
+                            <option value="">{labelPreferredRole.description || "Select"}</option>
+                            {roleOptions.map(opt => (
+                              <option key={opt} value={opt}>{opt}</option>
+                            ))}
                           </select>
                         </div>
                       </div>
@@ -1019,11 +1054,11 @@ export default function VolunteerRegister() {
                 {step === 2 && (
                   <>
                     <div className="mb-2 text-center">
-                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">Step 3 of 3: Verification &amp; Consent</h2>
-                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">Review your details and submit.</p>
+                      <h2 className="text-[16px] font-semibold text-[#3B2A20]">{textStep3.title}</h2>
+                      <p className="mt-0.5 text-[16px] text-[#8F7A66]">{textStep3.description}</p>
                     </div>
                     <div className="border-t border-dashed border-[#EDB886] pt-1.5">
-                      <SectionTitle>Emergency Contact &amp; KYC Later</SectionTitle>
+                      <SectionTitle>{textIdentity.title}</SectionTitle>
 
                       <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
                         {[['emergencyContactName', 'Contact Person *', 'text'], ['emergencyContactRelationship', 'Relationship *', 'text'], ['emergencyContactPhone', 'Emergency Mobile No. *', 'tel']].map(([name, text, type]) => (
@@ -1047,13 +1082,13 @@ export default function VolunteerRegister() {
                         </label>
 
                         <label>
-                          <span className={labelClass}>Upload Photograph *</span>
+                          <span className={labelClass}>{labelPhoto.title}</span>
                           <input type="file" accept="image/jpeg,image/png,image/webp" required onChange={(e) => setPhotograph(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                           <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG or WebP · max 10MB</span>
                         </label>
 
                         <label className="sm:col-span-2">
-                          <span className={labelClass}>Upload ID Proof *</span>
+                          <span className={labelClass}>{labelIDProof.title}</span>
                           <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required onChange={(e) => setIdProof(e.target.files?.[0] ?? null)} className={`${inputClass} h-auto py-1.5`} />
                           <span className="mt-0.5 block text-[16px] text-[#75655A]">JPG, PNG, WebP or PDF · max 10MB</span>
                         </label>
@@ -1139,10 +1174,7 @@ export default function VolunteerRegister() {
                         className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[#D6C3B2] text-[#ED6B13] focus:ring-[#ED6B13]/20"
                       />
 
-                      I agree to abide by
-                      Moksha Sewa&apos;s volunteer
-                      guidelines and code of
-                      conduct.
+                      {labelAgree.title}
                       <span className="text-red-500">
                         *
                       </span>

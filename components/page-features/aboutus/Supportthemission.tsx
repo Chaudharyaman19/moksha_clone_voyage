@@ -780,10 +780,7 @@ export default function SupportTheMission() {
                     text-[#39403F]
                   "
                 >
-                  Contributions made through this website are received by Namo
-                  Gange Trust and are utilised towards eligible activities and
-                  support under the Moksha Sewa initiative, subject to applicable
-                  policies and requirements.
+                  {textOrFallback(section?.legalNotice, "Contributions made through this website are received by Namo Gange Trust and are utilised towards eligible activities and support under the Moksha Sewa initiative, subject to applicable policies and requirements.", 600)}
                 </p>
               </div>
             </div>

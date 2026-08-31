@@ -1,37 +1,30 @@
-import Image from "next/image";
+"use client";
 
-const boardMembers = [
-  {
-    name: "Madhukar Reddy Dasari",
-    role: "Namo Gange Trust Leadership",
-    description:
-      "Supports governance, finance and operational oversight for the mission.",
-    image: "/assets/about-optimized/madhukar-reddy-dasari.webp",
-  },
-  {
-    name: "Sandeep Singh",
-    role: "Technology & Data Support",
-    description:
-      "Supports technology, data security and platform infrastructure.",
-    image: "/assets/about-optimized/sandeep-singh.webp",
-  },
-  {
-    name: "Vijay Sharma",
-    role: "Operations Coordination",
-    description:
-      "Supports on-ground coordination, field execution and case response.",
-    image: "/assets/vijay_sharma.jpg",
-  },
-  {
-    name: "Srujana Paid",
-    role: "Partnerships & Outreach",
-    description:
-      "Supports partnerships, outreach and progressive mission expansion.",
-    image: "/assets/about-optimized/srujana-paid.webp",
-  },
+import Image from "next/image";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+
+const defaultBoardMembers = [
+  { name: "Madhukar Reddy Dasari", role: "Namo Gange Trust Leadership", description: "Supports governance, finance and operational oversight for the mission.", image: "/assets/about-optimized/madhukar-reddy-dasari.webp" },
+  { name: "Sandeep Singh", role: "Technology & Data Support", description: "Supports technology, data security and platform infrastructure.", image: "/assets/about-optimized/sandeep-singh.webp" },
+  { name: "Vijay Sharma", role: "Operations Coordination", description: "Supports on-ground coordination, field execution and case response.", image: "/assets/vijay_sharma.jpg" },
+  { name: "Srujana Paid", role: "Partnerships & Outreach", description: "Supports partnerships, outreach and progressive mission expansion.", image: "/assets/about-optimized/srujana-paid.webp" },
 ];
 
 export default function BoardMembers() {
+  const section = useWebsiteSection("about-board-members");
+  const eyebrow = textOrFallback(section?.eyebrow, "Leadership & Governance", 60);
+  const title = textOrFallback(section?.title, "Mission Leadership", 80);
+
+  const boardMembers = defaultBoardMembers.map((def, i) => {
+    const item = itemOrFallback(section?.items, i, { title: def.name, subtitle: def.role, description: def.description, image: def.image });
+    return {
+      name: item.title || def.name,
+      role: item.subtitle || def.role,
+      description: item.description || def.description,
+      image: item.image || def.image,
+    };
+  });
+
   return (
     <section className="bg-white py-2 md:py-3">
       <div className="mx-auto w-full max-w-[1344px] px-4 lg:px-0">
@@ -41,7 +34,7 @@ export default function BoardMembers() {
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#8B6A3E]" />
 
             <span className="text-[16px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-              Leadership & Governance
+              {eyebrow}
             </span>
 
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#8B6A3E]" />
@@ -51,7 +44,7 @@ export default function BoardMembers() {
             className="text-[32px] font-normal leading-tight text-[#2C1810] sm:text-[40px] md:text-[46px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            Mission Leadership
+            {title}
           </h2>
 
           {/* Elegant Diya Flourish */}

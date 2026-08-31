@@ -98,6 +98,8 @@ export default function PartnershipResponsibility() {
   const description = textOrFallback(section?.description, "Moksha Sewa operates within the institutional framework\nof Namo Gange Trust, bringing responsible processes\nand humanitarian service together.", 200);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 50);
   const buttonHref = section?.buttonHref || "#";
+  const secondaryTitle = textOrFallback(section?.secondaryTitle, "Moksha Sewa", 50);
+  const secondaryDescription = textOrFallback(section?.secondaryDescription, "A Namo Gange Trust Initiative", 50);
 
   return (
     <section
@@ -548,7 +550,7 @@ export default function PartnershipResponsibility() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                Moksha Sewa
+                {secondaryTitle}
               </h3>
 
               <div
@@ -571,7 +573,7 @@ export default function PartnershipResponsibility() {
                     text-[#D5A13A]
                   "
                 >
-                  A Namo Gange Trust Initiative
+                  {secondaryDescription}
                 </p>
 
                 <span className="h-px w-[15px] bg-[#AE832C]" />
@@ -602,7 +604,7 @@ export default function PartnershipResponsibility() {
                   fontFamily: "Georgia, 'Times New Roman', serif",
                 }}
               >
-                Moksha Sewa
+                {secondaryTitle}
               </h3>
 
               <div
@@ -625,7 +627,7 @@ export default function PartnershipResponsibility() {
                     text-[#D29D34]
                   "
                 >
-                  A Namo Gange Trust Initiative
+                  {secondaryDescription}
                 </p>
 
                 <span className="h-px w-[32px] bg-[#B88B31]" />
@@ -671,9 +673,14 @@ export default function PartnershipResponsibility() {
                   md:gap-0
                 "
               >
-                {institutionalFlow.map((item, index) => (
+                {institutionalFlow.map((defaultFlow, index) => {
+                  const itemIndex = defaultPrinciples.length + index; // Offset by principles count
+                  const item = itemOrFallback(section?.items, itemIndex, { title: defaultFlow.label, value: defaultFlow.icon });
+                  const label = item.title || defaultFlow.label;
+                  const icon = (item.value || defaultFlow.icon) as PartnershipIconName;
+                  return (
                   <div
-                    key={item.label}
+                    key={defaultFlow.label}
                     className="
                       flex
                       flex-col
@@ -708,7 +715,7 @@ export default function PartnershipResponsibility() {
                         "
                       >
                         <PartnershipIcon
-                          name={item.icon}
+                          name={icon}
                           className="h-[41px] w-[41px]"
                         />
                       </span>
@@ -723,7 +730,7 @@ export default function PartnershipResponsibility() {
                           text-[#EFECE4]
                         "
                       >
-                        {item.label}
+                        {label}
                       </p>
                     </div>
 
@@ -732,7 +739,7 @@ export default function PartnershipResponsibility() {
                       <FlowArrow />
                     )}
                   </div>
-                ))}
+                )})}
               </div>
 
               {/* CTA */}
@@ -844,7 +851,7 @@ export default function PartnershipResponsibility() {
                   text-[#D29B34]
                 "
               >
-                A Journey to Healthy World...
+                {textOrFallback(section?.sloganTitle, "A Journey to Healthy World...", 200)}
               </p>
             </div>
           </div>

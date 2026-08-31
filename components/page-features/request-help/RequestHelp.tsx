@@ -28,7 +28,7 @@ import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 import { lookupPincode } from "@/lib/pincode";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type RequestType = "NORMAL" | "EMERGENCY";
 
@@ -157,6 +157,9 @@ const trustItems: TrustItem[] = [
   },
 ];
 
+const trustIcons = [FaPhoneAlt, FaShieldAlt, FaClipboardList, PiFlowerLotus];
+
+
 function LotusOrnament({
   className = "h-8 w-11",
 }: {
@@ -212,6 +215,24 @@ function LotusOrnament({
 export default function RequestHelp() {
   const heroSection = useWebsiteSection("request-help-hero");
   const formSection = useWebsiteSection("request-help-form");
+
+  // Hero CMS fields
+  const heroPhoneLabel = textOrFallback(heroSection?.phoneLabel, "Helpline Number", 50);
+  const heroPhoneNumber = textOrFallback(heroSection?.phoneNumber, "+91 9220147229", 30);
+
+  // Form CMS fields
+  const trustTitle = textOrFallback(formSection?.secondaryTitle, "Why Families Trust Moksha Sewa", 80);
+  const trustDesc = textOrFallback(formSection?.secondaryDescription, "Compassionate guidance, verified coordination and confidential support at every step.", 200);
+  const submitLabel = textOrFallback(formSection?.submitLabel, "Request Assistance Now", 50);
+  const receivedTitle = textOrFallback(formSection?.submittedLabel, "Request Received", 50);
+  const consentText = textOrFallback(formSection?.legalNotice, "I consent to Moksha Sewa using these details only to provide the requested cremation assistance.", 200);
+  const sewaQuote = textOrFallback(formSection?.supportTitle, "In Sewa, we find peace. In supporting each other, we honor life.", 150);
+  const sewaSubQuote = textOrFallback(formSection?.supportDescription, "With Sewa in our heart, we walk with you in this journey.", 120);
+  const privacyNote = textOrFallback(formSection?.quote, "Your information is safe and secure with us. We provide confidential support.", 150);
+  const trustImage = textOrFallback(formSection?.image, "/assets/route-optimized/request-trust-ritual.webp", 150);
+  const trackLabel = textOrFallback(formSection?.secondaryButtonLabel, "Already submitted? Track your request →", 60);
+  const trackHref = formSection?.secondaryButtonHref || "/track";
+  const hindiQuote = textOrFallback(formSection?.bottomStatement, "॥ अन्तिम सेवा, हमारी श्रद्धा और आपका विश्वास ॥", 150);
 
   const [requestType, setRequestType] =
     useState<RequestType>("NORMAL");
@@ -440,14 +461,14 @@ export default function RequestHelp() {
                 </div>
 
                 <div className="flex min-w-0 flex-1 flex-col items-center justify-center text-center">
-                  <p className="font-serif !text-[24px] font-semibold leading-none text-[#FFF5E8]">Helpline Number</p>
+                  <p className="font-serif !text-[24px] font-semibold leading-none text-[#FFF5E8]">{heroPhoneLabel}</p>
                   <span className="my-1.5 h-px w-24 bg-gradient-to-r from-transparent via-[#F2A23B] to-transparent" />
                   <a
-                    href="tel:+919220147229"
-                    aria-label="Call Moksha Sewa helpline at +91 9220147229"
+                    href={`tel:${heroPhoneNumber.replace(/\s/g, "")}`}
+                    aria-label={`Call Moksha Sewa helpline at ${heroPhoneNumber}`}
                     className="inline-block whitespace-nowrap !text-[23px] font-semibold leading-none tracking-normal text-[#FFC978] transition hover:text-white"
                   >
-                    +91 9220147229
+                    {heroPhoneNumber}
                   </a>
                 </div>
               </div>
@@ -464,7 +485,7 @@ export default function RequestHelp() {
                   </span>
 
                   <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
-                    Request Received
+                    {receivedTitle}
                   </h2>
 
                   <p className="mt-1 max-w-md text-[14px] leading-6 text-[#69554A]">
@@ -910,10 +931,7 @@ export default function RequestHelp() {
                       className="mt-0.5 h-3.5 w-3.5 rounded border-[#D8C6B5] text-[#E87520] focus:ring-[#E87520]/20"
                     />
 
-                    I consent to Moksha Sewa
-                    using these details only to
-                    provide the requested
-                    cremation assistance.
+                    {consentText}
                   </label>
 
                   {error && (
@@ -935,7 +953,7 @@ export default function RequestHelp() {
                     ) : (
                       <>
                         <PiFlowerLotus className="h-5 w-5" />
-                        Request Assistance Now
+                        {submitLabel}
                         <span className="transition-transform group-hover:translate-x-1">
                           →
                         </span>
@@ -945,10 +963,7 @@ export default function RequestHelp() {
 
                   <p className="flex items-center justify-center gap-2 text-center text-[14px] text-[#76665B]">
                     <FaShieldAlt className="text-[#6F746F]" />
-                    Your information is safe
-                    and secure with us. We
-                    provide confidential
-                    support.
+                    {privacyNote}
                   </p>
                 </form>
               )}
@@ -957,22 +972,25 @@ export default function RequestHelp() {
             {/* Right trust panel */}
             <aside className="h-full overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
               <h2 className="text-center font-serif text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
-                Why Families Trust Moksha Sewa
+                {trustTitle}
               </h2>
 
               <p className="mx-auto mt-1.5 max-w-[270px] text-center leading-[1.4] text-[#715C4E]">
-                Compassionate guidance, verified coordination and confidential support at every step.
+                {trustDesc}
               </p>
 
               <div className="mx-auto mt-1 h-px w-20 bg-gradient-to-r from-transparent via-[#E28737] to-transparent" />
 
               <div className="mt-1 divide-y divide-[#EBDCC9]">
-                {trustItems.map((item) => {
-                  const Icon = item.icon;
+                {trustItems.map((defaultItem, idx) => {
+                  const cmsItem = itemOrFallback(formSection?.items, idx, { title: defaultItem.title, description: defaultItem.description });
+                  const Icon = trustIcons[idx] || defaultItem.icon;
+                  const itemTitle = cmsItem.title || defaultItem.title;
+                  const itemDesc = cmsItem.description || defaultItem.description;
 
                   return (
                     <div
-                      key={item.title}
+                      key={itemTitle}
                       className="flex gap-3 py-2.5 first:pt-0"
                     >
                       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#EBD5BA] bg-white text-[#E87520] shadow-[0_4px_12px_rgba(89,57,31,0.07)]">
@@ -981,11 +999,11 @@ export default function RequestHelp() {
 
                       <div>
                         <h3 className="font-serif text-[14px] leading-tight text-[#3E261B]">
-                          {item.title}
+                          {itemTitle}
                         </h3>
 
                         <p className="mt-1 text-[14px] leading-[1.45] text-[#715C4E]">
-                          {item.description}
+                          {itemDesc}
                         </p>
                       </div>
                     </div>
@@ -995,7 +1013,7 @@ export default function RequestHelp() {
 
               <div className="relative mt-1 h-[150px] overflow-hidden">
                 <Image
-                  src="/assets/route-optimized/request-trust-ritual.webp"
+                  src={trustImage}
                   alt="A peaceful ritual lamp representing compassionate cremation assistance"
                   fill
                   priority
@@ -1009,11 +1027,9 @@ export default function RequestHelp() {
               <blockquote className="relative px-3 pb-1 pt-1 text-center">
 
                 <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
-                  In Sewa, we find peace.
-                  <br />
-                  In supporting each other,
-                  <br />
-                  we honor life.
+                  {sewaQuote.split(". ").map((line, i) => (
+                    <span key={i}>{line}{i < sewaQuote.split(". ").length - 1 ? ". " : ""}<br /></span>
+                  ))}
                 </p>
 
                 <LotusOrnament className="mx-auto mt-1 h-5 w-8" />
@@ -1021,26 +1037,27 @@ export default function RequestHelp() {
             </aside>
           </div>
 
-          {/* Bottom message */}
           <div className="mt-1 text-center">
             <p className="font-serif text-[14px] text-[#D16521]">
-              ॥ अन्तिम सेवा, हमारी श्रद्धा और
-              आपका विश्वास ॥
+              {hindiQuote.split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
             </p>
 
             <p className="mt-0.5 text-[14px] text-[#78665A]">
-              With Sewa in our heart, we walk
-              with you in this journey.
+              {sewaSubQuote}
             </p>
           </div>
 
           <div className="mt-1 flex justify-center">
             <Link
-              href="/track"
+              href={trackHref}
               className="text-[14px] font-medium text-[#B85B20] hover:underline"
             >
-              Already submitted? Track your
-              request →
+              {trackLabel}
             </Link>
           </div>
         </div>

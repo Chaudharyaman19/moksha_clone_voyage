@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import namoGangeLogo from "../../../public/hero-images/namo-gange-logo.webp";
 import { CSRIcon, type CSRIconName } from "./CSRIcons";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -21,6 +19,7 @@ export default function InstitutionalResponsibility() {
   const buttonLabel = textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 50);
   const buttonHref = section?.buttonHref || "#";
   const supportTitle = textOrFallback(section?.supportTitle, "Our Institutional Pillars", 50);
+  const partnerLogo = imageOrFallback(section?.partnerLogoImage, "/hero-images/namo-gange-logo.webp");
 
   return (
     <section id="organisation" className="relative overflow-hidden bg-[#fbf6ed] px-5 py-3">
@@ -35,11 +34,10 @@ export default function InstitutionalResponsibility() {
         />
         <div className="relative z-10 grid min-h-[280px] grid-cols-1 gap-5 lg:grid-cols-[30%_70%]">
           <div className="flex items-center justify-center pt-[28px]">
-            <Image
-              src={namoGangeLogo}
+            <img
+              src={partnerLogo}
               alt="Namo Gange Trust"
               className="mx-auto h-auto w-full max-w-[320px] object-contain"
-              sizes="320px"
             />
           </div>
           <div className="pt-3">

@@ -19,6 +19,8 @@ export default function ComplianceAccountability() {
   const bottomStatement = textOrFallback(section?.bottomStatement, "CSR collaborations are subject to applicable provisions of the Companies Act, 2013, Schedule VII, the Companies (CSR Policy) Rules, 2014, as amended, and other applicable requirements. Organisational, implementing-agency and project eligibility should be independently verified before any collaboration is represented as CSR-compliant.", 500);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Request Compliance Information", 50);
   const buttonHref = section?.buttonHref || "#csr-enquiry";
+  const supportDesc = textOrFallback(section?.supportDescription, "Important: Do not display or claim any CSR-1, 12AB, 80G, registration number, tax benefit or CSR eligibility until the relevant documentation, validity and applicability have been legally verified.", 250);
+  const supportTitle = textOrFallback(section?.supportTitle, "We are happy to share applicable information upon formal request.", 150);
 
   return (
     <section className="relative overflow-hidden bg-[#fbf8f2] px-5 py-5">
@@ -112,8 +114,7 @@ export default function ComplianceAccountability() {
               <CSRIcon name="ShieldCheck" className="h-8 w-8" />
             </span>
             <p className="text-[16px] leading-[1.45] text-[#3b4241]">
-              <strong>Important:</strong> Do not display or claim any CSR-1, 12AB, 80G, registration number,
-              tax benefit or CSR eligibility until the relevant documentation, validity and applicability have been legally verified.
+              {supportDesc}
             </p>
           </div>
           <div className="border-t border-[#aebbac] pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
@@ -121,7 +122,7 @@ export default function ComplianceAccountability() {
               <span className="inline-flex items-center gap-3"><CSRIcon name="Form" className="h-8 w-8 text-[#d4a040]" />{buttonLabel}</span>
               <CSRIcon name="ArrowRight" className="h-6 w-6" />
             </a>
-            <p className="mt-1.5 text-[16px] text-[#3f4544]">We are happy to share applicable information upon formal request.</p>
+            <p className="mt-1.5 text-[16px] text-[#3f4544]">{supportTitle}</p>
           </div>
         </div>
       </div>

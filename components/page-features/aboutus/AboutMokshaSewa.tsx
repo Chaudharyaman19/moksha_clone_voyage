@@ -1,16 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import {
   FaQuoteLeft,
   FaHandHoldingHeart,
 } from "react-icons/fa";
-
-const aboutImages = {
-  storyMain: "/assets/about-optimized/about-story-1.webp",
-  storyRitualItems: "/assets/about-optimized/about-story-2.webp",
-  storyTemple: "/assets/about-optimized/about-story-3.webp",
-};
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function AboutMokshaSewa() {
+  const section = useWebsiteSection("about-moksha-sewa-story");
+  const eyebrow = textOrFallback(section?.eyebrow, "Our Story", 60);
+  const title = textOrFallback(section?.title, "Compassion, Care & Verified Support", 120);
+  const description = textOrFallback(section?.description, "Moksha Sewa was founded with one simple belief: every final journey deserves dignity. We support economically weaker families and legally authorised unclaimed cases through verified, compassionate coordination.", 500);
+  const quoteLabel = textOrFallback(section?.quote, "Serving with Devotion", 60);
+  const teamLabel = textOrFallback(section?.legalNotice, "Team Moksha Sewa", 60);
+  const mainImage = imageOrFallback(section?.image, "/assets/about-optimized/about-story-1.webp");
+  const secondaryImage = imageOrFallback(section?.secondaryImage, "/assets/about-optimized/about-story-2.webp");
+  const tertiaryImage = imageOrFallback(section?.tertiaryImage, "/assets/about-optimized/about-story-3.webp");
+
   return (
     <section className="bg-[#FBF8F3] py-4 lg:py-6">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-0 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
@@ -24,7 +31,7 @@ export default function AboutMokshaSewa() {
             <span className="h-[1px] w-10 bg-[#8B6A3E]" />
 
             <span className="text-[16px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
-              Our Story
+              {eyebrow}
             </span>
 
           </div>
@@ -35,10 +42,14 @@ export default function AboutMokshaSewa() {
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            Compassion, Care &{" "}
-            <span className="text-[#8B6A3E]">
-              Verified Support
-            </span>
+            {title.includes("&") ? (
+              <>
+                {title.split("&")[0]}
+                <span className="text-[#8B6A3E]">
+                  {title.split("&").slice(1).join("&")}
+                </span>
+              </>
+            ) : title}
           </h2>
 
           <div className="mb-8 flex items-center gap-2">
@@ -52,10 +63,7 @@ export default function AboutMokshaSewa() {
           </div>
 
           <p className="max-w-[470px] text-base leading-relaxed text-[#5F4A3D] sm:text-lg">
-            Moksha Sewa was founded with one simple belief: every final journey
-            deserves dignity. We support economically weaker families and
-            legally authorised unclaimed cases through verified, compassionate
-            coordination.
+            {description}
           </p>
 
           {/* signed note */}
@@ -69,11 +77,11 @@ export default function AboutMokshaSewa() {
             <span>
 
               <span className="block font-serif text-xl leading-tight text-[#8B6A3E]">
-                Serving with Devotion
+                {quoteLabel}
               </span>
 
               <span className="mt-1 block text-[16px] uppercase tracking-[0.18em] text-[#8A7460]">
-                Team Moksha Sewa
+                {teamLabel}
               </span>
 
             </span>
@@ -91,7 +99,7 @@ export default function AboutMokshaSewa() {
             <div className="group relative row-span-2 h-full w-full overflow-hidden rounded-none shadow-lg ring-1 ring-[#E6D6BF]">
 
               <Image
-                src={aboutImages.storyMain}
+                src={mainImage}
                 alt="Pandits performing traditional rituals"
                 fill
                 sizes="(max-width: 1024px) 45vw, 500px"
@@ -107,7 +115,7 @@ export default function AboutMokshaSewa() {
             <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
 
               <Image
-                src={aboutImages.storyRitualItems}
+                src={secondaryImage}
                 alt="Traditional ritual samagri"
                 fill
                 sizes="(max-width: 1024px) 30vw, 255px"
@@ -119,7 +127,7 @@ export default function AboutMokshaSewa() {
             <div className="group relative h-full w-full overflow-hidden rounded-none shadow-md ring-1 ring-[#E6D6BF]">
 
               <Image
-                src={aboutImages.storyTemple}
+                src={tertiaryImage}
                 alt="Sacred temple ghat"
                 fill
                 sizes="(max-width: 1024px) 30vw, 255px"

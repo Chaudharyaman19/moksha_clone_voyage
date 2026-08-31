@@ -545,7 +545,7 @@ export default function FooterNew() {
             <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
               <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
                 <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
-                <p>© {new Date().getFullYear()} {brandName}. All Rights Reserved.</p>
+                <p className="whitespace-pre-line">{textOrFallback(websiteSection?.bottomStatement, `© ${new Date().getFullYear()} ${brandName}. All Rights Reserved.`, 200)}</p>
               </div>
 
               <div className="footer-bottom-center flex flex-wrap items-center justify-center gap-y-2">

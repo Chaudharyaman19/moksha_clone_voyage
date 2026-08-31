@@ -84,55 +84,85 @@ export type WebsitePageKey =
   | "code-of-conduct";
 
 export function getMergedWebsiteSections(page: WebsitePageKey, settings?: SettingsResponse) {
+  let pageSections;
+
   switch (page) {
     case "about":
-      return mergeAboutSections(settings?.aboutPage?.sections);
+      pageSections = mergeAboutSections(settings?.aboutPage?.sections);
+      break;
     case "services":
-      return mergeServicesSections(settings?.servicesPage?.sections);
+      pageSections = mergeServicesSections(settings?.servicesPage?.sections);
+      break;
     case "ambulance":
-      return mergeAmbulanceSections(settings?.ambulancePage?.sections);
+      pageSections = mergeAmbulanceSections(settings?.ambulancePage?.sections);
+      break;
     case "pandit":
-      return mergePanditSections(settings?.panditPage?.sections);
+      pageSections = mergePanditSections(settings?.panditPage?.sections);
+      break;
     case "funeral":
-      return mergeFuneralSections(settings?.funeralPage?.sections);
+      pageSections = mergeFuneralSections(settings?.funeralPage?.sections);
+      break;
     case "funeralDecoration":
-      return mergeFuneralDecorationSections(settings?.funeralDecorationPage?.sections);
+      pageSections = mergeFuneralDecorationSections(settings?.funeralDecorationPage?.sections);
+      break;
     case "prayerHall":
-      return mergePrayerHallSections(settings?.prayerHallPage?.sections);
+      pageSections = mergePrayerHallSections(settings?.prayerHallPage?.sections);
+      break;
     case "specialService":
-      return mergeSpecialServiceSections(settings?.specialServicePage?.sections);
+      pageSections = mergeSpecialServiceSections(settings?.specialServicePage?.sections);
+      break;
     case "callingRelatives":
-      return mergeCallingRelativesSections(settings?.callingRelativesPage?.sections);
+      pageSections = mergeCallingRelativesSections(settings?.callingRelativesPage?.sections);
+      break;
     case "harsevan":
-      return mergeHarsevanSections(settings?.harsevanPage?.sections);
+      pageSections = mergeHarsevanSections(settings?.harsevanPage?.sections);
+      break;
     case "unclaimed-body":
-      return mergeUnclaimedBodySections(settings?.unclaimedBodyPage?.sections);
+      pageSections = mergeUnclaimedBodySections(settings?.unclaimedBodyPage?.sections);
+      break;
     case "volunteer":
-      return mergeVolunteerSections(settings?.volunteerPage?.sections);
+      pageSections = mergeVolunteerSections(settings?.volunteerPage?.sections);
+      break;
     case "partnership":
-      return mergePartnershipSections(settings?.partnershipPage?.sections);
+      pageSections = mergePartnershipSections(settings?.partnershipPage?.sections);
+      break;
     case "csr":
-      return mergeCSRSections(settings?.csrPage?.sections);
+      pageSections = mergeCSRSections(settings?.csrPage?.sections);
+      break;
     case "request-help":
-      return mergeRequestHelpSections(settings?.requestHelpPage?.sections);
+      pageSections = mergeRequestHelpSections(settings?.requestHelpPage?.sections);
+      break;
     case "donation":
-      return mergeDonationSections(settings?.donationPage?.sections);
+      pageSections = mergeDonationSections(settings?.donationPage?.sections);
+      break;
     case "contact":
-      return mergeContactSections(settings?.contactPage?.sections);
+      pageSections = mergeContactSections(settings?.contactPage?.sections);
+      break;
     case "track":
-      return mergeTrackSections(settings?.trackPage?.sections);
+      pageSections = mergeTrackSections(settings?.trackPage?.sections);
+      break;
     case "privacy-policy":
-      return mergePrivacySections(settings?.privacyPage?.sections);
+      pageSections = mergePrivacySections(settings?.privacyPage?.sections);
+      break;
     case "terms":
-      return mergeTermsSections(settings?.termsPage?.sections);
+      pageSections = mergeTermsSections(settings?.termsPage?.sections);
+      break;
     case "refund-policy":
-      return mergeRefundSections(settings?.refundPage?.sections);
+      pageSections = mergeRefundSections(settings?.refundPage?.sections);
+      break;
     case "code-of-conduct":
-      return mergeConductSections(settings?.conductPage?.sections);
+      pageSections = mergeConductSections(settings?.conductPage?.sections);
+      break;
     case "landing":
     default:
       return mergeLandingSections(settings?.landingPage?.sections);
   }
+
+  // Inject global sections (like footer and topbar) from the landing page so they are available on all pages
+  const landingSections = mergeLandingSections(settings?.landingPage?.sections);
+  const globalSections = landingSections.filter((s) => s.key === "footer" || s.key === "topbar" || s.key === "navbar");
+  
+  return [...pageSections, ...globalSections];
 }
 
 export async function getWebsiteSettings(): Promise<SettingsResponse | undefined> {
