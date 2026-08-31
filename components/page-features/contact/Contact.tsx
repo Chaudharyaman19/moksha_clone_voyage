@@ -39,7 +39,7 @@ const officeLocations = [
     hours: "Open 24 hours · every day",
     phone: { label: "+91 98183 53841", href: "tel:+919818353841" },
     type: "main",
-    image: "/assets/contact/im.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
     imageWidth: 1448,
     imageHeight: 1086,
     mapQuery: HEAD_OFFICE_QUERY,
@@ -55,7 +55,7 @@ const officeLocations = [
     hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
     phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
     type: "branch",
-    image: "/assets/contact/en.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165092/moksha-sewa/assets/contact/en.png",
     imageWidth: 1448,
     imageHeight: 1086,
     mapQuery: "6 Liddel Close, Luton, Bedfordshire LU3 1TW, United Kingdom",
@@ -220,7 +220,7 @@ function Contact() {
           <div className="absolute inset-0">
             {/* Desktop Hero Image */}
             <Image
-              src="/assets/contact/contact.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165090/moksha-sewa/assets/contact/contact.png"
               alt="Contact Moksha Sewa"
               fill
               priority
@@ -230,7 +230,7 @@ function Contact() {
             />
             {/* Mobile Hero Image (4:5 Aspect Ratio) */}
             <Image
-              src="/assets/route-optimized/contact-hero-mobile.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165354/moksha-sewa/assets/route-optimized/contact-hero-mobile.png"
               alt="Contact Moksha Sewa Mobile"
               fill
               priority
@@ -265,11 +265,11 @@ function Contact() {
                 </span>
               </div>
 
-              <h1 className="mt-3 font-serif text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
+              <h2 className="mt-3 font-serif text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Contact Us", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
-              </h1>
+              </h2>
 
               <div className="mt-2 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />

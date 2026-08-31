@@ -185,7 +185,7 @@ export default function RefundPolicy() {
   const commitment = refundSidebar?.items?.[1] || {
     title: "Our Commitment",
     description: "We are committed to transparency and accountability in managing all donations.\n\nEvery contribution directly supports our mission to serve humanity.",
-    image: "/assets/privacy-policy/our_commitment.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp",
   };
 
   const introText = refundIntro?.description || (
@@ -572,7 +572,7 @@ export default function RefundPolicy() {
 
             <div className="flex justify-end mt-2">
               <Image
-                src={commitment.image || "/assets/privacy-policy/our_commitment.webp"}
+                src={commitment.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"}
                 alt={commitment.title || "Our Commitment"}
                 width={240}
                 height={160}
@@ -722,7 +722,7 @@ export default function RefundPolicy() {
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2C1810]">
               <Image
-                src="/assets/privacy-policy/cta_icon.webp"
+                src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165337/moksha-sewa/assets/privacy-policy/cta_icon.webp"
                 alt="Contact us"
                 width={22}
                 height={22}
@@ -741,7 +741,7 @@ export default function RefundPolicy() {
             </div>
 
             <Image
-              src="/assets/privacy-policy/subtitle_decoration.webp"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165340/moksha-sewa/assets/privacy-policy/subtitle_decoration.webp"
               alt=""
               width={120}
               height={40}

@@ -408,7 +408,7 @@ export default function TrustTransparency() {
                 <div className="flex h-full flex-col items-center justify-center px-[10px] text-center max-md:px-[16px] max-md:pb-[18px] max-md:pt-[20px]">
                   <div className="relative h-[90px] w-[180px] max-md:h-[76px] max-md:w-[155px]">
                     <Image
-                      src={imageOrFallback(websiteSection?.logoImage, "/assets/footer-moksha-mark.png")}
+                      src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png")}
                       alt="Moksha Sewa"
                       fill
                       sizes="180px"
@@ -442,7 +442,7 @@ export default function TrustTransparency() {
 
                   <div className="relative mx-auto mt-[1px] h-[73px] w-full max-w-[235px] max-md:h-[68px] max-md:max-w-[220px]">
                     <Image
-                      src={imageOrFallback(websiteSection?.partnerLogoImage, "/hero-images/namo-gange-logo.webp")}
+                      src={imageOrFallback(websiteSection?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp")}
                       alt="Namo Gange"
                       fill
                       sizes="235px"
@@ -462,7 +462,7 @@ export default function TrustTransparency() {
                   <div className="mt-[0px] flex items-center justify-center gap-[9px] max-md:mt-[2px] max-md:gap-[10px]">
                     <div className="relative mt-4 h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full bg-white max-md:mt-2 max-md:h-[52px] max-md:w-[52px]">
                       <Image
-                        src={imageOrFallback(websiteSection?.secondaryLogoImage, "/hero-images/namo-gange-logo.png")}
+                        src={imageOrFallback(websiteSection?.secondaryLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164957/moksha-sewa/hero-images/namo-gange-logo.png")}
                         alt="Namo Gange Trust"
                         fill
                         sizes="57px"
@@ -583,7 +583,7 @@ export default function TrustTransparency() {
           {/* IMAGE */}
           <div className="absolute bottom-[3px] left-[18px] top-[3px] z-[1] w-[23%] overflow-hidden rounded-[29px] border border-[#D6A13A]">
             <Image
-              src={imageOrFallback(websiteSection?.secondaryImage, "/assets/about-reference/story-ghat-temple.png")}
+              src={imageOrFallback(websiteSection?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png")}
               alt="Sacred river ghat"
               fill
               sizes="315px"
@@ -652,7 +652,7 @@ export default function TrustTransparency() {
           <div className="flex items-center gap-[14px] max-md:gap-[12px]">
             <div className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E2A633] max-md:h-[62px] max-md:w-[62px]">
               <Image
-                src={imageOrFallback(websiteSection?.secondaryImage, "/assets/about-reference/story-ghat-temple.png")}
+                src={imageOrFallback(websiteSection?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png")}
                 alt="Sacred river ghat"
                 fill
                 sizes="70px"

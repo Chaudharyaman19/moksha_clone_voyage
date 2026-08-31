@@ -229,7 +229,7 @@ export default function PracticalSewaSupport() {
               bg-no-repeat
             "
             style={{
-              backgroundImage: `url('${websiteSection?.image || "/assets/manish.jpeg"}')`,
+              backgroundImage: `url('${websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165242/moksha-sewa/assets/manish.jpg"}')`,
               backgroundSize: "cover",
               backgroundPosition: "76% 50%",
             }}

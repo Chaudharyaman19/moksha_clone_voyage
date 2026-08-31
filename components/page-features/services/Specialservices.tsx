@@ -23,7 +23,7 @@ import Marquee from "react-fast-marquee";
 
 export default function FamilySupport() {
   const section = useWebsiteSection("specialService-hero");
-  const heroImage = imageOrFallback(section?.image, "/assets/family-support/hero-bg-2.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165157/moksha-sewa/assets/family-support/hero-bg-2.png");
   const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support", 60);
   const title = textOrFallback(section?.title, "Family Support", 60);
   const subtitle = textOrFallback(section?.subtitle, "Standing Beside You.", 60);
@@ -76,7 +76,7 @@ export default function FamilySupport() {
               </div>
 
               {/* Hero Heading */}
-              <h1
+              <h2
                 className="pb-[20px] pt-[8px] leading-[0.95]"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
@@ -87,7 +87,7 @@ export default function FamilySupport() {
                 <span className="mt-1 block text-[30px] text-[#8B6A3E]">
                   {subtitle}
                 </span>
-              </h1>
+              </h2>
 
               <div className="mb-6 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />
@@ -132,18 +132,18 @@ export default function FamilySupport() {
           >
             <div className="flex gap-2 px-1">
               {(useWebsiteSection("specialService-highlights")?.items || [
-                { title: "Emotional Support", description: "Counseling and a sympathetic ear for grieving families.", image: "/assets/serving/counseling-support.png" },
-                { title: "Tehravi Khana", description: "Respectful management of the 13th-day meal for grieving families.", image: "/assets/serving/food-essentials.png" },
-                { title: "Formalities", description: "Help with death certificates and important legal procedures.", image: "/assets/serving/document-assistance.png" },
-                { title: "Ambulance", description: "Transport support for eligible cases after required verification.", image: "/assets/serving/emergency-transport.png" },
-                { title: "Eligibility Based", description: "Assistance is provided subject to verification and availability.", image: "/assets/serving/community-outreach.png" },
-                { title: "Hospital Care", description: "On-ground help and coordination during hospital discharge formalities.", image: "/assets/serving/hospital-support.png" },
-                { title: "Ground Help", description: "Volunteers support and guide families carefully at every step.", image: "/assets/serving/on-ground-support.png" },
-                { title: "Remote Reach", description: "Extending compassionate and dignified support to remote areas.", image: "/assets/serving/rural-remote-reach.png" }
+                { title: "Emotional Support", description: "Counseling and a sympathetic ear for grieving families.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png" },
+                { title: "Tehravi Khana", description: "Respectful management of the 13th-day meal for grieving families.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165439/moksha-sewa/assets/serving/food-essentials.png" },
+                { title: "Formalities", description: "Help with death certificates and important legal procedures.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165436/moksha-sewa/assets/serving/document-assistance.png" },
+                { title: "Ambulance", description: "Transport support for eligible cases after required verification.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png" },
+                { title: "Eligibility Based", description: "Assistance is provided subject to verification and availability.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165433/moksha-sewa/assets/serving/community-outreach.png" },
+                { title: "Hospital Care", description: "On-ground help and coordination during hospital discharge formalities.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165440/moksha-sewa/assets/serving/hospital-support.png" },
+                { title: "Ground Help", description: "Volunteers support and guide families carefully at every step.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165442/moksha-sewa/assets/serving/on-ground-support.png" },
+                { title: "Remote Reach", description: "Extending compassionate and dignified support to remote areas.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165447/moksha-sewa/assets/serving/rural-remote-reach.png" }
               ]).map((item, idx) => (
                 <div className="w-[240px]" key={idx}>
                   <FeatureCard
-                    imageSrc={imageOrFallback(item.image, "/assets/serving/counseling-support.png")}
+                    imageSrc={imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png")}
                     title={item.title || ""}
                     desc={item.description || ""}
                   />
@@ -199,7 +199,7 @@ export default function FamilySupport() {
             <div className="flex shrink-0 flex-col items-center text-center lg:w-1/3 lg:items-start lg:text-left">
               <div className="mb-4">
                 <Image
-                  src="/assets/namo-gange-logo.webp"
+                  src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165261/moksha-sewa/assets/namo-gange-logo.webp"
                   alt="Namo Gange Trust"
                   width={280}
                   height={120}
@@ -224,13 +224,13 @@ export default function FamilySupport() {
               >
                 <div className="flex gap-3 px-2">
                   {[
-                    "/assets/namo-gange/vol1.png",
-                    "/assets/namo-gange/vol2.png",
-                    "/assets/namo-gange/vol3.png",
-                    "/assets/namo-gange/vol4.png",
-                    "/assets/namo-gange/vol5.png",
-                    "/assets/namo-gange/vol6.png",
-                    "/assets/namo-gange/vol7.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165246/moksha-sewa/assets/namo-gange/vol1.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165250/moksha-sewa/assets/namo-gange/vol2.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165251/moksha-sewa/assets/namo-gange/vol3.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165253/moksha-sewa/assets/namo-gange/vol4.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165258/moksha-sewa/assets/namo-gange/vol5.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165259/moksha-sewa/assets/namo-gange/vol6.png",
+                    "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165260/moksha-sewa/assets/namo-gange/vol7.png",
                   ].map((src, i) => (
                     <div
                       key={i}
@@ -299,7 +299,7 @@ export default function FamilySupport() {
 
             <div className="relative min-h-[340px] lg:min-h-0 lg:w-1/2">
               <Image
-                src={imageOrFallback(useWebsiteSection("specialService-receive")?.image, "/assets/serving/hospital-support.png")}
+                src={imageOrFallback(useWebsiteSection("specialService-receive")?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165440/moksha-sewa/assets/serving/hospital-support.png")}
                 alt="Compassion Support"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -360,7 +360,7 @@ export default function FamilySupport() {
 
             <div className="relative min-h-[300px] md:w-2/5">
               <Image
-                src={imageOrFallback(useWebsiteSection("specialService-donation")?.image, "/assets/serving/counseling-support.png")}
+                src={imageOrFallback(useWebsiteSection("specialService-donation")?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png")}
                 alt="Donate Support"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

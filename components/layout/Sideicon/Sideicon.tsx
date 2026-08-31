@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   FaWhatsapp,
@@ -63,6 +64,15 @@ const SocialSidebar = () => {
     hoverColor: "#3D8B40",
   };
 
+  const trackClick = (label: string, category: string = "Contact") => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "click", {
+        event_category: category,
+        event_label: label,
+      });
+    }
+  };
+
   return (
     <>
       <div className="fixed inset-0 pointer-events-none z-50 hidden md:block">
@@ -74,6 +84,7 @@ const SocialSidebar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
+                onClick={() => trackClick("Enquiry")}
               >
                 <div className="px-1 py-5 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-[#8B6A3E]/20 bg-gradient-to-r from-[#8B6A3E] to-[#5A3E2B] hover:from-[#5A3E2B] hover:to-[#8B6A3E]">
                   <FaEnvelope size={14} className="text-white" />
@@ -98,6 +109,7 @@ const SocialSidebar = () => {
               <a
                 href="tel:+919310219283"
                 className="block"
+                onClick={() => trackClick("Emergency Call")}
               >
                 <div className="px-1 py-7 rounded-r-lg flex flex-col items-center justify-center gap-2 shadow-xl border-l-0 border border-red-500/20 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
                   <FaPhone size={14} className="text-white" />
@@ -131,6 +143,7 @@ const SocialSidebar = () => {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 className="group relative flex min-h-11 min-w-11 items-center justify-end"
+                onClick={() => trackClick(social.label, "Social")}
               >
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[115px] hover:justify-between hover:px-3 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -160,6 +173,7 @@ const SocialSidebar = () => {
             rel="noopener noreferrer"
             aria-label="Message Moksha Sewa on WhatsApp"
             className="group relative flex min-h-12 min-w-12 items-center justify-start"
+            onClick={() => trackClick("WhatsApp")}
           >
             <div
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -181,6 +195,7 @@ const SocialSidebar = () => {
             href={phoneLink.url}
             aria-label={phoneLink.label}
             className="group relative flex min-h-12 min-w-12 items-center justify-end"
+            onClick={() => trackClick("Call 24/7")}
           >
             <div
               className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[135px] hover:justify-between hover:px-4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
@@ -208,6 +223,7 @@ const SocialSidebar = () => {
             rel="noopener noreferrer"
             aria-label="Contact Moksha Sewa"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
+            onClick={() => trackClick("Enquiry - Mobile")}
           >
             <div className="w-10 h-10 rounded-full bg-[#8B6A3E]/10 flex items-center justify-center group-hover:bg-[#8B6A3E] group-hover:text-white">
               <FaEnvelope
@@ -225,6 +241,7 @@ const SocialSidebar = () => {
             href="tel:+919310219283"
             aria-label="Call Moksha Sewa emergency support"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
+            onClick={() => trackClick("Emergency Call - Mobile")}
           >
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center group-hover:bg-red-600">
               <FaPhone
@@ -244,6 +261,7 @@ const SocialSidebar = () => {
             rel="noopener noreferrer"
             aria-label="Message Moksha Sewa on WhatsApp"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
+            onClick={() => trackClick("WhatsApp - Mobile")}
           >
             <div className="w-10 h-10 rounded-full bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]">
               <FaWhatsapp
@@ -277,6 +295,7 @@ const SocialSidebar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-3 py-2 hover:bg-[#F5E9D9] rounded-lg"
+                    onClick={() => trackClick(social.label + " - Mobile", "Social")}
                   >
                     <div style={{ color: social.color }}>{social.icon}</div>
                     <span className="text-[16px] text-[#5A3E2B]">

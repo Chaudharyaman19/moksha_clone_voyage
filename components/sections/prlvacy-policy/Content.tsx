@@ -82,7 +82,7 @@ export default function PrivacyPolicy() {
   const commitment = privacySidebar?.items?.[0] || {
     title: "Our Commitment",
     description: "We are committed to transparency and protecting your personal information.\n\nWe collect only what we need and use it responsibly to serve humanity.",
-    image: "/assets/privacy-policy/our_commitment.webp"
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"
   };
   const items = privacyContent?.items || [];
 
@@ -436,7 +436,7 @@ export default function PrivacyPolicy() {
 
             <div className="flex justify-end">
               <Image
-                src={commitment.image || "/assets/privacy-policy/our_commitment.webp"}
+                src={commitment.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"}
                 alt={commitment.title || "Our Commitment"}
                 width={240}
                 height={160}
@@ -666,7 +666,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <Image
-              src="/assets/privacy-policy/subtitle_decoration.webp"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165340/moksha-sewa/assets/privacy-policy/subtitle_decoration.webp"
               alt=""
               width={120}
               height={40}

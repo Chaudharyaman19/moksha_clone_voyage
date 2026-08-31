@@ -229,7 +229,7 @@ export default function RequestHelp() {
   const sewaQuote = textOrFallback(formSection?.supportTitle, "In Sewa, we find peace. In supporting each other, we honor life.", 150);
   const sewaSubQuote = textOrFallback(formSection?.supportDescription, "With Sewa in our heart, we walk with you in this journey.", 120);
   const privacyNote = textOrFallback(formSection?.quote, "Your information is safe and secure with us. We provide confidential support.", 150);
-  const trustImage = textOrFallback(formSection?.image, "/assets/route-optimized/request-trust-ritual.webp", 150);
+  const trustImage = textOrFallback(formSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165420/moksha-sewa/assets/route-optimized/request-trust-ritual.webp", 150);
   const trackLabel = textOrFallback(formSection?.secondaryButtonLabel, "Already submitted? Track your request →", 60);
   const trackHref = formSection?.secondaryButtonHref || "/track";
   const hindiQuote = textOrFallback(formSection?.bottomStatement, "॥ अन्तिम सेवा, हमारी श्रद्धा और आपका विश्वास ॥", 150);
@@ -435,9 +435,9 @@ export default function RequestHelp() {
                 <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
               </div>
 
-              <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
+              <h2 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
                 {textOrFallback(heroSection?.title, "Request Cremation Assistance", 100)}
-              </h1>
+              </h2>
 
               <p className="mx-auto mt-1 max-w-[680px] leading-6 text-[#665246]">
                 {textOrFallback(heroSection?.description, "We are here to support you with compassion, dignity and care in your time of need.", 200)}

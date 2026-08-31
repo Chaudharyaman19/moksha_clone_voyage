@@ -12,7 +12,7 @@ export default function OneFinalActOfHumanity() {
       <div className="relative min-h-[520px] w-full">
         {/* Background image stays the same */}
         <Image
-          src={websiteSection?.image || "/hero-images/one-final-act-humanity.png"}
+          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164960/moksha-sewa/hero-images/one-final-act-humanity.png"}
           alt="Two Moksha Sewa volunteers carrying a body along a river ghat at sunset"
           fill
           sizes="100vw"
@@ -37,7 +37,7 @@ export default function OneFinalActOfHumanity() {
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[240px]">
                 <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
                   <Image
-                    src={imageOrFallback(websiteSection?.logoImage, "/assets/footer-moksha-mark.png")}
+                    src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png")}
                     alt="Moksha Sewa"
                     fill
                     sizes="92px"
@@ -59,7 +59,7 @@ export default function OneFinalActOfHumanity() {
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[250px]">
                 <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
                   <Image
-                    src={imageOrFallback(websiteSection?.partnerLogoImage, "/hero-images/namo-gange-logo.webp")}
+                    src={imageOrFallback(websiteSection?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp")}
                     alt="Namo Gange Trust"
                     fill
                     sizes="330px"

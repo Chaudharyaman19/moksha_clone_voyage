@@ -6,7 +6,11 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-export const metadata = createPageMetadata("/code-of-conduct");
+import { createDynamicMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return createDynamicMetadata("/code-of-conduct", "code-of-conduct");
+}
 import ConductPageContent from "./ConductPageContent";
 
 export default async function ConductPage() {

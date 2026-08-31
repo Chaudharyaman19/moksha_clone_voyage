@@ -26,14 +26,14 @@ export default function OrganisationBehindMission() {
       <div
         className="pointer-events-none absolute right-0 top-0 hidden h-[62%] w-[48%] bg-no-repeat opacity-65 sm:block"
         style={{
-          backgroundImage: "url('/assets/unclaimed-body/institution-background.png')",
+          backgroundImage: "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165471/moksha-sewa/assets/unclaimed-body/institution-background.png')",
           backgroundSize: "100% 100%",
         }}
       />
       <div className="relative mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[31%_69%] lg:gap-5">
           <div className="flex items-center justify-center">
-            <Image src={section?.image || namoGangeLogo} alt={title} width={340} height={340} className="h-auto w-full max-w-[210px] object-contain sm:max-w-[280px] lg:max-w-[340px]" sizes="(max-width: 640px) 210px, (max-width: 1024px) 280px, 340px" />
+            <Image src={section?.image || namoGangeLogo} alt={title} width={340} height={340} className="h-auto w-full max-w-[210px] object-contain sm:max-w-[280px] lg:max-w-[340px]" sizes="(max-width: 640px) 210px, (max-width: 1024px) 280px, 340px" style={{ width: "auto", height: "auto" }} />
           </div>
 
           <div className="pt-1 text-left lg:pt-2">

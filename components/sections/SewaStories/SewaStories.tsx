@@ -179,10 +179,10 @@ interface StoryCard {
 
 const stories: StoryCard[] = [
   {
-    image: "/assets/about-optimized/family-support.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
     images: [
-      "/assets/sewa-stories/family-support-1.jpg",
-      "/assets/sewa-stories/family-support-2.jpg",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165465/moksha-sewa/assets/sewa-stories/family-support-1.jpg",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165466/moksha-sewa/assets/sewa-stories/family-support-2.jpg",
     ],
     icon: "FamilyHands",
     title: "ECONOMICALLY WEAKER FAMILY",
@@ -197,11 +197,11 @@ const stories: StoryCard[] = [
   },
 
   {
-    image: "/assets/about-optimized/hearse-van.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165004/moksha-sewa/assets/about-optimized/hearse-van.webp",
     images: [
-      "/assets/sewa-stories/elderly-support-1.jpg",
-      "/assets/sewa-stories/elderly-support-2.jpg",
-      "/assets/sewa-stories/elderly-support-3.jpg",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165462/moksha-sewa/assets/sewa-stories/elderly-support-1.jpg",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165463/moksha-sewa/assets/sewa-stories/elderly-support-2.jpg",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165464/moksha-sewa/assets/sewa-stories/elderly-support-3.jpg",
     ],
     icon: "ElderlyCare",
     title: "ELDERLY WITHOUT SUPPORT",
@@ -216,7 +216,7 @@ const stories: StoryCard[] = [
   },
 
   {
-    image: "/assets/about-optimized/cremation-ritual.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164996/moksha-sewa/assets/about-optimized/cremation-ritual.webp",
     icon: "UnclaimedCase",
     title: "UNCLAIMED BODY CASE",
     location: "Faridabad, Haryana",
@@ -348,7 +348,7 @@ export default function SewaStories() {
         "
       >
         <Image
-          src={websiteSection?.image || "/assets/about-reference/story-evening-ghat.png"}
+          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"}
           alt=""
           fill
           sizes="610px"

@@ -48,7 +48,7 @@ const CAUSES: Cause[] = [
     title: "Support a Final Journey",
     description: "Indicative contribution toward verified last-rites assistance and related programme needs.",
     icon: PiFlowerLotus,
-    image: "/assets/namo-gange/vol2.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165250/moksha-sewa/assets/namo-gange/vol2.png",
     price: 1100,
     features: ["Case support", "Most needed", "Mission fund", "General support"],
   },
@@ -57,7 +57,7 @@ const CAUSES: Cause[] = [
     title: "Last-Rites Assistance",
     description: "Indicative contribution toward essential ritual materials and case-based support.",
     icon: FaFire,
-    image: "/assets/namo-gange/vol3.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165251/moksha-sewa/assets/namo-gange/vol3.png",
     price: 2100,
     badge: "MISSION NEED",
     features: ["Ritual support", "Guidance", "Materials", "Case care"],
@@ -67,7 +67,7 @@ const CAUSES: Cause[] = [
     title: "Transport Support",
     description: "Indicative contribution toward ambulance or hearse-van coordination for verified cases.",
     icon: FaAmbulance,
-    image: "/assets/namo-gange/vol4.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165253/moksha-sewa/assets/namo-gange/vol4.png",
     price: 5100,
     features: ["Readiness", "Transport care", "Helpline support", "Coordination"],
   },
@@ -76,7 +76,7 @@ const CAUSES: Cause[] = [
     title: "Family Relief Support",
     description: "Indicative contribution toward food, water and basic relief where verified need exists.",
     icon: FaUtensils,
-    image: "/assets/namo-gange/vol5.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165258/moksha-sewa/assets/namo-gange/vol5.png",
     price: 11000,
     features: ["Meal support", "Family relief", "Essentials", "Community care"],
   },
@@ -127,7 +127,7 @@ function Donation() {
         id: isFallback ? (item as Cause).id : `cause-${i}`,
         title: item.title || "",
         description: item.description || "",
-        image: item.image || (isFallback ? (item as Cause).image : "/assets/namo-gange/vol2.png"),
+        image: item.image || (isFallback ? (item as Cause).image : "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165250/moksha-sewa/assets/namo-gange/vol2.png"),
         icon: isFallback ? (item as Cause).icon : ICONS[i % ICONS.length],
         price: parseInt((item as any).value || (isFallback ? (item as Cause).price.toString() : "0"), 10),
         badge: (item as any).label || (isFallback ? (item as Cause).badge : undefined),
@@ -294,7 +294,7 @@ function Donation() {
         <section className="relative h-[600px] overflow-hidden bg-[#F4EDE3]">
           <div className="absolute inset-0">
             <Image
-              src={imageOrFallback(heroSection?.image, "/hero-images/3.png")}
+              src={imageOrFallback(heroSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164932/moksha-sewa/hero-images/3.png")}
               alt="Moksha Sewa Donation"
               fill
               priority
@@ -329,11 +329,11 @@ function Donation() {
                 </span>
               </div>
 
-              <h1 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
+              <h2 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Support a Final Journey", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
-              </h1>
+              </h2>
 
               {/* diya flourish */}
               <div className="mt-4 flex items-center gap-2">
@@ -558,7 +558,7 @@ function Donation() {
               {/* Floating QR Code */}
               <div className="absolute right-4 top-2 h-40 w-40 shrink-0 overflow-hidden rounded-xl border border-[#E6D6BF] shadow-sm">
                 <Image
-                  src="/assets/qr.jpeg"
+                  src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165346/moksha-sewa/assets/qr.jpg"
                   alt="Donate QR"
                   fill
                   sizes="160px"
@@ -828,7 +828,7 @@ function Donation() {
               {/* closing image */}
               <div className="relative h-[280px] w-full overflow-hidden rounded-2xl border border-[#E6D6BF] shadow-sm lg:h-[320px]">
                 <Image
-                  src="/assets/namo-gange/vol6.png"
+                  src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165259/moksha-sewa/assets/namo-gange/vol6.png"
                   alt="Moksha Sewa team helping community"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

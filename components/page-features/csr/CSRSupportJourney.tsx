@@ -12,11 +12,11 @@ const defaultSteps: {
   text: string;
   accent: string;
 }[] = [
-  { no: "01", icon: "Ambulance", image: "/assets/csr/journey-1.jpg", title: "Final-Journey\nTransport", text: "Dignified and respectful\ntransport for the departed.", accent: "#00513f" },
-  { no: "02", icon: "Fire", image: "/assets/csr/journey-2.jpg", title: "Cremation &\nLast-Rites Support", text: "Coordination of cremation\nand last-rites with care.", accent: "#b86f05" },
-  { no: "03", icon: "Ritual", image: "/assets/csr/journey-3.jpg", title: "Ritual\nEssentials", text: "Providing essential materials\nrequired for rituals.", accent: "#00513f" },
-  { no: "04", icon: "Family", image: "/assets/csr/journey-4.jpg", title: "Family\nGuidance", text: "Supporting families with guidance\nand necessary formalities.", accent: "#b86f05" },
-  { no: "05", icon: "HeartHands", image: "/assets/csr/journey-5.jpg", title: "On-Ground\nAssistance", text: "On-ground support with compassion,\ndignity and respect.", accent: "#00513f" },
+  { no: "01", icon: "Ambulance", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165105/moksha-sewa/assets/csr/journey-1.jpg", title: "Final-Journey\nTransport", text: "Dignified and respectful\ntransport for the departed.", accent: "#00513f" },
+  { no: "02", icon: "Fire", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165106/moksha-sewa/assets/csr/journey-2.jpg", title: "Cremation &\nLast-Rites Support", text: "Coordination of cremation\nand last-rites with care.", accent: "#b86f05" },
+  { no: "03", icon: "Ritual", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165107/moksha-sewa/assets/csr/journey-3.jpg", title: "Ritual\nEssentials", text: "Providing essential materials\nrequired for rituals.", accent: "#00513f" },
+  { no: "04", icon: "Family", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165109/moksha-sewa/assets/csr/journey-4.jpg", title: "Family\nGuidance", text: "Supporting families with guidance\nand necessary formalities.", accent: "#b86f05" },
+  { no: "05", icon: "HeartHands", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165110/moksha-sewa/assets/csr/journey-5.jpg", title: "On-Ground\nAssistance", text: "On-ground support with compassion,\ndignity and respect.", accent: "#00513f" },
 ];
 
 export default function CSRSupportJourney() {
@@ -24,7 +24,7 @@ export default function CSRSupportJourney() {
   const eyebrow = textOrFallback(section?.eyebrow, "Where Your CSR Support Helps", 60);
   const title = textOrFallback(section?.title, "Meaningful Support at a Deeply Human Moment.", 150);
   const description = textOrFallback(section?.description, "CSR collaborations can help strengthen essential final-journey\nassistance for eligible and verified humanitarian cases.", 500);
-  const backgroundImage = imageOrFallback(section?.image, "/assets/csr/meaningful-support-bg.jpeg");
+  const backgroundImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165112/moksha-sewa/assets/csr/meaningful-support-bg.jpg");
   const bottomStatement = textOrFallback(section?.bottomStatement, "Important Note:\nSupport is case-based and subject to verification, applicable formalities, availability and the mutually agreed project scope.", 300);
 
   const bottomStatementParts = bottomStatement.split("\n");

@@ -26,14 +26,20 @@ import YourSupportInAction from "@/components/sections/YourSupportInAction/YourS
 import TrustTransparency from "@/components/sections/TrustTransparency/TrustTransparency";
 import { getWebsiteSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
+import { createDynamicMetadata } from "@/lib/seo";
 
-export const metadata = createPageMetadata("/");
+import DynamicH1 from "@/components/seo/DynamicH1";
+
+export async function generateMetadata() {
+  return createDynamicMetadata("/", "landing");
+}
 
 export default async function Page() {
   const websiteSections = await getWebsiteSections();
 
   return (
     <div>
+      <DynamicH1 pageKey="landing" fallback="Moksha Sewa - Humanitarian End-of-Life Support Mission" />
       <JsonLd data={breadcrumbJsonLd("/")} />
       <WebsiteContentProvider sections={websiteSections}>
         <WebsiteSection name="topbar"><Topbar /></WebsiteSection>

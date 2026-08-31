@@ -226,11 +226,11 @@ function HeroSection() {
             <span>{eyebrow}</span>
           </div>
 
-          <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
+          <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             {titleParts[0]}
             {titleParts.length > 1 && <br />}
             {titleParts.slice(1).join('\n')}
-          </h1>
+          </h2>
 
           <Divider className="my-3 w-[127px]" />
 
@@ -480,7 +480,7 @@ function DonationSection() {
   const section = useWebsiteSection("ambulance-donation");
   const title = textOrFallback(section?.title, "Your Donation Brings Peace", 60);
   const description = textOrFallback(section?.description, "Your kind contribution helps us provide ambulance, hearse and last-journey support to families who cannot afford it. Together, we can bring comfort, dignity and peace in their most difficult moments.", 600);
-  const image = imageOrFallback(section?.image, "/assets/km.jpeg");
+  const image = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg");
   const buttonLabel = textOrFallback(section?.buttonLabel, "Donate for Ambulance Service", 60);
   const buttonHref = section?.buttonHref || "/donation";
   const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Support Our Sewa", 60);

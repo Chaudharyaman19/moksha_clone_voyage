@@ -24,10 +24,10 @@ interface LotusMarkProps {
 }
 
 const donationImages = {
-  donate: "/assets/donation-images/donate-sewa.png",
-  volunteer: "/assets/donation-images/volunteer-sewa.png",
-  sponsor: "/assets/donation-images/sponsor-sewa.png",
-  partner: "/assets/donation-images/partner-sewa.png",
+  donate: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165146/moksha-sewa/assets/donation-images/donate-sewa.png",
+  volunteer: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165150/moksha-sewa/assets/donation-images/volunteer-sewa.png",
+  sponsor: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165149/moksha-sewa/assets/donation-images/sponsor-sewa.png",
+  partner: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165148/moksha-sewa/assets/donation-images/partner-sewa.png",
 };
 
 const sevaCards: SupportCard[] = [

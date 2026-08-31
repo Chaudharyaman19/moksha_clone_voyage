@@ -103,7 +103,7 @@ export default function CodeOfConduct() {
   const commitment = conductSidebar?.items?.[0] || {
     title: "Our Commitment",
     description: "We are committed to maintaining a respectful, safe, and supportive environment.\n\nBy engaging with our community, you agree to uphold these values.",
-    image: "/assets/privacy-policy/our_commitment.webp"
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"
   };
   const defaultIcons = [ScrollText, CircleUserRound, UserCheck, UsersRound, HandHeart, FileCheck2, ClipboardCheck, Landmark, HeartHandshake, BookOpen];
   
@@ -430,7 +430,7 @@ export default function CodeOfConduct() {
 
             <div className="flex justify-end">
               <Image
-                src={commitment.image || "/assets/privacy-policy/our_commitment.webp"}
+                src={commitment.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"}
                 alt={commitment.title || "Our Commitment"}
                 width={240}
                 height={160}
@@ -501,7 +501,7 @@ export default function CodeOfConduct() {
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2C1810]">
               <Image
-                src="/assets/privacy-policy/cta_icon.webp"
+                src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165337/moksha-sewa/assets/privacy-policy/cta_icon.webp"
                 alt="Contact us"
                 width={22}
                 height={22}
@@ -520,7 +520,7 @@ export default function CodeOfConduct() {
             </div>
 
             <Image
-              src="/assets/privacy-policy/subtitle_decoration.webp"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165340/moksha-sewa/assets/privacy-policy/subtitle_decoration.webp"
               alt=""
               width={120}
               height={40}

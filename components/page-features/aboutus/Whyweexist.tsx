@@ -137,7 +137,7 @@ export default function WhyWeExist() {
           "
           style={{
             backgroundImage:
-              `url('${imageOrFallback(section?.image, "/assets/about-optimized/existimage.png")}')`,
+              `url('${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png")}')`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center center",
           }}
@@ -542,7 +542,7 @@ export default function WhyWeExist() {
           "
           style={{
             backgroundImage:
-              `url('${imageOrFallback(section?.image, "/assets/about-optimized/existimage.png")}')`,
+              `url('${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png")}')`,
             backgroundPosition: "74% center",
           }}
         />

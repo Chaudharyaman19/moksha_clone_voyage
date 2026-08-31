@@ -14,9 +14,9 @@ export default function AboutMokshaSewa() {
   const description = textOrFallback(section?.description, "Moksha Sewa was founded with one simple belief: every final journey deserves dignity. We support economically weaker families and legally authorised unclaimed cases through verified, compassionate coordination.", 500);
   const quoteLabel = textOrFallback(section?.quote, "Serving with Devotion", 60);
   const teamLabel = textOrFallback(section?.legalNotice, "Team Moksha Sewa", 60);
-  const mainImage = imageOrFallback(section?.image, "/assets/about-optimized/about-story-1.webp");
-  const secondaryImage = imageOrFallback(section?.secondaryImage, "/assets/about-optimized/about-story-2.webp");
-  const tertiaryImage = imageOrFallback(section?.tertiaryImage, "/assets/about-optimized/about-story-3.webp");
+  const mainImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164984/moksha-sewa/assets/about-optimized/about-story-1.webp");
+  const secondaryImage = imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164985/moksha-sewa/assets/about-optimized/about-story-2.webp");
+  const tertiaryImage = imageOrFallback(section?.tertiaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164986/moksha-sewa/assets/about-optimized/about-story-3.webp");
 
   return (
     <section className="bg-[#FBF8F3] py-4 lg:py-6">

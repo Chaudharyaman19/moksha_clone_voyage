@@ -21,7 +21,7 @@ export default function FinalJourneySupport() {
       <div
         className="pointer-events-none absolute right-0 top-0 h-full w-[44%] bg-no-repeat opacity-45"
         style={{
-          backgroundImage: `url('${section?.image || '/assets/unclaimed-body/ghat-background.png'}')`,
+          backgroundImage: `url('${section?.image || 'https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165470/moksha-sewa/assets/unclaimed-body/ghat-background.png'}')`,
           backgroundSize: "100% 100%",
           backgroundPosition: "right center",
         }}

@@ -31,7 +31,7 @@ const services: Service[] = [
     ),
     description:
       "Dignified and timely transport to the cremation destination.",
-    image: "/assets/about-optimized/final_journey_support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165003/moksha-sewa/assets/about-optimized/final_journey_support.png",
     alt: "Final journey transport",
   },
   {
@@ -44,7 +44,7 @@ const services: Service[] = [
     ),
     description:
       "Complete support for cremation and essential last-rites arrangements.",
-    image: "/assets/about-optimized/cremation.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164997/moksha-sewa/assets/about-optimized/cremation.png",
     alt: "Cremation support",
   },
   {
@@ -57,7 +57,7 @@ const services: Service[] = [
     ),
     description:
       "Arranging priests and guidance for all required rituals with respect.",
-    image: "/assets/about-optimized/ritual.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165017/moksha-sewa/assets/about-optimized/ritual.png",
     alt: "Ritual and priest coordination",
   },
   {
@@ -70,7 +70,7 @@ const services: Service[] = [
     ),
     description:
       "Providing all essential items required for the final rites.",
-    image: "/assets/about-optimized/essentials.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164998/moksha-sewa/assets/about-optimized/essentials.png",
     alt: "Essential materials",
   },
   {
@@ -83,7 +83,7 @@ const services: Service[] = [
     ),
     description:
       "Emotional support and guidance for families during difficult times.",
-    image: "/assets/about-optimized/family_guidance.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165002/moksha-sewa/assets/about-optimized/family_guidance.png",
     alt: "Family guidance",
   },
 ];
@@ -93,21 +93,21 @@ const steps: Step[] = [
     number: "01",
     title: "Understand",
     description: "We listen to the circumstances.",
-    image: "/assets/about-optimized/understand.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165024/moksha-sewa/assets/about-optimized/understand.png",
     alt: "Understand",
   },
   {
     number: "02",
     title: "Verify",
     description: "Eligibility and required formalities are reviewed.",
-    image: "/assets/about-optimized/verify.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165025/moksha-sewa/assets/about-optimized/verify.png",
     alt: "Verify",
   },
   {
     number: "03",
     title: "Coordinate",
     description: "Essential support is arranged as applicable.",
-    image: "/assets/about-optimized/coordinate.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164995/moksha-sewa/assets/about-optimized/coordinate.png",
     alt: "Coordinate",
   },
   {
@@ -115,7 +115,7 @@ const steps: Step[] = [
     title: "Stand Beside",
     description:
       "Compassionate on-ground guidance continues through the process.",
-    image: "/assets/about-optimized/stand_behind.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165021/moksha-sewa/assets/about-optimized/stand_behind.png",
     alt: "Stand beside",
   },
 ];
@@ -207,7 +207,7 @@ const MokshaServices: React.FC = () => {
           BACKGROUND
       ========================================================== */}
       <Image
-        src={imageOrFallback(section?.image, "/assets/about-optimized/moksha_services_bg.png")}
+        src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165007/moksha-sewa/assets/about-optimized/moksha_services_bg.png")}
         alt=""
         fill
         sizes="100vw"
@@ -509,7 +509,7 @@ const MokshaServices: React.FC = () => {
               className="group relative block transition-transform duration-300 hover:-translate-y-0.5"
             >
               <Image
-                src="/assets/about-optimized/moksha_services_button.png"
+                src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165009/moksha-sewa/assets/about-optimized/moksha_services_button.png"
                 alt="Explore Our Sewa"
                 width={360}
                 height={42}

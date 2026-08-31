@@ -12,7 +12,7 @@ export default function FoundersVision() {
   const secondaryDescription = textOrFallback(section?.secondaryDescription, "Our vision is to provide absolute dignity, complete transparency, and compassionate care to families during their toughest times. Every ritual is guided by deep respect for our traditions, ensuring that the final journey is peaceful and honorable.", 600);
   const founderName = textOrFallback(section?.supportTitle, "Vijay Sharma", 60);
   const founderRole = textOrFallback(section?.supportDescription, "Founder", 60);
-  const founderImage = imageOrFallback(section?.image, "/assets/vijay_sharma.jpg");
+  const founderImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165477/moksha-sewa/assets/vijay_sharma.jpg");
 
   return (
     <section className="relative overflow-hidden bg-[#FBF8F3] py-3 md:py-4">

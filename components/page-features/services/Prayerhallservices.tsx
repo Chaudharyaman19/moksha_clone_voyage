@@ -14,34 +14,34 @@ import { TbHeartHandshake } from "react-icons/tb";
 
 const supportCards = [
   {
-    src: "/assets/prayerhallservices/support-1.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165329/moksha-sewa/assets/prayerhallservices/support-1.png",
     title: "Ground Booking",
   },
   {
-    src: "/assets/prayerhallservices/support-2.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165330/moksha-sewa/assets/prayerhallservices/support-2.png",
     title: "Floral Setup",
   },
   {
-    src: "/assets/prayerhallservices/support-3.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165332/moksha-sewa/assets/prayerhallservices/support-3.png",
     title: "Seating Arrangements",
   },
   {
-    src: "/assets/prayerhallservices/support-4.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165333/moksha-sewa/assets/prayerhallservices/support-4.png",
     title: "Audio & Mic Setup",
   },
   {
-    src: "/assets/prayerhallservices/support-5.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165334/moksha-sewa/assets/prayerhallservices/support-5.png",
     title: "Pandit Ji Coordination",
   },
   {
-    src: "/assets/prayerhallservices/support-6.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165335/moksha-sewa/assets/prayerhallservices/support-6.png",
     title: "Guest Management",
   },
 ];
 
 export default function PrayerHallServices() {
   const section = useWebsiteSection("prayerHall-hero");
-  const heroImage = imageOrFallback(section?.image, "/assets/prayerhallservices/hero-real.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165319/moksha-sewa/assets/prayerhallservices/hero-real.png");
   const title = textOrFallback(section?.title, "Ground & Prayer Support", 60);
   const subtitle = textOrFallback(section?.subtitle, "Creating A Space For Peace.", 60);
   const description = textOrFallback(section?.description, "Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.", 600);
@@ -97,9 +97,9 @@ export default function PrayerHallServices() {
                 </span>
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
+              <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
                 {title}
-              </h1>
+              </h2>
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#321A10]/80">
                 {description}
@@ -147,14 +147,14 @@ export default function PrayerHallServices() {
         <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("prayerHall-highlights")?.items || [
-              { title: "Ground Coordination", description: "Seamless coordination with ground staff and family members.", image: "/assets/prayerhallservices/feature-ground.png" },
-              { title: "Prayer Setup", description: "Serene prayer arrangements prepared with care and respect.", image: "/assets/prayerhallservices/feature-setup.png" },
-              { title: "Family Support", description: "Gentle guidance and assistance for family members throughout.", image: "/assets/prayerhallservices/feature-family.png" },
-              { title: "Peaceful Environment", description: "A calm and respectful space for prayer, mourning and remembrance.", image: "/assets/prayerhallservices/feature-peace.png" }
+              { title: "Ground Coordination", description: "Seamless coordination with ground staff and family members.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165310/moksha-sewa/assets/prayerhallservices/feature-ground.png" },
+              { title: "Prayer Setup", description: "Serene prayer arrangements prepared with care and respect.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165316/moksha-sewa/assets/prayerhallservices/feature-setup.png" },
+              { title: "Family Support", description: "Gentle guidance and assistance for family members throughout.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165309/moksha-sewa/assets/prayerhallservices/feature-family.png" },
+              { title: "Peaceful Environment", description: "A calm and respectful space for prayer, mourning and remembrance.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165312/moksha-sewa/assets/prayerhallservices/feature-peace.png" }
             ]).map((item, idx) => (
               <FeatureCard
                 key={idx}
-                imageSrc={imageOrFallback(item.image, "/assets/prayerhallservices/feature-ground.png")}
+                imageSrc={imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165310/moksha-sewa/assets/prayerhallservices/feature-ground.png")}
                 title={item.title || ""}
                 desc={item.description || ""}
               />
@@ -228,7 +228,7 @@ export default function PrayerHallServices() {
                   key={idx}
                   className="w-[160px] shrink-0 sm:w-[180px]"
                 >
-                  <MarqueeCircleCard src={imageOrFallback((card as any).image || (card as any).src, "/assets/prayerhallservices/support-1.png")} title={card.title || ""} />
+                  <MarqueeCircleCard src={imageOrFallback((card as any).image || (card as any).src, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165329/moksha-sewa/assets/prayerhallservices/support-1.png")} title={card.title || ""} />
                 </div>
               ))}
             </div>
@@ -241,14 +241,14 @@ export default function PrayerHallServices() {
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("prayerHall-receive")?.items || [
-              { title: "Venue Coordination", description: "Suitable venue coordination for every sacred ritual.", image: "/assets/prayerhallservices/roles-1.png" },
-              { title: "Setup & Decor", description: "Peaceful arrangements prepared with care and dignity.", image: "/assets/prayerhallservices/roles-2.png" },
-              { title: "Guest Assistance", description: "Clear and compassionate guidance for guests at every step.", image: "/assets/prayerhallservices/roles-3.png" },
-              { title: "Post-Prayer Cleanup", description: "Respectful clearing and coordination after rituals conclude.", image: "/assets/prayerhallservices/roles-4.png" }
+              { title: "Venue Coordination", description: "Suitable venue coordination for every sacred ritual.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165323/moksha-sewa/assets/prayerhallservices/roles-1.png" },
+              { title: "Setup & Decor", description: "Peaceful arrangements prepared with care and dignity.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165325/moksha-sewa/assets/prayerhallservices/roles-2.png" },
+              { title: "Guest Assistance", description: "Clear and compassionate guidance for guests at every step.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165326/moksha-sewa/assets/prayerhallservices/roles-3.png" },
+              { title: "Post-Prayer Cleanup", description: "Respectful clearing and coordination after rituals conclude.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165328/moksha-sewa/assets/prayerhallservices/roles-4.png" }
             ]).map((item, idx) => (
               <RoleSquareCard
                 key={idx}
-                src={imageOrFallback(item.image, "/assets/prayerhallservices/roles-1.png")}
+                src={imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165323/moksha-sewa/assets/prayerhallservices/roles-1.png")}
                 title={item.title || ""}
                 desc={item.description || ""}
               />
@@ -284,7 +284,7 @@ export default function PrayerHallServices() {
             {/* Left Image */}
             <div className="relative hidden h-[160px] w-full lg:block lg:h-auto lg:w-1/5">
               <Image
-                src={imageOrFallback(useWebsiteSection("prayerHall-donation")?.image, "/assets/prayerhallservices/hero.png")}
+                src={imageOrFallback(useWebsiteSection("prayerHall-donation")?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165320/moksha-sewa/assets/prayerhallservices/hero.png")}
                 alt="Decorative brass items"
                 fill
                 sizes="20vw"

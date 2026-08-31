@@ -33,29 +33,39 @@ interface ApiEnvelope<T> {
 }
 
 interface SettingsResponse {
-  landingPage?: { sections?: LandingSectionContent[] };
-  aboutPage?: { sections?: AboutSectionContent[] };
-  servicesPage?: { sections?: ExtraSectionContent[] };
-  ambulancePage?: { sections?: ExtraSectionContent[] };
-  panditPage?: { sections?: ExtraSectionContent[] };
-  funeralPage?: { sections?: ExtraSectionContent[] };
-  funeralDecorationPage?: { sections?: ExtraSectionContent[] };
-  prayerHallPage?: { sections?: ExtraSectionContent[] };
-  specialServicePage?: { sections?: ExtraSectionContent[] };
-  callingRelativesPage?: { sections?: ExtraSectionContent[] };
-  harsevanPage?: { sections?: ExtraSectionContent[] };
-  unclaimedBodyPage?: { sections?: ExtraSectionContent[] };
-  volunteerPage?: { sections?: ExtraSectionContent[] };
-  partnershipPage?: { sections?: ExtraSectionContent[] };
-  csrPage?: { sections?: ExtraSectionContent[] };
-  requestHelpPage?: { sections?: ExtraSectionContent[] };
-  donationPage?: { sections?: ExtraSectionContent[] };
-  contactPage?: { sections?: ExtraSectionContent[] };
-  trackPage?: { sections?: ExtraSectionContent[] };
-  privacyPage?: { sections?: ExtraSectionContent[] };
-  termsPage?: { sections?: ExtraSectionContent[] };
-  refundPage?: { sections?: ExtraSectionContent[] };
-  conductPage?: { sections?: ExtraSectionContent[] };
+  advancedSeo?: {
+    globalHeadCode?: string;
+    globalBodyCode?: string;
+    defaultOgImage?: string;
+    googleSearchConsoleVerification?: string;
+    robotsTxt?: string;
+    ga4MeasurementId?: string;
+    gtmContainerId?: string;
+  };
+  notFoundPage?: { seo?: any; sections?: any[] };
+  landingPage?: { seo?: any; sections?: LandingSectionContent[] };
+  aboutPage?: { seo?: any; sections?: AboutSectionContent[] };
+  servicesPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  ambulancePage?: { seo?: any; sections?: ExtraSectionContent[] };
+  panditPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  funeralPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  funeralDecorationPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  prayerHallPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  specialServicePage?: { seo?: any; sections?: ExtraSectionContent[] };
+  callingRelativesPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  harsevanPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  unclaimedBodyPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  volunteerPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  partnershipPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  csrPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  requestHelpPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  donationPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  contactPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  trackPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  privacyPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  termsPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  refundPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  conductPage?: { seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =

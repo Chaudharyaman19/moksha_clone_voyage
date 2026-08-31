@@ -24,7 +24,7 @@ export default function CSRHero() {
   const title = textOrFallback(section?.title, "CSR Partnership for\nDignified Humanitarian Support", 150);
   const subtitle = textOrFallback(section?.subtitle, "Partner for Dignity. Create Human Impact.", 100);
   const description = textOrFallback(section?.description, "Partner with Moksha Sewa, an initiative of\nNamo Gange Trust,\nto explore responsible humanitarian\ncollaborations designed\naround dignity, accountability and verified need.", 500);
-  const heroImage = imageOrFallback(section?.image, "/assets/csr/csr-hero-photo.jpg");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165101/moksha-sewa/assets/csr/csr-hero-photo.jpg");
   const buttonLabel = textOrFallback(section?.buttonLabel, "Discuss a CSR Partnership", 50);
   const buttonHref = section?.buttonHref || "#csr-enquiry";
   const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Request Organisation Profile", 50);
@@ -200,7 +200,7 @@ export default function CSRHero() {
               MAIN HEADING
           ================================================= */}
 
-          <h1
+          <h2
             className="
               mt-[14px]
 
@@ -236,7 +236,7 @@ export default function CSRHero() {
             >
               {titleLines.slice(1).join(" ") || "Dignified Humanitarian Support"}
             </span>
-          </h1>
+          </h2>
 
           {/* TAGLINE */}
 

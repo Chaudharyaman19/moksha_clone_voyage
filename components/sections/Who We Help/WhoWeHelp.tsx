@@ -181,7 +181,7 @@ const helpCards: HelpCard[] = [
     ],
 
     /* OLD IMAGE */
-    image: "/assets/about-optimized/cremation-ritual.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164996/moksha-sewa/assets/about-optimized/cremation-ritual.webp",
 
     color: "#8E1916",
     titleColor: "#741713",
@@ -199,7 +199,7 @@ const helpCards: HelpCard[] = [
     ],
 
     /* OLD IMAGE */
-    image: "/assets/about-optimized/family-support.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
 
     color: "#5B409C",
     titleColor: "#523790",
@@ -217,7 +217,7 @@ const helpCards: HelpCard[] = [
     ],
 
     /* OLD IMAGE */
-    image: "/assets/about-optimized/prayer-hall.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165012/moksha-sewa/assets/about-optimized/prayer-hall.webp",
 
     color: "#2E7140",
     titleColor: "#276237",

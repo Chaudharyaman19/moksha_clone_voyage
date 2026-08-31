@@ -1,0 +1,3945 @@
+{
+  "landingPage": {
+    "seo": {
+      "metaTitle": "Moksha Sewa - Humanitarian End-of-Life Support Mission",
+      "metaDescription": "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest and essential support for needy families.",
+      "metaKeywords": "Moksha Sewa, Namo Gange Trust, end-of-life support mission, last rites assistance, unclaimed case support, Delhi • Ghaziabad • Noida sewa",
+      "canonicalUrl": "https://mokshasewa.org/",
+      "ogTitle": "Moksha Sewa - Humanitarian End-of-Life",
+      "ogDescription": "by Namo Gange Trust provides dignified last rites, ambulance, priest and essential support for needy families.",
+      "ogImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164932/moksha-sewa/hero-images/3.png",
+      "breadcrumbName": "Home",
+      "robotsIndex": true,
+      "robotsFollow": true,
+      "internalLinks": []
+    },
+    "sections": [
+      {
+        "key": "hero",
+        "name": "Hero Slider",
+        "enabled": true,
+        "eyebrow": "Moksha Sewa",
+        "title": "Dignity in Every Final Journey",
+        "subtitle": "Supporting weaker families with compassionate last-rites assistance.",
+        "description": "Moksha Sewa team helping a helpless family with a dignified final journey",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png",
+        "supportTitle": "We are here to support with care, respect and compassion.",
+        "supportDescription": "You are not alone. We are with you.",
+        "regionTitle": "Delhi • Ghaziabad • Noida",
+        "regionDescription": "Currently serving with care in",
+        "initiativeLabel": "An Initiative of Namo Gange Trust",
+        "buttonLabel": "Request Sewa Help",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Support This Mission",
+        "secondaryButtonHref": "/donation",
+        "items": [
+          {
+            "label": "Helpline Guidance",
+            "value": "24/7",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6843"
+          },
+          {
+            "label": "Launch Region",
+            "value": "Delhi • Ghaziabad • Noida",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6844"
+          },
+          {
+            "label": "Case-Based Support",
+            "value": "Verified",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6845"
+          },
+          {
+            "label": "To Eligibility",
+            "value": "Subject",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6846"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6842",
+        "slides": []
+      },
+      {
+        "key": "who-we-help",
+        "name": "Who We Help",
+        "enabled": true,
+        "title": "Who We Help",
+        "items": [
+          {
+            "title": "Unclaimed & Legally\nAuthorised Cases",
+            "description": "We assist with respectful last-rites after completion of all required police, hospital and authority formalities.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164996/moksha-sewa/assets/about-optimized/cremation-ritual.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6848"
+          },
+          {
+            "title": "People Without Family\nor Support",
+            "description": "For those who have no one to stand beside them, we ensure a dignified and respectful final journey.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6849"
+          },
+          {
+            "title": "Economically Weaker\nFamilies",
+            "description": "Verified support for eligible families who are unable to manage essential last-rites arrangements.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165012/moksha-sewa/assets/about-optimized/prayer-hall.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa684a"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6847",
+        "slides": []
+      },
+      {
+        "key": "practical-support",
+        "name": "Practical Sewa Support",
+        "enabled": true,
+        "eyebrow": "Our Sewa",
+        "title": "Essential Support for a\nDignified Final Journey",
+        "description": "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg",
+        "sloganTitle": "Together, We Serve with Dignity",
+        "immediateHelpTitle": "Need Immediate Help?",
+        "immediateHelpDescription": "Our team is available 24x7 to support you.",
+        "supportNowLabel": "Support Now",
+        "supportMissionTitle": "Support Our Mission",
+        "supportMissionDescription": "Your support can bring dignity to many final journeys.",
+        "items": [
+          {
+            "title": "Ambulance &\nFinal Journey Van",
+            "description": "Respectful transport for the\ndeceased from hospital/home\nto cremation ground.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165188/moksha-sewa/assets/how-we-help/one.png",
+            "features": [
+              "24x7 Availability",
+              "Safe & Timely Transport",
+              "Trained & Verified Partners"
+            ],
+            "_id": "6a9539588ad69090a1aa684c"
+          },
+          {
+            "title": "Cremation\nCoordination",
+            "description": "Support in arranging cremation\nground coordination and\nrequired formalities.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165198/moksha-sewa/assets/how-we-help/two.png",
+            "features": [
+              "Cremation Ground Support",
+              "Essential Arrangements",
+              "Clean & Respectful Process"
+            ],
+            "_id": "6a9539588ad69090a1aa684d"
+          },
+          {
+            "title": "Ritual &\nPriest Support",
+            "description": "Priest, wood, cloth, flowers\nand all ritual essentials\narranged.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165189/moksha-sewa/assets/how-we-help/pandit.png",
+            "features": [
+              "Experienced Priests",
+              "Ritual Essentials",
+              "As Per Tradition & Customs"
+            ],
+            "_id": "6a9539588ad69090a1aa684e"
+          },
+          {
+            "title": "Family &\nOn-Ground Support",
+            "description": "Guidance, volunteers and\ndocumentation assistance\nat every step.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png",
+            "features": [
+              "Volunteer Support",
+              "Documentation Help",
+              "Emotional Support"
+            ],
+            "_id": "6a9539588ad69090a1aa684f"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa684b",
+        "slides": []
+      },
+      {
+        "key": "family-need",
+        "name": "Family Need",
+        "enabled": true,
+        "eyebrow": "Practical Sewa Support",
+        "title": "When a Family Needs Help,\nWe Arrange the Essentials",
+        "description": "During a difficult final journey, families may need more than arrangements—they may need guidance, coordination and someone willing to stand beside them.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165242/moksha-sewa/assets/manish.jpg",
+        "items": [
+          {
+            "title": "Verified Support",
+            "description": "For eligible cases",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6851"
+          },
+          {
+            "title": "Guided Assistance",
+            "description": "With sensitivity\nand respect",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6852"
+          },
+          {
+            "title": "Local Coordination",
+            "description": "Across the current\nservice region",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6853"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6850",
+        "slides": []
+      },
+      {
+        "key": "how-sewa-works",
+        "name": "How Sewa Works",
+        "enabled": true,
+        "eyebrow": "How Sewa Works",
+        "title": "Support With Care, Verification & Responsibility",
+        "description": "A simple process. Compassionate support. Dignified final journey.",
+        "items": [
+          {
+            "title": "Request Sewa Help",
+            "value": "01",
+            "description": "Share the basic\ncase details.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6855"
+          },
+          {
+            "title": "Case Verification",
+            "value": "02",
+            "description": "Our team reviews the need\nand applicable requirements.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6856"
+          },
+          {
+            "title": "Sewa Coordination",
+            "value": "03",
+            "description": "Required assistance is\ncoordinated based on\navailability.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6857"
+          },
+          {
+            "title": "Dignified Final Journey",
+            "value": "04",
+            "description": "The family/case receives\ncompassionate on-ground\nassistance.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6858"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6854",
+        "slides": []
+      },
+      {
+        "key": "compassion",
+        "name": "Compassion Section",
+        "enabled": true,
+        "eyebrow": "CREMATION & LAST RITES SUPPORT",
+        "title": "When a Family Needs Help\nWe Arrange the Essentials",
+        "description": "At Moksha Sewa, we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165085/moksha-sewa/assets/chatgpt.png",
+        "secondaryTitle": "Priest Support",
+        "secondaryDescription": "Experienced & Verified",
+        "phoneLabel": "Call for Help",
+        "phoneNumber": "9220147229",
+        "buttonLabel": "Request Sewa Support",
+        "buttonHref": "/request-help",
+        "_id": "6a9539588ad69090a1aa6859",
+        "slides": [],
+        "items": []
+      },
+      {
+        "key": "humanitarian-commitment",
+        "name": "Our Humanitarian Commitment",
+        "enabled": true,
+        "eyebrow": "Our Humanitarian Commitment",
+        "title": "No One Should Leave\nThis World Without Dignity.",
+        "items": [
+          {
+            "title": "Legally Authorised Cases",
+            "description": "We support only legally authorised unclaimed cases.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa685b"
+          },
+          {
+            "title": "Dignified Final Rites",
+            "description": "Every soul deserves a respectful and dignified farewell.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa685c"
+          },
+          {
+            "title": "Compassionate Human Presence",
+            "description": "Our volunteers stand with care, respect and humanity.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa685d"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa685a",
+        "slides": []
+      },
+      {
+        "key": "sewa-stories",
+        "name": "Sewa Stories",
+        "enabled": true,
+        "title": "Sewa Stories",
+        "items": [
+          {
+            "title": "ECONOMICALLY WEAKER FAMILY",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa685f"
+          },
+          {
+            "title": "ELDERLY WITHOUT SUPPORT",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165004/moksha-sewa/assets/about-optimized/hearse-van.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6860"
+          },
+          {
+            "title": "UNCLAIMED BODY CASE",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164996/moksha-sewa/assets/about-optimized/cremation-ritual.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6861"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa685e",
+        "slides": []
+      },
+      {
+        "key": "support-matters",
+        "name": "Why Your Support Matters",
+        "enabled": true,
+        "eyebrow": "Why Your Support Matters",
+        "title": "A Dignified Farewell\nShould Never Depend on\na Family's Ability to Pay.",
+        "subtitle": "Your contribution helps extend verified last-rites assistance where support is genuinely needed.",
+        "description": "Your support helps us coordinate essential assistance, mobilise volunteers and stand beside eligible families during a difficult final journey.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164962/moksha-sewa/hero-images/support-mission-ghat.png",
+        "buttonLabel": "Support This Mission",
+        "buttonHref": "/donation",
+        "_id": "6a9539588ad69090a1aa6862",
+        "slides": [],
+        "items": []
+      },
+      {
+        "key": "join-mission",
+        "name": "Join The Mission",
+        "enabled": true,
+        "eyebrow": "Join The Mission",
+        "title": "There Is a Place for Everyone in Sewa",
+        "description": "Every act of kindness helps us bring dignity, compassion and support to those who need it most in their final journey.",
+        "items": [
+          {
+            "title": "Give in Sewa",
+            "label": "Donate",
+            "description": "Help extend dignified final-rites\nsupport to eligible cases.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165146/moksha-sewa/assets/donation-images/donate-sewa.png",
+            "href": "/donation",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6864"
+          },
+          {
+            "title": "Serve in Sewa",
+            "label": "Volunteer",
+            "description": "Give your valuable time, presence,\nand compassionate support.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165150/moksha-sewa/assets/donation-images/volunteer-sewa.png",
+            "href": "/volunteer/register",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6865"
+          },
+          {
+            "title": "Partner in Sewa",
+            "label": "Partner",
+            "description": "CSR, institutions, hospitals, and\nvarious community partners.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165148/moksha-sewa/assets/donation-images/partner-sewa.png",
+            "href": "/partnership",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6866"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6863",
+        "slides": []
+      },
+      {
+        "key": "support-in-action",
+        "name": "Your Support In Action",
+        "enabled": true,
+        "eyebrow": "Your Support In Action",
+        "title": "Helping Complete a Final Journey With Dignity",
+        "buttonLabel": "Support Our Mission",
+        "buttonHref": "/donation",
+        "items": [
+          {
+            "title": "Final Journey\nTransport",
+            "description": "Safe and respectful transport of the departed to the cremation facility.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165185/moksha-sewa/assets/how-we-help/five.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6868"
+          },
+          {
+            "title": "Cremation\nCoordination",
+            "description": "Coordinating with crematoriums and ensuring a smooth cremation process.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165187/moksha-sewa/assets/how-we-help/four.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6869"
+          },
+          {
+            "title": "Ritual\nEssentials",
+            "description": "Providing essential items required for the final rites and rituals.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165018/moksha-sewa/assets/about-optimized/samagri.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa686a"
+          },
+          {
+            "title": "Priest & Ritual\nGuidance",
+            "description": "Arranging experienced priests who guide and conduct the final rites with respect.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165010/moksha-sewa/assets/about-optimized/pandit-ji.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa686b"
+          },
+          {
+            "title": "On-Ground\nSupport",
+            "description": "Our team stands beside the family, providing support and care at every step.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa686c"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6867",
+        "slides": []
+      },
+      {
+        "key": "trust-transparency",
+        "name": "Trust & Transparency",
+        "enabled": true,
+        "eyebrow": "Sewa With Responsibility",
+        "title": "Trust &\nTransparency",
+        "description": "Our commitment to transparency, integrity and responsible service.",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png",
+        "partnerLogoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp",
+        "secondaryLogoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164957/moksha-sewa/hero-images/namo-gange-logo.png",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png",
+        "quote": "We believe in being open, accountable and answerable\nto all those who walk with us in this mission.",
+        "legalNotice": "Applicable registration / tax\ninformation will be displayed\nafter legal verification.",
+        "lowerTitle": "Transparency in every step.",
+        "lowerDescription": "Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust.",
+        "bottomStatement": "A mission of compassion. | A commitment to transparency. | A promise of accountability.",
+        "buttonLabel": "Know About The Trust",
+        "buttonHref": "/about",
+        "items": [
+          {
+            "title": "About\nNamo Gange Trust",
+            "description": "Learn about our vision, mission, values, community purpose, commitment while staying connected.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa686e"
+          },
+          {
+            "title": "Governance &\nPolicies",
+            "description": "Understand our governance, policies, ethical standards, accountability, and processes clearly.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa686f"
+          },
+          {
+            "title": "Impact /\nReports",
+            "description": "Explore our impact, reports, case highlights, progress, outcomes and shared responsibility clearly.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6870"
+          },
+          {
+            "title": "Donation &\nRefund Policy",
+            "description": "Read about donations, fund use, refunds, policies, transparency and responsible management clearly.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6871"
+          },
+          {
+            "title": "SEWA",
+            "description": "Service with\ncompassion",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6872"
+          },
+          {
+            "title": "INTEGRITY",
+            "description": "Ethical actions,\nhonest intent",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6873"
+          },
+          {
+            "title": "TRANSPARENCY",
+            "description": "Open processes,\nclear communication",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6874"
+          },
+          {
+            "title": "ACCOUNTABILITY",
+            "description": "Answerable to all,\nalways improving",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6875"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa686d",
+        "slides": []
+      },
+      {
+        "key": "journey-glimpse",
+        "name": "Glimpse Of Journey",
+        "enabled": true,
+        "eyebrow": "Sewa In Action",
+        "title": "Moments of Compassion, Service & Dignity",
+        "buttonLabel": "View Sewa Gallery",
+        "buttonHref": "/mokshagallery",
+        "items": [
+          {
+            "title": "On-Ground Sewa",
+            "description": "Compassionate support on the ground, ensuring every step of the journey is handled with care.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165453/moksha-sewa/assets/sewa/on_ground_image.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6877"
+          },
+          {
+            "title": "Volunteer Sewa",
+            "description": "Dedicated volunteers selflessly giving their time and energy to serve those in need.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165460/moksha-sewa/assets/sewa/voluteer_sewa_image.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6878"
+          },
+          {
+            "title": "Ritual Support",
+            "description": "Providing ritual essentials and guidance with dignity, respect and authenticity.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165457/moksha-sewa/assets/sewa/ritual_support_image.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6879"
+          },
+          {
+            "title": "Community Outreach",
+            "description": "Building awareness, extending care and supporting communities with empathy.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165451/moksha-sewa/assets/sewa/community_outreach_image.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa687a"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6876",
+        "slides": []
+      },
+      {
+        "key": "final-act",
+        "name": "One Final Act Of Humanity",
+        "enabled": true,
+        "eyebrow": "One Final Act of Humanity",
+        "title": "When No One Else Is There,\nHumanity Must Be.",
+        "description": "Stand with Moksha Sewa in helping ensure dignity, compassion and respect in the final journey of those we are able to support.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164960/moksha-sewa/hero-images/one-final-act-humanity.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png",
+        "partnerLogoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp",
+        "secondaryTitle": "Moksha Sewa",
+        "initiativeLabel": "A Namo Gange Trust Initiative",
+        "buttonLabel": "Request Sewa Help",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Support This Mission",
+        "secondaryButtonHref": "/donation",
+        "_id": "6a9539588ad69090a1aa687b",
+        "slides": [],
+        "items": []
+      },
+      {
+        "key": "faq",
+        "name": "FAQ",
+        "enabled": true,
+        "eyebrow": "Help & Information",
+        "title": "Frequently Asked Questions",
+        "description": "Find quick answers to common questions about Moksha Sewa, our services and how you can get involved.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165160/moksha-sewa/assets/faq/bg.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
+        "items": [
+          {
+            "title": "Who can request Moksha Sewa support?",
+            "description": "Moksha Sewa support can be requested by families, authorised representatives, institutions and individuals who need assistance with last rites and related services.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165167/moksha-sewa/assets/faq/request.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa687d"
+          },
+          {
+            "title": "Does Moksha Sewa assist with legally authorised unclaimed bodies?",
+            "description": "Yes. Subject to applicable legal permissions and local procedures, Moksha Sewa can assist with legally authorised unclaimed body cases.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165165/moksha-sewa/assets/faq/legally.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa687e"
+          },
+          {
+            "title": "What cremation and last-rites assistance is available?",
+            "description": "Moksha Sewa provides assistance and coordination for cremation, transportation, essential last-rites arrangements and other support based on the circumstances.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165161/moksha-sewa/assets/faq/cremation.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa687f"
+          },
+          {
+            "title": "Where is Moksha Sewa currently available?",
+            "description": "Moksha Sewa services are currently available in selected locations. Please contact the team to confirm availability in your area.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165173/moksha-sewa/assets/faq/where_is_moksha.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6880"
+          },
+          {
+            "title": "How can I become a volunteer?",
+            "description": "You can express your interest in volunteering by contacting the Moksha Sewa team and sharing your basic details and preferred area of support.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165172/moksha-sewa/assets/faq/volunteer.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6881"
+          },
+          {
+            "title": "How can I support Moksha Sewa through a donation?",
+            "description": "You can support Moksha Sewa through an authorised donation channel. Contact the organisation for current donation details and available donation options.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165169/moksha-sewa/assets/faq/support.png",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6882"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa687c",
+        "slides": []
+      },
+      {
+        "key": "footer",
+        "name": "Footer",
+        "enabled": true,
+        "eyebrow": "A Namo Gange Trust Initiative",
+        "title": "Moksha Sewa",
+        "subtitle": "Seva • Samman • Samarpan",
+        "description": "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165175/moksha-sewa/assets/footer-ghat-sunset.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png",
+        "partnerLogoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165261/moksha-sewa/assets/namo-gange-logo.webp",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165347/moksha-sewa/assets/request_support.webp",
+        "bottomStatement": "© 2026 Moksha Sewa. All Rights Reserved.",
+        "phoneNumber": "9220147229",
+        "contactEmail": "info@mokshasewa.org",
+        "contactAddress": "Delhi • Ghaziabad • Noida, India",
+        "availabilityText": "We are available\n24/7 for you",
+        "actionTitle": "Stand with dignity. Serve with compassion.",
+        "requestTitle": "Request Support",
+        "requestDescription": "Share your email and our support team will contact you.",
+        "inputPlaceholder": "Your email address",
+        "submitLabel": "Send Request",
+        "submittedLabel": "Submitted",
+        "successMessage": "Thank you for reaching out. Our support team will contact you shortly.",
+        "initiativeLabel": "An Initiative of Namo Gange Trust",
+        "quickLinksTitle": "Quick Links",
+        "servicesTitle": "Our Services",
+        "initiativesTitle": "Our Initiatives",
+        "contactTitle": "Contact Us",
+        "buttonLabel": "Donate Now",
+        "buttonHref": "/donation",
+        "secondaryButtonLabel": "Request Help",
+        "secondaryButtonHref": "/request-help",
+        "tertiaryButtonLabel": "Become a Volunteer",
+        "tertiaryButtonHref": "/volunteer/register",
+        "items": [
+          {
+            "label": "Home",
+            "href": "/",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6884"
+          },
+          {
+            "label": "About Us",
+            "href": "/about",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6885"
+          },
+          {
+            "label": "Gallery",
+            "href": "/mokshagallery",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6886"
+          },
+          {
+            "label": "Blog",
+            "href": "/blog",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6887"
+          },
+          {
+            "label": "Contact Us",
+            "href": "/contact",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6888"
+          },
+          {
+            "label": "Request Sewa Help",
+            "href": "/request-help",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6889"
+          },
+          {
+            "label": "Transport Coordination",
+            "href": "/ambulanceservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688a"
+          },
+          {
+            "label": "Ritual Material Support",
+            "href": "/furalservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688b"
+          },
+          {
+            "label": "Priest Guidance",
+            "href": "/panditservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688c"
+          },
+          {
+            "label": "Family Guidance",
+            "href": "/specialservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688d"
+          },
+          {
+            "label": "Unclaimed Body Sewa",
+            "href": "/unclaimed-body-sewa",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688e"
+          },
+          {
+            "label": "Unclaimed Bodies Support",
+            "href": "/mortal-records",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa688f"
+          },
+          {
+            "label": "Volunteer Programme",
+            "href": "/volunteer/register",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6890"
+          },
+          {
+            "label": "Awareness & Outreach",
+            "href": "/blog",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6891"
+          },
+          {
+            "title": "Compassion",
+            "description": "We serve with\nempathy and humanity.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6892"
+          },
+          {
+            "title": "Dignity",
+            "description": "Every life is treated\nwith respect.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6893"
+          },
+          {
+            "title": "Service",
+            "description": "We support every step\nof the final journey.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6894"
+          },
+          {
+            "title": "Trust",
+            "description": "Transparent, accountable\nand responsible.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6895"
+          },
+          {
+            "title": "Together",
+            "description": "United for a more\ncompassionate world.",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6896"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy-policy",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6897"
+          },
+          {
+            "label": "Terms & Conditions",
+            "href": "/terms",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6898"
+          },
+          {
+            "label": "Refund Policy",
+            "href": "/refund-policy",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa6899"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa6883",
+        "slides": []
+      },
+      {
+        "key": "topbar",
+        "name": "Topbar",
+        "enabled": true,
+        "title": "Sewa Available in Delhi • Ghaziabad • Noida | 24×7 Last-Rites Assistance | Unclaimed & Needy Family Support",
+        "secondaryTitle": "Login",
+        "items": [
+          {
+            "label": "User Login",
+            "href": "/login",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa689b"
+          },
+          {
+            "label": "Admin Login",
+            "href": "admin",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa689c"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa689a",
+        "slides": []
+      },
+      {
+        "key": "navbar",
+        "name": "Navbar",
+        "enabled": true,
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
+        "items": [
+          {
+            "label": "Home",
+            "href": "/",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa689e"
+          },
+          {
+            "label": "About Us",
+            "href": "/about",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa689f"
+          },
+          {
+            "label": "Sewa & Support",
+            "href": "#services",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a0"
+          },
+          {
+            "label": "Ground Support",
+            "href": "/prayerhallservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a1"
+          },
+          {
+            "label": "Support for Needy Families",
+            "href": "/specialservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a2"
+          },
+          {
+            "label": "Ambulance & Body Transport",
+            "href": "/ambulanceservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a3"
+          },
+          {
+            "label": "Ritual Material Support",
+            "href": "/furalservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a4"
+          },
+          {
+            "label": "Priest & Ritual Guidance",
+            "href": "/panditservices",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a5"
+          },
+          {
+            "label": "Unclaimed Body Sewa",
+            "href": "/unclaimed-body-sewa",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a6"
+          },
+          {
+            "label": "Our Work",
+            "href": "/mortal-records",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a7"
+          },
+          {
+            "label": "Photo Gallery",
+            "href": "/mokshagallery",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a8"
+          },
+          {
+            "label": "Videos",
+            "href": "/mokshavediogallery",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68a9"
+          },
+          {
+            "label": "Join Us",
+            "href": "/volunteer/register",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68aa"
+          },
+          {
+            "label": "Become a Volunteer",
+            "href": "/volunteer/register",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68ab"
+          },
+          {
+            "label": "CSR Partnership",
+            "href": "/csr",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68ac"
+          },
+          {
+            "label": "Partner With Us",
+            "href": "/partnership",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68ad"
+          },
+          {
+            "label": "Help & Information",
+            "href": "/request-help",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68ae"
+          },
+          {
+            "label": "How to Request Help",
+            "href": "/request-help",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68af"
+          },
+          {
+            "label": "Blog & Awareness",
+            "href": "/blog",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68b0"
+          },
+          {
+            "label": "Contact Us",
+            "href": "/contact",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68b1"
+          },
+          {
+            "label": "Request Help",
+            "href": "/request-help",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68b2"
+          },
+          {
+            "label": "Donate",
+            "href": "/donation",
+            "features": [],
+            "_id": "6a9539588ad69090a1aa68b3"
+          }
+        ],
+        "_id": "6a9539588ad69090a1aa689d",
+        "slides": []
+      }
+    ]
+  },
+  "aboutPage": {
+    "sections": [
+      {
+        "key": "about-hero",
+        "name": "About Hero",
+        "enabled": true,
+        "eyebrow": "About Moksha Sewa",
+        "title": "Serving the Final Journey With Dignity",
+        "subtitle": "A humanitarian initiative of Namo Gange Trust.",
+        "description": "Moksha Sewa stands beside families, authorised unclaimed cases and people without support with care, responsibility and compassion.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png",
+        "quote": "We do not see a case. We see a human life that deserves respect.",
+        "buttonLabel": "Request Sewa Help",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Support This Mission",
+        "secondaryButtonHref": "/donation",
+        "slides": [],
+        "items": [
+          {
+            "title": "For Those Unclaimed",
+            "description": "Dignified rites for unclaimed.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99256b"
+          },
+          {
+            "title": "For Those Alone",
+            "description": "Support for the alone.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99256c"
+          },
+          {
+            "title": "For Families in Need",
+            "description": "Help for families in need.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99256d"
+          },
+          {
+            "title": "With Dignity & Care",
+            "description": "Compassion in every farewell.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99256e"
+          },
+          {
+            "title": "Humanity First",
+            "description": "Every life is precious and deserves respect.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99256f"
+          },
+          {
+            "title": "Verification & Legal",
+            "description": "We follow formalities and check eligibility first.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992570"
+          },
+          {
+            "title": "Transparent Sewa",
+            "description": "Accountable and compassionate at every step.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992571"
+          },
+          {
+            "title": "Community Powered",
+            "description": "Powered by volunteers, supporters and partners.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992572"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f99256a"
+      },
+      {
+        "key": "about-who-we-are",
+        "name": "Who We Are",
+        "enabled": true,
+        "eyebrow": "Who We Are",
+        "title": "Moksha Sewa Is a Namo Gange Trust Initiative.",
+        "description": "Moksha Sewa is a dedicated humanitarian initiative of Namo Gange Trust, created to provide compassionate and responsible support for authorised unclaimed cases, people without family support, and verified families facing financial hardship.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
+        "bottomStatement": "Together, we ensure that no one is left without dignity, care and respect in their final journey.",
+        "secondaryDescription": "The initiative operates under the guidance and institutional framework of Namo Gange Trust, bringing together volunteers, coordinators, service partners and compassionate citizens to support dignified final journeys.",
+        "supportTitle": "MOKSHA SEWA",
+        "supportDescription": "A Namo Gange Trust Initiative",
+        "slides": [],
+        "items": [
+          {
+            "title": "Compassion",
+            "description": "At Every Step",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992574"
+          },
+          {
+            "title": "Integrity",
+            "description": "In Every Action",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992575"
+          },
+          {
+            "title": "Respect",
+            "description": "For Every Life",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992576"
+          },
+          {
+            "title": "Dignity",
+            "description": "In Every Journey",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992577"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992573"
+      },
+      {
+        "key": "about-moksha-sewa",
+        "name": "What Is Moksha Sewa",
+        "enabled": true,
+        "eyebrow": "What Is Moksha Sewa?",
+        "title": "A Mission Built\nAround Dignity.",
+        "description": "Moksha Sewa is a humanitarian initiative created to stand beside people during one of life's most difficult and sensitive moments - the final journey.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164982/moksha-sewa/assets/about-optimized/a_mission.png",
+        "secondaryDescription": "It focuses on authorised unclaimed cases, people without available family support, and verified families who may face financial hardship in arranging essential final-journey requirements.",
+        "slides": [],
+        "items": [],
+        "_id": "6a92ad1ba661e51f8f992578"
+      },
+      {
+        "key": "about-services",
+        "name": "What We Do",
+        "enabled": true,
+        "eyebrow": "What We Do",
+        "title": "Supporting the\nFinal Journey With Care.",
+        "description": "We provide compassionate and responsible support for every step of the final journey.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165007/moksha-sewa/assets/about-optimized/moksha_services_bg.png",
+        "secondaryTitle": "How We Serve",
+        "buttonLabel": "Explore Our Sewa",
+        "buttonHref": "/prayerhallservices",
+        "slides": [],
+        "items": [
+          {
+            "title": "Final-Journey\nTransport",
+            "description": "Dignified and timely transport to the cremation destination.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165003/moksha-sewa/assets/about-optimized/final_journey_support.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257a"
+          },
+          {
+            "title": "Cremation &\nLast-Rites Support",
+            "description": "Complete support for cremation and essential last-rites arrangements.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164997/moksha-sewa/assets/about-optimized/cremation.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257b"
+          },
+          {
+            "title": "Ritual & Priest\nCoordination",
+            "description": "Arranging priests and guidance for all required rituals with respect.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165017/moksha-sewa/assets/about-optimized/ritual.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257c"
+          },
+          {
+            "title": "Essential\nMaterials",
+            "description": "Providing all essential items required for the final rites.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164998/moksha-sewa/assets/about-optimized/essentials.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257d"
+          },
+          {
+            "title": "Family\nGuidance",
+            "description": "Emotional support and guidance for families during difficult times.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165002/moksha-sewa/assets/about-optimized/family_guidance.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257e"
+          },
+          {
+            "title": "Understand",
+            "value": "01",
+            "description": "We listen to the circumstances.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165024/moksha-sewa/assets/about-optimized/understand.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99257f"
+          },
+          {
+            "title": "Verify",
+            "value": "02",
+            "description": "Eligibility and required formalities are reviewed.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165025/moksha-sewa/assets/about-optimized/verify.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992580"
+          },
+          {
+            "title": "Coordinate",
+            "value": "03",
+            "description": "Essential support is arranged as applicable.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164995/moksha-sewa/assets/about-optimized/coordinate.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992581"
+          },
+          {
+            "title": "Stand Beside",
+            "value": "04",
+            "description": "Compassionate on-ground guidance continues through the process.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165021/moksha-sewa/assets/about-optimized/stand_behind.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992582"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992579"
+      },
+      {
+        "key": "about-how-support",
+        "name": "Who We Support",
+        "enabled": true,
+        "title": "Who We Support",
+        "legalNotice": "Important Note",
+        "bottomStatement": "Support is case-based and subject to applicable verification, eligibility, required formalities and available resources.",
+        "slides": [],
+        "items": [
+          {
+            "title": "Unclaimed &\nAuthorised Cases",
+            "value": "01",
+            "description": "Support for authorised cases after applicable procedures, permissions and formalities.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992584"
+          },
+          {
+            "title": "People Without\nFamily Support",
+            "value": "02",
+            "description": "Compassionate assistance for people who have no family or support system available to stand beside them.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992585"
+          },
+          {
+            "title": "Verified Families Facing\nFinancial Hardship",
+            "value": "03",
+            "description": "Case-based assistance for families who need help with essential final-rites arrangements.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992586"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992583"
+      },
+      {
+        "key": "about-why-exist",
+        "name": "Why We Exist",
+        "enabled": true,
+        "eyebrow": "Why We Exist",
+        "title": "Because Sometimes,\nThere Is No One Left\nto Stand Beside Them.",
+        "subtitle": "Moksha Sewa\nExists for These Moments.",
+        "description": "Some people leave this world without family or support.\nSome cases remain unclaimed. And some families have the love and willingness to perform the final rites, but do not have the financial means to manage everything on their own.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png",
+        "quote": "When support disappears,\nhumanity must step forward.",
+        "slides": [],
+        "items": [],
+        "_id": "6a92ad1ba661e51f8f992587"
+      },
+      {
+        "key": "about-behind-mission",
+        "name": "Mission Video",
+        "enabled": true,
+        "eyebrow": "Video",
+        "title": "Behind\nMoksha Sewa",
+        "subtitle": "See the Mission",
+        "description": "Every final journey carries a story. This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.",
+        "image": "/vedio/taniya.mp4",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164962/moksha-sewa/hero-images/support-mission-ghat.png",
+        "availabilityText": "60-90 seconds",
+        "buttonLabel": "Explore Our Work",
+        "buttonHref": "/mokshagallery",
+        "slides": [],
+        "items": [
+          {
+            "title": "WHAT",
+            "label": "We Do",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992589"
+          },
+          {
+            "title": "WHY",
+            "label": "We Exist",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99258a"
+          },
+          {
+            "title": "WHO",
+            "label": "We Serve",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99258b"
+          },
+          {
+            "title": "HOW",
+            "label": "We Serve",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99258c"
+          },
+          {
+            "title": "NAMO GANGE TRUST",
+            "label": "Our Foundation",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99258d"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992588"
+      },
+      {
+        "key": "about-our-story",
+        "name": "Our Story & Founder Message",
+        "enabled": true,
+        "eyebrow": "Our Story",
+        "title": "One Question\nBecame a Mission.",
+        "subtitle": "What happens when someone passes away\nand there is no one to stand beside them?",
+        "description": "This question became the foundation of Moksha Sewa—a mission created so that when someone is left without family, support or resources, humanity can still stand beside them.\n\nWe believe that every individual, regardless of identity, status or circumstance, deserves a final journey of dignity, respect and compassion.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1787997599/moksha-sewa/website/xcjqeruxoz06gvu62jz8.png",
+        "quote": "Dignity should never depend on whether someone has money, family or someone standing beside them.",
+        "secondaryTitle": "A Message From The Founder",
+        "secondaryDescription": "Moksha Sewa is not just a service—it is a promise. A promise that in someone's final moment, humanity will not look away.",
+        "slides": [],
+        "items": [],
+        "_id": "6a92ad1ba661e51f8f99258e"
+      },
+      {
+        "key": "about-namo-gange",
+        "name": "Namo Gange Trust",
+        "enabled": true,
+        "eyebrow": "The Organisation Behind Moksha Sewa",
+        "title": "Rooted in Service.\nDriven by Responsibility.",
+        "description": "Moksha Sewa is an initiative of Namo Gange Trust, an organisation committed to social service, community welfare and meaningful humanitarian action.",
+        "image": "/assets/videos/namoGange.mp4",
+        "secondaryDescription": "Through Moksha Sewa, Namo Gange Trust extends this commitment to one of the most sensitive moments of human life - the final journey.",
+        "buttonLabel": "Know Namo Gange Trust",
+        "buttonHref": "https://www.namogange.org/",
+        "slides": [],
+        "items": [
+          {
+            "label": "Social Service",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992590"
+          },
+          {
+            "label": "Community Welfare",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992591"
+          },
+          {
+            "label": "Humanitarian Action",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992592"
+          },
+          {
+            "label": "Responsible Governance",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992593"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f99258f"
+      },
+      {
+        "key": "about-responsible-sewa",
+        "name": "Responsible Sewa",
+        "enabled": true,
+        "eyebrow": "Responsible Sewa",
+        "title": "Compassion\nWith Accountability.",
+        "subtitle": "We serve with responsibility. Because dignity comes first.",
+        "description": "At Moksha Sewa, every act of support is guided by responsibility, respect and the highest standards of ethical service.\n\nWe ensure that no one is left behind, working with deep empathy to provide dignity when it is needed most.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164979/moksha-sewa/assets/about/our-story/response.jpg",
+        "bottomStatement": "Moksha Sewa is a Namo Gange Trust initiative. Every step we take is guided by responsibility, respect and humanity.",
+        "slides": [],
+        "items": [
+          {
+            "title": "Verification",
+            "description": "Support follows defined eligibility and case circumstances.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992595"
+          },
+          {
+            "title": "Formalities",
+            "description": "Applicable permissions and procedures are respected.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992596"
+          },
+          {
+            "title": "Documentation",
+            "description": "Cases and assistance are responsibly recorded.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992597"
+          },
+          {
+            "title": "Privacy",
+            "description": "Beneficiary dignity comes before publicity.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f992598"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992594"
+      },
+      {
+        "key": "about-support-mission",
+        "name": "Support The Mission",
+        "enabled": true,
+        "eyebrow": "Support The Mission",
+        "title": "Help Namo Gange Trust\nContinue Moksha Sewa.",
+        "description": "Moksha Sewa is a humanitarian initiative of Namo Gange Trust. Your contribution helps support the Trust's efforts to provide dignified and responsible final-journey assistance through the Moksha Sewa initiative.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164974/moksha-sewa/assets/about/our-story/arthi.jpg",
+        "legalNotice": "Contributions made through this website are received by Namo Gange Trust and are utilised towards eligible activities and support under the Moksha Sewa initiative, subject to applicable policies and requirements.",
+        "slides": [],
+        "items": [
+          {
+            "title": "Essential final-journey arrangements",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259a"
+          },
+          {
+            "title": "Transportation & coordination",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259b"
+          },
+          {
+            "title": "Ritual requirements",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259c"
+          },
+          {
+            "title": "Eligible family support",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259d"
+          },
+          {
+            "title": "On-ground coordination",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259e"
+          },
+          {
+            "title": "Secure & Trusted",
+            "description": "Safe donations through trusted gateway",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f99259f"
+          },
+          {
+            "title": "Accountable Use",
+            "description": "Funds used for eligible activities only",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a0"
+          },
+          {
+            "title": "Transparency First",
+            "description": "Committed to responsible reporting",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a1"
+          },
+          {
+            "title": "Sewa With Dignity",
+            "description": "Ensuring respect and compassion in every step of the final journey",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a2"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f992599"
+      },
+      {
+        "key": "about-join-sewa",
+        "name": "Be Part Of The Sewa",
+        "enabled": true,
+        "eyebrow": "BE PART OF THE SEWA",
+        "title": "You Don't Have to\nDo Everything.",
+        "subtitle": "You Can Simply Do Something.",
+        "description": "Every act of kindness creates a ripple of dignity, compassion and respect. Even a small contribution of time, care or support can bring comfort to someone during their most difficult moments and help ensure that no one has to face their final journey alone.\n\nWhether you give your time as a volunteer, partner with us as an organisation, or support a family directly, every contribution helps us stand beside those who need it most — with dignity, care and respect.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164993/moksha-sewa/assets/about-optimized/be_part.png",
+        "bottomStatement": "Together, we can make sure that no one has to face their final journey alone. Be Part of the Sewa. Be the change.",
+        "slides": [],
+        "items": [
+          {
+            "title": "Become a Volunteer",
+            "description": "Give your time.\nBring compassion.\nBe the reason someone is not alone.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165026/moksha-sewa/assets/about-optimized/volunteer.png",
+            "href": "/volunteer/register",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a4",
+            "buttonLabel": "JOIN AS VOLUNTEER"
+          },
+          {
+            "title": "Partner With Us",
+            "description": "Join hands to create\na greater and\nlasting impact.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165011/moksha-sewa/assets/about-optimized/partner.png",
+            "href": "/partnership",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a5",
+            "buttonLabel": "EXPLORE PARTNERSHIP"
+          },
+          {
+            "title": "Support the Mission",
+            "description": "Your support helps ensure\ndignity, care and respect\nin every final journey.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165022/moksha-sewa/assets/about-optimized/support.png",
+            "href": "/donation",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a6",
+            "buttonLabel": "SUPPORT THE MISSION"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925a3"
+      },
+      {
+        "key": "about-faq",
+        "name": "About FAQ",
+        "enabled": true,
+        "eyebrow": "Help & Information",
+        "title": "Frequently Asked Questions",
+        "description": "Here are answers to some common questions about Moksha Sewa.\nIf you need more help, we are here for you.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165029/moksha-sewa/assets/about-reference/faq-support-final.png",
+        "requestTitle": "Need more help?",
+        "requestDescription": "Our team is here to assist you with any questions or support you may need.",
+        "buttonLabel": "Request Sewa Help",
+        "buttonHref": "/contact",
+        "slides": [],
+        "items": [
+          {
+            "title": "Who can request Moksha Sewa support?",
+            "description": "Moksha Sewa provides support for legally authorised unclaimed bodies, people without family support and verified families facing financial hardship. All requests are subject to verification and eligibility.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a8"
+          },
+          {
+            "title": "Does Moksha Sewa assist with legally authorised unclaimed bodies?",
+            "description": "Yes. We coordinate support only after the required authority clearance, documentation and legal formalities have been completed.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925a9"
+          },
+          {
+            "title": "What kind of assistance does Moksha Sewa provide?",
+            "description": "Depending on verified need and availability, support may include final-journey transport, ritual materials, priest coordination, cremation-ground support and family guidance.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925aa"
+          },
+          {
+            "title": "Is Moksha Sewa available in my area?",
+            "description": "Moksha Sewa currently focuses on Delhi - Ghaziabad - Noida and is expanding progressively. Contact our team with the case location to confirm availability.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ab"
+          },
+          {
+            "title": "How can I become a volunteer with Moksha Sewa?",
+            "description": "Submit the volunteer form through our website. Our team will review your details and contact you when a suitable verified opportunity is available.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ac"
+          },
+          {
+            "title": "How can I support Moksha Sewa through donations?",
+            "description": "You can support verified cases through the official donation page. Contributions are used responsibly for eligible mission activities and case-based assistance.",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ad"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925a7"
+      },
+      {
+        "key": "about-heart",
+        "name": "Heart Of Moksha",
+        "enabled": true,
+        "eyebrow": "The Heart of Moksha Sewa",
+        "title": "When Someone Has No One,\nHumanity Must Stand Beside Them.",
+        "description": "Because the final journey is not only about how life ends. It is about how we choose to stand beside one another until the very end.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165038/moksha-sewa/assets/about-reference/heart-of-moksha-sewa.png",
+        "buttonLabel": "Join the Mission",
+        "buttonHref": "/volunteer/register",
+        "slides": [],
+        "items": [
+          {
+            "label": "Be a\nVolunteer",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925af"
+          },
+          {
+            "label": "Partner\nWith Us",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b0"
+          },
+          {
+            "label": "Support the\nMission",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b1"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925ae"
+      },
+      {
+        "key": "about-hero-slider",
+        "name": "About Hero Slider",
+        "enabled": true,
+        "eyebrow": "Moksha Sewa",
+        "title": "Every Life Deserves Dignity. Always.",
+        "subtitle": "A Promise of Moksha Sewa",
+        "description": "Moksha Sewa stands for compassion in action. We are here for the forgotten, the unclaimed, and those who have no one. Because no one should face their final journey alone.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164987/moksha-sewa/assets/about-optimized/about.webp",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164983/moksha-sewa/assets/about-optimized/about-hero-new.webp",
+        "secondaryDescription": "Moksha Sewa is a humanitarian end-of-life support mission for economically weaker families and legally authorised unclaimed cases.",
+        "supportTitle": "Moksha Sewa",
+        "supportDescription": "An Initiative of Namo Gange Trust",
+        "phoneLabel": "24/7 Helpline",
+        "phoneNumber": "+91 9220147229",
+        "buttonLabel": "Request Help",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Support This Mission",
+        "secondaryButtonHref": "/donation",
+        "slides": [],
+        "items": [
+          {
+            "title": "Dignity First",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b3"
+          },
+          {
+            "title": "Eligibility-Based",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b4"
+          },
+          {
+            "title": "Always Available",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b5"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925b2"
+      },
+      {
+        "key": "about-moksha-sewa-story",
+        "name": "About Moksha Sewa (Our Story Section)",
+        "enabled": true,
+        "eyebrow": "Our Story",
+        "title": "Compassion, Care & Verified Support",
+        "description": "Moksha Sewa was founded with one simple belief: every final journey deserves dignity. We support economically weaker families and legally authorised unclaimed cases through verified, compassionate coordination.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164984/moksha-sewa/assets/about-optimized/about-story-1.webp",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164985/moksha-sewa/assets/about-optimized/about-story-2.webp",
+        "quote": "Serving with Devotion",
+        "legalNotice": "Team Moksha Sewa",
+        "slides": [],
+        "items": [],
+        "_id": "6a92ad1ba661e51f8f9925b6",
+        "tertiaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164986/moksha-sewa/assets/about-optimized/about-story-3.webp"
+      },
+      {
+        "key": "about-board-members",
+        "name": "Mission Leadership / Board Members",
+        "enabled": true,
+        "eyebrow": "Leadership & Governance",
+        "title": "Mission Leadership",
+        "slides": [],
+        "items": [
+          {
+            "title": "Madhukar Reddy Dasari",
+            "description": "Supports governance, finance and operational oversight for the mission.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165005/moksha-sewa/assets/about-optimized/madhukar-reddy-dasari.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b8",
+            "subtitle": "Namo Gange Trust Leadership"
+          },
+          {
+            "title": "Sandeep Singh",
+            "description": "Supports technology, data security and platform infrastructure.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165019/moksha-sewa/assets/about-optimized/sandeep-singh.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925b9",
+            "subtitle": "Technology & Data Support"
+          },
+          {
+            "title": "Vijay Sharma",
+            "description": "Supports on-ground coordination, field execution and case response.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165477/moksha-sewa/assets/vijay_sharma.jpg",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ba",
+            "subtitle": "Operations Coordination"
+          },
+          {
+            "title": "Srujana Paid",
+            "description": "Supports partnerships, outreach and progressive mission expansion.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165020/moksha-sewa/assets/about-optimized/srujana-paid.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925bb",
+            "subtitle": "Partnerships & Outreach"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925b7"
+      },
+      {
+        "key": "about-founders-vision",
+        "name": "Founder's Vision",
+        "enabled": true,
+        "eyebrow": "Founder's Vision",
+        "title": "The Thought Behind Moksha Sewa",
+        "description": "When a family loses a loved one, they are overwhelmed with grief. At that critical moment, dealing with the logistics of rituals, cremation, and arrangements should not add to their burden. Moksha Sewa was born out of this very realization.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165477/moksha-sewa/assets/vijay_sharma.jpg",
+        "secondaryDescription": "Our vision is to provide absolute dignity, complete transparency, and compassionate care to families during their toughest times. Every ritual is guided by deep respect for our traditions, ensuring that the final journey is peaceful and honorable.",
+        "supportTitle": "Vijay Sharma",
+        "supportDescription": "Founder",
+        "slides": [],
+        "items": [],
+        "_id": "6a92ad1ba661e51f8f9925bc"
+      },
+      {
+        "key": "about-our-initiatives",
+        "name": "Our Namo Gange Initiatives",
+        "enabled": true,
+        "eyebrow": "Our Expanding Horizon",
+        "title": "Our Namo Gange Initiatives",
+        "slides": [],
+        "items": [
+          {
+            "title": "Meri Beti Mera Abhiman",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165232/moksha-sewa/assets/initiatives/meri%20beti%20mera%20abhiman.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925be"
+          },
+          {
+            "title": "Arogya Mantra",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165212/moksha-sewa/assets/initiatives/Arogya%20Mantra.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925bf"
+          },
+          {
+            "title": "The Yogshala Expo",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165229/moksha-sewa/assets/initiatives/The%20Yogshala%20Expo.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c0"
+          },
+          {
+            "title": "The Yogshala Jobs",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165230/moksha-sewa/assets/initiatives/The%20Yogshala%20Jobs.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c1"
+          },
+          {
+            "title": "Swachh Bharat Sankalp",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165225/moksha-sewa/assets/initiatives/Swachh%20Bharat%20Sankalp.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c2"
+          },
+          {
+            "title": "Indian Contemporary Art",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165220/moksha-sewa/assets/initiatives/Indian%20Contemporary%20Art.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c3"
+          },
+          {
+            "title": "ICOA",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165219/moksha-sewa/assets/initiatives/ICOA.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c4"
+          },
+          {
+            "title": "Acharaya ji Online",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165209/moksha-sewa/assets/initiatives/Acharaya%20ji%20Online.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c5"
+          },
+          {
+            "title": "Aviral Ganga",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165214/moksha-sewa/assets/initiatives/Aviral%20Ganga.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c6"
+          },
+          {
+            "title": "Arogya Film Festival",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165211/moksha-sewa/assets/initiatives/Arogya%20Film%20Festival.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c7"
+          },
+          {
+            "title": "Indo Himalayan Expo",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165221/moksha-sewa/assets/initiatives/Indo%20Himalayan%20Expo.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c8"
+          },
+          {
+            "title": "Anna Sewa",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165210/moksha-sewa/assets/initiatives/Anna%20Sewa.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925c9"
+          },
+          {
+            "title": "NGT Farms",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165223/moksha-sewa/assets/initiatives/NGT%20Farms.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ca"
+          },
+          {
+            "title": "The Grand Master of Yoga",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165226/moksha-sewa/assets/initiatives/The%20Grand%20Master%20of%20Yoga.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925cb"
+          },
+          {
+            "title": "Arogya Sangoshti",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165213/moksha-sewa/assets/initiatives/Arogya%20Sangoshti.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925cc"
+          },
+          {
+            "title": "Bachchan Ki Rangshala",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165217/moksha-sewa/assets/initiatives/Bachchan%20Ki%20Rangshala.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925cd"
+          },
+          {
+            "title": "Ayush Mitra",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165216/moksha-sewa/assets/initiatives/Ayush%20Mitra.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925ce"
+          },
+          {
+            "title": "Vaidhyashala",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165231/moksha-sewa/assets/initiatives/Vaidhyashala.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925cf"
+          },
+          {
+            "title": "Global Eco-Tech Expo",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165218/moksha-sewa/assets/initiatives/Global%20Eco-Tech%20Expo.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925d0"
+          },
+          {
+            "title": "Ayush Abhinandanam",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165215/moksha-sewa/assets/initiatives/Ayush%20Abhinandanam.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925d1"
+          },
+          {
+            "title": "MP Development Expo",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165222/moksha-sewa/assets/initiatives/MP%20Development%20Expo.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925d2"
+          },
+          {
+            "title": "Shrimad Bhagwat Katha",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165224/moksha-sewa/assets/initiatives/Shrimad%20Bhagwat%20Katha.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925d3"
+          },
+          {
+            "title": "The Yogshala Clinic",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165228/moksha-sewa/assets/initiatives/The%20Yogshala%20Clinic.webp",
+            "features": [],
+            "_id": "6a92ad1ba661e51f8f9925d4"
+          }
+        ],
+        "_id": "6a92ad1ba661e51f8f9925bd"
+      }
+    ]
+  },
+  "_id": "6a742351b78ed4a5db991b01",
+  "siteName": "Moksha Sewa",
+  "helplineNumber": "0000000000",
+  "banners": [],
+  "socialLinks": [],
+  "createdAt": "2026-08-06T06:01:53.239Z",
+  "updatedAt": "2026-08-31T08:20:40.054Z",
+  "__v": 141,
+  "ambulancePage": {
+    "sections": [
+      {
+        "key": "ambulance-hero",
+        "name": "Ambulance Hero",
+        "enabled": true,
+        "eyebrow": "24×7 Last Journey Support",
+        "title": "Ambulance & Hearse\nSupport with Dignity",
+        "description": "Namo Gange coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.",
+        "image": "/ambulance/hero-ambulance.webp",
+        "buttonLabel": "Call for Ambulance",
+        "buttonHref": "tel:+919654900525",
+        "secondaryButtonLabel": "Request Support",
+        "secondaryButtonHref": "/request-help",
+        "bottomStatement": "Serving families with compassion, respect and timely support."
+      },
+      {
+        "key": "ambulance-highlights",
+        "name": "Ambulance Highlights",
+        "enabled": true,
+        "items": [
+          {
+            "title": "24/7 Availability",
+            "description": "Always here, day or night. Whenever you need us.",
+            "label": "clock"
+          },
+          {
+            "title": "Respectful Transport",
+            "description": "Dignified ambulance and hearse van for last journey.",
+            "label": "ambulance"
+          },
+          {
+            "title": "Trained Support Team",
+            "description": "Compassionate and skilled team you can trust.",
+            "label": "team"
+          },
+          {
+            "title": "Fast Response",
+            "description": "Quick response to reach you as soon as possible.",
+            "label": "timer"
+          }
+        ]
+      },
+      {
+        "key": "ambulance-how-it-works",
+        "name": "Ambulance How It Works",
+        "enabled": true,
+        "title": "How It Works",
+        "items": [
+          {
+            "title": "Call or Request",
+            "description": "Contact us anytime by call or request online.",
+            "label": "phone"
+          },
+          {
+            "title": "We Respond",
+            "description": "Our team reaches you quickly.",
+            "label": "ambulance"
+          },
+          {
+            "title": "We Assist",
+            "description": "We handle transport and support with care.",
+            "label": "hands"
+          },
+          {
+            "title": "Dignified Last Journey",
+            "description": "We ensure a respectful and peaceful last journey.",
+            "label": "leaf"
+          }
+        ]
+      },
+      {
+        "key": "ambulance-support",
+        "name": "Ambulance Support Section",
+        "enabled": true,
+        "title": "We Stand With You\nWhen It Matters Most",
+        "description": "In your most difficult moments, we stand beside you. Our ambulance and hearse support services are designed to bring relief, care and dignity.",
+        "image": "/ambulance/family-support.webp",
+        "items": [
+          {
+            "title": "Ambulance for emergency & non-emergency transfer"
+          },
+          {
+            "title": "Hearse van for last journey with full respect"
+          },
+          {
+            "title": "Help with basic coordination & arrangements"
+          },
+          {
+            "title": "Respectful support at the ghat and during rituals"
+          }
+        ],
+        "buttonLabel": "We Are Here For You",
+        "buttonHref": "tel:+919654900525",
+        "secondaryDescription": "Support team standing with a family"
+      },
+      {
+        "key": "ambulance-stories",
+        "name": "Ambulance Stories",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Always Ready",
+            "description": "Ambulance available 24×7 at all locations.",
+            "image": "/ambulance/story-always-ready.webp",
+            "label": "clock"
+          },
+          {
+            "title": "Careful & Respectful",
+            "description": "Trained team ensures safe and dignified transfer.",
+            "image": "/ambulance/story-respectful-transfer.webp",
+            "label": "hands"
+          },
+          {
+            "title": "Compassionate Support",
+            "description": "We stand with families with empathy and care.",
+            "image": "/ambulance/story-family-care.webp",
+            "label": "family"
+          }
+        ]
+      },
+      {
+        "key": "ambulance-receive",
+        "name": "Ambulance What Families Receive",
+        "enabled": true,
+        "title": "What Families Receive",
+        "items": [
+          {
+            "title": "Ambulance Support",
+            "description": "24×7 ambulance service for quick and safe transfer.",
+            "label": "ambulance"
+          },
+          {
+            "title": "Hearse Van Support",
+            "description": "Dignified hearse van for last journey transport.",
+            "label": "ambulance"
+          },
+          {
+            "title": "Ritual Coordination",
+            "description": "Basic ritual support and puja samagri assistance.",
+            "label": "ritual"
+          },
+          {
+            "title": "On-Ground Assistance",
+            "description": "Help with ghat entry, arrangements & support.",
+            "label": "team"
+          },
+          {
+            "title": "Emergency Contact Support",
+            "description": "Dedicated helpline for immediate guidance.",
+            "label": "phone"
+          }
+        ]
+      },
+      {
+        "key": "ambulance-trust",
+        "name": "Ambulance Why Families Trust Us",
+        "enabled": true,
+        "title": "Why Families Trust Namo Gange",
+        "items": [
+          {
+            "title": "Sewa with Respect",
+            "description": "24×7 service with dignity and care.",
+            "label": "leaf"
+          },
+          {
+            "title": "Trusted by Families",
+            "description": "Thousands of families trust our sewa.",
+            "label": "family"
+          },
+          {
+            "title": "Transparent & Honest",
+            "description": "No hidden charges. Complete transparency.",
+            "label": "shield"
+          },
+          {
+            "title": "Wide Service Network",
+            "description": "Help across Delhi • Ghaziabad • Noida and nearby regions.",
+            "label": "pin"
+          },
+          {
+            "title": "End-to-End Support",
+            "description": "From first call to final ritual support.",
+            "label": "support"
+          }
+        ]
+      },
+      {
+        "key": "ambulance-donation",
+        "name": "Ambulance Donation CTA",
+        "enabled": true,
+        "title": "Your Donation Brings Peace",
+        "description": "Your kind contribution helps us provide ambulance, hearse and last-journey support to families who cannot afford it. Together, we can bring comfort, dignity and peace in their most difficult moments.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg",
+        "buttonLabel": "Donate for Ambulance Service",
+        "buttonHref": "/donation",
+        "secondaryButtonLabel": "Support Our Sewa",
+        "secondaryButtonHref": "tel:+919654900525",
+        "secondaryTitle": "Every\nContribution\nBrings Peace"
+      }
+    ]
+  },
+  "servicesPage": {
+    "sections": [
+      {
+        "key": "services-hero",
+        "name": "Services Hero",
+        "enabled": true,
+        "eyebrow": "Sewa & Support Services",
+        "title": "Comprehensive Final Journey Support With Care & Dignity",
+        "subtitle": "A humanitarian initiative of Namo Gange Trust.",
+        "description": "Providing compassionate, end-to-end assistance including hearse vans, priest coordination, funeral samagri, prayer hall arrangements, and family support.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
+        "buttonLabel": "Request Sewa Help",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Call Helpline",
+        "secondaryButtonHref": "tel:1800123456"
+      },
+      {
+        "key": "services-ambulance",
+        "name": "Ambulance & Hearse Van",
+        "enabled": true,
+        "eyebrow": "Transport Sewa",
+        "title": "Ambulance & Hearse Van Assistance",
+        "description": "24/7 dignified transport support across Delhi, Noida, Ghaziabad and NCR with trained drivers and hygienic vehicles.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png",
+        "buttonLabel": "Book Transport",
+        "buttonHref": "/request-help",
+        "items": [
+          {
+            "title": "24/7 Availability",
+            "description": "Prompt response for urgent requirements."
+          },
+          {
+            "title": "Sanitised & Equipped",
+            "description": "Hygienic, respectful transport facilities."
+          },
+          {
+            "title": "Inter-City Movement",
+            "description": "State border clearance & long-distance transport."
+          }
+        ]
+      },
+      {
+        "key": "services-funeral",
+        "name": "Funeral Rites & Management",
+        "enabled": true,
+        "eyebrow": "Final Rites",
+        "title": "Dignified Funeral & Cremation Support",
+        "description": "Assistance with cremation ground bookings, wood or electric rites, and complete ritual management.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png",
+        "buttonLabel": "Learn More",
+        "buttonHref": "/contact",
+        "items": [
+          {
+            "title": "Cremation Ground Slotting",
+            "description": "Coordination with electric & traditional ghats."
+          },
+          {
+            "title": "Complete Ritual Management",
+            "description": "Respectful execution as per traditions."
+          }
+        ]
+      },
+      {
+        "key": "services-pandit",
+        "name": "Vedic Pandit & Priest",
+        "enabled": true,
+        "eyebrow": "Spiritual Guidance",
+        "title": "Vedic Pandit & Priest Coordination",
+        "description": "Experienced Vedic priests to perform last rites, antim sanskar, and prayer ceremonies with utmost reverence.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png",
+        "items": [
+          {
+            "title": "Vedic Rites",
+            "description": "Customary rituals conducted with sacred precision."
+          },
+          {
+            "title": "Multilingual Support",
+            "description": "Priests versed in regional traditions and languages."
+          }
+        ]
+      },
+      {
+        "key": "services-prayer-hall",
+        "name": "Prayer Hall & Samagri",
+        "enabled": true,
+        "eyebrow": "Arrangements",
+        "title": "Prayer Hall Booking & Samagri Kit",
+        "description": "Providing complete eco-friendly samagri kits and arranging prayer halls for shradhanjali or chautha.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"
+      },
+      {
+        "key": "services-harsevan",
+        "name": "Harsevan & Transport Support",
+        "enabled": true,
+        "eyebrow": "Harsevan",
+        "title": "Harsevan Vehicle Support",
+        "description": "Specially dedicated vehicles for traditional carrying and respect during the procession.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp"
+      },
+      {
+        "key": "services-decoration",
+        "name": "Funeral Floral Decoration",
+        "enabled": true,
+        "eyebrow": "Floral Tributes",
+        "title": "Floral & Vahan Decoration",
+        "description": "Thoughtfully designed floral tributes and vehicle decorations to honor the memory of the departed.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164983/moksha-sewa/assets/about-optimized/about-hero-new.webp"
+      },
+      {
+        "key": "services-calling-relatives",
+        "name": "Calling Relatives & Assistance",
+        "enabled": true,
+        "eyebrow": "Family Coordination",
+        "title": "Inform Relatives & Support Center",
+        "description": "Assisting bereaved families with broadcast notifications, venue guidance, and relative coordination.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png"
+      },
+      {
+        "key": "services-special",
+        "name": "Special Customized Services",
+        "enabled": true,
+        "eyebrow": "Custom Support",
+        "title": "Special Needs & Custom Assistance",
+        "description": "Tailored support for out-of-station families, legal documentation help, and emergency assistance.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png"
+      }
+    ]
+  },
+  "unclaimedBodyPage": {
+    "sections": [
+      {
+        "key": "unclaimed-hero",
+        "name": "Unclaimed Body Hero",
+        "enabled": true,
+        "eyebrow": "Unclaimed Body Sewa",
+        "title": "Ensuring Final Dignity\nFor Every Departed Soul",
+        "subtitle": "A Sacred Duty Undertaken By Moksha Sewa",
+        "description": "Standing for those who have no one. We perform final rites for authorised unclaimed bodies after strict police & legal verification.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
+        "buttonLabel": "Report Unclaimed Case",
+        "buttonHref": "/request-help"
+      },
+      {
+        "key": "unclaimed-what-is",
+        "name": "What Is Unclaimed Sewa",
+        "enabled": true,
+        "eyebrow": "Understanding The Mission",
+        "title": "Standing Beside The Unknown & Forgotten",
+        "description": "Every human life deserves a respectful farewell. Moksha Sewa coordinates with local police and hospital authorities to perform sacred rites.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164982/moksha-sewa/assets/about-optimized/a_mission.png",
+        "items": [
+          {
+            "description": "Support proceeds only after the required verification and authorisation from the competent authority."
+          },
+          {
+            "description": "Police, hospital, municipal and legal procedures must be completed wherever applicable."
+          },
+          {
+            "description": "Case information and documents are handled responsibly, with privacy and dignity."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-process",
+        "name": "The Sewa Process",
+        "enabled": true,
+        "eyebrow": "The Sewa Process",
+        "title": "How Unclaimed Body Sewa Works",
+        "description": "",
+        "items": [
+          {
+            "title": "Case Referral",
+            "description": "Case details are received from an appropriate or verifiable source."
+          },
+          {
+            "title": "Verification & Authorisation",
+            "description": "Available case information, documentation and required authorisation are reviewed before assistance is undertaken."
+          },
+          {
+            "title": "Sewa Coordination",
+            "description": "Eligible assistance is coordinated according to case requirements, applicable process and available resources."
+          },
+          {
+            "title": "Dignified Final Journey",
+            "description": "Approved support is provided with sensitivity, dignity and respect."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-final-journey",
+        "name": "Sewa Support",
+        "enabled": true,
+        "eyebrow": "Sewa Support",
+        "title": "Support for a Dignified Final Journey",
+        "description": "Depending on the verified case, applicable requirements and available resources, assistance may include:",
+        "image": "",
+        "items": [
+          {
+            "title": "Final-Journey Transport",
+            "description": "Appropriate transport coordination where required and permitted."
+          },
+          {
+            "title": "Cremation & Last-Rites Coordination",
+            "description": "Support with eligible final-journey arrangements."
+          },
+          {
+            "title": "Ritual Essentials",
+            "description": "Basic materials required for final rites where applicable."
+          },
+          {
+            "title": "Priest / Ritual Coordination",
+            "description": "Appropriate ritual guidance or coordination where relevant."
+          },
+          {
+            "title": "On-Ground Sewa",
+            "description": "Compassionate presence and practical coordination during the final journey."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-dignity-first",
+        "name": "Sewa With Responsibility",
+        "enabled": true,
+        "eyebrow": "Sewa With Responsibility",
+        "title": "Dignity Comes First.",
+        "description": "Humanitarian support during a final journey requires sensitivity, privacy and responsible processes.",
+        "image": "",
+        "items": [
+          {
+            "title": "Authorised Support",
+            "description": "Required legal and administrative clearances are verified before eligible assistance proceeds."
+          },
+          {
+            "title": "Privacy & Respect",
+            "description": "Sensitive case information is handled responsibly, privately and with dignity at every stage."
+          },
+          {
+            "title": "Responsible Documentation",
+            "description": "Relevant case and activity records are maintained where applicable for clear accountability."
+          },
+          {
+            "title": "No Exploitation",
+            "description": "Human dignity always takes priority over publicity, promotion or unnecessary public exposure."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-organisation",
+        "name": "Organisation Behind Mission",
+        "enabled": true,
+        "eyebrow": "Namo Gange Trust",
+        "title": "The Organisation Behind Moksha Sewa",
+        "description": "A Humanitarian Initiative of Namo Gange Trust.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
+        "items": [
+          {
+            "title": "Governance",
+            "description": "Ethical leadership and transparent processes at every step."
+          },
+          {
+            "title": "Social Service",
+            "description": "Working for community welfare and meaningful social impact."
+          },
+          {
+            "title": "Humanitarian Action",
+            "description": "Compassionate action for people who need timely support."
+          },
+          {
+            "title": "Responsible Sewa",
+            "description": "Dignity-first support with accountability and care."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-faq",
+        "name": "Unclaimed Body FAQ",
+        "enabled": true,
+        "eyebrow": "Help & Information",
+        "title": "Frequently Asked Questions",
+        "description": "About Unclaimed Body Sewa",
+        "items": [
+          {
+            "title": "What is an unclaimed body?",
+            "description": "The legal or administrative status of a deceased person is determined by competent authorities under applicable procedures. Moksha Sewa does not independently declare a body to be unclaimed."
+          },
+          {
+            "title": "Who can request Unclaimed Body Sewa?",
+            "description": "Hospital authorities, police officers, or verified social workers can notify us."
+          },
+          {
+            "title": "What documents or authorisation may be required?",
+            "description": "Police clearance certificates, official hospital handovers, and statutory waiting periods are verified."
+          },
+          {
+            "title": "What support can Moksha Sewa provide?",
+            "description": "Final-journey transport, cremation coordination, and basic ritual materials."
+          },
+          {
+            "title": "Does Moksha Sewa declare a body legally unclaimed?",
+            "description": "No, we do not declare bodies as unclaimed. We only assist cases authorised by competent authorities."
+          },
+          {
+            "title": "Where is Unclaimed Body Sewa currently available?",
+            "description": "Please contact our coordination desk for availability in your region."
+          }
+        ]
+      },
+      {
+        "key": "unclaimed-request",
+        "name": "Request Unclaimed Case Support",
+        "enabled": true,
+        "eyebrow": "Need Assistance With",
+        "title": "an Unclaimed Body Case?",
+        "description": "Share the available details so our team can understand the situation and review the appropriate next step.\nIf the matter is currently with a hospital, police station or other competent authority, please complete the applicable official process and obtain the required authorisation before final-journey assistance can proceed.",
+        "buttonLabel": "Submit Sewa Request",
+        "buttonHref": "/request-help"
+      }
+    ]
+  },
+  "volunteerPage": {
+    "sections": [
+      {
+        "key": "volunteer-hero",
+        "name": "Volunteer Hero",
+        "enabled": true,
+        "eyebrow": "Be Part Of The Sewa",
+        "title": "Offer Your Time & Heart to Serve the Final Journey",
+        "subtitle": "Join a Dedicated Network of Compassionate Citizens",
+        "description": "Volunteers are the backbone of Moksha Sewa. Help coordinate transport, support grieving families, or assist during last rites.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164963/moksha-sewa/hero-images/volunteer-elderly-woman.png",
+        "logoImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png",
+        "secondaryImage": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164964/moksha-sewa/hero-images/volunteer-hero-second.png",
+        "buttonLabel": "Register As Volunteer",
+        "buttonHref": "/volunteer/register"
+      },
+      {
+        "key": "volunteer-code",
+        "name": "Volunteer Code of Conduct",
+        "enabled": true,
+        "eyebrow": "Responsibility & Ethics",
+        "title": "Principles That Guide Every Moksha Volunteer",
+        "description": "We uphold strict standards of empathy, privacy, dignity, and zero commercial interest in all our activities.",
+        "items": [
+          {
+            "title": "Empathetic Conduct",
+            "description": "Be respectful and patient with grieving families."
+          },
+          {
+            "title": "Confidentiality",
+            "description": "Protect family privacy and sensitive details at all times."
+          },
+          {
+            "title": "No Financial Transactions",
+            "description": "Volunteers never accept cash or gifts directly."
+          }
+        ]
+      },
+      {
+        "key": "volunteer-dashboard",
+        "name": "Volunteer Roles & System",
+        "enabled": true,
+        "eyebrow": "Flexible Ways To Help",
+        "title": "Choose How You Wish To Serve",
+        "description": "Whether on-field, on-call for emergencies, or assisting with administrative documentation, every contribution counts.",
+        "items": [
+          {
+            "title": "Field Support",
+            "description": "Assist on ground during transport and ghat ceremonies."
+          },
+          {
+            "title": "On-Call Emergency",
+            "description": "Available for urgent calls in your local area."
+          },
+          {
+            "title": "Family Coordination",
+            "description": "Provide guidance and emotional comfort."
+          }
+        ]
+      },
+      {
+        "key": "volunteer-register",
+        "name": "Volunteer Registration Form Section",
+        "enabled": true,
+        "eyebrow": "Get Started Today",
+        "title": "Complete Your Volunteer Profile",
+        "description": "Fill out the registration form to be verified and added to our active volunteer roster.",
+        "buttonLabel": "Submit Registration",
+        "buttonHref": "/volunteer/register"
+      },
+      {
+        "key": "volunteer-registration-steps",
+        "name": "Registration Steps",
+        "enabled": true,
+        "eyebrow": "Registration Process",
+        "title": "How Volunteer Registration Works",
+        "items": [
+          {
+            "title": "Fill Details",
+            "description": "Complete the form with your preferences and accurate contact details."
+          },
+          {
+            "title": "Verification",
+            "description": "Our team will review your application and reach out for a quick verification."
+          },
+          {
+            "title": "Orientation",
+            "description": "Attend a brief onboarding session to understand the code of conduct and protocols."
+          },
+          {
+            "title": "Start Sewa",
+            "description": "Begin receiving active requests and updates from the central coordination desk."
+          }
+        ]
+      },
+      {
+        "key": "volunteer-skills",
+        "name": "Volunteer Suggested Skills",
+        "enabled": true,
+        "eyebrow": "Suggested Skills",
+        "title": "Select your skills",
+        "items": [
+          {
+            "title": "First Aid / Medical Basics"
+          },
+          {
+            "title": "Counselling / Emotional Support"
+          },
+          {
+            "title": "Logistics / Driving"
+          },
+          {
+            "title": "Coordination & Administration"
+          },
+          {
+            "title": "Social Work Experience"
+          },
+          {
+            "title": "Event Management"
+          },
+          {
+            "title": "Photography / Content"
+          },
+          {
+            "title": "Legal / Documentation"
+          }
+        ]
+      },
+      {
+        "key": "volunteer-service-areas",
+        "name": "Volunteer Service Areas",
+        "enabled": true,
+        "eyebrow": "Service Areas",
+        "title": "Select preferred areas of service",
+        "items": [
+          {
+            "title": "Field Volunteer"
+          },
+          {
+            "title": "Hospital & Authority Coordination"
+          },
+          {
+            "title": "Cremation & Ritual Assistance"
+          },
+          {
+            "title": "Unclaimed Body Support"
+          },
+          {
+            "title": "Economically Weaker Family Support"
+          },
+          {
+            "title": "24×7 Helpline Support"
+          },
+          {
+            "title": "Ambulance / Logistics Support"
+          },
+          {
+            "title": "Documentation & Case Support"
+          },
+          {
+            "title": "Community Awareness"
+          },
+          {
+            "title": "Social Media / Digital Volunteering"
+          },
+          {
+            "title": "Photography / Videography / Content"
+          },
+          {
+            "title": "Fundraising & Donor Outreach"
+          },
+          {
+            "title": "Professional / Pro-Bono Support"
+          },
+          {
+            "title": "Events & Campaign Support"
+          }
+        ]
+      }
+    ]
+  },
+  "csrPage": {
+    "sections": [
+      {
+        "key": "csr-hero",
+        "name": "CSR Hero",
+        "enabled": true,
+        "eyebrow": "Corporate Social Responsibility",
+        "title": "Empower Dignified Final Rites Support\nThrough Corporate CSR",
+        "subtitle": "Fulfilling Social Impact With Complete Tax Exemption & Audits",
+        "description": "Partner with Namo Gange Trust's Moksha Sewa initiative to sponsor hearse vans, cremation kits, and unclaimed body rites.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165101/moksha-sewa/assets/csr/csr-hero-photo.jpg",
+        "buttonLabel": "Explore CSR Proposal",
+        "buttonHref": "#csr-form"
+      },
+      {
+        "key": "csr-support-journey",
+        "name": "CSR Support Journey",
+        "enabled": true,
+        "eyebrow": "Impact & Journey",
+        "title": "How Corporate Funding Restores Human Dignity",
+        "description": "Track how your CSR contribution directly touches lives and ensures dignified farewells."
+      },
+      {
+        "key": "csr-compliance",
+        "name": "Compliance & 80G Tax Exemption",
+        "enabled": true,
+        "eyebrow": "100% Tax Benefit",
+        "title": "80G & 12A Certified Legal Compliance",
+        "description": "All corporate donations receive tax deduction benefits under Section 80G with audited utilization certificates.",
+        "items": [
+          {
+            "title": "80G & 12A Registered",
+            "description": "Tax-exempt receipts provided for every contribution."
+          },
+          {
+            "title": "CSR Form 1 Compliant",
+            "description": "Registered for MCA CSR activities."
+          },
+          {
+            "title": "Impact Reports",
+            "description": "Detailed monthly/quarterly execution reports."
+          }
+        ]
+      },
+      {
+        "key": "csr-responsibility",
+        "name": "Institutional Governance",
+        "enabled": true,
+        "eyebrow": "Governance",
+        "title": "Transparent Financial Management & Oversight",
+        "description": "Governed under the established framework of Namo Gange Trust with independent third-party audits."
+      },
+      {
+        "key": "csr-models",
+        "name": "CSR Engagement Models",
+        "enabled": true,
+        "eyebrow": "Custom Models",
+        "title": "Flexible Sponsorship & Grant Programs",
+        "description": "Sponsor a Hearse Van, adopt a cremation zone, or fund unclaimed body support campaigns.",
+        "items": [
+          {
+            "title": "Hearse Van Sponsorship",
+            "description": "Branded vehicle dedicated to free service."
+          },
+          {
+            "title": "Unclaimed Rites Fund",
+            "description": "Sponsor monthly unclaimed body rites."
+          },
+          {
+            "title": "E-Crematorium Support",
+            "description": "Eco-friendly woodless cremation adoption."
+          }
+        ]
+      },
+      {
+        "key": "csr-enquiry",
+        "name": "CSR Enquiry Form Section",
+        "enabled": true,
+        "eyebrow": "Corporate Inquiry",
+        "title": "Connect With Our CSR Leadership Team",
+        "description": "Share your company's CSR priorities and we will create a tailored proposal."
+      },
+      {
+        "key": "csr-cta",
+        "name": "CSR Final Call To Action",
+        "enabled": true,
+        "eyebrow": "Take Action",
+        "title": "Make Final Journey Dignity Part Of Your Corporate Legacy",
+        "buttonLabel": "Request Proposal",
+        "buttonHref": "#csr-form"
+      }
+    ]
+  },
+  "donationPage": {
+    "sections": [
+      {
+        "key": "donation-hero",
+        "name": "Donation Hero",
+        "enabled": true,
+        "eyebrow": "Support The Mission",
+        "title": "Your Contribution Restores\nSacred Dignity To Human Life",
+        "subtitle": "100% Tax Exempted Under Section 80G",
+        "description": "Support free ambulance movement, woodless cremation, priest samagri kits, and unclaimed body rites.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164932/moksha-sewa/hero-images/3.png",
+        "buttonLabel": "Donate Now",
+        "buttonHref": "#donation-form"
+      },
+      {
+        "key": "donation-causes",
+        "name": "Donation Causes",
+        "enabled": true,
+        "eyebrow": "Choose A Cause",
+        "title": "Direct Impact Causes You Can Support",
+        "description": "Select specific areas of service to direct your donation.",
+        "items": [
+          {
+            "title": "Support a Final Journey",
+            "value": "1100",
+            "description": "Indicative contribution toward verified last-rites assistance and related programme needs.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165250/moksha-sewa/assets/namo-gange/vol2.png",
+            "features": [
+              "Case support",
+              "Most needed",
+              "Mission fund",
+              "General support"
+            ]
+          },
+          {
+            "title": "Last-Rites Assistance",
+            "label": "MISSION NEED",
+            "value": "2100",
+            "description": "Indicative contribution toward essential ritual materials and case-based support.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165251/moksha-sewa/assets/namo-gange/vol3.png",
+            "features": [
+              "Ritual support",
+              "Guidance",
+              "Materials",
+              "Case care"
+            ]
+          },
+          {
+            "title": "Transport Support",
+            "value": "5100",
+            "description": "Indicative contribution toward ambulance or hearse-van coordination for verified cases.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165253/moksha-sewa/assets/namo-gange/vol4.png",
+            "features": [
+              "Readiness",
+              "Transport care",
+              "Helpline support",
+              "Coordination"
+            ]
+          },
+          {
+            "title": "Family Relief Support",
+            "value": "11000",
+            "description": "Indicative contribution toward food, water and basic relief where verified need exists.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165258/moksha-sewa/assets/namo-gange/vol5.png",
+            "features": [
+              "Meal support",
+              "Family relief",
+              "Essentials",
+              "Community care"
+            ]
+          }
+        ]
+      },
+      {
+        "key": "donation-tax-benefit",
+        "name": "80G Tax Exemption Info",
+        "enabled": true,
+        "eyebrow": "Tax Benefits",
+        "title": "Save Tax While Serving Humanity",
+        "description": "Instant 80G tax exemption receipts generated automatically upon successful payment."
+      },
+      {
+        "key": "donation-stats",
+        "name": "Donation Quick Stats",
+        "enabled": true,
+        "eyebrow": "Quick Stats",
+        "title": "Donation Impact Numbers",
+        "items": [
+          {
+            "label": "Case Support",
+            "value": "Verified"
+          },
+          {
+            "label": "Launch Region",
+            "value": "Delhi • Ghaziabad • Noida"
+          },
+          {
+            "label": "Relief Assistance",
+            "value": "Need-Based"
+          },
+          {
+            "label": "Sewa Mission",
+            "value": "Trust-Led"
+          }
+        ]
+      },
+      {
+        "key": "donation-faq",
+        "name": "Donation FAQ",
+        "enabled": true,
+        "eyebrow": "Help & Information",
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "title": "Will I receive a receipt for my donation?",
+            "description": "Yes. A donation receipt is generated for every contribution and emailed to you — please keep it for your records."
+          },
+          {
+            "title": "Is my contribution tax-exempt?",
+            "description": "Yes. All contributions made to Namo Gange Trust are eligible for tax exemption under Section 80G of the Income Tax Act."
+          },
+          {
+            "title": "How are the funds utilized?",
+            "description": "Your support goes directly toward the specific cause you select—whether for cremation rites, ambulance coordination, or essential relief."
+          },
+          {
+            "title": "Is my payment information secure?",
+            "description": "Yes. Payments are processed through encrypted, secure payment gateways — your card and bank details are never stored on our servers."
+          },
+          {
+            "title": "Can I set up a monthly donation?",
+            "description": "Yes — choose ‘Monthly’ while donating and our team will coordinate recurring contributions on your behalf."
+          }
+        ]
+      }
+    ]
+  },
+  "prayerHallPage": {
+    "sections": [
+      {
+        "key": "prayerHall-hero",
+        "name": "Prayer Hall Hero",
+        "enabled": true,
+        "title": "Ground & Prayer Support",
+        "subtitle": "Creating A Space For Peace.",
+        "description": "Finding the right place to grieve and pray is essential. We assist with cremation-ground coordination, setting up serene prayer halls, and providing calm guidance for the entire family.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165319/moksha-sewa/assets/prayerhallservices/hero-real.png",
+        "buttonLabel": "Request Support",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Donate for Support",
+        "secondaryButtonHref": "/donation"
+      },
+      {
+        "key": "prayerHall-highlights",
+        "name": "Prayer Hall Highlights",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Ground Coordination",
+            "description": "Seamless coordination with ground staff and family members.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165310/moksha-sewa/assets/prayerhallservices/feature-ground.png"
+          },
+          {
+            "title": "Prayer Setup",
+            "description": "Serene prayer arrangements prepared with care and respect.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165316/moksha-sewa/assets/prayerhallservices/feature-setup.png"
+          },
+          {
+            "title": "Family Support",
+            "description": "Gentle guidance and assistance for family members throughout.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165309/moksha-sewa/assets/prayerhallservices/feature-family.png"
+          },
+          {
+            "title": "Peaceful Environment",
+            "description": "A calm and respectful space for prayer, mourning and remembrance.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165312/moksha-sewa/assets/prayerhallservices/feature-peace.png"
+          }
+        ]
+      },
+      {
+        "key": "prayerHall-how-it-works",
+        "name": "Prayer Hall How It Works",
+        "enabled": true,
+        "title": "How It Works",
+        "items": [
+          {
+            "title": "Call or Request Support",
+            "label": "phone"
+          },
+          {
+            "title": "Ground Coordination",
+            "label": "building"
+          },
+          {
+            "title": "Prayer Hall Setup",
+            "label": "florist"
+          },
+          {
+            "title": "Guidance During Ceremony",
+            "label": "hands"
+          }
+        ]
+      },
+      {
+        "key": "prayerHall-support",
+        "name": "Prayer Hall Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "prayerHall-stories",
+        "name": "Prayer Hall Stories",
+        "enabled": true,
+        "title": "Our Complete Support",
+        "items": [
+          {
+            "title": "Ground Booking",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165329/moksha-sewa/assets/prayerhallservices/support-1.png"
+          },
+          {
+            "title": "Floral Setup",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165330/moksha-sewa/assets/prayerhallservices/support-2.png"
+          },
+          {
+            "title": "Seating Arrangements",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165332/moksha-sewa/assets/prayerhallservices/support-3.png"
+          },
+          {
+            "title": "Audio & Mic Setup",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165333/moksha-sewa/assets/prayerhallservices/support-4.png"
+          },
+          {
+            "title": "Pandit Ji Coordination",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165334/moksha-sewa/assets/prayerhallservices/support-5.png"
+          },
+          {
+            "title": "Guest Management",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165335/moksha-sewa/assets/prayerhallservices/support-6.png"
+          }
+        ]
+      },
+      {
+        "key": "prayerHall-receive",
+        "name": "Prayer Hall What Families Receive",
+        "enabled": true,
+        "title": "Ground Support Roles",
+        "items": [
+          {
+            "title": "Venue Coordination",
+            "description": "Suitable venue coordination for every sacred ritual.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165323/moksha-sewa/assets/prayerhallservices/roles-1.png"
+          },
+          {
+            "title": "Setup & Decor",
+            "description": "Peaceful arrangements prepared with care and dignity.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165325/moksha-sewa/assets/prayerhallservices/roles-2.png"
+          },
+          {
+            "title": "Guest Assistance",
+            "description": "Clear and compassionate guidance for guests at every step.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165326/moksha-sewa/assets/prayerhallservices/roles-3.png"
+          },
+          {
+            "title": "Post-Prayer Cleanup",
+            "description": "Respectful clearing and coordination after rituals conclude.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165328/moksha-sewa/assets/prayerhallservices/roles-4.png"
+          }
+        ]
+      },
+      {
+        "key": "prayerHall-trust",
+        "name": "Prayer Hall Why Families Trust Us",
+        "enabled": true,
+        "title": "Why Families Trust Us",
+        "items": [
+          {
+            "title": "Compassionate Guidance",
+            "description": "Care, sensitivity and respect in every moment.",
+            "label": "heart"
+          },
+          {
+            "title": "Authentic Arrangements",
+            "description": "Setups tailored carefully to Shastra and family traditions.",
+            "label": "om"
+          },
+          {
+            "title": "Support Beyond Ceremony",
+            "description": "Continued guidance and support even after the ceremony.",
+            "label": "handshake"
+          }
+        ]
+      },
+      {
+        "key": "prayerHall-donation",
+        "name": "Prayer Hall Donation CTA",
+        "enabled": true,
+        "title": "Your Support Helps Families Receive Dignified & Sacred Final Rites",
+        "description": "Every act of kindness becomes a blessing for many.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165320/moksha-sewa/assets/prayerhallservices/hero.png",
+        "buttonLabel": "Donate for Support",
+        "buttonHref": "/donation"
+      }
+    ]
+  },
+  "specialServicePage": {
+    "sections": [
+      {
+        "key": "specialService-hero",
+        "name": "Special Service Hero",
+        "enabled": true,
+        "eyebrow": "Extended Family Support",
+        "title": "Family Support",
+        "subtitle": "Standing Beside You.",
+        "description": "Beyond the final rites, Moksha Sewa helps eligible families with case-based guidance, relief coordination and compassionate support, subject to verification and availability.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165157/moksha-sewa/assets/family-support/hero-bg-2.png",
+        "buttonLabel": "Request Support",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "24x7 Helpline",
+        "secondaryButtonHref": "tel:+919220147229"
+      },
+      {
+        "key": "specialService-highlights",
+        "name": "Special Service Highlights",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Emotional Support",
+            "description": "Counseling and a sympathetic ear for grieving families.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png"
+          },
+          {
+            "title": "Tehravi Khana",
+            "description": "Respectful management of the 13th-day meal for grieving families.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165439/moksha-sewa/assets/serving/food-essentials.png"
+          },
+          {
+            "title": "Formalities",
+            "description": "Help with death certificates and important legal procedures.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165436/moksha-sewa/assets/serving/document-assistance.png"
+          },
+          {
+            "title": "Ambulance",
+            "description": "Transport support for eligible cases after required verification.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png"
+          },
+          {
+            "title": "Eligibility Based",
+            "description": "Assistance is provided subject to verification and availability.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165433/moksha-sewa/assets/serving/community-outreach.png"
+          },
+          {
+            "title": "Hospital Care",
+            "description": "On-ground help and coordination during hospital discharge formalities.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165440/moksha-sewa/assets/serving/hospital-support.png"
+          },
+          {
+            "title": "Ground Help",
+            "description": "Volunteers support and guide families carefully at every step.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165442/moksha-sewa/assets/serving/on-ground-support.png"
+          },
+          {
+            "title": "Remote Reach",
+            "description": "Extending compassionate and dignified support to remote areas.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165447/moksha-sewa/assets/serving/rural-remote-reach.png"
+          }
+        ]
+      },
+      {
+        "key": "specialService-how-it-works",
+        "name": "Special Service How It Works",
+        "enabled": true,
+        "title": "How We Extend Our Help",
+        "items": [
+          {
+            "title": "Contact Us",
+            "description": "Reach out through our 24x7 helpline whenever your family needs help.",
+            "label": "phone"
+          },
+          {
+            "title": "Needs Assessment",
+            "description": "We understand your family's emotional, practical and financial needs.",
+            "label": "comment"
+          },
+          {
+            "title": "Arrange Support",
+            "description": "We arrange meals, paperwork and compassionate support for your family.",
+            "label": "clipboard"
+          },
+          {
+            "title": "Ongoing Care",
+            "description": "Our support continues beyond the cremation ground with care each step.",
+            "label": "users"
+          }
+        ]
+      },
+      {
+        "key": "specialService-support",
+        "name": "Special Service Support Section",
+        "enabled": true,
+        "title": "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>",
+        "description": "Our widespread network of dedicated volunteers is always ready to mobilize. They step forward to organize meals, manage hospital formalities, and support grieving families.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
+        "items": []
+      },
+      {
+        "key": "specialService-stories",
+        "name": "Special Service Stories",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "specialService-receive",
+        "name": "Special Service What Families Receive",
+        "enabled": true,
+        "eyebrow": "Holistic Support System",
+        "title": "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>",
+        "description": "\"Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.\"",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165440/moksha-sewa/assets/serving/hospital-support.png",
+        "buttonLabel": "Know More About Our Work",
+        "buttonHref": "/contact",
+        "items": [
+          {
+            "title": "Sympathetic ear for intense grief and trauma"
+          },
+          {
+            "title": "Assistance with death certificates and formalities"
+          },
+          {
+            "title": "Relief coordination for verified family needs"
+          },
+          {
+            "title": "Assistance subject to eligibility and availability"
+          }
+        ]
+      },
+      {
+        "key": "specialService-trust",
+        "name": "Special Service Why Families Trust Us",
+        "enabled": true,
+        "title": "",
+        "items": []
+      },
+      {
+        "key": "specialService-donation",
+        "name": "Special Service Donation CTA",
+        "enabled": true,
+        "title": "Your Support Helps Us <br />Feed Grieving Families",
+        "description": "By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png",
+        "buttonLabel": "Donate to Moksha Sewa",
+        "buttonHref": "/donation",
+        "secondaryButtonLabel": "Support Our Seva",
+        "secondaryButtonHref": "/volunteer/register"
+      }
+    ]
+  },
+  "callingRelativesPage": {
+    "sections": [
+      {
+        "key": "callingRelatives-hero",
+        "name": "Calling Relatives Hero",
+        "enabled": true,
+        "title": "Family & Relative Support",
+        "subtitle": "Compassionate Communication.",
+        "description": "In times of sudden loss, making phone calls to inform relatives can be emotionally draining. Our compassionate volunteers take this burden off your shoulders, respectfully notifying all extended family members and friends.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png",
+        "buttonLabel": "Request Assistance",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "24x7 Helpline",
+        "secondaryButtonHref": "tel:+919999999999"
+      },
+      {
+        "key": "callingRelatives-highlights",
+        "name": "Calling Relatives Highlights",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "callingRelatives-how-it-works",
+        "name": "Calling Relatives How It Works",
+        "enabled": true,
+        "title": "How We Assist You",
+        "items": [
+          {
+            "title": "Respectful Notifications",
+            "description": "We thoughtfully convey the news and Antim Sanskar details to relatives and friends with sensitivity, clarity and complete respect.",
+            "label": "users"
+          },
+          {
+            "title": "Coordinating Arrivals",
+            "description": "We help guide relatives travelling from outside the city so they receive timely information and can reach the family without confusion.",
+            "label": "connect"
+          },
+          {
+            "title": "Emotional Shielding",
+            "description": "We reduce the immediate family's emotional burden by handling repeated communication with relatives and friends in a calm manner.",
+            "label": "empathize"
+          }
+        ]
+      },
+      {
+        "key": "callingRelatives-support",
+        "name": "Calling Relatives Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "callingRelatives-stories",
+        "name": "Calling Relatives Stories",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "callingRelatives-receive",
+        "name": "Calling Relatives What Families Receive",
+        "enabled": true,
+        "title": "",
+        "items": []
+      },
+      {
+        "key": "callingRelatives-trust",
+        "name": "Calling Relatives Why Families Trust Us",
+        "enabled": true,
+        "title": "&quot;You have lost someone precious. Focus on saying goodbye, let us handle the words for the rest.&quot;",
+        "description": "Our volunteers step in as your extended family, offering support that lets you grieve without the added burden of coordination and communication.",
+        "items": []
+      },
+      {
+        "key": "callingRelatives-donation",
+        "name": "Calling Relatives Donation CTA",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "buttonLabel": "",
+        "buttonHref": "",
+        "secondaryButtonLabel": "",
+        "secondaryButtonHref": ""
+      }
+    ]
+  },
+  "contactPage": {
+    "sections": [
+      {
+        "key": "contact-hero",
+        "name": "Contact Hero",
+        "enabled": true,
+        "eyebrow": "Contact Us",
+        "title": "We Are Here To Assist You\n24 Hours A Day",
+        "subtitle": "Reach Out For Help, Inquiries, Or Volunteer Guidance",
+        "description": "Connect with our central coordination desk in Delhi NCR via phone, email, or office visit.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png",
+        "phoneLabel": "24/7 Helpline",
+        "phoneNumber": "1800123456",
+        "contactEmail": "info@mokshasewa.org",
+        "contactAddress": "Namo Gange Trust, Delhi • Ghaziabad • Noida"
+      },
+      {
+        "key": "contact-info",
+        "name": "Contact Info & Channels",
+        "enabled": true,
+        "eyebrow": "Direct Contact",
+        "title": "Our Operational Desks",
+        "description": "Get in touch with specific departments directly.",
+        "items": [
+          {
+            "title": "Emergency Helpline",
+            "description": "Available 24x7 for immediate support."
+          },
+          {
+            "title": "Volunteer Desk",
+            "description": "For volunteer onboarding and queries."
+          },
+          {
+            "title": "CSR & Partner Desk",
+            "description": "For institutional collaborations."
+          }
+        ]
+      },
+      {
+        "key": "contact-form",
+        "name": "Contact Form Section",
+        "enabled": true,
+        "eyebrow": "Send Message",
+        "title": "Leave Us A Message",
+        "description": "Fill out the contact form and our team will respond within 2 hours."
+      },
+      {
+        "key": "contact-faq",
+        "name": "Contact FAQ",
+        "enabled": true,
+        "eyebrow": "Helpful Info",
+        "title": "Common Inquiries",
+        "items": [
+          {
+            "title": "Where are services available?",
+            "description": "Currently serving Delhi, Ghaziabad, Noida and surrounding NCR areas."
+          }
+        ]
+      }
+    ]
+  },
+  "funeralDecorationPage": {
+    "sections": [
+      {
+        "key": "funeralDecoration-hero",
+        "name": "Funeral Decoration Hero",
+        "enabled": true,
+        "title": "Funeral Decoration",
+        "subtitle": "A Beautiful Final Journey.",
+        "description": "We believe in bidding farewell with utmost respect and serenity. Our volunteers arrange traditional floral decorations for the hearse van, pyre, and prayer hall using fresh and sacred flowers to honor the departed soul.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png",
+        "buttonLabel": "Request Decoration",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "24x7 Helpline",
+        "secondaryButtonHref": "tel:+919999999999"
+      },
+      {
+        "key": "funeralDecoration-highlights",
+        "name": "Funeral Decoration Highlights",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "funeralDecoration-how-it-works",
+        "name": "Funeral Decoration How It Works",
+        "enabled": true,
+        "title": "Our Decoration Services",
+        "items": [
+          {
+            "title": "Hearse Van Decoration",
+            "description": "Elegant and respectful floral decoration for the ambulance or hearse van, creating a dignified setting for the final journey.",
+            "label": "florist"
+          },
+          {
+            "title": "Pyre & Pathway Setup",
+            "description": "Fresh flowers and sacred leaves are arranged around the cremation area to create a peaceful and respectful environment.",
+            "label": "leaf"
+          },
+          {
+            "title": "Prayer Hall Serenity",
+            "description": "Calming floral arrangements for the Shanti Path and prayer area, creating a serene atmosphere for family and grieving guests.",
+            "label": "nature"
+          }
+        ]
+      },
+      {
+        "key": "funeralDecoration-support",
+        "name": "Funeral Decoration Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "funeralDecoration-stories",
+        "name": "Funeral Decoration Stories",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "funeralDecoration-receive",
+        "name": "Funeral Decoration What Families Receive",
+        "enabled": true,
+        "title": "",
+        "items": []
+      },
+      {
+        "key": "funeralDecoration-trust",
+        "name": "Funeral Decoration Why Families Trust Us",
+        "enabled": true,
+        "title": "&quot;Flowers speak the language of peace, honoring a beautiful life that has moved on.&quot;",
+        "description": "Our volunteers carefully handpick fresh flowers, ensuring the final journey of your loved one is surrounded by purity, respect, and unconditional love.",
+        "items": []
+      },
+      {
+        "key": "funeralDecoration-donation",
+        "name": "Funeral Decoration Donation CTA",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "buttonLabel": "",
+        "buttonHref": "",
+        "secondaryButtonLabel": "",
+        "secondaryButtonHref": ""
+      }
+    ]
+  },
+  "funeralPage": {
+    "sections": [
+      {
+        "key": "funeral-hero",
+        "name": "Funeral Hero",
+        "enabled": true,
+        "title": "Wood & Ritual Items",
+        "subtitle": "Arranged With Deep Respect.",
+        "description": "At Moksha Sewa, we understand the financial and emotional burden of the final rites. We help eligible families coordinate cremation wood, shroud cloth (Kafan), flowers, lamps, and essential prayer items subject to verification and availability.",
+        "image": "/woodrituals/hero.webp",
+        "buttonLabel": "Request Wood & Items",
+        "buttonHref": "/request-help"
+      },
+      {
+        "key": "funeral-highlights",
+        "name": "Funeral Highlights",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "funeral-how-it-works",
+        "name": "Funeral How It Works",
+        "enabled": true,
+        "title": "",
+        "items": []
+      },
+      {
+        "key": "funeral-support",
+        "name": "Funeral Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "funeral-stories",
+        "name": "Funeral Stories",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "funeral-receive",
+        "name": "Funeral What Families Receive",
+        "enabled": true,
+        "title": "What We Arrange",
+        "items": [
+          {
+            "title": "Cremation Wood",
+            "description": "We provide sufficient dry wood required for a complete and respectful cremation ceremony, subject to verification and availability.",
+            "image": "/woodrituals/cremation-wood.webp"
+          },
+          {
+            "title": "Shroud & Flowers",
+            "description": "Pure white shroud cloth, garlands and fresh flowers are arranged carefully to honour the departed soul with dignity and purity.",
+            "image": "/woodrituals/shroud-flowers.webp"
+          },
+          {
+            "title": "Prayer Items",
+            "description": "Ghee, sandalwood, incense, earthen lamps and essential Pooja Samagri are carefully arranged for the final rites and prayers.",
+            "image": "/woodrituals/prayer-items.webp"
+          }
+        ]
+      },
+      {
+        "key": "funeral-trust",
+        "name": "Funeral Why Families Trust Us",
+        "enabled": true,
+        "title": "“We believe that no family should have to worry about the expenses of a final farewell while grieving the loss of their loved one.”",
+        "description": "Our volunteers work tirelessly to ensure that every necessary item reaches the cremation ground on time. You mourn in peace, let us handle the arrangements.",
+        "items": []
+      },
+      {
+        "key": "funeral-donation",
+        "name": "Funeral Donation CTA",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "buttonLabel": "",
+        "buttonHref": "",
+        "secondaryButtonLabel": "",
+        "secondaryButtonHref": ""
+      }
+    ]
+  },
+  "harsevanPage": {
+    "sections": [
+      {
+        "key": "harsevan-hero",
+        "name": "Harsevan Hero",
+        "enabled": true,
+        "title": "Hearse Van (Shav Vahan)",
+        "subtitle": "For a Dignified Final Journey.",
+        "description": "The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png",
+        "buttonLabel": "Request Hearse Van",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "24x7 Helpline",
+        "secondaryButtonHref": "tel:+919999999999"
+      },
+      {
+        "key": "harsevan-highlights",
+        "name": "Harsevan Highlights",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "harsevan-how-it-works",
+        "name": "Harsevan How It Works",
+        "enabled": true,
+        "title": "How We Assist You",
+        "items": [
+          {
+            "title": "Immediate Availability",
+            "description": "Our hearse vans are coordinated promptly across service areas to provide timely and dignified transportation when families need support.",
+            "label": "car"
+          },
+          {
+            "title": "Professional Drivers",
+            "description": "Experienced and empathetic drivers understand the sensitivity of the moment and ensure every journey is handled carefully and respectfully.",
+            "label": "wheel"
+          },
+          {
+            "title": "Seamless Coordination",
+            "description": "Our volunteers help coordinate between the family, hospital and cremation ground to reduce confusion and unnecessary logistical burden.",
+            "label": "phone"
+          }
+        ]
+      },
+      {
+        "key": "harsevan-support",
+        "name": "Harsevan Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "harsevan-stories",
+        "name": "Harsevan Stories",
+        "enabled": true,
+        "items": []
+      },
+      {
+        "key": "harsevan-receive",
+        "name": "Harsevan What Families Receive",
+        "enabled": true,
+        "title": "",
+        "items": []
+      },
+      {
+        "key": "harsevan-trust",
+        "name": "Harsevan Why Families Trust Us",
+        "enabled": true,
+        "title": "&quot;We ensure their final journey is as peaceful and dignified as the life they lived.&quot;",
+        "description": "You should never have to worry about transportation logistics while mourning. Moksha Sewa stands ready to help you navigate this difficult time.",
+        "items": []
+      },
+      {
+        "key": "harsevan-donation",
+        "name": "Harsevan Donation CTA",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "buttonLabel": "",
+        "buttonHref": "",
+        "secondaryButtonLabel": "",
+        "secondaryButtonHref": ""
+      }
+    ]
+  },
+  "panditPage": {
+    "sections": [
+      {
+        "key": "pandit-hero",
+        "name": "Pandit Hero",
+        "enabled": true,
+        "title": "Priest Support",
+        "subtitle": "For a Dignified Final Journey.",
+        "description": "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165283/moksha-sewa/assets/panditservices/hero-real.png",
+        "buttonLabel": "Request Priest Support",
+        "buttonHref": "/request-help",
+        "secondaryButtonLabel": "Donate for Ritual Support",
+        "secondaryButtonHref": "/donation"
+      },
+      {
+        "key": "pandit-highlights",
+        "name": "Pandit Highlights",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Experienced Pandit Ji",
+            "description": "Learned and compassionate guidance",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165275/moksha-sewa/assets/panditservices/feature-pandit.png"
+          },
+          {
+            "title": "Vedic Guidance",
+            "description": "Guidance based on Hindu traditions",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165279/moksha-sewa/assets/panditservices/feature-vedic.png"
+          },
+          {
+            "title": "Ritual Planning",
+            "description": "Complete ritual planning and coordination",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165276/moksha-sewa/assets/panditservices/feature-planning.png"
+          },
+          {
+            "title": "Regional Traditions",
+            "description": "Rituals according to family customs",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165277/moksha-sewa/assets/panditservices/feature-traditions.png"
+          }
+        ]
+      },
+      {
+        "key": "pandit-how-it-works",
+        "name": "Pandit How It Works",
+        "enabled": true,
+        "title": "How It Works",
+        "items": [
+          {
+            "title": "Call or Request Support",
+            "label": "phone"
+          },
+          {
+            "title": "Pandit Ji Consultation",
+            "label": "team"
+          },
+          {
+            "title": "Ritual Arrangement",
+            "label": "hands"
+          },
+          {
+            "title": "Guidance Through Every Ceremony",
+            "label": "hands"
+          }
+        ]
+      },
+      {
+        "key": "pandit-support",
+        "name": "Pandit Support Section",
+        "enabled": true,
+        "title": "",
+        "description": "",
+        "image": "",
+        "items": []
+      },
+      {
+        "key": "pandit-stories",
+        "name": "Pandit Stories",
+        "enabled": true,
+        "title": "Ritual Support at Every Step",
+        "items": [
+          {
+            "title": "Pre-Ritual Consultation",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165285/moksha-sewa/assets/panditservices/ritual-1.png"
+          },
+          {
+            "title": "Antim Sanskar Vidhi",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165286/moksha-sewa/assets/panditservices/ritual-2.png"
+          },
+          {
+            "title": "Mukhagni Guidance",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165288/moksha-sewa/assets/panditservices/ritual-3.png"
+          },
+          {
+            "title": "Asthi Visarjan",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165289/moksha-sewa/assets/panditservices/ritual-4.png"
+          },
+          {
+            "title": "Pind Daan",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165290/moksha-sewa/assets/panditservices/ritual-5.png"
+          },
+          {
+            "title": "Tehrvi & Shanti Paath",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165291/moksha-sewa/assets/panditservices/ritual-6.png"
+          }
+        ]
+      },
+      {
+        "key": "pandit-receive",
+        "name": "Pandit What Families Receive",
+        "enabled": true,
+        "title": "Pandit Ji Roles",
+        "items": [
+          {
+            "title": "Samagri Guidance",
+            "description": "Right samagri for every sacred ritual.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165293/moksha-sewa/assets/panditservices/roles-1.png"
+          },
+          {
+            "title": "Prayer Hall Ceremony",
+            "description": "Rituals conducted with peace and reverence.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165294/moksha-sewa/assets/panditservices/roles-2.png"
+          },
+          {
+            "title": "Family Ritual Explanation",
+            "description": "Simple guidance at every sacred step.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165295/moksha-sewa/assets/panditservices/roles-3.png"
+          },
+          {
+            "title": "Post-Ritual Support",
+            "description": "Guidance for remaining rituals and timelines.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165296/moksha-sewa/assets/panditservices/roles-4.png"
+          }
+        ]
+      },
+      {
+        "key": "pandit-trust",
+        "name": "Pandit Why Families Trust Us",
+        "enabled": true,
+        "title": "Why Families Trust Us",
+        "items": [
+          {
+            "title": "Compassionate Guidance",
+            "description": "Care, sensitivity and respect in every moment.",
+            "label": "heart"
+          },
+          {
+            "title": "Authentic Hindu Rituals",
+            "description": "Rituals performed according to Shastra and tradition.",
+            "label": "om"
+          },
+          {
+            "title": "Support Beyond Ceremony",
+            "description": "Continued spiritual guidance after the ceremony.",
+            "label": "handshake"
+          }
+        ]
+      },
+      {
+        "key": "pandit-donation",
+        "name": "Pandit Donation CTA",
+        "enabled": true,
+        "title": "Your Support Helps Families Receive Dignified & Sacred Final Rites",
+        "description": "Every act of kindness becomes a blessing for many.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165284/moksha-sewa/assets/panditservices/hero.png",
+        "buttonLabel": "Donate for Ritual Support",
+        "buttonHref": "/donation"
+      }
+    ]
+  },
+  "partnershipPage": {
+    "sections": [
+      {
+        "key": "partnership-hero",
+        "name": "Partnership Hero",
+        "enabled": true,
+        "eyebrow": "Collaborate With Us",
+        "title": "Partnering To Expand Dignified Last Rites Across Regions",
+        "subtitle": "Hospitals, NGOs, Municipalities & Social Organizations",
+        "description": "Join hands with Moksha Sewa to streamline unclaimed body handling, ambulance networks, and subsidised family support.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165302/moksha-sewa/assets/partnership/hero.png",
+        "buttonLabel": "Become A Partner",
+        "buttonHref": "#partner-form"
+      },
+      {
+        "key": "partnership-process",
+        "name": "How Partnership Works",
+        "enabled": true,
+        "eyebrow": "Seamless Integration",
+        "title": "A Transparent & Structured Collaboration Model",
+        "description": "From MoU signing to real-time case tracking, we ensure accountability and complete compliance.",
+        "items": [
+          {
+            "title": "Institutional MoU",
+            "description": "Formal agreement outlining roles and ethical guidelines."
+          },
+          {
+            "title": "Dedicated Desk",
+            "description": "Direct helpline & case manager assigned for partners."
+          },
+          {
+            "title": "Transparent Audit",
+            "description": "Regular reporting and case verification logs."
+          }
+        ]
+      },
+      {
+        "key": "partnership-responsibility",
+        "name": "Institutional Responsibility",
+        "enabled": true,
+        "eyebrow": "Accountability First",
+        "title": "High Standards Of Compliance & Ethics",
+        "description": "Every partnership operates within strict legal permissions and transparent auditing frameworks.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png"
+      },
+      {
+        "key": "partnership-network",
+        "name": "Partnership Network",
+        "enabled": true,
+        "eyebrow": "Our Ecosystem",
+        "title": "Building A Compassionate Network",
+        "description": "Connecting hospitals, mortuaries, police departments, cremation grounds, and ground volunteers."
+      },
+      {
+        "key": "partnership-enquiry",
+        "name": "Partnership Form Section",
+        "enabled": true,
+        "eyebrow": "Reach Out",
+        "title": "Submit Your Partnership Proposal",
+        "description": "Fill in your institution details and our team will get in touch shortly."
+      },
+      {
+        "key": "partnership-faq",
+        "name": "Partnership FAQ",
+        "enabled": true,
+        "eyebrow": "Questions",
+        "title": "Partnership FAQs",
+        "items": [
+          {
+            "title": "What type of organizations can partner?",
+            "description": "Hospitals, Municipal Bodies, Police Depts, NGOs, and Cremation Trusts."
+          }
+        ]
+      },
+      {
+        "key": "partnership-cta",
+        "name": "Partnership Final CTA",
+        "enabled": true,
+        "eyebrow": "Join Hands",
+        "title": "Ready To Make A Difference Together?",
+        "buttonLabel": "Contact Partner Cell",
+        "buttonHref": "/contact"
+      }
+    ]
+  },
+  "requestHelpPage": {
+    "sections": [
+      {
+        "key": "request-help-hero",
+        "name": "Request Help Hero",
+        "enabled": true,
+        "eyebrow": "Emergency Assistance",
+        "title": "Request Immediate Moksha Sewa Assistance",
+        "subtitle": "We Are Here To Stand Beside You In Your Hour Of Need",
+        "description": "24/7 helpline and quick assistance form for urgent ambulance, cremation, or priest support.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png",
+        "buttonLabel": "Call Helpline Now",
+        "buttonHref": "tel:1800123456"
+      },
+      {
+        "key": "request-help-form",
+        "name": "Request Form Details",
+        "enabled": true,
+        "eyebrow": "Submit Details",
+        "title": "Assistance Application & Verification Form",
+        "description": "Please fill in accurate information to help our emergency coordinators dispatch prompt support."
+      },
+      {
+        "key": "request-help-faq",
+        "name": "Request Help FAQ",
+        "enabled": true,
+        "eyebrow": "Quick Answers",
+        "title": "Need Quick Clarity?",
+        "items": [
+          {
+            "title": "How fast is the response?",
+            "description": "Emergency requests are reviewed immediately upon call or submission."
+          },
+          {
+            "title": "Is there any cost involved?",
+            "description": "Support is subsidized or free for verified needy families & unclaimed cases."
+          }
+        ]
+      }
+    ]
+  },
+  "trackPage": {
+    "sections": [
+      {
+        "key": "track-hero",
+        "name": "Track Status Hero",
+        "enabled": true,
+        "eyebrow": "Track Status",
+        "title": "Track Case Or Request Progress In Real-Time",
+        "subtitle": "Transparent & Accountable Verification System",
+        "description": "Enter your Request Number or Case ID to view live verification, volunteer assignment, and completion status.",
+        "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png"
+      },
+      {
+        "key": "track-info",
+        "name": "Track Info & Guidance",
+        "enabled": true,
+        "eyebrow": "How It Works",
+        "title": "Complete Transparency At Every Milestone",
+        "description": "Every step is logged from initial intake to final certificate upload."
+      },
+      {
+        "key": "track-how-it-works",
+        "name": "Track Process Steps",
+        "enabled": true,
+        "eyebrow": "How It Works",
+        "title": "The Tracking Process",
+        "items": [
+          {
+            "title": "Initial Request",
+            "description": "Information collected and case registered."
+          },
+          {
+            "title": "Verification",
+            "description": "Details verified by our coordination desk."
+          },
+          {
+            "title": "Assignment",
+            "description": "Volunteer or vehicle allocated to the case."
+          },
+          {
+            "title": "In Progress",
+            "description": "Active on-ground coordination and assistance."
+          },
+          {
+            "title": "Completed",
+            "description": "Support successfully provided and documented."
+          }
+        ]
+      }
+    ]
+  },
+  "refundPage": {
+    "sections": [
+      {
+        "key": "refund-hero",
+        "name": "Refund Policy Hero",
+        "enabled": true,
+        "eyebrow": "Legal Information",
+        "title": "Refund Policy",
+        "subtitle": "Please read our refund terms carefully",
+        "description": "At Moksha Sewa, we ensure complete transparency in all our donation and transaction processes. This Refund Policy explains the conditions under which refunds may be considered.",
+        "items": [
+          {
+            "label": "Effective Date",
+            "value": "17 August 2026"
+          },
+          {
+            "label": "Last Updated",
+            "value": "17 August 2026"
+          },
+          {
+            "label": "Governing Law",
+            "value": "Laws of India"
+          },
+          {
+            "label": "Applies To",
+            "value": "Donations & Transactions"
+          }
+        ]
+      },
+      {
+        "key": "refund-content",
+        "name": "Main Sections",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Overview",
+            "description": "This Refund Policy applies to all donations, payments, registrations and transactions made on the Moksha Sewa website or through authorised channels."
+          },
+          {
+            "title": "Donations",
+            "description": "Donations made towards our cause are voluntary and non-refundable. We utilize these funds towards verified humanitarian activities and operational expenses to support our mission."
+          },
+          {
+            "title": "Payment Failure or Deduction Without Successful Donation",
+            "description": "If an amount is deducted from your account but the donation is not recorded by us due to a technical error or gateway failure, the full amount will be refunded to your original payment method within 7–10 working days."
+          },
+          {
+            "title": "Duplicate Transactions",
+            "description": "In case of duplicate transactions / multiple deductions for the same donation or payment, you are eligible for a full refund of the duplicate amount."
+          },
+          {
+            "title": "Event / Campaign Registrations",
+            "description": "Registration fees for events, campaigns or programmes are generally non-refundable. However, if an event is cancelled or postponed by us, we will issue a full refund to registered participants."
+          },
+          {
+            "title": "Merchandise / Products",
+            "description": "Refunds are not applicable on purchases of merchandise, books, or other items unless the product is damaged, defective or significantly different from the description provided."
+          },
+          {
+            "title": "Volunteer or Other Services",
+            "description": "No refund is applicable for volunteer registrations, membership, or other non-monetary services."
+          }
+        ]
+      },
+      {
+        "key": "refund-premium-cards",
+        "name": "Premium Cards",
+        "enabled": true,
+        "items": [
+          {
+            "title": "How to Request a Refund",
+            "label": "Simple steps to request your refund hassle-free.",
+            "description": "To request a refund, contact us within 7 days of the transaction with your:\n• Full name\n• Transaction ID / Receipt\n• Reason for refund\n• Supporting details (if any)"
+          },
+          {
+            "title": "Refund Process & Timeline",
+            "label": "Know how long it takes to get your refund.",
+            "description": "Once your request is reviewed and approved, refunds will be processed within 7–10 working days to the original payment method.",
+            "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=900&auto=format&fit=crop"
+          },
+          {
+            "title": "Mode of Refund",
+            "label": "Refunds through your original payment method.",
+            "description": "Refunds will be made using the same method through which the original payment was made."
+          },
+          {
+            "title": "Chargebacks",
+            "label": "Understand the impact of chargebacks on future donations.",
+            "description": "Initiating a chargeback without contacting us first may affect your ability to make future donations and will incur additional charges, which will be deducted from the refundable amount (if any).",
+            "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=900&auto=format&fit=crop"
+          }
+        ]
+      },
+      {
+        "key": "refund-addendum-sections",
+        "name": "Addendum Sections",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Partial Refunds",
+            "description": "In certain situations, a partial refund may be considered at our sole discretion depending on the nature of the request and the services or benefits provided."
+          },
+          {
+            "title": "Changes to This Policy",
+            "description": "We may update this Refund Policy from time to time. The updated version will be posted on our website."
+          },
+          {
+            "title": "Grievance / Contact",
+            "description": "For any refund-related queries or grievances, please contact us."
+          }
+        ]
+      },
+      {
+        "key": "refund-contact",
+        "name": "Refund Contact Block",
+        "enabled": true,
+        "title": "Questions About Refunds?",
+        "description": "If you have any questions about this Refund Policy, please reach out to us.",
+        "buttonLabel": "Contact Us",
+        "buttonHref": "/contact"
+      },
+      {
+        "key": "refund-intro",
+        "name": "Introduction Text",
+        "enabled": true,
+        "description": "Moksha Sewa (an initiative of Namo Gange Trust) is a non-profit organisation. Donations made to support our humanitarian activities are voluntary and non-refundable except as provided in this Refund Policy."
+      },
+      {
+        "key": "refund-sidebar",
+        "name": "Sidebar Items",
+        "enabled": true,
+        "items": [
+          {
+            "title": "Note",
+            "description": "Refunds are processed only in eligible cases as per this policy.\n\nWe request you to read this policy carefully before making any donation or payment."
+          },
+          {
+            "title": "Our Commitment",
+            "description": "We are committed to transparency and accountability in managing all donations.\n\nEvery contribution directly supports our mission to serve humanity.",
+            "image": "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165338/moksha-sewa/assets/privacy-policy/our_commitment.webp"
+          }
+        ]
+      }
+    ]
+  }
+}

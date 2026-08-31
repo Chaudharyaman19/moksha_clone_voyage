@@ -241,7 +241,7 @@ export default function WhyFamiliesTrust() {
           {/* Right image */}
           <div className="absolute inset-y-0 right-0 hidden w-[50%] overflow-hidden lg:block">
             <Image
-              src="/assets/images/why-families-trust-ritual.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165208/moksha-sewa/assets/images/why-families-trust-ritual.png"
               alt="Moksha Sewa compassionate ritual support"
               fill
               sizes="50vw"

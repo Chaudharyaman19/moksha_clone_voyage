@@ -11,7 +11,7 @@ const MokshaSewaIntro: React.FC = () => {
     <section className="relative min-h-[360px] w-full overflow-hidden bg-[#f7efe3]">
       {/* Background Image */}
       <Image
-        src={imageOrFallback(section?.image, "/assets/about-optimized/a_mission.png")}
+        src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164982/moksha-sewa/assets/about-optimized/a_mission.png")}
         alt="Moksha Sewa at the ghats"
         fill
         priority

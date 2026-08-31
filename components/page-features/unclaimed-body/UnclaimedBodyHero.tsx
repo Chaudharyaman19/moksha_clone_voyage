@@ -12,7 +12,7 @@ const proof = [
 export default function UnclaimedBodyHero() {
   const section = useWebsiteSection("unclaimed-hero");
   const eyebrow = textOrFallback(section?.eyebrow, "Unclaimed Body Sewa", 60);
-  const heroImage = imageOrFallback(section?.image, "/assets/unclaimed-body/first.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165469/moksha-sewa/assets/unclaimed-body/first.png");
   const title = textOrFallback(section?.title, "Unclaimed Body Sewa\nWith Dignity &\nResponsible Support", 150);
   const description = textOrFallback(section?.description, "Because every human being deserves a respectful final journey.\n\nMoksha Sewa, an initiative of Namo Gange Trust, supports eligible and legally authorised unclaimed-body cases through responsible coordination, cremation and last-rites assistance, subject to verification and applicable formalities.", 600);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Report Unclaimed Case", 36);
@@ -71,7 +71,7 @@ export default function UnclaimedBodyHero() {
             {eyebrow}
           </div>
 
-          <h1
+          <h2
             className="mt-2 text-[40px] font-medium leading-[1.02] text-[#064335] sm:text-[48px] lg:text-[54px]"
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
@@ -85,7 +85,7 @@ export default function UnclaimedBodyHero() {
             <span className="text-[#b87a16]">
               {titleParts[2] || ""}
             </span>
-          </h1>
+          </h2>
 
           <div className="mt-2 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
             <span className="h-px flex-1 bg-[#c59b56]" />

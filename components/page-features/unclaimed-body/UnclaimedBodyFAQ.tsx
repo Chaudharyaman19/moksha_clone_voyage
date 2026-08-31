@@ -43,7 +43,7 @@ export default function UnclaimedBodyFAQ() {
       <div
         className="relative mx-auto mt-5 min-h-[130px] max-w-7xl overflow-hidden rounded-[12px] bg-[#003e32] px-6 py-4 text-white"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,62,50,.78),rgba(0,62,50,.78)), url('/assets/unclaimed-body/request-background.png')",
+          backgroundImage: "linear-gradient(rgba(0,62,50,.78),rgba(0,62,50,.78)), url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165473/moksha-sewa/assets/unclaimed-body/request-background.png')",
           backgroundSize: "100% 100%",
           backgroundPosition: "center",
         }}

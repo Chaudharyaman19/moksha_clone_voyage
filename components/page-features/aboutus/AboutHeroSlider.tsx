@@ -71,8 +71,8 @@ function NewBanner() {
   const section = useWebsiteSection("about-hero-slider");
   const title = textOrFallback(section?.title, "Every Life Deserves Dignity. Always.", 120);
   const description = textOrFallback(section?.description, "Moksha Sewa stands for compassion in action. We are here for the forgotten, the unclaimed, and those who have no one. Because no one should face their final journey alone.", 400);
-  const bgImage = imageOrFallback(section?.image, "/assets/about-optimized/about.webp");
-  const logoImage = imageOrFallback(section?.logoImage, "/hero-images/image6.png");
+  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164987/moksha-sewa/assets/about-optimized/about.webp");
+  const logoImage = imageOrFallback(section?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png");
   const brandName = textOrFallback(section?.supportTitle, "Moksha Sewa", 60);
   const brandSubtitle = textOrFallback(section?.supportDescription, "An Initiative of Namo Gange Trust", 80);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Request Help", 50);
@@ -199,8 +199,8 @@ function PreviousBanner() {
   const section = useWebsiteSection("about-hero-slider");
   const subtitle = textOrFallback(section?.subtitle, "A Promise of Moksha Sewa", 80);
   const secondaryDescription = textOrFallback(section?.secondaryDescription, "Moksha Sewa is a humanitarian end-of-life support mission for economically weaker families and legally authorised unclaimed cases.", 400);
-  const bgImage = imageOrFallback(section?.secondaryImage, "/assets/about-optimized/about-hero-new.webp");
-  const logoImage = imageOrFallback(section?.logoImage, "/hero-images/image6.png");
+  const bgImage = imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164983/moksha-sewa/assets/about-optimized/about-hero-new.webp");
+  const logoImage = imageOrFallback(section?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png");
   const brandName = textOrFallback(section?.supportTitle, "Moksha Sewa", 60);
   const brandSubtitle = textOrFallback(section?.supportDescription, "An Initiative of Namo Gange Trust", 80);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Request Help", 50);
@@ -271,7 +271,7 @@ function PreviousBanner() {
           </div>
 
           {/* layered display type */}
-          <h1
+          <h2
             className="leading-[0.95]"
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
@@ -284,7 +284,7 @@ function PreviousBanner() {
             <span className="mt-1 block text-[46px] text-[#dc671f] sm:text-[58px] lg:text-[68px]">
               {subtitle.replace("A Promise of ", "")}
             </span>
-          </h1>
+          </h2>
 
           {/* diya-style flourish */}
           <div className="mt-1 flex items-center gap-2">

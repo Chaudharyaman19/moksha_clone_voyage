@@ -356,7 +356,7 @@ export default function SupportTheMission() {
             "
             style={{
               backgroundImage:
-                `url("${imageOrFallback(section?.image, "/assets/about/our-story/arthi.jpeg")}")`,
+                `url("${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164974/moksha-sewa/assets/about/our-story/arthi.jpg")}")`,
               backgroundSize: "100% 100%",
               backgroundPosition: "right center",
             }}

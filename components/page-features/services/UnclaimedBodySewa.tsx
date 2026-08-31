@@ -211,11 +211,11 @@ function HeroSection() {
             <span>Dignity For The Unidentified &amp; Unclaimed</span>
           </div>
 
-          <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
+          <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             Unclaimed Body Sewa
             <br />
             No One Is Left Without Dignity
-          </h1>
+          </h2>
 
           <Divider className="my-3 w-[127px]" />
 

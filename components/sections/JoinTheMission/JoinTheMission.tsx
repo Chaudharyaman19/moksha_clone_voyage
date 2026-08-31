@@ -170,7 +170,7 @@ const CustomIcon = ({
 
 const cards: MissionCard[] = [
   {
-    image: "/assets/donation-images/donate-sewa.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165146/moksha-sewa/assets/donation-images/donate-sewa.png",
     alt: "A person placing a donation into a Sewa donation box by the river",
     icon: "GiveIcon",
     title: "Give in Sewa",
@@ -182,7 +182,7 @@ const cards: MissionCard[] = [
   },
 
   {
-    image: "/assets/donation-images/volunteer-sewa.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165150/moksha-sewa/assets/donation-images/volunteer-sewa.png",
     alt: "Volunteers supporting an elderly person with compassion",
     icon: "ServeIcon",
     title: "Serve in Sewa",
@@ -194,7 +194,7 @@ const cards: MissionCard[] = [
   },
 
   {
-    image: "/assets/donation-images/partner-sewa.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165148/moksha-sewa/assets/donation-images/partner-sewa.png",
     alt: "A professional team discussing a partnership around a laptop",
     icon: "PartnerIcon",
     title: "Partner in Sewa",
@@ -310,7 +310,7 @@ export default function JoinTheMission() {
         "
       >
         <Image
-          src={websiteSection?.image || "/assets/about-reference/story-evening-ghat.png"}
+          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"}
           alt=""
           fill
           sizes="570px"

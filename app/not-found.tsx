@@ -4,6 +4,25 @@ import { ArrowRight, Home, LifeBuoy } from "lucide-react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getWebsiteSettings();
+  const customSeo = settings?.notFoundPage?.seo;
+  
+  const title = customSeo?.metaTitle || "Page Not Found - Moksha Sewa";
+  const description = customSeo?.metaDescription || "The page you are looking for may have moved or no longer exists.";
+
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 export default function NotFound() {
   return (

@@ -71,15 +71,28 @@ export const metadata: Metadata = {
     icon: DEFAULT_OG_IMAGE,
   },
 };
+import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
 import SmoothScrolling from "@/components/common/SmoothScrolling";
+import Script from "next/script";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getWebsiteSettings();
+  const advancedSeo = settings?.advancedSeo;
+
   return (
     <html lang="en">
+      <head>
+        {advancedSeo?.googleSearchConsoleVerification && (
+          <meta name="google-site-verification" content={advancedSeo.googleSearchConsoleVerification} />
+        )}
+        {advancedSeo?.globalHeadCode && (
+          <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalHeadCode }} />
+        )}
+      </head>
       <body suppressHydrationWarning>
         <StoreProvider>
           <JsonLd data={organizationJsonLd()} />
@@ -89,6 +102,39 @@ export default function RootLayout({
             {children}
           </SmoothScrolling>
         </StoreProvider>
+        {advancedSeo?.globalBodyCode && (
+          <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalBodyCode }} />
+        )}
+
+        {/* Analytics */}
+        {advancedSeo?.ga4MeasurementId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${advancedSeo.ga4MeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${advancedSeo.ga4MeasurementId}');
+              `}
+            </Script>
+          </>
+        )}
+        {advancedSeo?.gtmContainerId && (
+          <Script id="google-tag-manager" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${advancedSeo.gtmContainerId}');
+            `}
+          </Script>
+        )}
       </body>
     </html>
   );

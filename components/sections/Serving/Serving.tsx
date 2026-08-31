@@ -29,7 +29,7 @@ const activities: ActivityItem[] = [
     title: "Unclaimed Case Support",
     description:
       "We coordinate with police, hospitals and authorities for respectful final rites.",
-    image: "/assets/serving/community-outreach.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165433/moksha-sewa/assets/serving/community-outreach.png",
     icon: FaHandHoldingHeart,
     imagePosition: "50% 50%",
   },
@@ -37,7 +37,7 @@ const activities: ActivityItem[] = [
     title: "On-Ground Support",
     description:
       "Volunteers assist families at hospitals, homes, ghats and cremation grounds.",
-    image: "/assets/serving/on-ground-support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165442/moksha-sewa/assets/serving/on-ground-support.png",
     icon: FaLandmark,
     imagePosition: "50% 50%",
   },
@@ -45,7 +45,7 @@ const activities: ActivityItem[] = [
     title: "Food Service & Essentials",
     description:
       "Food, water, clothing and basic essentials are arranged where support is needed.",
-    image: "/assets/serving/food-essentials.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165439/moksha-sewa/assets/serving/food-essentials.png",
     icon: FaBoxOpen,
     imagePosition: "50% 50%",
   },
@@ -53,7 +53,7 @@ const activities: ActivityItem[] = [
     title: "Hospital Support",
     description:
       "We guide families through body release, hospital coordination and urgent needs.",
-    image: "/assets/serving/hospital-support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165440/moksha-sewa/assets/serving/hospital-support.png",
     icon: FaHospital,
     imagePosition: "50% 50%",
   },
@@ -61,7 +61,7 @@ const activities: ActivityItem[] = [
     title: "Rural & Remote Reach",
     description:
       "We help villages and remote areas where access to final-rites support is limited.",
-    image: "/assets/serving/rural-remote-reach.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165447/moksha-sewa/assets/serving/rural-remote-reach.png",
     icon: FaMapMarkerAlt,
     imagePosition: "50% 50%",
   },
@@ -69,7 +69,7 @@ const activities: ActivityItem[] = [
     title: "Emotional Support",
     description:
       "Families receive calm guidance and respectful support through a hard moment.",
-    image: "/assets/serving/counseling-support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png",
     icon: FaHeart,
     imagePosition: "50% 50%",
   },
@@ -77,7 +77,7 @@ const activities: ActivityItem[] = [
     title: "Ambulance & Transport",
     description:
       "Ambulance and hearse-van coordination for short or long-distance transport.",
-    image: "/assets/serving/emergency-transport.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png",
     icon: FaAmbulance,
     imagePosition: "50% 50%",
   },
@@ -85,7 +85,7 @@ const activities: ActivityItem[] = [
     title: "Document Assistance",
     description:
       "Support with required papers, hospital documents and official guidance.",
-    image: "/assets/serving/document-assistance.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165436/moksha-sewa/assets/serving/document-assistance.png",
     icon: FaFileAlt,
     imagePosition: "50% 50%",
   },

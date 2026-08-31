@@ -16,7 +16,7 @@ import { GiSteeringWheel } from "react-icons/gi";
 
 export default function HearseVanServices() {
   const section = useWebsiteSection("harsevan-hero");
-  const heroImage = imageOrFallback(section?.image, "/assets/serving/emergency-transport.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png");
   const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)", 60);
   const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.", 150);
   const description = textOrFallback(section?.description, "The final journey should be carried out with the utmost dignity. We help coordinate Hearse Van (Shav Vahan) support for eligible cases, subject to verification, location and availability.", 600);
@@ -51,13 +51,13 @@ export default function HearseVanServices() {
                 <FaCarSide className="h-8 w-8 text-[#A0522D]" />
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
+              <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
                 {title}
 
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
                   {subtitle}
                 </span>
-              </h1>
+              </h2>
 
               <p className="mb-8 text-[18px] leading-relaxed text-[#5D4037] opacity-95">
                 {description}

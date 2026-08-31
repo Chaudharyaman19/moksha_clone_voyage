@@ -2,9 +2,14 @@ import Prayerhallservices from "@/components/page-features/services/Prayerhallse
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getMergedWebsiteSections } from "@/lib/websiteSettingsApi";
-import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
+import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
+import FAQ from "@/components/sections/FAQ/FAQ";
 
-export const metadata = createPageMetadata("/prayerhallservices");
+import { createDynamicMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  return createDynamicMetadata("/prayerhallservices", "prayerHall");
+}
 
 async function page() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
@@ -15,6 +20,7 @@ async function page() {
       <JsonLd data={breadcrumbJsonLd("/prayerhallservices")} />
       <WebsiteContentProvider page="prayerHall" sections={sections}>
         <Prayerhallservices />
+        <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </WebsiteContentProvider>
     </div>
   );

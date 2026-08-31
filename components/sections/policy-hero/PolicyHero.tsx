@@ -125,7 +125,7 @@ const PolicyHero = ({
   title,
   subtitle,
   description,
-  imageSrc = "/assets/privacy-policy/privacy.webp",
+  imageSrc = "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165339/moksha-sewa/assets/privacy-policy/privacy.webp",
   imageAlt,
   showInfoBanner = true,
   policyMeta = defaultPolicyMeta,
@@ -321,7 +321,7 @@ const PolicyHero = ({
                 style={{ transitionDelay: "0.55s" }}
               >
                 <Image
-                  src="/assets/privacy-policy/title_decoration.webp"
+                  src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165341/moksha-sewa/assets/privacy-policy/title_decoration.webp"
                   alt=""
                   width={200}
                   height={40}

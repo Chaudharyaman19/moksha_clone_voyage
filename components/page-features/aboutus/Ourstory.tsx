@@ -172,7 +172,7 @@ export default function OurStory() {
           "
         >
           <Image
-            src={imageOrFallback(section?.secondaryImage, "/assets/about/our-story/ghat-background.png")}
+            src={imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164976/moksha-sewa/assets/about/our-story/ghat-background.png")}
             alt=""
             fill
             priority
@@ -529,7 +529,7 @@ export default function OurStory() {
               "
             >
               <Image
-                src={imageOrFallback(section?.image, "/assets/vijay_sharma.jpg")}
+                src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165477/moksha-sewa/assets/vijay_sharma.jpg")}
                 alt="Vijay Sharma - Founder, Moksha Sewa"
                 fill
                 priority
@@ -872,7 +872,7 @@ export default function OurStory() {
           "
         >
           <Image
-            src="/assets/about/our-story/ghat-background.png"
+            src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164976/moksha-sewa/assets/about/our-story/ghat-background.png"
             alt=""
             fill
             sizes="100vw"
