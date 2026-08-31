@@ -62,9 +62,9 @@ export default function NotFound() {
               </div>
             </div>
 
-            <h1 className="max-w-[620px] font-serif text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
+            <h2 className="max-w-[620px] font-serif text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
               This page has completed its journey.
-            </h1>
+            </h2>
             <div className="my-6 flex max-w-[530px] items-center gap-3">
               <span className="h-px flex-1 bg-[#C99742]/60" />
               <span className="text-xl text-[#C18A2B]">◇</span>
