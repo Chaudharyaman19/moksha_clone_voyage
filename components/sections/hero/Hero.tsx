@@ -334,7 +334,7 @@ export default function Hero() {
               priority={currentIndex === 0}
               fetchPriority={currentIndex === 0 ? "high" : "auto"}
               quality={75}
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 65vw"
               className={
                 isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
                   ? "object-cover object-right transition-transform duration-[6000ms] ease-out"

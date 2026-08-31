@@ -203,7 +203,7 @@ export default function FamilySupport() {
                   alt="Namo Gange Trust"
                   width={280}
                   height={120}
-                  className="object-contain"
+                  className="w-auto h-auto object-contain"
                 />
               </div>
 
