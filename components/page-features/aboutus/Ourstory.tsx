@@ -529,7 +529,7 @@ export default function OurStory() {
               "
             >
               <Image
-                src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165477/moksha-sewa/assets/vijay_sharma.jpg")}
+                src={imageOrFallback(section?.image, "/assets/vijay_sharma.jpg")}
                 alt="Vijay Sharma - Founder, Moksha Sewa"
                 fill
                 priority
