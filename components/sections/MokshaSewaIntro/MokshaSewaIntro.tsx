@@ -63,7 +63,7 @@ const MokshaSewaIntro: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h1
+          <h2
             className="
               max-w-[530px]
               font-serif
@@ -77,7 +77,7 @@ const MokshaSewaIntro: React.FC = () => {
             "
           >
             <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.", 150)}</span>
-          </h1>
+          </h2>
 
           {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}
           <div className="relative mt-7 flex">
