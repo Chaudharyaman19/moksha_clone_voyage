@@ -413,8 +413,9 @@ export default function FooterNew() {
                     alt="Namo Gange"
                     width={178}
                     height={100}
-                    className="h-auto w-[178px] object-contain"
+                    className="w-[178px] object-contain"
                     sizes="178px"
+                    style={{ width: "auto", height: "auto" }}
                   />
                   <div className="mt-1 text-center">
                     <p className="text-[15px] font-semibold leading-tight text-white">
