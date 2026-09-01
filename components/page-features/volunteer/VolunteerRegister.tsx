@@ -1279,6 +1279,7 @@ export default function VolunteerRegister() {
                     src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164954/moksha-sewa/hero-images/image7.png"
                     alt="Moksha Sewa volunteers comforting a grieving family at a river ghat"
                     fill
+                    priority
                     sizes="(min-width: 1024px) 22vw, 90vw"
                     className="object-cover object-[72%_48%]"
                   />

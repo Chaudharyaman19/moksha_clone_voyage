@@ -204,7 +204,7 @@ export default function FamilySupport() {
                   width={280}
                   height={120}
                   className="object-contain"
-                  style={{ width: "auto", height: "auto" }}
+                  style={{ width: "100%", height: "auto" }}
                 />
               </div>
 
