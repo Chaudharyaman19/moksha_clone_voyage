@@ -10,10 +10,10 @@ interface RedirectRule {
   isActive: boolean;
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
 
-  // Skip middleware for static assets, API routes, Next.js internal paths
+  // Skip proxy for static assets, API routes, Next.js internal paths
   if (
     url.pathname.startsWith('/_next') ||
     url.pathname.startsWith('/api') ||
@@ -43,7 +43,7 @@ export async function middleware(request: NextRequest) {
     }
   } catch (error) {
     // If backend is unreachable, just proceed normally
-    console.error("Middleware Redirect Fetch Error:", error);
+    console.error("Proxy Redirect Fetch Error:", error);
   }
 
   // Handle WWW to Non-WWW standardisation
