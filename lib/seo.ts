@@ -108,6 +108,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "weekly",
   },
   {
+    path: "/our-services",
+    label: "Our Services",
+    title: "Moksha Sewa Services – Compassionate Final Journey Support",
+    description:
+      "Explore Moksha Sewa services for dignified final journeys, including transport, rituals, family coordination and verified support.",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa final journey support services",
+    keywords: ["Moksha Sewa services", "final journey support", "last rites assistance"],
+    priority: 0.9,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/ambulanceservices",
     label: "Ambulance Services",
     title: "Ambulance Services for Final Journey Support",
@@ -308,6 +320,18 @@ export const seoRoutes: RouteSeo[] = [
     ogImage: "/assets/og/logo-moksha-seva-og.png",
     ogImageAlt: "Moksha Sewa refund policy",
     keywords: ["Moksha Sewa refund policy", "donation refund", "refund policy"],
+    priority: 0.3,
+    changeFrequency: "yearly",
+  },
+  {
+    path: "/code-of-conduct",
+    label: "Code of Conduct",
+    title: "Moksha Sewa Code of Conduct – Responsible Service",
+    description:
+      "Read the Moksha Sewa code of conduct covering dignity, privacy, ethical behaviour and responsible service for volunteers and partners.",
+    ogImage: "/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa code of conduct",
+    keywords: ["Moksha Sewa code of conduct", "volunteer conduct", "responsible sewa"],
     priority: 0.3,
     changeFrequency: "yearly",
   },
