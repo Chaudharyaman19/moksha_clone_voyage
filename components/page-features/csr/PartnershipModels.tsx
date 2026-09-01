@@ -6,19 +6,19 @@ import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } fr
 
 const defaultModels = [
   {
-    image: "/assets/csr/model-project.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165114/moksha-sewa/assets/csr/model-project.jpg",
     icon: "Handshake" as CSRIconName,
     title: "Project Partnership",
     text: "Support a defined humanitarian programme with mutually agreed objectives, scope and reporting.",
   },
   {
-    image: "/assets/csr/model-volunteering.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165116/moksha-sewa/assets/csr/model-volunteering.jpg",
     icon: "People" as CSRIconName,
     title: "Employee Volunteering",
     text: "Create suitable opportunities for employees to contribute their time, skills and participation.",
   },
   {
-    image: "/assets/csr/model-institutional.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165113/moksha-sewa/assets/csr/model-institutional.jpg",
     icon: "Institution" as CSRIconName,
     title: "Institutional Partnership",
     text: "Collaborate through hospitals, institutions, organisations and community networks where appropriate.",

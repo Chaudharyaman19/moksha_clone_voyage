@@ -15,7 +15,7 @@ export default function ComplianceAccountability() {
   const eyebrow = textOrFallback(section?.eyebrow, "Compliance & Accountability", 60);
   const title = textOrFallback(section?.title, "Responsible Partnerships\nNeed Responsible Processes.", 150);
   const description = textOrFallback(section?.description, "Our approach to CSR partnerships is guided by accountability,\ntransparency and well-defined processes at every step.\nFrom initial discussions to implementation", 300);
-  const bgImage = imageOrFallback(section?.image, "/assets/csr/compliance-photo.jpg");
+  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165099/moksha-sewa/assets/csr/compliance-photo.jpg");
   const bottomStatement = textOrFallback(section?.bottomStatement, "CSR collaborations are subject to applicable provisions of the Companies Act, 2013, Schedule VII, the Companies (CSR Policy) Rules, 2014, as amended, and other applicable requirements. Organisational, implementing-agency and project eligibility should be independently verified before any collaboration is represented as CSR-compliant.", 500);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Request Compliance Information", 50);
   const buttonHref = section?.buttonHref || "#csr-enquiry";

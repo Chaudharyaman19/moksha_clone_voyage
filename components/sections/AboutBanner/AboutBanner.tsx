@@ -185,7 +185,7 @@ const AboutMokshaSewa: React.FC = () => {
         {/* Full-width background image */}
         <div className="absolute inset-0 min-h-[320px] sm:min-h-[380px] md:min-h-[440px] lg:min-h-[540px]">
           <Image
-            src={imageOrFallback(section?.image, "/hero-images/dignity-in-every-final-journey-bg.png")}
+            src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png")}
             alt="Moksha Sewa volunteer supporting an elderly person"
             fill
             priority
@@ -259,7 +259,7 @@ const AboutMokshaSewa: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h1
+            <h2
               id="about-moksha-title"
               className="
                 max-w-[620px]
@@ -275,7 +275,7 @@ const AboutMokshaSewa: React.FC = () => {
               "
             >
               <span className="whitespace-pre-line">{textOrFallback(section?.title, "Every Final Journey\nDeserves Dignity", 150)}</span>
-            </h1>
+            </h2>
 
             {/* Subtitle */}
             <p className="mt-2 text-base font-semibold text-[#df5b0b] sm:text-lg">
@@ -542,7 +542,7 @@ const AboutMokshaSewa: React.FC = () => {
         >
           {/* Left decoration */}
           <div className="hidden shrink-0 md:block">
-            <Image src="/assets/about-optimized/about_banner_deco_left.png" alt="" width={100} height={81} className="h-auto w-[100px]" />
+            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164989/moksha-sewa/assets/about-optimized/about_banner_deco_left.png" alt="" width={100} height={81} className="h-auto w-[100px]" />
           </div>
 
           <div className="min-w-0 text-center">
@@ -623,7 +623,7 @@ const AboutMokshaSewa: React.FC = () => {
 
           {/* Right decoration */}
           <div className="hidden shrink-0 md:block">
-            <Image src="/assets/about-optimized/about_banner_deco_right.png" alt="" width={100} height={77} className="h-auto w-[100px]" />
+            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164992/moksha-sewa/assets/about-optimized/about_banner_deco_right.png" alt="" width={100} height={77} className="h-auto w-[100px]" />
           </div>
         </div>
       </div>

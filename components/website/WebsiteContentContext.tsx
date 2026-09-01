@@ -54,11 +54,15 @@ export function useWebsiteSection(key: string) {
 export function WebsiteSection({
   name,
   children,
+  showIfMissing = false,
 }: {
   name: string;
   children: React.ReactNode;
+  showIfMissing?: boolean;
 }) {
   const section = useWebsiteSection(name);
+  // Hide if: section not found (and showIfMissing not set), or explicitly disabled
+  if (!section && !showIfMissing) return null;
   if (section?.enabled === false) return null;
 
   return (

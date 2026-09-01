@@ -16,7 +16,7 @@ export default function PartnershipHero() {
   const title = textOrFallback(section?.title, "Together, We Can\nServe With Greater Purpose.", 100);
   const subtitle = textOrFallback(section?.subtitle, "Build responsible partnerships around dignity,\ncompassion and humanitarian service.", 150);
   const description = textOrFallback(section?.description, "Partner with Moksha Sewa, an initiative of Namo Gange Trust, to\nexplore meaningful collaborations that strengthen support for\neligible individuals and families during the final journey.", 300);
-  const bgImage = imageOrFallback(section?.image, "/assets/partnership/hero.png");
+  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165302/moksha-sewa/assets/partnership/hero.png");
   const buttonLabel = textOrFallback(section?.buttonLabel, "Become a Partner", 50);
   const buttonHref = section?.buttonHref || "#partnership-enquiry";
   const secondaryButtonLabel = textOrFallback(section?.secondaryButtonLabel, "Explore Partnerships", 50);
@@ -48,14 +48,14 @@ export default function PartnershipHero() {
             <span className="h-px w-12 bg-[#c6923c]" />
           </div>
 
-          <h1 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h2 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             {title.split("\n").map((line, i) => (
               <span key={i}>
                 {line}
                 <br />
               </span>
             ))}
-          </h1>
+          </h2>
 
           <p className="mt-3 text-[20px] font-semibold leading-[1.35] text-[#b77a1d]">
             {subtitle.split("\n").map((line, i) => (

@@ -13,34 +13,34 @@ import { TbHeartHandshake } from "react-icons/tb";
 
 const ritualCards = [
   {
-    src: "/assets/panditservices/ritual-1.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165285/moksha-sewa/assets/panditservices/ritual-1.png",
     title: "Pre-Ritual Consultation",
   },
   {
-    src: "/assets/panditservices/ritual-2.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165286/moksha-sewa/assets/panditservices/ritual-2.png",
     title: "Antim Sanskar Vidhi",
   },
   {
-    src: "/assets/panditservices/ritual-3.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165288/moksha-sewa/assets/panditservices/ritual-3.png",
     title: "Mukhagni Guidance",
   },
   {
-    src: "/assets/panditservices/ritual-4.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165289/moksha-sewa/assets/panditservices/ritual-4.png",
     title: "Asthi Visarjan",
   },
   {
-    src: "/assets/panditservices/ritual-5.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165290/moksha-sewa/assets/panditservices/ritual-5.png",
     title: "Pind Daan",
   },
   {
-    src: "/assets/panditservices/ritual-6.png",
+    src: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165291/moksha-sewa/assets/panditservices/ritual-6.png",
     title: "Tehrvi & Shanti Paath",
   },
 ];
 
 export default function PriestSupport() {
   const section = useWebsiteSection("pandit-hero");
-  const heroImage = imageOrFallback(section?.image, "/assets/panditservices/hero-real.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165283/moksha-sewa/assets/panditservices/hero-real.png");
   const title = textOrFallback(section?.title, "Priest Support", 60);
   const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.", 150);
   const description = textOrFallback(section?.description, "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.", 600);
@@ -111,9 +111,9 @@ export default function PriestSupport() {
               </div>
 
               {/* Heading */}
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
+              <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
                 {title}
-              </h1>
+              </h2>
 
               {/* Description */}
               <p className="mb-7 max-w-[590px] text-[18px] leading-relaxed text-[#321A10]/90">
@@ -168,14 +168,14 @@ export default function PriestSupport() {
         <section className="mx-auto mb-4 max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("pandit-highlights")?.items || [
-              { title: "Experienced Pandit Ji", description: "Learned and compassionate guidance", image: "/assets/panditservices/feature-pandit.png" },
-              { title: "Vedic Guidance", description: "Guidance based on Hindu traditions", image: "/assets/panditservices/feature-vedic.png" },
-              { title: "Ritual Planning", description: "Complete ritual planning and coordination", image: "/assets/panditservices/feature-planning.png" },
-              { title: "Regional Traditions", description: "Rituals according to family customs", image: "/assets/panditservices/feature-traditions.png" }
+              { title: "Experienced Pandit Ji", description: "Learned and compassionate guidance", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165275/moksha-sewa/assets/panditservices/feature-pandit.png" },
+              { title: "Vedic Guidance", description: "Guidance based on Hindu traditions", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165279/moksha-sewa/assets/panditservices/feature-vedic.png" },
+              { title: "Ritual Planning", description: "Complete ritual planning and coordination", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165276/moksha-sewa/assets/panditservices/feature-planning.png" },
+              { title: "Regional Traditions", description: "Rituals according to family customs", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165277/moksha-sewa/assets/panditservices/feature-traditions.png" }
             ]).map((item, idx) => (
               <FeatureCard
                 key={idx}
-                imageSrc={imageOrFallback(item.image, "/assets/panditservices/feature-pandit.png")}
+                imageSrc={imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165275/moksha-sewa/assets/panditservices/feature-pandit.png")}
                 title={item.title || ""}
                 desc={item.description || ""}
               />
@@ -251,7 +251,7 @@ export default function PriestSupport() {
                   key={idx}
                   className="w-[180px] shrink-0 sm:w-[220px]"
                 >
-                  <SquareImageCard src={imageOrFallback((card as any).image || (card as any).src, "/assets/panditservices/ritual-1.png")} title={card.title || ""} />
+                  <SquareImageCard src={imageOrFallback((card as any).image || (card as any).src, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165285/moksha-sewa/assets/panditservices/ritual-1.png")} title={card.title || ""} />
                 </div>
               ))}
             </div>
@@ -264,14 +264,14 @@ export default function PriestSupport() {
 
           <div className="mt-6 grid grid-cols-1 items-stretch gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {(useWebsiteSection("pandit-receive")?.items || [
-              { title: "Samagri Guidance", description: "Right samagri for every sacred ritual.", image: "/assets/panditservices/roles-1.png" },
-              { title: "Prayer Hall Ceremony", description: "Rituals conducted with peace and reverence.", image: "/assets/panditservices/roles-2.png" },
-              { title: "Family Ritual Explanation", description: "Simple guidance at every sacred step.", image: "/assets/panditservices/roles-3.png" },
-              { title: "Post-Ritual Support", description: "Guidance for remaining rituals and timelines.", image: "/assets/panditservices/roles-4.png" }
+              { title: "Samagri Guidance", description: "Right samagri for every sacred ritual.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165293/moksha-sewa/assets/panditservices/roles-1.png" },
+              { title: "Prayer Hall Ceremony", description: "Rituals conducted with peace and reverence.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165294/moksha-sewa/assets/panditservices/roles-2.png" },
+              { title: "Family Ritual Explanation", description: "Simple guidance at every sacred step.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165295/moksha-sewa/assets/panditservices/roles-3.png" },
+              { title: "Post-Ritual Support", description: "Guidance for remaining rituals and timelines.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165296/moksha-sewa/assets/panditservices/roles-4.png" }
             ]).map((item, idx) => (
               <RoleSquareCard
                 key={idx}
-                src={imageOrFallback(item.image, "/assets/panditservices/roles-1.png")}
+                src={imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165293/moksha-sewa/assets/panditservices/roles-1.png")}
                 title={item.title || ""}
                 desc={item.description || ""}
               />
@@ -307,7 +307,7 @@ export default function PriestSupport() {
             {/* Left Image */}
             <div className="relative hidden h-[160px] w-full lg:block lg:h-auto lg:w-1/5">
               <Image
-                src={imageOrFallback(useWebsiteSection("pandit-donation")?.image, "/assets/panditservices/hero.png")}
+                src={imageOrFallback(useWebsiteSection("pandit-donation")?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165284/moksha-sewa/assets/panditservices/hero.png")}
                 alt="Decorative brass items"
                 fill
                 sizes="20vw"

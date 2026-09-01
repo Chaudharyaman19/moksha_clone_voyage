@@ -10,32 +10,32 @@ const SEWA_CARDS = [
     title: "On-Ground Sewa",
     description:
       "Compassionate support on the ground, ensuring every step of the journey is handled with care.",
-    image: "/assets/sewa/on_ground_image.png",
-    icon: "/assets/sewa/on-ground.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165453/moksha-sewa/assets/sewa/on_ground_image.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165452/moksha-sewa/assets/sewa/on-ground.png",
   },
   {
     id: 2,
     title: "Volunteer Sewa",
     description:
       "Dedicated volunteers selflessly giving their time and energy to serve those in need.",
-    image: "/assets/sewa/voluteer_sewa_image.png",
-    icon: "/assets/sewa/voluteer-seva.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165460/moksha-sewa/assets/sewa/voluteer_sewa_image.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165459/moksha-sewa/assets/sewa/voluteer-seva.png",
   },
   {
     id: 3,
     title: "Ritual Support",
     description:
       "Providing ritual essentials and guidance with dignity, respect and authenticity.",
-    image: "/assets/sewa/ritual_support_image.png",
-    icon: "/assets/sewa/ritual-support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165457/moksha-sewa/assets/sewa/ritual_support_image.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165456/moksha-sewa/assets/sewa/ritual-support.png",
   },
   {
     id: 4,
     title: "Community Outreach",
     description:
       "Building awareness, extending care and supporting communities with empathy.",
-    image: "/assets/sewa/community_outreach_image.png",
-    icon: "/assets/sewa/community-outreach.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165451/moksha-sewa/assets/sewa/community_outreach_image.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165449/moksha-sewa/assets/sewa/community-outreach.png",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function GlimpseOfJourney() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={imageOrFallback(websiteSection?.image, "/assets/sewa/sewa_in_action_bg.png")}
+          src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165458/moksha-sewa/assets/sewa/sewa_in_action_bg.png")}
           alt=""
           aria-hidden="true"
           fill
@@ -109,7 +109,7 @@ export default function GlimpseOfJourney() {
           {/* Decorative image */}
           <div className="mt-1 flex justify-center">
             <Image
-              src="/assets/faq/title_decoration.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165170/moksha-sewa/assets/faq/title_decoration.png"
               alt=""
               aria-hidden="true"
               width={2928}
@@ -126,7 +126,7 @@ export default function GlimpseOfJourney() {
               key={card.id}
               className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
               style={{
-                backgroundImage: "url('/assets/sewa/card_image.png')",
+                backgroundImage: "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165448/moksha-sewa/assets/sewa/card_image.png')",
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

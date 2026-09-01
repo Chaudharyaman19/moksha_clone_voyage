@@ -4,10 +4,10 @@ import Image from "next/image";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const defaultBoardMembers = [
-  { name: "Madhukar Reddy Dasari", role: "Namo Gange Trust Leadership", description: "Supports governance, finance and operational oversight for the mission.", image: "/assets/about-optimized/madhukar-reddy-dasari.webp" },
-  { name: "Sandeep Singh", role: "Technology & Data Support", description: "Supports technology, data security and platform infrastructure.", image: "/assets/about-optimized/sandeep-singh.webp" },
+  { name: "Madhukar Reddy Dasari", role: "Namo Gange Trust Leadership", description: "Supports governance, finance and operational oversight for the mission.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165005/moksha-sewa/assets/about-optimized/madhukar-reddy-dasari.webp" },
+  { name: "Sandeep Singh", role: "Technology & Data Support", description: "Supports technology, data security and platform infrastructure.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165019/moksha-sewa/assets/about-optimized/sandeep-singh.webp" },
   { name: "Vijay Sharma", role: "Operations Coordination", description: "Supports on-ground coordination, field execution and case response.", image: "/assets/vijay_sharma.jpg" },
-  { name: "Srujana Paid", role: "Partnerships & Outreach", description: "Supports partnerships, outreach and progressive mission expansion.", image: "/assets/about-optimized/srujana-paid.webp" },
+  { name: "Srujana Paid", role: "Partnerships & Outreach", description: "Supports partnerships, outreach and progressive mission expansion.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165020/moksha-sewa/assets/about-optimized/srujana-paid.webp" },
 ];
 
 export default function BoardMembers() {

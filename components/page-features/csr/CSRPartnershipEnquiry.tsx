@@ -78,7 +78,7 @@ export default function CSRPartnershipEnquiry() {
   const eyebrow = textOrFallback(section?.eyebrow, "Start a Conversation", 60);
   const title = textOrFallback(section?.title, "Let's Build a\nResponsible Partnership.", 100);
   const description = textOrFallback(section?.description, "Tell us a little about your organisation and CSR\npriorities.\nOur team can connect with you to explore\nan appropriate collaboration.", 300);
-  const bgImage = imageOrFallback(section?.image, "/assets/csr/responsible-partnership-conversation.png");
+  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165136/moksha-sewa/assets/csr/responsible-partnership-conversation.png");
   const contactTitle = textOrFallback(section?.contactTitle, "CSR Partnership Enquiry", 80);
   const submitLabel = textOrFallback(section?.submitLabel, "Submit CSR Enquiry", 50);
   const submittedLabel = textOrFallback(section?.submittedLabel, "Inquiry Submitted", 50);
@@ -192,7 +192,7 @@ export default function CSRPartnershipEnquiry() {
               "
               style={{
                 backgroundImage:
-                  `url('${imageOrFallback(section?.secondaryImage, "/assets/csr/enquiry-team-bg.jpg")}')`,
+                  `url('${imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165102/moksha-sewa/assets/csr/enquiry-team-bg.jpg")}')`,
               }}
             />
 

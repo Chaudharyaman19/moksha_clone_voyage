@@ -58,7 +58,7 @@ const fallbackVideos: GalleryVideo[] = [
   {
     id: 1,
     src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    poster: "/assets/route-optimized/video-body-transport.webp",
+    poster: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165422/moksha-sewa/assets/route-optimized/video-body-transport.webp",
     alt: "Body Transport Service",
     category: "services",
     title: "Dignified Body Transport Service",
@@ -73,7 +73,7 @@ const fallbackVideos: GalleryVideo[] = [
   {
     id: 2,
     src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    poster: "/assets/route-optimized/video-funeral-decoration.webp",
+    poster: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165424/moksha-sewa/assets/route-optimized/video-funeral-decoration.webp",
     alt: "Funeral Decoration",
     category: "services",
     title: "Traditional Funeral Decoration",
@@ -88,7 +88,7 @@ const fallbackVideos: GalleryVideo[] = [
   {
     id: 3,
     src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    poster: "/assets/route-optimized/video-hearse.webp",
+    poster: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165424/moksha-sewa/assets/route-optimized/video-hearse.webp",
     alt: "Hearse Van Service",
     category: "services",
     title: "Hearse Van Transport",
@@ -103,7 +103,7 @@ const fallbackVideos: GalleryVideo[] = [
   {
     id: 4,
     src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    poster: "/assets/route-optimized/video-prayer-hall.webp",
+    poster: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165425/moksha-sewa/assets/route-optimized/video-prayer-hall.webp",
     alt: "Prayer Hall",
     category: "facilities",
     title: "Sacred Prayer Hall",
@@ -118,7 +118,7 @@ const fallbackVideos: GalleryVideo[] = [
   {
     id: 5,
     src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-    poster: "/assets/route-optimized/video-calling-relative.webp",
+    poster: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165422/moksha-sewa/assets/route-optimized/video-calling-relative.webp",
     alt: "Calling Relatives",
     category: "support",
     title: "Family Notification Services",
@@ -608,12 +608,12 @@ function MokshaGallery() {
             </span>
           </div>
 
-     <h1 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
+     <h2 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
   Moksha{" "}
   <span className="text-[#8B6A3E]">
     Video Gallery
   </span>
-</h1>
+</h2>
 
           <p className="mt-4 mx-auto max-w-xl text-[15px] leading-relaxed text-[#5A3E2B]/80 sm:text-base">
             Every service we run, recorded as it happens. Watch how the

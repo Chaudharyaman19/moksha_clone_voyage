@@ -19,7 +19,7 @@ import { RiEmpathizeLine } from "react-icons/ri";
 
 export default function Callingrelativesservices() {
   const section = useWebsiteSection("callingRelatives-hero");
-  const heroImage = imageOrFallback(section?.image, "/assets/serving/counseling-support.png");
+  const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png");
   const title = textOrFallback(section?.title, "Family & Relative Support", 60);
   const subtitle = textOrFallback(section?.subtitle, "Compassionate Communication.", 60);
   const description = textOrFallback(section?.description, "In times of sudden loss, making phone calls to inform relatives can be emotionally draining. Our compassionate volunteers take this burden off your shoulders, respectfully notifying all extended family members and friends.", 2000);
@@ -54,12 +54,12 @@ export default function Callingrelativesservices() {
                 <MdOutlineLocalPhone className="h-8 w-8 text-[#A0522D]" />
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
+              <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
                 {title}
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
                   {subtitle}
                 </span>
-              </h1>
+              </h2>
 
               <p className="mb-8 text-[18px] leading-relaxed text-[#5D4037] opacity-95">
                 {description}

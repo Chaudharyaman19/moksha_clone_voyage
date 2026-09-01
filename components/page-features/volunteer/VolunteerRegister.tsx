@@ -592,7 +592,7 @@ export default function VolunteerRegister() {
             >
               <div className="relative h-full w-full shrink-0">
                 <Image
-                  src={heroSection?.image || "/hero-images/volunteer-elderly-woman.png"}
+                  src={heroSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164963/moksha-sewa/hero-images/volunteer-elderly-woman.png"}
                   alt="Moksha Sewa volunteer sitting with and comforting an elderly woman"
                   fill
                   priority
@@ -603,7 +603,7 @@ export default function VolunteerRegister() {
 
               <div className="relative h-full w-full shrink-0">
                 <Image
-                  src={heroSection?.secondaryImage || "/hero-images/volunteer-hero-second.png"}
+                  src={heroSection?.secondaryImage || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164964/moksha-sewa/hero-images/volunteer-hero-second.png"}
                   alt="Moksha Sewa volunteer carrying ritual materials at a sacred river ghat"
                   fill
                   sizes="100vw"
@@ -626,7 +626,7 @@ export default function VolunteerRegister() {
     <div className="mb-1 flex w-full max-w-[440px] flex-col items-start text-left sm:mb-2">
       <div className="hidden w-[150px] self-center sm:block sm:w-[190px] lg:w-[220px]">
         <Image
-          src={heroSection?.logoImage || "/hero-images/image6.png"}
+          src={heroSection?.logoImage || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png"}
           alt="Namo Gange"
           width={420}
           height={150}
@@ -647,9 +647,9 @@ export default function VolunteerRegister() {
       </div>
     </div>
 
-    <h1 className="mt-3 font-serif text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
+    <h2 className="mt-3 font-serif text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
       {textOrFallback(heroSection?.title, "Be the Reason Someone Receives a Dignified Farewell.", 100)}
-    </h1>
+    </h2>
 
     <div className="mt-1 flex items-center gap-1.5 sm:gap-2">
       <span className="h-[2px] w-10 bg-[#DC671F] sm:w-14" />
@@ -727,9 +727,9 @@ export default function VolunteerRegister() {
 
           {/* Heading */}
           <header id="volunteer-registration" className="mb-3 scroll-mt-12 text-center">
-            <h1 className="font-serif text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
+            <h2 className="font-serif text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
               {textOrFallback(registerSection?.title, "Volunteer Registration", 50)}
-            </h1>
+            </h2>
           </header>
 
           {/* Stepper progress */}
@@ -1276,7 +1276,7 @@ export default function VolunteerRegister() {
               {step === 1 && (
                 <div className="relative mt-3.5 w-full flex-1 min-h-[160px] overflow-hidden">
                   <Image
-                    src="/hero-images/image7.png"
+                    src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164954/moksha-sewa/hero-images/image7.png"
                     alt="Moksha Sewa volunteers comforting a grieving family at a river ghat"
                     fill
                     sizes="(min-width: 1024px) 22vw, 90vw"
@@ -1366,7 +1366,7 @@ export default function VolunteerRegister() {
           <section className="mt-6 grid gap-4 sm:grid-cols-[0.85fr_1fr_0.9fr_1.05fr]">
             <div className="relative min-h-[220px] overflow-hidden border border-[#E7D9C9] bg-[#F4EDE3]">
               <Image
-                src="/hero-images/volunteer-team-shirts.png"
+                src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164971/moksha-sewa/hero-images/volunteer-team-shirts.png"
                 alt="Two Moksha Sewa volunteers in branded polo shirts standing together"
                 fill
                 sizes="240px"
@@ -1418,7 +1418,7 @@ export default function VolunteerRegister() {
 
             <div className="relative min-h-[220px] overflow-hidden border border-[#E7D9C9]">
               <Image
-                src="/hero-images/image4.png"
+                src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164951/moksha-sewa/hero-images/image4.png"
                 alt="Moksha Sewa volunteers supporting an elderly couple"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"

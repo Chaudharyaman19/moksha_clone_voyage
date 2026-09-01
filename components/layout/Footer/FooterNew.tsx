@@ -132,7 +132,7 @@ export default function FooterNew() {
   const inputPlaceholder = textOrFallback(websiteSection?.inputPlaceholder, "Your email address", 50);
   const submitLabel = textOrFallback(websiteSection?.submitLabel, "Send Request", 36);
   const submittedLabel = textOrFallback(websiteSection?.submittedLabel, "Submitted", 36);
-  const requestSupportImage = imageOrFallback(websiteSection?.secondaryImage, "/assets/request_support.webp");
+  const requestSupportImage = imageOrFallback(websiteSection?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165347/moksha-sewa/assets/request_support.webp");
   const footerItems = websiteSection?.items ?? [];
   const managedQuickLinks = quickLinks.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index, item) }));
   const managedServices = services.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length, item) }));
@@ -413,8 +413,9 @@ export default function FooterNew() {
                     alt="Namo Gange"
                     width={178}
                     height={100}
-                    className="h-auto w-[178px] object-contain"
+                    className="w-[178px] object-contain"
                     sizes="178px"
+                    style={{ width: "auto", height: "auto" }}
                   />
                   <div className="mt-1 text-center">
                     <p className="text-[15px] font-semibold leading-tight text-white">

@@ -90,7 +90,7 @@ export default function Hero() {
         .map((item) => ({
           title: item.title || "New Hero Slide",
           description: item.description || "",
-          image: imageOrFallback(item.image, "/hero-images/dignity-in-every-final-journey-bg.png"),
+          image: imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
           alt: item.title || "Hero slide image",
           buttonLabel: item.label || websiteSection?.buttonLabel || "Learn More",
           buttonHref: item.href || websiteSection?.buttonHref || "/",
@@ -105,18 +105,18 @@ export default function Hero() {
     [itemSlides, websiteSection?.slides],
   );
   const images = useMemo(
-    () => managedSlides.length ? managedSlides.map((slide) => imageOrFallback(slide.image, "/hero-images/dignity-in-every-final-journey-bg.png")) : [
-      imageOrFallback(websiteSection?.image, "/hero-images/dignity-in-every-final-journey-bg.png"),
-      "/hero-images/image2.png",
-      "/hero-images/image3.png",
-      "/hero-images/image7.png",
-      "/hero-images/image8.png",
-      "/hero-images/volunteer-impact-v2.png",
-      // "/hero-images/1.png",
-      // "/hero-images/2.png",
-      // "/hero-images/3.png",
-      // "/hero-images/4.png",
-      // "/hero-images/9.png",
+    () => managedSlides.length ? managedSlides.map((slide) => imageOrFallback(slide.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png")) : [
+      imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164948/moksha-sewa/hero-images/image2.png",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164950/moksha-sewa/hero-images/image3.png",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164954/moksha-sewa/hero-images/image7.png",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164955/moksha-sewa/hero-images/image8.png",
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164966/moksha-sewa/hero-images/volunteer-impact-v2.png",
+      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164929/moksha-sewa/hero-images/1.png",
+      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164931/moksha-sewa/hero-images/2.png",
+      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164932/moksha-sewa/hero-images/3.png",
+      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164933/moksha-sewa/hero-images/4.png",
+      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164943/moksha-sewa/hero-images/9.png",
     ],
     [managedSlides, websiteSection?.image],
   );
@@ -285,7 +285,7 @@ export default function Hero() {
       label: textOrFallback(item.label, fallback.label, 60),
     };
   });
-  const heroLogo = imageOrFallback(websiteSection?.logoImage, "/hero-images/image6.png");
+  const heroLogo = imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png");
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
@@ -334,7 +334,7 @@ export default function Hero() {
               priority={currentIndex === 0}
               fetchPriority={currentIndex === 0 ? "high" : "auto"}
               quality={75}
-              sizes="(max-width: 768px) 100vw, 65vw"
+              sizes="100vw"
               className={
                 isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
                   ? "object-cover object-right transition-transform duration-[6000ms] ease-out"

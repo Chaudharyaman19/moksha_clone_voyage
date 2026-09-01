@@ -277,7 +277,7 @@ const cards: CardItem[] = [
       "Safe & Timely Transport",
       "Trained & Verified Partners",
     ],
-    image: "/assets/how-we-help/five.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165185/moksha-sewa/assets/how-we-help/five.png",
     accent: "#2F7A28",
     titleColor: "#225D23",
     featureBg: "#F1F7EA",
@@ -292,7 +292,7 @@ const cards: CardItem[] = [
       "Essential Arrangements",
       "Clean & Respectful Process",
     ],
-    image: "/assets/how-we-help/four.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165187/moksha-sewa/assets/how-we-help/four.png",
     accent: "#F05B00",
     titleColor: "#D64D00",
     featureBg: "#FFF2E6",
@@ -307,7 +307,7 @@ const cards: CardItem[] = [
       "Ritual Essentials",
       "As Per Tradition & Customs",
     ],
-    image: "/assets/how-we-help/pandit.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165189/moksha-sewa/assets/how-we-help/pandit.png",
     accent: "#73318B",
     titleColor: "#682B80",
     featureBg: "#F6EDF8",
@@ -322,7 +322,7 @@ const cards: CardItem[] = [
       "Documentation Help",
       "Emotional Support",
     ],
-    image: "/assets/how-we-help/three.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png",
     accent: "#0E5B99",
     titleColor: "#164F87",
     featureBg: "#EDF5FB",
@@ -489,7 +489,7 @@ export default function HowWeCanHelp() {
         "
       >
         <Image
-          src={websiteSection?.image || "/assets/km.jpeg"}
+          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg"}
           alt=""
           fill
           priority

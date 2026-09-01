@@ -174,7 +174,7 @@ export default function BehindMission() {
               <video
                 ref={videoRef}
                 className="h-full w-full object-cover"
-                poster={textOrFallback(section?.secondaryImage, "/hero-images/support-mission-ghat.png", 150)}
+                poster={textOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164962/moksha-sewa/hero-images/support-mission-ghat.png", 150)}
                 autoPlay
                 muted={muted}
                 loop

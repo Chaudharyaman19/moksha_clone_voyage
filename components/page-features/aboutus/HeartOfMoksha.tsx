@@ -19,7 +19,7 @@ export default function HeartOfMoksha() {
   return (
     <section className="relative min-h-[620px] w-full overflow-hidden bg-[#003a2f] sm:min-h-[560px] lg:aspect-[4/1] lg:min-h-0">
         <Image
-          src={imageOrFallback(section?.image, "/assets/about-reference/heart-of-moksha-sewa.png")}
+          src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165038/moksha-sewa/assets/about-reference/heart-of-moksha-sewa.png")}
           alt="Moksha Sewa volunteers beside a sacred river ghat at sunset"
           fill
           sizes="(max-width: 1344px) 100vw, 1344px"

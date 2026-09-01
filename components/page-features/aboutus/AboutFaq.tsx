@@ -44,7 +44,7 @@ export default function AboutFaq() {
 
         <div className="mt-5 grid gap-3 lg:grid-cols-[.88fr_1.12fr]">
           <div className="flex h-full flex-col">
-            <div className="relative min-h-[290px] flex-1 overflow-hidden rounded-tl-[72px]"><Image src={imageOrFallback(section?.image, "/assets/about-reference/faq-support-final.png")} alt="Moksha Sewa volunteer supporting an elderly person" fill unoptimized priority sizes="(max-width:1024px) 100vw,44vw" className="object-cover object-center" /></div>
+            <div className="relative min-h-[290px] flex-1 overflow-hidden rounded-tl-[72px]"><Image src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165029/moksha-sewa/assets/about-reference/faq-support-final.png")} alt="Moksha Sewa volunteer supporting an elderly person" fill unoptimized priority sizes="(max-width:1024px) 100vw,44vw" className="object-cover object-center" /></div>
             <div className="grid min-h-[88px] grid-cols-[48px_1fr] items-center gap-x-3 border border-[#e7ded0] bg-white px-4 py-2 shadow-[0_5px_14px_rgba(65,49,30,.09)] sm:grid-cols-[48px_1fr_auto]">
               <span className="grid h-12 w-12 place-items-center rounded-full border border-[#d4c3a5] bg-[#faf7f0] text-[#17493a]"><FaUsers className="h-6 w-6" /></span>
               <div className="flex h-full min-w-0 flex-col justify-center"><p className="text-[16px] font-semibold leading-[1.2] text-[#24483d]">{textOrFallback(section?.requestTitle, "Need more help?", 60)}</p><p className="mt-1 max-w-[310px] text-[16px] leading-[1.25] text-[#56645e]">{textOrFallback(section?.requestDescription, "Our team is here to assist you with any questions or support you may need.", 600)}</p></div>

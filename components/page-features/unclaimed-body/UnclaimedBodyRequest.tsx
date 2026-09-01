@@ -42,7 +42,7 @@ export default function UnclaimedBodyRequest() {
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-0"
         style={{
-          backgroundImage: "url('/assets/unclaimed-body/request-background.png')",
+          backgroundImage: "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165473/moksha-sewa/assets/unclaimed-body/request-background.png')",
           backgroundSize: "cover",
         }}
       />
@@ -51,7 +51,7 @@ export default function UnclaimedBodyRequest() {
           className="rounded-[16px] border border-[#eadcc7] bg-cover bg-center bg-no-repeat px-5 py-3 shadow-[0_8px_24px_rgba(50,38,20,.08)]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,250,242,.84), rgba(255,250,242,.84)), url('/assets/unclaimed-body/request-background.png')",
+              "linear-gradient(rgba(255,250,242,.84), rgba(255,250,242,.84)), url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165473/moksha-sewa/assets/unclaimed-body/request-background.png')",
           }}
         >
           <p className="text-[16px] font-bold uppercase tracking-[0.12em] text-[#b47a20]"><span className="mr-3">—</span> {textOrFallback(section?.eyebrow, "Need Assistance With", 60)}</p>

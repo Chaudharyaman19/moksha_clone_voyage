@@ -185,35 +185,35 @@ const cards = [
     icon: "Van",
     title: "Final Journey\nTransport",
     text: "Safe and respectful transport of the departed to the cremation facility.",
-    image: "/assets/how-we-help/five.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165185/moksha-sewa/assets/how-we-help/five.png",
   },
 
   {
     icon: "Fire",
     title: "Cremation\nCoordination",
     text: "Coordinating with crematoriums and ensuring a smooth cremation process.",
-    image: "/assets/how-we-help/four.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165187/moksha-sewa/assets/how-we-help/four.png",
   },
 
   {
     icon: "Diya",
     title: "Ritual\nEssentials",
     text: "Providing essential items required for the final rites and rituals.",
-    image: "/assets/about-optimized/samagri.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165018/moksha-sewa/assets/about-optimized/samagri.webp",
   },
 
   {
     icon: "Priest",
     title: "Priest & Ritual\nGuidance",
     text: "Arranging experienced priests who guide and conduct the final rites with respect.",
-    image: "/assets/about-optimized/pandit-ji.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165010/moksha-sewa/assets/about-optimized/pandit-ji.webp",
   },
 
   {
     icon: "HeartHands",
     title: "On-Ground\nSupport",
     text: "Our team stands beside the family, providing support and care at every step.",
-    image: "/assets/about-optimized/family-support.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
   },
 ];
 

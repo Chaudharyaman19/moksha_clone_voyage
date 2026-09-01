@@ -4,6 +4,25 @@ import { ArrowRight, Home, LifeBuoy } from "lucide-react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getWebsiteSettings();
+  const customSeo = settings?.notFoundPage?.seo;
+  
+  const title = customSeo?.metaTitle || "Page Not Found - Moksha Sewa";
+  const description = customSeo?.metaDescription || "The page you are looking for may have moved or no longer exists.";
+
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 export default function NotFound() {
   return (
@@ -43,9 +62,9 @@ export default function NotFound() {
               </div>
             </div>
 
-            <h1 className="max-w-[620px] font-serif text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
+            <h2 className="max-w-[620px] font-serif text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
               This page has completed its journey.
-            </h1>
+            </h2>
             <div className="my-6 flex max-w-[530px] items-center gap-3">
               <span className="h-px flex-1 bg-[#C99742]/60" />
               <span className="text-xl text-[#C18A2B]">◇</span>

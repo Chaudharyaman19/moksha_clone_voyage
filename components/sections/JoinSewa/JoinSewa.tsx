@@ -44,7 +44,7 @@ const cards: JoinCard[] = [
     button: "JOIN AS VOLUNTEER",
     href: "/volunteer/register",
     icon: <HeartHandshake />,
-    image: "/assets/about-optimized/volunteer.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165026/moksha-sewa/assets/about-optimized/volunteer.png",
     variant: "green",
   },
   {
@@ -67,7 +67,7 @@ const cards: JoinCard[] = [
     button: "EXPLORE PARTNERSHIP",
     href: "/partnership",
     icon: <Handshake />,
-    image: "/assets/about-optimized/partner.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165011/moksha-sewa/assets/about-optimized/partner.png",
     variant: "gold",
   },
   {
@@ -90,7 +90,7 @@ const cards: JoinCard[] = [
     button: "SUPPORT THE MISSION",
     href: "/donation",
     icon: <Leaf />,
-    image: "/assets/about-optimized/support.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165022/moksha-sewa/assets/about-optimized/support.png",
     variant: "green",
   },
 ];
@@ -319,7 +319,7 @@ const JoinSewa: React.FC = () => {
             bottom edge is never cropped off by object-cover. */}
         <div className="absolute inset-0 -z-20">
           <Image
-            src={imageOrFallback(section?.image, "/assets/about-optimized/be_part.png")}
+            src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164993/moksha-sewa/assets/about-optimized/be_part.png")}
             alt=""
             fill
             sizes="100vw"

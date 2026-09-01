@@ -125,7 +125,7 @@ export default function Footer() {
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-left-bottom bg-no-repeat opacity-95"
         style={{
-          backgroundImage: "url('/assets/moksha-footer-ghat-bg.webp')",
+          backgroundImage: "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165243/moksha-sewa/assets/moksha-footer-ghat-bg.webp')",
         }}
       />
 

@@ -16,7 +16,7 @@ import { BsEye, BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { PiFlowerLotus } from "react-icons/pi";
 
 const blogImages = {
-  hero: "/assets/blog/blog.png",
+  hero: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165081/moksha-sewa/assets/blog/blog.png",
 };
 
 function Blog() {
@@ -34,7 +34,7 @@ function Blog() {
       date: "Mar 15, 2024",
       readTime: "6 min",
       category: "Rituals",
-      image: "/assets/route-optimized/blog-two.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165353/moksha-sewa/assets/route-optimized/blog-two.webp",
       views: 1250,
       comments: 24,
       featured: true,
@@ -48,7 +48,7 @@ function Blog() {
       date: "Mar 10, 2024",
       readTime: "8 min",
       category: "Pilgrimage",
-      image: "/assets/route-optimized/blog-one.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165352/moksha-sewa/assets/route-optimized/blog-one.webp",
       views: 890,
       comments: 18,
       featured: true,
@@ -62,7 +62,7 @@ function Blog() {
       date: "Mar 5, 2024",
       readTime: "10 min",
       category: "Guidance",
-      image: "/assets/route-optimized/blog-c.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165351/moksha-sewa/assets/route-optimized/blog-c.webp",
       views: 750,
       comments: 12,
       featured: false,
@@ -76,7 +76,7 @@ function Blog() {
       date: "Feb 28, 2024",
       readTime: "7 min",
       category: "Rituals",
-      image: "/assets/route-optimized/blog-two.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165353/moksha-sewa/assets/route-optimized/blog-two.webp",
       views: 1100,
       comments: 31,
       featured: false,
@@ -90,7 +90,7 @@ function Blog() {
       date: "Feb 22, 2024",
       readTime: "5 min",
       category: "Ancestors",
-      image: "/assets/route-optimized/blog-one.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165352/moksha-sewa/assets/route-optimized/blog-one.webp",
       views: 950,
       comments: 15,
       featured: false,
@@ -104,7 +104,7 @@ function Blog() {
       date: "Feb 18, 2024",
       readTime: "9 min",
       category: "Pilgrimage",
-      image: "/assets/route-optimized/blog-c.webp",
+      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165351/moksha-sewa/assets/route-optimized/blog-c.webp",
       views: 680,
       comments: 9,
       featured: false,
@@ -181,14 +181,14 @@ function Blog() {
                 </span>
               </div>
 
-              <h1
+              <h2
                 className="mt-2 leading-[1.1] sm:mt-3"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 <span className="block text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
                   The Moksha Blog
                 </span>
-              </h1>
+              </h2>
 
               <div className="mt-2 flex items-center gap-2">
                 <span className="h-[2px] w-10 bg-[#8B6A3E] sm:w-12" />

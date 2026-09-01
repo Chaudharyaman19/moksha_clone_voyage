@@ -153,7 +153,7 @@ const supportCards: SupportCard[] = [
     description:
       "Support for authorised cases after\napplicable procedures, permissions\nand formalities.",
 
-    image: "/assets/about-reference/story-ghat-temple.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png",
     iconBg: "#004938",
     tint: "#EFF5ED",
     imagePosition: "72% center",
@@ -167,7 +167,7 @@ const supportCards: SupportCard[] = [
     description:
       "Compassionate assistance for\npeople who have no family or\nsupport system available to stand\nbeside them.",
 
-    image: "/assets/about-reference/story-evening-ghat.png",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png",
     iconBg: "#064E7E",
     tint: "#EAF5FC",
     imagePosition: "80% center",
@@ -181,7 +181,7 @@ const supportCards: SupportCard[] = [
     description:
       "Case-based assistance for families\nwho need help with essential\nfinal-rites arrangements.",
 
-    image: "/assets/about-optimized/family-support.webp",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165001/moksha-sewa/assets/about-optimized/family-support.webp",
     iconBg: "#A35B02",
     tint: "#FFF3E4",
     imagePosition: "82% center",

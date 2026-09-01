@@ -1,0 +1,60 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+
+interface RedirectRule {
+  source: string;
+  destination: string;
+  permanent: boolean;
+  isActive: boolean;
+}
+
+export async function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  
+  // Skip middleware for static assets, API routes, Next.js internal paths
+  if (
+    url.pathname.startsWith('/_next') ||
+    url.pathname.startsWith('/api') ||
+    url.pathname.startsWith('/assets') ||
+    url.pathname.includes('.')
+  ) {
+    return NextResponse.next();
+  }
+
+  try {
+    // Note: In a high-traffic production environment, this fetch should ideally hit a Redis cache
+    // or use a much more efficient lookup strategy instead of fetching all redirects on every request.
+    const res = await fetch(`${API_URL}/redirects`, {
+      next: { revalidate: 60 }, // Cache for 60 seconds
+    });
+    
+    if (res.ok) {
+      const data = await res.json();
+      const redirects: RedirectRule[] = data.data || [];
+      
+      const matchedRedirect = redirects.find(r => r.isActive && r.source === url.pathname);
+      
+      if (matchedRedirect) {
+        url.pathname = matchedRedirect.destination;
+        return NextResponse.redirect(url, matchedRedirect.permanent ? 308 : 307);
+      }
+    }
+  } catch (error) {
+    // If backend is unreachable, just proceed normally
+    console.error("Middleware Redirect Fetch Error:", error);
+  }
+
+  // Handle WWW to Non-WWW standardisation
+  const host = request.headers.get('host') || '';
+  const CANONICAL_HOST = "mokshasewa.org";
+  
+  if (host && host !== CANONICAL_HOST && host.replace(/^www\./, "") === CANONICAL_HOST) {
+    url.host = CANONICAL_HOST;
+    url.protocol = "https:";
+    return NextResponse.redirect(url, 301);
+  }
+
+  return NextResponse.next();
+}

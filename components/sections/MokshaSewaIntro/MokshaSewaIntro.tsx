@@ -11,7 +11,7 @@ const MokshaSewaIntro: React.FC = () => {
     <section className="relative min-h-[360px] w-full overflow-hidden bg-[#f7efe3]">
       {/* Background Image */}
       <Image
-        src={imageOrFallback(section?.image, "/assets/about-optimized/a_mission.png")}
+        src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164982/moksha-sewa/assets/about-optimized/a_mission.png")}
         alt="Moksha Sewa at the ghats"
         fill
         priority
@@ -63,7 +63,7 @@ const MokshaSewaIntro: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h1
+          <h2
             className="
               max-w-[530px]
               font-serif
@@ -77,7 +77,7 @@ const MokshaSewaIntro: React.FC = () => {
             "
           >
             <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.", 150)}</span>
-          </h1>
+          </h2>
 
           {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}
           <div className="relative mt-7 flex">

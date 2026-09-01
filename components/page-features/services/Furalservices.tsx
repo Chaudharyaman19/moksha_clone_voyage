@@ -136,9 +136,9 @@ function HeroSection({ image, title, subtitle, description, buttonLabel, buttonH
             </span>
           </div>
 
-          <h1 className="pb-[8px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
+          <h2 className="pb-[8px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
             {title}
-          </h1>
+          </h2>
 
           <p className="font-serif text-[30px] leading-tight text-[#A66D2D]">
             {subtitle}

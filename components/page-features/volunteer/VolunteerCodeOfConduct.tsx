@@ -111,7 +111,7 @@ export function ConductBanner({
       }
     >
       <Image
-        src="/assets/code_of_conduct.png"
+        src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165086/moksha-sewa/assets/code_of_conduct.png"
         alt="Volunteer Code of Conduct"
         width={759}
         height={334}

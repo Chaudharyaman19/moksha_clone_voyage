@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Minus, Plus } from "lucide-react";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -18,7 +18,7 @@ const FAQ_DATA: FAQItem[] = [
     question: "Who can request Moksha Sewa support?",
     answer:
       "Moksha Sewa support can be requested by families, authorised representatives, institutions and individuals who need assistance with last rites and related services.",
-    icon: "/assets/faq/request.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165167/moksha-sewa/assets/faq/request.png",
   },
   {
     id: 2,
@@ -26,42 +26,59 @@ const FAQ_DATA: FAQItem[] = [
       "Does Moksha Sewa assist with legally authorised unclaimed bodies?",
     answer:
       "Yes. Subject to applicable legal permissions and local procedures, Moksha Sewa can assist with legally authorised unclaimed body cases.",
-    icon: "/assets/faq/legally.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165165/moksha-sewa/assets/faq/legally.png",
   },
   {
     id: 3,
     question: "What cremation and last-rites assistance is available?",
     answer:
       "Moksha Sewa provides assistance and coordination for cremation, transportation, essential last-rites arrangements and other support based on the circumstances.",
-    icon: "/assets/faq/cremation.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165161/moksha-sewa/assets/faq/cremation.png",
   },
   {
     id: 4,
     question: "Where is Moksha Sewa currently available?",
     answer:
       "Moksha Sewa services are currently available in selected locations. Please contact the team to confirm availability in your area.",
-    icon: "/assets/faq/where_is_moksha.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165173/moksha-sewa/assets/faq/where_is_moksha.png",
   },
   {
     id: 5,
     question: "How can I become a volunteer?",
     answer:
       "You can express your interest in volunteering by contacting the Moksha Sewa team and sharing your basic details and preferred area of support.",
-    icon: "/assets/faq/volunteer.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165172/moksha-sewa/assets/faq/volunteer.png",
   },
   {
     id: 6,
     question: "How can I support Moksha Sewa through a donation?",
     answer:
       "You can support Moksha Sewa through an authorised donation channel. Contact the organisation for current donation details and available donation options.",
-    icon: "/assets/faq/support.png",
+    icon: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165169/moksha-sewa/assets/faq/support.png",
   },
 ];
 
 export default function FAQSection() {
   const websiteSection = useWebsiteSection("faq");
   const [openId, setOpenId] = useState<number | null>(null);
-  const faqData = [
+  const [dbFaqs, setDbFaqs] = useState<any[]>([]);
+
+  useEffect(() => {
+    import("@/lib/faqsApi").then(({ faqsApi }) => {
+      faqsApi.getAll().then((data) => {
+        if (data && data.length > 0) {
+          setDbFaqs(data.sort((a, b) => a.order - b.order));
+        }
+      }).catch(console.error);
+    });
+  }, []);
+
+  const faqData = dbFaqs.length > 0 ? dbFaqs.map((faq, index) => ({
+    id: index + 1,
+    question: faq.question,
+    answer: faq.answer,
+    icon: FAQ_DATA[index % FAQ_DATA.length].icon, // Use fallback icons for dynamic FAQs
+  })) : [
     ...FAQ_DATA.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, {
       title: fallback.question,
@@ -89,10 +106,27 @@ export default function FAQSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#f8f1e3]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqData.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          }),
+        }}
+      />
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={imageOrFallback(websiteSection?.image, "/assets/faq/bg.png")}
+          src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165160/moksha-sewa/assets/faq/bg.png")}
           alt=""
           aria-hidden="true"
           fill
@@ -112,7 +146,7 @@ export default function FAQSection() {
           {/* Logos */}
           <div className="mb-3 flex items-center justify-center gap-4 lg:absolute lg:left-[-390px] lg:top-[-2px] lg:mb-0 lg:justify-start">
             <Image
-              src={imageOrFallback(websiteSection?.logoImage, "/assets/logo-moksha-seva.png")}
+              src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png")}
               alt="Moksha Sewa"
               width={64}
               height={64}
@@ -123,7 +157,7 @@ export default function FAQSection() {
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <Image
-              src="/assets/faq/left.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165164/moksha-sewa/assets/faq/left.png"
               alt=""
               aria-hidden="true"
               width={2819}
@@ -136,7 +170,7 @@ export default function FAQSection() {
             </span>
 
             <Image
-              src="/assets/faq/right.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165168/moksha-sewa/assets/faq/right.png"
               alt=""
               aria-hidden="true"
               width={1992}
@@ -153,7 +187,7 @@ export default function FAQSection() {
           {/* Decorative image */}
           <div className="mt-1 flex justify-center">
             <Image
-              src="/assets/faq/title_decoration.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165170/moksha-sewa/assets/faq/title_decoration.png"
               alt=""
               aria-hidden="true"
               width={2928}
@@ -248,7 +282,7 @@ export default function FAQSection() {
             className="group relative w-full max-w-[430px] overflow-hidden transition-all duration-300 hover:opacity-90 sm:max-w-[480px]"
           >
             <Image
-              src="/assets/faq/view_all_faq.png"
+              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165171/moksha-sewa/assets/faq/view_all_faq.png"
               alt="View All FAQs"
               width={2156}
               height={222}

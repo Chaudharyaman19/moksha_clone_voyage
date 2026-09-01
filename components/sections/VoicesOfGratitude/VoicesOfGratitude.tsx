@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
       "Essential ritual materials and priest guidance were coordinated for an economically weaker family after case verification.",
     name: "Verified Case Record",
     location: "Delhi • Ghaziabad • Noida",
-    image: "/assets/girl.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165182/moksha-sewa/assets/girl.webp",
     position: "50% 38%",
   },
   {
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
       "Transport and cremation-ground guidance were supported for a family that needed urgent last-rites coordination.",
     name: "Verified Case Record",
     location: "Delhi • Ghaziabad • Noida",
-    image: "/assets/man1.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165241/moksha-sewa/assets/man1.jpg",
     position: "72% 35%",
   },
   {
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
       "Wood, shroud cloth, flowers and basic ritual items were coordinated for a verified eligible case.",
     name: "Verified Case Record",
     location: "Delhi • Ghaziabad • Noida",
-    image: "/assets/im1.jpeg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165199/moksha-sewa/assets/im1.jpg",
     position: "50% 50%",
   },
   {
@@ -56,7 +56,7 @@ const testimonials: Testimonial[] = [
       "Food and basic relief support were coordinated where verified need and availability permitted.",
     name: "Verified Case Record",
     location: "Delhi • Ghaziabad • Noida",
-    image: "/assets/girl.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165182/moksha-sewa/assets/girl.webp",
     position: "50% 38%",
   },
   {
@@ -65,7 +65,7 @@ const testimonials: Testimonial[] = [
       "Guidance was provided for an unclaimed case only after applicable authority formalities were completed.",
     name: "Verified Case Record",
     location: "Delhi • Ghaziabad • Noida",
-    image: "/assets/man1.jpg",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165241/moksha-sewa/assets/man1.jpg",
     position: "72% 35%",
   },
 ];

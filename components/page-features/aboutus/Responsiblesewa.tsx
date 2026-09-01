@@ -243,7 +243,7 @@ export default function ResponsibleSewa() {
             "
             style={{
               backgroundImage:
-                "url('/assets/about/our-story/response.jpeg')",
+                "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164979/moksha-sewa/assets/about/our-story/response.jpg')",
 
               /*
                 Full available image area fill karegi.
@@ -544,7 +544,7 @@ export default function ResponsibleSewa() {
           "
           style={{
             backgroundImage:
-              `url("${imageOrFallback(section?.image, "/assets/about/our-story/response.jpeg")}")`,
+              `url("${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164979/moksha-sewa/assets/about/our-story/response.jpg")}")`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",

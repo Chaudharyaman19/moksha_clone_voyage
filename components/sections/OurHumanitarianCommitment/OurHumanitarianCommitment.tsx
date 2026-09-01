@@ -305,7 +305,7 @@ export default function HumanitarianCommitment() {
             <div className="relative min-h-[440px] lg:h-[575px]">
               <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
                 <Image
-                  src={websiteSection?.image || "/assets/image.png"}
+                  src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165202/moksha-sewa/assets/image.png"}
                   alt={textOrFallback(websiteSection?.title, "Moksha Sewa unclaimed body support", 120)}
                   fill
                   priority

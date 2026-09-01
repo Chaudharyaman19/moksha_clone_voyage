@@ -15,11 +15,11 @@ export default function InstitutionalResponsibility() {
   const eyebrow = textOrFallback(section?.eyebrow, "The Organisation Behind Moksha Sewa", 60);
   const title = textOrFallback(section?.title, "Institutional Responsibility\nBehind the Mission.", 150);
   const description = textOrFallback(section?.description, "Moksha Sewa is an initiative of Namo Gange Trust.\nThrough this institutional framework, the initiative\nseeks to build responsible humanitarian collaborations\ncentred on dignity, service and accountability.", 500);
-  const bgImage = imageOrFallback(section?.image, "/assets/csr/institutional-responsibility-bg.jpeg");
+  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165104/moksha-sewa/assets/csr/institutional-responsibility-bg.jpg");
   const buttonLabel = textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 50);
   const buttonHref = section?.buttonHref || "#";
   const supportTitle = textOrFallback(section?.supportTitle, "Our Institutional Pillars", 50);
-  const partnerLogo = imageOrFallback(section?.partnerLogoImage, "/hero-images/namo-gange-logo.webp");
+  const partnerLogo = imageOrFallback(section?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp");
 
   return (
     <section id="organisation" className="relative overflow-hidden bg-[#fbf6ed] px-5 py-3">

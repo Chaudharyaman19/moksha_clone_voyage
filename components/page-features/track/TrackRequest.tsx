@@ -208,7 +208,7 @@ function TrackRequest() {
             </div>
           </div>
 
-          <h1
+          <h2
             className="mt-1.5 text-[36px] font-normal leading-[1] text-[#2C1810] sm:text-[43px] lg:text-[48px]"
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
@@ -216,7 +216,7 @@ function TrackRequest() {
             {textOrFallback(heroSection?.title, "Track Your Request", 100).includes("Request") && (
               <span className="text-[#A07032]">Request</span>
             )}
-          </h1>
+          </h2>
 
           <div className="mt-1.5 flex items-center justify-center gap-2 text-[#A66E2E]">
             <span className="h-px w-20 bg-gradient-to-r from-transparent to-[#C79A58]" />

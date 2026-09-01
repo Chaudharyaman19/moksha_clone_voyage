@@ -12,7 +12,7 @@ export default function WhyYourSupportMatters() {
       <div className="relative min-h-[540px] w-full sm:min-h-[480px] lg:min-h-[480px]">
         {/* Background image — kept exactly as your current image */}
         <Image
-          src={websiteSection?.image || "/hero-images/support-mission-ghat.png"}
+          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164962/moksha-sewa/hero-images/support-mission-ghat.png"}
           alt="A volunteer sitting beside an elderly woman, watching the sunset over a river ghat"
           fill
           priority

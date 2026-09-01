@@ -55,7 +55,7 @@ export default function DonateVolunteerHighlight() {
               playsInline
               controls
               preload="auto"
-              poster="/assets/route-optimized/video-prayer-hall.webp"
+              poster="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165425/moksha-sewa/assets/route-optimized/video-prayer-hall.webp"
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]"
             />
 

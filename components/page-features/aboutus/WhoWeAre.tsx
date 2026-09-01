@@ -45,7 +45,7 @@ export default function WhoWeAre() {
           </h2>
           <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[18px] border border-[#e1d0b6]">
             <Image
-              src={imageOrFallback(section?.image, "/assets/about-reference/who-we-are-background-v2.png")}
+              src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png")}
               alt="Moksha Sewa community support"
               fill
               sizes="(max-width: 640px) calc(100vw - 40px), 576px"
@@ -91,7 +91,7 @@ export default function WhoWeAre() {
 
       <div className="relative mx-auto hidden aspect-[2.32/1] w-full max-w-[1774px] lg:block">
         <Image
-          src={imageOrFallback(section?.image, "/assets/about-reference/who-we-are-background-v2.png")}
+          src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png")}
           alt=""
           fill
           sizes="(min-width: 1774px) 1774px, 100vw"
@@ -153,7 +153,7 @@ export default function WhoWeAre() {
         </div>
 
         <div className="absolute left-[57.5%] top-[10.5%] flex w-[14%] flex-col items-center text-center">
-          <Image src={imageOrFallback(section?.logoImage, "/assets/logo-moksha-seva.png")} alt="Moksha Sewa" width={200} height={160} className="h-auto w-[31%] mix-blend-multiply" />
+          <Image src={imageOrFallback(section?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png")} alt="Moksha Sewa" width={200} height={160} className="h-auto w-[31%] mix-blend-multiply" />
           <p className="mt-[-1%] font-serif text-[clamp(9px,1.15vw,20px)] font-semibold text-[#183d3b]">{textOrFallback(section?.supportTitle, "MOKSHA SEWA", 40)}</p>
           <p className="text-[clamp(6px,.7vw,12px)] text-[#b47a20]">{textOrFallback(section?.supportDescription, "A Namo Gange Trust Initiative", 60)}</p>
           <span className="mt-[3%] h-px w-[33%] bg-[#c79536]" />
