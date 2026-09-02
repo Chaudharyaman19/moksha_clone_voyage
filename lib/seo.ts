@@ -114,7 +114,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Services – Compassionate Final Journey Support",
     description:
       "Explore Moksha Sewa services for dignified final journeys, including transport, rituals, family coordination and verified support.",
-    ogImage: "/assets/og/logo-moksha-seva-og.png",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Moksha Sewa final journey support services",
     keywords: ["Moksha Sewa services", "final journey support", "last rites assistance"],
     priority: 0.9,
@@ -126,7 +126,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Ambulance Services for Final Journey Support",
     description:
       "Arrange respectful ambulance support through Moksha Sewa for hospital transfer, final journey and urgent family assistance.",
-    ogImage: "/ambulance/hero-ambulance.webp",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Moksha Sewa ambulance service for final journey support",
     keywords: ["ambulance services", "funeral ambulance", "dead body ambulance"],
     priority: 0.86,
@@ -174,7 +174,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Funeral Samagri & Cremation Essentials",
     description:
       "Arrange cremation wood, shroud cloth, flowers, prayer items and essential funeral samagri through Moksha Sewa.",
-    ogImage: "/woodrituals/hero.webp",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Funeral samagri, cremation wood and ritual essentials",
     keywords: ["funeral samagri", "cremation wood", "ritual items"],
     priority: 0.84,
@@ -234,7 +234,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Photo Gallery – Seva Moments",
     description:
       "View Moksha Sewa photos showing community service, funeral support, volunteer care and dignified final-rites assistance.",
-    ogImage: "/gallary/g1.png",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Moksha Sewa photo gallery showing seva activities",
     keywords: ["Moksha Sewa gallery", "photo gallery", "seva photos"],
     priority: 0.65,
@@ -246,7 +246,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Video Gallery – Seva Activities",
     description:
       "Watch Moksha Sewa videos covering seva activities, community outreach, volunteer support and dignified assistance work.",
-    ogImage: "/gallary/gg5.png",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Moksha Sewa video gallery and seva activities",
     keywords: ["Moksha Sewa videos", "video gallery", "seva videos"],
     priority: 0.65,
@@ -330,7 +330,7 @@ export const seoRoutes: RouteSeo[] = [
     title: "Moksha Sewa Code of Conduct – Responsible Service",
     description:
       "Read the Moksha Sewa code of conduct covering dignity, privacy, ethical behaviour and responsible service for volunteers and partners.",
-    ogImage: "/assets/og/logo-moksha-seva-og.png",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
     ogImageAlt: "Moksha Sewa code of conduct",
     keywords: ["Moksha Sewa code of conduct", "volunteer conduct", "responsible sewa"],
     priority: 0.3,
@@ -402,7 +402,16 @@ export const seoRoutes: RouteSeo[] = [
 export const publicSeoRoutes = seoRoutes.filter((route) => route.index !== false);
 
 export function absoluteUrl(path = "/") {
+  if (typeof path !== "string") return SITE_URL;
+  if (/^https?:\/\//i.test(path)) return path;
   return new URL(path, SITE_URL).toString();
+}
+
+export function normalizeOgImageUrl(image?: string | null) {
+  if (!image) return DEFAULT_OG_CARD_IMAGE;
+  if (/^https?:\/\//i.test(image)) return image;
+  if (image.startsWith("data:")) return image;
+  return absoluteUrl(image);
 }
 
 export function getSeoRoute(path: string) {
@@ -413,7 +422,7 @@ export function createPageMetadata(path: string): Metadata {
   const route = getSeoRoute(path);
   const isIndexable = route.index !== false;
   const url = absoluteUrl(route.path);
-  const ogImageUrl = absoluteUrl(route.ogImage);
+  const ogImageUrl = normalizeOgImageUrl(route.ogImage);
   const suffix = route.titleSuffix ?? SITE_NAME;
   const skipSuffix = route.path === "/" || (suffix === SITE_NAME && route.title.includes(SITE_NAME));
   const socialTitle = skipSuffix ? route.title : `${route.title} | ${suffix}`;
@@ -507,7 +516,7 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   const ogImages = baseMetadata.openGraph?.images;
   const firstOgImage = Array.isArray(ogImages) ? ogImages[0] : ogImages;
   const baseOgImageUrl = typeof firstOgImage === 'object' && firstOgImage !== null && 'url' in firstOgImage ? firstOgImage.url : firstOgImage;
-  const ogImage = customSeo.ogImage || advancedSeo?.defaultOgImage || baseOgImageUrl || DEFAULT_OG_IMAGE;
+  const ogImage = normalizeOgImageUrl(customSeo.ogImage || advancedSeo?.defaultOgImage || baseOgImageUrl || DEFAULT_OG_IMAGE);
 
   const keywords = customSeo.metaKeywords ? customSeo.metaKeywords.split(",").map((k: string) => k.trim()) : baseMetadata.keywords;
 
