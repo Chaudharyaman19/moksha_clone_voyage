@@ -92,6 +92,32 @@ export default async function RootLayout({
         {advancedSeo?.globalHeadCode && (
           <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalHeadCode }} />
         )}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (window.self !== window.top) {
+                  var style = document.createElement('style');
+                  style.innerHTML = 'a, button, [role="button"], form { pointer-events: none !important; cursor: default !important; }';
+                  (document.head || document.documentElement).appendChild(style);
+
+                  window.addEventListener('click', function(e) {
+                    var el = e.target;
+                    while (el && el !== document.body) {
+                      if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.getAttribute('role') === 'button') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        return false;
+                      }
+                      el = el.parentElement;
+                    }
+                  }, true);
+                }
+              } catch (err) {}
+            `,
+          }}
+        />
       </head>
       <body suppressHydrationWarning>
         <StoreProvider>
