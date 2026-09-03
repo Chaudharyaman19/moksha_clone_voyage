@@ -2,6 +2,7 @@
 
 import type { ReactElement } from "react";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface IconProps {
   name: string;
@@ -137,7 +138,15 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  if (icons[name]) return icons[name];
+
+  const lucideName = name.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.5} />;
+  }
+
+  return null;
 };
 
 /* =========================================================
@@ -178,6 +187,7 @@ export default function PracticalSewaSupport() {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 60),
       text: textOrFallback(item?.description, fallback.text, 100),
+      icon: item?.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(supportCards.length) ?? []).map((item) => ({

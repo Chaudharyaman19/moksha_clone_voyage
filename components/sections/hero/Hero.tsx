@@ -11,7 +11,15 @@ import {
   FaUsers,
   FaPrayingHands,
   FaHandHoldingHeart,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaHeart,
+  FaStar,
+  FaCheckCircle,
+  FaInfoCircle,
 } from "react-icons/fa";
+import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -279,10 +287,30 @@ export default function Hero() {
   ];
   const stats: StatItem[] = statFallbacks.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, fallback);
+    
+    let resolvedIcon = fallback.icon;
+    if (item.icon) {
+      switch (item.icon) {
+        case "users": resolvedIcon = FaUsers; break;
+        case "building": resolvedIcon = FaLandmark; break;
+        case "smile": resolvedIcon = FaSmile; break;
+        case "shield": resolvedIcon = FaShieldAlt; break;
+        case "phone": resolvedIcon = FaPhoneAlt; break;
+        case "mail": resolvedIcon = FaEnvelope; break;
+        case "map-pin": resolvedIcon = FaMapMarkerAlt; break;
+        case "heart": resolvedIcon = FaHeart; break;
+        case "star": resolvedIcon = FaStar; break;
+        case "check-circle": resolvedIcon = FaCheckCircle; break;
+        case "info": resolvedIcon = FaInfoCircle; break;
+        case "activity": resolvedIcon = FiActivity; break;
+      }
+    }
+    
     return {
       ...fallback,
       value: textOrFallback(item.value, fallback.value, 40),
       label: textOrFallback(item.label, fallback.label, 60),
+      icon: resolvedIcon,
     };
   });
   const heroLogo = imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png");
