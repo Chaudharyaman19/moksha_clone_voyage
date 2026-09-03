@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface CustomIconProps {
   name: string;
@@ -246,7 +247,15 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? <span className={className}>•</span>;
+  if (icons[name]) return icons[name];
+
+  const lucideName = name.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.5} />;
+  }
+
+  return <span className={className}>•</span>;
 };
 
 interface CardItem {
@@ -384,6 +393,7 @@ export default function HowWeCanHelp() {
       desc: textOrFallback(item.description, fallback.desc, 180),
       features: item.features?.length ? item.features : fallback.features,
       image: item.image || fallback.image,
+      icon: item.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(cards.length + benefits.length) ?? []).map((item) => ({
@@ -400,6 +410,7 @@ export default function HowWeCanHelp() {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 70),
       text: textOrFallback(item?.description, fallback.text, 160),
+      icon: item?.icon || fallback.icon,
     };
     }),
   ];

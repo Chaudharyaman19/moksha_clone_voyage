@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface CustomIconProps {
   name: string;
@@ -155,7 +156,15 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? <span className={className}>•</span>;
+  if (icons[name]) return icons[name];
+
+  const lucideName = name.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.7} />;
+  }
+
+  return <span className={className}>•</span>;
 };
 
 interface HelpCard {
@@ -270,6 +279,7 @@ export default function WhoWeHelp() {
       title: textOrFallback(item.title, fallback.title, 95),
       description: textOrFallback(item.description, fallback.description, 220),
       image: item.image || fallback.image,
+      icon: item.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(helpCards.length) ?? []).map((item) => ({

@@ -9,6 +9,7 @@ export interface LandingSectionItem {
   buttonLabel?: string;
   buttonHref?: string;
   features?: string[];
+  icon?: string;
   secondaryImage?: string;
   tertiaryImage?: string;
   quaternaryImage?: string;
