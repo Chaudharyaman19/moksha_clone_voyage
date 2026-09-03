@@ -27,10 +27,13 @@ interface SupportCard {
    CUSTOM ICONS
 ========================================================= */
 
+import * as LucideIcons from "lucide-react";
+
 const CustomIcon = ({
   name,
   className = "h-6 w-6",
 }: IconProps) => {
+  if (!name) return null;
   const icons: Record<string, ReactElement> = {
     DocumentCheck: (
       <svg
@@ -137,7 +140,16 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  const iconKey = Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, ""));
+  if (iconKey) return icons[iconKey];
+
+  let lucideName = name.split("-").map(p => p.charAt(0).toUpperCase() + p.slice(1)).join("");
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  
+  const Icon = (LucideIcons as any)[lucideName];
+  if (Icon) return <Icon className={className} strokeWidth={2.5} />;
+  
+  return null;
 };
 
 /* =========================================================
@@ -204,6 +216,7 @@ export default function Howwesupport() {
       title: itemObj.title || fallback.title,
       description: itemObj.description || fallback.description,
       image: imageOrFallback(itemObj.image, fallback.image),
+      icon: itemObj.icon || fallback.icon,
     };
   });
 

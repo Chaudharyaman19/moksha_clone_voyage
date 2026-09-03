@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { ReactElement } from "react";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface IconProps {
   name: string;
@@ -173,7 +174,33 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  const iconKey = name ? Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, "")) : null;
+  if (iconKey) return icons[iconKey];
+
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+  if (lucideName === "GiveIcon") lucideName = "HeartHandshake";
+  if (lucideName === "ServeIcon") lucideName = "Users";
+  if (lucideName === "PartnerIcon") lucideName = "Handshake";
+  if (lucideName === "Van") lucideName = "Truck";
+  if (lucideName === "Fire") lucideName = "Flame";
+  if (lucideName === "Priest") lucideName = "User";
+
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.8} />;
+  }
+
+  return null;
 };
 
 /* =========================================================
@@ -231,6 +258,7 @@ export default function SupportInAction() {
       title: textOrFallback(item?.title, fallback.title, 80),
       text: textOrFallback(item?.description, fallback.text, 170),
       image: item?.image || fallback.image,
+      icon: item?.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(cards.length) ?? []).map((item) => ({
@@ -238,6 +266,7 @@ export default function SupportInAction() {
       title: item.title || "New Support Item",
       image: item.image || cards[cards.length - 1].image,
       text: item.description || "Additional support information.",
+      icon: item.icon || cards[cards.length - 1].icon,
     })),
   ];
 

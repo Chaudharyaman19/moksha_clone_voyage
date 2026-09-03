@@ -1,11 +1,13 @@
 "use client";
 
+import type { ReactElement } from "react";
+import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 import {
   FaArrowRight,
   FaHeadset,
   FaShieldAlt,
 } from "react-icons/fa";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface StepItem {
   number: string;
@@ -297,12 +299,38 @@ function DiyaIcon({
   );
 }
 
-const ICONS = {
+const ICONS: Record<string, React.FC<{ className?: string }>> = {
   clipboard: ClipboardIcon,
   document: DocumentIcon,
   hands: HandsIcon,
   diya: DiyaIcon,
 };
+
+function CustomIcon({ name, className }: { name: string; className?: string }) {
+  const Icon = ICONS[name];
+  if (Icon) {
+    return <Icon className={className} />;
+  }
+
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.8} />;
+  }
+
+  return <span className={className}>•</span>;
+}
 
 function LeafBranch({
   className = "h-28 w-40",
@@ -448,6 +476,7 @@ export default function HowSewaWorks() {
       number: textOrFallback(item.value, fallback.number, 8),
       title: textOrFallback(item.title, fallback.title, 60),
       description: textOrFallback(item.description, fallback.description, 140),
+      icon: item.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(steps.length) ?? []).map((item, index) => ({
@@ -455,6 +484,7 @@ export default function HowSewaWorks() {
       number: String(steps.length + index + 1).padStart(2, "0"),
       title: item.title || "New Sewa Step",
       description: item.description || "Additional process information.",
+      icon: item.icon || steps[steps.length - 1].icon,
     })),
   ];
 
@@ -722,8 +752,6 @@ export default function HowSewaWorks() {
             "
           >
             {managedSteps.map((step, index) => {
-              const Icon = ICONS[step.icon];
-
               return (
                 <article
                   key={step.number}
@@ -761,7 +789,8 @@ export default function HowSewaWorks() {
                           shadow-[0_6px_16px_rgba(163,111,42,0.10)]
                         "
                       >
-                        <Icon
+                        <CustomIcon
+                          name={step.icon}
                           className="
                             h-[58px]
                             w-[58px]

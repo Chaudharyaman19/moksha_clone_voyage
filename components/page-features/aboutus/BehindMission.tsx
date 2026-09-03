@@ -16,21 +16,63 @@ import {
 } from "react-icons/pi";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
+import * as LucideIcons from "lucide-react";
+
 const missionLinks = [
-  { eyebrow: "WHAT", label: "We Do", icon: PiHandHeart },
-  { eyebrow: "WHY", label: "We Exist", icon: PiFlowerLotus },
-  { eyebrow: "WHO", label: "We Serve", icon: PiUsersThree },
-  { eyebrow: "HOW", label: "We Serve", icon: PiHandsPraying },
-  { eyebrow: "NAMO GANGE TRUST", label: "Our Foundation", icon: PiFlowerLotus },
+  { eyebrow: "WHAT", label: "We Do", defaultIcon: "give-icon", fallback: PiHandHeart },
+  { eyebrow: "WHY", label: "We Exist", defaultIcon: "lotus", fallback: PiFlowerLotus },
+  { eyebrow: "WHO", label: "We Serve", defaultIcon: "users-round", fallback: PiUsersThree },
+  { eyebrow: "HOW", label: "We Serve", defaultIcon: "serve-icon", fallback: PiHandsPraying },
+  { eyebrow: "NAMO GANGE TRUST", label: "Our Foundation", defaultIcon: "lotus", fallback: PiFlowerLotus },
 ];
+
+const CustomIcon = ({ name, FallbackIcon, className }: { name?: string | null; FallbackIcon: any; className?: string }) => {
+  if (!name || name.toLowerCase() === "none" || name === "") return <FallbackIcon className={className} />;
+  
+  if (name === "lotus") return <PiFlowerLotus className={className} />;
+  if (name === "give-icon" || name === "heart-hand") return <PiHandHeart className={className} />;
+  if (name === "serve-icon") return <PiHandsPraying className={className} />;
+  if (name === "people") return <PiUsersThree className={className} />;
+
+  let lucideName = name.split("-").map(p => p.charAt(0).toUpperCase() + p.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "GiveIcon") lucideName = "HandHeart";
+  if (lucideName === "ServeIcon") lucideName = "HeartHandshake";
+  if (lucideName === "PartnerIcon") lucideName = "Users";
+  if (lucideName === "Van") lucideName = "Ambulance";
+  if (lucideName === "Fire") lucideName = "Flame";
+  if (lucideName === "Priest") lucideName = "UserCog";
+  if (lucideName === "Report") lucideName = "FileChartLine";
+  if (lucideName === "Policy") lucideName = "FileSignature";
+  if (lucideName === "HeartHand") lucideName = "HandHeart";
+  if (lucideName === "Accountability") lucideName = "ShieldCheck";
+  if (lucideName === "DocumentCheck") lucideName = "ClipboardCheck";
+  
+  const Icon = (LucideIcons as any)[lucideName];
+  if (Icon) return <Icon className={className} strokeWidth={2} />;
+  
+  return <FallbackIcon className={className} />;
+};
 
 export default function BehindMission() {
   const section = useWebsiteSection("about-behind-mission");
-  const linkItems = missionLinks.map((link, index) => ({
-    ...link,
-    eyebrow: itemOrFallback(section?.items, index, { title: link.eyebrow }).title || link.eyebrow,
-    label: itemOrFallback(section?.items, index, { label: link.label }).label || link.label,
-  }));
+  const linkItems = missionLinks.map((link, index) => {
+    const cmsItem = section?.items?.[index] as Record<string, any> | undefined;
+    return {
+      ...link,
+      eyebrow: cmsItem?.title || link.eyebrow,
+      label: cmsItem?.label || cmsItem?.description || link.label,
+      iconName: cmsItem?.icon || link.defaultIcon
+    };
+  });
   const videoRef = useRef<HTMLVideoElement>(null);
   const mountedRef = useRef(false);
   const hasAutoUnmutedRef = useRef(false);
@@ -235,16 +277,16 @@ export default function BehindMission() {
 
         {/* BOTTOM MISSION LINKS */}
         <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
-          {linkItems.map(({ eyebrow, label, icon: Icon }, index) => (
+          {linkItems.map(({ eyebrow, label, iconName, fallback }, index) => (
             <div
-              key={`${eyebrow}-${label}`}
+              key={`${eyebrow}-${label}-${index}`}
               className={`flex min-h-[58px] items-center justify-center gap-3 px-4 py-1 ${index
                 ? "border-t border-[#C29B50]/35 sm:border-l sm:border-t-0"
                 : ""
                 }`}
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center border border-[#D1A64B] text-[#D1A64B]">
-                <Icon className="h-6 w-6" />
+                <CustomIcon name={iconName} FallbackIcon={fallback} className="h-6 w-6" />
               </span>
 
               <span className="min-w-0">

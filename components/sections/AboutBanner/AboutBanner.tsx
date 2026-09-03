@@ -3,15 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowRight,
-  Heart,
-  HeartHandshake,
-  Scale,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface InfoItem {
@@ -24,22 +16,22 @@ const supportItems: InfoItem[] = [
   {
     title: "For Those Unclaimed",
     description: "Dignified rites for unclaimed.",
-    icon: <UsersRound size={28} strokeWidth={1.8} />,
+    icon: <LucideIcons.UsersRound size={28} strokeWidth={2} />,
   },
   {
     title: "For Those Alone",
     description: "Support for the alone.",
-    icon: <HeartHandshake size={28} strokeWidth={1.8} />,
+    icon: <LucideIcons.HeartHandshake size={28} strokeWidth={2} />,
   },
   {
     title: "For Families in Need",
     description: "Help for families in need.",
-    icon: <HeartHandshake size={28} strokeWidth={1.8} />,
+    icon: <LucideIcons.HeartHandshake size={28} strokeWidth={2} />,
   },
   {
     title: "With Dignity & Care",
     description: "Compassion in every farewell.",
-    icon: <ShieldCheck size={28} strokeWidth={1.8} />,
+    icon: <LucideIcons.ShieldCheck size={28} strokeWidth={2} />,
   },
 ];
 
@@ -47,24 +39,40 @@ const values: InfoItem[] = [
   {
     title: "Humanity First",
     description: "Every life is precious and deserves respect.",
-    icon: <HeartHandshake size={28} strokeWidth={1.7} />,
+    icon: <LucideIcons.HeartHandshake size={28} strokeWidth={2} />,
   },
   {
     title: "Verification & Legal",
     description: "We follow formalities and check eligibility first.",
-    icon: <Scale size={28} strokeWidth={1.7} />,
+    icon: <LucideIcons.Scale size={28} strokeWidth={2} />,
   },
   {
     title: "Transparent Sewa",
     description: "Accountable and compassionate at every step.",
-    icon: <HeartHandshake size={28} strokeWidth={1.7} />,
+    icon: <LucideIcons.HeartHandshake size={28} strokeWidth={2} />,
   },
   {
     title: "Community Powered",
     description: "Powered by volunteers, supporters and partners.",
-    icon: <UsersRound size={28} strokeWidth={1.7} />,
+    icon: <LucideIcons.UsersRound size={28} strokeWidth={2} />,
   },
 ];
+
+const CustomIcon = ({ name }: { name: string }) => {
+  if (!name) return null;
+  let lucideName = name.split("-").map(p => p.charAt(0).toUpperCase() + p.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HeartHandshake";
+  if (lucideName === "FamilyHands") lucideName = "UsersRound";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Info") lucideName = "Info";
+  
+  const Icon = (LucideIcons as any)[lucideName];
+  if (Icon) {
+    return <Icon size={28} strokeWidth={2} />;
+  }
+  return null;
+};
 
 const LeafDecoration = ({
   flip = false,
@@ -164,12 +172,22 @@ const AboutMokshaSewa: React.FC = () => {
   const supportCards = activeSupportItems.map((item, index) => {
     const itemObj = item as Record<string, any>;
     const fallback = supportItems[index % supportItems.length];
-    return { ...fallback, title: itemObj.title || fallback.title, description: itemObj.description || fallback.description };
+    return { 
+      ...fallback, 
+      title: itemObj.title || fallback.title, 
+      description: itemObj.description || fallback.description,
+      icon: itemObj.icon ? <CustomIcon name={itemObj.icon} /> : fallback.icon
+    };
   });
   const valueCards = activeValueItems.map((item, index) => {
     const itemObj = item as Record<string, any>;
     const fallback = values[index % values.length];
-    return { ...fallback, title: itemObj.title || fallback.title, description: itemObj.description || fallback.description };
+    return { 
+      ...fallback, 
+      title: itemObj.title || fallback.title, 
+      description: itemObj.description || fallback.description,
+      icon: itemObj.icon ? <CustomIcon name={itemObj.icon} /> : fallback.icon
+    };
   });
   const quoteText = textOrFallback(section?.quote, "We do not see a case. We see a human life that deserves respect.", 600);
 
@@ -338,7 +356,7 @@ const AboutMokshaSewa: React.FC = () => {
               >
                 <span>{textOrFallback(section?.buttonLabel, "Know Our Mission", 60)}</span>
 
-                <ArrowDown
+                <LucideIcons.ArrowDown
                   size={22}
                   aria-hidden="true"
                   className="
@@ -373,7 +391,7 @@ const AboutMokshaSewa: React.FC = () => {
               >
                 <span>{textOrFallback(section?.secondaryButtonLabel, "Need Sewa Support?", 60)}</span>
 
-                <ArrowRight
+                <LucideIcons.ArrowRight
                   size={21}
                   aria-hidden="true"
                   className="
@@ -610,7 +628,7 @@ const AboutMokshaSewa: React.FC = () => {
             >
               <span className="h-px w-16 bg-[#df6a27] sm:w-20" />
 
-              <Heart
+              <LucideIcons.Heart
                 size={24}
                 strokeWidth={1.5}
                 aria-hidden="true"

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 /* =========================================================
    TYPES
@@ -161,7 +162,30 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  const iconKey = name ? Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, "")) : null;
+  if (iconKey) return icons[iconKey];
+
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+  if (lucideName === "GiveIcon") lucideName = "HeartHandshake";
+  if (lucideName === "ServeIcon") lucideName = "Users";
+  if (lucideName === "PartnerIcon") lucideName = "Handshake";
+
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.8} />;
+  }
+
+  return null;
 };
 
 /* =========================================================
@@ -225,6 +249,7 @@ export default function JoinTheMission() {
       description: textOrFallback(item.description, fallback.description, 140),
       buttonLabel: textOrFallback(item.label, fallback.buttonLabel, 36),
       buttonHref: item.href || fallback.buttonHref,
+      icon: item.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(cards.length) ?? []).map((item) => ({
@@ -234,6 +259,7 @@ export default function JoinTheMission() {
       description: item.description || "Additional mission information.",
       image: item.image || cards[cards.length - 1].image,
       href: item.href || "/",
+      icon: item.icon || cards[cards.length - 1].icon,
     })),
   ];
 

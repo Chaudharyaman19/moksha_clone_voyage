@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface IconProps {
   name: string;
@@ -164,7 +165,26 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  const iconKey = name ? Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, "")) : null;
+  if (iconKey) return icons[iconKey];
+
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.8} />;
+  }
+
+  return null;
 };
 
 interface StoryCard {
@@ -298,6 +318,7 @@ export default function SewaStories() {
         description: textOrFallback(item.description, fallback.description, 220),
         image: item.image || fallback.image,
         images: itemImages.length > 0 ? itemImages : fallback.images,
+        icon: item.icon || fallback.icon,
       };
     }),
     ...(websiteSection?.items?.slice(stories.length) ?? []).map((item) => ({
@@ -306,6 +327,7 @@ export default function SewaStories() {
       image: item.image || stories[stories.length - 1].image,
       images: [item.image, (item as any).secondaryImage, (item as any).tertiaryImage, (item as any).quaternaryImage].filter(Boolean) as string[],
       description: item.description || "Additional Sewa story.",
+      icon: item.icon || stories[stories.length - 1].icon,
     }))
   ];
 

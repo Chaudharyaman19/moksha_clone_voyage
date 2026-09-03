@@ -41,6 +41,14 @@ const SEWA_CARDS = [
 
 export default function GlimpseOfJourney() {
   const websiteSection = useWebsiteSection("journey-glimpse");
+
+  const getValidImage = (url: any, fallback: string) => {
+    if (typeof url === "string" && (url.startsWith("http") || url.startsWith("/"))) {
+      return url;
+    }
+    return fallback;
+  };
+
   const managedCards = [
     ...SEWA_CARDS.map((fallback, index) => {
     const item = itemOrFallback(websiteSection?.items, index, fallback);
@@ -48,14 +56,16 @@ export default function GlimpseOfJourney() {
       ...fallback,
       title: textOrFallback(item.title, fallback.title, 70),
       description: textOrFallback(item.description, fallback.description, 160),
-      image: item.image || fallback.image,
+      image: getValidImage(item.image, fallback.image),
+      icon: getValidImage(item.icon, fallback.icon),
     };
     }),
     ...(websiteSection?.items?.slice(SEWA_CARDS.length) ?? []).map((item) => ({
       ...SEWA_CARDS[SEWA_CARDS.length - 1],
       title: item.title || "New Journey Moment",
       description: item.description || "Additional journey moment.",
-      image: item.image || SEWA_CARDS[SEWA_CARDS.length - 1].image,
+      image: getValidImage(item.image, SEWA_CARDS[SEWA_CARDS.length - 1].image),
+      icon: getValidImage(item.icon, SEWA_CARDS[SEWA_CARDS.length - 1].icon),
     })),
   ];
 

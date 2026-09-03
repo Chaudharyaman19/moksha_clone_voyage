@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { ReactElement } from "react";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import * as LucideIcons from "lucide-react";
 
 interface IconProps {
   name: string;
@@ -231,7 +232,41 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  const iconKey = name ? Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, "")) : null;
+  if (iconKey) return icons[iconKey];
+
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+  if (lucideName === "GiveIcon") lucideName = "HeartHandshake";
+  if (lucideName === "ServeIcon") lucideName = "Users";
+  if (lucideName === "PartnerIcon") lucideName = "Handshake";
+  if (lucideName === "Van") lucideName = "Truck";
+  if (lucideName === "Fire") lucideName = "Flame";
+  if (lucideName === "Priest") lucideName = "User";
+  if (lucideName === "People") lucideName = "Users";
+  if (lucideName === "Shield") lucideName = "Shield";
+  if (lucideName === "Report") lucideName = "FileBarChart";
+  if (lucideName === "Policy") lucideName = "FileText";
+  if (lucideName === "HeartHand") lucideName = "HandHeart";
+  if (lucideName === "Scale") lucideName = "Scale";
+  if (lucideName === "Eye") lucideName = "Eye";
+  if (lucideName === "Accountability") lucideName = "CheckCircle";
+
+  const LucideIcon = (LucideIcons as any)[lucideName];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={2.8} />;
+  }
+
+  return null;
 };
 
 const trustCards = [
@@ -296,12 +331,14 @@ export default function TrustTransparency() {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 70),
       description: textOrFallback(item?.description, fallback.description, 160),
+      icon: item?.icon || fallback.icon,
     };
     }),
     ...(websiteSection?.items?.slice(trustCards.length + values.length) ?? []).map((item) => ({
       ...trustCards[trustCards.length - 1],
       title: item.title || "New Trust Item",
       description: item.description || "Additional trust information.",
+      icon: item.icon || trustCards[trustCards.length - 1].icon,
     })),
   ];
   const managedValues = values.map((fallback, index) => {
@@ -310,6 +347,7 @@ export default function TrustTransparency() {
       ...fallback,
       title: textOrFallback(item?.title, fallback.title, 50),
       description: textOrFallback(item?.description, fallback.description, 90),
+      icon: item?.icon || fallback.icon,
     };
   });
 

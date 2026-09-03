@@ -156,12 +156,24 @@ const CustomIcon = ({
     ),
   };
 
-  if (icons[name]) return icons[name];
+  const iconKey = name ? Object.keys(icons).find(k => k.toLowerCase() === name.toLowerCase().replace(/-/g, "")) : null;
+  if (iconKey) return icons[iconKey];
 
-  const lucideName = name.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
+  
+  if (lucideName === "HeartHands") lucideName = "HandHeart";
+  if (lucideName === "Diya") lucideName = "Flame";
+  if (lucideName === "Hands") lucideName = "HelpingHand";
+  if (lucideName === "Document") lucideName = "FileText";
+  if (lucideName === "Clipboard") lucideName = "ClipboardList";
+  if (lucideName === "FamilyHands") lucideName = "Users";
+  if (lucideName === "ElderlyCare") lucideName = "UserPlus";
+  if (lucideName === "UnclaimedCase") lucideName = "UserX";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+
   const LucideIcon = (LucideIcons as any)[lucideName];
   if (LucideIcon) {
-    return <LucideIcon className={className} strokeWidth={2.7} />;
+    return <LucideIcon className={className} strokeWidth={2.8} />;
   }
 
   return <span className={className}>•</span>;

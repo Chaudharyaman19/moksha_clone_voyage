@@ -6,11 +6,47 @@ import { PiFlowerLotus, PiHandsPraying } from "react-icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const values = [
-  { title: "Compassion", caption: "At Every Step", icon: FaRegHeart },
-  { title: "Integrity", caption: "In Every Action", icon: FaShieldAlt },
-  { title: "Respect", caption: "For Every Life", icon: FaUsers },
-  { title: "Dignity", caption: "In Every Journey", icon: PiFlowerLotus },
+  { title: "Compassion", caption: "At Every Step", icon: "Heart" },
+  { title: "Integrity", caption: "In Every Action", icon: "Shield" },
+  { title: "Respect", caption: "For Every Life", icon: "UsersRound" },
+  { title: "Dignity", caption: "In Every Journey", icon: "Lotus" },
 ];
+
+import * as LucideIcons from "lucide-react";
+
+const CustomIcon = ({ name, className }: { name: string; className?: string }) => {
+  if (!name) return null;
+  
+  // Custom Lotus SVG
+  if (name.toLowerCase() === "lotus") {
+    return (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 43c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
+        <path d="M22 40c-8-2-13-7-14-15 7 0 13 3 17 8" />
+        <path d="M42 40c8-2 13-7 14-15-7 0-13 3-17 8" />
+        <path d="M16 46c5 2 10 3 16 3s11-1 16-3" />
+        <path d="M24 49h16" />
+      </svg>
+    );
+  }
+
+  let lucideName = name.split("-").map(p => p.charAt(0).toUpperCase() + p.slice(1)).join("");
+  if (lucideName === "HeartHands") lucideName = "HeartHandshake";
+  if (lucideName === "ShieldCheck") lucideName = "ShieldCheck";
+  if (lucideName === "Users") lucideName = "Users";
+  
+  const Icon = (LucideIcons as any)[lucideName];
+  if (Icon) return <Icon className={className} strokeWidth={2} />;
+  return null;
+};
 
 function LeafDecoration({ className }: { className: string }) {
   return (
@@ -27,7 +63,12 @@ export default function WhoWeAre() {
   const valueItems = activeValues.map((item, index) => {
     const itemObj = item as Record<string, any>;
     const fallback = values[index % values.length];
-    return { ...fallback, title: itemObj.title || fallback.title, caption: itemObj.description || fallback.caption };
+    return { 
+      ...fallback, 
+      title: itemObj.title || fallback.title, 
+      caption: itemObj.caption || itemObj.description || fallback.caption,
+      iconName: itemObj.icon || fallback.icon
+    };
   });
 
   return (
@@ -71,9 +112,9 @@ export default function WhoWeAre() {
             </article>
           </div>
           <div className="mt-5 grid grid-cols-2 gap-3 text-left text-[#34493f]">
-            {valueItems.map(({ title, caption, icon: Icon }) => (
+            {valueItems.map(({ title, caption, iconName }) => (
               <div key={title} className="flex items-center gap-3 rounded-[10px] border border-[#e0cfb2] bg-[#fffaf2] p-3">
-                <Icon className="h-6 w-6 shrink-0 text-[#bd862a]" />
+                <CustomIcon name={iconName} className="h-6 w-6 shrink-0 text-[#bd862a]" />
                 <span className="text-[14px] leading-tight">
                   <span className="block font-semibold">{title}</span>{caption}
                 </span>
@@ -142,9 +183,9 @@ export default function WhoWeAre() {
         </div>
 
         <div className="absolute left-[6.4%] top-[89%] flex w-[35.4%] items-center text-[#34493f]">
-          {valueItems.map(({ title, caption, icon: Icon }, index) => (
+          {valueItems.map(({ title, caption, iconName }, index) => (
             <div key={title} className={`flex flex-1 items-center gap-[8%] px-[2.5%] ${index ? "border-l border-[#d2bd97]" : ""}`}>
-              <Icon className="h-auto w-[25%] shrink-0 text-[#bd862a]" />
+              <CustomIcon name={iconName} className="h-[25px] w-[25px] shrink-0 text-[#bd862a]" />
               <span className="whitespace-nowrap text-[clamp(7px,.82vw,15px)] leading-[1.25]">
                 <span className="block">{title}</span>{caption}
               </span>
