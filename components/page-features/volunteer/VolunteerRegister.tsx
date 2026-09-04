@@ -46,6 +46,7 @@ import {
   VolunteerPreferredRole,
 } from "@/lib/volunteerApi";
 import { ApiRequestError } from "@/lib/api";
+import { trackEvent } from "@/lib/analytics";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { X } from "lucide-react";
 import {
@@ -541,6 +542,7 @@ export default function VolunteerRegister() {
         }),
       );
 
+      trackEvent("volunteer_form_submit", { form_name: "volunteer_registration", status: "success" });
       setShowSuccessPopup(true);
     } catch (caughtError) {
       setError(

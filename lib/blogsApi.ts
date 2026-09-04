@@ -35,7 +35,7 @@ export interface BlogPost {
 export const blogsApi = {
   getAllPublic: async (): Promise<BlogPost[]> => {
     try {
-      const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 60 } } as RequestInit & { next?: any });
+      const res = await fetch(`${API_URL}/blog`, { next: { revalidate: 60 } });
       if (!res.ok) return [];
       const body = await res.json();
       return body.data || [];
@@ -45,7 +45,7 @@ export const blogsApi = {
   },
   getBySlug: async (slug: string): Promise<BlogPost | null> => {
     try {
-      const res = await fetch(`${API_URL}/blogs/${slug}`, { next: { revalidate: 60 } } as RequestInit & { next?: any });
+      const res = await fetch(`${API_URL}/blog/${encodeURIComponent(slug)}`, { next: { revalidate: 60 } });
       if (!res.ok) return null;
       const body = await res.json();
       return body.data || null;

@@ -22,6 +22,7 @@ import {
 import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "react-icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import type { LandingSectionItem } from "@/lib/landingContent";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -286,7 +287,10 @@ export default function Hero() {
     { value: "Subject", label: "To Eligibility", icon: FaShieldAlt },
   ];
   const stats: StatItem[] = statFallbacks.map((fallback, index) => {
-    const item = itemOrFallback(websiteSection?.items, index, fallback);
+    const item: LandingSectionItem = itemOrFallback(websiteSection?.items, index, {
+      value: fallback.value,
+      label: fallback.label,
+    });
     
     let resolvedIcon = fallback.icon;
     if (item.icon) {

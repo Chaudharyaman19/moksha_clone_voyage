@@ -6,12 +6,12 @@ const scriptSrcEval = isProd ? "" : " 'unsafe-eval'";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com`,
+  `script-src 'self' 'unsafe-inline'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "media-src 'self' https://res.cloudinary.com",
   "font-src 'self' data:",
-  `connect-src 'self' ${apiOrigin} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us`,
+  `connect-src 'self' ${apiOrigin} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
   "frame-src https://*.razorpay.com https://checkout.razorpay.com https://maps.google.com https://www.google.com",
   "object-src 'none'",
   "base-uri 'self'",

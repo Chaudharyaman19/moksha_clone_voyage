@@ -470,6 +470,7 @@ export default function HowSewaWorks() {
       title: fallback.title,
       description: fallback.description,
       value: fallback.number,
+      icon: fallback.icon,
     });
     return {
       ...fallback,

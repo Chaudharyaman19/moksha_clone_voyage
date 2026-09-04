@@ -28,7 +28,7 @@ export async function proxy(request: NextRequest) {
     // or use a much more efficient lookup strategy instead of fetching all redirects on every request.
     const res = await fetch(`${API_URL}/redirects`, {
       next: { revalidate: 60 }, // Cache for 60 seconds
-    } as RequestInit & { next?: any });
+    });
 
     if (res.ok) {
       const data = await res.json();
@@ -37,8 +37,10 @@ export async function proxy(request: NextRequest) {
       const matchedRedirect = redirects.find(r => r.isActive && r.source === url.pathname);
 
       if (matchedRedirect) {
-        url.pathname = matchedRedirect.destination;
-        return NextResponse.redirect(url, matchedRedirect.permanent ? 308 : 307);
+        const destination = new URL(matchedRedirect.destination, url.origin);
+        if (destination.origin === url.origin && destination.pathname !== url.pathname) {
+          return NextResponse.redirect(destination, matchedRedirect.permanent ? 308 : 307);
+        }
       }
     }
   } catch (error) {

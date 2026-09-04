@@ -251,7 +251,7 @@ const CustomIcon = ({
   if (iconKey) return icons[iconKey];
 
   let lucideName = name?.split("-").map(part => part.charAt(0).toUpperCase() + part.slice(1)).join("");
-  
+
   if (lucideName === "HeartHands") lucideName = "HandHeart";
   if (lucideName === "Diya") lucideName = "Flame";
   if (lucideName === "Hands") lucideName = "HelpingHand";
@@ -393,20 +393,21 @@ export default function HowWeCanHelp() {
   const websiteSection = useWebsiteSection("practical-support");
   const managedCards = [
     ...cards.map((fallback, index) => {
-    const item = itemOrFallback(websiteSection?.items, index, {
-      title: fallback.title,
-      description: fallback.desc,
-      image: fallback.image,
-      features: fallback.features,
-    });
-    return {
-      ...fallback,
-      title: textOrFallback(item.title, fallback.title, 80),
-      desc: textOrFallback(item.description, fallback.desc, 180),
-      features: item.features?.length ? item.features : fallback.features,
-      image: item.image || fallback.image,
-      icon: item.icon || fallback.icon,
-    };
+      const item = itemOrFallback(websiteSection?.items, index, {
+        title: fallback.title,
+        description: fallback.desc,
+        image: fallback.image,
+        features: fallback.features,
+        icon: fallback.icon,
+      });
+      return {
+        ...fallback,
+        title: textOrFallback(item.title, fallback.title, 80),
+        desc: textOrFallback(item.description, fallback.desc, 180),
+        features: item.features?.length ? item.features : fallback.features,
+        image: item.image || fallback.image,
+        icon: item.icon || fallback.icon,
+      };
     }),
     ...(websiteSection?.items?.slice(cards.length + benefits.length) ?? []).map((item) => ({
       ...cards[cards.length - 1],
@@ -417,13 +418,13 @@ export default function HowWeCanHelp() {
   ];
   const managedBenefits = [
     ...benefits.map((fallback, index) => {
-    const item = websiteSection?.items?.[index + cards.length];
-    return {
-      ...fallback,
-      title: textOrFallback(item?.title, fallback.title, 70),
-      text: textOrFallback(item?.description, fallback.text, 160),
-      icon: item?.icon || fallback.icon,
-    };
+      const item = websiteSection?.items?.[index + cards.length];
+      return {
+        ...fallback,
+        title: textOrFallback(item?.title, fallback.title, 70),
+        text: textOrFallback(item?.description, fallback.text, 160),
+        icon: item?.icon || fallback.icon,
+      };
     }),
   ];
 
@@ -494,11 +495,6 @@ export default function HowWeCanHelp() {
           />
         ))}
       </svg>
-
-      {/* =====================================================
-          RIGHT BACKGROUND IMAGE
-          YOUR IMAGE: /public/assets/km.jpeg
-      ====================================================== */}
 
       <div
         className="

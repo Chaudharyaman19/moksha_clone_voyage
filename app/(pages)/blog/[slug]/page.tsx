@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { blogsApi } from "@/lib/blogsApi";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const blog = await blogsApi.getBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const blog = await blogsApi.getBySlug(slug);
   if (!blog) return { title: "Blog Not Found - Moksha Sewa" };
 
   return {
@@ -28,8 +28,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const blog = await blogsApi.getBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const blog = await blogsApi.getBySlug(slug);
 
   if (!blog) {
     notFound();

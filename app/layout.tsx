@@ -80,8 +80,10 @@ export default async function RootLayout({
   const settings = await getWebsiteSettings();
   const advancedSeo = settings?.advancedSeo;
   // The CMS field wins, but an env var lets Analytics run before advancedSeo is populated.
-  const ga4MeasurementId = advancedSeo?.ga4MeasurementId || process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
-  const gtmContainerId = advancedSeo?.gtmContainerId || process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
+  const configuredGa4Id = advancedSeo?.ga4MeasurementId || process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+  const configuredGtmId = advancedSeo?.gtmContainerId || process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
+  const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id ?? "") ? configuredGa4Id : undefined;
+  const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId ?? "") ? configuredGtmId : undefined;
 
   return (
     <html lang="en">
@@ -145,7 +147,7 @@ export default async function RootLayout({
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', '${ga4MeasurementId}');
+                gtag('config', '${ga4MeasurementId}', { send_page_view: true });
               `}
             </Script>
           </>

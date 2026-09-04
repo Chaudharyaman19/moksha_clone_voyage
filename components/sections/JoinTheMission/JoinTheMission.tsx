@@ -239,6 +239,7 @@ export default function JoinTheMission() {
       description: fallback.description,
       image: fallback.image,
       href: fallback.buttonHref,
+      icon: fallback.icon,
     });
 
     return {
