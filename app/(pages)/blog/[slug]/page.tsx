@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   return (
     <div className="bg-[#f8f1e7] min-h-screen pt-32 pb-20">
       <h1 className="sr-only">{blog.seo?.h1Tag || blog.title}</h1>
-      <JsonLd data={breadcrumbJsonLd(`/blog/${blog.slug}`)} />
+      <JsonLd data={breadcrumbJsonLd(`/blog/${blog.slug}`, blog.title)} />
       <JsonLd data={blog.seo?.schemaMarkup ? JSON.parse(blog.seo.schemaMarkup) : articleJsonLd} />
 
       <article className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-[#e8dcc8]">

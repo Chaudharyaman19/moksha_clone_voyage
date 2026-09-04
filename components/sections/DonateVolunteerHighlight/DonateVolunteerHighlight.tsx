@@ -7,6 +7,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
+import { trackEvent } from "@/lib/analytics";
 
 export default function DonateVolunteerHighlight() {
   return (
@@ -139,6 +140,7 @@ export default function DonateVolunteerHighlight() {
                   href="/donation"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("donate_click", { button_name: "Donate card", location: "home_highlight" })}
                   className="group relative overflow-hidden border border-[#9E6129] bg-[linear-gradient(145deg,#4A2A19_0%,#351E14_52%,#28150D_100%)] p-3.5 text-white shadow-[0_14px_30px_rgba(70,39,20,0.20)] transition duration-300 hover:-translate-y-1 hover:border-[#C88643] hover:shadow-[0_20px_40px_rgba(70,39,20,0.26)]"
                 >
 

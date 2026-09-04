@@ -10,6 +10,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { trackEvent, type AnalyticsEvent } from "@/lib/analytics";
 import { PiFlowerLotus } from "react-icons/pi";
 
 const SocialSidebar = () => {
@@ -65,12 +66,22 @@ const SocialSidebar = () => {
   };
 
   const trackClick = (label: string, category: string = "Contact") => {
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "click", {
-        event_category: category,
-        event_label: label,
-      });
-    }
+    const normalized = label.toLowerCase();
+    const event: AnalyticsEvent =
+      category === "Social"
+        ? "social_click"
+        : normalized.includes("whatsapp")
+          ? "whatsapp_click"
+          : normalized.includes("call")
+            ? "phone_click"
+            : normalized.includes("email")
+              ? "email_click"
+              : "enquiry_click";
+
+    trackEvent(event, {
+      button_name: label,
+      location: normalized.includes("mobile") ? "sideicon_mobile" : "sideicon",
+    });
   };
 
   return (

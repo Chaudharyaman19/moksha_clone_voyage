@@ -29,6 +29,7 @@ import { ApiRequestError } from "@/lib/api";
 import { lookupPincode } from "@/lib/pincode";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { trackEvent } from "@/lib/analytics";
 
 type RequestType = "NORMAL" | "EMERGENCY";
 
@@ -392,6 +393,7 @@ export default function RequestHelp() {
         },
       });
 
+      trackEvent("request_help_submit", { form_name: "request_help", status: "success" });
       setResult({
         requestNo: request.requestNo,
       });

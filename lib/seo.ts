@@ -415,11 +415,21 @@ export function normalizeOgImageUrl(image?: string | null) {
 }
 
 export function getSeoRoute(path: string) {
-  return seoRoutes.find((route) => route.path === path) ?? seoRoutes[0];
+  return seoRoutes.find((route) => route.path === path) ?? null;
+}
+function fallbackSeoRoute(path: string): RouteSeo {
+  const home = seoRoutes[0];
+  return {
+    ...home,
+    path,
+    label: home.label,
+    priority: 0.5,
+    changeFrequency: "monthly",
+  };
 }
 
 export function createPageMetadata(path: string): Metadata {
-  const route = getSeoRoute(path);
+  const route = getSeoRoute(path) ?? fallbackSeoRoute(path);
   const isIndexable = route.index !== false;
   const url = absoluteUrl(route.path);
   const ogImageUrl = normalizeOgImageUrl(route.ogImage);
@@ -473,7 +483,6 @@ export function createPageMetadata(path: string): Metadata {
 export async function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Promise<Metadata> {
   const baseMetadata = createPageMetadata(path);
   const settings = await getWebsiteSettings();
-  
   // pageFieldMap logic repeated or we can just access it
   const pageFieldMap: Record<WebsitePageKey, any> = {
     landing: "landingPage",
@@ -512,7 +521,6 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   const url = customSeo.canonicalUrl || (baseMetadata.alternates?.canonical as string) || absoluteUrl(path);
   const ogTitle = customSeo.ogTitle || title;
   const ogDescription = customSeo.ogDescription || description;
-  
   const ogImages = baseMetadata.openGraph?.images;
   const firstOgImage = Array.isArray(ogImages) ? ogImages[0] : ogImages;
   const baseOgImageUrl = typeof firstOgImage === 'object' && firstOgImage !== null && 'url' in firstOgImage ? firstOgImage.url : firstOgImage;
@@ -572,7 +580,7 @@ export function organizationJsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+91-9810247319",
+        telephone: "+91-9220147229",
         contactType: "customer support",
         areaServed: "IN",
         availableLanguage: ["English", "Hindi"],
@@ -596,8 +604,16 @@ export function websiteJsonLd() {
   };
 }
 
-export function breadcrumbJsonLd(path: string) {
-  const route = getSeoRoute(path);
+function humanizeSegment(segment: string) {
+  return decodeURIComponent(segment)
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+export function breadcrumbJsonLd(path: string, finalName?: string) {
+  const cleanPath = path.split("?")[0].split("#")[0];
+  const segments = cleanPath.split("/").filter(Boolean);
+
   const items = [
     {
       "@type": "ListItem",
@@ -607,14 +623,19 @@ export function breadcrumbJsonLd(path: string) {
     },
   ];
 
-  if (route.path !== "/") {
+  let cumulative = "";
+  segments.forEach((segment, index) => {
+    cumulative += `/${segment}`;
+    const isLast = index === segments.length - 1;
+    const route = getSeoRoute(cumulative);
+    const name = isLast && finalName ? finalName : route?.label ?? humanizeSegment(segment);
     items.push({
       "@type": "ListItem",
-      position: 2,
-      name: route.label,
-      item: absoluteUrl(route.path),
+      position: items.length + 1,
+      name,
+      item: absoluteUrl(cumulative),
     });
-  }
+  });
 
   return {
     "@context": "https://schema.org",

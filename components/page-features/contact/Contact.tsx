@@ -19,6 +19,7 @@ import {
   FaDirections,
 } from "react-icons/fa";
 import { MdVerified, MdEmail } from "react-icons/md";
+import { trackEvent } from "@/lib/analytics";
 import { PiFlowerLotus } from "react-icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
@@ -173,6 +174,7 @@ function Contact() {
           ? `${formData.subject}\n\n${formData.message}`
           : formData.message,
       });
+      trackEvent("contact_form_submit", { form_name: "contact", status: "success" });
       setSubmitStatus({
         type: "success",
         message: "Message sent. Our team will get back to you shortly.",

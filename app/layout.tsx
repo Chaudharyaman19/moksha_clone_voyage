@@ -29,9 +29,6 @@ export const metadata: Metadata = {
     "unclaimed case support",
     "Delhi • Ghaziabad • Noida sewa",
   ],
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -82,6 +79,9 @@ export default async function RootLayout({
 }) {
   const settings = await getWebsiteSettings();
   const advancedSeo = settings?.advancedSeo;
+  // The CMS field wins, but an env var lets Analytics run before advancedSeo is populated.
+  const ga4MeasurementId = advancedSeo?.ga4MeasurementId || process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+  const gtmContainerId = advancedSeo?.gtmContainerId || process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
 
   return (
     <html lang="en">
@@ -133,10 +133,10 @@ export default async function RootLayout({
         )}
 
         {/* Analytics */}
-        {advancedSeo?.ga4MeasurementId && (
+        {ga4MeasurementId && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${advancedSeo.ga4MeasurementId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
@@ -145,19 +145,19 @@ export default async function RootLayout({
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', '${advancedSeo.ga4MeasurementId}');
+                gtag('config', '${ga4MeasurementId}');
               `}
             </Script>
           </>
         )}
-        {advancedSeo?.gtmContainerId && (
+        {gtmContainerId && (
           <Script id="google-tag-manager" strategy="afterInteractive">
             {`
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${advancedSeo.gtmContainerId}');
+              })(window,document,'script','dataLayer','${gtmContainerId}');
             `}
           </Script>
         )}

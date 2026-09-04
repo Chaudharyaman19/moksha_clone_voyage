@@ -28,6 +28,7 @@ import { MdVerified } from "react-icons/md";
 import { PiFlowerLotus } from "react-icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
+import { trackEvent } from "@/lib/analytics";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -195,6 +196,12 @@ function Donation() {
     setIsSubmitting(true);
     try {
       await api.post("/donations/verify", { donationId, ...payment });
+      trackEvent("donation_completed", {
+        value: effectiveAmount,
+        currency: "INR",
+        service_name: selectedCause,
+        method: frequency,
+      });
       setSubmitStatus({
         type: "success",
         message: "🙏 Thank you for your generosity. Your contribution has been received.",
@@ -247,6 +254,12 @@ function Donation() {
       });
 
       setIsSubmitting(false);
+      trackEvent("donation_started", {
+        value: effectiveAmount,
+        currency: "INR",
+        service_name: selectedCause,
+        method: frequency,
+      });
 
       await openRazorpayCheckout({
         key: razorpayKeyId ?? process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "",
@@ -262,11 +275,13 @@ function Donation() {
           void completeDonation(donationId, payment);
         },
         modal: {
-          ondismiss: () =>
+          ondismiss: () => {
+            trackEvent("donation_failed", { status: "dismissed", service_name: selectedCause });
             setSubmitStatus({
               type: "error",
               message: "Payment was not completed. You can try again anytime.",
-            }),
+            });
+          },
         },
       });
     } catch (err) {
