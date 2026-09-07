@@ -1,21 +1,11 @@
 "use client";
 
 import type { ReactElement } from "react";
+import * as LucideIcons from "lucide-react";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
-  name:
-    | "Body"
-    | "Ambulance"
-    | "Diya"
-    | "Family"
-    | "Handshake"
-    | "ShieldCheck"
-    | "HeartHands"
-    | "Clipboard"
-    | "People"
-    | "Lotus"
-    | "ArrowRight";
+  name: string;
   className?: string;
 }
 
@@ -27,14 +17,16 @@ const CustomIcon = ({
   name,
   className = "h-6 w-6",
 }: IconProps): ReactElement | null => {
-  const icons: Record<IconProps["name"], ReactElement> = {
+  if (!name) return null;
+
+  const icons: Record<string, ReactElement> = {
     Body: (
       <svg
         className={className}
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -53,7 +45,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -72,7 +64,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -88,7 +80,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -108,7 +100,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -127,7 +119,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="1.9"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -142,7 +134,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -160,7 +152,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -180,7 +172,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -199,7 +191,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -211,13 +203,88 @@ const CustomIcon = ({
       </svg>
     ),
 
+    Verification: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.85"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="12" y="10" width="32" height="43" rx="2" />
+        <path d="M22 10V6h12v4" />
+        <path d="m19 23 3 3 5-6" />
+        <path d="M30 23h9" />
+        <path d="m19 34 3 3 5-6" />
+        <path d="M30 34h9" />
+        <path d="m19 45 3 3 5-6" />
+        <path d="M30 45h6" />
+        <circle cx="46" cy="45" r="9" />
+        <path d="m52 51 6 6" />
+      </svg>
+    ),
+
+    Formalities: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.85"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M15 6h25l9 9v37H15Z" />
+        <path d="M40 6v10h9" />
+        <path d="M22 25h17" />
+        <path d="M22 33h17" />
+        <path d="M22 41h11" />
+        <circle cx="44" cy="46" r="9" />
+        <path d="M40 55 44 51l4 4 3-10" />
+      </svg>
+    ),
+
+    Documentation: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.85"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M10 25h18l5 6h21l-4 23H14Z" />
+        <path d="M16 25V13h21l8 8v10" />
+        <path d="M37 13v9h8" />
+      </svg>
+    ),
+
+    Privacy: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M32 6 51 13v14c0 13-7 22-19 29-12-7-19-16-19-29V13L32 6Z" />
+        <rect x="24" y="30" width="16" height="14" rx="2" />
+        <path d="M27 30v-5a5 5 0 0 1 10 0v5" />
+      </svg>
+    ),
+
     ArrowRight: (
       <svg
         className={className}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.2"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -227,7 +294,67 @@ const CustomIcon = ({
     ),
   };
 
-  return icons[name] ?? null;
+  // 1. Try custom SVG map first (case-insensitive check)
+  const cleanName = name.toLowerCase().replace(/[-_\s]/g, "");
+  const customKey = Object.keys(icons).find(
+    (k) => k.toLowerCase() === cleanName
+  );
+  if (customKey) return icons[customKey];
+
+  // 2. Normalise name to PascalCase: "book-open" -> "BookOpen"
+  const pascalKey = name
+    .split(/[-_\s]+/)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase())
+    .join("");
+
+  // 3. Admin aliases
+  const aliases: Record<string, string> = {
+    Van:           "Ambulance",
+    Truck:         "Ambulance",
+    FamilyHands:   "Family",
+    UsersRound:    "People",
+    Users:         "People",
+    ElderlyCare:   "People",
+    UnclaimedCase: "Body",
+    BookOpen:      "BookOpen",
+    Eye:           "Eye",
+    Shield:        "ShieldCheck",
+    CheckCircle:   "CheckCircle2",
+    Flame:         "Diya",
+    Fire:          "Diya",
+    Hands:         "Handshake",
+    PartnerIcon:   "Handshake",
+    GiveIcon:      "HeartHands",
+    ServeIcon:     "HeartHands",
+    Document:      "Clipboard",
+    DocumentCheck: "Clipboard",
+    Report:        "BarChart2",
+    Policy:        "ScrollText",
+    Smile:         "Smile",
+    Building:      "Building2",
+    MapPin:        "MapPin",
+    Phone:         "Phone",
+    Mail:          "Mail",
+    Star:          "Star",
+    Heart:         "Heart",
+    Activity:      "Activity",
+    Scale:         "Scale",
+    Globe:         "Globe",
+    Privacy:       "Privacy",
+    Verification:  "Verification",
+    Formalities:   "Formalities",
+    Documentation: "Documentation",
+  };
+
+  const targetName = aliases[pascalKey] || pascalKey;
+  if (icons[targetName]) return icons[targetName];
+
+  const LucideIcon = (LucideIcons as any)[targetName] || (LucideIcons as any)[pascalKey];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={1.5} />;
+  }
+
+  return null;
 };
 
 /* =========================================================
@@ -290,12 +417,24 @@ const trustItems = [
 
 export default function SupportTheMission() {
   const section = useWebsiteSection("about-support-mission");
-  const activeSupportItems = (section?.items?.length ? section.items : supportItems).map((item, index) => {
-    const fallback = supportItems[index % supportItems.length];
-    const itemObj = item as Record<string, any>;
+  const allItems = section?.items ?? [];
+
+  // 5 Support Items (indices 0..4)
+  const activeSupportItems = supportItems.map((fallback, index) => {
+    const item = (allItems[index] ?? {}) as Record<string, any>;
     return {
-      icon: itemObj.icon || fallback.icon,
-      text: itemObj.title || itemObj.description || itemObj.text || fallback.text,
+      icon: item.icon || fallback.icon,
+      text: item.title || item.text || fallback.text,
+    };
+  });
+
+  // 4 Trust Items (indices 5..8)
+  const activeTrustItems = trustItems.map((fallback, index) => {
+    const item = (allItems[index + 5] ?? {}) as Record<string, any>;
+    return {
+      icon: item.icon || fallback.icon,
+      title: item.title || fallback.title,
+      text: item.description || item.text || fallback.text,
     };
   });
 
@@ -949,9 +1088,9 @@ export default function SupportTheMission() {
                 xl:grid-cols-4
               "
             >
-              {trustItems.map((item, index) => (
+              {activeTrustItems.map((item, index) => (
                 <div
-                  key={item.title}
+                  key={item.title || index}
                   className={`
                     flex
                     min-h-[88px]

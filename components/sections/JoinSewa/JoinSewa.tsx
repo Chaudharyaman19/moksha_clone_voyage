@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import * as LucideIcons from "lucide-react";
 import {
   ArrowRight,
   HeartHandshake,
@@ -22,6 +23,139 @@ type JoinCard = {
   image: string;
   variant: "green" | "gold";
 };
+
+const customIcons: Record<string, React.ReactNode> = {
+  Privacy: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M32 6 51 13v14c0 13-7 22-19 29-12-7-19-16-19-29V13L32 6Z" />
+      <rect x="24" y="30" width="16" height="14" rx="2" />
+      <path d="M27 30v-5a5 5 0 0 1 10 0v5" />
+    </svg>
+  ),
+  Verification: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <rect x="12" y="10" width="32" height="43" rx="2" />
+      <path d="M22 10V6h12v4" />
+      <path d="m19 23 3 3 5-6" />
+      <path d="M30 23h9" />
+      <path d="m19 34 3 3 5-6" />
+      <path d="M30 34h9" />
+      <path d="m19 45 3 3 5-6" />
+      <path d="M30 45h6" />
+      <circle cx="46" cy="45" r="9" />
+      <path d="m52 51 6 6" />
+    </svg>
+  ),
+  Formalities: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M15 6h25l9 9v37H15Z" />
+      <path d="M40 6v10h9" />
+      <path d="M22 25h17" />
+      <path d="M22 33h17" />
+      <path d="M22 41h11" />
+      <circle cx="44" cy="46" r="9" />
+      <path d="M40 55 44 51l4 4 3-10" />
+    </svg>
+  ),
+  Documentation: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M10 25h18l5 6h21l-4 23H14Z" />
+      <path d="M16 25V13h21l8 8v10" />
+      <path d="M37 13v9h8" />
+    </svg>
+  ),
+  Body: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M8 39h48" />
+      <path d="M12 39v11" />
+      <path d="M52 39v11" />
+      <path d="M15 27h34c4 0 7 3 7 7v5H8v-5c0-4 3-7 7-7Z" />
+      <path d="M20 27c2-5 7-8 12-8 7 0 12 3 15 8" />
+      <path d="M22 23h20" />
+    </svg>
+  ),
+  Lotus: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M32 43c-10-7-15-15-12-25 6 2 10 6 12 12 2-6 6-10 12-12 3 10-2 18-12 25Z" />
+      <path d="M22 40c-8-2-13-7-14-15 7 0 13 3 17 8" />
+      <path d="M42 40c8-2 13-7 14-15-7 0-13 3-17 8" />
+      <path d="M16 46c5 2 10 3 16 3s11-1 16-3" />
+      <path d="M24 49h16" />
+    </svg>
+  ),
+  Diya: (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round" className="h-full w-full">
+      <path d="M32 9c5 7 8 12 8 17a8 8 0 1 1-16 0c0-5 3-10 8-17Z" />
+      <path d="M32 35c-8-5-13-5-19-2 3 12 10 18 19 21 9-3 16-9 19-21-6-3-11-3-19 2Z" />
+      <path d="M18 42h28" />
+    </svg>
+  ),
+};
+
+function renderCardIcon(iconName: string | undefined, fallback: React.ReactNode): React.ReactNode {
+  if (!iconName) return fallback;
+
+  // 1. Try custom SVG map first (case-insensitive)
+  const cleanName = iconName.toLowerCase().replace(/[-_\s]/g, "");
+  const customKey = Object.keys(customIcons).find(
+    (k) => k.toLowerCase() === cleanName
+  );
+  if (customKey) return customIcons[customKey];
+
+  // 2. Normalise name to PascalCase: "book-open" -> "BookOpen"
+  const pascalKey = iconName
+    .split(/[-_\s]+/)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase())
+    .join("");
+
+  const aliases: Record<string, string> = {
+    PartnerIcon:    "Handshake",
+    Partner:        "Handshake",
+    Hands:          "Handshake",
+    HeartHands:     "HeartHandshake",
+    HeartHand:      "HeartHandshake",
+    HeartHandshake: "HeartHandshake",
+    GiveIcon:       "HeartHandshake",
+    ServeIcon:      "Heart",
+    Leaf:           "Leaf",
+    ShieldCheck:    "ShieldCheck",
+    Shield:         "Shield",
+    UsersRound:     "Users",
+    Users:          "Users",
+    People:         "Users",
+    FamilyHands:    "Users",
+    ElderlyCare:    "UserPlus",
+    BookOpen:       "BookOpen",
+    Diya:           "Flame",
+    Flame:          "Flame",
+    Fire:          "Flame",
+    Ambulance:      "Truck",
+    Van:            "Truck",
+    Clipboard:      "ClipboardList",
+    Document:       "FileText",
+    DocumentCheck:  "FileCheck",
+    Scale:          "Scale",
+    Eye:            "Eye",
+    Globe:          "Globe",
+    MapPin:         "MapPin",
+    Phone:          "Phone",
+    Mail:           "Mail",
+    Star:           "Star",
+    Smile:          "Smile",
+    Building:       "Building2",
+    Activity:       "Activity",
+  };
+
+  const target = aliases[pascalKey] || pascalKey;
+  if (customIcons[target]) return customIcons[target];
+
+  const LucideIcon = (LucideIcons as any)[target] || (LucideIcons as any)[pascalKey];
+  if (LucideIcon) {
+    return <LucideIcon />;
+  }
+
+  return fallback;
+}
 
 const cards: JoinCard[] = [
   {
@@ -284,7 +418,7 @@ const JoinSewa: React.FC = () => {
       description: item.description || fallback.description,
       button: item.buttonLabel || item.button || fallback.button,
       href: item.buttonHref || item.href || fallback.href,
-      icon: fallback.icon,
+      icon: renderCardIcon(item.icon, fallback.icon),
       image: item.image || fallback.image,
       variant: fallback.variant,
     };

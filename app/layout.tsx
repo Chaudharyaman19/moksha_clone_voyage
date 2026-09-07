@@ -86,7 +86,7 @@ export default async function RootLayout({
   const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId ?? "") ? configuredGtmId : undefined;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {advancedSeo?.googleSearchConsoleVerification && (
           <meta name="google-site-verification" content={advancedSeo.googleSearchConsoleVerification} />
