@@ -141,7 +141,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           aria-hidden="true"
         />
 
-        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 pb-10 sm:pb-12 pt-44 sm:pt-48">
+        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 pb-6 pt-44">
           {/* Breadcrumb navigation - clears logo comfortably */}
           <nav className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-[#8B6A3E]/90 mb-4 flex-wrap">
             <Link href="/" className="hover:text-[#2C1810] transition">
@@ -234,7 +234,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="lg:col-span-8 min-w-0">
             {/* Cover Image */}
             {blog.coverImage && (
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#E7D5C2] bg-[#F0E8D5] shadow-xs mb-4">
+              <div className="relative aspect-[16/5] w-full overflow-hidden rounded-2xl border border-[#E7D5C2] bg-[#F0E8D5] shadow-xs mb-4">
                 <Image
                   src={blog.coverImage}
                   alt={blog.title}
@@ -248,7 +248,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Lead Excerpt */}
             {blog.excerpt && (
-              <div className="rounded-xl border-l-4 border-[#8B6A3E] bg-[#FDFBF7] p-5 sm:p-6 mb-4 text-base sm:text-[17px] italic leading-relaxed text-[#5A3E2B] border-r border-t border-b border-[#E7D5C2]/70 shadow-2xs">
+              <div className="rounded-xl border-l-4 border-[#8B6A3E] bg-[#FDFBF7] p-4 mb-4 text-base sm:text-[17px] italic leading-relaxed text-[#5A3E2B] border-r border-t border-b border-[#E7D5C2]/70 shadow-2xs">
                 &ldquo;{blog.excerpt}&rdquo;
               </div>
             )}
@@ -266,7 +266,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Tags List */}
             {blog.tags && blog.tags.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-[#E7D5C2] flex flex-wrap items-center gap-2">
+              <div className="mt-2 pt-2 border-t border-[#E7D5C2] flex flex-wrap items-center gap-2">
                 <span className="text-xs font-semibold text-[#8B6A3E] inline-flex items-center gap-1.5 mr-1">
                   <FiTag className="h-3 w-3 text-[#C9873A]" /> Tags:
                 </span>
@@ -282,12 +282,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
 
             {/* Social Share Bar */}
-            <div className="mt-4 pt-4 border-t border-[#E7D5C2]">
+            <div className="mt-2 pt-2 border-t border-[#E7D5C2]">
               <ShareBar title={blog.title} url={currentUrl} />
             </div>
 
             {/* Back Button */}
-            <div className="mt-4 pt-4">
+            <div className="mt-2 pt-2">
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-2 rounded-xl border border-[#E7D5C2] bg-white px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#8B6A3E] hover:bg-[#FAF7F2] transition shadow-2xs"
@@ -301,7 +301,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {/* RIGHT: FIT SCREEN SIDEBAR (4 COLUMNS) */}
           <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
             {/* Mission & Organization Card */}
-            <div className="rounded-2xl border border-[#E7D5C2] bg-white p-6 shadow-xs">
+            <div className="rounded-2xl border border-[#E7D5C2] bg-white p-4 shadow-xs">
               <div className="flex items-center gap-3 pb-4 border-b border-[#F0E8D5]">
                 <div className="grid h-10 w-10 place-items-center rounded-full bg-[#8B6A3E] text-white shrink-0 shadow-2xs">
                   <PiFlowerLotus className="h-5 w-5" />
@@ -330,7 +330,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             {/* 24x7 Helpline Card */}
-            <div className="rounded-2xl border border-[#E7D5C2] bg-gradient-to-br from-[#2C1810] to-[#3D2216] p-6 text-white shadow-md">
+            <div className="rounded-2xl border border-[#E7D5C2] bg-gradient-to-br from-[#2C1810] to-[#3D2216] p-4 text-white shadow-md">
               <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-widest text-[#E7D5C2]">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                 24×7 Active Helpline
@@ -354,7 +354,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             {/* Quick Article Highlights Card */}
-            <div className="rounded-2xl border border-[#E7D5C2] bg-white p-6 shadow-xs">
+            <div className="rounded-2xl border border-[#E7D5C2] bg-white p-4 shadow-xs">
               <h3 className="text-base font-semibold text-[#2C1810] flex items-center gap-2">
                 <FiBookmark className="h-4 w-4 text-[#8B6A3E]" />
                 Article Overview
@@ -384,7 +384,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* ===================== RELATED ARTICLES (2-PER-ROW: LEFT IMAGE, RIGHT DETAILS) ===================== */}
         {relatedBlogs.length > 0 && (
-          <section className="mt-4 pt-4 border-t border-[#E7D5C2]">
+          <section className="mt-2 pt-2 border-t border-[#E7D5C2]">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -440,7 +440,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </Link>
 
                   {/* Right: Details */}
-                  <div className="flex flex-col justify-between p-5 sm:p-6 w-full">
+                  <div className="flex flex-col justify-between p-5 sm:p-4 w-full">
                     <div>
                       <div className="flex items-center gap-2 text-xs font-medium text-[#8B6A3E]/85">
                         <FiCalendar className="h-3.5 w-3.5 text-[#C9873A]" />

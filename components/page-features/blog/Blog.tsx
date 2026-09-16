@@ -95,7 +95,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 pt-44 flex flex-col items-center text-center">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 pt-44 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#8B6A3E]/20 bg-white/80 px-4 py-1.5 backdrop-blur-sm shadow-2xs">
             <PiFlowerLotus className="h-3.5 w-3.5 text-[#C9873A]" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
@@ -103,16 +103,16 @@ export default function Blog({ initialBlogs }: BlogProps) {
             </span>
           </div>
 
-          <h1 className="mt-4 font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
+          <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
             Moksha Sewa <span className="text-[#8B6A3E]">Blogs</span>
           </h1>
 
-          <p className="mt-4 mx-auto max-w-2xl text-[15px] sm:text-base leading-relaxed text-[#5A3E2B]/85">
+          <p className="mt-2 mx-auto max-w-2xl text-[15px] sm:text-base leading-relaxed text-[#5A3E2B]/85">
             The rituals, the stories, the guidance. A record of how we accompany families through
             a dignified farewell and spiritual solace — written with compassion and reverence.
           </p>
 
-          <dl className="mt-8 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 border-t border-[#E7D5C2] pt-6">
+          <dl className="mt-2 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 border-t border-[#E7D5C2] pt-4">
             <div>
               <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
                 Published Articles
@@ -247,7 +247,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
                   </Link>
 
                   {/* RIGHT: DETAILS */}
-                  <div className="flex flex-col justify-between p-5 sm:p-6 w-full">
+                  <div className="flex flex-col justify-between p-5 sm:p-4 w-full">
                     <div>
                       {/* Meta (Date + Author) */}
                       <div className="flex items-center gap-2.5 text-xs font-medium text-[#8B6A3E]/85">
