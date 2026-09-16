@@ -83,59 +83,59 @@ export default function Blog({ initialBlogs }: BlogProps) {
       <Topbar />
       <Navbar />
 
-      {/* ============================ HERO (MATCHING MOKSHAGALLERY) ============================ */}
-      <header className="relative overflow-hidden border-b border-[#E7D5C2]/70">
+      {/* ============================ HERO (MATCHING HOME & SITE STANDARDS) ============================ */}
+      <header className="relative overflow-hidden border-b border-[#E7D5C2]/70 bg-[#FAF7F2]">
         <div className="ms-weave absolute inset-0" aria-hidden="true" />
         <div
-          className="absolute -right-32 -top-40 h-[520px] w-[520px] rounded-full bg-[#C9873A]/10 blur-3xl"
+          className="absolute -right-32 -top-40 h-[520px] w-[520px] rounded-full bg-[#C9873A]/10 blur-3xl pointer-events-none"
           aria-hidden="true"
         />
         <div
-          className="absolute -bottom-48 -left-24 h-[420px] w-[420px] rounded-full bg-[#8B6A3E]/10 blur-3xl"
+          className="absolute -bottom-48 -left-24 h-[420px] w-[420px] rounded-full bg-[#8B6A3E]/10 blur-3xl pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 pb-6 pt-36 sm:px-8 sm:pb-8 sm:pt-40 lg:pb-10 lg:pt-44 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#8B6A3E]/15 bg-white/70 px-3.5 py-1.5 backdrop-blur-sm">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-6 pt-44 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#8B6A3E]/20 bg-white/80 px-4 py-1.5 backdrop-blur-sm shadow-2xs">
             <PiFlowerLotus className="h-3.5 w-3.5 text-[#C9873A]" aria-hidden="true" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#8B6A3E]">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
               Articles &amp; Reflections
             </span>
           </div>
 
-          <h1 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
-            Moksha <span className="text-[#8B6A3E]">Blog</span>
+          <h1 className="mt-4 font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
+            Moksha Sewa <span className="text-[#8B6A3E]">Blogs</span>
           </h1>
 
-          <p className="mt-4 mx-auto max-w-xl text-[15px] leading-relaxed text-[#5A3E2B]/80 sm:text-base">
+          <p className="mt-4 mx-auto max-w-2xl text-[15px] sm:text-base leading-relaxed text-[#5A3E2B]/85">
             The rituals, the stories, the guidance. A record of how we accompany families through
             a dignified farewell and spiritual solace — written with compassion and reverence.
           </p>
 
-          <dl className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border-t border-[#E7D5C2] pt-6">
+          <dl className="mt-8 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 border-t border-[#E7D5C2] pt-6">
             <div>
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
                 Published Articles
               </dt>
-              <dd className="mt-1 font-serif text-2xl tabular-nums text-[#2C1810]">
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold tabular-nums text-[#2C1810]">
                 {blogs.length}
               </dd>
             </div>
             <div className="h-9 w-px bg-[#E7D5C2]" aria-hidden="true" />
             <div>
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
                 Topics &amp; Guidance
               </dt>
-              <dd className="mt-1 font-serif text-2xl tabular-nums text-[#2C1810]">
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold tabular-nums text-[#2C1810]">
                 {categories.length > 1 ? categories.length - 1 : categories.length}
               </dd>
             </div>
             <div className="h-9 w-px bg-[#E7D5C2]" aria-hidden="true" />
             <div>
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
                 Sewa Support
               </dt>
-              <dd className="mt-1 font-serif text-2xl text-[#2C1810]">24×7</dd>
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold text-[#2C1810]">24×7</dd>
             </div>
           </dl>
         </div>
@@ -144,9 +144,9 @@ export default function Blog({ initialBlogs }: BlogProps) {
       {/* ========================== CATEGORIES & SEARCH TOOLBAR =========================== */}
       <nav
         aria-label="Filter blog posts by category"
-        className="sticky top-0 z-30 border-b border-[#E7D5C2]/70 bg-[#FAF7F2]/90 backdrop-blur-md"
+        className="sticky top-0 z-30 border-b border-[#E7D5C2]/70 bg-[#FAF7F2]/95 backdrop-blur-md"
       >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-3.5 flex flex-col md:flex-row items-center justify-between gap-3.5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Category Pills */}
           <div className="ms-rail flex snap-x snap-mandatory gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
             {categories.map((cat) => {
@@ -156,11 +156,10 @@ export default function Blog({ initialBlogs }: BlogProps) {
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
-                    active
-                      ? "bg-[#2C1810] text-[#FAF7F2] shadow-sm"
-                      : "bg-white/80 text-[#5A3E2B] border border-[#E7D5C2]/80 hover:bg-white hover:border-[#8B6A3E]/50"
-                  }`}
+                  className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-[13px] font-medium transition-all ${active
+                    ? "bg-[#2C1810] text-[#FAF7F2] shadow-xs"
+                    : "bg-white/80 text-[#5A3E2B] border border-[#E7D5C2]/80 hover:bg-white hover:border-[#8B6A3E]/50"
+                    }`}
                 >
                   {cat === "All" ? "All Articles" : cat}
                 </button>
@@ -169,26 +168,26 @@ export default function Blog({ initialBlogs }: BlogProps) {
           </div>
 
           {/* Search Box */}
-          <div className="relative w-full md:w-64 shrink-0">
-            <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B6A3E]/70 h-3.5 w-3.5" />
+          <div className="relative w-full md:w-72 shrink-0">
+            <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B6A3E]/70 h-4 w-4" />
             <input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-[#E7D5C2] bg-white/90 py-1.5 pl-9 pr-4 text-xs text-[#2C1810] outline-none placeholder:text-[#8B6A3E]/50 focus:border-[#8B6A3E] focus:ring-1 focus:ring-[#8B6A3E]/30 transition"
+              className="w-full rounded-full border border-[#E7D5C2] bg-white/95 py-2 pl-9 pr-4 text-xs sm:text-sm text-[#2C1810] outline-none placeholder:text-[#8B6A3E]/50 focus:border-[#8B6A3E] focus:ring-1 focus:ring-[#8B6A3E]/30 transition"
             />
           </div>
         </div>
       </nav>
 
       {/* ========================== BLOG POSTS: SINGLE ROW ME 2 BLOGS =========================== */}
-      <main className="mx-auto max-w-7xl px-5 sm:px-8 py-10 sm:py-14">
+      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
         {filteredBlogs.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-2xl border border-[#E7D5C2] p-8 max-w-lg mx-auto">
+          <div className="text-center py-20 bg-white rounded-2xl border border-[#E7D5C2] p-8 max-w-lg mx-auto shadow-xs">
             <PiFlowerLotus className="h-10 w-10 text-[#C9873A] mx-auto mb-3 opacity-60" />
-            <h3 className="font-serif text-xl text-[#2C1810]">No articles found</h3>
-            <p className="mt-2 text-xs text-[#5A3E2B]/75 leading-relaxed">
+            <h3 className="text-xl font-semibold text-[#2C1810]">No articles found</h3>
+            <p className="mt-2 text-xs sm:text-sm text-[#5A3E2B]/80 leading-relaxed">
               We couldn&apos;t find any blog post matching your search. Try changing the category
               or search keywords.
             </p>
@@ -197,21 +196,21 @@ export default function Blog({ initialBlogs }: BlogProps) {
                 setSelectedCategory("All");
                 setSearchQuery("");
               }}
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B6A3E] hover:underline"
+              className="mt-5 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#8B6A3E] hover:text-[#2C1810] underline"
             >
               Reset all filters
             </button>
           </div>
         ) : (
           /* Grid: 2 blogs per row (single row me 2 blogs on lg screen) */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 mb-4">
             {filteredBlogs.map((blog) => {
               const formattedDate = blog.publishedAt || blog.createdAt
                 ? new Date(blog.publishedAt || blog.createdAt).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
                 : "Recent";
 
               const categoryBadge = blog.category || "Moksha Sewa";
@@ -219,12 +218,12 @@ export default function Blog({ initialBlogs }: BlogProps) {
               return (
                 <article
                   key={blog._id}
-                  className="flex flex-col sm:flex-row bg-white rounded-2xl border border-[#E7D5C2]/85 overflow-hidden shadow-[0_2px_12px_rgba(44,24,16,0.03)] hover:shadow-xl hover:border-[#C9873A]/60 transition-all duration-300 group"
+                  className="flex flex-col sm:flex-row bg-white rounded-2xl border border-[#E7D5C2] overflow-hidden shadow-[0_2px_12px_rgba(44,24,16,0.03)] hover:shadow-md hover:border-[#C9873A]/60 transition-all duration-300 group"
                 >
                   {/* LEFT: IMAGE */}
                   <Link
                     href={`/blog/${blog.slug}`}
-                    className="relative sm:w-[44%] min-h-[220px] sm:min-h-[260px] shrink-0 overflow-hidden bg-[#F0E8D5] block"
+                    className="relative sm:w-[42%] min-h-[220px] sm:min-h-[260px] shrink-0 overflow-hidden bg-[#F0E8D5] block"
                   >
                     {blog.coverImage ? (
                       <Image
@@ -237,12 +236,12 @@ export default function Blog({ initialBlogs }: BlogProps) {
                     ) : (
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[#F4EDE3] text-[#8B6A3E]/60">
                         <PiFlowerLotus className="h-8 w-8 mb-1" />
-                        <span className="text-[11px] font-serif">Moksha Sewa</span>
+                        <span className="text-[11px] font-medium">Moksha Sewa</span>
                       </div>
                     )}
 
                     {/* Floating Category Badge */}
-                    <span className="absolute left-3 top-3 z-10 rounded-full bg-[#8B6A3E]/90 backdrop-blur-xs px-2.5 py-0.5 text-[9.5px] font-semibold tracking-wider uppercase text-white shadow-sm">
+                    <span className="absolute left-3 top-3 z-10 rounded-full bg-[#8B6A3E]/90 backdrop-blur-xs px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase text-white shadow-2xs">
                       {categoryBadge}
                     </span>
                   </Link>
@@ -251,27 +250,27 @@ export default function Blog({ initialBlogs }: BlogProps) {
                   <div className="flex flex-col justify-between p-5 sm:p-6 w-full">
                     <div>
                       {/* Meta (Date + Author) */}
-                      <div className="flex items-center gap-3 text-[11px] font-medium text-[#8B6A3E]/80">
+                      <div className="flex items-center gap-2.5 text-xs font-medium text-[#8B6A3E]/85">
                         <span className="inline-flex items-center gap-1.5">
-                          <FiCalendar className="h-3 w-3 text-[#C9873A]" />
+                          <FiCalendar className="h-3.5 w-3.5 text-[#C9873A]" />
                           {formattedDate}
                         </span>
                         <span className="text-[#E7D5C2]">•</span>
                         <span className="inline-flex items-center gap-1.5">
-                          <FiUser className="h-3 w-3 text-[#C9873A]" />
+                          <FiUser className="h-3.5 w-3.5 text-[#C9873A]" />
                           {blog.author || "Moksha Sewa"}
                         </span>
                       </div>
 
                       {/* Title */}
                       <Link href={`/blog/${blog.slug}`} className="block group">
-                        <h2 className="mt-2.5 font-serif text-lg sm:text-xl font-medium leading-snug text-[#2C1810] group-hover:text-[#8B6A3E] transition-colors ms-clamp-2">
+                        <h2 className="mt-2.5 text-lg sm:text-xl font-semibold leading-snug text-[#2C1810] group-hover:text-[#8B6A3E] transition-colors ms-clamp-2">
                           {blog.title}
                         </h2>
                       </Link>
 
                       {/* Excerpt */}
-                      <p className="mt-2 text-[13px] sm:text-[13.5px] leading-relaxed text-[#5A3E2B]/80 ms-clamp-3">
+                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5A3E2B]/80 ms-clamp-3">
                         {blog.excerpt || blog.content.replace(/<[^>]*>/g, "").slice(0, 150) + "..."}
                       </p>
                     </div>
@@ -279,19 +278,19 @@ export default function Blog({ initialBlogs }: BlogProps) {
                     {/* Bottom action row */}
                     <div className="mt-5 pt-3.5 border-t border-[#F0E8D5] flex items-center justify-between">
                       {blog.tags && blog.tags.length > 0 ? (
-                        <span className="inline-flex items-center gap-1 text-[10.5px] text-[#8B6A3E]/70 font-medium">
-                          <FiTag className="h-2.5 w-2.5" />
+                        <span className="inline-flex items-center gap-1 text-xs text-[#8B6A3E]/70 font-medium">
+                          <FiTag className="h-3 w-3" />
                           #{blog.tags[0]}
                         </span>
                       ) : (
-                        <span className="text-[10px] text-[#8B6A3E]/50 uppercase tracking-widest font-semibold">
+                        <span className="text-[10.5px] text-[#8B6A3E]/60 uppercase tracking-wider font-semibold">
                           Guide
                         </span>
                       )}
 
                       <Link
                         href={`/blog/${blog.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B6A3E] group-hover:text-[#2C1810] group-hover:gap-2.5 transition-all"
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#8B6A3E] group-hover:text-[#2C1810] group-hover:gap-2.5 transition-all"
                       >
                         Read Article
                         <FiArrowRight className="h-3.5 w-3.5 text-[#C9873A]" />
