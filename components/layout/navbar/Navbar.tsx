@@ -182,6 +182,57 @@ export default function Navbar() {
       type: "page",
     },
   ];
+  const [dynamicNavItems, setDynamicNavItems] = useState<NavItem[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetchHeaderMenu = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
+        const res = await fetch(`${apiUrl}/navigation-menus/location/Header`, { cache: "no-store" });
+        if (!res.ok) return;
+        const body = await res.json();
+        const menu = body?.data;
+        if (!cancelled && menu?.items && Array.isArray(menu.items) && menu.items.length > 0) {
+          const mapRawItem = (raw: any): NavItem => {
+            const hasChildren = Array.isArray(raw.children) && raw.children.length > 0;
+            const n = (raw.label || "").toLowerCase();
+            const p = (raw.path || "").toLowerCase();
+            let icon = <FaHeart />;
+            if (n.includes("home") || p === "/") icon = <FaHandHoldingHeart />;
+            else if (n.includes("about")) icon = <FaPrayingHands />;
+            else if (n.includes("ambulance") || n.includes("transport")) icon = <FaAmbulance />;
+            else if (n.includes("priest") || n.includes("pandit")) icon = <FaPrayingHands />;
+            else if (n.includes("donate") || p.includes("donation")) icon = <FaDonate />;
+            else if (n.includes("volunteer") || n.includes("request")) icon = <FaHandsHelping />;
+            else if (n.includes("photo") || n.includes("gallery")) icon = <FaLeaf />;
+            else if (n.includes("video")) icon = <FaHistory />;
+            else if (n.includes("contact")) icon = <FaUserCircle />;
+            else if (n.includes("blog") || n.includes("work") || n.includes("info")) icon = <FaBookOpen />;
+            else if (n.includes("sewa") || n.includes("support")) icon = <FaStar />;
+
+            return {
+              name: raw.label,
+              path: raw.path,
+              icon,
+              type: hasChildren ? "dropdown" : "page",
+              dropdown: hasChildren ? raw.children.map(mapRawItem) : undefined,
+              disabled: raw.disabled,
+              originalName: raw.label,
+            } as NavItem & { originalName?: string };
+          };
+          setDynamicNavItems(menu.items.map(mapRawItem));
+        }
+      } catch {
+        // Safe silent fallback to static navItems
+      }
+    };
+    fetchHeaderMenu();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   let globalIndex = 0;
   const cmsItems = websiteSection?.items ?? [];
   
@@ -197,7 +248,8 @@ export default function Navbar() {
     } as NavItem & { originalName?: string };
   };
 
-  const managedNavItems = navItems.map(applyCmsItems);
+  const baseItems = dynamicNavItems && dynamicNavItems.length > 0 ? dynamicNavItems : navItems;
+  const managedNavItems = baseItems.map(applyCmsItems);
   
   const extraNavItems = cmsItems.slice(globalIndex).map((item) => ({
     name: item.label || "New Link",

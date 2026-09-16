@@ -66,8 +66,9 @@ export default function FAQSection() {
   useEffect(() => {
     import("@/lib/faqsApi").then(({ faqsApi }) => {
       faqsApi.getAll().then((data) => {
-        if (data && data.length > 0) {
-          setDbFaqs(data.sort((a, b) => a.order - b.order));
+        const list = Array.isArray(data) ? data : (data as any)?.data || [];
+        if (list.length > 0) {
+          setDbFaqs(list.sort((a: any, b: any) => (a.order || 0) - (b.order || 0)));
         }
       }).catch(console.error);
     });

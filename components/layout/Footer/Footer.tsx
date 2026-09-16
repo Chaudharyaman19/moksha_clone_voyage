@@ -14,7 +14,7 @@ import {
   FaStar,
   FaDonate,
 } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import footerMokshaLogo from "../../../public/assets/logo-moksha-seva.png";
 import { newsletterApi } from "@/lib/newsletterApi";
 
@@ -93,6 +93,29 @@ function FooterLogoWhiteText({
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [dynamicQuickLinks, setDynamicQuickLinks] = useState<{ label: string; href: string }[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetchFooterMenu = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
+        const res = await fetch(`${apiUrl}/navigation-menus/location/Footer`, { cache: "no-store" });
+        if (!res.ok) return;
+        const body = await res.json();
+        const menu = body?.data;
+        if (!cancelled && menu?.items && Array.isArray(menu.items) && menu.items.length > 0) {
+          setDynamicQuickLinks(menu.items.map((i: any) => ({ label: i.label, href: i.path })));
+        }
+      } catch {
+        // Fallback to static
+      }
+    };
+    fetchFooterMenu();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const brandName = "Moksha Sewa";
   const tagline = "Humanitarian End-of-Life Support Mission";
@@ -182,7 +205,7 @@ export default function Footer() {
           {/* QUICK LINKS */}
           <FooterColumn title="QUICK LINKS">
             <ul className="mt-1 space-y-0.5">
-              {quickLinks.map((item) => (
+              {(dynamicQuickLinks || quickLinks).map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
