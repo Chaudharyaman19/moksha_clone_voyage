@@ -21,8 +21,11 @@ import { SITE_URL } from "@/lib/seo";
 /** Extract the href value from a raw <link rel="canonical" href="..."> string */
 function extractHref(canonicalTag?: string | null): string | null {
   if (!canonicalTag?.trim()) return null;
-  const match = canonicalTag.match(/href=["']([^"']+)["']/i);
-  return match ? match[1].trim() : null;
+  const trimmed = canonicalTag.trim();
+  const match = trimmed.match(/href=["']([^"']+)["']/i);
+  if (match) return match[1].trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return null;
 }
 
 export default function DynamicCanonical() {

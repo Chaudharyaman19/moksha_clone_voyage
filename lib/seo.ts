@@ -417,8 +417,11 @@ export function absoluteUrl(path = "/") {
  */
 export function extractCanonicalUrl(canonicalTag?: string | null): string | null {
   if (!canonicalTag || !canonicalTag.trim()) return null;
-  const match = canonicalTag.match(/href=["']([^"']+)["']/i);
-  return match ? match[1].trim() : null;
+  const trimmed = canonicalTag.trim();
+  const match = trimmed.match(/href=["']([^"']+)["']/i);
+  if (match) return match[1].trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return null;
 }
 
 
