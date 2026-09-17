@@ -17,7 +17,7 @@ import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJo
 import Footer from "@/components/layout/Footer/FooterNew";
 import FAQ from "@/components/sections/FAQ/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createPageMetadata, getPageSchemaMarkup } from "@/lib/seo";
 import SewaStories from "@/components/sections/SewaStories/SewaStories";
 import WhyYourSupportMatters from "@/components/sections/WhyYourSupportMatters/WhyYourSupportMatters";
 import JoinTheMission from "@/components/sections/JoinTheMission/JoinTheMission";
@@ -35,12 +35,16 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  const websiteSections = await getWebsiteSections();
+  const [websiteSections, customSchema] = await Promise.all([
+    getWebsiteSections(),
+    getPageSchemaMarkup("/", "landing").catch(() => null),
+  ]);
 
   return (
     <div>
       <DynamicH1 pageKey="landing" fallback="Moksha Sewa - Humanitarian End-of-Life Support Mission" />
       <JsonLd data={breadcrumbJsonLd("/")} />
+      {customSchema && <JsonLd data={customSchema} />}
       <WebsiteContentProvider sections={websiteSections}>
         <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
         <WebsiteSection name="navbar"><Navbar /></WebsiteSection>

@@ -5,6 +5,7 @@ export const SITE_NAME = "Moksha Sewa";
 export const DEFAULT_OG_IMAGE = "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png";
 export const DEFAULT_OG_CARD_IMAGE = "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png";
 import { getWebsiteSettings, type WebsitePageKey } from "./websiteSettingsApi";
+import { seoApi } from "./seoApi";
 
 type RouteSeo = {
   path: string;
@@ -407,6 +408,20 @@ export function absoluteUrl(path = "/") {
   return new URL(path, SITE_URL).toString();
 }
 
+/**
+ * Extracts the canonical URL (href value) from a raw <link rel="canonical"> HTML string.
+ * Returns null if the string is empty or doesn't contain a valid href.
+ *
+ * Example input:  '<link rel="canonical" href="https://mokshasewa.org/about" />'
+ * Example output: 'https://mokshasewa.org/about'
+ */
+export function extractCanonicalUrl(canonicalTag?: string | null): string | null {
+  if (!canonicalTag || !canonicalTag.trim()) return null;
+  const match = canonicalTag.match(/href=["']([^"']+)["']/i);
+  return match ? match[1].trim() : null;
+}
+
+
 export function normalizeOgImageUrl(image?: string | null) {
   if (!image) return DEFAULT_OG_CARD_IMAGE;
   if (/^https?:\/\//i.test(image)) return image;
@@ -482,8 +497,12 @@ export function createPageMetadata(path: string): Metadata {
 
 export async function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Promise<Metadata> {
   const baseMetadata = createPageMetadata(path);
+
+  const isLocal = process.env.NODE_ENV !== "production";
+  const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
+  const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
+
   const settings = await getWebsiteSettings();
-  // pageFieldMap logic repeated or we can just access it
   const pageFieldMap: Record<WebsitePageKey, any> = {
     landing: "landingPage",
     about: "aboutPage",
@@ -511,14 +530,21 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
-  const customSeo = (pageSettings as any)?.seo;
+  const activeSeo = dedicatedSeo?.isActive !== false ? dedicatedSeo : null;
+  const customSeo = activeSeo || (pageSettings as any)?.seo;
   const advancedSeo = settings?.advancedSeo;
 
   if (!customSeo) return baseMetadata;
 
   const title = customSeo.metaTitle || baseMetadata.title;
   const description = customSeo.metaDescription || baseMetadata.description;
-  const url = customSeo.canonicalUrl || (baseMetadata.alternates?.canonical as string) || absoluteUrl(path);
+  // Canonical resolution: admin's canonicalTag (full <link> string) takes priority,
+  // then canonicalUrl field, then auto-generate from live SITE_URL + path.
+  const adminCanonical =
+    extractCanonicalUrl(customSeo.canonicalTag) ||
+    customSeo.canonicalUrl ||
+    null;
+  const url = adminCanonical || absoluteUrl(path);
   const ogTitle = customSeo.ogTitle || title;
   const ogDescription = customSeo.ogDescription || description;
   const ogImages = baseMetadata.openGraph?.images;
@@ -643,3 +669,41 @@ export function breadcrumbJsonLd(path: string, finalName?: string) {
     itemListElement: items,
   };
 }
+
+export async function getPageSchemaMarkup(path: string, pageKey: WebsitePageKey): Promise<string | null> {
+  const isLocal = process.env.NODE_ENV !== "production";
+  const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
+  const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
+  if (dedicatedSeo?.schemaMarkup) return dedicatedSeo.schemaMarkup;
+
+  const settings = await getWebsiteSettings();
+  const pageFieldMap: Record<WebsitePageKey, any> = {
+    landing: "landingPage",
+    about: "aboutPage",
+    services: "servicesPage",
+    ambulance: "ambulancePage",
+    pandit: "panditPage",
+    funeral: "funeralPage",
+    funeralDecoration: "funeralDecorationPage",
+    prayerHall: "prayerHallPage",
+    specialService: "specialServicePage",
+    callingRelatives: "callingRelativesPage",
+    harsevan: "harsevanPage",
+    "unclaimed-body": "unclaimedBodyPage",
+    volunteer: "volunteerPage",
+    partnership: "partnershipPage",
+    csr: "csrPage",
+    "request-help": "requestHelpPage",
+    donation: "donationPage",
+    contact: "contactPage",
+    track: "trackPage",
+    "privacy-policy": "privacyPage",
+    terms: "termsPage",
+    "refund-policy": "refundPage",
+    "code-of-conduct": "conductPage",
+  };
+
+  const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
+  return (pageSettings as any)?.seo?.schemaMarkup || null;
+}
+
