@@ -335,6 +335,7 @@ function MokshaGallery() {
 
   const images = managedImages.length > 0 ? managedImages : galleryImages;
 
+
   /* ---------- responsive column count ---------- */
   useEffect(() => {
     const updateColumns = () => {
@@ -358,23 +359,26 @@ function MokshaGallery() {
         if (!alive) return;
         setManagedImages(
           items.map((item, index) => {
-            const key = item.category || "gallary";
+            const rawCategory = item.category || item.folder || "gallary";
+            const key = slugify(rawCategory) || "gallary";
             return {
               id: item._id,
               src: item.url,
-              alt: item.alt || item.caption || "Moksha Sewa gallery image",
+              fallbackSrc: item.thumbnailUrl || item.url,
+              alt: item.alt || item.title || item.caption || "Moksha Sewa gallery image",
               category: key,
-              title: item.caption || item.alt,
-              description: item.description || blurbFor(key),
+              title: item.title || item.caption || item.alt || "Moksha Sewa Gallery",
+              description: item.description || item.caption || blurbFor(key),
               photographer: item.credit || "Moksha Sewa Team",
-              likes: 0,
-              date: new Date(item.createdAt).getFullYear().toString(),
+              likes: 120 + ((index * 37) % 250),
+              date: item.createdAt ? new Date(item.createdAt).getFullYear().toString() : "2026",
               height: [340, 390, 430, 370][index % 4],
             };
           }),
         );
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Failed to load public gallery images:", err);
         if (alive) setManagedImages([]);
       })
       .finally(() => {
@@ -384,6 +388,7 @@ function MokshaGallery() {
       alive = false;
     };
   }, []);
+
 
   /* ---------- measured aspect ratios keep the masonry honest ---------- */
   const registerRatio = useCallback((id: string | number, ratio: number) => {
@@ -399,6 +404,7 @@ function MokshaGallery() {
     },
     [ratios, columns],
   );
+
 
   /* ---------- filtering ---------- */
   const allFilteredImages = useMemo(
@@ -627,12 +633,12 @@ function MokshaGallery() {
             </span>
           </div>
 
-        <h2 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
-  Moksha{" "}
-  <span className="text-[#8B6A3E]">
-    Gallery
-  </span>
-</h2>
+          <h2 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
+            Moksha{" "}
+            <span className="text-[#8B6A3E]">
+              Gallery
+            </span>
+          </h2>
 
           <p className="mt-4 mx-auto max-w-xl text-[15px] leading-relaxed text-[#5A3E2B]/80 sm:text-base">
             The ghats, the rituals, the people. A record of how we accompany
@@ -684,8 +690,8 @@ function MokshaGallery() {
                   onClick={() => setSelectedCategory(category.id)}
                   aria-pressed={active}
                   className={`flex shrink-0 snap-start items-center gap-2 rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#C9873A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF7F2] motion-reduce:transition-none ${active
-                      ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-[0_8px_20px_-12px_rgba(139,106,62,0.9)]"
-                      : "border-[#E7D5C2] bg-white text-[#5A3E2B] hover:border-[#C9873A]/60 hover:bg-[#F5E9D9]"
+                    ? "border-[#8B6A3E] bg-[#8B6A3E] text-white shadow-[0_8px_20px_-12px_rgba(139,106,62,0.9)]"
+                    : "border-[#E7D5C2] bg-white text-[#5A3E2B] hover:border-[#C9873A]/60 hover:bg-[#F5E9D9]"
                     }`}
                 >
                   {active && (
@@ -752,10 +758,7 @@ function MokshaGallery() {
           <div
             className="grid gap-4 sm:gap-5"
             style={{
-              gridTemplateColumns: `repeat(${Math.min(
-                columns,
-                filteredImages.length,
-              )}, minmax(0, 1fr))`,
+              gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
             }}
           >
             {masonryColumns.map((column, colIndex) => (

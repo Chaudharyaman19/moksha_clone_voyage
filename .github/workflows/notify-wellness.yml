@@ -1,0 +1,23 @@
+# https://github.com/Namogange0315/mokshasewa_frontend.git
+name: Notify Wellness Repository
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger destination synchronization
+        env:
+          GH_TOKEN: ${{ secrets.WELLNESS_DISPATCH_TOKEN }}
+        run: |
+          gh api \
+            --method POST \
+            "/repos/Namogange0315/mokshasewa_frontend/dispatches" \
+            -f event_type="encodency-main-updated"
