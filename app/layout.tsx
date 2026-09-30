@@ -95,7 +95,8 @@ export default async function RootLayout({
         {advancedSeo?.globalHeadCode && (
           <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalHeadCode }} />
         )}
-        <script
+        <Script
+          id="iframe-click-prevention"
           dangerouslySetInnerHTML={{
             __html: `
               try {
