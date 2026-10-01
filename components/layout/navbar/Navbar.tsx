@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   FaHandHoldingHeart,
   FaStar,
@@ -16,6 +16,9 @@ import {
   FaAmbulance,
   FaDonate,
   FaHandsHelping,
+
+  FaBriefcase,
+  FaFileAlt,
 } from "react-icons/fa";
 import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -29,6 +32,7 @@ type NavItem = {
 };
 
 export default function Navbar() {
+  const router = useRouter();
   const websiteSection = useWebsiteSection("navbar");
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -94,8 +98,10 @@ export default function Navbar() {
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    } else {
+    } else if (path.startsWith("http://") || path.startsWith("https://")) {
       window.open(path, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(path);
     }
   };
 
@@ -158,6 +164,12 @@ export default function Navbar() {
       ],
     },
     {
+      name: "Careers",
+      path: "/careers",
+      icon: <FaBriefcase />,
+      type: "page",
+    },
+    {
       name: "Contact Us",
       path: "/contact",
       icon: <FaUserCircle />,
@@ -175,90 +187,8 @@ export default function Navbar() {
       icon: <FaDonate />,
       type: "page",
     },
-    {
-      name: "Admin Login",
-      path: "https://admin.mokshasewa.org",
-      icon: <FaUserCircle />,
-      type: "page",
-    },
   ];
-  const [dynamicNavItems, setDynamicNavItems] = useState<NavItem[] | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    const fetchHeaderMenu = async () => {
-      try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
-        const res = await fetch(`${apiUrl}/navigation-menus/location/Header`, { cache: "no-store" });
-        if (!res.ok) return;
-        const body = await res.json();
-        const menu = body?.data;
-        if (!cancelled && menu?.items && Array.isArray(menu.items) && menu.items.length > 0) {
-          const mapRawItem = (raw: any): NavItem => {
-            const hasChildren = Array.isArray(raw.children) && raw.children.length > 0;
-            const n = (raw.label || "").toLowerCase();
-            const p = (raw.path || "").toLowerCase();
-            let icon = <FaHeart />;
-            if (n.includes("home") || p === "/") icon = <FaHandHoldingHeart />;
-            else if (n.includes("about")) icon = <FaPrayingHands />;
-            else if (n.includes("ambulance") || n.includes("transport")) icon = <FaAmbulance />;
-            else if (n.includes("priest") || n.includes("pandit")) icon = <FaPrayingHands />;
-            else if (n.includes("donate") || p.includes("donation")) icon = <FaDonate />;
-            else if (n.includes("volunteer") || n.includes("request")) icon = <FaHandsHelping />;
-            else if (n.includes("photo") || n.includes("gallery")) icon = <FaLeaf />;
-            else if (n.includes("video")) icon = <FaHistory />;
-            else if (n.includes("contact")) icon = <FaUserCircle />;
-            else if (n.includes("blog") || n.includes("work") || n.includes("info")) icon = <FaBookOpen />;
-            else if (n.includes("sewa") || n.includes("support")) icon = <FaStar />;
-
-            return {
-              name: raw.label,
-              path: raw.path,
-              icon,
-              type: hasChildren ? "dropdown" : "page",
-              dropdown: hasChildren ? raw.children.map(mapRawItem) : undefined,
-              disabled: raw.disabled,
-              originalName: raw.label,
-            } as NavItem & { originalName?: string };
-          };
-          setDynamicNavItems(menu.items.map(mapRawItem));
-        }
-      } catch {
-        // Safe silent fallback to static navItems
-      }
-    };
-    fetchHeaderMenu();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  let globalIndex = 0;
-  const cmsItems = websiteSection?.items ?? [];
-  
-  const applyCmsItems = (item: NavItem): NavItem => {
-    const currentIndex = globalIndex++;
-    const cmsItem = cmsItems[currentIndex];
-    return {
-      ...item,
-      originalName: item.name,
-      name: cmsItem?.label || item.name,
-      path: cmsItem?.href || item.path,
-      dropdown: item.dropdown?.map(applyCmsItems),
-    } as NavItem & { originalName?: string };
-  };
-
-  const baseItems = dynamicNavItems && dynamicNavItems.length > 0 ? dynamicNavItems : navItems;
-  const managedNavItems = baseItems.map(applyCmsItems);
-  
-  const extraNavItems = cmsItems.slice(globalIndex).map((item) => ({
-    name: item.label || "New Link",
-    originalName: "Extra",
-    path: item.href || "/",
-    icon: <FaBookOpen />,
-    type: "page" as const,
-  } as NavItem & { originalName?: string }));
-  const allNavItems = [...managedNavItems, ...extraNavItems];
+  const allNavItems = navItems;
   const navKey = (item: Pick<NavItem, "name" | "path">, index: number) => `${item.name}:${item.path}:${index}`;
 
   const toggleDropdown = (itemName: string) => {
@@ -314,7 +244,7 @@ export default function Navbar() {
                           }`}
                       />
                     </button>
-                  ) : (item as any).originalName === "Donate" ? (
+                  ) : item.name === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -324,7 +254,7 @@ export default function Navbar() {
                       <FaStar className="donate-star donate-star-one" aria-hidden />
                       <FaStar className="donate-star donate-star-two" aria-hidden />
                     </button>
-                  ) : (item as any).originalName === "Request Help" ? (
+                  ) : item.name === "Request Help" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
@@ -420,7 +350,7 @@ export default function Navbar() {
                         }`}
                     />
                   </button>
-                ) : (item as any).originalName === "Donate" ? (
+                ) : item.name === "Donate" ? (
                   <button
                     onClick={() => handleNavigation(item.path)}
                     aria-current={isItemActive(item) ? "page" : undefined}

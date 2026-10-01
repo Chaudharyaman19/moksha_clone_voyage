@@ -91,7 +91,8 @@ export type WebsitePageKey =
   | "privacy-policy"
   | "terms"
   | "refund-policy"
-  | "code-of-conduct";
+  | "code-of-conduct"
+  | "careers";
 
 export function getMergedWebsiteSections(page: WebsitePageKey, settings?: SettingsResponse) {
   let pageSections;

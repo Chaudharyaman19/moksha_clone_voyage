@@ -398,6 +398,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "yearly",
     index: false,
   },
+  {
+    path: "/careers",
+    label: "Careers",
+    title: "Careers – Join Moksha Sewa Team",
+    description:
+      "Explore career opportunities at Moksha Sewa and join our team providing dignified last rites and humanitarian end-of-life support.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Careers at Moksha Sewa",
+    keywords: ["Moksha Sewa careers", "jobs", "career opportunities", "Namo Gange Trust careers"],
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
 ];
 
 export const publicSeoRoutes = seoRoutes.filter((route) => route.index !== false);
@@ -655,6 +667,7 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
     terms: "termsPage",
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
+    careers: "careersPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
@@ -848,6 +861,7 @@ export async function getPageSchemaMarkup(path: string, pageKey: WebsitePageKey)
     terms: "termsPage",
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
+    careers: "careersPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
