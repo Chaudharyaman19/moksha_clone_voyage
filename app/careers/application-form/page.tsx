@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import sidebarFooterImage from "../../assets/carrer/grow-organic-grow-india.png";
+const sidebarFooterImage = "/assets/moksha-footer-ghat-bg.webp";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import {
   AlertCircle,
@@ -205,9 +205,9 @@ function SectionTitle({
   title: string;
 }) {
   return (
-    <div className="flex h-[36px] items-center gap-[11px] rounded-t-[8px] border border-b-0 border-[#dceae1] bg-[linear-gradient(90deg,#f2fbf4,#edf8f0)] px-[16px]">
-      <Icon className="h-[18px] w-[18px] text-[#076c3d]" strokeWidth={2.4} />
-      <h2 className="text-[15px] font-semibold text-[#0b5b3c]">{title}</h2>
+    <div className="flex h-[36px] items-center gap-[11px] rounded-t-[8px] border border-b-0 border-[#eadcc8] bg-[linear-gradient(90deg,#fffaf2,#fff8ed)] px-[16px]">
+      <Icon className="h-[18px] w-[18px] text-[#8b6a3e]" strokeWidth={2.4} />
+      <h2 className="text-[15px] font-semibold text-[#8b6a3e]">{title}</h2>
     </div>
   );
 }
@@ -255,7 +255,7 @@ function ProgressSteps() {
   return (
     <div className="relative mx-auto h-full w-[82%]">
       <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#d9e0e7]" />
-      <div className="absolute left-[12.5%] top-[14px] h-[2px] w-[50%] bg-[#0a874d]" />
+      <div className="absolute left-[12.5%] top-[14px] h-[2px] w-[50%] bg-[#8b6a3e]" />
 
       <div className="relative grid h-full grid-cols-4">
         {steps.map((step, index) => (
@@ -264,7 +264,7 @@ function ProgressSteps() {
               className={[
                 "grid h-[31px] w-[31px] place-items-center rounded-full text-[13.5px] font-semibold",
                 step.done || step.active
-                  ? "bg-[#078346] text-white"
+                  ? "bg-[#8b6a3e] text-white"
                   : "bg-[#e1e8ee] text-[#17395f]",
               ].join(" ")}
             >
@@ -463,7 +463,7 @@ function PersonalInformation({
             onClick={() => !isVerifying && fileInputRef.current?.click()}
             className={`relative h-[110px] cursor-pointer overflow-hidden rounded-[6px] border ${
               isPhotoVerified
-                ? "border-[#10b981] ring-2 ring-[#10b981]/20"
+                ? "border-[#8b6a3e] ring-2 ring-[#8b6a3e]/20"
                 : verificationError
                 ? "border-[#ef4444] ring-2 ring-[#ef4444]/20"
                 : "border-[#d8e3dc] bg-[#8d97a5]"
@@ -477,8 +477,8 @@ function PersonalInformation({
                 className="h-full w-full object-cover object-center"
               />
             ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center bg-[#e4efe8] text-[#076d49]">
-                <User className="h-[40px] w-[40px] text-[#087447]" />
+              <div className="flex h-full w-full flex-col items-center justify-center bg-[#fff8ed] text-[#8b6a3e]">
+                <User className="h-[40px] w-[40px] text-[#8b6a3e]" />
                 <span className="mt-[2px] text-[9.5px] font-semibold text-[#18395d]">Upload Photo</span>
               </div>
             )}
@@ -495,7 +495,7 @@ function PersonalInformation({
             )}
           </div>
 
-          <div className="flex flex-col justify-start gap-[6px] rounded-[6px] border border-[#bfe9cf] bg-[#effbf3] p-[7px]">
+          <div className="flex flex-col justify-start gap-[6px] rounded-[6px] border border-[#eadcc8] bg-[#fff8ed] p-[7px]">
             {isVerifying ? (
               <div className="flex items-center gap-[6px] text-[13px] font-bold text-[#0284c7]">
                 <Loader2 className="h-[15px] w-[15px] animate-spin" />
@@ -503,11 +503,11 @@ function PersonalInformation({
               </div>
             ) : isPhotoVerified ? (
               <div className="space-y-[3px]">
-                <div className="flex items-center gap-[5px] text-[13.5px] font-bold text-[#047857]">
-                  <CheckCircle2 className="h-[16px] w-[16px] fill-[#059669] text-white" />
+                <div className="flex items-center gap-[5px] text-[13.5px] font-bold text-[#8b6a3e]">
+                  <CheckCircle2 className="h-[16px] w-[16px] fill-[#8b6a3e] text-white" />
                   Photo Verified
                 </div>
-                <p className="text-[11.5px] font-semibold text-[#065f46]">
+                <p className="text-[11.5px] font-semibold text-[#5a3e2b]">
                   ✓ Valid male/female face, upright & sharp photo.
                 </p>
               </div>
@@ -523,8 +523,8 @@ function PersonalInformation({
               </div>
             ) : (
               <div className="space-y-[3px]">
-                <div className="flex items-center gap-[6px] text-[13.5px] font-bold text-[#0a7043]">
-                  <Sparkles className="h-[15px] w-[15px] text-[#059669]" />
+                <div className="flex items-center gap-[6px] text-[13.5px] font-bold text-[#8b6a3e]">
+                  <Sparkles className="h-[15px] w-[15px] text-[#8b6a3e]" />
                   Photo is Mandatory <span className="text-[#d91d26]">*</span>
                 </div>
                 <p className="text-[11.5px] leading-[1.25] text-[#2e5c49]">
@@ -537,7 +537,7 @@ function PersonalInformation({
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isVerifying}
-              className="mt-[6px] h-[26px] w-full rounded-[4px] bg-[#076c3d] text-[11.5px] font-bold text-white shadow-sm hover:bg-[#055630] disabled:opacity-50"
+              className="mt-[6px] h-[26px] w-full rounded-[4px] bg-[#8b6a3e] text-[11.5px] font-bold text-white shadow-sm hover:bg-[#5a3e2b] disabled:opacity-50"
             >
               {photoSrc ? "Change & Re-Verify" : "Choose & Verify Photo"}
             </button>
@@ -993,7 +993,7 @@ function TellUsMore({
               type="checkbox"
               checked={confirmed}
               onChange={(e) => setConfirmed(e.target.checked)}
-              className="h-[18px] w-[18px] cursor-pointer accent-[#0b7d47]"
+              className="h-[18px] w-[18px] cursor-pointer accent-[#8b6a3e]"
             />
             I confirm that the information provided is accurate and up to date.
           </label>
@@ -1010,7 +1010,7 @@ function TellUsMore({
               className={[
                 "flex h-[40px] min-w-[210px] items-center justify-center gap-[11px] rounded-[5px] px-[18px] text-[15px] font-semibold text-white shadow-sm transition-all",
                 canContinue
-                  ? "bg-[#08743e] hover:bg-[#076637] cursor-pointer"
+                  ? "bg-[#8b6a3e] hover:bg-[#5a3e2b] cursor-pointer"
                   : "cursor-not-allowed bg-[#9eb8aa]",
               ].join(" ")}
             >
@@ -1043,10 +1043,10 @@ function CVCard({ candidateData }: { candidateData?: any }) {
       <h3 className="text-[16px] font-semibold text-[#123963]">Your CV</h3>
 
       <div className="mt-[7px] flex items-center gap-[10px] rounded-[6px] bg-[#f2f7fa] px-[10px] py-[8px]">
-        <div className="relative grid h-[46px] w-[42px] place-items-center rounded-[6px] border-[2px] border-[#087447] text-[#087447]">
+        <div className="relative grid h-[46px] w-[42px] place-items-center rounded-[6px] border-[2px] border-[#8b6a3e] text-[#8b6a3e]">
           <FileText className="h-[23px] w-[23px]" />
 
-          <span className="absolute -bottom-[5px] -right-[5px] grid h-[18px] w-[18px] place-items-center rounded-full bg-[#087447] text-white">
+          <span className="absolute -bottom-[5px] -right-[5px] grid h-[18px] w-[18px] place-items-center rounded-full bg-[#8b6a3e] text-white">
             <Check className="h-[11px] w-[11px]" strokeWidth={3} />
           </span>
         </div>
@@ -1055,7 +1055,7 @@ function CVCard({ candidateData }: { candidateData?: any }) {
           <h4 className="truncate text-[13.5px] font-semibold text-[#14385f]">{cvName}</h4>
           <p className="mt-[1px] text-[12px] text-[#58708c]">{cvSize}</p>
 
-          <div className="mt-[5px] flex gap-[13px] text-[12px] font-semibold text-[#0874ce]">
+          <div className="mt-[5px] flex gap-[13px] text-[12px] font-semibold text-[#8b6a3e]">
             <button className="flex items-center gap-[4px]">
               <RefreshCw className="h-[13px] w-[13px]" />
               Upload Different CV
@@ -1086,7 +1086,7 @@ function AISummaryCard({ candidateData }: { candidateData?: any }) {
         <div
           className="relative grid aspect-square place-items-center rounded-full"
           style={{
-            background: `conic-gradient(#28aa42 ${score * 3.6}deg,#d7e4dd ${score * 3.6}deg)`,
+            background: `conic-gradient(#8b6a3e ${score * 3.6}deg,#d7e4dd ${score * 3.6}deg)`,
           }}
         >
           <div className="absolute inset-[7px] rounded-full bg-white" />
@@ -1099,13 +1099,13 @@ function AISummaryCard({ candidateData }: { candidateData?: any }) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center rounded-[7px] bg-[#effaf2] px-[10px] py-[7px]">
+        <div className="flex flex-col justify-center rounded-[7px] bg-[#fff8ed] px-[10px] py-[7px]">
           <h4 className="text-[14.5px] font-semibold text-[#11813e]">{title}</h4>
           <p className="mt-[3px] text-[14px] leading-[1.3] text-[#284f3f]">
             {candidateData?.summary || aiSummary.text}
           </p>
 
-          {/* <button className="mt-[5px] flex items-center gap-[5px] text-[14px] font-semibold text-[#0b6941]">
+          {/* <button className="mt-[5px] flex items-center gap-[5px] text-[14px] font-semibold text-[#8b6a3e]">
             View Detailed Analysis
             <ArrowRight className="h-[12px] w-[12px]" />
           </button> */}
@@ -1151,7 +1151,7 @@ function CVDetailsCard({ candidateData }: { candidateData?: any }) {
             <Icon className="mt-[1px] h-[16px] w-[16px] text-[#123f70]" />
             <div className="text-[14px] font-semibold leading-[1.2] text-[#17395f]">{label}</div>
             <div className="whitespace-pre-line text-[14px] leading-[1.25] text-[#294a6c]">{value}</div>
-            <CheckCircle2 className="h-[14px] w-[14px] fill-[#0ca34e] text-white" />
+            <CheckCircle2 className="h-[14px] w-[14px] fill-[#8b6a3e] text-white" />
           </div>
         ))}
       </div>
@@ -1163,7 +1163,7 @@ function UpdateCVCard() {
   return (
     <div className="rounded-[8px] border border-[#dce8e0] bg-white p-[10px] shadow-sm">
       <div className="flex items-start gap-[8px]">
-        <Info className="mt-[1px] h-[18px] w-[18px] shrink-0 text-[#0b7049]" />
+        <Info className="mt-[1px] h-[18px] w-[18px] shrink-0 text-[#8b6a3e]" />
 
         <div className="min-w-0">
           <h3 className="text-[13.5px] font-semibold text-[#17395f]">Need to Update CV Details?</h3>
@@ -1171,7 +1171,7 @@ function UpdateCVCard() {
             You can edit any field or upload a different CV to re-analyze your profile.
           </p>
 
-          <button className="mt-[6px] h-[28px] min-w-[150px] rounded-[4px] border border-[#0b7049] bg-white px-[12px] text-[11px] font-semibold text-[#0b7049]">
+          <button className="mt-[6px] h-[28px] min-w-[150px] rounded-[4px] border border-[#8b6a3e] bg-white px-[12px] text-[11px] font-semibold text-[#8b6a3e]">
             Upload New CV
           </button>
         </div>
@@ -1203,7 +1203,7 @@ function Sidebar({ onClose, candidateData }: { onClose: () => void; candidateDat
         <button
           type="button"
           onClick={onClose}
-          className="mt-[6px] flex h-[34px] items-center gap-[6px] rounded-[4px] bg-[#08743e] px-[11px] text-[10.5px] font-semibold text-white hover:bg-[#076637] transition-colors"
+          className="mt-[6px] flex h-[34px] items-center gap-[6px] rounded-[4px] bg-[#8b6a3e] px-[11px] text-[10.5px] font-semibold text-white hover:bg-[#5a3e2b] transition-colors"
         >
           <Home className="h-[14px] w-[14px]" />
           Back to Website
@@ -1283,7 +1283,7 @@ function ApplicationFormContent({
           <button
             type="button"
             onClick={onBack ?? onClose}
-            className="flex w-fit items-center gap-[6px] text-[14px] font-semibold text-[#0d5d3c] hover:text-[#d92027] transition-colors"
+            className="flex w-fit items-center gap-[6px] text-[14px] font-semibold text-[#8b6a3e] hover:text-[#d92027] transition-colors"
           >
             <ArrowLeft className="h-[15px] w-[15px]" />
             Preview
@@ -1433,7 +1433,7 @@ export default function CareerApplicationFormPage() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="rounded-[8px] bg-[#08743e] px-6 py-3 text-sm font-bold text-white"
+              className="rounded-[8px] bg-[#8b6a3e] px-6 py-3 text-sm font-bold text-white"
             >
               Open Application Form
             </button>

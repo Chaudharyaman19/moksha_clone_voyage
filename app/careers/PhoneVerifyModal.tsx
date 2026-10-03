@@ -223,10 +223,10 @@ export default function PhoneVerifyModal({
     };
 
     return (
-        <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[#04140d]/70 p-4 backdrop-blur-[6px]">
+        <div className="fixed inset-0 z-[100000] flex items-center justify-center bg-[#2c1810]/70 p-4 backdrop-blur-[6px]">
             <div className="relative w-full max-w-[430px] overflow-hidden rounded-[20px] bg-[#FBFCF9] shadow-[0_30px_80px_rgba(0,45,28,0.4)] ring-1 ring-[#cfe4d7]">
                 {/* ── Brand header ───────────────────────────────── */}
-                <div className="relative overflow-hidden bg-[linear-gradient(135deg,#00563f_0%,#00714f_55%,#008d55_100%)] px-6 py-5">
+                <div className="relative overflow-hidden bg-[linear-gradient(135deg,#8b6a3e_0%,#8b6a3e_55%,#8b6a3e_100%)] px-6 py-5">
                     <span className="pointer-events-none absolute -right-10 -top-14 h-36 w-36 rounded-full bg-white/10" />
                     <span className="pointer-events-none absolute -bottom-16 right-10 h-28 w-28 rounded-full bg-white/[0.07]" />
 
@@ -266,8 +266,8 @@ export default function PhoneVerifyModal({
                     {step === "SELECT" ? (
                         <form onSubmit={handleSend} className="space-y-4">
                             <div className="flex items-start gap-2.5 rounded-[10px] border border-[#c6e9d2] bg-[#eef9f2] px-3.5 py-3">
-                                <CheckCircle2 className="mt-[1px] h-[17px] w-[17px] shrink-0 fill-[#007a50] text-white" />
-                                <p className="text-[12.5px] font-semibold leading-snug text-[#0d5c40]">
+                                <CheckCircle2 className="mt-[1px] h-[17px] w-[17px] shrink-0 fill-[#8b6a3e] text-white" />
+                                <p className="text-[12.5px] font-semibold leading-snug text-[#8b6a3e]">
                                     One last step — verify your mobile number to continue with your application.
                                 </p>
                             </div>
@@ -286,7 +286,7 @@ export default function PhoneVerifyModal({
                                             <label
                                                 key={option}
                                                 className={`flex cursor-pointer items-center gap-3 rounded-[10px] border bg-white px-3.5 py-3 transition ${isSelected
-                                                    ? "border-[#008d55] ring-[3px] ring-[#008d55]/15"
+                                                    ? "border-[#8b6a3e] ring-[3px] ring-[#8b6a3e]/15"
                                                     : "border-[#c3d8cb] hover:border-[#9cc3ac]"
                                                     }`}
                                             >
@@ -300,9 +300,9 @@ export default function PhoneVerifyModal({
                                                         setMobileNumber(nationalDigits(option));
                                                         setError("");
                                                     }}
-                                                    className="h-[17px] w-[17px] shrink-0 accent-[#007a50]"
+                                                    className="h-[17px] w-[17px] shrink-0 accent-[#8b6a3e]"
                                                 />
-                                                <Phone className="h-[17px] w-[17px] shrink-0 text-[#00563f]" strokeWidth={2.2} />
+                                                <Phone className="h-[17px] w-[17px] shrink-0 text-[#8b6a3e]" strokeWidth={2.2} />
                                                 <span className="text-[15px] font-semibold tracking-[0.02em] text-[#12334a]">
                                                     {formatPhone(nationalDigits(option))}
                                                 </span>
@@ -321,7 +321,7 @@ export default function PhoneVerifyModal({
                             <button
                                 type="submit"
                                 disabled={isSending || mobileNumber.length < 10}
-                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#008d55,#007346)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
+                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#8b6a3e,#5a3e2b)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
                             >
                                 {isSending ? (
                                     <>
@@ -337,7 +337,7 @@ export default function PhoneVerifyModal({
                             </button>
 
                             <p className="flex items-center justify-center gap-1.5 text-[11.5px] text-[#6b7a87]">
-                                <LockKeyhole className="h-[13px] w-[13px] text-[#007a50]" />
+                                <LockKeyhole className="h-[13px] w-[13px] text-[#8b6a3e]" />
                                 Your number stays private and is used only for this verification.
                             </p>
                         </form>
@@ -349,11 +349,11 @@ export default function PhoneVerifyModal({
                             </p>
 
                             <div>
-                                <label htmlFor="boe-otp-phone" className="mb-1.5 block text-[12px] font-semibold tracking-[0.02em] text-[#00563f]">
+                                <label htmlFor="boe-otp-phone" className="mb-1.5 block text-[12px] font-semibold tracking-[0.02em] text-[#8b6a3e]">
                                     Mobile Number <span className="text-[#c0392b]">*</span>
                                 </label>
-                                <div className="flex items-stretch overflow-hidden rounded-[10px] border border-[#c3d8cb] bg-white transition focus-within:border-[#008d55] focus-within:ring-[3px] focus-within:ring-[#008d55]/15">
-                                    <span className="flex items-center gap-2 border-r border-[#dce8e1] bg-[#f2f9f3] px-3 text-[14px] font-semibold text-[#00563f]">
+                                <div className="flex items-stretch overflow-hidden rounded-[10px] border border-[#c3d8cb] bg-white transition focus-within:border-[#8b6a3e] focus-within:ring-[3px] focus-within:ring-[#8b6a3e]/15">
+                                    <span className="flex items-center gap-2 border-r border-[#dce8e1] bg-[#fffaf2] px-3 text-[14px] font-semibold text-[#8b6a3e]">
                                         <Phone className="h-[17px] w-[17px]" strokeWidth={2.2} />
                                         +91
                                     </span>
@@ -385,7 +385,7 @@ export default function PhoneVerifyModal({
                             <button
                                 type="submit"
                                 disabled={isSending || mobileNumber.length < 10}
-                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#008d55,#007346)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
+                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#8b6a3e,#5a3e2b)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
                             >
                                 {isSending ? (
                                     <>
@@ -401,16 +401,16 @@ export default function PhoneVerifyModal({
                             </button>
 
                             <p className="flex items-center justify-center gap-1.5 text-[11.5px] text-[#6b7a87]">
-                                <LockKeyhole className="h-[13px] w-[13px] text-[#007a50]" />
+                                <LockKeyhole className="h-[13px] w-[13px] text-[#8b6a3e]" />
                                 Your number stays private and is used only for this verification.
                             </p>
                         </form>
                     ) : (
                         <form onSubmit={handleVerify} className="space-y-4">
                             <div className="flex items-start gap-2.5 rounded-[10px] border border-[#c6e9d2] bg-[#eef9f2] px-3.5 py-3">
-                                <CheckCircle2 className="mt-[1px] h-[17px] w-[17px] shrink-0 fill-[#007a50] text-white" />
+                                <CheckCircle2 className="mt-[1px] h-[17px] w-[17px] shrink-0 fill-[#8b6a3e] text-white" />
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-[12.5px] font-semibold leading-snug text-[#0d5c40]">
+                                    <p className="text-[12.5px] font-semibold leading-snug text-[#8b6a3e]">
                                         OTP sent to {formatPhone(mobileNumber)}
                                     </p>
                                     <button
@@ -420,7 +420,7 @@ export default function PhoneVerifyModal({
                                             setOtpCode("");
                                             setError("");
                                         }}
-                                        className="mt-[3px] text-[11.5px] font-semibold text-[#007a50] underline underline-offset-2 transition hover:text-[#00563f]"
+                                        className="mt-[3px] text-[11.5px] font-semibold text-[#8b6a3e] underline underline-offset-2 transition hover:text-[#8b6a3e]"
                                     >
                                         Change number
                                     </button>
@@ -428,7 +428,7 @@ export default function PhoneVerifyModal({
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-center text-[12.5px] font-semibold text-[#00563f]">
+                                <label className="mb-2 block text-center text-[12.5px] font-semibold text-[#8b6a3e]">
                                     Enter the {OTP_LENGTH}-digit code
                                 </label>
                                 <div className="flex justify-center gap-2" onPaste={handlePaste}>
@@ -450,9 +450,9 @@ export default function PhoneVerifyModal({
                                             className={`h-[52px] w-[46px] rounded-[10px] border bg-white text-center text-[21px] font-semibold text-[#12334a] outline-none transition ${error
                                                 ? "border-[#e0a49c]"
                                                 : otpCode[index]
-                                                    ? "border-[#008d55]"
+                                                    ? "border-[#8b6a3e]"
                                                     : "border-[#c3d8cb]"
-                                                } focus:border-[#008d55] focus:ring-[3px] focus:ring-[#008d55]/15`}
+                                                } focus:border-[#8b6a3e] focus:ring-[3px] focus:ring-[#8b6a3e]/15`}
                                         />
                                     ))}
                                 </div>
@@ -467,7 +467,7 @@ export default function PhoneVerifyModal({
                             <button
                                 type="submit"
                                 disabled={isVerifying || otpCode.length < OTP_LENGTH}
-                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#008d55,#007346)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
+                                className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-[9px] bg-[linear-gradient(180deg,#8b6a3e,#5a3e2b)] text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(0,84,51,0.25)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:bg-none disabled:bg-[#b6c4bc] disabled:shadow-none"
                             >
                                 {isVerifying ? (
                                     <>
@@ -493,7 +493,7 @@ export default function PhoneVerifyModal({
                                         type="button"
                                         disabled={isSending}
                                         onClick={() => handleSend()}
-                                        className="font-semibold text-[#007a50] underline underline-offset-2 transition hover:text-[#00563f] disabled:opacity-50"
+                                        className="font-semibold text-[#8b6a3e] underline underline-offset-2 transition hover:text-[#8b6a3e] disabled:opacity-50"
                                     >
                                         Resend OTP
                                     </button>

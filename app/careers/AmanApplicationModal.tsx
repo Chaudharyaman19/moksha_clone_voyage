@@ -24,9 +24,9 @@ const DESIGN_WIDTH = 1500;
 const DESIGN_HEIGHT = 900;
 
 const assets = {
-  headerLeaf: "/separated-assets/bharat-organic-leaf.png",
+  headerLeaf: "/assets/logo-moksha-seva.png",
   headerBanner: "/separated-assets/career-sidebar-top.png",
-  sidebarFooter: "/separated-assets/grow-organic-grow-india.png",
+  sidebarFooter: "/separated-assets/moksha-footer-ghat-bg.webp",
   profile: "/career-submit-resume-assets/profile.png",
 };
 
@@ -408,7 +408,7 @@ function JobSummaryCard() {
 function SummaryRow({ icon: Icon, text }: { icon: React.ElementType; text: string }) {
   return (
     <div className="flex items-center gap-[8px]">
-      <Icon className="h-[17px] w-[17px] text-[#076d49]" />
+      <Icon className="h-[17px] w-[17px] text-[#8b6a3e]" />
       <span className="text-[12.5px] font-semibold text-[#284867]">{text}</span>
     </div>
   );

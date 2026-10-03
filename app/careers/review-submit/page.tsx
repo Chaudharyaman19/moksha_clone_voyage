@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ApplicationSuccessModal from "../ApplicationSuccessModal";
-import sidebarFooterImage from "../../assets/carrer/grow-organic-grow-india.png";
+const sidebarFooterImage = "/assets/moksha-footer-ghat-bg.webp";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import {
   ArrowLeft,
@@ -44,7 +44,7 @@ import {
 const asset = (file: string) => `/separated-assets/${file}`;
 
 const assets = {
-  headerLeaf: "/separated-assets/bharat-organic-leaf.png",
+  headerLeaf: "/assets/logo-moksha-seva.png",
   headerBanner: asset("career-sidebar-top.png"),
   sidebarTop: asset("career-sidebar-top.png"),
   sidebarFooter: sidebarFooterImage,
@@ -109,7 +109,7 @@ function ProgressSteps() {
   return (
     <div className="relative mx-auto w-[82%]">
       <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#d9e0e7]" />
-      <div className="absolute left-[12.5%] top-[14px] h-[2px] w-[75%] bg-[#0a874d]" />
+      <div className="absolute left-[12.5%] top-[14px] h-[2px] w-[75%] bg-[#8b6a3e]" />
 
       <div className="relative grid grid-cols-4">
         {steps.map((step, index) => (
@@ -118,7 +118,7 @@ function ProgressSteps() {
               className={[
                 "grid h-[28px] w-[28px] place-items-center rounded-full text-[12px] font-semibold",
                 step.done || step.active
-                  ? "bg-[#078346] text-white"
+                  ? "bg-[#8b6a3e] text-white"
                   : "bg-[#e1e8ee] text-[#17395f]",
               ].join(" ")}
             >
@@ -153,16 +153,16 @@ function SectionTitle({
   onEdit?: () => void;
 }) {
   return (
-    <div className="flex h-[38px] items-center justify-between rounded-t-[8px] border border-b-0 border-[#dceae1] bg-[linear-gradient(90deg,#f2fbf4,#edf8f0)] px-[14px]">
+    <div className="flex h-[38px] items-center justify-between rounded-t-[8px] border border-b-0 border-[#eadcc8] bg-[linear-gradient(90deg,#fffaf2,#fff8ed)] px-[14px]">
       <div className="flex items-center gap-[8px]">
-        <Icon className="h-[20px] w-[20px] text-[#076c3d]" strokeWidth={2.4} />
-        <h2 className="text-[17px] font-semibold text-[#0b5b3c]">{title}</h2>
+        <Icon className="h-[20px] w-[20px] text-[#8b6a3e]" strokeWidth={2.4} />
+        <h2 className="text-[17px] font-semibold text-[#8b6a3e]">{title}</h2>
       </div>
       {onEdit && (
         <button
           type="button"
           onClick={onEdit}
-          className="flex items-center gap-[4px] text-[12.5px] font-semibold text-[#0874ce] hover:text-[#065aa8]"
+          className="flex items-center gap-[4px] text-[12.5px] font-semibold text-[#8b6a3e] hover:text-[#5a3e2b]"
         >
           <Edit3 className="h-[13px] w-[13px]" />
           Edit
@@ -203,8 +203,8 @@ function CandidateProfile({ candidateData }: { candidateData?: any }) {
               onError={() => setPhotoSrc(null)}
             />
           ) : (
-            <div className="flex h-full w-full flex-col items-center justify-center bg-[#e4efe8] text-[#076d49]">
-              <User className="h-[48px] w-[48px] text-[#087447]" />
+            <div className="flex h-full w-full flex-col items-center justify-center bg-[#fff8ed] text-[#8b6a3e]">
+              <User className="h-[48px] w-[48px] text-[#8b6a3e]" />
               <span className="mt-[2px] text-[10px] font-semibold text-[#18395d]">No Photo</span>
             </div>
           )}
@@ -223,19 +223,19 @@ function CandidateProfile({ candidateData }: { candidateData?: any }) {
           <div className="mt-[6px] space-y-[4px] font-semibold text-[#284766]">
             {phone && (
               <div className="flex items-center gap-[6px] text-[13px]">
-                <Phone className="h-[15px] w-[15px] text-[#087447]" />
+                <Phone className="h-[15px] w-[15px] text-[#8b6a3e]" />
                 {phone}
               </div>
             )}
             {email && (
               <div className="flex items-center gap-[6px] text-[13px]">
-                <Mail className="h-[15px] w-[15px] text-[#087447]" />
+                <Mail className="h-[15px] w-[15px] text-[#8b6a3e]" />
                 {email}
               </div>
             )}
             {linkedin && (
-              <div className="flex items-center gap-[6px] text-[13px] text-[#0874ce]">
-                <LinkIcon className="h-[15px] w-[15px] text-[#087447]" />
+              <div className="flex items-center gap-[6px] text-[13px] text-[#8b6a3e]">
+                <LinkIcon className="h-[15px] w-[15px] text-[#8b6a3e]" />
                 {linkedin}
               </div>
             )}
@@ -288,7 +288,7 @@ function AddressAvailability({ candidateData }: { candidateData?: any }) {
           {rows.map(({ icon: Icon, label, value }) => (
             <div key={label} className="grid grid-cols-[165px_1fr] items-center gap-[6px] py-[3px] border-b border-[#e8efeb] last:border-b-0">
               <div className="flex items-center gap-[6px] text-[12.5px] font-semibold text-[#17395f]">
-                <Icon className="h-[14px] w-[14px] text-[#087447]" />
+                <Icon className="h-[14px] w-[14px] text-[#8b6a3e]" />
                 {label}
               </div>
               <div className="text-[12.5px] font-semibold text-[#29445f]">{value}</div>
@@ -341,14 +341,14 @@ function ProfessionalExperience({ candidateData }: { candidateData?: any }) {
 
           {entries.map((exp, idx) => (
             <div key={idx} className="relative">
-              <div className="absolute -left-[14px] top-[4px] h-[9px] w-[9px] rounded-full border-[2px] border-[#087447] bg-white" />
+              <div className="absolute -left-[14px] top-[4px] h-[9px] w-[9px] rounded-full border-[2px] border-[#8b6a3e] bg-white" />
 
               <div className="flex items-center gap-[6px]">
                 <h4 className="text-[13.5px] font-semibold text-[#123963]">
                   {exp.title}
                 </h4>
                 {exp.badge && (
-                  <span className="rounded-[4px] bg-[#e8f5ec] px-[6px] py-[1.5px] text-[10px] font-semibold text-[#0a7043]">
+                  <span className="rounded-[4px] bg-[#fff8ed] px-[6px] py-[1.5px] text-[10px] font-semibold text-[#8b6a3e]">
                     {exp.badge}
                   </span>
                 )}
@@ -383,7 +383,7 @@ function Education({ candidateData }: { candidateData?: any }) {
         <div className="space-y-[4px]">
           {education.map((line, idx) => (
             <div key={idx} className="flex items-start gap-[6px] border-b border-[#e8efeb] py-[4px] last:border-b-0 last:py-0">
-              <GraduationCap className="mt-[2px] h-[15px] w-[15px] text-[#087447]" />
+              <GraduationCap className="mt-[2px] h-[15px] w-[15px] text-[#8b6a3e]" />
               <p className="flex-1 text-[12.5px] font-semibold text-[#123963]">{line}</p>
             </div>
           ))}
@@ -410,7 +410,7 @@ function Skills({ candidateData }: { candidateData?: any }) {
           {skills.map((skill) => (
             <span
               key={skill}
-              className="rounded-[6px] border border-[#d0e4d8] bg-[#f0f8f2] px-[10px] py-[3.5px] text-[11.5px] font-semibold text-[#1a5c3a]"
+              className="rounded-[6px] border border-[#eadcc8] bg-[#fff8ed] px-[10px] py-[3.5px] text-[11.5px] font-semibold text-[#1a5c3a]"
             >
               {skill}
             </span>
@@ -523,7 +523,7 @@ function AIMatchScoreCard({ candidateData }: { candidateData?: any }) {
       <h3 className="text-[16px] font-semibold text-[#123963]">Your AI Match Score</h3>
 
       <div className="mt-[6px] grid grid-cols-[82px_1fr] items-center gap-[10px]">
-        <div className="relative grid aspect-square place-items-center rounded-full" style={{ background: `conic-gradient(#28aa42 ${score * 3.6}deg,#d7e4dd ${score * 3.6}deg 360deg)` }}>
+        <div className="relative grid aspect-square place-items-center rounded-full" style={{ background: `conic-gradient(#8b6a3e ${score * 3.6}deg,#d7e4dd ${score * 3.6}deg 360deg)` }}>
           <div className="absolute inset-[7px] rounded-full bg-white" />
           <div className="relative z-10 text-center">
             <div className="text-[23px] font-semibold leading-none text-[#123963]">
@@ -535,13 +535,13 @@ function AIMatchScoreCard({ candidateData }: { candidateData?: any }) {
           </div>
         </div>
 
-        <div className="rounded-[6px] bg-[#effaf2] px-[9px] py-[6px]">
+        <div className="rounded-[6px] bg-[#fff8ed] px-[9px] py-[6px]">
           <h4 className="text-[15px] font-semibold text-[#11813e]">{matchTitle}</h4>
           <p className="mt-[2px] text-[12px] leading-[1.25] text-[#284f3f]">
             {candidateData?.summary || "Your profile matches key requirements for this position."}
           </p>
 
-          <button className="mt-[4px] flex items-center gap-[5px] text-[12px] font-semibold text-[#0b6941]">
+          <button className="mt-[4px] flex items-center gap-[5px] text-[12px] font-semibold text-[#8b6a3e]">
             View Detailed Analysis
             <ArrowRight className="h-[13px] w-[13px]" />
           </button>
@@ -568,7 +568,7 @@ function JobSummaryCard({ candidateData }: { candidateData?: any }) {
       <div className="mt-[8px] space-y-[7px]">
         {rows.map(({ icon: Icon, value }, idx) => (
           <div key={idx} className="flex items-center gap-[8px]">
-            <Icon className="h-[16px] w-[16px] text-[#087447]" />
+            <Icon className="h-[16px] w-[16px] text-[#8b6a3e]" />
             <span className="text-[12.5px] font-semibold text-[#29445f]">{value}</span>
           </div>
         ))}
@@ -581,8 +581,8 @@ function LooksGoodCard() {
   return (
     <div className="rounded-[8px] border border-[#dce8e0] bg-white p-[12px] shadow-sm">
       <div className="flex items-center gap-[8px]">
-        <div className="grid h-[26px] w-[26px] place-items-center rounded-full bg-[#e8f5ec]">
-          <Check className="h-[16px] w-[16px] text-[#087447]" strokeWidth={3} />
+        <div className="grid h-[26px] w-[26px] place-items-center rounded-full bg-[#fff8ed]">
+          <Check className="h-[16px] w-[16px] text-[#8b6a3e]" strokeWidth={3} />
         </div>
         <h3 className="text-[17.5px] font-semibold text-[#123963]">Looks Good!</h3>
       </div>
@@ -618,7 +618,7 @@ function SubmitCard({
         type="button"
         onClick={onSubmit}
         disabled={isSubmitting}
-        className="flex w-full items-center justify-center gap-[8px] rounded-[6px] bg-[#08743e] px-[14px] py-[10px] text-[16px] font-semibold text-white shadow-sm transition-colors hover:bg-[#076637] disabled:cursor-not-allowed disabled:bg-[#8fae9d]"
+        className="flex w-full items-center justify-center gap-[8px] rounded-[6px] bg-[#8b6a3e] px-[14px] py-[10px] text-[16px] font-semibold text-white shadow-sm transition-colors hover:bg-[#5a3e2b] disabled:cursor-not-allowed disabled:bg-[#8fae9d]"
       >
         {isSubmitting ? "Submitting…" : "Submit Application"}
         {!isSubmitting && <ArrowRight className="h-[17px] w-[17px]" />}
@@ -630,7 +630,7 @@ function SubmitCard({
         </p>
       ) : (
         <div className="mt-[6px] flex items-center justify-center gap-[6px] text-[11px] font-semibold text-[#58708c]">
-          <ShieldCheck className="h-[14px] w-[14px] text-[#087447]" />
+          <ShieldCheck className="h-[14px] w-[14px] text-[#8b6a3e]" />
           Your data is secure and encrypted
         </div>
       )}
@@ -659,7 +659,7 @@ function RightSidebar({
         <button
           type="button"
           onClick={onClose}
-          className="mt-[4px] flex h-[30px] items-center gap-[6px] rounded-[4px] bg-[#08743e] px-[9px] text-[10px] font-semibold text-white hover:bg-[#076637] transition-colors"
+          className="mt-[4px] flex h-[30px] items-center gap-[6px] rounded-[4px] bg-[#8b6a3e] px-[9px] text-[10px] font-semibold text-white hover:bg-[#5a3e2b] transition-colors"
         >
           <Home className="h-[13px] w-[13px]" />
           Back to Website
@@ -732,7 +732,7 @@ function ReviewSubmitContent({
             <button
               type="button"
               onClick={onBack ?? onClose}
-              className="flex w-fit items-center gap-[5px] text-[13px] font-semibold text-[#0d5d3c] hover:text-[#d92027] transition-colors"
+              className="flex w-fit items-center gap-[5px] text-[13px] font-semibold text-[#8b6a3e] hover:text-[#d92027] transition-colors"
             >
               <ArrowLeft className="h-[14px] w-[14px]" />
               Preview
@@ -740,7 +740,7 @@ function ReviewSubmitContent({
           ) : (
             <Link
               href="/careers"
-              className="flex w-fit items-center gap-[5px] text-[13px] font-semibold text-[#0d5d3c] hover:text-[#d92027] transition-colors"
+              className="flex w-fit items-center gap-[5px] text-[13px] font-semibold text-[#8b6a3e] hover:text-[#d92027] transition-colors"
             >
               <ArrowLeft className="h-[14px] w-[14px]" />
               Preview
@@ -753,8 +753,12 @@ function ReviewSubmitContent({
 
           <div className="mt-[3px] flex items-center gap-[10px] text-[14px] font-semibold text-[#1c4b78]">
             <span>{candidateData?.jobDetails?.company || job.company}</span>
-            <span className="h-[14px] w-px bg-[#c8d3dc]" />
-            <span>{candidateData?.jobDetails?.brand || job.brand}</span>
+            {candidateData?.jobDetails?.brand && candidateData.jobDetails.brand !== (candidateData?.jobDetails?.company || job.company) && (
+              <>
+                <span className="h-[14px] w-px bg-[#c8d3dc]" />
+                <span>{candidateData.jobDetails.brand}</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -1037,7 +1041,7 @@ export default function ReviewSubmitPage() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="rounded-[8px] bg-[#08743e] px-6 py-3 text-sm font-semibold text-white"
+              className="rounded-[8px] bg-[#8b6a3e] px-6 py-3 text-sm font-semibold text-white"
             >
               Open Review & Submit
             </button>

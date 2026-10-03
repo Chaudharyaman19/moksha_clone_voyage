@@ -29,7 +29,7 @@ export default function UploadCvPage() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="rounded-[8px] bg-[#08743e] px-6 py-3 text-sm font-bold text-white"
+            className="rounded-[8px] bg-[#8b6a3e] px-6 py-3 text-sm font-bold text-white"
           >
             Open Upload CV
           </button>
@@ -46,4 +46,4 @@ export default function UploadCvPage() {
       )}
     </main>
   );
-}
+}

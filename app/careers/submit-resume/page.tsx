@@ -1,15 +1,17 @@
 "use client";
 
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
+  BarChart,
   Bookmark,
   BookOpen,
   BriefcaseBusiness,
+  Building2,
   Check,
   FileText,
   GraduationCap,
@@ -28,6 +30,7 @@ import {
   X,
 } from "lucide-react";
 import PhoneVerifyModal from "../PhoneVerifyModal";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 /* =========================================================
    CHANGE ONLY SCORE
@@ -46,14 +49,14 @@ const matchScore = 72;
 const asset = (file: string) => `/separated-assets/${file}`;
 
 const separatedAssets = {
-  personHigh: "/career-submit-resume-assets/newimagegreat.png",
-  personModerate: asset("career-person-moderate.png"),
-  personLow: "/career-submit-resume-assets/sadimage.png",
-  rightPeople: asset("career-right-people.png"),
-  stickyNote: asset("career-sticky-note.png"),
+  personHigh: "/career-submit-resume-assets/image copy 5.png",
+  personModerate: "/career-submit-resume-assets/image copy 4.png",
+  personLow: "/career-submit-resume-assets/image copy 4.png",
+  rightPeople: "/career-submit-resume-assets/image copy 6.png",
+  stickyNote: "/career-submit-resume-assets/image copy 6.png",
   sidebarTop: asset("career-sidebar-top.png"),
-  sidebarFooter: asset("career-sidebar-footer.png"),
-  headerLeaf: "/separated-assets/bharat-organic-leaf.png",
+  sidebarFooter: "/career-submit-resume-assets/image copy 3.png",
+  headerLeaf: "/assets/logo-moksha-seva.png",
 };
 
 const brandHeader = {
@@ -119,15 +122,15 @@ const matchLevel: MatchLevel =
 
 const stateTheme = {
   high: {
-    primary: "#07883f",
-    dark: "#076331",
-    heroBg: "linear-gradient(100deg,#edf8ef 0%,#e9f6eb 52%,#e2f5e6 100%)",
-    panelBg: "#f3fbf5",
-    panelBorder: "#d9ecdf",
-    score: "#149c3e",
-    step: "#07883f",
-    cta: "#08743e",
-    supportBg: "#f3fbf3",
+    primary: "#8b6a3e",
+    dark: "#5a3e2b",
+    heroBg: "linear-gradient(100deg,#faf7f2 0%,#fff8ed 52%,#fffaf2 100%)",
+    panelBg: "#faf7f2",
+    panelBorder: "#eadcc8",
+    score: "#8b6a3e",
+    step: "#8b6a3e",
+    cta: "#8b6a3e",
+    supportBg: "#faf7f2",
   },
   moderate: {
     primary: "#f08000",
@@ -137,7 +140,7 @@ const stateTheme = {
     panelBorder: "#f0e3d4",
     score: "#f18700",
     step: "#f08000",
-    cta: "#08743e",
+    cta: "#8b6a3e",
     supportBg: "#eff7ff",
   },
   low: {
@@ -148,7 +151,7 @@ const stateTheme = {
     panelBorder: "#f0dddd",
     score: "#d20c16",
     step: "#d30c18",
-    cta: "#08743e",
+    cta: "#8b6a3e",
     supportBg: "#f3fbf3",
   },
 } as const;
@@ -161,8 +164,8 @@ const theme = stateTheme[matchLevel];
 
 const matchConfig = {
   high: {
-    color: "#07883f",
-    dark: "#076331",
+    color: "#8b6a3e",
+    dark: "#5a3e2b",
     soft: "#eef9ef",
     soft2: "#f5fbf6",
 
@@ -568,7 +571,7 @@ function ProgressSteps() {
       <div className="absolute left-[12.5%] right-[12.5%] top-[16px] h-[2px] bg-[#d8dfe4]" />
 
       <div
-        className="absolute left-[12.5%] top-[16px] h-[2px] bg-[#087f46]"
+        className="absolute left-[12.5%] top-[16px] h-[2px] bg-[#8b6a3e]"
         style={{
           width: current.step === 2 ? "25%" : "37.5%",
         }}
@@ -597,12 +600,12 @@ function ProgressSteps() {
                 className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-full text-[14px] font-semibold"
                 style={{
                   background: completed
-                    ? "#087f46"
+                    ? "#8b6a3e"
                     : active
                       ? current.color
                       : "#e4eaf0",
 
-                  color: completed || active ? "#fff" : "#153760",
+                  color: completed || active ? "#fff" : "#5a3e2b",
                 }}
               >
                 {completed ? (
@@ -615,7 +618,7 @@ function ProgressSteps() {
                 )}
               </div>
 
-              <span className="mt-[5px] whitespace-nowrap text-[12px] font-extrabold text-[#0d315e]">
+              <span className="mt-[5px] whitespace-nowrap text-[12px] font-extrabold text-[#5a3e2b]">
                 {label}
               </span>
             </div>
@@ -679,7 +682,7 @@ function ResultHero() {
         style={{
           background:
             matchLevel === "high"
-              ? "#e9f6eb"
+              ? "#fff8ed"
               : matchLevel === "moderate"
                 ? "#fff3df"
                 : "#ffeded",
@@ -719,17 +722,17 @@ function ResultHero() {
                 {current.subtitle}
               </h3>
 
-              <p className="mt-[6px] max-w-[98%] whitespace-pre-wrap text-[15px] font-medium leading-[1.38] text-[#123d73]">
+              <p className="mt-[6px] max-w-[98%] whitespace-pre-wrap text-[15px] font-medium leading-[1.38] text-[#5a3e2b]">
                 {current.description}
               </p>
 
               {current.quote && (
-                <p className="mt-[4px] max-w-[95%] text-[14px] italic leading-[1.25] text-[#123d73]">
+                <p className="mt-[4px] max-w-[95%] text-[14px] italic leading-[1.25] text-[#5a3e2b]">
                   “ {current.quote} ”
                 </p>
               )}
 
-              <p className="mt-[8px] text-[15px] italic leading-[1.18] text-[#164232]">
+              <p className="mt-[8px] text-[15px] italic leading-[1.18] text-[#5a3e2b]">
                 — Talent Acquisition Team
                 <br />
                 <span className="pl-[16px] font-semibold">Moksha Sewa</span>
@@ -741,7 +744,7 @@ function ResultHero() {
 
       {/* RIGHT SIDE ARTWORKS */}
       {/* 1. Original Artwork ("Right People Brighter Tomorrows") - Shifted slightly higher */}
-      <div className="pointer-events-none absolute right-[2%] top-[2%] bottom-[12%] z-10 w-[18%] overflow-visible">
+      <div className="pointer-events-none absolute -right-[1%] top-[2%] bottom-[12%] z-10 w-[18%] overflow-visible">
         <Image
           src={separatedAssets.rightPeople}
           alt=""
@@ -751,16 +754,6 @@ function ResultHero() {
         />
       </div>
 
-      {/* 2. Leaf Image - Smaller size at bottom right corner without clipping */}
-      <div className="pointer-events-none absolute bottom-0 right-0 z-20 h-[35%] w-[11%] overflow-visible">
-        <Image
-          src="/assets/final-card-exact.png"
-          alt=""
-          fill
-          sizes="11vw"
-          className="object-contain object-right-bottom"
-        />
-      </div>
     </div>
   );
 }
@@ -789,7 +782,7 @@ function ScoreRing() {
         <div
           className="text-[clamp(30px,2.8vw,46px)] font-semibold leading-none"
           style={{
-            color: matchLevel === "high" ? "#123761" : ringColor,
+            color: matchLevel === "high" ? "#5a3e2b" : ringColor,
           }}
         >
           {matchScore}%
@@ -833,21 +826,21 @@ function ScoreSummary() {
 
   return (
     <div className="grid h-full min-h-0 grid-cols-[1fr_1.1fr] gap-[10px]">
-      <div className="flex min-h-0 items-center gap-[clamp(10px,1.2vw,16px)] overflow-hidden rounded-[7px] border border-[#e0e7e2] bg-white px-[clamp(10px,1.2vw,16px)] py-[8px]">
+      <div className="flex min-h-0 items-center gap-[clamp(10px,1.2vw,16px)] overflow-hidden rounded-[7px] border border-[#eadcc8] bg-white px-[clamp(10px,1.2vw,16px)] py-[8px]">
         <ScoreRing />
 
         <div className="flex min-w-0 flex-col justify-center pl-[2px]">
-          <h3 className="text-[17px] font-bold tracking-tight text-[#113a72] leading-tight">
+          <h3 className="text-[17px] font-bold tracking-tight text-[#8b6a3e] leading-tight">
             {current.summaryTitle}
           </h3>
 
-          <p className="mt-[3px] max-w-[400px] text-[13.5px] font-semibold leading-[1.25] text-[#254b73] line-clamp-2">
+          <p className="mt-[3px] max-w-[400px] text-[13.5px] font-semibold leading-[1.25] text-[#5a3e2b] line-clamp-2">
             {current.summaryText}
           </p>
 
           <div className="mt-[6px] space-y-[4px]">
             <Legend
-              color="#13a13f"
+              color="#8b6a3e"
               range="70 – 100%"
               label="Strong Match"
             />
@@ -920,10 +913,10 @@ function ScoreSummary() {
                   )}
                 </span>
 
-                <p className="whitespace-nowrap text-[13.5px] font-semibold leading-tight text-[#123d73]">
+                <p className="whitespace-nowrap text-[13.5px] font-semibold leading-tight text-[#5a3e2b]">
                   {mainText}
                   {parenText && (
-                    <span className="font-medium text-[#214368]">{parenText}</span>
+                    <span className="font-medium text-[#8b6a3e]">{parenText}</span>
                   )}
                 </p>
               </div>
@@ -946,13 +939,13 @@ function Breakdown() {
     return <LowNextSteps />;
   }
 
-  const iconAssets: Record<string, string> = {
-    "Relevant Experience": asset("briefcase-large.png"),
-    "Educational Qualification": asset("graduation-cap.png"),
-    "Key Skills": asset("settings-large.png"),
-    "Role Fit": asset("career-role-fit.png"),
-    "Industry Experience": asset("users-large.png"),
-    "Location Preference": asset("location.png"),
+  const iconMap: Record<string, any> = {
+    "Relevant Experience": BriefcaseBusiness,
+    "Educational Qualification": GraduationCap,
+    "Key Skills": Lightbulb,
+    "Role Fit": Target,
+    "Industry Experience": Building2,
+    "Location Preference": MapPin,
   };
 
   const breakdownItems = current.breakdown.map((item) => {
@@ -970,13 +963,13 @@ function Breakdown() {
 
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden">
-      <h3 className="shrink-0 text-[14px] font-semibold leading-none text-[#10345f]">
+      <h3 className="shrink-0 text-[14px] font-semibold leading-none text-[#8b6a3e]">
         {matchLevel === "moderate"
           ? "Detailed Match Breakdown"
           : "Match Breakdown"}
       </h3>
 
-      <p className="mt-[2px] shrink-0 text-[13px] font-medium text-[#183858]">
+      <p className="mt-[2px] shrink-0 text-[13px] font-medium text-[#5a3e2b]">
         Here&apos;s how your profile matches with our key requirements:
       </p>
 
@@ -984,7 +977,7 @@ function Breakdown() {
         {breakdownItems.map((item) => {
           const scoreColor =
             item.score >= 70
-              ? "#159d3d"
+              ? "#8b6a3e"
               : item.score >= 50
                 ? "#efa800"
                 : "#d90d14";
@@ -992,22 +985,23 @@ function Breakdown() {
           return (
             <div
               key={item.title}
-              className="grid min-h-0 grid-cols-[28px_minmax(0,1fr)_40px] items-center gap-[8px] rounded-[10px] border border-[#e2ece5] bg-white px-[10px] py-[5px] shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+              className="grid min-h-0 grid-cols-[28px_minmax(0,1fr)_40px] items-center gap-[8px] rounded-[10px] border border-[#eadcc8] bg-white px-[10px] py-[5px] shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
             >
-              <Image
-                src={iconAssets[item.title] ?? asset("briefcase-large.png")}
-                alt=""
-                width={64}
-                height={64}
-                className="h-[24px] w-[24px] object-contain"
-              />
+              {(() => {
+                const Icon = iconMap[item.title] ?? BriefcaseBusiness;
+                return (
+                  <div className="grid h-[28px] w-[28px] shrink-0 place-items-center rounded-[8px] bg-[#fff8ed]">
+                    <Icon className="h-[16px] w-[16px] text-[#8b6a3e] stroke-[2.5]" />
+                  </div>
+                );
+              })()}
 
               <div className="min-w-0">
-                <h4 className="truncate text-[12.5px] font-bold leading-tight text-[#102e50]">
+                <h4 className="truncate text-[12.5px] font-bold leading-tight text-[#8b6a3e]">
                   {item.title}
                 </h4>
 
-                <p className="mt-[1px] truncate text-[11px] font-semibold text-[#34475c]">
+                <p className="mt-[1px] truncate text-[11px] font-semibold text-[#5a3e2b]">
                   {item.description}
                 </p>
 
@@ -1033,8 +1027,8 @@ function Breakdown() {
         })}
       </div>
 
-      <div className="mt-[22px] flex h-[36px] shrink-0 items-center gap-[8px] rounded-[8px] border border-[#d8eae0] bg-[#eff9f2] px-[12px] text-[13px] text-[#173e34]">
-        <BookOpen className="h-[16px] w-[16px] shrink-0 text-[#087447]" />
+      <div className="mt-[22px] flex h-[36px] shrink-0 items-center gap-[8px] rounded-[8px] border border-[#eadcc8] bg-[#fff8ed] px-[12px] text-[13px] text-[#5a3e2b]">
+        <BookOpen className="h-[16px] w-[16px] shrink-0 text-[#8b6a3e]" />
 
         <span className="truncate">
           <span className="font-bold">Tip:</span> Update your CV with more relevant experience and skills to increase your match score and improve your chances.
@@ -1072,9 +1066,9 @@ function LowNextSteps() {
   ];
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] bg-[#f3fbf6] px-[16px] py-[10px]">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] bg-[#faf7f2] px-[16px] py-[10px]">
       <div className="flex shrink-0 items-center gap-[10px]">
-        <Lightbulb className="h-[24px] w-[24px] text-[#368615] shrink-0" fill="#368615" />
+        <Lightbulb className="h-[24px] w-[24px] text-[#8b6a3e] shrink-0" fill="#8b6a3e" />
 
         <div className="space-y-[2px]">
           <h3 className="text-[17px] font-semibold leading-tight text-[#113a72]">
@@ -1095,7 +1089,7 @@ function LowNextSteps() {
               className="flex gap-[10px] px-[12px] first:pl-0 last:pr-0"
             >
               <Icon
-                className="mt-[2px] h-[24px] w-[24px] shrink-0 text-[#075333]"
+                className="mt-[2px] h-[24px] w-[24px] shrink-0 text-[#8b6a3e]"
                 strokeWidth={2.5}
               />
 
@@ -1115,7 +1109,7 @@ function LowNextSteps() {
         <button
           type="button"
           disabled
-          className="mt-[12px] flex h-[42px] cursor-not-allowed items-center gap-[8px] rounded-[8px] bg-[#b6c4bc] px-[24px] text-[14px] font-bold text-white"
+          className="mt-[12px] flex h-[42px] cursor-not-allowed items-center gap-[8px] rounded-[8px] bg-[#d8c39f] px-[24px] text-[14px] font-bold text-white"
         >
           View Other Job Opportunities
           <ArrowRight className="h-[16px] w-[16px]" strokeWidth={2.5} />
@@ -1418,7 +1412,7 @@ function ProfileCard() {
   const fieldClass = (invalid: boolean) =>
     [
       "w-full rounded-[6px] border bg-white px-[9px] py-[5px] text-[14px] font-semibold text-[#0c3363] outline-none transition",
-      "focus:border-[#07623a] focus:ring-2 focus:ring-[#07623a]/15 placeholder:font-normal placeholder:text-[#9aa8b4]",
+      "focus:border-[#8b6a3e] focus:ring-2 focus:ring-[#8b6a3e]/15 placeholder:font-normal placeholder:text-[#9aa8b4]",
       invalid ? "border-[#e0a49c]" : "border-[#d7e2da]",
     ].join(" ");
 
@@ -1441,7 +1435,7 @@ function ProfileCard() {
               onClick={save}
               disabled={draftIssues.length > 0}
               title={draftIssues.length > 0 ? `Still needed: ${draftIssues.join(", ")}` : undefined}
-              className="rounded-[5px] bg-[#07623a] px-[10px] py-[3px] text-[14px] font-bold text-white transition-colors hover:bg-[#05502f] disabled:cursor-not-allowed disabled:bg-[#b6c4bc]"
+              className="rounded-[5px] bg-[#8b6a3e] px-[10px] py-[3px] text-[14px] font-bold text-white transition-colors hover:bg-[#5a3e2b] disabled:cursor-not-allowed disabled:bg-[#d8c39f]"
             >
               Save
             </button>
@@ -1476,16 +1470,16 @@ function ProfileCard() {
               type="button"
               onClick={() => photoInputRef.current?.click()}
               disabled={isCheckingPhoto}
-              className="group relative grid h-[132px] w-[132px] place-items-center overflow-hidden rounded-[10px] border border-dashed border-[#a9c9b6] bg-[#f2f9f4] disabled:cursor-wait"
+              className="group relative grid h-[132px] w-[132px] place-items-center overflow-hidden rounded-[10px] border border-dashed border-[#eadcc8] bg-[#f2f9f4] disabled:cursor-wait"
             >
               {draft.image ? (
                 // Object-URL previews are not routable through next/image.
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={draft.image} alt="" className="h-full w-full object-cover object-center" />
               ) : (
-                <span className="text-[30px] font-bold text-[#07623a]">{initials || "CV"}</span>
+                <span className="text-[30px] font-bold text-[#8b6a3e]">{initials || "CV"}</span>
               )}
-              <span className="absolute inset-x-0 bottom-0 bg-[#07623a]/85 py-[3px] text-[11px] font-bold text-white">
+              <span className="absolute inset-x-0 bottom-0 bg-[#8b6a3e]/85 py-[3px] text-[11px] font-bold text-white">
                 {isCheckingPhoto ? "Checking…" : draft.image ? "Change photo" : "Add photo"}
               </span>
             </button>
@@ -1546,7 +1540,7 @@ function ProfileCard() {
               {/* The OTP proved one specific number; say so, and flag any change. */}
               {verifiedKey && (
                 phoneKey(draft.phone) === verifiedKey ? (
-                  <p className="mt-[3px] flex items-center gap-[4px] text-[11px] font-bold text-[#07623a]">
+                  <p className="mt-[3px] flex items-center gap-[4px] text-[11px] font-bold text-[#8b6a3e]">
                     <ShieldCheck className="h-[12px] w-[12px] stroke-[2.6]" />
                     Verified on WhatsApp
                   </p>
@@ -1562,7 +1556,7 @@ function ProfileCard() {
               {draft.otherPhones.map((other) => (
                 <div
                   key={other}
-                  className="mt-[4px] flex items-center gap-[6px] rounded-[6px] border border-[#e2eae4] bg-[#f6faf7] px-[8px] py-[4px]"
+                  className="mt-[4px] flex items-center gap-[6px] rounded-[6px] border border-[#eadcc8] bg-[#faf7f2] px-[8px] py-[4px]"
                 >
                   <Phone className="h-[12px] w-[12px] shrink-0 text-[#6b7a87] stroke-[2.5]" />
                   <span className="min-w-0 flex-1 truncate text-[12.5px] font-semibold text-[#2d4766]">
@@ -1609,15 +1603,15 @@ function ProfileCard() {
             <button
               type="button"
               onClick={openEditor}
-              className="flex h-[116px] w-[116px] shrink-0 flex-col items-center justify-center gap-[2px] rounded-[8px] border border-dashed border-[#a9c9b6] bg-[#e4efe8] text-[#075333] transition-colors hover:bg-[#d8e9df]"
+              className="flex h-[116px] w-[116px] shrink-0 flex-col items-center justify-center gap-[2px] rounded-[8px] border border-dashed border-[#eadcc8] bg-[#fff8ed] text-[#8b6a3e] transition-colors hover:bg-[#fff8ed]"
             >
               <span className="text-[32px] font-bold leading-none">{initials || "CV"}</span>
-              <span className="text-[9.5px] font-bold uppercase tracking-[0.04em] text-[#07623a]">
+              <span className="text-[9.5px] font-bold uppercase tracking-[0.04em] text-[#8b6a3e]">
                 Add photo
               </span>
             </button>
           ) : (
-            <div className="flex h-[116px] w-[116px] shrink-0 flex-col items-center justify-center gap-[2px] rounded-[8px] border border-dashed border-[#a9c9b6] bg-[#e4efe8] text-[#075333]">
+            <div className="flex h-[116px] w-[116px] shrink-0 flex-col items-center justify-center gap-[2px] rounded-[8px] border border-dashed border-[#eadcc8] bg-[#fff8ed] text-[#8b6a3e]">
               <span className="text-[32px] font-bold leading-none">{initials || "CV"}</span>
             </div>
           )}
@@ -1650,7 +1644,7 @@ function ProfileCard() {
                     <span className="truncate">{number}</span>
                     {verifiedKey && phoneKey(number) === verifiedKey ? (
                       <ShieldCheck
-                        className="h-[15px] w-[15px] shrink-0 text-[#07623a] stroke-[2.6]"
+                        className="h-[15px] w-[15px] shrink-0 text-[#8b6a3e] stroke-[2.6]"
                         aria-label="Verified on WhatsApp"
                       />
                     ) : verifiedKey && index === 0 ? (
@@ -1725,11 +1719,11 @@ function CVCard({ onBack, onClose }: { onBack?: () => void; onClose?: () => void
         Your CV
       </h3>
 
-      <div className="mt-[8px] flex min-h-0 flex-1 items-center gap-[12px] rounded-[8px] bg-[#f2f8fc] px-[12px] py-[10px]">
-        <div className="relative grid h-[58px] w-[48px] shrink-0 place-items-center rounded-[6px] border-[2.5px] border-[#075333] text-[#075333]">
+      <div className="mt-[8px] flex min-h-0 flex-1 items-center gap-[12px] rounded-[8px] bg-[#faf7f2] px-[12px] py-[10px]">
+        <div className="relative grid h-[58px] w-[48px] shrink-0 place-items-center rounded-[6px] border-[2.5px] border-[#8b6a3e] text-[#8b6a3e]">
           <FileText className="h-[28px] w-[28px] stroke-[2]" />
 
-          <span className="absolute -bottom-[6px] -right-[6px] grid h-[20px] w-[20px] place-items-center rounded-full bg-[#075333] text-white">
+          <span className="absolute -bottom-[6px] -right-[6px] grid h-[20px] w-[20px] place-items-center rounded-full bg-[#8b6a3e] text-white">
             <Check className="h-[12px] w-[12px] stroke-[3]" />
           </span>
         </div>
@@ -1768,34 +1762,30 @@ function JobSummary() {
   const { candidate } = useMatchData();
   const j = candidate.jobDetails;
   const rows = [
-    { image: asset("building.png"), text: j?.company || job.company },
-    { image: asset("location.png"), text: j?.location || job.location },
-    { image: asset("briefcase.png"), text: j?.type || job.type },
-    { image: asset("bar-chart.png"), text: j?.experience || job.experience },
-    { image: asset("graduation-cap.png"), text: j?.education || job.education },
+    { Icon: Building2, text: j?.company || job.company },
+    { Icon: MapPin, text: j?.location || job.location },
+    { Icon: BriefcaseBusiness, text: j?.type || job.type },
+    { Icon: BarChart, text: j?.experience || job.experience },
+    { Icon: GraduationCap, text: j?.education || job.education },
   ];
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] border border-[#eaefeb] bg-white p-[12px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
-      <h3 className="shrink-0 text-[17px] font-bold text-[#0c3363]">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] border border-[#eadcc8] bg-white p-[12px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+      <h3 className="shrink-0 text-[17px] font-bold text-[#8b6a3e]">
         Job Summary
       </h3>
 
-      <div className="mt-[8px] flex flex-col gap-[6px]">
-        {rows.map(({ image, text }) => (
+      <div className="mt-[8px] flex flex-col gap-[8px]">
+        {rows.map(({ Icon, text }) => (
           <div
             key={text}
             className="flex items-center gap-[10px]"
           >
-            <Image
-              src={image}
-              alt=""
-              width={48}
-              height={48}
-              className="h-[26px] w-[26px] shrink-0 object-contain"
-            />
+            <div className="grid h-[26px] w-[26px] shrink-0 place-items-center rounded-[6px] bg-[#fff8ed]">
+              <Icon className="h-[15px] w-[15px] text-[#8b6a3e] stroke-[2.5]" />
+            </div>
 
-            <span className="truncate text-[15px] font-semibold text-[#2d4766]">
+            <span className="truncate text-[15px] font-semibold text-[#5a3e2b]">
               {text}
             </span>
           </div>
@@ -1814,11 +1804,11 @@ function SupportCard() {
 
   if (matchLevel === "low") {
     return (
-      <div className="flex h-full min-h-0 items-center gap-[8px] overflow-hidden rounded-[6px] border border-[#dcebdd] bg-[#f3fbf3] px-[10px]">
-        <span className="h-[28px] w-[18px] shrink-0 rotate-[25deg] rounded-[100%_0_100%_0] bg-[#23943d]" />
+      <div className="flex h-full min-h-0 items-center gap-[8px] overflow-hidden rounded-[6px] border border-[#eadcc8] bg-[#faf7f2] px-[10px]">
+        <span className="h-[28px] w-[18px] shrink-0 rotate-[25deg] rounded-[100%_0_100%_0] bg-[#8b6a3e]" />
 
         <div>
-          <h4 className="text-[14px] font-bold text-[#125c37]">
+          <h4 className="text-[14px] font-bold text-[#8b6a3e]">
             Looking for a Better Fit?
           </h4>
 
@@ -1833,7 +1823,7 @@ function SupportCard() {
   if (matchLevel === "high") {
     return (
       <div className="flex h-full min-h-0 items-center gap-[8px] overflow-hidden px-[9px] text-[13.5px] font-semibold text-[#25405c]">
-        <LockKeyhole className="h-[16px] w-[16px] shrink-0 text-[#087447]" />
+        <LockKeyhole className="h-[16px] w-[16px] shrink-0 text-[#8b6a3e]" />
 
         Your data is secure and will only be used for recruitment purposes.
       </div>
@@ -1906,8 +1896,8 @@ function Sidebar({
         min-h-0
         overflow-hidden
         border-l
-        border-[#e4ebe5]
-        bg-[linear-gradient(180deg,#f8fcf9,#eff8f1)]
+        border-[#eadcc8]
+        bg-[linear-gradient(180deg,#fdfaf6,#fff8ed)]
         px-[clamp(10px,1.1vw,16px)]
         pb-0
         pt-[8px]
@@ -1923,7 +1913,7 @@ function Sidebar({
         <button
           type="button"
           onClick={() => goToCareers(false)}
-          className="flex items-center gap-[6px] text-[17px] font-bold text-[#075333] transition-colors hover:text-red-600 pr-1"
+          className="flex items-center gap-[6px] text-[17px] font-bold text-[#8b6a3e] transition-colors hover:text-red-600 pr-1"
         >
           <ArrowLeft className="h-[18px] w-[18px] stroke-[2.5]" />
           Back to Careers
@@ -1943,7 +1933,7 @@ function Sidebar({
             <button
               type="button"
               onClick={onApply}
-              className="flex h-full w-full items-center justify-center gap-[8px] rounded-[8px] bg-[#07623a] text-[16px] font-bold text-white transition-colors shadow-sm hover:bg-[#05502f]"
+              className="flex h-full w-full items-center justify-center gap-[8px] rounded-[8px] bg-[#8b6a3e] text-[16px] font-bold text-white transition-colors shadow-sm hover:bg-[#5a3e2b]"
             >
               {current.cta}
               <ArrowRight className="h-[18px] w-[18px] stroke-[2.2]" />
@@ -1952,8 +1942,8 @@ function Sidebar({
 
           {/* SECOND */}
           {/* <div className="min-h-0">
-            <button className="flex h-full w-full items-center justify-center gap-[8px] rounded-[8px] border border-[#07623a] bg-white text-[16px] font-bold text-[#07623a] hover:bg-[#f2faf4] transition-colors shadow-sm">
-              <Bookmark className="h-[20px] w-[20px] stroke-[2.2] text-[#07623a]" />
+            <button className="flex h-full w-full items-center justify-center gap-[8px] rounded-[8px] border border-[#8b6a3e] bg-white text-[16px] font-bold text-[#8b6a3e] hover:bg-[#fff8ed] transition-colors shadow-sm">
+              <Bookmark className="h-[20px] w-[20px] stroke-[2.2] text-[#8b6a3e]" />
               Save for Later
             </button>
           </div> */}
@@ -1961,7 +1951,7 @@ function Sidebar({
           <SupportCard />
         </>
       ) : (
-        <div className="flex min-h-0 items-center rounded-[8px] border border-[#dcebdd] bg-[#f5faf6] p-[12px] shadow-sm">
+        <div className="flex min-h-0 items-center rounded-[8px] border border-[#eadcc8] bg-[#faf7f2] p-[12px] shadow-sm">
           <div className="flex gap-[10px] items-start">
             <Image
               src={separatedAssets.headerLeaf}
@@ -1971,10 +1961,10 @@ function Sidebar({
               className="h-[22px] w-[20px] shrink-0 object-contain mt-[2px]"
             />
             <div className="flex-1">
-              <h4 className="text-[16px] font-semibold text-[#095232]">
+              <h4 className="text-[16px] font-semibold text-[#8b6a3e]">
                 Looking for a Better Fit?
               </h4>
-              <p className="mt-[3px] text-[14px] font-medium leading-[1.28] text-[#1c6448]">
+              <p className="mt-[3px] text-[14px] font-medium leading-[1.28] text-[#5a3e2b]">
                 Browse other career opportunities at<br />Moksha Sewa and find the right role for you.
               </p>
             </div>
@@ -2118,6 +2108,13 @@ export function EligibilityModal({
   // clicked, not right after the CV comes back scored.
   const [isPhoneVerifyOpen, setIsPhoneVerifyOpen] = useState(false);
 
+  useEffect(() => {
+    if (isOpen) lockScroll();
+    return () => {
+      if (isOpen) unlockScroll();
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleContinue = () => {
@@ -2164,7 +2161,7 @@ export function EligibilityModal({
           z-10
           overflow-hidden
           rounded-[18px]
-          bg-[#fbfcf9]
+          bg-[#faf7f2]
           shadow-[0_30px_90px_rgba(0,0,0,.28)]
         "
         style={{
@@ -2218,7 +2215,7 @@ export default function CareerEligibilityPage() {
           <button
             type="button"
             onClick={() => setUploadCvOpen(true)}
-            className="rounded-[8px] bg-[#08743e] px-6 py-3 text-sm font-semibold text-white"
+            className="rounded-[8px] bg-[#8b6a3e] px-6 py-3 text-sm font-semibold text-white"
           >
             Upload CV & Check Eligibility
           </button>

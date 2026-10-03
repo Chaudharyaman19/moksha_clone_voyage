@@ -7,9 +7,9 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Globe2,
+  HeartHandshake,
   Lightbulb,
   MapPin,
-  Sprout,
   TrendingUp,
   Users,
   type LucideIcon,
@@ -47,26 +47,26 @@ type JobOpening = {
 };
 
 const highlights = [
-  { label: "Meaningful\nWork", icon: Sprout },
+  { label: "Meaningful\nSewa", icon: HeartHandshake },
   { label: "Collaborative\nTeam", icon: Users },
   { label: "Growth\nOpportunities", icon: TrendingUp },
   { label: "Real\nImpact", icon: Globe2 },
 ];
 
 const workReasons = [
-  { label: "Purpose-Driven\nWork", icon: Sprout },
+  { label: "Purpose-Driven\nSewa", icon: HeartHandshake },
   { label: "Inclusive\nEnvironment", icon: Users },
   { label: "Learn from\nIndustry Experts", icon: Lightbulb },
-  { label: "Be Part of a\nGlobal Platform", icon: Globe2 },
+  { label: "Serve with\nCompassion", icon: Globe2 },
 ];
 
 function JobCard({ job }: { job: JobOpening }) {
   const Icon = job.icon;
 
   return (
-    <article className="group flex min-h-full flex-col rounded-[10px] border border-[#dfe6df] bg-white/95 px-3 py-2 shadow-[0_2px_10px_rgba(10,66,44,0.03)] transition-all duration-300 hover:bg-[#f5fbf7] hover:shadow-[0_4px_15px_rgba(10,66,44,0.08)]">
+    <article className="group flex min-h-full flex-col rounded-[10px] border border-[#eadfce] bg-white/95 px-3 py-2 shadow-[0_2px_10px_rgba(44,24,16,0.04)] transition-all duration-300 hover:bg-[#fff9ef] hover:shadow-[0_4px_15px_rgba(139,106,62,0.12)]">
       <div className="flex gap-3">
-        <span className="grid h-[clamp(50px,5.1vh,62px)] w-[clamp(50px,5.1vh,62px)] shrink-0 place-items-center rounded-full bg-[#eff8ef] text-[#08753c]">
+        <span className="grid h-[clamp(50px,5.1vh,62px)] w-[clamp(50px,5.1vh,62px)] shrink-0 place-items-center rounded-full bg-[#f5ead9] text-[#8b6a3e]">
           <Icon
             className="h-[clamp(25px,2.75vh,34px)] w-[clamp(25px,2.75vh,34px)]"
             strokeWidth={2.1}
@@ -85,15 +85,15 @@ function JobCard({ job }: { job: JobOpening }) {
 
       <div className="mt-[clamp(9px,0.85vh,12px)] flex flex-wrap items-center gap-x-4 gap-y-1 text-[clamp(11px,0.78vw,14px)] text-[#17283c]">
         <span className="inline-flex items-center gap-1.5">
-          <MapPin className="h-[18px] w-[18px] fill-[#08723e] text-[#08723e]" />
+          <MapPin className="h-[18px] w-[18px] fill-[#8b6a3e] text-[#8b6a3e]" />
           {job.location}
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <BriefcaseBusiness className="h-[18px] w-[18px] text-[#08723e]" />
+          <BriefcaseBusiness className="h-[18px] w-[18px] text-[#8b6a3e]" />
           {job.type}
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <TrendingUp className="h-[18px] w-[18px] text-[#08723e]" />
+          <TrendingUp className="h-[18px] w-[18px] text-[#8b6a3e]" />
           {job.experience}
         </span>
       </div>
@@ -107,7 +107,7 @@ function JobCard({ job }: { job: JobOpening }) {
               .filter(Boolean)
               .map((point, idx) => (
                 <li key={idx} className="flex items-start gap-1.5">
-                  <span className="text-[#08723e] shrink-0 font-bold">•</span>
+                  <span className="text-[#8b6a3e] shrink-0 font-bold">•</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -124,8 +124,8 @@ function JobCard({ job }: { job: JobOpening }) {
 
 function EmptyOpenings() {
   return (
-    <div className="w-full grid w-[96%] grid-cols-[80px_minmax(0,1fr)_1px_300px] items-center gap-[clamp(18px,2vw,32px)] rounded-[24px] bg-[#eef8e9]/90 px-4 py-2">
-      <span className="grid h-[clamp(62px,5.2vw,82px)] w-[clamp(62px,5.2vw,82px)] place-items-center rounded-full bg-[#e4f2e5] text-[#08713f]">
+    <div className="w-full grid w-[96%] grid-cols-[80px_minmax(0,1fr)_1px_300px] items-center gap-[clamp(18px,2vw,32px)] rounded-[24px] bg-[#fff8ed]/90 px-4 py-2">
+      <span className="grid h-[clamp(62px,5.2vw,82px)] w-[clamp(62px,5.2vw,82px)] place-items-center rounded-full bg-[#f4e4cc] text-[#8b6a3e]">
         <BriefcaseBusiness
           className="h-[40px] w-[40px]"
           strokeWidth={1.8}
@@ -133,7 +133,7 @@ function EmptyOpenings() {
       </span>
 
       <div>
-        <h3 className="text-lg lg:text-2xl font-semibold leading-tight text-[#0b5638]">
+        <h3 className="text-lg lg:text-2xl font-semibold leading-tight text-[#2c1810]">
           No open positions at the moment
         </h3>
         <p className="mt-2 max-w-[720px] text-sm lg:text-[15px] leading-relaxed text-[#33475b]">
@@ -143,7 +143,7 @@ function EmptyOpenings() {
         </p>
       </div>
 
-      <span className="h-[70%] w-px bg-[#d5e0d7]" />
+      <span className="h-[70%] w-px bg-[#eadcc8]" />
 
       <div>
         {/* <ResumeUploadButton variant="outline" /> */}
@@ -233,44 +233,45 @@ export default function CareersClientContent() {
     <div>
       <Topbar />
       <Navbar />
-      <main className="bg-[#f8fbf6] text-[#0a1831]">
+      <main className="bg-[#faf7f2] text-[#0a1831]">
         <div className="flex min-h-screen w-full flex-col bg-white">
           {/* HERO */}
           <section className="relative isolate min-h-[500px] lg:h-[550px] overflow-hidden">
             <Image
-              src={heroImage}
+              src="/career-submit-resume-assets/image copy 2.png"
               alt="Moksha Sewa Career Team"
               fill
               priority
+              unoptimized
               sizes="100vw"
               className="-z-20 object-cover object-center"
             />
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(250,253,245,.96)_0%,rgba(250,253,245,.90)_34%,rgba(250,253,245,.25)_52%,rgba(0,0,0,0)_72%)]" />
+            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(250,247,242,.97)_0%,rgba(250,247,242,.90)_34%,rgba(250,247,242,.28)_52%,rgba(0,0,0,0)_72%)]" />
 
             <div className="flex h-full w-full items-center px-4 lg:px-14 pt-24 sm:pt-26 lg:pt-28 pb-6">
               <div className="w-[50%] min-w-[340px]">
                 <div className="pt-4 sm:pt-6">
-                  <div className="text-[18px] mt-2 font-semibold uppercase tracking-[0.28em] text-[#0a5536]">
+                  <div className="text-[18px] mt-2 font-semibold uppercase tracking-[0.28em] text-[#8b6a3e]">
                     <p>CAREER</p>
                   </div>
-                  <div className="mb-6 h-[2.5px] w-20 bg-[#0a5536]" />
+                  <div className="mb-6 h-[2.5px] w-20 bg-[#8b6a3e]" />
 
-                  <h1 className="max-w-[750px] text-lg lg:text-6xl font-semibold leading-[0.98] tracking-[-0.04em] text-[#07553a]">
+                  <h1 className="max-w-[750px] text-lg lg:text-6xl font-semibold leading-[0.98] tracking-[-0.04em] text-[#2c1810]">
                     Be Part of
                     <br />
-                    <span className="whitespace-nowrap">Something <span className="text-[#f5791b]">Bigger</span></span>
+                    <span className="whitespace-nowrap">Something <span className="text-[#8b6a3e]">Bigger</span></span>
                   </h1>
 
                   <p className="mt-4 max-w-[650px] text-lg leading-[1.35] text-[#14253a]">
-                    Build your career with Moksha Sewa and contribute to a
-                    sustainable, healthier and more conscious tomorrow.
+                    Build your career with Moksha Sewa and contribute to
+                    dignified, compassionate support for families who need it most.
                   </p>
 
-                  <div className="mt-4 grid max-w-[640px] grid-cols-4 divide-x divide-[#d7e1d8]">
+                  <div className="mt-4 grid max-w-[640px] grid-cols-4 divide-x divide-[#eadcc8]">
                     {highlights.map(({ label, icon: Icon }) => (
                       <div key={label} className="px-3 text-center first:pl-0 last:pr-0">
                         <Icon
-                          className="mx-auto h-[clamp(32px,3.4vh,42px)] w-[clamp(32px,3.4vh,42px)] text-[#08723e]"
+                          className="mx-auto h-[clamp(32px,3.4vh,42px)] w-[clamp(32px,3.4vh,42px)] text-[#8b6a3e]"
                           strokeWidth={2.1}
                         />
                         <span className="mt-2 block whitespace-pre-line text-[clamp(12px,0.88vw,15px)] font-semibold leading-tight text-[#0c2235]">
@@ -282,10 +283,10 @@ export default function CareersClientContent() {
                 </div>
               </div>
 
-              <div className="absolute bottom-[6%] right-12 w-fit max-w-[440px] rounded-sm bg-[#00683e]/90 px-4 py-2 text-[14px] font-semibold leading-snug text-white backdrop-blur-[1px]">
-                Join the people who connect
+              <div className="absolute bottom-[6%] right-12 w-fit max-w-[440px] rounded-sm bg-[#2c1810]/88 px-4 py-2 text-[14px] font-semibold leading-snug text-white backdrop-blur-[1px]">
+                Join the people who serve
                 <br />
-                business, nature and a better tomorrow.
+                with dignity, care and purpose.
               </div>
             </div>
           </section>
@@ -316,9 +317,8 @@ export default function CareersClientContent() {
                   } flex shrink-0 items-end justify-between gap-6`}
               >
                 <div className="flex items-start gap-4">
-                  <span className="relative mt-1 inline-block h-[clamp(34px,2.9vw,48px)] w-[clamp(42px,3.5vw,56px)] shrink-0">
-                    <span className="absolute left-0 top-1 h-[72%] w-[48%] rotate-[-28deg] rounded-[100%_0_100%_0] bg-gradient-to-br from-[#88c018] to-[#0f6d2f]" />
-                    <span className="absolute right-1 top-0 h-[84%] w-[52%] rotate-[28deg] rounded-[100%_0_100%_0] bg-gradient-to-br from-[#118a42] to-[#075b31]" />
+                  <span className="mt-1 grid h-[clamp(34px,2.9vw,48px)] w-[clamp(42px,3.5vw,56px)] shrink-0 place-items-center rounded-full border border-[#d8c39f] bg-[#fff8ed] text-[#8b6a3e]">
+                    <BriefcaseBusiness className="h-[58%] w-[58%]" strokeWidth={1.9} />
                   </span>
 
                   <div>
@@ -326,7 +326,7 @@ export default function CareersClientContent() {
                       <h2 className="text-sm lg:text-2xl font-semibold leading-[1.12] tracking-[-0.04em] text-[#0a1831]">
                         Current Openings{" "}
                         {openingCount > 0 ? (
-                          <span className="align-baseline text-[0.78em] text-[#0c7b46]">
+                          <span className="align-baseline text-[0.78em] text-[#8b6a3e]">
                             ({openingCount})
                           </span>
                         ) : null}
@@ -348,7 +348,7 @@ export default function CareersClientContent() {
                       e.preventDefault();
                       setShowAllJobs(!showAllJobs);
                     }}
-                    className="mb-1 inline-flex items-center gap-2 border-b-2 border-[#0a7140] pb-1 text-[14px] font-semibold text-[#0a643b] hover:text-[#074f2e] transition-colors"
+                    className="mb-1 inline-flex items-center gap-2 border-b-2 border-[#8b6a3e] pb-1 text-[14px] font-semibold text-[#8b6a3e] hover:text-[#5a3e2b] transition-colors"
                   >
                     {showAllJobs ? "View Less Positions" : "View All Positions"}
                     <ArrowRight className={`h-[20px] w-[20px] transition-transform duration-300 ${showAllJobs ? "-rotate-90" : ""}`} />
@@ -371,9 +371,9 @@ export default function CareersClientContent() {
           </section>
 
           {/* WHY WORK WITH US */}
-          <section className="grid shrink-0 gap-5 border-y border-[#e4ebe3] bg-[linear-gradient(90deg,#f6fbf2_0%,#fbfdf8_100%)] px-4 lg:px-14 py-1 lg:py-2 lg:grid-cols-[1.15fr_2fr] lg:items-center">
+          <section className="grid shrink-0 gap-5 border-y border-[#eadcc8] bg-[linear-gradient(90deg,#faf7f2_0%,#fffaf2_100%)] px-4 lg:px-14 py-1 lg:py-2 lg:grid-cols-[1.15fr_2fr] lg:items-center">
             <div>
-              <h2 className="text-lg lg:text-2xl font-semibold leading-none tracking-[-0.035em] text-[#07553a]">
+              <h2 className="text-lg lg:text-2xl font-semibold leading-none tracking-[-0.035em] text-[#2c1810]">
                 Why Work With Us?
               </h2>
               <p className="mt-2 max-w-[650px] text-sm lg:text-[15px] leading-[1.35] text-[#1f3145]">
@@ -382,12 +382,12 @@ export default function CareersClientContent() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-end divide-x divide-[#d6e0d8] lg:ml-auto">
+            <div className="flex flex-wrap justify-end divide-x divide-[#eadcc8] lg:ml-auto">
               {workReasons.map(({ label, icon: Icon }) => (
                 <div key={label} className="px-4 sm:px-6 lg:px-10 text-center first:pl-0">
 
                   <Icon
-                    className="mx-auto h-8 w-8 text-[#08723e]"
+                    className="mx-auto h-8 w-8 text-[#8b6a3e]"
                     strokeWidth={2.1}
                   />
                   <span className="mt-2 block whitespace-pre-line text-sm lg:text-[12px] font-semibold leading-tight text-[#0e2234]">
@@ -399,11 +399,12 @@ export default function CareersClientContent() {
           </section>
 
           {/* BOTTOM CTA */}
-          <section className="relative h-[160px] lg:h-[160px] mt-2 w-full shrink-0 overflow-hidden bg-white">
+          <section className="relative h-[210px] sm:h-[230px] lg:h-[240px] mt-2 w-full shrink-0 overflow-hidden bg-white">
             <Image
-              src="/assets/careers/aman6.png"
+              src="/career-submit-resume-assets/f1.png"
               alt="Careers footer banner"
               fill
+              unoptimized
               sizes="100vw"
               className="object-cover object-center"
             />

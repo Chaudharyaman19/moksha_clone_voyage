@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import {
     ArrowRight,
     BriefcaseBusiness,
@@ -144,7 +145,7 @@ function MetaItem({
                 last ? "" : "border-r border-[#d8dfdf]",
             ].join(" ")}
         >
-            <Icon size={size} className="shrink-0 text-[#006b48]" strokeWidth={2} />
+            <Icon size={size} className="shrink-0 text-[#8b6a3e]" strokeWidth={2} />
             <span
                 className={[
                     "font-bold leading-tight text-[#173047]",
@@ -169,15 +170,15 @@ function LeafIcon({ className = "h-[24px] w-[24px]" }: { className?: string }) {
         >
             <defs>
                 <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#9BD53B" />
-                    <stop offset="45%" stopColor="#6DBA24" />
-                    <stop offset="100%" stopColor="#4A8817" />
+                    <stop offset="0%" stopColor="#d8c39f" />
+                    <stop offset="45%" stopColor="#8b6a3e" />
+                    <stop offset="100%" stopColor="#5a3e2b" />
                 </linearGradient>
             </defs>
             {/* Stem */}
             <path
                 d="M22 23 C24 25 26 27 28 29"
-                stroke="#4A8817"
+                stroke="#5a3e2b"
                 strokeWidth="2.5"
                 strokeLinecap="round"
             />
@@ -189,7 +190,7 @@ function LeafIcon({ className = "h-[24px] w-[24px]" }: { className?: string }) {
             {/* Center Vein */}
             <path
                 d="M6 6 C 11 13, 17 19, 23 23"
-                stroke="#E2F5B8"
+                stroke="#fff8ed"
                 strokeWidth="1.6"
                 strokeLinecap="round"
                 opacity="0.9"
@@ -202,7 +203,7 @@ function LeafHeading({ title }: { title: string }) {
     return (
         <div className="flex items-center gap-2.5">
             <LeafIcon className="h-[30px] w-[30px] shrink-0" />
-            <h3 className="text-[22px] font-semibold leading-none text-[#00563f]">{title}</h3>
+            <h3 className="text-[22px] font-semibold leading-none text-[#8b6a3e]">{title}</h3>
         </div>
     );
 }
@@ -269,7 +270,7 @@ function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
             className={`rounded-[12px] border border-dashed px-[18px] py-[10px] text-center transition-colors ${error
                     ? "border-[#e0a49c] bg-[#fdf5f4]"
                     : isDragging
-                        ? "border-[#007a50] bg-[#e8f6ed]"
+                        ? "border-[#8b6a3e] bg-[#fff8ed]"
                         : "border-[#9bc7b1] bg-white/45"
                 }`}
         >
@@ -286,7 +287,7 @@ function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
             />
 
             <FileUp
-                className={`mx-auto h-[44px] w-[44px] ${error ? "text-[#c0705f]" : "text-[#007a50]"}`}
+                className={`mx-auto h-[44px] w-[44px] ${error ? "text-[#c0705f]" : "text-[#8b6a3e]"}`}
                 strokeWidth={2.3}
             />
             <h3 className="mt-[5px] text-[20px] font-medium leading-none text-[#152840]">
@@ -298,7 +299,7 @@ function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
                 {error ? (
                     <p className="text-[15px] font-medium leading-[1.3] text-[#b23b2e]">{error}</p>
                 ) : fileName ? (
-                    <p className="w-full text-[15px] font-medium leading-[1.3] text-[#007a50]">
+                    <p className="w-full text-[15px] font-medium leading-[1.3] text-[#8b6a3e]">
                         <span className="mx-auto block max-w-[300px] truncate font-semibold">{fileName}</span>
                         {fileSize} · Ready to analyze
                     </p>
@@ -314,7 +315,7 @@ function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
             <button
                 type="button"
                 onClick={chooseFile}
-                className="mt-[8px] h-[44px] w-[240px] rounded-[7px] bg-[linear-gradient(180deg,#008d55,#007346)] text-[18px] font-semibold text-white shadow-[0_5px_10px_rgba(0,84,51,0.18)]"
+                className="mt-[8px] h-[44px] w-[240px] rounded-[7px] bg-[linear-gradient(180deg,#8b6a3e,#5a3e2b)] text-[18px] font-semibold text-white shadow-[0_5px_10px_rgba(0,84,51,0.18)]"
             >
                 {fileName ? "Change File" : "Choose File"}
             </button>
@@ -377,6 +378,11 @@ export default function UploadCvModal({
 }) {
     const [file, setFile] = useState<File | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+    useEffect(() => {
+        lockScroll();
+        return () => unlockScroll();
+    }, []);
 
     // The modal body is a fixed DESIGN_WIDTH x DESIGN_HEIGHT canvas that gets scaled
     // down to whatever width the shell resolves to. CSS cannot divide a length by a
@@ -738,21 +744,25 @@ export default function UploadCvModal({
 
                             <div className="boe-modal-scroll relative z-10 h-full max-w-[600px] overflow-y-auto pr-[14px] bg-[#FBFCF9]">
                                 <div className="flex items-center gap-[13px]">
-                                    {/* <span className="h-[3px] w-[55px] bg-[#0b734d]/70" /> */}
-                                    <span className="text-[20px] font-semibold tracking-[0.12em] text-[#00563f]">
+                                    {/* <span className="h-[3px] w-[55px] bg-[#8b6a3e]/70" /> */}
+                                    <span className="text-[20px] font-semibold tracking-[0.12em] text-[#8b6a3e]">
                                         JOIN OUR TEAM
                                     </span>
-                                    <span className="h-[3px] w-[55px] bg-[#0b734d]/70" />
+                                    <span className="h-[3px] w-[55px] bg-[#8b6a3e]/70" />
                                 </div>
 
-                                <h1 className="mt-[10px] max-w-[600px] text-[22px] lg:text-[37px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#083A34]">
+                                <h1 className="mt-[10px] max-w-[600px] text-[22px] lg:text-[37px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#2c1810]">
                                     {job.title || title}
                                 </h1>
 
                                 <div className="mt-[11px] flex flex-wrap items-center gap-x-[17px] gap-y-[5px] font-medium text-[20px] leading-none text-[#2C3341]">
                                     <span>{job.company || jobCopy.company}</span>
-                                    <span className="h-[23px] w-px bg-[#d4dadd]" />
-                                    <span>{job.brand || jobCopy.brand}</span>
+                                    {job.brand && job.brand !== job.company && (
+                                        <>
+                                            <span className="h-[23px] w-px bg-[#d4dadd]" />
+                                            <span>{job.brand}</span>
+                                        </>
+                                    )}
                                 </div>
 
                                 <div className="mt-[18px] flex flex-wrap items-center gap-y-[12px] gap-x-[11px] border-b border-[#dce2e3] pb-[14px]">
@@ -780,7 +790,7 @@ export default function UploadCvModal({
                                     </InfoSection>
 
                                     <InfoSection title="Key Responsibilities">
-                                        <ul className="list-disc space-y-[4px] pl-[22px] marker:text-[#006b48]">
+                                        <ul className="list-disc space-y-[4px] pl-[22px] marker:text-[#8b6a3e]">
                                             {jobResponsibilities.map((item) => (
                                                 <li key={item} className="text-[#4D4D4D] font-normal text-[19px]">{item}</li>
                                             ))}
@@ -788,7 +798,7 @@ export default function UploadCvModal({
                                     </InfoSection>
 
                                     <InfoSection title="Who Can Apply">
-                                        <ul className="list-disc space-y-[4px] pl-[22px] marker:text-[#006b48]">
+                                        <ul className="list-disc space-y-[4px] pl-[22px] marker:text-[#8b6a3e]">
                                             {jobApplyCriteria.map((item) => (
                                                 <li key={item} className="text-[#4D4D4D] font-normal text-[19px]">{item}</li>
                                             ))}
@@ -801,7 +811,7 @@ export default function UploadCvModal({
                                         href={jobDocumentUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="mt-[9px] inline-flex items-center gap-[12px] border-b-2 border-[#007a50] pb-[5px] text-[21px] font-semibold text-[#006342] transition hover:text-[#004d32]"
+                                        className="mt-[9px] inline-flex items-center gap-[12px] border-b-2 border-[#8b6a3e] pb-[5px] text-[21px] font-semibold text-[#8b6a3e] transition hover:text-[#5a3e2b]"
                                         title={`Download full job description for ${job.title || title}`}
                                     >
                                         View Full Job Details
@@ -811,25 +821,25 @@ export default function UploadCvModal({
                             </div>
                         </section>
 
-                        <aside className="relative overflow-hidden rounded-[14px] bg-[#f2f9f3] px-4 py-6">
-                            <div className="pointer-events-none absolute bottom-0 right-0 h-[160px] w-[220px]">
+                        <aside className="relative overflow-hidden rounded-[14px] bg-[#fffaf2] px-4 py-6">
+                            <div className="pointer-events-none absolute -bottom-10 -right-6 h-[200px] w-[260px]">
                                 <Image
-                                    src="/separated-assets/bottom.png"
+                                    src="/assets/careers/moksha-bottom-leaf.png"
                                     alt="Leaf decoration"
                                     fill
-                                    sizes="220px"
+                                    sizes="260px"
                                     className="object-contain object-bottom-right"
                                 />
                             </div>
 
                             <div className="boe-modal-scroll relative z-10 h-full overflow-y-auto pr-[6px]">
-                                <div className="text-[20px] font-semibold tracking-[1.2] text-[#00563f]">
+                                <div className="text-[20px] font-semibold tracking-[1.2] text-[#8b6a3e]">
                                     LET AI HELP YOU
                                 </div>
                                 <h2 className="mt-[5px] text-[32px] font-medium leading-[1.18] tracking-[-0.04em] text-[#10243f]">
                                     Check Your Eligibility
                                     <br />
-                                    <span className="text-[#007a50]">with AI</span>
+                                    <span className="text-[#8b6a3e]">with AI</span>
                                 </h2>
                                 <p className="mt-[8px] text-[17px] leading-[1.3] text-[#354b63]">
                                     Upload your CV and get an instant analysis
@@ -842,22 +852,22 @@ export default function UploadCvModal({
                                 </div>
 
                                 <div className="mt-[9px]">
-                                    <h3 className="text-[20px] font-semibold text-[#00563f]">AI will check:</h3>
+                                    <h3 className="text-[20px] font-semibold text-[#8b6a3e]">AI will check:</h3>
                                     <ul className="mt-[7px] space-y-[4px] text-[15.5px] leading-[1.25] text-[#253950]">
                                         {aiChecklist.map((item) => (
                                             <li key={item} className="flex items-center gap-[10px]">
-                                                <CheckCircle2 className="h-[20px] w-[20px] shrink-0 fill-[#007a50] text-white" />
+                                                <CheckCircle2 className="h-[20px] w-[20px] shrink-0 fill-[#8b6a3e] text-white" />
                                                 <span className="text-[16px] leading-[1.3] text-[#42566c]">{item}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className="mt-[9px] flex items-center gap-[17px] rounded-[8px] bg-[#e1f4e6] px-3 py-2.5">
+                                <div className="mt-[9px] flex items-center gap-[17px] rounded-[8px] bg-[#fff8ed] px-3 py-2.5">
                                     <div
                                         className="relative grid h-[90px] w-[90px] shrink-0 place-items-center rounded-full"
                                         style={{
-                                            background: `conic-gradient(#2fb734 0deg ${threshold * 3.6}deg,#cbd0d4 ${threshold * 3.6}deg 360deg)`,
+                                            background: `conic-gradient(#8b6a3e 0deg ${threshold * 3.6}deg,#cbd0d4 ${threshold * 3.6}deg 360deg)`,
                                         }}
                                     >
                                         <div className="absolute inset-[12px] rounded-full bg-white" />
@@ -865,7 +875,7 @@ export default function UploadCvModal({
                                     </div>
 
                                     <div>
-                                        <p className="text-[21px] font-semibold leading-[1.15] text-[#007a50]">
+                                        <p className="text-[21px] font-semibold leading-[1.15] text-[#8b6a3e]">
                                             {threshold}% or above
                                             <br />= Eligible to Apply
                                         </p>
@@ -883,7 +893,7 @@ export default function UploadCvModal({
                                     onClick={handleAnalyzeButtonClick}
                                     className={`mt-[8px] flex h-[48px] w-full items-center justify-center gap-[15px] rounded-[7px] text-[20px] font-medium text-white transition-all ${!file || isAnalyzing
                                         ? "bg-gray-400 cursor-not-allowed opacity-60 shadow-none"
-                                        : "bg-[linear-gradient(180deg,#008d55,#007346)] shadow-[0_7px_13px_rgba(0,84,51,0.22)] hover:brightness-110 cursor-pointer"
+                                        : "bg-[linear-gradient(180deg,#8b6a3e,#5a3e2b)] shadow-[0_7px_13px_rgba(0,84,51,0.22)] hover:brightness-110 cursor-pointer"
                                         }`}
                                 >
                                     {isAnalyzing ? "Analyzing CV with AI..." : "Analyze My CV"}
@@ -891,7 +901,7 @@ export default function UploadCvModal({
                                 </button>
 
                                 <div className="relative z-10 mt-[7px] flex items-center gap-[10px] text-[15px] leading-[1.3] text-[#526174]">
-                                    <LockKeyhole className="h-[24px] w-[24px] shrink-0 fill-[#007a50] text-white" />
+                                    <LockKeyhole className="h-[24px] w-[24px] shrink-0 fill-[#8b6a3e] text-white" />
                                     Your data is secure and will only be used for recruitment purposes.
                                 </div>
                             </div>
@@ -900,13 +910,13 @@ export default function UploadCvModal({
 
                     {/* ── Analysis progress ─────────────────────────────── */}
                     {isAnalyzing && (
-                        <div className="absolute inset-0 z-50 grid place-items-center bg-[#f4faf6]/75 px-8 text-center">
+                        <div className="absolute inset-0 z-50 grid place-items-center bg-[#fffaf2]/75 px-8 text-center">
                             <div className="flex flex-col items-center">
                                 <div className="relative grid h-[104px] w-[104px] place-items-center">
                                     <span className="boe-analyze-ring absolute inset-0 rounded-full" />
-                                    <span className="absolute inset-[9px] rounded-full bg-[#f7fbf8] shadow-[inset_0_0_0_1px_rgba(0,122,80,0.10)]" />
+                                    <span className="absolute inset-[9px] rounded-full bg-[#fffaf2] shadow-[inset_0_0_0_1px_rgba(0,122,80,0.10)]" />
                                     <FileUp
-                                        className="boe-analyze-icon relative h-[38px] w-[38px] text-[#007a50]"
+                                        className="boe-analyze-icon relative h-[38px] w-[38px] text-[#8b6a3e]"
                                         strokeWidth={2.2}
                                     />
                                 </div>
@@ -923,7 +933,7 @@ export default function UploadCvModal({
                                 </p>
 
                                 <div className="mt-[16px] h-[5px] w-[240px] overflow-hidden rounded-full bg-[#dbeadf]">
-                                    <span className="boe-analyze-sweep block h-full w-[35%] rounded-full bg-[linear-gradient(90deg,#008d55,#5ecb8c)]" />
+                                    <span className="boe-analyze-sweep block h-full w-[35%] rounded-full bg-[linear-gradient(90deg,#8b6a3e,#d8c39f)]" />
                                 </div>
 
                                 <div className="mt-[14px] flex items-center gap-[7px]">
@@ -931,15 +941,15 @@ export default function UploadCvModal({
                                         <span
                                             key={label}
                                             className={`h-[6px] rounded-full transition-all duration-300 ${index === analysisStep
-                                                    ? "w-[20px] bg-[#007a50]"
-                                                    : "w-[6px] bg-[#bfd8c8]"
+                                                    ? "w-[20px] bg-[#8b6a3e]"
+                                                    : "w-[6px] bg-[#eadcc8]"
                                                 }`}
                                         />
                                     ))}
                                 </div>
 
                                 <p className="mt-[16px] flex items-center gap-[7px] text-[12.5px] text-[#6b7a87]">
-                                    <LockKeyhole className="h-[14px] w-[14px] text-[#007a50]" />
+                                    <LockKeyhole className="h-[14px] w-[14px] text-[#8b6a3e]" />
                                     This takes a few seconds — please keep this window open.
                                 </p>
                             </div>
