@@ -54,7 +54,7 @@ const separatedAssets = {
   personLow: "/career-submit-resume-assets/image copy 4.png",
   rightPeople: "/career-submit-resume-assets/image copy 6.png",
   stickyNote: "/career-submit-resume-assets/image copy 6.png",
-  sidebarTop: asset("career-sidebar-top.png"),
+  sidebarTop: "/career-submit-resume-assets/image copy 6.png",
   sidebarFooter: "/career-submit-resume-assets/image copy 3.png",
   headerLeaf: "/assets/logo-moksha-seva.png",
 };

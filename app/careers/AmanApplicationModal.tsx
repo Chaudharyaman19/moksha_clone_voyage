@@ -25,8 +25,8 @@ const DESIGN_HEIGHT = 900;
 
 const assets = {
   headerLeaf: "/assets/logo-moksha-seva.png",
-  headerBanner: "/separated-assets/career-sidebar-top.png",
-  sidebarFooter: "/separated-assets/moksha-footer-ghat-bg.webp",
+  headerBanner: "/career-submit-resume-assets/image copy 6.png",
+  sidebarFooter: "/career-submit-resume-assets/image copy 3.png",
   profile: "/career-submit-resume-assets/profile.png",
 };
 
@@ -87,8 +87,8 @@ function ProgressSteps() {
 
   return (
     <div className="relative h-[48px] w-full">
-      <div className="absolute left-[12%] right-[12%] top-[14px] h-[2px] bg-[#d7e1dc]" />
-      <div className="absolute left-[12%] top-[14px] h-[2px] w-[76%] bg-[#168452]" />
+      <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#d7e1dc]" />
+      <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#168452]" />
 
       <div className="relative grid h-full grid-cols-4">
         {steps.map((step, index) => {
@@ -541,13 +541,13 @@ function AmanApplicationContent({ onClose }: { onClose: () => void }) {
             <ProgressSteps />
           </div>
 
-          <div className="relative h-[68px] w-[185px] shrink-0 -mt-[24px]">
+          <div className="relative h-[95px] w-[320px] shrink-0 -mt-[20px] mr-0">
             <Image
               src={assets.headerBanner}
-              alt="Together for a Healthier Tomorrow"
+              alt="Header Banner"
               fill
               priority
-              className="object-contain object-left-center"
+              className="object-contain object-right"
             />
           </div>
         </div>

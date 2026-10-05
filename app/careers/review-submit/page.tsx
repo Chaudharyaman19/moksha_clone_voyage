@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ApplicationSuccessModal from "../ApplicationSuccessModal";
-const sidebarFooterImage = "/assets/moksha-footer-ghat-bg.webp";
+const sidebarFooterImage = "/career-submit-resume-assets/image copy 3.png";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import {
   ArrowLeft,
@@ -45,8 +45,8 @@ const asset = (file: string) => `/separated-assets/${file}`;
 
 const assets = {
   headerLeaf: "/assets/logo-moksha-seva.png",
-  headerBanner: asset("career-sidebar-top.png"),
-  sidebarTop: asset("career-sidebar-top.png"),
+  headerBanner: "/career-submit-resume-assets/image copy 6.png",
+  sidebarTop: "/career-submit-resume-assets/image copy 6.png",
   sidebarFooter: sidebarFooterImage,
   profile: "/career-submit-resume-assets/profile.png",
 };
@@ -107,9 +107,9 @@ function ProgressSteps() {
   ];
 
   return (
-    <div className="relative mx-auto w-[82%]">
+    <div className="relative mx-auto w-full">
       <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#d9e0e7]" />
-      <div className="absolute left-[12.5%] top-[14px] h-[2px] w-[75%] bg-[#8b6a3e]" />
+      <div className="absolute left-[12.5%] right-[12.5%] top-[14px] h-[2px] bg-[#8b6a3e]" />
 
       <div className="relative grid grid-cols-4">
         {steps.map((step, index) => (
@@ -768,13 +768,13 @@ function ReviewSubmitContent({
             <ProgressSteps />
           </div>
 
-          <div className="relative h-[68px] w-[185px] shrink-0 -mt-[24px]">
+          <div className="relative h-[95px] w-[320px] shrink-0 -mt-[20px] mr-0">
             <Image
               src={assets.headerBanner}
-              alt="Together for a Healthier Tomorrow"
+              alt="Header Banner"
               fill
               priority
-              className="object-contain object-left-center"
+              className="object-contain object-right"
             />
           </div>
         </div>

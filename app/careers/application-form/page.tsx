@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-const sidebarFooterImage = "/assets/moksha-footer-ghat-bg.webp";
+const sidebarFooterImage = "/career-submit-resume-assets/image copy 3.png";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 import {
   AlertCircle,
@@ -48,7 +48,7 @@ const DESIGN_HEIGHT = 900;
 const asset = (file: string) => `/separated-assets/${file}`;
 
 const assets = {
-  sidebarTop: asset("career-sidebar-top.png"),
+  sidebarTop: "/career-submit-resume-assets/image copy 6.png",
   sidebarFooter: sidebarFooterImage,
   profile: "/career-submit-resume-assets/profile.png",
 

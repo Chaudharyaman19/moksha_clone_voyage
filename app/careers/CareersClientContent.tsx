@@ -236,9 +236,9 @@ export default function CareersClientContent() {
       <main className="bg-[#faf7f2] text-[#0a1831]">
         <div className="flex min-h-screen w-full flex-col bg-white">
           {/* HERO */}
-          <section className="relative isolate min-h-[500px] lg:h-[550px] overflow-hidden">
+          <section className="mt-10 relative isolate min-h-[500px] lg:h-[550px] overflow-hidden">
             <Image
-              src="/career-submit-resume-assets/image copy 2.png"
+              src="/career-submit-resume-assets/newbanner.png"
               alt="Moksha Sewa Career Team"
               fill
               priority
