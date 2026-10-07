@@ -68,6 +68,10 @@ interface SettingsResponse {
   refundPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   conductPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   careersPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  careersSubmitResumePage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  careersApplicationFormPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  careersReviewSubmitPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  careersUploadCvPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =
@@ -189,6 +193,14 @@ export async function getWebsiteSettings(): Promise<SettingsResponse | undefined
   }
 }
 
+export function isSettingsPageDisabled(
+  settings: SettingsResponse | undefined,
+  configKey: keyof SettingsResponse,
+): boolean {
+  const pageConfig = settings?.[configKey] as { enabled?: boolean } | undefined;
+  return Boolean(pageConfig && pageConfig.enabled === false);
+}
+
 export function isPageDisabled(page: WebsitePageKey, settings?: SettingsResponse): boolean {
   if (!settings) return false;
   
@@ -220,11 +232,7 @@ export function isPageDisabled(page: WebsitePageKey, settings?: SettingsResponse
   };
 
   const key = pageKeyMap[page];
-  const pageConfig = settings[key] as any;
-  if (pageConfig && pageConfig.enabled === false) {
-    return true;
-  }
-  return false;
+  return isSettingsPageDisabled(settings, key);
 }
 
 export async function getPageSections(page: WebsitePageKey) {

@@ -6,14 +6,19 @@ import DynamicH1 from "@/components/seo/DynamicH1";
 import JsonLd from "@/components/seo/JsonLd";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 import { breadcrumbJsonLd, createDynamicMetadata } from "@/lib/seo";
-import { getWebsiteSections } from "@/lib/websiteSettingsApi";
+import { getMergedWebsiteSections, getWebsiteSettings, isPageDisabled } from "@/lib/websiteSettingsApi";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
   return createDynamicMetadata("/services", "landing");
 }
 
 export default async function ServicesPage() {
-  const sections = await getWebsiteSections();
+  const settings = await getWebsiteSettings();
+  if (isPageDisabled("services", settings)) {
+    notFound();
+  }
+  const sections = getMergedWebsiteSections("landing", settings);
 
   return (
     <WebsiteContentProvider sections={sections}>
