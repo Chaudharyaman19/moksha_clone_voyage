@@ -3,7 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import UploadCvModal, { CandidateAnalysisData } from "@/app/components/careers/uploade_cv/page";
+import UploadCvModal, { CandidateAnalysisData } from "@/components/careers/UploadCvModal";
 import { EligibilityModal, CandidateProfileData, defaultCandidateData } from "./submit-resume/page";
 import { ApplicationFormModal } from "./application-form/page";
 import { ReviewSubmitModal } from "./review-submit/page";

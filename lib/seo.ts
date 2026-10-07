@@ -410,6 +410,58 @@ export const seoRoutes: RouteSeo[] = [
     priority: 0.6,
     changeFrequency: "monthly",
   },
+  {
+    path: "/careers/submit-resume",
+    label: "Careers – Eligibility Check",
+    title: "Check Your Eligibility – Moksha Sewa Careers",
+    description:
+      "Check if you are eligible to apply for a role at Moksha Sewa and continue your job application in a few simple steps.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers eligibility check",
+    keywords: ["Moksha Sewa careers eligibility", "job eligibility check", "apply for Moksha Sewa job"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/application-form",
+    label: "Careers – Application Form",
+    title: "Job Application Form – Moksha Sewa Careers",
+    description:
+      "Fill in your details on the official Moksha Sewa job application form and submit your interest in joining our team.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers application form",
+    keywords: ["Moksha Sewa application form", "job application form", "Moksha Sewa apply"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/review-submit",
+    label: "Careers – Review & Submit",
+    title: "Review & Submit Your Application – Moksha Sewa Careers",
+    description:
+      "Review your details and submit your job application to join the Moksha Sewa team.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers review and submit",
+    keywords: ["Moksha Sewa submit application", "job application review"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/uploade_cv",
+    label: "Careers – Upload CV",
+    title: "Upload Your CV – Moksha Sewa Careers",
+    description:
+      "Upload your CV and apply for open roles at Moksha Sewa to support dignified end-of-life care and humanitarian service.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers upload CV",
+    keywords: ["Moksha Sewa upload CV", "submit resume Moksha Sewa", "Moksha Sewa jobs"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
 ];
 
 export const publicSeoRoutes = seoRoutes.filter((route) => route.index !== false);
@@ -711,9 +763,19 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   const twitterDescription = parsedOg.twitterDescription || ogDescription;
   const twitterImage = normalizeOgImageUrl(parsedOg.twitterImage || ogImage);
 
+  // The root layout sets `title: { template: "%s | Moksha Sewa" }`, so a plain string
+  // title gets the site-name suffix appended. Admin SEO titles often already include it
+  // (e.g. "Careers | Moksha Sewa"), which rendered as "... | Moksha Sewa | Moksha Sewa".
+  // Titles that already end with the site name are returned as absolute so the
+  // template is bypassed; everything else keeps the template behaviour.
+  const titleAlreadySuffixed =
+    typeof title === "string" &&
+    new RegExp(`(?:\\||\\u2013|-)\\s*${SITE_NAME}\\s*$`, "i").test(title.trim());
+  const resolvedTitle = titleAlreadySuffixed ? { absolute: title as string } : title;
+
   return {
     ...baseMetadata,
-    title,
+    title: resolvedTitle,
     description,
     keywords,
     alternates: {
@@ -741,7 +803,7 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
           url: ogImage as string,
           width: parsedOg.ogImageWidth || 1200,
           height: parsedOg.ogImageHeight || 630,
-          alt: parsedOg.ogImageAlt || (title as any)?.absolute || title,
+          alt: parsedOg.ogImageAlt || (resolvedTitle as any)?.absolute || resolvedTitle,
         },
       ],
     },

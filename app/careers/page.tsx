@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
 import CareersClientContent from "./CareersClientContent";
-import { createDynamicMetadata } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createDynamicMetadata("/careers", "careers");
 }
 
-export default function CareerPage() {
-  return <CareersClientContent />;
+export default async function CareerPage() {
+  const customSchema = await getPageSchemaMarkup("/careers", "careers").catch(() => null);
+
+  return (
+    <>
+      <JsonLd data={breadcrumbJsonLd("/careers", "Careers")} />
+      {customSchema && <JsonLd data={customSchema} />}
+      <CareersClientContent />
+    </>
+  );
 }

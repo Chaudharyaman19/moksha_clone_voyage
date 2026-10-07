@@ -66,6 +66,7 @@ interface SettingsResponse {
   termsPage?: { seo?: any; sections?: ExtraSectionContent[] };
   refundPage?: { seo?: any; sections?: ExtraSectionContent[] };
   conductPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  careersPage?: { seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =

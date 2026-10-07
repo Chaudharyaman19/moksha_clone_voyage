@@ -438,6 +438,8 @@ type MatchContextType = {
   theme: (typeof stateTheme)["high" | "moderate" | "low"];
   current: (typeof matchConfig)["high" | "moderate" | "low"];
   candidate: CandidateProfileData;
+  supportEmail?: string;
+  supportPhone?: string;
   /** Applies an inline edit from the profile card; absent outside the popup. */
   updateCandidate?: (patch: Partial<CandidateProfileData>) => void;
   /** Closes the whole apply flow. */
@@ -450,6 +452,8 @@ const MatchContext = createContext<MatchContextType>({
   theme: stateTheme["high"],
   current: matchConfig["high"],
   candidate: defaultCandidateData,
+  supportEmail: "careers@mokshasewa.org",
+  supportPhone: "+91 98765 43210",
 });
 
 export const useMatchData = () => useContext(MatchContext);
@@ -480,7 +484,8 @@ function useGoToCareers() {
 
 export function getMatchData(
   candidate: CandidateProfileData = defaultCandidateData,
-  overrideScore?: number
+  overrideScore?: number,
+  customMessages?: any
 ): MatchContextType {
   const score = typeof overrideScore === "number" ? overrideScore : candidate.score;
   const level: MatchLevel =
@@ -498,14 +503,41 @@ export function getMatchData(
     ? candidate.firstName.replace(/([a-z])([A-Z])/g, "$1 $2").trim().split(" ")[0]
     : (cleanFullName.split(" ")[0] || "Candidate");
   const jobTitle = candidate.jobDetails?.title || "this position";
+  const supportEmail = customMessages?.supportEmail || "careers@mokshasewa.org";
+  const supportPhone = customMessages?.supportPhone || "+91 98765 43210";
 
-  if (level === "high") {
-    config.title = `Great News, ${firstName}!`;
-  } else if (level === "moderate") {
-    config.title = `Good Start, ${firstName}!`;
+  const fillTemplate = (text: string) => {
+    if (!text) return "";
+    return text
+      .replaceAll("{{candidate_name}}", cleanFullName)
+      .replaceAll("{{first_name}}", firstName)
+      .replaceAll("{{job_title}}", jobTitle)
+      .replaceAll("{{company_name}}", "Moksha Sewa")
+      .replaceAll("{{current_ctc}}", (candidate as any).currentCtc || "Not specified")
+      .replaceAll("{{expected_ctc}}", (candidate as any).expectedCtc || "Not specified")
+      .replaceAll("{{total_experience}}", (candidate as any).experience || "Not specified")
+      .replaceAll("{{current_location}}", (candidate as any).location || "Delhi NCR")
+      .replaceAll("{{application_link}}", "https://mokshasewa.org/careers")
+      .replaceAll("{{support_email}}", supportEmail)
+      .replaceAll("{{support_phone}}", supportPhone);
+  };
+
+  const msgKey = level === "high" ? "eligible" : level === "moderate" ? "partial" : "notEligible";
+  const customMsg = customMessages?.[msgKey];
+
+  if (customMsg && customMsg.active !== false) {
+    if (customMsg.title) config.title = fillTemplate(customMsg.title);
+    if (customMsg.subtitle) config.subtitle = fillTemplate(customMsg.subtitle);
+    if (customMsg.web) config.description = fillTemplate(customMsg.web);
   } else {
-    config.title = `Thank You, ${firstName}!`;
-    config.subtitle = `This position may not be the right fit for you at this time.`;
+    if (level === "high") {
+      config.title = `Great News, ${firstName}!`;
+    } else if (level === "moderate") {
+      config.title = `Good Start, ${firstName}!`;
+    } else {
+      config.title = `Thank You, ${firstName}!`;
+      config.subtitle = `This position may not be the right fit for you at this time.`;
+    }
   }
 
   if (candidate.summary) {
@@ -529,6 +561,8 @@ export function getMatchData(
     theme: stateTheme[level],
     current: config,
     candidate,
+    supportEmail,
+    supportPhone,
   };
 }
 
@@ -1800,7 +1834,7 @@ function JobSummary() {
    ========================================================= */
 
 function SupportCard() {
-  const { matchLevel, theme } = useMatchData();
+  const { matchLevel, theme, supportEmail, supportPhone } = useMatchData();
 
   if (matchLevel === "low") {
     return (
@@ -1845,7 +1879,8 @@ function SupportCard() {
         <p className="mt-[2px] text-[13px] font-medium leading-tight text-[#214368]">
           Feel free to reach out to our HR team at
           <br />
-          <strong className="font-semibold text-[#102d58]">info@mokshasewa.org</strong>
+          <strong className="font-semibold text-[#102d58]">{supportEmail || "careers@mokshasewa.org"}</strong>
+          {supportPhone ? <span className="block font-medium text-[#214368]">{supportPhone}</span> : null}
         </p>
       </div>
     </div>
@@ -2005,14 +2040,25 @@ export function EligibilityPopupContent({
   // Edits are held locally so the card updates instantly, and mirrored upward so the
   // application form on the next step receives the corrected details.
   const [edited, setEdited] = useState<Partial<CandidateProfileData> | null>(null);
+  const [resultMessages, setResultMessages] = useState<any>(null);
   const merged = edited ? { ...candidate, ...edited } : candidate;
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+    fetch(`${apiUrl}/careers/result-messages`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json?.data) setResultMessages(json.data);
+      })
+      .catch(() => {});
+  }, []);
 
   const updateCandidate = (patch: Partial<CandidateProfileData>) => {
     setEdited((current) => ({ ...current, ...patch }));
     onCandidateChange?.({ ...merged, ...patch });
   };
 
-  const matchData = { ...getMatchData(merged, score), updateCandidate, onClose };
+  const matchData = { ...getMatchData(merged, score, resultMessages), updateCandidate, onClose };
 
   return (
     <MatchContext.Provider value={matchData}>
@@ -2201,7 +2247,7 @@ export function EligibilityModal({
   );
 }
 
-import UploadCvModal from "@/app/components/careers/uploade_cv/page";
+import UploadCvModal from "@/components/careers/UploadCvModal";
 
 export default function CareerEligibilityPage() {
   const [eligibilityOpen, setEligibilityOpen] = useState(false);
