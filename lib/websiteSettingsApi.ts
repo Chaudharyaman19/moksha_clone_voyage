@@ -1,5 +1,6 @@
 import { mergeLandingSections, type LandingSectionContent } from "./landingContent";
 import { mergeAboutSections, type AboutSectionContent } from "./aboutContent";
+import { notFound } from "next/navigation";
 import {
   mergeServicesSections,
   mergeAmbulanceSections,
@@ -42,31 +43,31 @@ interface SettingsResponse {
     ga4MeasurementId?: string;
     gtmContainerId?: string;
   };
-  notFoundPage?: { seo?: any; sections?: any[] };
-  landingPage?: { seo?: any; sections?: LandingSectionContent[] };
-  aboutPage?: { seo?: any; sections?: AboutSectionContent[] };
-  servicesPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  ambulancePage?: { seo?: any; sections?: ExtraSectionContent[] };
-  panditPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  funeralPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  funeralDecorationPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  prayerHallPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  specialServicePage?: { seo?: any; sections?: ExtraSectionContent[] };
-  callingRelativesPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  harsevanPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  unclaimedBodyPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  volunteerPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  partnershipPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  csrPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  requestHelpPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  donationPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  contactPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  trackPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  privacyPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  termsPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  refundPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  conductPage?: { seo?: any; sections?: ExtraSectionContent[] };
-  careersPage?: { seo?: any; sections?: ExtraSectionContent[] };
+  notFoundPage?: { enabled?: boolean; seo?: any; sections?: any[] };
+  landingPage?: { enabled?: boolean; seo?: any; sections?: LandingSectionContent[] };
+  aboutPage?: { enabled?: boolean; seo?: any; sections?: AboutSectionContent[] };
+  servicesPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  ambulancePage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  panditPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  funeralPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  funeralDecorationPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  prayerHallPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  specialServicePage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  callingRelativesPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  harsevanPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  unclaimedBodyPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  volunteerPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  partnershipPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  csrPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  requestHelpPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  donationPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  contactPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  trackPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  privacyPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  termsPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  refundPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  conductPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  careersPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =
@@ -188,8 +189,49 @@ export async function getWebsiteSettings(): Promise<SettingsResponse | undefined
   }
 }
 
+export function isPageDisabled(page: WebsitePageKey, settings?: SettingsResponse): boolean {
+  if (!settings) return false;
+  
+  const pageKeyMap: Record<WebsitePageKey, keyof SettingsResponse> = {
+    "landing": "landingPage",
+    "about": "aboutPage",
+    "services": "servicesPage",
+    "ambulance": "ambulancePage",
+    "pandit": "panditPage",
+    "funeral": "funeralPage",
+    "funeralDecoration": "funeralDecorationPage",
+    "prayerHall": "prayerHallPage",
+    "specialService": "specialServicePage",
+    "callingRelatives": "callingRelativesPage",
+    "harsevan": "harsevanPage",
+    "unclaimed-body": "unclaimedBodyPage",
+    "volunteer": "volunteerPage",
+    "partnership": "partnershipPage",
+    "csr": "csrPage",
+    "request-help": "requestHelpPage",
+    "donation": "donationPage",
+    "contact": "contactPage",
+    "track": "trackPage",
+    "privacy-policy": "privacyPage",
+    "terms": "termsPage",
+    "refund-policy": "refundPage",
+    "code-of-conduct": "conductPage",
+    "careers": "careersPage",
+  };
+
+  const key = pageKeyMap[page];
+  const pageConfig = settings[key] as any;
+  if (pageConfig && pageConfig.enabled === false) {
+    return true;
+  }
+  return false;
+}
+
 export async function getPageSections(page: WebsitePageKey) {
   const settings = await getWebsiteSettings();
+  if (isPageDisabled(page, settings)) {
+    notFound();
+  }
   return getMergedWebsiteSections(page, settings);
 }
 

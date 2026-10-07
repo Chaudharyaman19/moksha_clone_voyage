@@ -39,6 +39,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [disabledPaths, setDisabledPaths] = useState<string[]>([]);
   const isPathActive = (path: string) => {
     if (path.startsWith("#")) return false;
     return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
@@ -60,6 +61,59 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetchDisabledPages = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
+        if (!response.ok) return;
+        const body = await response.json();
+        if (cancelled || !body.data) return;
+        
+        const settings = body.data;
+        const disabled: string[] = [];
+        
+        const pageKeyMap: Record<string, string> = {
+          landingPage: "/",
+          aboutPage: "/about",
+          servicesPage: "/our-services",
+          ambulanceSewaPage: "/ambulanceservices",
+          vedicPanditPage: "/panditservices",
+          funeralManagementPage: "/furalservices",
+          funeralDecorationPage: "/furaldecoration",
+          prayerHallPage: "/prayerhallservices",
+          specialServicesPage: "/specialservices",
+          callingRelativesPage: "/callingrelativesservices",
+          harsevanPage: "/harsevanservices",
+          unclaimedBodyPage: "/unclaimed-body-sewa",
+          volunteerPage: "/volunteer/register",
+          partnershipPage: "/partnership",
+          csrPage: "/csr",
+          requestHelpPage: "/request-help",
+          donationPage: "/donation",
+          contactPage: "/contact",
+          careersPage: "/careers",
+        };
+
+        for (const [key, path] of Object.entries(pageKeyMap)) {
+           const config = settings[key];
+           if (config) {
+             let isEnabled = true;
+             if (config.enabled !== undefined) {
+               isEnabled = config.enabled;
+             } else if (config.sections && config.sections.length > 0) {
+               isEnabled = config.sections.some((s: any) => s.enabled !== false);
+             }
+             if (!isEnabled) disabled.push(path);
+           }
+        }
+        setDisabledPaths(disabled);
+      } catch (e) {}
+    };
+    fetchDisabledPages();
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
@@ -188,7 +242,22 @@ export default function Navbar() {
       type: "page",
     },
   ];
-  const allNavItems = navItems;
+
+  const allNavItems = navItems
+    .map(item => {
+      if (item.dropdown) {
+        return {
+          ...item,
+          dropdown: item.dropdown.filter(child => !disabledPaths.includes(child.path))
+        };
+      }
+      return item;
+    })
+    .filter(item => {
+      if (disabledPaths.includes(item.path)) return false;
+      if (item.dropdown && item.dropdown.length === 0) return false;
+      return true;
+    });
   const navKey = (item: Pick<NavItem, "name" | "path">, index: number) => `${item.name}:${item.path}:${index}`;
 
   const toggleDropdown = (itemName: string) => {

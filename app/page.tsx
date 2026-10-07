@@ -30,6 +30,9 @@ import { createDynamicMetadata } from "@/lib/seo";
 
 import DynamicH1 from "@/components/seo/DynamicH1";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata() {
   return createDynamicMetadata("/", "landing");
 }
