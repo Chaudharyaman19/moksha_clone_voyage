@@ -163,6 +163,23 @@ export async function POST(req: NextRequest) {
       : "image/jpeg";
 
     const openAiApiKey = process.env.OPENAI_API_KEY;
+    const geminiKey = process.env.GEMINI_API_KEY;
+
+    // Without a provider key the check can never run — say so instead of blaming the
+    // candidate's photo for a server-side configuration gap.
+    if (!openAiApiKey && !geminiKey) {
+      console.error("verify-image: no vision API key configured (OPENAI_API_KEY / GEMINI_API_KEY)");
+      return NextResponse.json(
+        {
+          success: false,
+          provider: "none",
+          reason:
+            "Photo verification is unavailable right now. Please try again later or contact support.",
+        },
+        { status: 503 }
+      );
+    }
+
     if (openAiApiKey) {
       try {
         const check = await verifyWithOpenAI(openAiApiKey, base64Data, mimeType);
@@ -175,7 +192,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const geminiKey = process.env.GEMINI_API_KEY;
     if (geminiKey) {
       try {
         const check = await verifyWithGemini(geminiKey, base64Data, mimeType);
@@ -191,7 +207,8 @@ export async function POST(req: NextRequest) {
     console.warn("verify-image: Vision model evaluation did not return a valid result.");
     return NextResponse.json({
       success: false,
-      reason: "Could not verify photo. Please upload a clear, upright, real photograph of your face.",
+      provider: "error",
+      reason: "Photo verification could not be completed. Please try again in a few minutes.",
     });
   } catch (error: any) {
     console.error("Verify image endpoint error:", error);
