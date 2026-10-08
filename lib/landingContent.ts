@@ -468,21 +468,10 @@ export function mergeLandingSections(sections?: LandingSectionContent[]): Landin
     }
     if (!saved) return fallback;
     const items = fallback.items?.length
-      ? fallback.key === "navbar"
-        ? [
-            ...fallback.items.map((item) => ({
-              ...item,
-              ...(saved.items?.find((savedItem) => savedItem.href === item.href || savedItem.label === item.label) ?? {}),
-            })),
-            ...(saved.items?.filter(
-              (savedItem) =>
-                !fallback.items?.some((item) => item.href === savedItem.href || item.label === savedItem.label)
-            ) ?? []),
-          ]
-        : [
-            ...fallback.items.map((item, index) => ({ ...item, ...(saved.items?.[index] ?? {}) })),
-            ...(saved.items?.slice(fallback.items.length) ?? []),
-          ]
+      ? [
+          ...fallback.items.map((item, index) => ({ ...item, ...(saved.items?.[index] ?? {}) })),
+          ...(saved.items?.slice(fallback.items.length) ?? []),
+        ]
       : saved.items;
     const slides = fallback.slides?.length
       ? [

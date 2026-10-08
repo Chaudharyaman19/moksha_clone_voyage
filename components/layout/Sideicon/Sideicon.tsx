@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   FaWhatsapp,
@@ -14,8 +15,22 @@ import { trackEvent, type AnalyticsEvent } from "@/lib/analytics";
 import { PiFlowerLotus } from "react-icons/pi";
 
 const SocialSidebar = () => {
+  const [whatsappNumber, setWhatsappNumber] = useState("917702045502");
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5001/api/v1";
+    fetch(`${apiUrl}/settings`)
+      .then((res) => res.json())
+      .then((body) => {
+        if (body?.data?.whatsappNumber) {
+          setWhatsappNumber(body.data.whatsappNumber.replace(/[^\d]/g, ""));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const whatsappLink = {
-    url: "https://wa.me/919220147229?text=Namaste%2C%20I%20would%20like%20to%20know%20more%20about%20Moksha%20Sewa%27s%20services.%20Please%20guide%20me.",
+    url: `https://wa.me/${whatsappNumber || "917702045502"}?text=Namaste%2C%20I%20would%20like%20to%20know%20more%20about%20Moksha%20Sewa%27s%20services.%20Please%20guide%20me.`,
     color: "#25D366",
     label: "WhatsApp",
   };
@@ -118,7 +133,7 @@ const SocialSidebar = () => {
 
             <div className="group relative">
               <a
-                href="tel:+919310219283"
+                href="tel:+919220147229"
                 className="block"
                 onClick={() => trackClick("Emergency Call")}
               >
@@ -249,7 +264,7 @@ const SocialSidebar = () => {
 
           {/* Emergency */}
           <a
-            href="tel:+919310219283"
+            href="tel:+919220147229"
             aria-label="Call Moksha Sewa emergency support"
             className="flex min-h-11 min-w-11 flex-col items-center gap-1 group"
             onClick={() => trackClick("Emergency Call - Mobile")}

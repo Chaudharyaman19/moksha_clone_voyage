@@ -1,7 +1,7 @@
 import Harsevan from "@/components/page-features/services/Harsevan";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
-import { getMergedWebsiteSections } from "@/lib/websiteSettingsApi";
+import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 import FAQ from "@/components/sections/FAQ/FAQ";
 
@@ -12,9 +12,7 @@ export async function generateMetadata() {
 }
 
 async function page() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
-  const body = response.ok ? await response.json() : {};
-  const sections = getMergedWebsiteSections("harsevan", body.data);
+  const sections = await getPageSections("harsevan");
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/harsevanservices")} />

@@ -3,7 +3,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import UnclaimedBodyPageSections from "@/components/page-features/unclaimed-body/UnclaimedBodyPageSections";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
-import { getMergedWebsiteSections } from "@/lib/websiteSettingsApi";
+import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 import FAQ from "@/components/sections/FAQ/FAQ";
 
@@ -14,9 +14,7 @@ export async function generateMetadata() {
 }
 
 async function page() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
-  const body = response.ok ? await response.json() : {};
-  const sections = getMergedWebsiteSections("unclaimed-body", body.data);
+  const sections = await getPageSections("unclaimed-body");
   return (
     <div>
       <JsonLd data={breadcrumbJsonLd("/unclaimed-body-sewa")} />

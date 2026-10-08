@@ -5,6 +5,7 @@ export const SITE_NAME = "Moksha Sewa";
 export const DEFAULT_OG_IMAGE = "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png";
 export const DEFAULT_OG_CARD_IMAGE = "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png";
 import { getWebsiteSettings, type WebsitePageKey } from "./websiteSettingsApi";
+import { seoApi } from "./seoApi";
 
 type RouteSeo = {
   path: string;
@@ -397,6 +398,70 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "yearly",
     index: false,
   },
+  {
+    path: "/careers",
+    label: "Careers",
+    title: "Careers – Join Moksha Sewa Team",
+    description:
+      "Explore career opportunities at Moksha Sewa and join our team providing dignified last rites and humanitarian end-of-life support.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Careers at Moksha Sewa",
+    keywords: ["Moksha Sewa careers", "jobs", "career opportunities", "Namo Gange Trust careers"],
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/careers/submit-resume",
+    label: "Careers – Eligibility Check",
+    title: "Check Your Eligibility – Moksha Sewa Careers",
+    description:
+      "Check if you are eligible to apply for a role at Moksha Sewa and continue your job application in a few simple steps.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers eligibility check",
+    keywords: ["Moksha Sewa careers eligibility", "job eligibility check", "apply for Moksha Sewa job"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/application-form",
+    label: "Careers – Application Form",
+    title: "Job Application Form – Moksha Sewa Careers",
+    description:
+      "Fill in your details on the official Moksha Sewa job application form and submit your interest in joining our team.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers application form",
+    keywords: ["Moksha Sewa application form", "job application form", "Moksha Sewa apply"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/review-submit",
+    label: "Careers – Review & Submit",
+    title: "Review & Submit Your Application – Moksha Sewa Careers",
+    description:
+      "Review your details and submit your job application to join the Moksha Sewa team.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers review and submit",
+    keywords: ["Moksha Sewa submit application", "job application review"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
+  {
+    path: "/careers/uploade_cv",
+    label: "Careers – Upload CV",
+    title: "Upload Your CV – Moksha Sewa Careers",
+    description:
+      "Upload your CV and apply for open roles at Moksha Sewa to support dignified end-of-life care and humanitarian service.",
+    ogImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png",
+    ogImageAlt: "Moksha Sewa careers upload CV",
+    keywords: ["Moksha Sewa upload CV", "submit resume Moksha Sewa", "Moksha Sewa jobs"],
+    priority: 0.3,
+    changeFrequency: "monthly",
+    index: false,
+  },
 ];
 
 export const publicSeoRoutes = seoRoutes.filter((route) => route.index !== false);
@@ -406,6 +471,23 @@ export function absoluteUrl(path = "/") {
   if (/^https?:\/\//i.test(path)) return path;
   return new URL(path, SITE_URL).toString();
 }
+
+/**
+ * Extracts the canonical URL (href value) from a raw <link rel="canonical"> HTML string.
+ * Returns null if the string is empty or doesn't contain a valid href.
+ *
+ * Example input:  '<link rel="canonical" href="https://mokshasewa.org/about" />'
+ * Example output: 'https://mokshasewa.org/about'
+ */
+export function extractCanonicalUrl(canonicalTag?: string | null): string | null {
+  if (!canonicalTag || !canonicalTag.trim()) return null;
+  const trimmed = canonicalTag.trim();
+  const match = trimmed.match(/href=["']([^"']+)["']/i);
+  if (match) return match[1].trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return null;
+}
+
 
 export function normalizeOgImageUrl(image?: string | null) {
   if (!image) return DEFAULT_OG_CARD_IMAGE;
@@ -480,10 +562,139 @@ export function createPageMetadata(path: string): Metadata {
   };
 }
 
+export interface ParsedOgData {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogUrl?: string;
+  ogSiteName?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  twitterImageAlt?: string;
+  keywords?: string[];
+}
+
+export function parseOpenGraphTagsContent(rawTags?: string | null): ParsedOgData {
+  if (!rawTags || typeof rawTags !== "string" || !rawTags.trim()) {
+    return {};
+  }
+
+  const trimmed = rawTags.trim();
+  const result: ParsedOgData = {};
+
+  // 1. Check if rawTags is JSON
+  if ((trimmed.startsWith("{") && trimmed.endsWith("}")) || (trimmed.startsWith("[") && trimmed.endsWith("]"))) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (parsed && typeof parsed === "object") {
+        if (parsed.title) result.title = String(parsed.title);
+        if (parsed.description) result.description = String(parsed.description);
+        if (parsed.canonical) result.canonicalUrl = String(parsed.canonical);
+        if (Array.isArray(parsed.keywords)) {
+          result.keywords = parsed.keywords.map((k: any) => String(k).trim()).filter(Boolean);
+        } else if (typeof parsed.keywords === "string") {
+          result.keywords = parsed.keywords.split(",").map((k: string) => k.trim()).filter(Boolean);
+        }
+
+        const og = parsed.openGraph || parsed.opengraph || {};
+        if (og.title) result.ogTitle = String(og.title);
+        if (og.description) result.ogDescription = String(og.description);
+        if (og.url) result.ogUrl = String(og.url);
+        if (og.siteName || og.site_name) result.ogSiteName = String(og.siteName || og.site_name);
+        if (og.type) result.ogType = String(og.type);
+        if (og.image) {
+          if (typeof og.image === "string") result.ogImage = og.image;
+          else if (typeof og.image === "object" && og.image.url) {
+            result.ogImage = String(og.image.url);
+            if (og.image.alt) result.ogImageAlt = String(og.image.alt);
+            if (og.image.width) result.ogImageWidth = Number(og.image.width);
+            if (og.image.height) result.ogImageHeight = Number(og.image.height);
+          }
+        }
+
+        const tw = parsed.twitter || {};
+        if (tw.card) result.twitterCard = String(tw.card);
+        if (tw.title) result.twitterTitle = String(tw.title);
+        if (tw.description) result.twitterDescription = String(tw.description);
+        if (tw.image) {
+          result.twitterImage = typeof tw.image === "string" ? tw.image : (tw.image?.url ? String(tw.image.url) : undefined);
+          if (typeof tw.image === "object" && tw.image.alt) result.twitterImageAlt = String(tw.image.alt);
+        }
+        if (tw.imageAlt || tw.image_alt) result.twitterImageAlt = String(tw.imageAlt || tw.image_alt);
+
+        return result;
+      }
+    } catch {
+      // Not JSON, continue to HTML meta tag parsing
+    }
+  }
+
+  // 2. Helper to extract content from <meta property="..." content="..."> or <meta content="..." property="...">
+  const extractMetaContent = (nameOrProperty: string): string | undefined => {
+    const escaped = nameOrProperty.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const p1 = new RegExp(`<meta\\s+[^>]*(?:property|name)=["']${escaped}["'][^>]*content=["']([^"']*)["']`, "i");
+    const m1 = trimmed.match(p1);
+    if (m1) return m1[1].trim();
+
+    const p2 = new RegExp(`<meta\\s+[^>]*content=["']([^"']*)["'][^>]*(?:property|name)=["']${escaped}["']`, "i");
+    const m2 = trimmed.match(p2);
+    if (m2) return m2[1].trim();
+
+    return undefined;
+  };
+
+  const titleMatch = trimmed.match(/<title[^>]*>([^<]+)<\/title>/i);
+  if (titleMatch) result.title = titleMatch[1].trim();
+
+  const canonicalMatch =
+    trimmed.match(/<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i) ||
+    trimmed.match(/<link\s+[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
+  if (canonicalMatch) result.canonicalUrl = canonicalMatch[1].trim();
+
+  const desc = extractMetaContent("description");
+  if (desc) result.description = desc;
+
+  const kw = extractMetaContent("keywords");
+  if (kw) result.keywords = kw.split(",").map((k) => k.trim()).filter(Boolean);
+
+  result.ogTitle = extractMetaContent("og:title");
+  result.ogDescription = extractMetaContent("og:description");
+  result.ogImage = extractMetaContent("og:image");
+  result.ogImageAlt = extractMetaContent("og:image:alt");
+  const widthStr = extractMetaContent("og:image:width");
+  if (widthStr) result.ogImageWidth = parseInt(widthStr, 10);
+  const heightStr = extractMetaContent("og:image:height");
+  if (heightStr) result.ogImageHeight = parseInt(heightStr, 10);
+  result.ogUrl = extractMetaContent("og:url");
+  result.ogSiteName = extractMetaContent("og:site_name");
+  result.ogType = extractMetaContent("og:type");
+
+  result.twitterCard = extractMetaContent("twitter:card");
+  result.twitterTitle = extractMetaContent("twitter:title");
+  result.twitterDescription = extractMetaContent("twitter:description");
+  result.twitterImage = extractMetaContent("twitter:image");
+  result.twitterImageAlt = extractMetaContent("twitter:image:alt");
+
+  return result;
+}
+
 export async function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Promise<Metadata> {
   const baseMetadata = createPageMetadata(path);
+
+  const isLocal = process.env.NODE_ENV !== "production";
+  const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
+  const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
+
   const settings = await getWebsiteSettings();
-  // pageFieldMap logic repeated or we can just access it
   const pageFieldMap: Record<WebsitePageKey, any> = {
     landing: "landingPage",
     about: "aboutPage",
@@ -508,29 +719,63 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
     terms: "termsPage",
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
+    careers: "careersPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
-  const customSeo = (pageSettings as any)?.seo;
+  const activeSeo = dedicatedSeo?.isActive !== false ? dedicatedSeo : null;
+  const customSeo = activeSeo || (pageSettings as any)?.seo;
   const advancedSeo = settings?.advancedSeo;
 
   if (!customSeo) return baseMetadata;
 
-  const title = customSeo.metaTitle || baseMetadata.title;
-  const description = customSeo.metaDescription || baseMetadata.description;
-  const url = customSeo.canonicalUrl || (baseMetadata.alternates?.canonical as string) || absoluteUrl(path);
-  const ogTitle = customSeo.ogTitle || title;
-  const ogDescription = customSeo.ogDescription || description;
+  const parsedOg = parseOpenGraphTagsContent(customSeo.openGraphTags);
+
+  const title = parsedOg.title || customSeo.metaTitle || baseMetadata.title;
+  const description = parsedOg.description || customSeo.metaDescription || baseMetadata.description;
+
+  // Canonical resolution: parsed from openGraphTags, then canonicalTag link, then canonicalUrl, then fallback URL
+  const adminCanonical =
+    parsedOg.canonicalUrl ||
+    extractCanonicalUrl(customSeo.canonicalTag) ||
+    customSeo.canonicalUrl ||
+    null;
+  const url = adminCanonical || parsedOg.ogUrl || absoluteUrl(path);
+
+  const ogTitle = parsedOg.ogTitle || customSeo.ogTitle || title;
+  const ogDescription = parsedOg.ogDescription || customSeo.ogDescription || description;
+
   const ogImages = baseMetadata.openGraph?.images;
   const firstOgImage = Array.isArray(ogImages) ? ogImages[0] : ogImages;
-  const baseOgImageUrl = typeof firstOgImage === 'object' && firstOgImage !== null && 'url' in firstOgImage ? firstOgImage.url : firstOgImage;
-  const ogImage = normalizeOgImageUrl(customSeo.ogImage || advancedSeo?.defaultOgImage || baseOgImageUrl || DEFAULT_OG_IMAGE);
+  const baseOgImageUrl = typeof firstOgImage === "object" && firstOgImage !== null && "url" in firstOgImage ? firstOgImage.url : firstOgImage;
+  const ogImage = normalizeOgImageUrl(
+    parsedOg.ogImage || customSeo.ogImage || advancedSeo?.defaultOgImage || baseOgImageUrl || DEFAULT_OG_IMAGE
+  );
 
-  const keywords = customSeo.metaKeywords ? customSeo.metaKeywords.split(",").map((k: string) => k.trim()) : baseMetadata.keywords;
+  const keywords =
+    parsedOg.keywords && parsedOg.keywords.length > 0
+      ? parsedOg.keywords
+      : customSeo.metaKeywords
+      ? customSeo.metaKeywords.split(",").map((k: string) => k.trim())
+      : baseMetadata.keywords;
+
+  const twitterTitle = parsedOg.twitterTitle || ogTitle;
+  const twitterDescription = parsedOg.twitterDescription || ogDescription;
+  const twitterImage = normalizeOgImageUrl(parsedOg.twitterImage || ogImage);
+
+  // The root layout sets `title: { template: "%s | Moksha Sewa" }`, so a plain string
+  // title gets the site-name suffix appended. Admin SEO titles often already include it
+  // (e.g. "Careers | Moksha Sewa"), which rendered as "... | Moksha Sewa | Moksha Sewa".
+  // Titles that already end with the site name are returned as absolute so the
+  // template is bypassed; everything else keeps the template behaviour.
+  const titleAlreadySuffixed =
+    typeof title === "string" &&
+    new RegExp(`(?:\\||\\u2013|-)\\s*${SITE_NAME}\\s*$`, "i").test(title.trim());
+  const resolvedTitle = titleAlreadySuffixed ? { absolute: title as string } : title;
 
   return {
     ...baseMetadata,
-    title,
+    title: resolvedTitle,
     description,
     keywords,
     alternates: {
@@ -544,28 +789,31 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
         ...(baseMetadata.robots as any)?.googleBot,
         index: customSeo.robotsIndex !== false && (baseMetadata.robots as any)?.index !== false,
         follow: customSeo.robotsFollow !== false && (baseMetadata.robots as any)?.follow !== false,
-      }
+      },
     },
     openGraph: {
       ...baseMetadata.openGraph,
       title: ogTitle as string,
       description: ogDescription as string,
       url,
+      siteName: parsedOg.ogSiteName || (baseMetadata.openGraph?.siteName ?? "Moksha Sewa"),
+      type: (parsedOg.ogType as any) || (baseMetadata.openGraph as any)?.type || "website",
       images: [
         {
           url: ogImage as string,
-          width: 1200,
-          height: 630,
-          alt: (title as any)?.absolute || title,
+          width: parsedOg.ogImageWidth || 1200,
+          height: parsedOg.ogImageHeight || 630,
+          alt: parsedOg.ogImageAlt || (resolvedTitle as any)?.absolute || resolvedTitle,
         },
       ],
     },
     twitter: {
       ...baseMetadata.twitter,
-      title: ogTitle as string,
-      description: ogDescription as string,
-      images: [ogImage as string],
-    }
+      card: (parsedOg.twitterCard as any) || "summary_large_image",
+      title: twitterTitle as string,
+      description: twitterDescription as string,
+      images: [twitterImage as string],
+    },
   };
 }
 
@@ -643,3 +891,42 @@ export function breadcrumbJsonLd(path: string, finalName?: string) {
     itemListElement: items,
   };
 }
+
+export async function getPageSchemaMarkup(path: string, pageKey: WebsitePageKey): Promise<string | null> {
+  const isLocal = process.env.NODE_ENV !== "production";
+  const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
+  const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
+  if (dedicatedSeo?.schemaMarkup) return dedicatedSeo.schemaMarkup;
+
+  const settings = await getWebsiteSettings();
+  const pageFieldMap: Record<WebsitePageKey, any> = {
+    landing: "landingPage",
+    about: "aboutPage",
+    services: "servicesPage",
+    ambulance: "ambulancePage",
+    pandit: "panditPage",
+    funeral: "funeralPage",
+    funeralDecoration: "funeralDecorationPage",
+    prayerHall: "prayerHallPage",
+    specialService: "specialServicePage",
+    callingRelatives: "callingRelativesPage",
+    harsevan: "harsevanPage",
+    "unclaimed-body": "unclaimedBodyPage",
+    volunteer: "volunteerPage",
+    partnership: "partnershipPage",
+    csr: "csrPage",
+    "request-help": "requestHelpPage",
+    donation: "donationPage",
+    contact: "contactPage",
+    track: "trackPage",
+    "privacy-policy": "privacyPage",
+    terms: "termsPage",
+    "refund-policy": "refundPage",
+    "code-of-conduct": "conductPage",
+    careers: "careersPage",
+  };
+
+  const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
+  return (pageSettings as any)?.seo?.schemaMarkup || null;
+}
+

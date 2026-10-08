@@ -1,487 +1,310 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useMemo, useState } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
-import HowItWorks from "@/components/sections/HowItWorks/HowItWorks";
 import Link from "next/link";
-import {
-  FiSearch,
-  FiCalendar,
-  FiArrowRight,
-  FiClock,
-} from "react-icons/fi";
-import { BsEye, BsChat, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { PiFlowerLotus } from "react-icons/pi";
+import { FiCalendar, FiUser, FiArrowRight, FiSearch, FiTag } from "react-icons/fi";
+import { BlogPost, FALLBACK_BLOGS } from "@/lib/blogsApi";
 
-const blogImages = {
-  hero: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165081/moksha-sewa/assets/blog/blog.png",
-};
+interface BlogProps {
+  initialBlogs?: BlogPost[];
+}
 
-function Blog() {
+export default function Blog({ initialBlogs }: BlogProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [savedPosts, setSavedPosts] = useState<number[]>([]);
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Pind Daan in Gaya: A Complete Guide for Families",
-      excerpt:
-        "Everything you need to know about performing Pind Daan at Gaya — the rituals, the right time, and how to prepare your family for this sacred duty.",
-      author: "Pandit Ramesh Sharma",
-      date: "Mar 15, 2024",
-      readTime: "6 min",
-      category: "Rituals",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165353/moksha-sewa/assets/route-optimized/blog-two.webp",
-      views: 1250,
-      comments: 24,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Why Varanasi is Called the City of Moksha",
-      excerpt:
-        "From the ghats of Ganga to the eternal flame of Manikarnika — understanding why Kashi holds the promise of liberation in Hindu tradition.",
-      author: "Anjali Mishra",
-      date: "Mar 10, 2024",
-      readTime: "8 min",
-      category: "Pilgrimage",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165352/moksha-sewa/assets/route-optimized/blog-one.webp",
-      views: 890,
-      comments: 18,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "The 13 Days After: Rituals, Meaning & Support",
-      excerpt:
-        "A gentle guide to the terahvin period — what each ritual signifies, and how families can find peace and closure through tradition.",
-      author: "Pandit Suresh Tripathi",
-      date: "Mar 5, 2024",
-      readTime: "10 min",
-      category: "Guidance",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165351/moksha-sewa/assets/route-optimized/blog-c.webp",
-      views: 750,
-      comments: 12,
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Asthi Visarjan at Haridwar: Step by Step",
-      excerpt:
-        "How to perform asthi visarjan at Har Ki Pauri with dignity — timings, arrangements, and what to carry for the ceremony.",
-      author: "Kavita Joshi",
-      date: "Feb 28, 2024",
-      readTime: "7 min",
-      category: "Rituals",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165353/moksha-sewa/assets/route-optimized/blog-two.webp",
-      views: 1100,
-      comments: 31,
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Shraddha & Tarpan: Honouring Our Ancestors",
-      excerpt:
-        "The meaning behind Pitru Paksha, and why offering shraddha and tarpan remains one of the most sacred duties in our tradition.",
-      author: "Pandit Ramesh Sharma",
-      date: "Feb 22, 2024",
-      readTime: "5 min",
-      category: "Ancestors",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165352/moksha-sewa/assets/route-optimized/blog-one.webp",
-      views: 950,
-      comments: 15,
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Preparing for a Sacred Yatra: A Family Checklist",
-      excerpt:
-        "From documents to samagri — a practical checklist so your family can focus on devotion, not logistics, during the yatra.",
-      author: "Anjali Mishra",
-      date: "Feb 18, 2024",
-      readTime: "9 min",
-      category: "Pilgrimage",
-      image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165351/moksha-sewa/assets/route-optimized/blog-c.webp",
-      views: 680,
-      comments: 9,
-      featured: false,
-    },
-  ];
+  const blogs = useMemo(() => {
+    if (initialBlogs && initialBlogs.length > 0) {
+      return initialBlogs;
+    }
+    return FALLBACK_BLOGS;
+  }, [initialBlogs]);
 
-  const categories = ["All", "Rituals", "Pilgrimage", "Ancestors", "Guidance"];
+  // Extract unique categories from blogs
+  const categories = useMemo(() => {
+    const cats = new Set<string>(["All"]);
+    blogs.forEach((b) => {
+      if (b.category) cats.add(b.category);
+    });
+    return Array.from(cats);
+  }, [blogs]);
 
-  const filteredPosts = blogPosts.filter((post) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+  // Filtered blogs
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter((blog) => {
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch =
+        !q ||
+        blog.title.toLowerCase().includes(q) ||
+        (blog.excerpt && blog.excerpt.toLowerCase().includes(q)) ||
+        (blog.author && blog.author.toLowerCase().includes(q)) ||
+        (blog.tags && blog.tags.some((t) => t.toLowerCase().includes(q)));
 
-    const matchesCategory =
-      selectedCategory === "All" || post.category === selectedCategory;
+      const matchesCategory =
+        selectedCategory === "All" || blog.category === selectedCategory;
 
-    return matchesSearch && matchesCategory;
-  });
-
-  const featuredPost = blogPosts.find((post) => post.featured);
-  const showFeatured =
-    featuredPost && selectedCategory === "All" && searchQuery === "";
-
-  const toggleSave = (postId: number) => {
-    setSavedPosts((prev) =>
-      prev.includes(postId)
-        ? prev.filter((id) => id !== postId)
-        : [...prev, postId],
-    );
-  };
+      return matchesSearch && matchesCategory;
+    });
+  }, [blogs, searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#2C1810] antialiased">
+      <style>{`
+        .ms-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .ms-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .ms-rail { scrollbar-width: none; -ms-overflow-style: none; }
+        .ms-rail::-webkit-scrollbar { display: none; }
+        .ms-weave {
+          background-image: repeating-linear-gradient(
+            -45deg,
+            rgba(139,106,62,0.055) 0px,
+            rgba(139,106,62,0.055) 1px,
+            transparent 1px,
+            transparent 9px
+          );
+        }
+      `}</style>
+
       <Topbar />
       <Navbar />
 
-      <main>
-        {/* ============ HERO — visual banner first ============ */}
-        <section className="relative w-full aspect-[16/6] min-h-[400px] overflow-hidden bg-[#F4EDE3] px-5 sm:px-6 lg:px-0">
-          <div className="absolute inset-0">
-            <Image
-              src={blogImages.hero}
-              alt="Moksha Sewa ritual guidance and sacred stories"
-              fill
-              priority
-              fetchPriority="high"
-              sizes="100vw"
-              className="scale-[1.02] object-cover object-center"
+      {/* ============================ HERO (MATCHING HOME & SITE STANDARDS) ============================ */}
+      <header className="relative overflow-hidden border-b border-[#E7D5C2]/70 bg-[#FAF7F2]">
+        <div className="ms-weave absolute inset-0" aria-hidden="true" />
+        <div
+          className="absolute -right-32 -top-40 h-[520px] w-[520px] rounded-full bg-[#C9873A]/10 blur-3xl pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -bottom-48 -left-24 h-[420px] w-[420px] rounded-full bg-[#8B6A3E]/10 blur-3xl pointer-events-none"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 pt-44 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#8B6A3E]/20 bg-white/80 px-4 py-1.5 backdrop-blur-sm shadow-2xs">
+            <PiFlowerLotus className="h-3.5 w-3.5 text-[#C9873A]" aria-hidden="true" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
+              Articles &amp; Reflections
+            </span>
+          </div>
+
+          <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
+            Moksha Sewa <span className="text-[#8B6A3E]">Blogs</span>
+          </h1>
+
+          <p className="mt-2 mx-auto max-w-2xl text-[15px] sm:text-base leading-relaxed text-[#5A3E2B]/85">
+            The rituals, the stories, the guidance. A record of how we accompany families through
+            a dignified farewell and spiritual solace — written with compassion and reverence.
+          </p>
+
+          <dl className="mt-2 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-4 border-t border-[#E7D5C2] pt-4">
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
+                Published Articles
+              </dt>
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold tabular-nums text-[#2C1810]">
+                {blogs.length}
+              </dd>
+            </div>
+            <div className="h-9 w-px bg-[#E7D5C2]" aria-hidden="true" />
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
+                Topics &amp; Guidance
+              </dt>
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold tabular-nums text-[#2C1810]">
+                {categories.length > 1 ? categories.length - 1 : categories.length}
+              </dd>
+            </div>
+            <div className="h-9 w-px bg-[#E7D5C2]" aria-hidden="true" />
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8B6A3E]/80">
+                Sewa Support
+              </dt>
+              <dd className="mt-1 text-2xl sm:text-3xl font-bold text-[#2C1810]">24×7</dd>
+            </div>
+          </dl>
+        </div>
+      </header>
+
+      {/* ========================== CATEGORIES & SEARCH TOOLBAR =========================== */}
+      <nav
+        aria-label="Filter blog posts by category"
+        className="sticky top-0 z-30 border-b border-[#E7D5C2]/70 bg-[#FAF7F2]/95 backdrop-blur-md"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Category Pills */}
+          <div className="ms-rail flex snap-x snap-mandatory gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+            {categories.map((cat) => {
+              const active = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-[13px] font-medium transition-all ${active
+                    ? "bg-[#2C1810] text-[#FAF7F2] shadow-xs"
+                    : "bg-white/80 text-[#5A3E2B] border border-[#E7D5C2]/80 hover:bg-white hover:border-[#8B6A3E]/50"
+                    }`}
+                >
+                  {cat === "All" ? "All Articles" : cat}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Search Box */}
+          <div className="relative w-full md:w-72 shrink-0">
+            <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B6A3E]/70 h-4 w-4" />
+            <input
+              type="text"
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full rounded-full border border-[#E7D5C2] bg-white/95 py-2 pl-9 pr-4 text-xs sm:text-sm text-[#2C1810] outline-none placeholder:text-[#8B6A3E]/50 focus:border-[#8B6A3E] focus:ring-1 focus:ring-[#8B6A3E]/30 transition"
             />
           </div>
+        </div>
+      </nav>
 
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
-
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[300px] leading-none text-[#8B6A3E]/[0.07] lg:block">
-            ज्ञान
+      {/* ========================== BLOG POSTS: SINGLE ROW ME 2 BLOGS =========================== */}
+      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
+        {filteredBlogs.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-2xl border border-[#E7D5C2] p-8 max-w-lg mx-auto shadow-xs">
+            <PiFlowerLotus className="h-10 w-10 text-[#C9873A] mx-auto mb-3 opacity-60" />
+            <h3 className="text-xl font-semibold text-[#2C1810]">No articles found</h3>
+            <p className="mt-2 text-xs sm:text-sm text-[#5A3E2B]/80 leading-relaxed">
+              We couldn&apos;t find any blog post matching your search. Try changing the category
+              or search keywords.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategory("All");
+                setSearchQuery("");
+              }}
+              className="mt-5 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#8B6A3E] hover:text-[#2C1810] underline"
+            >
+              Reset all filters
+            </button>
           </div>
+        ) : (
+          /* Grid: 2 blogs per row (single row me 2 blogs on lg screen) */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 mb-4">
+            {filteredBlogs.map((blog) => {
+              const formattedDate = blog.publishedAt || blog.createdAt
+                ? new Date(blog.publishedAt || blog.createdAt).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+                : "Recent";
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-0 pt-20 lg:pt-32">
-            <div className="max-w-[540px]">
-              <div className="inline-flex items-center gap-2.5">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PiFlowerLotus className="h-3.5 w-3.5" />
-                </span>
-                <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8B6A3E] sm:text-[14px]">
-                  Wisdom & Insights
-                </span>
-              </div>
+              const categoryBadge = blog.category || "Moksha Sewa";
 
-              <h2
-                className="mt-2 leading-[1.1] sm:mt-3"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              >
-                <span className="block text-[32px] text-[#2C1810] sm:text-[46px] lg:text-[52px]">
-                  The Moksha Blog
-                </span>
-              </h2>
-
-              <div className="mt-2 flex items-center gap-2">
-                <span className="h-[2px] w-10 bg-[#8B6A3E] sm:w-12" />
-                <span className="h-1.5 w-1.5 rotate-45 border border-[#8B6A3E] bg-[#C9A574] sm:h-2 sm:w-2" />
-                <span className="h-px w-16 bg-gradient-to-r from-[#C9A574] to-transparent sm:w-20" />
-              </div>
-
-              <p className="mt-4 max-w-[455px] text-[15px] leading-6 text-[#4F3A2D] sm:text-[18px] lg:text-[20px]">
-                Articles on rituals, pilgrimage, sacred traditions, and spiritual practices — wisdom explained with clarity and compassion for modern families.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ============ FILTER TOOLBAR ============ */}
-        <section className="border-b border-[#E9DDCD] bg-[#F8F3EC] py-5 px-5 lg:px-0">
-          <div className="mx-auto w-full max-w-7xl px-0">
-            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#E4D5BE] bg-white p-3 shadow-[0_14px_36px_rgba(73,49,31,0.10)] sm:p-3.5">
-              <span className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#C9A574] to-transparent" />
-
-              <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-                {/* search */}
-                <div className="relative lg:w-[320px] lg:shrink-0">
-                  <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8B6A3E]/50" />
-                  <input
-                    type="text"
-                    placeholder="Search articles..."
-                    className="w-full rounded-xl border border-[#E4D5BE] bg-[#FBF8F3] py-2.5 pl-10 pr-4 text-sm text-[#2C1810] outline-none transition placeholder:text-[#A8937E] focus:border-[#C9A574] focus:ring-2 focus:ring-[#C9A574]/40"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-
-                <span className="hidden h-8 w-px bg-[#EADDC8] lg:block" />
-
-                {/* categories */}
-                <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`rounded-full px-4 py-1.5 text-[14px] font-semibold transition-all duration-300 ${selectedCategory === category
-                        ? "bg-[#8B6A3E] text-white shadow-md"
-                        : "border border-[#E4D5BE] bg-[#FBF8F3] text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
-                        }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ============ FEATURED SPOTLIGHT ============ */}
-        {showFeatured && (
-          <section className="pt-5 lg:pt-6 px-5 lg:px-0">
-            <div className="mx-auto w-full max-w-7xl px-0">
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#3B2B21] to-[#2C1810] text-white shadow-[0_18px_48px_rgba(44,24,16,0.3)]">
-                <span className="absolute inset-y-0 left-0 z-10 w-[3px] bg-gradient-to-b from-[#C9A574] via-[#D9B681] to-[#C9A574]" />
-                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full border border-[#C9A574]/15" />
-
-                <div className="grid lg:grid-cols-[1fr_0.9fr]">
-                  {/* content */}
-                  <div className="flex flex-col justify-center p-5 sm:p-7 lg:p-8">
-                    <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
-                      <span>Featured Read</span>
-                      <span className="h-px w-8 bg-[#C9A574]" />
-                    </div>
-
-                    <span className="mt-3 w-fit rounded-full border border-[#D9B681]/40 bg-[#D9B681]/10 px-3 py-1 text-[14px] font-semibold text-[#E8D2AC]">
-                      {featuredPost.category}
-                    </span>
-
-                    <h2 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
-                      {featuredPost.title}
-                    </h2>
-
-                    <p className="mt-3 max-w-lg text-sm leading-6 text-white/70">
-                      {featuredPost.excerpt}
-                    </p>
-
-                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-white/60">
-                      <span className="inline-flex items-center gap-1.5">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C9A574] text-[14px] font-semibold text-[#2C1810]">
-                          {featuredPost.author.charAt(0)}
-                        </span>
-                        {featuredPost.author}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <FiCalendar /> {featuredPost.date}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <FiClock /> {featuredPost.readTime} read
-                      </span>
-                    </div>
-
-                    {/* <span
-                      className="group mt-5 inline-flex w-fit items-center gap-2 rounded-lg bg-[#D9B681] px-5 py-2.5 text-[14px] font-semibold text-[#2C1810] shadow-md transition duration-300 hover:bg-[#E8D2AC] hover:shadow-lg"
-                    >
-                      Read Full Article
-                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </span> */}
-                  </div>
-
-                  {/* image — clean rounded frame */}
-                  <div className="relative m-4 h-[240px] overflow-hidden rounded-xl border border-white/15 sm:h-[280px] lg:m-5 lg:h-auto lg:min-h-[340px]">
-                    <Image
-                      src={featuredPost.image}
-                      alt={featuredPost.title}
-                      fill
-                      priority
-                      fetchPriority="high"
-                      sizes="(max-width: 1024px) 100vw, 560px"
-                      className="object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/40 via-transparent to-transparent" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ============ ALL POSTS ============ */}
-        <section className="py-5 lg:py-6 px-5 lg:px-0">
-          <div className="mx-auto w-full max-w-7xl px-0">
-            <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-              <div>
-                <div className="flex items-center gap-2 text-[14px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]">
-                  <span>Latest Posts</span>
-                  <span className="h-px w-7 bg-[#C9A574]" />
-                </div>
-                <h2 className="mt-2 font-serif text-2xl text-[#2C1810] sm:text-3xl">
-                  {selectedCategory === "All" ? (
-                    <>
-                      All <span className=" text-[#8B6A3E]">Articles</span>
-                    </>
-                  ) : (
-                    <span className=" text-[#8B6A3E]">{selectedCategory}</span>
-                  )}
-                </h2>
-              </div>
-              <span className="rounded-full border border-[#DECBAC] bg-white px-3 py-1 text-[14px] font-semibold text-[#6A4F32]">
-                {filteredPosts.length} articles found
-              </span>
-            </div>
-
-
-            {filteredPosts.length === 0 ? (
-              /* ---- empty state ---- */
-              <div className="rounded-2xl border border-[#E6D6BF] bg-white py-14 text-center shadow-sm">
-                <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#DEC9A8] bg-[#FBF8F3]">
-                  <span className="absolute inset-1.5 rounded-full border border-dashed border-[#C9A574]/60" />
-                  <PiFlowerLotus className="text-2xl text-[#8B6A3E]" />
-                </div>
-                <h3 className="mt-4 font-serif text-xl text-[#2C1810]">
-                  No articles found
-                </h3>
-                <p className="mx-auto mt-1 max-w-sm text-sm text-[#7A685B]">
-                  Try adjusting your search or filter to find what you&apos;re
-                  looking for.
-                </p>
-                <button
-                  className="mt-5 rounded-lg bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition hover:bg-[#73532F]"
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory("All");
-                  }}
+              return (
+                <article
+                  key={blog._id}
+                  className="flex flex-col sm:flex-row bg-white rounded-2xl border border-[#E7D5C2] overflow-hidden shadow-[0_2px_12px_rgba(44,24,16,0.03)] hover:shadow-md hover:border-[#C9873A]/60 transition-all duration-300 group"
                 >
-                  Clear Filters
-                </button>
-              </div>
-            ) : (
-              /* ---- normal rounded article cards ---- */
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {filteredPosts.map((post) => (
-                  <article
-                    key={post.id}
-                    className="group overflow-hidden rounded-xl border border-[#E6D6BF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#C9A574] hover:shadow-[0_16px_32px_rgba(70,47,31,0.14)]"
+                  {/* LEFT: IMAGE */}
+                  <Link
+                    href={`/blog/${blog.slug}`}
+                    className="relative sm:w-[42%] min-h-[220px] sm:min-h-[260px] shrink-0 overflow-hidden bg-[#F0E8D5] block"
                   >
-                    <div className="relative block h-44 w-full overflow-hidden">
+                    {blog.coverImage ? (
                       <Image
-                        src={post.image}
-                        alt={post.title}
+                        src={blog.coverImage}
+                        alt={blog.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 390px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/60 via-transparent to-transparent" />
-                      <span className="absolute bottom-2.5 left-3 z-10 rounded-full bg-[#8B6A3E] px-2.5 py-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-white shadow">
-                        {post.category}
-                      </span>
-                    </div>
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[#F4EDE3] text-[#8B6A3E]/60">
+                        <PiFlowerLotus className="h-8 w-8 mb-1" />
+                        <span className="text-[11px] font-medium">Moksha Sewa</span>
+                      </div>
+                    )}
 
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 text-[14px] text-[#8A7460]">
-                        <span className="flex items-center gap-1">
-                          <FiCalendar /> {post.date}
+                    {/* Floating Category Badge */}
+                    <span className="absolute left-3 top-3 z-10 rounded-full bg-[#8B6A3E]/90 backdrop-blur-xs px-2.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase text-white shadow-2xs">
+                      {categoryBadge}
+                    </span>
+                  </Link>
+
+                  {/* RIGHT: DETAILS */}
+                  <div className="flex flex-col justify-between p-5 sm:p-4 w-full">
+                    <div>
+                      {/* Meta (Date + Author) */}
+                      <div className="flex items-center gap-2.5 text-xs font-medium text-[#8B6A3E]/85">
+                        <span className="inline-flex items-center gap-1.5">
+                          <FiCalendar className="h-3.5 w-3.5 text-[#C9873A]" />
+                          {formattedDate}
                         </span>
-                        <span className="h-0.5 w-0.5 rounded-full bg-[#C9A574]" />
-                        <span className="flex items-center gap-1">
-                          <FiClock /> {post.readTime} read
+                        <span className="text-[#E7D5C2]">•</span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <FiUser className="h-3.5 w-3.5 text-[#C9873A]" />
+                          {blog.author || "Moksha Sewa"}
                         </span>
                       </div>
 
-                      <h3 className="mt-2 line-clamp-2 font-serif text-base leading-snug text-[#2C1810]">
-                        {post.title}
-                      </h3>
+                      {/* Title */}
+                      <Link href={`/blog/${blog.slug}`} className="block group">
+                        <h2 className="mt-2.5 text-lg sm:text-xl font-semibold leading-snug text-[#2C1810] group-hover:text-[#8B6A3E] transition-colors ms-clamp-2">
+                          {blog.title}
+                        </h2>
+                      </Link>
 
-                      <p className="mt-1.5 line-clamp-2 text-[14px] leading-5 text-[#6B584B]">
-                        {post.excerpt}
+                      {/* Excerpt */}
+                      <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5A3E2B]/80 ms-clamp-3">
+                        {blog.excerpt || blog.content.replace(/<[^>]*>/g, "").slice(0, 150) + "..."}
                       </p>
-
-                      <div className="mt-3 flex items-center justify-between border-t border-[#F0E5D3] pt-3">
-                        <div className="flex items-center gap-1.5">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#8B6A3E] text-[14px] font-semibold text-white">
-                            {post.author.charAt(0)}
-                          </span>
-                          <span className="text-[14px] font-semibold text-[#4A3428]">
-                            {post.author}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-2.5 text-[14px] text-[#A8937E]">
-                          <span className="flex items-center gap-1">
-                            <BsEye />
-                            {post.views.toLocaleString()}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <BsChat />
-                            {post.comments}
-                          </span>
-                          <button
-                            onClick={() => toggleSave(post.id)}
-                            aria-label={
-                              savedPosts.includes(post.id)
-                                ? "Remove bookmark"
-                                : "Save article"
-                            }
-                            className="transition hover:text-[#8B6A3E]"
-                          >
-                            {savedPosts.includes(post.id) ? (
-                              <BsBookmarkFill className="text-[#8B6A3E]" />
-                            ) : (
-                              <BsBookmark />
-                            )}
-                          </button>
-                        </div>
-                      </div>
                     </div>
-                  </article>
-                ))}
-              </div>
-            )}
 
-            {/* ---- pagination ---- */}
-            {filteredPosts.length > 0 && (
-              <div className="mt-8 flex justify-center">
-                <div className="flex items-center gap-1.5">
-                  <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E4D5BE] bg-white text-sm text-[#5F4630] transition hover:border-[#C9A574] hover:bg-[#F6EFE6]">
-                    &laquo;
-                  </button>
-                  {[1, 2, 3].map((page) => (
-                    <button
-                      key={page}
-                      className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm transition ${page === 1
-                        ? "bg-[#8B6A3E] font-semibold text-white shadow-md"
-                        : "border border-[#E4D5BE] bg-white text-[#5F4630] hover:border-[#C9A574] hover:bg-[#F6EFE6]"
-                        }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                  <span className="px-1 text-sm text-[#A8937E]">...</span>
-                  <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E4D5BE] bg-white text-sm text-[#5F4630] transition hover:border-[#C9A574] hover:bg-[#F6EFE6]">
-                    &raquo;
-                  </button>
-                </div>
-              </div>
-            )}
+                    {/* Bottom action row */}
+                    <div className="mt-5 pt-3.5 border-t border-[#F0E8D5] flex items-center justify-between">
+                      {blog.tags && blog.tags.length > 0 ? (
+                        <span className="inline-flex items-center gap-1 text-xs text-[#8B6A3E]/70 font-medium">
+                          <FiTag className="h-3 w-3" />
+                          #{blog.tags[0]}
+                        </span>
+                      ) : (
+                        <span className="text-[10.5px] text-[#8B6A3E]/60 uppercase tracking-wider font-semibold">
+                          Guide
+                        </span>
+                      )}
+
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#8B6A3E] group-hover:text-[#2C1810] group-hover:gap-2.5 transition-all"
+                      >
+                        Read Article
+                        <FiArrowRight className="h-3.5 w-3.5 text-[#C9873A]" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </section>
-
-
-        {/* ============ NEWSLETTER — dark gold section ============ */}
-
+        )}
       </main>
 
       <Footer />
     </div>
   );
 }
-
-export default Blog;

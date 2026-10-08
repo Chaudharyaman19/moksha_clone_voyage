@@ -3,6 +3,7 @@ import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 import StoreProvider from "@/store/StoreProvider";
 import JsonLd from "@/components/seo/JsonLd";
+import DynamicCanonical from "@/components/seo/DynamicCanonical";
 import {
   DEFAULT_OG_CARD_IMAGE,
   DEFAULT_OG_IMAGE,
@@ -86,7 +87,7 @@ export default async function RootLayout({
   const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId ?? "") ? configuredGtmId : undefined;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {advancedSeo?.googleSearchConsoleVerification && (
           <meta name="google-site-verification" content={advancedSeo.googleSearchConsoleVerification} />
@@ -94,7 +95,8 @@ export default async function RootLayout({
         {advancedSeo?.globalHeadCode && (
           <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalHeadCode }} />
         )}
-        <script
+        <Script
+          id="iframe-click-prevention"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -123,6 +125,7 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <StoreProvider>
+          <DynamicCanonical />
           <JsonLd data={organizationJsonLd()} />
           <JsonLd data={websiteJsonLd()} />
           <Sideicon />

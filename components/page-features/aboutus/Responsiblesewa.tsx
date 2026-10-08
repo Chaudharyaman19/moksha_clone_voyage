@@ -1,16 +1,11 @@
 "use client";
 
 import type { ReactElement } from "react";
+import * as LucideIcons from "lucide-react";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 interface IconProps {
-  name:
-    | "ShieldCheck"
-    | "Verification"
-    | "Formalities"
-    | "Documentation"
-    | "Privacy"
-    | "Lotus";
+  name: string;
   className?: string;
 }
 
@@ -22,14 +17,16 @@ const CustomIcon = ({
   name,
   className = "h-6 w-6",
 }: IconProps): ReactElement | null => {
-  const icons: Record<IconProps["name"], ReactElement> = {
+  if (!name) return null;
+
+  const icons: Record<string, ReactElement> = {
     ShieldCheck: (
       <svg
         className={className}
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.5"
+        strokeWidth="1.9"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -44,7 +41,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -71,7 +68,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.35"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -93,7 +90,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.35"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -109,7 +106,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="1.9"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -126,7 +123,7 @@ const CustomIcon = ({
         viewBox="0 0 64 64"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.3"
+        strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -137,9 +134,83 @@ const CustomIcon = ({
         <path d="M24 49h16" />
       </svg>
     ),
+
+    Body: (
+      <svg
+        className={className}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.85"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M8 39h48" />
+        <path d="M12 39v11" />
+        <path d="M52 39v11" />
+        <path d="M15 27h34c4 0 7 3 7 7v5H8v-5c0-4 3-7 7-7Z" />
+        <path d="M20 27c2-5 7-8 12-8 7 0 12 3 15 8" />
+        <path d="M22 23h20" />
+      </svg>
+    ),
   };
 
-  return icons[name] ?? null;
+  // 1. Try custom SVG map first (case-insensitive check)
+  const cleanName = name.toLowerCase().replace(/[-_\s]/g, "");
+  const customKey = Object.keys(icons).find(
+    (k) => k.toLowerCase() === cleanName
+  );
+  if (customKey) return icons[customKey];
+
+  // 2. Normalise name to PascalCase: "book-open" -> "BookOpen"
+  const pascalKey = name
+    .split(/[-_\s]+/)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase())
+    .join("");
+
+  // 3. Admin aliases to Lucide icons
+  const lucideAliases: Record<string, string> = {
+    BookOpen:      "BookOpen",
+    Document:      "FileText",
+    DocumentCheck: "FileCheck",
+    HeartHands:    "HandHeart",
+    HeartHand:     "HandHeart",
+    UsersRound:    "UsersRound",
+    Users:         "Users",
+    FamilyHands:   "Users",
+    ElderlyCare:   "UserPlus",
+    UnclaimedCase: "UserX",
+    Clipboard:     "ClipboardList",
+    Report:        "BarChart2",
+    People:        "Users",
+    Van:           "Truck",
+    Fire:          "Flame",
+    Priest:        "BookOpen",
+    Policy:        "ScrollText",
+    GiveIcon:      "HandHeart",
+    ServeIcon:     "Heart",
+    PartnerIcon:   "Handshake",
+    Accountability:"ShieldCheck",
+    Diya:          "Flame",
+    Hands:         "HelpingHand",
+    Ambulance:     "Truck",
+    CheckCircle:   "CheckCircle2",
+    Smile:         "Smile",
+    Building:      "Building2",
+    Shield:        "Shield",
+    MapPin:        "MapPin",
+    Scale:         "Scale",
+    Eye:           "Eye",
+    Globe:         "Globe",
+  };
+
+  const targetName = lucideAliases[pascalKey] || pascalKey;
+  const LucideIcon = (LucideIcons as any)[targetName] || (LucideIcons as any)[pascalKey];
+  if (LucideIcon) {
+    return <LucideIcon className={className} strokeWidth={1.5} />;
+  }
+
+  return null;
 };
 
 /* =========================================================
@@ -175,13 +246,12 @@ const features = [
 
 export default function ResponsibleSewa() {
   const section = useWebsiteSection("about-responsible-sewa");
-  const activeFeatures = (section?.items?.length ? section.items : features).map((item, index) => {
-    const fallback = features[index % features.length];
-    const itemObj = item as Record<string, any>;
+  const activeFeatures = features.map((fallback, index) => {
+    const item = (section?.items?.[index] ?? {}) as Record<string, any>;
     return {
-      icon: itemObj.icon || fallback.icon,
-      title: itemObj.title || fallback.title,
-      text: itemObj.description || itemObj.text || fallback.text,
+      icon:  item.icon  || fallback.icon,
+      title: item.title || fallback.title,
+      text:  item.description || item.text || fallback.text,
     };
   });
 

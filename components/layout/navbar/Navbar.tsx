@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   FaHandHoldingHeart,
   FaStar,
@@ -16,6 +16,9 @@ import {
   FaAmbulance,
   FaDonate,
   FaHandsHelping,
+
+  FaBriefcase,
+  FaFileAlt,
 } from "react-icons/fa";
 import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -29,12 +32,14 @@ type NavItem = {
 };
 
 export default function Navbar() {
+  const router = useRouter();
   const websiteSection = useWebsiteSection("navbar");
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [disabledPaths, setDisabledPaths] = useState<string[]>([]);
   const isPathActive = (path: string) => {
     if (path.startsWith("#")) return false;
     return path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
@@ -56,6 +61,64 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetchDisabledPages = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
+        if (!response.ok) return;
+        const body = await response.json();
+        if (cancelled || !body.data) return;
+        
+        const settings = body.data;
+        const disabled: string[] = [];
+        
+        const pageKeyMap: Record<string, string> = {
+          landingPage: "/",
+          aboutPage: "/about",
+          servicesPage: "/services",
+          ambulancePage: "/ambulanceservices",
+          panditPage: "/panditservices",
+          funeralPage: "/furalservices",
+          funeralDecorationPage: "/furaldecoration",
+          prayerHallPage: "/prayerhallservices",
+          specialServicePage: "/specialservices",
+          callingRelativesPage: "/callingrelativesservices",
+          harsevanPage: "/harsevanservices",
+          unclaimedBodyPage: "/unclaimed-body-sewa",
+          volunteerPage: "/volunteer/register",
+          partnershipPage: "/partnership",
+          csrPage: "/csr",
+          requestHelpPage: "/request-help",
+          donationPage: "/donation",
+          contactPage: "/contact",
+          trackPage: "/track",
+          privacyPage: "/privacy-policy",
+          termsPage: "/terms",
+          refundPage: "/refund-policy",
+          conductPage: "/code-of-conduct",
+          careersPage: "/careers",
+        };
+
+        for (const [key, path] of Object.entries(pageKeyMap)) {
+           const config = settings[key];
+           if (config) {
+             let isEnabled = true;
+             if (config.enabled !== undefined) {
+               isEnabled = config.enabled;
+             } else if (config.sections && config.sections.length > 0) {
+               isEnabled = config.sections.some((s: any) => s.enabled !== false);
+             }
+             if (!isEnabled) disabled.push(path);
+           }
+        }
+        setDisabledPaths(disabled);
+      } catch (e) {}
+    };
+    fetchDisabledPages();
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
@@ -94,8 +157,10 @@ export default function Navbar() {
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    } else {
+    } else if (path.startsWith("http://") || path.startsWith("https://")) {
       window.open(path, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(path);
     }
   };
 
@@ -158,6 +223,12 @@ export default function Navbar() {
       ],
     },
     {
+      name: "Careers",
+      path: "/careers",
+      icon: <FaBriefcase />,
+      type: "page",
+    },
+    {
       name: "Contact Us",
       path: "/contact",
       icon: <FaUserCircle />,
@@ -175,38 +246,23 @@ export default function Navbar() {
       icon: <FaDonate />,
       type: "page",
     },
-    {
-      name: "Admin Login",
-      path: "https://admin.mokshasewa.org",
-      icon: <FaUserCircle />,
-      type: "page",
-    },
   ];
-  let globalIndex = 0;
-  const cmsItems = websiteSection?.items ?? [];
-  
-  const applyCmsItems = (item: NavItem): NavItem => {
-    const currentIndex = globalIndex++;
-    const cmsItem = cmsItems[currentIndex];
-    return {
-      ...item,
-      originalName: item.name,
-      name: cmsItem?.label || item.name,
-      path: cmsItem?.href || item.path,
-      dropdown: item.dropdown?.map(applyCmsItems),
-    } as NavItem & { originalName?: string };
-  };
 
-  const managedNavItems = navItems.map(applyCmsItems);
-  
-  const extraNavItems = cmsItems.slice(globalIndex).map((item) => ({
-    name: item.label || "New Link",
-    originalName: "Extra",
-    path: item.href || "/",
-    icon: <FaBookOpen />,
-    type: "page" as const,
-  } as NavItem & { originalName?: string }));
-  const allNavItems = [...managedNavItems, ...extraNavItems];
+  const allNavItems = navItems
+    .map(item => {
+      if (item.dropdown) {
+        return {
+          ...item,
+          dropdown: item.dropdown.filter(child => !disabledPaths.includes(child.path))
+        };
+      }
+      return item;
+    })
+    .filter(item => {
+      if (disabledPaths.includes(item.path)) return false;
+      if (item.dropdown && item.dropdown.length === 0) return false;
+      return true;
+    });
   const navKey = (item: Pick<NavItem, "name" | "path">, index: number) => `${item.name}:${item.path}:${index}`;
 
   const toggleDropdown = (itemName: string) => {
@@ -262,7 +318,7 @@ export default function Navbar() {
                           }`}
                       />
                     </button>
-                  ) : (item as any).originalName === "Donate" ? (
+                  ) : item.name === "Donate" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
@@ -272,7 +328,7 @@ export default function Navbar() {
                       <FaStar className="donate-star donate-star-one" aria-hidden />
                       <FaStar className="donate-star donate-star-two" aria-hidden />
                     </button>
-                  ) : (item as any).originalName === "Request Help" ? (
+                  ) : item.name === "Request Help" ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
@@ -368,7 +424,7 @@ export default function Navbar() {
                         }`}
                     />
                   </button>
-                ) : (item as any).originalName === "Donate" ? (
+                ) : item.name === "Donate" ? (
                   <button
                     onClick={() => handleNavigation(item.path)}
                     aria-current={isItemActive(item) ? "page" : undefined}

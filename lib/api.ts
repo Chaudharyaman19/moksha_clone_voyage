@@ -102,3 +102,33 @@ export const api = {
   postForm: <T>(path: string, formData: FormData) => request<T>(path, { method: "POST", body: formData }),
   getHtml: requestHtml,
 };
+
+/** OTP verification used by the careers phone-verification modal.
+ * Responses keep the raw `{ success, message, msg }` shape (no envelope unwrapping) because the
+ * modal reads `success`/`message` itself and treats a non-2xx as a soft, user-visible failure. */
+async function verifyCall(endpoint: string, payload: Record<string, unknown>) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/verify${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const text = await response.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      return { success: false, message: `HTTP ${response.status}: ${text.substring(0, 50)}` };
+    }
+  } catch (e) {
+    return { success: false, message: (e as Error)?.message || "Verification service is unavailable." };
+  }
+}
+
+export const verifyApi = {
+  sendEmailOtp: (email: string, profile = "SPEAKER", name = "", eventName = process.env.NEXT_PUBLIC_EVENT_NAME || "MokshaSewa") =>
+    verifyCall("/send-email-otp", { email, profile, name: name || null, eventName }),
+  verifyEmailOtp: (email: string, otp: string) => verifyCall("/verify-email-otp", { email, otp }),
+  sendPhoneOtp: (phone: string, profile = "CONTACT", name = "", eventName = process.env.NEXT_PUBLIC_EVENT_NAME || "MokshaSewa") =>
+    verifyCall("/send-phone-otp", { phone, profile, name: name || null, eventName }),
+  verifyPhoneOtp: (phone: string, otp: string) => verifyCall("/verify-phone-otp", { phone, otp }),
+};

@@ -153,10 +153,10 @@ export const defaultAboutSections: AboutSectionContent[] = [
     buttonLabel: "Know Namo Gange Trust",
     buttonHref: "https://www.namogange.org/",
     items: [
-      { label: "Social Service" },
-      { label: "Community Welfare" },
-      { label: "Humanitarian Action" },
-      { label: "Responsible Governance" },
+      { label: "Social Service", icon: "heart-hands" },
+      { label: "Community Welfare", icon: "users-round" },
+      { label: "Humanitarian Action", icon: "globe" },
+      { label: "Responsible Governance", icon: "shield-check" },
     ],
   },
   {
@@ -170,10 +170,10 @@ export const defaultAboutSections: AboutSectionContent[] = [
     bottomStatement: "Moksha Sewa is a Namo Gange Trust initiative. Every step we take is guided by responsibility, respect and humanity.",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164979/moksha-sewa/assets/about/our-story/response.jpg",
     items: [
-      { title: "Verification", description: "Support follows defined eligibility and case circumstances." },
-      { title: "Formalities", description: "Applicable permissions and procedures are respected." },
-      { title: "Documentation", description: "Cases and assistance are responsibly recorded." },
-      { title: "Privacy", description: "Beneficiary dignity comes before publicity." },
+      { title: "Verification",  description: "Support follows defined eligibility and case circumstances.",  icon: "verification"  },
+      { title: "Formalities",   description: "Applicable permissions and procedures are respected.",       icon: "formalities"   },
+      { title: "Documentation", description: "Cases and assistance are responsibly recorded.",             icon: "documentation" },
+      { title: "Privacy",       description: "Beneficiary dignity comes before publicity.",                icon: "privacy"       },
     ],
   },
   {
@@ -186,15 +186,15 @@ export const defaultAboutSections: AboutSectionContent[] = [
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164974/moksha-sewa/assets/about/our-story/arthi.jpg",
     legalNotice: "Contributions made through this website are received by Namo Gange Trust and are utilised towards eligible activities and support under the Moksha Sewa initiative, subject to applicable policies and requirements.",
     items: [
-      { title: "Essential final-journey arrangements" },
-      { title: "Transportation & coordination" },
-      { title: "Ritual requirements" },
-      { title: "Eligible family support" },
-      { title: "On-ground coordination" },
-      { title: "Secure & Trusted", description: "Safe donations through trusted gateway" },
-      { title: "Accountable Use", description: "Funds used for eligible activities only" },
-      { title: "Transparency First", description: "Committed to responsible reporting" },
-      { title: "Sewa With Dignity", description: "Ensuring respect and compassion in every step of the final journey" },
+      { title: "Essential final-journey arrangements", icon: "body" },
+      { title: "Transportation & coordination", icon: "van" },
+      { title: "Ritual requirements", icon: "book-open" },
+      { title: "Eligible family support", icon: "family-hands" },
+      { title: "On-ground coordination", icon: "heart-hands" },
+      { title: "Secure & Trusted", description: "Safe donations through trusted gateway", icon: "shield-check" },
+      { title: "Accountable Use", description: "Funds used for eligible activities only", icon: "clipboard" },
+      { title: "Transparency First", description: "Committed to responsible reporting", icon: "eye" },
+      { title: "Sewa With Dignity", description: "Ensuring respect and compassion in every step of the final journey", icon: "lotus" },
     ],
   },
   {
@@ -208,9 +208,9 @@ export const defaultAboutSections: AboutSectionContent[] = [
     bottomStatement: "Together, we can make sure that no one has to face their final journey alone. Be Part of the Sewa. Be the change.",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164993/moksha-sewa/assets/about-optimized/be_part.png",
     items: [
-      { title: "Become a Volunteer", description: "Give your time.\nBring compassion.\nBe the reason someone is not alone.", buttonLabel: "JOIN AS VOLUNTEER", href: "/volunteer/register", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165026/moksha-sewa/assets/about-optimized/volunteer.png" },
-      { title: "Partner With Us", description: "Join hands to create\na greater and\nlasting impact.", buttonLabel: "EXPLORE PARTNERSHIP", href: "/partnership", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165011/moksha-sewa/assets/about-optimized/partner.png" },
-      { title: "Support the Mission", description: "Your support helps ensure\ndignity, care and respect\nin every final journey.", buttonLabel: "SUPPORT THE MISSION", href: "/donation", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165022/moksha-sewa/assets/about-optimized/support.png" },
+      { title: "Become a Volunteer", description: "Give your time.\nBring compassion.\nBe the reason someone is not alone.", buttonLabel: "JOIN AS VOLUNTEER", href: "/volunteer/register", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165026/moksha-sewa/assets/about-optimized/volunteer.png", icon: "heart-hands" },
+      { title: "Partner With Us", description: "Join hands to create\na greater and\nlasting impact.", buttonLabel: "EXPLORE PARTNERSHIP", href: "/partnership", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165011/moksha-sewa/assets/about-optimized/partner.png", icon: "partner-icon" },
+      { title: "Support the Mission", description: "Your support helps ensure\ndignity, care and respect\nin every final journey.", buttonLabel: "SUPPORT THE MISSION", href: "/donation", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165022/moksha-sewa/assets/about-optimized/support.png", icon: "leaf" },
     ],
   },
   {
@@ -245,9 +245,9 @@ export const defaultAboutSections: AboutSectionContent[] = [
     buttonLabel: "Join the Mission",
     buttonHref: "/volunteer/register",
     items: [
-      { label: "Be a\nVolunteer" },
-      { label: "Partner\nWith Us" },
-      { label: "Support the\nMission" },
+      { label: "Be a\nVolunteer", icon: "heart-hands" },
+      { label: "Partner\nWith Us", icon: "partner-icon" },
+      { label: "Support the\nMission", icon: "heart-hands" },
     ],
   },
   {
@@ -354,7 +354,16 @@ export function mergeAboutSections(sections?: AboutSectionContent[]): AboutSecti
   return defaultAboutSections.map((fallback) => {
     const saved = byKey.get(fallback.key);
     if (!saved) return fallback;
-    const items = saved.items !== undefined ? saved.items : fallback.items;
+    const savedItems = saved.items;
+    const fallbackItems = fallback.items;
+    const items = savedItems !== undefined
+      ? savedItems.map((savedItem, i) => {
+          const fallbackItem = fallbackItems?.[i];
+          if (!fallbackItem) return savedItem;
+          // Merge: fallback fills in missing fields so newly-added fields (e.g. icon) are not lost
+          return { ...fallbackItem, ...savedItem };
+        })
+      : fallbackItems;
     return normalizeLandingSection({ ...fallback, ...saved, items, enabled: saved.enabled !== false }, fallback);
   });
 }

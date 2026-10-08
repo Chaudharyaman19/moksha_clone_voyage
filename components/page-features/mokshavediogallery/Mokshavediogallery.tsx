@@ -355,10 +355,11 @@ function MokshaGallery() {
             src: item.url,
             poster: item.thumbnailUrl,
             alt: item.alt || item.caption || "Moksha Sewa gallery video",
-            category: item.category || "services",
-            title: item.caption || item.alt,
-            description: item.description || "Moksha Sewa video gallery",
+            category: item.category || item.folder || "services",
+            title: item.title || item.caption || item.alt || "Moksha Sewa Video",
+            description: item.description || item.caption || "Moksha Sewa video gallery",
             videographer: item.credit || "Moksha Sewa Team",
+
             likes: 0,
             date: new Date(item.createdAt).getFullYear().toString(),
             height: [380, 470, 410, 520][index % 4],
@@ -732,10 +733,7 @@ function MokshaGallery() {
           <div
             className="grid gap-4 sm:gap-5"
             style={{
-              gridTemplateColumns: `repeat(${Math.min(
-                columns,
-                filteredVideos.length,
-              )}, minmax(0, 1fr))`,
+              gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
             }}
           >
             {masonryColumns.map((column, colIndex) => (

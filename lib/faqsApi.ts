@@ -10,6 +10,11 @@ export interface Faq {
 
 export const faqsApi = {
   getAll: async () => {
-    return await api.get<Faq[]>("/faqs");
+    try {
+      return await api.get<Faq[]>("/faqs");
+    } catch (err) {
+      console.warn("Failed to fetch FAQs, using fallback.");
+      return [];
+    }
   },
 };
