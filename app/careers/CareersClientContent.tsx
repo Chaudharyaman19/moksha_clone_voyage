@@ -190,7 +190,7 @@ export default function CareersClientContent() {
 
   useEffect(() => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
-    fetch(`${apiUrl}/careers/public/jobs`)
+    fetch(`${apiUrl}/careers/jobs`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error ${res.status}`);
         return res.json();

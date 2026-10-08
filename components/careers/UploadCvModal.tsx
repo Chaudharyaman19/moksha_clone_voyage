@@ -460,8 +460,46 @@ export default function UploadCvModal({
     const jobDocumentId = job.slug || job._id || job.id;
     const apiBaseForDoc = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
     const jobDocumentUrl = jobDocumentId
-        ? `${apiBaseForDoc}/careers/public/jobs/${encodeURIComponent(jobDocumentId)}/export`
+        ? `${apiBaseForDoc}/careers/jobs/${encodeURIComponent(jobDocumentId)}/export`
         : undefined;
+
+    /**
+     * The analyze API needs a job that actually exists in the backend database.
+     * Static job objects (Submit Your Resume, /careers/uploade_cv, …) carry no _id,
+     * so the live job list is used to resolve a real one instead of guessing a slug.
+     */
+    const resolveJobTargetId = async (apiBase: string): Promise<string> => {
+        if (job._id && /^[0-9a-fA-F]{24}$/.test(job._id)) return job._id;
+
+        try {
+            const res = await fetch(`${apiBase}/careers/jobs`);
+            const json = await res.json();
+            const list: { _id?: string; slug?: string; title?: string }[] = Array.isArray(json?.data)
+                ? json.data
+                : [];
+            if (list.length > 0) {
+                const wanted = (job.title || jobCopy.title || "").trim().toLowerCase();
+                const match =
+                    list.find((j) => String(j?.title || "").trim().toLowerCase() === wanted) ||
+                    list[0];
+                if (match?._id) return String(match._id);
+                if (match?.slug) return String(match.slug);
+            }
+        } catch {
+            // Job list unavailable — fall back to the ids we already have.
+        }
+
+        if (job.slug && job.slug.trim()) return job.slug.trim();
+        if (job.id && /^[0-9a-fA-F]{24}$/.test(job.id)) return job.id;
+
+        return (
+            (job.title || jobCopy.title || "")
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)+/g, "") || "web-developer"
+        );
+    };
 
     const handleAnalyzeButtonClick = () => {
         if (isAnalyzing || !file) return;
@@ -496,7 +534,7 @@ export default function UploadCvModal({
             }
 
             const candidateId = uploadJson.data.candidateId;
-            const targetJobId = (job as any)?._id || (job as any)?.slug || (job as any)?.id || "web-developer";
+            const targetJobId = await resolveJobTargetId(apiBase);
 
             // 2. Trigger AI CV Analysis & Deterministic Score Calculation
             const analyzeRes = await fetch(`${apiBase}/careers/cv/analyze`, {
