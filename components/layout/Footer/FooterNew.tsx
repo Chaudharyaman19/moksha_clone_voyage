@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
 import { MapPin, Mail, Clock } from "lucide-react";
-import footerMokshaLogo from "../../../public/assets/footer-moksha-mark.png";
+import footerMokshaLogo from "../../../public/homelogo/mok-footer-white.png";
 import footerBg from "../../../public/assets/footer-ghat-sunset.png";
 import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
@@ -336,7 +336,7 @@ export default function FooterNew() {
               <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
                 <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
                   <Image
-                    src={websiteSection?.logoImage || footerMokshaLogo}
+                    src={footerMokshaLogo}
                     alt={brandName}
                     width={145}
                     height={127}

@@ -20,7 +20,6 @@ import {
   FaBriefcase,
   FaFileAlt,
 } from "react-icons/fa";
-import { useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type NavItem = {
   name: string;
@@ -33,7 +32,6 @@ type NavItem = {
 
 export default function Navbar() {
   const router = useRouter();
-  const websiteSection = useWebsiteSection("navbar");
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -281,15 +279,15 @@ export default function Navbar() {
           <div className="flex items-center h-12 relative">
             <div className="absolute top-0 left-0 z-10">
               <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
-                <div className="h-[52px] w-[52px] rounded-md border border-[#D8B982] bg-white p-1.5 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80 sm:h-[104px] sm:w-[104px] sm:p-2">
+                <div className="h-16 w-16 rounded-md border border-[#D8B982] bg-gradient-to-br from-white via-[#fff7e6] to-[#eed9ad] p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80 sm:h-[120px] sm:w-[120px] sm:p-2.5">
                   <Image
-                    src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png"}
+                    src="/homelogo/mok.png"
                     alt="Moksha Sewa Logo"
-                    width={96}
-                    height={96}
+                    width={120}
+                    height={120}
                     priority
-                    sizes="(max-width: 640px) 52px, 104px"
-                    className="w-full h-full object-contain"
+                    sizes="(max-width: 640px) 64px, 120px"
+                    className="w-full h-full object-contain scale-[1.3]"
                   />
                 </div>
               </button>
