@@ -1,4 +1,5 @@
 import Callingrelativesservices from "@/components/page-features/services/Callingrelativesservices";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
@@ -17,7 +18,7 @@ async function page() {
     <div>
       <JsonLd data={breadcrumbJsonLd("/callingrelativesservices")} />
       <WebsiteContentProvider page="callingRelatives" sections={sections}>
-        <Callingrelativesservices />
+        <Callingrelativesservices pills={<LocationCityPills category="Calling Relatives Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </WebsiteContentProvider>
     </div>

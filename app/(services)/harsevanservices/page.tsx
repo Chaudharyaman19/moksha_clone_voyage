@@ -1,4 +1,5 @@
 import Harsevan from "@/components/page-features/services/Harsevan";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
@@ -17,7 +18,7 @@ async function page() {
     <div>
       <JsonLd data={breadcrumbJsonLd("/harsevanservices")} />
       <WebsiteContentProvider page="harsevan" sections={sections}>
-        <Harsevan />
+        <Harsevan pills={<LocationCityPills category="Hearse Van Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </WebsiteContentProvider>
     </div>

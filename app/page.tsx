@@ -16,6 +16,7 @@ import VoicesOfGratitude from "@/components/sections/VoicesOfGratitude/VoicesOfG
 import GlimpseOfJourney from "@/components/sections/GlimpseOfJourney/GlimpseOfJourney";
 import Footer from "@/components/layout/Footer/FooterNew";
 import FAQ from "@/components/sections/FAQ/FAQ";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata, getPageSchemaMarkup } from "@/lib/seo";
 import SewaStories from "@/components/sections/SewaStories/SewaStories";
@@ -88,6 +89,7 @@ export default async function Page() {
         <WebsiteSection name="journey-glimpse"><GlimpseOfJourney /></WebsiteSection>
         <WebsiteSection name="final-act"><OneFinalActOfHumanity /></WebsiteSection>
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
+        <LocationCityPills category="Home" />
         </main>
         <WebsiteSection name="footer"><Footer /></WebsiteSection>
       </WebsiteContentProvider>

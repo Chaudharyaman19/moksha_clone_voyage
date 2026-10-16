@@ -1,4 +1,5 @@
 "use client";
+import type { ReactNode } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -38,7 +39,7 @@ const ritualCards = [
   },
 ];
 
-export default function PriestSupport() {
+export default function PriestSupport({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("pandit-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165283/moksha-sewa/assets/panditservices/hero-real.png");
   const title = textOrFallback(section?.title, "Priest Support", 60);
@@ -358,6 +359,8 @@ export default function PriestSupport() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

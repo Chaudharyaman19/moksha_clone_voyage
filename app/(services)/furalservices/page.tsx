@@ -1,4 +1,5 @@
 import Furalservices from "@/components/page-features/services/Furalservices";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
@@ -18,7 +19,7 @@ async function page() {
     <div>
       <JsonLd data={breadcrumbJsonLd("/furalservices")} />
       <WebsiteContentProvider page="funeral" sections={sections}>
-        <Furalservices />
+        <Furalservices pills={<LocationCityPills category="Funeral Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </WebsiteContentProvider>
     </div>

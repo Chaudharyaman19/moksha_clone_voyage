@@ -1,4 +1,5 @@
 import Specialservices from "@/components/page-features/services/Specialservices";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
@@ -17,7 +18,7 @@ async function page() {
     <div>
       <JsonLd data={breadcrumbJsonLd("/specialservices")} />
       <WebsiteContentProvider page="specialService" sections={sections}>
-        <Specialservices />
+        <Specialservices pills={<LocationCityPills category="Special Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>
       </WebsiteContentProvider>
     </div>

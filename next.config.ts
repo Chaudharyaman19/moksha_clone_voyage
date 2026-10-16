@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const apiOrigin = new URL(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000").origin;
+// Dev me port badalne par bhi CSP block na ho — env origin + common dev ports.
+const apiOrigins = Array.from(
+  new Set([apiOrigin, "http://localhost:5000", "http://localhost:5001", "http://localhost:5003"])
+).join(" ");
 const isProd = process.env.NODE_ENV === "production";
 const scriptSrcEval = isProd ? "" : " 'unsafe-eval'";
 
@@ -11,7 +15,7 @@ const csp = [
   "img-src 'self' data: https:",
   "media-src 'self' https://res.cloudinary.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  `connect-src 'self' ${apiOrigin} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
+  `connect-src 'self' ${apiOrigins} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
   "frame-src https://*.razorpay.com https://checkout.razorpay.com https://maps.google.com https://www.google.com",
   "object-src 'none'",
   "base-uri 'self'",

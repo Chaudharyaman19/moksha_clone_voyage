@@ -1,4 +1,5 @@
 "use client";
+import type { ReactNode } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -14,7 +15,7 @@ import Image from "next/image";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { GiSteeringWheel } from "react-icons/gi";
 
-export default function HearseVanServices() {
+export default function HearseVanServices({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("harsevan-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165438/moksha-sewa/assets/serving/emergency-transport.png");
   const title = textOrFallback(section?.title, "Hearse Van (Shav Vahan)", 60);
@@ -136,6 +137,8 @@ export default function HearseVanServices() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

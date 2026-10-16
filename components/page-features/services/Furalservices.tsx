@@ -72,7 +72,7 @@ const arrangedItems = [
   },
 ];
 
-export default function WoodRitualItemsPage() {
+export default function WoodRitualItemsPage({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("funeral-hero");
   const supportSection = useWebsiteSection("funeral-receive");
   const heroImage = imageOrFallback(section?.image, "/woodrituals/hero.webp");
@@ -93,6 +93,8 @@ export default function WoodRitualItemsPage() {
         <ArrangeSection title={supportTitle} items={supportItems} />
         <ClosingMessage />
       </main>
+
+      {pills}
 
       <Footer />
     </div>

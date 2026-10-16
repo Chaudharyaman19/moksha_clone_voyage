@@ -21,7 +21,7 @@ import {
 } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
 
-export default function FamilySupport() {
+export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
   const section = useWebsiteSection("specialService-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165157/moksha-sewa/assets/family-support/hero-bg-2.png");
   const eyebrow = textOrFallback(section?.eyebrow, "Extended Family Support", 60);
@@ -374,6 +374,8 @@ export default function FamilySupport() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

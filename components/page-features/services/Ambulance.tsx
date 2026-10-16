@@ -167,7 +167,7 @@ const supportBullets = [
 const primaryButton =
   "inline-flex min-h-[37px] items-center justify-center gap-2 whitespace-nowrap rounded-[6px] border border-transparent bg-gradient-to-b from-[#A77A38] to-[#8B5D21] px-[15px] text-[20px] font-medium text-white shadow-[0_5px_12px_rgba(88,55,17,0.18),inset_0_1px_rgba(255,255,255,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_7px_15px_rgba(88,55,17,0.23)]";
 
-export default function AmbulanceService() {
+export default function AmbulanceService({ pills }: { pills?: ReactNode }) {
   return (
     <div className="service-page min-h-screen bg-[#FDFBF7] font-sans text-[#2F2922]">
       <Topbar />
@@ -185,6 +185,8 @@ export default function AmbulanceService() {
           <DonationSection />
         </div>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

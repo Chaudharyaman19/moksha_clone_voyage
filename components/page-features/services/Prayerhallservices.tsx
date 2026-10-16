@@ -1,4 +1,5 @@
 "use client";
+import type { ReactNode } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -39,7 +40,7 @@ const supportCards = [
   },
 ];
 
-export default function PrayerHallServices() {
+export default function PrayerHallServices({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("prayerHall-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165319/moksha-sewa/assets/prayerhallservices/hero-real.png");
   const title = textOrFallback(section?.title, "Ground & Prayer Support", 60);
@@ -332,6 +333,8 @@ export default function PrayerHallServices() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

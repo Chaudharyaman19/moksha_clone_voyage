@@ -38,6 +38,16 @@ async function fetchLastModified(slug: string): Promise<Date> {
   return new Date();
 }
 
+async function fetchLocationPages(): Promise<{ slug: string; updatedAt?: string }[]> {
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/location-pages/slugs`, { cache: "no-store", signal: AbortSignal.timeout(4000) });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const rows = json?.data ?? [];
+    return Array.isArray(rows) ? rows.filter((r) => r?.slug).map((r) => ({ slug: String(r.slug), updatedAt: r.updatedAt })) : [];
+  } catch { return []; }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch lastModified for every public route in parallel
   const entries = await Promise.all(
@@ -54,6 +64,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     })
   );
+
+  // NEW: append Published LocationPages (Service x City). Existing entries untouched.
+  const lp = await fetchLocationPages();
+  for (const r of lp) {
+    entries.push({
+      url: absoluteUrl(`/${r.slug}`),
+      lastModified: r.updatedAt ? new Date(r.updatedAt) : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    });
+  }
 
   return entries;
 }

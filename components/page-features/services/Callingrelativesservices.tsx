@@ -1,4 +1,5 @@
 "use client";
+import type { ReactNode } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -17,7 +18,7 @@ import {
 } from "react-icons/md";
 import { RiEmpathizeLine } from "react-icons/ri";
 
-export default function Callingrelativesservices() {
+export default function Callingrelativesservices({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("callingRelatives-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165435/moksha-sewa/assets/serving/counseling-support.png");
   const title = textOrFallback(section?.title, "Family & Relative Support", 60);
@@ -135,6 +136,8 @@ export default function Callingrelativesservices() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>

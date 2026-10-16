@@ -5,6 +5,7 @@ import Image from "next/image";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
+import LocationCityPills from "@/components/seo/LocationCityPills";
 
 type IconName =
   | "phone"
@@ -182,6 +183,8 @@ export default function UnclaimedBodySewa() {
           <DonationSection />
         </div>
       </main>
+
+      <LocationCityPills category="Unclaimed Body Sewa" />
 
       <Footer />
     </div>

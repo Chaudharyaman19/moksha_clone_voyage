@@ -1,4 +1,5 @@
 "use client";
+import type { ReactNode } from "react";
 
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -16,7 +17,7 @@ import {
 import { GiFlowerHat } from "react-icons/gi";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-export default function Furaldecoration() {
+export default function Furaldecoration({ pills }: { pills?: ReactNode }) {
   const section = useWebsiteSection("funeralDecoration-hero");
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png");
   const title = textOrFallback(section?.title, "Funeral Decoration", 60);
@@ -134,6 +135,8 @@ export default function Furaldecoration() {
           </div>
         </section>
       </main>
+
+      {pills}
 
       <Footer />
     </div>
