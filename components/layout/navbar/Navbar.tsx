@@ -270,24 +270,25 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-150 ${scrolled
-          ? "bg-white backdrop-blur-lg shadow-sm py-0"
-          : "bg-white py-0 "
-          } font-sans`}
+        className={`fixed ${hideTopBar ? "top-0" : "top-11"} left-0 w-full z-50 transition-all duration-200 ${
+          scrolled
+            ? "bg-[#fffdf9]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(46,28,16,0.06)] border-b border-[#ebdcc7]/60 py-0"
+            : "bg-[#fffaf2]/95 backdrop-blur-md border-b border-[#ebdcc7]/40 shadow-xs py-0"
+        } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
-            <div className="absolute top-0 left-0 z-10">
+            <div className="absolute -top-1 left-0 z-10 sm:-top-2">
               <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
-                <div className="h-16 w-16 rounded-md border border-[#D8B982] bg-gradient-to-br from-white via-[#fff7e6] to-[#eed9ad] p-2 shadow-[0_10px_28px_rgba(92,58,27,0.28)] ring-1 ring-white/80 sm:h-[120px] sm:w-[120px] sm:p-2.5">
+                <div className="h-16 w-16 sm:h-[110px] sm:w-[110px]">
                   <Image
                     src="/homelogo/mok.png"
                     alt="Moksha Sewa Logo"
-                    width={120}
-                    height={120}
+                    width={110}
+                    height={110}
                     priority
-                    sizes="(max-width: 640px) 64px, 120px"
-                    className="w-full h-full object-contain scale-[1.3]"
+                    sizes="(max-width: 640px) 64px, 110px"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </button>

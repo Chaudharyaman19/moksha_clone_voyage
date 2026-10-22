@@ -160,7 +160,7 @@ const SocialSidebar = () => {
 
         {/* Right Side - Social Icons */}
         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-auto">
-          <div className="flex flex-col gap-3 items-end">
+          <div className="flex flex-col gap-3.5 items-end">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -168,20 +168,20 @@ const SocialSidebar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group relative flex min-h-11 min-w-11 items-center justify-end"
+                className="group relative flex min-h-12 min-w-12 items-center justify-end"
                 onClick={() => trackClick(social.label, "Social")}
               >
                 <div
-                  className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[115px] hover:justify-between hover:px-3 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out hover:w-[130px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
                   style={{ backgroundColor: social.color }}
                 >
                   <span
-                    className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[70px] group-hover:opacity-100 text-white"
+                    className="max-w-0 overflow-hidden whitespace-nowrap text-[16px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100 text-white"
                   >
                     {social.label}
                   </span>
                   <span
-                    className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white"
+                    className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white text-[19px]"
                   >
                     {social.icon}
                   </span>

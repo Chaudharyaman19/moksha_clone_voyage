@@ -170,10 +170,10 @@ export const defaultAboutSections: AboutSectionContent[] = [
     bottomStatement: "Moksha Sewa is a Namo Gange Trust initiative. Every step we take is guided by responsibility, respect and humanity.",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164979/moksha-sewa/assets/about/our-story/response.jpg",
     items: [
-      { title: "Verification",  description: "Support follows defined eligibility and case circumstances.",  icon: "verification"  },
-      { title: "Formalities",   description: "Applicable permissions and procedures are respected.",       icon: "formalities"   },
-      { title: "Documentation", description: "Cases and assistance are responsibly recorded.",             icon: "documentation" },
-      { title: "Privacy",       description: "Beneficiary dignity comes before publicity.",                icon: "privacy"       },
+      { title: "Verification", description: "Support follows defined eligibility and case circumstances.", icon: "verification" },
+      { title: "Formalities", description: "Applicable permissions and procedures are respected.", icon: "formalities" },
+      { title: "Documentation", description: "Cases and assistance are responsibly recorded.", icon: "documentation" },
+      { title: "Privacy", description: "Beneficiary dignity comes before publicity.", icon: "privacy" },
     ],
   },
   {
@@ -358,11 +358,11 @@ export function mergeAboutSections(sections?: AboutSectionContent[]): AboutSecti
     const fallbackItems = fallback.items;
     const items = savedItems !== undefined
       ? savedItems.map((savedItem, i) => {
-          const fallbackItem = fallbackItems?.[i];
-          if (!fallbackItem) return savedItem;
-          // Merge: fallback fills in missing fields so newly-added fields (e.g. icon) are not lost
-          return { ...fallbackItem, ...savedItem };
-        })
+        const fallbackItem = fallbackItems?.[i];
+        if (!fallbackItem) return savedItem;
+        // Merge: fallback fills in missing fields so newly-added fields (e.g. icon) are not lost
+        return { ...fallbackItem, ...savedItem };
+      })
       : fallbackItems;
     return normalizeLandingSection({ ...fallback, ...saved, items, enabled: saved.enabled !== false }, fallback);
   });
