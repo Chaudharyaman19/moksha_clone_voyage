@@ -686,25 +686,7 @@ export default function CareersClientContent() {
           </section>
         </div>
 
-        <EligibilityModal
-          isOpen={selectedScore !== null}
-          score={selectedScore ?? 58}
-          onClose={() => setSelectedScore(null)}
-          onApply={() => {
-            setSelectedScore(null);
-            setIsNoneModalOpen(true);
-          }}
-        />
-
-        <ApplicationFormModal
-          isOpen={isNoneModalOpen}
-          onClose={() => setIsNoneModalOpen(false)}
-        />
-
-        <ReviewSubmitModal
-          isOpen={isAmanModalOpen}
-          onClose={() => setIsAmanModalOpen(false)}
-        />
+        {/* Modal removed: Pages are linked directly via /careers/apply */}
       </main>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -113,9 +113,24 @@ const MAX_CV_BYTES = 5 * 1024 * 1024;
 
 const prettifyName = (raw?: string | null): string => {
   if (!raw) return "";
-  const spaced = raw.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").replace(/[._-]+/g, " ").replace(/\s+/g, " ").trim();
-  if (!spaced || spaced !== spaced.toUpperCase()) return spaced;
-  return spaced.split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
+  // If the raw string is just numbers, timestamps, random hashes or too short, don't use it as a person name
+  const stripped = raw.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").trim();
+  if (!stripped || /^\d+$/.test(stripped) || stripped.replace(/\D/g, "").length >= stripped.length * 0.7) {
+    return "";
+  }
+  const cleaned = stripped
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .replace(/\b(cv|resume|doc|pdf|biodata|profile)\b/gi, "")
+    .replace(/[._-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned || cleaned.length < 2 || /^\d+$/.test(cleaned)) return "";
+  return cleaned
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(" ");
 };
 
 const formatBytes = (bytes: number) =>
@@ -240,6 +255,7 @@ function GoldCheck({ children }: { children: React.ReactNode }) {
 }
 
 export default function ApplyPageContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const jobSlug = searchParams.get("job") || "web-developer";
 
@@ -342,10 +358,12 @@ export default function ApplyPageContent() {
 
       const analysisData = analyzeJson.data;
       const profileData = analysisData.candidateProfile || {};
-      const fullName = prettifyName(profileData.name) || prettifyName(file.name.replace(/\.[^/.]+$/, ""));
+      const parsedName = prettifyName(profileData.name) || prettifyName(file.name.replace(/\.[^/.]+$/, ""));
+      const fullName = parsedName || "Candidate";
+      const firstName = fullName.split(" ")[0] || "Candidate";
       const data: any = {
         candidateName: fullName,
-        firstName: fullName.split(" ")[0] || "Candidate",
+        firstName: firstName,
         email: profileData.email || null,
         phone: profileData.phone || null,
         phones: Array.isArray(profileData.phones) && profileData.phones.length > 0 ? profileData.phones : profileData.phone ? [profileData.phone] : [],
@@ -381,13 +399,17 @@ export default function ApplyPageContent() {
         fullProfile: profileData,
       };
       setCandidateData(data as any);
-      setIsEligibilityOpen(true);
+      try {
+        sessionStorage.setItem("candidateData", JSON.stringify(data));
+      } catch {}
+      router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
     } catch {
-      const fallbackName = prettifyName(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ")) || "Candidate";
-      setCandidateData({
+      const parsedFallback = prettifyName(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
+      const fallbackName = parsedFallback || "Candidate";
+      const fallbackData = {
         ...defaultCandidateData,
         candidateName: fallbackName,
-        firstName: fallbackName.split(" ")[0],
+        firstName: fallbackName.split(" ")[0] || "Candidate",
         cvFile: file,
         cvName: file.name,
         cvSize: fileSizeStr,
@@ -401,19 +423,23 @@ export default function ApplyPageContent() {
           experience: job.experience,
           education: educationLabel,
         },
-      } as any);
-      setIsEligibilityOpen(true);
+      };
+      setCandidateData(fallbackData as any);
+      try {
+        sessionStorage.setItem("candidateData", JSON.stringify(fallbackData));
+      } catch {}
+      router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
     } finally {
       setIsAnalyzing(false);
     }
-  }, [file, job, educationLabel, educationNote]);
+  }, [file, job, educationLabel, educationNote, jobSlug, router]);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Topbar />
       <Navbar />
 
-      <main className="bg-[#fdf6ea]">
+      <main className="bg-[#fdf6ea] overflow-x-hidden">
         {/* ── Hero ── */}
         <section className="relative isolate overflow-hidden bg-[#faf4e9]">
           <Image
@@ -477,7 +503,7 @@ export default function ApplyPageContent() {
         {/* ── Content ── */}
         <section
           id="job-details"
-          className="relative isolate overflow-visible pt-10 pb-4 lg:pt-14 lg:pb-6"
+          className="relative z-10 overflow-visible pt-10 pb-4 lg:pt-14 lg:pb-6"
         >
           {/* Main textured wave background */}
           <Image
