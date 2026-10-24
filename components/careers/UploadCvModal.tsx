@@ -948,13 +948,34 @@ export default function UploadCvModal({
 
                     {/* ── Analysis progress ─────────────────────────────── */}
                     {isAnalyzing && (
-                        <div className="absolute inset-0 z-50 grid place-items-center bg-[#fffaf2]/75 px-8 text-center">
+                        <div className="absolute inset-0 z-50 grid place-items-center bg-[#fffaf2]/90 px-8 text-center backdrop-blur-[2px]">
                             <div className="flex flex-col items-center">
                                 <div className="relative grid h-[104px] w-[104px] place-items-center">
-                                    <span className="boe-analyze-ring absolute inset-0 rounded-full" />
-                                    <span className="absolute inset-[9px] rounded-full bg-[#fffaf2] shadow-[inset_0_0_0_1px_rgba(0,122,80,0.10)]" />
+                                    {/* Circular animated spinner loader */}
+                                    <svg className="absolute inset-0 h-full w-full animate-spin text-[#8b6a3e]" viewBox="0 0 104 104" fill="none">
+                                        <circle
+                                            className="opacity-20"
+                                            cx="52"
+                                            cy="52"
+                                            r="44"
+                                            stroke="#8b6a3e"
+                                            strokeWidth="6"
+                                        />
+                                        <circle
+                                            className="opacity-95"
+                                            cx="52"
+                                            cy="52"
+                                            r="44"
+                                            stroke="currentColor"
+                                            strokeWidth="6"
+                                            strokeDasharray="190"
+                                            strokeDashoffset="75"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                    <span className="absolute inset-[10px] rounded-full bg-[#fffaf2] shadow-xs" />
                                     <FileUp
-                                        className="boe-analyze-icon relative h-[38px] w-[38px] text-[#8b6a3e]"
+                                        className="relative h-[38px] w-[38px] text-[#8b6a3e] animate-pulse"
                                         strokeWidth={2.2}
                                     />
                                 </div>

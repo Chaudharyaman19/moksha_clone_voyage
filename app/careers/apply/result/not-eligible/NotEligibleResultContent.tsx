@@ -149,9 +149,22 @@ export default function NotEligibleResultContent() {
   }, []);
 
   const score = 28;
-  const rawFirstName = candidate.firstName || candidate.candidateName?.split(" ")[0] || "Ram";
-  const firstName = rawFirstName.charAt(0).toUpperCase() + rawFirstName.slice(1);
-  const rawCandidateName = candidate.candidateName || candidate.firstName || "Ram";
+
+  const cleanName = (val?: string | null): string => {
+    if (!val) return "";
+    const trimmed = String(val).replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").trim();
+    if (!trimmed || /^\d+$/.test(trimmed) || /^\d{10,}$/.test(trimmed.replace(/\s+/g, "")) || trimmed.replace(/\D/g, "").length >= trimmed.length * 0.5) {
+      return "";
+    }
+    const sanitized = trimmed.replace(/\b(cv|resume|doc|pdf|docx|biodata|profile)\b/gi, "").trim();
+    if (!sanitized || /^\d+$/.test(sanitized) || sanitized.length < 2) return "";
+    return sanitized;
+  };
+
+  const candidateRaw = cleanName(candidate.candidateName) || cleanName(candidate.firstName);
+  const rawFirstName = cleanName(candidate.firstName) || candidateRaw?.split(" ")[0] || "Ram";
+  const firstName = rawFirstName ? rawFirstName.charAt(0).toUpperCase() + rawFirstName.slice(1) : "Ram";
+  const rawCandidateName = candidateRaw || "Ram";
   const formattedCandidateName = rawCandidateName
     .trim()
     .split(/\s+/)
