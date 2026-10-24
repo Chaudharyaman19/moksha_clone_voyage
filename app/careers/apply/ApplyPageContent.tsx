@@ -346,7 +346,7 @@ export default function ApplyPageContent() {
       const uploadJson = await uploadRes.json();
       if (!uploadRes.ok || !uploadJson.success) throw new Error(uploadJson.message || "Failed to upload CV");
       const candidateId = uploadJson.data.candidateId;
-      const targetJobId = job._id || job.slug || "web-developer";
+      const targetJobId = job._id || job.slug || jobSlug || "telemarketing-executive";
 
       const analyzeRes = await fetch(`${apiBase}/careers/cv/analyze`, {
         method: "POST",
@@ -424,7 +424,8 @@ export default function ApplyPageContent() {
         sessionStorage.setItem("candidateData", JSON.stringify(data));
       } catch {}
       router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
-    } catch {
+    } catch (err) {
+      console.error("AI Analysis error:", err);
       const parsedFallback = prettifyName(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
       const fallbackName = parsedFallback || "Candidate";
       const fallbackData = {
@@ -435,13 +436,16 @@ export default function ApplyPageContent() {
         cvName: file.name,
         cvSize: fileSizeStr,
         cvUrl: objectUrl,
-        score: 72,
+        score: 30, // Default low score when analysis fails or fallback occurs
+        summary: "Profile submitted for review. Detailed evaluation in progress.",
+        requirementsMet: [],
+        gaps: ["Pending manual HR evaluation"],
         jobDetails: {
-          title: job.title,
+          title: job.title || "Position Applied",
           company: job.company || "Moksha Sewa",
-          location: job.location,
-          type: job.type,
-          experience: job.experience,
+          location: job.location || "Delhi NCR",
+          type: job.type || "Full Time",
+          experience: job.experience || "0 - 10 Years",
           education: educationLabel,
         },
       };

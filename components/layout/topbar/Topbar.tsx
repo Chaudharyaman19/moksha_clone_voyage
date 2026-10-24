@@ -20,11 +20,7 @@ export default function TopInfoBar() {
       : `${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`;
 
   const playlist = [
-    "/audio/om.mp3",
-    "/audio/no.mp3",
-    "/audio/nour.mp3",
-    "/audio/semara.mp3",
-    "/audio/shiv.mp3",
+    "/audio/moksha-bg-audio.mpeg",
   ];
 
   const getTodayTrack = () => {
@@ -62,6 +58,37 @@ export default function TopInfoBar() {
   };
 
   useEffect(() => {
+    const startAudio = async () => {
+      try {
+        if (!audioRef.current) {
+          audioRef.current = new Audio(playlist[0]);
+          audioRef.current.loop = true;
+          audioRef.current.volume = 0.3;
+        }
+        await audioRef.current.play();
+        setIsMusicOn(true);
+      } catch (err) {
+        // Modern browsers block autoplay without prior user interaction.
+        // Listen for first interaction (click/touch/scroll) to start music automatically.
+        const onFirstInteract = async () => {
+          try {
+            if (audioRef.current) {
+              await audioRef.current.play();
+              setIsMusicOn(true);
+            }
+          } catch {}
+          window.removeEventListener("click", onFirstInteract);
+          window.removeEventListener("touchstart", onFirstInteract);
+          window.removeEventListener("keydown", onFirstInteract);
+        };
+        window.addEventListener("click", onFirstInteract, { once: true });
+        window.addEventListener("touchstart", onFirstInteract, { once: true });
+        window.addEventListener("keydown", onFirstInteract, { once: true });
+      }
+    };
+
+    startAudio();
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();

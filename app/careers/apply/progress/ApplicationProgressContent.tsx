@@ -160,7 +160,7 @@ export default function ApplicationProgressContent() {
   const jobSlug = searchParams.get("job") || "web-developer";
 
   const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
-  const [animScore, setAnimScore] = useState(24);
+  const [animScore, setAnimScore] = useState(0);
   const [taskStep, setTaskStep] = useState(1);
   const [isCompleted, setIsCompleted] = useState(false);
 
@@ -175,17 +175,17 @@ export default function ApplicationProgressContent() {
 
   // Smooth progress animation that finishes and unlocks the Next button
   useEffect(() => {
-    const finalScore = candidate.score && candidate.score > 0 ? candidate.score : 68;
+    const finalScore = typeof candidate.score === "number" ? candidate.score : 0;
 
     const interval = setInterval(() => {
       setAnimScore((prev) => {
         if (prev < finalScore) {
-          const nextVal = prev + Math.ceil((finalScore - prev) / 4);
+          const nextVal = prev + Math.ceil(Math.max(1, (finalScore - prev) / 4));
           return Math.min(nextVal, finalScore);
         }
         return prev;
       });
-    }, 400);
+    }, 300);
 
     const t1 = setTimeout(() => setTaskStep(2), 1000);
     const t2 = setTimeout(() => setTaskStep(3), 1800);
@@ -205,7 +205,7 @@ export default function ApplicationProgressContent() {
   }, [candidate]);
 
   const handleProceed = () => {
-    const score = candidate.score && candidate.score > 0 ? candidate.score : 85;
+    const score = typeof candidate.score === "number" ? candidate.score : 0;
     if (score < 50) {
       router.push(`/careers/apply/result/not-eligible?job=${encodeURIComponent(jobSlug)}`);
     } else if (score < 70) {
@@ -221,9 +221,15 @@ export default function ApplicationProgressContent() {
   const jobEducation = candidate.jobDetails?.education || "Bachelor's Degree";
   const cvFileName = candidate.cvName || "Vijay_Sharma_CV.pdf";
   const cvFileSize = candidate.cvSize || "2.4 MB";
-  const targetScore = candidate.score && candidate.score > 0
+  const targetScore = typeof candidate.score === "number"
     ? candidate.score
-    : 85;
+    : 0;
+
+  const scoreMessage = targetScore >= 70
+    ? "Based on your experience, skills and qualifications, you are a strong match for this position."
+    : targetScore >= 50
+    ? "Based on your experience, you partially match this position. Some required skills are missing."
+    : "Based on our AI review, your experience does not align with the core requirements of this role.";
 
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">
@@ -451,7 +457,13 @@ export default function ApplicationProgressContent() {
                 </div>
 
                 {/* Profile Match */}
-                <div className="rounded-2xl border border-[#f5e3c0] bg-[#fdf6ea] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                <div className={`rounded-2xl border p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] ${
+                  targetScore >= 70
+                    ? "border-[#f5e3c0] bg-[#fdf6ea]"
+                    : targetScore >= 50
+                    ? "border-[#fef08a] bg-[#fefce8]"
+                    : "border-[#fecaca] bg-[#fef2f2]"
+                }`}>
                   <div className="flex items-center gap-3.5">
                     <div className="relative grid h-[80px] w-[80px] shrink-0 place-items-center">
                       <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full -rotate-90">
@@ -461,18 +473,26 @@ export default function ApplicationProgressContent() {
                           cy="60"
                           r="48"
                           fill="none"
-                          stroke="#0d5c46"
+                          stroke={targetScore >= 70 ? "#0d5c46" : targetScore >= 50 ? "#d97706" : "#dc2626"}
                           strokeWidth={12}
                           strokeDasharray={`${(targetScore / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
                           strokeLinecap="round"
                         />
                       </svg>
-                      <span className="text-[17px] font-bold text-[#0c3d30]">{targetScore}%</span>
+                      <span className={`text-[17px] font-bold ${
+                        targetScore >= 70 ? "text-[#0c3d30]" : targetScore >= 50 ? "text-[#d97706]" : "text-[#dc2626]"
+                      }`}>
+                        {targetScore}%
+                      </span>
                     </div>
                     <div>
-                      <p className="text-[14px] font-bold text-[#0c3d30]">Your Profile Match</p>
+                      <p className={`text-[14px] font-bold ${
+                        targetScore >= 70 ? "text-[#0c3d30]" : targetScore >= 50 ? "text-[#92400e]" : "text-[#991b1b]"
+                      }`}>
+                        Your Profile Match
+                      </p>
                       <p className="text-[11.5px] leading-[1.45] text-[#3a4a5c]">
-                        Based on your experience, skills and qualifications, you are a strong match for this position.
+                        {scoreMessage}
                       </p>
                     </div>
                   </div>
