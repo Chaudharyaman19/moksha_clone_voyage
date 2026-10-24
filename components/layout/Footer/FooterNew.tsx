@@ -679,9 +679,9 @@ export default function FooterNew() {
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                     aria-label="Scroll to top"
                     title="Scroll to top"
-                    className="ml-1 flex h-6 w-6 items-center justify-center rounded bg-white/10 text-white/90 transition hover:bg-[#D9A33A] hover:text-black active:scale-95"
+                    className="ml-1 flex h-6 w-6 items-center justify-center rounded-md bg-[#D9A33A] text-black shadow-sm transition-all hover:bg-[#c48e28] hover:scale-105 active:scale-95"
                   >
-                    <FaArrowUp className="h-2.5 w-2.5" />
+                    <FaArrowUp className="h-3 w-3 stroke-[1.5]" />
                   </button>
                 </div>
               </div>
