@@ -303,7 +303,7 @@ export default function ApplicationSubmittedContent() {
                 </div>
 
                 {/* ── Our Mission ── */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#ebdcc4]/70 bg-[#fdfaf1]/50 backdrop-blur-[2px] px-4 py-4 sm:px-6 sm:py-4.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+                <div className="relative overflow-hidden rounded-2xl border border-[#ebdcc4]/60 bg-[#fdfaf1]/40 backdrop-blur-sm px-4 py-4 sm:px-6 sm:py-4.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
                   <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-4 lg:gap-6">
                     {/* Text in column flow */}
                     <div className="min-w-0 flex-1">

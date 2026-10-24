@@ -207,7 +207,7 @@ export default function NotEligibleResultContent() {
         </section>
 
         {/* ── Content ── */}
-        <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10 overflow-hidden">
+        <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10">
           <div className="pointer-events-none absolute -left-2 sm:-left-3 lg:-left-4 xl:-left-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
             <Image src={sideLeafLeft} alt="" fill unoptimized priority className="object-contain object-left" />
           </div>
@@ -215,7 +215,7 @@ export default function NotEligibleResultContent() {
             <Image src={sideLeafRight} alt="" fill unoptimized priority className="object-contain object-right" />
           </div>
 
-          <div className="relative z-10 -mt-2 sm:-mt-3 lg:-mt-3.5 mb-2">
+          <div className="relative z-10 pt-2 sm:pt-3.5 mb-2">
             <ProgressSteps />
 
             <div className="mt-2.5 grid gap-3 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-stretch xl:grid-cols-[minmax(0,1fr)_340px]">
