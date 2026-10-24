@@ -782,17 +782,40 @@ export default function ApplyPageContent() {
                 {isAnalyzing && (
                   <div className="absolute inset-0 z-50 grid place-items-center rounded-2xl bg-[#fffbf2]/95 px-4 text-center">
                     <div className="flex flex-col items-center">
-                      <div className="relative grid h-[72px] w-[72px] place-items-center">
-                        <span className="boe-analyze-ring absolute inset-0 rounded-full" />
-                        <span className="absolute inset-[7px] rounded-full bg-white" />
-                        <FileUp className="boe-analyze-icon relative h-[26px] w-[26px] text-[#0d5c46]" strokeWidth={2.2} />
+                      <div className="relative grid h-[84px] w-[84px] place-items-center">
+                        {/* Circular animated spinner loader */}
+                        <svg className="absolute inset-0 h-full w-full animate-spin text-[#0d5c46]" viewBox="0 0 84 84" fill="none">
+                          <circle
+                            className="opacity-20"
+                            cx="42"
+                            cy="42"
+                            r="36"
+                            stroke="#0d5c46"
+                            strokeWidth="5"
+                          />
+                          <circle
+                            className="opacity-90"
+                            cx="42"
+                            cy="42"
+                            r="36"
+                            stroke="currentColor"
+                            strokeWidth="5"
+                            strokeDasharray="160"
+                            strokeDashoffset="60"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        <span className="absolute inset-[8px] rounded-full bg-white shadow-xs" />
+                        <FileUp className="relative h-[28px] w-[28px] text-[#0d5c46] animate-pulse" strokeWidth={2.2} />
                       </div>
-                      <h3 className="mt-3 text-[16px] font-bold text-[#0c3d30]">Analyzing your CV</h3>
-                      <p key={analysisStep} className="boe-analyze-step mt-1 text-[12.5px] font-medium text-[#3a4a5c]">{ANALYSIS_STEPS[analysisStep]}</p>
-                      <div className="mt-3 h-[4px] w-[160px] overflow-hidden rounded-full bg-[#d0ddd8]">
-                        <span className="boe-analyze-sweep block h-full w-[35%] rounded-full bg-[linear-gradient(90deg,#0d5c46,#6aaa92)]" />
+                      <h3 className="mt-3.5 text-[17px] font-bold text-[#0c3d30]">Analyzing your CV</h3>
+                      <p key={analysisStep} className="mt-1 text-[13px] font-semibold text-[#d97706] transition-all duration-300">
+                        {ANALYSIS_STEPS[analysisStep]}
+                      </p>
+                      <div className="mt-3 h-[4px] w-[170px] overflow-hidden rounded-full bg-[#d0ddd8]">
+                        <span className="block h-full w-[45%] rounded-full bg-[linear-gradient(90deg,#0d5c46,#6aaa92)] animate-pulse" />
                       </div>
-                      <p className="mt-2 flex items-center gap-1 text-[10.5px] text-[#5a6a7a]">
+                      <p className="mt-2.5 flex items-center gap-1.5 text-[11px] font-medium text-[#5a6a7a]">
                         <LockKeyhole className="h-3 w-3 text-[#0d5c46]" /> This takes a few seconds — please keep this window open.
                       </p>
                     </div>
