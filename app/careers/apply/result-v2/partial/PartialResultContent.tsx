@@ -40,7 +40,7 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../../submit-resume/page";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
-const personImage = "/newcarrierimage/hero-strong-person.png";
+const personImage = "/newcarrierimage/candidate-partially-matched.png";
 const rightCardDecoration = "/newcarrierimage/hero-diya-together.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
 const sideLeafRight = "/assets/careers/apply-leaf-right-clean-transparent.png";
@@ -226,19 +226,19 @@ export default function PartialResultContent() {
                 {/* Banner Card */}
                 <div className="overflow-hidden rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="flex flex-col md:flex-row">
-                    <div className="relative h-[180px] w-full md:h-auto md:w-[185px] lg:w-[205px] shrink-0">
+                    <div className="relative h-[180px] w-full md:h-auto md:w-[235px] lg:w-[265px] xl:w-[280px] shrink-0">
                       <Image
                         src={personImage}
                         alt="Candidate"
                         fill
                         priority
                         unoptimized
-                        sizes="205px"
+                        sizes="(max-width: 768px) 100vw, 280px"
                         className="object-cover object-center"
                       />
                     </div>
 
-                    <div className="flex flex-1 flex-col justify-between p-3.5 sm:p-4 lg:p-5 lg:pr-2">
+                    <div className="flex flex-1 flex-col justify-between p-3 sm:py-3.5 sm:pl-3.5 sm:pr-2 lg:py-4 lg:pl-4 lg:pr-1.5">
                       <div>
                         <h2 className="font-serif text-[24px] font-bold leading-tight text-[#0c3d30] sm:text-[27px] lg:text-[30px]">
                           You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span> Candidate, {firstName}!
@@ -261,14 +261,14 @@ export default function PartialResultContent() {
                       </div>
                     </div>
 
-                    <div className="relative hidden w-[250px] shrink-0 lg:block xl:w-[280px]">
+                    <div className="relative hidden w-[265px] shrink-0 lg:block xl:w-[300px]">
                       <Image
                         src={rightCardDecoration}
                         alt="Together for a More Compassionate Tomorrow"
                         fill
                         unoptimized
                         priority
-                        className="object-contain object-left lg:-translate-x-3 xl:-translate-x-5"
+                        className="object-contain object-right lg:scale-105"
                       />
                     </div>
                   </div>

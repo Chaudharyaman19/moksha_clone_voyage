@@ -38,7 +38,7 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../../submit-resume/page";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
-const personImage = "/newcarrierimage/hero-low-person.png";
+const personImage = "/newcarrierimage/candidate-not-eligible.png";
 const rightCardDecoration = "/newcarrierimage/hero-diya-learn.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
 const sideLeafRight = "/assets/careers/apply-leaf-right-clean-transparent.png";
@@ -241,19 +241,19 @@ export default function NotEligibleResultContent() {
                 {/* Not Eligible Banner Card */}
                 <div className="overflow-hidden rounded-2xl border border-[#f3c6c8] bg-[#fdf1f1] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="flex flex-col md:flex-row">
-                    <div className="relative h-[180px] w-full md:h-auto md:w-[185px] lg:w-[205px] shrink-0">
+                    <div className="relative h-[180px] w-full md:h-auto md:w-[235px] lg:w-[265px] xl:w-[280px] shrink-0">
                       <Image
                         src={personImage}
                         alt="Candidate"
                         fill
                         priority
                         unoptimized
-                        sizes="205px"
+                        sizes="(max-width: 768px) 100vw, 280px"
                         className="object-cover object-center"
                       />
                     </div>
 
-                    <div className="flex flex-1 flex-col justify-between p-3.5 sm:p-4 lg:p-5 lg:pr-2">
+                    <div className="flex flex-1 flex-col justify-between p-3 sm:py-3.5 sm:pl-3.5 sm:pr-2 lg:py-4 lg:pl-4 lg:pr-1.5">
                       <div>
                         <div className="flex items-start gap-2.5">
                           <span className="mt-0.5 grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full bg-[#dc1017] text-white">
