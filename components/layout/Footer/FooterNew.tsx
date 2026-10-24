@@ -515,21 +515,21 @@ export default function FooterNew() {
                         <div className="self-stretch w-[1.5px] bg-[#D9A33A]/45 shrink-0 my-1" />
 
                         {/* Right: Phone Number + Golden Round Arrow Button */}
-                        <div className="flex items-center gap-2.5 shrink-0 pl-3">
+                        <div className="flex items-center gap-3 shrink-0 pl-3">
                           <a
                             href={office.tel}
-                            className="inline-flex items-center gap-1.5 text-[12px] sm:text-[12.5px] font-bold text-white transition hover:text-[#E5B14A]"
+                            className="inline-flex items-center gap-2 text-[12.5px] sm:text-[13px] font-bold text-white transition hover:text-[#E5B14A]"
                           >
-                            <ReferencePhoneIcon className="h-4 w-4 shrink-0 text-[#E5B14A]" strokeWidth={1.8} />
+                            <ReferencePhoneIcon className="h-5 w-5 sm:h-[22px] sm:w-[22px] shrink-0 text-[#E5B14A]" strokeWidth={1.8} />
                             <span className="whitespace-nowrap">{office.phone}</span>
                           </a>
 
                           <a
                             href={office.tel}
                             title={`Call ${office.title}`}
-                            className="flex h-[24px] w-[24px] sm:h-[26px] sm:w-[26px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#F1C15A_0%,#D88D1D_100%)] text-black shadow-[0_2px_6px_rgba(216,141,29,0.3)] transition-all hover:scale-105 active:scale-95"
+                            className="flex h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#F1C15A_0%,#D88D1D_100%)] text-black shadow-[0_2px_8px_rgba(216,141,29,0.35)] transition-all hover:scale-105 active:scale-95"
                           >
-                            <FaArrowRight className="h-2.5 w-2.5 text-[#111111]" />
+                            <FaArrowRight className="h-3.5 w-3.5 text-[#111111]" />
                           </a>
                         </div>
                       </div>
