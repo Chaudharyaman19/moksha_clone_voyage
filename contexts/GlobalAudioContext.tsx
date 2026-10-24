@@ -27,37 +27,45 @@ export function GlobalAudioProvider({ children }: { children: React.ReactNode })
       audioRef.current = audio;
     }
 
-    const tryPlay = () => {
-      if (audio && audio.paused) {
-        audio.play().then(() => {
+    const startAudio = () => {
+      const currentAudio = audioRef.current;
+      if (currentAudio && currentAudio.paused) {
+        currentAudio.muted = false;
+        currentAudio.play().then(() => {
           setIsMusicOn(true);
-          cleanupListeners();
-        }).catch(() => {
-          // Autoplay policy waiting for user gesture
-        });
+          cleanup();
+        }).catch(() => {});
       }
     };
 
-    const cleanupListeners = () => {
-      window.removeEventListener("pointerdown", tryPlay);
-      window.removeEventListener("click", tryPlay);
-      window.removeEventListener("touchstart", tryPlay);
-      window.removeEventListener("keydown", tryPlay);
-      window.removeEventListener("scroll", tryPlay);
+    const cleanup = () => {
+      const events = ["click", "pointerdown", "mousedown", "touchstart", "touchend", "scroll", "keydown", "wheel"];
+      events.forEach((ev) => {
+        window.removeEventListener(ev, startAudio, true);
+        document.removeEventListener(ev, startAudio, true);
+      });
     };
 
-    // Try playing immediately
-    tryPlay();
+    // 1. Try immediate unmuted play
+    audio.play().then(() => {
+      setIsMusicOn(true);
+    }).catch(() => {
+      // 2. If blocked by browser, try muted autoplay (always allowed by browsers) then unmute on ANY activity
+      audio.muted = true;
+      audio.play().then(() => {
+        setIsMusicOn(true);
+      }).catch(() => {});
+    });
 
-    // Listen for any user gesture across the entire window
-    window.addEventListener("pointerdown", tryPlay, { passive: true });
-    window.addEventListener("click", tryPlay, { passive: true });
-    window.addEventListener("touchstart", tryPlay, { passive: true });
-    window.addEventListener("keydown", tryPlay, { passive: true });
-    window.addEventListener("scroll", tryPlay, { passive: true });
+    // 3. Attach listeners everywhere on window and document so the very first touch/scroll/click immediately un-mutes and plays
+    const events = ["click", "pointerdown", "mousedown", "touchstart", "touchend", "scroll", "keydown", "wheel"];
+    events.forEach((ev) => {
+      window.addEventListener(ev, startAudio, { capture: true, passive: true });
+      document.addEventListener(ev, startAudio, { capture: true, passive: true });
+    });
 
     return () => {
-      cleanupListeners();
+      cleanup();
     };
   }, []);
 
@@ -65,7 +73,8 @@ export function GlobalAudioProvider({ children }: { children: React.ReactNode })
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (audio.paused) {
+    if (audio.paused || audio.muted) {
+      audio.muted = false;
       audio.play().then(() => {
         setIsMusicOn(true);
       }).catch((e) => console.log("Audio play error:", e));
@@ -81,3 +90,4 @@ export function GlobalAudioProvider({ children }: { children: React.ReactNode })
     </AudioContext.Provider>
   );
 }
+

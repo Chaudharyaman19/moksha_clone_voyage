@@ -23,6 +23,17 @@ import type { CandidateProfileData } from "../submit-resume/page";
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
 
+/**
+ * Photos and CVs are normally full Cloudinary URLs; when the backend had to keep a file on
+ * its own disk the stored value is a "/uploads/..." path, which lives on the API's origin.
+ */
+export const toAssetUrl = (url?: string | null): string => {
+  if (!url) return "";
+  if (/^(https?:|data:|blob:)/i.test(url)) return url;
+  const origin = API_BASE.replace(/\/api\/v\d+\/?$/, "");
+  return `${origin}${url.startsWith("/") ? "" : "/"}${url}`;
+};
+
 /** Shown wherever the CV simply did not contain the value. */
 export const NOT_IN_CV = "Not mentioned in CV";
 
@@ -147,7 +158,7 @@ export function CandidatePhoto({
       </div>
     );
   }
-  return <Image src={src} alt={alt} fill unoptimized priority className={className} />;
+  return <Image src={toAssetUrl(src)} alt={alt} fill unoptimized priority className={className} />;
 }
 
 export type BreakdownRow = { label: string; desc: string; score: number; icon: LucideIcon };

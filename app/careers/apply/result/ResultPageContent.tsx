@@ -52,6 +52,7 @@ import {
   matchLevelFor,
   resultPathFor,
   readStoredCandidate,
+  toAssetUrl,
   saveCandidateEdits,
   useSupportContact,
 } from "../candidateView";
@@ -561,7 +562,7 @@ export default function ResultPageContent() {
                   </div>
                   <div className="mt-2 flex items-center gap-4 text-[12px] font-semibold text-[#0d5c46]">
                     <button
-                      onClick={() => candidate.cvUrl && window.open(candidate.cvUrl, "_blank", "noopener,noreferrer")}
+                      onClick={() => candidate.cvUrl && window.open(toAssetUrl(candidate.cvUrl), "_blank", "noopener,noreferrer")}
                       className="inline-flex items-center gap-1 transition hover:underline"
                     >
                       <Eye className="h-3.5 w-3.5" /> View File
