@@ -25,6 +25,12 @@ export interface LandingHeroSlide {
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
   variant?: "default" | "family-support" | "journey-prayer" | "volunteer-impact";
+  scheduledEnabled?: boolean;
+  startDate?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
+  activeDays?: string[];
 }
 
 export interface LandingSectionContent {
@@ -43,6 +49,7 @@ export interface LandingSectionContent {
   tertiaryImage?: string;
   quaternaryImage?: string;
   videoUrl?: string;
+  audioUrl?: string;
   secondaryVideoUrl?: string;
   quote?: string;
   legalNotice?: string;
@@ -394,7 +401,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     logoImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png",
     partnerLogoImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165261/moksha-sewa/assets/namo-gange-logo.webp",
     secondaryImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165347/moksha-sewa/assets/request_support.webp",
-    bottomStatement: "© 2026 Moksha Sewa. All Rights Reserved.",
+    bottomStatement: "© 2026 Moksha Sewa – Dignified Last Rites & Support | A Initiative of Namo Gange Trust | All Rights Reserved.",
     actionTitle: "Stand with dignity. Serve with compassion.",
     contactAddress: "Delhi • Ghaziabad • Noida, India",
     phoneNumber: "9220147229",
@@ -414,7 +421,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     secondaryButtonHref: "/request-help",
     tertiaryButtonLabel: "Become a Volunteer",
     tertiaryButtonHref: "/volunteer/register",
-    initiativeLabel: "An Initiative of Namo Gange Trust",
+    initiativeLabel: "A Initiative of Namo Gange Trust",
     buttonLabel: "Donate Now",
     buttonHref: "/donation",
     items: [
@@ -422,7 +429,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
       { label: "Request Sewa Help", href: "/request-help" }, { label: "Transport Coordination", href: "/ambulanceservices" }, { label: "Ritual Material Support", href: "/furalservices" }, { label: "Priest Guidance", href: "/panditservices" }, { label: "Family Guidance", href: "/specialservices" }, { label: "Unclaimed Body Sewa", href: "/unclaimed-body-sewa" },
       { label: "Unclaimed Bodies Support", href: "/mortal-records" }, { label: "Volunteer Programme", href: "/volunteer/register" }, { label: "Awareness & Outreach", href: "/blog" },
       { title: "Compassion", description: "We serve with\nempathy and humanity." }, { title: "Dignity", description: "Every life is treated\nwith respect." }, { title: "Service", description: "We support every step\nof the final journey." }, { title: "Trust", description: "Transparent, accountable\nand responsible." }, { title: "Together", description: "United for a more\ncompassionate world." },
-      { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms & Conditions", href: "/terms" }, { label: "Refund Policy", href: "/refund-policy" },
+      { label: "Sitemap", href: "/sitemap.xml" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms & Conditions", href: "/terms" },
     ],
   },
   {

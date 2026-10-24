@@ -87,6 +87,9 @@ export default async function RootLayout({
   const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id ?? "") ? configuredGa4Id : undefined;
   const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId ?? "") ? configuredGtmId : undefined;
 
+  const topbarSection = settings?.landingPage?.sections?.find((s: any) => s.key === "topbar");
+  const configuredAudioUrl = topbarSection?.audioUrl;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -132,7 +135,7 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <StoreProvider>
-          <GlobalAudioProvider>
+          <GlobalAudioProvider audioUrl={configuredAudioUrl}>
             <DynamicCanonical />
             <JsonLd data={organizationJsonLd()} />
             <JsonLd data={websiteJsonLd()} />

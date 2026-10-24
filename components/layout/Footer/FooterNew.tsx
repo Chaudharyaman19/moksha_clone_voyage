@@ -112,7 +112,6 @@ const legalLinks = [
   { label: "Sitemap", href: "/sitemap.xml" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
-  { label: "Refund Policy", href: "/refund-policy" },
 ];
 
 export default function FooterNew() {
@@ -163,7 +162,7 @@ export default function FooterNew() {
         if (!response.ok) return;
         const body = await response.json();
         if (cancelled || !body.data) return;
-        
+
         const settings = body.data;
         const disabled: string[] = [];
         const pageKeyMap: Record<string, string> = {
@@ -193,19 +192,19 @@ export default function FooterNew() {
           careersPage: "/careers",
         };
         for (const [key, path] of Object.entries(pageKeyMap)) {
-           const config = settings[key];
-           if (config) {
-             let isEnabled = true;
-             if (config.enabled !== undefined) {
-               isEnabled = config.enabled;
-             } else if (config.sections && config.sections.length > 0) {
-               isEnabled = config.sections.some((s: any) => s.enabled !== false);
-             }
-             if (!isEnabled) disabled.push(path);
-           }
+          const config = settings[key];
+          if (config) {
+            let isEnabled = true;
+            if (config.enabled !== undefined) {
+              isEnabled = config.enabled;
+            } else if (config.sections && config.sections.length > 0) {
+              isEnabled = config.sections.some((s: any) => s.enabled !== false);
+            }
+            if (!isEnabled) disabled.push(path);
+          }
         }
         setDisabledPaths(disabled);
-      } catch (e) {}
+      } catch (e) { }
     };
     fetchDisabledPages();
     return () => { cancelled = true; };
@@ -289,8 +288,8 @@ export default function FooterNew() {
       ========================================================== */}
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block">
           <div className="absolute inset-y-0 left-0 w-[500px] overflow-hidden">
-              <Image
-                src={websiteSection?.image || footerBg}
+            <Image
+              src={websiteSection?.image || footerBg}
               alt=""
               fill
               priority={false}
@@ -320,8 +319,8 @@ export default function FooterNew() {
 
         {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
-              <Image
-                src={websiteSection?.image || footerBg}
+          <Image
+            src={websiteSection?.image || footerBg}
             alt=""
             fill
             sizes="100vw"
@@ -608,12 +607,12 @@ export default function FooterNew() {
 
           {/* ========================= BOTTOM BAR ========================= */}
           <div className="footer-bottom relative bg-black">
-            <div className="mx-auto flex min-h-[46px] w-full max-w-[1320px] flex-col items-center justify-between gap-2.5 px-4 py-2 text-center sm:px-6 lg:flex-row lg:px-8">
+            <div className="mx-auto flex min-h-[46px] w-full max-w-[1380px] flex-col items-center justify-between gap-2.5 px-4 py-2 text-center sm:px-6 lg:flex-row lg:px-8">
               {/* Left: Exact Image Pattern */}
               <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-white/90">
-                <span>© {new Date().getFullYear()} Moksha Sewa</span>
+                <span>© {new Date().getFullYear()} Moksha Sewa – Dignified Last Rites &amp; Support</span>
                 <span className="h-3.5 w-px bg-white/25" />
-                <span>An Initiative of Namo Gange Trust</span>
+                <span>A Initiative of Namo Gange Trust</span>
                 <span className="h-3.5 w-px bg-white/25" />
                 <span>All Rights Reserved.</span>
               </div>
@@ -650,16 +649,6 @@ export default function FooterNew() {
                 </Link>
                 <span className="h-3.5 w-px bg-white/20" />
 
-                <Link
-                  href="/refund-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition hover:text-[#E5B14A]"
-                >
-                  Refund Policy
-                </Link>
-                <span className="h-3.5 w-px bg-white/20" />
-
                 <div className="flex items-center gap-1.5">
                   <span className="font-normal text-white/85">
                     Designed &amp; Developed by
@@ -670,7 +659,7 @@ export default function FooterNew() {
                       alt="enCodency Pvt. Ltd."
                       width={120}
                       height={24}
-                      className="h-4.5 w-auto object-contain"
+                      className="h-8 w-auto object-contain"
                     />
                   </div>
 

@@ -14,17 +14,31 @@ const AudioContext = createContext<AudioContextType>({
 
 export const useGlobalAudio = () => useContext(AudioContext);
 
-export function GlobalAudioProvider({ children }: { children: React.ReactNode }) {
+export function GlobalAudioProvider({
+  children,
+  audioUrl,
+}: {
+  children: React.ReactNode;
+  audioUrl?: string;
+}) {
   const [isMusicOn, setIsMusicOn] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const activeSrc = audioUrl?.trim() || "/audio/moksha-bg-audio.mp3";
 
   useEffect(() => {
     let audio = audioRef.current;
     if (!audio) {
-      audio = new Audio("/audio/moksha-bg-audio.mp3");
+      audio = new Audio(activeSrc);
       audio.loop = true;
       audio.volume = 0.3;
       audioRef.current = audio;
+    } else if (audio.src !== activeSrc && !audio.src.endsWith(activeSrc)) {
+      const wasPlaying = !audio.paused;
+      audio.src = activeSrc;
+      if (wasPlaying) {
+        audio.play().catch(() => {});
+      }
     }
 
     const startAudio = () => {
