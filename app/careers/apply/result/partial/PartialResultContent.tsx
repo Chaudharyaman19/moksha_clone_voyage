@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
+  ArrowRight,
   BarChart3,
   Bookmark,
   Briefcase,
@@ -443,7 +444,7 @@ export default function PartialResultContent() {
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-center scale-115"
+                        className="object-cover object-top scale-[1.2]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">

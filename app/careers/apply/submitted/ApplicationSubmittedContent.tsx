@@ -344,16 +344,16 @@ export default function ApplicationSubmittedContent() {
                       <Pencil className="h-3 w-3" /> Edit Details
                     </button>
                   </div>
-                  <div className="flex items-start gap-2.5">
-                    <div className="relative h-[95px] w-[88px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                  <div className="flex items-stretch gap-2.5 sm:gap-3">
+                    <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
                       <Image
                         src={sidebarPhoto}
-                        alt="Ananya Sharma"
+                        alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        sizes="88px"
-                        className="object-cover object-center"
+                        sizes="94px"
+                        className="object-cover object-top scale-[1.2]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-[3px]">

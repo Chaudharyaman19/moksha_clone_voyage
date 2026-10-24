@@ -519,7 +519,7 @@ export default function ResultPageContent() {
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-center scale-115"
+                        className="object-cover object-top scale-[1.2]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">
