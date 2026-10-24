@@ -1,23 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import {
-  FaChevronRight,
-  FaEnvelope,
-  FaPaperPlane,
-  FaArrowRight,
-  FaArrowUp,
-} from "react-icons/fa";
+import { FaChevronRight, FaArrowRight } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
-import { MapPin, Mail, Clock } from "lucide-react";
 import footerMokshaLogo from "../../../public/homelogo/mok-footer-white.png";
-import footerBg from "../../../public/assets/footer-ghat-sunset.png";
+import footerGhatBg from "../../../public/assets/footer-ghat-sunset.png";
 import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
-import { newsletterApi } from "@/lib/newsletterApi";
-import SuccessPopup from "@/components/common/SuccessPopup";
-import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -30,31 +18,117 @@ const svgBase = (strokeWidth = 1.7) => ({
 });
 
 function ReferenceChainIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M19 29l-3.8 3.8a7 7 0 01-9.9-9.9l6.1-6.1a7 7 0 019.9 0" /><path d="M29 19l3.8-3.8a7 7 0 019.9 9.9l-6.1 6.1a7 7 0 01-9.9 0" /><path d="M16.5 31.5l15-15" /></g></svg>;
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M19 29l-3.8 3.8a7 7 0 01-9.9-9.9l6.1-6.1a7 7 0 019.9 0" />
+        <path d="M29 19l3.8-3.8a7 7 0 019.9 9.9l-6.1 6.1a7 7 0 01-9.9 0" />
+        <path d="M16.5 31.5l15-15" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferenceHandHeartIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 26.5S20.5 19 20.5 11.8c0-6.2 7.8-8.8 11.5-2.4 3.7-6.4 11.5-3.8 11.5 2.4C43.5 19 32 26.5 32 26.5z" /><path d="M12 31v15.5l10.5 6.5h19L52 43V29.5c0-2.6-3.2-3.8-5-2l-8.5 8.2" /><path d="M52 31l-10.5 9H29a4 4 0 010-8h8" /><path d="M12 31c4.8 0 8 2 11 5" /><path d="M6 29h6v21H6zM52 29h6v21h-6z" /></g></svg>;
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M32 26.5S20.5 19 20.5 11.8c0-6.2 7.8-8.8 11.5-2.4 3.7-6.4 11.5-3.8 11.5 2.4C43.5 19 32 26.5 32 26.5z" />
+        <path d="M12 31v15.5l10.5 6.5h19L52 43V29.5c0-2.6-3.2-3.8-5-2l-8.5 8.2" />
+        <path d="M52 31l-10.5 9H29a4 4 0 010-8h8" />
+        <path d="M12 31c4.8 0 8 2 11 5" />
+        <path d="M6 29h6v21H6zM52 29h6v21h-6z" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferenceLotusIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 8c9 9 9 19 0 29-9-10-9-20 0-29z" /><path d="M29 39C18 37 12 29 13 18c10 2 17 9 18 19" /><path d="M35 39c11-2 17-10 16-21-10 2-17 9-18 19" /><path d="M27 43C17 44 8 39 5 29c10-1 19 3 24 11" /><path d="M37 43c10 1 19-4 22-14-10-1-19 3-24 11" /><path d="M11 48c13 6 29 6 42 0" /></g></svg>;
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M32 8c9 9 9 19 0 29-9-10-9-20 0-29z" />
+        <path d="M29 39C18 37 12 29 13 18c10 2 17 9 18 19" />
+        <path d="M35 39c11-2 17-10 16-21-10 2-17 9-18 19" />
+        <path d="M27 43C17 44 8 39 5 29c10-1 19 3 24 11" />
+        <path d="M37 43c10 1 19-4 22-14-10-1-19 3-24 11" />
+        <path d="M11 48c13 6 29 6 42 0" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferencePhoneIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 48 48" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M13.5 5.5l7 10-5 5c3.2 6.2 6.9 9.9 13 13l5-5 10 7-3 7c-.7 1.6-2.3 2.5-4 2.2C18.2 42 6 29.8 3.3 11.5 3 9.8 4 8.2 5.5 7.5l8-2z" /></g></svg>;
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M13.5 5.5l7 10-5 5c3.2 6.2 6.9 9.9 13 13l5-5 10 7-3 7c-.7 1.6-2.3 2.5-4 2.2C18.2 42 6 29.8 3.3 11.5 3 9.8 4 8.2 5.5 7.5l8-2z" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferenceShieldIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 5l23 9v16c0 14-9.7 24.2-23 29C18.7 54.2 9 44 9 30V14l23-9z" /><path d="M21 31l7 7 15-16" /></g></svg>;
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M32 5l23 9v16c0 14-9.7 24.2-23 29C18.7 54.2 9 44 9 30V14l23-9z" />
+        <path d="M21 31l7 7 15-16" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferenceUsersIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><circle cx="23" cy="19" r="8" /><circle cx="43" cy="21" r="7" /><path d="M7 52v-6c0-9 7-15 16-15s16 6 16 15v6" /><path d="M38 34c10-3 19 3 19 13v5" /><path d="M16 52V42M31 52V42M47 52V43" /></g></svg>;
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <circle cx="23" cy="19" r="8" />
+        <circle cx="43" cy="21" r="7" />
+        <path d="M7 52v-6c0-9 7-15 16-15s16 6 16 15v6" />
+        <path d="M38 34c10-3 19 3 19 13v5" />
+        <path d="M16 52V42M31 52V42M47 52V43" />
+      </g>
+    </svg>
+  );
 }
 
 function ReferenceHeartIcon({ className, strokeWidth }: FooterSvgProps) {
-  return <svg viewBox="0 0 64 64" className={className} aria-hidden><g {...svgBase(strokeWidth)}><path d="M32 55S7 40 7 21.5C7 7 25 4 32 16 39 4 57 7 57 21.5 57 40 32 55 32 55z" /></g></svg>;
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <g {...svgBase(strokeWidth)}>
+        <path d="M32 55S7 40 7 21.5C7 7 25 4 32 16 39 4 57 7 57 21.5 57 40 32 55 32 55z" />
+      </g>
+    </svg>
+  );
+}
+
+function GoldOfficeBuildingIcon({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
+      {/* Center higher tower */}
+      <path d="M11 5h10v23H11z" fill="#E2AC3D" fillOpacity="0.25" stroke="#E2AC3D" strokeWidth="1.8" />
+      {/* Left wing */}
+      <path d="M4 11h7v17H4z" fill="#E2AC3D" fillOpacity="0.25" stroke="#E2AC3D" strokeWidth="1.8" />
+      {/* Right wing */}
+      <path d="M21 11h7v17H21z" fill="#E2AC3D" fillOpacity="0.25" stroke="#E2AC3D" strokeWidth="1.8" />
+      {/* Windows in center tower */}
+      <rect x="13" y="8" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="17" y="8" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="13" y="12" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="17" y="12" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="13" y="16" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="17" y="16" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      {/* Windows in left wing */}
+      <rect x="6.5" y="14" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="6.5" y="18" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      {/* Windows in right wing */}
+      <rect x="23.5" y="14" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      <rect x="23.5" y="18" width="2" height="2" fill="#E2AC3D" rx="0.5" />
+      {/* Entrance Door */}
+      <path d="M14 28v-5h4v5" stroke="#E2AC3D" strokeWidth="1.8" />
+    </svg>
+  );
 }
 
 const quickLinks = [
@@ -83,667 +157,524 @@ const initiatives = [
 const values = [
   {
     icon: ReferenceHandHeartIcon,
-    title: "Compassion",
+    title: "COMPASSION",
     description: "We serve with\nempathy and humanity.",
   },
   {
     icon: ReferenceShieldIcon,
-    title: "Dignity",
+    title: "DIGNITY",
     description: "Every life is treated\nwith respect.",
   },
   {
     icon: ReferenceUsersIcon,
-    title: "Service",
+    title: "SERVICE",
     description: "We support every step\nof the final journey.",
   },
   {
     icon: ReferenceLotusIcon,
-    title: "Trust",
+    title: "TRUST",
     description: "Transparent, accountable\nand responsible.",
   },
   {
     icon: ReferenceHeartIcon,
-    title: "Together",
+    title: "TOGETHER",
     description: "United for a more\ncompassionate world.",
   },
 ];
 
-const legalLinks = [
-  { label: "Sitemap", href: "/sitemap.xml" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms" },
-];
-
 export default function FooterNew() {
-  const websiteSection = useWebsiteSection("footer");
-  const pathname = usePathname();
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [disabledPaths, setDisabledPaths] = useState<string[]>([]);
-  const brandName = textOrFallback(websiteSection?.title, "Moksha Sewa", 60);
-  const description = textOrFallback(websiteSection?.description, "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.", 240);
-
-  const contactEmail = textOrFallback(websiteSection?.contactEmail, "info@mokshasewa.org", 120);
-  const contactNumber = textOrFallback(websiteSection?.phoneNumber, "9220147229", 24);
-  const contactAddress = textOrFallback(websiteSection?.contactAddress, "Delhi • Ghaziabad • Noida, India", 160);
-  const availabilityText = textOrFallback(websiteSection?.availabilityText, "We are available\n24/7 for you", 80);
-  const actionTitle = textOrFallback(websiteSection?.actionTitle, "Stand with dignity. Serve with compassion.", 90);
-  const requestTitle = textOrFallback(websiteSection?.requestTitle, "Request Support", 50);
-  const requestDescription = textOrFallback(websiteSection?.requestDescription, "Share your email and our support team will contact you.", 140);
-  const inputPlaceholder = textOrFallback(websiteSection?.inputPlaceholder, "Your email address", 50);
-  const submitLabel = textOrFallback(websiteSection?.submitLabel, "Send Request", 36);
-  const submittedLabel = textOrFallback(websiteSection?.submittedLabel, "Submitted", 36);
-  const requestSupportImage = imageOrFallback(websiteSection?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165347/moksha-sewa/assets/request_support.webp");
-  const footerItems = websiteSection?.items ?? [];
-  const managedQuickLinks = quickLinks
-    .map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index, item) }))
-    .filter((item) => !disabledPaths.includes(item.href));
-  const managedServices = services
-    .map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length, item) }))
-    .filter((item) => !disabledPaths.includes(item.href));
-  const managedInitiatives = [
-    ...initiatives.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + quickLinks.length + services.length, item) })),
-    ...footerItems.slice(quickLinks.length + services.length + initiatives.length + values.length + legalLinks.length).map((item) => ({
-      label: item.label || item.title || "Footer Link",
-      href: item.href || "#",
-    })),
-  ].filter((item) => !disabledPaths.includes(item.href));
-  const managedValues = values.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 14, { title: item.title, description: item.description }) }));
-  const managedLegalLinks = legalLinks
-    .map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 19, item) }))
-    .filter((item) => !disabledPaths.includes(item.href));
-
-  useEffect(() => {
-    let cancelled = false;
-    const fetchDisabledPages = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
-        if (!response.ok) return;
-        const body = await response.json();
-        if (cancelled || !body.data) return;
-
-        const settings = body.data;
-        const disabled: string[] = [];
-        const pageKeyMap: Record<string, string> = {
-          landingPage: "/",
-          aboutPage: "/about",
-          servicesPage: "/services",
-          ambulancePage: "/ambulanceservices",
-          panditPage: "/panditservices",
-          funeralPage: "/furalservices",
-          funeralDecorationPage: "/furaldecoration",
-          prayerHallPage: "/prayerhallservices",
-          specialServicePage: "/specialservices",
-          callingRelativesPage: "/callingrelativesservices",
-          harsevanPage: "/harsevanservices",
-          unclaimedBodyPage: "/unclaimed-body-sewa",
-          volunteerPage: "/volunteer/register",
-          partnershipPage: "/partnership",
-          csrPage: "/csr",
-          requestHelpPage: "/request-help",
-          donationPage: "/donation",
-          contactPage: "/contact",
-          trackPage: "/track",
-          privacyPage: "/privacy-policy",
-          termsPage: "/terms",
-          refundPage: "/refund-policy",
-          conductPage: "/code-of-conduct",
-          careersPage: "/careers",
-        };
-        for (const [key, path] of Object.entries(pageKeyMap)) {
-          const config = settings[key];
-          if (config) {
-            let isEnabled = true;
-            if (config.enabled !== undefined) {
-              isEnabled = config.enabled;
-            } else if (config.sections && config.sections.length > 0) {
-              isEnabled = config.sections.some((s: any) => s.enabled !== false);
-            }
-            if (!isEnabled) disabled.push(path);
-          }
-        }
-        setDisabledPaths(disabled);
-      } catch (e) { }
-    };
-    fetchDisabledPages();
-    return () => { cancelled = true; };
-  }, []);
-
-  const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!email.trim()) return;
-
-    try {
-      await newsletterApi.subscribe(email.trim(), "footer-request-support");
-      setSubscribed(true);
-      setEmail("");
-      setShowSuccessPopup(true);
-
-      window.setTimeout(() => {
-        setSubscribed(false);
-      }, 2500);
-    } catch {
-      // Keep footer submission non-blocking.
-    }
-  };
-
   return (
-    <>
-      <footer
-        className="relative isolate overflow-hidden bg-[#050706] text-white"
-      >
-        {/* Slim action band attached directly above the footer content. */}
-        <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F3DEB3_0%,#FFF5DE_48%,#EFD39E_100%)] px-4 py-2 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
-          <div className="mx-auto flex min-h-[44px] w-full max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
-            <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#392814] sm:text-left sm:text-[15px]">
-              <ReferenceLotusIcon className="h-8 w-8 shrink-0 text-[#A96F19]" strokeWidth={1.7} />
-              <span className="sm:whitespace-nowrap">{actionTitle}</span>
-            </div>
-
-            <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
-              {pathname !== "/request-help" && (
-                <Link
-                  href={websiteSection?.secondaryButtonHref || "/request-help"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-                >
-                  <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.secondaryButtonLabel, "Request Help", 36)}</span>
-                </Link>
-              )}
-
-              {pathname !== "/donation" && (
-                <Link
-                  href={websiteSection?.buttonHref || "/donation"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-[40px] min-w-[150px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-                >
-                  <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}</span>
-                </Link>
-              )}
-
-              {pathname !== "/volunteer/register" && (
-                <Link
-                  href={websiteSection?.tertiaryButtonHref || "/volunteer/register"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-[40px] min-w-[175px] items-center justify-center gap-1.5 rounded-[7px] border border-[#B97818] bg-[linear-gradient(180deg,#EFB84F_0%,#D88D1D_100%)] px-3 text-[13px] font-semibold text-[#211609] shadow-[0_4px_12px_rgba(160,99,18,0.22)] hover:brightness-105 sm:gap-2 sm:px-4 sm:text-[14px]"
-                >
-                  <ReferenceUsersIcon className="h-5 w-5" strokeWidth={1.7} />
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.tertiaryButtonLabel, "Become a Volunteer", 50)}</span>
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* =========================================================
-          DESKTOP SCENE
-          The reference has the river/temple photo only on the left.
-          A large dark circle masks it and creates the curved gold edge.
+    <footer className="relative isolate overflow-hidden bg-[#050706] text-white">
+      {/* =========================================================
+          1. TOP BANNER (Golden Gradient Bar)
       ========================================================== */}
-        <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block">
-          <div className="absolute inset-y-0 left-0 w-[500px] overflow-hidden">
-            <Image
-              src={websiteSection?.image || footerBg}
-              alt=""
-              fill
-              priority={false}
-              sizes="500px"
-              className="object-cover object-left"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,20,0.03),rgba(0,35,33,0.08))]" />
+      <div className="relative z-30 border-y border-[#C6953E] bg-[linear-gradient(90deg,#F5DEB4_0%,#FDF0D5_48%,#EED09A_100%)] px-4 py-2.5 shadow-[0_-5px_18px_rgba(0,0,0,0.12)] sm:px-6">
+        <div className="mx-auto flex min-h-[44px] w-full max-w-[1520px] flex-col items-center justify-between gap-3 sm:flex-row">
+          <div className="flex min-w-0 items-center gap-3 text-center sm:text-left">
+            <PiFlowerLotus className="h-7 w-7 shrink-0 text-[#A96F19]" />
+            <span className="text-[14px] font-bold text-[#2A1D0D] sm:text-[15px]">
+              Stand with dignity. Serve with compassion.
+            </span>
           </div>
 
-          {/* Creates the exact concave photo boundary seen in the reference */}
-          {/* Perfect circular mask blends into the footer; it intentionally has no outline. */}
-          <div
-            aria-hidden
-            className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full bg-[#050706]"
-          />
+          <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:flex-nowrap sm:justify-end">
+            <Link
+              href="/request-help"
+              className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[8px] border border-[#B97818] bg-[linear-gradient(180deg,#F0C05B_0%,#D88D1D_100%)] px-3.5 text-[13px] font-semibold text-[#211609] shadow-[0_3px_10px_rgba(160,99,18,0.2)] transition hover:brightness-105 active:scale-95"
+            >
+              <ReferencePhoneIcon className="h-4 w-4" strokeWidth={1.8} />
+              <span>Request Help</span>
+              <FaArrowRight className="h-3 w-3" />
+            </Link>
 
-          {/* Controlled left circle arc: semibold and softly glowing, clipped just
-            before the values strip so it never enters the lower section. */}
-          <div
-            aria-hidden
-            className="absolute left-[108px] top-[-190px] h-[900px] w-[900px] rounded-full border-l-[6px] border-[#E2AC3D] [clip-path:inset(0_0_28%_0)] [filter:drop-shadow(0_0_4px_rgba(226,172,61,0.78))_drop-shadow(0_0_10px_rgba(226,172,61,0.34))]"
-          />
+            <Link
+              href="/donation"
+              className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[8px] border border-[#B97818] bg-[linear-gradient(180deg,#F0C05B_0%,#D88D1D_100%)] px-3.5 text-[13px] font-semibold text-[#211609] shadow-[0_3px_10px_rgba(160,99,18,0.2)] transition hover:brightness-105 active:scale-95"
+            >
+              <ReferenceHandHeartIcon className="h-4 w-4" strokeWidth={1.8} />
+              <span>Donate Now</span>
+              <FaArrowRight className="h-3 w-3" />
+            </Link>
 
-          {/* subtle inner green depth */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_18%,rgba(15,92,78,0.18),transparent_34%),linear-gradient(90deg,transparent_0%,rgba(0,31,28,0.08)_48%,rgba(0,18,17,0.30)_100%)]" />
+            <Link
+              href="/volunteer/register"
+              className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[8px] border border-[#B97818] bg-[linear-gradient(180deg,#F0C05B_0%,#D88D1D_100%)] px-3.5 text-[13px] font-semibold text-[#211609] shadow-[0_3px_10px_rgba(160,99,18,0.2)] transition hover:brightness-105 active:scale-95"
+            >
+              <ReferenceUsersIcon className="h-4 w-4" strokeWidth={1.8} />
+              <span>Become a Volunteer</span>
+              <FaArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
         </div>
+      </div>
 
-        {/* Mobile/tablet gets a clean dark footer with a soft scenic wash */}
-        <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
+      {/* =========================================================
+          2. DESKTOP SCENE (Temple Ghat photo on left with Golden Arc)
+      ========================================================== */}
+      <div className="pointer-events-none absolute inset-0 z-0 hidden lg:block overflow-hidden">
+        {/* The Ghat photo container strictly on the left */}
+        <div className="absolute inset-y-0 left-0 w-[240px] overflow-hidden">
           <Image
-            src={websiteSection?.image || footerBg}
-            alt=""
+            src={footerGhatBg}
+            alt="Varanasi Ghats"
             fill
-            sizes="100vw"
-            className="object-cover object-center opacity-[0.13]"
+            sizes="240px"
+            className="object-cover object-[15%_65%] filter contrast-110 brightness-105"
           />
-          <div className="absolute inset-0 bg-black/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/50" />
         </div>
 
-        <div className="footer-master relative z-10">
-          {/* ========================= MAIN ROW ========================= */}
-          <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
-              {/* BRAND */}
-              <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
-                <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
-                  <Image
-                    src={footerMokshaLogo}
-                    alt={brandName}
-                    width={145}
-                    height={127}
-                    className="h-[105px] w-auto max-w-full object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.16)] sm:h-[112px]"
-                  />
-                  <ShineLayer sparks={4} gold />
-                </div>
+        {/* SVG Arc and Dark Mask */}
+        <svg
+          className="absolute inset-y-0 left-0 h-full w-[240px] pointer-events-none z-[1]"
+          viewBox="0 0 240 450"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="goldArcGradExact" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#DFAD42" />
+              <stop offset="35%" stopColor="#FEE5A2" />
+              <stop offset="65%" stopColor="#E2AC3D" />
+              <stop offset="100%" stopColor="#B3781B" />
+            </linearGradient>
+            <filter id="goldArcGlowExact" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-                <h2 className="footer-brand-title mt-1 text-[20px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
-                  {brandName}
-                </h2>
+          {/* Solid deep dark mask to the right of the arc */}
+          <path
+            d="M 90 0 Q 170 225 90 450 L 240 450 L 240 0 Z"
+            fill="#050706"
+          />
 
-                <p className="footer-brand-tagline mt-1 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[13px]">
-                  {textOrFallback(websiteSection?.eyebrow, "A Namo Gange Trust Initiative", 70)}
-                </p>
+          {/* Glowing Golden Arc boundary */}
+          <path
+            d="M 90 0 Q 170 225 90 450"
+            fill="none"
+            stroke="url(#goldArcGradExact)"
+            strokeWidth="4"
+            filter="url(#goldArcGlowExact)"
+          />
+        </svg>
+      </div>
 
-                <GoldDivider className="footer-brand-divider mt-0.5" />
-
-                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
-                  {description}
-                </p>
-
-                <Link
-                  href={websiteSection?.buttonHref || "/donation"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
-                >
-                  <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
-                    <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
-                    <ShineLayer sparks={1} />
-                  </span>
-                  {textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}
-                  <FaArrowRight className="footer-donate-arrow h-3.5 w-3.5" />
-                  <ShineLayer sparks={0} />
-                </Link>
-              </div>
-
-              {/* QUICK LINKS */}
-              <FloatingCard icon={ReferenceChainIcon} title={textOrFallback(websiteSection?.quickLinksTitle, "Quick Links", 50)}>
-                <ul className="space-y-[5px]">
-                  {managedQuickLinks.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="footer-link inline-flex items-center gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                      >
-                        <FaChevronRight className="footer-link-arrow h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </FloatingCard>
-
-              {/* SERVICES */}
-              <FloatingCard icon={ReferenceHandHeartIcon} title={textOrFallback(websiteSection?.servicesTitle, "Our Services", 50)}>
-                <ul className="space-y-[5px]">
-                  {managedServices.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                      >
-                        <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                        <span>{item.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </FloatingCard>
-
-              {/* INITIATIVES */}
-              <FloatingCard icon={ReferenceLotusIcon} title={textOrFallback(websiteSection?.initiativesTitle, "Our Initiatives", 50)}>
-                <ul className="space-y-[5px]">
-                  {managedInitiatives.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="footer-link inline-flex items-start gap-2 text-[12px] font-medium leading-[1.4] text-white/95 transition hover:text-[#E5B14A] xl:text-[13px]"
-                      >
-                        <FaChevronRight className="footer-link-arrow mt-[3px] h-2.5 w-2.5 shrink-0 text-[#E4A631]" />
-                        <span>{item.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </FloatingCard>
-
-              {/* CONTACT */}
-              <FloatingCard icon={ReferencePhoneIcon} title={textOrFallback(websiteSection?.contactTitle, "Contact Us", 50)}>
-                <div className="space-y-2.5">
-                  <ContactItem icon={MapPin}>
-                    <p className="whitespace-pre-line">{contactAddress}</p>
-                  </ContactItem>
-
-                  <ContactItem icon={ReferencePhoneIcon}>
-                    <a
-                      href={`tel:+91${contactNumber}`}
-                      className="transition hover:text-[#E5B14A]"
-                    >
-                      +91 {contactNumber}
-                    </a>
-                  </ContactItem>
-
-                  <ContactItem icon={Mail}>
-                    <a
-                      href={`mailto:${contactEmail}`}
-                      className="whitespace-nowrap transition hover:text-[#E5B14A]"
-                    >
-                      {contactEmail}
-                    </a>
-                  </ContactItem>
-
-                  <ContactItem icon={Clock}>
-                    <p>
-                      {availabilityText.split("\n").map((line) => (
-                        <span key={line} className="block">{line}</span>
-                      ))}
-                    </p>
-                  </ContactItem>
-                </div>
-              </FloatingCard>
-
-              {/* REQUEST SUPPORT */}
-              <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
-                <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
-
-                  <Image
-                    src={websiteSection?.partnerLogoImage || namoGangeLogo}
-                    alt="Namo Gange"
-                    width={178}
-                    height={100}
-                    className="w-[178px] object-contain"
-                    sizes="178px"
-                    style={{ width: "auto", height: "auto" }}
-                  />
-                  <div className="mt-1 text-center">
-                    <p className="text-[15px] font-semibold leading-tight text-white">
-                      {textOrFallback(websiteSection?.secondaryTitle, "Moksha Sewa", 50)}
-                    </p>
-                    <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
-                      {textOrFallback(websiteSection?.initiativeLabel, "An Initiative of Namo Gange Trust", 80)}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
-                  <Image
-                    src={requestSupportImage}
-                    alt=""
-                    fill
-                    sizes="390px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
-                  />
-
-                  <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(255,185,57,0.025),rgba(0,0,0,0.38))]" />
-
-                  <div className="relative z-10">
-                    <div className="flex items-start gap-3">
-                      <span className="relative inline-flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
-                        <ReferenceHandHeartIcon
-                          className="footer-card-icon h-[54px] w-[54px]"
-                          strokeWidth={1.55}
-                        />
-                        <ShineLayer sparks={2} />
-                      </span>
-
-                      <div className="pt-1">
-                        <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
-                          {requestTitle.includes(" ") ? (
-                            <>
-                              {requestTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                              <span className="text-[#E2AA3C]">{requestTitle.split(" ").slice(-1)[0]}</span>
-                            </>
-                          ) : requestTitle}
-                        </h3>
-                        <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
-                          {requestDescription}
-                        </p>
-                      </div>
-                    </div>
-
-                    <GoldDivider className="mt-2" />
-
-                    <form onSubmit={handleSubscribe} className="mt-2.5">
-                      <label htmlFor="footer-email" className="sr-only">
-                        Email address
-                      </label>
-
-                      <div className="footer-card-input relative">
-                        <FaEnvelope className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#697A78]" />
-                        <input
-                          id="footer-email"
-                          type="email"
-                          value={email}
-                          onChange={(event) => setEmail(event.target.value)}
-                          placeholder={inputPlaceholder}
-                          className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
-                          required
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
-                          }`}
-                      >
-                        <ShineLayer sparks={0} />
-                        <span className="relative z-10">
-                          {subscribed ? submittedLabel : submitLabel}
-                        </span>
-                        <FaPaperPlane className="footer-send-icon relative z-10 h-5 w-5" />
-                      </button>
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ========================= VALUES ROW ========================= */}
-          <div className="footer-values relative border-y border-[#B8862C] bg-[#070A09]/[0.99]">
-            <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
-            <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-28 w-28 text-[#D9A33A] opacity-[0.055]" />
-
-            <div className="mx-auto grid w-full max-w-[1480px] grid-cols-1 px-5 py-1 sm:grid-cols-2 lg:grid-cols-5 lg:px-4">
-              {managedValues.map((value, index) => {
-                const Icon = value.icon;
-
-                return (
-                  <div
-                    key={value.title}
-                    className={`footer-value flex min-h-[52px] items-center gap-2.5 px-3 py-1 sm:px-4 lg:justify-center lg:py-0 ${index < values.length - 1
-                      ? "lg:border-r lg:border-[#C39438]/45"
-                      : ""
-                      }`}
-                  >
-                    <span className="relative inline-flex shrink-0">
-                      <Icon
-                        strokeWidth={1.45}
-                        className="footer-value-icon h-11 w-11 text-[#E3B44E] lg:h-[46px] lg:w-[46px]"
-                      />
-                      <ShineLayer sparks={1} />
-                    </span>
-
-                    <div>
-                      <h4 className="footer-value-heading text-[14px] font-semibold uppercase tracking-[0.015em] text-[#F3D481]">
-                        {value.title}
-                      </h4>
-                      <p className="footer-value-desc mt-1 whitespace-pre-line text-[12px] leading-[1.4] text-white/95">
-                        {value.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* ========================= BOTTOM BAR ========================= */}
-          <div className="footer-bottom relative bg-black">
-            <div className="mx-auto flex min-h-[46px] w-full max-w-[1380px] flex-col items-center justify-between gap-2.5 px-4 py-2 text-center sm:px-6 lg:flex-row lg:px-8">
-              {/* Left: Exact Image Pattern */}
-              <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-white/90">
-                <span>© {new Date().getFullYear()} Moksha Sewa – Dignified Last Rites &amp; Support</span>
-                <span className="h-3.5 w-px bg-white/25" />
-                <span>A Initiative of Namo Gange Trust</span>
-                <span className="h-3.5 w-px bg-white/25" />
-                <span>All Rights Reserved.</span>
-              </div>
-
-              {/* Right: Policy Links + Designed & Developed by */}
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[11.5px] text-white/90">
-                <Link
-                  href="/sitemap.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition hover:text-[#E5B14A]"
-                >
-                  Sitemap
-                </Link>
-                <span className="h-3.5 w-px bg-white/20" />
-
-                <Link
-                  href="/privacy-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition hover:text-[#E5B14A]"
-                >
-                  Privacy Policy
-                </Link>
-                <span className="h-3.5 w-px bg-white/20" />
-
-                <Link
-                  href="/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition hover:text-[#E5B14A]"
-                >
-                  Terms &amp; Conditions
-                </Link>
-                <span className="h-3.5 w-px bg-white/20" />
-
-                <div className="flex items-center gap-1.5">
-                  <span className="font-normal text-white/85">
-                    Designed &amp; Developed by
-                  </span>
-                  <div className="relative flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-1.5 py-0.5 shadow-sm">
-                    <Image
-                      src="/assets/encodency-logo.png"
-                      alt="enCodency Pvt. Ltd."
-                      width={120}
-                      height={24}
-                      className="h-8 w-auto object-contain"
-                    />
-                  </div>
-
-                  {/* Scroll to Top Arrow Button */}
-                  <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    aria-label="Scroll to top"
-                    title="Scroll to top"
-                    className="ml-1 flex h-6 w-6 items-center justify-center rounded-md bg-[#D9A33A] text-black shadow-sm transition-all hover:bg-[#c48e28] hover:scale-105 active:scale-95"
-                  >
-                    <FaArrowUp className="h-3 w-3 stroke-[1.5]" />
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </footer>
-      <SuccessPopup
-        open={showSuccessPopup}
-        onClose={() => setShowSuccessPopup(false)}
-        message={textOrFallback(websiteSection?.successMessage, "Thank you for reaching out. Our support team will contact you shortly.", 180)}
-      />
-    </>
-  );
-}
-
-const SPARK_POSITIONS: Record<number, Array<{ top: number; left: number }>> = {
-  1: [{ top: 34, left: 38 }],
-  2: [
-    { top: 22, left: 20 },
-    { top: 55, left: 60 },
-  ],
-  3: [
-    { top: 18, left: 16 },
-    { top: 44, left: 52 },
-    { top: 66, left: 24 },
-  ],
-  4: [
-    { top: 18, left: 16 },
-    { top: 38, left: 58 },
-    { top: 60, left: 22 },
-    { top: 78, left: 62 },
-  ],
-};
-
-function ShineLayer({
-  sparks = 0,
-  gold = false,
-}: {
-  sparks?: number;
-  gold?: boolean;
-}) {
-  const shineBg = gold
-    ? "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.95) 50%, rgba(255,215,150,0.75) 55%, transparent 68%)"
-    : "linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.75) 48%, rgba(255,255,255,0.35) 52%, transparent 65%)";
-
-  return (
-    <span
-      aria-hidden
-      className="footer-shine pointer-events-none absolute inset-0 z-10 overflow-hidden"
-    >
-      <span
-        className="footer-shine-line absolute inset-y-0 left-0 w-[75%] opacity-0"
-        style={{ background: shineBg, filter: "blur(0.2px)" }}
-      />
-      {(SPARK_POSITIONS[sparks] ?? []).map((pos, i) => (
-        <span
-          key={i}
-          className="footer-spark absolute h-[3px] w-[3px] rounded-full opacity-0"
-          style={{
-            top: `${pos.top}%`,
-            left: `${pos.left}%`,
-            background:
-              i % 3 === 2
-                ? "#F28C18"
-                : i % 2 === 1
-                  ? "#FFE6A6"
-                  : "#FFFFFF",
-          }}
+      {/* Mobile/tablet backdrop */}
+      <div className="pointer-events-none absolute inset-0 z-0 lg:hidden">
+        <Image
+          src={footerGhatBg}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-10"
         />
-      ))}
-    </span>
+        <div className="absolute inset-0 bg-black/95" />
+      </div>
+
+      {/* =========================================================
+          3. MAIN CONTENT (Columns 1-4 + Our Offices & Contact Card)
+      ========================================================== */}
+      <div className="relative z-10 mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-6 lg:pr-20 xl:pr-20 lg:py-6">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-6 lg:gap-0">
+          
+          {/* COLUMN 1: BRAND SECTION (Matches reference screenshot 100%) */}
+          <div className="flex flex-col items-center text-center w-full lg:w-[24%] shrink-0 lg:pl-16 xl:pl-18 pr-3 lg:border-r lg:border-[#C39438]/30">
+            <div className="relative flex w-[135px] items-center justify-center">
+              <Image
+                src={footerMokshaLogo}
+                alt="Moksha Sewa"
+                width={135}
+                height={105}
+                className="h-[92px] w-auto max-w-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+              />
+            </div>
+
+            <h2 className="mt-1 text-[21px] font-bold uppercase tracking-[0.03em] text-white">
+              MOKSHA SEWA
+            </h2>
+
+            <p className="mt-0.5 text-[12px] font-medium tracking-[0.01em] text-[#E2AC3D]">
+              A Namo Gange Trust Initiative
+            </p>
+
+            <GoldDivider compact className="mt-1" />
+
+            <p className="mt-2 max-w-[240px] text-[12px] font-normal leading-[1.45] text-white/90">
+              We stand with the forgotten, the unclaimed and the helpless to ensure every life&apos;s final journey is dignified, peaceful and respectful.
+            </p>
+          </div>
+
+          {/* COLUMN 2: QUICK LINKS */}
+          <div className="flex flex-col items-center px-2 py-1 w-full lg:w-[10%] shrink-0 lg:border-r lg:border-[#C39438]/30">
+            <span className="flex h-[48px] w-[48px] items-center justify-center rounded-full border border-[#D9A33A]/80 text-[#E2AC3D]">
+              <ReferenceChainIcon className="h-[26px] w-[26px]" strokeWidth={1.6} />
+            </span>
+
+            <h3 className="mt-2 whitespace-nowrap text-center text-[13px] font-bold uppercase tracking-[0.02em] text-white">
+              QUICK LINKS
+            </h3>
+
+            <GoldDivider compact className="mt-1" />
+
+            <ul className="mt-2.5 w-full space-y-1.5">
+              {quickLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="group inline-flex items-center gap-1.5 text-[12.5px] font-medium text-white/90 transition hover:text-[#E5B14A]"
+                  >
+                    <FaChevronRight className="h-2 w-2 text-[#E4A631] transition-transform group-hover:translate-x-0.5" />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COLUMN 3: OUR SERVICES */}
+          <div className="flex flex-col items-center px-2 py-1 w-full lg:w-[13%] shrink-0 lg:border-r lg:border-[#C39438]/30">
+            <span className="flex h-[48px] w-[48px] items-center justify-center rounded-full border border-[#D9A33A]/80 text-[#E2AC3D]">
+              <ReferenceHandHeartIcon className="h-[28px] w-[28px]" strokeWidth={1.5} />
+            </span>
+
+            <h3 className="mt-2 whitespace-nowrap text-center text-[13px] font-bold uppercase tracking-[0.02em] text-white">
+              OUR SERVICES
+            </h3>
+
+            <GoldDivider compact className="mt-1" />
+
+            <ul className="mt-2.5 w-full space-y-1.5">
+              {services.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="group inline-flex items-start gap-1.5 text-[12.5px] font-medium text-white/90 transition hover:text-[#E5B14A]"
+                  >
+                    <FaChevronRight className="mt-1 h-2 w-2 shrink-0 text-[#E4A631] transition-transform group-hover:translate-x-0.5" />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COLUMN 4: OUR INITIATIVES */}
+          <div className="flex flex-col items-center px-2 py-1 w-full lg:w-[11.5%] shrink-0">
+            <span className="flex h-[48px] w-[48px] items-center justify-center rounded-full border border-[#D9A33A]/80 text-[#E2AC3D]">
+              <ReferenceLotusIcon className="h-[28px] w-[28px]" strokeWidth={1.5} />
+            </span>
+
+            <h3 className="mt-2 whitespace-nowrap text-center text-[13px] font-bold uppercase tracking-[0.02em] text-white">
+              OUR INITIATIVES
+            </h3>
+
+            <GoldDivider compact className="mt-1" />
+
+            <ul className="mt-2.5 w-full space-y-1.5">
+              {initiatives.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="group inline-flex items-start gap-1.5 text-[12.5px] font-medium text-white/90 transition hover:text-[#E5B14A]"
+                  >
+                    <FaChevronRight className="mt-1 h-2 w-2 shrink-0 text-[#E4A631] transition-transform group-hover:translate-x-0.5" />
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COLUMN 5: OUR OFFICES & CONTACT (Exact shape, spacious ~40% width) */}
+          <div className="flex flex-col w-full lg:w-[41%] shrink-0 pl-1">
+            
+            {/* Top row: Header tab on left, Namo Gange branding on right */}
+            <div className="flex items-end justify-between px-1">
+              {/* Header Tab with continuous border connection */}
+              <div className="relative z-10 -mb-[1px] inline-flex items-center gap-3 rounded-t-2xl border-l border-r border-t border-[#8B6520]/80 bg-[#0e100e] px-4 py-2 shadow-sm">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D9A33A] bg-black/40 text-[#E2AC3D]">
+                  <ReferencePhoneIcon className="h-5 w-5" strokeWidth={1.6} />
+                </span>
+                <div>
+                  <h3 className="text-[13.5px] font-bold uppercase tracking-wider text-white">
+                    OUR OFFICES &amp; CONTACT
+                  </h3>
+                  <div className="mt-0.5 flex items-center justify-start gap-1">
+                    <span className="h-px w-5 bg-gradient-to-r from-transparent to-[#D9A33A]" />
+                    <PiFlowerLotus className="h-3 w-3 text-[#D9A33A]" />
+                    <span className="h-px w-5 bg-gradient-to-l from-transparent to-[#D9A33A]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Namo Gange Trust Brand Stamp */}
+              <div className="flex flex-col items-center pb-2 pr-2 text-center">
+                <Image
+                  src={namoGangeLogo}
+                  alt="Namo Gange"
+                  width={120}
+                  height={45}
+                  className="h-8 w-auto object-contain brightness-110"
+                />
+                <span className="mt-0.5 text-[13px] font-bold leading-tight text-white">
+                  Moksha Sewa
+                </span>
+                <span className="text-[10.5px] font-medium leading-tight text-[#E2AC3D]">
+                  A Initiative of Namo Gange Trust
+                </span>
+              </div>
+            </div>
+
+            {/* Main Office Card Body */}
+            <div className="relative z-0 rounded-b-2xl rounded-tr-2xl border border-[#8B6520]/80 bg-[#0e100e] p-3.5 sm:p-4 shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
+              
+              {/* ROW 1: Head Office – India */}
+              <div className="flex flex-col gap-1.5 py-1.5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-2.5 min-w-0">
+                  <span className="mt-0.5 shrink-0 text-[#E2AC3D]">
+                    <GoldOfficeBuildingIcon className="h-6 w-6" />
+                  </span>
+                  <div className="min-w-0">
+                    <h4 className="text-[13px] font-semibold text-[#E2AC3D] leading-tight">
+                      Head Office – India
+                    </h4>
+                    <p className="mt-0.5 text-[11px] leading-[1.3] text-white/85">
+                      <span className="block font-medium text-white/95">Namo Gange Trust</span>
+                      Plot No. 12/52, Site II Industrial Area,<br />
+                      Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex shrink-0 items-center justify-between gap-2.5 pl-9 sm:justify-end sm:pl-0">
+                  <a
+                    href="tel:+919220147229"
+                    className="flex items-center gap-1.5 text-white transition hover:text-[#E2AC3D]"
+                  >
+                    <ReferencePhoneIcon className="h-3.5 w-3.5 text-[#E2AC3D]" strokeWidth={1.8} />
+                    <span className="whitespace-nowrap text-[12.5px] font-medium">
+                      +91 9220147229
+                    </span>
+                  </a>
+                  <a
+                    href="tel:+919220147229"
+                    aria-label="Call Head Office"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#F6C868] via-[#E8B042] to-[#D99623] text-black shadow-md transition hover:scale-105 active:scale-95"
+                  >
+                    <FaArrowRight className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="my-1 border-b border-[#8B6520]/35" />
+
+              {/* ROW 2: Regional Office – Visakhapatnam, India */}
+              <div className="flex flex-col gap-1.5 py-1.5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-2.5 min-w-0">
+                  <span className="mt-0.5 shrink-0 text-[#E2AC3D]">
+                    <GoldOfficeBuildingIcon className="h-6 w-6" />
+                  </span>
+                  <div className="min-w-0">
+                    <h4 className="text-[13px] font-semibold text-[#E2AC3D] leading-tight">
+                      Regional Office – Visakhapatnam, India
+                    </h4>
+                    <p className="mt-0.5 text-[11px] leading-[1.3] text-white/85">
+                      <span className="block font-medium text-white/95">Namo Gange Wellness Pvt. Ltd.</span>
+                      Door No. 36-46-51, 2nd Floor, Main Road,<br />
+                      Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex shrink-0 items-center justify-between gap-2.5 pl-9 sm:justify-end sm:pl-0">
+                  <a
+                    href="tel:+916281482342"
+                    className="flex items-center gap-1.5 text-white transition hover:text-[#E2AC3D]"
+                  >
+                    <ReferencePhoneIcon className="h-3.5 w-3.5 text-[#E2AC3D]" strokeWidth={1.8} />
+                    <span className="whitespace-nowrap text-[12.5px] font-medium">
+                      +91 6281482342
+                    </span>
+                  </a>
+                  <a
+                    href="tel:+916281482342"
+                    aria-label="Call Regional Office"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#F6C868] via-[#E8B042] to-[#D99623] text-black shadow-md transition hover:scale-105 active:scale-95"
+                  >
+                    <FaArrowRight className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="my-1 border-b border-[#8B6520]/35" />
+
+              {/* ROW 3: International Office – London (UK) */}
+              <div className="flex flex-col gap-1.5 py-1.5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-2.5 min-w-0">
+                  <span className="mt-0.5 shrink-0 text-[#E2AC3D]">
+                    <GoldOfficeBuildingIcon className="h-6 w-6" />
+                  </span>
+                  <div className="min-w-0">
+                    <h4 className="text-[13px] font-semibold text-[#E2AC3D] leading-tight">
+                      International Office – London (UK)
+                    </h4>
+                    <p className="mt-0.5 text-[11px] leading-[1.3] text-white/85">
+                      <span className="block font-medium text-white/95">Namo Gange Wellness Ltd.</span>
+                      6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex shrink-0 items-center justify-between gap-2.5 pl-9 sm:justify-end sm:pl-0">
+                  <a
+                    href="tel:+447429519276"
+                    className="flex items-center gap-1.5 text-white transition hover:text-[#E2AC3D]"
+                  >
+                    <ReferencePhoneIcon className="h-3.5 w-3.5 text-[#E2AC3D]" strokeWidth={1.8} />
+                    <span className="whitespace-nowrap text-[12.5px] font-medium">
+                      +44 7429 519276
+                    </span>
+                  </a>
+                  <a
+                    href="tel:+447429519276"
+                    aria-label="Call International Office"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#F6C868] via-[#E8B042] to-[#D99623] text-black shadow-md transition hover:scale-105 active:scale-95"
+                  >
+                    <FaArrowRight className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* =========================================================
+          4. VALUES ROW (5 Columns with gold borders)
+      ========================================================== */}
+      <div className="relative border-y border-[#B8862C] bg-[#070A09]">
+        <PiFlowerLotus className="pointer-events-none absolute -left-5 bottom-0 h-24 w-24 text-[#D9A33A] opacity-[0.05]" />
+        <PiFlowerLotus className="pointer-events-none absolute -right-5 bottom-0 h-24 w-24 text-[#D9A33A] opacity-[0.05]" />
+
+        <div className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-4 py-2 sm:grid-cols-2 lg:grid-cols-5 lg:px-6">
+          {values.map((val, idx) => {
+            const Icon = val.icon;
+            return (
+              <div
+                key={val.title}
+                className={`flex min-h-[52px] items-center gap-3 px-3 py-1.5 sm:px-4 lg:justify-center lg:py-0 ${
+                  idx < values.length - 1 ? "lg:border-r lg:border-[#C39438]/40" : ""
+                }`}
+              >
+                <span className="relative inline-flex shrink-0">
+                  <Icon
+                    strokeWidth={1.45}
+                    className="h-9 w-9 text-[#E3B44E] lg:h-[42px] lg:w-[42px]"
+                  />
+                </span>
+
+                <div>
+                  <h4 className="text-[13px] font-bold uppercase tracking-[0.02em] text-[#F3D481]">
+                    {val.title}
+                  </h4>
+                  <p className="mt-0.5 whitespace-pre-line text-[11px] leading-[1.35] text-white/90">
+                    {val.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* =========================================================
+          5. BOTTOM COPYRIGHT & LEGAL BAR
+      ========================================================== */}
+      <div className="relative bg-black px-4 py-2.5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-[42px] w-full max-w-[1520px] flex-col items-center justify-between gap-2.5 text-center lg:flex-row">
+          
+          {/* Left: Copyright text */}
+          <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-[11.5px] text-white/90 sm:text-[12px]">
+            <span>© 2026 Moksha Sewa – Dignified Last Rites &amp; Support</span>
+            <span className="hidden h-3 w-px bg-white/25 sm:inline-block" />
+            <span>A Initiative of Namo Gange Trust</span>
+            <span className="hidden h-3 w-px bg-white/25 sm:inline-block" />
+            <span>All Rights Reserved.</span>
+          </div>
+
+          {/* Right: Policy Links + Developed by enCodency */}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/90 sm:text-[11.5px]">
+            <Link
+              href="/sitemap.xml"
+              className="transition hover:text-[#E5B14A]"
+            >
+              Sitemap
+            </Link>
+            <span className="h-3 w-px bg-white/25" />
+
+            <Link
+              href="/privacy-policy"
+              className="transition hover:text-[#E5B14A]"
+            >
+              Privacy Policy
+            </Link>
+            <span className="h-3 w-px bg-white/25" />
+
+            <Link
+              href="/terms"
+              className="transition hover:text-[#E5B14A]"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <span className="h-3 w-px bg-white/25" />
+
+            <div className="flex items-center gap-1.5 pl-1">
+              <span className="text-white/85">
+                Designed &amp; Developed by
+              </span>
+              <div className="relative flex items-center overflow-hidden rounded bg-[#ED1C24] px-1.5 py-0.5 shadow-sm">
+                <Image
+                  src="/assets/encodency-logo.png"
+                  alt="enCodency Pvt. Ltd."
+                  width={110}
+                  height={22}
+                  className="h-6 w-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -757,73 +688,18 @@ function GoldDivider({
   return (
     <div className={`flex items-center justify-center gap-2 ${className}`}>
       <span
-        className={`h-px bg-gradient-to-r from-transparent to-[#D9A33A] ${compact ? "w-12" : "w-16"
-          }`}
+        className={`h-px bg-gradient-to-r from-transparent to-[#D9A33A] ${
+          compact ? "w-8" : "w-12"
+        }`}
       />
-      <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
-        <PiFlowerLotus
-          className={`${compact ? "h-4 w-4" : "h-[18px] w-[18px]"} text-[#D9A33A]`}
-        />
-        <ShineLayer sparks={1} />
-      </span>
+      <PiFlowerLotus
+        className={`${compact ? "h-3.5 w-3.5" : "h-[16px] w-[16px]"} text-[#D9A33A]`}
+      />
       <span
-        className={`h-px bg-gradient-to-l from-transparent to-[#D9A33A] ${compact ? "w-12" : "w-16"
-          }`}
+        className={`h-px bg-gradient-to-l from-transparent to-[#D9A33A] ${
+          compact ? "w-8" : "w-12"
+        }`}
       />
-    </div>
-  );
-}
-
-interface FloatingCardProps {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-}
-
-function FloatingCard({
-  icon: Icon,
-  title,
-  children,
-  className = "",
-}: FloatingCardProps) {
-  return (
-    <div
-      className={`footer-card relative flex min-h-0 flex-col px-4 py-1 sm:min-h-[250px] lg:min-h-[280px] lg:border-r lg:border-[#C39438]/35 lg:px-3 xl:min-h-[295px] 2xl:px-4 ${className}`}
-    >
-      <div className="flex flex-col items-center">
-        <span className="footer-card-icon-circle relative flex h-[58px] w-[58px] items-center justify-center overflow-hidden rounded-full border border-[#D9A33A]/80 text-[#E2AC3D] 2xl:h-[64px] 2xl:w-[64px]">
-          <Icon
-            className="footer-card-icon h-[31px] w-[31px] 2xl:h-[35px] 2xl:w-[35px]"
-            strokeWidth={1.55}
-          />
-          <ShineLayer sparks={1} />
-        </span>
-
-        <h3 className="footer-card-title mt-3 whitespace-nowrap text-center text-[14px] font-semibold uppercase tracking-[0.015em] text-white">
-          {title}
-        </h3>
-
-        <GoldDivider className="footer-heading-line mt-2" compact />
-      </div>
-
-      <div className="mt-3 w-full">{children}</div>
-    </div>
-  );
-}
-
-interface ContactItemProps {
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-}
-
-function ContactItem({ icon: Icon, children }: ContactItemProps) {
-  return (
-    <div className="flex items-start gap-2.5 text-[12px] leading-[1.4] text-white/95 2xl:text-[13px]">
-      <span className="footer-contact-circle flex h-[31px] w-[31px] shrink-0 items-center justify-center rounded-full border border-[#D9A33A]/80 text-[#E2AC3D]">
-        <Icon className="h-[16px] w-[16px]" />
-      </span>
-      <div className="pt-[6px]">{children}</div>
     </div>
   );
 }
