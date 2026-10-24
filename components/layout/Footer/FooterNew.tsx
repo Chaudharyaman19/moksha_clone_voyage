@@ -332,7 +332,7 @@ export default function FooterNew() {
         <div className="footer-master relative z-10">
           {/* ========================= MAIN ROW ========================= */}
           <div className="mx-auto w-full max-w-[1600px] px-4 pb-3 pt-4 sm:px-6 lg:min-h-[370px] lg:px-4 lg:pb-2 lg:pt-4 xl:px-5">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-2 xl:grid-cols-[26%_10%_13%_14%_15%_22%] xl:gap-0">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-3 xl:grid-cols-[22%_11%_13%_13%_41%] xl:gap-0">
               {/* BRAND */}
               <div className="footer-col relative flex flex-col items-center justify-center px-4 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[136px] min-[1280px]:pr-2">
                 <div className="footer-brand-logo relative flex w-[132px] items-center justify-center overflow-hidden sm:w-[145px]">
@@ -346,7 +346,7 @@ export default function FooterNew() {
                   <ShineLayer sparks={4} gold />
                 </div>
 
-                <h2 className="footer-brand-title mt-1 text-[20px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[26px]">
+                <h2 className="footer-brand-title mt-1 text-[16px] font-semibold uppercase leading-none tracking-[0.025em] text-white sm:text-[18px]">
                   {brandName}
                 </h2>
 
@@ -356,24 +356,9 @@ export default function FooterNew() {
 
                 <GoldDivider className="footer-brand-divider mt-0.5" />
 
-                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:left-2">
+                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[250px] text-[12px] font-normal leading-[1.45] text-white/95 sm:text-[13px] lg:-translate-x-4">
                   {description}
                 </p>
-
-                <Link
-                  href={websiteSection?.buttonHref || "/donation"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer-donate-btn relative mt-2 inline-flex h-[44px] min-w-[180px] items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#E6B44A] bg-[linear-gradient(180deg,#F1C15A_0%,#D88D1D_100%)] px-4 text-[14px] font-semibold tracking-[0.01em] text-[#1B2A27] shadow-[0_3px_12px_rgba(218,154,42,0.38)] transition lg:left-5"
-                >
-                  <span className="relative inline-flex shrink-0 overflow-hidden rounded-full">
-                    <ReferenceHandHeartIcon className="h-5 w-5" strokeWidth={1.8} />
-                    <ShineLayer sparks={1} />
-                  </span>
-                  {textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}
-                  <FaArrowRight className="footer-donate-arrow h-3.5 w-3.5" />
-                  <ShineLayer sparks={0} />
-                </Link>
               </div>
 
               {/* QUICK LINKS */}
@@ -433,133 +418,122 @@ export default function FooterNew() {
                 </ul>
               </FloatingCard>
 
-              {/* CONTACT */}
-              <FloatingCard icon={ReferencePhoneIcon} title={textOrFallback(websiteSection?.contactTitle, "Contact Us", 50)}>
-                <div className="space-y-2.5">
-                  <ContactItem icon={MapPin}>
-                    <p className="whitespace-pre-line">{contactAddress}</p>
-                  </ContactItem>
-
-                  <ContactItem icon={ReferencePhoneIcon}>
-                    <a
-                      href={`tel:+91${contactNumber}`}
-                      className="transition hover:text-[#E5B14A]"
-                    >
-                      +91 {contactNumber}
-                    </a>
-                  </ContactItem>
-
-                  <ContactItem icon={Mail}>
-                    <a
-                      href={`mailto:${contactEmail}`}
-                      className="whitespace-nowrap transition hover:text-[#E5B14A]"
-                    >
-                      {contactEmail}
-                    </a>
-                  </ContactItem>
-
-                  <ContactItem icon={Clock}>
-                    <p>
-                      {availabilityText.split("\n").map((line) => (
-                        <span key={line} className="block">{line}</span>
-                      ))}
-                    </p>
-                  </ContactItem>
-                </div>
-              </FloatingCard>
-
-              {/* REQUEST SUPPORT */}
-              <div className="footer-col flex flex-col items-center justify-start gap-2 sm:col-span-2 lg:col-span-1 lg:items-end 2xl:pl-5">
-                <div className="flex w-full max-w-[315px] flex-col items-center justify-center">
-
-                  <Image
-                    src={websiteSection?.partnerLogoImage || namoGangeLogo}
-                    alt="Namo Gange"
-                    width={178}
-                    height={100}
-                    className="w-[178px] object-contain"
-                    sizes="178px"
-                    style={{ width: "auto", height: "auto" }}
-                  />
-                  <div className="mt-1 text-center">
-                    <p className="text-[15px] font-semibold leading-tight text-white">
-                      {textOrFallback(websiteSection?.secondaryTitle, "Moksha Sewa", 50)}
-                    </p>
-                    <p className="mt-0.5 text-[12px] font-medium leading-tight text-[#D9A33A] sm:text-[13px]">
-                      {textOrFallback(websiteSection?.initiativeLabel, "An Initiative of Namo Gange Trust", 80)}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="footer-support-card footer-support-glow relative w-full max-w-[315px] overflow-hidden rounded-[16px] border border-[#D6A139] bg-[#050706] px-5 pb-3 pt-4 shadow-[inset_0_0_40px_rgba(255,185,57,0.04)]">
-                  <Image
-                    src={requestSupportImage}
-                    alt=""
-                    fill
-                    sizes="390px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
-                  />
-
-                  <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(140deg,rgba(255,185,57,0.025),rgba(0,0,0,0.38))]" />
-
-                  <div className="relative z-10">
-                    <div className="flex items-start gap-3">
-                      <span className="relative inline-flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full text-[#D9A33A]">
-                        <ReferenceHandHeartIcon
-                          className="footer-card-icon h-[54px] w-[54px]"
-                          strokeWidth={1.55}
-                        />
-                        <ShineLayer sparks={2} />
+              {/* ========================= OUR OFFICES & CONTACT ========================= */}
+              <div className="footer-col relative flex flex-col justify-start sm:col-span-2 lg:col-span-2 xl:col-span-1 xl:pl-2 xl:-mt-2.5">
+                <div className="relative w-full xl:w-[calc(100%+20px)] overflow-hidden rounded-[18px] bg-[#070B09] px-3 py-1.5 sm:px-3.5 sm:py-2 shadow-[0_8px_30px_rgba(0,0,0,0.65)]">
+                  {/* Card Header: Left = Icon + Title, Right = Namo Gange Logo */}
+                  <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-[#D9A33A]/25">
+                    {/* Left: Phone circle + Title */}
+                    <div className="flex items-center gap-3 -translate-y-2">
+                      <span className="flex h-[48px] w-[48px] sm:h-[54px] sm:w-[54px] shrink-0 items-center justify-center rounded-full border-2 border-[#D9A33A] text-[#E2AC3D] shadow-[0_0_14px_rgba(226,172,61,0.3)]">
+                        <ReferencePhoneIcon className="h-6 w-6 sm:h-[28px] sm:w-[28px]" strokeWidth={1.8} />
                       </span>
-
-                      <div className="pt-1">
-                        <h3 className="footer-card-heading text-[17px] font-semibold uppercase tracking-[0.01em] text-white">
-                          {requestTitle.includes(" ") ? (
-                            <>
-                              {requestTitle.split(" ").slice(0, -1).join(" ")}{" "}
-                              <span className="text-[#E2AA3C]">{requestTitle.split(" ").slice(-1)[0]}</span>
-                            </>
-                          ) : requestTitle}
+                      <div className="flex flex-col items-center">
+                        <h3 className="text-[15.5px] sm:text-[17.5px] font-bold uppercase tracking-[0.025em] text-white leading-tight text-center">
+                          OUR OFFICES &amp; CONTACT
                         </h3>
-                        <p className="footer-card-desc mt-1 max-w-[180px] text-[12px] leading-[1.35] text-white/95">
-                          {requestDescription}
-                        </p>
+                        <div className="mt-1 flex items-center justify-center gap-2 w-full">
+                          <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#D9A33A]" />
+                          <PiFlowerLotus className="h-3.5 w-3.5 text-[#D9A33A]" />
+                          <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#D9A33A]" />
+                        </div>
                       </div>
                     </div>
 
-                    <GoldDivider className="mt-2" />
+                    {/* Right: Namo Gange Logo & Tagline */}
+                    <div className="flex flex-col items-end text-right shrink-0">
+                      <Image
+                        src={websiteSection?.partnerLogoImage || namoGangeLogo}
+                        alt="Namo Gange"
+                        width={180}
+                        height={56}
+                        className="h-[48px] sm:h-[54px] w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
+                      />
+                      <p className="mt-0.5 text-[12px] sm:text-[13px] font-bold text-white leading-tight">
+                        Moksha Sewa
+                      </p>
+                      <p className="mt-0.5 text-[12.5px] sm:text-[13.5px] font-semibold text-[#D9A33A] leading-tight">
+                        A Initiative of Namo Gange Trust
+                      </p>
+                    </div>
+                  </div>
 
-                    <form onSubmit={handleSubscribe} className="mt-2.5">
-                      <label htmlFor="footer-email" className="sr-only">
-                        Email address
-                      </label>
-
-                      <div className="footer-card-input relative">
-                        <FaEnvelope className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#697A78]" />
-                        <input
-                          id="footer-email"
-                          type="email"
-                          value={email}
-                          onChange={(event) => setEmail(event.target.value)}
-                          placeholder={inputPlaceholder}
-                          className="h-[40px] w-full rounded-[7px] border border-white/70 bg-white pl-11 pr-4 text-[13px] text-[#173B38] outline-none placeholder:text-[#7B8584] focus:border-[#E4AA37] focus:ring-2 focus:ring-[#E4AA37]/30"
-                          required
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className={`footer-send-btn relative mt-2 flex h-[40px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[7px] bg-[linear-gradient(180deg,#F2C45E_0%,#D98A19_100%)] text-[13px] font-semibold tracking-[0.01em] text-white shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition ${subscribed ? "!bg-emerald-600" : ""
-                          }`}
+                  {/* 3 Office Rows - Unified Container with Horizontal & Vertical Partitions */}
+                  <div className="mt-2.5 overflow-hidden rounded-[14px] border border-[#D9A33A]/40 bg-[#0A0E0C]/95 divide-y divide-[#D9A33A]/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                    {[
+                      {
+                        title: "Head Office – India",
+                        company: "Namo Gange Trust",
+                        address: "Plot No. 12/52, Site II Industrial Area,\nMohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India.",
+                        phone: "+91 9220147229",
+                        tel: "tel:+919220147229",
+                      },
+                      {
+                        title: "Regional Office – Visakhapatnam, India",
+                        company: "Namo Gange Wellness Pvt. Ltd.",
+                        address: "Door No. 36-46-51, 2nd Floor, Main Road,\nKancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India.",
+                        phone: "+91 6281482342",
+                        tel: "tel:+916281482342",
+                      },
+                      {
+                        title: "International Office – London (UK)",
+                        company: "Namo Gange Wellness Ltd.",
+                        address: "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom.",
+                        phone: "+44 7429 519276",
+                        tel: "tel:+447429519276",
+                      },
+                    ].map((office) => (
+                      <div
+                        key={office.title}
+                        className="group relative flex items-center justify-between px-3 py-2 sm:px-3.5 transition-colors hover:bg-white/[0.02]"
                       >
-                        <ShineLayer sparks={0} />
-                        <span className="relative z-10">
-                          {subscribed ? submittedLabel : submitLabel}
-                        </span>
-                        <FaPaperPlane className="footer-send-icon relative z-10 h-5 w-5" />
-                      </button>
-                    </form>
+                        {/* Left: Building Icon + Details */}
+                        <div className="flex items-center gap-3 min-w-0 flex-1 pr-3">
+                          <div className="relative shrink-0 flex items-center justify-center self-center -translate-y-2">
+                            <Image
+                              src="/assets/office-gold-building.png"
+                              alt=""
+                              width={48}
+                              height={68}
+                              className="h-[48px] sm:h-[52px] w-auto object-contain drop-shadow-[0_2px_12px_rgba(226,172,61,0.4)]"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h4 className="text-[12.5px] sm:text-[13px] font-bold text-[#F3D481] tracking-[0.01em] leading-tight truncate">
+                              {office.title}
+                            </h4>
+                            <p className="text-[11.5px] font-semibold text-white/95 leading-tight mt-0.5 truncate">
+                              {office.company}
+                            </p>
+                            <p className="text-[10px] sm:text-[10.5px] leading-[1.3] text-white/70 mt-0.5 whitespace-pre-line">
+                              {office.address}
+                            </p>
+                          </div>
+                        </div>
 
+                        {/* Vertical Partition Line */}
+                        <div className="self-stretch w-[1.5px] bg-[#D9A33A]/45 shrink-0 my-1" />
+
+                        {/* Right: Phone Number + Golden Round Arrow Button */}
+                        <div className="flex items-center gap-2.5 shrink-0 pl-3">
+                          <a
+                            href={office.tel}
+                            className="inline-flex items-center gap-1.5 text-[12px] sm:text-[12.5px] font-bold text-white transition hover:text-[#E5B14A]"
+                          >
+                            <ReferencePhoneIcon className="h-4 w-4 shrink-0 text-[#E5B14A]" strokeWidth={1.8} />
+                            <span className="whitespace-nowrap">{office.phone}</span>
+                          </a>
+
+                          <a
+                            href={office.tel}
+                            title={`Call ${office.title}`}
+                            className="flex h-[24px] w-[24px] sm:h-[26px] sm:w-[26px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#F1C15A_0%,#D88D1D_100%)] text-black shadow-[0_2px_6px_rgba(216,141,29,0.3)] transition-all hover:scale-105 active:scale-95"
+                          >
+                            <FaArrowRight className="h-2.5 w-2.5 text-[#111111]" />
+                          </a>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
