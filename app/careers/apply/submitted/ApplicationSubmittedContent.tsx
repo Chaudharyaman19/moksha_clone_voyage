@@ -378,8 +378,13 @@ export default function ApplicationSubmittedContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-2.5 sm:gap-3">
-                    <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
-                      <CandidatePhoto src={appData.image} className="object-cover object-[center_15%] scale-[1.38]" />
+                    <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#f4ebe1]">
+                      <CandidatePhoto
+                        src={appData.image}
+                        gender={appData.gender}
+                        name={appData.candidateName}
+                        className="object-cover object-[center_15%] scale-[1.38]"
+                      />
                     </div>
                     <div className="min-w-0 flex-1 space-y-[3px]">
                       <p className="text-[14px] font-bold text-[#0c3d30]">{appData.candidateName}</p>

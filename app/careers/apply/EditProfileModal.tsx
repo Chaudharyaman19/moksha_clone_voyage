@@ -20,6 +20,7 @@ export function EditProfileModal({
   const [email, setEmail] = useState(candidate.email || "");
   const [phone, setPhone] = useState(candidate.phone || "");
   const [location, setLocation] = useState((candidate as ApplyCandidate).location || "");
+  const [gender, setGender] = useState((candidate as ApplyCandidate).gender || "");
   const [linkedin, setLinkedin] = useState(candidate.linkedin || "");
   const [photo, setPhoto] = useState(candidate.image || "");
   const [formError, setFormError] = useState("");
@@ -37,6 +38,7 @@ export function EditProfileModal({
     setEmail(candidate.email || "");
     setPhone(candidate.phone || "");
     setLocation((candidate as ApplyCandidate).location || "");
+    setGender((candidate as ApplyCandidate).gender || "");
     setLinkedin(candidate.linkedin || "");
     setPhoto(candidate.image || "");
     setFormError("");
@@ -60,6 +62,7 @@ export function EditProfileModal({
       email: trimmedEmail,
       phone: phone.trim(),
       location: location.trim(),
+      gender: gender.trim(),
       linkedin: linkedin.trim(),
     };
     setFormError("");
@@ -87,19 +90,19 @@ export function EditProfileModal({
 
         <div className="mt-4 space-y-3">
           <div className="flex items-center gap-3">
-            <div className="relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
-              <CandidatePhoto src={photo} className="object-cover object-top" />
+            <div className="relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#f4ebe1]">
+              <CandidatePhoto src={photo} gender={gender} name={name} className="object-cover object-top" />
             </div>
             <div>
               <button
                 type="button"
                 onClick={photoChange.open}
                 disabled={photoChange.busy}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-[#ebdcc4] bg-[#fcf8ee] px-3 py-1.5 text-[12.5px] font-semibold text-[#0c3d30] hover:bg-gray-100 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#ebdcc4] bg-[#fcf8ee] px-3 py-1.5 text-[12.5px] font-semibold text-[#0c3d30] hover:bg-gray-100 disabled:opacity-60 cursor-pointer"
               >
                 <Camera className="h-3.5 w-3.5" /> {photoChange.busy ? "Uploading..." : photo ? "Change Photo" : "Add Photo"}
               </button>
-              {photoChange.error && <p className="mt-1 text-[11.5px] text-[#b23b2e]">{photoChange.error}</p>}
+              {photoChange.error && <p className="mt-1 text-[11px] text-[#b23b2e] leading-tight">{photoChange.error}</p>}
               {photoChange.input}
             </div>
           </div>
@@ -157,6 +160,29 @@ export function EditProfileModal({
                 className="w-full bg-transparent text-[13.5px] text-[#0c3d30] outline-none"
                 placeholder="Location"
               />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[12px] font-semibold text-[#0c3d30]">Gender (Select for Avatar)</label>
+            <div className="mt-1 flex items-center gap-2">
+              {[
+                { label: "Male (Boy Avatar)", value: "male" },
+                { label: "Female (Girl Avatar)", value: "female" },
+              ].map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setGender(opt.value)}
+                  className={`flex-1 rounded-xl border py-1.5 px-3 text-[12px] font-semibold transition cursor-pointer ${
+                    gender.toLowerCase() === opt.value
+                      ? "border-[#0d5c46] bg-[#0d5c46] text-white"
+                      : "border-[#ebdcc4] bg-white text-[#0c3d30] hover:bg-[#fcf8ee]"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
             </div>
           </div>
 

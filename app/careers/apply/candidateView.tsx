@@ -141,24 +141,57 @@ export const formatDateTime = (value?: string | null): string => {
 export const formatGender = (value?: string | null): string =>
   value ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : "";
 
-/** Candidate photo (from the CV or the one they uploaded), or a neutral icon when there is none. */
+const isFemaleName = (name?: string | null): boolean => {
+  if (!name) return false;
+  const first = name.trim().split(" ")[0].toLowerCase();
+  const femaleNames = [
+    "ananya", "priya", "pooja", "neha", "ritu", "sneha", "shreya", "aditi",
+    "divya", "kavita", "sunita", "rekha", "anjali", "swati", "simran", "tanvi",
+    "mansi", "aarti", "deepika", "pallavi", "megha", "khushbu", "preeti",
+    "jyoti", "nisha", "sakshi", "muskan", "payal", "komal", "sheetal", "sonia"
+  ];
+  return femaleNames.includes(first) || /a$|i$|ee$|ya$/i.test(first);
+};
+
+/** Candidate photo (from the CV or the one they uploaded), or Boy/Girl avatar when there is none. */
 export function CandidatePhoto({
   src,
   alt = "Candidate Photo",
   className,
+  gender,
+  name,
 }: {
   src?: string | null;
   alt?: string;
   className?: string;
+  gender?: string | null;
+  name?: string | null;
 }) {
-  if (!src) {
-    return (
-      <div className="absolute inset-0 grid place-items-center text-white/70">
-        <User className="h-10 w-10" />
-      </div>
-    );
+  if (src && src.trim()) {
+    return <Image src={toAssetUrl(src)} alt={alt} fill unoptimized priority className={className} />;
   }
-  return <Image src={toAssetUrl(src)} alt={alt} fill unoptimized priority className={className} />;
+
+  const g = (gender || "").trim().toLowerCase();
+  const isFemale =
+    g === "female" || g === "f" || g === "woman" || g === "girl" || (!g && isFemaleName(name));
+
+  // High-res Boy avatar vs Girl avatar from newcarrierimage
+  const avatarSrc = isFemale
+    ? "/newcarrierimage/candidate-female-profile.png"
+    : "/newcarrierimage/profile-male-vijay.png";
+
+  return (
+    <div className="relative h-full w-full bg-[#f4ebe1]">
+      <Image
+        src={avatarSrc}
+        alt={isFemale ? "Female Candidate Avatar" : "Male Candidate Avatar"}
+        fill
+        unoptimized
+        priority
+        className={className || "object-cover object-top"}
+      />
+    </div>
+  );
 }
 
 export type BreakdownRow = { label: string; desc: string; score: number; icon: LucideIcon };
