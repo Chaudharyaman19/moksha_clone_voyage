@@ -288,7 +288,6 @@ export default function CareersClientContent() {
   const [selectedScore, setSelectedScore] = useState<number | null>(null);
   const [isNoneModalOpen, setIsNoneModalOpen] = useState(false);
   const [isAmanModalOpen, setIsAmanModalOpen] = useState(false);
-  const [showAllJobs, setShowAllJobs] = useState(false);
   const [fetchedJobs, setFetchedJobs] = useState<JobOpening[]>([]);
 
   useEffect(() => {
@@ -334,7 +333,7 @@ export default function CareersClientContent() {
 
   const activeJobOpenings = fetchedJobs;
   const openingCount = activeJobOpenings.length;
-  const displayedJobs = showAllJobs ? activeJobOpenings : activeJobOpenings.slice(0, 8);
+  const displayedJobs = activeJobOpenings;
 
   return (
     <div>
@@ -453,17 +452,6 @@ export default function CareersClientContent() {
                     Join our team and contribute to creating compassionate support
                     systems through our services, operations and community initiatives.
                   </p>
-
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowAllJobs(!showAllJobs);
-                    }}
-                    className="inline-flex shrink-0 items-center gap-2 self-start text-[16px] font-bold text-[#002219] hover:text-[#c97b0a] transition-colors sm:text-[17px] sm:pt-0.5"
-                  >
-                    {showAllJobs ? "View Less Roles" : "View all roles"}
-                    <ArrowRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
-                  </button>
                 </div>
               </div>
 
