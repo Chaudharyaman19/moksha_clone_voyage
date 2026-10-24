@@ -608,18 +608,18 @@ export default function FooterNew() {
 
           {/* ========================= BOTTOM BAR ========================= */}
           <div className="footer-bottom relative bg-black">
-            <div className="mx-auto flex min-h-[52px] w-full max-w-[1540px] flex-col items-center justify-between gap-3 px-5 py-2.5 text-center sm:px-7 lg:flex-row lg:px-8 xl:px-12">
+            <div className="mx-auto flex min-h-[46px] w-full max-w-[1320px] flex-col items-center justify-between gap-2.5 px-4 py-2 text-center sm:px-6 lg:flex-row lg:px-8">
               {/* Left: Exact Image Pattern */}
-              <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[13px] text-white/90">
+              <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-white/90">
                 <span>© {new Date().getFullYear()} Moksha Sewa</span>
-                <span className="h-4 w-px bg-white/30" />
+                <span className="h-3.5 w-px bg-white/25" />
                 <span>An Initiative of Namo Gange Trust</span>
-                <span className="h-4 w-px bg-white/30" />
+                <span className="h-3.5 w-px bg-white/25" />
                 <span>All Rights Reserved.</span>
               </div>
 
               {/* Right: Policy Links + Designed & Developed by */}
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-white/90">
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[11.5px] text-white/90">
                 <Link
                   href="/sitemap.xml"
                   target="_blank"
@@ -628,7 +628,7 @@ export default function FooterNew() {
                 >
                   Sitemap
                 </Link>
-                <span className="h-4 w-px bg-white/20" />
+                <span className="h-3.5 w-px bg-white/20" />
 
                 <Link
                   href="/privacy-policy"
@@ -638,7 +638,7 @@ export default function FooterNew() {
                 >
                   Privacy Policy
                 </Link>
-                <span className="h-4 w-px bg-white/20" />
+                <span className="h-3.5 w-px bg-white/20" />
 
                 <Link
                   href="/terms"
@@ -648,7 +648,7 @@ export default function FooterNew() {
                 >
                   Terms &amp; Conditions
                 </Link>
-                <span className="h-4 w-px bg-white/20" />
+                <span className="h-3.5 w-px bg-white/20" />
 
                 <Link
                   href="/refund-policy"
@@ -658,19 +658,19 @@ export default function FooterNew() {
                 >
                   Refund Policy
                 </Link>
-                <span className="h-4 w-px bg-white/20" />
+                <span className="h-3.5 w-px bg-white/20" />
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <span className="font-normal text-white/85">
                     Designed &amp; Developed by
                   </span>
-                  <div className="relative flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-2 py-1 shadow-sm">
+                  <div className="relative flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-1.5 py-0.5 shadow-sm">
                     <Image
                       src="/assets/encodency-logo.png"
                       alt="enCodency Pvt. Ltd."
-                      width={130}
-                      height={26}
-                      className="h-5 w-auto object-contain"
+                      width={120}
+                      height={24}
+                      className="h-4.5 w-auto object-contain"
                     />
                   </div>
 
@@ -679,9 +679,9 @@ export default function FooterNew() {
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                     aria-label="Scroll to top"
                     title="Scroll to top"
-                    className="ml-1 flex h-7 w-7 items-center justify-center rounded-md bg-white/10 text-white/90 transition hover:bg-[#D9A33A] hover:text-black active:scale-95"
+                    className="ml-1 flex h-6 w-6 items-center justify-center rounded bg-white/10 text-white/90 transition hover:bg-[#D9A33A] hover:text-black active:scale-95"
                   >
-                    <FaArrowUp className="h-3 w-3" />
+                    <FaArrowUp className="h-2.5 w-2.5" />
                   </button>
                 </div>
               </div>
