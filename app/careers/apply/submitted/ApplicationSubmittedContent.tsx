@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -25,6 +26,15 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 
+import {
+  CandidatePhoto,
+  NOT_IN_CV,
+  formatGender,
+  matchBands,
+  telHref,
+  useSupportContact,
+} from "../candidateView";
+
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sectionBg = "/newcarrierimage/apply-section-bg.png";
 const thankyouBg = "/newcarrierimage/thankyou-banner-bg.png";
@@ -32,7 +42,6 @@ const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
 const sideLeafRight = "/assets/careers/apply-leaf-right-clean-transparent.png";
 const thankyouPhoto = "/newcarrierimage/ananya-namaste.png";
 const thankyouNamastePhoto = "/newcarrierimage/thankyou-namaste-woman.png";
-const sidebarPhoto = "/newcarrierimage/profile-female-ananya.png";
 const rightCardDecoration = "/newcarrierimage/hero-diya-together.png";
 
 function ProgressSteps() {
@@ -118,38 +127,62 @@ const missionChips = [
 ];
 
 export default function ApplicationSubmittedContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const jobSlug = searchParams.get("job") || "";
+  const support = useSupportContact();
+
   const [appData, setAppData] = useState({
-    applicationId: "MS-CAR-2026-00473",
-    candidateName: "Ananya Sharma",
-    firstName: "Ananya",
-    email: "ananya.sharma@gmail.com",
-    phone: "+91 98765 43210",
-    position: "Volunteer (Field Support)",
-    location: "Delhi NCR",
-    score: 85,
-    submittedAt: "17 Oct 2026, 10:24 AM",
+    applicationId: "",
+    candidateName: "",
+    firstName: "",
+    email: "",
+    phone: "",
+    position: "",
+    location: "",
+    score: 0,
+    threshold: undefined as number | undefined,
+    submittedAt: "",
+    image: null as string | null,
+    gender: null as string | null,
+    dateOfBirth: null as string | null,
+    linkedin: null as string | null,
   });
 
   useEffect(() => {
+    let parsed: any = null;
     try {
       const stored = sessionStorage.getItem("submittedApplication");
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setAppData((prev) => ({
-          ...prev,
-          applicationId: parsed.applicationId || prev.applicationId,
-          candidateName: parsed.candidateName || prev.candidateName,
-          firstName: (parsed.candidateName || prev.candidateName).split(" ")[0] || prev.firstName,
-          email: parsed.email || prev.email,
-          phone: parsed.phone || prev.phone,
-          position: parsed.position || prev.position,
-          location: parsed.location || prev.location,
-          score: parsed.score ?? prev.score,
-          submittedAt: parsed.submittedAt || prev.submittedAt,
-        }));
-      }
+      parsed = stored ? JSON.parse(stored) : null;
     } catch {}
-  }, []);
+
+    // Nothing was submitted in this session, so there is nothing real to show here.
+    if (!parsed?.applicationId) {
+      router.replace(jobSlug ? `/careers/apply?job=${encodeURIComponent(jobSlug)}` : "/careers");
+      return;
+    }
+
+    setAppData({
+      applicationId: parsed.applicationId,
+      candidateName: parsed.candidateName || "",
+      firstName: (parsed.candidateName || "").split(" ")[0] || "",
+      email: parsed.email || "",
+      phone: parsed.phone || "",
+      position: parsed.position || "",
+      location: parsed.location || "",
+      score: parsed.score ?? 0,
+      threshold: parsed.threshold,
+      submittedAt: parsed.submittedAt || "",
+      image: parsed.image || null,
+      gender: parsed.gender || null,
+      dateOfBirth: parsed.dateOfBirth || null,
+      linkedin: parsed.linkedin || null,
+    });
+  }, [router, jobSlug]);
+
+  const bands = matchBands({ threshold: appData.threshold });
+  const matchLevel = appData.score >= bands.strong ? "high" : appData.score >= bands.threshold ? "moderate" : "low";
+
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">
       <Topbar />
@@ -346,38 +379,34 @@ export default function ApplicationSubmittedContent() {
                   </div>
                   <div className="flex items-stretch gap-2.5 sm:gap-3">
                     <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
-                      <Image
-                        src={sidebarPhoto}
-                        alt="Candidate Photo"
-                        fill
-                        unoptimized
-                        priority
-                        sizes="94px"
-                        className="object-cover object-[center_15%] scale-[1.38]"
-                      />
+                      <CandidatePhoto src={appData.image} className="object-cover object-[center_15%] scale-[1.38]" />
                     </div>
                     <div className="min-w-0 flex-1 space-y-[3px]">
                       <p className="text-[14px] font-bold text-[#0c3d30]">{appData.candidateName}</p>
                       <a href={`mailto:${appData.email}`} className="flex items-center gap-1.5 text-[11.5px] text-[#0b57d0] hover:underline">
                         <Mail className="h-3 w-3 shrink-0 text-[#0d5c46]" />
-                        <span className="truncate">{appData.email}</span>
+                        <span className="truncate">{appData.email || NOT_IN_CV}</span>
                       </a>
                       <p className="flex items-center gap-1.5 text-[11.5px] text-[#2d3748]">
                         <Phone className="h-3 w-3 shrink-0 text-[#0d5c46]" />
-                        {appData.phone}
+                        {appData.phone || NOT_IN_CV}
                       </p>
                       <p className="flex items-center gap-1.5 text-[11.5px] text-[#2d3748]">
                         <MapPin className="h-3 w-3 shrink-0 text-[#d97706]" />
-                        {appData.location}
+                        {appData.location || NOT_IN_CV}
                       </p>
-                      <p className="flex items-center gap-1.5 text-[11.5px] text-[#2d3748]">
-                        <Calendar className="h-3 w-3 shrink-0 text-[#0d5c46]" />
-                        14 Nov 1998 &nbsp;|&nbsp; Female
-                      </p>
-                      <a href="https://linkedin.com/in/ananya-sharma" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[11.5px] text-[#0b57d0] hover:underline">
+                      {(appData.dateOfBirth || appData.gender) && (
+                        <p className="flex items-center gap-1.5 text-[11.5px] text-[#2d3748]">
+                          <Calendar className="h-3 w-3 shrink-0 text-[#0d5c46]" />
+                          {[appData.dateOfBirth, formatGender(appData.gender)].filter(Boolean).join(" | ")}
+                        </p>
+                      )}
+                      {appData.linkedin && (
+                      <a href={/^https?:\/\//i.test(appData.linkedin) ? appData.linkedin : `https://${appData.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[11.5px] text-[#0b57d0] hover:underline">
                         <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 shrink-0 text-[#0d5c46]"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
-                        linkedin.com/in/ananya-sharma
+                        {appData.linkedin}
                       </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -391,9 +420,8 @@ export default function ApplicationSubmittedContent() {
                       </span>
                       <div>
                         <p className="text-[14px] font-bold text-[#0c3d30]">{appData.position}</p>
-                        <p className="text-[12px] text-[#5a6a7a]">Voluntary (Free Seva)</p>
-                        <p className="mt-0.5 flex items-center gap-1 text-[11.5px] text-[#5a6a7a]">
-                          <MapPin className="h-3 w-3 text-[#d97706]" /> {appData.location} / On-site
+                                                <p className="mt-0.5 flex items-center gap-1 text-[11.5px] text-[#5a6a7a]">
+                          <MapPin className="h-3 w-3 text-[#d97706]" /> {appData.location}
                         </p>
                       </div>
                     </div>
@@ -409,7 +437,7 @@ export default function ApplicationSubmittedContent() {
                     <div className="relative grid h-[85px] w-[85px] shrink-0 place-items-center">
                       <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full -rotate-90">
                         <circle cx="60" cy="60" r="48" fill="none" stroke="#e5e7eb" strokeWidth="12" />
-                        <circle cx="60" cy="60" r="48" fill="none" stroke="#0d5c46" strokeWidth="12" strokeDasharray={`${(appData.score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`} strokeLinecap="round" />
+                        <circle cx="60" cy="60" r="48" fill="none" stroke={matchLevel === "high" ? "#0d5c46" : matchLevel === "moderate" ? "#d97706" : "#dc2626"} strokeWidth="12" strokeDasharray={`${(appData.score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`} strokeLinecap="round" />
                       </svg>
                       <div className="text-center leading-tight">
                         <span className="block text-[20px] font-bold text-[#0c3d30]">{appData.score}%</span>
@@ -421,11 +449,11 @@ export default function ApplicationSubmittedContent() {
                         <h3 className="text-[14px] font-bold text-[#0c3d30]">Profile Match</h3>
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#fef3c7] px-2 py-0.5 text-[10.5px] font-bold text-[#b45309]">
                           <svg viewBox="0 0 24 24" fill="#f59e0b" className="h-2.5 w-2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                          Strong Match
+                          {matchLevel === "high" ? "Strong Match" : matchLevel === "moderate" ? "Moderate Match" : "Low Match"}
                         </span>
                       </div>
                       <p className="text-[11.5px] leading-[1.45] text-[#3a4a5c]">
-                        Your profile matches well with the volunteer role requirements. Based on your skills, experience and interests derived from your CV.
+                        Your profile was compared with the requirements of this role. Based on your skills, experience and interests derived from your CV.
                       </p>
                     </div>
                   </div>
@@ -466,12 +494,16 @@ export default function ApplicationSubmittedContent() {
                     </div>
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px]">
-                    <a href="mailto:careers@mokshasewa.org" className="flex items-center gap-1.5 font-medium text-[#0b57d0] hover:underline">
-                      <Mail className="h-3 w-3 text-[#0d5c46]" /> careers@mokshasewa.org
-                    </a>
-                    <a href="tel:+919876543210" className="flex items-center gap-1.5 font-medium text-[#2d3748] hover:text-[#0d5c46]">
-                      <Phone className="h-3 w-3 text-[#0d5c46]" /> +91 98765 43210
-                    </a>
+                    {support.email && (
+                      <a href={`mailto:${support.email}`} className="flex items-center gap-1.5 font-medium text-[#0b57d0] hover:underline">
+                        <Mail className="h-3 w-3 text-[#0d5c46]" /> {support.email}
+                      </a>
+                    )}
+                    {support.phone && (
+                      <a href={telHref(support.phone)} className="flex items-center gap-1.5 font-medium text-[#2d3748] hover:text-[#0d5c46]">
+                        <Phone className="h-3 w-3 text-[#0d5c46]" /> {support.phone}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

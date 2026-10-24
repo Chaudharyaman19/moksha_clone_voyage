@@ -1,101 +1,22 @@
 "use client";
 
 import { FaChevronDown, FaUser, FaShieldAlt } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { useGlobalAudio } from "@/contexts/GlobalAudioContext";
 
 const utilityLink =
   "flex items-center justify-center gap-1.5 rounded-md text-white/90 transition-all hover:bg-white/10 hover:text-white active:scale-95 h-7 w-7 shrink-0 md:h-auto md:w-auto md:px-2.5 md:py-1.5";
 
 export default function TopInfoBar() {
   const websiteSection = useWebsiteSection("topbar");
-  const [isMusicOn, setIsMusicOn] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { isMusicOn, toggleMusic } = useGlobalAudio();
   const userLoginItem = itemOrFallback(websiteSection?.items, 0, { label: "User Login", href: "/login" });
   const adminLoginItem = itemOrFallback(websiteSection?.items, 1, { label: "Admin Login", href: "admin" });
   const adminLoginHref =
     adminLoginItem.href && adminLoginItem.href !== "admin"
       ? adminLoginItem.href
       : `${process.env.NEXT_PUBLIC_ADMIN_URL ?? "http://localhost:3001"}/login`;
-
-  const playlist = [
-    "/audio/moksha-bg-audio.mpeg",
-  ];
-
-  const getTodayTrack = () => {
-    const today = new Date();
-    const base = new Date(2024, 0, 1);
-
-    const diffDays = Math.floor(
-      (today.getTime() - base.getTime()) / (1000 * 60 * 60 * 24),
-    );
-
-    return diffDays % playlist.length;
-  };
-
-  const toggleMusic = async () => {
-    try {
-      const todayTrack = getTodayTrack();
-
-      if (!audioRef.current) {
-        audioRef.current = new Audio(playlist[todayTrack]);
-        audioRef.current.loop = true;
-        audioRef.current.volume = 0.3;
-      }
-
-      if (!isMusicOn) {
-        audioRef.current.src = playlist[todayTrack];
-        await audioRef.current.play();
-        setIsMusicOn(true);
-      } else {
-        audioRef.current.pause();
-        setIsMusicOn(false);
-      }
-    } catch (error) {
-      console.log("Browser blocked audio:", error);
-    }
-  };
-
-  useEffect(() => {
-    const startAudio = async () => {
-      try {
-        if (!audioRef.current) {
-          audioRef.current = new Audio(playlist[0]);
-          audioRef.current.loop = true;
-          audioRef.current.volume = 0.3;
-        }
-        await audioRef.current.play();
-        setIsMusicOn(true);
-      } catch (err) {
-        // Modern browsers block autoplay without prior user interaction.
-        // Listen for first interaction (click/touch/scroll) to start music automatically.
-        const onFirstInteract = async () => {
-          try {
-            if (audioRef.current) {
-              await audioRef.current.play();
-              setIsMusicOn(true);
-            }
-          } catch {}
-          window.removeEventListener("click", onFirstInteract);
-          window.removeEventListener("touchstart", onFirstInteract);
-          window.removeEventListener("keydown", onFirstInteract);
-        };
-        window.addEventListener("click", onFirstInteract, { once: true });
-        window.addEventListener("touchstart", onFirstInteract, { once: true });
-        window.addEventListener("keydown", onFirstInteract, { once: true });
-      }
-    };
-
-    startAudio();
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
 
   return (
     <div

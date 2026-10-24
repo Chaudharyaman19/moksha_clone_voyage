@@ -108,6 +108,7 @@ const values = [
 ];
 
 const legalLinks = [
+  { label: "Sitemap", href: "/sitemap.xml" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Refund Policy", href: "/refund-policy" },
@@ -606,41 +607,72 @@ export default function FooterNew() {
 
           {/* ========================= BOTTOM BAR ========================= */}
           <div className="footer-bottom relative bg-black">
-            <div className="mx-auto flex min-h-[48px] w-full max-w-[1540px] flex-col items-center justify-center gap-2 px-5 py-1 text-center sm:px-7 lg:flex-row lg:gap-8 lg:px-8 xl:gap-12">
-              <div className="footer-bottom-left flex items-center justify-center gap-3 text-[12px] text-white/90">
-                <PiFlowerLotus className="h-9 w-9 shrink-0 text-[#D9A33A]" />
-                <p className="whitespace-pre-line">{textOrFallback(websiteSection?.bottomStatement, `© ${new Date().getFullYear()} ${brandName}. All Rights Reserved.`, 200)}</p>
+            <div className="mx-auto flex min-h-[52px] w-full max-w-[1540px] flex-col items-center justify-between gap-3 px-5 py-2.5 text-center sm:px-7 lg:flex-row lg:px-8 xl:px-12">
+              {/* Left: Exact Image Pattern */}
+              <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[13px] text-white/90">
+                <span>© {new Date().getFullYear()} Moksha Sewa</span>
+                <span className="h-4 w-px bg-white/30" />
+                <span>An Initiative of Namo Gange Trust</span>
+                <span className="h-4 w-px bg-white/30" />
+                <span>All Rights Reserved.</span>
               </div>
 
-              <div className="footer-bottom-center flex flex-wrap items-center justify-center gap-y-2">
-                {managedLegalLinks.map((item, index) => (
-                  <span key={item.label} className="flex items-center">
-                    <Link
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 text-[12px] text-white/90 transition hover:text-[#E5B14A]"
-                    >
-                      {item.label}
-                    </Link>
-                    {index < legalLinks.length - 1 && (
-                      <span className="h-6 w-px bg-[#C79A3D]/50" />
-                    )}
+              {/* Right: Policy Links + Designed & Developed by */}
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] text-white/90">
+                <Link
+                  href="/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[#E5B14A]"
+                >
+                  Sitemap
+                </Link>
+                <span className="h-4 w-px bg-white/20" />
+
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[#E5B14A]"
+                >
+                  Privacy Policy
+                </Link>
+                <span className="h-4 w-px bg-white/20" />
+
+                <Link
+                  href="/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[#E5B14A]"
+                >
+                  Terms &amp; Conditions
+                </Link>
+                <span className="h-4 w-px bg-white/20" />
+
+                <Link
+                  href="/refund-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-[#E5B14A]"
+                >
+                  Refund Policy
+                </Link>
+                <span className="h-4 w-px bg-white/20" />
+
+                <div className="flex items-center gap-2">
+                  <span className="font-normal text-white/85">
+                    Designed &amp; Developed by
                   </span>
-                ))}
-              </div>
-
-              <div className="footer-bottom-seva flex items-center justify-center gap-2.5">
-                <span className="text-[12px] font-medium text-white/90">
-                  Designed &amp; Developed by
-                </span>
-                <Image
-                  src="/assets/encodency-logo.png"
-                  alt="enCodency Pvt. Ltd."
-                  width={220}
-                  height={50}
-                  className="h-8 w-auto rounded object-contain"
-                />
+                  <div className="relative flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-2 py-1 shadow-sm">
+                    <Image
+                      src="/assets/encodency-logo.png"
+                      alt="enCodency Pvt. Ltd."
+                      width={130}
+                      height={26}
+                      className="h-5 w-auto object-contain"
+                    />
+                  </div>
+                </div>
               </div>
 
             </div>

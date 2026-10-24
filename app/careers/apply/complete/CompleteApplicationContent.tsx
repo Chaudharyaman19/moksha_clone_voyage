@@ -31,6 +31,16 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
 import { EditProfileModal } from "../EditProfileModal";
+import {
+  API_BASE,
+  CandidatePhoto,
+  NOT_IN_CV,
+  formatGender,
+  matchLevelFor,
+  readStoredCandidate,
+  saveCandidateEdits,
+  type ApplyCandidate,
+} from "../candidateView";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -104,30 +114,42 @@ function InputLabel({ children, required }: { children: React.ReactNode; require
   );
 }
 
-function SelectField({ label, value, required }: { label: string; value: string; required?: boolean }) {
+function ReadOnlyField({ label, value, required }: { label: string; value: string; required?: boolean }) {
   return (
     <div>
       <InputLabel required={required}>{label}</InputLabel>
       <div className="relative">
-        <select
-          defaultValue={value}
-          className="w-full appearance-none rounded-lg border border-[#d4c9b0] bg-white px-2.5 py-1.5 text-[12.5px] text-[#2d3748] outline-none focus:border-[#0d5c46] focus:ring-1 focus:ring-[#0d5c46]/30"
-        >
-          <option>{value}</option>
-        </select>
-        <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748b]" />
+        <input
+          type="text"
+          readOnly
+          value={value}
+          className="w-full rounded-lg border border-[#d4c9b0] bg-white px-2.5 py-1.5 text-[12.5px] text-[#2d3748] outline-none"
+        />
       </div>
     </div>
   );
 }
 
-function TextField({ label, value, placeholder }: { label: string; value?: string; placeholder?: string }) {
+function TextField({
+  label,
+  value,
+  placeholder,
+  required,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  placeholder?: string;
+  required?: boolean;
+  onChange: (value: string) => void;
+}) {
   return (
     <div>
-      <InputLabel>{label}</InputLabel>
+      <InputLabel required={required}>{label}</InputLabel>
       <input
         type="text"
-        defaultValue={value}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className="w-full rounded-lg border border-[#d4c9b0] bg-white px-2.5 py-1.5 text-[12.5px] text-[#2d3748] outline-none placeholder:text-[#94a3b8] focus:border-[#0d5c46] focus:ring-1 focus:ring-[#0d5c46]/30"
       />
@@ -135,16 +157,8 @@ function TextField({ label, value, placeholder }: { label: string; value?: strin
   );
 }
 
-const skills = [
-  { label: "Community Service", checked: true },
-  { label: "Crisis Support / Family Support", checked: true },
-  { label: "Counselling", checked: true },
-  { label: "Patient Care", checked: false },
-  { label: "Event Coordination", checked: false },
-  { label: "Social Work", checked: false },
-  { label: "Documentation", checked: false },
-  { label: "Other (Please specify)", checked: false },
-];
+type Reference = { name: string; desig: string; org: string; contact: string; email: string };
+const emptyReference = (): Reference => ({ name: "", desig: "", org: "", contact: "", email: "" });
 
 const confirmations = [
   "I confirm that all the information provided is correct and complete.",
@@ -158,110 +172,142 @@ export default function CompleteApplicationContent() {
   const searchParams = useSearchParams();
   const jobSlug = searchParams.get("job") || "web-developer";
 
-  const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
+  const [candidate, setCandidate] = useState<ApplyCandidate>(defaultCandidateData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
+  const [checkedSkills, setCheckedSkills] = useState<Record<string, boolean>>({});
+  const [checkedConfirm, setCheckedConfirm] = useState<Record<string, boolean>>({});
+  const [locations, setLocations] = useState<string[]>([]);
+  const [noticePeriod, setNoticePeriod] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [joiningPreference, setJoiningPreference] = useState("");
+  const [whyText, setWhyText] = useState("");
+  const [skillsText, setSkillsText] = useState("");
+  const [references, setReferences] = useState<Reference[]>([emptyReference(), emptyReference()]);
+
   useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("candidateData");
-      if (stored) setCandidate(JSON.parse(stored));
-    } catch {}
-  }, []);
+    const stored = readStoredCandidate();
+    if (!stored) {
+      router.replace(`/careers/apply?job=${encodeURIComponent(jobSlug)}`);
+      return;
+    }
+    setCandidate(stored);
 
-  const [checkedSkills, setCheckedSkills] = useState<Record<string, boolean>>(
-    Object.fromEntries(skills.map((s) => [s.label, s.checked]))
-  );
-  const [checkedConfirm, setCheckedConfirm] = useState<Record<string, boolean>>(
-    Object.fromEntries(confirmations.map((c) => [c, true]))
-  );
-  const [locations, setLocations] = useState(["Delhi NCR", "On-site (Events)"]);
-  const [whyText, setWhyText] = useState(
-    "I am passionate about serving people and contributing to Moksha Sewa's mission of providing dignified and compassionate support to families in their most difficult times."
-  );
-  const [skillsText, setSkillsText] = useState(
-    "Community support, counselling, event coordination, communication, and cultural sensitivity."
-  );
+    const profile = stored.fullProfile || {};
+    setNoticePeriod(typeof profile.noticePeriod === "string" ? profile.noticePeriod : "");
+    setLocations(stored.jobDetails?.location ? [stored.jobDetails.location] : []);
+    // The candidate's own CV skills, ticked by default so they can untick what does not apply.
+    const cvSkills: string[] = Array.isArray(profile.skills)
+      ? profile.skills.filter((x: unknown): x is string => typeof x === "string" && x.trim().length > 0)
+      : [];
+    setCheckedSkills(Object.fromEntries(cvSkills.slice(0, 8).map((label) => [label, true])));
+  }, [router, jobSlug]);
 
-  const candName = candidate.candidateName || candidate.firstName || "Ananya Sharma";
-  const candEmail = candidate.email || "ananya.sharma@gmail.com";
-  const candPhone = candidate.verifiedPhone || candidate.phone || "+91 98765 43210";
-  const candLocation = candidate.location || "Delhi NCR";
-  const jobTitle = candidate.jobDetails?.title || "Volunteer (Field Support)";
-  const score = candidate.score ?? 85;
+  const candName = candidate.candidateName || candidate.firstName || NOT_IN_CV;
+  const candEmail = candidate.email || NOT_IN_CV;
+  const candPhone = candidate.verifiedPhone || candidate.phone || NOT_IN_CV;
+  const candLocation = candidate.location || NOT_IN_CV;
+  const jobTitle = candidate.jobDetails?.title || "";
+  const employmentType = candidate.jobDetails?.type || "";
+  const score = candidate.score ?? 0;
+  const matchLevel = matchLevelFor(candidate);
+  const skillLabels = Object.keys(checkedSkills);
 
   const removeLocation = (loc: string) => setLocations((prev) => prev.filter((l) => l !== loc));
 
+  const REQUIRED_CONFIRMATIONS = [confirmations[0], confirmations[1], confirmations[3]];
+
   const handleSubmitApplication = async () => {
-    setIsSubmitting(true);
     setSubmitError("");
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+
+    if (!candidate.candidateId || !candidate.jobId) {
+      setSubmitError("Your session has expired. Please upload your CV again to apply.");
+      return;
+    }
+    if (!candidate.candidateName || !candidate.email || !(candidate.verifiedPhone || candidate.phone)) {
+      setSubmitError("Please complete your name, email and phone using Edit before submitting.");
+      return;
+    }
+    if (!whyText.trim()) {
+      setSubmitError("Please tell us why you want to join Moksha Sewa.");
+      return;
+    }
+    if (!REQUIRED_CONFIRMATIONS.every((c) => checkedConfirm[c])) {
+      setSubmitError("Please tick the confirmations before submitting.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const candidateData = {
+      name: candidate.candidateName,
+      email: candidate.email,
+      phone: candidate.verifiedPhone || candidate.phone,
+      verifiedPhone: candidate.verifiedPhone || undefined,
+      location: candidate.location || undefined,
+      linkedin: candidate.linkedin || undefined,
+      photo: candidate.image || undefined,
+    };
+    const applicationDetails = {
+      preferredLocations: locations,
+      noticePeriod: noticePeriod.trim(),
+      availability: availability.trim(),
+      joiningPreference: joiningPreference.trim(),
+      engagementType: employmentType,
+      additionalSkills: skillsText.trim(),
+      confirmedSkills: skillLabels.filter((label) => checkedSkills[label]),
+      references: references.filter((r) => Object.values(r).some((v) => v.trim())),
+    };
 
     try {
       let targetAppId = candidate.applicationId;
-      const candidateId = candidate.candidateId;
-      const targetJobId = candidate.jobId || jobSlug || "web-developer";
-      const cvAnalysisId = candidate.analysisId;
 
       if (!targetAppId) {
-        const createRes = await fetch(`${apiBase}/careers/applications`, {
+        const createRes = await fetch(`${API_BASE}/careers/applications`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            candidateId,
-            jobId: targetJobId,
-            cvAnalysisId,
-            candidateData: {
-              name: candName,
-              email: candEmail,
-              phone: candPhone,
-              verifiedPhone: candidate.verifiedPhone,
-              location: candLocation,
-            },
-            whyInterested: whyText,
+            candidateId: candidate.candidateId,
+            jobId: candidate.jobId,
+            cvAnalysisId: candidate.analysisId,
+            candidateData,
+            applicationDetails,
+            whyInterested: whyText.trim(),
           }),
         });
-
-        const createJson = await createRes.json();
-        if (createRes.ok && createJson.success) {
-          targetAppId = createJson.data.applicationId || createJson.data._id;
-        } else {
-          // If server fails or is offline, generate local fallback application details
-          targetAppId = `MS-CAR-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
+        const createJson = await createRes.json().catch(() => null);
+        if (!createRes.ok || !createJson?.success) {
+          throw new Error(createJson?.message || "We could not start your application. Please try again.");
         }
+        targetAppId = createJson.data.applicationId || createJson.data._id;
       }
 
-      if (targetAppId && !targetAppId.startsWith("MS-CAR-")) {
-        const submitRes = await fetch(`${apiBase}/careers/applications/${targetAppId}/submit`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            candidateData: {
-              name: candName,
-              email: candEmail,
-              phone: candPhone,
-              verifiedPhone: candidate.verifiedPhone,
-              location: candLocation,
-            },
-            whyInterested: whyText,
-          }),
-        });
-        const submitJson = await submitRes.json();
-        if (submitRes.ok && submitJson.success) {
-          targetAppId = submitJson.data?.applicationId || targetAppId;
-        }
+      const submitRes = await fetch(`${API_BASE}/careers/applications/${targetAppId}/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ candidateData, applicationDetails, whyInterested: whyText.trim() }),
+      });
+      const submitJson = await submitRes.json().catch(() => null);
+      if (!submitRes.ok || !submitJson?.success) {
+        throw new Error(submitJson?.message || "Your application could not be submitted. Please try again.");
       }
 
       const submittedDetails = {
-        applicationId: targetAppId || `MS-CAR-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`,
-        candidateName: candName,
-        email: candEmail,
-        phone: candPhone,
+        applicationId: submitJson.data?.applicationId || targetAppId,
+        candidateName: candidate.candidateName,
+        email: candidate.email,
+        phone: candidate.verifiedPhone || candidate.phone,
         position: jobTitle,
-        location: candLocation,
+        location: candidate.location || "",
         score,
-        submittedAt: new Date().toLocaleString("en-IN", {
+        threshold: candidate.threshold,
+        image: candidate.image || null,
+        gender: candidate.gender || null,
+        dateOfBirth: candidate.dateOfBirth || null,
+        linkedin: candidate.linkedin || null,
+        submittedAt: new Date(submitJson.data?.submittedAt || Date.now()).toLocaleString("en-IN", {
           day: "numeric",
           month: "short",
           year: "numeric",
@@ -276,30 +322,10 @@ export default function CompleteApplicationContent() {
       } catch {}
 
       router.push(`/careers/apply/submitted?job=${encodeURIComponent(jobSlug)}`);
-    } catch {
-      const fallbackId = `MS-CAR-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      const submittedDetails = {
-        applicationId: fallbackId,
-        candidateName: candName,
-        email: candEmail,
-        phone: candPhone,
-        position: jobTitle,
-        location: candLocation,
-        score,
-        submittedAt: new Date().toLocaleString("en-IN", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        }),
-      };
-      try {
-        sessionStorage.setItem("submittedApplication", JSON.stringify(submittedDetails));
-      } catch {}
-
-      router.push(`/careers/apply/submitted?job=${encodeURIComponent(jobSlug)}`);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error && err.message ? err.message : "Your application could not be submitted. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -372,7 +398,7 @@ export default function CompleteApplicationContent() {
                     <h3 className="text-[16px] font-bold text-[#0c3d30]">Application Details</h3>
                   </div>
                   <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                    <SelectField label="Position Applied For" value="Volunteer (Field Support)" required />
+                    <ReadOnlyField label="Position Applied For" value={jobTitle} required />
                     <div>
                       <InputLabel required>Preferred Location(s)</InputLabel>
                       <div className="flex min-h-[34px] w-full flex-wrap items-center gap-1 rounded-lg border border-[#d4c9b0] bg-white px-2 py-1">
@@ -387,10 +413,10 @@ export default function CompleteApplicationContent() {
                         <ChevronDown className="ml-auto h-4 w-4 text-[#64748b]" />
                       </div>
                     </div>
-                    <SelectField label="Notice Period" value="15 Days" required />
-                    <SelectField label="Expected Availability" value="As per discussion" required />
-                    <SelectField label="Joining Preference" value="Within 1 Month" required />
-                    <SelectField label="Engagement Type" value="Voluntary (Free Seva)" />
+                    <TextField label="Notice Period" value={noticePeriod} onChange={setNoticePeriod} placeholder="e.g. 30 Days" />
+                    <TextField label="Expected Availability" value={availability} onChange={setAvailability} placeholder="e.g. Immediately" />
+                    <TextField label="Joining Preference" value={joiningPreference} onChange={setJoiningPreference} placeholder="e.g. Within 1 month" />
+                    <ReadOnlyField label="Engagement Type" value={employmentType} />
                   </div>
                 </div>
 
@@ -425,24 +451,24 @@ export default function CompleteApplicationContent() {
 
                   <p className="mb-1.5 mt-2 text-[12px] font-semibold text-[#5a6a7a]">Have you worked with any of these? (Optional)</p>
                   <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4">
-                    {skills.map((s) => (
+                    {skillLabels.map((label) => (
                       <label
-                        key={s.label}
+                        key={label}
                         className={`flex cursor-pointer items-center gap-1.5 rounded-lg border px-2 py-1 text-[11.5px] font-medium transition ${
-                          checkedSkills[s.label]
+                          checkedSkills[label]
                             ? "border-[#0d5c46] bg-[#0d5c46]/5 text-[#0c3d30]"
                             : "border-[#e2ddd0] bg-white text-[#64748b]"
                         }`}
                       >
                         <span
-                          onClick={() => setCheckedSkills((p) => ({ ...p, [s.label]: !p[s.label] }))}
+                          onClick={() => setCheckedSkills((p) => ({ ...p, [label]: !p[label] }))}
                           className={`grid h-[16px] w-[16px] shrink-0 place-items-center rounded-[4px] border-2 ${
-                            checkedSkills[s.label] ? "border-[#0d5c46] bg-[#0d5c46]" : "border-[#cbd5e1] bg-white"
+                            checkedSkills[label] ? "border-[#0d5c46] bg-[#0d5c46]" : "border-[#cbd5e1] bg-white"
                           }`}
                         >
-                          {checkedSkills[s.label] && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
+                          {checkedSkills[label] && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
                         </span>
-                        {s.label}
+                        {label}
                       </label>
                     ))}
                   </div>
@@ -455,37 +481,24 @@ export default function CompleteApplicationContent() {
                     <h3 className="text-[16px] font-bold text-[#0c3d30]">References <span className="font-normal text-[#5a6a7a]">(Optional)</span></h3>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {[
-                      {
-                        title: "Reference 1",
-                        name: "Dr. Ramesh Gupta",
-                        desig: "Social Worker",
-                        org: "Seva Foundation",
-                        contact: "+91 98100 12345",
-                        email: "ramesh.gupta@email.com",
-                      },
-                      {
-                        title: "Reference 2",
-                        name: "Ms. Neha Singh",
-                        desig: "Program Coordinator",
-                        org: "Sahara Seva Trust",
-                        contact: "+91 98765 43210",
-                        email: "neha.singh@email.com",
-                      },
-                    ].map((ref) => (
-                      <div key={ref.title}>
-                        <p className="mb-2 text-[13px] font-bold text-[#0d5c46]">{ref.title}</p>
-                        <div className="grid grid-cols-2 gap-2">
-                          <TextField label="Name" value={ref.name} />
-                          <TextField label="Designation" value={ref.desig} />
-                          <TextField label="Organization" value={ref.org} />
-                          <TextField label="Contact Number" value={ref.contact} />
-                          <div className="col-span-2">
-                            <TextField label="Email Address" value={ref.email} />
+                    {references.map((ref, index) => {
+                      const set = (key: keyof Reference) => (value: string) =>
+                        setReferences((prev) => prev.map((r, i) => (i === index ? { ...r, [key]: value } : r)));
+                      return (
+                        <div key={index}>
+                          <p className="mb-2 text-[13px] font-bold text-[#0d5c46]">Reference {index + 1}</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <TextField label="Name" value={ref.name} onChange={set("name")} />
+                            <TextField label="Designation" value={ref.desig} onChange={set("desig")} />
+                            <TextField label="Organization" value={ref.org} onChange={set("org")} />
+                            <TextField label="Contact Number" value={ref.contact} onChange={set("contact")} />
+                            <div className="col-span-2">
+                              <TextField label="Email Address" value={ref.email} onChange={set("email")} />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -505,14 +518,7 @@ export default function CompleteApplicationContent() {
                   </div>
                   <div className="flex items-stretch gap-3">
                     <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
-                      <Image
-                        src="/newcarrierimage/profile-female-ananya.png"
-                        alt="Candidate Photo"
-                        fill
-                        unoptimized
-                        priority
-                        className="object-cover object-[center_15%] scale-[1.38]"
-                      />
+                      <CandidatePhoto src={candidate.image} className="object-cover object-[center_15%] scale-[1.38]" />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">
                       <p className="truncate text-[15.5px] font-bold text-[#0c3d30]">{candName}</p>
@@ -528,16 +534,20 @@ export default function CompleteApplicationContent() {
                         <MapPin className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
                         <span>{candLocation}</span>
                       </p>
-                      <p className="flex items-center gap-1.5 text-[11.5px] text-[#5a6a7a]">
-                        <Calendar className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>14 Nov 1998 &nbsp;|&nbsp; Female</span>
-                      </p>
+                      {(candidate.dateOfBirth || candidate.gender) && (
+                        <p className="flex items-center gap-1.5 text-[11.5px] text-[#5a6a7a]">
+                          <Calendar className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
+                          <span>{[candidate.dateOfBirth, formatGender(candidate.gender)].filter(Boolean).join(" | ")}</span>
+                        </p>
+                      )}
+                      {candidate.linkedin && (
                       <p className="flex items-center gap-1.5 text-[11.5px] text-[#0077b5]">
                         <svg className="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
-                        <span className="truncate">linkedin.com/in/ananya-sharma</span>
+                        <span className="truncate">{candidate.linkedin}</span>
                       </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -551,9 +561,9 @@ export default function CompleteApplicationContent() {
                       </span>
                       <div>
                         <h3 className="text-[14.5px] font-bold text-[#0c3d30]">{jobTitle}</h3>
-                        <p className="text-[12px] text-[#5a6a7a]">Voluntary (Free Seva)</p>
+                        <p className="text-[12px] text-[#5a6a7a]">{employmentType}</p>
                         <p className="flex items-center gap-1 text-[11.5px] text-[#d97706]">
-                          <MapPin className="h-3 w-3" /> {candLocation} (On-site)
+                          <MapPin className="h-3 w-3" /> {candidate.jobDetails?.location || candLocation}
                         </p>
                       </div>
                     </div>
@@ -571,7 +581,7 @@ export default function CompleteApplicationContent() {
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Profile Match</h3>
                     <span className="inline-flex items-center gap-1 rounded-full bg-[#fef3c7] px-2.5 py-0.5 text-[11.5px] font-bold text-[#b45309]">
-                      ⭐ Strong Match
+                      {matchLevel === "high" ? "⭐ Strong Match" : matchLevel === "moderate" ? "Moderate Match" : "Low Match"}
                     </span>
                   </div>
                   <div className="flex items-center gap-4">
@@ -583,7 +593,7 @@ export default function CompleteApplicationContent() {
                           cy="60"
                           r="48"
                           fill="none"
-                          stroke="#0d5c46"
+                          stroke={matchLevel === "high" ? "#0d5c46" : matchLevel === "moderate" ? "#d97706" : "#dc2626"}
                           strokeWidth="12"
                           strokeDasharray={`${(score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
                           strokeLinecap="round"
@@ -596,7 +606,7 @@ export default function CompleteApplicationContent() {
                     </div>
                     <div>
                       <p className="text-[12.5px] leading-[1.5] text-[#3a4a5c]">
-                        Your profile matches well with the volunteer role requirements.
+                        {candidate.summary || "Your profile has been compared against this role."}
                       </p>
                       <p className="mt-1 text-[11.5px] text-[#64748b]">
                         Based on your skills, experience and interests derived from your CV.
@@ -685,20 +695,9 @@ export default function CompleteApplicationContent() {
           isOpen={isEditProfileOpen}
           candidate={candidate}
           onClose={() => setIsEditProfileOpen(false)}
-          onSave={(updated) => {
-            const newCand = { ...candidate, ...updated };
-            setCandidate(newCand);
-            try {
-              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
-            } catch {}
-            if (candidate.candidateId) {
-              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
-              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updated),
-              }).catch(() => undefined);
-            }
+          onSave={async (updated) => {
+            const { candidate: next } = await saveCandidateEdits(candidate, updated);
+            setCandidate(next);
           }}
         />
       </main>

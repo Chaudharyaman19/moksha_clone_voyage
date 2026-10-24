@@ -9,7 +9,7 @@ export const metadata = {
 export default function EligibleResultPage() {
   return (
     <Suspense>
-      <ResultPageContent initialLevel="high" />
+      <ResultPageContent />
     </Suspense>
   );
 }

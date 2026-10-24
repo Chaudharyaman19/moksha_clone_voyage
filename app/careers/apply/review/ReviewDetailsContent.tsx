@@ -32,6 +32,17 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
+import {
+  CandidatePhoto,
+  NOT_IN_CV,
+  formatGender,
+  matchLevelFor,
+  readStoredCandidate,
+  resultPathFor,
+  saveCandidateEdits,
+  useChangePhoto,
+  type ApplyCandidate,
+} from "../candidateView";
 import { EditProfileModal } from "../EditProfileModal";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
@@ -110,79 +121,44 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-const education = [
-  { qual: "Bachelor's Degree", inst: "Delhi University", year: "2018", pct: "78%", spec: "Psychology" },
-  { qual: "Diploma (Optional)", inst: "IGNOU", year: "2020", pct: "82%", spec: "Counselling" },
-  { qual: "Certification", inst: "Indian Red Cross Society", year: "2022", pct: "–", spec: "First Aid & Community Care" },
-];
-
-const work = [
-  { org: "Seva Foundation", desig: "Volunteer", dur: "2022 – Present (2.5 Years)", resp: "Community support, family assistance, event coordination" },
-  { org: "Helping Hands NGO", desig: "Volunteer", dur: "2020 – 2022 (2 Years)", resp: "Counselling support, logistics assistance" },
-  { org: "Community Care Initiative", desig: "Volunteer", dur: "2019 – 2020 (1 Year)", resp: "Patient & family support, awareness drives" },
-];
-
-const skills = [
-  { label: "Communication Skills", score: 90 },
-  { label: "Empathy & Compassion", score: 88 },
-  { label: "Community Service", score: 85 },
-  { label: "Counselling Skills", score: 80 },
-  { label: "Documentation", score: 75 },
-  { label: "Teamwork", score: 85 },
-  { label: "Problem Solving", score: 80 },
-];
-
-const certs = [
-  "First Aid Certification – Indian Red Cross (2022)",
-  "Basic Life Support (BLS) – St. John Ambulance (2021)",
-  "Counselling Skills Workshop (2020)",
-  "Volunteer Training Program (2019)",
-];
-
-const docs = [
-  { name: "Resume.pdf", size: "2.4 MB" },
-  { name: "Educational Certificates.pdf", size: "1.8 MB" },
-  { name: "Experience Letter.pdf", size: "1.2 MB" },
-  { name: "Certification.pdf", size: "1.1 MB" },
-  { name: "ID Proof (Aadhaar).pdf", size: "0.8 MB" },
-];
-
-const strengths = [
-  "Relevant volunteer or community service experience",
-  "Compassionate approach to people in difficult times",
-  "Good communication and interpersonal skills",
-  "Willingness to work in field-based environment",
-  "Sensitivity and empathy towards families",
-  "Willing to work from Delhi NCR",
-];
-
-const improvements = [
-  "Add more field or on-ground support experience",
-  "Highlight relevant certifications (caregiving, counselling)",
-  "Include more details on communication and people-handling skills",
-];
-
 export default function ReviewDetailsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const jobSlug = searchParams.get("job") || "web-developer";
 
-  const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
+  const [candidate, setCandidate] = useState<ApplyCandidate>(defaultCandidateData);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("candidateData");
-      if (stored) setCandidate(JSON.parse(stored));
-    } catch {}
-  }, []);
+    const stored = readStoredCandidate();
+    if (!stored) {
+      router.replace(`/careers/apply?job=${encodeURIComponent(jobSlug)}`);
+      return;
+    }
+    setCandidate(stored);
+  }, [router, jobSlug]);
 
-  const candName = candidate.candidateName || candidate.firstName || "Ananya Sharma";
-  const candEmail = candidate.email || "ananya.sharma@gmail.com";
-  const candPhone = candidate.verifiedPhone || candidate.phone || "+91 98765 43210";
-  const candLocation = candidate.location || "Delhi NCR";
-  const jobTitle = candidate.jobDetails?.title || "Volunteer (Field Support)";
-  const score = candidate.score ?? 85;
+  const photoChange = useChangePhoto(candidate, setCandidate);
+
+  const profile = candidate.fullProfile || {};
+  const text = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+  const list = (v: unknown): string[] => (Array.isArray(v) ? v.map(text).filter(Boolean) : []);
+  const orMissing = (v: unknown) => text(v) || NOT_IN_CV;
+
+  const candName = candidate.candidateName || candidate.firstName || NOT_IN_CV;
+  const candEmail = candidate.email || NOT_IN_CV;
+  const candPhone = candidate.verifiedPhone || candidate.phone || NOT_IN_CV;
+  const candLocation = candidate.location || NOT_IN_CV;
+  const jobTitle = candidate.jobDetails?.title || "";
+  const employmentType = candidate.jobDetails?.type || "";
+  const score = candidate.score ?? 0;
+  const matchLevel = matchLevelFor(candidate);
+
+  const educationRows = list(profile.education);
+  const workRows = list(profile.experience);
+  const skillRows = list(profile.skills);
+  const strengths = list(candidate.requirementsMet);
+  const improvements = list(candidate.gaps);
 
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">
@@ -248,21 +224,27 @@ export default function ReviewDetailsContent() {
                     <div className="flex items-stretch gap-3">
                       <div className="shrink-0 self-stretch w-[110px] sm:w-[120px] min-h-[150px]">
                         <div className="relative h-full w-full overflow-hidden rounded-xl border border-[#ebdcc4]">
-                          <Image src="/newcarrierimage/profile-female-ananya.png" alt="Photo" fill unoptimized priority className="object-cover object-top scale-[1.2]" />
-                          <button className="absolute bottom-1.5 left-1/2 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-lg bg-white/95 px-2 py-1 text-[10px] font-bold text-[#0c3d30] shadow-md transition hover:bg-white">
+                          <CandidatePhoto src={candidate.image} alt="Photo" className="object-cover object-top scale-[1.2]" />
+                          <button
+                            type="button"
+                            onClick={photoChange.open}
+                            disabled={photoChange.busy}
+                            className="absolute bottom-1.5 left-1/2 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-lg bg-white/95 px-2 py-1 text-[10px] font-bold text-[#0c3d30] shadow-md transition hover:bg-white disabled:opacity-60"
+                          >
                             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                            Change Photo
+                            {photoChange.busy ? "Uploading..." : "Change Photo"}
                           </button>
+                          {photoChange.input}
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
                         <InfoRow label="Full Name" value={candName} />
                         <InfoRow label="Email Address" value={candEmail} />
                         <InfoRow label="Mobile Number" value={candPhone} />
-                        <InfoRow label="Date of Birth" value="14 Nov 1998" />
-                        <InfoRow label="Gender" value="Female" />
+                        <InfoRow label="Date of Birth" value={orMissing(candidate.dateOfBirth)} />
+                        <InfoRow label="Gender" value={formatGender(candidate.gender) || NOT_IN_CV} />
                         <InfoRow label="Current Location" value={candLocation} />
-                        <InfoRow label="Permanent Address" value="B-101, Green Park, New Delhi – 110016" />
+                        <InfoRow label="LinkedIn" value={orMissing(candidate.linkedin)} />
                       </div>
                     </div>
                   </div>
@@ -276,14 +258,14 @@ export default function ReviewDetailsContent() {
                       </div>
                       <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
-                    <InfoRow label="Position Applied For" value={jobTitle} />
+                    <InfoRow label="Position Applied For" value={orMissing(jobTitle)} />
                     <InfoRow label="Location Preference" value={candLocation} />
-                    <InfoRow label="Employment Type" value="Voluntary (Free Seva)" />
-                    <InfoRow label="Expected Joining" value="Within 1 Month" />
-                    <InfoRow label="Expected Availability" value="As per discussion" />
-                    <InfoRow label="Notice Period" value="15 Days" />
-                    <InfoRow label="How did you hear about us?" value="Social Media" />
-                    <InfoRow label="Willing to Relocate?" value="Yes" />
+                    <InfoRow label="Employment Type" value={orMissing(employmentType)} />
+                    <InfoRow label="Current Company" value={orMissing(profile.currentCompany)} />
+                    <InfoRow label="Current Designation" value={orMissing(profile.currentDesignation)} />
+                    <InfoRow label="Total Experience" value={orMissing(profile.totalExperience)} />
+                    <InfoRow label="Notice Period" value={orMissing(profile.noticePeriod)} />
+                    <InfoRow label="Expected CTC" value={orMissing(profile.expectedCTC)} />
                   </div>
                 </div>
 
@@ -310,13 +292,9 @@ export default function ReviewDetailsContent() {
                           </tr>
                         </thead>
                         <tbody>
-                          {education.map((e) => (
-                            <tr key={e.qual} className="border-b border-[#f0e8d8] last:border-0">
-                              <td className="py-1.5 pr-2 font-semibold text-[#0c3d30]">{e.qual}</td>
-                              <td className="py-1.5 pr-2 text-[#3a4a5c]">{e.inst}</td>
-                              <td className="py-1.5 pr-2 text-[#3a4a5c]">{e.year}</td>
-                              <td className="py-1.5 pr-2 text-[#3a4a5c]">{e.pct}</td>
-                              <td className="py-1.5 text-[#3a4a5c]">{e.spec}</td>
+                          {(educationRows.length ? educationRows : [NOT_IN_CV]).map((e) => (
+                            <tr key={e} className="border-b border-[#f0e8d8] last:border-0">
+                              <td colSpan={5} className="py-1.5 font-semibold text-[#0c3d30]">{e}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -344,12 +322,9 @@ export default function ReviewDetailsContent() {
                           </tr>
                         </thead>
                         <tbody>
-                          {work.map((w) => (
-                            <tr key={w.org} className="border-b border-[#f0e8d8] last:border-0">
-                              <td className="py-1.5 pr-2 font-semibold text-[#0c3d30]">{w.org}</td>
-                              <td className="py-1.5 pr-2 text-[#3a4a5c]">{w.desig}</td>
-                              <td className="py-1.5 pr-2 text-[#3a4a5c]">{w.dur}</td>
-                              <td className="py-1.5 text-[#3a4a5c]">{w.resp}</td>
+                          {(workRows.length ? workRows : [NOT_IN_CV]).map((w) => (
+                            <tr key={w} className="border-b border-[#f0e8d8] last:border-0">
+                              <td colSpan={4} className="py-1.5 font-semibold text-[#0c3d30]">{w}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -370,13 +345,10 @@ export default function ReviewDetailsContent() {
                       <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <div className="space-y-1.5">
-                      {skills.map((s) => (
-                        <div key={s.label} className="flex items-center gap-2">
-                          <span className="min-w-0 flex-1 truncate text-[12px] font-medium text-[#0c3d30]">{s.label}</span>
-                          <div className="h-[6px] w-[80px] shrink-0 overflow-hidden rounded-full bg-[#e5e7eb]">
-                            <div className="h-full rounded-full bg-[#0d5c46]" style={{ width: `${s.score}%` }} />
-                          </div>
-                          <span className="w-[32px] shrink-0 text-right text-[12px] font-bold text-[#0c3d30]">{s.score}%</span>
+                      {(skillRows.length ? skillRows : [NOT_IN_CV]).map((label) => (
+                        <div key={label} className="flex items-center gap-2">
+                          <Check className="h-3.5 w-3.5 shrink-0 text-[#0d5c46]" strokeWidth={3} />
+                          <span className="min-w-0 flex-1 truncate text-[12px] font-medium text-[#0c3d30]">{label}</span>
                         </div>
                       ))}
                     </div>
@@ -387,12 +359,12 @@ export default function ReviewDetailsContent() {
                     <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <SectionIcon icon={Award} />
-                        <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Certifications</h3>
+                        <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Achievements</h3>
                       </div>
                       <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <ul className="space-y-1.5">
-                      {certs.map((c) => (
+                      {(list(profile.achievements).length ? list(profile.achievements) : [NOT_IN_CV]).map((c) => (
                         <li key={c} className="flex items-start gap-1.5 text-[11.5px] leading-snug text-[#2d3748]">
                           <FileText className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#0d5c46]" />
                           {c}
@@ -411,7 +383,7 @@ export default function ReviewDetailsContent() {
                       <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <ul className="space-y-1.5">
-                      {docs.map((d) => (
+                      {(candidate.cvName ? [{ name: candidate.cvName, size: candidate.cvSize || "" }] : []).map((d) => (
                         <li key={d.name} className="flex items-center gap-1.5 text-[11.5px] text-[#2d3748]">
                           <FileText className="h-3.5 w-3.5 shrink-0 text-[#0d5c46]" />
                           <span className="min-w-0 flex-1 truncate">{d.name}</span>
@@ -442,12 +414,14 @@ export default function ReviewDetailsContent() {
                     </span>
                     <div>
                       <p className="text-[14px] font-bold text-[#0c3d30]">{jobTitle}</p>
-                      <p className="text-[11.5px] text-[#5a6a7a]">Voluntary (Free Seva)</p>
+                      <p className="text-[11.5px] text-[#5a6a7a]">{employmentType}</p>
                     </div>
                   </div>
                   <div className="mt-1.5 flex items-center gap-3 text-[11.5px] text-[#5a6a7a]">
                     <span className="flex items-center gap-1"><MapPin className="h-3 w-3 text-[#d97706]" /> {candLocation}</span>
-                    <span className="flex items-center gap-1"><Calendar className="h-3 w-3 text-[#d97706]" /> Flexible</span>
+                    {profile.noticePeriod && (
+                      <span className="flex items-center gap-1"><Calendar className="h-3 w-3 text-[#d97706]" /> {profile.noticePeriod}</span>
+                    )}
                   </div>
                 </div>
 
@@ -455,13 +429,13 @@ export default function ReviewDetailsContent() {
                 <div className="rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-[15px] font-bold text-[#0c3d30]">Profile Match</h3>
-                    <span className="rounded-full bg-[#fef3c7] px-2.5 py-0.5 text-[11px] font-bold text-[#b45309]">⭐ Strong Match</span>
+                    <span className="rounded-full bg-[#fef3c7] px-2.5 py-0.5 text-[11px] font-bold text-[#b45309]">{matchLevel === "high" ? "⭐ Strong Match" : matchLevel === "moderate" ? "Moderate Match" : "Low Match"}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="relative grid h-[90px] w-[90px] shrink-0 place-items-center">
                       <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full -rotate-90">
                         <circle cx="60" cy="60" r="48" fill="none" stroke="#e5e7eb" strokeWidth="12" />
-                        <circle cx="60" cy="60" r="48" fill="none" stroke="#0d5c46" strokeWidth="12" strokeDasharray={`${(score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`} strokeLinecap="round" />
+                        <circle cx="60" cy="60" r="48" fill="none" stroke={matchLevel === "high" ? "#0d5c46" : matchLevel === "moderate" ? "#d97706" : "#dc2626"} strokeWidth="12" strokeDasharray={`${(score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`} strokeLinecap="round" />
                       </svg>
                       <div className="text-center leading-tight">
                         <span className="text-[18px] font-bold text-[#0c3d30]">{score}%</span>
@@ -469,7 +443,7 @@ export default function ReviewDetailsContent() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-[12px] leading-[1.45] text-[#3a4a5c]">Your profile matches well with the volunteer role requirements.</p>
+                      <p className="text-[12px] leading-[1.45] text-[#3a4a5c]">{candidate.summary || "Your profile has been compared against this role."}</p>
                       <p className="mt-0.5 text-[11px] text-[#64748b]">Based on your skills, experience and interests derived from your CV.</p>
                     </div>
                   </div>
@@ -518,7 +492,7 @@ export default function ReviewDetailsContent() {
                 </div>
                 <div className="pt-0.5">
                   <button
-                    onClick={() => router.push(`/careers/apply/result?job=${encodeURIComponent(jobSlug)}`)}
+                    onClick={() => router.push(resultPathFor(candidate, jobSlug))}
                     className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#0b4d3b] bg-[#fdfaf1] py-2 text-[13px] font-bold text-[#0b4d3b] transition hover:bg-[#f2ebe0]"
                   >
                     <ArrowLeft className="h-4 w-4" /> Back to AI Analysis
@@ -538,20 +512,9 @@ export default function ReviewDetailsContent() {
           isOpen={isEditProfileOpen}
           candidate={candidate}
           onClose={() => setIsEditProfileOpen(false)}
-          onSave={(updated) => {
-            const newCand = { ...candidate, ...updated };
-            setCandidate(newCand);
-            try {
-              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
-            } catch {}
-            if (candidate.candidateId) {
-              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
-              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updated),
-              }).catch(() => undefined);
-            }
+          onSave={async (updated) => {
+            const { candidate: next } = await saveCandidateEdits(candidate, updated);
+            setCandidate(next);
           }}
         />
       </main>

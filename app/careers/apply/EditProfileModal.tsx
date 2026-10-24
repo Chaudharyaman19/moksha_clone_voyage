@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { X, Check, User, Mail, Phone, MapPin, Briefcase } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, Check, User, Mail, Phone, MapPin, Camera, Link2 } from "lucide-react";
 import { CandidateProfileData } from "../submit-resume/page";
+import { CandidatePhoto, useChangePhoto, type ApplyCandidate } from "./candidateView";
 
 export function EditProfileModal({
   isOpen,
@@ -13,24 +14,55 @@ export function EditProfileModal({
   isOpen: boolean;
   candidate: CandidateProfileData;
   onClose: () => void;
-  onSave: (updated: Partial<CandidateProfileData>) => void;
+  onSave: (updated: Partial<ApplyCandidate>) => void;
 }) {
-  const [name, setName] = useState(candidate.candidateName || candidate.firstName || "Ram");
+  const [name, setName] = useState(candidate.candidateName || "");
   const [email, setEmail] = useState(candidate.email || "");
   const [phone, setPhone] = useState(candidate.phone || "");
-  const [location, setLocation] = useState(candidate.location || "Delhi NCR");
+  const [location, setLocation] = useState((candidate as ApplyCandidate).location || "");
+  const [linkedin, setLinkedin] = useState(candidate.linkedin || "");
+  const [photo, setPhoto] = useState(candidate.image || "");
+  const [formError, setFormError] = useState("");
+
+  const photoChange = useChangePhoto(candidate as ApplyCandidate, (next) => {
+    setPhoto(next.image || "");
+    // The photo is already stored for this candidate; the page updates its own copy now.
+    onSave({ image: next.image });
+  });
+
+  // The page mounts this before the candidate has loaded, so refill the fields each time it opens.
+  useEffect(() => {
+    if (!isOpen) return;
+    setName(candidate.candidateName || "");
+    setEmail(candidate.email || "");
+    setPhone(candidate.phone || "");
+    setLocation((candidate as ApplyCandidate).location || "");
+    setLinkedin(candidate.linkedin || "");
+    setPhoto(candidate.image || "");
+    setFormError("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const handleSave = () => {
     const trimmedName = name.trim();
-    const updated: Partial<CandidateProfileData> = {
+    const trimmedEmail = email.trim();
+    const phoneDigits = phone.replace(/\D/g, "");
+
+    if (!trimmedName) return setFormError("Please enter your full name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) return setFormError("Please enter a valid email address.");
+    if (phoneDigits.length < 10) return setFormError("Please enter a valid phone number.");
+
+    const updated: Partial<ApplyCandidate> = {
       candidateName: trimmedName,
-      firstName: trimmedName.split(" ")[0] || "Ram",
-      email: email.trim(),
+      firstName: trimmedName.split(" ")[0] || "",
+      email: trimmedEmail,
       phone: phone.trim(),
       location: location.trim(),
+      linkedin: linkedin.trim(),
     };
+    setFormError("");
     onSave(updated);
     onClose();
   };
@@ -54,6 +86,24 @@ export function EditProfileModal({
         </div>
 
         <div className="mt-4 space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
+              <CandidatePhoto src={photo} className="object-cover object-top" />
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={photoChange.open}
+                disabled={photoChange.busy}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#ebdcc4] bg-[#fcf8ee] px-3 py-1.5 text-[12.5px] font-semibold text-[#0c3d30] hover:bg-gray-100 disabled:opacity-60"
+              >
+                <Camera className="h-3.5 w-3.5" /> {photoChange.busy ? "Uploading..." : photo ? "Change Photo" : "Add Photo"}
+              </button>
+              {photoChange.error && <p className="mt-1 text-[11.5px] text-[#b23b2e]">{photoChange.error}</p>}
+              {photoChange.input}
+            </div>
+          </div>
+
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">Full Name</label>
             <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
@@ -109,6 +159,22 @@ export function EditProfileModal({
               />
             </div>
           </div>
+
+          <div>
+            <label className="text-[12px] font-semibold text-[#0c3d30]">LinkedIn</label>
+            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+              <Link2 className="h-4 w-4 text-[#0d5c46]" />
+              <input
+                type="text"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+                className="w-full bg-transparent text-[13.5px] text-[#0c3d30] outline-none"
+                placeholder="linkedin.com/in/your-name"
+              />
+            </div>
+          </div>
+
+          {formError && <p className="text-[12px] font-medium text-[#b23b2e]">{formError}</p>}
         </div>
 
         <div className="mt-5 flex items-center justify-end gap-2 border-t border-[#ebdcc4] pt-3">

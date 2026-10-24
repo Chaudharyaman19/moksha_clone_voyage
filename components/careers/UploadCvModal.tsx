@@ -83,6 +83,15 @@ const prettifyName = (raw?: string | null): string => {
         .join(" ");
 };
 
+/** First few evidence strings of one breakdown dimension as a single line. */
+const joinNote = (items?: unknown): string =>
+    Array.isArray(items)
+        ? items
+              .filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+              .slice(0, 3)
+              .join(", ")
+        : "";
+
 const formatBytes = (bytes: number) =>
     bytes < 1024 * 1024
         ? `${Math.max(1, Math.round(bytes / 1024))} KB`
@@ -109,20 +118,9 @@ const jobCopy = {
         "Be a part of Moksha Sewa and contribute to a sustainable, healthier and more conscious tomorrow. Support our core mission, connect with partner organizations, and build impactful solutions.",
 };
 
-const fallbackResponsibilities = [
-    "Generate exhibitor and sponsorship sales",
-    "Meet prospective clients and negotiate deals",
-    "Manage the complete sales cycle from lead to booking",
-    "Achieve monthly and exhibition-wise targets",
-];
+const fallbackResponsibilities: string[] = [];
 
-const fallbackApplyCriteria = [
-    "Graduate in any discipline (MBA/PGDM preferred)",
-    "3 – 6 years in B2B sales / business development",
-    "Exhibition / trade show sales experience (preferred)",
-    "Strong communication and negotiation skills",
-    "Based in Delhi NCR; travel as required",
-];
+const fallbackApplyCriteria: string[] = [];
 
 function MetaItem({
     icon: Icon,
@@ -225,11 +223,12 @@ function InfoSection({
     );
 }
 
-function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
+function UploadBox({ onFile, analysisError }: { onFile: (file: File | null) => void; analysisError?: string }) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [fileName, setFileName] = useState("");
     const [fileSize, setFileSize] = useState("");
-    const [error, setError] = useState("");
+    const [fileError, setError] = useState("");
+    const error = fileError || analysisError || "";
     const [isDragging, setIsDragging] = useState(false);
 
     const chooseFile = () => inputRef.current?.click();
@@ -358,6 +357,8 @@ export type CandidateAnalysisData = {
         industryExperience: number;
         locationPreference: number;
     };
+    /** One-line, CV-derived detail shown under each breakdown score, keyed by the breakdown title. */
+    breakdownNotes?: Record<string, string>;
     /** Evidence strings backing the industryExperience score, for display in "Key Details from CV". */
     industryExperienceEvidence?: string[];
     /** Backend ids, so later steps can patch this same candidate record. */
@@ -378,6 +379,7 @@ export default function UploadCvModal({
 }) {
     const [file, setFile] = useState<File | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [analysisError, setAnalysisError] = useState("");
 
     useEffect(() => {
         lockScroll();
@@ -436,13 +438,9 @@ export default function UploadCvModal({
     const preferredQualifications = (job.preferredQualifications ?? [])
         .map((item) => item?.trim())
         .filter(Boolean) as string[];
-    // Only fall back to the sample's "(MBA/PGDM Preferred)" when the job carries no
-    // education copy at all — a real job with nothing preferred should say nothing.
     const educationNote = preferredQualifications.length
         ? `(${preferredQualifications.join(", ")})`
-        : job.education?.trim()
-            ? ""
-            : "(MBA/PGDM Preferred)";
+        : "";
     const threshold =
         typeof job.eligibilityThreshold === "number" && job.eligibilityThreshold > 0
             ? job.eligibilityThreshold
@@ -451,7 +449,7 @@ export default function UploadCvModal({
         "Relevant experience",
         job.department?.trim()
             ? `${job.department.trim()} experience`
-            : "Exhibition / Trade show sales experience",
+            : "Experience in this field",
         job.skills?.length
             ? `Key skills: ${job.skills.slice(0, 4).join(", ")}`
             : "Key skills and qualifications",
@@ -464,12 +462,13 @@ export default function UploadCvModal({
         : undefined;
 
     /**
-     * The analyze API needs a job that actually exists in the backend database.
-     * Static job objects (Submit Your Resume, /careers/uploade_cv, …) carry no _id,
-     * so the live job list is used to resolve a real one instead of guessing a slug.
+     * The analyze API needs a job that actually exists in the backend database. A CV is
+     * only ever scored against this job's own record; if it cannot be resolved the
+     * analysis is refused rather than run against some other opening.
      */
     const resolveJobTargetId = async (apiBase: string): Promise<string> => {
         if (job._id && /^[0-9a-fA-F]{24}$/.test(job._id)) return job._id;
+        if (job.id && /^[0-9a-fA-F]{24}$/.test(job.id)) return job.id;
 
         try {
             const res = await fetch(`${apiBase}/careers/jobs`);
@@ -477,28 +476,19 @@ export default function UploadCvModal({
             const list: { _id?: string; slug?: string; title?: string }[] = Array.isArray(json?.data)
                 ? json.data
                 : [];
-            if (list.length > 0) {
-                const wanted = (job.title || jobCopy.title || "").trim().toLowerCase();
-                const match =
-                    list.find((j) => String(j?.title || "").trim().toLowerCase() === wanted) ||
-                    list[0];
-                if (match?._id) return String(match._id);
-                if (match?.slug) return String(match.slug);
-            }
+            const wantedSlug = (job.slug || "").trim();
+            const wantedTitle = (job.title || "").trim().toLowerCase();
+            const match =
+                list.find((j) => wantedSlug && j?.slug === wantedSlug) ||
+                list.find((j) => wantedTitle && String(j?.title || "").trim().toLowerCase() === wantedTitle);
+            if (match?._id) return String(match._id);
+            if (match?.slug) return String(match.slug);
         } catch {
-            // Job list unavailable — fall back to the ids we already have.
+            // Job list unavailable — handled below.
         }
 
         if (job.slug && job.slug.trim()) return job.slug.trim();
-        if (job.id && /^[0-9a-fA-F]{24}$/.test(job.id)) return job.id;
-
-        return (
-            (job.title || jobCopy.title || "")
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/(^-|-$)+/g, "") || "web-developer"
-        );
+        throw new Error("This position could not be found. Please refresh the page and try again.");
     };
 
     const handleAnalyzeButtonClick = () => {
@@ -553,8 +543,8 @@ export default function UploadCvModal({
 
             const analysisData = analyzeJson.data;
             const profileData = analysisData.candidateProfile || {};
-            const fullName = prettifyName(profileData.name) || prettifyName(file.name.replace(/\.[^/.]+$/, ""));
-            const firstName = fullName.split(" ")[0] || "Candidate";
+            const fullName = prettifyName(profileData.name);
+            const firstName = fullName.split(" ")[0] || "";
 
             const candidateData: CandidateAnalysisData & {
                 candidateId?: string;
@@ -579,27 +569,35 @@ export default function UploadCvModal({
                 cvName: file.name,
                 cvSize: fileSizeStr,
                 cvUrl: profileData.cv?.cloudinaryUrl || objectUrl,
-                score: analysisData.matchScore ?? 72,
+                score: analysisData.matchScore ?? 0,
                 summary: analysisData.explanation,
                 requirementsMet: analysisData.matchedRequirements?.length > 0
                     ? analysisData.matchedRequirements
-                    : analysisData.strengths,
+                    : analysisData.strengths || [],
                 jobDetails: {
                     title: job?.title || jobCopy.title,
                     company: job?.company || jobCopy.company,
                     brand: job?.brand || jobCopy.brand,
-                    location: job?.location || "Delhi NCR",
-                    type: job?.type || "Full Time",
-                    experience: job?.experience || "3 – 6 Years",
+                    location: job?.location || "",
+                    type: job?.type || "",
+                    experience: job?.experience || "",
                     education: `${educationLabel}${educationNote ? ` ${educationNote}` : ""}`,
                 },
                 breakdown: {
-                    relevantExperience: analysisData.breakdown?.relevantExperience?.score ?? (analysisData.matchScore ?? 0),
-                    educationalQualification: analysisData.breakdown?.education?.score ?? (analysisData.matchScore ?? 0),
-                    keySkills: analysisData.breakdown?.skills?.score ?? (analysisData.matchScore ?? 0),
-                    roleFit: analysisData.breakdown?.roleFit?.score ?? (analysisData.matchScore ?? 0),
-                    industryExperience: analysisData.breakdown?.industryExperience?.score ?? (analysisData.matchScore ?? 0),
-                    locationPreference: analysisData.breakdown?.location?.score ?? 100,
+                    relevantExperience: analysisData.breakdown?.relevantExperience?.score ?? 0,
+                    educationalQualification: analysisData.breakdown?.education?.score ?? 0,
+                    keySkills: analysisData.breakdown?.skills?.score ?? 0,
+                    roleFit: analysisData.breakdown?.roleFit?.score ?? 0,
+                    industryExperience: analysisData.breakdown?.industryExperience?.score ?? 0,
+                    locationPreference: analysisData.breakdown?.location?.score ?? 0,
+                },
+                breakdownNotes: {
+                    "Relevant Experience": joinNote(analysisData.breakdown?.relevantExperience?.evidence),
+                    "Educational Qualification": joinNote(analysisData.breakdown?.education?.evidence),
+                    "Key Skills": joinNote(analysisData.breakdown?.skills?.matched),
+                    "Role Fit": joinNote(analysisData.breakdown?.roleFit?.evidence),
+                    "Industry Experience": joinNote(analysisData.breakdown?.industryExperience?.evidence),
+                    "Location Preference": joinNote(analysisData.breakdown?.location?.evidence),
                 },
                 industryExperienceEvidence: analysisData.breakdown?.industryExperience?.evidence || [],
                 candidateId: analysisData.candidateId,
@@ -610,117 +608,13 @@ export default function UploadCvModal({
 
             if (onAnalyze) onAnalyze(candidateData);
         } catch (e) {
-            console.warn("Express Backend CV Analysis failed, attempting Next.js /api/analyze-cv fallback:", e);
-
-            try {
-                const nextFormData = new FormData();
-                nextFormData.append("file", file);
-                nextFormData.append("jobTitle", job?.title || jobCopy.title);
-                nextFormData.append("jobExperience", job?.experience || "3 - 6 Years");
-
-                const nextRes = await fetch("/api/analyze-cv", {
-                    method: "POST",
-                    body: nextFormData,
-                });
-
-                if (nextRes.ok) {
-                    const nextJson = await nextRes.json();
-                    if (nextJson.success) {
-                        const candidateData: CandidateAnalysisData = {
-                            candidateName: prettifyName(nextJson.candidateName) || prettifyName(file.name.replace(/\.[^/.]+$/, "")),
-                            firstName: nextJson.firstName || "Candidate",
-                            email: nextJson.email || null,
-                            phone: nextJson.phone || null,
-                            phones: Array.isArray(nextJson.phones) && nextJson.phones.length > 0
-                                ? nextJson.phones
-                                : nextJson.phone
-                                    ? [nextJson.phone]
-                                    : [],
-                            verifiedPhone: null,
-                            linkedin: nextJson.linkedin || null,
-                            cvFile: file,
-                            cvName: file.name,
-                            cvSize: fileSizeStr,
-                            cvUrl: objectUrl,
-                            score: nextJson.score ?? 72,
-                            summary: nextJson.summary,
-                            requirementsMet: nextJson.requirementsMet,
-                            jobDetails: {
-                                title: job?.title || jobCopy.title,
-                                company: job?.company || jobCopy.company,
-                                brand: job?.brand || jobCopy.brand,
-                                location: job?.location || "Delhi NCR",
-                                type: job?.type || "Full Time",
-                                experience: job?.experience || "3 – 6 Years",
-                                education: "Graduate (MBA/PGDM Preferred)",
-                            },
-                            breakdown: {
-                                relevantExperience: nextJson.breakdown?.relevantExperience ?? nextJson.score,
-                                educationalQualification: nextJson.breakdown?.educationalQualification ?? 90,
-                                keySkills: nextJson.breakdown?.keySkills ?? nextJson.score,
-                                roleFit: nextJson.breakdown?.roleFit ?? nextJson.score,
-                                industryExperience: nextJson.breakdown?.industryExperience ?? nextJson.score,
-                                locationPreference: nextJson.breakdown?.locationPreference ?? 100,
-                            },
-                        };
-
-                        if (onAnalyze) onAnalyze(candidateData);
-                        return;
-                    }
-                }
-            } catch (nextErr) {
-                console.error("Next.js /api/analyze-cv fallback error:", nextErr);
-            }
-
-            let computedScore = 72;
-            const name = file.name.toLowerCase();
-            if (name.includes("low") || name.includes("junior") || name.includes("fresher") || name.includes("38")) {
-                computedScore = 38;
-            } else if (name.includes("medium") || name.includes("sales") || name.includes("partial") || name.includes("58")) {
-                computedScore = 58;
-            }
-
-            const fallbackName = file.name
-                .replace(/\.[^/.]+$/, "")
-                .replace(/[-_]/g, " ")
-                .replace(/\b(cv|resume|doc|pdf)\b/gi, "")
-                .trim();
-            const formattedName = prettifyName(fallbackName) || "Candidate";
-            const firstName = formattedName.split(" ")[0];
-
-            const candidateData: CandidateAnalysisData = {
-                candidateName: formattedName,
-                firstName: firstName,
-                email: null,
-                phone: null,
-                phones: [],
-                verifiedPhone: null,
-                linkedin: null,
-                cvFile: file,
-                cvName: file.name,
-                cvSize: fileSizeStr,
-                cvUrl: objectUrl,
-                score: computedScore,
-                jobDetails: {
-                    title: job?.title || jobCopy.title,
-                    company: job?.company || jobCopy.company,
-                    brand: job?.brand || jobCopy.brand,
-                    location: job?.location || "Delhi NCR",
-                    type: job?.type || "Full Time",
-                    experience: job?.experience || "3 – 6 Years",
-                    education: "Graduate (MBA/PGDM Preferred)",
-                },
-                breakdown: {
-                    relevantExperience: computedScore < 50 ? 0 : computedScore,
-                    educationalQualification: computedScore < 50 ? 30 : computedScore,
-                    keySkills: computedScore < 50 ? 10 : computedScore,
-                    roleFit: computedScore < 50 ? 20 : computedScore,
-                    industryExperience: computedScore < 50 ? 0 : computedScore,
-                    locationPreference: 100,
-                },
-            };
-
-            if (onAnalyze) onAnalyze(candidateData);
+            // No made-up result: the candidate is told and can retry.
+            console.error("CV analysis failed:", e);
+            setAnalysisError(
+                e instanceof Error && e.message
+                    ? e.message
+                    : "We could not analyse your CV right now. Please try again."
+            );
         } finally {
             setIsAnalyzing(false);
         }
@@ -886,7 +780,13 @@ export default function UploadCvModal({
                                 </p>
 
                                 <div className="mt-[10px]">
-                                    <UploadBox onFile={setFile} />
+                                    <UploadBox
+                                        onFile={(next) => {
+                                            setAnalysisError("");
+                                            setFile(next);
+                                        }}
+                                        analysisError={analysisError}
+                                    />
                                 </div>
 
                                 <div className="mt-[9px]">

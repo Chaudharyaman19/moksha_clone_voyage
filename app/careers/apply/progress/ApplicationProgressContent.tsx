@@ -24,6 +24,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
+import { matchLevelFor, readStoredCandidate, resultPathFor } from "../candidateView";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -165,13 +166,13 @@ export default function ApplicationProgressContent() {
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("candidateData");
-      if (stored) {
-        setCandidate(JSON.parse(stored));
-      }
-    } catch {}
-  }, []);
+    const stored = readStoredCandidate();
+    if (!stored) {
+      router.replace(`/careers/apply?job=${encodeURIComponent(jobSlug)}`);
+      return;
+    }
+    setCandidate(stored);
+  }, [router, jobSlug]);
 
   // Smooth progress animation that finishes and unlocks the Next button
   useEffect(() => {
@@ -205,31 +206,26 @@ export default function ApplicationProgressContent() {
   }, [candidate]);
 
   const handleProceed = () => {
-    const score = typeof candidate.score === "number" ? candidate.score : 0;
-    if (score < 50) {
-      router.push(`/careers/apply/result/not-eligible?job=${encodeURIComponent(jobSlug)}`);
-    } else if (score < 70) {
-      router.push(`/careers/apply/result/partial?job=${encodeURIComponent(jobSlug)}`);
-    } else {
-      router.push(`/careers/apply/result?job=${encodeURIComponent(jobSlug)}`);
-    }
+    router.push(resultPathFor(candidate, jobSlug));
   };
 
-  const jobTitle = candidate.jobDetails?.title || "Operations Associate";
-  const jobLocation = candidate.jobDetails?.location || "Delhi NCR";
-  const jobType = candidate.jobDetails?.type || "Full Time";
-  const jobEducation = candidate.jobDetails?.education || "Bachelor's Degree";
-  const cvFileName = candidate.cvName || "Vijay_Sharma_CV.pdf";
-  const cvFileSize = candidate.cvSize || "2.4 MB";
+  const jobTitle = candidate.jobDetails?.title || "";
+  const jobLocation = candidate.jobDetails?.location || "";
+  const jobType = candidate.jobDetails?.type || "";
+  const jobEducation = candidate.jobDetails?.education || "";
+  const cvFileName = candidate.cvName || "";
+  const cvFileSize = candidate.cvSize || "";
   const targetScore = typeof candidate.score === "number"
     ? candidate.score
     : 0;
 
-  const scoreMessage = targetScore >= 70
-    ? "Based on your experience, skills and qualifications, you are a strong match for this position."
-    : targetScore >= 50
-    ? "Based on your experience, you partially match this position. Some required skills are missing."
-    : "Based on our AI review, your experience does not align with the core requirements of this role.";
+  const matchLevel = matchLevelFor(candidate);
+  const scoreMessage =
+    matchLevel === "high"
+      ? "Based on your experience, skills and qualifications, you are a strong match for this position."
+      : matchLevel === "moderate"
+      ? "Based on your experience, you partially match this position. Some required skills are missing."
+      : "Based on our AI review, your experience does not align with the core requirements of this role.";
 
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">
@@ -281,7 +277,7 @@ export default function ApplicationProgressContent() {
                     <span className="grid h-[44px] w-[38px] shrink-0 place-items-center rounded-lg bg-[#dc1017] text-[11px] font-black text-white">PDF</span>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-[15.5px] font-bold text-[#0c3d30]">{cvFileName}</p>
-                      <p className="text-[12.5px] text-[#64748b]">Uploaded successfully &nbsp;|&nbsp; PDF &nbsp;|&nbsp; {cvFileSize}</p>
+                      <p className="text-[12.5px] text-[#64748b]">Uploaded successfully{cvFileSize ? <> &nbsp;|&nbsp; {cvFileSize}</> : null}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2.5 rounded-xl border border-[#bbe5cf] bg-[#f0faf5] px-3 py-2.5">
@@ -458,9 +454,9 @@ export default function ApplicationProgressContent() {
 
                 {/* Profile Match */}
                 <div className={`rounded-2xl border p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] ${
-                  targetScore >= 70
+                  matchLevel === "high"
                     ? "border-[#f5e3c0] bg-[#fdf6ea]"
-                    : targetScore >= 50
+                    : matchLevel !== "low"
                     ? "border-[#fef08a] bg-[#fefce8]"
                     : "border-[#fecaca] bg-[#fef2f2]"
                 }`}>
@@ -473,21 +469,21 @@ export default function ApplicationProgressContent() {
                           cy="60"
                           r="48"
                           fill="none"
-                          stroke={targetScore >= 70 ? "#0d5c46" : targetScore >= 50 ? "#d97706" : "#dc2626"}
+                          stroke={matchLevel === "high" ? "#0d5c46" : matchLevel !== "low" ? "#d97706" : "#dc2626"}
                           strokeWidth={12}
                           strokeDasharray={`${(targetScore / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
                           strokeLinecap="round"
                         />
                       </svg>
                       <span className={`text-[17px] font-bold ${
-                        targetScore >= 70 ? "text-[#0c3d30]" : targetScore >= 50 ? "text-[#d97706]" : "text-[#dc2626]"
+                        matchLevel === "high" ? "text-[#0c3d30]" : matchLevel !== "low" ? "text-[#d97706]" : "text-[#dc2626]"
                       }`}>
                         {targetScore}%
                       </span>
                     </div>
                     <div>
                       <p className={`text-[14px] font-bold ${
-                        targetScore >= 70 ? "text-[#0c3d30]" : targetScore >= 50 ? "text-[#92400e]" : "text-[#991b1b]"
+                        matchLevel === "high" ? "text-[#0c3d30]" : matchLevel !== "low" ? "text-[#92400e]" : "text-[#991b1b]"
                       }`}>
                         Your Profile Match
                       </p>

@@ -72,6 +72,7 @@ export const metadata: Metadata = {
 import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
 import SmoothScrolling from "@/components/common/SmoothScrolling";
 import Script from "next/script";
+import { GlobalAudioProvider } from "@/contexts/GlobalAudioContext";
 
 export default async function RootLayout({
   children,
@@ -131,13 +132,15 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <StoreProvider>
-          <DynamicCanonical />
-          <JsonLd data={organizationJsonLd()} />
-          <JsonLd data={websiteJsonLd()} />
-          <Sideicon />
-          <SmoothScrolling>
-            {children}
-          </SmoothScrolling>
+          <GlobalAudioProvider>
+            <DynamicCanonical />
+            <JsonLd data={organizationJsonLd()} />
+            <JsonLd data={websiteJsonLd()} />
+            <Sideicon />
+            <SmoothScrolling>
+              {children}
+            </SmoothScrolling>
+          </GlobalAudioProvider>
         </StoreProvider>
         {advancedSeo?.globalBodyCode && (
           <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalBodyCode }} />

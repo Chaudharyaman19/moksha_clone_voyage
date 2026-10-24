@@ -261,57 +261,6 @@ function EmptyOpenings() {
   );
 }
 
-const DEFAULT_STATIC_JOBS: JobOpening[] = [
-  {
-    id: "telemarketing-executive",
-    slug: "telemarketing-executive",
-    title: "Telemarketing Executive",
-    department: "Ghaziabad, Uttar Pradesh",
-    location: "Ghaziabad, Uttar Pradesh",
-    type: "Full time",
-    experience: "0 - 10 Years",
-    description:
-      "Strong communication and persuasive skills. Experience in cold calling, lead generation, client interaction, and achieving community outreach goals.",
-    icon: Users,
-  },
-  {
-    id: "web-developer",
-    slug: "web-developer",
-    title: "Web Developer",
-    department: "Ghaziabad, Uttar Pradesh",
-    location: "Ghaziabad, Uttar Pradesh",
-    type: "Full time",
-    experience: "0 - 10 Years",
-    description:
-      "Strong communication and persuasive skills. Experience in frontend and full-stack web development with React, Next.js, APIs, and modern responsive design.",
-    icon: Users,
-  },
-  {
-    id: "community-outreach-specialist",
-    slug: "community-outreach-specialist",
-    title: "Community Outreach Specialist",
-    department: "Delhi NCR",
-    location: "Delhi NCR",
-    type: "Full Time",
-    experience: "0 - 5 Years",
-    description:
-      "Build community relationships, create awareness and contribute to the growth of Moksha Sewa's innovative services and social initiatives.",
-    icon: Users,
-  },
-  {
-    id: "wellness-services-coordinator",
-    slug: "wellness-services-coordinator",
-    title: "Wellness Services Coordinator",
-    department: "Delhi NCR",
-    location: "Delhi NCR",
-    type: "Full Time",
-    experience: "1 - 5 Years",
-    description:
-      "Coordinate wellness services and family client support to ensure smooth, respectful, and compassionate service delivery across regions.",
-    icon: Users,
-  },
-];
-
 function WaveDivider() {
   return (
     <svg
@@ -340,7 +289,7 @@ export default function CareersClientContent() {
   const [isNoneModalOpen, setIsNoneModalOpen] = useState(false);
   const [isAmanModalOpen, setIsAmanModalOpen] = useState(false);
   const [showAllJobs, setShowAllJobs] = useState(false);
-  const [fetchedJobs, setFetchedJobs] = useState<JobOpening[]>(DEFAULT_STATIC_JOBS);
+  const [fetchedJobs, setFetchedJobs] = useState<JobOpening[]>([]);
 
   useEffect(() => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
@@ -356,10 +305,13 @@ export default function CareersClientContent() {
             id: j._id,
             slug: j.slug,
             title: j.title,
-            department: j.department || "General",
-            location: j.location || "Delhi NCR",
-            type: j.employmentType || "Full time",
-            experience: `${j.experienceMin ?? 0} - ${j.experienceMax ?? 10} Years`,
+            department: j.department || "",
+            location: j.location || "",
+            type: j.employmentType || "",
+            experience:
+              j.experienceMin != null && j.experienceMax != null
+                ? `${j.experienceMin} - ${j.experienceMax} Years`
+                : "",
             description:
               j.description || j.responsibilities?.[0] || j.requirements?.[0] || j.title,
             company: j.company,
@@ -372,19 +324,11 @@ export default function CareersClientContent() {
             icon: Users,
           }));
 
-          // Always ensure at least 4 cards are displayed matching the 4-column layout perfectly
-          if (mappedJobs.length < 4) {
-            const complementary = DEFAULT_STATIC_JOBS.filter(
-              (dj) => !mappedJobs.some((mj) => mj.title.toLowerCase() === dj.title.toLowerCase())
-            );
-            setFetchedJobs([...mappedJobs, ...complementary].slice(0, 4));
-          } else {
-            setFetchedJobs(mappedJobs);
-          }
+          setFetchedJobs(mappedJobs);
         }
       })
       .catch((err) => {
-        console.warn("Express Backend jobs fetch note (using static defaults):", err);
+        console.warn("Could not load job openings:", err);
       });
   }, []);
 

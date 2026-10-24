@@ -400,36 +400,38 @@ export type CandidateProfileData = {
     industryExperience: number;
     locationPreference: number;
   };
+  /** Requirements the CV did not satisfy, from the analysis. */
+  gaps?: string[];
+  /** The job's own minimum match score (admin-set), used to decide eligibility. */
+  threshold?: number;
+  gender?: string | null;
+  dateOfBirth?: string | null;
+  cvUploadedAt?: string | null;
+  /** One-line, CV-derived detail under each breakdown score, keyed by the breakdown title. */
+  breakdownNotes?: Record<string, string>;
+  location?: string | null;
   /** Backend CandidateProfile id, so profile edits persist against that record. */
   candidateId?: string;
 };
 
+/**
+ * Empty placeholder used before a real analysis is loaded. It deliberately carries no
+ * person, contact detail, file or score of its own — everything shown comes from the
+ * candidate's own CV and the backend's analysis.
+ */
 export const defaultCandidateData: CandidateProfileData = {
-  candidateName: "Rohit Kumar",
-  firstName: "Rohit",
-  email: "kumarrohitji89@gmail.com",
-  phone: "+91 9568816858",
-  phones: ["+91 9568816858"],
-  verifiedPhone: "+91 9568816858",
-  linkedin: "linkedin.com/in/rohit-kumar",
-  cvName: "Rohit_Encodency.pdf",
-  cvSize: "424 KB",
-  score: 93,
-  requirementsMet: [
-    "Experience in exhibition / trade show sales & sponsorships",
-    "Exposure to client acquisition & B2B deal negotiation",
-    "Good communication and relationship management skills",
-    "Relevant industry experience in Expo / Wellness sector",
-    "Willing to work from Delhi NCR",
-  ],
-  breakdown: {
-    relevantExperience: 90,
-    educationalQualification: 100,
-    keySkills: 95,
-    roleFit: 90,
-    industryExperience: 85,
-    locationPreference: 100,
-  },
+  candidateName: "",
+  firstName: "",
+  email: null,
+  phone: null,
+  phones: [],
+  verifiedPhone: null,
+  linkedin: null,
+  cvName: "",
+  cvSize: "",
+  score: 0,
+  requirementsMet: [],
+  gaps: [],
 };
 
 type MatchContextType = {
@@ -516,7 +518,7 @@ export function getMatchData(
       .replaceAll("{{current_ctc}}", (candidate as any).currentCtc || "Not specified")
       .replaceAll("{{expected_ctc}}", (candidate as any).expectedCtc || "Not specified")
       .replaceAll("{{total_experience}}", (candidate as any).experience || "Not specified")
-      .replaceAll("{{current_location}}", (candidate as any).location || "Delhi NCR")
+      .replaceAll("{{current_location}}", (candidate as any).location || "Not specified")
       .replaceAll("{{application_link}}", "https://mokshasewa.org/careers")
       .replaceAll("{{support_email}}", supportEmail)
       .replaceAll("{{support_phone}}", supportPhone);
@@ -544,15 +546,17 @@ export function getMatchData(
     config.summaryText = candidate.summary;
   }
 
-  if (candidate.requirementsMet && candidate.requirementsMet.length > 0) {
-    config.requirements = candidate.requirementsMet as any;
-  } else if (level === "low") {
-    config.requirements = [
-      `Minimum experience required for ${jobTitle}`,
-      `Key technical skills matching ${jobTitle} description`,
-      `Relevant industry experience`,
-      `Communication and role readiness`,
-    ];
+  const met = (candidate.requirementsMet || []).filter(Boolean);
+  const gaps = (candidate.gaps || []).filter(Boolean);
+  if (level === "low") {
+    // What this CV is missing for this job, not a list of the job's own requirements.
+    config.requirements = (gaps.length > 0
+      ? gaps
+      : [`Your CV does not show the experience and skills required for ${jobTitle}`]) as any;
+  } else if (met.length > 0) {
+    config.requirements = met as any;
+  } else {
+    config.requirements = [`Your CV was compared against the requirements for ${jobTitle}`] as any;
   }
 
   return {
@@ -992,7 +996,7 @@ function Breakdown() {
       else if (item.title === "Industry Experience") score = candidate.breakdown.industryExperience;
       else if (item.title === "Location Preference") score = candidate.breakdown.locationPreference;
     }
-    return { ...item, score };
+    return { ...item, score, description: candidate.breakdownNotes?.[item.title] || "" };
   });
 
   return (
@@ -1078,17 +1082,17 @@ function Breakdown() {
 
 function LowNextSteps() {
   const goToCareers = useGoToCareers();
+  const { candidate } = useMatchData();
+  const jobTitle = candidate.jobDetails?.title || "this role";
   const data = [
     {
       title: "Gain Relevant Experience",
-      text:
-        "Consider gaining experience in sales, business development or event management.",
+      text: `Consider gaining hands-on experience that matches what ${jobTitle} requires.`,
       icon: GraduationCap,
     },
     {
       title: "Build Key Skills",
-      text:
-        "Improve skills in client acquisition, negotiation and relationship management.",
+      text: "Work on the skills listed in the job description and show them clearly in your CV.",
       icon: BookOpen,
     },
     {

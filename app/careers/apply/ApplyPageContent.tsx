@@ -24,6 +24,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { EligibilityModal, CandidateProfileData, defaultCandidateData } from "../submit-resume/page";
 import { ApplicationFormModal } from "../application-form/page";
+import { storeCandidate } from "./candidateView";
 import { ReviewSubmitModal } from "../review-submit/page";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
@@ -146,28 +147,14 @@ const validateCvFile = (file: File): string | null => {
 
 const ANALYSIS_STEPS = ["Reading your CV…", "Extracting skills & experience…", "Matching against this role…", "Scoring your profile…"];
 
-const DEFAULT_JOB: Job = {
-  title: "Web Developer",
-  department: "Ghaziabad, Uttar Pradesh",
-  description: "• Strong communication and persuasive skills.\n• Experience in frontend and full-stack web development.\n• Proficiency in React, Next.js, and TypeScript.\n• Knowledge of REST APIs and database integrations.\n• Ability to build responsive and user-friendly web interfaces.",
-  location: "Ghaziabad, Uttar Pradesh",
-  type: "Full Time",
-  experience: "0 - 10 Years",
-  education: "Graduate",
-  preferredQualifications: ["MBA/PGDM Preferred"],
-  responsibilities: [
-    "Generate exhibitor and sponsorship sales",
-    "Meet prospective clients and negotiate deals",
-    "Manage the complete sales cycle from lead to booking",
-    "Achieve monthly and exhibition-wise targets",
-  ],
-  eligibilityThreshold: 40,
-};
+/** Nothing is shown for a job until the backend record for this slug has loaded. */
+const DEFAULT_JOB: Job = {};
 
-function UploadBox({ onFile }: { onFile: (file: File | null) => void }) {
+function UploadBox({ onFile, analysisError }: { onFile: (file: File | null) => void; analysisError?: string }) {
   const [fileName, setFileName] = useState("");
   const [fileSize, setFileSize] = useState("");
-  const [error, setError] = useState("");
+  const [fileError, setError] = useState("");
+  const error = fileError || analysisError || "";
   const [isDragging, setIsDragging] = useState(false);
 
   const processFile = (file: File) => {
@@ -262,6 +249,7 @@ export default function ApplyPageContent() {
   const [job, setJob] = useState<Job>(DEFAULT_JOB);
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisError, setAnalysisError] = useState("");
   const [analysisElapsed, setAnalysisElapsed] = useState(0);
   const [candidateData, setCandidateData] = useState<CandidateProfileData>(defaultCandidateData);
   const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
@@ -281,11 +269,14 @@ export default function ApplyPageContent() {
               id: found._id,
               slug: found.slug,
               title: found.title,
-              department: found.department || "General",
+              department: found.department || "",
               description: found.description || "",
-              location: found.location || "Delhi NCR",
-              type: found.employmentType || "Full Time",
-              experience: `${found.experienceMin ?? 0} - ${found.experienceMax ?? 10} Years`,
+              location: found.location || "",
+              type: found.employmentType || "",
+              experience:
+                found.experienceMin != null && found.experienceMax != null
+                  ? `${found.experienceMin} - ${found.experienceMax} Years`
+                  : "",
               company: found.company,
               responsibilities: found.responsibilities,
               requirements: found.requirements,
@@ -309,34 +300,36 @@ export default function ApplyPageContent() {
 
   const analysisStep = isAnalyzing ? Math.min(Math.floor(analysisElapsed / 1800), ANALYSIS_STEPS.length - 1) : 0;
 
-  const educationLabel = job.education?.trim() || "Graduate";
+  const educationLabel = job.education?.trim() || "";
   const preferredQuals = (job.preferredQualifications ?? []).map((i) => i?.trim()).filter(Boolean);
-  const educationNote = preferredQuals.length ? `(${preferredQuals.join(", ")})` : job.education?.trim() ? "" : "(MBA/PGDM Preferred)";
+  const educationNote = preferredQuals.length ? `(${preferredQuals.join(", ")})` : "";
   const threshold = typeof job.eligibilityThreshold === "number" && job.eligibilityThreshold > 0 ? job.eligibilityThreshold : 40;
 
   const pickList = (value: string[] | undefined, fallback: string[]): string[] => {
     const cleaned = (value ?? []).map((i) => i?.trim()).filter(Boolean);
     return cleaned.length > 0 ? cleaned : fallback;
   };
-  const jobResponsibilities = pickList(job.responsibilities, ["Generate exhibitor and sponsorship sales", "Meet prospective clients and negotiate deals", "Manage the complete sales cycle from lead to booking", "Achieve monthly and exhibition-wise targets"]);
+  const jobResponsibilities = pickList(job.responsibilities, []);
   const jobApplyCriteria = job.description && job.description.includes("•")
     ? job.description.split("•").map((p) => p.trim()).filter(Boolean)
-    : pickList(job.requirements, ["Strong communication and persuasive skills", "Experience in the relevant domain", "Ability to handle objections and negotiate effectively"]);
+    : pickList(job.requirements, []);
 
   const aiChecklist = [
-    "Relevant product design experience",
-    "Experience in digital/product/service design",
-    "Proficiency in design tools (Figma, Adobe, etc.)",
-    "Portfolio and design quality",
-    "Communication & teamwork skills",
+    "Relevant experience",
+    job.department?.trim() ? `${job.department.trim()} experience` : "Experience in this field",
+    job.skills?.length ? `Key skills: ${job.skills.slice(0, 4).join(", ")}` : "Key skills and qualifications",
     "Overall profile match",
   ];
 
   const runAnalysis = useCallback(async () => {
     if (!file) return;
+    if (!job._id) {
+      setAnalysisError("This position could not be found. Please go back to Careers and open it again.");
+      return;
+    }
+    setAnalysisError("");
     setIsAnalyzing(true);
     const fileSizeStr = file.size > 1024 * 1024 ? `${(file.size / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(file.size / 1024)} KB`;
-    const objectUrl = URL.createObjectURL(file);
     const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
 
     try {
@@ -346,21 +339,20 @@ export default function ApplyPageContent() {
       const uploadJson = await uploadRes.json();
       if (!uploadRes.ok || !uploadJson.success) throw new Error(uploadJson.message || "Failed to upload CV");
       const candidateId = uploadJson.data.candidateId;
-      const targetJobId = job._id || job.slug || jobSlug || "telemarketing-executive";
 
       const analyzeRes = await fetch(`${apiBase}/careers/cv/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ candidateId, jobId: targetJobId }),
+        body: JSON.stringify({ candidateId, jobId: job._id }),
       });
       const analyzeJson = await analyzeRes.json();
       if (!analyzeRes.ok || !analyzeJson.success) throw new Error(analyzeJson.message || "Failed to analyze CV");
 
       const analysisData = analyzeJson.data;
       const profileData = analysisData.candidateProfile || {};
-      const parsedName = prettifyName(profileData.name) || prettifyName(file.name.replace(/\.[^/.]+$/, ""));
-      const fullName = parsedName || "Candidate";
-      const firstName = fullName.split(" ")[0] || "Candidate";
+      // Only a name the CV actually carries; a file name is not a person's name.
+      const fullName = prettifyName(profileData.name);
+      const firstName = fullName.split(" ")[0] || "";
       const cleanExtractedPhone = (val?: string | null) => {
         if (!val) return null;
         const cleaned = String(val).trim();
@@ -376,6 +368,13 @@ export default function ApplyPageContent() {
         .map(cleanExtractedPhone)
         .filter(Boolean) as string[];
 
+      const asText = (r: any) => (typeof r === "string" ? r : r?.text || r?.requirement || r?.description || "");
+      const bd = analysisData.breakdown || {};
+      const note = (items?: unknown) =>
+        Array.isArray(items)
+          ? items.filter((i): i is string => typeof i === "string" && i.trim().length > 0).slice(0, 3).join(", ")
+          : "";
+
       const data: any = {
         candidateName: fullName,
         firstName: firstName,
@@ -388,72 +387,58 @@ export default function ApplyPageContent() {
         location: profileData.location || null,
         verifiedPhone: null,
         image: profileData.photo || null,
-        cvFile: file,
         cvName: file.name,
         cvSize: fileSizeStr,
-        cvUrl: profileData.cv?.cloudinaryUrl || objectUrl,
-        score: analysisData.matchScore ?? 72,
+        cvUrl: profileData.cv?.cloudinaryUrl || null,
+        cvUploadedAt: new Date().toISOString(),
+        score: analysisData.matchScore ?? 0,
+        threshold: analysisData.eligibilityThreshold,
         summary: analysisData.explanation,
         requirementsMet: ((analysisData.matchedRequirements?.length > 0 ? analysisData.matchedRequirements : analysisData.strengths) || [])
-          .map((r: any) => typeof r === "string" ? r : r?.text || r?.requirement || r?.description || "")
+          .map(asText)
           .filter(Boolean),
-        gaps: (analysisData.gaps || analysisData.missingRequirements || [])
-          .map((r: any) => typeof r === "string" ? r : r?.text || r?.requirement || r?.description || "")
+        gaps: (analysisData.gaps?.length > 0 ? analysisData.gaps : analysisData.missingRequirements || [])
+          .map(asText)
           .filter(Boolean),
         jobDetails: {
           title: job.title,
           company: job.company || "Moksha Sewa",
           brand: job.brand,
-          location: job.location || "Delhi NCR",
-          type: job.type || "Full Time",
-          experience: job.experience || "0 - 10 Years",
-          education: `${educationLabel}${educationNote ? ` ${educationNote}` : ""}`,
+          location: job.location || "",
+          type: job.type || "",
+          experience: job.experience || "",
+          education: `${educationLabel}${educationNote ? ` ${educationNote}` : ""}`.trim(),
         },
-        breakdown: analysisData.breakdown
-          ? Object.fromEntries(
-            Object.entries(analysisData.breakdown).map(([k, v]: [string, any]) => [k, typeof v === "object" && v !== null ? (v.score ?? 0) : v])
-          )
-          : undefined,
+        breakdown: {
+          relevantExperience: bd.relevantExperience?.score ?? 0,
+          skills: bd.skills?.score ?? 0,
+          education: bd.education?.score ?? 0,
+          industryExperience: bd.industryExperience?.score ?? 0,
+          roleFit: bd.roleFit?.score ?? 0,
+          location: bd.location?.score ?? 0,
+        },
+        breakdownNotes: {
+          relevantExperience: note(bd.relevantExperience?.evidence),
+          skills: note(bd.skills?.matched),
+          education: note(bd.education?.evidence),
+          industryExperience: note(bd.industryExperience?.evidence),
+          roleFit: note(bd.roleFit?.evidence),
+          location: note(bd.location?.evidence),
+        },
         candidateId: analysisData.candidateId,
         jobId: analysisData.jobId,
         analysisId: analysisData.analysisId,
         fullProfile: profileData,
       };
       setCandidateData(data as any);
-      try {
-        sessionStorage.setItem("candidateData", JSON.stringify(data));
-      } catch {}
+      storeCandidate(data);
       router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
     } catch (err) {
+      // No invented result: the candidate is told what went wrong and can try again.
       console.error("AI Analysis error:", err);
-      const parsedFallback = prettifyName(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
-      const fallbackName = parsedFallback || "Candidate";
-      const fallbackData = {
-        ...defaultCandidateData,
-        candidateName: fallbackName,
-        firstName: fallbackName.split(" ")[0] || "Candidate",
-        cvFile: file,
-        cvName: file.name,
-        cvSize: fileSizeStr,
-        cvUrl: objectUrl,
-        score: 30, // Default low score when analysis fails or fallback occurs
-        summary: "Profile submitted for review. Detailed evaluation in progress.",
-        requirementsMet: [],
-        gaps: ["Pending manual HR evaluation"],
-        jobDetails: {
-          title: job.title || "Position Applied",
-          company: job.company || "Moksha Sewa",
-          location: job.location || "Delhi NCR",
-          type: job.type || "Full Time",
-          experience: job.experience || "0 - 10 Years",
-          education: educationLabel,
-        },
-      };
-      setCandidateData(fallbackData as any);
-      try {
-        sessionStorage.setItem("candidateData", JSON.stringify(fallbackData));
-      } catch {}
-      router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
+      setAnalysisError(
+        err instanceof Error && err.message ? err.message : "We could not analyse your CV right now. Please try again."
+      );
     } finally {
       setIsAnalyzing(false);
     }
@@ -588,24 +573,24 @@ export default function ApplyPageContent() {
 
                       {/* Badge */}
                       <span className="inline-block w-fit rounded bg-[#faedd9] px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wider text-[#9b6f33]">
-                        {job.type || "Full Time"}
+                        {job.type}
                       </span>
 
                       {/* Job Title */}
                       <h2 className="mt-1 font-serif text-[28px] font-bold leading-[1.08] text-[#002219] sm:text-[30px] lg:text-[32px]">
-                        {job.title || "Job Position"}
+                        {job.title}
                       </h2>
 
                       {/* Metadata row */}
                       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-[#ecdcc3] pb-2 text-[14px] font-medium text-[#2a3a4a]">
                         <span className="inline-flex items-center gap-1.5">
-                          <MapPin className="h-4 w-4 text-[#c7821e]" /> {job.location || "Delhi NCR"}
+                          <MapPin className="h-4 w-4 text-[#c7821e]" /> {job.location}
                         </span>
                         <span className="inline-flex items-center gap-1.5">
-                          <BriefcaseBusiness className="h-4 w-4 text-[#c7821e]" /> {job.type || "Full Time"}
+                          <BriefcaseBusiness className="h-4 w-4 text-[#c7821e]" /> {job.type}
                         </span>
                         <span className="inline-flex items-center gap-1.5">
-                          <TrendingUp className="h-4 w-4 text-[#c7821e]" /> {job.experience || "0 - 10 Years"}
+                          <TrendingUp className="h-4 w-4 text-[#c7821e]" /> {job.experience}
                         </span>
                         <span className="inline-flex items-center gap-1.5">
                           <GraduationCap className="h-4 w-4 text-[#c7821e]" />
@@ -747,7 +732,13 @@ export default function ApplyPageContent() {
 
                 {/* Upload Box Container */}
                 <div className="mt-2.5">
-                  <UploadBox onFile={setFile} />
+                  <UploadBox
+                    onFile={(next) => {
+                      setAnalysisError("");
+                      setFile(next);
+                    }}
+                    analysisError={analysisError}
+                  />
                 </div>
 
                 {/* AI will check */}

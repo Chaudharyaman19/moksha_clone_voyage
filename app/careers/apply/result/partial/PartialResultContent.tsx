@@ -37,6 +37,18 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../../submit-resume/page";
+import {
+  CandidatePhoto,
+  NOT_IN_CV,
+  breakdownRows,
+  formatDateTime,
+  formatGender,
+  jobSummaryRows,
+  matchLegend,
+  readStoredCandidate,
+  saveCandidateEdits,
+  useSupportContact,
+} from "../../candidateView";
 import PhoneVerifyModal from "../../../PhoneVerifyModal";
 import { EditProfileModal } from "../../EditProfileModal";
 
@@ -145,12 +157,16 @@ export default function PartialResultContent() {
   const [isPhoneVerifyOpen, setIsPhoneVerifyOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
+  const support = useSupportContact();
+
   useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("candidateData");
-      if (stored) setCandidate(JSON.parse(stored));
-    } catch {}
-  }, []);
+    const stored = readStoredCandidate();
+    if (!stored) {
+      router.replace(`/careers/apply?job=${encodeURIComponent(jobSlug)}`);
+      return;
+    }
+    setCandidate(stored);
+  }, [router, jobSlug]);
 
   const phoneKey = (value?: string | null) => (value || "").replace(/\D/g, "").slice(-10);
 
@@ -201,7 +217,7 @@ export default function PartialResultContent() {
     router.push(`/careers/apply/review?job=${encodeURIComponent(jobSlug)}`);
   };
 
-  const score = (candidate.score && candidate.score >= 50 && candidate.score < 70) ? candidate.score : 58;
+  const score = candidate.score ?? 0;
 
   const cleanName = (val?: string | null): string => {
     if (!val) return "";
@@ -215,9 +231,9 @@ export default function PartialResultContent() {
   };
 
   const candidateRaw = cleanName(candidate.candidateName) || cleanName(candidate.firstName);
-  const rawFirstName = cleanName(candidate.firstName) || candidateRaw?.split(" ")[0] || "Ram";
-  const firstName = rawFirstName ? rawFirstName.charAt(0).toUpperCase() + rawFirstName.slice(1) : "Ram";
-  const rawCandidateName = candidateRaw || "Ram";
+  const rawFirstName = cleanName(candidate.firstName) || candidateRaw?.split(" ")[0] || "Candidate";
+  const firstName = rawFirstName.charAt(0).toUpperCase() + rawFirstName.slice(1);
+  const rawCandidateName = candidateRaw || NOT_IN_CV;
   const formattedCandidateName = rawCandidateName
     .trim()
     .split(/\s+/)
@@ -359,11 +375,7 @@ export default function PartialResultContent() {
                     <div className="flex items-center gap-4">
                       <ScoreRing score={score} />
                       <div className="space-y-1.5">
-                        {[
-                          { dot: "bg-[#16a34a]", range: "70 – 100%", label: "Strong Match" },
-                          { dot: "bg-[#eab308]", range: "50 – 69%", label: "Moderate Match" },
-                          { dot: "bg-[#dc2626]", range: "Below 50%", label: "Not Eligible" },
-                        ].map((l) => (
+                        {matchLegend(candidate).map((l) => (
                           <div key={l.label} className="flex items-center gap-2 text-[13px]">
                             <span className={`h-2.5 w-2.5 rounded-full shrink-0 ${l.dot}`} />
                             <span className="w-[75px] shrink-0 font-medium text-[#0c3d30]">{l.range}</span>
@@ -383,12 +395,7 @@ export default function PartialResultContent() {
                       <h3 className="text-[17px] font-bold text-[#0c3d30]">Key Suggestions to Improve Your Match</h3>
                     </div>
                     <ul className="space-y-1.5 relative z-10">
-                      {[
-                        "Gain more experience in end-of-life care support or community service.",
-                        "Highlight relevant volunteer work or field experience.",
-                        "Add certifications related to caregiving, counseling or social service.",
-                        "Include more details on your communication and people-handling skills.",
-                      ].map((r, i) => (
+                      {(candidate.gaps || []).slice(0, 5).map((r, i) => (
                         <li key={i} className="flex items-center gap-2 text-[13px] leading-snug text-[#2d3748]">
                           <span className="grid h-[17px] w-[17px] shrink-0 place-items-center rounded-full bg-[#d97706] text-[10px] font-bold text-white">
                             {i + 1}
@@ -413,14 +420,7 @@ export default function PartialResultContent() {
                   </div>
 
                   <div className="grid gap-x-5 gap-y-2.5 md:grid-cols-2 pt-1">
-                    {[
-                      { label: "Educational Qualification", desc: "Bachelor's Degree", score: 70, icon: GraduationCap },
-                      { label: "Communication Skills", desc: "Interpersonal & Client Handling", score: 68, icon: Users },
-                      { label: "Relevant Experience", desc: "Community/Operations Experience", score: 55, icon: BriefcaseBusiness },
-                      { label: "Documentation Skills", desc: "Report Writing & Record Keeping", score: 52, icon: FileText },
-                      { label: "Social Service Orientation", desc: "Compassion & Empathy", score: 60, icon: Leaf },
-                      { label: "Role Fit", desc: "Team Alignment & Work Approach", score: 56, icon: Target },
-                    ].map((item) => (
+                    {breakdownRows(candidate).map((item) => (
                       <div key={item.label} className="flex items-center gap-2.5">
                         <item.icon className="h-5 w-5 shrink-0 text-[#0d5c46]" />
                         <div className="min-w-0 flex-1">
@@ -458,14 +458,7 @@ export default function PartialResultContent() {
                   </div>
                   <div className="flex items-stretch gap-3">
                     <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
-                      <Image
-                        src="/newcarrierimage/profile-male-vijay.png"
-                        alt="Candidate Photo"
-                        fill
-                        unoptimized
-                        priority
-                        className="object-cover object-[center_15%] scale-[1.38]"
-                      />
+                      <CandidatePhoto src={candidate.image} className="object-cover object-[center_15%] scale-[1.38]" />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">
                       <p className="truncate text-[15.5px] font-bold text-[#0c3d30] capitalize">
@@ -473,7 +466,7 @@ export default function PartialResultContent() {
                       </p>
                       <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
                         <Mail className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span className="truncate">{candidate.email || "chaudharyaman1920@gmail.com"}</span>
+                        <span className="truncate">{candidate.email || NOT_IN_CV}</span>
                       </p>
                       {candidate.phone && (
                         <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
@@ -483,18 +476,22 @@ export default function PartialResultContent() {
                       )}
                       <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
                         <MapPin className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>{candidate.location || "Delhi NCR"}</span>
+                        <span>{candidate.location || NOT_IN_CV}</span>
                       </p>
-                      <p className="flex items-center gap-1.5 text-[11.5px] text-[#5a6a7a]">
-                        <Calendar className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>{candidate.gender ? `${candidate.gender}` : "14 Nov 1998"}</span>
-                      </p>
-                      <p className="flex items-center gap-1.5 text-[11.5px] text-[#0077b5]">
+                      {(candidate.gender || candidate.dateOfBirth) && (
+                        <p className="flex items-center gap-1.5 text-[11.5px] text-[#5a6a7a]">
+                          <Calendar className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
+                          <span>{[candidate.dateOfBirth, formatGender(candidate.gender)].filter(Boolean).join(" | ")}</span>
+                        </p>
+                      )}
+                      {candidate.linkedin && (
+                        <p className="flex items-center gap-1.5 text-[11.5px] text-[#0077b5]">
                         <svg className="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
-                        <span className="truncate">{candidate.linkedin || `linkedin.com/in/${rawFirstName.toLowerCase()}`}</span>
-                      </p>
+                        <span className="truncate">{candidate.linkedin}</span>
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -511,18 +508,24 @@ export default function PartialResultContent() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-[13px] font-bold text-[#0c3d30]">
-                        {candidate.cvName || "ram.docx"}
+                        {candidate.cvName || NOT_IN_CV}
                       </p>
                       <p className="text-[11px] text-[#64748b]">
-                        {candidate.cvSize || "11 KB"} &nbsp;|&nbsp; 17 Oct 2026, 10:24 AM
+                        {[candidate.cvSize, formatDateTime(candidate.cvUploadedAt)].filter(Boolean).join(" | ")}
                       </p>
                     </div>
                   </div>
                   <div className="mt-2 flex items-center gap-4 text-[12px] font-semibold text-[#0d5c46]">
-                    <button className="inline-flex items-center gap-1 transition hover:underline">
+                    <button
+                      onClick={() => candidate.cvUrl && window.open(candidate.cvUrl, "_blank", "noopener,noreferrer")}
+                      className="inline-flex items-center gap-1 transition hover:underline"
+                    >
                       <Eye className="h-3.5 w-3.5" /> View File
                     </button>
-                    <button className="inline-flex items-center gap-1 transition hover:underline">
+                    <button
+                      onClick={() => router.push(`/careers/apply?job=${encodeURIComponent(jobSlug)}`)}
+                      className="inline-flex items-center gap-1 transition hover:underline"
+                    >
                       <RefreshCw className="h-3.5 w-3.5" /> Upload Different CV
                     </button>
                   </div>
@@ -540,15 +543,7 @@ export default function PartialResultContent() {
                     </button>
                   </div>
                   <div className="space-y-1.5 text-[12.5px]">
-                    {[
-                      { icon: Briefcase, label: "Position", value: "Operations Associate" },
-                      { icon: Building2, label: "Organization", value: "Moksha Sewa" },
-                      { icon: MapPin, label: "Location", value: "Ghaziabad, Uttar Pradesh" },
-                      { icon: BriefcaseBusiness, label: "Employment Type", value: "Full time" },
-                      { icon: TrendingUp, label: "Experience Required", value: "2 – 5 Years" },
-                      { icon: GraduationCap, label: "Qualification", value: "Graduate (MBA/PGDM Preferred)" },
-                      { icon: Clock, label: "Joining Preference", value: "Within 1 Month" },
-                    ].map((row) => (
+                    {jobSummaryRows(candidate).map((row) => (
                       <div key={row.label} className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <row.icon className="h-3.5 w-3.5 shrink-0 text-[#0d5c46]" />
@@ -588,7 +583,9 @@ export default function PartialResultContent() {
                     <p className="text-[14px] font-bold text-[#0c3d30]">Need Any Assistance?</p>
                     <p className="text-[12px] leading-[1.45] text-[#3a4a5c]">
                       Feel free to reach out to our HR team at{" "}
-                      <a href="mailto:careers@mokshasewa.org" className="font-semibold text-[#0d5c46] underline">careers@mokshasewa.org</a>
+                      {support.email && (
+                        <a href={`mailto:${support.email}`} className="font-semibold text-[#0d5c46] underline">{support.email}</a>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -612,20 +609,9 @@ export default function PartialResultContent() {
           isOpen={isEditProfileOpen}
           candidate={candidate}
           onClose={() => setIsEditProfileOpen(false)}
-          onSave={(updated) => {
-            const newCand = { ...candidate, ...updated };
-            setCandidate(newCand);
-            try {
-              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
-            } catch {}
-            if (candidate.candidateId) {
-              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
-              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updated),
-              }).catch(() => undefined);
-            }
+          onSave={async (updated) => {
+            const { candidate: next } = await saveCandidateEdits(candidate, updated);
+            setCandidate(next);
           }}
         />
       </main>
