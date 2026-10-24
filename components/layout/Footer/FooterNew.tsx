@@ -8,6 +8,7 @@ import {
   FaEnvelope,
   FaPaperPlane,
   FaArrowRight,
+  FaArrowUp,
 } from "react-icons/fa";
 import { PiFlowerLotus } from "react-icons/pi";
 import { MapPin, Mail, Clock } from "lucide-react";
@@ -672,6 +673,16 @@ export default function FooterNew() {
                       className="h-5 w-auto object-contain"
                     />
                   </div>
+
+                  {/* Scroll to Top Arrow Button */}
+                  <button
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                    aria-label="Scroll to top"
+                    title="Scroll to top"
+                    className="ml-1 flex h-7 w-7 items-center justify-center rounded-md bg-white/10 text-white/90 transition hover:bg-[#D9A33A] hover:text-black active:scale-95"
+                  >
+                    <FaArrowUp className="h-3 w-3" />
+                  </button>
                 </div>
               </div>
 
