@@ -31,6 +31,7 @@ const thankyouBg = "/newcarrierimage/thankyou-banner-bg.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
 const sideLeafRight = "/assets/careers/apply-leaf-right-clean-transparent.png";
 const thankyouPhoto = "/newcarrierimage/ananya-namaste.png";
+const thankyouNamastePhoto = "/newcarrierimage/thankyou-namaste-woman.png";
 const sidebarPhoto = "/newcarrierimage/profile-female-ananya.png";
 const rightCardDecoration = "/newcarrierimage/hero-diya-together.png";
 
@@ -198,15 +199,15 @@ export default function ApplicationSubmittedContent() {
                     <div className="absolute inset-0 bg-[rgba(255,253,247,0.35)]" />
                   </div>
                   <div className="relative flex flex-col md:flex-row">
-                    {/* Photo */}
-                    <div className="relative h-[170px] w-full shrink-0 md:h-auto md:w-[150px] lg:w-[165px]">
+                    {/* Photo on Left */}
+                    <div className="relative h-[200px] w-full shrink-0 md:h-auto md:w-[155px] lg:w-[175px] xl:w-[195px]">
                       <Image
-                        src={thankyouPhoto}
-                        alt="Ananya Sharma"
+                        src={thankyouNamastePhoto}
+                        alt="Moksha Sewa"
                         fill
                         unoptimized
                         priority
-                        sizes="165px"
+                        sizes="(max-width: 768px) 100vw, 195px"
                         className="object-cover object-[center_top]"
                       />
                     </div>
@@ -270,7 +271,7 @@ export default function ApplicationSubmittedContent() {
                 </div>
 
                 {/* ── What Happens Next ── */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] px-4 py-3.5 sm:px-5 sm:py-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                <div className="relative overflow-hidden rounded-2xl border border-[#ebdcc4] bg-transparent px-4 py-3.5 sm:px-5 sm:py-4">
                   <div className="pointer-events-none absolute -top-1 right-2 h-[50px] w-[70px] opacity-60">
                     <Image src={sideLeafRight} alt="" fill unoptimized className="object-contain object-top-right" />
                   </div>
