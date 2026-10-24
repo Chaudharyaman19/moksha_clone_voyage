@@ -630,10 +630,17 @@ export default function FooterNew() {
                 ))}
               </div>
 
-              <div className="footer-bottom-seva flex flex-col items-center justify-center">
-                <p className="font-serif text-[19px] font-semibold italic tracking-[0.02em] text-[#DCA53A]">
-                  {textOrFallback(websiteSection?.subtitle, "Seva • Samman • Samarpan", 60)}
-                </p>
+              <div className="footer-bottom-seva flex items-center justify-center gap-2.5">
+                <span className="text-[12px] font-medium text-white/90">
+                  Designed &amp; Developed by
+                </span>
+                <Image
+                  src="/assets/encodency-logo.png"
+                  alt="enCodency Pvt. Ltd."
+                  width={220}
+                  height={50}
+                  className="h-8 w-auto rounded object-contain"
+                />
               </div>
 
             </div>

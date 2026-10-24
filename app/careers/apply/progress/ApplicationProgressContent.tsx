@@ -205,7 +205,14 @@ export default function ApplicationProgressContent() {
   }, [candidate]);
 
   const handleProceed = () => {
-    router.push(`/careers/apply/result?job=${encodeURIComponent(jobSlug)}`);
+    const score = candidate.score && candidate.score > 0 ? candidate.score : 85;
+    if (score < 50) {
+      router.push(`/careers/apply/result/not-eligible?job=${encodeURIComponent(jobSlug)}`);
+    } else if (score < 70) {
+      router.push(`/careers/apply/result/partial?job=${encodeURIComponent(jobSlug)}`);
+    } else {
+      router.push(`/careers/apply/result?job=${encodeURIComponent(jobSlug)}`);
+    }
   };
 
   const jobTitle = candidate.jobDetails?.title || "Operations Associate";
@@ -214,7 +221,9 @@ export default function ApplicationProgressContent() {
   const jobEducation = candidate.jobDetails?.education || "Bachelor's Degree";
   const cvFileName = candidate.cvName || "Vijay_Sharma_CV.pdf";
   const cvFileSize = candidate.cvSize || "2.4 MB";
-  const targetScore = candidate.score && candidate.score > 0 ? candidate.score : 85;
+  const targetScore = candidate.score && candidate.score > 0
+    ? candidate.score
+    : 85;
 
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">

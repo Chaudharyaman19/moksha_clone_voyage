@@ -361,14 +361,32 @@ export default function ApplyPageContent() {
       const parsedName = prettifyName(profileData.name) || prettifyName(file.name.replace(/\.[^/.]+$/, ""));
       const fullName = parsedName || "Candidate";
       const firstName = fullName.split(" ")[0] || "Candidate";
+      const cleanExtractedPhone = (val?: string | null) => {
+        if (!val) return null;
+        const cleaned = String(val).trim();
+        // If it's a coordinate/dimension artifact like "0 594.95996 841" or has decimals, reject
+        if (/\.\d+/.test(cleaned) || !/^[+\d\s()-]{8,20}$/.test(cleaned) || cleaned.replace(/\D/g, "").length < 8) {
+          return null;
+        }
+        return cleaned;
+      };
+
+      const extractedPhone = cleanExtractedPhone(profileData.phone);
+      const extractedPhones = (Array.isArray(profileData.phones) ? profileData.phones : [])
+        .map(cleanExtractedPhone)
+        .filter(Boolean) as string[];
+
       const data: any = {
         candidateName: fullName,
         firstName: firstName,
         email: profileData.email || null,
-        phone: profileData.phone || null,
-        phones: Array.isArray(profileData.phones) && profileData.phones.length > 0 ? profileData.phones : profileData.phone ? [profileData.phone] : [],
-        verifiedPhone: null,
+        phone: extractedPhone || (extractedPhones.length > 0 ? extractedPhones[0] : null),
+        phones: extractedPhones.length > 0 ? extractedPhones : extractedPhone ? [extractedPhone] : [],
+        gender: profileData.gender || null,
+        dateOfBirth: profileData.dateOfBirth || profileData.dob || null,
         linkedin: profileData.linkedin || null,
+        location: profileData.location || null,
+        verifiedPhone: null,
         image: profileData.photo || null,
         cvFile: file,
         cvName: file.name,
@@ -377,6 +395,9 @@ export default function ApplyPageContent() {
         score: analysisData.matchScore ?? 72,
         summary: analysisData.explanation,
         requirementsMet: ((analysisData.matchedRequirements?.length > 0 ? analysisData.matchedRequirements : analysisData.strengths) || [])
+          .map((r: any) => typeof r === "string" ? r : r?.text || r?.requirement || r?.description || "")
+          .filter(Boolean),
+        gaps: (analysisData.gaps || analysisData.missingRequirements || [])
           .map((r: any) => typeof r === "string" ? r : r?.text || r?.requirement || r?.description || "")
           .filter(Boolean),
         jobDetails: {

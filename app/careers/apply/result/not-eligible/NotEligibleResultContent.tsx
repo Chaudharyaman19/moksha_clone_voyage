@@ -37,6 +37,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../../submit-resume/page";
+import { EditProfileModal } from "../../EditProfileModal";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const personImage = "/newcarrierimage/candidate-not-eligible.png";
@@ -140,6 +141,7 @@ export default function NotEligibleResultContent() {
   const jobSlug = searchParams.get("job") || "web-developer";
 
   const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -148,7 +150,7 @@ export default function NotEligibleResultContent() {
     } catch {}
   }, []);
 
-  const score = 28;
+  const score = (candidate.score && candidate.score < 50 && candidate.score > 0) ? candidate.score : 28;
 
   const cleanName = (val?: string | null): string => {
     if (!val) return "";
@@ -327,13 +329,16 @@ export default function NotEligibleResultContent() {
                       <h3 className="text-[17px] font-bold text-[#0c3d30]">Key Gaps in Your Profile</h3>
                     </div>
                     <ul className="space-y-1.5 relative z-10">
-                      {[
-                        "Relevant volunteer or community service experience not found in your profile.",
-                        "Field work or on-ground support experience is missing.",
-                        "Certifications related to caregiving, counseling or social service are not found.",
-                        "Patient/family support or communication experience not found.",
-                        "Preferred location (Delhi NCR) is not mentioned.",
-                      ].map((r, i) => (
+                      {(candidate.gaps && candidate.gaps.length > 0
+                        ? candidate.gaps.slice(0, 5)
+                        : [
+                            "Relevant volunteer or community service experience not found in your profile.",
+                            "Field work or on-ground support experience is missing.",
+                            "Certifications related to caregiving, counseling or social service are not found.",
+                            "Patient/family support or communication experience not found.",
+                            "Preferred location (Delhi NCR) is not mentioned.",
+                          ]
+                      ).map((r, i) => (
                         <li key={i} className="flex items-center gap-2 text-[13px] leading-snug text-[#2d3748]">
                           <span className="grid h-[17px] w-[17px] shrink-0 place-items-center rounded-full bg-[#dc1017] text-[10px] font-bold text-white">
                             {i + 1}
@@ -359,12 +364,42 @@ export default function NotEligibleResultContent() {
 
                   <div className="grid gap-x-5 gap-y-2.5 md:grid-cols-2 pt-1">
                     {[
-                      { label: "Educational Qualification", desc: "Bachelor's Degree", score: 20, icon: GraduationCap },
-                      { label: "Communication Skills", desc: "Interpersonal & Client Handling", score: 40, icon: Users },
-                      { label: "Relevant Experience", desc: "Community/Operations Experience", score: 25, icon: BriefcaseBusiness },
-                      { label: "Documentation Skills", desc: "Report Writing & Record Keeping", score: 45, icon: FileText },
-                      { label: "Social Service Orientation", desc: "Compassion & Empathy", score: 15, icon: Leaf },
-                      { label: "Role Fit", desc: "Team Alignment & Work Approach", score: 30, icon: Target },
+                      {
+                        label: "Educational Qualification",
+                        desc: "Bachelor's Degree",
+                        score: candidate.breakdown?.education ?? 20,
+                        icon: GraduationCap,
+                      },
+                      {
+                        label: "Communication Skills",
+                        desc: "Interpersonal & Client Handling",
+                        score: candidate.breakdown?.communicationSkills ?? candidate.breakdown?.skills ?? 40,
+                        icon: Users,
+                      },
+                      {
+                        label: "Relevant Experience",
+                        desc: "Community/Operations Experience",
+                        score: candidate.breakdown?.relevantExperience ?? 25,
+                        icon: BriefcaseBusiness,
+                      },
+                      {
+                        label: "Documentation Skills",
+                        desc: "Report Writing & Record Keeping",
+                        score: candidate.breakdown?.documentationSkills ?? candidate.breakdown?.skills ?? 45,
+                        icon: FileText,
+                      },
+                      {
+                        label: "Social Service Orientation",
+                        desc: "Compassion & Empathy",
+                        score: candidate.breakdown?.socialOrientation ?? 15,
+                        icon: Leaf,
+                      },
+                      {
+                        label: "Role Fit",
+                        desc: "Team Alignment & Work Approach",
+                        score: candidate.breakdown?.roleFit ?? 30,
+                        icon: Target,
+                      },
                     ].map((item) => (
                       <div key={item.label} className="flex items-center gap-2.5">
                         <item.icon className="h-5 w-5 shrink-0 text-[#0d5c46]" />
@@ -394,7 +429,10 @@ export default function NotEligibleResultContent() {
                 <div className="rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="mb-2.5 flex items-center justify-between">
                     <h3 className="text-[16px] font-bold text-[#0c3d30]">Your Profile</h3>
-                    <button className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]">
+                    <button
+                      onClick={() => setIsEditProfileOpen(true)}
+                      className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]"
+                    >
                       <Pencil className="h-3 w-3" /> Edit
                     </button>
                   </div>
@@ -417,23 +455,25 @@ export default function NotEligibleResultContent() {
                         <Mail className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
                         <span className="truncate">{candidate.email || "chaudharyaman1920@gmail.com"}</span>
                       </p>
-                      <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
-                        <Phone className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>{candidate.phones?.[0] || candidate.phone || "+91 93102 19283"}</span>
-                      </p>
+                      {candidate.phone && (
+                        <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
+                          <Phone className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
+                          <span>{candidate.phone}</span>
+                        </p>
+                      )}
                       <p className="flex items-center gap-1.5 text-[12px] text-[#3a4a5c]">
                         <MapPin className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>Delhi NCR</span>
+                        <span>{candidate.location || "Delhi NCR"}</span>
                       </p>
                       <p className="flex items-center gap-1.5 text-[11.5px] text-[#5a6a7a]">
                         <Calendar className="h-3.5 w-3.5 text-[#0d5c46] shrink-0" />
-                        <span>14 Nov 1995 &nbsp;|&nbsp; Male</span>
+                        <span>{candidate.gender ? `${candidate.gender}` : "14 Nov 1998"}</span>
                       </p>
                       <p className="flex items-center gap-1.5 text-[11.5px] text-[#0077b5]">
                         <svg className="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
-                        <span className="truncate">linkedin.com/in/vijay-sharma</span>
+                        <span className="truncate">{candidate.linkedin || `linkedin.com/in/${rawFirstName.toLowerCase()}`}</span>
                       </p>
                     </div>
                   </div>
@@ -472,7 +512,10 @@ export default function NotEligibleResultContent() {
                 <div className="rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-[16px] font-bold text-[#0c3d30]">Job Summary</h3>
-                    <button className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]">
+                    <button
+                      onClick={() => setIsEditProfileOpen(true)}
+                      className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]"
+                    >
                       <Pencil className="h-3 w-3" /> Edit
                     </button>
                   </div>
@@ -534,6 +577,27 @@ export default function NotEligibleResultContent() {
             </div>
           </div>
         </section>
+        {/* Edit Profile Modal */}
+        <EditProfileModal
+          isOpen={isEditProfileOpen}
+          candidate={candidate}
+          onClose={() => setIsEditProfileOpen(false)}
+          onSave={(updated) => {
+            const newCand = { ...candidate, ...updated };
+            setCandidate(newCand);
+            try {
+              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
+            } catch {}
+            if (candidate.candidateId) {
+              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
+              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updated),
+              }).catch(() => undefined);
+            }
+          }}
+        />
       </main>
       <Footer />
     </div>

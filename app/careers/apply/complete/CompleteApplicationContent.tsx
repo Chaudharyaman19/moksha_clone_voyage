@@ -30,6 +30,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
+import { EditProfileModal } from "../EditProfileModal";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -160,6 +161,7 @@ export default function CompleteApplicationContent() {
   const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -494,7 +496,10 @@ export default function CompleteApplicationContent() {
                 <div className="rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-3.5 sm:p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="mb-2.5 flex items-center justify-between">
                     <h3 className="text-[16px] font-bold text-[#0c3d30]">Your Profile</h3>
-                    <button className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]">
+                    <button
+                      onClick={() => setIsEditProfileOpen(true)}
+                      className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]"
+                    >
                       <Pencil className="h-3 w-3" /> Edit
                     </button>
                   </div>
@@ -552,7 +557,10 @@ export default function CompleteApplicationContent() {
                         </p>
                       </div>
                     </div>
-                    <button className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]">
+                    <button
+                      onClick={() => setIsEditProfileOpen(true)}
+                      className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]"
+                    >
                       <Pencil className="h-3 w-3" /> Edit
                     </button>
                   </div>
@@ -672,6 +680,27 @@ export default function CompleteApplicationContent() {
             </div>
           </div>
         </section>
+        {/* Edit Profile Modal */}
+        <EditProfileModal
+          isOpen={isEditProfileOpen}
+          candidate={candidate}
+          onClose={() => setIsEditProfileOpen(false)}
+          onSave={(updated) => {
+            const newCand = { ...candidate, ...updated };
+            setCandidate(newCand);
+            try {
+              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
+            } catch {}
+            if (candidate.candidateId) {
+              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
+              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updated),
+              }).catch(() => undefined);
+            }
+          }}
+        />
       </main>
       <Footer />
     </div>

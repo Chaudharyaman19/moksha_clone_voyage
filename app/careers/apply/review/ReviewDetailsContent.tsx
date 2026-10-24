@@ -32,6 +32,7 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
+import { EditProfileModal } from "../EditProfileModal";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -89,9 +90,12 @@ function SectionIcon({ icon: Icon }: { icon: React.ElementType }) {
   );
 }
 
-function EditBtn() {
+function EditBtn({ onClick }: { onClick?: () => void }) {
   return (
-    <button className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]">
+    <button
+      onClick={onClick}
+      className="inline-flex items-center gap-1 rounded-md border border-[#ebdcc4] bg-[#fcf8ee] px-2 py-0.5 text-[11.5px] font-medium text-gray-600 transition hover:border-[#0d5c46] hover:text-[#0d5c46]"
+    >
       <Pencil className="h-3 w-3" /> Edit
     </button>
   );
@@ -164,6 +168,7 @@ export default function ReviewDetailsContent() {
   const jobSlug = searchParams.get("job") || "web-developer";
 
   const [candidate, setCandidate] = useState<CandidateProfileData>(defaultCandidateData);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -238,7 +243,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={User} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Candidate Profile</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <div className="flex items-stretch gap-3">
                       <div className="shrink-0 self-stretch w-[110px] sm:w-[120px] min-h-[150px]">
@@ -269,7 +274,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={Briefcase} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Position Details</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <InfoRow label="Position Applied For" value={jobTitle} />
                     <InfoRow label="Location Preference" value={candLocation} />
@@ -291,7 +296,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={BookOpen} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Education Details</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <div className="overflow-x-auto">
                       <table className="w-full text-left text-[11.5px]">
@@ -326,7 +331,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={Building2} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Work Experience</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <div className="overflow-x-auto">
                       <table className="w-full text-left text-[11.5px]">
@@ -362,7 +367,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={Award} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Skills</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <div className="space-y-1.5">
                       {skills.map((s) => (
@@ -384,7 +389,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={Award} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Certifications</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <ul className="space-y-1.5">
                       {certs.map((c) => (
@@ -403,7 +408,7 @@ export default function ReviewDetailsContent() {
                         <SectionIcon icon={ClipboardList} />
                         <h3 className="text-[15.5px] font-bold text-[#0c3d30]">Documents</h3>
                       </div>
-                      <EditBtn />
+                      <EditBtn onClick={() => setIsEditProfileOpen(true)} />
                     </div>
                     <ul className="space-y-1.5">
                       {docs.map((d) => (
@@ -528,6 +533,27 @@ export default function ReviewDetailsContent() {
             </div>
           </div>
         </section>
+        {/* Edit Profile Modal */}
+        <EditProfileModal
+          isOpen={isEditProfileOpen}
+          candidate={candidate}
+          onClose={() => setIsEditProfileOpen(false)}
+          onSave={(updated) => {
+            const newCand = { ...candidate, ...updated };
+            setCandidate(newCand);
+            try {
+              sessionStorage.setItem("candidateData", JSON.stringify(newCand));
+            } catch {}
+            if (candidate.candidateId) {
+              const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
+              void fetch(`${apiBase}/careers/candidates/${candidate.candidateId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updated),
+              }).catch(() => undefined);
+            }
+          }}
+        />
       </main>
       <Footer />
     </div>
