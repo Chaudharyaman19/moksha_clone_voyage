@@ -44,7 +44,7 @@ import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/
 import PhoneVerifyModal from "../../PhoneVerifyModal";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
-const personImage = "/newcarrierimage/hero-strong-person.png";
+const personImage = "/newcarrierimage/candidate-eligible-man.png";
 const rightCardDecoration = "/newcarrierimage/hero-diya-together.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
 const sideLeafRight = "/assets/careers/apply-leaf-right-clean-transparent.png";
@@ -348,14 +348,14 @@ export default function ResultPageContent() {
                 <div className="overflow-hidden rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <div className="flex flex-col md:flex-row">
                     {/* Left Person Photo */}
-                    <div className="relative h-[180px] w-full md:h-auto md:w-[185px] lg:w-[205px] shrink-0">
+                    <div className="relative h-[180px] w-full md:h-auto md:w-[235px] lg:w-[265px] xl:w-[280px] shrink-0">
                       <Image
                         src={personImage}
                         alt="Candidate"
                         fill
                         priority
                         unoptimized
-                        sizes="205px"
+                        sizes="(max-width: 768px) 100vw, 280px"
                         className="object-cover object-center"
                       />
                     </div>
@@ -389,14 +389,14 @@ export default function ResultPageContent() {
                     </div>
 
                     {/* Right Diya Graphic with uploaded Together for a More Compassionate Tomorrow */}
-                    <div className="relative hidden w-[250px] shrink-0 lg:block xl:w-[280px]">
+                    <div className="relative hidden w-[295px] shrink-0 lg:block xl:w-[335px] mr-8 lg:-translate-x-12 xl:-translate-x-16">
                       <Image
                         src={rightCardDecoration}
                         alt="Together for a More Compassionate Tomorrow"
                         fill
                         unoptimized
                         priority
-                        className="object-contain object-left lg:-translate-x-3 xl:-translate-x-5"
+                        className="object-contain object-center scale-[0.98]"
                       />
                     </div>
                   </div>
@@ -512,14 +512,14 @@ export default function ResultPageContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-3">
-                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src="/newcarrierimage/profile-male-vijay.png"
                         alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-top scale-[1.2]"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">

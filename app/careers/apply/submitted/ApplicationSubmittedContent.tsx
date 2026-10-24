@@ -345,7 +345,7 @@ export default function ApplicationSubmittedContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-2.5 sm:gap-3">
-                    <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[88px] sm:w-[94px] min-h-[115px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src={sidebarPhoto}
                         alt="Candidate Photo"
@@ -353,7 +353,7 @@ export default function ApplicationSubmittedContent() {
                         unoptimized
                         priority
                         sizes="94px"
-                        className="object-cover object-top scale-[1.2]"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-[3px]">

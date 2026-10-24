@@ -297,12 +297,16 @@ export default function NotEligibleResultContent() {
                       </div>
                     </div>
 
-                    <div className="relative hidden w-[250px] shrink-0 lg:block xl:w-[280px]">
+                    <div className="relative hidden w-[265px] shrink-0 lg:block xl:w-[300px]">
                       <Image
                         src={rightCardDecoration}
-                        alt="Learn Serve Grow Make a Difference"
+                        alt="Together for a More Compassionate Tomorrow"
                         fill
                         unoptimized
+                        priority
+                        className="object-contain object-right lg:scale-105"
+                      />
+                    </div>
                         priority
                         className="object-contain object-left lg:-translate-x-3 xl:-translate-x-5"
                       />
@@ -416,14 +420,14 @@ export default function NotEligibleResultContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-3">
-                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src="/newcarrierimage/profile-female-ananya.png"
                         alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-center scale-115"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">

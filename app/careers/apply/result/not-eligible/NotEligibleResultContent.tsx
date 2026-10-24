@@ -386,14 +386,14 @@ export default function NotEligibleResultContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-3">
-                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src="/newcarrierimage/profile-male-vijay.png"
                         alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-center scale-115"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">

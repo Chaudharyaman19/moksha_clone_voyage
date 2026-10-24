@@ -240,8 +240,10 @@ export default function PartialResultContent() {
 
                     <div className="flex flex-1 flex-col justify-between p-3 sm:py-3.5 sm:pl-3.5 sm:pr-2 lg:py-4 lg:pl-4 lg:pr-1.5">
                       <div>
-                        <h2 className="font-serif text-[24px] font-bold leading-tight text-[#0c3d30] sm:text-[27px] lg:text-[30px]">
-                          You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span> Candidate, {firstName}!
+                        <h2 className="font-serif text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
+                          <span className="whitespace-nowrap">You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span></span>
+                          <br />
+                          Candidate, {firstName}!
                         </h2>
                         <p className="mt-1.5 text-[15px] font-semibold text-[#0c3d30] lg:text-[16px]">
                           Your profile shows good potential, but a few key areas need improvement.

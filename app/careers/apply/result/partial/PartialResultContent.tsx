@@ -295,8 +295,10 @@ export default function PartialResultContent() {
                             <span className="text-[20px] font-black leading-none">!</span>
                           </span>
                           <div className="min-w-0">
-                            <h2 className="font-serif text-[24px] font-bold leading-tight text-[#0c3d30] sm:text-[27px] lg:text-[30px]">
-                              You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span> Candidate, {firstName}!
+                            <h2 className="font-serif text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
+                              <span className="whitespace-nowrap">You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span></span>
+                              <br />
+                              Candidate, {firstName}!
                             </h2>
                             <p className="mt-1.5 text-[13px] leading-[1.5] text-[#3a4a5c] max-w-[480px] lg:text-[14px]">
                               Your profile shows good potential, but a few key areas need improvement. You can still apply after reviewing the suggestions below and updating your profile or CV.
@@ -437,14 +439,14 @@ export default function PartialResultContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-3">
-                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src="/newcarrierimage/profile-male-vijay.png"
                         alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-top scale-[1.2]"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">

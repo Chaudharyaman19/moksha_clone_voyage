@@ -499,14 +499,14 @@ export default function CompleteApplicationContent() {
                     </button>
                   </div>
                   <div className="flex items-stretch gap-3">
-                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4]">
+                    <div className="relative w-[90px] sm:w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#134e3f]">
                       <Image
                         src="/newcarrierimage/profile-female-ananya.png"
                         alt="Candidate Photo"
                         fill
                         unoptimized
                         priority
-                        className="object-cover object-top scale-[1.2]"
+                        className="object-cover object-[center_15%] scale-[1.38]"
                       />
                     </div>
                     <div className="min-w-0 flex-1 space-y-1">
