@@ -50,6 +50,8 @@ export type ApplyCandidate = CandidateProfileData & {
   analysisId?: string;
   applicationId?: string;
   breakdown?: any;
+  /** Set while the AI analysis is still running; the progress screen waits for it. */
+  analysisPending?: boolean;
 };
 
 export const readStoredCandidate = (): ApplyCandidate | null => {

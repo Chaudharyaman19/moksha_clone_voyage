@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Home,
   LockKeyhole,
+  RotateCcw,
   Search,
   Sparkles,
   User,
@@ -25,6 +26,10 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { CandidateProfileData, defaultCandidateData } from "../../submit-resume/page";
 import { matchLevelFor, readStoredCandidate, resultPathFor } from "../candidateView";
+import { analysisRun, resetAnalysisRun } from "../analysisState";
+
+/** How long this screen stays up before the result opens (the analysis runs alongside it). */
+const ANALYSIS_MS = 12000;
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -73,7 +78,7 @@ function ProgressSteps() {
   );
 }
 
-function ScoreRing({ score }: { score: number }) {
+function ScoreRing({ score, pending }: { score: number; pending?: boolean }) {
   return (
     <div className="relative grid h-[175px] w-[175px] shrink-0 place-items-center">
       <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full -rotate-90">
@@ -85,7 +90,7 @@ function ScoreRing({ score }: { score: number }) {
           fill="none"
           stroke="#d97706"
           strokeWidth="11"
-          strokeDasharray={`${(score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
+          strokeDasharray={`${(pending ? 0 : score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
           strokeLinecap="round"
         />
         <circle
@@ -95,13 +100,13 @@ function ScoreRing({ score }: { score: number }) {
           fill="none"
           stroke="#0d5c46"
           strokeWidth="11"
-          strokeDasharray={`${(score / 100) * 2 * Math.PI * 48 * 0.4} ${2 * Math.PI * 48}`}
+          strokeDasharray={`${(pending ? 0 : score / 100) * 2 * Math.PI * 48 * 0.4} ${2 * Math.PI * 48}`}
           strokeLinecap="round"
           opacity="0.9"
         />
       </svg>
       <div className="text-center leading-tight px-2">
-        <span className="block text-[36px] font-bold leading-none text-[#0c3d30]">{score}%</span>
+        <span className="block text-[36px] font-bold leading-none text-[#0c3d30]">{pending ? "…" : `${score}%`}</span>
         <span className="mt-1 block text-[14.5px] font-bold text-[#d97706]">Analyzing...</span>
         <div className="mt-1 text-[9.5px] sm:text-[10px] leading-[1.3] text-[#5a6a7a] font-medium">
           <span className="block">Extracting skills,</span>
@@ -164,6 +169,9 @@ export default function ApplicationProgressContent() {
   const [animScore, setAnimScore] = useState(0);
   const [taskStep, setTaskStep] = useState(1);
   const [isCompleted, setIsCompleted] = useState(false);
+  /** True once the real analysis data is in the session (the draft has no score). */
+  const [hasResult, setHasResult] = useState(false);
+  const [analysisError, setAnalysisError] = useState("");
 
   useEffect(() => {
     const stored = readStoredCandidate();
@@ -172,9 +180,34 @@ export default function ApplicationProgressContent() {
       return;
     }
     setCandidate(stored);
+    if (!stored.analysisPending) setHasResult(true);
   }, [router, jobSlug]);
 
-  // Smooth progress animation that finishes and unlocks the Next button
+  // The upload + analysis the apply screen started settles while this screen is up.
+  useEffect(() => {
+    const run = analysisRun.promise;
+    if (!run) return;
+    let alive = true;
+    run.then(() => {
+      if (!alive) return;
+      if (analysisRun.error) {
+        setAnalysisError(analysisRun.error);
+        return;
+      }
+      const fresh = readStoredCandidate();
+      if (fresh) {
+        setCandidate(fresh);
+        setHasResult(true);
+      }
+    }).catch(() => {
+      if (alive) setAnalysisError(analysisRun.error || "We could not analyse your CV right now.");
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // Smooth score animation that restarts as soon as the real score lands.
   useEffect(() => {
     const finalScore = typeof candidate.score === "number" ? candidate.score : 0;
 
@@ -184,29 +217,64 @@ export default function ApplicationProgressContent() {
           const nextVal = prev + Math.ceil(Math.max(1, (finalScore - prev) / 4));
           return Math.min(nextVal, finalScore);
         }
+        if (prev > finalScore) return finalScore;
         return prev;
       });
-    }, 300);
+    }, 400);
 
-    const t1 = setTimeout(() => setTaskStep(2), 1000);
-    const t2 = setTimeout(() => setTaskStep(3), 1800);
-    const t3 = setTimeout(() => setTaskStep(4), 2600);
-    const t4 = setTimeout(() => {
+    return () => clearInterval(interval);
+  }, [candidate.score]);
+
+  // Task steps, then the verdict: only once the analysis itself has settled.
+  useEffect(() => {
+    let cancelled = false;
+
+    const t1 = setTimeout(() => setTaskStep(2), 2500);
+    const t2 = setTimeout(() => setTaskStep(3), 5000);
+    const t3 = setTimeout(() => setTaskStep(4), 7500);
+    const t4 = setTimeout(async () => {
       setTaskStep(5);
+
+      if (analysisRun.promise) {
+        try {
+          await analysisRun.promise;
+        } catch {
+          /* the failure is read from analysisRun.error below */
+        }
+      }
+      if (cancelled) return;
+
+      if (analysisRun.error) {
+        setAnalysisError(analysisRun.error);
+        return;
+      }
+      const fresh = readStoredCandidate();
+      if (!fresh || fresh.analysisPending) {
+        setAnalysisError("The analysis did not finish. Please upload your CV again.");
+        return;
+      }
+
       setIsCompleted(true);
-    }, 3200);
+      router.push(resultPathFor(fresh, jobSlug));
+    }, ANALYSIS_MS);
 
     return () => {
-      clearInterval(interval);
+      cancelled = true;
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
     };
-  }, [candidate]);
+  }, [router, jobSlug]);
 
   const handleProceed = () => {
-    router.push(resultPathFor(candidate, jobSlug));
+    const fresh = readStoredCandidate() || candidate;
+    router.push(resultPathFor(fresh, jobSlug));
+  };
+
+  const handleRetry = () => {
+    resetAnalysisRun();
+    router.replace(`/careers/apply?job=${encodeURIComponent(jobSlug)}`);
   };
 
   const jobTitle = candidate.jobDetails?.title || "";
@@ -218,14 +286,17 @@ export default function ApplicationProgressContent() {
   const targetScore = typeof candidate.score === "number"
     ? candidate.score
     : 0;
+  // A draft candidate has no score yet; nothing is verdict-shaped until the analysis lands.
+  const awaitingResult = !hasResult && !analysisError;
 
-  const matchLevel = matchLevelFor(candidate);
-  const scoreMessage =
-    matchLevel === "high"
+  const matchLevel = awaitingResult ? "high" : matchLevelFor(candidate);
+  const scoreMessage = awaitingResult
+    ? "Your match score appears here as soon as the analysis finishes."
+    : matchLevel === "high"
       ? "Based on your experience, skills and qualifications, you are a strong match for this position."
       : matchLevel === "moderate"
-      ? "Based on your experience, you partially match this position. Some required skills are missing."
-      : "Based on our AI review, your experience does not align with the core requirements of this role.";
+        ? "Based on your experience, you partially match this position. Some required skills are missing."
+        : "Based on our AI review, your experience does not align with the core requirements of this role.";
 
   return (
     <div className="result-screen bg-[#fdf6ea] overflow-x-hidden">
@@ -333,7 +404,7 @@ export default function ApplicationProgressContent() {
                   </div>
 
                   <div className="flex justify-center">
-                    <ScoreRing score={animScore} />
+                    <ScoreRing score={animScore} pending={awaitingResult} />
                   </div>
 
                   <div className="space-y-2">
@@ -359,34 +430,51 @@ export default function ApplicationProgressContent() {
                 </div>
 
                 {/* Bottom Status / Proceed Button */}
-                <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-[#f5e3c0] bg-[#fdf6ea] px-5 py-4">
+                <div className={`mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border px-5 py-4 ${
+                  analysisError ? "border-[#fecaca] bg-[#fef2f2]" : "border-[#f5e3c0] bg-[#fdf6ea]"
+                }`}>
                   <div className="flex items-start gap-4">
-                    <span className="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-full bg-[#fef3c7] text-[#d97706]">
+                    <span className={`grid h-[44px] w-[44px] shrink-0 place-items-center rounded-full ${
+                      analysisError ? "bg-[#fee2e2] text-[#b23b2e]" : "bg-[#fef3c7] text-[#d97706]"
+                    }`}>
                       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                     </span>
                     <div>
-                      <p className="text-[17px] sm:text-[18px] font-bold text-[#d97706]">
-                        {isCompleted ? "Analysis Complete!" : "Please keep this page open"}
+                      <p className={`text-[17px] sm:text-[18px] font-bold ${analysisError ? "text-[#b23b2e]" : "text-[#d97706]"}`}>
+                        {analysisError
+                          ? "Analysis could not be completed"
+                          : isCompleted
+                            ? "Analysis Complete!"
+                            : "Please keep this page open"}
                       </p>
-                      <p className="mt-0.5 text-[14px] sm:text-[14.5px] leading-[1.5] text-[#3a4a5c]">
-                        {isCompleted
-                          ? "Your CV analysis has been finished successfully. Click the button to view your screening result."
-                          : "Do not refresh or close this page while the analysis is in progress."}
+                      <p className={`mt-0.5 text-[14px] sm:text-[14.5px] leading-[1.5] ${analysisError ? "text-[#8a3b31]" : "text-[#3a4a5c]"}`}>
+                        {analysisError
+                          ? analysisError
+                          : isCompleted
+                            ? "Your CV analysis has been finished successfully. Click the button to view your screening result."
+                            : "Do not refresh or close this page while the analysis is in progress."}
                       </p>
                     </div>
                   </div>
 
                   <div className="w-full sm:w-auto shrink-0">
                     <button
-                      onClick={handleProceed}
-                      disabled={!isCompleted}
+                      onClick={analysisError ? handleRetry : handleProceed}
+                      disabled={!isCompleted && !analysisError}
                       className={`flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-6 py-3 text-[14.5px] font-bold transition shadow-sm ${
-                        isCompleted
-                          ? "bg-[#0d5c46] text-white hover:bg-[#094736] active:scale-[0.98] cursor-pointer ring-2 ring-[#0d5c46]/20"
-                          : "bg-[#e2d5c1] text-[#7d705c] cursor-not-allowed opacity-80"
+                        analysisError
+                          ? "bg-[#b23b2e] text-white hover:bg-[#93291d] active:scale-[0.98] cursor-pointer"
+                          : isCompleted
+                            ? "bg-[#0d5c46] text-white hover:bg-[#094736] active:scale-[0.98] cursor-pointer ring-2 ring-[#0d5c46]/20"
+                            : "bg-[#e2d5c1] text-[#7d705c] cursor-not-allowed opacity-80"
                       }`}
                     >
-                      {isCompleted ? (
+                      {analysisError ? (
+                        <>
+                          <RotateCcw className="h-4.5 w-4.5" />
+                          <span>Try Again</span>
+                        </>
+                      ) : isCompleted ? (
                         <>
                           <span>View Eligibility Result</span>
                           <ArrowRight className="h-4.5 w-4.5" />
@@ -478,14 +566,14 @@ export default function ApplicationProgressContent() {
                       <span className={`text-[17px] font-bold ${
                         matchLevel === "high" ? "text-[#0c3d30]" : matchLevel !== "low" ? "text-[#d97706]" : "text-[#dc2626]"
                       }`}>
-                        {targetScore}%
+                        {awaitingResult ? "…" : `${targetScore}%`}
                       </span>
                     </div>
                     <div>
                       <p className={`text-[14px] font-bold ${
                         matchLevel === "high" ? "text-[#0c3d30]" : matchLevel !== "low" ? "text-[#92400e]" : "text-[#991b1b]"
                       }`}>
-                        Your Profile Match
+                        {awaitingResult ? "Calculating your match" : "Your Profile Match"}
                       </p>
                       <p className="text-[11.5px] leading-[1.45] text-[#3a4a5c]">
                         {scoreMessage}

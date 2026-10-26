@@ -72,13 +72,13 @@ export function EditProfileModal({
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
-      <div className="relative w-full max-w-[480px] rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-5 shadow-2xl">
-        <div className="flex items-center justify-between border-b border-[#ebdcc4] pb-3">
+      <div className="relative w-full max-w-[460px] max-h-[86vh] overflow-y-auto rounded-2xl border border-[#ebdcc4] bg-[#fdfaf1] p-4 shadow-2xl">
+        <div className="flex items-center justify-between border-b border-[#ebdcc4] pb-2.5">
           <div className="flex items-center gap-2">
-            <span className="grid h-[32px] w-[32px] place-items-center rounded-lg bg-[#0d5c46]/10 text-[#0d5c46]">
+            <span className="grid h-[30px] w-[30px] place-items-center rounded-lg bg-[#0d5c46]/10 text-[#0d5c46]">
               <User className="h-4 w-4" />
             </span>
-            <h3 className="font-serif text-[18px] font-bold text-[#0c3d30]">Edit Profile Details</h3>
+            <h3 className="font-serif text-[17px] font-bold text-[#0c3d30]">Edit Profile Details</h3>
           </div>
           <button
             onClick={onClose}
@@ -88,9 +88,9 @@ export function EditProfileModal({
           </button>
         </div>
 
-        <div className="mt-4 space-y-3">
+        <div className="mt-3 space-y-2">
           <div className="flex items-center gap-3">
-            <div className="relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#f4ebe1]">
+            <div className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-xl border border-[#ebdcc4] bg-[#f4ebe1]">
               <CandidatePhoto src={photo} gender={gender} name={name} className="object-cover object-top" />
             </div>
             <div>
@@ -109,7 +109,7 @@ export function EditProfileModal({
 
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">Full Name</label>
-            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+            <div className="mt-0.5 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-1.5">
               <User className="h-4 w-4 text-[#0d5c46]" />
               <input
                 type="text"
@@ -123,7 +123,7 @@ export function EditProfileModal({
 
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">Email Address</label>
-            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+            <div className="mt-0.5 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-1.5">
               <Mail className="h-4 w-4 text-[#0d5c46]" />
               <input
                 type="email"
@@ -137,7 +137,7 @@ export function EditProfileModal({
 
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">Phone Number</label>
-            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+            <div className="mt-0.5 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-1.5">
               <Phone className="h-4 w-4 text-[#0d5c46]" />
               <input
                 type="tel"
@@ -151,7 +151,7 @@ export function EditProfileModal({
 
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">Location</label>
-            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+            <div className="mt-0.5 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-1.5">
               <MapPin className="h-4 w-4 text-[#d97706]" />
               <input
                 type="text"
@@ -188,7 +188,7 @@ export function EditProfileModal({
 
           <div>
             <label className="text-[12px] font-semibold text-[#0c3d30]">LinkedIn</label>
-            <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-2">
+            <div className="mt-0.5 flex items-center gap-2 rounded-xl border border-[#ebdcc4] bg-white px-3 py-1.5">
               <Link2 className="h-4 w-4 text-[#0d5c46]" />
               <input
                 type="text"
@@ -203,7 +203,7 @@ export function EditProfileModal({
           {formError && <p className="text-[12px] font-medium text-[#b23b2e]">{formError}</p>}
         </div>
 
-        <div className="mt-5 flex items-center justify-end gap-2 border-t border-[#ebdcc4] pt-3">
+        <div className="mt-4 flex items-center justify-end gap-2 border-t border-[#ebdcc4] pt-3">
           <button
             onClick={onClose}
             className="rounded-xl border border-[#ebdcc4] bg-[#fcf8ee] px-4 py-1.5 text-[13px] font-semibold text-gray-700 hover:bg-gray-100"

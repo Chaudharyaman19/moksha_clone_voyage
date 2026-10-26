@@ -9,7 +9,7 @@ import {
   BriefcaseBusiness,
   Check,
   ChevronRight,
-  FileUp,
+  Download,
   GraduationCap,
   Heart,
   Home,
@@ -25,6 +25,7 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import { EligibilityModal, CandidateProfileData, defaultCandidateData } from "../submit-resume/page";
 import { ApplicationFormModal } from "../application-form/page";
 import { storeCandidate } from "./candidateView";
+import { analysisRun, resetAnalysisRun } from "./analysisState";
 import { ReviewSubmitModal } from "../review-submit/page";
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
@@ -145,8 +146,6 @@ const validateCvFile = (file: File): string | null => {
   return null;
 };
 
-const ANALYSIS_STEPS = ["Reading your CV…", "Extracting skills & experience…", "Matching against this role…", "Scoring your profile…"];
-
 /** Nothing is shown for a job until the backend record for this slug has loaded. */
 const DEFAULT_JOB: Job = {};
 
@@ -250,7 +249,6 @@ export default function ApplyPageContent() {
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisError, setAnalysisError] = useState("");
-  const [analysisElapsed, setAnalysisElapsed] = useState(0);
   const [candidateData, setCandidateData] = useState<CandidateProfileData>(defaultCandidateData);
   const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
   const [isAppFormOpen, setIsAppFormOpen] = useState(false);
@@ -291,15 +289,6 @@ export default function ApplyPageContent() {
       .catch(() => { });
   }, [jobSlug]);
 
-  useEffect(() => {
-    if (!isAnalyzing) return;
-    const startedAt = Date.now();
-    const id = setInterval(() => setAnalysisElapsed(Date.now() - startedAt), 300);
-    return () => clearInterval(id);
-  }, [isAnalyzing]);
-
-  const analysisStep = isAnalyzing ? Math.min(Math.floor(analysisElapsed / 1800), ANALYSIS_STEPS.length - 1) : 0;
-
   const educationLabel = job.education?.trim() || "";
   const preferredQuals = (job.preferredQualifications ?? []).map((i) => i?.trim()).filter(Boolean);
   const educationNote = preferredQuals.length ? `(${preferredQuals.join(", ")})` : "";
@@ -321,7 +310,7 @@ export default function ApplyPageContent() {
     "Overall profile match",
   ];
 
-  const runAnalysis = useCallback(async () => {
+  const runAnalysis = useCallback(() => {
     if (!file) return;
     if (!job._id) {
       setAnalysisError("This position could not be found. Please go back to Careers and open it again.");
@@ -329,10 +318,35 @@ export default function ApplyPageContent() {
     }
     setAnalysisError("");
     setIsAnalyzing(true);
+    resetAnalysisRun();
     const fileSizeStr = file.size > 1024 * 1024 ? `${(file.size / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(file.size / 1024)} KB`;
     const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+    const jobDetails = {
+      title: job.title,
+      company: job.company || "Moksha Sewa",
+      brand: job.brand,
+      location: job.location || "",
+      type: job.type || "",
+      experience: job.experience || "",
+      education: `${educationLabel}${educationNote ? ` ${educationNote}` : ""}`.trim(),
+    };
 
-    try {
+    // The progress screen is where the candidate waits, so it opens right away with
+    // the job and file details it needs; the upload + AI analysis then keeps running
+    // here in the background and only overwrites this draft with a real result.
+    storeCandidate({
+      candidateName: "",
+      firstName: "",
+      cvName: file.name,
+      cvSize: fileSizeStr,
+      cvUploadedAt: new Date().toISOString(),
+      score: 0,
+      threshold: job.eligibilityThreshold,
+      jobDetails,
+      analysisPending: true,
+    });
+
+    analysisRun.promise = (async () => {
       const formData = new FormData();
       formData.append("cv", file);
       const uploadRes = await fetch(`${apiBase}/careers/cv/upload`, { method: "POST", body: formData });
@@ -346,7 +360,12 @@ export default function ApplyPageContent() {
         body: JSON.stringify({ candidateId, jobId: job._id }),
       });
       const analyzeJson = await analyzeRes.json();
-      if (!analyzeRes.ok || !analyzeJson.success) throw new Error(analyzeJson.message || "Failed to analyze CV");
+      if (!analyzeRes.ok || !analyzeJson.success) {
+        // The API returns the underlying cause in `error`; log it so a failed
+        // analysis is debuggable instead of showing only a generic message.
+        if (analyzeJson.error) console.error("Analyze API error:", analyzeJson.error);
+        throw new Error(analyzeJson.message || "Failed to analyze CV");
+      }
 
       const analysisData = analyzeJson.data;
       const profileData = analysisData.candidateProfile || {};
@@ -400,15 +419,7 @@ export default function ApplyPageContent() {
         gaps: (analysisData.gaps?.length > 0 ? analysisData.gaps : analysisData.missingRequirements || [])
           .map(asText)
           .filter(Boolean),
-        jobDetails: {
-          title: job.title,
-          company: job.company || "Moksha Sewa",
-          brand: job.brand,
-          location: job.location || "",
-          type: job.type || "",
-          experience: job.experience || "",
-          education: `${educationLabel}${educationNote ? ` ${educationNote}` : ""}`.trim(),
-        },
+        jobDetails,
         breakdown: {
           relevantExperience: bd.relevantExperience?.score ?? 0,
           skills: bd.skills?.score ?? 0,
@@ -432,16 +443,21 @@ export default function ApplyPageContent() {
       };
       setCandidateData(data as any);
       storeCandidate(data);
-      router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
-    } catch (err) {
-      // No invented result: the candidate is told what went wrong and can try again.
-      console.error("AI Analysis error:", err);
-      setAnalysisError(
-        err instanceof Error && err.message ? err.message : "We could not analyse your CV right now. Please try again."
-      );
-    } finally {
-      setIsAnalyzing(false);
-    }
+    })()
+      .catch((err) => {
+        // The progress screen is already on screen while this runs, so the failure is
+        // handed to it (it reads `analysisRun.error`) instead of a local state.
+        console.error("AI Analysis error:", err);
+        analysisRun.error =
+          err instanceof TypeError
+            ? "Could not reach the careers server. Please check your connection and try again."
+            : err instanceof Error && err.message
+              ? err.message
+              : "We could not analyse your CV right now. Please try again.";
+      })
+      .finally(() => setIsAnalyzing(false));
+
+    router.push(`/careers/apply/progress?job=${encodeURIComponent(jobSlug)}`);
   }, [file, job, educationLabel, educationNote, jobSlug, router]);
 
   return (
@@ -639,13 +655,19 @@ export default function ApplyPageContent() {
                       </div>
                     </div>
 
-                    {/* Apply Button */}
+                    {/* View Job Full Details / Download JD Button */}
                     <div className="mt-3 pt-0.5">
                       <button
-                        onClick={() => document.getElementById("ai-panel")?.scrollIntoView({ behavior: "smooth" })}
-                        className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#003528] px-5 py-2.5 text-[14.5px] font-semibold text-white shadow-sm transition hover:bg-[#00251c]"
+                        onClick={() => {
+                          const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+                          const target = job.slug || jobSlug || job._id;
+                          if (target) {
+                            window.open(`${apiBase}/careers/jobs/${target}/export`, "_blank");
+                          }
+                        }}
+                        className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#003528] px-5 py-2.5 text-[14.5px] font-semibold text-white shadow-sm transition hover:bg-[#00251c] cursor-pointer"
                       >
-                        Apply for this Position <ArrowRight className="h-4 w-4" />
+                        View Job Full Details <Download className="h-4 w-4" />
                       </button>
                     </div>
                   </div>
@@ -794,49 +816,6 @@ export default function ApplyPageContent() {
                   </div>
                 </div>
 
-                {/* Analysis Overlay */}
-                {isAnalyzing && (
-                  <div className="absolute inset-0 z-50 grid place-items-center rounded-2xl bg-[#fffbf2]/95 px-4 text-center">
-                    <div className="flex flex-col items-center">
-                      <div className="relative grid h-[84px] w-[84px] place-items-center">
-                        {/* Circular animated spinner loader */}
-                        <svg className="absolute inset-0 h-full w-full animate-spin text-[#0d5c46]" viewBox="0 0 84 84" fill="none">
-                          <circle
-                            className="opacity-20"
-                            cx="42"
-                            cy="42"
-                            r="36"
-                            stroke="#0d5c46"
-                            strokeWidth="5"
-                          />
-                          <circle
-                            className="opacity-90"
-                            cx="42"
-                            cy="42"
-                            r="36"
-                            stroke="currentColor"
-                            strokeWidth="5"
-                            strokeDasharray="160"
-                            strokeDashoffset="60"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                        <span className="absolute inset-[8px] rounded-full bg-white shadow-xs" />
-                        <FileUp className="relative h-[28px] w-[28px] text-[#0d5c46] animate-pulse" strokeWidth={2.2} />
-                      </div>
-                      <h3 className="mt-3.5 text-[17px] font-bold text-[#0c3d30]">Analyzing your CV</h3>
-                      <p key={analysisStep} className="mt-1 text-[13px] font-semibold text-[#d97706] transition-all duration-300">
-                        {ANALYSIS_STEPS[analysisStep]}
-                      </p>
-                      <div className="mt-3 h-[4px] w-[170px] overflow-hidden rounded-full bg-[#d0ddd8]">
-                        <span className="block h-full w-[45%] rounded-full bg-[linear-gradient(90deg,#0d5c46,#6aaa92)] animate-pulse" />
-                      </div>
-                      <p className="mt-2.5 flex items-center gap-1.5 text-[11px] font-medium text-[#5a6a7a]">
-                        <LockKeyhole className="h-3 w-3 text-[#0d5c46]" /> This takes a few seconds — please keep this window open.
-                      </p>
-                    </div>
-                  </div>
-                )}
               </aside>
             </div>
           </div>
