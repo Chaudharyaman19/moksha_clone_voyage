@@ -19,7 +19,7 @@ export default async function DisclaimerPage() {
   return (
     <WebsiteContentProvider sections={sections as any} page="disclaimer">
       <DynamicH1 pageKey="disclaimer" fallback="Disclaimer – Moksha Sewa" />
-      <div className="min-h-screen bg-[#FFFFFF] text-[#2C1810] pt-[100px] lg:pt-[115px]">
+      <div className="min-h-screen bg-[#FFFFFF] text-[#2C1810]">
         <JsonLd data={breadcrumbJsonLd("/disclaimer")} />
         <Topbar />
         <Navbar />
