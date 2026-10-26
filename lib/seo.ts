@@ -720,6 +720,7 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
     careers: "careersPage",
+    disclaimer: "disclaimerPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
@@ -924,6 +925,7 @@ export async function getPageSchemaMarkup(path: string, pageKey: WebsitePageKey)
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
     careers: "careersPage",
+    disclaimer: "disclaimerPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];

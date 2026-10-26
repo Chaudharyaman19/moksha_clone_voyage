@@ -558,3 +558,15 @@ body {
 .lp-content li { margin: 0.4rem 0; }
 .lp-content a { color: #8c6b1d; text-decoration: underline; }
 .lp-content img { border-radius: 1rem; margin: 1.25rem 0; max-width: 100%; }
+
+/* Adaptive Windows 13-inch / 14-inch (1080p 125%/150% scaled) display fix */
+/* MacBook Retina viewport >= 1440px par koi effect nahi hoga */
+@media screen and (min-width: 1024px) and (max-width: 1400px) and (-webkit-min-device-pixel-ratio: 1.1) {
+  body {
+    zoom: 0.90;
+  }
+  .side-icon-fixed-root {
+    width: 111.11vw !important;
+  }
+}
+

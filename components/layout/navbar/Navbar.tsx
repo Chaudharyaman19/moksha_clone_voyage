@@ -16,10 +16,10 @@ import {
   FaAmbulance,
   FaDonate,
   FaHandsHelping,
-
   FaBriefcase,
   FaFileAlt,
 } from "react-icons/fa";
+import { useGlobalAudio } from "@/contexts/GlobalAudioContext";
 
 type NavItem = {
   name: string;
@@ -33,6 +33,7 @@ type NavItem = {
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
+  const { isMusicOn, toggleMusic } = useGlobalAudio();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);
@@ -279,8 +280,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-12 relative">
             <div className="absolute -top-1 left-0 z-10 sm:-top-2">
-              <button onClick={() => handleNavigation("/")} aria-label="Moksha Sewa home">
-                <div className="h-16 w-16 sm:h-[110px] sm:w-[110px]">
+              <button
+                onClick={() => handleNavigation("/")}
+                aria-label="Moksha Sewa home"
+                className="block bg-[#fffaf2] p-1.5 shadow-[0_4px_16px_rgba(46,28,16,0.12)] border-x border-b border-[#ebdcc7]/80 transition-all hover:bg-white"
+              >
+                <div className="h-16 w-16 sm:h-[105px] sm:w-[105px]">
                   <Image
                     src="/homelogo/mok.png"
                     alt="Moksha Sewa Logo"
@@ -382,18 +387,89 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+
+              {/* Music Toggle Icon with hover effect and larger size */}
+              <button
+                onClick={toggleMusic}
+                title={isMusicOn ? "Mute Music" : "Play Music"}
+                aria-label="Toggle Music"
+                aria-pressed={isMusicOn}
+                className="group relative ml-2.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] text-white shadow-sm transition-all duration-300 hover:scale-110 hover:bg-[#73532F] hover:shadow-[0_4px_14px_rgba(139,106,62,0.4)] active:scale-95"
+              >
+                {isMusicOn ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-white transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6M15 9l-6 6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 text-white transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 9a3 3 0 010 6m3-8a7 7 0 010 10" />
+                  </svg>
+                )}
+              </button>
             </div>
 
-            <button
-              onClick={() => setOpen(!open)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-[#4A2F2A] ml-auto"
-            >
-              {open ? (
-                <HiX className="w-6 h-6" />
-              ) : (
-                <HiMenu className="w-6 h-6" />
-              )}
-            </button>
+            <div className="lg:hidden ml-auto flex items-center gap-1.5">
+              <button
+                onClick={toggleMusic}
+                title={isMusicOn ? "Mute Music" : "Play Music"}
+                aria-label="Toggle Music"
+                aria-pressed={isMusicOn}
+                className="group flex h-9 w-9 items-center justify-center rounded-full bg-[#8B6A3E] text-white transition-all duration-300 hover:scale-105 hover:bg-[#73532F] active:scale-95"
+              >
+                {isMusicOn ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4.5 w-4.5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6M15 9l-6 6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4.5 w-4.5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 9a3 3 0 010 6m3-8a7 7 0 010 10" />
+                  </svg>
+                )}
+              </button>
+
+              <button
+                onClick={() => setOpen(!open)}
+                className="w-10 h-10 flex items-center justify-center text-[#4A2F2A]"
+              >
+                {open ? (
+                  <HiX className="w-6 h-6" />
+                ) : (
+                  <HiMenu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>

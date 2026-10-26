@@ -110,10 +110,10 @@ export const defaultLandingSections: LandingSectionContent[] = [
     initiativeLabel: "An Initiative of Namo Gange Trust",
     buttonLabel: "Request Sewa Help",
     buttonHref: "/request-help",
-      supportTitle: "We are here to support with care, respect and compassion.",
-      supportDescription: "You are not alone. We are with you.",
-      regionTitle: "Delhi • Ghaziabad • Noida",
-      regionDescription: "Currently serving with care in",
+    supportTitle: "We are here to support with care, respect and compassion.",
+    supportDescription: "You are not alone. We are with you.",
+    regionTitle: "Delhi • Ghaziabad • Noida",
+    regionDescription: "Currently serving with care in",
     secondaryButtonLabel: "Support This Mission",
     secondaryButtonHref: "/donation",
     items: [
@@ -204,10 +204,10 @@ export const defaultLandingSections: LandingSectionContent[] = [
     eyebrow: "CREMATION & LAST RITES SUPPORT",
     title: "When a Family Needs Help\nWe Arrange the Essentials",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165085/moksha-sewa/assets/chatgpt.png",
-      phoneLabel: "Call for Help",
-      phoneNumber: "9220147229",
-      secondaryTitle: "Priest Support",
-      secondaryDescription: "Experienced & Verified",
+    phoneLabel: "Call for Help",
+    phoneNumber: "9220147229",
+    secondaryTitle: "Priest Support",
+    secondaryDescription: "Experienced & Verified",
     description:
       "At Moksha Sewa, we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.",
     buttonLabel: "Request Sewa Support",
@@ -409,7 +409,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     availabilityText: "We are available\n24/7 for you",
     quickLinksTitle: "Quick Links",
     servicesTitle: "Our Services",
-    initiativesTitle: "Our Initiatives",
+    initiativesTitle: "Our Seva Initiatives",
     contactTitle: "Contact Us",
     requestTitle: "Request Support",
     requestDescription: "Share your email and our support team will contact you.",
@@ -476,15 +476,15 @@ export function mergeLandingSections(sections?: LandingSectionContent[]): Landin
     if (!saved) return fallback;
     const items = fallback.items?.length
       ? [
-          ...fallback.items.map((item, index) => ({ ...item, ...(saved.items?.[index] ?? {}) })),
-          ...(saved.items?.slice(fallback.items.length) ?? []),
-        ]
+        ...fallback.items.map((item, index) => ({ ...item, ...(saved.items?.[index] ?? {}) })),
+        ...(saved.items?.slice(fallback.items.length) ?? []),
+      ]
       : saved.items;
     const slides = fallback.slides?.length
       ? [
-          ...fallback.slides.map((slide, index) => ({ ...slide, ...(saved.slides?.[index] ?? {}) })),
-          ...(saved.slides?.slice(fallback.slides.length) ?? []),
-        ]
+        ...fallback.slides.map((slide, index) => ({ ...slide, ...(saved.slides?.[index] ?? {}) })),
+        ...(saved.slides?.slice(fallback.slides.length) ?? []),
+      ]
       : saved.slides;
     return normalizeLandingSection({ ...fallback, ...saved, items, slides, enabled: saved.enabled !== false }, fallback);
   });

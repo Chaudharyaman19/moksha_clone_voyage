@@ -30,6 +30,7 @@ const pageFieldMap: Record<WebsitePageKey, string> = {
   "refund-policy": "refundPage",
   "code-of-conduct": "conductPage",
   careers: "careersPage",
+  disclaimer: "disclaimerPage",
 };
 
 export default async function DynamicH1({ pageKey, fallback }: DynamicH1Props) {

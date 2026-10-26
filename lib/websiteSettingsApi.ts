@@ -72,6 +72,7 @@ interface SettingsResponse {
   careersApplicationFormPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   careersReviewSubmitPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   careersUploadCvPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  disclaimerPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =
@@ -98,7 +99,8 @@ export type WebsitePageKey =
   | "terms"
   | "refund-policy"
   | "code-of-conduct"
-  | "careers";
+  | "careers"
+  | "disclaimer";
 
 export function getMergedWebsiteSections(page: WebsitePageKey, settings?: SettingsResponse) {
   let pageSections;
@@ -229,6 +231,7 @@ export function isPageDisabled(page: WebsitePageKey, settings?: SettingsResponse
     "refund-policy": "refundPage",
     "code-of-conduct": "conductPage",
     "careers": "careersPage",
+    "disclaimer": "disclaimerPage",
   };
 
   const key = pageKeyMap[page];

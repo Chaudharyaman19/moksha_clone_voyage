@@ -3,14 +3,12 @@
 import { FaChevronDown, FaUser, FaShieldAlt } from "react-icons/fa";
 import Link from "next/link";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-import { useGlobalAudio } from "@/contexts/GlobalAudioContext";
 
 const utilityLink =
   "flex items-center justify-center gap-1.5 rounded-md text-white/90 transition-all hover:bg-white/10 hover:text-white active:scale-95 h-7 w-7 shrink-0 md:h-auto md:w-auto md:px-2.5 md:py-1.5";
 
 export default function TopInfoBar() {
   const websiteSection = useWebsiteSection("topbar");
-  const { isMusicOn, toggleMusic } = useGlobalAudio();
   const userLoginItem = itemOrFallback(websiteSection?.items, 0, { label: "User Login", href: "/login" });
   const adminLoginItem = itemOrFallback(websiteSection?.items, 1, { label: "Admin Login", href: "admin" });
   const adminLoginHref =
@@ -33,40 +31,6 @@ export default function TopInfoBar() {
 
         {/* Utilities */}
         <div className="ml-auto flex shrink-0 items-center justify-end gap-1 md:gap-1.5">
-          <button
-            onClick={toggleMusic}
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E] transition-all hover:bg-[#755735] active:scale-95"
-            aria-label="Toggle Music"
-            aria-pressed={isMusicOn}
-          >
-            {isMusicOn ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6M15 9l-6 6" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H3v6h3l5 4V5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 9a3 3 0 010 6m3-8a7 7 0 010 10" />
-              </svg>
-            )}
-          </button>
-
-          <span aria-hidden className="hidden h-3.5 w-px shrink-0 bg-white/15 md:block" />
 
           <details className="group/login relative">
             <summary className={`${utilityLink} cursor-pointer list-none [&::-webkit-details-marker]:hidden`}>
