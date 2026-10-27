@@ -351,7 +351,7 @@ export default function Navbar() {
                       <span className="font-medium">{item.name}</span>
                       <span
                         aria-hidden
-                        className={`absolute inset-x-3 bottom-1.5 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
+                        className={`absolute inset-x-3 bottom-3 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
                           }`}
                       />
                     </button>
