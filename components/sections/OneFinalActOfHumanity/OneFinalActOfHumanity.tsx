@@ -38,7 +38,7 @@ export default function OneFinalActOfHumanity() {
                 <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
                   <Image
                     src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png")}
-                    alt="Moksha Sewa"
+                    alt={(websiteSection as any)?.logoImageAlt || "Moksha Sewa"}
                     fill
                     sizes="92px"
                     className="object-contain"
@@ -60,7 +60,7 @@ export default function OneFinalActOfHumanity() {
                 <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
                   <Image
                     src={imageOrFallback(websiteSection?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp")}
-                    alt="Namo Gange Trust"
+                    alt={(websiteSection as any)?.partnerLogoImageAlt || "Namo Gange Trust"}
                     fill
                     sizes="330px"
                     className="object-contain"

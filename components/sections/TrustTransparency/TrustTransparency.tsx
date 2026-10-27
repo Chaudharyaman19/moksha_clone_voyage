@@ -451,7 +451,7 @@ export default function TrustTransparency() {
                   <div className="relative h-[90px] w-[180px] max-md:h-[76px] max-md:w-[155px]">
                     <Image
                       src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png")}
-                      alt="Moksha Sewa"
+                      alt={(websiteSection as any)?.logoImageAlt || "Moksha Sewa"}
                       fill
                       sizes="180px"
                       className="object-contain"
@@ -485,7 +485,7 @@ export default function TrustTransparency() {
                   <div className="relative mx-auto mt-[1px] h-[73px] w-full max-w-[235px] max-md:h-[68px] max-md:max-w-[220px]">
                     <Image
                       src={imageOrFallback(websiteSection?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp")}
-                      alt="Namo Gange"
+                      alt={(websiteSection as any)?.partnerLogoImageAlt || "Namo Gange"}
                       fill
                       sizes="235px"
                       className="object-contain"
@@ -505,7 +505,7 @@ export default function TrustTransparency() {
                     <div className="relative mt-4 h-[57px] w-[57px] shrink-0 overflow-hidden rounded-full bg-white max-md:mt-2 max-md:h-[52px] max-md:w-[52px]">
                       <Image
                         src={imageOrFallback(websiteSection?.secondaryLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164957/moksha-sewa/hero-images/namo-gange-logo.png")}
-                        alt="Namo Gange Trust"
+                        alt={(websiteSection as any)?.secondaryLogoImageAlt || "Namo Gange Trust"}
                         fill
                         sizes="57px"
                         className="object-contain p-[3px]"

@@ -100,7 +100,7 @@ export default function Hero() {
           title: item.title || "New Hero Slide",
           description: item.description || "",
           image: imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
-          alt: item.title || "Hero slide image",
+          alt: (item as any).imageAlt || (item as any).alt || item.title || "Hero slide image",
           buttonLabel: item.label || websiteSection?.buttonLabel || "Learn More",
           buttonHref: item.href || websiteSection?.buttonHref || "/",
           secondaryButtonLabel: websiteSection?.secondaryButtonLabel || "Support This Mission",
