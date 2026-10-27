@@ -625,7 +625,7 @@ export default function FooterNew() {
               {/* ========================= OUR GLOBAL PRESENCE ========================= */}
               <div className="footer-col relative flex flex-col justify-start sm:col-span-2 lg:col-span-2 xl:col-span-1 xl:pl-2 xl:-mt-0.5 sm:-mt-0.5">
                 <div
-                  className="relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 shadow-[0_8px_32px_rgba(0,0,0,0.85)] bg-cover bg-right bg-no-repeat"
+                  className="relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 bg-cover bg-right bg-no-repeat"
                   style={{
                     backgroundImage: "url('/footer/image.png')",
                     backgroundColor: "#060908",
@@ -737,7 +737,7 @@ export default function FooterNew() {
                               <div className="shrink-0 pb-0.5 border-b border-transparent [border-image:linear-gradient(90deg,#F3D481_0%,#8E631F_80%,transparent_100%)_1]">
                                 <a
                                   href={office.tel}
-                                  className="inline-flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-semibold text-white hover:text-[#FFEB60] transition-colors whitespace-nowrap"
+                                  className="inline-flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-semibold text-white hover:text-[#FFEB60] transition-colors whitespace-nowrap bg-[#0A0C0B]/85 backdrop-blur-sm rounded-md px-2 py-1 border border-[#D9A33A]/50"
                                 >
                                   <Image
                                     src="/footer/Glossy Golden Telephone Handset Icon.png"

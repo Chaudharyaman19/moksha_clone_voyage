@@ -156,11 +156,11 @@ export default function DisclaimerContent() {
       </div>
 
       {/* ==================== MAIN BODY ==================== */}
-      <div className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6 sm:py-9">
+      <div className="mx-auto max-w-[1240px] px-4 py-6 sm:px-6 sm:py-7">
         {/* Yellow Notice Banner */}
-        <div className="mb-8 flex items-start gap-3 rounded-[8px] border border-[#F3DFC1] bg-[#FDF6E9] p-3.5 sm:p-4 text-[#4A3B29]">
-          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#C7872A] text-white">
-            <FiInfo className="h-4 w-4" />
+        <div className="mb-6 flex items-start gap-3 rounded-[8px] border border-[#F3DFC1] bg-[#FDF6E9] p-3 sm:p-3.5 text-[#4A3B29]">
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#C7872A] text-white">
+            <FiInfo className="h-3.5 w-3.5" />
           </div>
           <div className="text-[12px] sm:text-[12.5px] leading-relaxed">
             <span className="font-bold text-[#2A1B0E]">Last Updated:</span> 25 October 2026
@@ -171,38 +171,38 @@ export default function DisclaimerContent() {
         </div>
 
         {/* Section Title & Subheading */}
-        <div className="mb-6">
-          <h2 className="font-serif text-[18px] sm:text-[20px] font-bold text-[#112E47]">
+        <div className="mb-5">
+          <h2 className="font-serif text-[17px] sm:text-[19px] font-bold text-[#112E47]">
             Moksha Sewa — An Initiative of Namo Gange Trust
           </h2>
-          <p className="mt-1 text-[12.5px] sm:text-[13px] leading-relaxed text-[#555555]">
+          <p className="mt-1 text-[12px] sm:text-[12.5px] leading-relaxed text-[#555555]">
             At Moksha Sewa, we believe that every individual deserves dignity, compassion and respect in their final journey. We are committed to providing responsible humanitarian assistance while maintaining transparency, sensitivity and compliance with applicable laws.
           </p>
         </div>
 
         {/* 12 Cards Grid (2 Columns on tablet/desktop) */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4.5 lg:gap-5">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
           {disclaimerItems.map((item) => (
             <div
               key={item.id}
-              className="flex items-start gap-3.5 rounded-[12px] border border-[#E8E2D5] bg-[#FAF7F2] p-4.5 sm:p-5 shadow-[0_2px_8px_rgba(44,24,16,0.04)] transition-all hover:bg-[#FDFBF7] hover:border-[#D6A54E]/70 hover:shadow-[0_6px_20px_rgba(214,165,78,0.12)]"
+              className="flex items-start gap-3 rounded-[10px] border border-[#E8E2D5] bg-[#FAF7F2] p-3 sm:p-3.5 shadow-[0_2px_6px_rgba(44,24,16,0.03)] transition-all hover:bg-[#FDFBF7] hover:border-[#D6A54E]/70 hover:shadow-[0_4px_14px_rgba(214,165,78,0.1)]"
             >
               {/* Number Badge */}
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F3E7D3] border border-[#E6D4B8] text-[12px] font-bold text-[#8C6225]">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F3E7D3] border border-[#E6D4B8] text-[11px] font-bold text-[#8C6225]">
                 {item.id}
               </div>
 
               {/* Crisp transparent vector icon matching the design */}
-              <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center">
+              <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center">
                 {item.icon}
               </div>
 
               {/* Text */}
               <div className="min-w-0 flex-1">
-                <h3 className="font-serif text-[15.5px] sm:text-[16px] font-bold text-[#112E47]">
+                <h3 className="font-serif text-[14.5px] sm:text-[15px] font-bold leading-tight text-[#112E47]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-[12.5px] sm:text-[13px] leading-[1.5] text-[#555555]">
+                <p className="mt-0.5 text-[12px] sm:text-[12.5px] leading-[1.4] text-[#555555]">
                   {item.description}
                 </p>
               </div>
