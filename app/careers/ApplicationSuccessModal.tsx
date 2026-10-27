@@ -209,9 +209,9 @@ export default function ApplicationSuccessModal({ isOpen, onClose, applicationDa
           </div>
 
           {/* SUCCESS TITLE */}
-          <h1 className="mt-[2px] shrink-0 text-center text-[30px] font-semibold text-[#5a3e2b] leading-tight">
+          <h2 className="mt-[2px] shrink-0 text-center text-[30px] font-semibold text-[#5a3e2b] leading-tight">
             Application Submitted Successfully!
-          </h1>
+          </h2>
 
           <p className="shrink-0 text-center text-[15px] font-semibold text-[#5a3e2b] mt-[3px]">
             Thank you for your interest in joining our team.
