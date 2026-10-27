@@ -71,7 +71,7 @@ export default function UnclaimedBodyHero() {
             {eyebrow}
           </div>
 
-          <h2
+          <h1
             className="mt-2 text-[40px] font-medium leading-[1.02] text-[#064335] sm:text-[48px] lg:text-[54px]"
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
@@ -85,7 +85,7 @@ export default function UnclaimedBodyHero() {
             <span className="text-[#b87a16]">
               {titleParts[2] || ""}
             </span>
-          </h2>
+          </h1>
 
           <div className="mt-2 flex max-w-[520px] items-center gap-3 text-[#bd8934]">
             <span className="h-px flex-1 bg-[#c59b56]" />

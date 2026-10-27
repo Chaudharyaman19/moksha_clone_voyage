@@ -44,7 +44,7 @@ export default function PriestSupport({ pills }: { pills?: ReactNode }) {
   const heroImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165283/moksha-sewa/assets/panditservices/hero-real.png");
   const title = textOrFallback(section?.title, "Priest Support", 60);
   const subtitle = textOrFallback(section?.subtitle, "For a Dignified Final Journey.", 150);
-  const description = textOrFallback(section?.description, "Experienced Pandit Ji's guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.", 600);
+  const description = textOrFallback(section?.description, "Experienced Pandit Ji guide your family with compassion, clarity and reverence in every sacred ritual of your loved one's journey.", 600);
   const primaryLabel = textOrFallback(section?.buttonLabel, "Request Priest Support", 60);
   const primaryHref = section?.buttonHref || "/request-help";
   const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Donate for Ritual Support", 60);
@@ -112,9 +112,9 @@ export default function PriestSupport({ pills }: { pills?: ReactNode }) {
               </div>
 
               {/* Heading */}
-              <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
+              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#321A10]">
                 {title}
-              </h2>
+              </h1>
 
               {/* Description */}
               <p className="mb-7 max-w-[590px] text-[18px] leading-relaxed text-[#321A10]/90">

@@ -137,7 +137,7 @@ function NewBanner() {
 
             {/* Hero Text */}
             <div className="max-w-[540px]">
-              <h2
+              <h1
                 className="text-[38px] leading-[1.03] text-[#102b44] sm:text-[46px] lg:text-[52px]"
                 style={{
                   fontFamily: "Georgia, 'Times New Roman', serif",
@@ -153,7 +153,7 @@ function NewBanner() {
                     ♡
                   </span>
                 </span>
-              </h2>
+              </h1>
 
               {/* Decorative divider */}
               <div className="mt-3 flex items-center gap-4">

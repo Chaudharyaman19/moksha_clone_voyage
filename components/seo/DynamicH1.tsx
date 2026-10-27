@@ -34,15 +34,7 @@ const pageFieldMap: Record<WebsitePageKey, string> = {
 };
 
 export default async function DynamicH1({ pageKey, fallback }: DynamicH1Props) {
-  const settings = await getWebsiteSettings();
-  const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
-  const customSeo = (pageSettings as any)?.seo;
-
-  const h1Text = customSeo?.h1Tag || fallback;
-
-  return (
-    <h1 className="sr-only">
-      {h1Text}
-    </h1>
-  );
+  // Return null so that page headers do not render duplicate hidden <h1> tags.
+  // Each page now has a single, visible, semantic <h1> in its Hero component.
+  return null;
 }

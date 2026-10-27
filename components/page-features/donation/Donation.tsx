@@ -160,14 +160,23 @@ function Donation() {
 
   const activeCause = activeCauses.find((c) => c.id === selectedCause) ?? activeCauses[0];
   const effectiveAmount = customAmount ? Number(customAmount) : activeCause.price;
-  const impactNote =
-    activeCause.id === "general"
-      ? "Supports the General Sewa Fund wherever verified help is needed most"
-      : activeCause.id === "cremation"
-        ? "Supports essential last-rites assistance for eligible cases"
-        : activeCause.id === "ambulance"
-          ? "Supports transport coordination and emergency response readiness"
-          : "Supports food, water and basic relief for verified families";
+  const impactNote = (() => {
+    const title = (activeCause.title || "").toLowerCase();
+    const id = (activeCause.id || "").toLowerCase();
+    if (id === "general" || title.includes("general") || title.includes("final journey") || activeCause.price === 1100) {
+      return "Supports the General Sewa Fund wherever verified help is needed most.";
+    }
+    if (id === "cremation" || title.includes("cremation") || title.includes("last-rites") || activeCause.price === 2100) {
+      return "Supports essential last-rites assistance, samagri and coordination for eligible cases.";
+    }
+    if (id === "ambulance" || title.includes("ambulance") || title.includes("transport") || activeCause.price === 5100) {
+      return "Supports transport coordination and emergency response readiness across the region.";
+    }
+    if (id === "annadan" || title.includes("relief") || title.includes("annadan") || title.includes("family") || activeCause.price === 11000) {
+      return "Supports food, water and basic relief for verified grieving families in need.";
+    }
+    return activeCause.description || "Supports verified last-rites assistance and humanitarian relief for families in need.";
+  })();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -344,11 +353,11 @@ function Donation() {
                 </span>
               </div>
 
-              <h2 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
+              <h1 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Support a Final Journey", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
-              </h2>
+              </h1>
 
               {/* diya flourish */}
               <div className="mt-4 flex items-center gap-2">

@@ -424,7 +424,7 @@ export default function CSRPartnershipEnquiry() {
                           text-[#0B4A3A]
                         "
                       >
-                        {title}
+                        {title.replace(/\\n/g, "\n")}
                       </h3>
 
                       {/* SMALL GOLD LINE */}
@@ -456,7 +456,7 @@ export default function CSRPartnershipEnquiry() {
                           text-[#3F4443]
                         "
                       >
-                        {text}
+                        {text.replace(/\\n/g, "\n")}
                       </p>
                     </div>
                   )}

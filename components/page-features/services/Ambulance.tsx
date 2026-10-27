@@ -197,7 +197,7 @@ function HeroSection() {
   const section = useWebsiteSection("ambulance-hero");
   const eyebrow = textOrFallback(section?.eyebrow, "24×7 Last Journey Support", 60);
   const title = textOrFallback(section?.title, "Ambulance & Hearse\nSupport with Dignity", 150);
-  const description = textOrFallback(section?.description, "Namo Gange coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.", 600);
+  const description = textOrFallback(section?.description, "Moksha Sewa coordinates ambulance and hearse support for eligible last-journey cases with dignified transfer, calm guidance and timely assistance, subject to verification and availability.", 600);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Call for Ambulance", 60);
   const buttonHref = section?.buttonHref || "tel:+919654900525";
   const secondaryLabel = textOrFallback(section?.secondaryButtonLabel, "Request Support", 60);
@@ -228,11 +228,11 @@ function HeroSection() {
             <span>{eyebrow}</span>
           </div>
 
-          <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
+          <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             {titleParts[0]}
             {titleParts.length > 1 && <br />}
             {titleParts.slice(1).join('\n')}
-          </h2>
+          </h1>
 
           <Divider className="my-3 w-[127px]" />
 
@@ -468,7 +468,7 @@ function ReceiveSection() {
 
 function TrustSection() {
   const section = useWebsiteSection("ambulance-trust");
-  const title = textOrFallback(section?.title, "Why Families Trust Namo Gange", 60);
+  const title = textOrFallback(section?.title, "Why Families Trust Moksha Sewa", 60);
   const items = section?.items?.length ? section.items.map(it => ({ title: it.title || "", copy: it.description || "", icon: (it.label || "shield") as IconName })) : trustItems;
   return (
     <section className="mx-auto w-full max-w-7xl px-5 pt-[4px] lg:px-0">

@@ -97,7 +97,7 @@ export default function PartnershipResponsibility() {
   const title = textOrFallback(section?.title, "Partnerships Built on Purpose. Guided by Responsibility.", 100);
   const description = textOrFallback(section?.description, "Moksha Sewa operates within the institutional framework\nof Namo Gange Trust, bringing responsible processes\nand humanitarian service together.", 200);
   const buttonLabel = textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 50);
-  const buttonHref = section?.buttonHref || "#";
+  const buttonHref = section?.buttonHref && section.buttonHref !== "#" ? section.buttonHref : "https://www.namogange.org/";
   const secondaryTitle = textOrFallback(section?.secondaryTitle, "Moksha Sewa", 50);
   const secondaryDescription = textOrFallback(section?.secondaryDescription, "A Namo Gange Trust Initiative", 50);
 

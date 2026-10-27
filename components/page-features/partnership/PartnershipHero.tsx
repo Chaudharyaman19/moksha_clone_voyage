@@ -48,14 +48,14 @@ export default function PartnershipHero() {
             <span className="h-px w-12 bg-[#c6923c]" />
           </div>
 
-          <h2 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          <h1 className="mt-3 text-[42px] font-medium leading-[1.03] text-[#064335] sm:text-[50px]" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
             {title.split("\n").map((line, i) => (
               <span key={i}>
                 {line}
                 <br />
               </span>
             ))}
-          </h2>
+          </h1>
 
           <p className="mt-3 text-[20px] font-semibold leading-[1.35] text-[#b77a1d]">
             {subtitle.split("\n").map((line, i) => (

@@ -437,9 +437,9 @@ export default function RequestHelp() {
                 <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
               </div>
 
-              <h2 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
+              <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
                 {textOrFallback(heroSection?.title, "Request Cremation Assistance", 100)}
-              </h2>
+              </h1>
 
               <p className="mx-auto mt-1 max-w-[680px] leading-6 text-[#665246]">
                 {textOrFallback(heroSection?.description, "We are here to support you with compassion, dignity and care in your time of need.", 200)}
