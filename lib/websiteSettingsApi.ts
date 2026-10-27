@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { mergeLandingSections, type LandingSectionContent } from "./landingContent";
 import { mergeAboutSections, type AboutSectionContent } from "./aboutContent";
 import { notFound } from "next/navigation";
@@ -184,16 +185,32 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
   return [...pageSections, ...globalSections];
 }
 
-export async function getWebsiteSettings(): Promise<SettingsResponse | undefined> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
-    if (!response.ok) return undefined;
-    const body = (await response.json()) as ApiEnvelope<SettingsResponse>;
-    return body.data;
-  } catch {
-    return undefined;
+let settingsMemoryCache: { data: SettingsResponse | undefined; expires: number } | null = null;
+const SETTINGS_CACHE_TTL_MS = 60 * 1000;
+
+export const getWebsiteSettings = cache(async (): Promise<SettingsResponse | undefined> => {
+  const now = Date.now();
+  if (settingsMemoryCache && settingsMemoryCache.expires > now) {
+    return settingsMemoryCache.data;
   }
-}
+
+  try {
+    const fetchPromise = fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
+    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 300));
+    const response = (await Promise.race([fetchPromise, timeoutPromise])) as Response | null;
+
+    if (response && response.ok) {
+      const body = (await response.json()) as ApiEnvelope<SettingsResponse>;
+      settingsMemoryCache = { data: body.data, expires: now + SETTINGS_CACHE_TTL_MS };
+      return body.data;
+    }
+
+    if (settingsMemoryCache) return settingsMemoryCache.data;
+    return undefined;
+  } catch {
+    return settingsMemoryCache ? settingsMemoryCache.data : undefined;
+  }
+});
 
 export function isSettingsPageDisabled(
   settings: SettingsResponse | undefined,

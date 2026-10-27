@@ -281,7 +281,7 @@ const PolicyHero = ({
             >
               {/* Heading */}
 
-              <h2
+              <h1
                 className={`
                 m-0
                 font-serif
@@ -302,7 +302,7 @@ const PolicyHero = ({
                 style={{ transitionDelay: "0.5s" }}
               >
                 {title}
-              </h2>
+              </h1>
 
               {/* =================================================
                 DECORATIVE LINE

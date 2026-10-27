@@ -687,14 +687,30 @@ export function parseOpenGraphTagsContent(rawTags?: string | null): ParsedOgData
   return result;
 }
 
-export async function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Promise<Metadata> {
+// In-memory cache for synchronous metadata resolution (prevents Next.js head-streaming race conditions)
+const dynamicSeoCache = new Map<string, { dedicatedSeo: any; settings: any; timestamp: number }>();
+
+export function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Metadata {
   const baseMetadata = createPageMetadata(path);
 
   const isLocal = process.env.NODE_ENV !== "production";
   const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
-  const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
 
-  const settings = await getWebsiteSettings();
+  // Trigger background refresh so cache stays up-to-date with admin edits without blocking the current render
+  const cached = dynamicSeoCache.get(slug);
+  const now = Date.now();
+  if (!cached || now - cached.timestamp > 30000) {
+    Promise.all([
+      seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null),
+      getWebsiteSettings().catch(() => null),
+    ]).then(([dedicatedSeo, settings]) => {
+      dynamicSeoCache.set(slug, { dedicatedSeo, settings, timestamp: Date.now() });
+    }).catch(() => {});
+  }
+
+  const dedicatedSeo = cached?.dedicatedSeo;
+  const settings = cached?.settings;
+
   const pageFieldMap: Record<WebsitePageKey, any> = {
     landing: "landingPage",
     about: "aboutPage",
