@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl, publicSeoRoutes, SITE_URL } from "@/lib/seo";
+import { blogsApi } from "@/lib/blogsApi";
 
 /**
  * Auto-generated sitemap — Next.js App Router convention.
@@ -9,7 +10,8 @@ import { absoluteUrl, publicSeoRoutes, SITE_URL } from "@/lib/seo";
  *    priority + changeFrequency from code).
  * 2. Fetch the public SEO record for each route from the backend to get the
  *    real `updatedAt` timestamp → used as `lastModified`.
- * 3. If the backend is unreachable, fall back to `new Date()` — sitemap still
+ * 3. Fetch published blog posts and location pages with their real updatedAt dates.
+ * 4. If the backend is unreachable, fall back gracefully — sitemap still
  *    renders without breaking the build or SSR.
  *
  * This file is regenerated at build time in production (ISR / static export)
@@ -19,7 +21,7 @@ export const dynamic = "force-dynamic"; // Always fresh in dev; revalidated on d
 export const revalidate = 3600; // Re-generate at most once per hour in production
 
 const API_BASE =
-  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1")
+  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1")
     .replace(/\/api\/v1\/?$/, "");
 
 async function fetchLastModified(slug: string): Promise<Date> {
@@ -65,7 +67,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
-  // NEW: append Published LocationPages (Service x City). Existing entries untouched.
+  // Append published blogs
+  try {
+    const blogs = await blogsApi.getAllPublic();
+    for (const b of blogs) {
+      if (b?.slug && b?.seo?.robotsIndex !== false) {
+        entries.push({
+          url: absoluteUrl(`/blog/${b.slug}`),
+          lastModified: b.updatedAt ? new Date(b.updatedAt) : (b.publishedAt ? new Date(b.publishedAt) : new Date()),
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+        });
+      }
+    }
+  } catch {
+    // fallback if blog API is unavailable
+  }
+
+  // Append Published LocationPages (Service x City).
   const lp = await fetchLocationPages();
   for (const r of lp) {
     entries.push({

@@ -27,18 +27,18 @@ import SuccessPopup from "@/components/common/SuccessPopup";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const HEAD_OFFICE_QUERY =
-  "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad";
+  "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad, Uttar Pradesh, India";
 
 const officeLocations = [
   {
     city: "Head Office",
-    region: "Ghaziabad, Uttar Pradesh",
+    region: "Delhi NCR / Ghaziabad, Uttar Pradesh",
     country: "India",
     address:
-      "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh, India",
+      "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India",
     pincode: "201007",
     hours: "Open 24 hours · every day",
-    phone: { label: "+91 98183 53841", href: "tel:+919818353841" },
+    phone: { label: "+91 92201 47229", href: "tel:+919220147229" },
     type: "main",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
     imageWidth: 1448,
@@ -47,11 +47,27 @@ const officeLocations = [
     orgName: "Namo Gange Trust",
   },
   {
-    city: "London Office",
-    region: "Luton, England",
+    city: "Regional Office",
+    region: "Visakhapatnam, Andhra Pradesh",
+    country: "India",
+    address:
+      "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India",
+    pincode: "530008",
+    hours: "Mon-Sat · 9:00 am - 6:00 pm IST",
+    phone: { label: "+91 62814 82342", href: "tel:+916281482342" },
+    type: "branch",
+    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
+    imageWidth: 1448,
+    imageHeight: 1086,
+    mapQuery: "Kancharapalem, Visakhapatnam, Andhra Pradesh, India",
+    orgName: "Namo Gange Wellness Pvt. Ltd.",
+  },
+  {
+    city: "Global Office",
+    region: "London / Luton, England",
     country: "United Kingdom",
     address:
-      "Registration address: 6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW",
+      "6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW",
     pincode: "LU3 1TW",
     hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
     phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
@@ -60,7 +76,7 @@ const officeLocations = [
     imageWidth: 1448,
     imageHeight: 1086,
     mapQuery: "6 Liddel Close, Luton, Bedfordshire LU3 1TW, United Kingdom",
-    orgName: "Namo Gange Wellness",
+    orgName: "Namo Gange Wellness Ltd.",
   },
 ];
 

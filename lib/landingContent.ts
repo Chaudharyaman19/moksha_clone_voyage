@@ -291,7 +291,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     secondaryLogoImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164957/moksha-sewa/hero-images/namo-gange-logo.png",
     secondaryImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165060/moksha-sewa/assets/about-reference/story-ghat-temple.png",
     quote: "We believe in being open, accountable and answerable\nto all those who walk with us in this mission.",
-    legalNotice: "Applicable registration / tax\ninformation will be displayed\nafter legal verification.",
+    legalNotice: "Namo Gange Trust is registered under the Indian Trusts Act.\nAll donations are utilized for humanitarian last-rites sewa.",
     lowerTitle: "Transparency in every step.",
     lowerDescription: "Moksha Sewa follows responsible practices, transparency and applicable legal norms to ensure trust.",
     bottomStatement: "A mission of compassion. | A commitment to transparency. | A promise of accountability.",

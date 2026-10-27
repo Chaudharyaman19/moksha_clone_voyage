@@ -26,17 +26,41 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const blog = await blogsApi.getBySlug(slug);
   if (!blog) return { title: "Blog Not Found - Moksha Sewa" };
 
+  const rawTitle = blog.seo?.metaTitle || blog.title;
+  const cleanTitle = rawTitle.replace(/\s*(\|\s*Moksha Sewa|- Moksha Sewa)\s*$/i, "").trim();
+  const canonicalUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
+  const ogImg = blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
+  const desc = blog.seo?.metaDescription || blog.excerpt || blog.content.substring(0, 150);
+  const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
+
   return {
-    title: blog.seo?.metaTitle || `${blog.title} | Moksha Sewa`,
-    description: blog.seo?.metaDescription || blog.excerpt || blog.content.substring(0, 150),
+    title: cleanTitle,
+    description: desc,
     keywords: blog.seo?.metaKeywords || blog.tags?.join(", "),
-    openGraph: {
-      title: blog.seo?.ogTitle || blog.title,
-      description: blog.seo?.ogDescription || blog.excerpt,
-      images: [blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png"],
-    },
     alternates: {
-      canonical: blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: "article",
+      title: blog.seo?.ogTitle || cleanTitle,
+      description: blog.seo?.ogDescription || desc,
+      url: canonicalUrl,
+      siteName: "Moksha Sewa",
+      images: [
+        {
+          url: fullOgImage,
+          width: 1200,
+          height: 630,
+          alt: cleanTitle,
+        },
+      ],
+      publishedTime: blog.publishedAt || blog.createdAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.seo?.ogTitle || cleanTitle,
+      description: blog.seo?.ogDescription || desc,
+      images: [fullOgImage],
     },
     robots: {
       index: blog.seo?.robotsIndex !== false,

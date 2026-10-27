@@ -277,7 +277,7 @@ const AboutMokshaSewa: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h2
+            <h1
               id="about-moksha-title"
               className="
                 max-w-[620px]
@@ -293,7 +293,7 @@ const AboutMokshaSewa: React.FC = () => {
               "
             >
               <span className="whitespace-pre-line">{textOrFallback(section?.title, "Every Final Journey\nDeserves Dignity", 150)}</span>
-            </h2>
+            </h1>
 
             {/* Subtitle */}
             <p className="mt-2 text-base font-semibold text-[#df5b0b] sm:text-lg">
@@ -725,7 +725,7 @@ const AboutMokshaSewa: React.FC = () => {
 
                 {/* Content */}
                 <div className="min-w-0">
-                  <h2
+                  <h3
                     className="
                       text-[18px]
                       font-semibold
@@ -735,7 +735,7 @@ const AboutMokshaSewa: React.FC = () => {
                     "
                   >
                     {item.title}
-                  </h2>
+                  </h3>
 
                   <p
                     className="

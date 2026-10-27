@@ -322,7 +322,11 @@ const values = [
 export default function TrustTransparency() {
   const websiteSection = useWebsiteSection("trust-transparency");
   const quote = textOrFallback(websiteSection?.quote, "We believe in being open, accountable and answerable\nto all those who walk with us in this mission.", 220);
-  const legalNotice = textOrFallback(websiteSection?.legalNotice, "Applicable registration / tax\ninformation will be displayed\nafter legal verification.", 160);
+  const rawLegalNotice = websiteSection?.legalNotice;
+  const isPlaceholderNotice = !rawLegalNotice || rawLegalNotice.includes("legal verification") || rawLegalNotice.includes("Applicable registration");
+  const legalNotice = isPlaceholderNotice
+    ? "Namo Gange Trust is registered under the Indian Trusts Act.\nAll donations are utilized for humanitarian last-rites sewa."
+    : textOrFallback(rawLegalNotice, "Namo Gange Trust is registered under the Indian Trusts Act.\nAll donations are utilized for humanitarian last-rites sewa.", 160);
   const bottomStatements = textOrFallback(websiteSection?.bottomStatement, "A mission of compassion. | A commitment to transparency. | A promise of accountability.", 220).split("|").map((statement) => statement.trim());
   const managedTrustCards = [
     ...trustCards.map((fallback, index) => {
