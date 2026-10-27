@@ -29,7 +29,7 @@ import { matchLevelFor, readStoredCandidate, resultPathFor } from "../candidateV
 import { analysisRun, resetAnalysisRun } from "../analysisState";
 
 /** How long this screen stays up before the result opens (the analysis runs alongside it). */
-const ANALYSIS_MS = 12000;
+const ANALYSIS_MS = 16000;
 
 const heroBg = "/newcarrierimage/apply-hero-exact.png";
 const sideLeafLeft = "/assets/careers/apply-leaf-left-clean-transparent.png";
@@ -78,7 +78,7 @@ function ProgressSteps() {
   );
 }
 
-function ScoreRing({ score, pending }: { score: number; pending?: boolean }) {
+function ScoreRing({ score }: { score: number }) {
   return (
     <div className="relative grid h-[175px] w-[175px] shrink-0 place-items-center">
       <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full -rotate-90">
@@ -90,7 +90,7 @@ function ScoreRing({ score, pending }: { score: number; pending?: boolean }) {
           fill="none"
           stroke="#d97706"
           strokeWidth="11"
-          strokeDasharray={`${(pending ? 0 : score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
+          strokeDasharray={`${(score / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
           strokeLinecap="round"
         />
         <circle
@@ -100,13 +100,13 @@ function ScoreRing({ score, pending }: { score: number; pending?: boolean }) {
           fill="none"
           stroke="#0d5c46"
           strokeWidth="11"
-          strokeDasharray={`${(pending ? 0 : score / 100) * 2 * Math.PI * 48 * 0.4} ${2 * Math.PI * 48}`}
+          strokeDasharray={`${(score / 100) * 2 * Math.PI * 48 * 0.4} ${2 * Math.PI * 48}`}
           strokeLinecap="round"
           opacity="0.9"
         />
       </svg>
       <div className="text-center leading-tight px-2">
-        <span className="block text-[36px] font-bold leading-none text-[#0c3d30]">{pending ? "…" : `${score}%`}</span>
+        <span className="block text-[36px] font-bold leading-none text-[#0c3d30]">{score}%</span>
         <span className="mt-1 block text-[14.5px] font-bold text-[#d97706]">Analyzing...</span>
         <div className="mt-1 text-[9.5px] sm:text-[10px] leading-[1.3] text-[#5a6a7a] font-medium">
           <span className="block">Extracting skills,</span>
@@ -207,31 +207,39 @@ export default function ApplicationProgressContent() {
     };
   }, []);
 
-  // Smooth score animation that restarts as soon as the real score lands.
+  // Smooth fake score that eases toward ~92% while the analysis runs;
+  // when the real score lands it takes over and the ring settles on it.
   useEffect(() => {
-    const finalScore = typeof candidate.score === "number" ? candidate.score : 0;
+    const startedAt = Date.now();
+    const realScore = hasResult && typeof candidate.score === "number" ? candidate.score : null;
 
     const interval = setInterval(() => {
+      const elapsed = (Date.now() - startedAt) / 1000;
+      // Easing curve: quick at first, slows near ~92%
+      const fake = Math.round(92 * (1 - Math.exp(-elapsed / 5)));
+
       setAnimScore((prev) => {
-        if (prev < finalScore) {
-          const nextVal = prev + Math.ceil(Math.max(1, (finalScore - prev) / 4));
-          return Math.min(nextVal, finalScore);
+        if (realScore !== null) {
+          // Real score has landed — ease toward it
+          if (prev < realScore) return Math.min(prev + Math.ceil(Math.max(1, (realScore - prev) / 4)), realScore);
+          if (prev > realScore) return Math.max(prev - Math.ceil(Math.max(1, (prev - realScore) / 4)), realScore);
+          return realScore;
         }
-        if (prev > finalScore) return finalScore;
-        return prev;
+        // Still waiting: use the fake easing score, but never go backwards
+        return Math.max(prev, fake);
       });
-    }, 400);
+    }, 300);
 
     return () => clearInterval(interval);
-  }, [candidate.score]);
+  }, [hasResult, candidate.score]);
 
   // Task steps, then the verdict: only once the analysis itself has settled.
   useEffect(() => {
     let cancelled = false;
 
-    const t1 = setTimeout(() => setTaskStep(2), 2500);
-    const t2 = setTimeout(() => setTaskStep(3), 5000);
-    const t3 = setTimeout(() => setTaskStep(4), 7500);
+    const t1 = setTimeout(() => setTaskStep(2), 3000);
+    const t2 = setTimeout(() => setTaskStep(3), 6000);
+    const t3 = setTimeout(() => setTaskStep(4), 9000);
     const t4 = setTimeout(async () => {
       setTaskStep(5);
 
@@ -404,7 +412,7 @@ export default function ApplicationProgressContent() {
                   </div>
 
                   <div className="flex justify-center">
-                    <ScoreRing score={animScore} pending={awaitingResult} />
+                    <ScoreRing score={animScore} />
                   </div>
 
                   <div className="space-y-2">

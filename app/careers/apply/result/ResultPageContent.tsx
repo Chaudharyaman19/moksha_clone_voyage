@@ -318,7 +318,7 @@ export default function ResultPageContent() {
         </section>
 
         {/* ── Content ── */}
-        <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10">
+        <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-2">
           {/* Left Side Vine Leaves - Layered behind content */}
           <div className="pointer-events-none absolute -left-2 sm:-left-3 lg:-left-4 xl:-left-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
             <Image
@@ -619,13 +619,13 @@ export default function ResultPageContent() {
                 </div>
 
                 {/* Assistance Box */}
-                <div className="flex items-start gap-2.5 rounded-2xl border border-[#bde0d4] bg-[#f3f9f6] p-3.5">
-                  <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full bg-[#0d5c46] text-white">
-                    <Headphones className="h-4.5 w-4.5" />
+                <div className="flex items-start gap-2.5 rounded-2xl border border-[#bde0d4] bg-[#f3f9f6] px-3 py-2">
+                  <span className="grid h-[32px] w-[32px] shrink-0 place-items-center rounded-full bg-[#0d5c46] text-white">
+                    <Headphones className="h-4 w-4" />
                   </span>
                   <div>
-                    <p className="text-[14px] font-bold text-[#0c3d30]">Need Any Assistance?</p>
-                    <p className="text-[12px] leading-[1.45] text-[#3a4a5c]">
+                    <p className="text-[13.5px] font-bold text-[#0c3d30]">Need Any Assistance?</p>
+                    <p className="text-[11.5px] leading-[1.4] text-[#3a4a5c]">
                       Feel free to reach out to our HR team at{" "}
                       {support.email && (
                         <a href={`mailto:${support.email}`} className="font-semibold text-[#0d5c46] underline">{support.email}</a>
