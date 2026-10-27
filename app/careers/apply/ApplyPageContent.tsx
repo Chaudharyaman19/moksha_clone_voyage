@@ -146,8 +146,35 @@ const validateCvFile = (file: File): string | null => {
   return null;
 };
 
-/** Nothing is shown for a job until the backend record for this slug has loaded. */
-const DEFAULT_JOB: Job = {};
+const DEFAULT_JOB: Job = {
+  _id: "6a8fcc437763c7fe2f64d8b7",
+  title: "Web Developer",
+  slug: "web-developer",
+  department: "Information Technology",
+  company: "Moksha Sewa",
+  location: "Ghaziabad, Uttar Pradesh",
+  type: "Full time",
+  experience: "0 - 10 Years",
+  education: "Graduate",
+  preferredQualifications: ["B.Tech / MCA Preferred"],
+  description:
+    "Join Moksha Sewa as a Web Developer and be part of our mission to create innovative services and solutions that bring dignity, comfort and compassion to families across India.",
+  responsibilities: [
+    "Develop, test, and maintain modern, responsive web applications using React, Next.js, and TypeScript.",
+    "Design and integrate secure RESTful APIs, microservices, and database systems (MongoDB).",
+    "Collaborate with UI/UX designers and product managers to create seamless, intuitive user experiences.",
+    "Optimize web platforms for maximum speed, SEO performance, scalability, and cross-browser accessibility.",
+    "Implement clean code architecture, code reviews, automated tests, and continuous deployment workflows.",
+  ],
+  requirements: [
+    "Strong communication and persuasive skills.",
+    "Experience in frontend and full-stack web development.",
+    "Proficiency in React, Next.js, and TypeScript.",
+    "Knowledge of REST APIs and database integrations.",
+    "Ability to build responsive and user-friendly web interfaces.",
+  ],
+  eligibilityThreshold: 40,
+};
 
 function UploadBox({ onFile, analysisError }: { onFile: (file: File | null) => void; analysisError?: string }) {
   const [fileName, setFileName] = useState("");
@@ -255,7 +282,7 @@ export default function ApplyPageContent() {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
     fetch(`${apiUrl}/careers/jobs`)
       .then((r) => r.json())
       .then((data) => {
@@ -274,7 +301,7 @@ export default function ApplyPageContent() {
               experience:
                 found.experienceMin != null && found.experienceMax != null
                   ? `${found.experienceMin} - ${found.experienceMax} Years`
-                  : "",
+                  : (found.experienceText || "0 - 10 Years"),
               company: found.company,
               responsibilities: found.responsibilities,
               requirements: found.requirements,
@@ -289,19 +316,38 @@ export default function ApplyPageContent() {
       .catch(() => { });
   }, [jobSlug]);
 
-  const educationLabel = job.education?.trim() || "";
+  const educationLabel = job.education?.trim() || "Graduate";
   const preferredQuals = (job.preferredQualifications ?? []).map((i) => i?.trim()).filter(Boolean);
   const educationNote = preferredQuals.length ? `(${preferredQuals.join(", ")})` : "";
   const threshold = typeof job.eligibilityThreshold === "number" && job.eligibilityThreshold > 0 ? job.eligibilityThreshold : 40;
 
+  const defaultWebDevResponsibilities = [
+    "Develop, test, and maintain modern, responsive web applications using React, Next.js, and TypeScript.",
+    "Design and integrate secure RESTful APIs, microservices, and database systems (MongoDB).",
+    "Collaborate with UI/UX designers and product managers to create seamless, intuitive user experiences.",
+    "Optimize web platforms for maximum speed, SEO performance, scalability, and cross-browser accessibility.",
+    "Implement clean code architecture, code reviews, automated tests, and continuous deployment workflows.",
+  ];
+
+  const defaultWebDevRequirements = [
+    "Strong communication and persuasive skills.",
+    "Experience in frontend and full-stack web development.",
+    "Proficiency in React, Next.js, and TypeScript.",
+    "Knowledge of REST APIs and database integrations.",
+    "Ability to build responsive and user-friendly web interfaces.",
+  ];
+
   const pickList = (value: string[] | undefined, fallback: string[]): string[] => {
-    const cleaned = (value ?? []).map((i) => i?.trim()).filter(Boolean);
+    const cleaned = (value ?? []).map((i) => i?.trim().replace(/^[•\-\*]\s*/, "")).filter(Boolean);
     return cleaned.length > 0 ? cleaned : fallback;
   };
-  const jobResponsibilities = pickList(job.responsibilities, []);
-  const jobApplyCriteria = job.description && job.description.includes("•")
-    ? job.description.split("•").map((p) => p.trim()).filter(Boolean)
-    : pickList(job.requirements, []);
+  const jobResponsibilities = pickList(job.responsibilities, defaultWebDevResponsibilities);
+  const jobApplyCriteria = pickList(
+    job.description && job.description.includes("•")
+      ? job.description.split("•").map((p) => p.trim().replace(/^[•\-\*]\s*/, "")).filter(Boolean)
+      : job.requirements,
+    defaultWebDevRequirements
+  );
 
   const aiChecklist = [
     "Relevant experience",
@@ -320,7 +366,7 @@ export default function ApplyPageContent() {
     setIsAnalyzing(true);
     resetAnalysisRun();
     const fileSizeStr = file.size > 1024 * 1024 ? `${(file.size / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(file.size / 1024)} KB`;
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
     const jobDetails = {
       title: job.title,
       company: job.company || "Moksha Sewa",
@@ -633,7 +679,7 @@ export default function ApplyPageContent() {
                           Key Responsibilities
                         </h3>
                         <ul className="mt-1.5 ml-0.5 space-y-1">
-                          {jobResponsibilities.slice(0, 4).map((item) => (
+                          {jobResponsibilities.slice(0, 5).map((item) => (
                             <GoldCheck key={item}>{item}</GoldCheck>
                           ))}
                         </ul>
@@ -656,10 +702,10 @@ export default function ApplyPageContent() {
                     </div>
 
                     {/* View Job Full Details / Download JD Button */}
-                    <div className="mt-3 pt-0.5">
+                    <div className="mt-4 pt-1">
                       <button
                         onClick={() => {
-                          const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+                          const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1";
                           const target = job.slug || jobSlug || job._id;
                           if (target) {
                             window.open(`${apiBase}/careers/jobs/${target}/export`, "_blank");
