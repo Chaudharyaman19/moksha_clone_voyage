@@ -366,42 +366,29 @@ export default function ResultPageContent() {
                     </div>
 
                     {/* Center Content */}
-                    <div className="flex flex-1 flex-col justify-between p-3.5 sm:p-4 lg:p-5 lg:pr-2">
+                    <div className="flex flex-1 flex-col justify-center p-3.5 sm:p-4 lg:p-6 lg:pr-4">
                       <div>
-                        <h2 className="font-serif text-[24px] font-bold leading-tight text-[#0c3d30] sm:text-[27px] lg:text-[30px]">
+                        <h2 className="font-serif text-[28px] font-bold leading-tight text-[#0c3d30] sm:text-[32px] lg:text-[36px]">
                           Great News, <span className="text-[#d97706] font-bold">{firstName}!</span>
                         </h2>
-                        <p className="mt-1.5 text-[15px] font-semibold text-[#0c3d30] lg:text-[16px]">
+                        <p className="mt-2 text-[17px] font-semibold text-[#0c3d30] lg:text-[19px]">
                           You are eligible to apply for this position.
                         </p>
-                        <p className="mt-1.5 text-[13px] leading-[1.5] text-[#3a4a5c] max-w-[480px] lg:text-[14px]">
+                        <p className="mt-2 text-[15px] leading-[1.55] text-[#3a4a5c] max-w-[580px] lg:text-[16.5px]">
                           Your profile matches the key requirements at Moksha Sewa. We appreciate your interest in contributing to a more compassionate and dignified society.
                         </p>
-                      </div>
-
-                      {/* Buttons in a single non-wrapping ROW */}
-                      <div className="mt-3.5 flex flex-row items-center flex-nowrap gap-2 sm:gap-2.5 pt-0.5">
-                        <button
-                          onClick={handleContinueAndApply}
-                          className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 sm:gap-2 rounded-lg bg-[#0b4d3b] px-3.5 sm:px-4 py-2 text-[12.5px] sm:text-[13px] font-semibold text-white shadow-xs transition hover:bg-[#073629]"
-                        >
-                          Continue &amp; Apply for This Job <ArrowRight className="h-3.5 w-3.5" />
-                        </button>
-                        <button className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 sm:gap-2 rounded-lg border-2 border-[#0b4d3b] bg-[#fdfaf1] px-3.5 sm:px-4 py-2 text-[12.5px] sm:text-[13px] font-semibold text-[#0b4d3b] transition hover:bg-[#f3ede0]">
-                          <Download className="h-3.5 w-3.5" /> Download Result (PDF)
-                        </button>
                       </div>
                     </div>
 
                     {/* Right Diya Graphic with uploaded Together for a More Compassionate Tomorrow */}
-                    <div className="relative hidden w-[295px] shrink-0 lg:block xl:w-[335px] mr-8 lg:-translate-x-12 xl:-translate-x-16">
+                    <div className="relative hidden w-[270px] shrink-0 lg:block xl:w-[300px] self-stretch">
                       <Image
                         src={rightCardDecoration}
                         alt="Together for a More Compassionate Tomorrow"
                         fill
                         unoptimized
                         priority
-                        className="object-contain object-center scale-[0.98]"
+                        className="object-contain object-right"
                       />
                     </div>
                   </div>
@@ -607,8 +594,11 @@ export default function ResultPageContent() {
 
                 {/* CTA Buttons & Security Note */}
                 <div className="space-y-1.5 pt-0.5">
-                  <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#0b4d3b] bg-[#fdfaf1] py-2 text-[13.5px] font-bold text-[#0b4d3b] transition hover:bg-[#f2ebe0]">
-                    <Bookmark className="h-4 w-4" /> Save for Later
+                  <button
+                    onClick={handleContinueAndApply}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0b4d3b] py-2 text-[13.5px] font-bold text-white transition hover:bg-[#073629]"
+                  >
+                    Continue &amp; Apply for This Job <ArrowRight className="h-4 w-4" />
                   </button>
                   <div className="flex items-center justify-center gap-2 text-[12px] font-medium text-gray-600">
                     <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-[#0d5c46] text-white">
