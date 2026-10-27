@@ -15,7 +15,7 @@ import {
   FaDonate,
 } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import footerMokshaLogo from "../../../public/assets/logo-moksha-seva.png";
+import footerMokshaLogo from "../../../public/homelogo/mok-footer-white.png";
 import { newsletterApi } from "@/lib/newsletterApi";
 
 const quickLinks = [

@@ -499,7 +499,7 @@ export default function FooterNew() {
               <div className="footer-col relative flex flex-col items-center justify-center px-3 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[95px] min-[1280px]:pr-1">
                 <div className="footer-brand-logo relative flex w-[145px] items-center justify-center overflow-hidden sm:w-[160px]">
                   <Image
-                    src="/footer/Glossy Moksha Sewa Lotus Wave Logo.png"
+                    src="/homelogo/mok-footer-white.png"
                     alt={brandName}
                     width={160}
                     height={120}
