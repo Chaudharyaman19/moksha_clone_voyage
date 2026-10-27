@@ -33,7 +33,7 @@ const pageFieldMap: Record<WebsitePageKey, string> = {
   disclaimer: "disclaimerPage",
 };
 
-export default async function DynamicH1({ pageKey, fallback }: DynamicH1Props) {
+export default function DynamicH1({ pageKey, fallback }: DynamicH1Props) {
   // Return null so that page headers do not render duplicate hidden <h1> tags.
   // Each page now has a single, visible, semantic <h1> in its Hero component.
   return null;

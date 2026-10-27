@@ -7,6 +7,9 @@ import { WebsiteContentProvider } from "@/components/website/WebsiteContentConte
 
 import { createDynamicMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata() {
   return createDynamicMetadata("/request-help", "request-help");
 }
