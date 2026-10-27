@@ -278,14 +278,14 @@ export default function Navbar() {
         } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-0">
-          <div className="flex items-center h-16 relative">
-            <div className="flex-shrink-0 pl-2 pr-4 py-2">
+          <div className="flex items-center h-[68px] relative">
+            <div className="flex-shrink-0 pl-2 pr-4 py-1">
               <button
                 onClick={() => handleNavigation("/")}
                 aria-label="Moksha Sewa home"
                 className="block transition-all"
               >
-                <div className="h-20 w-20 sm:h-24 sm:w-24">
+                <div className="h-[72px] w-[72px] sm:h-20 sm:w-20">
                   <Image
                     src="/homelogo/mok.png"
                     alt="Moksha Sewa Logo"
