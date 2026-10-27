@@ -567,14 +567,14 @@ export default function ApplicationProgressContent() {
                           fill="none"
                           stroke={matchLevel === "high" ? "#0d5c46" : matchLevel !== "low" ? "#d97706" : "#dc2626"}
                           strokeWidth={12}
-                          strokeDasharray={`${(targetScore / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
+                          strokeDasharray={`${(animScore / 100) * 2 * Math.PI * 48} ${2 * Math.PI * 48}`}
                           strokeLinecap="round"
                         />
                       </svg>
                       <span className={`text-[17px] font-bold ${
                         matchLevel === "high" ? "text-[#0c3d30]" : matchLevel !== "low" ? "text-[#d97706]" : "text-[#dc2626]"
                       }`}>
-                        {awaitingResult ? "…" : `${targetScore}%`}
+                        {animScore}%
                       </span>
                     </div>
                     <div>
