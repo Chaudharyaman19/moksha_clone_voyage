@@ -10,7 +10,7 @@ import { getMergedWebsiteSections, getWebsiteSettings, isPageDisabled } from "@/
 import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
-  return createDynamicMetadata("/services", "landing");
+  return createDynamicMetadata("/services", "services");
 }
 
 export default async function ServicesPage() {
@@ -18,10 +18,10 @@ export default async function ServicesPage() {
   if (isPageDisabled("services", settings)) {
     notFound();
   }
-  const sections = getMergedWebsiteSections("landing", settings);
+  const sections = getMergedWebsiteSections("services", settings);
 
   return (
-    <WebsiteContentProvider sections={sections}>
+    <WebsiteContentProvider page="services" sections={sections}>
       <DynamicH1 pageKey="services" fallback="Cremation and Final Journey Support Services" />
       <JsonLd data={breadcrumbJsonLd("/services", "Services")} />
       <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
