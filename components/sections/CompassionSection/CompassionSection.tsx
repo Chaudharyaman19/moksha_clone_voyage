@@ -218,7 +218,7 @@ export default function CompassionSection() {
         <div className="absolute inset-0">
           <Image
             src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165085/moksha-sewa/assets/chatgpt.png"}
-            alt=""
+            alt="Moksha Sewa Compassion in Action"
             fill
             quality={75}
             sizes="100vw"

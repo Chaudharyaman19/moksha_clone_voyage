@@ -84,8 +84,7 @@ export default function GlimpseOfJourney() {
       <div className="absolute inset-0 z-0">
         <Image
           src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165458/moksha-sewa/assets/sewa/sewa_in_action_bg.png")}
-          alt=""
-          aria-hidden="true"
+          alt="Glimpse of Sewa Journey Background"
           fill
           priority
           sizes="100vw"
@@ -120,7 +119,7 @@ export default function GlimpseOfJourney() {
           <div className="mt-1 flex justify-center">
             <Image
               src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165170/moksha-sewa/assets/faq/title_decoration.png"
-              alt=""
+              alt="Moksha Sewa Section Title Divider"
               aria-hidden="true"
               width={2928}
               height={269}
@@ -180,8 +179,7 @@ export default function GlimpseOfJourney() {
               <div className="absolute left-1/2 top-[183px] z-20 flex h-[74px] w-[74px] -translate-x-1/2 items-center justify-center overflow-hidden rounded-full transition-transform duration-500 group-hover:scale-105 sm:top-[158px] md:top-[168px] lg:top-[183px] xl:top-[193px]">
                 <Image
                   src={card.icon}
-                  alt=""
-                  aria-hidden="true"
+                  alt={`${card.title} icon`}
                   width={74}
                   height={74}
                   className="h-[74px] w-[74px] shrink-0 object-cover"

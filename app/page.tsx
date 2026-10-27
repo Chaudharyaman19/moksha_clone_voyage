@@ -46,7 +46,6 @@ export default async function Page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="landing" fallback="Moksha Sewa - Humanitarian End-of-Life Support Mission" />
       <JsonLd data={breadcrumbJsonLd("/")} />
       {customSchema && <JsonLd data={customSchema} />}
       <WebsiteContentProvider sections={websiteSections}>

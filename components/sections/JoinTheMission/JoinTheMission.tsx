@@ -338,7 +338,7 @@ export default function JoinTheMission() {
       >
         <Image
           src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"}
-          alt=""
+          alt="Join Moksha Sewa Humanitarian Mission"
           fill
           sizes="570px"
           className="

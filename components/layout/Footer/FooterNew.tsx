@@ -470,7 +470,7 @@ export default function FooterNew() {
           <div className="relative -left-[55px] h-full w-[calc(100%+55px)]">
             <Image
               src="/footer/goldback.png"
-              alt=""
+              alt="Moksha Sewa Sacred Varanasi Ghat Scenic Sunset Footer"
               fill
               priority={false}
               sizes="100vw"
@@ -483,7 +483,7 @@ export default function FooterNew() {
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
           <Image
             src="/footer/goldback.png"
-            alt=""
+            alt="Moksha Sewa Sacred Varanasi Ghat Scenic Sunset Footer"
             fill
             sizes="100vw"
             className="object-cover object-left opacity-[0.25]"
@@ -575,7 +575,7 @@ export default function FooterNew() {
                             {iconImg ? (
                               <Image
                                 src={iconImg}
-                                alt=""
+                                alt={`${item.label} icon`}
                                 width={32}
                                 height={32}
                                 className="h-full w-full object-contain drop-shadow-[0_2px_6px_rgba(226,172,61,0.35)]"
@@ -607,7 +607,7 @@ export default function FooterNew() {
                             {iconImg ? (
                               <Image
                                 src={iconImg}
-                                alt=""
+                                alt={`${item.label} icon`}
                                 width={32}
                                 height={32}
                                 className="h-full w-full object-contain drop-shadow-[0_2px_6px_rgba(226,172,61,0.35)]"
@@ -707,7 +707,7 @@ export default function FooterNew() {
                           <div className="relative shrink-0 flex items-center justify-center pr-3 border-r border-[#D9A33A]/70">
                             <Image
                               src="/footer/Glossy Gold Building Icon.png"
-                              alt=""
+                              alt="Office Location Building Icon"
                               width={36}
                               height={48}
                               className="h-[40px] w-auto object-contain drop-shadow-[0_2px_8px_rgba(226,172,61,0.6)]"
@@ -741,7 +741,7 @@ export default function FooterNew() {
                                 >
                                   <Image
                                     src="/footer/Glossy Golden Telephone Handset Icon.png"
-                                    alt=""
+                                    alt="Phone Icon"
                                     width={16}
                                     height={16}
                                     className="h-3.5 w-3.5 object-contain shrink-0"
@@ -781,7 +781,7 @@ export default function FooterNew() {
                       {iconImg ? (
                         <Image
                           src={iconImg}
-                          alt=""
+                          alt={`${value.title} icon`}
                           width={38}
                           height={38}
                           className="footer-value-icon h-9 w-9 object-contain lg:h-[38px] lg:w-[38px] drop-shadow-[0_2px_6px_rgba(226,172,61,0.5)]"
@@ -997,7 +997,7 @@ function FloatingCard({
           {iconImg ? (
             <Image
               src={iconImg}
-              alt=""
+              alt={`${title} icon`}
               width={64}
               height={64}
               className="h-full w-full object-contain"

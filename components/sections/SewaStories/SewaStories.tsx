@@ -371,7 +371,7 @@ export default function SewaStories() {
       >
         <Image
           src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"}
-          alt=""
+          alt="Moksha Sewa Stories - Dignified Final Journeys at Sacred Ghat"
           fill
           sizes="610px"
           className="

@@ -509,7 +509,7 @@ export default function HowWeCanHelp() {
       >
         <Image
           src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg"}
-          alt=""
+          alt="Practical Sewa Support - Dignified Last Rites Services"
           fill
           priority
           sizes="540px"

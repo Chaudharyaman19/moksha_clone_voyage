@@ -128,8 +128,7 @@ export default function FAQSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165160/moksha-sewa/assets/faq/bg.png")}
-          alt=""
-          aria-hidden="true"
+          alt="Frequently Asked Questions Background"
           fill
           priority
           sizes="100vw"
@@ -159,7 +158,7 @@ export default function FAQSection() {
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <Image
               src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165164/moksha-sewa/assets/faq/left.png"
-              alt=""
+              alt="Decorative Motif Left"
               aria-hidden="true"
               width={2819}
               height={209}
@@ -172,7 +171,7 @@ export default function FAQSection() {
 
             <Image
               src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165168/moksha-sewa/assets/faq/right.png"
-              alt=""
+              alt="Decorative Motif Right"
               aria-hidden="true"
               width={1992}
               height={152}
@@ -189,7 +188,7 @@ export default function FAQSection() {
           <div className="mt-1 flex justify-center">
             <Image
               src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165170/moksha-sewa/assets/faq/title_decoration.png"
-              alt=""
+              alt="Title Decorative Divider"
               aria-hidden="true"
               width={2928}
               height={269}
@@ -230,8 +229,7 @@ export default function FAQSection() {
                     <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-[1.04] sm:h-[44px] sm:w-[44px]">
                       <Image
                         src={faq.icon}
-                        alt=""
-                        aria-hidden="true"
+                        alt={`${faq.question} icon`}
                         width={44}
                         height={44}
                         className="h-full w-full object-contain"
