@@ -407,23 +407,12 @@ export default function PhoneVerifyModal({
                         </form>
                     ) : (
                         <form onSubmit={handleVerify} className="space-y-4">
-                            <div className="flex items-start gap-2.5 rounded-[10px] border border-[#c6e9d2] bg-[#eef9f2] px-3.5 py-3">
-                                <CheckCircle2 className="mt-[1px] h-[17px] w-[17px] shrink-0 fill-[#8b6a3e] text-white" />
+                            <div className="flex items-center gap-2.5 rounded-[10px] border border-[#c6e9d2] bg-[#eef9f2] px-3.5 py-3">
+                                <CheckCircle2 className="h-[17px] w-[17px] shrink-0 fill-[#8b6a3e] text-white" />
                                 <div className="min-w-0 flex-1">
                                     <p className="text-[12.5px] font-semibold leading-snug text-[#8b6a3e]">
                                         OTP sent to {formatPhone(mobileNumber)}
                                     </p>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setStep(phoneOptions.length > 0 ? "SELECT" : "PHONE");
-                                            setOtpCode("");
-                                            setError("");
-                                        }}
-                                        className="mt-[3px] text-[11.5px] font-semibold text-[#8b6a3e] underline underline-offset-2 transition hover:text-[#8b6a3e]"
-                                    >
-                                        Change number
-                                    </button>
                                 </div>
                             </div>
 
