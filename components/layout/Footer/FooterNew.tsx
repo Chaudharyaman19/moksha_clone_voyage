@@ -530,7 +530,7 @@ export default function FooterNew() {
                 {/* Namo Gange Logo & Tagline below brand text */}
                 <div className="mt-3 flex items-center justify-center">
                   <Image
-                    src="/footer/Glossy Namo Ganga Water Emblem.png"
+                    src="/footer/image copy.png"
                     alt="Namo Gange - A Journey to Healthy World"
                     width={240}
                     height={84}

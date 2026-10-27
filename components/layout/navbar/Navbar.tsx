@@ -278,21 +278,21 @@ export default function Navbar() {
         } font-sans`}
       >
         <div className="max-w-7xl mx-auto px-0">
-          <div className="flex items-center h-12 relative">
-            <div className="absolute -top-1 left-0 z-10 sm:-top-2">
+          <div className="flex items-center h-16 relative">
+            <div className="flex-shrink-0 pl-2 pr-4 py-2">
               <button
                 onClick={() => handleNavigation("/")}
                 aria-label="Moksha Sewa home"
-                className="block bg-[#fffaf2] p-1.5 shadow-[0_4px_16px_rgba(46,28,16,0.12)] border-x border-b border-[#ebdcc7]/80 transition-all hover:bg-white"
+                className="block transition-all"
               >
-                <div className="h-16 w-16 sm:h-[105px] sm:w-[105px]">
+                <div className="h-20 w-20 sm:h-24 sm:w-24">
                   <Image
                     src="/homelogo/mok.png"
                     alt="Moksha Sewa Logo"
                     width={110}
                     height={110}
                     priority
-                    sizes="(max-width: 640px) 64px, 110px"
+                    sizes="(max-width: 640px) 80px, 96px"
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -351,7 +351,7 @@ export default function Navbar() {
                       <span className="font-medium">{item.name}</span>
                       <span
                         aria-hidden
-                        className={`absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
+                        className={`absolute inset-x-3 bottom-1.5 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
                           }`}
                       />
                     </button>
