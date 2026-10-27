@@ -374,7 +374,7 @@ export default function ResultPageContent() {
                         <p className="mt-2 text-[17px] font-semibold text-[#0c3d30] lg:text-[19px]">
                           You are eligible to apply for this position.
                         </p>
-                        <p className="mt-2 text-[15px] leading-[1.55] text-[#3a4a5c] max-w-[580px] lg:text-[16.5px]">
+                        <p className="mt-2 text-[14.5px] leading-[1.55] text-[#3a4a5c] w-full max-w-[850px] lg:text-[15.5px]">
                           Your profile matches the key requirements at Moksha Sewa. We appreciate your interest in contributing to a more compassionate and dignified society.
                         </p>
                       </div>
