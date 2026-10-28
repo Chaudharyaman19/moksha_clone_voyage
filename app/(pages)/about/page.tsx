@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import About from "@/components/page-features/aboutus/About";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
@@ -16,7 +15,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="about" fallback="About" />
       <JsonLd data={breadcrumbJsonLd("/about")} />
       <WebsiteContentProvider page="about" sections={aboutSections}>
         <About />

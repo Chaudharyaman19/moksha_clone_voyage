@@ -17,12 +17,14 @@ import { blogsApi } from "@/lib/blogsApi";
  * This file is regenerated at build time in production (ISR / static export)
  * or at request time in development. No manual maintenance needed.
  */
-export const dynamic = "force-dynamic"; // Always fresh in dev; revalidated on deploy in prod
 export const revalidate = 3600; // Re-generate at most once per hour in production
 
 const API_BASE =
   (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003/api/v1")
     .replace(/\/api\/v1\/?$/, "");
+
+/** Stable fallback so lastmod doesn't change on every crawl when backend is down. */
+const STABLE_FALLBACK_DATE = new Date("2026-01-01T00:00:00.000Z");
 
 async function fetchLastModified(slug: string): Promise<Date> {
   try {
@@ -30,14 +32,14 @@ async function fetchLastModified(slug: string): Promise<Date> {
       `${API_BASE}/api/seo/page/${encodeURIComponent(slug)}?envType=live`,
       { next: { revalidate: 3600 }, signal: AbortSignal.timeout(4000) }
     );
-    if (!res.ok) return new Date();
+    if (!res.ok) return STABLE_FALLBACK_DATE;
     const json = await res.json();
     const record = json?.data || json;
     if (record?.updatedAt) return new Date(record.updatedAt);
   } catch {
     // Backend unavailable — fall back silently
   }
-  return new Date();
+  return STABLE_FALLBACK_DATE;
 }
 
 async function fetchLocationPages(): Promise<{ slug: string; updatedAt?: string }[]> {
@@ -74,7 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (b?.slug && b?.seo?.robotsIndex !== false) {
         entries.push({
           url: absoluteUrl(`/blog/${b.slug}`),
-          lastModified: b.updatedAt ? new Date(b.updatedAt) : (b.publishedAt ? new Date(b.publishedAt) : new Date()),
+          lastModified: b.updatedAt ? new Date(b.updatedAt) : (b.publishedAt ? new Date(b.publishedAt) : STABLE_FALLBACK_DATE),
           changeFrequency: "weekly" as const,
           priority: 0.7,
         });
@@ -89,7 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const r of lp) {
     entries.push({
       url: absoluteUrl(`/${r.slug}`),
-      lastModified: r.updatedAt ? new Date(r.updatedAt) : new Date(),
+      lastModified: r.updatedAt ? new Date(r.updatedAt) : STABLE_FALLBACK_DATE,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     });

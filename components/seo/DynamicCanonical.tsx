@@ -54,7 +54,7 @@ export default function DynamicCanonical() {
     const origin = window.location.origin;
     const envType = origin.includes("localhost") ? "local" : "live";
 
-    fetch(`${baseApi}/api/seo/${encodeURIComponent(pageSlug)}?envType=${envType}`)
+    fetch(`${baseApi}/api/seo/page/${encodeURIComponent(pageSlug)}?envType=${envType}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((payload) => {
         const seoData = payload?.data || payload;

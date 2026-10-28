@@ -338,6 +338,18 @@ export const seoRoutes: RouteSeo[] = [
     changeFrequency: "yearly",
   },
   {
+    path: "/disclaimer",
+    label: "Disclaimer",
+    title: "Moksha Sewa Disclaimer – Website Information",
+    description:
+      "Read the Moksha Sewa disclaimer covering website content, external links, service eligibility and limitation of liability.",
+    ogImage: DEFAULT_OG_CARD_IMAGE,
+    ogImageAlt: "Moksha Sewa disclaimer",
+    keywords: ["Moksha Sewa disclaimer", "website disclaimer"],
+    priority: 0.3,
+    changeFrequency: "yearly",
+  },
+  {
     path: "/track",
     label: "Track Request",
     title: "Track Your Moksha Sewa Request Status",

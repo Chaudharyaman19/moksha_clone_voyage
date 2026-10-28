@@ -24,17 +24,21 @@ import {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const blog = await blogsApi.getBySlug(slug);
-  if (!blog) return { title: "Blog Not Found - Moksha Sewa" };
+  if (!blog) return { title: { absolute: "Blog Not Found - Moksha Sewa" } };
 
   const rawTitle = blog.seo?.metaTitle || blog.title;
-  const cleanTitle = rawTitle.replace(/\s*(\|\s*Moksha Sewa|- Moksha Sewa)\s*$/i, "").trim();
+  const cleanTitle = rawTitle
+    .replace(/\s*[\|–-]\s*Moksha Sewa\s*$/i, "")
+    .replace(/^\s*Moksha Sewa\s*[\|–-]\s*/i, "")
+    .trim();
+  const finalTitle = cleanTitle && cleanTitle.toLowerCase() !== "moksha sewa" ? cleanTitle : rawTitle;
   const canonicalUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
   const ogImg = blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
   const desc = blog.seo?.metaDescription || blog.excerpt || blog.content.substring(0, 150);
   const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
 
   return {
-    title: cleanTitle,
+    title: { absolute: finalTitle },
     description: desc,
     keywords: blog.seo?.metaKeywords || blog.tags?.join(", "),
     alternates: {
@@ -42,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     openGraph: {
       type: "article",
-      title: blog.seo?.ogTitle || cleanTitle,
+      title: blog.seo?.ogTitle || finalTitle,
       description: blog.seo?.ogDescription || desc,
       url: canonicalUrl,
       siteName: "Moksha Sewa",
@@ -51,14 +55,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           url: fullOgImage,
           width: 1200,
           height: 630,
-          alt: cleanTitle,
+          alt: finalTitle,
         },
       ],
       publishedTime: blog.publishedAt || blog.createdAt,
     },
     twitter: {
       card: "summary_large_image",
-      title: blog.seo?.ogTitle || cleanTitle,
+      title: blog.seo?.ogTitle || finalTitle,
       description: blog.seo?.ogDescription || desc,
       images: [fullOgImage],
     },

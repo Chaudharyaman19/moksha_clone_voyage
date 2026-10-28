@@ -1,6 +1,7 @@
 import Furaldecoration from "@/components/page-features/services/Furaldecoration";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
+import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -17,6 +18,7 @@ async function page() {
 
   return (
     <div>
+      <DynamicH1 pageKey="funeralDecoration" fallback="Funeral Flower Decoration for Hearse & Pyre" />
       <JsonLd data={breadcrumbJsonLd("/furaldecoration")} />
       <WebsiteContentProvider page="funeralDecoration" sections={sections}>
         <Furaldecoration pills={<LocationCityPills category="Funeral Decoration" />} />

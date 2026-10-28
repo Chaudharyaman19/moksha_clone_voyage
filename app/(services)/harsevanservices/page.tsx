@@ -1,6 +1,7 @@
 import Harsevan from "@/components/page-features/services/Harsevan";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
+import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -16,6 +17,7 @@ async function page() {
   const sections = await getPageSections("harsevan");
   return (
     <div>
+      <DynamicH1 pageKey="harsevan" fallback="Hearse Van (Shav Vahan) Service for the Final Journey" />
       <JsonLd data={breadcrumbJsonLd("/harsevanservices")} />
       <WebsiteContentProvider page="harsevan" sections={sections}>
         <Harsevan pills={<LocationCityPills category="Hearse Van Service" />} />

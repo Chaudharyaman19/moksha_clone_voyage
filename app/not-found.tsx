@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = customSeo?.metaDescription || "The page you are looking for may have moved or no longer exists.";
 
   return {
-    title,
+    title: { absolute: title },
     description,
     robots: {
       index: false,

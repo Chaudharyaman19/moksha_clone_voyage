@@ -697,10 +697,10 @@ export const defaultCSRSections: ExtraSectionContent[] = [
     secondaryDescription: "Your CSR partnership enquiry has been received. Our team will review the information and respond through the contact details provided.",
     legalNotice: "I consent to being contacted regarding this enquiry and acknowledge the Privacy Policy.",
     items: [
-      { title: "Meaningful\\nImpact", description: "Support dignified\\nhumanitarian\\ninitiatives.", value: "Handshake" },
-      { title: "Responsible\\nCollaboration", description: "Built on trust, compliance\\nand accountability.", value: "ShieldCheck" },
-      { title: "Community\\nDriven", description: "Strengthen support\\nwhere it's needed\\nmost.", value: "People" },
-      { title: "Transparent\\nReporting", description: "Clear updates and\\nimpact reporting\\nas agreed.", value: "Report" },
+      { title: "Meaningful\nImpact", description: "Support dignified\nhumanitarian\ninitiatives.", value: "Handshake" },
+      { title: "Responsible\nCollaboration", description: "Built on trust, compliance\nand accountability.", value: "ShieldCheck" },
+      { title: "Community\nDriven", description: "Strengthen support\nwhere it's needed\nmost.", value: "People" },
+      { title: "Transparent\nReporting", description: "Clear updates and\nimpact reporting\nas agreed.", value: "Report" },
     ],
   },
   {

@@ -27,7 +27,6 @@ export default async function ServicesPage() {
       <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
       <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
       <main className="pt-24">
-        <h1 className="sr-only">Cremation and Final Journey Support Services | Moksha Sewa</h1>
         <WebsiteSection name="practical-support"><PracticalSewaSupport /></WebsiteSection>
       </main>
       <WebsiteSection name="footer"><Footer /></WebsiteSection>

@@ -176,6 +176,15 @@ const slugify = (value: string) =>
     .replace(/^-|-$/g, "")
     .toLowerCase();
 
+/** Reject URL-like / junk category values so a bad folder name can't create an "Https …" filter chip. */
+const sanitizeCategory = (raw: string | undefined | null, fallback = "gallary") => {
+  const value = (raw || "").trim();
+  if (!value) return fallback;
+  if (/^(https?|ftp):\/\//i.test(value) || value.startsWith("//") || value.includes("://")) return fallback;
+  if (value.length > 60) return fallback;
+  return value;
+};
+
 /** Placeholder ratio used only until the real image reports its size. */
 const hintAspect = (height: number, columns: number) =>
   columns === 1 ? 4 / 3 : clamp(400 / height, 0.72, 1.3);
@@ -366,7 +375,7 @@ function MokshaGallery() {
         if (!alive) return;
         setManagedImages(
           items.map((item, index) => {
-            const rawCategory = item.category || item.folder || "gallary";
+            const rawCategory = sanitizeCategory(item.category || item.folder, "gallary");
             const key = slugify(rawCategory) || "gallary";
             return {
               id: item._id,

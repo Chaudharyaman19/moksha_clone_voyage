@@ -166,6 +166,15 @@ const slugify = (value: string) =>
     .replace(/^-|-$/g, "")
     .toLowerCase();
 
+/** Reject URL-like / junk category values so a bad folder name can't create an "Https …" filter chip. */
+const sanitizeCategory = (raw: string | undefined | null, fallback = "services") => {
+  const value = (raw || "").trim();
+  if (!value) return fallback;
+  if (/^(https?|ftp):\/\//i.test(value) || value.startsWith("//") || value.includes("://")) return fallback;
+  if (value.length > 60) return fallback;
+  return value;
+};
+
 /* ------------------------------------------------------------------ *
  * Card
  * ------------------------------------------------------------------ */
@@ -355,7 +364,7 @@ function MokshaGallery() {
             src: item.url,
             poster: item.thumbnailUrl,
             alt: item.alt || item.caption || "Moksha Sewa gallery video",
-            category: item.category || item.folder || "services",
+            category: sanitizeCategory(item.category || item.folder, "services"),
             title: item.title || item.caption || item.alt || "Moksha Sewa Video",
             description: item.description || item.caption || "Moksha Sewa video gallery",
             videographer: item.credit || "Moksha Sewa Team",

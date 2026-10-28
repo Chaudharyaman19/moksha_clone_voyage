@@ -17,7 +17,7 @@ async function page() {
   const sections = await getPageSections("specialService");
   return (
     <div>
-      <DynamicH1 pageKey="specialService" fallback="Cremation Wood, Kafan & Funeral Samagri Support" />
+      <DynamicH1 pageKey="specialService" fallback="Family Support After Cremation: Meals, Paperwork & Relief" />
       <JsonLd data={breadcrumbJsonLd("/specialservices")} />
       <WebsiteContentProvider page="specialService" sections={sections}>
         <Specialservices pills={<LocationCityPills category="Special Service" />} />

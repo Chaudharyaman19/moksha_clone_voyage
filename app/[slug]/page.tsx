@@ -35,7 +35,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = await fetchPage(slug);
   if (!p) return {};
   const url = `${SITE_URL}/${p.slug}`;
-  const title = p.seo?.metaTitle || p.pageTitle;
+  const rawTitle = p.seo?.metaTitle || p.pageTitle;
+  const hasBrand = /moksha\s*sewa/i.test(rawTitle);
+  const title = hasBrand ? { absolute: rawTitle } : rawTitle;
+  const ogTitle = typeof title === "string" ? title : rawTitle;
   const desc = p.seo?.metaDescription || p.shortSummary || p.pageTitle;
   const ogImg = p.seo?.ogImage || p.mainImage || DEFAULT_OG_CARD_IMAGE;
   return {
@@ -43,8 +46,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: p.seo?.metaKeywords ? [p.seo.metaKeywords] : undefined,
     alternates: { canonical: p.seo?.canonicalUrl || url },
     robots: { index: p.seo?.robotsIndex !== false, follow: p.seo?.robotsFollow !== false },
-    openGraph: { title: p.seo?.ogTitle || title, description: p.seo?.ogDescription || desc, url, type: "website", images: [{ url: ogImg, width: 1200, height: 630, alt: p.seo?.ogImageAlt || p.mainImageAlt || title }] },
-    twitter: { card: "summary_large_image", title: p.seo?.twitterTitle || title, description: p.seo?.twitterDescription || desc, images: [p.seo?.twitterImage || ogImg] },
+    openGraph: { title: p.seo?.ogTitle || ogTitle, description: p.seo?.ogDescription || desc, url, type: "website", images: [{ url: ogImg, width: 1200, height: 630, alt: p.seo?.ogImageAlt || p.mainImageAlt || ogTitle }] },
+    twitter: { card: "summary_large_image", title: p.seo?.twitterTitle || ogTitle, description: p.seo?.twitterDescription || desc, images: [p.seo?.twitterImage || ogImg] },
   };
 }
 

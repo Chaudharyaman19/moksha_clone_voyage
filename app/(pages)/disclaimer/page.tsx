@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
