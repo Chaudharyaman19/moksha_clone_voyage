@@ -252,9 +252,9 @@ export default function ApplicationSubmittedContent() {
                           <Check className="h-5 w-5 text-[#0d5c46]" strokeWidth={3} />
                         </span>
                         <div className="min-w-0 flex-1">
-                          <h2 className="font-sans text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
+                          <h1 className="font-sans text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
                             Thank You, <span className="text-[#d97706]">{appData.firstName}!</span>
-                          </h2>
+                          </h1>
                           <p className="mt-1 text-[12.5px] sm:text-[13px] font-semibold leading-snug text-[#0c3d30]">
                             Your application for <span className="text-[#0d5c46]">{appData.position}</span> has been submitted successfully.
                           </p>

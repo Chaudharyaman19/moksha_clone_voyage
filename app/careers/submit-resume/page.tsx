@@ -686,7 +686,7 @@ function ResultHero() {
       >
         <Image
           src={current.personImage}
-          alt=""
+          alt="Moksha Sewa careers eligibility hero illustration"
           fill
           priority
           sizes="30vw"
@@ -1513,7 +1513,7 @@ function ProfileCard() {
               {draft.image ? (
                 // Object-URL previews are not routable through next/image.
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={draft.image} alt="" className="h-full w-full object-cover object-center" />
+                <img src={draft.image} alt="Candidate photo" className="h-full w-full object-cover object-center" />
               ) : (
                 <span className="text-[30px] font-bold text-[#8b6a3e]">{initials || "CV"}</span>
               )}

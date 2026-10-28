@@ -78,7 +78,7 @@ export default function CSRSupportJourney() {
                 </div>
               )}
               <div className="relative mx-auto h-[180px] w-[205px] overflow-hidden rounded-[42px] border-2 border-[#ceb581] bg-white">
-                <Image src={image} alt="" fill className="object-cover" sizes="205px" />
+                <Image src={image} alt={title} fill className="object-cover" sizes="205px" />
               </div>
               <div
                 className="absolute left-1/2 top-[-25px] grid h-[68px] w-[68px] -translate-x-1/2 place-items-center rounded-full border-4 border-[#f8f2e8] text-white shadow"

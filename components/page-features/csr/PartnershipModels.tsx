@@ -68,7 +68,7 @@ export default function PartnershipModels() {
             return (
             <article key={defaultModel.title} className="overflow-hidden rounded-[16px] border border-[#d8c49b] bg-[#fffdf8]">
               <div className="relative h-[220px]">
-                <Image src={image} alt="" fill className="object-cover" sizes="33vw" />
+                <Image src={image} alt={title} fill className="object-cover" sizes="33vw" />
               </div>
               <div className="relative min-h-[165px] px-6 pb-7 pt-5">
                 <div className="flex gap-4">

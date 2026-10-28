@@ -180,7 +180,7 @@ export default function ApplicationSuccessModal({ isOpen, onClose, applicationDa
           <div className="flex shrink-0 items-center gap-[8px] relative z-10">
             <Image
               src="/assets/logo-moksha-seva.png"
-              alt=""
+              alt="Moksha Sewa"
               width={82}
               height={92}
               priority

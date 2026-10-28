@@ -80,9 +80,9 @@ function Login() {
               <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
                 <PiFlowerLotus className="h-6 w-6" />
               </span>
-              <h2 className="font-sans text-2xl text-[#2C1810]">
+              <h1 className="font-sans text-2xl text-[#2C1810]">
                 Welcome to <span className="text-[#8B6A3E]">Moksha Sewa</span>
-              </h2>
+              </h1>
               <p className="mt-1 text-[14px] text-[#7A685B]">Sign in to access your account.</p>
             </div>
 
