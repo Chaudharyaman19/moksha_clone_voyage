@@ -1,6 +1,7 @@
 import Furalservices from "@/components/page-features/services/Furalservices";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
+import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -17,6 +18,7 @@ async function page() {
 
   return (
     <div>
+      <DynamicH1 pageKey="funeral" fallback="Cremation Wood, Kafan & Funeral Samagri Support" />
       <JsonLd data={breadcrumbJsonLd("/furalservices")} />
       <WebsiteContentProvider page="funeral" sections={sections}>
         <Furalservices pills={<LocationCityPills category="Funeral Service" />} />

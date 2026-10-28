@@ -34,7 +34,7 @@ const pageFieldMap: Record<WebsitePageKey, string> = {
 };
 
 export default function DynamicH1({ pageKey, fallback }: DynamicH1Props) {
-  // Return null so that page headers do not render duplicate hidden <h1> tags.
-  // Each page now has a single, visible, semantic <h1> in its Hero component.
-  return null;
+  // Server-rendered <h1> so every page has exactly one H1 in the initial HTML.
+  // Client-side component headings should use <h2> (or lower) to avoid duplicate H1s.
+  return <h1 className="font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">{fallback}</h1>;
 }

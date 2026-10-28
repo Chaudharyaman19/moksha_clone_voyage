@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import UnclaimedBodyPageSections from "@/components/page-features/unclaimed-body/UnclaimedBodyPageSections";
 import JsonLd from "@/components/seo/JsonLd";
+import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -17,6 +18,7 @@ async function page() {
   const sections = await getPageSections("unclaimed-body");
   return (
     <div>
+      <DynamicH1 pageKey="unclaimed-body" fallback="Unclaimed Body Sewa: Dignified Last Rites for Lawaris Laash" />
       <JsonLd data={breadcrumbJsonLd("/unclaimed-body-sewa")} />
       <Topbar />
       <Navbar />

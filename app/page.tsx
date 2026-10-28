@@ -46,6 +46,7 @@ export default async function Page() {
 
   return (
     <div>
+      <DynamicH1 pageKey="landing" fallback="Dignity in Every Final Journey: Last-Rites Support in Delhi, Ghaziabad & Noida" />
       <JsonLd data={breadcrumbJsonLd("/")} />
       {customSchema && <JsonLd data={customSchema} />}
       <WebsiteContentProvider sections={websiteSections}>

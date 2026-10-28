@@ -13,6 +13,7 @@ export default async function BlogPage() {
 
   return (
     <>
+      <DynamicH1 pageKey="landing" fallback="Moksha Sewa Blog: Last-Rites Guidance & Awareness" />
       <JsonLd data={breadcrumbJsonLd("/blog", "Moksha Sewa Blogs")} />
       <Blog initialBlogs={blogs} />
     </>
