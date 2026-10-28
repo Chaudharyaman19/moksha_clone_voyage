@@ -389,7 +389,7 @@ const decorativePattern = {
   backgroundSize: "22px 22px",
 };
 
-export default function HowWeCanHelp() {
+export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) {
   const websiteSection = useWebsiteSection("practical-support");
   const managedCards = [
     ...cards.map((fallback, index) => {
@@ -576,23 +576,43 @@ export default function HowWeCanHelp() {
             <span className="h-px w-[62px] bg-[#D05A17]" />
           </div>
 
-          <h1
-            className="
-              mt-[1px]
-              font-sans
-              text-[24px]
-              font-semibold
-              leading-[1.05]
-              text-[#21130D]
-              sm:text-[30px]
-            "
-          >
-            {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[0]}
+          {isH1 ? (
+            <h1
+              className="
+                mt-[1px]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
+                text-[#21130D]
+                sm:text-[30px]
+              "
+            >
+              {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[0]}
 
-            <span className="mt-[2px] block text-[#D54200]">
-              {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[1] ?? ""}
-            </span>
-          </h1>
+              <span className="mt-[2px] block text-[#D54200]">
+                {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[1] ?? ""}
+              </span>
+            </h1>
+          ) : (
+            <h2
+              className="
+                mt-[1px]
+                font-sans
+                text-[24px]
+                font-semibold
+                leading-[1.05]
+                text-[#21130D]
+                sm:text-[30px]
+              "
+            >
+              {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[0]}
+
+              <span className="mt-[2px] block text-[#D54200]">
+                {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[1] ?? ""}
+              </span>
+            </h2>
+          )}
 
           <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#DA7643]" />

@@ -683,9 +683,9 @@ export default function UploadCvModal({
                                     <span className="h-[3px] w-[55px] bg-[#8b6a3e]/70" />
                                 </div>
 
-                                <h1 className="mt-[10px] max-w-[600px] text-[22px] lg:text-[37px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#2c1810]">
+                                <h2 className="mt-[10px] max-w-[600px] text-[22px] lg:text-[37px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#2c1810]">
                                     {job.title || title}
-                                </h1>
+                                </h2>
 
                                 <div className="mt-[11px] flex flex-wrap items-center gap-x-[17px] gap-y-[5px] font-medium text-[20px] leading-none text-[#2C3341]">
                                     <span>{job.company || jobCopy.company}</span>

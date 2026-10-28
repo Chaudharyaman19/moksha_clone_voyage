@@ -524,9 +524,9 @@ function AmanApplicationContent({ onClose }: { onClose: () => void }) {
             Preview
           </button>
 
-          <h1 className="mt-[3px] text-[25px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#123963]">
+          <h2 className="mt-[3px] text-[25px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#123963]">
             Web Developer
-          </h1>
+          </h2>
 
           <div className="mt-[3px] flex items-center gap-[10px] text-[14px] font-semibold text-[#254b70]">
             <span>Moksha Sewa</span>
