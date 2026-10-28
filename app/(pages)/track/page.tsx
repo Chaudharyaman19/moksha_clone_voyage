@@ -1,23 +1,28 @@
 import DynamicH1 from "@/components/seo/DynamicH1";
 import TrackRequest from "@/components/page-features/track/TrackRequest";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-import { createDynamicMetadata } from "@/lib/seo";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   return createDynamicMetadata("/track", "track");
 }
 
 async function page() {
-  const sections = await getPageSections("track");
+  const [sections, customSchema] = await Promise.all([
+    getPageSections("track"),
+    getPageSchemaMarkup("/track", "track").catch(() => null),
+  ]);
 
   return (
     <div>
-      <DynamicH1 pageKey="track" fallback="Track" />
+      <DynamicH1 pageKey="track" fallback="Track Sewa Assistance Request | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/track")} />
+      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="track" sections={sections}>
         <TrackRequest />
       </WebsiteContentProvider>

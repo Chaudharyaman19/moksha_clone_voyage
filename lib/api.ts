@@ -1,4 +1,8 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://api.mokshasewa.org/api/v1"
+    : "http://localhost:5000/api/v1");
 
 export class ApiRequestError extends Error {
   status: number;

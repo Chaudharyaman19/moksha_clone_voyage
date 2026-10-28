@@ -1,23 +1,28 @@
 import DynamicH1 from "@/components/seo/DynamicH1";
 import Donation from "@/components/page-features/donation/Donation";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-import { createDynamicMetadata } from "@/lib/seo";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   return createDynamicMetadata("/donation", "donation");
 }
 
 async function page() {
-  const sections = await getPageSections("donation");
+  const [sections, customSchema] = await Promise.all([
+    getPageSections("donation"),
+    getPageSchemaMarkup("/donation", "donation").catch(() => null),
+  ]);
 
   return (
     <div>
-      <DynamicH1 pageKey="donation" fallback="Donation" />
+      <DynamicH1 pageKey="donation" fallback="Donate for Last Rites & Cremation Support | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/donation")} />
+      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="donation" sections={sections}>
         <Donation />
       </WebsiteContentProvider>

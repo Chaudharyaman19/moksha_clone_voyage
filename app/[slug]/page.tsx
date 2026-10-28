@@ -7,7 +7,13 @@ import LocationViewer from "@/components/location/LocationViewer";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/layout/Footer/FooterNew";
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1").replace(/\/api\/v1\/?$/, "");
+const API_BASE = (
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production" ? "https://api.mokshasewa.org/api/v1" : "http://localhost:5000/api/v1")
+).replace(/\/api\/v1\/?$/, "");
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 interface LP {
   pageTitle: string; slug: string; serviceCategory: string; city: string;

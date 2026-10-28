@@ -1,23 +1,28 @@
 import DynamicH1 from "@/components/seo/DynamicH1";
 import RequestHelp from "@/components/page-features/request-help/RequestHelp";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-import { createDynamicMetadata } from "@/lib/seo";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   return createDynamicMetadata("/request-help", "request-help");
 }
 
 async function page() {
-  const sections = await getPageSections("request-help");
+  const [sections, customSchema] = await Promise.all([
+    getPageSections("request-help"),
+    getPageSchemaMarkup("/request-help", "request-help").catch(() => null),
+  ]);
 
   return (
     <div>
-      <DynamicH1 pageKey="request-help" fallback="Request Help" />
+      <DynamicH1 pageKey="request-help" fallback="Request Cremation & Last-Rites Help - 24x7 | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/request-help")} />
+      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="request-help" sections={sections}>
         <RequestHelp />
       </WebsiteContentProvider>

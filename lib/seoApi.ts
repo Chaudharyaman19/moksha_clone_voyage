@@ -35,9 +35,9 @@ export const seoApi = {
     }
 
     try {
-      // Race fetch against 250ms timeout so we never block Next.js head streaming
+      // Race fetch against 6000ms timeout so we allow live cloud networks to respond comfortably
       const fetchPromise = api.get<SeoData>(`/seo/page/${encodeURIComponent(cleanPage)}?envType=${envType}`);
-      const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 250));
+      const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 6000));
       const res = await Promise.race([fetchPromise, timeoutPromise]);
 
       if (res) {

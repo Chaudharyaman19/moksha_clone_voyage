@@ -1,4 +1,8 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://api.mokshasewa.org/api/v1"
+    : "http://localhost:5000/api/v1");
 
 export interface ISeoOptions {
   metaTitle?: string;
@@ -8,6 +12,7 @@ export interface ISeoOptions {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   schemaMarkup?: string;
   h1Tag?: string;
   breadcrumbName?: string;
@@ -23,6 +28,7 @@ export interface BlogPost {
   excerpt?: string;
   content: string;
   coverImage?: string;
+  coverImageAlt?: string;
   author: string;
   tags: string[];
   category?: string;

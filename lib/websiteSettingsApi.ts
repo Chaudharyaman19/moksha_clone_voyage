@@ -27,7 +27,11 @@ import {
   type ExtraSectionContent,
 } from "./extraPagesContent";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://api.mokshasewa.org/api/v1"
+    : "http://localhost:5000/api/v1");
 
 interface ApiEnvelope<T> {
   success: boolean;
@@ -196,7 +200,7 @@ export const getWebsiteSettings = cache(async (): Promise<SettingsResponse | und
 
   try {
     const fetchPromise = fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
-    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 300));
+    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 6000));
     const response = (await Promise.race([fetchPromise, timeoutPromise])) as Response | null;
 
     if (response && response.ok) {

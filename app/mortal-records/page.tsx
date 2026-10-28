@@ -2,13 +2,15 @@ import React from "react";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Footer from "@/components/layout/Footer/FooterNew";
-import { createPageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata("/mortal-records");
 
 export default function MortalRecordsPage() {
   return (
     <div className="min-h-screen bg-[#FBF8F3] text-[#2C1810]">
+      <JsonLd data={breadcrumbJsonLd("/mortal-records", "Mortal Records")} />
       <Topbar />
       <Navbar />
 

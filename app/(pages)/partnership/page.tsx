@@ -4,23 +4,28 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import PartnershipPageSections from "@/components/page-features/partnership/PartnershipPageSections";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
-import { createDynamicMetadata } from "@/lib/seo";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   return createDynamicMetadata("/partnership", "partnership");
 }
 
 export default async function Page() {
-  const sections = await getPageSections("partnership");
+  const [sections, customSchema] = await Promise.all([
+    getPageSections("partnership"),
+    getPageSchemaMarkup("/partnership", "partnership").catch(() => null),
+  ]);
 
   return (
     <div>
-      <DynamicH1 pageKey="partnership" fallback="Partnership" />
+      <DynamicH1 pageKey="partnership" fallback="Hospital & NGO Partnerships for Last Rites | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/partnership")} />
+      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <Topbar />
       <Navbar />
       <WebsiteContentProvider page="partnership" sections={sections}>

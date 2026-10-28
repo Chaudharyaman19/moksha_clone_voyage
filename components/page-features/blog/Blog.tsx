@@ -103,9 +103,9 @@ export default function Blog({ initialBlogs }: BlogProps) {
             </span>
           </div>
 
-          <h2 className="font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
+          <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-[#2C1810]">
             Moksha Sewa <span className="text-[#8B6A3E]">Blogs</span>
-          </h2>
+          </h1>
 
           <p className="mt-2 mx-auto max-w-2xl text-[15px] sm:text-base leading-relaxed text-[#5A3E2B]/85">
             The rituals, the stories, the guidance. A record of how we accompany families through

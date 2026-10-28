@@ -21,6 +21,9 @@ import {
   FiHelpCircle,
 } from "react-icons/fi";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const blog = await blogsApi.getBySlug(slug);
@@ -34,11 +37,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const finalTitle = cleanTitle && cleanTitle.toLowerCase() !== "moksha sewa" ? cleanTitle : rawTitle;
   const canonicalUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
   const ogImg = blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
-  const desc = blog.seo?.metaDescription || blog.excerpt || blog.content.substring(0, 150);
+  const desc = blog.seo?.metaDescription || blog.excerpt || (blog.content ? blog.content.replace(/<[^>]*>/g, "").substring(0, 160).trim() : "");
   const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
+  const ogImageAlt = blog.seo?.ogImageAlt || blog.coverImageAlt || finalTitle;
 
   return {
-    title: { absolute: finalTitle },
+    title: { absolute: `${finalTitle} | Moksha Sewa` },
     description: desc,
     keywords: blog.seo?.metaKeywords || blog.tags?.join(", "),
     alternates: {
@@ -55,10 +59,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           url: fullOgImage,
           width: 1200,
           height: 630,
-          alt: finalTitle,
+          alt: ogImageAlt,
         },
       ],
       publishedTime: blog.publishedAt || blog.createdAt,
+      modifiedTime: blog.updatedAt || blog.publishedAt || blog.createdAt,
+      authors: [blog.author || "Moksha Sewa"],
+      section: blog.category || "Moksha Sewa",
+      tags: blog.tags || [],
     },
     twitter: {
       card: "summary_large_image",
@@ -69,6 +77,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     robots: {
       index: blog.seo?.robotsIndex !== false,
       follow: blog.seo?.robotsFollow !== false,
+      googleBot: {
+        index: blog.seo?.robotsIndex !== false,
+        follow: blog.seo?.robotsFollow !== false,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
   };
 }
@@ -99,31 +114,69 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const wordCount = blog.content ? blog.content.split(/\s+/).length : 200;
   const readTimeMinutes = Math.max(1, Math.ceil(wordCount / 180));
 
-  // Article JSON-LD
-  const articleJsonLd = {
+  const currentUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
+  const ogImg = blog.seo?.ogImage || blog.coverImage || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png";
+  const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
+
+  // Complete Google-recommended BlogPosting schema
+  const blogPostingJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": `${currentUrl}#article`,
+    isPartOf: {
+      "@type": "Blog",
+      "@id": "https://mokshasewa.org/blog#blog",
+      name: "Moksha Sewa Blog",
+      publisher: {
+        "@type": "Organization",
+        name: "Moksha Sewa",
+        url: "https://mokshasewa.org",
+      },
+    },
     headline: blog.title,
-    image: [blog.coverImage || "https://mokshasewa.org/assets/og/logo-moksha-seva-og.png"],
+    description: blog.seo?.metaDescription || blog.excerpt || (blog.content ? blog.content.replace(/<[^>]*>/g, "").substring(0, 160).trim() : ""),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": currentUrl,
+    },
+    image: [fullOgImage],
     datePublished: blog.publishedAt || blog.createdAt,
-    dateModified: blog.updatedAt || blog.createdAt,
+    dateModified: blog.updatedAt || blog.publishedAt || blog.createdAt,
     author: [
       {
         "@type": "Person",
         name: blog.author || "Moksha Sewa",
+        url: "https://mokshasewa.org/about",
       },
     ],
     publisher: {
       "@type": "Organization",
       name: "Moksha Sewa",
+      url: "https://mokshasewa.org",
       logo: {
         "@type": "ImageObject",
-        url: "https://mokshasewa.org/assets/logo-moksha-seva.png",
+        url: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
       },
     },
+    articleSection: blog.category || "Moksha Sewa",
+    keywords: blog.seo?.metaKeywords || blog.tags?.join(", ") || "antim sanskar, cremation, sewa",
   };
 
-  const currentUrl = `https://mokshasewa.org/blog/${blog.slug}`;
+  let parsedCustomSchema = null;
+  if (blog.seo?.schemaMarkup) {
+    try {
+      parsedCustomSchema = JSON.parse(blog.seo.schemaMarkup);
+    } catch {
+      // fallback to blogPostingJsonLd
+    }
+  }
+
+  // Clean content from excessive empty paragraphs and multiple consecutive breaks
+  const cleanContent = blog.content
+    ? blog.content
+        .replace(/(<p>\s*(<br\s*\/?>|&nbsp;|\s*)*<\/p>\s*){2,}/gi, "<p><br></p>")
+        .replace(/(<br\s*\/?>\s*){3,}/gi, "<br><br>")
+    : "";
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-[#FAF7F2] text-[#2C1810] antialiased">
@@ -155,7 +208,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Navbar />
 
       <JsonLd data={breadcrumbJsonLd(`/blog/${blog.slug}`, blog.title)} />
-      <JsonLd data={blog.seo?.schemaMarkup ? JSON.parse(blog.seo.schemaMarkup) : articleJsonLd} />
+      <JsonLd data={parsedCustomSchema || blogPostingJsonLd} />
 
       {/* ===================== HERO HEADER (MAX-W-7XL MATCHING HOME & SITE) ===================== */}
       <header className="relative w-full overflow-hidden border-b border-[#E7D5C2]/70 bg-[#FAF7F2]">
@@ -282,12 +335,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
 
             {/* Formatted Content */}
-            <article className="prose prose-lg max-w-none text-[#5A3E2B] text-base sm:text-[16px] leading-[1.75] prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[#2C1810] prose-h2:text-2xl sm:prose-h2:text-[26px] prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl sm:prose-h3:text-[22px] prose-h3:mt-6 prose-h3:mb-3 prose-p:text-[#5A3E2B] prose-p:leading-[1.75] prose-p:mb-5 prose-li:text-[#5A3E2B] prose-blockquote:border-l-4 prose-blockquote:border-[#C99A4B] prose-blockquote:bg-[#FAF7F2] prose-blockquote:text-[#5A3E2B] prose-blockquote:italic prose-blockquote:p-4 prose-blockquote:rounded-r-xl prose-a:text-[#8B6A3E] prose-a:font-semibold hover:prose-a:underline">
-              {blog.content.includes("<") ? (
-                <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+            <article className="prose prose-lg max-w-none text-[#5A3E2B] text-base sm:text-[16px] leading-[1.75] prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-[#2C1810] prose-h1:text-3xl prose-h1:mt-8 prose-h1:mb-4 prose-h2:text-2xl sm:prose-h2:text-[26px] prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl sm:prose-h3:text-[22px] prose-h3:mt-6 prose-h3:mb-3 prose-p:text-[#5A3E2B] prose-p:leading-[1.75] prose-p:mb-4 [&_p:empty]:hidden [&_p:has(>br:only-child)]:my-1 prose-li:text-[#5A3E2B] prose-blockquote:border-l-4 prose-blockquote:border-[#C99A4B] prose-blockquote:bg-[#FAF7F2] prose-blockquote:text-[#5A3E2B] prose-blockquote:italic prose-blockquote:p-4 prose-blockquote:rounded-r-xl prose-a:text-[#8B6A3E] prose-a:font-semibold hover:prose-a:underline">
+              {cleanContent.includes("<") ? (
+                <div dangerouslySetInnerHTML={{ __html: cleanContent }} />
               ) : (
-                <div className="space-y-5 whitespace-pre-line text-[#5A3E2B] text-base sm:text-[16px] leading-[1.75]">
-                  {blog.content}
+                <div className="space-y-4 whitespace-pre-line text-[#5A3E2B] text-base sm:text-[16px] leading-[1.75]">
+                  {cleanContent}
                 </div>
               )}
             </article>

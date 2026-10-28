@@ -699,25 +699,28 @@ export function parseOpenGraphTagsContent(rawTags?: string | null): ParsedOgData
   return result;
 }
 
-// In-memory cache for synchronous metadata resolution (prevents Next.js head-streaming race conditions)
+// In-memory cache for metadata resolution
 const dynamicSeoCache = new Map<string, { dedicatedSeo: any; settings: any; timestamp: number }>();
 
-export function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Metadata {
+export async function createDynamicMetadata(path: string, pageKey: WebsitePageKey): Promise<Metadata> {
   const baseMetadata = createPageMetadata(path);
 
   const isLocal = process.env.NODE_ENV !== "production";
   const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
 
-  // Trigger background refresh so cache stays up-to-date with admin edits without blocking the current render
-  const cached = dynamicSeoCache.get(slug);
+  let cached = dynamicSeoCache.get(slug);
   const now = Date.now();
   if (!cached || now - cached.timestamp > 30000) {
-    Promise.all([
-      seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null),
-      getWebsiteSettings().catch(() => null),
-    ]).then(([dedicatedSeo, settings]) => {
-      dynamicSeoCache.set(slug, { dedicatedSeo, settings, timestamp: Date.now() });
-    }).catch(() => {});
+    try {
+      const [dedicatedSeo, settings] = await Promise.all([
+        seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null),
+        getWebsiteSettings().catch(() => null),
+      ]);
+      cached = { dedicatedSeo, settings, timestamp: Date.now() };
+      dynamicSeoCache.set(slug, cached);
+    } catch {
+      // ignore
+    }
   }
 
   const dedicatedSeo = cached?.dedicatedSeo;
@@ -965,6 +968,31 @@ export function breadcrumbJsonLd(path: string, finalName?: string) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items,
+  };
+}
+
+export function serviceJsonLd(name: string, description: string, path: string) {
+  const serviceUrl = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${serviceUrl}#service`,
+    name,
+    description,
+    url: serviceUrl,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png",
+    },
+    areaServed: [
+      { "@type": "City", name: "Delhi" },
+      { "@type": "City", name: "Ghaziabad" },
+      { "@type": "City", name: "Noida" },
+      { "@type": "City", name: "Greater Noida" },
+      { "@type": "City", name: "Gurugram" },
+    ],
   };
 }
 
