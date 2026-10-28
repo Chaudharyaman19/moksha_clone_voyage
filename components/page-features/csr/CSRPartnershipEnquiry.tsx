@@ -277,7 +277,7 @@ export default function CSRPartnershipEnquiry() {
 
                   max-w-[600px]
 
-                  font-serif
+                  font-sans
                   text-[38px]
                   font-medium
                   leading-[1.02]
@@ -925,7 +925,7 @@ export default function CSRPartnershipEnquiry() {
             <div className="flex items-center gap-4">
               <h3
                 className="
-                  font-serif
+                  font-sans
                   text-[26px]
                   font-semibold
 

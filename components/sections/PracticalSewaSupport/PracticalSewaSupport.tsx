@@ -678,7 +678,7 @@ export default function HowWeCanHelp() {
                 <h3
                   className="
                     whitespace-pre-line
-                    font-serif
+                    font-sans
                     text-[22px]
                     font-semibold
                     leading-[1.04]
@@ -838,11 +838,11 @@ export default function HowWeCanHelp() {
                 className="h-[35px] w-[35px] text-[#E4520E]"
               />
 
-              <div className="mt-[3px] font-serif text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="mt-[3px] font-sans text-[18px] italic leading-tight text-[#A84F1D]">
                 {textOrFallback(websiteSection?.sloganTitle, "Together,\nWe Serve with Dignity", 80).split("\n")[0]}
               </div>
 
-              <div className="font-serif text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="font-sans text-[18px] italic leading-tight text-[#A84F1D]">
                 {textOrFallback(websiteSection?.sloganTitle, "Together,\nWe Serve with Dignity", 80).split("\n")[1] ?? ""}
               </div>
 

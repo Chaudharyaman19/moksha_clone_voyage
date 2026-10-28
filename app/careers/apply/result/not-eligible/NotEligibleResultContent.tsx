@@ -232,7 +232,7 @@ export default function NotEligibleResultContent() {
               <ArrowLeft className="h-5 w-5" /> Back to Job Details
             </button>
 
-            <h1 className="font-serif text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
+            <h1 className="font-sans text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
               AI Screening <span className="text-[#c4881f]">Result</span>
             </h1>
             <p className="mt-2 text-[17px] font-medium text-[#2c3e50] sm:text-[18.5px] lg:text-[20px]">
@@ -277,7 +277,7 @@ export default function NotEligibleResultContent() {
                           <span className="grid h-[34px] w-[34px] shrink-0 place-items-center rounded-full bg-[#dc1017] text-white shadow-[0_2px_6px_rgba(220,16,23,0.35)]">
                             <X className="h-4.5 w-4.5" strokeWidth={3} />
                           </span>
-                          <h2 className="font-serif text-[20px] font-bold leading-tight text-[#dc1017] sm:text-[22px] lg:text-[25px] whitespace-nowrap">
+                          <h2 className="font-sans text-[20px] font-bold leading-tight text-[#dc1017] sm:text-[22px] lg:text-[25px] whitespace-nowrap">
                             Currently Not Eligible, {firstName}!
                           </h2>
                         </div>
@@ -287,9 +287,9 @@ export default function NotEligibleResultContent() {
                         </p>
                         <div className="mt-2 rounded-xl bg-white/70 px-3 py-1.5">
                           <p className="text-[12.5px] italic leading-[1.45] text-[#3a4a5c]">
-                            <span className="font-serif text-[20px] font-bold text-[#dc1017] leading-none align-[-2px]">&ldquo;</span>
+                            <span className="font-sans text-[20px] font-bold text-[#dc1017] leading-none align-[-2px]">&ldquo;</span>
                             {" "}Keep learning and growing. The right opportunity will come at the right time.{" "}
-                            <span className="font-serif text-[20px] font-bold text-[#dc1017] leading-none align-[-2px]">&rdquo;</span>
+                            <span className="font-sans text-[20px] font-bold text-[#dc1017] leading-none align-[-2px]">&rdquo;</span>
                           </p>
                         </div>
                         <p className="mt-1 text-[11.5px] font-bold text-[#0c3d30]">

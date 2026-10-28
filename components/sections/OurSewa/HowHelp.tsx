@@ -514,7 +514,7 @@ export default function HowWeCanHelp() {
           <h2
             className="
               mt-[1px]
-              font-serif
+              font-sans
               text-[30px]
               font-semibold
               leading-[0.98]
@@ -605,7 +605,7 @@ export default function HowWeCanHelp() {
                 <h3
                   className="
                     whitespace-pre-line
-                    font-serif
+                    font-sans
                     text-[22px]
                     font-semibold
                     leading-[1.04]
@@ -755,10 +755,10 @@ export default function HowWeCanHelp() {
                 className="h-[35px] w-[35px] text-[#E4520E]"
               />
 
-              <div className="mt-[3px] font-serif text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="mt-[3px] font-sans text-[18px] italic leading-tight text-[#A84F1D]">
                 Together,
               </div>
-              <div className="font-serif text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="font-sans text-[18px] italic leading-tight text-[#A84F1D]">
                 We Serve with Dignity
               </div>
 

@@ -188,7 +188,7 @@ export default function VoicesOfGratitude() {
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-[#B9843D]" />
           </div>
 
-          <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
+          <h2 className="mt-1 font-sans text-[24px] font-normal leading-tight tracking-[-0.02em] text-[#352218] sm:text-[28px] lg:text-[31px]">
             Verified Support Stories
           </h2>
 
@@ -207,18 +207,18 @@ export default function VoicesOfGratitude() {
 
               <div className="grid h-full grid-cols-[minmax(0,1fr)_112px] gap-3 lg:grid-cols-[minmax(0,1fr)_108px]">
                 <div className="relative z-10 flex min-w-0 flex-col">
-                  <div className="font-serif text-[36px] font-semibold leading-[0.65] text-[#D79B32]">
+                  <div className="font-sans text-[36px] font-semibold leading-[0.65] text-[#D79B32]">
                     “
                   </div>
 
-                  <p className="mt-1.5 line-clamp-5 font-serif text-[16px] font-normal leading-[1.42] text-[#3D2A20]">
+                  <p className="mt-1.5 line-clamp-5 font-sans text-[16px] font-normal leading-[1.42] text-[#3D2A20]">
                     {testimonial.quote}
                   </p>
 
                   <div className="mt-auto">
                     <DecorativeDivider />
 
-                    <h3 className="mt-1.5 font-serif text-[16px] font-semibold leading-tight text-[#342219]">
+                    <h3 className="mt-1.5 font-sans text-[16px] font-semibold leading-tight text-[#342219]">
                       {testimonial.name}
                     </h3>
 

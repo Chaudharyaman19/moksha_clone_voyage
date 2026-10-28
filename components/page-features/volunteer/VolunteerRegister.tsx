@@ -234,7 +234,7 @@ function SectionTitle({
     <div className="mb-1.5 flex items-center gap-2">
       <span className="h-px w-4 bg-[#ED6B13]" />
 
-      <h3 className="font-serif text-[16px] font-normal text-[#3C251B]">
+      <h3 className="font-sans text-[16px] font-normal text-[#3C251B]">
         {children}
       </h3>
     </div>
@@ -649,7 +649,7 @@ export default function VolunteerRegister() {
       </div>
     </div>
 
-    <h1 className="mt-3 font-serif text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
+    <h1 className="mt-3 font-sans text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
       {textOrFallback(heroSection?.title, "Be the Reason Someone Receives a Dignified Farewell.", 100)}
     </h1>
 
@@ -694,7 +694,7 @@ export default function VolunteerRegister() {
           {/* Our Volunteers Primarily Support */}
           <section className="mb-6 grid gap-3 border border-[#E7D9C9] bg-[#FBF3E7] p-3.5 lg:grid-cols-[1fr_0.32fr] lg:gap-4">
             <div>
-              <h2 className="mb-2 text-center font-serif text-[20px] font-semibold text-[#3B2A20]">
+              <h2 className="mb-2 text-center font-sans text-[20px] font-semibold text-[#3B2A20]">
                 Our Volunteers Primarily Support
               </h2>
 
@@ -719,7 +719,7 @@ export default function VolunteerRegister() {
             </div>
 
             <div className="flex flex-col justify-center border border-[#EDD9BF] bg-white/70 p-3">
-              <span className="font-serif text-[26px] leading-none text-[#ED6B13]">&ldquo;</span>
+              <span className="font-sans text-[26px] leading-none text-[#ED6B13]">&ldquo;</span>
               <p className="mt-1 text-[16px] font-medium leading-[1.4] text-[#3B2A20]">
                 Seva towards the last journey is the highest form of humanity.
               </p>
@@ -729,7 +729,7 @@ export default function VolunteerRegister() {
 
           {/* Heading */}
           <header id="volunteer-registration" className="mb-3 scroll-mt-12 text-center">
-            <h2 className="font-serif text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
+            <h2 className="font-sans text-[28px] font-semibold text-[#2C1810] sm:text-[34px]">
               {textOrFallback(registerSection?.title, "Volunteer Registration", 50)}
             </h2>
           </header>
@@ -788,7 +788,7 @@ export default function VolunteerRegister() {
                     <div>
                       <div className="mb-1.5 flex items-center gap-2">
                         <LotusOrnament className="h-6 w-8" />
-                        <h2 className="font-serif text-[18px] font-normal text-[#382117]">
+                        <h2 className="font-sans text-[18px] font-normal text-[#382117]">
                           Personal Information
                         </h2>
                       </div>
@@ -1233,7 +1233,7 @@ export default function VolunteerRegister() {
 
             {/* Right panel */}
             <aside className="flex h-full flex-col overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
-              <h2 className="font-serif text-[17px] font-semibold text-[#40271B]">
+              <h2 className="font-sans text-[17px] font-semibold text-[#40271B]">
                 Why Volunteer With Moksha Sewa?
               </h2>
 

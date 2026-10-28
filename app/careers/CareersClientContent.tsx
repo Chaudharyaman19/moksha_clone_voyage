@@ -200,7 +200,7 @@ function JobCard({ job }: { job: JobOpening }) {
       <div className="flex flex-1 flex-col justify-between pt-2 pb-3 px-3 sm:pt-2.5 sm:pb-3.5 sm:px-3.5">
         <div>
           {/* Exact Job Title: Serif, semi-bold/bold, dark green with increased font size */}
-          <h3 className="font-serif text-[18.5px] font-bold leading-tight tracking-[-0.01em] text-[#002219] sm:text-[19.5px]">
+          <h3 className="font-sans text-[18.5px] font-bold leading-tight tracking-[-0.01em] text-[#002219] sm:text-[19.5px]">
             {job.title}
           </h3>
 
@@ -364,7 +364,7 @@ export default function CareersClientContent() {
                 </div>
 
                 {/* 2. Main Heading: Playfair Display serif, font-bold, leading-tight, exact colors */}
-                <h1 className="mt-2 font-serif text-[38px] font-bold leading-[1.02] tracking-[-0.02em] text-[#002017] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[60px]">
+                <h1 className="mt-2 font-sans text-[38px] font-bold leading-[1.02] tracking-[-0.02em] text-[#002017] sm:text-[46px] md:text-[50px] lg:text-[56px] xl:text-[60px]">
                   Be a Part of a
                   <br />
                   More <span className="text-[#cc7501]">Compassionate</span>
@@ -438,7 +438,7 @@ export default function CareersClientContent() {
                     </p>
                     <span className="h-[2px] w-8 bg-[#c7821e]/80" />
                   </div>
-                  <h2 className="mt-1 font-serif text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#002219] sm:text-[40px] lg:text-[46px]">
+                  <h2 className="mt-1 font-sans text-[34px] font-bold leading-tight tracking-[-0.02em] text-[#002219] sm:text-[40px] lg:text-[46px]">
                     <span className="relative inline-block pb-1.5">
                       Explore
                       <span className="absolute bottom-0 left-0 h-[2px] w-[95%] rounded-full bg-[#dec49a]" />
@@ -491,7 +491,7 @@ export default function CareersClientContent() {
                     </p>
                     <span className="h-[1.5px] w-7 bg-[#c7821e]/80" />
                   </div>
-                  <h2 className="mt-0.5 font-serif text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#002219] sm:text-[38px] lg:text-[44px]">
+                  <h2 className="mt-0.5 font-sans text-[32px] font-bold leading-tight tracking-[-0.02em] text-[#002219] sm:text-[38px] lg:text-[44px]">
                     A Career with Purpose
                   </h2>
                 </div>
@@ -516,7 +516,7 @@ export default function CareersClientContent() {
                     <span className="grid h-[64px] w-[64px] place-items-center rounded-full border-[1.5px] border-[#cb7502] bg-[#fff8eb]/90 text-[#cb7502] shadow-xs sm:h-[70px] sm:w-[70px] md:h-[76px] md:w-[76px]">
                       <Icon className="h-[32px] w-[32px] sm:h-[35px] sm:w-[35px] md:h-[38px] md:w-[38px]" />
                     </span>
-                    <h3 className="mt-2 whitespace-pre-line font-serif text-[19px] font-bold leading-snug tracking-[-0.01em] text-[#002219] sm:text-[21px] md:text-[22px]">
+                    <h3 className="mt-2 whitespace-pre-line font-sans text-[19px] font-bold leading-snug tracking-[-0.01em] text-[#002219] sm:text-[21px] md:text-[22px]">
                       {label}
                     </h3>
                     <p className="mt-1 text-[14px] font-normal leading-[1.45] text-[#343e39] sm:text-[14.5px] md:text-[15px]">
@@ -549,7 +549,7 @@ export default function CareersClientContent() {
                     </p>
                     <span className="h-[2px] w-8 bg-[#c7821e]/80" />
                   </div>
-                  <h2 className="mt-1 font-serif text-[34px] font-bold leading-[1.1] tracking-[-0.02em] text-[#002219] sm:text-[40px] lg:text-[46px]">
+                  <h2 className="mt-1 font-sans text-[34px] font-bold leading-[1.1] tracking-[-0.02em] text-[#002219] sm:text-[40px] lg:text-[46px]">
                     People. Ideas. Better Lives.
                   </h2>
                 </div>
@@ -587,7 +587,7 @@ export default function CareersClientContent() {
                     height={120}
                     className="h-[90px] w-[90px] shrink-0 object-contain sm:h-[105px] sm:w-[105px] lg:h-[115px] lg:w-[115px]"
                   />
-                  <h3 className="font-serif text-[22px] font-bold leading-[1.15] tracking-[-0.01em] text-[#002219] sm:text-[25px] lg:text-[28px]">
+                  <h3 className="font-sans text-[22px] font-bold leading-[1.15] tracking-[-0.01em] text-[#002219] sm:text-[25px] lg:text-[28px]">
                     Be Part of Something
                     <br />
                     <span className="text-[#c97b0a]">More Meaningful.</span>

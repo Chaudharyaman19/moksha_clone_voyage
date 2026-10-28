@@ -210,7 +210,7 @@ function ActivityCard({
         <CornerLotus />
 
         <div className="relative z-10">
-          <h3 className="font-serif text-[16px] font-normal leading-tight text-[#32231C] lg:text-[16px] xl:text-[16px]">
+          <h3 className="font-sans text-[16px] font-normal leading-tight text-[#32231C] lg:text-[16px] xl:text-[16px]">
             {activity.title}
           </h3>
 
@@ -270,7 +270,7 @@ export default function Serving({ }: ServingProps) {
             <div className="h-px w-12 bg-gradient-to-l from-transparent via-[#8B6A3E] to-transparent" />
           </div>
 
-          <h2 className="font-serif text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
+          <h2 className="font-sans text-[24px] font-normal leading-tight text-[#2F1D14] sm:text-[28px] lg:text-[30px]">
             Practical Help, Step by Step
           </h2>
 

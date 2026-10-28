@@ -214,7 +214,7 @@ function HeroSection() {
             <span>Dignity For The Unidentified &amp; Unclaimed</span>
           </div>
 
-          <h2 className="pb-[20px] pt-[8px] font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">
+          <h2 className="pb-[20px] pt-[8px] font-sans text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             Unclaimed Body Sewa
             <br />
             No One Is Left Without Dignity
@@ -300,7 +300,7 @@ function HowItWorks() {
         {steps.map((step, index) => (
           <div className="relative" key={step.title}>
             <article className="relative h-full min-h-[102px] rounded-[7px] border border-[#E5DAC8] bg-[#FFFDFA] px-[12px] pb-[8px] pt-[18px] text-center shadow-[0_5px_13px_rgba(76,53,23,0.04)]">
-              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-serif text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
+              <span className="absolute -top-[14px] left-1/2 grid size-[24px] -translate-x-1/2 place-items-center rounded-full border-2 border-[#FFF7EB] bg-[#9C6D2A] font-sans text-[20px] text-white shadow-[0_3px_7px_rgba(81,51,15,0.15)]">
                 {index + 1}
               </span>
 
@@ -333,7 +333,7 @@ function SupportSection() {
   return (
     <section className="mx-auto grid w-full max-w-7xl grid-cols-[37%_63%] items-stretch gap-[14px] px-5 pt-[7px] lg:px-0 max-[820px]:grid-cols-1">
       <div className="flex h-full flex-col justify-center px-[3px] py-[12px] max-[820px]:py-[8px]">
-        <h2 className="py-[20px] font-serif text-[30px] font-normal leading-[1.1] text-[#28231E]">
+        <h2 className="py-[20px] font-sans text-[30px] font-normal leading-[1.1] text-[#28231E]">
           Every Soul Deserves
           <br />
           A Dignified Farewell
@@ -459,7 +459,7 @@ function DonationSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#774B19] from-[0%] via-[#704215]/95 via-[45%] to-transparent to-[83%] max-[820px]:bg-gradient-to-b max-[820px]:from-[#774B19] max-[820px]:via-[#6A3D13]/95 max-[820px]:to-transparent" />
 
         <div className="relative z-10 w-[43%] pb-[14px] pl-[38px] pt-4 max-[820px]:w-full max-[820px]:px-6 max-[820px]:pt-[18px]">
-          <h2 className="mb-[7px] py-[20px] font-serif text-[30px] font-normal text-[#FFF4DE]">
+          <h2 className="mb-[7px] py-[20px] font-sans text-[30px] font-normal text-[#FFF4DE]">
             Give Someone Their Last Dignity
           </h2>
 
@@ -497,7 +497,7 @@ function DonationSection() {
           </div>
         </div>
 
-        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-serif text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
+        <div className="absolute left-[45.1%] top-[18px] z-20 flex h-[132px] w-[112px] -translate-x-1/2 flex-col items-center justify-center bg-[#4E2E12]/30 text-center font-sans text-[14px] leading-[1.2] text-[#F3DDB7] shadow-[inset_0_0_0_2px_rgba(213,174,107,0.6)] [clip-path:polygon(50%_0%,61%_7%,74%_5%,82%_16%,94%_22%,94%_36%,100%_49%,93%_62%,94%_76%,81%_83%,74%_95%,60%_93%,50%_100%,39%_93%,25%_95%,18%_83%,6%_76%,7%_62%,0_49%,7%_36%,6%_22%,18%_16%,26%_5%,39%_7%)] max-[820px]:hidden">
           <span className="mb-[7px] text-[#DCB56F]">
             <Icon name="heart" size={16} />
           </span>
@@ -565,7 +565,7 @@ function SectionTitle({
         compact ? "mb-[7px]" : "mb-[11px]"
       }`}
     >
-      <h2 className="py-[20px] text-center font-serif text-[30px] font-normal leading-[1.08]">
+      <h2 className="py-[20px] text-center font-sans text-[30px] font-normal leading-[1.08]">
         {children}
       </h2>
 

@@ -144,7 +144,7 @@ export default function DisclaimerContent() {
           </div>
 
           {/* Heading */}
-          <h1 className="mt-4 font-serif text-[48px] sm:text-[58px] lg:text-[68px] font-bold tracking-tight text-[#112E47] leading-[1.08]">
+          <h1 className="mt-4 font-sans text-[48px] sm:text-[58px] lg:text-[68px] font-bold tracking-tight text-[#112E47] leading-[1.08]">
             Disclaimer
           </h1>
 
@@ -172,7 +172,7 @@ export default function DisclaimerContent() {
 
         {/* Section Title & Subheading */}
         <div className="mb-5">
-          <h2 className="font-serif text-[17px] sm:text-[19px] font-bold text-[#112E47]">
+          <h2 className="font-sans text-[17px] sm:text-[19px] font-bold text-[#112E47]">
             Moksha Sewa — An Initiative of Namo Gange Trust
           </h2>
           <p className="mt-1 text-[12px] sm:text-[12.5px] leading-relaxed text-[#555555]">
@@ -199,7 +199,7 @@ export default function DisclaimerContent() {
 
               {/* Text */}
               <div className="min-w-0 flex-1">
-                <h3 className="font-serif text-[14.5px] sm:text-[15px] font-bold leading-tight text-[#112E47]">
+                <h3 className="font-sans text-[14.5px] sm:text-[15px] font-bold leading-tight text-[#112E47]">
                   {item.title}
                 </h3>
                 <p className="mt-0.5 text-[12px] sm:text-[12.5px] leading-[1.4] text-[#555555]">

@@ -265,7 +265,7 @@ export default function SacredJourney() {
         <header className="mx-auto mb-3 max-w-[820px] text-center">
           <TopLabel />
 
-          <h2 className="mt-1.5 font-serif text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
+          <h2 className="mt-1.5 font-sans text-[24px] font-normal leading-tight text-[#342017] sm:text-[28px] lg:text-[30px]">
             Help Someone Receive a Respectful Farewell
           </h2>
 
@@ -311,7 +311,7 @@ export default function SacredJourney() {
 
                 {/* Card content */}
                 <div className="absolute inset-x-0 top-[198px] z-20 flex flex-col items-center px-4 text-center sm:top-[192px] md:top-[188px] lg:top-[180px]">
-                  <h3 className="font-serif text-[17px] font-normal uppercase leading-[1.1] tracking-[0.015em] text-[#352017] lg:text-[16px] xl:text-[17px]">
+                  <h3 className="font-sans text-[17px] font-normal uppercase leading-[1.1] tracking-[0.015em] text-[#352017] lg:text-[16px] xl:text-[17px]">
                     {card.title}
                   </h3>
 

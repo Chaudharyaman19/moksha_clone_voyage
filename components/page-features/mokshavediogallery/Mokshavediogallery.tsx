@@ -270,7 +270,7 @@ function VideoCard({ video, aspect, eager, onOpen }: VideoCardProps) {
 
       {/* Caption block */}
       <span className="absolute inset-x-0 bottom-0 block p-3 sm:p-4">
-        <span className="block font-serif text-[15px] leading-snug text-white sm:text-base">
+        <span className="block font-sans text-[15px] leading-snug text-white sm:text-base">
           <span className="ms-clamp-2 block">{video.title}</span>
         </span>
 
@@ -609,7 +609,7 @@ function MokshaGallery() {
             </span>
           </div>
 
-     <h1 className="mt-4 font-serif text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
+     <h1 className="mt-4 font-sans text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
   Moksha{" "}
   <span className="text-[#8B6A3E]">
     Video Gallery
@@ -628,7 +628,7 @@ function MokshaGallery() {
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
                 Recordings
               </dt>
-              <dd className="mt-1 font-serif text-2xl tabular-nums text-[#2C1810]">
+              <dd className="mt-1 font-sans text-2xl tabular-nums text-[#2C1810]">
                 {videos.length}
               </dd>
             </div>
@@ -637,7 +637,7 @@ function MokshaGallery() {
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
                 Categories
               </dt>
-              <dd className="mt-1 font-serif text-2xl tabular-nums text-[#2C1810]">
+              <dd className="mt-1 font-sans text-2xl tabular-nums text-[#2C1810]">
                 {categories.length - 1}
               </dd>
             </div>
@@ -646,7 +646,7 @@ function MokshaGallery() {
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8B6A3E]/70">
                 Availability
               </dt>
-              <dd className="mt-1 font-serif text-2xl text-[#2C1810]">24×7</dd>
+              <dd className="mt-1 font-sans text-2xl text-[#2C1810]">24×7</dd>
             </div>
           </dl>
         </div>
@@ -714,7 +714,7 @@ function MokshaGallery() {
               className="mx-auto h-8 w-8 text-[#C9873A]/60"
               aria-hidden="true"
             />
-            <p className="mt-4 font-serif text-xl text-[#2C1810]">
+            <p className="mt-4 font-sans text-xl text-[#2C1810]">
               Nothing filed under {titleCase(selectedCategory)} yet
             </p>
             <p className="mx-auto mt-2 max-w-sm text-sm text-[#5A3E2B]/70">
@@ -835,7 +835,7 @@ function MokshaGallery() {
               </div>
 
               <div className="flex-1 px-5 py-6 sm:px-7">
-                <h2 className="font-serif text-[clamp(1.35rem,4vw,2rem)] leading-tight text-[#2C1810]">
+                <h2 className="font-sans text-[clamp(1.35rem,4vw,2rem)] leading-tight text-[#2C1810]">
                   {selectedVideo.title}
                 </h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-[#5A3E2B]/80">

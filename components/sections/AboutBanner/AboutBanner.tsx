@@ -281,7 +281,7 @@ const AboutMokshaSewa: React.FC = () => {
               id="about-moksha-title"
               className="
                 max-w-[620px]
-                font-serif
+                font-sans
                 text-[34px]
                 font-semibold
                 leading-[1.05]
@@ -576,7 +576,7 @@ const AboutMokshaSewa: React.FC = () => {
               <span
                 aria-hidden="true"
                 className="
-                  font-serif
+                  font-sans
                   text-4xl
                   leading-none
                   text-[#df5b0b]
@@ -589,7 +589,7 @@ const AboutMokshaSewa: React.FC = () => {
               <blockquote
                 className="
                   max-w-[700px]
-                  font-serif
+                  font-sans
                   text-xl
                   font-semibold
                   leading-[1.3]
@@ -605,7 +605,7 @@ const AboutMokshaSewa: React.FC = () => {
                 aria-hidden="true"
                 className="
                   self-end
-                  font-serif
+                  font-sans
                   text-4xl
                   leading-none
                   text-[#df5b0b]

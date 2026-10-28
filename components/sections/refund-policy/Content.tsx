@@ -74,7 +74,7 @@ function RefundPolicyCard({
             aria-hidden="true"
           />
 
-          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-[#C9A227]/50 bg-[#FFFDF8]/95 font-serif text-[15px] font-semibold text-[#1F3D2B] shadow-[0_3px_10px_rgba(66,57,15,0.25)]">
+          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-[#C9A227]/50 bg-[#FFFDF8]/95 font-sans text-[15px] font-semibold text-[#1F3D2B] shadow-[0_3px_10px_rgba(66,57,15,0.25)]">
             {String(card.number).padStart(2, "0")}
           </span>
         </div>
@@ -88,12 +88,12 @@ function RefundPolicyCard({
 
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-serif text-[17px] font-bold leading-[1.35] text-[#1F3D2B]">
+              <h3 className="font-sans text-[17px] font-bold leading-[1.35] text-[#1F3D2B]">
                 {card.title}
               </h3>
 
               {!isEven && (
-                <span className="shrink-0 rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-0.5 font-serif text-[14px] font-bold tracking-wide text-[#7A5E17]">
+                <span className="shrink-0 rounded-full border border-[#D9C48E] bg-[#FBF3DC] px-2.5 py-0.5 font-sans text-[14px] font-bold tracking-wide text-[#7A5E17]">
                   {String(card.number).padStart(2, "0")}
                 </span>
               )}
@@ -163,7 +163,7 @@ function SectionHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-semibold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
+    <h2 className="font-sans text-[26px] font-semibold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
       {number}. {title}
     </h2>
   );
@@ -552,7 +552,7 @@ export default function RefundPolicy() {
                 className="text-[#D95A06]"
               />
 
-              <h3 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 {noteItem.title}
               </h3>
             </div>
@@ -562,7 +562,7 @@ export default function RefundPolicy() {
             </div>
 
             <div className="mt-4 flex flex-col items-center">
-              <h3 className="w-full text-left font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="w-full text-left font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 {commitment.title}
               </h3>
               <p className="mt-2 w-full text-left text-[16px] leading-6 text-[#5B4635] whitespace-pre-wrap">
@@ -731,7 +731,7 @@ export default function RefundPolicy() {
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h2 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 {refundContact?.title || "Have Questions About a Refund?"}
               </h2>
 

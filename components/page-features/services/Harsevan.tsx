@@ -52,7 +52,7 @@ export default function HearseVanServices({ pills }: { pills?: ReactNode }) {
                 <FaCarSide className="h-8 w-8 text-[#A0522D]" />
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
+              <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
                 {title}
 
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
@@ -105,7 +105,7 @@ export default function HearseVanServices({ pills }: { pills?: ReactNode }) {
         {/* Essential Services */}
         <section className="mx-auto mb-24 max-w-7xl px-4 sm:px-6 lg:px-0">
           <div className="mb-16 text-center">
-            <h2 className="py-[20px] font-serif text-[30px] text-[#4A3D36]">
+            <h2 className="py-[20px] font-sans text-[30px] text-[#4A3D36]">
               {servicesTitle}
             </h2>
 

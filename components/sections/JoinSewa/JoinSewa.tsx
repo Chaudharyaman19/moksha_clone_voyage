@@ -331,7 +331,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
           <div className="pt-1">
             <h3
               className="
-                font-serif
+                font-sans
                 text-[20px]
                 font-bold
                 leading-[1.03]
@@ -536,7 +536,7 @@ const JoinSewa: React.FC = () => {
               className="
                 mt-2
 
-                font-serif
+                font-sans
 
                 text-[32px]
                 font-semibold

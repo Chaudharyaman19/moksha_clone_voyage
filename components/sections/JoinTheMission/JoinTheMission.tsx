@@ -656,7 +656,7 @@ export default function JoinTheMission() {
                 <h3
                   className="
                     mt-[9px]
-                    font-serif
+                    font-sans
                     text-[22px]
                     font-semibold
                     leading-[1.05]
@@ -847,7 +847,7 @@ export default function JoinTheMission() {
 
               <p
                 className="
-                  font-serif
+                  font-sans
                   text-[19px]
                   italic
                   leading-[1.25]

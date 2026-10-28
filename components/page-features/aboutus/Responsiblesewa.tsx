@@ -725,7 +725,7 @@ export default function ResponsibleSewa() {
                 <div className="min-w-0 flex-1">
                   <h3
                     className="
-                      font-serif
+                      font-sans
                       text-[21px]
                       font-semibold
                       leading-[1.1]

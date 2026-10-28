@@ -38,7 +38,7 @@ export default function FoundersVision() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
 
                 <div className="absolute bottom-6 left-6">
-                  <h3 className="font-serif text-2xl font-medium text-white sm:text-3xl">{founderName}</h3>
+                  <h3 className="font-sans text-2xl font-medium text-white sm:text-3xl">{founderName}</h3>
                   <p className="text-sm font-medium tracking-wider text-[#D9B681] uppercase">{founderRole}</p>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function FoundersVision() {
             </div>
 
             <div className="mt-4">
-              <p className="font-serif text-lg text-[#8B6A3E]">{founderName}</p>
+              <p className="font-sans text-lg text-[#8B6A3E]">{founderName}</p>
               <p className="text-[14px] font-semibold uppercase tracking-[0.2em] text-[#8A7460] mt-0.5">{founderRole}</p>
             </div>
           </div>

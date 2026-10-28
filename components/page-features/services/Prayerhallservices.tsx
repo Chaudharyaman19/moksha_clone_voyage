@@ -98,7 +98,7 @@ export default function PrayerHallServices({ pills }: { pills?: ReactNode }) {
                 </span>
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
+              <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] text-[#321A10]">
                 {title}
               </h1>
 
@@ -167,7 +167,7 @@ export default function PrayerHallServices({ pills }: { pills?: ReactNode }) {
         <section className="relative bg-[#FAF8F4] pb-4 pt-2">
           <div className="mx-auto max-w-7xl px-4 lg:px-0">
             <div className="relative mb-6 text-center">
-              <h2 className="inline-flex items-center gap-3 py-[20px] font-serif text-[30px] text-[#321A10]">
+              <h2 className="inline-flex items-center gap-3 py-[20px] font-sans text-[30px] text-[#321A10]">
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
                 {textOrFallback(useWebsiteSection("prayerHall-how-it-works")?.title, "How It Works", 60)}
                 <span className="text-[20px] text-[#C99A4A]/80">✹</span>
@@ -295,7 +295,7 @@ export default function PrayerHallServices({ pills }: { pills?: ReactNode }) {
 
             {/* Center Content */}
             <div className="z-10 flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-[#FAF8F4] via-transparent to-transparent p-6 text-center lg:items-start lg:p-8 lg:text-left">
-              <h2 className="max-w-lg py-[20px] font-serif text-[30px] leading-tight text-[#321A10]">
+              <h2 className="max-w-lg py-[20px] font-sans text-[30px] leading-tight text-[#321A10]">
                 {textOrFallback(useWebsiteSection("prayerHall-donation")?.title, "Your Support Helps Families Receive Dignified & Sacred Final Rites", 600)}
               </h2>
 
@@ -348,7 +348,7 @@ function SectionHeader({ title }: { title: string }) {
     <div className="mb-4 flex items-center justify-center gap-4 text-center">
       <GiLotusFlower className="h-5 w-5 rotate-90 text-[#C99A4A] opacity-60" />
 
-      <h2 className="py-[20px] font-serif text-[30px] text-[#321A10]">
+      <h2 className="py-[20px] font-sans text-[30px] text-[#321A10]">
         {title}
       </h2>
 

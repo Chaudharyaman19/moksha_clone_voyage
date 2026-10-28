@@ -54,7 +54,7 @@ export default function NotFound() {
             </div>
 
             <div className="relative mb-2 w-fit">
-              <p className="font-serif text-[112px] leading-[0.8] tracking-[-0.07em] text-[#0A493B] sm:text-[150px] lg:text-[190px]">
+              <p className="font-sans text-[112px] leading-[0.8] tracking-[-0.07em] text-[#0A493B] sm:text-[150px] lg:text-[190px]">
                 404
               </p>
               <div className="absolute -right-8 top-1/2 hidden h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-[#D2AA65] bg-[#FFF9EF]/90 text-[#B47D25] shadow-[0_12px_30px_rgba(44,30,13,0.12)] sm:flex">
@@ -62,7 +62,7 @@ export default function NotFound() {
               </div>
             </div>
 
-            <h2 className="max-w-[620px] font-serif text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
+            <h2 className="max-w-[620px] font-sans text-4xl leading-[1.08] text-[#123D32] sm:text-5xl lg:text-[58px]">
               This page has completed its journey.
             </h2>
             <div className="my-6 flex max-w-[530px] items-center gap-3">

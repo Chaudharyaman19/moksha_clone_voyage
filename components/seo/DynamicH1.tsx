@@ -36,5 +36,5 @@ const pageFieldMap: Record<WebsitePageKey, string> = {
 export default function DynamicH1({ pageKey, fallback }: DynamicH1Props) {
   // Server-rendered <h1> so every page has exactly one H1 in the initial HTML.
   // Client-side component headings should use <h2> (or lower) to avoid duplicate H1s.
-  return <h1 className="font-serif text-[30px] font-normal leading-[1.1] text-[#2B251F]">{fallback}</h1>;
+  return <h1 className="font-sans text-[30px] font-normal leading-[1.1] text-[#2B251F]">{fallback}</h1>;
 }

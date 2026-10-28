@@ -535,7 +535,7 @@ export default function ApplyPageContent() {
               </div>
 
               {/* 2. Main Heading */}
-              <h1 className="mt-2.5 font-serif text-[35px] font-bold leading-[1.06] tracking-[-0.02em] text-[#002017] sm:text-[39px] md:text-[43px] lg:text-[47px] text-left">
+              <h1 className="mt-2.5 font-sans text-[35px] font-bold leading-[1.06] tracking-[-0.02em] text-[#002017] sm:text-[39px] md:text-[43px] lg:text-[47px] text-left">
                 Create a More
                 <br />
                 <span className="inline-block whitespace-nowrap text-[#cc7501]">Compassionate Tomorrow</span>
@@ -639,7 +639,7 @@ export default function ApplyPageContent() {
                       </span>
 
                       {/* Job Title */}
-                      <h2 className="mt-1 font-serif text-[28px] font-bold leading-[1.08] text-[#002219] sm:text-[30px] lg:text-[32px]">
+                      <h2 className="mt-1 font-sans text-[28px] font-bold leading-[1.08] text-[#002219] sm:text-[30px] lg:text-[32px]">
                         {job.title}
                       </h2>
 
@@ -768,7 +768,7 @@ export default function ApplyPageContent() {
                     <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#c7821e]">
                       Let AI Help You ✨
                     </p>
-                    <h2 className="mt-1 font-serif text-[25px] font-bold leading-[1.12] text-[#002219] sm:text-[27px] lg:text-[28px]">
+                    <h2 className="mt-1 font-sans text-[25px] font-bold leading-[1.12] text-[#002219] sm:text-[27px] lg:text-[28px]">
                       <span className="whitespace-nowrap">Check Your Eligibility</span>
                       <br />
                       <span className="whitespace-nowrap">with AI</span>

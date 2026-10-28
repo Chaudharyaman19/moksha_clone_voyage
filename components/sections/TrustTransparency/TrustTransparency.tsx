@@ -417,7 +417,7 @@ export default function TrustTransparency() {
             </div>
 
             {/* MAIN TITLE */}
-            <h2 className="mx-auto mt-[7px] max-w-[440px] text-center font-serif text-[52px] font-semibold leading-[0.96] tracking-[-0.025em] text-[#064631] max-md:text-[38px] max-md:leading-[1]">
+            <h2 className="mx-auto mt-[7px] max-w-[440px] text-center font-sans text-[52px] font-semibold leading-[0.96] tracking-[-0.025em] text-[#064631] max-md:text-[38px] max-md:leading-[1]">
               {textOrFallback(websiteSection?.title, "Trust &\nTransparency", 80).split("\n").map((line) => <span key={line} className="block">{line}</span>)}
             </h2>
 
@@ -458,7 +458,7 @@ export default function TrustTransparency() {
                     />
                   </div>
 
-                  <h3 className="mt-[3px] font-serif text-[25px] font-semibold uppercase leading-none text-white max-md:text-[22px]">
+                  <h3 className="mt-[3px] font-sans text-[25px] font-semibold uppercase leading-none text-white max-md:text-[22px]">
                     Moksha Sewa
                   </h3>
 
@@ -532,7 +532,7 @@ export default function TrustTransparency() {
             {/* QUOTE */}
             <div className="mx-auto w-full text-center">
               <div className="flex items-start justify-center">
-                <span className="-mt-[8px] mr-[15px] font-serif text-[52px] leading-none text-[#DFAC48] max-md:-mt-[5px] max-md:mr-[7px] max-md:text-[38px]">
+                <span className="-mt-[8px] mr-[15px] font-sans text-[52px] leading-none text-[#DFAC48] max-md:-mt-[5px] max-md:mr-[7px] max-md:text-[38px]">
                   “
                 </span>
 
@@ -540,7 +540,7 @@ export default function TrustTransparency() {
                   {quote.split("\n").map((line) => <span key={line} className="block">{line}</span>)}
                 </p>
 
-                <span className="-mt-[8px] ml-[15px] font-serif text-[52px] leading-none text-[#DFAC48] max-md:-mt-[5px] max-md:ml-[7px] max-md:text-[38px]">
+                <span className="-mt-[8px] ml-[15px] font-sans text-[52px] leading-none text-[#DFAC48] max-md:-mt-[5px] max-md:ml-[7px] max-md:text-[38px]">
                   ”
                 </span>
               </div>
@@ -566,7 +566,7 @@ export default function TrustTransparency() {
                     />
                   </div>
 
-                  <h3 className="mt-[8px] whitespace-pre-line font-serif text-[18px] font-semibold leading-[1.08] text-[#0A4936] max-md:mt-[9px] max-md:text-[19px] max-md:leading-[1.12]">
+                  <h3 className="mt-[8px] whitespace-pre-line font-sans text-[18px] font-semibold leading-[1.08] text-[#0A4936] max-md:mt-[9px] max-md:text-[19px] max-md:leading-[1.12]">
                     {card.title}
                   </h3>
 

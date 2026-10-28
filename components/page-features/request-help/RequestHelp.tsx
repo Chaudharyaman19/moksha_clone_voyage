@@ -437,7 +437,7 @@ export default function RequestHelp() {
                 <span className="hidden h-px w-28 bg-gradient-to-l from-transparent to-[#ED6B13] sm:block" />
               </div>
 
-              <h1 className="mt-1 font-serif text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
+              <h1 className="mt-1 font-sans text-[31px] font-normal leading-none tracking-[-0.025em] text-[#351B12] sm:text-[37px] lg:text-[42px]">
                 {textOrFallback(heroSection?.title, "Request Cremation Assistance", 100)}
               </h1>
 
@@ -463,7 +463,7 @@ export default function RequestHelp() {
                 </div>
 
                 <div className="flex min-w-0 flex-1 flex-col items-center justify-center text-center">
-                  <p className="font-serif !text-[24px] font-semibold leading-none text-[#FFF5E8]">{heroPhoneLabel}</p>
+                  <p className="font-sans !text-[24px] font-semibold leading-none text-[#FFF5E8]">{heroPhoneLabel}</p>
                   <span className="my-1.5 h-px w-24 bg-gradient-to-r from-transparent via-[#F2A23B] to-transparent" />
                   <a
                     href={`tel:${heroPhoneNumber.replace(/\s/g, "")}`}
@@ -486,7 +486,7 @@ export default function RequestHelp() {
                     <FaCheckCircle className="h-7 w-7" />
                   </span>
 
-                  <h2 className="mt-1 font-serif text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
+                  <h2 className="mt-1 font-sans text-[24px] font-normal leading-tight text-[#351B12] sm:text-[28px] lg:text-[30px]">
                     {receivedTitle}
                   </h2>
 
@@ -497,7 +497,7 @@ export default function RequestHelp() {
                     future reference.
                   </p>
 
-                  <div className="mt-1 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-serif text-[18px] text-[#D76816]">
+                  <div className="mt-1 border border-[#E7D5C0] bg-[#FCF7EF] px-5 py-2 font-sans text-[18px] text-[#D76816]">
                     {result.requestNo}
                   </div>
 
@@ -520,7 +520,7 @@ export default function RequestHelp() {
                   <div className="flex items-center gap-2 border-b border-[#EEE2D3] pb-2">
                     <LotusOrnament className="h-6 w-8" />
 
-                    <h2 className="font-serif text-[24px] font-normal leading-tight text-[#3A2117] sm:text-[28px] lg:text-[30px]">
+                    <h2 className="font-sans text-[24px] font-normal leading-tight text-[#3A2117] sm:text-[28px] lg:text-[30px]">
                       {textOrFallback(formSection?.title, "Request Assistance", 100)}
                     </h2>
 
@@ -561,7 +561,7 @@ export default function RequestHelp() {
 
                   {/* Personal Details */}
                   <fieldset>
-                    <legend className="mb-2 flex items-center gap-2 font-serif text-[14px] text-[#472C20]">
+                    <legend className="mb-2 flex items-center gap-2 font-sans text-[14px] text-[#472C20]">
                       <span className="h-px w-4 bg-[#E87520]" />
                       Personal Details
                     </legend>
@@ -758,7 +758,7 @@ export default function RequestHelp() {
 
                   {/* Assistance Types */}
                   <fieldset>
-                    <legend className="mb-2 flex items-center gap-2 font-serif text-[14px] text-[#472C20]">
+                    <legend className="mb-2 flex items-center gap-2 font-sans text-[14px] text-[#472C20]">
                       <span className="h-px w-4 bg-[#E87520]" />
                       Type of Assistance *
                     </legend>
@@ -798,7 +798,7 @@ export default function RequestHelp() {
 
                               <Icon className="h-5 w-5 text-[#E87520]" />
 
-                              <span className="mt-1.5 font-serif text-[16px] leading-[1.12] text-[#39251C]">
+                              <span className="mt-1.5 font-sans text-[16px] leading-[1.12] text-[#39251C]">
                                 {
                                   option.title
                                 }
@@ -973,7 +973,7 @@ export default function RequestHelp() {
 
             {/* Right trust panel */}
             <aside className="h-full overflow-hidden border border-[#EDD9BF] bg-[#FFF8EC] p-4 shadow-[0_14px_36px_rgba(106,65,29,0.09)]">
-              <h2 className="text-center font-serif text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
+              <h2 className="text-center font-sans text-[24px] font-normal leading-tight text-[#40271B] sm:text-[28px] lg:text-[30px]">
                 {trustTitle}
               </h2>
 
@@ -1000,7 +1000,7 @@ export default function RequestHelp() {
                       </span>
 
                       <div>
-                        <h3 className="font-serif text-[14px] leading-tight text-[#3E261B]">
+                        <h3 className="font-sans text-[14px] leading-tight text-[#3E261B]">
                           {itemTitle}
                         </h3>
 
@@ -1028,7 +1028,7 @@ export default function RequestHelp() {
 
               <blockquote className="relative px-3 pb-1 pt-1 text-center">
 
-                <p className="font-serif text-[14px]  leading-5 text-[#5B3827]">
+                <p className="font-sans text-[14px]  leading-5 text-[#5B3827]">
                   {sewaQuote.split(". ").map((line, i) => (
                     <span key={i}>{line}{i < sewaQuote.split(". ").length - 1 ? ". " : ""}<br /></span>
                   ))}
@@ -1040,7 +1040,7 @@ export default function RequestHelp() {
           </div>
 
           <div className="mt-1 text-center">
-            <p className="font-serif text-[14px] text-[#D16521]">
+            <p className="font-sans text-[14px] text-[#D16521]">
               {hindiQuote.split("\n").map((line, i) => (
                 <span key={i}>
                   {line}

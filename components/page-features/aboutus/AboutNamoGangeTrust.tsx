@@ -165,7 +165,7 @@ export default function AboutNamoGangeTrust() {
                 href={textOrFallback(section?.buttonHref, "https://www.namogange.org/", 60)}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 shrink-0 items-center justify-center gap-4 bg-[#0d4939] px-5 font-serif text-[14px] text-white shadow-[0_5px_10px_rgba(20,63,48,.25)] transition hover:bg-[#093c2f]"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-4 bg-[#0d4939] px-5 font-sans text-[14px] text-white shadow-[0_5px_10px_rgba(20,63,48,.25)] transition hover:bg-[#093c2f]"
               >
                 {textOrFallback(section?.buttonLabel, "Know Namo Gange Trust", 60)}
                 <FaArrowRight className="h-3 w-3 text-[#d2a342]" />

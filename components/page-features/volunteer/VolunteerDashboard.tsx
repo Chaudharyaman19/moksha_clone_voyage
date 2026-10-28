@@ -93,7 +93,7 @@ function AssignmentCard({
     <div className="rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-serif text-base text-[#2C1810]">
+          <p className="font-sans text-base text-[#2C1810]">
             {kase ? kase.caseId : "Case"} <span className="font-sans text-[14px] font-normal text-[#8A7460]">— {assignment.role}</span>
           </p>
           <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-[#8A7460]">
@@ -409,7 +409,7 @@ function VolunteerDashboard() {
       <main className="mx-auto w-full max-w-3xl px-4 pb-14 pt-28 sm:px-6 lg:pt-32 xl:px-0">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h2 className="font-serif text-2xl text-[#2C1810]">
+            <h2 className="font-sans text-2xl text-[#2C1810]">
               Namaste, <span className=" text-[#8B6A3E]">{user.name}</span>
             </h2>
             <p className="mt-1 text-sm text-[#6B584B]">Here's your volunteer profile and assigned cases.</p>
@@ -454,7 +454,7 @@ function VolunteerDashboard() {
                       <FaUserCircle className="h-12 w-12 text-[#C9A574]" />
                     )}
                     <div>
-                      <p className="font-serif text-lg text-[#2C1810]">{profile.name}</p>
+                      <p className="font-sans text-lg text-[#2C1810]">{profile.name}</p>
                       <p className="flex items-center gap-1 text-[14px] text-[#8A7460]">
                         <FaMapMarkerAlt className="h-2.5 w-2.5" /> {profile.city}
                       </p>

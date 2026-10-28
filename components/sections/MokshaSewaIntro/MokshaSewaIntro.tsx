@@ -66,7 +66,7 @@ const MokshaSewaIntro: React.FC = () => {
           <h2
             className="
               max-w-[530px]
-              font-serif
+              font-sans
               text-[38px]
               font-semibold
               leading-[0.98]

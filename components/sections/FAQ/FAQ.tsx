@@ -240,7 +240,7 @@ export default function FAQSection() {
                     <span className="hidden h-[30px] w-px shrink-0 bg-[#d9c8a5] sm:block" />
 
                     {/* Question */}
-                    <span className="min-w-0 flex-1 pr-2 font-serif text-[16px] font-semibold leading-6 text-[#174b3e] lg:text-[17px]">
+                    <span className="min-w-0 flex-1 pr-2 font-sans text-[16px] font-semibold leading-6 text-[#174b3e] lg:text-[17px]">
                       {faq.question}
                     </span>
 

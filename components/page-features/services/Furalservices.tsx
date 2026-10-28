@@ -138,11 +138,11 @@ function HeroSection({ image, title, subtitle, description, buttonLabel, buttonH
             </span>
           </div>
 
-          <h1 className="pb-[8px] pt-[8px] font-serif text-[30px] leading-[1.1] text-[#321A10]">
+          <h1 className="pb-[8px] pt-[8px] font-sans text-[30px] leading-[1.1] text-[#321A10]">
             {title}
           </h1>
 
-          <p className="font-serif text-[30px] leading-tight text-[#A66D2D]">
+          <p className="font-sans text-[30px] leading-tight text-[#A66D2D]">
             {subtitle}
           </p>
 
@@ -197,7 +197,7 @@ function SupportFeatureCard({ image, icon, title, description }: { image: string
       </div>
 
       <div className="flex flex-1 flex-col items-center px-4 pb-3 pt-8 text-center">
-        <h2 className="flex min-h-[34px] items-center justify-center font-serif text-[24px] leading-[1.1] text-[#3C1E10]">
+        <h2 className="flex min-h-[34px] items-center justify-center font-sans text-[24px] leading-[1.1] text-[#3C1E10]">
           {title}
         </h2>
 
@@ -228,7 +228,7 @@ function ArrangeSection({ title, items }: { title: string; items: { title?: stri
 function SectionTitle({ title }: { title: string }) {
   return (
     <div className="text-center">
-      <h2 className="py-[20px] font-serif text-[30px] leading-none text-[#351D12]">
+      <h2 className="py-[20px] font-sans text-[30px] leading-none text-[#351D12]">
         {title}
       </h2>
 
@@ -269,7 +269,7 @@ function ArrangeCard({
           {icon}
         </div>
 
-        <h3 className="mt-2 min-h-[69px] font-serif text-[20px] font-semibold leading-[1.15] text-[#351D12]">
+        <h3 className="mt-2 min-h-[69px] font-sans text-[20px] font-semibold leading-[1.15] text-[#351D12]">
           {title}
         </h3>
 
@@ -295,7 +295,7 @@ function ClosingMessage() {
       <div className="relative mx-auto max-w-5xl text-center">
         <GiLotusFlower className="mx-auto h-8 w-8 text-[#B97827]" />
 
-        <blockquote className="mx-auto max-w-4xl py-[20px] font-serif text-[30px] leading-[1.42] text-[#482414]" dangerouslySetInnerHTML={{ __html: quote.replace(/\n/g, '<br />') }} />
+        <blockquote className="mx-auto max-w-4xl py-[20px] font-sans text-[30px] leading-[1.42] text-[#482414]" dangerouslySetInnerHTML={{ __html: quote.replace(/\n/g, '<br />') }} />
 
         <p className="mx-auto mt-3 max-w-3xl text-[18px] leading-[1.55] text-[#3D291F]/88">
           {desc}

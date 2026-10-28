@@ -140,7 +140,7 @@ function TermsHeading({
   title: string;
 }) {
   return (
-    <h2 className="font-serif text-[26px] font-semibold leading-tight text-[#221512]">
+    <h2 className="font-sans text-[26px] font-semibold leading-tight text-[#221512]">
       {number}. {title}
     </h2>
   );
@@ -483,7 +483,7 @@ export default function TermsAndConditions() {
                 />
               </div>
 
-              <h3 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h3 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 {commitment.title}
               </h3>
             </div>
@@ -574,7 +574,7 @@ export default function TermsAndConditions() {
             </div>
 
             <div>
-              <h2 className="font-serif text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
+              <h2 className="font-sans text-[16px] font-semibold text-[#2C1810] drop-shadow-[0_1px_2px_rgba(92,58,27,0.08)]">
                 {termsContact?.title || "Questions About These Terms?"}
               </h2>
 

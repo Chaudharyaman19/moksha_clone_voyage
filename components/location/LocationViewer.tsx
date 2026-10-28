@@ -99,7 +99,7 @@ function LocationHero({ page }: { page: LocationPage }) {
       )}
       <div className="absolute inset-0 bg-black/50" />
       <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
-        <h1 className="max-w-[1000px] font-serif text-[24px] font-semibold leading-tight text-white drop-shadow-lg md:text-[36px]">
+        <h1 className="max-w-[1000px] font-sans text-[24px] font-semibold leading-tight text-white drop-shadow-lg md:text-[36px]">
           {page.h1 || page.pageTitle}
         </h1>
         <span className="mt-4 flex h-8 w-5 items-start justify-center rounded-full border border-white/70 p-1.5" aria-hidden>
@@ -133,7 +133,7 @@ function LocationContent({ page }: { page: LocationPage | null }) {
   return (
     <article>
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <h2 className="font-serif text-[22px] font-bold leading-tight text-[#0f172a] md:text-[30px]">
+        <h2 className="font-sans text-[22px] font-bold leading-tight text-[#0f172a] md:text-[30px]">
           {highlightCity(heading, page.city)}
         </h2>
         <div className="flex flex-wrap items-center gap-2.5 md:shrink-0">
@@ -181,7 +181,7 @@ function LocationContent({ page }: { page: LocationPage | null }) {
 
       {page.faqs?.length ? (
         <div className="mt-7">
-          <h2 className="font-serif text-[19px] font-bold text-[#0f172a] md:text-[22px]">Frequently Asked Questions</h2>
+          <h2 className="font-sans text-[19px] font-bold text-[#0f172a] md:text-[22px]">Frequently Asked Questions</h2>
           <div className="mt-3 grid gap-2 md:grid-cols-2">
             {page.faqs.map((f, i) => (
               <details key={i} className="rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition hover:border-[#8c6b1d]/40">

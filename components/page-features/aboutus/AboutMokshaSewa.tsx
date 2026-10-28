@@ -76,7 +76,7 @@ export default function AboutMokshaSewa() {
 
             <span>
 
-              <span className="block font-serif text-xl leading-tight text-[#8B6A3E]">
+              <span className="block font-sans text-xl leading-tight text-[#8B6A3E]">
                 {quoteLabel}
               </span>
 

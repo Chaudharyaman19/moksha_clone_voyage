@@ -195,7 +195,7 @@ export default function WhoWeAre() {
 
         <div className="absolute left-[57.5%] top-[10.5%] flex w-[14%] flex-col items-center text-center">
           <Image src={imageOrFallback(section?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165236/moksha-sewa/assets/logo-moksha-seva.png")} alt="Moksha Sewa" width={200} height={160} className="h-auto w-[31%] mix-blend-multiply" />
-          <p className="mt-[-1%] font-serif text-[clamp(9px,1.15vw,20px)] font-semibold text-[#183d3b]">{textOrFallback(section?.supportTitle, "MOKSHA SEWA", 40)}</p>
+          <p className="mt-[-1%] font-sans text-[clamp(9px,1.15vw,20px)] font-semibold text-[#183d3b]">{textOrFallback(section?.supportTitle, "MOKSHA SEWA", 40)}</p>
           <p className="text-[clamp(6px,.7vw,12px)] text-[#b47a20]">{textOrFallback(section?.supportDescription, "A Namo Gange Trust Initiative", 60)}</p>
           <span className="mt-[3%] h-px w-[33%] bg-[#c79536]" />
         </div>

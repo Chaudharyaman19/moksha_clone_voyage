@@ -239,7 +239,7 @@ function PreviousBanner() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
       {/* giant Devanagari watermark — the signature of the page */}
-      <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[300px] leading-none text-[#8B6A3E]/[0.07] lg:block">
+      <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-sans text-[300px] leading-none text-[#8B6A3E]/[0.07] lg:block">
         मोक्ष
       </div>
 
@@ -353,7 +353,7 @@ function PreviousBanner() {
             {phoneLabel}
           </span>
 
-          <span className="block font-serif text-[16px] text-[#2C1810]">
+          <span className="block font-sans text-[16px] text-[#2C1810]">
             {phoneNumber}
           </span>
         </span>

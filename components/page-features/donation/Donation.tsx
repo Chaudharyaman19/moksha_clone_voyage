@@ -338,7 +338,7 @@ function Donation() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/8 via-transparent to-transparent" />
 
           {/* Devanagari watermark — "Daan" (donation) */}
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-serif text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
+          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[58%] select-none font-sans text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
             दान
           </div>
 
@@ -353,7 +353,7 @@ function Donation() {
                 </span>
               </div>
 
-              <h1 className="font-serif text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
+              <h1 className="font-sans text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Support a Final Journey", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
@@ -406,7 +406,7 @@ function Donation() {
               <span className="block text-[14px] uppercase tracking-[0.2em] text-[#E8D2AC]">
                 Together, So Far
               </span>
-              <span className="block font-serif text-sm">A Namo Gange Trust Initiative</span>
+              <span className="block font-sans text-sm">A Namo Gange Trust Initiative</span>
             </span>
           </div>
         </section>
@@ -454,7 +454,7 @@ function Donation() {
               <span className="h-px w-10 bg-[#C9A574]" />
             </div>
 
-            <h2 className="-mt-0.5 text-center font-serif text-[30px] leading-[1.02] text-[#2C1810] sm:text-[36px]">
+            <h2 className="-mt-0.5 text-center font-sans text-[30px] leading-[1.02] text-[#2C1810] sm:text-[36px]">
               {textOrFallback(causesSection?.title, "Support a Final Journey", 100).split("Final Journey")[0]}
               {textOrFallback(causesSection?.title, "Support a Final Journey", 100).includes("Final Journey") && <span className="text-[#A36B2B]">Final Journey</span>}
             </h2>
@@ -505,14 +505,14 @@ function Donation() {
                     </div>
 
                     <div className="flex min-h-[205px] flex-col px-3 pb-2.5 pt-6">
-                      <h3 className="text-center font-serif text-[16px] font-semibold leading-tight text-[#2C1810]">
+                      <h3 className="text-center font-sans text-[16px] font-semibold leading-tight text-[#2C1810]">
                         {cause.title}
                       </h3>
 
                       {/* price */}
                       <div className="mt-0.5 flex items-center justify-center gap-1.5">
                         <span className="h-px w-7 bg-[#C78C3B]/70" />
-                        <span className="font-serif text-[20px] font-semibold leading-none text-[#B5742A]">
+                        <span className="font-sans text-[20px] font-semibold leading-none text-[#B5742A]">
                           ₹ {cause.price.toLocaleString("en-IN")}
                         </span>
                         <span className="h-px w-7 bg-[#C78C3B]/70" />
@@ -565,7 +565,7 @@ function Donation() {
                   <span>Make a Donation</span>
                   <span className="h-px w-7 bg-[#C9A574]" />
                 </div>
-                <h3 className="mt-2 font-serif text-2xl text-[#2C1810]">
+                <h3 className="mt-2 font-sans text-2xl text-[#2C1810]">
                   Your Support, <span className=" text-[#8B6A3E]">Their Dignity</span>
                 </h3>
                 <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -621,7 +621,7 @@ function Donation() {
                         {activeCause.title}
                       </span>
                     </div>
-                    <span className="font-serif text-[20px] font-semibold text-[#8B6A3E]">
+                    <span className="font-sans text-[20px] font-semibold text-[#8B6A3E]">
                       ₹{activeCause.price.toLocaleString("en-IN")}
                     </span>
                   </div>
@@ -771,7 +771,7 @@ function Donation() {
                     <div className="text-[16px] font-semibold uppercase tracking-[0.22em] text-[#D9B681]">
                       Your Impact
                     </div>
-                    <h4 className="mt-1 font-serif text-xl">
+                    <h4 className="mt-1 font-sans text-xl">
                       {effectiveAmount > 0 ? (
                         <>
                           <span className=" text-[#D9B681]">
@@ -794,7 +794,7 @@ function Donation() {
                   {/* Tax & Security */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-serif font-semibold text-[14px]">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8B6A3E]/10 text-[#8B6A3E] font-sans font-semibold text-[14px]">
                         {textOrFallback(taxBenefitSection?.eyebrow, "80G", 20)}
                       </span>
                       <div>
@@ -823,7 +823,7 @@ function Donation() {
                     </span>
                     <p className="text-[14px] leading-[1.45] text-[#5F4A3D]">
                       {textOrFallback(taxBenefitSection?.description, "Daan se badhkar koi punya nahi.\nMoksha Sewa is an initiative of Namo Gange Trust. Donations are used for verified programme requirements.", 300).split('\n').map((line, i) => (
-                        <span key={i} className={i === 0 ? "font-serif text-[14px] text-[#8B6A3E]" : ""}>
+                        <span key={i} className={i === 0 ? "font-sans text-[14px] text-[#8B6A3E]" : ""}>
                           {line}
                           {i === 0 && <br />}
                         </span>
@@ -867,7 +867,7 @@ function Donation() {
         <section className="border-t border-[#E9DCCB] bg-[#FBF7F0] py-8 lg:py-10">
           <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 xl:px-0">
             <div className="text-center">
-              <h2 className="font-serif text-[28px] font-semibold leading-tight text-[#2C1810] sm:text-[34px]">
+              <h2 className="font-sans text-[28px] font-semibold leading-tight text-[#2C1810] sm:text-[34px]">
                 {textOrFallback(faqSection?.title, "Frequently Asked Questions", 100)}
               </h2>
               <p className="mt-3 text-[14px] leading-relaxed text-[#4F3A2D] sm:text-[15px]">

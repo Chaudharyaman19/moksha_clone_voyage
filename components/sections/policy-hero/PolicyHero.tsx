@@ -284,7 +284,7 @@ const PolicyHero = ({
               <h1
                 className={`
                 m-0
-                font-serif
+                font-sans
                 text-[42px]
                 font-semibold
                 leading-[0.95]

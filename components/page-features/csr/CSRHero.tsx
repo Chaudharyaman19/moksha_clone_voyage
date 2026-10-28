@@ -206,7 +206,7 @@ export default function CSRHero() {
 
               max-w-[850px]
 
-              font-serif
+              font-sans
               text-[34px]
               font-medium
               leading-[1.04]

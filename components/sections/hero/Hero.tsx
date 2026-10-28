@@ -441,7 +441,7 @@ export default function Hero() {
         {/* Devanagari watermark — same signature as the rest of the site */}
         {!isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
           <>
-            <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-serif text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
+            <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-sans text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
               मोक्ष
             </div>
 

@@ -252,7 +252,7 @@ export default function ApplicationSubmittedContent() {
                           <Check className="h-5 w-5 text-[#0d5c46]" strokeWidth={3} />
                         </span>
                         <div className="min-w-0 flex-1">
-                          <h2 className="font-serif text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
+                          <h2 className="font-sans text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
                             Thank You, <span className="text-[#d97706]">{appData.firstName}!</span>
                           </h2>
                           <p className="mt-1 text-[12.5px] sm:text-[13px] font-semibold leading-snug text-[#0c3d30]">
@@ -308,7 +308,7 @@ export default function ApplicationSubmittedContent() {
                   <div className="pointer-events-none absolute -top-1 right-2 h-[50px] w-[70px] opacity-60">
                     <Image src={sideLeafRight} alt="" fill unoptimized className="object-contain object-top-right" />
                   </div>
-                  <h3 className="font-serif text-[22px] sm:text-[24px] font-bold text-[#0c3d30]">What Happens Next?</h3>
+                  <h3 className="font-sans text-[22px] sm:text-[24px] font-bold text-[#0c3d30]">What Happens Next?</h3>
                   <p className="mt-0.5 text-[14px] sm:text-[15px] text-[#5a6a7a]">Here is what you can expect after submitting your application.</p>
                   <div className="relative mt-3.5">
                     <div className="pointer-events-none absolute left-[52px] right-[52px] top-[22px] hidden border-t-2 border-dotted border-[#94a3b8] lg:block" />
@@ -342,7 +342,7 @@ export default function ApplicationSubmittedContent() {
                     {/* Text in column flow */}
                     <div className="min-w-0 flex-1">
                       <p className="text-[17px] sm:text-[19px] lg:text-[20px] font-bold uppercase tracking-wider text-[#d97706]">Our Mission</p>
-                      <h3 className="mt-1 font-serif text-[20px] sm:text-[23px] lg:text-[25px] font-bold italic leading-tight text-[#0c3d30]">
+                      <h3 className="mt-1 font-sans text-[20px] sm:text-[23px] lg:text-[25px] font-bold italic leading-tight text-[#0c3d30]">
                         Together for a More Compassionate Tomorrow
                       </h3>
                       <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.6] text-[#2d3748]">

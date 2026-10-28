@@ -559,7 +559,7 @@ export default function SupportInAction() {
                     className="
                       whitespace-pre-line
 
-                      font-serif
+                      font-sans
 
                       text-[20px]
                       font-semibold

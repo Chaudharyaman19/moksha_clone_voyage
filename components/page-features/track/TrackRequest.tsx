@@ -193,7 +193,7 @@ function TrackRequest() {
             <div className="-mt-1 flex items-center justify-center gap-3">
               <span className="h-px w-24 bg-gradient-to-r from-transparent to-[#B9833D] sm:w-36" />
               <span
-                className="font-serif text-[14px] font-medium tracking-[0.04em] text-[#2B170F]"
+                className="font-sans text-[14px] font-medium tracking-[0.04em] text-[#2B170F]"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
                 MOKSHA SEWA

@@ -186,7 +186,7 @@ export default function ReviewDetailsContent() {
               <span className="font-semibold text-[#0c3d30]">Review Details</span>
             </div>
             <p className="mb-1 text-[12px] font-bold uppercase tracking-[0.12em] text-[#d97706] sm:text-[13px]">Careers at Moksha Sewa</p>
-            <h1 className="font-serif text-[38px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[46px] lg:text-[52px]">
+            <h1 className="font-sans text-[38px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[46px] lg:text-[52px]">
               Review Your <span className="text-[#c4881f]">Details</span>
             </h1>
             <p className="mt-1.5 text-[15px] font-medium text-[#2c3e50] sm:text-[16px] lg:text-[17.5px]">

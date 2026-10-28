@@ -19,7 +19,7 @@ export default function VolunteerModal({ title, onClose, children, footer }: Vol
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div className="relative max-h-[85vh] w-full max-w-md overflow-hidden rounded-2xl border border-[#E6D6BF] bg-white shadow-xl">
         <div className="flex items-center justify-between border-b border-[#F1E7D6] px-5 py-3.5">
-          <h2 className="font-serif text-base text-[#2C1810]">{title}</h2>
+          <h2 className="font-sans text-base text-[#2C1810]">{title}</h2>
           <button
             onClick={onClose}
             className="flex h-7 w-7 items-center justify-center rounded-lg text-[#8A7460] transition-colors hover:bg-[#F6EEDF] hover:text-[#2C1810]"

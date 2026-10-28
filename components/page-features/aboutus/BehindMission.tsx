@@ -293,7 +293,7 @@ export default function BehindMission() {
                 <span className="block whitespace-nowrap text-[16px] font-semibold text-[#D4AA52]">
                   {eyebrow}
                 </span>
-                <span className="block whitespace-nowrap font-serif text-[16px] text-white">
+                <span className="block whitespace-nowrap font-sans text-[16px] text-white">
                   {label}
                 </span>
               </span>

@@ -308,7 +308,7 @@ export default function ResultPageContent() {
               <ArrowLeft className="h-5 w-5" /> Back to Job Details
             </button>
 
-            <h1 className="font-serif text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
+            <h1 className="font-sans text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
               AI Screening <span className="text-[#c4881f]">Result</span>
             </h1>
             <p className="mt-2 text-[17px] font-medium text-[#2c3e50] sm:text-[18.5px] lg:text-[20px]">
@@ -368,7 +368,7 @@ export default function ResultPageContent() {
                     {/* Center Content */}
                     <div className="flex flex-1 flex-col justify-center p-3.5 sm:p-4 lg:p-6 lg:pr-4">
                       <div>
-                        <h2 className="font-serif text-[28px] font-bold leading-tight text-[#0c3d30] sm:text-[32px] lg:text-[36px]">
+                        <h2 className="font-sans text-[28px] font-bold leading-tight text-[#0c3d30] sm:text-[32px] lg:text-[36px]">
                           Great News, <span className="text-[#d97706] font-bold">{firstName}!</span>
                         </h2>
                         <p className="mt-2 text-[17px] font-semibold text-[#0c3d30] lg:text-[19px]">

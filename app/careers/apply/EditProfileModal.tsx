@@ -78,7 +78,7 @@ export function EditProfileModal({
             <span className="grid h-[30px] w-[30px] place-items-center rounded-lg bg-[#0d5c46]/10 text-[#0d5c46]">
               <User className="h-4 w-4" />
             </span>
-            <h3 className="font-serif text-[17px] font-bold text-[#0c3d30]">Edit Profile Details</h3>
+            <h3 className="font-sans text-[17px] font-bold text-[#0c3d30]">Edit Profile Details</h3>
           </div>
           <button
             onClick={onClose}

@@ -188,7 +188,7 @@ export default function GlimpseOfJourney() {
 
               {/* Card content */}
               <div className="relative flex min-h-[150px] flex-col items-center px-5 pb-4 pt-[30px] text-center sm:min-h-[145px] md:min-h-[150px] lg:min-h-[155px] lg:px-4 xl:px-6">
-                <h3 className="font-serif text-[20px] font-semibold leading-tight text-[#104c3e] sm:text-[19px] md:text-[20px] lg:text-[20px] xl:text-[21px]">
+                <h3 className="font-sans text-[20px] font-semibold leading-tight text-[#104c3e] sm:text-[19px] md:text-[20px] lg:text-[20px] xl:text-[21px]">
                   {card.title}
                 </h3>
 

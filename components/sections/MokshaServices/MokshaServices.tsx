@@ -332,7 +332,7 @@ const MokshaServices: React.FC = () => {
 
               <h3
                 className="
-                  font-serif
+                  font-sans
                   text-[16px]
                   font-bold
                   leading-[1.12]
@@ -434,7 +434,7 @@ const MokshaServices: React.FC = () => {
                   <h4
                     className="
                       mt-2
-                      font-serif
+                      font-sans
                       text-[16px]
                       font-bold
                       text-[#16423d]
@@ -483,7 +483,7 @@ const MokshaServices: React.FC = () => {
                     />
                   </div>
 
-                <h4 className="mt-2 font-serif text-[16px] font-bold">
+                <h4 className="mt-2 font-sans text-[16px] font-bold">
                   {step.title}
                 </h4>
 
@@ -520,7 +520,7 @@ const MokshaServices: React.FC = () => {
                 className="
                   absolute inset-0
                   flex items-center justify-center
-                  font-serif
+                  font-sans
                   text-[16px]
                   font-semibold
                   text-white

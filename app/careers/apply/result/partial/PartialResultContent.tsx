@@ -281,7 +281,7 @@ export default function PartialResultContent() {
               <ArrowLeft className="h-5 w-5" /> Back to Job Details
             </button>
 
-            <h1 className="font-serif text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
+            <h1 className="font-sans text-[44px] font-bold leading-[1.06] text-[#0c3d30] sm:text-[54px] lg:text-[62px]">
               AI Screening <span className="text-[#c4881f]">Result</span>
             </h1>
             <p className="mt-2 text-[17px] font-medium text-[#2c3e50] sm:text-[18.5px] lg:text-[20px]">
@@ -327,7 +327,7 @@ export default function PartialResultContent() {
                             <span className="text-[20px] font-black leading-none">!</span>
                           </span>
                           <div className="min-w-0">
-                            <h2 className="font-serif text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
+                            <h2 className="font-sans text-[22px] sm:text-[25px] lg:text-[28px] font-bold leading-tight text-[#0c3d30]">
                               <span className="whitespace-nowrap">You&apos;re a <span className="text-[#d97706] font-bold">Partially Matched</span></span>
                               <br />
                               Candidate, {firstName}!
@@ -337,9 +337,9 @@ export default function PartialResultContent() {
                             </p>
                             <div className="mt-2.5 rounded-xl bg-white/70 px-3.5 py-2">
                               <p className="text-[13px] italic leading-[1.5] text-[#3a4a5c]">
-                                <span className="font-serif text-[22px] font-bold text-[#e87a00] leading-none align-[-2px]">&ldquo;</span>
+                                <span className="font-sans text-[22px] font-bold text-[#e87a00] leading-none align-[-2px]">&ldquo;</span>
                                 {" "}We encourage you to apply if you are confident about your relevant experience and skills.{" "}
-                                <span className="font-serif text-[22px] font-bold text-[#e87a00] leading-none align-[-2px]">&rdquo;</span>
+                                <span className="font-sans text-[22px] font-bold text-[#e87a00] leading-none align-[-2px]">&rdquo;</span>
                               </p>
                             </div>
                             <p className="mt-1.5 text-[12px] font-bold text-[#0c3d30]">

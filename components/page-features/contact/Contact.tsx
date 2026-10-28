@@ -268,7 +268,7 @@ function Contact() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/10 via-transparent to-transparent" />
 
           {/* Devanagari watermark — page signature */}
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[56%] select-none font-serif text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
+          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[56%] select-none font-sans text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
             संपर्क
           </div>
 
@@ -283,7 +283,7 @@ function Contact() {
                 </span>
               </div>
 
-              <h1 className="mt-3 font-serif text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
+              <h1 className="mt-3 font-sans text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Contact Us", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
@@ -361,7 +361,7 @@ function Contact() {
                     <Icon className="h-4 w-4" />
                   </span>
                   <span className="min-w-0 text-left">
-                    <span className="block truncate font-serif text-[16px] leading-tight text-white lg:text-[18px]">
+                    <span className="block truncate font-sans text-[16px] leading-tight text-white lg:text-[18px]">
                       {item.value}
                     </span>
                     <span className="mt-0.5 block truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/85">
@@ -400,7 +400,7 @@ function Contact() {
                 <span>ॐ Our presence ॐ</span>
                 <span className="hidden h-px w-10 bg-[#C9A574] sm:block" />
               </div>
-              <h2 className="mt-1.5 font-serif text-[30px] leading-none text-[#2C1810] sm:text-[36px]">
+              <h2 className="mt-1.5 font-sans text-[30px] leading-none text-[#2C1810] sm:text-[36px]">
                 Office <span className="text-[#8B6A3E]">Locations</span>
               </h2>
               <div className="mt-3 flex items-center gap-2">
@@ -453,7 +453,7 @@ function Contact() {
                           </span>
 
                           <div className="min-w-0">
-                            <h3 className="font-serif text-[23px] leading-tight text-[#2C1810]">
+                            <h3 className="font-sans text-[23px] leading-tight text-[#2C1810]">
                               {location.orgName}
                             </h3>
                             <p
@@ -536,7 +536,7 @@ function Contact() {
                     <MdEmail className="h-4 w-4" />
                     {textOrFallback(formSection?.eyebrow, "Send a message", 50)}
                   </div>
-                  <h3 className="mt-1.5 font-serif text-[27px] leading-tight text-[#2C1810]">
+                  <h3 className="mt-1.5 font-sans text-[27px] leading-tight text-[#2C1810]">
                     {textOrFallback(formSection?.title, "We'd love to hear from you", 100).replace("hear from you", "")}
                     {textOrFallback(formSection?.title, "We'd love to hear from you", 100).includes("hear from you") && (
                       <span className="text-[#E56A18]">hear from you</span>
@@ -696,7 +696,7 @@ function Contact() {
                   </p>
                   <a
                     href={CONTACT.helpline.href}
-                    className="mt-1 block font-serif text-[24px] leading-tight text-white transition hover:text-[#E9C58F]"
+                    className="mt-1 block font-sans text-[24px] leading-tight text-white transition hover:text-[#E9C58F]"
                   >
                     {CONTACT.helpline.label}
                   </a>
@@ -716,7 +716,7 @@ function Contact() {
                       <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         Email
                       </span>
-                      <span className="mt-0.5 block break-all font-serif text-[14px] text-white/95">
+                      <span className="mt-0.5 block break-all font-sans text-[14px] text-white/95">
                         {CONTACT.email.label}
                       </span>
                     </span>
@@ -733,7 +733,7 @@ function Contact() {
                       <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         Alternate line
                       </span>
-                      <span className="mt-0.5 block font-serif text-[15px] text-white/95">
+                      <span className="mt-0.5 block font-sans text-[15px] text-white/95">
                         {CONTACT.altPhone.label}
                       </span>
                     </span>
@@ -747,14 +747,14 @@ function Contact() {
                       <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
                         We are available
                       </span>
-                      <span className="mt-0.5 block font-serif text-[15px] text-white/95">
+                      <span className="mt-0.5 block font-sans text-[15px] text-white/95">
                         24/7 for you
                       </span>
                     </span>
                   </div>
 
                   <div className="pt-2">
-                    <p className="font-serif text-[16px] text-[#E9C58F]">
+                    <p className="font-sans text-[16px] text-[#E9C58F]">
                       Har sawaal ka jawab.
                     </p>
                     <p className="mt-1 text-[12px] leading-5 text-white/65">

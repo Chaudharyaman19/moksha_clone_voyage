@@ -285,7 +285,7 @@ export default function WhyWeExist() {
           <h2
             className="
               mt-[22px]
-              font-serif
+              font-sans
               text-[42px]
               font-medium
               leading-[1.08]
@@ -428,7 +428,7 @@ export default function WhyWeExist() {
               <p
                 className="
                   mt-[5px]
-                  font-serif
+                  font-sans
                   whitespace-pre-line
                   text-[31px]
                   leading-[1.08]
@@ -468,7 +468,7 @@ export default function WhyWeExist() {
                 absolute
                 left-[25px]
                 top-[5px]
-                font-serif
+                font-sans
                 text-[54px]
                 leading-none
                 text-[#DBBE83]
@@ -484,7 +484,7 @@ export default function WhyWeExist() {
                 absolute
                 bottom-[-5px]
                 right-[27px]
-                font-serif
+                font-sans
                 text-[54px]
                 leading-none
                 text-[#D6B56D]
@@ -495,7 +495,7 @@ export default function WhyWeExist() {
 
             <p
               className="
-                font-serif
+                font-sans
                 whitespace-pre-line
                 text-[26px]
                 leading-[1.2]

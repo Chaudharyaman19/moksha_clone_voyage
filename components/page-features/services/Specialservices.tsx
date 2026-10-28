@@ -156,7 +156,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-7xl px-4 pb-1 pt-1 lg:px-0">
           <div className="mb-1 text-center">
-            <h2 className="pt-[20px] font-serif text-[30px] text-[#3A2418]">
+            <h2 className="pt-[20px] font-sans text-[30px] text-[#3A2418]">
               {textOrFallback(useWebsiteSection("specialService-how-it-works")?.title, "How We Extend Our Help", 60)}
             </h2>
 
@@ -208,7 +208,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
                 />
               </div>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-tight text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-support")?.title, "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>", 600) }} />
+              <h2 className="py-[20px] font-sans text-[30px] leading-tight text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-support")?.title, "Empowered by <br class=\"hidden lg:block\" /><span class=\"text-[#9A6A31]\">Namo Gange Volunteers</span>", 600) }} />
 
               <p className="max-w-[400px] text-[18px] leading-relaxed text-[#624C3F]">
                 {textOrFallback(useWebsiteSection("specialService-support")?.description, "Our widespread network of dedicated volunteers is always ready to mobilize. They step forward to organize meals, manage hospital formalities, and support grieving families.", 600)}
@@ -259,7 +259,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
                 {textOrFallback(useWebsiteSection("specialService-receive")?.eyebrow, "Holistic Support System", 60)}
               </span>
 
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.15] text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-receive")?.title, "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>", 600) }} />
+              <h2 className="py-[20px] font-sans text-[30px] leading-[1.15] text-[#3A2418]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-receive")?.title, "An Extended Family <br /><span class=\"text-[#9A6A31]\">For Those Who Need One</span>", 600) }} />
 
               <p className="mb-6 max-w-[500px] text-[18px] leading-relaxed text-[#624C3F]">
                 {textOrFallback(useWebsiteSection("specialService-receive")?.description, "&quot;Our service does not end at the cremation ground. We believe in providing holistic support that helps a family get back on its feet while remembering their departed with love and peace.&quot;", 600)}
@@ -313,7 +313,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
         <section className="mx-auto max-w-7xl px-4 pb-4 pt-1 lg:px-0">
           <div className="relative flex flex-col overflow-hidden rounded-none bg-[#4E3827] shadow-sm md:flex-row">
             <div className="z-10 flex flex-col justify-center p-4 md:w-3/5 lg:p-6">
-              <h2 className="py-[20px] font-serif text-[30px] leading-[1.2] text-[#EED8A1]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-donation")?.title, "Your Support Helps Us <br />Feed Grieving Families", 150) }} />
+              <h2 className="py-[20px] font-sans text-[30px] leading-[1.2] text-[#EED8A1]" dangerouslySetInnerHTML={{ __html: textOrFallback(useWebsiteSection("specialService-donation")?.title, "Your Support Helps Us <br />Feed Grieving Families", 150) }} />
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#FDFBF7] opacity-90">
                 {textOrFallback(useWebsiteSection("specialService-donation")?.description, "By donating, you help us organize Tehravi Khana and provide continued assistance for families who cannot afford the post-cremation rituals and meals.", 600)}
@@ -406,7 +406,7 @@ function FeatureCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 group-hover:from-black/90 group-hover:via-black/70 group-hover:to-black/30" />
 
       <div className="relative z-10 flex min-h-[125px] flex-col items-center justify-end p-6 text-center">
-        <h3 className="flex min-h-[69px] items-end justify-center font-serif text-[20px] font-semibold leading-[1.15] text-white transition-transform duration-500 group-hover:-translate-y-2">
+        <h3 className="flex min-h-[69px] items-end justify-center font-sans text-[20px] font-semibold leading-[1.15] text-white transition-transform duration-500 group-hover:-translate-y-2">
           {title}
         </h3>
 
@@ -443,7 +443,7 @@ function StepCard({
         {icon}
       </div>
 
-      <h3 className="mb-1.5 flex items-center justify-center font-serif text-[20px] font-semibold leading-[1.15] text-[#3A2418]">
+      <h3 className="mb-1.5 flex items-center justify-center font-sans text-[20px] font-semibold leading-[1.15] text-[#3A2418]">
         {title}
       </h3>
 

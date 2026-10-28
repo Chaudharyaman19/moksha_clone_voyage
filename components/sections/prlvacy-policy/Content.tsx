@@ -61,7 +61,7 @@ function SectionTitle({
       id={id}
       className="section-title mb-3 flex scroll-mt-6 items-center gap-2"
     >
-      <h2 className="font-serif text-[26px] font-semibold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
+      <h2 className="font-sans text-[26px] font-semibold leading-tight text-[#2C1810] drop-shadow-[0_1px_3px_rgba(92,58,27,0.1)]">
         {number}. {title}
       </h2>
 

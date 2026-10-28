@@ -397,7 +397,7 @@ export default function OurStory() {
                   left-[4px]
                   top-[-11px]
 
-                  font-serif
+                  font-sans
                   text-[48px]
                   leading-none
 
@@ -409,7 +409,7 @@ export default function OurStory() {
 
               <p
                 className="
-                  font-serif
+                  font-sans
                   text-[22px]
                   italic
                   whitespace-pre-line
@@ -432,7 +432,7 @@ export default function OurStory() {
                   bottom-[-15px]
                   right-[5px]
 
-                  font-serif
+                  font-sans
                   text-[48px]
                   leading-none
 
@@ -726,7 +726,7 @@ export default function OurStory() {
                     -left-[4px]
                     -top-[7px]
 
-                    font-serif
+                    font-sans
                     text-[44px]
                     leading-none
 
@@ -738,7 +738,7 @@ export default function OurStory() {
 
                 <p
                   className="
-                    font-serif
+                    font-sans
                     text-[20px]
                     italic
                     whitespace-pre-line
@@ -759,7 +759,7 @@ export default function OurStory() {
                     bottom-[-14px]
                     right-[5px]
 
-                    font-serif
+                    font-sans
                     text-[44px]
                     leading-none
 
@@ -831,7 +831,7 @@ export default function OurStory() {
               >
                 <div
                   className="
-                    font-serif
+                    font-sans
                     text-[24px]
                     leading-none
 

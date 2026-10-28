@@ -603,7 +603,7 @@ export default function WhoWeHelp() {
                   className="
                     whitespace-pre-line
 
-                    font-serif
+                    font-sans
 
                     text-[20px]
                     sm:text-[22px]

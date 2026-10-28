@@ -68,7 +68,7 @@ function DonationHistory() {
 
       <main className="mx-auto w-full max-w-3xl px-4 pb-14 pt-28 sm:px-6 lg:pt-32 xl:px-0">
         <div className="mb-6">
-          <h2 className="font-serif text-2xl text-[#2C1810]">
+          <h2 className="font-sans text-2xl text-[#2C1810]">
             Your <span className=" text-[#8B6A3E]">Donation History</span>
           </h2>
           <p className="mt-1 text-sm text-[#6B584B]">Namaste, {user.name}.</p>
@@ -88,7 +88,7 @@ function DonationHistory() {
             {donations.map((d) => (
               <div key={d._id} className="flex items-center justify-between rounded-2xl border border-[#E6D6BF] bg-white p-4 shadow-sm">
                 <div>
-                  <p className="font-serif text-lg text-[#2C1810]">
+                  <p className="font-sans text-lg text-[#2C1810]">
                     ₹{d.amount.toLocaleString("en-IN")}
                     <span className="ml-2 text-[14px] font-sans font-semibold uppercase tracking-wide text-[#8A7460]">
                       {d.type === "RECURRING" ? "Monthly" : d.type === "OFFLINE" ? "Offline" : "One-Time"}
