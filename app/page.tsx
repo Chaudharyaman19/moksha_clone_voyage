@@ -29,8 +29,6 @@ import { getWebsiteSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 import { createDynamicMetadata } from "@/lib/seo";
 
-import DynamicH1 from "@/components/seo/DynamicH1";
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -46,7 +44,6 @@ export default async function Page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="landing" fallback="Dignity in Every Final Journey: Last-Rites Support in Delhi, Ghaziabad & Noida" />
       <JsonLd data={breadcrumbJsonLd("/")} />
       {customSchema && <JsonLd data={customSchema} />}
       <WebsiteContentProvider sections={websiteSections}>

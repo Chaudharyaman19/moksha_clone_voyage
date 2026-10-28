@@ -502,7 +502,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <h2
+              <h1
                 className="text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:h-[112px] lg:text-[54px] xl:h-[120px] xl:text-[58px]"
                 style={{
                   fontWeight: 500,
@@ -535,7 +535,7 @@ export default function Hero() {
                     </span>
                   );
                 })}
-              </h2>
+              </h1>
 
               {/* reference-style flourish */}
               <div className="mt-3 flex max-w-[500px] items-center gap-3">
