@@ -98,9 +98,9 @@ export default function PrayerHallServices({ pills }: { pills?: ReactNode }) {
                 </span>
               </div>
 
-              <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] text-[#321A10]">
+              <h2 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] text-[#321A10]">
                 {title}
-              </h1>
+              </h2>
 
               <p className="mb-8 max-w-[480px] text-[18px] leading-relaxed text-[#321A10]/80">
                 {description}

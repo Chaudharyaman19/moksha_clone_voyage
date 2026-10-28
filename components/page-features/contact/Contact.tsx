@@ -283,11 +283,11 @@ function Contact() {
                 </span>
               </div>
 
-              <h1 className="mt-3 font-sans text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
+              <h2 className="mt-3 font-sans text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Contact Us", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
-              </h1>
+              </h2>
 
               <div className="mt-2 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />

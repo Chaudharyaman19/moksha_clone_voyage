@@ -76,7 +76,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
               </div>
 
               {/* Hero Heading */}
-              <h1
+              <h2
                 className="pb-[20px] pt-[8px] leading-[0.95]"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
@@ -87,7 +87,7 @@ export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {
                 <span className="mt-1 block text-[30px] text-[#8B6A3E]">
                   {subtitle}
                 </span>
-              </h1>
+              </h2>
 
               <div className="mb-6 flex items-center gap-2">
                 <span className="h-[2px] w-12 bg-[#8B6A3E]" />

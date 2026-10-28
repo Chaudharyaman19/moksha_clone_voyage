@@ -649,9 +649,9 @@ export default function VolunteerRegister() {
       </div>
     </div>
 
-    <h1 className="mt-3 font-sans text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
+    <h2 className="mt-3 font-sans text-[27px] font-medium leading-[1.02] text-[#102B44] sm:mt-0 sm:text-[42px] lg:text-[52px]">
       {textOrFallback(heroSection?.title, "Be the Reason Someone Receives a Dignified Farewell.", 100)}
-    </h1>
+    </h2>
 
     <div className="mt-1 flex items-center gap-1.5 sm:gap-2">
       <span className="h-[2px] w-10 bg-[#DC671F] sm:w-14" />
