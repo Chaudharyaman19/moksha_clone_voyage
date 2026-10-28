@@ -228,11 +228,11 @@ function HeroSection() {
             <span>{eyebrow}</span>
           </div>
 
-          <h2 className="pb-[20px] pt-[8px] font-sans text-[30px] font-normal leading-[1.1] text-[#2B251F]">
+          <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] font-normal leading-[1.1] text-[#2B251F]">
             {titleParts[0]}
             {titleParts.length > 1 && <br />}
             {titleParts.slice(1).join('\n')}
-          </h2>
+          </h1>
 
           <Divider className="my-3 w-[127px]" />
 

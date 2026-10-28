@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import DisclaimerContent from "./DisclaimerContent";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
@@ -24,7 +23,6 @@ export default async function DisclaimerPage() {
   return (
     <WebsiteContentProvider sections={sections as any} page="disclaimer">
       <div className="min-h-screen bg-[#FFFFFF] text-[#2C1810]">
-        <DynamicH1 pageKey="disclaimer" fallback="Disclaimer - Moksha Sewa | Namo Gange Trust" />
         <JsonLd data={breadcrumbJsonLd("/disclaimer")} />
         {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
         <Topbar />

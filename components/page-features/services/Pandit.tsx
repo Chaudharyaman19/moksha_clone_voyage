@@ -112,9 +112,9 @@ export default function PriestSupport({ pills }: { pills?: ReactNode }) {
               </div>
 
               {/* Heading */}
-              <h2 className="pb-[20px] pt-[8px] font-sans text-[30px] font-normal leading-[1.1] text-[#321A10]">
+              <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] font-normal leading-[1.1] text-[#321A10]">
                 {title}
-              </h2>
+              </h1>
 
               {/* Description */}
               <p className="mb-7 max-w-[590px] text-[18px] leading-relaxed text-[#321A10]/90">

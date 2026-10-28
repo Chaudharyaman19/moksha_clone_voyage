@@ -200,7 +200,7 @@ export default function CSRHero() {
               MAIN HEADING
           ================================================= */}
 
-          <h2
+          <h1
             className="
               mt-[14px]
 
@@ -236,7 +236,7 @@ export default function CSRHero() {
             >
               {titleLines.slice(1).join(" ") || "Dignified Humanitarian Support"}
             </span>
-          </h2>
+          </h1>
 
           {/* TAGLINE */}
 

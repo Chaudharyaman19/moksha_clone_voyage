@@ -1,18 +1,23 @@
 import Mokshagallrey from "@/components/page-features/mokshagallery/Mokshagallrey";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
+import type { Metadata } from "next";
 
-export const metadata = createPageMetadata("/mokshagallery");
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-function page() {
+export async function generateMetadata(): Promise<Metadata> {
+  return createDynamicMetadata("/mokshagallery", "landing");
+}
+
+export default async function page() {
+  const customSchema = await getPageSchemaMarkup("/mokshagallery", "landing").catch(() => null);
+
   return (
     <div>
-      <DynamicH1 pageKey="landing" fallback="Moksha Sewa Photo Gallery: Last-Rites Seva in Pictures" />
-      <JsonLd data={breadcrumbJsonLd("/mokshagallery")} />
+      <JsonLd data={breadcrumbJsonLd("/mokshagallery", "Photo Gallery")} />
+      {customSchema && <JsonLd data={customSchema} />}
       <Mokshagallrey />
     </div>
   );
 }
-
-export default page;

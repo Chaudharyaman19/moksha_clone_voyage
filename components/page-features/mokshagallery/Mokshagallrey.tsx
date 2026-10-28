@@ -649,12 +649,12 @@ function MokshaGallery() {
             </span>
           </div>
 
-          <h2 className="mt-4 font-sans text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
+          <h1 className="mt-4 font-sans text-[clamp(2.4rem,9vw,4.6rem)] font-normal leading-[0.95] tracking-[-0.02em] text-[#2C1810]">
             Moksha{" "}
             <span className="text-[#8B6A3E]">
               Gallery
             </span>
-          </h2>
+          </h1>
 
           <p className="mt-4 mx-auto max-w-xl text-[15px] leading-relaxed text-[#5A3E2B]/80 sm:text-base">
             The ghats, the rituals, the people. A record of how we accompany

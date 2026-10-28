@@ -353,11 +353,11 @@ function Donation() {
                 </span>
               </div>
 
-              <h2 className="font-sans text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
+              <h1 className="font-sans text-[26px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[38px] lg:text-[44px] max-w-[650px]">
                 {textOrFallback(heroSection?.title, "Support a Final Journey", 100).split("\n").map((line, i) => (
                   <span key={i} className="block">{line}</span>
                 ))}
-              </h2>
+              </h1>
 
               {/* diya flourish */}
               <div className="mt-4 flex items-center gap-2">

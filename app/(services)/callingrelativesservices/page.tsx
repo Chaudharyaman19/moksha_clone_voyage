@@ -1,7 +1,6 @@
 import Callingrelativesservices from "@/components/page-features/services/Callingrelativesservices";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, serviceJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -28,7 +27,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="callingRelatives" fallback="Informing Relatives & Family Coordination After a Death" />
       <JsonLd data={breadcrumbJsonLd("/callingrelativesservices")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
       <WebsiteContentProvider page="callingRelatives" sections={sections}>

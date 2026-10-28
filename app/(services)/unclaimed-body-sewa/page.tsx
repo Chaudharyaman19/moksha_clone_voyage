@@ -2,7 +2,6 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import UnclaimedBodyPageSections from "@/components/page-features/unclaimed-body/UnclaimedBodyPageSections";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, serviceJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -29,7 +28,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="unclaimed-body" fallback="Unclaimed Body Sewa & Humanitarian Antim Sanskar" />
       <JsonLd data={breadcrumbJsonLd("/unclaimed-body-sewa")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
       <Topbar />

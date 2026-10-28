@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
 import { blogsApi } from "@/lib/blogsApi";
@@ -51,7 +50,6 @@ export default async function BlogPage() {
 
   return (
     <>
-      <DynamicH1 pageKey="landing" fallback="Moksha Sewa Blog: Last-Rites Guidance & Awareness" />
       <JsonLd data={breadcrumbJsonLd("/blog", "Moksha Sewa Blogs")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={blogCollectionSchema} />}
       <Blog initialBlogs={blogs} />

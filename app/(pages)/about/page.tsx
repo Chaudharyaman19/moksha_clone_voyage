@@ -1,6 +1,5 @@
 import About from "@/components/page-features/aboutus/About";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
 import { getAboutSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
@@ -20,7 +19,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="about" fallback="About Moksha Sewa - Namo Gange Trust Last-Rites Mission" />
       <JsonLd data={breadcrumbJsonLd("/about")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="about" sections={aboutSections}>

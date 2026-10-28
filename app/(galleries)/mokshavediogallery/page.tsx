@@ -1,18 +1,23 @@
 import Mokshavediogallery from "@/components/page-features/mokshavediogallery/Mokshavediogallery";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
-import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
+import type { Metadata } from "next";
 
-export const metadata = createPageMetadata("/mokshavediogallery");
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-function page() {
+export async function generateMetadata(): Promise<Metadata> {
+  return createDynamicMetadata("/mokshavediogallery", "landing");
+}
+
+export default async function page() {
+  const customSchema = await getPageSchemaMarkup("/mokshavediogallery", "landing").catch(() => null);
+
   return (
     <div>
-      <DynamicH1 pageKey="landing" fallback="Moksha Sewa Video Gallery: Seva Activities & Outreach" />
-      <JsonLd data={breadcrumbJsonLd("/mokshavediogallery")} />
+      <JsonLd data={breadcrumbJsonLd("/mokshavediogallery", "Video Gallery")} />
+      {customSchema && <JsonLd data={customSchema} />}
       <Mokshavediogallery />
     </div>
   );
 }
-
-export default page;

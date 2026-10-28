@@ -4,6 +4,9 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = createPageMetadata("/volunteer/dashboard");
 
 async function page() {

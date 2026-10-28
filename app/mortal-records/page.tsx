@@ -5,6 +5,9 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = createPageMetadata("/mortal-records");
 
 export default function MortalRecordsPage() {

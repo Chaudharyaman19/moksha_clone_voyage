@@ -52,13 +52,13 @@ export default function HearseVanServices({ pills }: { pills?: ReactNode }) {
                 <FaCarSide className="h-8 w-8 text-[#A0522D]" />
               </div>
 
-              <h2 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
+              <h1 className="pb-[20px] pt-[8px] font-sans text-[30px] leading-[1.1] tracking-tight text-[#3E2723]">
                 {title}
 
                 <span className="mt-1 block text-[30px] font-medium text-[#8D6E63]">
                   {subtitle}
                 </span>
-              </h2>
+              </h1>
 
               <p className="mb-8 text-[18px] leading-relaxed text-[#5D4037] opacity-95">
                 {description}

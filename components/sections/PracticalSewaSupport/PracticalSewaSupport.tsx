@@ -576,7 +576,7 @@ export default function HowWeCanHelp() {
             <span className="h-px w-[62px] bg-[#D05A17]" />
           </div>
 
-          <h2
+          <h1
             className="
               mt-[1px]
               font-sans
@@ -592,7 +592,7 @@ export default function HowWeCanHelp() {
             <span className="mt-[2px] block text-[#D54200]">
               {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 95).split("\n")[1] ?? ""}
             </span>
-          </h2>
+          </h1>
 
           <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#DA7643]" />

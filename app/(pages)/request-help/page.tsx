@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import RequestHelp from "@/components/page-features/request-help/RequestHelp";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
@@ -20,7 +19,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="request-help" fallback="Request Cremation & Last-Rites Help - 24x7 | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/request-help")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="request-help" sections={sections}>

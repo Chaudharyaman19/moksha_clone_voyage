@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
@@ -23,7 +22,6 @@ export default async function Page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="partnership" fallback="Hospital & NGO Partnerships for Last Rites | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/partnership")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <Topbar />

@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import Donation from "@/components/page-features/donation/Donation";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
@@ -20,7 +19,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="donation" fallback="Donate for Last Rites & Cremation Support | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/donation")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="donation" sections={sections}>

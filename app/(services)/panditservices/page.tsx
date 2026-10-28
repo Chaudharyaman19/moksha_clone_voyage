@@ -1,7 +1,6 @@
 import Pandit from "@/components/page-features/services/Pandit";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, serviceJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -28,7 +27,6 @@ async function pages() {
 
   return (
     <div>
-      <DynamicH1 pageKey="pandit" fallback="Pandit for Antim Sanskar & Last-Rites Rituals" />
       <JsonLd data={breadcrumbJsonLd("/panditservices")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
       <WebsiteContentProvider page="pandit" sections={sections}>

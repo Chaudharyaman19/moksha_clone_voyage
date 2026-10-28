@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
@@ -23,7 +22,6 @@ export default async function Page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="csr" fallback="Corporate Social Responsibility (CSR) Partnerships | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/csr")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <Topbar />

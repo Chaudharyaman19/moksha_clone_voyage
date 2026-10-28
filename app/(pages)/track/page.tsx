@@ -1,4 +1,3 @@
-import DynamicH1 from "@/components/seo/DynamicH1";
 import TrackRequest from "@/components/page-features/track/TrackRequest";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
@@ -20,7 +19,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="track" fallback="Track Sewa Assistance Request | Moksha Sewa" />
       <JsonLd data={breadcrumbJsonLd("/track")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
       <WebsiteContentProvider page="track" sections={sections}>

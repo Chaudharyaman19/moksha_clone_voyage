@@ -2,7 +2,6 @@ import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import PracticalSewaSupport from "@/components/sections/PracticalSewaSupport/PracticalSewaSupport";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import JsonLd from "@/components/seo/JsonLd";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
@@ -58,7 +57,6 @@ export default async function ServicesPage() {
 
   return (
     <WebsiteContentProvider page="services" sections={sections}>
-      <DynamicH1 pageKey="services" fallback="Cremation and Final Journey Support Services" />
       <JsonLd data={breadcrumbJsonLd("/services", "Services")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={serviceJsonLd} />}
       <WebsiteSection name="topbar"><Topbar /></WebsiteSection>

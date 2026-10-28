@@ -1,7 +1,6 @@
 import Ambulance from "@/components/page-features/services/Ambulance";
 import LocationCityPills from "@/components/seo/LocationCityPills";
 import JsonLd from "@/components/seo/JsonLd";
-import DynamicH1 from "@/components/seo/DynamicH1";
 import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, serviceJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider, WebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -28,7 +27,6 @@ async function page() {
 
   return (
     <div>
-      <DynamicH1 pageKey="ambulance" fallback="Ambulance for Dead Body Transport: 24x7 in Delhi, Ghaziabad & Noida" />
       <JsonLd data={breadcrumbJsonLd("/ambulanceservices")} />
       {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
       <WebsiteContentProvider page="ambulance" sections={sections}>
