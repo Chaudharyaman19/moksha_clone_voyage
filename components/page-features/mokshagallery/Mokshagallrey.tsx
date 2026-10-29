@@ -130,13 +130,22 @@ const CATEGORY_BLURBS: Record<string, string> = {
 const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n));
 
-const toOptimizedGallerySrc = (src: string) =>
-  `/assets/route-optimized/gallery-${src
+const toOptimizedGallerySrc = (src: string) => {
+  if (!src) return "";
+  if (src.startsWith("http://") || src.startsWith("https://")) {
+    const match = src.match(/\/moksha-sewa\/(assets\/[^\.]+)/);
+    if (match) {
+      return `/assets/route-optimized/gallery-${match[1].replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase()}.webp`;
+    }
+    return src;
+  }
+  return `/assets/route-optimized/gallery-${src
     .replace(/^\//, "")
     .replace(/\.[^.]+$/, "")
     .replace(/[^a-zA-Z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase()}.webp`;
+};
 
 const titleCase = (value: string) =>
   value

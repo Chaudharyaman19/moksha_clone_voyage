@@ -538,7 +538,7 @@ export default function Hero() {
               </div>
 
               <h1
-                className="text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:h-[112px] lg:text-[54px] xl:h-[120px] xl:text-[58px]"
+                className="text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:min-h-[112px] lg:text-[54px] xl:min-h-[120px] xl:text-[58px]"
                 style={{
                   fontWeight: 500,
                 }}
@@ -579,7 +579,7 @@ export default function Hero() {
                 <span className="h-px flex-1 bg-[#C85117]/65" />
               </div>
 
-              <p className="mt-3 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:h-[27px] md:whitespace-nowrap lg:text-[20px]">
+              <p className="mt-3 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
                 {activeSlide.descriptionHighlight &&
                   activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>

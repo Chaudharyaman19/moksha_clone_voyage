@@ -19,10 +19,16 @@ export default function OneFinalActOfHumanity() {
           className="object-cover object-center"
         />
 
+        {/* Mobile cream wash */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF6ED]/98 via-[#FAF6ED]/92 to-[#FAF6ED]/75 md:hidden"
+        />
+
         {/* Cream wash matching the reference */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 hidden md:block"
           style={{
             background:
               "linear-gradient(90deg, rgba(250,246,237,0.995) 0%, rgba(250,246,237,0.99) 27%, rgba(250,246,237,0.92) 38%, rgba(250,246,237,0.68) 48%, rgba(250,246,237,0.22) 59%, rgba(250,246,237,0) 70%)",
@@ -57,7 +63,7 @@ export default function OneFinalActOfHumanity() {
 
               {/* Namo Gange logo */}
               <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[250px]">
-                <div className="relative h-[76px] w-[255px] shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
+                <div className="relative h-[76px] w-[240px] max-w-full shrink-0 sm:h-[100px] sm:w-[330px] sm:translate-x-3">
                   <Image
                     src={imageOrFallback(websiteSection?.partnerLogoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164958/moksha-sewa/hero-images/namo-gange-logo.webp")}
                     alt={(websiteSection as any)?.partnerLogoImageAlt || "Namo Gange Trust"}

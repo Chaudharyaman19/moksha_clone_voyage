@@ -455,7 +455,8 @@ export default function PracticalSewaSupport() {
                     key={card.title}
                     className="
                       flex
-                      h-[188px]
+                      h-auto
+                      min-h-[188px]
                       min-w-0
                       flex-col
                       items-center

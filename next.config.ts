@@ -57,6 +57,9 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   images: {
+    unoptimized: true,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "inline",
     formats: ["image/avif", "image/webp"],
     qualities: [25, 50, 75, 90, 95, 100],
     remotePatterns: [

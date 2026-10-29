@@ -19,10 +19,16 @@ export default function WhyYourSupportMatters() {
           className="object-cover object-center"
         />
 
+        {/* Mobile wash */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#FAF7F1]/96 via-[#FAF7F1]/90 to-[#FAF7F1]/70 md:hidden"
+        />
+
         {/* Left-side soft cream wash so content matches the reference */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-[1]"
+          className="pointer-events-none absolute inset-0 z-[1] hidden md:block"
           style={{
             background:
               "linear-gradient(90deg, rgba(250,247,241,0.99) 0%, rgba(250,247,241,0.98) 34%, rgba(250,247,241,0.90) 46%, rgba(250,247,241,0.32) 58%, rgba(250,247,241,0.00) 70%)",

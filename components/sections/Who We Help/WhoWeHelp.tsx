@@ -490,7 +490,7 @@ export default function WhoWeHelp() {
                 h-auto
                 min-h-[455px]
                 flex-col
-                lg:h-[455px]
+                lg:min-h-[455px]
 
                 overflow-hidden
 

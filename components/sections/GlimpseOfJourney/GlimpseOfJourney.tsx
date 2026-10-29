@@ -75,7 +75,7 @@ export default function GlimpseOfJourney() {
   return (
     <section className="relative w-full overflow-hidden bg-[#f8f1e3]">
       {/* Curved image clip-path definition (scales at every breakpoint) */}
-      <svg width="0" height="0" className="absolute" aria-hidden="true" focusable="false">
+      <svg width="1" height="1" className="absolute -left-[9999px] -top-[9999px]" aria-hidden="true" focusable="false">
         <defs>
           <clipPath id="sewa-card-curve" clipPathUnits="objectBoundingBox">
             <path d="M0,0 H1 V0.82 C0.82,0.91 0.68,0.94 0.5,0.95 C0.32,0.94 0.18,0.91 0,0.82 Z" />
@@ -135,9 +135,10 @@ export default function GlimpseOfJourney() {
           {managedCards.map((card) => (
             <article
               key={card.id}
-              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
+              className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] bg-[#fffdf8] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
               style={{
-                backgroundImage: cardsSeen ? `url('${optimizeCloudinary("https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165448/moksha-sewa/assets/sewa/card_image.png", 800)}')` : undefined,
+                backgroundColor: "#fffdf8",
+                backgroundImage: `url('${optimizeCloudinary("https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165448/moksha-sewa/assets/sewa/card_image.png", 800)}')`,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -147,7 +148,7 @@ export default function GlimpseOfJourney() {
               <div className="relative h-[230px] rounded-t-[17px] sm:h-[205px] md:h-[215px] lg:h-[230px] xl:h-[240px]">
                 <div
                   className="absolute inset-0 overflow-hidden rounded-t-[17px]"
-                  style={{ clipPath: "url(#sewa-card-curve)" }}
+                  style={{ clipPath: "url(#sewa-card-curve)", WebkitClipPath: "url(#sewa-card-curve)" }}
                 >
                   <Image
                     src={card.image}

@@ -513,10 +513,11 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
           fill
           sizes="540px"
           className="
-            hidden
+            block
             object-cover
             object-left
-            md:block
+            opacity-35
+            md:opacity-100
           "
         />
 
@@ -642,13 +643,15 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
               className="
                 relative
                 flex
-                h-[560px]
+                h-auto
+                min-h-[560px]
                 flex-col
                 overflow-hidden
                 rounded-[19px]
                 border
                 border-[#E8DDD0]
                 bg-white
+                pb-4
                 shadow-[0_8px_22px_rgba(65,39,18,0.10)]
               "
             >

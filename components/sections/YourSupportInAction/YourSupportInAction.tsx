@@ -457,13 +457,15 @@ export default function SupportInAction() {
                 className="
                   relative
                   flex
-                  h-[365px]
+                  h-auto
+                  min-h-[375px]
                   flex-col
                   overflow-hidden
                   rounded-[15px]
                   border
                   border-[#E2D8C9]
                   bg-[#FFFDF9]
+                  pb-3
                   shadow-[0_7px_18px_rgba(64,43,20,0.09)]
                 "
               >
