@@ -62,7 +62,7 @@ export default async function ServicesPage() {
       <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
       <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
       <main className="pt-24">
-        <WebsiteSection name="practical-support"><PracticalSewaSupport isH1={true} /></WebsiteSection>
+        <WebsiteSection name="practical-support" showIfMissing><PracticalSewaSupport isH1={true} /></WebsiteSection>
       </main>
       <WebsiteSection name="footer"><Footer /></WebsiteSection>
     </WebsiteContentProvider>

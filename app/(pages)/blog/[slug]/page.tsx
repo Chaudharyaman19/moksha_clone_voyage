@@ -6,7 +6,8 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import { blogsApi, BlogPost } from "@/lib/blogsApi";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, languageAlternates } from "@/lib/seo";
+import { toOgImage } from "@/lib/cloudinary";
 import ShareBar from "@/components/page-features/blog/ShareBar";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import {
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonicalUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
   const ogImg = blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
   const desc = blog.seo?.metaDescription || blog.excerpt || (blog.content ? blog.content.replace(/<[^>]*>/g, "").substring(0, 160).trim() : "");
-  const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
+  const fullOgImage = toOgImage(ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`);
   const ogImageAlt = blog.seo?.ogImageAlt || blog.coverImageAlt || finalTitle;
 
   return {
@@ -47,9 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: blog.seo?.metaKeywords || blog.tags?.join(", "),
     alternates: {
       canonical: canonicalUrl,
+      languages: languageAlternates(canonicalUrl),
     },
     openGraph: {
       type: "article",
+      locale: "en_IN",
       title: blog.seo?.ogTitle || finalTitle,
       description: blog.seo?.ogDescription || desc,
       url: canonicalUrl,
@@ -116,13 +119,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const currentUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
   const ogImg = blog.seo?.ogImage || blog.coverImage || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165264/moksha-sewa/assets/og/logo-moksha-seva-og.png";
-  const fullOgImage = ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`;
+  const fullOgImage = toOgImage(ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`);
 
   // Complete Google-recommended BlogPosting schema
   const blogPostingJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${currentUrl}#article`,
+    inLanguage: "en-IN",
     isPartOf: {
       "@type": "Blog",
       "@id": "https://mokshasewa.org/blog#blog",
@@ -174,7 +178,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Clean content from excessive empty paragraphs and multiple consecutive breaks
   const cleanContent = blog.content
     ? blog.content
-        .replace(/(<p>\s*(<br\s*\/?>|&nbsp;|\s*)*<\/p>\s*){2,}/gi, "<p><br></p>")
+        .replace(/(<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>\s*){2,}/gi, "<p><br></p>")
         .replace(/(<br\s*\/?>\s*){3,}/gi, "<br><br>")
     : "";
 
@@ -258,7 +262,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Title matching Home page headline standards */}
           <h1 className="font-semibold text-2xl sm:text-3xl lg:text-4xl xl:text-[40px] leading-[1.2] tracking-tight text-[#2C1810] max-w-4xl">
-            {blog.title}
+            {blog.title.replace(/\s*[\|–-]\s*Moksha Sewa\s*$/i, "").trim() || blog.title}
           </h1>
 
           {/* Lead Subtitle / Excerpt */}

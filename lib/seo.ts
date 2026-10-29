@@ -478,6 +478,11 @@ export const seoRoutes: RouteSeo[] = [
 
 export const publicSeoRoutes = seoRoutes.filter((route) => route.index !== false);
 
+/** hreflang for an India-targeted, single-language site (en-IN + x-default). */
+export function languageAlternates(url: string) {
+  return { "en-IN": url, "x-default": url };
+}
+
 export function absoluteUrl(path = "/") {
   if (typeof path !== "string") return SITE_URL;
   if (/^https?:\/\//i.test(path)) return path;
@@ -537,6 +542,7 @@ export function createPageMetadata(path: string): Metadata {
     keywords: route.keywords,
     alternates: {
       canonical: absoluteUrl(route.path),
+      languages: languageAlternates(absoluteUrl(route.path)),
     },
     robots: {
       index: isIndexable,
@@ -773,8 +779,8 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
 
   const isGenericTitle =
     !customSeo.metaTitle ||
-    /^(About|Contact|Donation|Csr|Careers|Request Help|Partnership|Home)\s*\|\s*Moksha Sewa$/i.test(customSeo.metaTitle.trim()) ||
-    /^(About|Contact|Donation|Csr|Careers|Request Help|Partnership)$/i.test(customSeo.metaTitle.trim());
+    /^(About|Contact|Donation|Csr|Careers|Request Help|Partnership|Home|Register|Volunteer|Disclaimer|Services|Blog|Terms|Privacy Policy|Refund Policy|Code of Conduct)\s*\|\s*Moksha Sewa$/i.test(customSeo.metaTitle.trim()) ||
+    /^(About|Contact|Donation|Csr|Careers|Request Help|Partnership|Register|Volunteer|Disclaimer)$/i.test(customSeo.metaTitle.trim());
   const rawTitle =
     (!isGenericTitle && customSeo.metaTitle) ||
     parsedOg.title ||
@@ -838,6 +844,7 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
     keywords,
     alternates: {
       canonical: url,
+      languages: languageAlternates(url),
     },
     robots: {
       ...(baseMetadata.robots as any),
@@ -879,10 +886,23 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "NGO",
+    "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     alternateName: "Namo Gange Trust",
     url: SITE_URL,
     logo: absoluteUrl(DEFAULT_OG_IMAGE),
+    image: absoluteUrl(DEFAULT_OG_CARD_IMAGE),
+    description:
+      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance and hearse van, pandit, cremation support and essential assistance for verified needy and unclaimed cases in Delhi, Ghaziabad and Noida.",
+    email: "info@mokshasewa.org",
+    telephone: "+91-9220147229",
+    knowsLanguage: ["en-IN", "hi-IN"],
+    areaServed: [
+      { "@type": "City", name: "Delhi" },
+      { "@type": "City", name: "Ghaziabad" },
+      { "@type": "City", name: "Noida" },
+      { "@type": "Country", name: "India" },
+    ],
     sameAs: [
       "https://www.facebook.com/mokshasewa/",
       "https://www.instagram.com/mokshasewa/",
@@ -920,14 +940,11 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
     inLanguage: "en-IN",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/blog?search={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    publisher: { "@id": `${SITE_URL}/#organization` },
   };
 }
 

@@ -66,6 +66,11 @@ export const metadata: Metadata = {
       "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance, priest, cremation support and essential assistance for verified needy cases in Delhi • Ghaziabad • Noida.",
     images: [DEFAULT_OG_CARD_IMAGE],
   },
+  other: {
+    "geo.region": "IN",
+    "geo.placename": "Delhi NCR, India",
+    "content-language": "en-IN",
+  },
   icons: {
     icon: optimizeCloudinary(DEFAULT_OG_IMAGE, 96),
   },
@@ -93,7 +98,7 @@ export default async function RootLayout({
   const configuredAudioUrl = topbarSection?.audioUrl;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-IN" suppressHydrationWarning>
       <head />
       <body suppressHydrationWarning>
         <Script
