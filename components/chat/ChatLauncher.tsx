@@ -10,6 +10,14 @@ import { readChatSession } from "./chatSession";
 // so the chatbot adds almost nothing to page load.
 const ChatPanel = dynamic(() => import("./ChatPanel"), { ssr: false });
 
+// Animated robot (Lottie), browser only. Its ~1.2 MB WASM player is not part of page load: it is
+// fetched on the visitor's first touch / scroll (or after a long idle) and swaps in for the plain
+// icon only once the animation is ready. lib/dotLottie serves the WASM from this site.
+const DotLottieReact = dynamic(() => import("@/lib/dotLottie").then((m) => m.DotLottieReact), { ssr: false });
+const LAUNCHER_LOTTIE = "/chatbot.lottie";
+const LOTTIE_EVENTS = ["pointerdown", "touchstart", "scroll", "keydown"];
+const LOTTIE_FALLBACK_MS = 8000;
+
 const ChatLauncher: React.FC = () => {
   // The launcher appears once the browser is idle and the on/off setting is known
   const [ready, setReady] = useState(false);
@@ -17,6 +25,8 @@ const ChatLauncher: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [opened, setOpened] = useState(false);
   const [panelKey, setPanelKey] = useState(0);
+  const [lottieWanted, setLottieWanted] = useState(false);
+  const [lottieState, setLottieState] = useState<"loading" | "ready" | "failed">("loading");
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -33,6 +43,21 @@ const ChatLauncher: React.FC = () => {
     return () => window.clearTimeout(id);
   }, []);
 
+  useEffect(() => {
+    if (!ready) return;
+    const want = () => {
+      cleanup();
+      setLottieWanted(true);
+    };
+    const timer = window.setTimeout(want, LOTTIE_FALLBACK_MS);
+    const cleanup = () => {
+      window.clearTimeout(timer);
+      LOTTIE_EVENTS.forEach((ev) => window.removeEventListener(ev, want));
+    };
+    LOTTIE_EVENTS.forEach((ev) => window.addEventListener(ev, want, { once: true, passive: true }));
+    return cleanup;
+  }, [ready]);
+
   const toggle = () => {
     // Previous visitor's chat timed out (30 min idle / browser restarted) — start fresh
     if (!open && opened && readChatSession().status === "expired") setPanelKey((k) => k + 1);
@@ -48,6 +73,7 @@ const ChatLauncher: React.FC = () => {
   if (!ready || (config && !config.enabled)) return null;
 
   const name = config?.name?.trim() || "Moksha Mitra";
+  const showRobot = !open && lottieState === "ready";
 
   return (
     <>
@@ -76,10 +102,34 @@ const ChatLauncher: React.FC = () => {
               <span className="absolute -bottom-[5px] right-5 h-2.5 w-2.5 rotate-45 border-b border-r border-[#C9A574]/60 bg-white" aria-hidden="true" />
             </span>
           )}
-          <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#8B6A3E] to-[#73532F] text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
-            {!open && <span className="mitra-anim absolute inset-0 animate-[mitra-ring_2.4s_ease-out_infinite] rounded-full bg-[#C9A574]" aria-hidden="true" />}
-            {open ? <X className="relative h-6 w-6" strokeWidth={2.5} aria-hidden="true" /> : <MessageCircleMore className="relative h-7 w-7" strokeWidth={2} aria-hidden="true" />}
-          </span>
+          {showRobot ? null : (
+            <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#8B6A3E] to-[#73532F] text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
+              {!open && <span className="mitra-anim absolute inset-0 animate-[mitra-ring_2.4s_ease-out_infinite] rounded-full bg-[#C9A574]" aria-hidden="true" />}
+              {open ? <X className="relative h-6 w-6" strokeWidth={2.5} aria-hidden="true" /> : <MessageCircleMore className="relative h-7 w-7" strokeWidth={2} aria-hidden="true" />}
+            </span>
+          )}
+          {/* Mounted (invisible) while loading so the player can start; shown once it reports ready */}
+          {lottieWanted && !open && lottieState !== "failed" && (
+            <span
+              className={
+                showRobot
+                  ? "relative flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+                  : "pointer-events-none absolute bottom-0 right-0 h-16 w-16 opacity-0"
+              }
+              aria-hidden="true"
+            >
+              <DotLottieReact
+                src={LAUNCHER_LOTTIE}
+                loop
+                autoplay
+                className="h-full w-full"
+                dotLottieRefCallback={(player) => {
+                  player?.addEventListener("load", () => setLottieState("ready"));
+                  player?.addEventListener("loadError", () => setLottieState("failed"));
+                }}
+              />
+            </span>
+          )}
         </button>
       </div>
     </>

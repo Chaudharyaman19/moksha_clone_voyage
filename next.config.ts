@@ -10,7 +10,7 @@ const scriptSrcEval = isProd ? "" : " 'unsafe-eval'";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https:",
   "media-src 'self' https://res.cloudinary.com",
