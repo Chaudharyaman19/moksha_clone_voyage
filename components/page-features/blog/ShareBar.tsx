@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FiCopy, FiCheck } from "react-icons/fi";
-import { FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
+import { FaWhatsapp, FaTwitter, FaFacebook } from "@/lib/icons/fa";
 
 export default function ShareBar({ title, url }: { title: string; url: string }) {
   const [copied, setCopied] = useState(false);

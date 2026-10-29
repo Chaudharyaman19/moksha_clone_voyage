@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FaArrowRight, FaHandHoldingHeart } from "react-icons/fa";
-import { PiFlowerLotus } from "react-icons/pi";
+import { FaArrowRight, FaHandHoldingHeart } from "@/lib/icons/fa";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function WhyYourSupportMatters() {

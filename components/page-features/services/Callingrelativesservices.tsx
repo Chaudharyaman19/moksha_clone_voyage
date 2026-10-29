@@ -10,7 +10,7 @@ import {
   FaLeaf,
   FaPhoneAlt,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import Image from "next/image";
 import {
   MdOutlineLocalPhone,

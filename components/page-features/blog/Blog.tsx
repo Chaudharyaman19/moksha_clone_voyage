@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
 import Link from "next/link";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { FiCalendar, FiUser, FiArrowRight, FiSearch, FiTag } from "react-icons/fi";
 import { BlogPost, FALLBACK_BLOGS } from "@/lib/blogsApi";
 

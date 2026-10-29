@@ -8,7 +8,7 @@ import {
   FaHandHoldingHeart,
   FaLeaf,
   FaPhoneAlt,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import Image from "next/image";
 import {
   MdOutlineLocalFlorist,

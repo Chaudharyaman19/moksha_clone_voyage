@@ -13,7 +13,7 @@ import {
   FaRegClock,
   FaStar,
   FaDonate,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { useState, useEffect } from "react";
 import footerMokshaLogo from "../../../public/homelogo/mok-footer-white.png";
 import { newsletterApi } from "@/lib/newsletterApi";

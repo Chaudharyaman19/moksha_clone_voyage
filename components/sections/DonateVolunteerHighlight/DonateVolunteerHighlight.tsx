@@ -5,8 +5,8 @@ import {
   FaHandHoldingHeart,
   FaHandsHelping,
   FaUsers,
-} from "react-icons/fa";
-import { PiFlowerLotus } from "react-icons/pi";
+} from "@/lib/icons/fa";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { trackEvent } from "@/lib/analytics";
 
 export default function DonateVolunteerHighlight() {

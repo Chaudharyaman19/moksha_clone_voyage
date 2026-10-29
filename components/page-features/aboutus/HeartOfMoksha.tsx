@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as LucideIcons from "lucide-react";
-import { FaArrowRight, FaHandshake, FaUsers } from "react-icons/fa";
-import { PiFlowerLotus, PiHandHeart, PiHandsPraying } from "react-icons/pi";
+import { FaArrowRight, FaHandshake, FaUsers } from "@/lib/icons/fa";
+import { PiFlowerLotus, PiHandHeart, PiHandsPraying } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const defaultActions = [

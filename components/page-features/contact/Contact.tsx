@@ -17,10 +17,10 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaDirections,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { MdVerified, MdEmail } from "react-icons/md";
 import { trackEvent } from "@/lib/analytics";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";

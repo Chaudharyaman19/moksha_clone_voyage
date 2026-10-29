@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FaEnvelope } from "react-icons/fa";
-import { PiFlowerLotus } from "react-icons/pi";
+import { FaEnvelope } from "@/lib/icons/fa";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";

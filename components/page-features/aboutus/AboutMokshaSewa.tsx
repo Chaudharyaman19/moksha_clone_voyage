@@ -4,7 +4,7 @@ import Image from "next/image";
 import {
   FaQuoteLeft,
   FaHandHoldingHeart,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function AboutMokshaSewa() {

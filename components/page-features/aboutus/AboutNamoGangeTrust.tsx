@@ -2,8 +2,8 @@
 
 import type { ReactElement } from "react";
 import * as LucideIcons from "lucide-react";
-import { FaArrowRight } from "react-icons/fa";
-import { PiFlowerLotus } from "react-icons/pi";
+import { FaArrowRight } from "@/lib/icons/fa";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 // ── icon name → custom SVG map (same pattern as other sections) ──────────────

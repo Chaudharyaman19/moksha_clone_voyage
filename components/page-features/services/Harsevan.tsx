@@ -10,7 +10,7 @@ import {
   FaLeaf,
   FaPhoneAlt,
   FaCarSide,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import Image from "next/image";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { GiSteeringWheel } from "react-icons/gi";

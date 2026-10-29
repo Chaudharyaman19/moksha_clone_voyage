@@ -13,7 +13,7 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
+import { FaMapMarkerAlt, FaBriefcase } from "@/lib/icons/fa";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";

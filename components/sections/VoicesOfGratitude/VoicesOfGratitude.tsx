@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "@/lib/icons/fa";
 
 interface Testimonial {
   id: number;

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft } from "@/lib/icons/fa";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function FoundersVision() {

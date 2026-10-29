@@ -7,13 +7,13 @@ import {
   FaPlay,
   FaVolumeMute,
   FaVolumeUp,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import {
   PiFlowerLotus,
   PiHandHeart,
   PiHandsPraying,
   PiUsersThree,
-} from "react-icons/pi";
+} from "@/lib/icons/pi";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 import * as LucideIcons from "lucide-react";

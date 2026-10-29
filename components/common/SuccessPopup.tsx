@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FiX } from "react-icons/fi";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 
 interface SuccessPopupProps {
   open: boolean;

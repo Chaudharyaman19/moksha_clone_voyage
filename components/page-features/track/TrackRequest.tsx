@@ -15,7 +15,7 @@ import {
   FaKeyboard,
   FaHourglassHalf,
   FaLock,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { requestApi, TrackedCase } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";

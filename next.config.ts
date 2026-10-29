@@ -34,6 +34,25 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Without this, dev mode loads whole icon packs (react-icons/pi alone is ~1.3 MB) and bloats TBT.
+  experimental: {
+    optimizePackageImports: [
+      "react-icons/bi",
+      "react-icons/bs",
+      "react-icons/fa",
+      "react-icons/fa6",
+      "react-icons/fi",
+      "react-icons/gi",
+      "react-icons/hi",
+      "react-icons/io5",
+      "react-icons/lu",
+      "react-icons/md",
+      "react-icons/pi",
+      "react-icons/ri",
+      "react-icons/tb",
+      "lucide-react",
+    ],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

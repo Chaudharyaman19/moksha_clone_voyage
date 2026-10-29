@@ -13,7 +13,7 @@ import {
   FaPhoneAlt,
   FaPrayingHands,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { GiCandleHolder, GiLotusFlower, GiWoodPile } from "react-icons/gi";
 import { IoFlower } from "react-icons/io5";
 

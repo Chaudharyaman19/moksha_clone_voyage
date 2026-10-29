@@ -4,7 +4,7 @@ import {
   FaHandHoldingHeart,
   FaPhoneAlt,
   FaUser,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import type { IconType } from "react-icons";
 
 interface MokshaShlokSectionProps {}

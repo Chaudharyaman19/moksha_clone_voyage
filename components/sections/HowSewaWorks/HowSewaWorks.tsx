@@ -7,7 +7,7 @@ import {
   FaArrowRight,
   FaHeadset,
   FaShieldAlt,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 
 interface StepItem {
   number: string;

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { FaArrowRight, FaFileAlt, FaHeart, FaLock, FaPhoneAlt, FaShieldAlt, FaUsers } from "react-icons/fa";
+import { FaArrowRight, FaFileAlt, FaHeart, FaLock, FaPhoneAlt, FaShieldAlt, FaUsers } from "@/lib/icons/fa";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const faqs = [

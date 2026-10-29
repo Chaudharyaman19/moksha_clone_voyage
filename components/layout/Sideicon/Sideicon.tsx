@@ -1,4 +1,5 @@
 "use client";
+import { fetchSettingsJson } from "@/lib/clientSettings";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
@@ -9,18 +10,16 @@ import {
   FaYoutube,
   FaPhone,
   FaEnvelope,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+} from "@/lib/icons/fa";
+import { FaXTwitter } from "@/lib/icons/fa6";
 import { trackEvent, type AnalyticsEvent } from "@/lib/analytics";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 
 const SocialSidebar = () => {
   const [whatsappNumber, setWhatsappNumber] = useState("917702045502");
 
   useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5001/api/v1";
-    fetch(`${apiUrl}/settings`)
-      .then((res) => res.json())
+    fetchSettingsJson()
       .then((body) => {
         if (body?.data?.whatsappNumber) {
           setWhatsappNumber(body.data.whatsappNumber.replace(/[^\d]/g, ""));

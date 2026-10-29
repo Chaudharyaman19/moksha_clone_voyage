@@ -8,7 +8,7 @@ import { blogsApi, BlogPost } from "@/lib/blogsApi";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import ShareBar from "@/components/page-features/blog/ShareBar";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import {
   FiCalendar,
   FiUser,

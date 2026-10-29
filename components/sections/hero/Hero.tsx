@@ -18,9 +18,9 @@ import {
   FaStar,
   FaCheckCircle,
   FaInfoCircle,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { FiActivity } from "react-icons/fi";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import type { LandingSectionItem } from "@/lib/landingContent";
 
@@ -382,9 +382,38 @@ export default function Hero() {
     );
   }, [images.length]);
 
+  // Rotate only after the page has loaded, so later slide images don't replace the first one as the LCP element on slow loads.
+  // Mobile also waits for the first touch/scroll (or 30s after load) before the first rotation.
   useEffect(() => {
-    const timer = window.setInterval(nextSlide, 5500);
-    return () => window.clearInterval(timer);
+    let interval: number | undefined;
+    let fallback: number | undefined;
+    const begin = () => {
+      cleanupGate();
+      if (interval === undefined) interval = window.setInterval(nextSlide, 5500);
+    };
+    const gateEvents = ["touchstart", "scroll", "pointerdown", "keydown"];
+    const cleanupGate = () => {
+      window.clearTimeout(fallback);
+      gateEvents.forEach((ev) => window.removeEventListener(ev, begin));
+    };
+    const onLoad = () => {
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        gateEvents.forEach((ev) => window.addEventListener(ev, begin, { once: true, passive: true }));
+        fallback = window.setTimeout(begin, 30000);
+      } else {
+        begin();
+      }
+    };
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
+    return () => {
+      window.removeEventListener("load", onLoad);
+      cleanupGate();
+      window.clearInterval(interval);
+    };
   }, [nextSlide]);
 
   return (

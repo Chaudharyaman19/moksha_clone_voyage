@@ -19,7 +19,7 @@ import {
   FaCloudUploadAlt,
   FaFileAlt,
   FaDirections,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, updateUser } from "@/store/slices/authSlice";
 import {

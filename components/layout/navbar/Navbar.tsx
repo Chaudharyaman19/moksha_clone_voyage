@@ -1,4 +1,5 @@
 "use client";
+import { fetchSettingsJson } from "@/lib/clientSettings";
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -18,7 +19,7 @@ import {
   FaHandsHelping,
   FaBriefcase,
   FaFileAlt,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { useGlobalAudio } from "@/contexts/GlobalAudioContext";
 
 type NavItem = {
@@ -66,10 +67,8 @@ export default function Navbar() {
     let cancelled = false;
     const fetchDisabledPages = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
-        if (!response.ok) return;
-        const body = await response.json();
-        if (cancelled || !body.data) return;
+        const body = await fetchSettingsJson();
+        if (cancelled || !body?.data) return;
         
         const settings = body.data;
         const disabled: string[] = [];
@@ -461,6 +460,8 @@ export default function Navbar() {
 
               <button
                 onClick={() => setOpen(!open)}
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
                 className="w-10 h-10 flex items-center justify-center text-[#4A2F2A]"
               >
                 {open ? (

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
-import { FaReceipt, FaHandHoldingHeart } from "react-icons/fa";
+import { FaReceipt, FaHandHoldingHeart } from "@/lib/icons/fa";
 import { useAppSelector } from "@/store/hooks";
 import { donationApi, MyDonation } from "@/lib/donationApi";
 import { api } from "@/lib/api";

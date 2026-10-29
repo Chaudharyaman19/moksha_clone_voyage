@@ -4,22 +4,22 @@ Moksha Sewa helps families in India request dignified cremation assistance, ambu
 
 ## Key Pages
 
-- Home: https://mokshasewa.org/
-- About Moksha Sewa: https://mokshasewa.org/about
-- Request Cremation Assistance: https://mokshasewa.org/request-help
-- Volunteer Registration: https://mokshasewa.org/volunteer/register
-- Contact Support: https://mokshasewa.org/contact
-- Blog and Ritual Guides: https://mokshasewa.org/blog
-- Photo Gallery: https://mokshasewa.org/mokshagallery
-- Video Gallery: https://mokshasewa.org/mokshavediogallery
-- Donation Support: https://mokshasewa.org/donation
+- [Home](https://mokshasewa.org/): Overview of Moksha Sewa and how it helps families
+- [About Moksha Sewa](https://mokshasewa.org/about): Mission, trust and team behind Moksha Sewa
+- [Request Cremation Assistance](https://mokshasewa.org/request-help): Submit a help request for last-rites support
+- [Volunteer Registration](https://mokshasewa.org/volunteer/register): Register as a Moksha Sewa volunteer
+- [Contact Support](https://mokshasewa.org/contact): Phone, email, WhatsApp and contact form
+- [Blog and Ritual Guides](https://mokshasewa.org/blog): Articles and guides on rituals and last rites
+- [Photo Gallery](https://mokshasewa.org/mokshagallery): Photos of sewa work
+- [Video Gallery](https://mokshasewa.org/mokshavediogallery): Videos of sewa work
+- [Donation Support](https://mokshasewa.org/donation): Support funeral and cremation assistance
 
 ## Main Actions
 
-- Families can submit help requests at `/request-help`.
-- Volunteers can register at `/volunteer/register`.
-- Donors can support funeral and cremation assistance at `/donation`.
-- Visitors can contact the team by phone, email, WhatsApp, or the contact form at `/contact`.
+- Families can submit help requests at [/request-help](https://mokshasewa.org/request-help).
+- Volunteers can register at [/volunteer/register](https://mokshasewa.org/volunteer/register).
+- Donors can support funeral and cremation assistance at [/donation](https://mokshasewa.org/donation).
+- Visitors can contact the team by phone, email, WhatsApp, or the contact form at [/contact](https://mokshasewa.org/contact).
 
 ## Contact
 

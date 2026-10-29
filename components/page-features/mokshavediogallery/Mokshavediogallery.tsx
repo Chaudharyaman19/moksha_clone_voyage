@@ -14,7 +14,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
 } from "react-icons/fi";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { publicGalleryApi } from "@/lib/galleryApi";
 
 /* ------------------------------------------------------------------ *

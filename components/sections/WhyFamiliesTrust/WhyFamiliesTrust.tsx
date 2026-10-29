@@ -11,7 +11,7 @@ import {
   FaBoxOpen,
   FaShieldAlt,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 
 const GOLD = "#B17A1D";
 

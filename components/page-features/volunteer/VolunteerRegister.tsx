@@ -32,9 +32,9 @@ import {
   FaUserCheck,
   FaUserFriends,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/slices/authSlice";

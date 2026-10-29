@@ -20,9 +20,9 @@ import {
   FaShieldAlt,
   FaShoppingBasket,
   FaUser,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 
 import { requestApi } from "@/lib/requestApi";
 import { ApiRequestError } from "@/lib/api";

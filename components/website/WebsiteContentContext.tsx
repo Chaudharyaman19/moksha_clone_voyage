@@ -1,17 +1,16 @@
 "use client";
 
+import { fetchSettingsJson } from "@/lib/clientSettings";
 import { createContext, useEffect, useState, useContext } from "react";
 import { getMergedWebsiteSections, type WebsitePageKey } from "@/lib/websiteSettingsApi";
 import { mergeLandingSections, type LandingSectionContent, type LandingSectionItem } from "@/lib/landingContent";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1";
 const WebsiteContentContext = createContext<LandingSectionContent[]>(mergeLandingSections());
 
 async function fetchLatestSections(page: WebsitePageKey) {
   try {
-    const response = await fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
-    if (!response.ok) return null;
-    const body = (await response.json()) as { data?: Record<string, { sections?: LandingSectionContent[] }> };
+    const body = (await fetchSettingsJson()) as { data?: Record<string, { sections?: LandingSectionContent[] }> } | null;
+    if (!body) return null;
     return getMergedWebsiteSections(page, body.data as never);
   } catch {
     return null;

@@ -8,7 +8,7 @@ import {
   FaHandsHelping,
   FaHandshake,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 
 interface SupportCard {
   title: string;

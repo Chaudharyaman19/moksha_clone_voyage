@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FaHandHoldingHeart, FaRegHeart, FaShieldAlt, FaUsers } from "react-icons/fa";
-import { PiFlowerLotus, PiHandsPraying } from "react-icons/pi";
+import { FaHandHoldingHeart, FaRegHeart, FaShieldAlt, FaUsers } from "@/lib/icons/fa";
+import { PiFlowerLotus, PiHandsPraying } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const values = [

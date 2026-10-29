@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import {
   FaFire,
   FaCheckCircle,
   FaPhoneAlt,
   FaHandHoldingHeart,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 export default function AboutHeroSlider() {

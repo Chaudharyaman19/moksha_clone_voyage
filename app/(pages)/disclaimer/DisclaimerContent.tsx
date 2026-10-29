@@ -16,7 +16,7 @@ import {
   LuShieldCheck,
   LuRotateCw,
 } from "react-icons/lu";
-import { PiHandsPraying } from "react-icons/pi";
+import { PiHandsPraying } from "@/lib/icons/pi";
 import { FiInfo } from "react-icons/fi";
 
 interface DisclaimerItem {

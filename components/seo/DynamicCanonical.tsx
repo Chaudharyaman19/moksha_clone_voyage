@@ -28,6 +28,18 @@ function extractHref(canonicalTag?: string | null): string | null {
   return null;
 }
 
+/** Placeholder / non-public hosts must never become the canonical (same rule as lib/seo.ts, plus the admin host). */
+function isInvalidCanonical(href?: string | null) {
+  return (
+    !href ||
+    href.includes("yourdomain.com") ||
+    href.includes("example.com") ||
+    href.includes("localhost") ||
+    href.includes("127.0.0.1") ||
+    /^https?:\/\/admin\./i.test(href)
+  );
+}
+
 export default function DynamicCanonical() {
   const pathname = usePathname();
 
@@ -66,7 +78,7 @@ export default function DynamicCanonical() {
           seoData.canonicalUrl ||
           null;
 
-        if (adminCanonical) {
+        if (adminCanonical && !isInvalidCanonical(adminCanonical)) {
           link?.setAttribute("href", adminCanonical);
         }
         // else: auto-generated canonical set in step 1 stays — no change
@@ -80,6 +92,8 @@ export default function DynamicCanonical() {
           const tmp = document.createElement("div");
           tmp.innerHTML = seoData.openGraphTags.trim();
           Array.from(tmp.children).forEach((child) => {
+            // The canonical link is managed above; a second one from the raw OG block would conflict.
+            if (child.tagName === "LINK" && child.getAttribute("rel")?.toLowerCase() === "canonical") return;
             const el = child.cloneNode(true) as Element;
             el.setAttribute("data-dyn-og", "true");
             document.head.appendChild(el);

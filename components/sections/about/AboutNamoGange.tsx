@@ -1,5 +1,5 @@
 import React from "react";
-import { FaArrowRight, FaHandshake, FaLeaf } from "react-icons/fa";
+import { FaArrowRight, FaHandshake, FaLeaf } from "@/lib/icons/fa";
 
 export default function AboutNamoGange() {
   return (

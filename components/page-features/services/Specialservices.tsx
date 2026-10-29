@@ -18,7 +18,7 @@ import {
   FaStar,
   FaUserFriends,
   FaUsers,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import Marquee from "react-fast-marquee";
 
 export default function FamilySupport({ pills }: { pills?: React.ReactNode }) {

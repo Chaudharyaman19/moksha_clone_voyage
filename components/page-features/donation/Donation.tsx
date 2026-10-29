@@ -23,9 +23,9 @@ import {
   FaLinkedin,
   FaYoutube,
   FaHeart,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import { MdVerified } from "react-icons/md";
-import { PiFlowerLotus } from "react-icons/pi";
+import { PiFlowerLotus } from "@/lib/icons/pi";
 import { api, ApiRequestError } from "@/lib/api";
 import { openRazorpayCheckout, RazorpaySuccessResponse } from "@/lib/razorpay";
 import { trackEvent } from "@/lib/analytics";

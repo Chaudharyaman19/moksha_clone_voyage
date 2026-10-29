@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes } from "@/lib/icons/fa";
 
 interface VolunteerModalProps {
   title: string;

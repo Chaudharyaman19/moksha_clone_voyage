@@ -11,7 +11,7 @@ import {
   FaLandmark,
   FaMapMarkerAlt,
   FaBoxOpen,
-} from "react-icons/fa";
+} from "@/lib/icons/fa";
 import type { IconType } from "react-icons";
 
 interface ServingProps { }

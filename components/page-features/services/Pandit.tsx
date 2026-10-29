@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import Image from "next/image";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-import { FaHandHoldingHeart, FaOm, FaStar } from "react-icons/fa";
+import { FaHandHoldingHeart, FaOm, FaStar } from "@/lib/icons/fa";
 import { GiLotusFlower, GiCandleHolder } from "react-icons/gi";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlinePeopleAlt, MdHandshake } from "react-icons/md";

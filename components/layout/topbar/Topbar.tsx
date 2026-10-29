@@ -1,6 +1,6 @@
 "use client";
 
-import { FaChevronDown, FaUser, FaShieldAlt } from "react-icons/fa";
+import { FaChevronDown, FaUser, FaShieldAlt } from "@/lib/icons/fa";
 import Link from "next/link";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 

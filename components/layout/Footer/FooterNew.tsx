@@ -1,4 +1,5 @@
 "use client";
+import { fetchSettingsJson } from "@/lib/clientSettings";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -292,10 +293,8 @@ export default function FooterNew() {
     let cancelled = false;
     const fetchDisabledPages = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api/v1"}/settings`, { cache: "no-store" });
-        if (!response.ok) return;
-        const body = await response.json();
-        if (cancelled || !body.data) return;
+        const body = await fetchSettingsJson();
+        if (cancelled || !body?.data) return;
 
         const settings = body.data;
         const disabled: string[] = [];
