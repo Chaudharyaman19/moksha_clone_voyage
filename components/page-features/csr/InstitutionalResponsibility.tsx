@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import { CSRIcon, type CSRIconName } from "./CSRIcons";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -34,9 +36,13 @@ export default function InstitutionalResponsibility() {
         />
         <div className="relative z-10 grid min-h-[280px] grid-cols-1 gap-5 lg:grid-cols-[30%_70%]">
           <div className="flex items-center justify-center pt-[28px]">
-            <img
+            <Image
               src={partnerLogo}
               alt="Namo Gange Trust"
+              width={384}
+              height={157}
+              sizes="(min-width: 1024px) 320px, 90vw"
+              unoptimized={!isOptimizableSrc(partnerLogo)}
               className="mx-auto h-auto w-full max-w-[320px] object-contain"
             />
           </div>

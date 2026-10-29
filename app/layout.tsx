@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
+import ChatLauncher from "@/components/chat/ChatLauncher";
 import StoreProvider from "@/store/StoreProvider";
 import { optimizeCloudinary } from "@/lib/cloudinary";
 import JsonLd from "@/components/seo/JsonLd";
@@ -135,6 +136,7 @@ export default async function RootLayout({
             <JsonLd data={organizationJsonLd()} />
             <JsonLd data={websiteJsonLd()} />
             <Sideicon />
+            <ChatLauncher />
             <SmoothScrolling>
               {children}
             </SmoothScrolling>

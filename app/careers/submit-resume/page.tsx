@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -1511,9 +1512,15 @@ function ProfileCard() {
               className="group relative grid h-[132px] w-[132px] place-items-center overflow-hidden rounded-[10px] border border-dashed border-[#eadcc8] bg-[#f2f9f4] disabled:cursor-wait"
             >
               {draft.image ? (
-                // Object-URL previews are not routable through next/image.
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={draft.image} alt="Candidate photo" className="h-full w-full object-cover object-center" />
+                // Object-URL previews skip the optimizer (unoptimized) but still render.
+                <Image
+                  src={draft.image}
+                  alt="Candidate photo"
+                  fill
+                  sizes="132px"
+                  unoptimized={!isOptimizableSrc(draft.image)}
+                  className="h-full w-full object-cover object-center"
+                />
               ) : (
                 <span className="text-[30px] font-bold text-[#8b6a3e]">{initials || "CV"}</span>
               )}
@@ -1630,11 +1637,13 @@ function ProfileCard() {
       ) : (
         <div className="mt-[8px] flex min-h-0 flex-1 items-center gap-[12px]">
           {candidate.image ? (
-            // May be a blob: preview from the editor above, which next/image cannot take.
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            // May be a blob: preview from the editor above, which skips the optimizer (unoptimized).
+            <Image
               src={candidate.image}
               alt={candidate.candidateName}
+              width={116}
+              height={116}
+              unoptimized={!isOptimizableSrc(candidate.image)}
               className="h-[116px] w-[116px] shrink-0 rounded-[8px] object-cover object-center"
             />
           ) : canEdit ? (

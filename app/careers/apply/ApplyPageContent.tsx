@@ -519,7 +519,6 @@ export default function ApplyPageContent() {
             alt="Moksha Sewa Career Team"
             fill
             priority
-            unoptimized
             sizes="100vw"
             className="-z-10 object-fill object-top"
           />
@@ -583,7 +582,6 @@ export default function ApplyPageContent() {
             alt="Section background"
             fill
             priority
-            unoptimized
             sizes="100vw"
             className="-z-20 object-cover object-center"
           />
@@ -598,7 +596,6 @@ export default function ApplyPageContent() {
                 src={sideLeafLeft}
                 alt=""
                 fill
-                unoptimized
                 sizes="170px"
                 className="object-contain object-left drop-shadow-sm"
               />
@@ -610,7 +607,6 @@ export default function ApplyPageContent() {
                 src={sideLeafRight}
                 alt=""
                 fill
-                unoptimized
                 sizes="170px"
                 className="object-contain object-right drop-shadow-sm"
               />
@@ -782,7 +778,6 @@ export default function ApplyPageContent() {
                         fill
                         sizes="105px"
                         className="object-contain"
-                        unoptimized
                       />
                     </div>
                     {/* Menu burger icon */}

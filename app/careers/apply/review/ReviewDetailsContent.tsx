@@ -168,7 +168,7 @@ export default function ReviewDetailsContent() {
         {/* ── Hero ── */}
         <section className="relative isolate pt-40 sm:pt-44 lg:min-h-[340px] lg:pt-48 pb-8 lg:pb-10 overflow-hidden">
           <div className="absolute inset-0 -z-10">
-            <Image src={heroBg} alt="" fill priority unoptimized sizes="100vw" className="object-cover object-top" />
+            <Image src={heroBg} alt="" fill priority sizes="100vw" className="object-cover object-top" />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(253,246,234,0.92)_0%,rgba(253,246,234,0.75)_35%,rgba(253,246,234,0.2)_65%,rgba(253,246,234,0)_100%)]" />
           </div>
           <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-4 relative z-10">
@@ -198,10 +198,10 @@ export default function ReviewDetailsContent() {
         {/* ── Content ── */}
         <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10">
           <div className="pointer-events-none absolute -left-2 sm:-left-3 lg:-left-4 xl:-left-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
-            <Image src={sideLeafLeft} alt="" fill unoptimized priority className="object-contain object-left" />
+            <Image src={sideLeafLeft} alt="" fill priority className="object-contain object-left" />
           </div>
           <div className="pointer-events-none absolute -right-2 sm:-right-3 lg:-right-4 xl:-right-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
-            <Image src={sideLeafRight} alt="" fill unoptimized priority className="object-contain object-right" />
+            <Image src={sideLeafRight} alt="" fill priority className="object-contain object-right" />
           </div>
 
           <div className="relative z-10 pt-2 sm:pt-3.5 mb-2">
@@ -410,7 +410,7 @@ export default function ReviewDetailsContent() {
               <div className="space-y-2.5 order-1 lg:order-2 lg:-mt-[100px] relative z-20">
                 {/* Banner */}
                 <div className="relative h-[120px] overflow-hidden rounded-2xl border border-[#ebdcc4]">
-                  <Image src={sideBanner} alt="Service Beyond Goodbye" fill unoptimized priority className="object-cover object-center" />
+                  <Image src={sideBanner} alt="Service Beyond Goodbye" fill priority className="object-cover object-center" />
                 </div>
 
                 {/* Application Summary */}

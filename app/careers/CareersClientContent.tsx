@@ -348,7 +348,6 @@ export default function CareersClientContent() {
               alt="Moksha Sewa Career Team"
               fill
               priority
-              unoptimized
               sizes="100vw"
               className="-z-20 object-fill object-center"
             />

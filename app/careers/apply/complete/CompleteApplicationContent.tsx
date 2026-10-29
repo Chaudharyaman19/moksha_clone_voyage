@@ -344,7 +344,6 @@ export default function CompleteApplicationContent() {
               alt=""
               fill
               priority
-              unoptimized
               sizes="100vw"
               className="object-cover object-top"
             />
@@ -379,10 +378,10 @@ export default function CompleteApplicationContent() {
         {/* ── Content ── */}
         <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10">
           <div className="pointer-events-none absolute -left-2 sm:-left-3 lg:-left-4 xl:-left-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
-            <Image src={sideLeafLeft} alt="" fill unoptimized priority className="object-contain object-left" />
+            <Image src={sideLeafLeft} alt="" fill priority className="object-contain object-left" />
           </div>
           <div className="pointer-events-none absolute -right-2 sm:-right-3 lg:-right-4 xl:-right-6 top-6 z-0 h-[760px] w-[85px] sm:w-[110px] lg:w-[135px] xl:w-[155px]">
-            <Image src={sideLeafRight} alt="" fill unoptimized priority className="object-contain object-right" />
+            <Image src={sideLeafRight} alt="" fill priority className="object-contain object-right" />
           </div>
 
           <div className="relative z-10 pt-2 sm:pt-3.5 mb-2">

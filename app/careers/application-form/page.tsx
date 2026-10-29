@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import Link from "next/link";
 const sidebarFooterImage = "/career-submit-resume-assets/image copy 3.png";
 import { lockScroll, unlockScroll } from "@/lib/scrollLock";
@@ -470,10 +471,12 @@ function PersonalInformation({
             } bg-[#f0f4f2] transition-all hover:opacity-95`}
           >
             {photoSrc ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 src={photoSrc}
                 alt={fullName}
+                fill
+                sizes="100px"
+                unoptimized={!isOptimizableSrc(photoSrc)}
                 className="h-full w-full object-cover object-center"
               />
             ) : (

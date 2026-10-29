@@ -191,7 +191,7 @@ export default function ApplicationSubmittedContent() {
         {/* ── Hero ── */}
         <section className="relative isolate pt-40 sm:pt-44 lg:min-h-[220px] lg:pt-48 pb-3 lg:pb-4 overflow-hidden">
           <div className="absolute inset-0 -z-10">
-            <Image src={heroBg} alt="" fill priority unoptimized sizes="100vw" className="object-cover object-top" />
+            <Image src={heroBg} alt="" fill priority sizes="100vw" className="object-cover object-top" />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(253,246,234,0.92)_0%,rgba(253,246,234,0.75)_35%,rgba(253,246,234,0.2)_65%,rgba(253,246,234,0)_100%)]" />
           </div>
           <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 relative z-10">
@@ -213,7 +213,7 @@ export default function ApplicationSubmittedContent() {
         <div className="relative w-full">
         {/* Full-viewport-width background, same width as the hero image above */}
         <div className="pointer-events-none absolute inset-x-0 top-0 bottom-6 z-0 overflow-hidden">
-          <Image src={sectionBg} alt="" fill unoptimized priority sizes="100vw" className="object-cover sm:object-fill" />
+          <Image src={sectionBg} alt="" fill priority sizes="100vw" className="object-cover sm:object-fill" />
         </div>
         <section className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-12 pb-10">
 
@@ -227,7 +227,7 @@ export default function ApplicationSubmittedContent() {
                 <div className="relative overflow-hidden rounded-2xl border border-[#f0d4a8] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   {/* Background image — slightly blurred so content reads clearly */}
                   <div className="pointer-events-none absolute inset-0">
-                    <Image src={thankyouBg} alt="" fill unoptimized priority sizes="100vw" className="scale-[1.03] object-cover object-center blur-[2.5px]" />
+                    <Image src={thankyouBg} alt="" fill priority sizes="100vw" className="scale-[1.03] object-cover object-center blur-[2.5px]" />
                     {/* soft cream overlay for readability */}
                     <div className="absolute inset-0 bg-[rgba(255,253,247,0.35)]" />
                   </div>
@@ -238,7 +238,6 @@ export default function ApplicationSubmittedContent() {
                         src={thankyouNamastePhoto}
                         alt="Moksha Sewa"
                         fill
-                        unoptimized
                         priority
                         sizes="(max-width: 768px) 100vw, 195px"
                         className="object-cover object-[center_top]"
@@ -295,7 +294,6 @@ export default function ApplicationSubmittedContent() {
                         src={rightCardDecoration}
                         alt="Together for a More Compassionate Tomorrow"
                         fill
-                        unoptimized
                         priority
                         className="object-contain object-center"
                       />
@@ -306,7 +304,7 @@ export default function ApplicationSubmittedContent() {
                 {/* ── What Happens Next ── */}
                 <div className="relative overflow-hidden rounded-2xl border border-[#ebdcc4] bg-transparent px-4 py-3.5 sm:px-5 sm:py-4">
                   <div className="pointer-events-none absolute -top-1 right-2 h-[50px] w-[70px] opacity-60">
-                    <Image src={sideLeafRight} alt="" fill unoptimized className="object-contain object-top-right" />
+                    <Image src={sideLeafRight} alt="" fill className="object-contain object-top-right" />
                   </div>
                   <h3 className="font-sans text-[22px] sm:text-[24px] font-bold text-[#0c3d30]">What Happens Next?</h3>
                   <p className="mt-0.5 text-[14px] sm:text-[15px] text-[#5a6a7a]">Here is what you can expect after submitting your application.</p>

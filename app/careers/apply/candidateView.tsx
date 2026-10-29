@@ -1,5 +1,6 @@
 "use client";
 
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
@@ -170,7 +171,7 @@ export function CandidatePhoto({
   name?: string | null;
 }) {
   if (src && src.trim()) {
-    return <Image src={toAssetUrl(src)} alt={alt} fill unoptimized priority className={className} />;
+    return <Image src={toAssetUrl(src)} alt={alt} fill unoptimized={!isOptimizableSrc(toAssetUrl(src))} priority className={className} />;
   }
 
   const g = (gender || "").trim().toLowerCase();
@@ -188,7 +189,6 @@ export function CandidatePhoto({
         src={avatarSrc}
         alt={isFemale ? "Female Candidate Avatar" : "Male Candidate Avatar"}
         fill
-        unoptimized
         priority
         className={className || "object-cover object-top"}
       />

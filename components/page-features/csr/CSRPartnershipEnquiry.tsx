@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
@@ -165,9 +167,12 @@ export default function CSRPartnershipEnquiry() {
               bg-[#FBF7F0]
             "
           >
-            <img
+            <Image
               src={bgImage}
               alt="Start a Conversation - Let's Build a Responsible Partnership"
+              fill
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              unoptimized={!isOptimizableSrc(bgImage)}
               className="absolute inset-0 h-full w-full object-fill"
             />
             {/* ===============================================

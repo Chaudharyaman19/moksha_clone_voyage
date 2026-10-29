@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Topbar from "@/components/layout/topbar/Topbar";
@@ -444,10 +446,12 @@ function VolunteerDashboard() {
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
                     {profile.avatarUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={profile.avatarUrl}
                         alt={`${profile.name ?? "Volunteer"} profile`}
+                        width={48}
+                        height={48}
+                        unoptimized={!isOptimizableSrc(profile.avatarUrl)}
                         className="h-12 w-12 rounded-full object-cover"
                       />
                     ) : (

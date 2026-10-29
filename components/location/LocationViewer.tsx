@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { isOptimizableSrc } from "@/lib/imageSrc";
 import { Children, useCallback, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 
@@ -93,7 +95,16 @@ function LocationHero({ page }: { page: LocationPage }) {
   return (
     <section className="relative h-[320px] w-full overflow-hidden md:h-[560px]">
       {page.mainImage ? (
-        <img src={page.mainImage} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={page.mainImage}
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          unoptimized={!isOptimizableSrc(page.mainImage)}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-[#075443] via-[#0a6a55] to-[#8c6b1d]" />
       )}
@@ -166,12 +177,15 @@ function LocationContent({ page }: { page: LocationPage | null }) {
           <div className="md:col-span-2">
             <div className="grid grid-cols-2 gap-2">
               {images.slice(0, 4).map((g, i) => (
-                <img
+                <Image
                   key={i}
                   src={g.src}
                   alt={g.alt || `${page.pageTitle} ${i + 1}`}
+                  width={480}
+                  height={270}
+                  sizes="(min-width: 768px) 20vw, 45vw"
+                  unoptimized={!isOptimizableSrc(g.src)}
                   className="h-[110px] w-full rounded-xl object-cover shadow-sm md:h-[135px]"
-                  loading="lazy"
                 />
               ))}
             </div>

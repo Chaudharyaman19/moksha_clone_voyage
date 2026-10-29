@@ -282,7 +282,6 @@ export default function ResultPageContent() {
               alt=""
               fill
               priority
-              unoptimized
               sizes="100vw"
               className="object-cover object-top"
             />
@@ -325,7 +324,6 @@ export default function ResultPageContent() {
               src={sideLeafLeft}
               alt=""
               fill
-              unoptimized
               priority
               className="object-contain object-left"
             />
@@ -337,7 +335,6 @@ export default function ResultPageContent() {
               src={sideLeafRight}
               alt=""
               fill
-              unoptimized
               priority
               className="object-contain object-right"
             />
@@ -359,7 +356,6 @@ export default function ResultPageContent() {
                         alt="Candidate"
                         fill
                         priority
-                        unoptimized
                         sizes="(max-width: 768px) 100vw, 280px"
                         className="object-cover object-center"
                       />
@@ -386,7 +382,6 @@ export default function ResultPageContent() {
                         src={rightCardDecoration}
                         alt="Together for a More Compassionate Tomorrow"
                         fill
-                        unoptimized
                         priority
                         className="object-contain object-right"
                       />
