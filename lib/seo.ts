@@ -716,7 +716,8 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
 
   let cached = dynamicSeoCache.get(slug);
   const now = Date.now();
-  if (!cached || now - cached.timestamp > 30000) {
+  const cacheTtl = process.env.NODE_ENV === "production" ? 2000 : 0;
+  if (!cached || now - cached.timestamp > cacheTtl) {
     try {
       const [dedicatedSeo, settings] = await Promise.all([
         seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null),
@@ -807,12 +808,27 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   const ogTitle = parsedOg.ogTitle || (!isGenericTitle && customSeo.ogTitle ? customSeo.ogTitle : title);
   const ogDescription = parsedOg.ogDescription || (!isGenericDesc && customSeo.ogDescription ? customSeo.ogDescription : description);
 
+  const isInvalidPlaceholderImage = (img?: string | null) =>
+    !img ||
+    img.includes("yourdomain.com") ||
+    img.includes("example.com") ||
+    img.includes("localhost") ||
+    img.includes("127.0.0.1");
+
   const ogImages = baseMetadata.openGraph?.images;
   const firstOgImage = Array.isArray(ogImages) ? ogImages[0] : ogImages;
   const baseOgImageUrl = typeof firstOgImage === "object" && firstOgImage !== null && "url" in firstOgImage ? firstOgImage.url : firstOgImage;
-  const ogImage = normalizeOgImageUrl(
-    parsedOg.ogImage || customSeo.ogImage || advancedSeo?.defaultOgImage || baseOgImageUrl || DEFAULT_OG_IMAGE
-  );
+
+  const rawCandidateImage =
+    parsedOg.ogImage && !isInvalidPlaceholderImage(parsedOg.ogImage)
+      ? parsedOg.ogImage
+      : customSeo.ogImage && !isInvalidPlaceholderImage(customSeo.ogImage)
+      ? customSeo.ogImage
+      : advancedSeo?.defaultOgImage && !isInvalidPlaceholderImage(advancedSeo?.defaultOgImage)
+      ? advancedSeo.defaultOgImage
+      : baseOgImageUrl || DEFAULT_OG_IMAGE;
+
+  const ogImage = normalizeOgImageUrl(rawCandidateImage);
 
   const keywords =
     parsedOg.keywords && parsedOg.keywords.length > 0
@@ -823,7 +839,11 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
 
   const twitterTitle = parsedOg.twitterTitle || ogTitle;
   const twitterDescription = parsedOg.twitterDescription || ogDescription;
-  const twitterImage = normalizeOgImageUrl(parsedOg.twitterImage || ogImage);
+  const rawTwitterCandidate =
+    parsedOg.twitterImage && !isInvalidPlaceholderImage(parsedOg.twitterImage)
+      ? parsedOg.twitterImage
+      : ogImage;
+  const twitterImage = normalizeOgImageUrl(rawTwitterCandidate);
 
   // The root layout sets `title: { template: "%s | Moksha Sewa" }`, so a plain string
   // title gets the site-name suffix appended. Admin SEO titles often already include it
@@ -882,20 +902,32 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
   };
 }
 
-export function organizationJsonLd() {
+export function organizationJsonLd(settings?: any) {
+  const landingSections = settings?.landingPage?.sections || [];
+  const topbar = landingSections.find((s: any) => s.key === "topbar");
+  const footer = landingSections.find((s: any) => s.key === "footer");
+  const contact = landingSections.find((s: any) => s.key === "contact");
+
+  const phone = topbar?.helplineNumber || topbar?.phone || footer?.phone || "+91-9220147229";
+  const email = footer?.email || contact?.email || "info@mokshasewa.org";
+  const addressStr = footer?.address || "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad, Uttar Pradesh 201007";
+  const orgName = topbar?.siteName || SITE_NAME;
+  const description =
+    settings?.landingPage?.seo?.metaDescription ||
+    "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance and hearse van, pandit, cremation support and essential assistance for verified needy and unclaimed cases in Delhi, Ghaziabad and Noida.";
+
   return {
     "@context": "https://schema.org",
     "@type": "NGO",
     "@id": `${SITE_URL}/#organization`,
-    name: SITE_NAME,
+    name: orgName,
     alternateName: "Namo Gange Trust",
     url: SITE_URL,
     logo: absoluteUrl(DEFAULT_OG_IMAGE),
     image: absoluteUrl(DEFAULT_OG_CARD_IMAGE),
-    description:
-      "Moksha Sewa by Namo Gange Trust provides dignified last rites, ambulance and hearse van, pandit, cremation support and essential assistance for verified needy and unclaimed cases in Delhi, Ghaziabad and Noida.",
-    email: "info@mokshasewa.org",
-    telephone: "+91-9220147229",
+    description,
+    email,
+    telephone: phone,
     knowsLanguage: ["en-IN", "hi-IN"],
     areaServed: [
       { "@type": "City", name: "Delhi" },
@@ -911,7 +943,7 @@ export function organizationJsonLd() {
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Plot No. 12/52, Site II Industrial Area, Mohan Nagar",
+      streetAddress: addressStr,
       addressLocality: "Ghaziabad",
       addressRegion: "Uttar Pradesh",
       postalCode: "201007",
@@ -920,7 +952,7 @@ export function organizationJsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+91-9220147229",
+        telephone: phone,
         contactType: "emergency",
         areaServed: "IN",
         availableLanguage: ["English", "Hindi"],
@@ -936,12 +968,15 @@ export function organizationJsonLd() {
   };
 }
 
-export function websiteJsonLd() {
+export function websiteJsonLd(settings?: any) {
+  const landingSections = settings?.landingPage?.sections || [];
+  const topbar = landingSections.find((s: any) => s.key === "topbar");
+  const siteName = topbar?.siteName || SITE_NAME;
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: SITE_NAME,
+    name: siteName,
     url: SITE_URL,
     inLanguage: "en-IN",
     publisher: { "@id": `${SITE_URL}/#organization` },
@@ -1013,42 +1048,174 @@ export function serviceJsonLd(name: string, description: string, path: string) {
   };
 }
 
-export async function getPageSchemaMarkup(path: string, pageKey: WebsitePageKey): Promise<string | null> {
+export function webPageJsonLd(name: string, description: string, path: string) {
+  const pageUrl = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name,
+    description,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+export function aboutPageJsonLd(settings?: any) {
+  const landingSections = settings?.landingPage?.sections || [];
+  const topbar = landingSections.find((s: any) => s.key === "topbar");
+  const siteName = topbar?.siteName || SITE_NAME;
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${SITE_URL}/about#aboutpage`,
+    url: `${SITE_URL}/about`,
+    name: `About ${siteName} - Namo Gange Trust Initiative`,
+    description: `Learn about ${siteName}, a humanitarian initiative by Namo Gange Trust dedicated to providing dignified last rites and end-of-life care.`,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+export function contactPageJsonLd(settings?: any) {
+  const landingSections = settings?.landingPage?.sections || [];
+  const topbar = landingSections.find((s: any) => s.key === "topbar");
+  const footer = landingSections.find((s: any) => s.key === "footer");
+  const siteName = topbar?.siteName || SITE_NAME;
+  const phone = topbar?.helplineNumber || topbar?.phone || footer?.phone || "+91-9220147229";
+  const email = footer?.email || "info@mokshasewa.org";
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${SITE_URL}/contact#contactpage`,
+    url: `${SITE_URL}/contact`,
+    name: `Contact ${siteName} 24x7 Helpline`,
+    description: `Get 24x7 immediate assistance from ${siteName} for hearse van, mortuary ambulance, antim sanskar and last-rites coordination across Delhi NCR.`,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "NGO",
+      name: siteName,
+      telephone: phone,
+      email: email,
+      url: SITE_URL,
+    },
+  };
+}
+
+export function donationPageJsonLd(settings?: any) {
+  const landingSections = settings?.landingPage?.sections || [];
+  const topbar = landingSections.find((s: any) => s.key === "topbar");
+  const siteName = topbar?.siteName || SITE_NAME;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/donation#webpage`,
+    url: `${SITE_URL}/donation`,
+    name: `Support ${siteName} - Donate for Dignified Last Rites`,
+    description: `Support our mission to ensure no soul leaves this world without dignity. Donate to ${siteName} to help provide free last rites, hearse van and cremation support to needy families.`,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    potentialAction: {
+      "@type": "DonateAction",
+      recipient: { "@id": `${SITE_URL}/#organization` },
+    },
+  };
+}
+
+import { cleanJsonLdContent } from "@/lib/cleanJsonLd";
+
+export const PATH_TO_PAGE_KEY: Record<string, WebsitePageKey> = {
+  "/": "landing",
+  "/about": "about",
+  "/services": "services",
+  "/ambulanceservices": "ambulance",
+  "/panditservices": "pandit",
+  "/furalservices": "funeral",
+  "/furaldecoration": "funeralDecoration",
+  "/prayerhallservices": "prayerHall",
+  "/specialservices": "specialService",
+  "/callingrelativesservices": "callingRelatives",
+  "/harsevanservices": "harsevan",
+  "/unclaimed-body-sewa": "unclaimed-body",
+  "/volunteer/register": "volunteer",
+  "/partnership": "partnership",
+  "/csr": "csr",
+  "/request-help": "request-help",
+  "/donation": "donation",
+  "/contact": "contact",
+  "/track": "track",
+  "/privacy-policy": "privacy-policy",
+  "/terms": "terms",
+  "/refund-policy": "refund-policy",
+  "/code-of-conduct": "code-of-conduct",
+  "/careers": "careers",
+  "/disclaimer": "disclaimer",
+};
+
+export async function getPageSchemaMarkup(path: string, pageKey?: WebsitePageKey): Promise<string | null> {
   const isLocal = process.env.NODE_ENV !== "production";
   const slug = path === "/" ? "home" : path.replace(/^\/+|\/+$/g, "") || "home";
+
+  // 1. Check dedicated SEO collection in backend
   const dedicatedSeo = await seoApi.getByPage(slug, isLocal ? "local" : "live").catch(() => null);
-  if (dedicatedSeo?.schemaMarkup) return dedicatedSeo.schemaMarkup;
+  if (dedicatedSeo) {
+    if (dedicatedSeo.schemaMarkup && dedicatedSeo.schemaMarkup.trim()) {
+      const cleaned = cleanJsonLdContent(dedicatedSeo.schemaMarkup);
+      if (cleaned) return cleaned;
+    }
+    // If dedicated SEO record exists and schemaMarkup was cleared/empty, do not fall back
+    if (dedicatedSeo.schemaMarkup !== undefined) {
+      return null;
+    }
+  }
 
-  const settings = await getWebsiteSettings();
-  const pageFieldMap: Record<WebsitePageKey, any> = {
-    landing: "landingPage",
-    about: "aboutPage",
-    services: "servicesPage",
-    ambulance: "ambulancePage",
-    pandit: "panditPage",
-    funeral: "funeralPage",
-    funeralDecoration: "funeralDecorationPage",
-    prayerHall: "prayerHallPage",
-    specialService: "specialServicePage",
-    callingRelatives: "callingRelativesPage",
-    harsevan: "harsevanPage",
-    "unclaimed-body": "unclaimedBodyPage",
-    volunteer: "volunteerPage",
-    partnership: "partnershipPage",
-    csr: "csrPage",
-    "request-help": "requestHelpPage",
-    donation: "donationPage",
-    contact: "contactPage",
-    track: "trackPage",
-    "privacy-policy": "privacyPage",
-    terms: "termsPage",
-    "refund-policy": "refundPage",
-    "code-of-conduct": "conductPage",
-    careers: "careersPage",
-    disclaimer: "disclaimerPage",
-  };
+  // 2. Check website settings by page key if present
+  const resolvedKey = pageKey || PATH_TO_PAGE_KEY[path] || PATH_TO_PAGE_KEY[`/${slug}`];
+  if (resolvedKey) {
+    const settings = await getWebsiteSettings();
+    const pageFieldMap: Record<WebsitePageKey, any> = {
+      landing: "landingPage",
+      about: "aboutPage",
+      services: "servicesPage",
+      ambulance: "ambulancePage",
+      pandit: "panditPage",
+      funeral: "funeralPage",
+      funeralDecoration: "funeralDecorationPage",
+      prayerHall: "prayerHallPage",
+      specialService: "specialServicePage",
+      callingRelatives: "callingRelativesPage",
+      harsevan: "harsevanPage",
+      "unclaimed-body": "unclaimedBodyPage",
+      volunteer: "volunteerPage",
+      partnership: "partnershipPage",
+      csr: "csrPage",
+      "request-help": "requestHelpPage",
+      donation: "donationPage",
+      contact: "contactPage",
+      track: "trackPage",
+      "privacy-policy": "privacyPage",
+      terms: "termsPage",
+      "refund-policy": "refundPage",
+      "code-of-conduct": "conductPage",
+      careers: "careersPage",
+      disclaimer: "disclaimerPage",
+    };
 
-  const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
-  return (pageSettings as any)?.seo?.schemaMarkup || null;
+    const pageSettings = settings?.[pageFieldMap[resolvedKey] as keyof typeof settings];
+    const rawSettingSchema = (pageSettings as any)?.seo?.schemaMarkup;
+    if (rawSettingSchema && rawSettingSchema.trim()) {
+      const cleaned = cleanJsonLdContent(rawSettingSchema);
+      if (cleaned) return cleaned;
+    }
+  }
+
+  return null;
+}
+
+export async function getPathSchemaMarkup(pathname: string): Promise<string | null> {
+  const clean = (pathname || "/").split("?")[0].split("#")[0].replace(/\/+$/, "") || "/";
+  const pageKey = PATH_TO_PAGE_KEY[clean];
+  return getPageSchemaMarkup(clean, pageKey);
 }
 

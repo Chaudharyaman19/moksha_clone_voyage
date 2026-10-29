@@ -21,7 +21,7 @@ export interface SeoData {
 }
 
 const seoCache = new Map<string, { data: SeoData | null; expires: number }>();
-const CACHE_TTL_MS = 60 * 1000; // 60 seconds
+const CACHE_TTL_MS = process.env.NODE_ENV === "production" ? 2000 : 0;
 
 export const seoApi = {
   getByPage: cache(async (page: string, envType: "local" | "live" = "live"): Promise<SeoData | null> => {

@@ -27,8 +27,8 @@ async function page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/specialservices")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/specialservices")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteContentProvider page="specialService" sections={sections}>
         <Specialservices pills={<LocationCityPills category="Special Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>

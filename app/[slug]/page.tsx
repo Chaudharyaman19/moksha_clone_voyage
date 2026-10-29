@@ -64,10 +64,21 @@ export default async function LocationPageRoute({ params }: { params: Promise<{ 
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(`/${p.slug}`)} />
-      {p.seo?.schemaMarkup ? <div dangerouslySetInnerHTML={{ __html: p.seo.schemaMarkup }} /> : null}
+      <JsonLd data={breadcrumbJsonLd(`/${p.slug}`)} id="schema-location-breadcrumb" />
+      {p.seo?.schemaMarkup ? <JsonLd data={p.seo.schemaMarkup} id="schema-location-custom" /> : null}
       {p.faqs?.length ? (
-        <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }} />
+        <JsonLd
+          id="schema-location-faq"
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: p.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }}
+        />
       ) : null}
 
       <LocationViewer

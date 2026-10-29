@@ -1,7 +1,7 @@
 import Donation from "@/components/page-features/donation/Donation";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
-import { getPageSections } from "@/lib/websiteSettingsApi";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, donationPageJsonLd } from "@/lib/seo";
+import { getPageSections, getWebsiteSettings } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
 export const dynamic = "force-dynamic";
@@ -12,15 +12,16 @@ export async function generateMetadata() {
 }
 
 async function page() {
-  const [sections, customSchema] = await Promise.all([
+  const [sections, settings, customSchema] = await Promise.all([
     getPageSections("donation"),
+    getWebsiteSettings(),
     getPageSchemaMarkup("/donation", "donation").catch(() => null),
   ]);
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/donation")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+      <JsonLd data={breadcrumbJsonLd("/donation")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteContentProvider page="donation" sections={sections}>
         <Donation />
       </WebsiteContentProvider>

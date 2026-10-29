@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 import ConductPageContent from "./ConductPageContent";
@@ -23,8 +23,8 @@ export default async function ConductPage() {
   return (
     <WebsiteContentProvider sections={sections as any} page="code-of-conduct">
       <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
-        <JsonLd data={breadcrumbJsonLd("/code-of-conduct")} />
-        {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+        <JsonLd data={breadcrumbJsonLd("/code-of-conduct")} id="schema-breadcrumb" />
+        {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
         <Topbar />
         <Navbar />
         <ConductPageContent />

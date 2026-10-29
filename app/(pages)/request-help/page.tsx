@@ -1,6 +1,6 @@
 import RequestHelp from "@/components/page-features/request-help/RequestHelp";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
@@ -19,8 +19,8 @@ async function page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/request-help")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+      <JsonLd data={breadcrumbJsonLd("/request-help")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteContentProvider page="request-help" sections={sections}>
         <RequestHelp />
       </WebsiteContentProvider>

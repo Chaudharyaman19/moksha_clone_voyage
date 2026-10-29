@@ -50,8 +50,8 @@ export default async function BlogPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd("/blog", "Moksha Sewa Blogs")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={blogCollectionSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/blog", "Moksha Sewa Blogs")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <Blog initialBlogs={blogs} />
     </>
   );

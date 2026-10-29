@@ -3,7 +3,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import PrivacyPageContent from "./PrivacyPageContent";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
@@ -23,8 +23,8 @@ export default async function PrivacyPolicyPage() {
   return (
     <WebsiteContentProvider sections={sections as any} page="privacy-policy">
       <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
-        <JsonLd data={breadcrumbJsonLd("/privacy-policy")} />
-        {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+        <JsonLd data={breadcrumbJsonLd("/privacy-policy")} id="schema-breadcrumb" />
+        {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
         <Topbar />
         <Navbar />
         <PrivacyPageContent />

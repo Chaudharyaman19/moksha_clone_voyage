@@ -1,6 +1,6 @@
 import Mokshagallrey from "@/components/page-features/mokshagallery/Mokshagallrey";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -15,8 +15,8 @@ export default async function page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/mokshagallery", "Photo Gallery")} />
-      {customSchema && <JsonLd data={customSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/mokshagallery", "Photo Gallery")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <Mokshagallrey />
     </div>
   );

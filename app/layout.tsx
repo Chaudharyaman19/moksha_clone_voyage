@@ -4,8 +4,9 @@ import Sideicon from "@/components/layout/Sideicon/Sideicon";
 import ChatLauncher from "@/components/chat/ChatLauncher";
 import StoreProvider from "@/store/StoreProvider";
 import { optimizeCloudinary } from "@/lib/cloudinary";
-import JsonLd from "@/components/seo/JsonLd";
+import JsonLd, { ServerJsonLd } from "@/components/seo/JsonLd";
 import DynamicCanonical from "@/components/seo/DynamicCanonical";
+import HeadCode from "@/components/seo/HeadCode";
 import {
   DEFAULT_OG_CARD_IMAGE,
   DEFAULT_OG_IMAGE,
@@ -79,7 +80,6 @@ export const metadata: Metadata = {
 import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
 import SmoothScrolling from "@/components/common/SmoothScrolling";
 import Script from "next/script";
-import DeferredAnalytics from "@/components/common/DeferredAnalytics";
 import { GlobalAudioProvider } from "@/contexts/GlobalAudioContext";
 
 export default async function RootLayout({
@@ -90,18 +90,71 @@ export default async function RootLayout({
   const settings = await getWebsiteSettings();
   const advancedSeo = settings?.advancedSeo;
   // The CMS field wins, but an env var lets Analytics run before advancedSeo is populated.
-  const configuredGa4Id = advancedSeo?.ga4MeasurementId || process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
-  const configuredGtmId = advancedSeo?.gtmContainerId || process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
-  const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id ?? "") ? configuredGa4Id : undefined;
-  const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId ?? "") ? configuredGtmId : undefined;
+  const configuredGa4Id = (advancedSeo?.ga4MeasurementId || process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || "").trim();
+  const configuredGtmId = (advancedSeo?.gtmContainerId || process.env.NEXT_PUBLIC_GTM_CONTAINER_ID || "").trim();
+  const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id) ? configuredGa4Id : undefined;
+  const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId) ? configuredGtmId : undefined;
 
   const topbarSection = settings?.landingPage?.sections?.find((s: any) => s.key === "topbar");
   const configuredAudioUrl = topbarSection?.audioUrl;
 
   return (
     <html lang="en-IN" suppressHydrationWarning>
-      <head />
+      <head>
+        {/* Google Tag Manager - in <head> */}
+        {gtmContainerId && (
+          <script
+            id="google-tag-manager"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmContainerId}');`,
+            }}
+          />
+        )}
+        {/* Google Analytics (gtag.js) - in <head> */}
+        {ga4MeasurementId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}
+            />
+            <script
+              id="google-analytics"
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${ga4MeasurementId}', { send_page_view: true });`,
+              }}
+            />
+          </>
+        )}
+        {/* Google Search Console Verification */}
+        {advancedSeo?.googleSearchConsoleVerification && (
+          <meta
+            name="google-site-verification"
+            content={advancedSeo.googleSearchConsoleVerification}
+          />
+        )}
+        <ServerJsonLd data={organizationJsonLd(settings)} id="schema-organization" />
+        <ServerJsonLd data={websiteJsonLd(settings)} id="schema-website" />
+      </head>
       <body suppressHydrationWarning>
+        {advancedSeo?.globalHeadCode && <HeadCode code={advancedSeo.globalHeadCode} />}
+        {/* Google Tag Manager (noscript) - immediately after opening <body> */}
+        {gtmContainerId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
         <Script
           id="iframe-click-prevention"
           strategy="afterInteractive"
@@ -133,8 +186,6 @@ export default async function RootLayout({
         <StoreProvider>
           <GlobalAudioProvider audioUrl={configuredAudioUrl}>
             <DynamicCanonical />
-            <JsonLd data={organizationJsonLd()} />
-            <JsonLd data={websiteJsonLd()} />
             <Sideicon />
             <ChatLauncher />
             <SmoothScrolling>
@@ -145,9 +196,6 @@ export default async function RootLayout({
         {advancedSeo?.globalBodyCode && (
           <div dangerouslySetInnerHTML={{ __html: advancedSeo.globalBodyCode }} />
         )}
-
-        {/* Analytics */}
-        <DeferredAnalytics ga4MeasurementId={ga4MeasurementId} gtmContainerId={gtmContainerId} />
       </body>
     </html>
   );

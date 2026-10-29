@@ -44,8 +44,8 @@ export default async function Page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/")} />
-      {customSchema && <JsonLd data={customSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteContentProvider sections={websiteSections}>
         <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
         <WebsiteSection name="navbar"><Navbar /></WebsiteSection>

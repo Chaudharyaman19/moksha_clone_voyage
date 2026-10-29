@@ -67,7 +67,7 @@ async function request<T>(path: string, options?: RequestInit, isRetry = false):
   };
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
-  const res = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
+  const res = await fetch(`${API_BASE_URL}${path}`, { cache: "no-store", ...options, headers });
 
   if (res.status === 401 && !isRetry && path !== "/auth/refresh-token") {
     const refreshed = await refreshAccessToken();

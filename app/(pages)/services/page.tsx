@@ -57,8 +57,8 @@ export default async function ServicesPage() {
 
   return (
     <WebsiteContentProvider page="services" sections={sections}>
-      <JsonLd data={breadcrumbJsonLd("/services", "Services")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={serviceJsonLd} />}
+      <JsonLd data={breadcrumbJsonLd("/services", "Services")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
       <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
       <main className="pt-24">

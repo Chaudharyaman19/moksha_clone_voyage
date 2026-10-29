@@ -3,7 +3,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer/FooterNew";
 import PartnershipPageSections from "@/components/page-features/partnership/PartnershipPageSections";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 
@@ -22,8 +22,8 @@ export default async function Page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/partnership")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+      <JsonLd data={breadcrumbJsonLd("/partnership")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <Topbar />
       <Navbar />
       <WebsiteContentProvider page="partnership" sections={sections}>

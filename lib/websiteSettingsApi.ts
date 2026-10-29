@@ -190,7 +190,7 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
 }
 
 let settingsMemoryCache: { data: SettingsResponse | undefined; expires: number } | null = null;
-const SETTINGS_CACHE_TTL_MS = 60 * 1000;
+const SETTINGS_CACHE_TTL_MS = process.env.NODE_ENV === "production" ? 2000 : 0;
 
 export const getWebsiteSettings = cache(async (): Promise<SettingsResponse | undefined> => {
   const now = Date.now();

@@ -1,6 +1,6 @@
 import Mokshavediogallery from "@/components/page-features/mokshavediogallery/Mokshavediogallery";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -15,8 +15,8 @@ export default async function page() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/mokshavediogallery", "Video Gallery")} />
-      {customSchema && <JsonLd data={customSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/mokshavediogallery", "Video Gallery")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <Mokshavediogallery />
     </div>
   );

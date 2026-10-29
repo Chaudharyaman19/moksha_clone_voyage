@@ -27,8 +27,8 @@ async function pages() {
 
   return (
     <div>
-      <JsonLd data={breadcrumbJsonLd("/panditservices")} />
-      {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={defaultSchema} />}
+      <JsonLd data={breadcrumbJsonLd("/panditservices")} id="schema-breadcrumb" />
+      {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
       <WebsiteContentProvider page="pandit" sections={sections}>
         <Pandit pills={<LocationCityPills category="Pandit Service" />} />
         <WebsiteSection name="faq"><FAQ /></WebsiteSection>

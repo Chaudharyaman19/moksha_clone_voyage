@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer/FooterNew";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Topbar from "@/components/layout/topbar/Topbar";
 import JsonLd from "@/components/seo/JsonLd";
-import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, organizationJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, createDynamicMetadata, getPageSchemaMarkup, webPageJsonLd } from "@/lib/seo";
 import { getPageSections } from "@/lib/websiteSettingsApi";
 import { WebsiteContentProvider } from "@/components/website/WebsiteContentContext";
 import RefundPageContent from "./RefundPageContent";
@@ -23,8 +23,8 @@ export default async function RefundPolicyPage() {
   return (
     <WebsiteContentProvider sections={sections as any} page="refund-policy">
       <div className="min-h-screen bg-[#FBF8F2] text-[#2C1810]">
-        <JsonLd data={breadcrumbJsonLd("/refund-policy")} />
-        {customSchema ? <JsonLd data={customSchema} /> : <JsonLd data={organizationJsonLd()} />}
+        <JsonLd data={breadcrumbJsonLd("/refund-policy")} id="schema-breadcrumb" />
+        {customSchema && <JsonLd data={customSchema} id="schema-custom" />}
         <Topbar />
         <Navbar />
         <RefundPageContent />
