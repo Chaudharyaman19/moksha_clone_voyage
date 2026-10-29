@@ -80,7 +80,9 @@ const ChatLauncher: React.FC = () => {
       <style>{`
         @keyframes mitra-pop { from { opacity: 0; transform: translateY(6px) scale(0.95); } to { opacity: 1; transform: none; } }
         @keyframes mitra-ring { 0% { transform: scale(1); opacity: 0.5; } 70%, 100% { transform: scale(1.55); opacity: 0; } }
-        @media (prefers-reduced-motion: reduce) { .mitra-anim { animation: none !important; } }
+        @keyframes mitra-glow { 0%, 100% { filter: drop-shadow(0 6px 12px rgba(201,165,116,0.45)); } 50% { filter: drop-shadow(0 8px 20px rgba(213,66,0,0.38)); } }
+        .mitra-glow { animation: mitra-glow 3.2s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .mitra-anim, .mitra-glow { animation: none !important; } }
       `}</style>
 
       {/* Stays mounted after the first open so the conversation survives closing the panel */}
@@ -98,7 +100,7 @@ const ChatLauncher: React.FC = () => {
         >
           {!open && (
             <span className="mitra-anim pointer-events-none absolute bottom-full right-0 mb-2.5 animate-[mitra-pop_0.35s_ease-out] whitespace-nowrap rounded-xl border border-[#C9A574]/60 bg-white px-3 py-1.5 text-[12px] font-semibold text-[#73532F] shadow-lg transition-transform duration-200 group-hover:-translate-y-1 lg:text-[13px]">
-              {config?.launcher?.trim() || "May I help you?"}
+              {config?.launcher?.trim() || "Namaste 🙏 May I help you?"}
               <span className="absolute -bottom-[5px] right-5 h-2.5 w-2.5 rotate-45 border-b border-r border-[#C9A574]/60 bg-white" aria-hidden="true" />
             </span>
           )}
@@ -113,7 +115,7 @@ const ChatLauncher: React.FC = () => {
             <span
               className={
                 showRobot
-                  ? "relative flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+                  ? "mitra-glow relative flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
                   : "pointer-events-none absolute bottom-0 right-0 h-16 w-16 opacity-0"
               }
               aria-hidden="true"
