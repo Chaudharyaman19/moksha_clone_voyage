@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 import StoreProvider from "@/store/StoreProvider";
+import { optimizeCloudinary } from "@/lib/cloudinary";
 import JsonLd from "@/components/seo/JsonLd";
 import DynamicCanonical from "@/components/seo/DynamicCanonical";
 import {
@@ -66,12 +67,13 @@ export const metadata: Metadata = {
     images: [DEFAULT_OG_CARD_IMAGE],
   },
   icons: {
-    icon: DEFAULT_OG_IMAGE,
+    icon: optimizeCloudinary(DEFAULT_OG_IMAGE, 96),
   },
 };
 import { getWebsiteSettings } from "@/lib/websiteSettingsApi";
 import SmoothScrolling from "@/components/common/SmoothScrolling";
 import Script from "next/script";
+import DeferredAnalytics from "@/components/common/DeferredAnalytics";
 import { GlobalAudioProvider } from "@/contexts/GlobalAudioContext";
 
 export default async function RootLayout({
@@ -138,34 +140,7 @@ export default async function RootLayout({
         )}
 
         {/* Analytics */}
-        {ga4MeasurementId && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', '${ga4MeasurementId}', { send_page_view: true });
-              `}
-            </Script>
-          </>
-        )}
-        {gtmContainerId && (
-          <Script id="google-tag-manager" strategy="afterInteractive">
-            {`
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${gtmContainerId}');
-            `}
-          </Script>
-        )}
+        <DeferredAnalytics ga4MeasurementId={ga4MeasurementId} gtmContainerId={gtmContainerId} />
       </body>
     </html>
   );

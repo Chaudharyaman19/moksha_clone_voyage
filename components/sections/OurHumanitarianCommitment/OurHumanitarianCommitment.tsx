@@ -329,7 +329,6 @@ export default function HumanitarianCommitment() {
                   src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165202/moksha-sewa/assets/image.png"}
                   alt={textOrFallback(websiteSection?.title, "Moksha Sewa unclaimed body support", 120)}
                   fill
-                  priority
                   quality={100}
                   sizes="(max-width: 1024px) 100vw, 41vw"
                   className="object-inherit object-center"

@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { ArrowRight, Image as ImageIcon } from "lucide-react";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { useInViewOnce } from "@/lib/useInViewOnce";
+import { optimizeCloudinary } from "@/lib/cloudinary";
 
 const SEWA_CARDS = [
   {
@@ -41,6 +43,7 @@ const SEWA_CARDS = [
 
 export default function GlimpseOfJourney() {
   const websiteSection = useWebsiteSection("journey-glimpse");
+  const [cardsRef, cardsSeen] = useInViewOnce<HTMLDivElement>();
 
   const getValidImage = (url: any, fallback: string) => {
     if (typeof url === "string" && (url.startsWith("http") || url.startsWith("/"))) {
@@ -86,7 +89,6 @@ export default function GlimpseOfJourney() {
           src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165458/moksha-sewa/assets/sewa/sewa_in_action_bg.png")}
           alt="Glimpse of Sewa Journey Background"
           fill
-          priority
           sizes="100vw"
           className="h-full w-full object-cover md:object-fill"
         />
@@ -129,13 +131,13 @@ export default function GlimpseOfJourney() {
         </header>
 
         {/* Cards */}
-        <div className="mx-auto mt-5 grid w-full max-w-[1440px] grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
+        <div ref={cardsRef} className="mx-auto mt-5 grid w-full max-w-[1440px] grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
           {managedCards.map((card) => (
             <article
               key={card.id}
               className="group relative overflow-visible rounded-[17px] border border-[#e4d8c0] shadow-[0_-3px_14px_rgba(67,51,25,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_-4px_20px_rgba(67,51,25,0.12)]"
               style={{
-                backgroundImage: "url('https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165448/moksha-sewa/assets/sewa/card_image.png')",
+                backgroundImage: cardsSeen ? `url('${optimizeCloudinary("https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165448/moksha-sewa/assets/sewa/card_image.png", 800)}')` : undefined,
                 backgroundSize: "100% 100%",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",

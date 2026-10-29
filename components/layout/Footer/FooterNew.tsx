@@ -18,6 +18,7 @@ import namoGangeLogo from "../../../public/assets/namo-gange-logo.webp";
 import { newsletterApi } from "@/lib/newsletterApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { useInViewOnce } from "@/lib/useInViewOnce";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -254,6 +255,7 @@ const legalLinks = [
 
 export default function FooterNew() {
   const websiteSection = useWebsiteSection("footer");
+  const [presenceRef, presenceSeen] = useInViewOnce<HTMLDivElement>();
   const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -625,9 +627,10 @@ export default function FooterNew() {
               {/* ========================= OUR GLOBAL PRESENCE ========================= */}
               <div className="footer-col relative flex flex-col justify-start sm:col-span-2 lg:col-span-2 xl:col-span-1 xl:pl-2 xl:-mt-0.5 sm:-mt-0.5">
                 <div
+                  ref={presenceRef}
                   className="relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 bg-cover bg-right bg-no-repeat"
                   style={{
-                    backgroundImage: "url('/footer/image.png')",
+                    backgroundImage: presenceSeen ? "url('/footer/image.webp')" : undefined,
                     backgroundColor: "#060908",
                   }}
                 >

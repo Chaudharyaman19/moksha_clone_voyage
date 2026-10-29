@@ -3,6 +3,8 @@
 import type { ReactElement } from "react";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
+import { useInViewOnce } from "@/lib/useInViewOnce";
+import { optimizeCloudinary } from "@/lib/cloudinary";
 
 interface IconProps {
   name: string;
@@ -192,6 +194,7 @@ const supportCards = [
 
 export default function PracticalSewaSupport() {
   const websiteSection = useWebsiteSection("family-need");
+  const [bgRef, bgSeen] = useInViewOnce<HTMLDivElement>();
   const managedSupportCards = [
     ...supportCards.map((fallback, index) => {
     const item = websiteSection?.items?.[index];
@@ -244,6 +247,7 @@ export default function PracticalSewaSupport() {
           ====================================================== */}
 
           <div
+            ref={bgRef}
             className="
               pointer-events-none
               absolute
@@ -251,7 +255,7 @@ export default function PracticalSewaSupport() {
               bg-no-repeat
             "
             style={{
-              backgroundImage: `url('${websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165242/moksha-sewa/assets/manish.jpg"}')`,
+              backgroundImage: !bgSeen ? undefined : `url('${optimizeCloudinary(websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165242/moksha-sewa/assets/manish.jpg", 1600)}')`,
               backgroundSize: "cover",
               backgroundPosition: "76% 50%",
             }}

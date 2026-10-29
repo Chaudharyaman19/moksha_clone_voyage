@@ -15,7 +15,6 @@ export default function WhyYourSupportMatters() {
           src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164962/moksha-sewa/hero-images/support-mission-ghat.png"}
           alt="A volunteer sitting beside an elderly woman, watching the sunset over a river ghat"
           fill
-          priority
           sizes="100vw"
           className="object-cover object-center"
         />

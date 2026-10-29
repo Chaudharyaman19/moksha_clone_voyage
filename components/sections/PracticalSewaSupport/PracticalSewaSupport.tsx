@@ -511,7 +511,6 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
           src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165233/moksha-sewa/assets/km.jpg"}
           alt="Practical Sewa Support - Dignified Last Rites Services"
           fill
-          priority
           sizes="540px"
           className="
             hidden

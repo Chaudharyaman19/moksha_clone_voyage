@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
+import { ComponentType, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -29,37 +29,43 @@ function AnimatedNumber({ endString }: { endString: string }) {
   const end = parseInt(endString.replace(/,/g, "").replace(/\D/g, ""), 10);
   const suffix = endString.replace(/[0-9,]/g, "");
   const formatComma = endString.includes(",");
+  const textRef = useRef<HTMLSpanElement>(null);
 
-  const [count, setCount] = useState(0);
+  const format = useCallback(
+    (value: number) => `${formatComma && end > 999 ? value.toLocaleString("en-IN") : value}${suffix}`,
+    [end, formatComma, suffix],
+  );
 
+  // Writes the text straight to the DOM instead of setState per frame, so the 2s count-up doesn't re-render Hero ~120 times during page load.
   useEffect(() => {
     if (!shouldAnimate) return;
 
     let startTimestamp: number | null = null;
+    let frame = 0;
     const duration = 2000;
 
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(Math.floor(easeProgress * end));
+      if (textRef.current) textRef.current.textContent = format(Math.floor(easeProgress * end));
 
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        frame = window.requestAnimationFrame(step);
       }
     };
 
-    window.requestAnimationFrame(step);
-  }, [end, shouldAnimate]);
+    frame = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(frame);
+  }, [end, shouldAnimate, format]);
 
   if (!shouldAnimate) {
     return <span>{endString}</span>;
   }
 
   return (
-    <span>
-      {formatComma && end > 999 ? count.toLocaleString("en-IN") : count}
-      {suffix}
+    <span ref={textRef} suppressHydrationWarning>
+      {format(0)}
     </span>
   );
 }

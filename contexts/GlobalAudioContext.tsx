@@ -29,7 +29,9 @@ export function GlobalAudioProvider({
   useEffect(() => {
     let audio = audioRef.current;
     if (!audio) {
-      audio = new Audio(activeSrc);
+      audio = new Audio();
+      audio.preload = "none";
+      audio.src = activeSrc;
       audio.loop = true;
       audio.volume = 0.3;
       audioRef.current = audio;
@@ -60,16 +62,19 @@ export function GlobalAudioProvider({
       });
     };
 
-    // 1. Try immediate unmuted play
-    audio.play().then(() => {
-      setIsMusicOn(true);
-    }).catch(() => {
-      // 2. If blocked by browser, try muted autoplay (always allowed by browsers) then unmute on ANY activity
-      audio.muted = true;
+    // Mobile: skip the load-time autoplay attempt so the mp3 isn't fetched during page load (hurts PageSpeed); the listeners below start it on first touch/scroll.
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      // 1. Try immediate unmuted play
       audio.play().then(() => {
         setIsMusicOn(true);
-      }).catch(() => {});
-    });
+      }).catch(() => {
+        // 2. If blocked by browser, try muted autoplay (always allowed by browsers) then unmute on ANY activity
+        audio.muted = true;
+        audio.play().then(() => {
+          setIsMusicOn(true);
+        }).catch(() => {});
+      });
+    }
 
     // 3. Attach listeners everywhere on window and document so the very first touch/scroll/click immediately un-mutes and plays
     const events = ["click", "pointerdown", "mousedown", "touchstart", "touchend", "scroll", "keydown", "wheel"];

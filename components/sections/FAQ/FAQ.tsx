@@ -130,7 +130,6 @@ export default function FAQSection() {
           src={imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165160/moksha-sewa/assets/faq/bg.png")}
           alt="Frequently Asked Questions Background"
           fill
-          priority
           sizes="100vw"
           className="h-full w-full object-cover object-top"
         />
