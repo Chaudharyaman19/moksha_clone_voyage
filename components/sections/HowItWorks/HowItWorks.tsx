@@ -204,7 +204,7 @@ export default function HowItWorks({}: MokshaShlokSectionProps) {
 
       <div className="pointer-events-none absolute left-1/2 top-0 h-24 w-[62%] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-5 lg:px-0">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
         <header className="mb-5 text-center">
           <LotusMark className="mx-auto h-5 w-8 text-[#C98A34]" />
 

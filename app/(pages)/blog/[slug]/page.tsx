@@ -226,7 +226,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           aria-hidden="true"
         />
 
-        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 pb-6 pt-44">
+        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8 pb-6 pt-44">
           {/* Breadcrumb navigation - clears logo comfortably */}
           <nav className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-[#8B6A3E]/90 mb-4 flex-wrap">
             <Link href="/" className="hover:text-[#2C1810] transition">
@@ -313,7 +313,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </header>
 
       {/* ===================== MAIN BODY: 2-COLUMN LAYOUT (MAX-W-7XL) ===================== */}
-      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 mt-4">
+      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8 mt-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
           {/* LEFT: MAIN ARTICLE CONTENT (8 COLUMNS) */}
           <div className="lg:col-span-8 min-w-0">

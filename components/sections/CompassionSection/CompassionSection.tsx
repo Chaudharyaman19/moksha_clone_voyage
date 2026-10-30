@@ -233,7 +233,7 @@ export default function CompassionSection() {
         <div className="absolute left-0 top-0 h-full w-[42%] bg-[radial-gradient(circle_at_0%_0%,rgba(202,157,93,0.12),transparent_42%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px]">
+      <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px] 2xl:px-8">
         <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
           <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-0 lg:py-8">
             {/* Brand row */}

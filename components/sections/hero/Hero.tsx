@@ -419,7 +419,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px]"
+        className="group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
       >
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
@@ -429,7 +429,7 @@ export default function Hero() {
               ? "left-0 right-0 md:left-[40%]"
               : isVolunteerImpactSlide
                 ? "left-0 right-0 md:left-[36%]"
-                : `left-0 ${currentIndex === 0 ? "right-0" : "right-0 md:right-[-80px]"}`
+                : `left-0 ${currentIndex === 0 ? "right-0" : "right-0 md:right-[-80px] 2xl:right-0"}`
             }`}
         >
           <div className="absolute inset-0 min-w-full transition-opacity duration-1000 ease-out">
@@ -506,7 +506,7 @@ export default function Hero() {
         </button>
 
         {/* Main content */}
-        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
+        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
           <div className="flex h-full items-start pt-[104px] sm:pt-[140px]">
             <div className="w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
 
@@ -660,7 +660,7 @@ export default function Hero() {
         </div>
 
         {activeSlide.showMissionExtras && !isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
-          <div className="absolute bottom-5 right-5 z-30 hidden w-[640px] border border-[#E2AE73] bg-[#FFF8EE]/95 px-5 py-4 shadow-[0_10px_30px_rgba(95,61,30,0.12)] backdrop-blur-sm xl:block">
+          <div className="absolute bottom-5 right-5 z-30 hidden w-[640px] border border-[#E2AE73] bg-[#FFF8EE]/95 px-5 py-4 shadow-[0_10px_30px_rgba(95,61,30,0.12)] backdrop-blur-sm xl:block 2xl:right-[max(1.25rem,calc((100vw-80rem)/2+1.25rem))]">
             <div className="grid grid-cols-3 divide-x divide-[#D8B58B]">
               <div className="flex items-center gap-3 px-3">
                 <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">

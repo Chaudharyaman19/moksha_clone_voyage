@@ -182,7 +182,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
       </nav>
 
       {/* ========================== BLOG POSTS: SINGLE ROW ME 2 BLOGS =========================== */}
-      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0">
+      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
         {filteredBlogs.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-[#E7D5C2] p-8 max-w-lg mx-auto shadow-xs">
             <PiFlowerLotus className="h-10 w-10 text-[#C9873A] mx-auto mb-3 opacity-60" />

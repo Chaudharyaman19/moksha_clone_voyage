@@ -100,7 +100,7 @@ const SocialSidebar = () => {
 
   return (
     <>
-      <div className="side-icon-fixed-root fixed inset-0 pointer-events-none z-50 hidden md:block">
+      <div className="side-icon-fixed-root fixed inset-0 pointer-events-none z-40 hidden md:block">
         <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-auto">
           <div className="flex flex-col gap-3">
             <div className="group relative">
