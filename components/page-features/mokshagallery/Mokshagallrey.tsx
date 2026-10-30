@@ -270,20 +270,21 @@ function ImageCard({
       className="ms-card group relative block w-full overflow-hidden rounded-[18px] bg-[#EFE8DD] text-left ring-1 ring-black/5 outline-none transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-[3px] hover:shadow-[0_22px_45px_-24px_rgba(44,24,16,0.65)] focus-visible:ring-2 focus-visible:ring-[#C9873A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF7F2] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       style={{ aspectRatio: aspect }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         ref={imgRef}
         src={src}
         alt={image.alt}
-        loading={eager ? "eager" : "lazy"}
-        decoding="async"
-        onLoad={(event) => measure(event.currentTarget)}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        priority={eager}
+        loading={eager ? undefined : "lazy"}
+        onLoad={(event) => measure(event.currentTarget as HTMLImageElement)}
         onError={() => {
           if (image.fallbackSrc && src !== image.fallbackSrc) {
             setSrc(image.fallbackSrc);
           }
         }}
-        className={`absolute inset-0 h-full w-full object-cover transition-[transform,opacity] duration-[900ms] ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${ready ? "opacity-100" : "opacity-0"
+        className={`object-cover transition-[transform,opacity] duration-[900ms] ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${ready ? "opacity-100" : "opacity-0"
           }`}
       />
 
