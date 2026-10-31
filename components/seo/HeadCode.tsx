@@ -17,7 +17,9 @@ export default function HeadCode({ code }: { code?: string }) {
 
     return () => {
       elements.forEach((el) => {
-        if (el.parentNode) el.parentNode.removeChild(el);
+        try {
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        } catch {}
       });
     };
   }, [code]);

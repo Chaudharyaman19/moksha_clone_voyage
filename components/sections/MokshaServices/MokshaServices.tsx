@@ -208,7 +208,7 @@ const MokshaServices: React.FC = () => {
       ========================================================== */}
       <Image
         src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165007/moksha-sewa/assets/about-optimized/moksha_services_bg.png")}
-        alt=""
+        alt="cremation services in ghaziabad"
         fill
         sizes="100vw"
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center"

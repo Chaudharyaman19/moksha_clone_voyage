@@ -22,9 +22,11 @@ export default function JsonLd({ data, id }: JsonLdProps) {
 
     // If data is empty / removed from admin, immediately remove the script from <head>
     if (!content) {
-      if (existingInHead && existingInHead.parentNode) {
-        existingInHead.parentNode.removeChild(existingInHead);
-      }
+      try {
+        if (existingInHead && existingInHead.parentNode) {
+          existingInHead.parentNode.removeChild(existingInHead);
+        }
+      } catch {}
       return;
     }
 
@@ -53,9 +55,11 @@ export default function JsonLd({ data, id }: JsonLdProps) {
     document.head.appendChild(script);
 
     return () => {
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
+      try {
+        if (script && script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      } catch {}
     };
   }, [content, scriptId]);
 

@@ -322,7 +322,7 @@ const PolicyHero = ({
               >
                 <Image
                   src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165341/moksha-sewa/assets/privacy-policy/title_decoration.webp"
-                  alt=""
+                  alt="cremation services in ghaziabad"
                   width={200}
                   height={40}
                   className="h-8 w-auto object-contain sm:h-10"

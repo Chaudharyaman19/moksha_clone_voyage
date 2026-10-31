@@ -7,11 +7,11 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createDynamicMetadata("/mokshagallery", "landing");
+  return createDynamicMetadata("/mokshagallery", "mokshaGallery");
 }
 
 export default async function page() {
-  const customSchema = await getPageSchemaMarkup("/mokshagallery", "landing").catch(() => null);
+  const customSchema = await getPageSchemaMarkup("/mokshagallery", "mokshaGallery").catch(() => null);
 
   return (
     <div>

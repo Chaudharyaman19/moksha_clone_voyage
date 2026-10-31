@@ -78,6 +78,9 @@ interface SettingsResponse {
   careersReviewSubmitPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   careersUploadCvPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
   disclaimerPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  mokshaGalleryPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  mokshaVideoGalleryPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
+  blogPage?: { enabled?: boolean; seo?: any; sections?: ExtraSectionContent[] };
 }
 
 export type WebsitePageKey =
@@ -105,7 +108,10 @@ export type WebsitePageKey =
   | "refund-policy"
   | "code-of-conduct"
   | "careers"
-  | "disclaimer";
+  | "disclaimer"
+  | "mokshaGallery"
+  | "mokshaVideoGallery"
+  | "blog";
 
 export function getMergedWebsiteSections(page: WebsitePageKey, settings?: SettingsResponse) {
   let pageSections;
@@ -176,6 +182,15 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
       break;
     case "code-of-conduct":
       pageSections = mergeConductSections(settings?.conductPage?.sections);
+      break;
+    case "mokshaGallery":
+      pageSections = (settings?.mokshaGalleryPage?.sections as ExtraSectionContent[] | undefined) ?? [];
+      break;
+    case "mokshaVideoGallery":
+      pageSections = (settings?.mokshaVideoGalleryPage?.sections as ExtraSectionContent[] | undefined) ?? [];
+      break;
+    case "blog":
+      pageSections = (settings?.blogPage?.sections as ExtraSectionContent[] | undefined) ?? [];
       break;
     case "landing":
     default:
@@ -253,6 +268,9 @@ export function isPageDisabled(page: WebsitePageKey, settings?: SettingsResponse
     "code-of-conduct": "conductPage",
     "careers": "careersPage",
     "disclaimer": "disclaimerPage",
+    "mokshaGallery": "mokshaGalleryPage",
+    "mokshaVideoGallery": "mokshaVideoGalleryPage",
+    "blog": "blogPage",
   };
 
   const key = pageKeyMap[page];

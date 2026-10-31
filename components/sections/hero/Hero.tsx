@@ -419,7 +419,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
+        className="hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
       >
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
@@ -506,9 +506,9 @@ export default function Hero() {
         </button>
 
         {/* Main content */}
-        <div className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
-          <div className="flex h-full items-start pt-[104px] sm:pt-[140px]">
-            <div className="w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
+        <div className="hero-container-1366 relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
+          <div className="hero-content-row-1366 flex h-full items-start pt-[104px] sm:pt-[140px]">
+            <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
 
               <div className="mb-3 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
@@ -538,7 +538,7 @@ export default function Hero() {
               </div>
 
               <h1
-                className="text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:min-h-[112px] lg:text-[54px] xl:min-h-[120px] xl:text-[58px]"
+                className="hero-heading-1366 text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:min-h-[112px] lg:text-[54px] xl:min-h-[120px] xl:text-[58px]"
                 style={{
                   fontWeight: 500,
                 }}
@@ -579,7 +579,7 @@ export default function Hero() {
                 <span className="h-px flex-1 bg-[#C85117]/65" />
               </div>
 
-              <p className="mt-3 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
+              <p className="hero-desc-1366 mt-3 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
                 {activeSlide.descriptionHighlight &&
                   activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
@@ -619,7 +619,7 @@ export default function Hero() {
               </div>
 
               {activeSlide.showMissionExtras && (
-                <div className="mt-1 hidden max-w-[690px] items-center gap-0 lg:flex">
+                <div className="hero-highlights-1366 mt-1 hidden max-w-[690px] items-center gap-0 lg:flex">
                   <div className="flex min-w-[215px] items-center gap-2.5 border-r border-[#D8B58B] pr-5">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F7E4C6] text-[#D95A06]">
                       <FaHandHoldingHeart className="h-5 w-5" />
@@ -660,7 +660,7 @@ export default function Hero() {
         </div>
 
         {activeSlide.showMissionExtras && !isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
-          <div className="absolute bottom-5 right-5 z-30 hidden w-[640px] border border-[#E2AE73] bg-[#FFF8EE]/95 px-5 py-4 shadow-[0_10px_30px_rgba(95,61,30,0.12)] backdrop-blur-sm xl:block 2xl:right-[max(1.25rem,calc((100vw-80rem)/2+1.25rem))]">
+          <div className="hero-right-card-1366 absolute bottom-5 right-5 z-30 hidden w-[640px] border border-[#E2AE73] bg-[#FFF8EE]/95 px-5 py-4 shadow-[0_10px_30px_rgba(95,61,30,0.12)] backdrop-blur-sm xl:block 2xl:right-[max(1.25rem,calc((100vw-80rem)/2+1.25rem))]">
             <div className="grid grid-cols-3 divide-x divide-[#D8B58B]">
               <div className="flex items-center gap-3 px-3">
                 <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#E2AE73] text-[#D95A06]">

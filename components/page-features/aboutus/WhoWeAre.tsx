@@ -87,7 +87,7 @@ export default function WhoWeAre() {
           <div className="relative mt-5 aspect-[4/3] overflow-hidden rounded-[18px] border border-[#e1d0b6]">
             <Image
               src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png")}
-              alt="Moksha Sewa community support"
+              alt="cremation services in ghaziabad"
               fill
               sizes="(max-width: 640px) calc(100vw - 40px), 576px"
               className="object-cover object-[68%_center]"
@@ -133,7 +133,7 @@ export default function WhoWeAre() {
       <div className="relative mx-auto hidden aspect-[2.32/1] w-full max-w-[1774px] lg:block">
         <Image
           src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png")}
-          alt=""
+          alt="cremation services in ghaziabad"
           fill
           sizes="(min-width: 1774px) 1774px, 100vw"
           className="object-cover"

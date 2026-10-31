@@ -454,7 +454,7 @@ export default function RefundPolicy() {
     highlightNavItem(index);
     scrollToTarget(element);
 
-    window.history.replaceState(null, "", `#${element.id}`);
+    window.history.replaceState(window.history.state, "", `#${element.id}`);
   };
 
   return (
@@ -742,7 +742,7 @@ export default function RefundPolicy() {
 
             <Image
               src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165340/moksha-sewa/assets/privacy-policy/subtitle_decoration.webp"
-              alt=""
+              alt="cremation services in ghaziabad"
               width={120}
               height={40}
               className="hidden h-6 w-auto object-contain sm:block"

@@ -95,7 +95,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 pt-44 flex flex-col items-center text-center">
+        <div className="blog-header-1366 relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 pt-44 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#8B6A3E]/20 bg-white/80 px-4 py-1.5 backdrop-blur-sm shadow-2xs">
             <PiFlowerLotus className="h-3.5 w-3.5 text-[#C9873A]" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6A3E]">
@@ -182,7 +182,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
       </nav>
 
       {/* ========================== BLOG POSTS: SINGLE ROW ME 2 BLOGS =========================== */}
-      <main className="relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
+      <main className="blog-container-1366 relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
         {filteredBlogs.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-[#E7D5C2] p-8 max-w-lg mx-auto shadow-xs">
             <PiFlowerLotus className="h-10 w-10 text-[#C9873A] mx-auto mb-3 opacity-60" />
@@ -203,7 +203,7 @@ export default function Blog({ initialBlogs }: BlogProps) {
           </div>
         ) : (
           /* Grid: 2 blogs per row (single row me 2 blogs on lg screen) */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 mb-4">
+          <div className="blog-card-grid-1366 grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 mb-4">
             {filteredBlogs.map((blog) => {
               const formattedDate = blog.publishedAt || blog.createdAt
                 ? new Date(blog.publishedAt || blog.createdAt).toLocaleDateString("en-GB", {

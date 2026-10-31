@@ -7,13 +7,13 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function generateMetadata() {
-  return createDynamicMetadata("/blog", "landing");
+  return createDynamicMetadata("/blog", "blog");
 }
 
 export default async function BlogPage() {
   const [blogs, customSchema] = await Promise.all([
     blogsApi.getAllPublic(),
-    getPageSchemaMarkup("/blog", "landing").catch(() => null),
+    getPageSchemaMarkup("/blog", "blog").catch(() => null),
   ]);
 
   const blogCollectionSchema = {

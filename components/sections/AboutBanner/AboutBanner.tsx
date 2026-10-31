@@ -560,7 +560,7 @@ const AboutMokshaSewa: React.FC = () => {
         >
           {/* Left decoration */}
           <div className="hidden shrink-0 md:block">
-            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164989/moksha-sewa/assets/about-optimized/about_banner_deco_left.png" alt="" width={100} height={81} className="h-auto w-[100px]" />
+            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164989/moksha-sewa/assets/about-optimized/about_banner_deco_left.png" alt="cremation services in ghaziabad" width={100} height={81} className="h-auto w-[100px]" />
           </div>
 
           <div className="min-w-0 text-center">
@@ -641,7 +641,7 @@ const AboutMokshaSewa: React.FC = () => {
 
           {/* Right decoration */}
           <div className="hidden shrink-0 md:block">
-            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164992/moksha-sewa/assets/about-optimized/about_banner_deco_right.png" alt="" width={100} height={77} className="h-auto w-[100px]" />
+            <Image src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164992/moksha-sewa/assets/about-optimized/about_banner_deco_right.png" alt="cremation services in ghaziabad" width={100} height={77} className="h-auto w-[100px]" />
           </div>
         </div>
       </div>

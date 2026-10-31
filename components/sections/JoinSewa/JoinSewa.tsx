@@ -454,7 +454,7 @@ const JoinSewa: React.FC = () => {
         <div className="absolute inset-0 -z-20">
           <Image
             src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164993/moksha-sewa/assets/about-optimized/be_part.png")}
-            alt=""
+            alt="cremation services in ghaziabad"
             fill
             sizes="100vw"
             className="

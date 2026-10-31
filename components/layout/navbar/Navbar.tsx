@@ -3,6 +3,7 @@ import { fetchSettingsJson } from "@/lib/clientSettings";
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -279,8 +280,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-[68px] relative">
             <div className="flex-shrink-0 pl-2 pr-4 py-1">
-              <button
-                onClick={() => handleNavigation("/")}
+              <Link
+                href="/"
+                onClick={() => {
+                  setOpen(false);
+                  setOpenDropdown(null);
+                }}
                 aria-label="Moksha Sewa home"
                 className="block transition-all"
               >
@@ -295,7 +300,7 @@ export default function Navbar() {
                     className="w-full h-full object-contain"
                   />
                 </div>
-              </button>
+              </Link>
             </div>
             <div className="hidden lg:flex items-center space-x-0 dropdown-container ml-auto h-full">
               {allNavItems.map((item, index) => (
@@ -322,23 +327,31 @@ export default function Navbar() {
                       />
                     </button>
                   ) : item.name === "Donate" ? (
-                    <button
-                      onClick={() => handleNavigation(item.path)}
+                    <Link
+                      href={item.path}
+                      onClick={() => {
+                        setOpen(false);
+                        setOpenDropdown(null);
+                      }}
                       className="donate-nav-sparkle group relative ml-1 flex items-center gap-1.5 overflow-hidden rounded-full border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-1.5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)]"
                     >
                       <span className="donate-nav-shine" aria-hidden />
                       <span className="relative z-10">{item.name}</span>
                       <FaStar className="donate-star donate-star-one" aria-hidden />
                       <FaStar className="donate-star donate-star-two" aria-hidden />
-                    </button>
+                    </Link>
                   ) : item.name === "Request Help" ? (
-                    <button
-                      onClick={() => handleNavigation(item.path)}
+                    <Link
+                      href={item.path}
+                      onClick={() => {
+                        setOpen(false);
+                        setOpenDropdown(null);
+                      }}
                       className="ml-1 flex items-center gap-1.5 rounded-full bg-[#8B6A3E] px-3 py-1.5 text-[16px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#73532F] hover:shadow-md"
                     >
                       {item.name}
-                    </button>
-                  ) : (
+                    </Link>
+                  ) : item.path.startsWith("#") ? (
                     <button
                       onClick={() => handleNavigation(item.path)}
                       aria-current={isItemActive(item) ? "page" : undefined}
@@ -354,6 +367,26 @@ export default function Navbar() {
                           }`}
                       />
                     </button>
+                  ) : (
+                    <Link
+                      href={item.path}
+                      onClick={() => {
+                        setOpen(false);
+                        setOpenDropdown(null);
+                      }}
+                      aria-current={isItemActive(item) ? "page" : undefined}
+                      className={`relative px-2.5 py-2 transition-colors duration-200 flex items-center gap-1 h-full ${isItemActive(item)
+                        ? "text-[#8B6A3E]"
+                        : "text-[#5A4030] hover:text-[#8B6A3E]"
+                        }`}
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <span
+                        aria-hidden
+                        className={`absolute inset-x-3 bottom-3 h-0.5 rounded-full bg-[#8B6A3E] transition-opacity ${isItemActive(item) ? "opacity-100" : "opacity-0"
+                          }`}
+                      />
+                    </Link>
                   )}
 
                   {item.dropdown && (
@@ -365,21 +398,42 @@ export default function Navbar() {
                     >
                       <div className="py-2">
                         {item.dropdown.map((subItem, subIndex) => (
-                          <button
-                            key={navKey(subItem, subIndex)}
-                            onClick={() => !subItem.disabled && handleNavigation(subItem.path)}
-                            disabled={subItem.disabled}
-                            aria-current={isPathActive(subItem.path) ? "page" : undefined}
-                            className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
-                              }`}
-                          >
-                            <span className={isPathActive(subItem.path) ? "text-[#8B6A3E] w-5" : "text-[#5A4030]/80 w-5"}>
-                              {subItem.icon}
-                            </span>
-                            <span className={`font-medium flex-1 text-left ${isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]"}`}>
-                              {subItem.name}
-                            </span>
-                          </button>
+                          subItem.path.startsWith("#") ? (
+                            <button
+                              key={navKey(subItem, subIndex)}
+                              onClick={() => !subItem.disabled && handleNavigation(subItem.path)}
+                              disabled={subItem.disabled}
+                              aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                              className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                                }`}
+                            >
+                              <span className={isPathActive(subItem.path) ? "text-[#8B6A3E] w-5" : "text-[#5A4030]/80 w-5"}>
+                                {subItem.icon}
+                              </span>
+                              <span className={`font-medium flex-1 text-left ${isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]"}`}>
+                                {subItem.name}
+                              </span>
+                            </button>
+                          ) : (
+                            <Link
+                              key={navKey(subItem, subIndex)}
+                              href={subItem.path}
+                              onClick={() => {
+                                setOpen(false);
+                                setOpenDropdown(null);
+                              }}
+                              aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                              className={`flex items-center space-x-2 w-full px-4 py-2 transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed pointer-events-none bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                                }`}
+                            >
+                              <span className={isPathActive(subItem.path) ? "text-[#8B6A3E] w-5" : "text-[#5A4030]/80 w-5"}>
+                                {subItem.icon}
+                              </span>
+                              <span className={`font-medium flex-1 text-left ${isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]"}`}>
+                                {subItem.name}
+                              </span>
+                            </Link>
+                          )
                         ))}
                       </div>
                     </div>
@@ -501,8 +555,12 @@ export default function Navbar() {
                     />
                   </button>
                 ) : item.name === "Donate" ? (
-                  <button
-                    onClick={() => handleNavigation(item.path)}
+                  <Link
+                    href={item.path}
+                    onClick={() => {
+                      setOpen(false);
+                      setOpenDropdown(null);
+                    }}
                     aria-current={isItemActive(item) ? "page" : undefined}
                     className="donate-nav-sparkle relative flex w-full items-center space-x-2 overflow-hidden rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-3 py-2 text-white shadow-[0_0_18px_rgba(229,169,62,0.38)]"
                   >
@@ -510,8 +568,8 @@ export default function Navbar() {
                     <span className="relative z-10 text-[16px] font-semibold">{item.name}</span>
                     <FaStar className="donate-star donate-star-one" aria-hidden />
                     <FaStar className="donate-star donate-star-two" aria-hidden />
-                  </button>
-                ) : (
+                  </Link>
+                ) : item.path.startsWith("#") ? (
                   <button
                     onClick={() => handleNavigation(item.path)}
                     aria-current={isItemActive(item) ? "page" : undefined}
@@ -521,31 +579,66 @@ export default function Navbar() {
                     <span className="text-base">{item.icon}</span>
                     <span className="text-[16px] font-medium">{item.name}</span>
                   </button>
+                ) : (
+                  <Link
+                    href={item.path}
+                    onClick={() => {
+                      setOpen(false);
+                      setOpenDropdown(null);
+                    }}
+                    aria-current={isItemActive(item) ? "page" : undefined}
+                    className={`flex items-center space-x-2 w-full px-3 py-2 rounded-lg ${isItemActive(item) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-50"
+                      }`}
+                  >
+                    <span className="text-base">{item.icon}</span>
+                    <span className="text-[16px] font-medium">{item.name}</span>
+                  </Link>
                 )}
 
                 {openDropdown === item.name && item.dropdown && (
                   <div className="ml-5 mt-1 space-y-0.5 bg-white rounded-lg p-1.5 border border-gray-100">
                     {item.dropdown.map((subItem, subIndex) => (
-                      <button
-                        key={navKey(subItem, subIndex)}
-                        onClick={() => {
-                          if (!subItem.disabled) {
-                            handleNavigation(subItem.path);
+                      subItem.path.startsWith("#") ? (
+                        <button
+                          key={navKey(subItem, subIndex)}
+                          onClick={() => {
+                            if (!subItem.disabled) {
+                              handleNavigation(subItem.path);
+                              setOpen(false);
+                            }
+                          }}
+                          disabled={subItem.disabled}
+                          aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                          className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
+                            }`}
+                        >
+                          <span className={isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]/70"}>
+                            {subItem.icon}
+                          </span>
+                          <span className="text-[16px] font-medium">
+                            {subItem.name}
+                          </span>
+                        </button>
+                      ) : (
+                        <Link
+                          key={navKey(subItem, subIndex)}
+                          href={subItem.path}
+                          onClick={() => {
                             setOpen(false);
-                          }
-                        }}
-                        disabled={subItem.disabled}
-                        aria-current={isPathActive(subItem.path) ? "page" : undefined}
-                        className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
-                          }`}
-                      >
-                        <span className={isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]/70"}>
-                          {subItem.icon}
-                        </span>
-                        <span className="text-[16px] font-medium">
-                          {subItem.name}
-                        </span>
-                      </button>
+                            setOpenDropdown(null);
+                          }}
+                          aria-current={isPathActive(subItem.path) ? "page" : undefined}
+                          className={`flex items-center space-x-2 w-full px-3 py-1.5 rounded-md transition-all duration-150 ${subItem.disabled ? "cursor-not-allowed pointer-events-none bg-gray-50 text-[#5A4030]/45" : isPathActive(subItem.path) ? "bg-[#8B6A3E]/10 text-[#8B6A3E]" : "text-[#5A4030] hover:bg-gray-100"
+                            }`}
+                        >
+                          <span className={isPathActive(subItem.path) ? "text-[#8B6A3E]" : "text-[#5A4030]/70"}>
+                            {subItem.icon}
+                          </span>
+                          <span className="text-[16px] font-medium">
+                            {subItem.name}
+                          </span>
+                        </Link>
+                      )
                     ))}
                   </div>
                 )}

@@ -173,7 +173,7 @@ export default function OurStory() {
         >
           <Image
             src={imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164976/moksha-sewa/assets/about/our-story/ghat-background.png")}
-            alt=""
+            alt="cremation services in ghaziabad"
             fill
             priority
             sizes="58vw"
@@ -873,7 +873,7 @@ export default function OurStory() {
         >
           <Image
             src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164976/moksha-sewa/assets/about/our-story/ghat-background.png"
-            alt=""
+            alt="cremation services in ghaziabad"
             fill
             sizes="100vw"
             className="

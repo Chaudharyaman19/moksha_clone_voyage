@@ -759,6 +759,9 @@ export async function createDynamicMetadata(path: string, pageKey: WebsitePageKe
     "code-of-conduct": "conductPage",
     careers: "careersPage",
     disclaimer: "disclaimerPage",
+    mokshaGallery: "mokshaGalleryPage",
+    mokshaVideoGallery: "mokshaVideoGalleryPage",
+    blog: "blogPage",
   };
 
   const pageSettings = settings?.[pageFieldMap[pageKey] as keyof typeof settings];
@@ -1151,6 +1154,9 @@ export const PATH_TO_PAGE_KEY: Record<string, WebsitePageKey> = {
   "/code-of-conduct": "code-of-conduct",
   "/careers": "careers",
   "/disclaimer": "disclaimer",
+  "/mokshagallery": "mokshaGallery",
+  "/mokshavediogallery": "mokshaVideoGallery",
+  "/blog": "blog",
 };
 
 export async function getPageSchemaMarkup(path: string, pageKey?: WebsitePageKey): Promise<string | null> {
@@ -1200,6 +1206,9 @@ export async function getPageSchemaMarkup(path: string, pageKey?: WebsitePageKey
       "code-of-conduct": "conductPage",
       careers: "careersPage",
       disclaimer: "disclaimerPage",
+      mokshaGallery: "mokshaGalleryPage",
+      mokshaVideoGallery: "mokshaVideoGalleryPage",
+      blog: "blogPage",
     };
 
     const pageSettings = settings?.[pageFieldMap[resolvedKey] as keyof typeof settings];

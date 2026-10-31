@@ -570,3 +570,91 @@ body {
   }
 }
 
+/* Responsive adjustments STRICTLY for 1366x768 (1280px to 1390px laptop displays) */
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  /* Prevent side overflow and leave clear breathing space for fixed floating side widgets (33px left, 60px right) */
+  .hero-container-1366,
+  .blog-container-1366 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Hero Section: Keep height balanced on 768px viewport */
+  .hero-section-1366 {
+    min-height: 600px !important;
+    max-height: 670px !important;
+  }
+
+  /* Hero Content Row & Column: Leave space for right side card without colliding */
+  .hero-content-row-1366 {
+    padding-top: 104px !important;
+  }
+
+  .hero-content-col-1366 {
+    max-width: 580px !important;
+    width: 50% !important;
+  }
+
+  .hero-heading-1366 {
+    font-size: 44px !important;
+    min-height: 96px !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-desc-1366 {
+    font-size: 17px !important;
+    max-width: 540px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* 3-item mission highlights row */
+  .hero-highlights-1366 {
+    max-width: 540px !important;
+  }
+  .hero-highlights-1366 > div {
+    min-width: 0 !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+  .hero-highlights-1366 span.text-\[16px\] {
+    font-size: 13px !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Floating mission card on the bottom-right: 
+     Resized from 640px to 480px so it leaves ~240px free space and NEVER overlaps the left column */
+  .hero-right-card-1366 {
+    width: 480px !important;
+    padding: 0.75rem 0.85rem !important;
+    bottom: 1.25rem !important;
+    right: 1.5rem !important;
+  }
+  .hero-right-card-1366 .grid > div {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+  .hero-right-card-1366 span.w-16 {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  .hero-right-card-1366 svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+  .hero-right-card-1366 span.text-\[16px\] {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Blog page adjustments for 1366x768 */
+  .blog-header-1366 {
+    padding-top: 130px !important;
+  }
+
+  .blog-card-grid-1366 {
+    gap: 1.25rem !important;
+  }
+}
+
