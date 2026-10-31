@@ -37,10 +37,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .trim();
   const finalTitle = cleanTitle && cleanTitle.toLowerCase() !== "moksha sewa" ? cleanTitle : rawTitle;
   const canonicalUrl = blog.seo?.canonicalUrl || `https://mokshasewa.org/blog/${blog.slug}`;
-  const ogImg = blog.seo?.ogImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
+  const ogImg = blog.seo?.ogImage || blog.bannerImage || blog.coverImage || "/assets/og/logo-moksha-seva-og.png";
   const desc = blog.seo?.metaDescription || blog.excerpt || (blog.content ? blog.content.replace(/<[^>]*>/g, "").substring(0, 160).trim() : "");
   const fullOgImage = toOgImage(ogImg.startsWith("http") ? ogImg : `https://mokshasewa.org${ogImg.startsWith("/") ? "" : "/"}${ogImg}`);
-  const ogImageAlt = blog.seo?.ogImageAlt || blog.coverImageAlt || finalTitle;
+  const ogImageAlt = blog.seo?.ogImageAlt || blog.bannerImageAlt || blog.coverImageAlt || finalTitle;
 
   return {
     title: { absolute: `${finalTitle} | Moksha Sewa` },
@@ -317,12 +317,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-4 items-start">
           {/* LEFT: MAIN ARTICLE CONTENT (8 COLUMNS) */}
           <div className="lg:col-span-8 min-w-0">
-            {/* Cover Image */}
-            {blog.coverImage && (
+            {/* Detail Banner Image */}
+            {(blog.bannerImage || blog.coverImage) && (
               <div className="relative aspect-[16/5] w-full overflow-hidden rounded-2xl border border-[#E7D5C2] bg-[#F0E8D5] shadow-xs mb-4">
                 <Image
-                  src={blog.coverImage}
-                  alt={blog.title}
+                  src={blog.bannerImage || blog.coverImage!}
+                  alt={blog.bannerImageAlt || blog.coverImageAlt || blog.title}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 850px"

@@ -225,10 +225,10 @@ export default function Blog({ initialBlogs }: BlogProps) {
                     href={`/blog/${blog.slug}`}
                     className="relative sm:w-[42%] min-h-[220px] sm:min-h-[260px] shrink-0 overflow-hidden bg-[#F0E8D5] block"
                   >
-                    {blog.coverImage ? (
+                    {blog.coverImage || blog.bannerImage ? (
                       <Image
-                        src={blog.coverImage}
-                        alt={blog.title}
+                        src={blog.coverImage || blog.bannerImage!}
+                        alt={blog.coverImageAlt || blog.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"

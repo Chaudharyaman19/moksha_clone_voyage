@@ -29,6 +29,8 @@ export interface BlogPost {
   content: string;
   coverImage?: string;
   coverImageAlt?: string;
+  bannerImage?: string;
+  bannerImageAlt?: string;
   author: string;
   tags: string[];
   category?: string;
