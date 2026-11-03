@@ -257,12 +257,67 @@ const legalLinks = [
 
 export default function FooterNew() {
   const websiteSection = useWebsiteSection("footer");
+  const locationsSection = useWebsiteSection("contact-locations");
   const [presenceRef, presenceSeen] = useInViewOnce<HTMLDivElement>();
   const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [disabledPaths, setDisabledPaths] = useState<string[]>([]);
+
+  const defaultFooterOffices = [
+    {
+      title: "Head Office – Delhi NCR, India",
+      highlight: "India",
+      company: "Namo Gange Trust",
+      address: "Plot No. 12/52, Site II Industrial Area,\nMohan Nagar, Ghaziabad – 201007,\nUttar Pradesh, India.",
+      phone: "+91 9220147229",
+      tel: "tel:+919220147229",
+    },
+    {
+      title: "Regional Office – Visakhapatnam, India",
+      highlight: "Visakhapatnam, India",
+      company: "Namo Gange Wellness Pvt. Ltd.",
+      address: "Door No. 36-46-51, 2nd Floor, Main Road,\nKancharapalem, Visakhapatnam – 530008,\nAndhra Pradesh, India.",
+      phone: "+91 6281482342",
+      tel: "tel:+916281482342",
+    },
+    {
+      title: "Global Office – London, UK",
+      highlight: "London, UK",
+      company: "Namo Gange Wellness Ltd.",
+      address: "6 Liddel Close, Luton,\nBedfordshire, LU3 1TW,\nUnited Kingdom.",
+      phone: "+44 7429 519276",
+      tel: "tel:+447429519276",
+    },
+  ];
+
+  const footerOffices = defaultFooterOffices.map((fallback, idx) => {
+    const item = locationsSection?.items?.[idx];
+    if (!item) return fallback;
+    if (idx === 1 && (item.subtitle?.toLowerCase().includes("luton") || item.description?.toLowerCase().includes("liddel"))) {
+      return fallback;
+    }
+    const rawTitle = item.title?.trim() || "";
+    const rawSubtitle = item.subtitle?.trim() || "";
+    const title = rawTitle
+      ? (rawTitle.includes("–") ? rawTitle : `${rawTitle}${rawSubtitle ? ` – ${rawSubtitle}` : ""}`)
+      : fallback.title;
+    const highlight = rawSubtitle || fallback.highlight;
+    const company = (item as any).company || (item as any).orgName || item.label || fallback.company;
+    const address = item.description?.trim() || fallback.address;
+    const phone = item.value?.trim() || fallback.phone;
+    const digits = phone.replace(/\D/g, "");
+    const tel = phone.startsWith("+") ? `tel:+${digits}` : `tel:${digits}`;
+    return {
+      title,
+      highlight,
+      company,
+      address,
+      phone,
+      tel,
+    };
+  });
   const brandName = textOrFallback(websiteSection?.title, "Moksha Sewa", 60);
   const description = textOrFallback(websiteSection?.description, "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.", 240);
 
@@ -673,34 +728,9 @@ export default function FooterNew() {
                     </div>
                   </div>
 
-                  {/* 3 Office Rows - Exactly matching user snippet */}
+                  {/* 3 Office Rows - Dynamic from Admin with Default Fallbacks */}
                   <div className="relative z-10 mt-2 space-y-2">
-                    {[
-                      {
-                        title: "Head Office – Delhi NCR, India",
-                        highlight: "India",
-                        company: "Namo Gange Trust",
-                        address: "Plot No. 12/52, Site II Industrial Area,\nMohan Nagar, Ghaziabad – 201007,\nUttar Pradesh, India.",
-                        phone: "+91 9220147229",
-                        tel: "tel:+919220147229",
-                      },
-                      {
-                        title: "Regional Office – Visakhapatnam, India",
-                        highlight: "Visakhapatnam, India",
-                        company: "Namo Gange Wellness Pvt. Ltd.",
-                        address: "Door No. 36-46-51, 2nd Floor, Main Road,\nKancharapalem, Visakhapatnam – 530008,\nAndhra Pradesh, India.",
-                        phone: "+91 6281482342",
-                        tel: "tel:+916281482342",
-                      },
-                      {
-                        title: "Global Office – London, UK",
-                        highlight: "London, UK",
-                        company: "Namo Gange Wellness Ltd.",
-                        address: "6 Liddel Close, Luton,\nBedfordshire, LU3 1TW,\nUnited Kingdom.",
-                        phone: "+44 7429 519276",
-                        tel: "tel:+447429519276",
-                      },
-                    ].map((office) => (
+                    {footerOffices.map((office) => (
                       <div
                         key={office.title}
                         className="pb-1.5"

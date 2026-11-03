@@ -242,9 +242,7 @@ export default function Footer() {
               <div className="footer-contact-glow flex items-start gap-2 rounded-lg px-1 py-0.5">
                 <FaMapMarkerAlt className="mt-1 h-5 w-5 shrink-0 text-[#E8A32E]" />
                 <p>
-                  Delhi • Ghaziabad • Noida,
-
-                  India
+                  Head Office: Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India
                 </p>
               </div>
 

@@ -13,6 +13,11 @@ export interface LandingSectionItem {
   secondaryImage?: string;
   tertiaryImage?: string;
   quaternaryImage?: string;
+  orgName?: string;
+  company?: string;
+  pincode?: string;
+  hours?: string;
+  country?: string;
 }
 
 export interface LandingHeroSlide {

@@ -32,10 +32,10 @@ const HEAD_OFFICE_QUERY =
 const officeLocations = [
   {
     city: "Head Office",
-    region: "Delhi NCR",
+    region: "Delhi NCR, India",
     country: "India",
     address:
-      "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India",
+      "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India.",
     pincode: "201007",
     hours: "Open 24 hours · every day",
     phone: { label: "+91 9220147229", href: "tel:+919220147229" },
@@ -48,10 +48,10 @@ const officeLocations = [
   },
   {
     city: "Regional Office",
-    region: "Visakhapatnam",
+    region: "Visakhapatnam, India",
     country: "India",
     address:
-      "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India",
+      "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India.",
     pincode: "530008",
     hours: "Mon-Sat · 9:00 am - 6:00 pm IST",
     phone: { label: "+91 6281482342", href: "tel:+916281482342" },
@@ -64,10 +64,10 @@ const officeLocations = [
   },
   {
     city: "Global Office",
-    region: "London",
+    region: "London, UK",
     country: "UK",
     address:
-      "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom",
+      "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom.",
     pincode: "LU3 1TW",
     hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
     phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
@@ -130,21 +130,33 @@ function Contact() {
   const managedLocations = [
     ...officeLocations.map((fallback, index) => {
       const item = locationsSection?.items?.[index];
+      // Guard against old corrupted data where Visakhapatnam was overwritten with Luton/London
+      const isCorruptedLuton = index === 1 && (item?.subtitle?.toLowerCase().includes("luton") || item?.description?.toLowerCase().includes("liddel"));
+      const validItem = isCorruptedLuton ? undefined : item;
+
       return {
         ...fallback,
-        city: textOrFallback(item?.title, fallback.city, 40),
-        region: textOrFallback(item?.subtitle, fallback.region, 60),
-        address: textOrFallback(item?.description, fallback.address, 150),
-        phone: item?.value ? { label: item.value, href: toTelHref(item.value) } : fallback.phone,
-        image: item?.image || fallback.image,
+        city: validItem ? textOrFallback(validItem.title, fallback.city, 60) : fallback.city,
+        region: validItem ? textOrFallback(validItem.subtitle, fallback.region, 60) : fallback.region,
+        orgName: (validItem as any)?.company || (validItem as any)?.orgName || validItem?.label || fallback.orgName,
+        address: validItem ? textOrFallback(validItem.description, fallback.address, 250) : fallback.address,
+        phone: validItem?.value ? { label: validItem.value, href: toTelHref(validItem.value) } : fallback.phone,
+        hours: (validItem as any)?.hours || validItem?.buttonLabel || fallback.hours,
+        pincode: (validItem as any)?.pincode || fallback.pincode,
+        country: (validItem as any)?.country || fallback.country,
+        image: validItem?.image || fallback.image,
       };
     }),
     ...(locationsSection?.items?.slice(officeLocations.length) ?? []).map((item) => ({
       ...officeLocations[officeLocations.length - 1],
       city: item.title || "New Office",
       region: item.subtitle || "New Region",
+      orgName: (item as any)?.company || (item as any)?.orgName || item.label || "Namo Gange Wellness Ltd.",
       address: item.description || "Address not provided",
       phone: item.value ? { label: item.value, href: toTelHref(item.value) } : officeLocations[officeLocations.length - 1].phone,
+      hours: (item as any)?.hours || item.buttonLabel || "Mon-Sat · 9:00 am - 6:00 pm",
+      pincode: (item as any)?.pincode || "LU3 1TW",
+      country: (item as any)?.country || "UK",
       image: item.image || officeLocations[officeLocations.length - 1].image,
     })),
   ];
@@ -465,7 +477,9 @@ function Contact() {
                               className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${isMain ? "text-[#C96822]" : "text-[#567F2C]"
                                 }`}
                             >
-                              {location.region}, {location.country}
+                              {location.region.toLowerCase().includes(location.country.toLowerCase())
+                                ? location.region
+                                : `${location.region}, ${location.country}`}
                             </p>
                           </div>
                         </div>
