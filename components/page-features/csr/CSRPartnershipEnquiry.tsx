@@ -5,35 +5,8 @@ import { isOptimizableSrc } from "@/lib/imageSrc";
 import { FormEvent, useState } from "react";
 import { websiteSubmissionsApi } from "@/lib/websiteSubmissionsApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { CSRIcon, type CSRIconName } from "./CSRIcons";
-import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-
-const defaultValues = [
-  {
-    name: "name",
-    icon: "Handshake" as const,
-    title: "Meaningful\nImpact",
-    text: "Support dignified\nhumanitarian\ninitiatives.",
-  },
-  {
-    name: "organization",
-    icon: "ShieldCheck" as const,
-    title: "Responsible\nCollaboration",
-    text: "Built on trust, compliance\nand accountability.",
-  },
-  {
-    name: "email",
-    icon: "People" as const,
-    title: "Community\nDriven",
-    text: "Strengthen support\nwhere it’s needed\nmost.",
-  },
-  {
-    name: "phone",
-    icon: "Report" as const,
-    title: "Transparent\nReporting",
-    text: "Clear updates and\nimpact reporting\nas agreed.",
-  },
-];
+import { CSRIcon } from "./CSRIcons";
+import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const fields = [
   {
@@ -77,10 +50,14 @@ const fields = [
 
 export default function CSRPartnershipEnquiry() {
   const section = useWebsiteSection("csr-enquiry");
-  const eyebrow = textOrFallback(section?.eyebrow, "Start a Conversation", 60);
-  const title = textOrFallback(section?.title, "Let's Build a\nResponsible Partnership.", 100);
-  const description = textOrFallback(section?.description, "Tell us a little about your organisation and CSR\npriorities.\nOur team can connect with you to explore\nan appropriate collaboration.", 300);
-  const bgImage = imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165136/moksha-sewa/assets/csr/responsible-partnership-conversation.png");
+  const title = textOrFallback(section?.title, "Connect With Our CSR Leadership Team", 100);
+  const rawImage = section?.image?.trim();
+  const bgImage = imageOrFallback(
+    rawImage && rawImage !== "/assets/csr/enquiry-team-bg.jpg"
+      ? rawImage
+      : "/assets/csr/responsible-partnership-conversation.png",
+    "/assets/csr/responsible-partnership-conversation.png"
+  );
   const contactTitle = textOrFallback(section?.contactTitle, "CSR Partnership Enquiry", 80);
   const submitLabel = textOrFallback(section?.submitLabel, "Submit CSR Enquiry", 50);
   const submittedLabel = textOrFallback(section?.submittedLabel, "Inquiry Submitted", 50);
@@ -153,321 +130,31 @@ export default function CSRPartnershipEnquiry() {
           "
         >
           {/* =================================================
-              LEFT SIDE
+              LEFT SIDE - SINGLE GRAPHIC IMAGE
           ================================================= */}
 
           <div
             className="
               relative
               h-full
-              min-h-[650px]
-
+              min-h-[580px]
+              sm:min-h-[650px]
               overflow-hidden
-
+              rounded-[18px]
               bg-[#FBF7F0]
+              shadow-[0_7px_26px_rgba(50,39,22,0.08)]
             "
           >
+            {/* Full Graphic Image */}
             <Image
               src={bgImage}
-              alt="Start a Conversation - Let's Build a Responsible Partnership"
+              alt={title || "Corporate CSR Inquiry"}
               fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
               unoptimized={!isOptimizableSrc(bgImage)}
-              className="absolute inset-0 h-full w-full object-fill"
+              className="absolute inset-0 h-full w-full object-cover object-top"
             />
-            {/* ===============================================
-                BOTTOM SCENIC IMAGE
-
-                Background sirf lower part me hai.
-                Top icons/text duplicate nahi honge.
-            =============================================== */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                inset-x-0
-                bottom-0
-
-                h-[320px]
-
-                bg-cover
-                bg-bottom
-                bg-no-repeat
-              "
-              style={{
-                backgroundImage:
-                  `url('${imageOrFallback(section?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165102/moksha-sewa/assets/csr/enquiry-team-bg.jpg")}')`,
-              }}
-            />
-
-            {/* TOP FADE OVER IMAGE */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                inset-x-0
-                bottom-[170px]
-
-                z-[1]
-
-                h-[150px]
-
-                bg-gradient-to-b
-                from-[#FBF7F0]
-                via-[#FBF7F0]/80
-                to-transparent
-              "
-            />
-
-            {/* =================================================
-                EDITABLE CONTENT
-            ================================================= */}
-
-            <div
-              className="
-                relative
-                z-10
-
-                px-[22px]
-                pt-[18px]
-
-                sm:px-[38px]
-
-                lg:px-[42px]
-                lg:pt-[22px]
-              "
-            >
-              {/* LABEL */}
-
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-[13px]
-                "
-              >
-                <span
-                  className="
-                    h-[2px]
-                    w-[31px]
-                    bg-[#C68B28]
-                  "
-                />
-
-                <p
-                  className="
-                    whitespace-nowrap
-
-                    text-[17px]
-                    font-bold
-                    uppercase
-                    tracking-[0.15em]
-
-                    text-[#0B4A3C]
-                  "
-                >
-                  {eyebrow}
-                </p>
-              </div>
-
-              {/* =================================================
-                  HEADING
-              ================================================= */}
-
-              <h2
-                className="
-                  mt-[16px]
-
-                  max-w-[600px]
-
-                  font-sans
-                  text-[38px]
-                  font-medium
-                  leading-[1.02]
-                  tracking-[-0.025em]
-
-                  text-[#064335]
-
-                  sm:text-[44px]
-                  xl:text-[48px]
-                "
-                style={{
-                  fontFamily:
-                    "Georgia, 'Times New Roman', serif",
-                }}
-              >
-                {title.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </h2>
-
-              <span
-                className="
-                  mt-[15px]
-                  block
-
-                  h-[2px]
-                  w-[105px]
-
-                  bg-[#C18C35]
-                "
-              />
-
-              {/* DESCRIPTION */}
-
-              <p
-                className="
-                  mt-[14px]
-
-                  max-w-[580px]
-
-                  text-[18px]
-                  font-medium
-                  leading-[1.45]
-
-                  text-[#3D4242]
-                "
-              >
-                {description.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </p>
-
-              {/* =================================================
-                  4 VALUES
-              ================================================= */}
-
-              <div
-                className="
-                  mt-[22px]
-
-                  grid
-                  grid-cols-2
-
-                  gap-y-[16px]
-
-                  sm:grid-cols-4
-                  sm:gap-y-0
-                "
-              >
-                {defaultValues.map(
-                  (defaultValue, index) => {
-                    const item = itemOrFallback(section?.items, index, { title: defaultValue.title, description: defaultValue.text, value: defaultValue.icon });
-                    const title = item.title || defaultValue.title;
-                    const text = item.description || defaultValue.text;
-                    const icon = (item.value || defaultValue.icon) as CSRIconName;
-                    return (
-                    <div
-                      key={title}
-                      className={`
-                        relative
-
-                        min-w-0
-
-                        px-[12px]
-
-                        text-center
-
-                        ${
-                          index
-                            ? "sm:border-l sm:border-[#D1B789]"
-                            : ""
-                        }
-                      `}
-                    >
-                      {/* ICON */}
-
-                      <span
-                        className="
-                          mx-auto
-
-                          grid
-                          h-[54px]
-                          w-[54px]
-
-                          place-items-center
-
-                          rounded-full
-
-                          border
-                          border-[#D7C8AA]
-
-                          bg-[#FBF7EE]
-
-                          text-[#0C4C3A]
-                        "
-                      >
-                        <CSRIcon
-                          name={icon}
-                          className="
-                            h-[32px]
-                            w-[32px]
-                          "
-                        />
-                      </span>
-
-                      {/* TITLE */}
-
-                      <h3
-                        className="
-                          mt-[7px]
-
-                          whitespace-pre-line
-
-                          text-[16px]
-                          font-bold
-                          leading-[1.2]
-
-                          text-[#0B4A3A]
-                        "
-                      >
-                        {title.replace(/\\n/g, "\n")}
-                      </h3>
-
-                      {/* SMALL GOLD LINE */}
-
-                      <span
-                        className="
-                          mx-auto
-                          mt-[5px]
-                          block
-
-                          h-[2px]
-                          w-[28px]
-
-                          bg-[#C79541]
-                        "
-                      />
-
-                      {/* TEXT */}
-
-                      <p
-                        className="
-                          mt-[6px]
-
-                          whitespace-pre-line
-
-                          text-[16px]
-                          leading-[1.34]
-
-                          text-[#3F4443]
-                        "
-                      >
-                        {text.replace(/\\n/g, "\n")}
-                      </p>
-                    </div>
-                  )}
-                )}
-              </div>
-            </div>
           </div>
 
           {/* =================================================

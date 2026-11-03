@@ -32,13 +32,13 @@ const HEAD_OFFICE_QUERY =
 const officeLocations = [
   {
     city: "Head Office",
-    region: "Delhi NCR / Ghaziabad, Uttar Pradesh",
+    region: "Delhi NCR",
     country: "India",
     address:
       "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India",
     pincode: "201007",
     hours: "Open 24 hours · every day",
-    phone: { label: "+91 92201 47229", href: "tel:+919220147229" },
+    phone: { label: "+91 9220147229", href: "tel:+919220147229" },
     type: "main",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
     imageWidth: 1448,
@@ -48,13 +48,13 @@ const officeLocations = [
   },
   {
     city: "Regional Office",
-    region: "Visakhapatnam, Andhra Pradesh",
+    region: "Visakhapatnam",
     country: "India",
     address:
       "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India",
     pincode: "530008",
     hours: "Mon-Sat · 9:00 am - 6:00 pm IST",
-    phone: { label: "+91 62814 82342", href: "tel:+916281482342" },
+    phone: { label: "+91 6281482342", href: "tel:+916281482342" },
     type: "branch",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
     imageWidth: 1448,
@@ -64,10 +64,10 @@ const officeLocations = [
   },
   {
     city: "Global Office",
-    region: "London / Luton, England",
-    country: "United Kingdom",
+    region: "London",
+    country: "UK",
     address:
-      "6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW",
+      "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom",
     pincode: "LU3 1TW",
     hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
     phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
@@ -104,6 +104,11 @@ const socials = [
   },
 ];
 
+const toTelHref = (value: string) => {
+  const digits = value.replace(/\D/g, "");
+  return value.trim().startsWith("+") ? `tel:+${digits}` : `tel:${digits}`;
+};
+
 function Contact() {
   const heroSection = useWebsiteSection("contact-hero");
   const formSection = useWebsiteSection("contact-form");
@@ -117,8 +122,8 @@ function Contact() {
   const fieldMessage = itemOrFallback(formSection?.items, 5, { title: "Message *", description: "Share the details — city, timing, and what you need arranged." });
 
   const CONTACT = {
-    helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "92201 47229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
-    altPhone: { label: `+91 ${textOrFallback(heroSection?.altPhoneNumber, "96549 00525", 20)}`, href: `tel:+91${textOrFallback(heroSection?.altPhoneNumber, "9654900525", 20).replace(/\D/g, "")}` },
+    helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "9220147229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
+    altPhone: { label: `+91 ${textOrFallback(heroSection?.altPhoneNumber, "6281482342", 20)}`, href: `tel:+91${textOrFallback(heroSection?.altPhoneNumber, "6281482342", 20).replace(/\D/g, "")}` },
     email: { label: textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50), href: `mailto:${textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50)}` },
   };
 
@@ -130,7 +135,7 @@ function Contact() {
         city: textOrFallback(item?.title, fallback.city, 40),
         region: textOrFallback(item?.subtitle, fallback.region, 60),
         address: textOrFallback(item?.description, fallback.address, 150),
-        phone: item?.value ? { label: item.value, href: `tel:${item.value.replace(/\D/g, "")}` } : fallback.phone,
+        phone: item?.value ? { label: item.value, href: toTelHref(item.value) } : fallback.phone,
         image: item?.image || fallback.image,
       };
     }),
@@ -139,7 +144,7 @@ function Contact() {
       city: item.title || "New Office",
       region: item.subtitle || "New Region",
       address: item.description || "Address not provided",
-      phone: item.value ? { label: item.value, href: `tel:${item.value.replace(/\D/g, "")}` } : officeLocations[officeLocations.length - 1].phone,
+      phone: item.value ? { label: item.value, href: toTelHref(item.value) } : officeLocations[officeLocations.length - 1].phone,
       image: item.image || officeLocations[officeLocations.length - 1].image,
     })),
   ];

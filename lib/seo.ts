@@ -962,7 +962,7 @@ export function organizationJsonLd(settings?: any) {
       },
       {
         "@type": "ContactPoint",
-        telephone: "+91-9818353841",
+        telephone: "+91-6281482342",
         contactType: "customer support",
         areaServed: "IN",
         availableLanguage: ["English", "Hindi"],

@@ -22,7 +22,7 @@ import {
 import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-import type { LandingSectionItem } from "@/lib/landingContent";
+import { isBannerScheduleActive, type LandingSectionItem } from "@/lib/landingContent";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -116,49 +116,46 @@ export default function Hero() {
     [websiteSection],
   );
   const isSlideActiveNow = useCallback((slide: any): boolean => {
-    if (!slide.scheduledEnabled) return true;
-
-    const now = new Date();
-    // 1. Date Range Check (YYYY-MM-DD)
-    if (slide.startDate) {
-      const start = new Date(`${slide.startDate}T00:00:00`);
-      if (now < start) return false;
-    }
-    if (slide.endDate) {
-      const end = new Date(`${slide.endDate}T23:59:59`);
-      if (now > end) return false;
-    }
-
-    // 2. Day of Week Check
-    if (Array.isArray(slide.activeDays) && slide.activeDays.length > 0) {
-      const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const currentDay = dayNames[now.getDay()];
-      if (!slide.activeDays.includes(currentDay)) return false;
-    }
-
-    // 3. Time Range Check (HH:mm)
-    if (slide.startTime || slide.endTime) {
-      const currentMinutes = now.getHours() * 60 + now.getMinutes();
-      if (slide.startTime) {
-        const [sh, sm] = slide.startTime.split(":").map(Number);
-        const startMin = (sh ?? 0) * 60 + (sm ?? 0);
-        if (currentMinutes < startMin) return false;
-      }
-      if (slide.endTime) {
-        const [eh, em] = slide.endTime.split(":").map(Number);
-        const endMin = (eh ?? 23) * 60 + (em ?? 59);
-        if (currentMinutes > endMin) return false;
-      }
-    }
-
-    return true;
+    if (!slide?.scheduledEnabled) return true;
+    return isBannerScheduleActive({
+      enabled: slide.scheduledEnabled,
+      startDate: slide.startDate,
+      endDate: slide.endDate,
+      startTime: slide.startTime,
+      endTime: slide.endTime,
+      activeDays: slide.activeDays,
+    });
   }, []);
 
-  const managedSlides = useMemo(
-    () =>
-      [...(websiteSection?.slides ?? []), ...itemSlides].filter(isSlideActiveNow),
-    [itemSlides, websiteSection?.slides, isSlideActiveNow],
-  );
+  const isSectionBannerActive = useMemo(() => {
+    return isBannerScheduleActive({
+      enabled: websiteSection?.scheduledBannerEnabled,
+      startDate: websiteSection?.scheduledBannerStartDate,
+      endDate: websiteSection?.scheduledBannerEndDate,
+      startTime: websiteSection?.scheduledBannerStartTime,
+      endTime: websiteSection?.scheduledBannerEndTime,
+    });
+  }, [websiteSection]);
+
+  const managedSlides = useMemo(() => {
+    // 1. If Section-level scheduled banner is active, build its slide
+    const scheduledBannerSlide = isSectionBannerActive && (websiteSection?.scheduledBannerImage || websiteSection?.scheduledBannerTitle) ? [{
+      title: websiteSection.scheduledBannerTitle || websiteSection.title || "Special Announcement",
+      description: websiteSection.scheduledBannerSubtitle || websiteSection.scheduledBannerDescription || websiteSection.subtitle || "",
+      image: imageOrFallback(websiteSection.scheduledBannerImage, websiteSection.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
+      alt: websiteSection.scheduledBannerImageAlt || websiteSection.scheduledBannerTitle || "Scheduled Banner",
+      buttonLabel: websiteSection.scheduledBannerButtonLabel || websiteSection.buttonLabel || "Request Sewa Help",
+      buttonHref: websiteSection.scheduledBannerButtonHref || websiteSection.buttonHref || "/request-help",
+      secondaryButtonLabel: websiteSection.scheduledBannerSecondaryButtonLabel || websiteSection.secondaryButtonLabel || "Support This Mission",
+      secondaryButtonHref: websiteSection.scheduledBannerSecondaryButtonHref || websiteSection.secondaryButtonHref || "/donation",
+      variant: "default" as const,
+    }] : [];
+
+    const activeUserSlides = (websiteSection?.slides ?? []).filter(isSlideActiveNow);
+    const activeItemSlides = itemSlides.filter(isSlideActiveNow);
+
+    return [...scheduledBannerSlide, ...activeUserSlides, ...activeItemSlides];
+  }, [isSectionBannerActive, websiteSection, isSlideActiveNow, itemSlides]);
   const images = useMemo(
     () => managedSlides.length ? managedSlides.map((slide) => imageOrFallback(slide.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png")) : [
       imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),

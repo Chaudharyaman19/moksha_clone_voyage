@@ -186,19 +186,19 @@ export default function HumanitarianCommitment() {
   });
 
   return (
-    <section className="w-full bg-[#F7F3EC] px-3 py-3 sm:px-4 lg:px-5">
+    <section className="w-full bg-[#F7F3EC] px-3 py-6 sm:px-4 sm:py-8 lg:px-5 lg:py-10">
       <div className="mx-auto w-full max-w-[1344px]">
         {/* =====================================================
             MAIN LARGE CARD
         ====================================================== */}
 
         <div className="relative overflow-hidden rounded-[18px] border border-[#D7AF67] bg-[#FCF8F0] shadow-[0_7px_24px_rgba(74,47,19,0.06)]">
-          <div className="grid lg:h-[575px] lg:grid-cols-[59%_41%]">
+          <div className="grid lg:h-[630px] lg:min-h-[630px] lg:grid-cols-[59%_41%]">
             {/* =================================================
                 LEFT CONTENT
             ================================================== */}
 
-            <div className="relative z-10 flex flex-col px-5 pb-5 pt-3 sm:px-7 lg:px-[34px] lg:pb-[26px] lg:pt-[14px]">
+            <div className="relative z-10 flex flex-col px-5 pb-5 pt-4 sm:px-7 lg:px-[34px] lg:pb-[28px] lg:pt-[22px]">
               {/* TOP LEFT LEAF */}
 
               <svg
@@ -323,7 +323,7 @@ export default function HumanitarianCommitment() {
                 RIGHT IMAGE
             ================================================== */}
 
-            <div className="relative min-h-[440px] lg:h-[575px]">
+            <div className="relative min-h-[460px] lg:h-[630px]">
               <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
                 <Image
                   src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165202/moksha-sewa/assets/image.png"}
@@ -373,26 +373,26 @@ export default function HumanitarianCommitment() {
             BOTTOM COMMITMENT STRIP
         ====================================================== */}
 
-        <div className="relative mt-[12px] overflow-hidden rounded-[17px] border border-[#DCC39B] bg-[#FCF8F0] shadow-[0_4px_13px_rgba(75,48,22,0.04)]">
-          <div className="grid min-h-[126px] grid-cols-1 lg:grid-cols-[48%_52%]">
+        <div className="relative mt-[12px] overflow-hidden rounded-[14px] border border-[#DCC39B] bg-[#FCF8F0] shadow-[0_4px_13px_rgba(75,48,22,0.04)]">
+          <div className="grid min-h-[72px] grid-cols-1 lg:grid-cols-[48%_52%]">
             {/* ================= LEFT ================= */}
 
-            <div className="flex items-center gap-[16px] px-[20px] py-[14px] sm:gap-[24px] sm:px-[38px]">
-              <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#004E34] text-[#D0A020] sm:h-[82px] sm:w-[82px]">
+            <div className="flex items-center gap-[14px] px-[16px] py-[10px] sm:gap-[18px] sm:px-[24px]">
+              <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#004E34] text-[#D0A020] sm:h-[52px] sm:w-[52px]">
                 <CustomIcon
                   name="Building"
-                  className="h-[34px] w-[34px] sm:h-[45px] sm:w-[45px]"
+                  className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px]"
                 />
               </div>
 
               <div className="min-w-0">
-                <h3 className="text-[22px] font-semibold leading-none text-[#124C36]">
+                <h3 className="text-[17px] font-semibold leading-none text-[#124C36] sm:text-[18px]">
                   Our Commitment
                 </h3>
 
-                <span className="mt-[7px] block h-[2px] w-[88px] bg-[#C68E2D]" />
+                <span className="mt-[4px] block h-[1.5px] w-[60px] bg-[#C68E2D]" />
 
-                <p className="mt-[8px] max-w-[540px] text-[16px] leading-[1.45] text-[#45505E]">
+                <p className="mt-[4px] max-w-[540px] text-[13.5px] leading-snug text-[#45505E] sm:text-[14px]">
                   {textOrFallback(websiteSection?.bottomStatement, "We follow all legal requirements and work in coordination with authorities to ensure dignity and responsibility.", 200)}
                 </p>
               </div>
@@ -400,19 +400,19 @@ export default function HumanitarianCommitment() {
 
             {/* ================= CENTER DIVIDER ================= */}
 
-            <span className="absolute bottom-[18px] left-[48%] top-[18px] hidden w-px bg-[#D9BC8A] lg:block" />
+            <span className="absolute bottom-[10px] left-[48%] top-[10px] hidden w-px bg-[#D9BC8A] lg:block" />
 
             {/* ================= RIGHT ================= */}
 
-            <div className="relative flex items-center gap-[16px] border-t border-[#E0D3BF] px-[20px] py-[14px] sm:gap-[26px] sm:px-[38px] lg:border-t-0">
-              <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2] text-[#0D5539] sm:h-[82px] sm:w-[82px]">
+            <div className="relative flex items-center gap-[14px] border-t border-[#E0D3BF] px-[16px] py-[10px] sm:gap-[18px] sm:px-[24px] lg:border-t-0">
+              <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2] text-[#0D5539] sm:h-[52px] sm:w-[52px]">
                 <CustomIcon
                   name="ShieldCheck"
-                  className="h-[34px] w-[34px] sm:h-[46px] sm:w-[46px]"
+                  className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px]"
                 />
               </div>
 
-              <p className="relative z-10 max-w-[500px] text-[16px] leading-[1.48] text-[#46505E]">
+              <p className="relative z-10 max-w-[500px] text-[13.5px] leading-snug text-[#46505E] sm:text-[14px]">
                 {textOrFallback(websiteSection?.secondaryDescription, "All support is subject to verification, applicable legal requirements and availability of resources.", 200)}
               </p>
 
@@ -420,7 +420,7 @@ export default function HumanitarianCommitment() {
 
               <svg
                 viewBox="0 0 200 125"
-                className="pointer-events-none absolute -bottom-[8px] right-[20px] h-[110px] w-[180px] text-[#AEB59D]/38"
+                className="pointer-events-none absolute -bottom-[8px] right-[20px] h-[90px] w-[150px] text-[#AEB59D]/30"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.25"

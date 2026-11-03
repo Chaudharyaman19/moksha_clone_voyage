@@ -51,6 +51,21 @@ export interface LandingSectionContent {
   videoUrl?: string;
   audioUrl?: string;
   secondaryVideoUrl?: string;
+  // Hero Banner Scheduling fields
+  scheduledBannerEnabled?: boolean;
+  scheduledBannerTitle?: string;
+  scheduledBannerSubtitle?: string;
+  scheduledBannerDescription?: string;
+  scheduledBannerImage?: string;
+  scheduledBannerImageAlt?: string;
+  scheduledBannerStartDate?: string;
+  scheduledBannerEndDate?: string;
+  scheduledBannerStartTime?: string;
+  scheduledBannerEndTime?: string;
+  scheduledBannerButtonLabel?: string;
+  scheduledBannerButtonHref?: string;
+  scheduledBannerSecondaryButtonLabel?: string;
+  scheduledBannerSecondaryButtonHref?: string;
   quote?: string;
   legalNotice?: string;
   lowerTitle?: string;
@@ -103,7 +118,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
     enabled: true,
     eyebrow: "Moksha Sewa",
     title: "Dignity in Every Final Journey",
-    subtitle: "Supporting weaker families with compassionate last-rites assistance.",
+    subtitle: "Supporting weaker families\nwith compassionate last-rites assistance.",
     description: "Moksha Sewa team helping a helpless family with a dignified final journey",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
     logoImage: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png",
@@ -162,10 +177,10 @@ export const defaultLandingSections: LandingSectionContent[] = [
     description:
       "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.",
     items: [
-      { title: "Ambulance &\nFinal Journey Van", description: "Respectful transport for the\ndeceased from hospital/home\nto cremation ground.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165188/moksha-sewa/assets/how-we-help/one.png", features: ["24x7 Availability", "Safe & Timely Transport", "Trained & Verified Partners"] },
-      { title: "Cremation\nCoordination", description: "Support in arranging cremation\nground coordination and\nrequired formalities.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165198/moksha-sewa/assets/how-we-help/two.png", features: ["Cremation Ground Support", "Essential Arrangements", "Clean & Respectful Process"] },
-      { title: "Ritual &\nPriest Support", description: "Priest, wood, cloth, flowers\nand all ritual essentials\narranged.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165189/moksha-sewa/assets/how-we-help/pandit.png", features: ["Experienced Priests", "Ritual Essentials", "As Per Tradition & Customs"] },
-      { title: "Family &\nOn-Ground Support", description: "Guidance, volunteers and\ndocumentation assistance\nat every step.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png", features: ["Volunteer Support", "Documentation Help", "Emotional Support"] },
+      { title: "Ambulance & Final Journey Van", description: "Respectful transport for the deceased from hospital/home to cremation ground.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165188/moksha-sewa/assets/how-we-help/one.png", features: ["24x7 Availability", "Safe & Timely Transport", "Trained & Verified Partners"] },
+      { title: "Cremation Coordination", description: "Support in arranging cremation ground coordination and required formalities.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165198/moksha-sewa/assets/how-we-help/two.png", features: ["Cremation Ground Support", "Essential Arrangements", "Clean & Respectful Process"] },
+      { title: "Ritual & Priest Support", description: "Priest, wood, cloth, flowers and all ritual essentials arranged.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165189/moksha-sewa/assets/how-we-help/pandit.png", features: ["Experienced Priests", "Ritual Essentials", "As Per Tradition & Customs"] },
+      { title: "Family & On-Ground Support", description: "Guidance, volunteers and documentation assistance at every step.", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165195/moksha-sewa/assets/how-we-help/three.png", features: ["Volunteer Support", "Documentation Help", "Emotional Support"] },
     ],
   },
   {
@@ -623,4 +638,121 @@ export function normalizeLandingSection(section: LandingSectionContent, fallback
   });
 
   return normalized;
+}
+
+export function isBannerScheduleActive(schedule?: {
+  enabled?: boolean;
+  startDate?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
+  activeDays?: string[];
+}): boolean {
+  if (!schedule || !schedule.enabled) return false;
+
+  const now = new Date();
+
+  // Start date / time check
+  if (schedule.startDate) {
+    const time = schedule.startTime ? schedule.startTime : "00:00:00";
+    const start = new Date(`${schedule.startDate}T${time.length === 5 ? time + ":00" : time}`);
+    if (!isNaN(start.getTime()) && now < start) return false;
+  } else if (schedule.startTime) {
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const [sh, sm] = schedule.startTime.split(":").map(Number);
+    if (currentMinutes < (sh * 60 + sm)) return false;
+  }
+
+  // End date / time check
+  if (schedule.endDate) {
+    const time = schedule.endTime ? schedule.endTime : "23:59:59";
+    const end = new Date(`${schedule.endDate}T${time.length === 5 ? time + ":59" : time}`);
+    if (!isNaN(end.getTime()) && now > end) return false;
+  } else if (schedule.endTime) {
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const [eh, em] = schedule.endTime.split(":").map(Number);
+    if (currentMinutes > (eh * 60 + em)) return false;
+  }
+
+  // Day of week check
+  if (Array.isArray(schedule.activeDays) && schedule.activeDays.length > 0) {
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const currentDay = dayNames[now.getDay()];
+    if (!schedule.activeDays.includes(currentDay)) return false;
+  }
+
+  return true;
+}
+
+export type ScheduleStatus = "active" | "upcoming" | "expired" | "disabled";
+
+export function getScheduleStatus(schedule?: {
+  enabled?: boolean;
+  startDate?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
+  activeDays?: string[];
+}): { status: ScheduleStatus; label: string; details: string; color: string; badgeBg: string } {
+  if (!schedule || !schedule.enabled) {
+    return {
+      status: "disabled",
+      label: "Disabled (Off)",
+      details: "Scheduling is turned OFF. Old / default banner is active on the website.",
+      color: "text-slate-600 bg-slate-100 border-slate-300",
+      badgeBg: "bg-slate-400",
+    };
+  }
+
+  const now = new Date();
+
+  if (schedule.startDate) {
+    const time = schedule.startTime ? schedule.startTime : "00:00:00";
+    const start = new Date(`${schedule.startDate}T${time.length === 5 ? time + ":00" : time}`);
+    if (!isNaN(start.getTime()) && now < start) {
+      return {
+        status: "upcoming",
+        label: "Scheduled (Upcoming)",
+        details: `Starts on ${schedule.startDate}${schedule.startTime ? " at " + schedule.startTime : ""}. Until then, old/default banner will display.`,
+        color: "text-amber-800 bg-amber-50 border-amber-300",
+        badgeBg: "bg-amber-500",
+      };
+    }
+  }
+
+  if (schedule.endDate) {
+    const time = schedule.endTime ? schedule.endTime : "23:59:59";
+    const end = new Date(`${schedule.endDate}T${time.length === 5 ? time + ":59" : time}`);
+    if (!isNaN(end.getTime()) && now > end) {
+      return {
+        status: "expired",
+        label: "Schedule Expired",
+        details: `Ended on ${schedule.endDate}${schedule.endTime ? " at " + schedule.endTime : ""}. Old/default banner is automatically displayed on the website.`,
+        color: "text-rose-800 bg-rose-50 border-rose-300",
+        badgeBg: "bg-rose-500",
+      };
+    }
+  }
+
+  if (Array.isArray(schedule.activeDays) && schedule.activeDays.length > 0) {
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const currentDay = dayNames[now.getDay()];
+    if (!schedule.activeDays.includes(currentDay)) {
+      return {
+        status: "upcoming",
+        label: `Inactive Today (${currentDay})`,
+        details: `Only active on: ${schedule.activeDays.join(", ")}. Old/default banner is displayed today.`,
+        color: "text-amber-800 bg-amber-50 border-amber-300",
+        badgeBg: "bg-amber-500",
+      };
+    }
+  }
+
+  return {
+    status: "active",
+    label: "LIVE NOW ON WEBSITE",
+    details: `This scheduled banner is currently LIVE on the frontend website${schedule.endDate ? ` until ${schedule.endDate}${schedule.endTime ? " " + schedule.endTime : ""}` : ""}.`,
+    color: "text-emerald-800 bg-emerald-50 border-emerald-300",
+    badgeBg: "bg-emerald-500 animate-pulse",
+  };
 }

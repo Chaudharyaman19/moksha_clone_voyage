@@ -56,17 +56,27 @@ export function GlobalAudioProvider({
       audio.loop = true;
       audio.volume = 0.35;
       audioRef.current = audio;
+      try {
+        audio.load();
+      } catch {}
     } else if (audio.src !== activeSrc && !audio.src.endsWith(activeSrc)) {
-      const wasPlaying = !audio.paused;
+      const wasPlaying = !audio.paused && !audio.muted;
       audio.src = activeSrc;
+      try {
+        audio.load();
+      } catch {}
       if (wasPlaying && !explicitlyPausedRef.current) {
         audio.play().catch(() => {});
       }
     }
 
-    const onPlay = () => setIsMusicOn(true);
+    const onPlay = () => {
+      if (!audioRef.current?.muted) {
+        setIsMusicOn(true);
+      }
+    };
     const onPause = () => {
-      if (explicitlyPausedRef.current || (audioRef.current && audioRef.current.paused)) {
+      if (explicitlyPausedRef.current || (audioRef.current && (audioRef.current.paused || audioRef.current.muted))) {
         setIsMusicOn(false);
       }
     };
@@ -74,72 +84,73 @@ export function GlobalAudioProvider({
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    const unlockAndPlay = () => {
-      if (explicitlyPausedRef.current) return;
-      const currentAudio = audioRef.current;
-      if (!currentAudio) return;
-
-      currentAudio.muted = false;
-      currentAudio
-        .play()
-        .then(() => {
-          setIsMusicOn(true);
-          cleanup();
-        })
-        .catch(() => {});
-    };
-
     const cleanup = () => {
       const events = [
         "pointerdown",
         "mousedown",
-        "pointermove",
-        "mousemove",
         "touchstart",
         "touchend",
         "click",
         "scroll",
         "wheel",
         "keydown",
-        "focus",
-        "visibilitychange",
       ];
       events.forEach((ev) => {
-        window.removeEventListener(ev, unlockAndPlay, true);
-        document.removeEventListener(ev, unlockAndPlay, true);
+        window.removeEventListener(ev, unmuteOnInteraction, true);
+        document.removeEventListener(ev, unmuteOnInteraction, true);
       });
     };
 
-    // 1. Immediately attempt unmuted autoplay when URL opens
+    const unmuteOnInteraction = () => {
+      if (explicitlyPausedRef.current) return;
+      const currentAudio = audioRef.current;
+      if (!currentAudio) return;
+
+      currentAudio.muted = false;
+      if (currentAudio.paused) {
+        currentAudio
+          .play()
+          .then(() => {
+            setIsMusicOn(true);
+            cleanup();
+          })
+          .catch(() => {});
+      } else {
+        setIsMusicOn(true);
+        cleanup();
+      }
+    };
+
+    // 1. Immediately attempt unmuted autoplay when website opens
     audio.muted = false;
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
           setIsMusicOn(true);
-          cleanup();
         })
         .catch(() => {
           // If browser restricts unmuted autoplay before user interaction:
-          // Listen to ANY micro-interaction (mouse movement, touch, click, scroll, focus)
-          // so the music starts IMMEDIATELY without waiting for page navigation.
+          // Start playing muted immediately so audio pre-buffers in background without delay!
+          if (!explicitlyPausedRef.current && audio) {
+            audio.muted = true;
+            audio.play().catch(() => {});
+          }
+
+          // Unmute on the very first user interaction instantly
           const events = [
             "pointerdown",
             "mousedown",
-            "pointermove",
-            "mousemove",
             "touchstart",
             "touchend",
             "click",
             "scroll",
             "wheel",
             "keydown",
-            "focus",
-            "visibilitychange",
           ];
           events.forEach((ev) => {
-            window.addEventListener(ev, unlockAndPlay, { capture: true, passive: true });
-            document.addEventListener(ev, unlockAndPlay, { capture: true, passive: true });
+            window.addEventListener(ev, unmuteOnInteraction, { capture: true, passive: true });
+            document.addEventListener(ev, unmuteOnInteraction, { capture: true, passive: true });
           });
         });
     }

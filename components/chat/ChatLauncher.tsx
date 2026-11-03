@@ -88,8 +88,8 @@ const ChatLauncher: React.FC = () => {
       {/* Stays mounted after the first open so the conversation survives closing the panel */}
       {opened && <ChatPanel key={panelKey} open={open} onClose={close} config={config} />}
 
-      {/* Above the 24x7 call button that sits at the bottom right on larger screens */}
-      <div className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[100] md:bottom-[76px] ${open ? "max-[480px]:hidden" : ""}`}>
+      {/* Bottom right floating chat launcher */}
+      <div className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[100] md:bottom-4 ${open ? "max-[480px]:hidden" : ""}`}>
         <button
           ref={buttonRef}
           type="button"

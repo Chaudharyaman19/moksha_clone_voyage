@@ -192,7 +192,7 @@ interface HelpCard {
 const helpCards: HelpCard[] = [
   {
     icon: "LegalHelpIcon",
-    title: "Unclaimed & Legally\nAuthorised Cases",
+    title: "Unclaimed & Legally Authorised Cases",
     description:
       "We assist with respectful last-rites after completion of all required police, hospital and authority formalities.",
     features: [
@@ -210,7 +210,7 @@ const helpCards: HelpCard[] = [
 
   {
     icon: "PeopleIcon",
-    title: "People Without Family\nor Support",
+    title: "People Without Family or Support",
     description:
       "For those who have no one to stand beside them, we ensure a dignified and respectful final journey.",
     features: [
@@ -228,7 +228,7 @@ const helpCards: HelpCard[] = [
 
   {
     icon: "HeartHandsIcon",
-    title: "Economically Weaker\nFamilies",
+    title: "Economically Weaker Families",
     description:
       "Verified support for eligible families who are unable to manage essential last-rites arrangements.",
     features: [
@@ -248,28 +248,28 @@ const helpCards: HelpCard[] = [
 const trustItems = [
   {
     icon: "ShieldCheckIcon",
-    title: "Verified &\nTransparent",
+    title: "Verified & Transparent",
     text: "Every sewa request is carefully verified before providing help.",
     color: "#8E1916",
   },
 
   {
     icon: "CompassionIcon",
-    title: "Compassion is Our\nCommitment",
+    title: "Compassion is Our Commitment",
     text: "We serve every life with deep respect, care and full dignity.",
     color: "#53419B",
   },
 
   {
     icon: "HandshakeIcon",
-    title: "Support with\nResponsibility",
+    title: "Support with Responsibility",
     text: "Our support is subject to verification and legal requirements.",
     color: "#26713D",
   },
 
   {
     icon: "MapPinIcon",
-    title: "Local Sewa\nNetwork",
+    title: "Local Sewa Network",
     text: "Our dedicated teams are available across Delhi • Ghaziabad • Noida for support.",
     color: "#E25F07",
   },
@@ -311,7 +311,7 @@ export default function WhoWeHelp() {
   });
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF8F3] px-4 py-7 sm:px-5 lg:px-6 lg:py-8">
+    <section className="relative w-full overflow-hidden bg-[#FBF8F3] px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-4 xl:py-5">
 
       {/* ===================================================
           BACKGROUND
@@ -331,8 +331,8 @@ export default function WhoWeHelp() {
           absolute
           -left-20
           top-8
-          h-[220px]
-          w-[220px]
+          h-[180px]
+          w-[180px]
           text-[#DAB978]/30
         "
         fill="none"
@@ -363,8 +363,8 @@ export default function WhoWeHelp() {
           absolute
           -right-24
           top-12
-          h-[230px]
-          w-[230px]
+          h-[190px]
+          w-[190px]
           text-[#DAB978]/30
         "
         fill="none"
@@ -394,25 +394,20 @@ export default function WhoWeHelp() {
         className="
           relative
           z-10
-
           mx-auto
           w-full
           max-w-[1344px]
-
-          rounded-[18px]
-
+          rounded-[16px]
           border
           border-[#EFE6DC]
-
-          bg-[#FFFCF8]/70
-
-          px-5
-          py-4
-
-          shadow-[0_12px_34px_rgba(78,51,28,0.06)]
-
+          bg-[#FFFCF8]/80
+          px-4
+          py-3
           sm:px-6
-          lg:px-8
+          sm:py-3.5
+          lg:px-7
+          lg:py-4
+          shadow-[0_8px_24px_rgba(78,51,28,0.06)]
         "
       >
 
@@ -420,7 +415,7 @@ export default function WhoWeHelp() {
             HEADER
         ==================================================== */}
 
-        <header className="mx-auto mb-6 max-w-[1020px] text-center">
+        <header className="mx-auto mb-3 sm:mb-4 max-w-[1020px] text-center">
 
           <div className="mb-1 flex items-center justify-center gap-3">
 
@@ -441,15 +436,10 @@ export default function WhoWeHelp() {
           <h2
             className="
               font-sans
-
               text-[24px]
-
               font-semibold
-
-              leading-[1.05]
-
+              leading-[1.1]
               text-[#28120E]
-
               sm:text-[30px]
             "
           >
@@ -459,13 +449,10 @@ export default function WhoWeHelp() {
           <p
             className="
               mx-auto
-              mt-3
+              mt-2
               max-w-[760px]
-
               text-[16px]
-
-              leading-[1.45]
-
+              leading-[1.4]
               text-[#252020]
             "
           >
@@ -478,30 +465,22 @@ export default function WhoWeHelp() {
             3 MAIN CARDS
         ==================================================== */}
 
-        <div className="grid grid-cols-1 gap-[18px] lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-3">
 
           {managedHelpCards.map((card) => (
             <article
               key={card.title}
               className="
                 relative
-
                 flex
                 h-auto
-                min-h-[455px]
                 flex-col
-                lg:min-h-[455px]
-
                 overflow-hidden
-
                 rounded-[14px]
-
                 border
                 border-[#E3DCD5]
-
                 bg-white
-
-                shadow-[0_8px_22px_rgba(54,34,20,0.11)]
+                shadow-[0_6px_20px_rgba(54,34,20,0.09)]
               "
             >
 
@@ -512,17 +491,16 @@ export default function WhoWeHelp() {
               <div
                 className="
                   relative
-
-                  h-[165px]
-
+                  h-[210px]
+                  sm:h-[225px]
+                  lg:h-[235px]
                   shrink-0
-
                   overflow-hidden
                 "
               >
                 <Image
                   src={card.image}
-                  alt={card.title.replace("\n", " ")}
+                  alt={card.title.replace(/\n/g, " ")}
                   fill
                   quality={95}
                   sizes="(max-width:1024px) 100vw, 33vw"
@@ -538,30 +516,22 @@ export default function WhoWeHelp() {
               <div
                 className="
                   absolute
-
                   left-1/2
-                  top-[126px]
-
+                  top-[178px]
+                  sm:top-[193px]
+                  lg:top-[203px]
                   z-20
-
                   flex
-
-                  h-[78px]
-                  w-[78px]
-
+                  h-[64px]
+                  w-[64px]
                   -translate-x-1/2
-
                   items-center
                   justify-center
-
                   rounded-full
-
-                  border-[4px]
+                  border-[3.5px]
                   border-white
-
                   text-white
-
-                  shadow-[0_5px_13px_rgba(41,25,14,0.20)]
+                  shadow-[0_4px_12px_rgba(41,25,14,0.18)]
                 "
                 style={{
                   backgroundColor: card.color,
@@ -569,7 +539,7 @@ export default function WhoWeHelp() {
               >
                 <CustomIcon
                   name={card.icon}
-                  className="h-[40px] w-[40px]"
+                  className="h-[32px] w-[32px]"
                 />
               </div>
 
@@ -582,41 +552,38 @@ export default function WhoWeHelp() {
                   flex
                   flex-1
                   flex-col
-
-                  px-5
-                  sm:px-7
-
-                  pb-4
-                  sm:pb-5
-                  pt-[46px]
-
+                  px-4
+                  sm:px-6
+                  pb-3
+                  sm:pb-3.5
+                  pt-[36px]
+                  sm:pt-[40px]
                   text-center
                 "
                 style={{
-                  borderBottom: `5px solid ${card.color}`,
+                  borderBottom: `4px solid ${card.color}`,
                 }}
               >
 
-                {/* TITLE */}
+                {/* TITLE - SINGLE ROW */}
 
                 <h3
                   className="
-                    whitespace-pre-line
-
                     font-sans
-
-                    text-[20px]
-                    sm:text-[22px]
-
+                    text-[19px]
+                    sm:text-[20px]
+                    lg:text-[21px]
                     font-semibold
-
-                    leading-[1.05]
+                    leading-snug
+                    whitespace-nowrap
+                    truncate
                   "
                   style={{
                     color: card.titleColor,
                   }}
+                  title={card.title.replace(/\n/g, " ")}
                 >
-                  {card.title}
+                  {card.title.replace(/\n/g, " ")}
                 </h3>
 
                 {/* SHORT COLOR LINE */}
@@ -624,14 +591,10 @@ export default function WhoWeHelp() {
                 <span
                   className="
                     mx-auto
-
-                    mt-[7px]
-
+                    mt-1.5
                     h-[2px]
-                    w-[40px]
-
+                    w-[38px]
                     shrink-0
-
                     rounded-full
                   "
                   style={{
@@ -639,39 +602,32 @@ export default function WhoWeHelp() {
                   }}
                 />
 
-                {/* DESCRIPTION */}
+                {/* DESCRIPTION - EXACTLY 2 ROWS */}
 
                 <p
                   className="
                     mx-auto
-
-                    mt-[10px]
-
+                    mt-2
                     max-w-[350px]
-
                     text-[16px]
-
                     leading-[1.35]
-
                     text-[#211E1D]
+                    line-clamp-2
+                    min-h-[44px]
                   "
                 >
                   {card.description}
                 </p>
 
-                {/* FEATURE LIST */}
+                {/* FEATURE LIST - TIGHT SPACING */}
 
                 <div
                   className="
                     mt-auto
-
                     flex
                     flex-col
-
-                    gap-[9px]
-
-                    pt-4
-
+                    gap-2
+                    pt-3
                     text-left
                   "
                 >
@@ -681,37 +637,26 @@ export default function WhoWeHelp() {
                       key={feature}
                       className="
                         flex
-                        items-start
-
-                        gap-[10px]
-
-                        text-[16px]
-
-                        leading-[1.25]
-
+                        items-center
+                        gap-2.5
+                        text-[15px]
+                        sm:text-[16px]
+                        leading-tight
                         text-[#242120]
                       "
                     >
 
                       <span
                         className="
-                          mt-[1px]
-
                           flex
-
                           h-[18px]
                           w-[18px]
-
                           shrink-0
-
                           items-center
                           justify-center
-
                           rounded-full
-
-                          text-[12px]
+                          text-[11px]
                           font-semibold
-
                           text-white
                         "
                         style={{
@@ -721,7 +666,7 @@ export default function WhoWeHelp() {
                         ✓
                       </span>
 
-                      <span>
+                      <span className="truncate">
                         {feature}
                       </span>
 
@@ -738,23 +683,19 @@ export default function WhoWeHelp() {
         </div>
 
         {/* ===================================================
-            TRUST STRIP
+            TRUST STRIP - SLIM BAND, ORIGINAL FONT SIZE, SINGLE ROW HEADINGS
         ==================================================== */}
 
         <div
           className="
-            mt-[26px]
-
+            mt-3
+            sm:mt-3.5
             overflow-hidden
-
-            rounded-[13px]
-
+            rounded-[12px]
             border
             border-[#E5DED6]
-
             bg-[#FFFDF9]
-
-            shadow-[0_5px_15px_rgba(58,37,20,0.05)]
+            shadow-[0_4px_12px_rgba(58,37,20,0.05)]
           "
         >
 
@@ -762,10 +703,8 @@ export default function WhoWeHelp() {
             className="
               grid
               grid-cols-1
-
               divide-y
               divide-[#DDD7D0]
-
               md:grid-cols-4
               md:divide-x
               md:divide-y-0
@@ -777,15 +716,12 @@ export default function WhoWeHelp() {
                 key={item.title}
                 className="
                   flex
-
-                  min-h-[118px]
-
+                  min-h-0
                   items-center
-
-                  gap-4
-
-                  px-6
-                  py-4
+                  gap-3
+                  px-4
+                  py-2
+                  sm:py-2.5
                 "
               >
 
@@ -794,12 +730,9 @@ export default function WhoWeHelp() {
                 <div
                   className="
                     flex
-
-                    h-[54px]
-                    w-[54px]
-
+                    h-[42px]
+                    w-[42px]
                     shrink-0
-
                     items-center
                     justify-center
                   "
@@ -809,40 +742,38 @@ export default function WhoWeHelp() {
                 >
                   <CustomIcon
                     name={item.icon}
-                    className="h-[48px] w-[48px]"
+                    className="h-[36px] w-[36px]"
                   />
                 </div>
 
                 {/* TEXT */}
 
-                <div>
+                <div className="min-w-0 flex-1">
 
                   <h4
                     className="
-                      whitespace-pre-line
-
+                      whitespace-nowrap
+                      truncate
                       text-[16px]
-
                       font-semibold
-
-                      leading-[1.22]
+                      leading-tight
                     "
                     style={{
                       color: item.color,
                     }}
+                    title={item.title.replace(/\n/g, " ")}
                   >
-                    {item.title}
+                    {item.title.replace(/\n/g, " ")}
                   </h4>
 
                   <p
                     className="
-                      mt-[6px]
-
-                      text-[16px]
-
-                      leading-[1.3]
-
+                      mt-1
+                      text-[15px]
+                      sm:text-[16px]
+                      leading-tight
                       text-[#282321]
+                      line-clamp-2
                     "
                   >
                     {item.text}
@@ -858,39 +789,28 @@ export default function WhoWeHelp() {
         </div>
 
         {/* ===================================================
-            LEGAL / VERIFICATION NOTICE
+            LEGAL / VERIFICATION NOTICE - COMPACT WITH ORIGINAL FONT SIZE
         ==================================================== */}
 
         <div
           className="
             relative
-
-            mt-[14px]
-
+            mt-2.5
             flex
-
-            min-h-[58px]
-
+            min-h-0
             items-center
-
-            gap-4
-
+            gap-3.5
             overflow-hidden
-
-            rounded-[11px]
-
+            rounded-[10px]
             border
             border-[#ECDCBF]
-
             bg-gradient-to-r
             from-[#FFF5DF]
             via-[#FFF9EE]
             to-[#FFF5DF]
-
-            px-6
-            py-3
-
-            shadow-[0_4px_12px_rgba(72,43,16,0.05)]
+            px-4
+            py-2
+            shadow-[0_3px_10px_rgba(72,43,16,0.04)]
           "
         >
 
@@ -899,40 +819,31 @@ export default function WhoWeHelp() {
           <span
             className="
               flex
-
-              h-[38px]
-              w-[38px]
-
+              h-[30px]
+              w-[30px]
               shrink-0
-
               items-center
               justify-center
-
-              rounded-[9px]
-
+              rounded-[8px]
               bg-gradient-to-b
               from-[#C5810B]
               to-[#8D5700]
-
               text-white
-
-              shadow-[0_4px_8px_rgba(108,65,3,0.18)]
+              shadow-[0_3px_6px_rgba(108,65,3,0.18)]
             "
           >
             <CustomIcon
               name="SmallShieldIcon"
-              className="h-[26px] w-[26px]"
+              className="h-[20px] w-[20px]"
             />
           </span>
 
           <p
             className="
-              text-[16px]
-
+              text-[15px]
+              sm:text-[16px]
               font-semibold
-
-              leading-[1.3]
-
+              leading-snug
               text-[#27201B]
             "
           >
@@ -946,16 +857,12 @@ export default function WhoWeHelp() {
             viewBox="0 0 100 70"
             className="
               pointer-events-none
-
               absolute
-
-              -bottom-6
+              -bottom-5
               right-4
-
-              h-[75px]
-              w-[105px]
-
-              text-[#DDB96E]/40
+              h-[60px]
+              w-[88px]
+              text-[#DDB96E]/35
             "
             fill="none"
             stroke="currentColor"

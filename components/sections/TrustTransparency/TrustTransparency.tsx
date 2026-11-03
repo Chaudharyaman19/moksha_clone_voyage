@@ -356,7 +356,7 @@ export default function TrustTransparency() {
   });
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FAF5EE] px-4 pb-0 pt-[18px] max-md:px-3 max-md:pt-[16px]">
+    <section className="relative w-full overflow-hidden bg-[#FAF5EE] px-4 py-8 sm:px-5 sm:py-10 lg:px-6 lg:py-12">
       {/* BACKGROUND TEXTURE */}
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
@@ -439,7 +439,7 @@ export default function TrustTransparency() {
             </p>
 
             {/* GREEN BRAND CARD */}
-            <div className="relative mt-[14px] h-[212px] overflow-hidden rounded-tl-[48px] rounded-tr-[24px] bg-[#02311E] text-white shadow-[0_7px_18px_rgba(0,59,40,0.16)] max-md:h-auto max-md:rounded-[24px]">
+            <div className="relative mt-[14px] h-[224px] overflow-hidden rounded-tl-[48px] rounded-tr-[24px] bg-[#02311E] text-white shadow-[0_7px_18px_rgba(0,59,40,0.16)] max-md:h-auto max-md:rounded-[24px]">
               <CustomIcon
                 name="Lotus"
                 className="pointer-events-none absolute -bottom-[34px] -left-[24px] h-[150px] w-[150px] text-white/[0.025]"
@@ -557,7 +557,7 @@ export default function TrustTransparency() {
               {managedTrustCards.map((card) => (
                 <article
                   key={card.title}
-                  className="flex h-[277px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FAF5EE] px-[10px] pb-[15px] pt-[15px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.045)] max-md:h-auto max-md:min-h-[235px] max-md:px-[18px] max-md:pb-[16px] max-md:pt-[16px]"
+                  className="flex h-[288px] flex-col items-center rounded-[13px] border border-[#E1D7CA] bg-[#FAF5EE] px-[10px] pb-[16px] pt-[16px] text-center shadow-[0_5px_14px_rgba(70,47,24,0.045)] max-md:h-auto max-md:min-h-[235px] max-md:px-[18px] max-md:pb-[16px] max-md:pt-[16px]"
                 >
                   <div className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-[#02311E] text-[#D8A326] shadow-[0_4px_10px_rgba(0,58,40,0.14)] max-md:h-[68px] max-md:w-[68px]">
                     <CustomIcon
@@ -621,7 +621,7 @@ export default function TrustTransparency() {
         </div>
 
         {/* LOWER DESKTOP AREA */}
-        <div className="relative -mt-px hidden h-[145px] overflow-hidden bg-[#FAF5EE] xl:block">
+        <div className="relative -mt-px hidden h-[155px] overflow-hidden bg-[#FAF5EE] xl:block">
           {/* IMAGE */}
           <div className="absolute bottom-[3px] left-[18px] top-[3px] z-[1] w-[23%] overflow-hidden rounded-[29px] border border-[#D6A13A]">
             <Image

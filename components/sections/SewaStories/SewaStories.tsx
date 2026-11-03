@@ -458,7 +458,7 @@ export default function SewaStories() {
         <header
           className="
             mx-auto
-            mb-[25px]
+            mb-[14px]
             max-w-[930px]
             text-center
           "
@@ -467,7 +467,7 @@ export default function SewaStories() {
 
           <div
             className="
-              mb-[5px]
+              mb-[4px]
               flex
               items-center
               justify-center
@@ -486,7 +486,7 @@ export default function SewaStories() {
             <span
               className="
                 font-sans
-                text-[16px]
+                text-[15px]
                 font-semibold
                 uppercase
                 text-[#9C6D2C]
@@ -510,6 +510,7 @@ export default function SewaStories() {
               leading-[1.05]
               text-[#064A31]
               sm:text-[30px]
+              whitespace-nowrap
             "
           >
             {textOrFallback(websiteSection?.subtitle, "Every Sewa Has a Human Story", 95)}
@@ -520,10 +521,10 @@ export default function SewaStories() {
           <p
             className="
               mx-auto
-              mt-[10px]
+              mt-[6px]
               max-w-[760px]
-              text-[16px]
-              leading-[1.4]
+              text-[15px]
+              leading-[1.35]
               text-[#555550]
             "
           >
@@ -566,7 +567,9 @@ export default function SewaStories() {
               <div
                 className="
                   relative
-                  h-[300px]
+                  h-[370px]
+                  sm:h-[390px]
+                  xl:h-[420px]
                   shrink-0
                   overflow-hidden
                 "
@@ -621,43 +624,6 @@ export default function SewaStories() {
 
                   Verified Case
                 </div>
-
-                {/* DESCRIPTION — hidden until hover, so the photo
-                    shows in full by default */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-x-0
-                    bottom-0
-                    translate-y-full
-                    bg-gradient-to-t
-                    from-black/92
-                    via-black/70
-                    to-transparent
-                    px-[16px]
-                    pb-[14px]
-                    pt-[34px]
-                    opacity-0
-                    transition-all
-                    duration-500
-                    ease-out
-                    group-hover:translate-y-0
-                    group-hover:opacity-100
-                    group-hover:pointer-events-auto
-                  "
-                >
-                  <p
-                    className="
-                      text-[15px]
-                      leading-[1.45]
-                      text-white
-                    "
-                  >
-                    {story.description}
-                  </p>
-                </div>
               </div>
 
               {/* ====================================
@@ -669,9 +635,9 @@ export default function SewaStories() {
                   flex
                   flex-1
                   flex-col
-                  px-[18px]
-                  pb-[17px]
-                  pt-[13px]
+                  px-[16px]
+                  pb-[14px]
+                  pt-[10px]
                 "
               >
                 {/* TITLE ROW */}
@@ -683,8 +649,8 @@ export default function SewaStories() {
                   <span
                     className="
                       flex
-                      h-[44px]
-                      w-[44px]
+                      h-[40px]
+                      w-[40px]
                       shrink-0
                       items-center
                       justify-center
@@ -696,8 +662,8 @@ export default function SewaStories() {
                     <CustomIcon
                       name={story.icon}
                       className="
-                        h-[29px]
-                        w-[29px]
+                        h-[25px]
+                        w-[25px]
                       "
                     />
                   </span>
@@ -706,11 +672,14 @@ export default function SewaStories() {
 
                     <h3
                       className="
-                        text-[16px]
+                        text-[15px]
+                        sm:text-[16px]
                         font-semibold
                         uppercase
-                        leading-[1.18]
+                        leading-tight
                         text-[#285E42]
+                        whitespace-nowrap
+                        truncate
                       "
                     >
                       {story.title}
@@ -728,40 +697,50 @@ export default function SewaStories() {
 
                     <div
                       className="
-                        mt-[5px]
+                        mt-[4px]
                         flex
                         items-center
                         gap-[5px]
-                        text-[16px]
+                        text-[14px]
                         leading-none
                         text-[#514A42]
+                        whitespace-nowrap
+                        truncate
                       "
                     >
                       <CustomIcon
                         name="MapPin"
                         className="
-                          h-[15px]
-                          w-[15px]
+                          h-[14px]
+                          w-[14px]
+                          shrink-0
                           text-[#C58B30]
                         "
                       />
 
-                      {story.location}
+                      <span className="truncate">{story.location}</span>
                     </div>
                   </div>
                 </div>
+
+                {/* DESCRIPTION CLAMPED TO 2 ROWS */}
+
+                <p className="mt-[7px] line-clamp-2 min-h-[36px] text-[13.5px] leading-[1.32] text-[#4d4842]">
+                  {story.description}
+                </p>
 
                 {/* SERVICES */}
 
                 <div
                   className="
-                    mt-[9px]
+                    mt-[7px]
                     flex
                     flex-wrap
                     items-center
-                    text-[16px]
+                    text-[13px]
+                    sm:text-[13.5px]
                     font-medium
-                    leading-[1.22]
+                    leading-tight
                     text-[#47413B]
                   "
                 >
@@ -771,7 +750,7 @@ export default function SewaStories() {
                       className="inline-flex items-center"
                     >
                       {index > 0 && (
-                        <span className="mx-[6px] text-[#B17B2E]">
+                        <span className="mx-[5px] text-[#B17B2E]">
                           •
                         </span>
                       )}
@@ -783,17 +762,17 @@ export default function SewaStories() {
 
                 {/* COMPLETED */}
 
-                <div className="mt-[11px]">
+                <div className="mt-[8px]">
                   <span
                     className="
                       inline-flex
-                      h-[30px]
+                      h-[28px]
                       items-center
-                      gap-[6px]
+                      gap-[5px]
                       rounded-[6px]
                       bg-[#EFF0E5]
-                      px-[9px]
-                      text-[16px]
+                      px-[8px]
+                      text-[13.5px]
                       font-semibold
                       leading-none
                       text-[#466149]
@@ -801,7 +780,7 @@ export default function SewaStories() {
                   >
                     <CustomIcon
                       name="CheckCircle"
-                      className="h-[16px] w-[16px]"
+                      className="h-[15px] w-[15px]"
                     />
 
                     Sewa Completed
@@ -809,8 +788,8 @@ export default function SewaStories() {
                     <CustomIcon
                       name="ArrowRight"
                       className="
-                        h-[13px]
-                        w-[13px]
+                        h-[12px]
+                        w-[12px]
                         text-[#B28236]
                       "
                     />
@@ -828,21 +807,21 @@ export default function SewaStories() {
         <div
           className="
             mx-auto
-            mt-[26px]
+            mt-[16px]
             flex
-            min-h-[70px]
+            min-h-[50px]
             w-full
             max-w-[900px]
             flex-col
             items-center
             justify-between
-            gap-4
+            gap-3
             rounded-[9px]
             border
             border-[#CFA65E]
             bg-[#FFFCF7]
-            px-[21px]
-            py-[8px]
+            px-[18px]
+            py-[6px]
             shadow-[0_4px_10px_rgba(75,48,22,0.04)]
             sm:flex-row
           "
@@ -854,24 +833,25 @@ export default function SewaStories() {
               flex
               min-w-0
               items-center
-              gap-[16px]
+              gap-[14px]
             "
           >
             <CustomIcon
               name="Lotus"
               className="
-                h-[40px]
-                w-[40px]
+                h-[28px]
+                w-[28px]
                 shrink-0
                 text-[#B87D22]
               "
             />
 
-            <span className="h-[40px] w-px bg-[#DED1BD]" />
+            <span className="h-[28px] w-px bg-[#DED1BD]" />
 
             <p
               className="
-                text-[16px]
+                text-[14px]
+                sm:text-[15px]
                 font-medium
                 leading-[1.3]
                 text-[#3E403F]
@@ -890,16 +870,16 @@ export default function SewaStories() {
             className="
               group
               inline-flex
-              h-[43px]
-              min-w-[210px]
+              h-[38px]
+              min-w-[180px]
               shrink-0
               items-center
               justify-center
-              gap-[22px]
+              gap-[16px]
               rounded-[6px]
               bg-[#005039]
-              px-[20px]
-              text-[16px]
+              px-[16px]
+              text-[14px]
               font-semibold
               uppercase
               leading-none
@@ -915,8 +895,8 @@ export default function SewaStories() {
             <CustomIcon
               name="ArrowRight"
               className="
-                h-[17px]
-                w-[17px]
+                h-[15px]
+                w-[15px]
                 text-[#D29A2B]
                 transition-transform
                 duration-300

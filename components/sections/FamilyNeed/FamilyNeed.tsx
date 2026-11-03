@@ -220,9 +220,11 @@ export default function PracticalSewaSupport() {
         overflow-hidden
         bg-[#F7F3EC]
         px-4
-        py-[14px]
+        py-6
         sm:px-5
+        sm:py-8
         lg:px-6
+        lg:py-10
       "
     >
       <div className="mx-auto w-full max-w-[1344px]">
@@ -312,7 +314,8 @@ export default function PracticalSewaSupport() {
               z-10
               grid
               grid-cols-1
-              lg:h-[570px]
+              lg:h-[630px]
+              lg:min-h-[630px]
               lg:grid-cols-[46%_54%]
             "
           >
@@ -326,8 +329,8 @@ export default function PracticalSewaSupport() {
                 flex
                 flex-col
                 px-6
-                pb-[18px]
-                pt-[12px]
+                pb-[24px]
+                pt-[18px]
                 sm:px-8
                 lg:px-[42px]
               "
@@ -689,7 +692,7 @@ export default function PracticalSewaSupport() {
         <div
           className="
             relative
-            mt-[7px]
+            mt-[14px]
             overflow-hidden
             rounded-[12px]
             border

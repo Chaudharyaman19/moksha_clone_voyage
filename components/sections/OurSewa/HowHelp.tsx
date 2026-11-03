@@ -262,8 +262,8 @@ interface BenefitItem {
 const cards: CardItem[] = [
   {
     icon: "AmbulanceIcon",
-    title: "Final Journey &\nTransport",
-    desc: "Ambulance & hearse\ncoordination with care\nand dignity.",
+    title: "Ambulance & Final Journey Van",
+    desc: "Respectful transport for the deceased from hospital/home to cremation ground.",
     features: [
       "24x7 Availability",
       "Safe & Timely Transport",
@@ -276,8 +276,8 @@ const cards: CardItem[] = [
   },
   {
     icon: "CremationIcon",
-    title: "Cremation &\nLast Rites",
-    desc: "Ground and essential\narrangements for a\ndignified farewell.",
+    title: "Cremation Coordination",
+    desc: "Support in arranging cremation ground coordination and required formalities.",
     features: [
       "Cremation Ground Support",
       "Essential Arrangements",
@@ -290,8 +290,8 @@ const cards: CardItem[] = [
   },
   {
     icon: "RitualIcon",
-    title: "Ritual &\nPriest Support",
-    desc: "Priest, wood, cloth, flowers\nand all ritual essentials\narranged.",
+    title: "Ritual & Priest Support",
+    desc: "Priest, wood, cloth, flowers and all ritual essentials arranged.",
     features: [
       "Experienced Priests",
       "Ritual Essentials",
@@ -304,8 +304,8 @@ const cards: CardItem[] = [
   },
   {
     icon: "FamilyIcon",
-    title: "Family &\nOn-Ground Support",
-    desc: "Guidance, volunteers and\ndocumentation assistance\nat every step.",
+    title: "Family & On-Ground Support",
+    desc: "Guidance, volunteers and documentation assistance at every step.",
     features: [
       "Volunteer Support",
       "Documentation Help",
@@ -358,19 +358,23 @@ export default function HowWeCanHelp() {
   const websiteSection = useWebsiteSection("practical-support");
   const managedCards = cards.map((card, index) => {
     const item = websiteSection?.items?.[index];
+    const rawTitle = textOrFallback(item?.title, card.title, 80);
+    const rawDesc = textOrFallback(item?.description, card.desc, 150);
     return {
       ...card,
-      title: textOrFallback(item?.title, card.title, 80),
-      desc: textOrFallback(item?.description, card.desc, 150),
+      title: (rawTitle || "").replace(/\n/g, " "),
+      desc: (rawDesc || "").replace(/\n/g, " "),
       image: item?.image || card.image,
     };
   });
   const managedBenefits = benefits.map((benefit, index) => {
     const item = websiteSection?.items?.[index + cards.length];
+    const rawTitle = textOrFallback(item?.title, benefit.title, 80);
+    const rawText = textOrFallback(item?.description, benefit.text, 150);
     return {
       ...benefit,
-      title: textOrFallback(item?.title, benefit.title, 80),
-      text: textOrFallback(item?.description, benefit.text, 150),
+      title: (rawTitle || "").replace(/\n/g, " "),
+      text: (rawText || "").replace(/\n/g, " "),
     };
   });
   return (
@@ -379,13 +383,13 @@ export default function HowWeCanHelp() {
         relative
         w-full
         overflow-hidden
-        px-4
-        pt-[2px]
-        pb-[18px]
+        px-3
+        py-3
         sm:px-5
+        sm:py-4
         lg:px-6
-        lg:pt-[2px]
-        lg:pb-[22px]
+        lg:py-4
+        xl:py-5
       "
       style={{
         backgroundColor: "#FBF7EF",
@@ -513,20 +517,21 @@ export default function HowWeCanHelp() {
 
           <h2
             className="
-              mt-[1px]
+              mt-1
               font-sans
-              text-[30px]
+              text-[22px]
+              sm:text-[28px]
+              lg:text-[32px]
+              xl:text-[36px]
               font-semibold
-              leading-[0.98]
+              leading-tight
               text-[#21130D]
-              sm:text-[42px]
-              lg:text-[49px]
+              whitespace-nowrap
             "
             style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
           >
-            {textOrFallback(websiteSection?.title, "Essential Support for a\nDignified Final Journey", 150).split('\n').map((line, i) => 
-              i === 1 ? <span key={line} className="mt-[2px] block text-[#D54200]">{line}</span> : line
-            )}
+            Essential Support for a{" "}
+            <span className="text-[#D54200]">Dignified Final Journey</span>
           </h2>
 
           <div className="mx-auto mt-[8px] flex max-w-[230px] items-center justify-center gap-[8px]">
@@ -544,7 +549,7 @@ export default function HowWeCanHelp() {
         </header>
 
         {/* cards */}
-        <div className="grid grid-cols-1 items-stretch gap-[20px] md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 items-stretch gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
           {managedCards.map((card) => (
             <article
               key={card.title}
@@ -552,15 +557,13 @@ export default function HowWeCanHelp() {
                 relative
                 flex
                 h-auto
-                min-h-[565px]
                 flex-col
-                lg:h-[565px]
                 overflow-hidden
-                rounded-[19px]
+                rounded-[16px]
                 border
                 border-[#E8DDD0]
                 bg-white
-                shadow-[0_8px_22px_rgba(65,39,18,0.10)]
+                shadow-[0_6px_20px_rgba(65,39,18,0.09)]
               "
             >
               {/* top */}
@@ -568,12 +571,12 @@ export default function HowWeCanHelp() {
                 className="
                   relative
                   flex
-                  h-[250px]
                   shrink-0
                   flex-col
                   items-center
                   px-[14px]
-                  pt-[103px]
+                  pt-[86px]
+                  pb-3
                   text-center
                 "
               >
@@ -581,50 +584,59 @@ export default function HowWeCanHelp() {
                   className="
                     absolute
                     left-1/2
-                    top-[5px]
+                    top-[8px]
                     flex
-                    h-[91px]
-                    w-[91px]
+                    h-[74px]
+                    w-[74px]
                     -translate-x-1/2
                     items-center
                     justify-center
                     rounded-full
-                    border-[5px]
+                    border-[4px]
                     border-white
                     text-white
-                    shadow-[0_5px_14px_rgba(42,29,17,0.20)]
+                    shadow-[0_4px_12px_rgba(42,29,17,0.18)]
                   "
                   style={{ backgroundColor: card.accent }}
                 >
                   <CustomIcon
                     name={card.icon}
-                    className="h-[48px] w-[48px]"
+                    className="h-[38px] w-[38px]"
                   />
                 </div>
 
                 <h3
                   className="
-                    whitespace-pre-line
+                    w-full
+                    max-w-full
+                    overflow-hidden
+                    text-ellipsis
+                    whitespace-nowrap
                     font-sans
-                    text-[22px]
+                    text-[15px]
+                    sm:text-[16px]
+                    lg:text-[15.5px]
+                    xl:text-[17px]
+                    2xl:text-[18px]
                     font-semibold
-                    leading-[1.04]
+                    leading-tight
                   "
                   style={{
                     color: card.titleColor,
                     fontFamily: "Georgia, 'Times New Roman', serif",
                   }}
+                  title={card.title}
                 >
                   {card.title}
                 </h3>
 
                 <span
-                  className="mt-[8px] h-[3px] w-[34px] shrink-0 rounded-full"
+                  className="mt-[5px] h-[2.5px] w-[30px] shrink-0 rounded-full"
                   style={{ backgroundColor: card.accent }}
                 />
 
-                <p className="mt-[10px] whitespace-pre-line text-[16px] leading-[1.35] text-[#28211D]">
-                  {card.desc}
+                <p className="mt-1.5 max-w-[280px] text-[13px] sm:text-[13.5px] lg:text-[14px] leading-[1.35] text-[#28211D] line-clamp-2 min-h-[38px]">
+                  {card.desc.replace(/\n/g, " ")}
                 </p>
               </div>
 
@@ -632,7 +644,9 @@ export default function HowWeCanHelp() {
               <div
                 className="
                   relative
-                  h-[214px]
+                  h-[200px]
+                  sm:h-[215px]
+                  lg:h-[225px]
                   w-full
                   shrink-0
                   overflow-hidden
@@ -640,7 +654,7 @@ export default function HowWeCanHelp() {
               >
                 <Image
                   src={card.image}
-                  alt={card.title.replace("\n", " ")}
+                  alt={card.title.replace(/\n/g, " ")}
                   fill
                   quality={100}
                   sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 25vw"
@@ -648,17 +662,17 @@ export default function HowWeCanHelp() {
                 />
               </div>
 
-              {/* bottom features */}
+              {/* bottom features - tight spacing */}
               <div
                 className="
                   flex
                   flex-1
                   flex-col
                   justify-start
-                  gap-[10px]
-                  px-[16px]
-                  pt-[12px]
-                  pb-[24px]
+                  gap-1.5
+                  px-3.5
+                  pt-2
+                  pb-2.5
                 "
                 style={{ backgroundColor: card.featureBg }}
               >
@@ -668,22 +682,23 @@ export default function HowWeCanHelp() {
                     className="
                       flex
                       items-center
-                      gap-[9px]
-                      text-[16px]
-                      leading-[1.08]
+                      gap-2
+                      text-[13px]
+                      sm:text-[13.5px]
+                      leading-tight
                       text-[#28211D]
                     "
                   >
                     <span
                       className="
                         flex
-                        h-[19px]
-                        w-[19px]
+                        h-[16px]
+                        w-[16px]
                         shrink-0
                         items-center
                         justify-center
                         rounded-full
-                        text-[16px]
+                        text-[10px]
                         font-bold
                         leading-none
                         text-white
@@ -692,7 +707,7 @@ export default function HowWeCanHelp() {
                     >
                       ✓
                     </span>
-                    <span>{feature}</span>
+                    <span className="truncate">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -700,16 +715,17 @@ export default function HowWeCanHelp() {
           ))}
         </div>
 
-        {/* benefit band */}
+        {/* benefit band - patla band, content in 2 rows */}
         <div
           className="
-            mt-[26px]
+            mt-2
+            sm:mt-2.5
             overflow-hidden
-            rounded-[15px]
+            rounded-[10px]
             border
             border-[#E5D2B4]
             bg-[#FFF9F0]/95
-            shadow-[0_5px_14px_rgba(74,46,20,0.05)]
+            shadow-[0_3px_10px_rgba(74,46,20,0.04)]
           "
         >
           <div
@@ -726,113 +742,117 @@ export default function HowWeCanHelp() {
             {managedBenefits.map((item) => (
               <div
                 key={item.title}
-                className="flex min-h-[125px] items-center gap-[13px] px-[15px] py-[13px]"
+                className="flex min-h-0 items-center gap-2 px-2.5 py-1.5 sm:py-2"
               >
                 <div
-                  className="flex h-[54px] w-[54px] shrink-0 items-center justify-center"
+                  className="flex h-[32px] w-[32px] shrink-0 items-center justify-center"
                   style={{ color: item.color }}
                 >
                   <CustomIcon
                     name={item.icon}
-                    className="h-[48px] w-[48px]"
+                    className="h-[26px] w-[26px]"
                   />
                 </div>
 
-                <div className="min-w-0">
-                  <h4 className="text-[16px] font-bold leading-[1.15] text-[#251D18]">
+                <div className="min-w-0 flex-1">
+                  <h4
+                    className="whitespace-nowrap truncate text-[13.5px] sm:text-[14px] font-bold leading-tight text-[#251D18]"
+                    title={item.title}
+                  >
                     {item.title}
                   </h4>
-                  <p className="mt-[5px] text-[16px] leading-[1.35] text-[#37302A]">
+                  <p className="mt-0.5 text-[11.5px] sm:text-[12px] leading-tight text-[#37302A] line-clamp-2 min-h-[26px]">
                     {item.text}
                   </p>
                 </div>
               </div>
             ))}
 
-            <div className="flex min-h-[125px] flex-col items-center justify-center px-[12px] py-[10px] text-center">
+            <div className="flex min-h-0 flex-col items-center justify-center px-2 py-1.5 text-center">
               <CustomIcon
                 name="LotusIcon"
-                className="h-[35px] w-[35px] text-[#E4520E]"
+                className="h-[22px] w-[22px] text-[#E4520E]"
               />
 
-              <div className="mt-[3px] font-sans text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="mt-0.5 font-sans text-[13px] sm:text-[13.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
                 Together,
               </div>
-              <div className="font-sans text-[18px] italic leading-tight text-[#A84F1D]">
+              <div className="font-sans text-[13px] sm:text-[13.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
                 We Serve with Dignity
               </div>
 
-              <div className="mt-[5px] flex items-center gap-[7px]">
-                <span className="h-px w-[31px] bg-[#B97032]" />
-                <span className="h-[6px] w-[6px] rotate-45 bg-[#B97032]" />
-                <span className="h-px w-[31px] bg-[#B97032]" />
+              <div className="mt-0.5 flex items-center gap-[5px]">
+                <span className="h-px w-[20px] bg-[#B97032]" />
+                <span className="h-[4px] w-[4px] rotate-45 bg-[#B97032]" />
+                <span className="h-px w-[20px] bg-[#B97032]" />
               </div>
             </div>
           </div>
         </div>
 
-        {/* bottom cta */}
+        {/* bottom cta - patla band */}
         <div
           className="
-            mt-[21px]
+            mt-2
+            sm:mt-2.5
             overflow-hidden
-            rounded-[14px]
+            rounded-[10px]
             bg-gradient-to-r
             from-[#003A68]
             via-[#004C80]
             to-[#003866]
             text-white
-            shadow-[0_7px_17px_rgba(10,53,91,0.20)]
+            shadow-[0_4px_12px_rgba(10,53,91,0.15)]
           "
         >
-          <div className="flex min-h-[82px] flex-col lg:flex-row lg:items-center">
-            <div className="flex flex-1 items-center gap-[14px] px-[20px] py-[11px] sm:px-[28px]">
-              <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full border-2 border-white text-white">
+          <div className="flex min-h-[50px] flex-col lg:flex-row lg:items-center">
+            <div className="flex flex-1 items-center gap-2.5 px-3 py-1.5 sm:px-5">
+              <span className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full border border-white text-white">
                 <CustomIcon
                   name="PhoneIcon"
-                  className="h-[25px] w-[25px]"
+                  className="h-[16px] w-[16px]"
                 />
               </span>
 
               <div>
-                <div className="text-[18px] font-bold leading-tight">
+                <div className="text-[14px] sm:text-[15px] font-bold leading-tight whitespace-nowrap">
                   Need Immediate Help?
                 </div>
-                <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
+                <div className="text-[11.5px] sm:text-[12px] leading-tight text-white/90 whitespace-nowrap">
                   Our team is available 24x7 to support you.
                 </div>
               </div>
             </div>
 
-            <span className="hidden h-[50px] w-px bg-white/40 lg:block" />
+            <span className="hidden h-[30px] w-px bg-white/30 lg:block" />
 
             <div
               className="
                 flex
                 flex-[1.45]
                 flex-col
-                gap-[12px]
+                gap-2.5
                 border-t
                 border-white/20
-                px-[20px]
-                py-[11px]
+                px-3
+                py-1.5
                 sm:flex-row
                 sm:items-center
                 sm:justify-between
-                sm:px-[28px]
+                sm:px-5
                 lg:border-t-0
               "
             >
-              <div className="flex items-center gap-[15px]">
-                <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[26px] leading-none text-[#C62565]">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] leading-none text-[#C62565]">
                   ♥
                 </span>
 
                 <div>
-                  <div className="text-[18px] font-bold leading-tight">
+                  <div className="text-[14px] sm:text-[15px] font-bold leading-tight whitespace-nowrap">
                     Support Our Mission
                   </div>
-                  <div className="mt-[2px] text-[16px] leading-[1.25] text-white/90">
+                  <div className="text-[11.5px] sm:text-[12px] leading-tight text-white/90 whitespace-nowrap">
                     Your support can bring dignity to many final journeys.
                   </div>
                 </div>
@@ -843,25 +863,25 @@ export default function HowWeCanHelp() {
                 className="
                   group
                   inline-flex
-                  h-[49px]
-                  min-w-[228px]
+                  h-[36px]
+                  min-w-[160px]
                   shrink-0
                   items-center
                   justify-center
-                  gap-[15px]
-                  rounded-[10px]
+                  gap-2.5
+                  rounded-[7px]
                   border
                   border-[#F07019]
                   bg-gradient-to-r
                   from-[#D44100]
                   to-[#EA5A00]
-                  px-[21px]
-                  text-[16px]
+                  px-3.5
+                  text-[13px]
                   font-bold
                   uppercase
                   leading-none
                   text-white
-                  shadow-[0_5px_13px_rgba(74,28,5,0.25)]
+                  shadow-[0_3px_8px_rgba(74,28,5,0.22)]
                   transition
                   duration-300
                   hover:-translate-y-[1px]
@@ -869,10 +889,10 @@ export default function HowWeCanHelp() {
               >
                 Support Now
 
-                <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full border border-white/90">
+                <span className="flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/90">
                   <CustomIcon
                     name="ArrowRightIcon"
-                    className="h-[13px] w-[13px] transition-transform duration-300 group-hover:translate-x-[2px]"
+                    className="h-[10px] w-[10px] transition-transform duration-300 group-hover:translate-x-[2px]"
                   />
                 </span>
               </a>

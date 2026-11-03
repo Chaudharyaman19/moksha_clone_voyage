@@ -680,12 +680,12 @@ export const defaultCSRSections: ExtraSectionContent[] = [
   },
   {
     key: "csr-enquiry",
-    name: "CSR Enquiry Form Section",
+    name: "CSR Enquiry (Left Graphic Banner)",
     enabled: true,
     eyebrow: "Corporate Inquiry",
     title: "Connect With Our CSR Leadership Team",
     description: "Share your company's CSR priorities and we will create a tailored proposal.",
-    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165136/moksha-sewa/assets/csr/responsible-partnership-conversation.png",
+    image: "/assets/csr/responsible-partnership-conversation.png",
     contactTitle: "CSR Partnership Enquiry",
     phoneNumber: "+91 92201 47229",
     contactEmail: "csr@mokshasewa.org",
@@ -700,7 +700,7 @@ export const defaultCSRSections: ExtraSectionContent[] = [
       { title: "Meaningful\nImpact", description: "Support dignified\nhumanitarian\ninitiatives.", value: "Handshake" },
       { title: "Responsible\nCollaboration", description: "Built on trust, compliance\nand accountability.", value: "ShieldCheck" },
       { title: "Community\nDriven", description: "Strengthen support\nwhere it's needed\nmost.", value: "People" },
-      { title: "Transparent\nReporting", description: "Clear updates and\nimpact reporting\nas agreed.", value: "Report" },
+      { title: "Transparent\nReporting", description: "Clear updates and\nimpact reporting", value: "Report" },
     ],
   },
   {
@@ -914,7 +914,8 @@ export const defaultContactSections: ExtraSectionContent[] = [
     description: "Connect with our central coordination desk in Delhi NCR via phone, email, or office visit.",
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png",
     phoneLabel: "24/7 Helpline",
-    phoneNumber: "1800123456",
+    phoneNumber: "9220147229",
+    altPhoneNumber: "6281482342",
     contactEmail: "info@mokshasewa.org",
     contactAddress: "Namo Gange Trust, Delhi • Ghaziabad • Noida",
   },
@@ -966,8 +967,9 @@ export const defaultContactSections: ExtraSectionContent[] = [
     title: "Office Locations",
     description: "Find our head office and regional branches.",
     items: [
-      { title: "Head Office", subtitle: "Ghaziabad, Uttar Pradesh", description: "12/52, Site - 2, Sunrise Industrial Area, Mohan Nagar, Sahibabad, Ghaziabad, Uttar Pradesh, India", value: "+91 98183 53841", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png" },
-      { title: "London Office", subtitle: "Luton, England", description: "Registration address: 6 Liddel Close, Luton, Bedfordshire, United Kingdom LU3 1TW", value: "+44 7429 519276", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165092/moksha-sewa/assets/contact/en.png" },
+      { title: "Head Office", subtitle: "Delhi NCR", description: "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India", value: "+91 9220147229", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png" },
+      { title: "Regional Office", subtitle: "Visakhapatnam", description: "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India", value: "+91 6281482342", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png" },
+      { title: "Global Office", subtitle: "London", description: "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom", value: "+44 7429 519276", image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165092/moksha-sewa/assets/contact/en.png" },
     ]
   },
 ];
