@@ -228,7 +228,7 @@ function Contact() {
                 href={CONTACT.helpline.href}
                 className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.6)] items-center gap-[calc(var(--u)*0.75)] rounded-[calc(var(--u)*0.95)] bg-gradient-to-b from-[#833B00] to-[#5F2500] pl-[calc(var(--u)*1.25)] text-white shadow-[0_3px_8px_rgba(95,37,0,0.2)] transition hover:brightness-110"
               >
-                <Image src="/assets/contact/icons/phone-white.png" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.9)]" />
+                <Image unoptimized src="/assets/contact/icons/phone-white.svg" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.9)]" />
                 <span className="flex flex-col leading-[1.25]">
                   <span className="text-[calc(var(--u)*1.22)] font-semibold">Call Helpline</span>
                   <span className="whitespace-nowrap text-[calc(var(--u)*1.34)] font-bold">
@@ -240,12 +240,12 @@ function Contact() {
                 href="#contact-form"
                 className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.8)] items-center gap-[calc(var(--u)*0.7)] rounded-[calc(var(--u)*0.95)] border border-[#D9C4AD] bg-white pl-[calc(var(--u)*1)] pr-[calc(var(--u)*1)] text-[#280501] shadow-[0_2px_6px_rgba(95,37,0,0.08)] transition hover:bg-[#FFF8F0]"
               >
-                <Image src="/assets/contact/icons/calendar.png" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*3.15)]" />
+                <Image unoptimized src="/assets/contact/icons/calendar.svg" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*3.15)]" />
                 <span className="flex flex-1 flex-col leading-[1.25]">
                   <span className="whitespace-nowrap text-[calc(var(--u)*1.22)] font-bold">Request Sewa</span>
                   <span className="whitespace-nowrap text-[calc(var(--u)*1.1)] font-medium">(Free Assistance)</span>
                 </span>
-                <Image src="/assets/contact/icons/arrow-orange.png" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*2.4)]" />
+                <Image unoptimized src="/assets/contact/icons/arrow-orange.svg" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*2.4)]" />
               </a>
             </div>
           </div>
@@ -262,7 +262,8 @@ function Contact() {
                 className={`relative flex items-center justify-center gap-[calc(var(--u)*1.5)] px-2 ${i > 0 ? "lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.4)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#C9A27A]" : ""} ${i % 2 === 1 ? "border-l border-[#C9A27A]/60 lg:border-l-0" : ""}`}
               >
                 <Image
-                  src={`/assets/contact/icons/${item.src}.png`}
+                  unoptimized
+                  src={`/assets/contact/icons/${item.src}.svg`}
                   alt=""
                   width={item.iw}
                   height={item.h}
@@ -317,7 +318,7 @@ function Contact() {
               ].map((p) => (
                 <div key={p.src} className="flex items-center gap-[calc(var(--u)*2)]">
                   <span className="flex h-[calc(var(--u)*5.18)] w-[calc(var(--u)*5.18)] shrink-0 items-center justify-center rounded-full bg-[#FEE9CF]">
-                    <Image src={`/assets/contact/icons/${p.src}.png`} alt="" width={p.iw} height={p.ih} className="h-auto" style={{ width: `calc(var(--u) * ${p.w})` }} />
+                    <Image unoptimized src={`/assets/contact/icons/${p.src}.svg`} alt="" width={p.iw} height={p.ih} className="h-auto" style={{ width: `calc(var(--u) * ${p.w})` }} />
                   </span>
                   <span>
                     <span className="block text-[calc(var(--u)*1.33)] font-bold leading-[calc(var(--u)*1.7)] text-[#3A0F05]">{p.title}</span>
@@ -352,11 +353,11 @@ function Contact() {
             <div className="mt-[calc(var(--u)*1.2)] grid gap-[calc(var(--u)*0.9)]">
               <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
                 <label className={fieldWrap}>
-                  <Image src="/assets/contact/icons/field-user.png" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
+                  <Image unoptimized src="/assets/contact/icons/field-user.svg" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
                   <input name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name *" className={fieldInput} />
                 </label>
                 <label className={fieldWrap}>
-                  <Image src="/assets/contact/icons/field-phone.png" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
+                  <Image unoptimized src="/assets/contact/icons/field-phone.svg" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
                   <input
                     name="phone"
                     type="tel"
@@ -375,34 +376,34 @@ function Contact() {
 
               <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
                 <label className={fieldWrap}>
-                  <Image src="/assets/contact/icons/field-mail.png" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
+                  <Image unoptimized src="/assets/contact/icons/field-mail.svg" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
                   <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address (Optional)" className={fieldInput} />
                 </label>
                 <label className={fieldWrap}>
-                  <Image src="/assets/contact/icons/field-pin.png" alt="" width={112} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.45)] -translate-y-1/2" />
+                  <Image unoptimized src="/assets/contact/icons/field-pin.svg" alt="" width={112} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.45)] -translate-y-1/2" />
                   <select name="location" value={formData.location} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
                     <option value="" disabled>Your Location *</option>
                     {locationOptions.map((loc) => (
                       <option key={loc} value={loc}>{loc}</option>
                     ))}
                   </select>
-                  <Image src="/assets/contact/icons/chevron-down.png" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
+                  <Image unoptimized src="/assets/contact/icons/chevron-down.svg" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
                 </label>
               </div>
 
               <label className={fieldWrap}>
-                <Image src="/assets/contact/icons/field-list.png" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
+                <Image unoptimized src="/assets/contact/icons/field-list.svg" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
                 <select name="assistanceType" value={formData.assistanceType} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
                   <option value="" disabled>Type of Assistance *</option>
                   {assistanceOptions.map((option) => (
                     <option key={option} value={option}>{option}</option>
                   ))}
                 </select>
-                <Image src="/assets/contact/icons/chevron-down.png" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
+                <Image unoptimized src="/assets/contact/icons/chevron-down.svg" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
               </label>
 
               <label className={`${fieldWrap} !h-[calc(var(--u)*6.8)]`}>
-                <Image src="/assets/contact/icons/field-chat.png" alt="" width={128} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-[calc(var(--u)*1.1)] h-auto w-[calc(var(--u)*1.65)]" />
+                <Image unoptimized src="/assets/contact/icons/field-chat.svg" alt="" width={128} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-[calc(var(--u)*1.1)] h-auto w-[calc(var(--u)*1.65)]" />
                 <svg viewBox="0 0 12 12" className="pointer-events-none absolute bottom-[calc(var(--u)*0.5)] right-[calc(var(--u)*0.5)] h-[calc(var(--u)*0.9)] w-[calc(var(--u)*0.9)]" aria-hidden>
                   <path d="M11 2 L2 11 M11 6 L6 11" stroke="#8C7B6B" strokeWidth="1.2" strokeLinecap="round" fill="none" />
                 </svg>
@@ -437,9 +438,9 @@ function Contact() {
                   <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
                 ) : (
                   <>
-                    <Image src="/assets/contact/icons/paper-plane.png" alt="" width={176} height={152} className="h-auto w-[calc(var(--u)*2.2)]" />
+                    <Image unoptimized src="/assets/contact/icons/paper-plane.svg" alt="" width={176} height={152} className="h-auto w-[calc(var(--u)*2.2)]" />
                     Send Enquiry
-                    <Image src="/assets/contact/icons/arrow-right-white.png" alt="" width={136} height={80} className="ml-[calc(var(--u)*0.4)] h-auto w-[calc(var(--u)*1.8)]" />
+                    <Image unoptimized src="/assets/contact/icons/arrow-right-white.svg" alt="" width={136} height={80} className="ml-[calc(var(--u)*0.4)] h-auto w-[calc(var(--u)*1.8)]" />
                   </>
                 )}
               </button>
@@ -450,7 +451,7 @@ function Contact() {
             <Image src="/assets/contact/icons/lotus-faint.png" alt="" width={640} height={368} className="pointer-events-none absolute bottom-[calc(var(--u)*0.4)] right-[calc(var(--u)*1.5)] hidden h-auto w-[calc(var(--u)*10)] lg:block" />
             <a href={CONTACT.helpline.href} className="flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*3)]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
-                <Image src="/assets/contact/icons/strip-phone.png" alt="" width={168} height={160} className="h-auto w-[calc(var(--u)*2.65)]" />
+                <Image unoptimized src="/assets/contact/icons/strip-phone.svg" alt="" width={168} height={160} className="h-auto w-[calc(var(--u)*2.65)]" />
               </span>
               <span>
                 <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Call Our Helpline</span>
@@ -460,7 +461,7 @@ function Contact() {
             </a>
             <a href={CONTACT.email.href} className="relative flex items-center gap-[calc(var(--u)*1.2)] lg:pl-[calc(var(--u)*2.85)] lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.7)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#B79A82]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
-                <Image src="/assets/contact/icons/strip-mail.png" alt="" width={184} height={120} className="h-auto w-[calc(var(--u)*2.9)]" />
+                <Image unoptimized src="/assets/contact/icons/strip-mail.svg" alt="" width={184} height={120} className="h-auto w-[calc(var(--u)*2.9)]" />
               </span>
               <span>
                 <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Email Us</span>
@@ -469,7 +470,7 @@ function Contact() {
             </a>
             <div className="relative flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*2.45)] lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.7)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#B79A82]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
-                <Image src="/assets/contact/icons/strip-clock.png" alt="" width={192} height={192} className="h-auto w-[calc(var(--u)*3)]" />
+                <Image unoptimized src="/assets/contact/icons/strip-clock.svg" alt="" width={192} height={192} className="h-auto w-[calc(var(--u)*3)]" />
               </span>
               <span>
                 <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Office Hours</span>
@@ -527,7 +528,8 @@ function Contact() {
                     style={{ background: "linear-gradient(135deg,#7E3A12 0%,#6B2F0A 58%,#5C2A10 100%)" }}
                   >
                     <Image
-                      src={`/assets/contact/${c.icon.src}.png`}
+                      unoptimized
+                      src={`/assets/contact/${c.icon.src}.svg`}
                       alt=""
                       width={c.icon.iw}
                       height={c.icon.ih}
@@ -547,7 +549,7 @@ function Contact() {
                   </div>
 
                   <div className="absolute inset-x-0 bottom-0 top-[calc(var(--u)*5.43)] rounded-[calc(var(--u)*1.15)] bg-[#FDFCF8]">
-                    <Image src="/assets/contact/office-pin.png" alt="" width={104} height={112} className="absolute h-auto w-[calc(var(--u)*1.3)]" style={{ left: pu(c.pinX - 10), top: pu(c.pinTop) }} />
+                    <Image unoptimized src="/assets/contact/office-pin.svg" alt="" width={104} height={112} className="absolute h-auto w-[calc(var(--u)*1.3)]" style={{ left: pu(c.pinX - 10), top: pu(c.pinTop) }} />
                     <p className="absolute whitespace-nowrap text-[calc(var(--u)*1)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.addrTop), lineHeight: pu(c.addrLh) }}>
                       {c.address.map((line, i) => (
                         <span key={line}>
@@ -556,7 +558,7 @@ function Contact() {
                         </span>
                       ))}
                     </p>
-                    <Image src="/assets/contact/office-phone.png" alt="" width={120} height={112} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.phoneY - 12) }} />
+                    <Image unoptimized src="/assets/contact/office-phone.svg" alt="" width={120} height={112} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.phoneY - 12) }} />
                     <div className="absolute flex items-center whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.phoneY - 11) }}>
                       {c.phones.map((p, i) => (
                         <React.Fragment key={p}>
@@ -565,7 +567,7 @@ function Contact() {
                         </React.Fragment>
                       ))}
                     </div>
-                    <Image src="/assets/contact/office-mail.png" alt="" width={120} height={96} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.mailY - 9) }} />
+                    <Image unoptimized src="/assets/contact/office-mail.svg" alt="" width={120} height={96} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.mailY - 9) }} />
                     <a href={`mailto:${c.email}`} className="absolute whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410] hover:text-[#C96822]" style={{ left: pu(c.bodyLeft), top: pu(c.mailY - 11) }}>
                       {c.email}
                     </a>
@@ -577,7 +579,7 @@ function Contact() {
 
             <div className="relative z-10 mt-6 flex flex-col gap-4 rounded-[calc(var(--u)*3.2)] border border-white/80 bg-[linear-gradient(90deg,rgba(255,252,248,0.96)_0%,rgba(254,248,241,0.95)_60%,rgba(254,248,241,0.45)_100%)] p-5 shadow-[0_8px_24px_rgba(150,90,30,0.08)] lg:absolute lg:left-[calc(var(--u)*3.8)] lg:top-[calc(var(--u)*36.5)] lg:m-0 lg:block lg:h-[calc(var(--u)*10.2)] lg:w-[calc(var(--u)*92.2)] lg:p-0">
               <div className="flex items-center gap-[calc(var(--u)*1.4)] lg:contents">
-                <Image src="/assets/contact/presence-globe.png" alt="" width={336} height={320} className="h-auto w-[calc(var(--u)*5.3)] lg:absolute lg:left-[calc(var(--u)*2.15)] lg:top-[calc(var(--u)*2.7)]" />
+                <Image unoptimized src="/assets/contact/presence-globe.svg" alt="" width={336} height={320} className="h-auto w-[calc(var(--u)*5.3)] lg:absolute lg:left-[calc(var(--u)*2.15)] lg:top-[calc(var(--u)*2.7)]" />
                 <span className="h-[calc(var(--u)*4.5)] w-px bg-[#C9824F] lg:absolute lg:left-[calc(var(--u)*8.7)] lg:top-[calc(var(--u)*3)]" />
                 <h3 className="font-serif text-[calc(var(--u)*2.4)] font-bold leading-[calc(var(--u)*2.5)] text-[#2A0A02] lg:absolute lg:left-[calc(var(--u)*10.4)] lg:top-[calc(var(--u)*2.66)]">
                   Our Presence<br />at a Glance

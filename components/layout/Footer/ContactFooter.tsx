@@ -44,13 +44,6 @@ const values = [
   { icon: "v-together", title: "Together", desc: "United for a more compassionate world.", x: 1278, tx: 1331 },
 ];
 
-const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/mokshasewa/", cx: 1542, cy: 108 },
-  { label: "Instagram", href: "https://www.instagram.com/mokshasewa/", cx: 1542, cy: 163 },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/moksha-sewaorg/", cx: 1542, cy: 218 },
-  { label: "YouTube", href: "https://www.youtube.com/@Mokshasewa", cx: 1542, cy: 274 },
-];
-
 function GoldLine({ dir }: { dir: "l" | "r" }) {
   return (
     <span
@@ -65,7 +58,7 @@ function Divider({ cx, y, half, lotusW = 26 }: { cx: number; y: number; half: nu
     <>
       <span className="absolute" style={{ left: k(cx - lotusW / 2 - 4 - half), top: k(y), width: k(half), height: 1.5, background: `linear-gradient(90deg, transparent, ${GOLD})` }} />
       <span className="absolute" style={{ left: k(cx + lotusW / 2 + 4), top: k(y), width: k(half), height: 1.5, background: `linear-gradient(270deg, transparent, ${GOLD})` }} />
-      <Image src={`${A}/divider-lotus.png`} alt="" width={104} height={80} className="absolute h-auto" style={{ left: k(cx - lotusW / 2), top: k(y - 9), width: k(lotusW) }} />
+      <Image unoptimized src={`${A}/divider-lotus.svg`} alt="" width={104} height={80} className="absolute h-auto" style={{ left: k(cx - lotusW / 2), top: k(y - 9), width: k(lotusW) }} />
     </>
   );
 }
@@ -73,7 +66,7 @@ function Divider({ cx, y, half, lotusW = 26 }: { cx: number; y: number; half: nu
 function ColumnHead({ cx, icon, iw, ih, title, lineHalf }: { cx: number; icon: string; iw: number; ih: number; title: string; lineHalf: number }) {
   return (
     <>
-      <Image src={`${A}/${icon}.png`} alt="" width={iw} height={ih} className="absolute h-auto" style={{ left: k(cx - iw / 2 / 4 * 0 - 31), top: k(80), width: k(62) }} />
+      <Image unoptimized src={`${A}/${icon}.svg`} alt="" width={iw} height={ih} className="absolute h-auto" style={{ left: k(cx - iw / 2 / 4 * 0 - 31), top: k(80), width: k(62) }} />
       <h3
         className="absolute -translate-x-1/2 whitespace-nowrap text-center font-bold uppercase text-white"
         style={{ left: k(cx), top: k(147), fontSize: k(14.6), lineHeight: k(22), letterSpacing: "0.01em" }}
@@ -188,7 +181,7 @@ export default function ContactFooter() {
         <ColumnHead cx={622} icon="h-hands" iw={64} ih={64} title="Our Services" lineHalf={52} />
         {services.map((s, i) => (
           <Link key={s.label.join(" ")} href={s.href} className={`absolute ${txt} transition hover:text-[#E9C46A]`} style={{ left: k(518), top: k(s.cy - 18), width: k(190), height: k(36) }}>
-            <Image src={`${A}/s${i + 1}.png`} alt="" width={144} height={144} className="absolute left-0 top-0 h-auto" style={{ width: k(36) }} />
+            <Image unoptimized src={`${A}/s${i + 1}.svg`} alt="" width={144} height={144} className="absolute left-0 top-0 h-auto" style={{ width: k(36) }} />
             <span className="absolute flex flex-col justify-center" style={{ left: k(43), top: 0, height: k(36), fontSize: k(11.8), lineHeight: k(14.5) }}>
               {s.label.map((ln) => (<span key={ln} className="whitespace-nowrap">{ln}</span>))}
             </span>
@@ -199,7 +192,7 @@ export default function ContactFooter() {
         <ColumnHead cx={861} icon="h-lotus" iw={64} ih={64} title="Our Seva Initiatives" lineHalf={52} />
         {initiatives.map((s, i) => (
           <Link key={s.label.join(" ")} href={s.href} className={`absolute ${txt} transition hover:text-[#E9C46A]`} style={{ left: k(755), top: k(s.cy - 18), width: k(215), height: k(36) }}>
-            <Image src={`${A}/i${i + 1}.png`} alt="" width={144} height={144} className="absolute left-0 top-0 h-auto" style={{ width: k(36) }} />
+            <Image unoptimized src={`${A}/i${i + 1}.svg`} alt="" width={144} height={144} className="absolute left-0 top-0 h-auto" style={{ width: k(36) }} />
             <span className="absolute flex flex-col justify-center" style={{ left: k(46), top: 0, height: k(36), fontSize: k(11.8), lineHeight: k(14.5) }}>
               {s.label.map((ln) => (<span key={ln} className="whitespace-nowrap">{ln}</span>))}
             </span>
@@ -207,8 +200,8 @@ export default function ContactFooter() {
         ))}
 
         {/* our presence panel */}
-        <Image src={`${A}/presence-art.png`} alt="Offices in London, Delhi-NCR and Visakhapatnam" width={600} height={346} className="absolute" style={{ left: k(984), top: k(72), width: k(600), height: k(346) }} />
-        <Image src={`${A}/pin.png`} alt="" width={128} height={152} className="absolute h-auto" style={{ left: k(1000), top: k(88), width: k(27) }} />
+        <Image src={`${A}/presence-art-2.png`} alt="Offices in London, Delhi-NCR and Visakhapatnam" width={600} height={346} className="absolute" style={{ left: k(984), top: k(72), width: k(600), height: k(346) }} />
+        <Image unoptimized src={`${A}/pin.svg`} alt="" width={128} height={152} className="absolute h-auto" style={{ left: k(1000), top: k(88), width: k(27) }} />
         <h3 className="absolute whitespace-nowrap font-serif font-bold text-[#FFFDF6]" style={{ left: k(1038), top: k(86), fontSize: k(26.5), lineHeight: k(36) }}>
           Our Presence
         </h3>
@@ -216,9 +209,6 @@ export default function ContactFooter() {
         <p className="absolute text-white" style={{ left: k(1006), top: k(149), width: k(250), fontSize: k(13.2), lineHeight: k(18) }}>
           A connected network to support families in India and internationally.
         </p>
-        {socials.map((s) => (
-          <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="absolute rounded-full" style={{ left: k(s.cx - 21), top: k(s.cy - 21), width: k(42), height: k(42) }} />
-        ))}
         <span className="pointer-events-none absolute" style={{ left: k(1080), top: k(300), width: 0, height: 0 }} />
 
         {/* values band */}
@@ -228,7 +218,7 @@ export default function ContactFooter() {
         ))}
         {values.map((v) => (
           <div key={v.title}>
-            <Image src={`${A}/${v.icon}.png`} alt="" width={184} height={184} className="absolute h-auto" style={{ left: k(v.x), top: k(436), width: k(46) }} />
+            <Image unoptimized src={`${A}/${v.icon}.svg`} alt="" width={184} height={184} className="absolute h-auto" style={{ left: k(v.x), top: k(436), width: k(46) }} />
             <p className="absolute font-bold uppercase" style={{ left: k(v.tx), top: k(441), fontSize: k(14), lineHeight: k(19), color: "#EFCA79" }}>{v.title}</p>
             <p className="absolute whitespace-nowrap text-white" style={{ left: k(v.tx), top: k(460), fontSize: k(11.2), lineHeight: k(16) }}>{v.desc}</p>
           </div>
@@ -309,7 +299,7 @@ export default function ContactFooter() {
             <h3 className="pt-4 font-serif text-[22px] font-bold text-white">Our Presence</h3>
             <p className="px-4 pb-2 text-[13px] text-white">A connected network to support families in India and internationally.</p>
             <div className="relative mx-auto aspect-[600/346] w-full">
-              <Image src={`${A}/presence-art.png`} alt="Offices in London, Delhi-NCR and Visakhapatnam" fill sizes="100vw" className="object-cover" />
+              <Image src={`${A}/presence-art-2.png`} alt="Offices in London, Delhi-NCR and Visakhapatnam" fill sizes="100vw" className="object-cover" />
             </div>
           </div>
         </div>
@@ -317,7 +307,7 @@ export default function ContactFooter() {
         <div className="space-y-4 border-y border-[#B8934F] bg-[#211C16] px-6 py-6">
           {values.map((v) => (
             <div key={v.title} className="flex items-center gap-4">
-              <Image src={`${A}/${v.icon}.png`} alt="" width={184} height={184} className="h-auto w-[44px]" />
+              <Image unoptimized src={`${A}/${v.icon}.svg`} alt="" width={184} height={184} className="h-auto w-[44px]" />
               <div>
                 <p className="text-[14px] font-bold uppercase text-[#EFCA79]">{v.title}</p>
                 <p className="text-[12.5px] text-white">{v.desc}</p>
