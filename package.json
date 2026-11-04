@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "node -e \"try{require('fs').copyFileSync('node_modules/@lottiefiles/dotlottie-web/dist/dotlottie-player.wasm','public/dotlottie-player.wasm')}catch(e){console.warn('dotlottie wasm copy skipped:',e.message)}\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' next build",
     "build:seo": "npm run build && npm run seo:lighthouse",
     "start": "next start",
     "lint": "eslint",
