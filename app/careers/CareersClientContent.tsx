@@ -6,6 +6,7 @@ import {
   ArrowRight,
   BarChart3,
   BriefcaseBusiness,
+  CalendarDays,
   Heart,
   Leaf,
   MapPin,
@@ -49,6 +50,7 @@ type JobOpening = {
   skills?: string[];
   education?: string;
   eligibilityThreshold?: number;
+  closingDate?: string;
 };
 
 type ApiJob = {
@@ -68,6 +70,7 @@ type ApiJob = {
   skills?: string[];
   educationRequirements?: string;
   eligibilityThreshold?: number;
+  applicationClosingDate?: string;
 };
 
 // Custom SVG icons to match the design exactly (fully solid filled amber/gold icons)
@@ -224,6 +227,20 @@ function JobCard({ job }: { job: JobOpening }) {
         </div>
 
         <div className="pt-3">
+          {job.closingDate && (
+            <p className="mb-2 inline-flex items-center gap-1.5 rounded-md border border-[#f0d9ad] bg-[#fff6e8] px-2 py-1 text-[12.5px] font-semibold text-[#a85f00]">
+              <CalendarDays className="h-3.5 w-3.5 shrink-0" />
+              <span>
+                Apply by{" "}
+                {new Date(job.closingDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                  timeZone: "Asia/Kolkata",
+                })}
+              </span>
+            </p>
+          )}
           <JobCardButtons job={{ ...job, icon: undefined }} />
         </div>
       </div>
@@ -320,6 +337,7 @@ export default function CareersClientContent() {
             skills: j.skills,
             education: j.educationRequirements,
             eligibilityThreshold: j.eligibilityThreshold,
+            closingDate: j.applicationClosingDate,
             icon: Users,
           }));
 
