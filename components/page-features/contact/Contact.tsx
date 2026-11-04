@@ -2,124 +2,88 @@
 import React, { useState } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/Footer/FooterNew";
+import Footer from "@/components/layout/Footer/ContactFooter";
 import Image from "next/image";
-import {
-  FaPhoneAlt,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedin,
-  FaYoutube,
-  FaPaperPlane,
-  FaHeadset,
-  FaChevronRight,
-  FaMapMarkerAlt,
-  FaClock,
-  FaDirections,
-} from "@/lib/icons/fa";
-import { MdVerified, MdEmail } from "react-icons/md";
 import { trackEvent } from "@/lib/analytics";
-import { PiFlowerLotus } from "@/lib/icons/pi";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
-const HEAD_OFFICE_QUERY =
-  "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad, Uttar Pradesh, India";
+const pu = (px: number) => `calc(var(--u) * ${(px / 15.84).toFixed(3)})`;
 
-const officeLocations = [
+const officeCards = [
   {
-    city: "Head Office",
-    region: "Delhi NCR, India",
-    country: "India",
-    address:
-      "Plot No. 12/52, Site II Industrial Area, Mohan Nagar, Ghaziabad – 201007, Uttar Pradesh, India.",
-    pincode: "201007",
-    hours: "Open 24 hours · every day",
-    phone: { label: "+91 9220147229", href: "tel:+919220147229" },
-    type: "main",
-    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
-    imageWidth: 1448,
-    imageHeight: 1086,
-    mapQuery: HEAD_OFFICE_QUERY,
-    orgName: "Namo Gange Trust",
+    title: ["Head Office", "Delhi–NCR"],
+    sub: "(Ghaziabad, India)",
+    left: 62,
+    w: 360,
+    icon: { src: "office-gate", iw: 296, ih: 296, x: 38, y: 5, w: 74 },
+    textLeft: 130,
+    textTop: 7.5,
+    pinX: 41,
+    pinTop: 23,
+    bodyLeft: 73,
+    addrTop: 15,
+    addrLh: 20,
+    address: ["Plot No. 12/29, Site II Industrial", "Area, Mohan Nagar, Ghaziabad –", "201007, Uttar Pradesh, India."],
+    phoneY: 102,
+    phones: ["+91 96549 00525", "+91 98102 47319"],
+    mailY: 133,
+    email: "info@mokshavoyage.vaidhyashala.in",
   },
   {
-    city: "Regional Office",
-    region: "Visakhapatnam, India",
-    country: "India",
-    address:
-      "Door No. 36-46-51, 2nd Floor, Main Road, Kancharapalem, Visakhapatnam – 530008, Andhra Pradesh, India.",
-    pincode: "530008",
-    hours: "Mon-Sat · 9:00 am - 6:00 pm IST",
-    phone: { label: "+91 6281482342", href: "tel:+916281482342" },
-    type: "branch",
-    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165096/moksha-sewa/assets/contact/im.png",
-    imageWidth: 1448,
-    imageHeight: 1086,
-    mapQuery: "Kancharapalem, Visakhapatnam, Andhra Pradesh, India",
-    orgName: "Namo Gange Wellness Pvt. Ltd.",
+    title: ["Regional Office", "Visakhapatnam"],
+    sub: "(Andhra Pradesh, India)",
+    left: 444,
+    w: 348,
+    icon: { src: "office-temple", iw: 344, ih: 304, x: 30, y: 4, w: 86 },
+    textLeft: 127,
+    textTop: 6.5,
+    pinX: 37,
+    pinTop: 23,
+    bodyLeft: 72,
+    addrTop: 10,
+    addrLh: 19,
+    address: ["Door No. 36-46-51, 2nd Floor,", "Main Road, Kancharapalem,", "Visakhapatnam – 530008,", "Andhra Pradesh, India."],
+    phoneY: 107,
+    phones: ["+91 96549 00525"],
+    mailY: 134,
+    email: "info@mokshavoyage.vaidhyashala.in",
   },
   {
-    city: "Global Office",
-    region: "London, UK",
-    country: "UK",
-    address:
-      "6 Liddel Close, Luton, Bedfordshire, LU3 1TW, United Kingdom.",
-    pincode: "LU3 1TW",
-    hours: "Mon-Sat · 9:00 am - 6:00 pm GMT",
-    phone: { label: "+44 7429 519276", href: "tel:+447429519276" },
-    type: "branch",
-    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165092/moksha-sewa/assets/contact/en.png",
-    imageWidth: 1448,
-    imageHeight: 1086,
-    mapQuery: "6 Liddel Close, Luton, Bedfordshire LU3 1TW, United Kingdom",
-    orgName: "Namo Gange Wellness Ltd.",
+    title: ["Global Office", "London (UK)"],
+    sub: "",
+    left: 813,
+    w: 350,
+    icon: { src: "office-bridge", iw: 448, ih: 272, x: 15, y: 11, w: 112 },
+    textLeft: 140,
+    textTop: 14.5,
+    pinX: 40,
+    pinTop: 21,
+    bodyLeft: 75,
+    addrTop: 10,
+    addrLh: 19,
+    address: ["Namo Gange Wellness Ltd.", "6 Liddel Close, Luton,", "Bedfordshire, LU3 1TW,", "United Kingdom."],
+    phoneY: 104,
+    phones: ["+44 74248 78417"],
+    mailY: 133,
+    email: "uk@mokshavoyage.vaidhyashala.in",
   },
 ];
 
-const socials = [
-  {
-    Icon: FaFacebook,
-    label: "Facebook",
-    href: "https://www.facebook.com/mokshasewa/",
-  },
-  {
-    Icon: FaInstagram,
-    label: "Instagram",
-    href: "https://www.instagram.com/mokshasewa/",
-  },
-  { Icon: FaTwitter, label: "X (Twitter)", href: "https://x.com/mokshasewa" },
-  {
-    Icon: FaLinkedin,
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/moksha-sewaorg/",
-  },
-  {
-    Icon: FaYoutube,
-    label: "YouTube",
-    href: "https://www.youtube.com/@Mokshasewa",
-  },
+const locationOptions = ["Ghaziabad", "Delhi NCR", "Noida", "Other"];
+const assistanceOptions = [
+  "Last Rites & Cremation",
+  "Transportation",
+  "Guidance & Coordination",
+  "Family Support",
+  "Other",
 ];
-
-const toTelHref = (value: string) => {
-  const digits = value.replace(/\D/g, "");
-  return value.trim().startsWith("+") ? `tel:+${digits}` : `tel:${digits}`;
-};
 
 function Contact() {
   const heroSection = useWebsiteSection("contact-hero");
   const formSection = useWebsiteSection("contact-form");
-  const locationsSection = useWebsiteSection("contact-locations");
-
-  const fieldFirstName = itemOrFallback(formSection?.items, 0, { title: "First name *", description: "Rahul" });
-  const fieldLastName = itemOrFallback(formSection?.items, 1, { title: "Last name *", description: "Sharma" });
-  const fieldEmail = itemOrFallback(formSection?.items, 2, { title: "Email address *", description: "rahul@example.com" });
-  const fieldPhone = itemOrFallback(formSection?.items, 3, { title: "Phone number *", description: "Enter 10 digit mobile number" });
-  const fieldSubject = itemOrFallback(formSection?.items, 4, { title: "Subject *", description: "What do you need help with?" });
-  const fieldMessage = itemOrFallback(formSection?.items, 5, { title: "Message *", description: "Share the details — city, timing, and what you need arranged." });
 
   const CONTACT = {
     helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "9220147229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
@@ -127,46 +91,12 @@ function Contact() {
     email: { label: textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50), href: `mailto:${textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50)}` },
   };
 
-  const managedLocations = [
-    ...officeLocations.map((fallback, index) => {
-      const item = locationsSection?.items?.[index];
-      // Guard against old corrupted data where Visakhapatnam was overwritten with Luton/London
-      const isCorruptedLuton = index === 1 && (item?.subtitle?.toLowerCase().includes("luton") || item?.description?.toLowerCase().includes("liddel"));
-      const validItem = isCorruptedLuton ? undefined : item;
-
-      return {
-        ...fallback,
-        city: validItem ? textOrFallback(validItem.title, fallback.city, 60) : fallback.city,
-        region: validItem ? textOrFallback(validItem.subtitle, fallback.region, 60) : fallback.region,
-        orgName: (validItem as any)?.company || (validItem as any)?.orgName || validItem?.label || fallback.orgName,
-        address: validItem ? textOrFallback(validItem.description, fallback.address, 250) : fallback.address,
-        phone: validItem?.value ? { label: validItem.value, href: toTelHref(validItem.value) } : fallback.phone,
-        hours: (validItem as any)?.hours || validItem?.buttonLabel || fallback.hours,
-        pincode: (validItem as any)?.pincode || fallback.pincode,
-        country: (validItem as any)?.country || fallback.country,
-        image: validItem?.image || fallback.image,
-      };
-    }),
-    ...(locationsSection?.items?.slice(officeLocations.length) ?? []).map((item) => ({
-      ...officeLocations[officeLocations.length - 1],
-      city: item.title || "New Office",
-      region: item.subtitle || "New Region",
-      orgName: (item as any)?.company || (item as any)?.orgName || item.label || "Namo Gange Wellness Ltd.",
-      address: item.description || "Address not provided",
-      phone: item.value ? { label: item.value, href: toTelHref(item.value) } : officeLocations[officeLocations.length - 1].phone,
-      hours: (item as any)?.hours || item.buttonLabel || "Mon-Sat · 9:00 am - 6:00 pm",
-      pincode: (item as any)?.pincode || "LU3 1TW",
-      country: (item as any)?.country || "UK",
-      image: item.image || officeLocations[officeLocations.length - 1].image,
-    })),
-  ];
-  
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+    name: "",
     phone: "",
-    subject: "",
+    email: "",
+    location: "",
+    assistanceType: "",
     message: "",
   });
 
@@ -176,11 +106,9 @@ function Contact() {
     message: string;
   }>({ type: null, message: "" });
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [activeMapIndex, setActiveMapIndex] = useState(0);
-  const activeMapLocation = managedLocations[activeMapIndex];
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const value =
       e.target.name === "phone"
@@ -198,14 +126,20 @@ function Contact() {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
+    const metaParts = [
+      formData.assistanceType ? `Type of assistance: ${formData.assistanceType}` : "",
+      formData.location ? `Location: ${formData.location}` : "",
+    ].filter(Boolean);
+    const composedMessage = metaParts.length
+      ? `${metaParts.join(" | ")}\n\n${formData.message}`
+      : formData.message;
+
     try {
       await enquiryApi.create({
-        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        name: formData.name.trim(),
         phone: formData.phone,
         email: formData.email || undefined,
-        message: formData.subject
-          ? `${formData.subject}\n\n${formData.message}`
-          : formData.message,
+        message: composedMessage,
       });
       trackEvent("contact_form_submit", { form_name: "contact", status: "success" });
       setSubmitStatus({
@@ -214,11 +148,11 @@ function Contact() {
       });
       setShowSuccessPopup(true);
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
+        name: "",
         phone: "",
-        subject: "",
+        email: "",
+        location: "",
+        assistanceType: "",
         message: "",
       });
     } catch (err) {
@@ -235,628 +169,445 @@ function Contact() {
   };
 
   /* ---------------- shared class tokens ---------------- */
-  const inputClass =
-    "w-full rounded-none border border-[#E4D5BE] bg-[#FBF8F3] px-3.5 py-2.5 text-[16px] text-[#2C1810] placeholder:text-[#B3A18D] transition-all focus:border-[#C9A574] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A574]/35";
-
-  const labelClass =
-    "mb-1.5 block text-[16px] font-semibold uppercase tracking-[0.08em] text-[#6B584B]";
+  const fieldWrap =
+    "relative block h-[calc(var(--u)*2.9)] rounded-[calc(var(--u)*1)] border border-[#E6D9C9] bg-[#FFFDFA] shadow-[0_3px_7px_rgba(110,70,30,0.2)]";
+  const fieldInput =
+    "h-full w-full bg-transparent pl-[calc(var(--u)*3.85)] pr-[calc(var(--u)*1)] text-[calc(var(--u)*0.88)] text-[#3F3A36] outline-none placeholder:text-[#3F3A36]";
 
   const eyebrowClass =
-    "inline-flex items-center gap-3 text-[16px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E]";
+    "inline-flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E]";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
       <Topbar />
       <Navbar />
 
-      <main className="[&_a]:text-[max(16px,1em)] [&_button]:text-[max(16px,1em)] [&_input]:text-[max(16px,1em)] [&_label]:text-[max(16px,1em)] [&_p]:text-[max(16px,1em)] [&_select]:text-[max(16px,1em)] [&_span]:text-[max(16px,1em)] [&_textarea]:text-[max(16px,1em)]">
+      <main>
         {/* ============================= HERO ============================= */}
-        <section className="relative flex aspect-[4/5] w-full flex-col justify-center overflow-hidden bg-[#F4EDE3] md:aspect-auto md:h-[500px] lg:h-[520px]">
-          <div className="absolute inset-0">
-            {/* Desktop Hero Image */}
+        <section className="relative w-full overflow-hidden bg-[linear-gradient(90deg,#FEF5EC_0%,#FCEADC_38%)] pt-[113px] [--u:11px] sm:[--u:13px] lg:h-[calc(var(--u)*41+113px)] lg:[--u:min(1vw,16px)]">
+          <div
+            className="absolute inset-0 lg:inset-x-auto lg:right-0 lg:top-[113px] lg:h-[calc(var(--u)*31.3)] lg:w-[calc(var(--u)*61.7)]"
+            style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 22%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 22%)" }}
+          >
             <Image
-              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165090/moksha-sewa/assets/contact/contact.png"
-              alt="Contact Moksha Sewa"
+              src="/assets/contact/contact-hero-photo-2.png"
+              alt="Haridwar ghat at sunset"
               fill
               priority
               fetchPriority="high"
-              sizes="100vw"
-              className="hidden scale-[1.02] object-cover md:block"
-            />
-            {/* Mobile Hero Image (4:5 Aspect Ratio) */}
-            <Image
-              src="https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165354/moksha-sewa/assets/route-optimized/contact-hero-mobile.png"
-              alt="Contact Moksha Sewa Mobile"
-              fill
-              priority
-              fetchPriority="high"
-              sizes="100vw"
-              className="scale-[1.02] object-cover md:hidden"
+              sizes="(min-width: 1024px) 62vw, 100vw"
+              className="object-cover object-right"
             />
           </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FDF4EB]/95 via-[#FDF4EB]/80 to-[#FDF4EB]/35 lg:hidden" />
+
+          <svg
+            viewBox="0 0 1584 130"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*7)] w-full"
+            aria-hidden
+          >
+            <path d="M0,60 C200,20 420,95 700,70 C980,45 1250,10 1584,55 L1584,130 L0,130Z" fill="#FCEBD5" />
+            <path d="M0,90 C260,55 480,115 760,92 C1060,68 1300,40 1584,82 L1584,130 L0,130Z" fill="#FBE3C3" />
+            <path d="M0,112 C300,86 560,130 880,112 C1160,98 1400,92 1584,108 L1584,130 L0,130Z" fill="#FBDDB9" />
+          </svg>
+
+          <div className="relative z-10 px-4 pt-[calc(var(--u)*3.9)] sm:px-6 lg:pl-[calc(var(--u)*5)] lg:pr-0">
+            <div className="flex items-center gap-[calc(var(--u)*1.2)] text-[calc(var(--u)*1.2)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.22em] text-[#2A0A02]">
+              Get in Touch
+              <span className="h-px w-[calc(var(--u)*6)] bg-[#D1954C]" />
+            </div>
+
+            <h1 className="mt-[calc(var(--u)*0.65)] font-serif text-[calc(var(--u)*5)] font-bold leading-none tracking-[0.01em] text-[#2F0E03]">
+              Contact <span className="text-[#F09A0B]">Us</span>
+            </h1>
+
+            <p className="mt-[calc(var(--u)*0.95)] text-[calc(var(--u)*1.65)] font-normal tracking-[0.03em] leading-[calc(var(--u)*2.24)] text-[#34150A]">
+              We&apos;re here to support individuals<br className="hidden lg:block" />{" "}
+              and families in need with free<br className="hidden lg:block" />{" "}
+              last-rites assistance, guidance<br className="hidden lg:block" />{" "}
+              and coordination, with dignity and care.
+            </p>
+
+            <div className="mt-[calc(var(--u)*1.9)] flex flex-wrap items-center gap-[calc(var(--u)*1.33)]">
+              <a
+                href={CONTACT.helpline.href}
+                className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.6)] items-center gap-[calc(var(--u)*0.75)] rounded-[calc(var(--u)*0.95)] bg-gradient-to-b from-[#833B00] to-[#5F2500] pl-[calc(var(--u)*1.25)] text-white shadow-[0_3px_8px_rgba(95,37,0,0.2)] transition hover:brightness-110"
+              >
+                <Image src="/assets/contact/icons/phone-white.png" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.9)]" />
+                <span className="flex flex-col leading-[1.25]">
+                  <span className="text-[calc(var(--u)*1.22)] font-semibold">Call Helpline</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*1.34)] font-bold">
+                    {CONTACT.helpline.label.replace(/^\+91\s*/, "")} <span className="text-[calc(var(--u)*1.0)] font-medium">(24×7)</span>
+                  </span>
+                </span>
+              </a>
+              <a
+                href="#contact-form"
+                className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.8)] items-center gap-[calc(var(--u)*0.7)] rounded-[calc(var(--u)*0.95)] border border-[#D9C4AD] bg-white pl-[calc(var(--u)*1)] pr-[calc(var(--u)*1)] text-[#280501] shadow-[0_2px_6px_rgba(95,37,0,0.08)] transition hover:bg-[#FFF8F0]"
+              >
+                <Image src="/assets/contact/icons/calendar.png" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*3.15)]" />
+                <span className="flex flex-1 flex-col leading-[1.25]">
+                  <span className="whitespace-nowrap text-[calc(var(--u)*1.22)] font-bold">Request Sewa</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*1.1)] font-medium">(Free Assistance)</span>
+                </span>
+                <Image src="/assets/contact/icons/arrow-orange.png" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*2.4)]" />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*2.6)] border border-white/80 bg-[#FFF6EC]/90 py-4 shadow-[0_6px_18px_rgba(150,90,30,0.08)] sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
+            {[
+              { src: "family-support", w: 5.2, h: 232, iw: 328, label: <>Family Support</> },
+              { src: "lotus", w: 5.05, h: 240, iw: 320, label: <>Ritual &amp; Cremation<br />Assistance</> },
+              { src: "truck", w: 4.9, h: 208, iw: 312, label: <>Respectful<br />Transportation</> },
+              { src: "headset", w: 4.4, h: 248, iw: 280, label: <>Guidance &amp;<br />Coordination</> },
+            ].map((item, i) => (
+              <div
+                key={item.src}
+                className={`relative flex items-center justify-center gap-[calc(var(--u)*1.5)] px-2 ${i > 0 ? "lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.4)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#C9A27A]" : ""} ${i % 2 === 1 ? "border-l border-[#C9A27A]/60 lg:border-l-0" : ""}`}
+              >
+                <Image
+                  src={`/assets/contact/icons/${item.src}.png`}
+                  alt=""
+                  width={item.iw}
+                  height={item.h}
+                  className="h-auto w-[calc(var(--u)*3.6)] lg:w-[calc(var(--u)*var(--w))]"
+                  style={{ "--w": item.w } as React.CSSProperties}
+                />
+                <span className="text-[calc(var(--u)*1.2)] font-bold leading-[1.3] text-[#2C0A02] lg:text-[calc(var(--u)*1.22)] lg:leading-[calc(var(--u)*1.55)]">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ================= WE'RE HERE TO SUPPORT YOU ================= */}
+        <section
+          id="contact-form"
+          className="relative scroll-mt-24 overflow-hidden bg-[radial-gradient(ellipse_14%_40%_at_100%_18%,#F7E5D1,transparent),radial-gradient(ellipse_16%_16%_at_0%_100%,#FCE6CE,transparent),linear-gradient(90deg,#FFF8F0_0%,#FDF6EE_60%,#FBF0E5_100%)] px-4 pb-[calc(var(--u)*8)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]"
+        >
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*2.4)] bg-[url('/assets/contact/support-wave-bottom.png')] bg-[length:100%_100%]" aria-hidden />
+
+          <div className="lg:relative lg:mx-auto lg:h-full lg:w-[calc(var(--u)*100)]">
 
           <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(247,240,231,0.98) 0%, rgba(247,240,231,0.93) 24%, rgba(247,240,231,0.62) 42%, rgba(247,240,231,0.20) 60%, rgba(247,240,231,0.02) 76%)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/10 via-transparent to-transparent" />
-
-          {/* Devanagari watermark — page signature */}
-          <div className="pointer-events-none absolute -left-6 top-1/2 hidden -translate-y-[56%] select-none font-sans text-[280px] leading-none text-[#8B6A3E]/[0.07] lg:block">
-            संपर्क
+            className="pointer-events-none absolute left-[calc(var(--u)*31.6)] top-0 hidden h-[calc(var(--u)*40.5)] w-[calc(var(--u)*68.4)] lg:block"
+            style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 6%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 6%)" }}
+          >
+            <Image src="/assets/contact/support-photo-3.png" alt="Moksha Sewa volunteer comforting an elderly woman" fill sizes="70vw" className="object-fill" />
           </div>
 
-          <div className="relative mx-auto flex h-full w-full max-w-7xl items-center px-4 pt-28 sm:px-6 lg:pt-32 xl:px-0">
-            <div className="max-w-[540px]">
-              <div className="inline-flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#8B6A3E] text-white">
-                  <PiFlowerLotus className="h-4 w-4" />
-                </span>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8B6A3E]">
-                  {textOrFallback(heroSection?.eyebrow, "संपर्क करें · We're Listening", 50)}
-                </span>
-              </div>
-
-              <h1 className="mt-3 font-sans text-[28px] leading-[1.1] tracking-tight text-[#2C1810] sm:text-[40px] lg:text-[46px] max-w-[650px]">
-                {textOrFallback(heroSection?.title, "Contact Us", 100).split("\n").map((line, i) => (
-                  <span key={i} className="block">{line}</span>
-                ))}
-              </h1>
-
-              <div className="mt-2 flex items-center gap-2">
-                <span className="h-[2px] w-12 bg-[#8B6A3E]" />
-                <span className="h-2 w-2 rotate-45 border border-[#8B6A3E] bg-[#C9A574]" />
-                <span className="h-px w-20 bg-gradient-to-r from-[#C9A574] to-transparent" />
-              </div>
-
-              <p className="mt-3 hidden max-w-[460px] text-[15px] leading-6 text-[#4F3A2D] md:block">
-                {textOrFallback(heroSection?.description, "Ek call ya ek message — baaki sab hum sambhaal lenge. Our team answers round the clock and stays with you until the last ritual is complete.", 250)}
-              </p>
-
-              <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-1.5">
-                {["24/7 guidance", "Delhi • Ghaziabad • Noida launch", "Verified cases"].map(
-                  (chip) => (
-                    <span
-                      key={chip}
-                      className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#5F4630]"
-                    >
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#8B6A3E]/15">
-                        <MdVerified className="h-3 w-3 text-[#8B6A3E]" />
-                      </span>
-                      {chip}
-                    </span>
-                  ),
-                )}
-              </div>
-
-              <div className="mt-4 flex flex-wrap items-center gap-2.5">
-                <a
-                  href="#contact-form"
-                  className="group inline-flex items-center gap-2 rounded-none bg-[#8B6A3E] px-5 py-2.5 text-[14px] font-semibold text-white shadow-md transition duration-300 hover:bg-[#73532F] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4EDE3]"
-                >
-                  Send a message
-                  <FaChevronRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </a>
-                <a
-                  href={CONTACT.helpline.href}
-                  className="inline-flex items-center gap-2 rounded-none border border-[#C9A574] bg-white/70 px-5 py-2.5 text-[14px] font-semibold text-[#73532F] backdrop-blur transition duration-300 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#73532F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F4EDE3]"
-                >
-                  <FaPhoneAlt className="h-3 w-3" />
-                  Call the helpline
-                </a>
-              </div>
+          <div className="relative z-10 lg:absolute lg:left-[calc(var(--u)*4.67)] lg:top-[calc(var(--u)*3)]">
+            <div className="flex items-center gap-[calc(var(--u)*1.6)] text-[calc(var(--u)*1.1)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.12em] text-[#2A0A02]">
+              We&apos;re Here to Help
+              <span className="h-px w-[calc(var(--u)*6)] bg-[#C79A57]" />
             </div>
-          </div>
-        </section>
+            <h2 className="mt-[calc(var(--u)*1.24)] font-serif text-[calc(var(--u)*3.5)] font-bold leading-[calc(var(--u)*3.47)] tracking-[0.02em] text-[#3A1305]">
+              We&apos;re Here to<br />
+              <span className="text-[#C9780A]">Support You</span>
+            </h2>
+            <p className="mt-[calc(var(--u)*1.3)] text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.55)] tracking-[0.005em] text-[#2B1D17]">
+              Whether you need immediate assistance, guidance<br className="hidden lg:block" />{" "}
+              on our services, or support for a loved one, our team<br className="hidden lg:block" />{" "}
+              is available 24 × 7 to help you and your family<br className="hidden lg:block" />{" "}
+              with care and compassion.
+            </p>
 
-        {/* ======================= QUICK CONTACT BAR ====================== */}
-        <section className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] shadow-md">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 md:grid-cols-4 xl:px-0">
-            {[
-              {
-                icon: FaPhoneAlt,
-                value: CONTACT.helpline.label,
-                title: "Emergency helpline",
-                href: CONTACT.helpline.href,
-              },
-              {
-                icon: MdEmail,
-                value: CONTACT.email.label,
-                title: "Write to us",
-                href: CONTACT.email.href,
-              },
-              { icon: FaClock, value: "24 / 7", title: "Always available" },
-              { icon: FaHeadset, value: "15 min", title: "Average response" },
-            ].map((item, index) => {
-              const Icon = item.icon;
-              const content = (
-                <>
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover/stat:scale-110">
-                    <Icon className="h-4 w-4" />
+            <div className="mt-[calc(var(--u)*1)] flex flex-col gap-[calc(var(--u)*1.2)]">
+              {[
+                { src: "hand-heart", w: 3.4, iw: 216, ih: 208, title: "Compassionate Support", lines: ["Sensitivity, dignity and care", "for every individual."] },
+                { src: "shield-check", w: 3.0, iw: 192, ih: 224, title: "Trusted & Transparent", lines: ["Clear information and ethical", "processes at every step."] },
+                { src: "users-group", w: 3.5, iw: 224, ih: 192, title: "Local Assistance", lines: ["On-ground support and coordination", "in your area."] },
+              ].map((p) => (
+                <div key={p.src} className="flex items-center gap-[calc(var(--u)*2)]">
+                  <span className="flex h-[calc(var(--u)*5.18)] w-[calc(var(--u)*5.18)] shrink-0 items-center justify-center rounded-full bg-[#FEE9CF]">
+                    <Image src={`/assets/contact/icons/${p.src}.png`} alt="" width={p.iw} height={p.ih} className="h-auto" style={{ width: `calc(var(--u) * ${p.w})` }} />
                   </span>
-                  <span className="min-w-0 text-left">
-                    <span className="block truncate font-sans text-[16px] leading-tight text-white lg:text-[18px]">
-                      {item.value}
-                    </span>
-                    <span className="mt-0.5 block truncate text-[11px] font-medium uppercase tracking-[0.16em] text-white/85">
-                      {item.title}
+                  <span>
+                    <span className="block text-[calc(var(--u)*1.33)] font-bold leading-[calc(var(--u)*1.7)] text-[#3A0F05]">{p.title}</span>
+                    <span className="block text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.52)] text-[#2B1D17]">
+                      {p.lines[0]}<br className="hidden lg:block" />{" "}{p.lines[1]}
                     </span>
                   </span>
-                </>
-              );
-
-              const base = `group/stat flex items-center gap-2.5 px-3 py-2.5 md:justify-center ${index > 0 ? "md:border-l md:border-white/20" : ""
-                } ${index % 2 === 1 ? "border-l border-white/20" : ""} ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""
-                }`;
-
-              return item.href ? (
-                <a key={item.title} href={item.href} className={base}>
-                  {content}
-                </a>
-              ) : (
-                <div key={item.title} className={base}>
-                  {content}
                 </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* ======================= OFFICE LOCATIONS ====================== */}
-        <section className="relative overflow-hidden pb-3 pt-5 lg:pb-4 lg:pt-6">
-          <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#C9A574]/8 blur-3xl" />
-          <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#8B6A3E]/6 blur-3xl" />
-
-          <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="mb-4 flex flex-col items-center text-center">
-              <div className={eyebrowClass}>
-                <span className="hidden h-px w-10 bg-[#C9A574] sm:block" />
-                <span>ॐ Our presence ॐ</span>
-                <span className="hidden h-px w-10 bg-[#C9A574] sm:block" />
-              </div>
-              <h2 className="mt-1.5 font-sans text-[30px] leading-none text-[#2C1810] sm:text-[36px]">
-                Office <span className="text-[#8B6A3E]">Locations</span>
-              </h2>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="h-px w-16 bg-gradient-to-r from-transparent to-[#C9A574]" />
-                <PiFlowerLotus className="h-5 w-5 text-[#C98924]" />
-                <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#C9A574]" />
-              </div>
-            </div>
-
-            <div className="grid gap-3 lg:grid-cols-2">
-              {managedLocations.map((location) => {
-                const isMain = location.type === "main";
-
-                return (
-                  <article
-                    key={location.city}
-                    className="group relative overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_12px_40px_rgba(69,45,28,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D6B98E] hover:shadow-[0_20px_48px_rgba(69,45,28,0.13)]"
-                  >
-                    <div className="grid min-h-[270px] sm:grid-cols-[0.88fr_1.12fr]">
-                      <div className="relative aspect-[4/3] overflow-hidden bg-[#E7D9C7] sm:aspect-auto sm:h-full sm:min-h-[270px]">
-                        <Image
-                          src={location.image}
-                          alt={`${location.city}, ${location.region}`}
-                          width={location.imageWidth}
-                          height={location.imageHeight}
-                          sizes="(max-width: 640px) 100vw, 42vw"
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#2C1810]/24 via-transparent to-transparent" />
-
-                        <span
-                          className={`absolute left-4 top-4 inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white shadow-md ${isMain ? "bg-[#E56A18]" : "bg-[#567F2C]"
-                            }`}
-                        >
-                          {isMain ? "Head Office" : "Branch Office"}
-                        </span>
-                      </div>
-
-                      <div className="relative flex min-w-0 flex-col p-4 sm:p-5">
-                        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full border border-[#C9A574]/15" />
-
-                        <div className="flex items-start gap-3">
-                          <span
-                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isMain
-                              ? "border-[#F3C8A5] bg-[#FFF7F0] text-[#E56A18]"
-                              : "border-[#CADDBB] bg-[#F4F9EF] text-[#567F2C]"
-                              }`}
-                          >
-                            <FaMapMarkerAlt className="h-4 w-4" />
-                          </span>
-
-                          <div className="min-w-0">
-                            <h3 className="font-sans text-[23px] leading-tight text-[#2C1810]">
-                              {location.orgName}
-                            </h3>
-                            <p
-                              className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${isMain ? "text-[#C96822]" : "text-[#567F2C]"
-                                }`}
-                            >
-                              {location.region.toLowerCase().includes(location.country.toLowerCase())
-                                ? location.region
-                                : `${location.region}, ${location.country}`}
-                            </p>
-                          </div>
-                        </div>
-
-                        <p className="mt-3 text-[13px] leading-5 text-[#5F4A3D]">
-                          {location.address}
-                        </p>
-
-                        <a
-                          href={location.phone.href}
-                          className={`mt-2.5 inline-flex items-center gap-2 text-[13px] font-semibold text-[#4F4036] transition-colors ${isMain ? "hover:text-[#C95C15]" : "hover:text-[#567F2C]"
-                            }`}
-                        >
-                          <FaPhoneAlt
-                            className={`h-3 w-3 shrink-0 ${isMain ? "text-[#E56A18]" : "text-[#567F2C]"
-                              }`}
-                          />
-                          {location.phone.label}
-                        </a>
-
-                        <div className="mt-auto pt-3">
-                          <div className="grid grid-cols-[1fr_auto] overflow-hidden rounded-xl border border-[#E9DDCE] bg-[#FCFAF7]">
-                            <div className="flex min-w-0 items-center gap-2 px-3 py-2.5">
-                              <FaClock
-                                className={`h-4 w-4 shrink-0 ${isMain ? "text-[#E56A18]" : "text-[#567F2C]"
-                                  }`}
-                              />
-                              <span className="truncate text-[12px] font-medium text-[#4F4036]">
-                                {location.hours}
-                              </span>
-                            </div>
-                            <div className="flex items-center border-l border-[#E9DDCE] px-3 py-2.5">
-                              <span className="whitespace-nowrap text-[11px] font-semibold tracking-[0.08em] text-[#7C6249]">
-                                PIN {location.pincode}
-                              </span>
-                            </div>
-                          </div>
-
-                          <a
-                            href={`https://maps.google.com/?q=${encodeURIComponent(
-                              location.mapQuery,
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`mt-2.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 ${isMain
-                              ? "border-[#E56A18] text-[#C95C15] hover:bg-[#E56A18] hover:text-white"
-                              : "border-[#6C913E] text-[#567F2C] hover:bg-[#567F2C] hover:text-white"
-                              }`}
-                          >
-                            <FaDirections className="h-3.5 w-3.5" />
-                            Get directions
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+              ))}
             </div>
           </div>
-        </section>
 
-        {/* ================= MODERN CONTACT EXPERIENCE ================= */}
-        <section id="contact-form" className="scroll-mt-24 pb-7 pt-0 lg:pb-9">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 xl:px-0">
-            <div className="grid items-stretch gap-3 xl:grid-cols-[1.18fr_0.58fr_0.98fr]">
-              {/* MESSAGE FORM */}
-              <div className="relative overflow-hidden border border-[#E7D9C7] bg-white p-4 shadow-[0_12px_34px_rgba(69,45,28,0.07)] sm:p-5">
-                <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#C9A574]/10 blur-2xl" />
+          <div className="relative z-10 mx-auto my-6 aspect-[468/642] w-full max-w-[320px] overflow-hidden rounded-3xl lg:hidden">
+            <Image src="/assets/contact/support-photo-3.png" alt="Moksha Sewa volunteer comforting an elderly woman" width={1084} height={642} className="absolute left-0 top-0 h-full w-auto max-w-none" />
+          </div>
 
-                <div className="relative mb-4">
-                  <div className="inline-flex items-center gap-2 text-[16px] font-semibold uppercase tracking-[0.14em] text-[#C96822]">
-                    <MdEmail className="h-4 w-4" />
-                    {textOrFallback(formSection?.eyebrow, "Send a message", 50)}
-                  </div>
-                  <h3 className="mt-1.5 font-sans text-[27px] leading-tight text-[#2C1810]">
-                    {textOrFallback(formSection?.title, "We'd love to hear from you", 100).replace("hear from you", "")}
-                    {textOrFallback(formSection?.title, "We'd love to hear from you", 100).includes("hear from you") && (
-                      <span className="text-[#E56A18]">hear from you</span>
-                    )}
-                  </h3>
-                  <p className="mt-1.5 max-w-[500px] text-[13px] leading-5 text-[#7A685B]">
-                    {textOrFallback(formSection?.description, "We reply within one business day. For anything urgent, the helpline is answered day and night.", 200)}
-                  </p>
-                </div>
+          <form
+            onSubmit={handleSubmit}
+            className="relative z-10 rounded-[calc(var(--u)*2.45)] border border-white/70 bg-gradient-to-b from-[#FEFDFB] via-[#FDFCF8] to-[#FEF6EE] p-[calc(var(--u)*1.77)] shadow-[0_0_0_1px_rgba(170,130,90,0.16),0_6px_16px_rgba(160,100,50,0.13),0_22px_44px_rgba(160,100,50,0.10)] lg:absolute lg:left-[calc(var(--u)*61.2)] lg:top-[calc(var(--u)*2.9)] lg:h-[calc(var(--u)*35.5)] lg:w-[calc(var(--u)*36.5)] lg:px-[calc(var(--u)*1.77)] lg:pb-0 lg:pt-[calc(var(--u)*2)]"
+          >
+            <div className="flex items-center gap-[calc(var(--u)*1.6)] pl-[calc(var(--u)*0.9)] text-[calc(var(--u)*1.1)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.15em] text-[#2A0A02]">
+              Send Us an Enquiry
+              <span className="h-px w-[calc(var(--u)*10.2)] bg-[#C79A57]" />
+            </div>
+            <h3 className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] font-serif text-[calc(var(--u)*2.75)] font-bold leading-[calc(var(--u)*2.75)] text-[#3A1305]">
+              Get in Touch with Us
+            </h3>
+            <p className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.5)] text-[#2B1D17]">
+              Fill in the form below and our team will get back to you shortly.
+            </p>
 
-                <form onSubmit={handleSubmit} className="relative grid gap-3">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="firstName" className={labelClass}>
-                        {fieldFirstName.title}
-                      </label>
-                      <input
-                        id="firstName"
-                        type="text"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                        className={`${inputClass} rounded-xl`}
-                        placeholder={fieldFirstName.description}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="lastName" className={labelClass}>
-                        {fieldLastName.title}
-                      </label>
-                      <input
-                        id="lastName"
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                        className={`${inputClass} rounded-xl`}
-                        placeholder={fieldLastName.description}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid gap-3.5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="email" className={labelClass}>
-                        {fieldEmail.title}
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className={`${inputClass} rounded-xl`}
-                        placeholder={fieldEmail.description}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className={labelClass}>
-                        {fieldPhone.title}
-                      </label>
-                      <input
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        inputMode="numeric"
-                        maxLength={10}
-                        pattern="[6-9][0-9]{9}"
-                        title="Enter a valid 10-digit mobile number"
-                        className={`${inputClass} rounded-xl`}
-                        placeholder={fieldPhone.description}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className={labelClass}>
-                      {fieldSubject.title}
-                    </label>
-                    <input
-                      id="subject"
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className={`${inputClass} rounded-xl`}
-                      placeholder={fieldSubject.description}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className={labelClass}>
-                      {fieldMessage.title}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className={`${inputClass} min-h-[95px] resize-none rounded-xl`}
-                      placeholder={fieldMessage.description}
-                    />
-                  </div>
-
-                  {submitStatus.type && (
-                    <div
-                      role="status"
-                      className={`rounded-xl border p-3 text-[16px] font-medium ${submitStatus.type === "success"
-                        ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
-                        : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
-                        }`}
-                    >
-                      {submitStatus.message}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="group flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D76A1D] to-[#F07A24] px-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(218,105,29,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(218,105,29,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                        Sending
-                      </>
-                    ) : (
-                      <>
-                        <FaPaperPlane className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        {textOrFallback(formSection?.buttonLabel, "Send message", 30)}
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
-
-              {/* CONTACT RAIL */}
-              <div className="flex flex-col overflow-hidden border border-[#E7D9C7] bg-[#2D211A] text-white shadow-[0_14px_42px_rgba(69,45,28,0.10)]">
-                <div className="relative p-4 sm:p-5">
-                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border border-[#D9B681]/15" />
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#C99858] text-white">
-                    <FaHeadset className="h-4 w-4" />
-                  </span>
-                  <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D9B681]">
-                    24/7 Emergency Support
-                  </p>
-                  <a
-                    href={CONTACT.helpline.href}
-                    className="mt-1 block font-sans text-[24px] leading-tight text-white transition hover:text-[#E9C58F]"
-                  >
-                    {CONTACT.helpline.label}
-                  </a>
-                </div>
-
-                <div className="mx-4 h-px bg-white/10" />
-
-                <div className="space-y-4 p-4 sm:p-5">
-                  <a
-                    href={CONTACT.email.href}
-                    className="group flex items-start gap-3"
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681] transition group-hover:bg-[#D9B681] group-hover:text-[#2D211A]">
-                      <MdEmail className="h-4 w-4" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                        Email
-                      </span>
-                      <span className="mt-0.5 block break-all font-sans text-[14px] text-white/95">
-                        {CONTACT.email.label}
-                      </span>
-                    </span>
-                  </a>
-
-                  <a
-                    href={CONTACT.altPhone.href}
-                    className="group flex items-start gap-3"
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681] transition group-hover:bg-[#D9B681] group-hover:text-[#2D211A]">
-                      <FaPhoneAlt className="h-3.5 w-3.5" />
-                    </span>
-                    <span>
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                        Alternate line
-                      </span>
-                      <span className="mt-0.5 block font-sans text-[15px] text-white/95">
-                        {CONTACT.altPhone.label}
-                      </span>
-                    </span>
-                  </a>
-
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/8 text-[#D9B681]">
-                      <FaClock className="h-3.5 w-3.5" />
-                    </span>
-                    <span>
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                        We are available
-                      </span>
-                      <span className="mt-0.5 block font-sans text-[15px] text-white/95">
-                        24/7 for you
-                      </span>
-                    </span>
-                  </div>
-
-                  <div className="pt-2">
-                    <p className="font-sans text-[16px] text-[#E9C58F]">
-                      Har sawaal ka jawab.
-                    </p>
-                    <p className="mt-1 text-[12px] leading-5 text-white/65">
-                      Every query handled with care.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-auto border-t border-white/10 p-4 sm:p-5">
-                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45">
-                    Follow us
-                  </p>
-                  <div className="flex gap-2">
-                    {socials.map(({ Icon, label, href }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        aria-label={label}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/75 transition hover:-translate-y-0.5 hover:border-[#D9B681] hover:bg-[#D9B681] hover:text-[#2D211A]"
-                      >
-                        <Icon className="h-3.5 w-3.5" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* MAP */}
-              <div className="group relative flex min-h-[360px] flex-col overflow-hidden border border-[#E7D9C7] bg-white shadow-[0_14px_42px_rgba(69,45,28,0.08)]">
-                {/* LOCATION TOGGLE */}
-                <div className="relative z-10 flex shrink-0 border-b border-[#E7D9C7] bg-white">
-                  {managedLocations.map((location, index) => (
-                    <button
-                      key={location.city}
-                      type="button"
-                      onClick={() => setActiveMapIndex(index)}
-                      className={`flex-1 px-3 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors ${
-                        activeMapIndex === index
-                          ? "bg-[#8B6A3E] text-white"
-                          : "bg-white text-[#7C6249] hover:bg-[#F4EDE3]"
-                      }`}
-                    >
-                      {location.city}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="relative flex-1">
-                  <iframe
-                    key={activeMapLocation.city}
-                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                      activeMapLocation.mapQuery,
-                    )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full grayscale-[0.08] transition duration-500 group-hover:grayscale-0"
-                    title={`${activeMapLocation.city} location on map`}
+            <div className="mt-[calc(var(--u)*1.2)] grid gap-[calc(var(--u)*0.9)]">
+              <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
+                <label className={fieldWrap}>
+                  <Image src="/assets/contact/icons/field-user.png" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
+                  <input name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name *" className={fieldInput} />
+                </label>
+                <label className={fieldWrap}>
+                  <Image src="/assets/contact/icons/field-phone.png" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
+                  <input
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    inputMode="numeric"
+                    maxLength={10}
+                    pattern="[6-9][0-9]{9}"
+                    title="Enter a valid 10-digit mobile number"
+                    placeholder="Mobile Number *"
+                    className={fieldInput}
                   />
-
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#2C1810]/16 to-transparent" />
-
-                  <a
-                    href={`https://maps.google.com/?q=${encodeURIComponent(
-                      activeMapLocation.mapQuery,
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/95 px-3.5 py-2 text-[11px] font-semibold text-[#73532F] shadow-md backdrop-blur transition hover:bg-[#8B6A3E] hover:text-white"
-                  >
-                    <FaDirections className="h-3.5 w-3.5" />
-                    Open in Maps
-                  </a>
-                </div>
+                </label>
               </div>
+
+              <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
+                <label className={fieldWrap}>
+                  <Image src="/assets/contact/icons/field-mail.png" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
+                  <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address (Optional)" className={fieldInput} />
+                </label>
+                <label className={fieldWrap}>
+                  <Image src="/assets/contact/icons/field-pin.png" alt="" width={112} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.45)] -translate-y-1/2" />
+                  <select name="location" value={formData.location} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
+                    <option value="" disabled>Your Location *</option>
+                    {locationOptions.map((loc) => (
+                      <option key={loc} value={loc}>{loc}</option>
+                    ))}
+                  </select>
+                  <Image src="/assets/contact/icons/chevron-down.png" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
+                </label>
+              </div>
+
+              <label className={fieldWrap}>
+                <Image src="/assets/contact/icons/field-list.png" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
+                <select name="assistanceType" value={formData.assistanceType} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
+                  <option value="" disabled>Type of Assistance *</option>
+                  {assistanceOptions.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+                <Image src="/assets/contact/icons/chevron-down.png" alt="" width={88} height={60} className="pointer-events-none absolute right-[calc(var(--u)*1.35)] top-1/2 h-auto w-[calc(var(--u)*1.35)] -translate-y-1/2" />
+              </label>
+
+              <label className={`${fieldWrap} !h-[calc(var(--u)*6.8)]`}>
+                <Image src="/assets/contact/icons/field-chat.png" alt="" width={128} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-[calc(var(--u)*1.1)] h-auto w-[calc(var(--u)*1.65)]" />
+                <svg viewBox="0 0 12 12" className="pointer-events-none absolute bottom-[calc(var(--u)*0.5)] right-[calc(var(--u)*0.5)] h-[calc(var(--u)*0.9)] w-[calc(var(--u)*0.9)]" aria-hidden>
+                  <path d="M11 2 L2 11 M11 6 L6 11" stroke="#8C7B6B" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+                </svg>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Message *"
+                  className="h-full w-full resize-none bg-transparent pl-[calc(var(--u)*4)] pr-3 pt-[calc(var(--u)*1.05)] text-[calc(var(--u)*0.88)] text-[#3F3A36] outline-none placeholder:text-[#3F3A36]"
+                />
+              </label>
+
+              {submitStatus.type && (
+                <div
+                  role="status"
+                  className={`rounded-xl border px-3 py-2 text-[13px] font-medium ${submitStatus.type === "success"
+                    ? "border-[#BBD9BE] bg-[#F1F8F1] text-[#3F6B45]"
+                    : "border-[#E8C4BC] bg-[#FCF2F0] text-[#9C4A38]"
+                    }`}
+                >
+                  {submitStatus.message}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-[calc(var(--u)*0.5)] flex h-[calc(var(--u)*3.9)] w-full items-center justify-center gap-[calc(var(--u)*1.2)] rounded-full bg-gradient-to-b from-[#9A471A] via-[#873A10] to-[#6E2606] text-[calc(var(--u)*1.45)] font-semibold text-white shadow-[0_6px_14px_rgba(110,38,6,0.2)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isSubmitting ? (
+                  <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                ) : (
+                  <>
+                    <Image src="/assets/contact/icons/paper-plane.png" alt="" width={176} height={152} className="h-auto w-[calc(var(--u)*2.2)]" />
+                    Send Enquiry
+                    <Image src="/assets/contact/icons/arrow-right-white.png" alt="" width={136} height={80} className="ml-[calc(var(--u)*0.4)] h-auto w-[calc(var(--u)*1.8)]" />
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+
+          <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 rounded-[calc(var(--u)*3.44)] border border-white/80 bg-[#FFF8F0]/90 p-5 shadow-[0_6px_20px_rgba(150,90,30,0.08)] lg:absolute lg:left-[calc(var(--u)*7.5)] lg:top-[calc(var(--u)*40.6)] lg:m-0 lg:h-[calc(var(--u)*6.9)] lg:w-[calc(var(--u)*85.7)] lg:grid-cols-[400fr_388fr_570fr] lg:gap-0 lg:p-0">
+            <Image src="/assets/contact/icons/lotus-faint.png" alt="" width={640} height={368} className="pointer-events-none absolute bottom-[calc(var(--u)*0.4)] right-[calc(var(--u)*1.5)] hidden h-auto w-[calc(var(--u)*10)] lg:block" />
+            <a href={CONTACT.helpline.href} className="flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*3)]">
+              <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
+                <Image src="/assets/contact/icons/strip-phone.png" alt="" width={168} height={160} className="h-auto w-[calc(var(--u)*2.65)]" />
+              </span>
+              <span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Call Our Helpline</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">24 × 7 Support</span>
+                <span className="block text-[calc(var(--u)*1.9)] font-bold leading-[calc(var(--u)*2.1)] text-[#5B1A05]">{CONTACT.helpline.label.replace(/^\+91\s*/, "")}</span>
+              </span>
+            </a>
+            <a href={CONTACT.email.href} className="relative flex items-center gap-[calc(var(--u)*1.2)] lg:pl-[calc(var(--u)*2.85)] lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.7)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#B79A82]">
+              <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
+                <Image src="/assets/contact/icons/strip-mail.png" alt="" width={184} height={120} className="h-auto w-[calc(var(--u)*2.9)]" />
+              </span>
+              <span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Email Us</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">{CONTACT.email.label}</span>
+              </span>
+            </a>
+            <div className="relative flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*2.45)] lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.7)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#B79A82]">
+              <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
+                <Image src="/assets/contact/icons/strip-clock.png" alt="" width={192} height={192} className="h-auto w-[calc(var(--u)*3)]" />
+              </span>
+              <span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Office Hours</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">Mon – Sat: 9:00 AM – 7:00 PM</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">Sun: By Appointment</span>
+              </span>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        {/* ======================= OFFICES & GLOBAL PRESENCE ====================== */}
+        <section className="relative overflow-hidden bg-[linear-gradient(90deg,#FDF4EA_0%,#FCF7F1_35%,#FEFAF6_100%)] px-4 pb-[calc(var(--u)*5)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*3.16)] bg-[url('/assets/contact/offices-wave-bottom.png')] bg-[length:100%_100%]" aria-hidden />
+
+          <div className="lg:relative lg:mx-auto lg:h-full lg:w-[calc(var(--u)*100)]">
+            <div
+              className="pointer-events-none absolute left-[calc(var(--u)*63.1)] top-0 hidden h-[calc(var(--u)*41)] w-[calc(var(--u)*36.9)] lg:block"
+            >
+              <Image src="/assets/contact/offices-photo-2.png" alt="Ganga ghat at sunset" fill sizes="40vw" className="object-fill" />
+            </div>
+            <Image
+              src="/assets/contact/lotus-watermark-2.png"
+              alt=""
+              width={980}
+              height={540}
+              className="pointer-events-none absolute left-[calc(var(--u)*46.1)] top-[calc(var(--u)*5.8)] hidden h-auto w-[calc(var(--u)*15.5)] opacity-50 lg:block"
+            />
+
+            <div className="relative z-10 lg:absolute lg:left-[calc(var(--u)*3.79)] lg:top-[calc(var(--u)*2.23)]">
+              <div className="flex items-center gap-[calc(var(--u)*1)] text-[calc(var(--u)*1.3)] font-bold uppercase leading-[calc(var(--u)*1.6)] tracking-[0.12em] lg:tracking-[0.19em] text-[#2A0A02]">
+                Our Offices &amp; Global Presence
+                <span className="h-px w-[calc(var(--u)*6.25)] bg-[#D37515]" />
+              </div>
+              <h2 className="mt-[calc(var(--u)*1)] font-serif text-[calc(var(--u)*2.7)] font-bold leading-[1.2] tracking-[0.005em] lg:text-[calc(var(--u)*3.65)] lg:leading-[calc(var(--u)*3.85)] text-[#2A0A02]">
+                Serving Families, Across<br />
+                <span className="text-[#DF7200]">India <span style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700 }}>&amp;</span> the UK</span>
+              </h2>
+              <p className="ml-[calc(var(--u)*0.3)] mt-[calc(var(--u)*0.47)] text-[calc(var(--u)*1.22)] leading-[calc(var(--u)*1.64)] tracking-[0.045em] text-[#2B1D17]">
+                Our offices ensure timely support, coordination and assistance<br className="hidden lg:block" />{" "}
+                for families in India and internationally.
+              </p>
             </div>
 
-            {/* SMALL CLOSING STRIP */}
+            <div className="relative z-10 mt-8 flex flex-col items-center gap-5 lg:mt-0 lg:block">
+              {officeCards.map((c) => (
+                <article
+                  key={c.title[0]}
+                  className="relative h-[calc(var(--u)*16.6)] w-[var(--w)] lg:absolute lg:left-[var(--l)] lg:top-[calc(var(--u)*18.1)]"
+                  style={{ "--w": pu(c.w), "--l": pu(c.left) } as React.CSSProperties}
+                >
+                  <div className="absolute inset-0 rounded-[calc(var(--u)*1.15)] shadow-[0_12px_30px_rgba(120,70,30,0.14),0_2px_6px_rgba(120,70,30,0.08)]" />
+                  <div
+                    className="absolute inset-x-0 top-0 h-[calc(var(--u)*6.6)] rounded-t-[calc(var(--u)*1.15)]"
+                    style={{ background: "linear-gradient(135deg,#7E3A12 0%,#6B2F0A 58%,#5C2A10 100%)" }}
+                  >
+                    <Image
+                      src={`/assets/contact/${c.icon.src}.png`}
+                      alt=""
+                      width={c.icon.iw}
+                      height={c.icon.ih}
+                      className="absolute h-auto"
+                      style={{ left: pu(c.icon.x), top: pu(c.icon.y), width: pu(c.icon.w) }}
+                    />
+                    <div className="absolute" style={{ left: pu(c.textLeft), top: pu(c.textTop) }}>
+                      {c.title.map((line) => (
+                        <div key={line} className="whitespace-nowrap text-[calc(var(--u)*1.2)] font-bold leading-[calc(var(--u)*1.58)] text-[#FFF4E6]">
+                          {line}
+                        </div>
+                      ))}
+                      {c.sub && (
+                        <div className="whitespace-nowrap text-[calc(var(--u)*0.95)] leading-[calc(var(--u)*1.4)] text-[#F3DDC4]">{c.sub}</div>
+                      )}
+                    </div>
+                  </div>
 
+                  <div className="absolute inset-x-0 bottom-0 top-[calc(var(--u)*5.43)] rounded-[calc(var(--u)*1.15)] bg-[#FDFCF8]">
+                    <Image src="/assets/contact/office-pin.png" alt="" width={104} height={112} className="absolute h-auto w-[calc(var(--u)*1.3)]" style={{ left: pu(c.pinX - 10), top: pu(c.pinTop) }} />
+                    <p className="absolute whitespace-nowrap text-[calc(var(--u)*1)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.addrTop), lineHeight: pu(c.addrLh) }}>
+                      {c.address.map((line, i) => (
+                        <span key={line}>
+                          {i > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                    <Image src="/assets/contact/office-phone.png" alt="" width={120} height={112} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.phoneY - 12) }} />
+                    <div className="absolute flex items-center whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.phoneY - 11) }}>
+                      {c.phones.map((p, i) => (
+                        <React.Fragment key={p}>
+                          {i > 0 && <span className="mx-[calc(var(--u)*0.7)] h-[calc(var(--u)*1)] w-[2px] bg-[#E8A23C]" />}
+                          <a href={`tel:${p.replace(/\s/g, "")}`} className="hover:text-[#C96822]">{p}</a>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                    <Image src="/assets/contact/office-mail.png" alt="" width={120} height={96} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.mailY - 9) }} />
+                    <a href={`mailto:${c.email}`} className="absolute whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410] hover:text-[#C96822]" style={{ left: pu(c.bodyLeft), top: pu(c.mailY - 11) }}>
+                      {c.email}
+                    </a>
+                    <span className="absolute inset-x-[calc(var(--u)*1.45)] bottom-[calc(var(--u)*0.5)] h-[calc(var(--u)*0.2)] rounded-full bg-gradient-to-r from-[#F0AA3A] via-[#E9A02A] to-[#F5D9A6]" />
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="relative z-10 mt-6 flex flex-col gap-4 rounded-[calc(var(--u)*3.2)] border border-white/80 bg-[linear-gradient(90deg,rgba(255,252,248,0.96)_0%,rgba(254,248,241,0.95)_60%,rgba(254,248,241,0.45)_100%)] p-5 shadow-[0_8px_24px_rgba(150,90,30,0.08)] lg:absolute lg:left-[calc(var(--u)*3.8)] lg:top-[calc(var(--u)*36.5)] lg:m-0 lg:block lg:h-[calc(var(--u)*10.2)] lg:w-[calc(var(--u)*92.2)] lg:p-0">
+              <div className="flex items-center gap-[calc(var(--u)*1.4)] lg:contents">
+                <Image src="/assets/contact/presence-globe.png" alt="" width={336} height={320} className="h-auto w-[calc(var(--u)*5.3)] lg:absolute lg:left-[calc(var(--u)*2.15)] lg:top-[calc(var(--u)*2.7)]" />
+                <span className="h-[calc(var(--u)*4.5)] w-px bg-[#C9824F] lg:absolute lg:left-[calc(var(--u)*8.7)] lg:top-[calc(var(--u)*3)]" />
+                <h3 className="font-serif text-[calc(var(--u)*2.4)] font-bold leading-[calc(var(--u)*2.5)] text-[#2A0A02] lg:absolute lg:left-[calc(var(--u)*10.4)] lg:top-[calc(var(--u)*2.66)]">
+                  Our Presence<br />at a Glance
+                </h3>
+              </div>
+
+              <div className="relative w-full [container-type:inline-size] lg:absolute lg:left-[calc(var(--u)*28.1)] lg:top-[calc(var(--u)*0.44)] lg:w-[calc(var(--u)*48)]" style={{ aspectRatio: "760 / 153" }}>
+                <Image src="/assets/contact/presence-map-2.png" alt="Map showing offices in London, Delhi-NCR and Visakhapatnam" fill sizes="50vw" className="object-fill" />
+                {[
+                  { x: 169, y: 20, w: 128, h: 38, lines: ["London (UK)"] },
+                  { x: 537, y: 14, w: 136, h: 53, lines: ["Delhi–NCR", "(Ghaziabad)"] },
+                  { x: 553, y: 87, w: 167, h: 42, lines: ["Visakhapatnam"] },
+                ].map((p) => (
+                  <div
+                    key={p.lines[0]}
+                    className="absolute flex flex-col items-center justify-center rounded-full bg-white text-center shadow-[0_3px_8px_rgba(150,90,40,0.18)]"
+                    style={{ left: `${(p.x / 760) * 100}%`, top: `${(p.y / 153) * 100}%`, width: `${(p.w / 760) * 100}%`, height: `${(p.h / 153) * 100}%` }}
+                  >
+                    <span className="text-[2.2cqw] font-bold leading-[1.15] text-[#3A1305]">{p.lines[0]}</span>
+                    {p.lines[1] && <span className="text-[1.9cqw] font-medium leading-[1.15] text-[#4A2A1A]">{p.lines[1]}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </main>
