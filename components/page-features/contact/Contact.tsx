@@ -451,7 +451,7 @@ function Contact() {
             <Image src="/assets/contact/icons/lotus-faint.png" alt="" width={640} height={368} className="pointer-events-none absolute bottom-[calc(var(--u)*0.4)] right-[calc(var(--u)*1.5)] hidden h-auto w-[calc(var(--u)*10)] lg:block" />
             <a href={CONTACT.helpline.href} className="flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*3)]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
-                <Image unoptimized src="/assets/contact/icons/strip-phone.svg" alt="" width={168} height={160} className="h-auto w-[calc(var(--u)*2.65)]" />
+                <Image unoptimized src="/assets/contact/icons/strip-phone.svg" alt="" width={232} height={224} className="h-auto w-[calc(var(--u)*3.66)]" />
               </span>
               <span>
                 <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Call Our Helpline</span>
@@ -461,7 +461,7 @@ function Contact() {
             </a>
             <a href={CONTACT.email.href} className="relative flex items-center gap-[calc(var(--u)*1.2)] lg:pl-[calc(var(--u)*2.85)] lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[calc(var(--u)*3.7)] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-[#B79A82]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
-                <Image unoptimized src="/assets/contact/icons/strip-mail.svg" alt="" width={184} height={120} className="h-auto w-[calc(var(--u)*2.9)]" />
+                <Image unoptimized src="/assets/contact/icons/strip-mail.svg" alt="" width={248} height={200} className="h-auto w-[calc(var(--u)*3.91)]" />
               </span>
               <span>
                 <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Email Us</span>
