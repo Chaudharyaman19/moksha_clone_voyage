@@ -252,8 +252,8 @@ export default function ContactFooter() {
           <span style={{ width: 1, height: k(14), background: "#8F7650", margin: `0 ${k(12)}` }} />
           <span>Designed &amp; Developed by</span>
         </div>
-        <div className="absolute flex items-center justify-center overflow-hidden" style={{ left: k(1342), top: k(502), width: k(119), height: k(35), borderRadius: k(5), background: "linear-gradient(180deg,#D8262E,#B01E26)" }}>
-          <Image src="/assets/encodency-logo.png" alt="enCodency Pvt. Ltd." width={120} height={40} className="h-full w-auto object-contain" style={{ padding: `${k(2)} ${k(5)}` }} />
+        <div className="absolute overflow-hidden" style={{ left: k(1343), top: k(502), width: k(118), height: k(36), borderRadius: k(6), background: "linear-gradient(180deg,#BB201F 0%,#C41E20 100%)" }}>
+          <Image src={`${A}/encodency-white.png`} alt="enCodency Pvt. Ltd." width={2047} height={306} className="absolute h-auto" style={{ left: k(9), top: k(10.5), width: k(100) }} />
         </div>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -336,8 +336,8 @@ export default function ContactFooter() {
           </div>
           <div className="flex items-center gap-2">
             <span>Designed &amp; Developed by</span>
-            <span className="flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-1.5 py-0.5">
-              <Image src="/assets/encodency-logo.png" alt="enCodency Pvt. Ltd." width={120} height={24} className="h-7 w-auto" />
+            <span className="flex items-center rounded-md bg-gradient-to-b from-[#BB201F] to-[#C41E20] px-2.5 py-2.5">
+              <Image src={`${A}/encodency-white.png`} alt="enCodency Pvt. Ltd." width={2047} height={306} className="h-auto w-[100px]" />
             </span>
           </div>
         </div>
