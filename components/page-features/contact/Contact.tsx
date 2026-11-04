@@ -184,7 +184,7 @@ function Contact() {
 
       <main>
         {/* ============================= HERO ============================= */}
-        <section className="relative w-full overflow-hidden bg-[linear-gradient(90deg,#FEF5EC_0%,#FCEADC_38%)] pt-[113px] [--u:11px] sm:[--u:13px] lg:h-[calc(var(--u)*41+113px)] lg:[--u:min(1vw,16px)]">
+        <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,transparent_84%,#FCEAD4_100%),linear-gradient(90deg,#FEF5EC_0%,#FCEADC_38%)] pt-[113px] [--u:11px] sm:[--u:13px] lg:h-[calc(var(--u)*41+113px)] lg:[--u:min(1vw,16px)]">
           <div
             className="absolute inset-0 lg:inset-x-auto lg:right-0 lg:top-[113px] lg:h-[calc(var(--u)*31.3)] lg:w-[calc(var(--u)*61.7)]"
             style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 22%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 22%)" }}
@@ -201,16 +201,10 @@ function Contact() {
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#FDF4EB]/95 via-[#FDF4EB]/80 to-[#FDF4EB]/35 lg:hidden" />
 
-          <svg
-            viewBox="0 0 1584 130"
-            preserveAspectRatio="none"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*7)] w-full"
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*8.02)] bg-[url('/assets/contact/hero-wave-bottom-10.png')] bg-[length:100%_100%]"
             aria-hidden
-          >
-            <path d="M0,60 C200,20 420,95 700,70 C980,45 1250,10 1584,55 L1584,130 L0,130Z" fill="#FCEBD5" />
-            <path d="M0,90 C260,55 480,115 760,92 C1060,68 1300,40 1584,82 L1584,130 L0,130Z" fill="#FBE3C3" />
-            <path d="M0,112 C300,86 560,130 880,112 C1160,98 1400,92 1584,108 L1584,130 L0,130Z" fill="#FBDDB9" />
-          </svg>
+          />
 
           <div className="relative z-10 px-4 pt-[calc(var(--u)*3.9)] sm:px-6 lg:pl-[calc(var(--u)*5)] lg:pr-0">
             <div className="flex items-center gap-[calc(var(--u)*1.2)] text-[calc(var(--u)*1.2)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.22em] text-[#2A0A02]">
@@ -256,7 +250,7 @@ function Contact() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*2.6)] border border-white/80 bg-[#FFF6EC]/90 py-4 shadow-[0_6px_18px_rgba(150,90,30,0.08)] sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
+          <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*2.6)] border border-white/70 bg-[#FEF1E5] py-4 shadow-none sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
             {[
               { src: "family-support", w: 5.2, h: 232, iw: 328, label: <>Family Support</> },
               { src: "lotus", w: 5.05, h: 240, iw: 320, label: <>Ritual &amp; Cremation<br />Assistance</> },
@@ -275,7 +269,7 @@ function Contact() {
                   className="h-auto w-[calc(var(--u)*3.6)] lg:w-[calc(var(--u)*var(--w))]"
                   style={{ "--w": item.w } as React.CSSProperties}
                 />
-                <span className="text-[calc(var(--u)*1.2)] font-bold leading-[1.3] text-[#2C0A02] lg:text-[calc(var(--u)*1.22)] lg:leading-[calc(var(--u)*1.55)]">
+                <span className="text-[calc(var(--u)*1.2)] font-bold leading-[1.3] text-[#2C0A02] lg:text-[calc(var(--u)*1.12)] lg:leading-[calc(var(--u)*1.55)]">
                   {item.label}
                 </span>
               </div>
