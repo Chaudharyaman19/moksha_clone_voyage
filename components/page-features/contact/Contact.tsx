@@ -178,7 +178,7 @@ function Contact() {
     "inline-flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-[#8B6A3E]";
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] text-[#2C1810]">
+    <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] font-sans text-[#2C1810]">
       <Topbar />
       <Navbar />
 
@@ -212,45 +212,45 @@ function Contact() {
               <span className="h-px w-[calc(var(--u)*6)] bg-[#D1954C]" />
             </div>
 
-            <h1 className="mt-[calc(var(--u)*0.65)] font-serif text-[calc(var(--u)*5)] font-bold leading-none tracking-[0.01em] text-[#2F0E03]">
+            <h1 className="mt-[calc(var(--u)*0.65)] font-sans text-[calc(var(--u)*5)] font-bold leading-none tracking-[0.01em] text-[#2F0E03]">
               Contact <span className="text-[#F09A0B]">Us</span>
             </h1>
 
-            <p className="mt-[calc(var(--u)*0.95)] text-[calc(var(--u)*1.65)] font-normal tracking-[0.03em] leading-[calc(var(--u)*2.24)] text-[#34150A]">
+            <p className="mt-[calc(var(--u)*0.95)] font-sans text-[calc(var(--u)*1.45)] font-normal tracking-[0.015em] leading-[calc(var(--u)*2.05)] text-[#34150A]">
               We&apos;re here to support individuals<br className="hidden lg:block" />{" "}
               and families in need with free<br className="hidden lg:block" />{" "}
               last-rites assistance, guidance<br className="hidden lg:block" />{" "}
               and coordination, with dignity and care.
             </p>
 
-            <div className="mt-[calc(var(--u)*1.9)] flex flex-wrap items-center gap-[calc(var(--u)*1.33)]">
+            <div className="mt-[calc(var(--u)*1.8)] flex flex-wrap items-center gap-[calc(var(--u)*1.2)]">
               <a
                 href={CONTACT.helpline.href}
-                className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.6)] items-center gap-[calc(var(--u)*0.75)] rounded-[calc(var(--u)*0.95)] bg-gradient-to-b from-[#833B00] to-[#5F2500] pl-[calc(var(--u)*1.25)] text-white shadow-[0_3px_8px_rgba(95,37,0,0.2)] transition hover:brightness-110"
+                className="flex h-[calc(var(--u)*3.65)] w-[calc(var(--u)*14.2)] items-center gap-[calc(var(--u)*0.6)] rounded-[calc(var(--u)*0.85)] bg-gradient-to-b from-[#833B00] to-[#5F2500] pl-[calc(var(--u)*0.9)] text-white shadow-[0_3px_8px_rgba(95,37,0,0.2)] transition hover:brightness-110"
               >
-                <Image unoptimized src="/assets/contact/icons/phone-white.svg" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.9)]" />
-                <span className="flex flex-col leading-[1.25]">
-                  <span className="text-[calc(var(--u)*1.22)] font-semibold">Call Helpline</span>
-                  <span className="whitespace-nowrap text-[calc(var(--u)*1.34)] font-bold">
-                    {CONTACT.helpline.label.replace(/^\+91\s*/, "")} <span className="text-[calc(var(--u)*1.0)] font-medium">(24×7)</span>
+                <Image unoptimized src="/assets/contact/icons/phone-white.svg" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.15)]" />
+                <span className="flex flex-col leading-[1.2]">
+                  <span className="text-[calc(var(--u)*0.92)] font-semibold">Call Helpline</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*1.02)] font-bold">
+                    {CONTACT.helpline.label.replace(/^\+91\s*/, "")} <span className="text-[calc(var(--u)*0.8)] font-medium">(24×7)</span>
                   </span>
                 </span>
               </a>
               <a
                 href="#contact-form"
-                className="flex h-[calc(var(--u)*4.8)] w-[calc(var(--u)*17.8)] items-center gap-[calc(var(--u)*0.7)] rounded-[calc(var(--u)*0.95)] border border-[#D9C4AD] bg-white pl-[calc(var(--u)*1)] pr-[calc(var(--u)*1)] text-[#280501] shadow-[0_2px_6px_rgba(95,37,0,0.08)] transition hover:bg-[#FFF8F0]"
+                className="flex h-[calc(var(--u)*3.65)] w-[calc(var(--u)*14.4)] items-center gap-[calc(var(--u)*0.55)] rounded-[calc(var(--u)*0.85)] border border-[#D9C4AD] bg-white pl-[calc(var(--u)*0.85)] pr-[calc(var(--u)*0.85)] text-[#280501] shadow-[0_2px_6px_rgba(95,37,0,0.08)] transition hover:bg-[#FFF8F0]"
               >
-                <Image unoptimized src="/assets/contact/icons/calendar.svg" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*3.15)]" />
-                <span className="flex flex-1 flex-col leading-[1.25]">
-                  <span className="whitespace-nowrap text-[calc(var(--u)*1.22)] font-bold">Request Sewa</span>
-                  <span className="whitespace-nowrap text-[calc(var(--u)*1.1)] font-medium">(Free Assistance)</span>
+                <Image unoptimized src="/assets/contact/icons/calendar.svg" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*2.35)]" />
+                <span className="flex flex-1 flex-col leading-[1.2]">
+                  <span className="whitespace-nowrap text-[calc(var(--u)*0.96)] font-bold">Request Sewa</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*0.84)] font-medium">(Free Assistance)</span>
                 </span>
-                <Image unoptimized src="/assets/contact/icons/arrow-orange.svg" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*2.4)]" />
+                <Image unoptimized src="/assets/contact/icons/arrow-orange.svg" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*1.85)]" />
               </a>
             </div>
           </div>
 
-          <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*2.6)] border border-white/70 bg-[#FEF1E5] py-4 shadow-none sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
+          <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*1.7)] border border-[#DEC1A3] bg-[#FEF1E5] py-4 shadow-[0_10px_28px_rgba(110,55,15,0.12),0_2px_8px_rgba(110,55,15,0.06)] sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
             {[
               { src: "family-support", w: 5.2, h: 232, iw: 328, label: <>Family Support</> },
               { src: "lotus", w: 5.05, h: 240, iw: 320, label: <>Ritual &amp; Cremation<br />Assistance</> },
@@ -299,7 +299,7 @@ function Contact() {
               We&apos;re Here to Help
               <span className="h-px w-[calc(var(--u)*6)] bg-[#C79A57]" />
             </div>
-            <h2 className="mt-[calc(var(--u)*1.24)] font-serif text-[calc(var(--u)*3.5)] font-bold leading-[calc(var(--u)*3.47)] tracking-[0.02em] text-[#3A1305]">
+            <h2 className="mt-[calc(var(--u)*1.24)] font-sans text-[calc(var(--u)*3.5)] font-bold leading-[calc(var(--u)*3.47)] tracking-[0.02em] text-[#3A1305]">
               We&apos;re Here to<br />
               <span className="text-[#C9780A]">Support You</span>
             </h2>
@@ -343,7 +343,7 @@ function Contact() {
               Send Us an Enquiry
               <span className="h-px w-[calc(var(--u)*10.2)] bg-[#C79A57]" />
             </div>
-            <h3 className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] font-serif text-[calc(var(--u)*2.75)] font-bold leading-[calc(var(--u)*2.75)] text-[#3A1305]">
+            <h3 className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] font-sans text-[calc(var(--u)*2.75)] font-bold leading-[calc(var(--u)*2.75)] text-[#3A1305]">
               Get in Touch with Us
             </h3>
             <p className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.5)] text-[#2B1D17]">
@@ -447,7 +447,7 @@ function Contact() {
             </div>
           </form>
 
-          <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 rounded-[calc(var(--u)*3.44)] border border-white/80 bg-[#FFF8F0]/90 p-5 shadow-[0_6px_20px_rgba(150,90,30,0.08)] lg:absolute lg:left-[calc(var(--u)*7.5)] lg:top-[calc(var(--u)*40.6)] lg:m-0 lg:h-[calc(var(--u)*6.9)] lg:w-[calc(var(--u)*85.7)] lg:grid-cols-[400fr_388fr_570fr] lg:gap-0 lg:p-0">
+          <div className="relative z-10 mt-8 grid grid-cols-1 gap-5 rounded-[calc(var(--u)*1.7)] border border-[#DEC1A3] bg-[#FFF8F0]/95 p-5 shadow-[0_10px_28px_rgba(110,55,15,0.12),0_2px_8px_rgba(110,55,15,0.06)] lg:absolute lg:left-[calc(var(--u)*7.5)] lg:top-[calc(var(--u)*40.6)] lg:m-0 lg:h-[calc(var(--u)*6.9)] lg:w-[calc(var(--u)*85.7)] lg:grid-cols-[400fr_388fr_570fr] lg:gap-0 lg:p-0">
             <Image src="/assets/contact/icons/lotus-faint.png" alt="" width={640} height={368} className="pointer-events-none absolute bottom-[calc(var(--u)*0.4)] right-[calc(var(--u)*1.5)] hidden h-auto w-[calc(var(--u)*10)] lg:block" />
             <a href={CONTACT.helpline.href} className="flex items-center gap-[calc(var(--u)*1.6)] lg:pl-[calc(var(--u)*3)]">
               <span className="flex h-[calc(var(--u)*4.4)] w-[calc(var(--u)*4.4)] shrink-0 items-center justify-center rounded-full bg-[#FEEBD6]">
@@ -505,9 +505,9 @@ function Contact() {
                 Our Offices &amp; Global Presence
                 <span className="h-px w-[calc(var(--u)*6.25)] bg-[#D37515]" />
               </div>
-              <h2 className="mt-[calc(var(--u)*1)] font-serif text-[calc(var(--u)*2.7)] font-bold leading-[1.2] tracking-[0.005em] lg:text-[calc(var(--u)*3.65)] lg:leading-[calc(var(--u)*3.85)] text-[#2A0A02]">
+              <h2 className="mt-[calc(var(--u)*1)] font-sans text-[calc(var(--u)*2.7)] font-bold leading-[1.2] tracking-[0.005em] lg:text-[calc(var(--u)*3.65)] lg:leading-[calc(var(--u)*3.85)] text-[#2A0A02]">
                 Serving Families, Across<br />
-                <span className="text-[#DF7200]">India <span style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 700 }}>&amp;</span> the UK</span>
+                <span className="text-[#DF7200]">India &amp; the UK</span>
               </h2>
               <p className="ml-[calc(var(--u)*0.3)] mt-[calc(var(--u)*0.47)] text-[calc(var(--u)*1.22)] leading-[calc(var(--u)*1.64)] tracking-[0.045em] text-[#2B1D17]">
                 Our offices ensure timely support, coordination and assistance<br className="hidden lg:block" />{" "}
@@ -581,7 +581,7 @@ function Contact() {
               <div className="flex items-center gap-[calc(var(--u)*1.4)] lg:contents">
                 <Image unoptimized src="/assets/contact/presence-globe.svg" alt="" width={336} height={320} className="h-auto w-[calc(var(--u)*5.3)] lg:absolute lg:left-[calc(var(--u)*2.15)] lg:top-[calc(var(--u)*2.7)]" />
                 <span className="h-[calc(var(--u)*4.5)] w-px bg-[#C9824F] lg:absolute lg:left-[calc(var(--u)*8.7)] lg:top-[calc(var(--u)*3)]" />
-                <h3 className="font-serif text-[calc(var(--u)*2.4)] font-bold leading-[calc(var(--u)*2.5)] text-[#2A0A02] lg:absolute lg:left-[calc(var(--u)*10.4)] lg:top-[calc(var(--u)*2.66)]">
+                <h3 className="font-sans text-[calc(var(--u)*2.4)] font-bold leading-[calc(var(--u)*2.5)] text-[#2A0A02] lg:absolute lg:left-[calc(var(--u)*10.4)] lg:top-[calc(var(--u)*2.66)]">
                   Our Presence<br />at a Glance
                 </h3>
               </div>

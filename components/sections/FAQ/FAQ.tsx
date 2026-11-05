@@ -79,7 +79,7 @@ export default function FAQSection() {
   const [openId, setOpenId] = useState<number | null>(null);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#FCEEE1_0%,#FDF1E5_45%,#FBEAD6_100%)] pb-[calc(var(--u)*8)] pt-8 [--u:12px] sm:[--u:14px] lg:h-[calc(var(--u)*50)] lg:pt-0 lg:[--u:min(1vw,16px)]">
+    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#FCEEE1_0%,#FDF1E5_45%,#FBEAD6_100%)] font-sans pb-[calc(var(--u)*8)] pt-8 [--u:12px] sm:[--u:14px] lg:h-[calc(var(--u)*50)] lg:pt-0 lg:[--u:min(1vw,16px)]">
       <JsonLd
         id="schema-faq"
         data={{
@@ -114,13 +114,13 @@ export default function FAQSection() {
         <div className="mx-auto text-center lg:ml-[calc(var(--u)*26)] lg:mr-0 lg:w-[calc(var(--u)*54.8)] lg:pt-[calc(var(--u)*2.06)]">
           <div className="flex items-center justify-center gap-[calc(var(--u)*0.9)] lg:-translate-x-[calc(var(--u)*0.6)]">
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE} rotate-180`} />
-            <span className="inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.6)] text-[calc(var(--u)*1.25)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*17.56)] lg:justify-center lg:px-0">
+            <span className="inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.5)] font-sans text-[calc(var(--u)*1.05)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*15.5)] lg:justify-center lg:px-0">
               Help &amp; Information
             </span>
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE}`} />
           </div>
 
-          <h2 className="mt-[calc(var(--u)*0.6)] font-serif text-[calc(var(--u)*2.6)] font-bold leading-[1.15] text-[#4A1208] lg:text-[calc(var(--u)*3.3)] lg:leading-[calc(var(--u)*3.8)]">
+          <h2 className="mt-[calc(var(--u)*0.5)] font-sans text-[calc(var(--u)*2.2)] font-extrabold leading-[1.15] tracking-tight text-[#4A1208] lg:text-[calc(var(--u)*2.7)] lg:leading-[calc(var(--u)*3.1)]">
             Frequently Asked Questions
           </h2>
 
@@ -130,7 +130,7 @@ export default function FAQSection() {
             <span className={`h-[2px] w-[calc(var(--u)*6.7)] ${GOLD_LINE}`} />
           </div>
 
-          <p className="mx-auto mt-[calc(var(--u)*0.2)] max-w-[640px] text-[calc(var(--u)*1.2)] leading-[calc(var(--u)*1.8)] text-[#263447] lg:max-w-none lg:whitespace-nowrap lg:translate-x-[calc(var(--u)*1.1)] lg:text-[calc(var(--u)*1.15)] lg:leading-[calc(var(--u)*1.6)]">
+          <p className="mx-auto mt-[calc(var(--u)*0.2)] max-w-[640px] font-sans text-[calc(var(--u)*1.0)] leading-[calc(var(--u)*1.5)] text-[#263447] lg:max-w-none lg:whitespace-nowrap lg:translate-x-[calc(var(--u)*1.1)] lg:text-[calc(var(--u)*0.98)] lg:leading-[calc(var(--u)*1.45)]">
             Find quick answers to common questions about Moksha Sewa, our services and how you can get involved.
           </p>
         </div>
@@ -155,7 +155,7 @@ export default function FAQSection() {
                   className="relative flex min-h-[calc(var(--u)*4.7)] w-full items-center py-0 pl-[calc(var(--u)*3.9)] pr-[calc(var(--u)*1.4)] text-left"
                 >
                   <span className="absolute left-[calc(var(--u)*2.3)] top-1/2 h-[calc(var(--u)*2.9)] w-[3px] -translate-y-1/2 rounded-full bg-[#EEA725]" />
-                  <span className="min-w-0 flex-1 pr-3 text-[calc(var(--u)*1.2)] font-bold leading-[calc(var(--u)*1.7)] text-[#1B1410] lg:text-[calc(var(--u)*1.24)]">
+                  <span className="min-w-0 flex-1 pr-3 font-sans text-[calc(var(--u)*1.05)] font-semibold leading-[calc(var(--u)*1.45)] text-[#1B1410] lg:text-[calc(var(--u)*1.05)]">
                     {faq.lines[0]}
                     <br className="hidden lg:block" />{" "}
                     {faq.lines[1]}
@@ -169,7 +169,7 @@ export default function FAQSection() {
 
                 <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                   <div className="overflow-hidden">
-                    <p className="border-t border-[#F0DFC9] pb-3 pl-[calc(var(--u)*3.9)] pr-[calc(var(--u)*3)] pt-2 text-[calc(var(--u)*1)] leading-[calc(var(--u)*1.55)] text-[#5A4A3A]">
+                    <p className="border-t border-[#F0DFC9] pb-3 pl-[calc(var(--u)*3.9)] pr-[calc(var(--u)*3)] pt-2 font-sans text-[calc(var(--u)*0.88)] leading-[calc(var(--u)*1.4)] text-[#5A4A3A]">
                       {faq.answer}
                     </p>
                   </div>
