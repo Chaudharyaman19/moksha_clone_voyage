@@ -20,6 +20,25 @@ export interface LandingSectionItem {
   country?: string;
 }
 
+export interface ScheduledBannerItem {
+  id?: string;
+  enabled: boolean;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+  startDate?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
+  activeDays?: string[];
+  buttonLabel?: string;
+  buttonHref?: string;
+  secondaryButtonLabel?: string;
+  secondaryButtonHref?: string;
+}
+
 export interface LandingHeroSlide {
   title: string;
   description: string;
@@ -71,6 +90,7 @@ export interface LandingSectionContent {
   scheduledBannerButtonHref?: string;
   scheduledBannerSecondaryButtonLabel?: string;
   scheduledBannerSecondaryButtonHref?: string;
+  scheduledBanners?: ScheduledBannerItem[];
   quote?: string;
   legalNotice?: string;
   lowerTitle?: string;
@@ -506,7 +526,14 @@ export function mergeLandingSections(sections?: LandingSectionContent[]): Landin
         ...(saved.slides?.slice(fallback.slides.length) ?? []),
       ]
       : saved.slides;
-    return normalizeLandingSection({ ...fallback, ...saved, items, slides, enabled: saved.enabled !== false }, fallback);
+    return normalizeLandingSection({
+      ...fallback,
+      ...saved,
+      items,
+      slides,
+      scheduledBanners: saved.scheduledBanners ?? fallback.scheduledBanners,
+      enabled: saved.enabled !== false,
+    }, fallback);
   });
 }
 
@@ -645,6 +672,90 @@ export function normalizeLandingSection(section: LandingSectionContent, fallback
   return normalized;
 }
 
+export function parseDateTimeInIST(dateStr?: string, timeStr?: string, isEnd = false): Date | null {
+  const trimmedDate = dateStr?.trim();
+  if (!trimmedDate) return null;
+
+  const dateMatch = trimmedDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!dateMatch) {
+    const parsed = new Date(trimmedDate);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  let time = timeStr?.trim();
+  if (!time) {
+    time = isEnd ? "23:59:59" : "00:00:00";
+  } else {
+    const timeParts = time.split(":");
+    const hh = (timeParts[0] || "00").padStart(2, "0");
+    const mm = (timeParts[1] || "00").padStart(2, "0");
+    const ss = (timeParts[2] || (isEnd ? "59" : "00")).padStart(2, "0");
+    time = `${hh}:${mm}:${ss}`;
+  }
+
+  // Construct ISO 8601 with explicit IST offset (+05:30) so evaluation matches across server & client
+  const isoWithIST = `${trimmedDate}T${time}+05:30`;
+  const d = new Date(isoWithIST);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+export function getNowInIST(): {
+  now: Date;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  currentMinutes: number;
+  weekday: string;
+} {
+  const now = new Date();
+  try {
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Kolkata",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      weekday: "short",
+      hour12: false,
+    });
+    const parts = formatter.formatToParts(now);
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let weekday = "Mon";
+
+    for (const p of parts) {
+      if (p.type === "hour") hours = parseInt(p.value, 10) % 24;
+      if (p.type === "minute") minutes = parseInt(p.value, 10);
+      if (p.type === "second") seconds = parseInt(p.value, 10);
+      if (p.type === "weekday") weekday = p.value;
+    }
+
+    return {
+      now,
+      hours,
+      minutes,
+      seconds,
+      currentMinutes: hours * 60 + minutes,
+      weekday,
+    };
+  } catch {
+    const istOffsetMs = 5.5 * 60 * 60 * 1000;
+    const istDate = new Date(now.getTime() + istOffsetMs);
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const hours = istDate.getUTCHours();
+    const minutes = istDate.getUTCMinutes();
+    const seconds = istDate.getUTCSeconds();
+    return {
+      now,
+      hours,
+      minutes,
+      seconds,
+      currentMinutes: hours * 60 + minutes,
+      weekday: dayNames[istDate.getUTCDay()],
+    };
+  }
+}
+
 export function isBannerScheduleActive(schedule?: {
   enabled?: boolean;
   startDate?: string;
@@ -655,35 +766,34 @@ export function isBannerScheduleActive(schedule?: {
 }): boolean {
   if (!schedule || !schedule.enabled) return false;
 
-  const now = new Date();
+  const ist = getNowInIST();
+  const now = ist.now;
 
-  // Start date / time check
-  if (schedule.startDate) {
-    const time = schedule.startTime ? schedule.startTime : "00:00:00";
-    const start = new Date(`${schedule.startDate}T${time.length === 5 ? time + ":00" : time}`);
-    if (!isNaN(start.getTime()) && now < start) return false;
-  } else if (schedule.startTime) {
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  // Start date / time check in IST
+  if (schedule.startDate && schedule.startDate.trim()) {
+    const start = parseDateTimeInIST(schedule.startDate, schedule.startTime, false);
+    if (start && now < start) return false;
+  } else if (schedule.startTime && schedule.startTime.trim()) {
     const [sh, sm] = schedule.startTime.split(":").map(Number);
-    if (currentMinutes < (sh * 60 + sm)) return false;
+    if (!isNaN(sh) && !isNaN(sm)) {
+      if (ist.currentMinutes < (sh * 60 + sm)) return false;
+    }
   }
 
-  // End date / time check
-  if (schedule.endDate) {
-    const time = schedule.endTime ? schedule.endTime : "23:59:59";
-    const end = new Date(`${schedule.endDate}T${time.length === 5 ? time + ":59" : time}`);
-    if (!isNaN(end.getTime()) && now > end) return false;
-  } else if (schedule.endTime) {
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  // End date / time check in IST
+  if (schedule.endDate && schedule.endDate.trim()) {
+    const end = parseDateTimeInIST(schedule.endDate, schedule.endTime, true);
+    if (end && now > end) return false;
+  } else if (schedule.endTime && schedule.endTime.trim()) {
     const [eh, em] = schedule.endTime.split(":").map(Number);
-    if (currentMinutes > (eh * 60 + em)) return false;
+    if (!isNaN(eh) && !isNaN(em)) {
+      if (ist.currentMinutes > (eh * 60 + em)) return false;
+    }
   }
 
-  // Day of week check
+  // Day of week check in IST
   if (Array.isArray(schedule.activeDays) && schedule.activeDays.length > 0) {
-    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const currentDay = dayNames[now.getDay()];
-    if (!schedule.activeDays.includes(currentDay)) return false;
+    if (!schedule.activeDays.includes(ist.weekday)) return false;
   }
 
   return true;
@@ -709,30 +819,29 @@ export function getScheduleStatus(schedule?: {
     };
   }
 
-  const now = new Date();
+  const ist = getNowInIST();
+  const now = ist.now;
 
-  if (schedule.startDate) {
-    const time = schedule.startTime ? schedule.startTime : "00:00:00";
-    const start = new Date(`${schedule.startDate}T${time.length === 5 ? time + ":00" : time}`);
-    if (!isNaN(start.getTime()) && now < start) {
+  if (schedule.startDate && schedule.startDate.trim()) {
+    const start = parseDateTimeInIST(schedule.startDate, schedule.startTime, false);
+    if (start && now < start) {
       return {
         status: "upcoming",
         label: "Scheduled (Upcoming)",
-        details: `Starts on ${schedule.startDate}${schedule.startTime ? " at " + schedule.startTime : ""}. Until then, old/default banner will display.`,
+        details: `Starts on ${schedule.startDate}${schedule.startTime ? " at " + schedule.startTime : ""} (IST). Until then, default banner will display.`,
         color: "text-amber-800 bg-amber-50 border-amber-300",
         badgeBg: "bg-amber-500",
       };
     }
   }
 
-  if (schedule.endDate) {
-    const time = schedule.endTime ? schedule.endTime : "23:59:59";
-    const end = new Date(`${schedule.endDate}T${time.length === 5 ? time + ":59" : time}`);
-    if (!isNaN(end.getTime()) && now > end) {
+  if (schedule.endDate && schedule.endDate.trim()) {
+    const end = parseDateTimeInIST(schedule.endDate, schedule.endTime, true);
+    if (end && now > end) {
       return {
         status: "expired",
         label: "Schedule Expired",
-        details: `Ended on ${schedule.endDate}${schedule.endTime ? " at " + schedule.endTime : ""}. Old/default banner is automatically displayed on the website.`,
+        details: `Ended on ${schedule.endDate}${schedule.endTime ? " at " + schedule.endTime : ""} (IST). Default banner is automatically displayed on the website.`,
         color: "text-rose-800 bg-rose-50 border-rose-300",
         badgeBg: "bg-rose-500",
       };
@@ -740,13 +849,11 @@ export function getScheduleStatus(schedule?: {
   }
 
   if (Array.isArray(schedule.activeDays) && schedule.activeDays.length > 0) {
-    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const currentDay = dayNames[now.getDay()];
-    if (!schedule.activeDays.includes(currentDay)) {
+    if (!schedule.activeDays.includes(ist.weekday)) {
       return {
         status: "upcoming",
-        label: `Inactive Today (${currentDay})`,
-        details: `Only active on: ${schedule.activeDays.join(", ")}. Old/default banner is displayed today.`,
+        label: `Inactive Today (${ist.weekday})`,
+        details: `Only active on: ${schedule.activeDays.join(", ")}. Default banner is displayed today.`,
         color: "text-amber-800 bg-amber-50 border-amber-300",
         badgeBg: "bg-amber-500",
       };

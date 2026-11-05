@@ -22,7 +22,7 @@ import {
 import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-import { isBannerScheduleActive, type LandingSectionItem } from "@/lib/landingContent";
+import { isBannerScheduleActive, type LandingSectionItem, type ScheduledBannerItem } from "@/lib/landingContent";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -96,25 +96,34 @@ type SlideContent = {
   };
 };
 
+function splitHeading(title: string): string[] {
+  if (!title) return ["Dignity in Every", "Final Journey"];
+  if (title.includes("\n")) {
+    return title.split("\n").map((s) => s.trim()).filter(Boolean);
+  }
+  if (title.includes("Every ")) {
+    return title.split(/(?<=Every) /).map((s) => s.trim()).filter(Boolean);
+  }
+  const words = title.trim().split(/\s+/);
+  if (words.length >= 4) {
+    const mid = Math.ceil(words.length / 2);
+    return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+  }
+  return [title];
+}
+
 export default function Hero() {
   const websiteSection = useWebsiteSection("hero");
-  const itemSlides = useMemo(
-    () =>
-      (websiteSection?.items ?? [])
-        .filter((item) => item.image)
-        .map((item) => ({
-          title: item.title || "New Hero Slide",
-          description: item.description || "",
-          image: imageOrFallback(item.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
-          alt: (item as any).imageAlt || (item as any).alt || item.title || "Hero slide image",
-          buttonLabel: item.label || websiteSection?.buttonLabel || "Learn More",
-          buttonHref: item.href || websiteSection?.buttonHref || "/",
-          secondaryButtonLabel: websiteSection?.secondaryButtonLabel || "Support This Mission",
-          secondaryButtonHref: websiteSection?.secondaryButtonHref || "/donation",
-          variant: "default" as const,
-        })),
-    [websiteSection],
-  );
+
+  // Re-check schedule status every 10 seconds so date/time switches live on user screens without refresh
+  const [scheduleTick, setScheduleTick] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setScheduleTick((prev) => prev + 1);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
   const isSlideActiveNow = useCallback((slide: any): boolean => {
     if (!slide?.scheduledEnabled) return true;
     return isBannerScheduleActive({
@@ -125,7 +134,7 @@ export default function Hero() {
       endTime: slide.endTime,
       activeDays: slide.activeDays,
     });
-  }, []);
+  }, [scheduleTick]);
 
   const isSectionBannerActive = useMemo(() => {
     return isBannerScheduleActive({
@@ -135,193 +144,189 @@ export default function Hero() {
       startTime: websiteSection?.scheduledBannerStartTime,
       endTime: websiteSection?.scheduledBannerEndTime,
     });
-  }, [websiteSection]);
+  }, [websiteSection, scheduleTick]);
 
-  const managedSlides = useMemo(() => {
-    // 1. If Section-level scheduled banner is active, build its slide
-    const scheduledBannerSlide = isSectionBannerActive && (websiteSection?.scheduledBannerImage || websiteSection?.scheduledBannerTitle) ? [{
-      title: websiteSection.scheduledBannerTitle || websiteSection.title || "Special Announcement",
-      description: websiteSection.scheduledBannerSubtitle || websiteSection.scheduledBannerDescription || websiteSection.subtitle || "",
-      image: imageOrFallback(websiteSection.scheduledBannerImage, websiteSection.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
-      alt: websiteSection.scheduledBannerImageAlt || websiteSection.scheduledBannerTitle || "Scheduled Banner",
-      buttonLabel: websiteSection.scheduledBannerButtonLabel || websiteSection.buttonLabel || "Request Sewa Help",
-      buttonHref: websiteSection.scheduledBannerButtonHref || websiteSection.buttonHref || "/request-help",
-      secondaryButtonLabel: websiteSection.scheduledBannerSecondaryButtonLabel || websiteSection.secondaryButtonLabel || "Support This Mission",
-      secondaryButtonHref: websiteSection.scheduledBannerSecondaryButtonHref || websiteSection.secondaryButtonHref || "/donation",
-      variant: "default" as const,
-    }] : [];
-
-    const activeUserSlides = (websiteSection?.slides ?? []).filter(isSlideActiveNow);
-    const activeItemSlides = itemSlides.filter(isSlideActiveNow);
-
-    return [...scheduledBannerSlide, ...activeUserSlides, ...activeItemSlides];
-  }, [isSectionBannerActive, websiteSection, isSlideActiveNow, itemSlides]);
-  const images = useMemo(
-    () => managedSlides.length ? managedSlides.map((slide) => imageOrFallback(slide.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png")) : [
-      imageOrFallback(websiteSection?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png"),
+  const fallbackImages = useMemo(
+    () => [
+      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164948/moksha-sewa/hero-images/image2.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164950/moksha-sewa/hero-images/image3.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164954/moksha-sewa/hero-images/image7.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164955/moksha-sewa/hero-images/image8.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164966/moksha-sewa/hero-images/volunteer-impact-v2.png",
-      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164929/moksha-sewa/hero-images/1.png",
-      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164931/moksha-sewa/hero-images/2.png",
-      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164932/moksha-sewa/hero-images/3.png",
-      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164933/moksha-sewa/hero-images/4.png",
-      // "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164943/moksha-sewa/hero-images/9.png",
     ],
-    [managedSlides, websiteSection?.image],
+    [],
   );
 
-  const slideContent = useMemo<SlideContent[]>(
-    () => {
-      const fallbackSlides: SlideContent[] = [
-        {
-          heading: ["Dignity in Every", "Final Journey"],
-          description:
-            "Supporting weaker families with compassionate last-rites assistance.",
-          descriptionHighlight: "compassionate last-rites assistance.",
-          alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
-          primaryButton: {
-            label: "Request Sewa Help",
-            href: "/request-help",
-          },
-          secondaryButton: {
-            label: "Support This Mission",
-            href: "/donation",
-          },
-        },
-        {
+  const fallbackSlides = useMemo<SlideContent[]>(
+    () => [
+      {
+        heading: ["Dignity in Every", "Final Journey"],
+        description: "Supporting weaker families with compassionate last-rites assistance.",
+        descriptionHighlight: "compassionate last-rites assistance.",
+        alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
+        primaryButton: { label: "Request Sewa Help", href: "/request-help" },
+        secondaryButton: { label: "Support This Mission", href: "/donation" },
+      },
+      {
         heading: ["No One Leaves", "Without Final Dignity."],
         headingHighlight: "Without Final Dignity.",
-        description:
-          "Respectful last rites for authorised unclaimed cases.",
+        description: "Respectful last rites for authorised unclaimed cases.",
         descriptionHighlight: "Respectful last rites",
         alt: "Moksha Sewa volunteers providing dignified last rites support for an authorised unclaimed case",
-        primaryButton: {
-          label: "Know Our Mission",
-          href: "/about",
-        },
-        secondaryButton: {
-          label: "Support This Mission",
-          href: "/donation",
-        },
-        },
-        {
+        primaryButton: { label: "Know Our Mission", href: "/about" },
+        secondaryButton: { label: "Support This Mission", href: "/donation" },
+      },
+      {
         heading: ["Be the Reason", "Dignity Reaches Someone."],
         headingHighlight: "Dignity Reaches Someone.",
-        description:
-          "Your support brings dignity through every farewell.",
+        description: "Your support brings dignity through every farewell.",
         descriptionHighlight: "dignity",
         alt: "Moksha Sewa volunteers supporting an elderly couple with dignity and compassion",
-        primaryButton: {
-          label: "Support This Mission",
-          href: "/donation",
-        },
-        secondaryButton: {
-          label: "Become a Volunteer",
-          href: "/volunteer/register",
-        },
-        },
-        {
+        primaryButton: { label: "Support This Mission", href: "/donation" },
+        secondaryButton: { label: "Become a Volunteer", href: "/volunteer/register" },
+      },
+      {
         heading: ["When a Family Cannot", "Afford a Final Farewell."],
         headingHighlight: "Afford a Final Farewell.",
-        description:
-          "Humanity stands beside families through every farewell.",
+        description: "Humanity stands beside families through every farewell.",
         descriptionHighlight: "families",
         alt: "Moksha Sewa volunteers standing beside a grieving family with dignity and compassion",
         familySupportLayout: true,
-        primaryButton: {
-          label: "Request Support",
-          href: "/request-help",
-        },
-        secondaryButton: {
-          label: "Support a Family",
-          href: "/donation",
-        },
-        },
-        {
+        primaryButton: { label: "Request Support", href: "/request-help" },
+        secondaryButton: { label: "Support a Family", href: "/donation" },
+      },
+      {
         heading: ["Final Journey to Prayer", "We Stand Beside Them."],
         headingHighlight: "We Stand Beside Them.",
-        description:
-          "Transport and rituals support families with compassion.",
+        description: "Transport and rituals support families with compassion.",
         descriptionHighlight: "with compassion.",
         alt: "Moksha Sewa transport, rituals and family support during a dignified final journey",
         journeyPrayerLayout: true,
-        primaryButton: {
-          label: "Explore Our Sewa",
-          href: "/prayerhallservices",
-        },
-        secondaryButton: {
-          label: "Support This Mission",
-          href: "/donation",
-        },
-        },
-        {
+        primaryButton: { label: "Explore Our Sewa", href: "/prayerhallservices" },
+        secondaryButton: { label: "Support This Mission", href: "/donation" },
+      },
+      {
         heading: ["Be the Reason", "Dignity Reaches Someone."],
         headingHighlight: "Dignity Reaches Someone.",
-        description:
-          "Your time brings comfort, care and compassion.",
+        description: "Your time brings comfort, care and compassion.",
         descriptionHighlight: "care and compassion.",
         alt: "Moksha Sewa volunteers serving with compassion and dignity",
         volunteerImpactLayout: true,
-        primaryButton: {
-          label: "Become a Volunteer",
-          href: "/volunteer/register",
-        },
-        secondaryButton: {
-          label: "Support This Mission",
-          href: "/donation",
-        },
+        primaryButton: { label: "Become a Volunteer", href: "/volunteer/register" },
+        secondaryButton: { label: "Support This Mission", href: "/donation" },
       },
-      ];
+    ],
+    [],
+  );
 
-      const hasAdminHeroContent = Boolean(
-        managedSlides.length ||
-        websiteSection?.title ||
-        websiteSection?.subtitle ||
-        websiteSection?.buttonLabel ||
-        websiteSection?.secondaryButtonLabel
-      );
-      if (managedSlides.length) {
-        return managedSlides.map((slide, index) => {
-          const fallback = fallbackSlides[index] ?? fallbackSlides[0];
-          return {
-            ...fallback,
-            heading: slide.title.split(/\n|(?<=Every) /).filter(Boolean),
-            headingHighlight: undefined,
-            description: slide.description,
-            descriptionHighlight: undefined,
-            alt: slide.alt,
-            familySupportLayout: slide.variant === "family-support",
-            journeyPrayerLayout: slide.variant === "journey-prayer",
-            volunteerImpactLayout: slide.variant === "volunteer-impact",
-            primaryButton: slide.buttonLabel ? { label: slide.buttonLabel, href: slide.buttonHref || "/request-help" } : fallback.primaryButton,
-            secondaryButton: slide.secondaryButtonLabel ? { label: slide.secondaryButtonLabel, href: slide.secondaryButtonHref || "/donation" } : fallback.secondaryButton,
-          };
+  // Active scheduled full banners (evaluated strictly in IST)
+  const activeScheduledBanners = useMemo<ScheduledBannerItem[]>(() => {
+    const list: ScheduledBannerItem[] = [];
+
+    // 1. From multi-schedule array
+    const scheduledList = Array.isArray(websiteSection?.scheduledBanners) ? websiteSection.scheduledBanners : [];
+    scheduledList.forEach((b) => {
+      if (b.enabled !== false && isBannerScheduleActive(b) && b.image && b.image.trim()) {
+        list.push(b);
+      }
+    });
+
+    // 2. From legacy single scheduled banner
+    if (
+      isSectionBannerActive &&
+      websiteSection?.scheduledBannerImage &&
+      websiteSection.scheduledBannerImage.trim()
+    ) {
+      const alreadyInList = list.some((item) => item.image === websiteSection?.scheduledBannerImage);
+      if (!alreadyInList) {
+        list.unshift({
+          id: "legacy-banner",
+          enabled: true,
+          title: websiteSection.scheduledBannerTitle || "Scheduled Banner",
+          image: websiteSection.scheduledBannerImage,
+          buttonHref: websiteSection.scheduledBannerButtonHref,
         });
       }
-      if (!hasAdminHeroContent) return fallbackSlides;
+    }
 
-      return fallbackSlides.map((slide) => ({
-        ...slide,
-        heading: textOrFallback(websiteSection?.title, slide.heading.join("\n"), 95).split(/\n|(?<=Every) /).filter(Boolean),
-        headingHighlight: undefined,
-        description: textOrFallback(websiteSection?.subtitle, slide.description, 150),
-        descriptionHighlight: undefined,
-        alt: textOrFallback(websiteSection?.description, slide.alt, 150),
-        primaryButton: {
-          label: textOrFallback(websiteSection?.buttonLabel, slide.primaryButton?.label ?? "Request Sewa Help", 36),
-          href: websiteSection?.buttonHref || slide.primaryButton?.href || "/request-help",
-        },
-        secondaryButton: {
-          label: textOrFallback(websiteSection?.secondaryButtonLabel, slide.secondaryButton?.label ?? "Support This Mission", 36),
-          href: websiteSection?.secondaryButtonHref || slide.secondaryButton?.href || "/donation",
-        },
-      }));
-    },
-    [managedSlides, websiteSection],
-  );
+    return list;
+  }, [websiteSection, isSectionBannerActive, scheduleTick]);
+
+  // Slider index when multiple scheduled full banners are active simultaneously
+  const [scheduledIndex, setScheduledIndex] = useState(0);
+
+  useEffect(() => {
+    if (activeScheduledBanners.length <= 1) return;
+    const interval = setInterval(() => {
+      setScheduledIndex((prev) => (prev + 1) % activeScheduledBanners.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [activeScheduledBanners.length]);
+
+  useEffect(() => {
+    if (scheduledIndex >= activeScheduledBanners.length) {
+      setScheduledIndex(0);
+    }
+  }, [scheduledIndex, activeScheduledBanners.length]);
+
+  // Default primary hero banner (displayed when no schedule is active, or when original is restored)
+  const defaultPrimarySlide = useMemo<SlideContent>(() => {
+    const defaultTitle = websiteSection?.title || fallbackSlides[0].heading.join("\n");
+    return {
+      heading: splitHeading(defaultTitle),
+      description: websiteSection?.subtitle || fallbackSlides[0].description,
+      alt: websiteSection?.description || fallbackSlides[0].alt,
+      primaryButton: {
+        label: websiteSection?.buttonLabel || fallbackSlides[0].primaryButton?.label || "Request Sewa Help",
+        href: websiteSection?.buttonHref || fallbackSlides[0].primaryButton?.href || "/request-help",
+      },
+      secondaryButton: {
+        label: websiteSection?.secondaryButtonLabel || fallbackSlides[0].secondaryButton?.label || "Support This Mission",
+        href: websiteSection?.secondaryButtonHref || fallbackSlides[0].secondaryButton?.href || "/donation",
+      },
+    };
+  }, [websiteSection, fallbackSlides]);
+
+  const defaultPrimaryImage = useMemo(() => {
+    return imageOrFallback(websiteSection?.image, fallbackImages[0]);
+  }, [websiteSection?.image, fallbackImages]);
+
+  // Active custom slides if admin configured any in websiteSection.slides
+  const activeCustomSlides = useMemo(() => {
+    const custom = (websiteSection?.slides ?? []).filter(isSlideActiveNow);
+    if (!custom.length) return [];
+    return custom.map((s, idx) => ({
+      heading: splitHeading(s.title),
+      description: s.description || "",
+      alt: s.alt || s.title || "Hero Slide",
+      familySupportLayout: s.variant === "family-support",
+      journeyPrayerLayout: s.variant === "journey-prayer",
+      volunteerImpactLayout: s.variant === "volunteer-impact",
+      primaryButton: s.buttonLabel
+        ? { label: s.buttonLabel, href: s.buttonHref || "/request-help" }
+        : fallbackSlides[idx % fallbackSlides.length].primaryButton,
+      secondaryButton: s.secondaryButtonLabel
+        ? { label: s.secondaryButtonLabel, href: s.secondaryButtonHref || "/donation" }
+        : fallbackSlides[idx % fallbackSlides.length].secondaryButton,
+      image: imageOrFallback(s.image, fallbackImages[(idx + 1) % fallbackImages.length]),
+    }));
+  }, [websiteSection?.slides, isSlideActiveNow, fallbackSlides, fallbackImages]);
+
+  // Original carousel slides: Slide 0 is the default hero banner, followed by custom slides or default slides 1-5
+  const slideContent = useMemo<SlideContent[]>(() => {
+    if (activeCustomSlides.length > 0) {
+      return [defaultPrimarySlide, ...activeCustomSlides];
+    }
+    return [defaultPrimarySlide, ...fallbackSlides.slice(1)];
+  }, [defaultPrimarySlide, activeCustomSlides, fallbackSlides]);
+
+  const images = useMemo<string[]>(() => {
+    if (activeCustomSlides.length > 0) {
+      return [defaultPrimaryImage, ...activeCustomSlides.map((s) => s.image)];
+    }
+    return [defaultPrimaryImage, ...fallbackImages.slice(1)];
+  }, [defaultPrimaryImage, activeCustomSlides, fallbackImages]);
 
   const statFallbacks: StatItem[] = [
     { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
@@ -363,6 +368,14 @@ export default function Hero() {
   const heroLogo = imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164952/moksha-sewa/hero-images/image6.png");
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Safely clamp currentIndex if slides count changed
+  useEffect(() => {
+    if (currentIndex >= images.length) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex, images.length]);
+
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
   const activeImage = images[currentIndex] ?? images[0];
   const isFamilySupportSlide = activeSlide.familySupportLayout === true;
@@ -380,7 +393,6 @@ export default function Hero() {
   }, [images.length]);
 
   // Rotate only after the page has loaded, so later slide images don't replace the first one as the LCP element on slow loads.
-  // Mobile also waits for the first touch/scroll (or 30s after load) before the first rotation.
   useEffect(() => {
     let interval: number | undefined;
     let fallback: number | undefined;
@@ -396,7 +408,7 @@ export default function Hero() {
     const onLoad = () => {
       if (window.matchMedia("(max-width: 767px)").matches) {
         gateEvents.forEach((ev) => window.addEventListener(ev, begin, { once: true, passive: true }));
-        fallback = window.setTimeout(begin, 30000);
+        fallback = window.setTimeout(begin, 6000);
       } else {
         begin();
       }
@@ -412,6 +424,120 @@ export default function Hero() {
       window.clearInterval(interval);
     };
   }, [nextSlide]);
+
+  // Pure Full Scheduled Banner Mode:
+  // When a scheduled banner is active -> ONLY that image shows in the hero.
+  // All other content (headings, buttons, logos, floating cards, Devanagari watermark) is removed!
+  // When schedule is off / expired / restored -> standard original hero is displayed.
+  if (activeScheduledBanners.length > 0) {
+    const currentBanner = activeScheduledBanners[scheduledIndex] || activeScheduledBanners[0];
+    const bannerImage = currentBanner.image;
+    const bannerLink = currentBanner.buttonHref?.trim() || undefined;
+
+    const bannerElement = (
+      <div className="relative w-full h-full min-h-[735px] sm:min-h-[705px] md:min-h-[635px] lg:min-h-[615px] 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]">
+        <Image
+          key={bannerImage}
+          src={bannerImage}
+          alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
+          fill
+          priority
+          quality={95}
+          sizes="100vw"
+          className="object-cover object-center transition-opacity duration-700 ease-in-out"
+        />
+
+        {activeScheduledBanners.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setScheduledIndex((prev) => (prev - 1 + activeScheduledBanners.length) % activeScheduledBanners.length);
+              }}
+              aria-label="Previous banner"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 rounded-full border border-white/60 bg-black/40 p-2.5 text-white transition hover:bg-black/70 backdrop-blur-xs"
+            >
+              <FaChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setScheduledIndex((prev) => (prev + 1) % activeScheduledBanners.length);
+              }}
+              aria-label="Next banner"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 rounded-full border border-white/60 bg-black/40 p-2.5 text-white transition hover:bg-black/70 backdrop-blur-xs"
+            >
+              <FaChevronRight className="h-5 w-5" />
+            </button>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+              {activeScheduledBanners.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setScheduledIndex(idx);
+                  }}
+                  className={`h-2.5 rounded-full transition-all ${
+                    idx === scheduledIndex ? "w-8 bg-[#D95A06]" : "w-2.5 bg-white/70 hover:bg-white"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+
+    return (
+      <>
+        <section className="hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]">
+          {bannerLink ? (
+            <a href={bannerLink} className="block w-full h-full cursor-pointer">
+              {bannerElement}
+            </a>
+          ) : (
+            bannerElement
+          )}
+        </section>
+
+        {/* Mission Stats Band Below Hero */}
+        <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={`hero-stat-${index}`}
+                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${
+                    index > 0 ? "md:border-l md:border-white/20" : ""
+                  } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                    <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
+                  </div>
+                  <div className="min-w-0 text-left">
+                    <div className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]">
+                      <AnimatedNumber endString={stat.value} />
+                    </div>
+                    <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -540,8 +666,8 @@ export default function Hero() {
                   fontWeight: 500,
                 }}
               >
-                {activeSlide.heading.map((line, index) => {
-                  const isLastLine = index === activeSlide.heading.length - 1;
+                {(activeSlide?.heading || ["Dignity in Every", "Final Journey"]).map((line, index, arr) => {
+                  const isLastLine = index === arr.length - 1;
                   const highlightedHeading =
                     isLastLine &&
                     activeSlide.headingHighlight &&
@@ -560,7 +686,7 @@ export default function Hero() {
                           </span>
                         </>
                       ) : (
-                        <span className={isLastLine ? "text-[#C85117]" : ""}>
+                        <span className={isLastLine && arr.length > 1 ? "text-[#C85117]" : ""}>
                           {line}
                         </span>
                       )}
