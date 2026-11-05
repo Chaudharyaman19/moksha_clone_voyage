@@ -937,3 +937,8 @@ body:has(.landing-typo) .footer-presence::before {
   letter-spacing: 0.03em !important;
   white-space: nowrap !important;
 }
+
+/* "No One Should Leave This World Without Dignity." card has a fixed height, so its heading and paragraph use tighter
+   line spacing than the other sections (otherwise the three columns at the bottom get cut off). */
+.landing-typo h2.hum-h2 { line-height: 1.06 !important; }
+.landing-typo p.hum-lead.hum-lead { line-height: 1.45 !important; }

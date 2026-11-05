@@ -197,7 +197,7 @@ function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescriptio
             <h3 className="font-extrabold text-[#0b4a2f]" style={at(card.x, 419, 22.2, 26)}>
               {card.title.map((line) => <span key={line} className="block">{line}</span>)}
             </h3>
-            <p className="text-[#1d2833]" style={at(card.x, 479.5, 15.8, 21.8)}>
+            <p className="text-[#1d2833]" style={at(card.x, 479.5, 14, 20)}>
               {card.lines.map((line) => <span key={line} className="block">{line}</span>)}
             </p>
           </div>

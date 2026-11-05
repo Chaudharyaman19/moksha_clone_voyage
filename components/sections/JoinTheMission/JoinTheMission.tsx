@@ -689,7 +689,7 @@ export default function JoinTheMission() {
                   className="
                     mt-[12px]
                     whitespace-pre-line
-                    text-[16px]
+                    text-[14px]
                     leading-[1.42]
                     text-[#4B4944]
                   "

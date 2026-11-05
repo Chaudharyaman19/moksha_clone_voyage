@@ -561,6 +561,7 @@ export default function PracticalSewaSupport() {
                     inline-flex
                     h-[50px]
                     w-[270px]
+                    max-[1439px]:w-[250px]
                     shrink-0
                     items-center
                     justify-between
@@ -571,7 +572,9 @@ export default function PracticalSewaSupport() {
                     from-[#E85B09]
                     to-[#D94B04]
                     px-[18px]
+                    max-[1439px]:px-[14px]
                     text-[16px]
+                    max-[1439px]:text-[15px]
                     font-semibold
                     uppercase
                     text-white
@@ -611,7 +614,7 @@ export default function PracticalSewaSupport() {
 
                 <span
                   className="
-                    mx-[18px]
+                    mx-[12px]
                     h-[48px]
                     w-px
                     shrink-0
@@ -626,14 +629,14 @@ export default function PracticalSewaSupport() {
                     flex
                     min-w-0
                     items-center
-                    gap-[11px]
+                    gap-[8px]
                   "
                 >
                   <div
                     className="
                       flex
-                      h-[48px]
-                      w-[48px]
+                      h-[40px]
+                      w-[40px]
                       shrink-0
                       items-center
                       justify-center
@@ -643,21 +646,27 @@ export default function PracticalSewaSupport() {
                     <CustomIcon
                       name="Headset"
                       className="
-                        h-[41px]
-                        w-[41px]
+                        h-[34px]
+                        w-[34px]
                       "
                     />
                   </div>
 
                   <p
                     className="
-                      text-[16px]
+                      text-[15px]
+                      max-[1439px]:text-[14px]
                       font-semibold
                       leading-[1.3]
                       text-[#3B3733]
                     "
                   >
-                    <span className="whitespace-pre-line">{textOrFallback(websiteSection?.secondaryDescription, "We are available 24x7\nto stand beside you.", 100)}</span>
+                    {/* two lines: each line stays on one row from 1280px up (below that it wraps normally) */}
+                    {textOrFallback(websiteSection?.secondaryDescription, "We are available 24x7\nto stand beside you.", 100)
+                      .split("\n")
+                      .map((line, i) => (
+                        <span key={i} className="block min-[1280px]:whitespace-nowrap">{line}</span>
+                      ))}
                   </p>
                 </div>
               </div>
