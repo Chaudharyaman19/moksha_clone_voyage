@@ -435,14 +435,14 @@ export default function Hero() {
     const bannerLink = currentBanner.buttonHref?.trim() || undefined;
 
     const bannerElement = (
-      <div className="relative w-full h-[360px] sm:h-[460px] md:h-[560px] lg:h-[640px] 2xl:h-[720px] overflow-hidden bg-[#fbf5ea]">
+      <div className="relative w-full h-full min-h-[735px] sm:min-h-[705px] md:min-h-[635px] lg:min-h-[615px] 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]">
         <Image
           key={bannerImage}
           src={bannerImage}
           alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
           fill
           priority
-          quality={90}
+          quality={95}
           sizes="100vw"
           className="object-cover object-center transition-opacity duration-700 ease-in-out"
         />
@@ -497,7 +497,7 @@ export default function Hero() {
 
     return (
       <>
-        <section className="hero-scheduled-banner relative w-full overflow-hidden bg-[#fbf5ea]">
+        <section className="hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]">
           {bannerLink ? (
             <a href={bannerLink} className="block w-full h-full cursor-pointer">
               {bannerElement}
