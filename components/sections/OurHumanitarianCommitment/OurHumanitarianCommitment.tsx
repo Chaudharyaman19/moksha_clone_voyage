@@ -194,7 +194,7 @@ export default function HumanitarianCommitment() {
         ====================================================== */}
 
         <div className="relative overflow-hidden rounded-[18px] border border-[#D7AF67] bg-[#FCF8F0] shadow-[0_7px_24px_rgba(74,47,19,0.06)]">
-          <div className="grid lg:h-[630px] lg:min-h-[630px] lg:grid-cols-[59%_41%]">
+          <div className="grid lg:min-h-[630px] lg:grid-cols-[59%_41%]">
             {/* =================================================
                 LEFT CONTENT
             ================================================== */}
@@ -245,13 +245,13 @@ export default function HumanitarianCommitment() {
 
               {/* ================= HEADING ================= */}
 
-              <h2 className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
+              <h2 className="hum-h2 relative z-10 mx-auto mt-[4px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
                 <AccentTitle text={textOrFallback(websiteSection?.title, "No One Should Leave\nThis World Without Dignity.", 95)} accent="Dignity." />
               </h2>
 
               {/* ================= LOTUS DIVIDER ================= */}
 
-              <div className="relative z-10 mt-[8px] flex items-center justify-center gap-[10px]">
+              <div className="relative z-10 mt-[6px] flex items-center justify-center gap-[10px]">
                 <span className="h-px w-[78px] bg-gradient-to-r from-transparent to-[#BE8C3E]" />
 
                 <CustomIcon
@@ -264,7 +264,7 @@ export default function HumanitarianCommitment() {
 
               {/* ================= PARAGRAPH ================= */}
 
-              <p className="relative z-10 mx-auto mt-[10px] max-w-[690px] text-center text-[16px] leading-[1.5] text-[#465365]">
+              <p className="hum-lead relative z-10 mx-auto mt-[6px] max-w-[690px] text-center text-[16px] leading-[1.5] text-[#465365]">
                 {textOrFallback(websiteSection?.description, "Moksha Sewa supports legally authorised unclaimed cases with respectful final-rites coordination after completion of applicable police, hospital and authority formalities. Our team works carefully with the concerned authorities and service partners to help ensure that each final journey is handled with dignity, compassion, proper coordination and due respect. Support is provided only within the approved legal process and after the required documentation, verification and permissions have been completed.", 600)}
               </p>
 
@@ -289,7 +289,7 @@ export default function HumanitarianCommitment() {
 
                     {/* TITLE */}
 
-                    <h3 className="mt-[8px] min-h-[44px] text-[17px] font-semibold leading-[1.15] text-[#125439]">
+                    <h3 className="mt-[6px] min-h-[40px] text-[17px] font-semibold leading-[1.15] text-[#125439]">
                       {item.title}
                     </h3>
 
@@ -299,7 +299,7 @@ export default function HumanitarianCommitment() {
 
                     {/* TEXT */}
 
-                    <p className="mt-[11px] max-w-[210px] text-[16px] leading-[1.4] text-[#48515E]">
+                    <p className="mt-[7px] max-w-[210px] text-[13px] leading-[1.3] text-[#48515E]">
                       {item.text}
                     </p>
                   </div>
@@ -311,7 +311,7 @@ export default function HumanitarianCommitment() {
                 RIGHT IMAGE
             ================================================== */}
 
-            <div className="relative min-h-[460px] lg:h-[630px]">
+            <div className="relative min-h-[460px] lg:min-h-[630px]">
               <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
                 <Image
                   src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165202/moksha-sewa/assets/image.png"}

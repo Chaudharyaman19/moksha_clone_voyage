@@ -458,7 +458,7 @@ export default function SupportInAction() {
                 className="
                   relative
                   flex
-                  h-auto
+                  h-full
                   min-h-[375px]
                   flex-col
                   overflow-hidden
