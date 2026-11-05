@@ -10,14 +10,20 @@ const SHARE_WINDOW_MS = 3000;
 let shared: Promise<{ data?: any } | null> | null = null;
 
 // Navbar, Footer, Sideicon and the content provider all need /settings on mount. Share one request among them instead of each downloading the full payload.
-export function fetchSettingsJson(): Promise<{ data?: any } | null> {
-  if (!shared) {
-    shared = fetch(`${API_BASE_URL}/settings`, { cache: "no-store" })
+export function fetchSettingsJson(force = false): Promise<{ data?: any } | null> {
+  if (force || !shared) {
+    const timestamp = Date.now();
+    const req = fetch(`${API_BASE_URL}/settings?_t=${timestamp}`, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .catch(() => null);
-    window.setTimeout(() => {
-      shared = null;
-    }, SHARE_WINDOW_MS);
+
+    if (!force) {
+      shared = req;
+      window.setTimeout(() => {
+        shared = null;
+      }, SHARE_WINDOW_MS);
+    }
+    return req;
   }
   return shared;
 }
