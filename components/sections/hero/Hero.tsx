@@ -661,7 +661,7 @@ export default function Hero() {
               </div>
 
               <h1
-                className="hero-heading-1366 text-[36px] leading-[0.98] sm:text-[44px] md:text-[48px] lg:min-h-[112px] lg:text-[54px] xl:min-h-[120px] xl:text-[58px]"
+                className="hero-heading-1366 text-[33px] leading-[0.98] sm:text-[40px] md:text-[44px] lg:min-h-[102px] lg:text-[50px] xl:min-h-[110px] xl:text-[53px]"
                 style={{
                   fontWeight: 500,
                 }}

@@ -423,7 +423,7 @@ export default function FooterNew() {
         className="relative isolate overflow-hidden bg-[#050706] text-white"
       >
         {/* Slim action band attached directly above the footer content. */}
-        <div className="relative z-30 border-b border-[#F5E6CC] bg-[#FDF6EA] px-4 py-2 sm:px-6">
+        <div className="relative z-30 border-b border-[#F5E6CC] bg-[#FDF6EA] px-4 py-2 sm:px-6 md:px-[clamp(24px,calc((100vw-960px)/2),64px)]">
           <div className="mx-auto flex min-h-[46px] w-full max-w-[1600px] flex-col items-center justify-between gap-2.5 sm:flex-row">
             <div className="flex min-w-0 items-center gap-3 text-center text-[14px] font-semibold text-[#1F1911] sm:text-left sm:text-[14.5px]">
               {/* Golden outlined lotus icon */}
@@ -683,7 +683,7 @@ export default function FooterNew() {
               <div className="footer-col relative flex flex-col justify-start sm:col-span-2 lg:col-span-2 xl:col-span-1 xl:pl-2 xl:-mt-0.5 sm:-mt-0.5">
                 <div
                   ref={presenceRef}
-                  className="relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 bg-cover bg-right bg-no-repeat"
+                  className="footer-presence relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 bg-cover bg-right bg-no-repeat"
                   style={{
                     backgroundImage: presenceSeen ? "url('/footer/image.webp')" : undefined,
                     backgroundColor: "#060908",

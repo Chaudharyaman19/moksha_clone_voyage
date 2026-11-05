@@ -123,7 +123,8 @@ export default function ContactOfficesStage(): ReactNode {
             <div
               style={box(c.x, CARD_Y, c.w, CARD_H, {
                 borderRadius: px(18),
-                boxShadow: "0 8px 14px -4px rgba(150,90,50,.26), 0 0 9px rgba(150,90,50,.10)",
+                // the soft shadow around the cards is part of scene.jpg (same as the reference); only the thin white outline is CSS
+                boxShadow: `0 0 0 ${px(1.6)} rgba(255,255,255,.95)`,
                 background: "#FDFCFA",
               })}
             />

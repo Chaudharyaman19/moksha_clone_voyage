@@ -115,7 +115,7 @@ export default function FAQSection() {
         <div className="mx-auto text-center lg:ml-[calc(var(--u)*26)] lg:mr-0 lg:w-[calc(var(--u)*54.8)] lg:pt-[calc(var(--u)*2.06)]">
           <div className="flex items-center justify-center gap-[calc(var(--u)*0.9)] lg:-translate-x-[calc(var(--u)*0.6)]">
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE} rotate-180`} />
-            <span className="lt-eyebrow inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.5)] font-sans text-[calc(var(--u)*1.05)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*15.5)] lg:justify-center lg:px-0">
+            <span className="lt-eyebrow faq-pill inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.5)] font-sans text-[calc(var(--u)*1.05)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*15.5)] lg:justify-center lg:px-0">
               Help &amp; Information
             </span>
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE}`} />
