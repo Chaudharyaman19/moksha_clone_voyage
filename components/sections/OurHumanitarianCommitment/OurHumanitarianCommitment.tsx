@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
 
+import AccentTitle from "../shared/AccentTitle";
 interface IconProps {
   name: string;
   className?: string;
@@ -187,7 +188,7 @@ export default function HumanitarianCommitment() {
 
   return (
     <section className="w-full bg-[#F7F3EC] px-3 py-6 sm:px-4 sm:py-8 lg:px-5 lg:py-10">
-      <div className="mx-auto w-full max-w-[1344px]">
+      <div className="mx-auto w-full max-w-[1344px] px-[16px]">
         {/* =====================================================
             MAIN LARGE CARD
         ====================================================== */}
@@ -232,7 +233,7 @@ export default function HumanitarianCommitment() {
                     <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
                   </span>
 
-                  <span className="text-center font-sans text-[16px] font-semibold uppercase text-[#B77912]">
+                  <span className="lt-eyebrow text-center font-sans text-[16px] font-semibold uppercase text-[#B77912]">
                     {textOrFallback(websiteSection?.eyebrow, "Our Humanitarian Commitment", 70)}
                   </span>
 
@@ -245,20 +246,7 @@ export default function HumanitarianCommitment() {
               {/* ================= HEADING ================= */}
 
               <h2 className="relative z-10 mx-auto mt-[8px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
-                {textOrFallback(websiteSection?.title, "No One Should Leave\nThis World Without Dignity.", 95)
-                  .split("\n")
-                  .map((line, index) => (
-                    <span key={line} className="block">
-                      {index === 1 && line.includes("Dignity") ? (
-                        <>
-                          {line.replace("Dignity", "")}
-                          <span className="text-[#BA790F]">Dignity.</span>
-                        </>
-                      ) : (
-                        line
-                      )}
-                    </span>
-                  ))}
+                <AccentTitle text={textOrFallback(websiteSection?.title, "No One Should Leave\nThis World Without Dignity.", 95)} accent="Dignity." />
               </h2>
 
               {/* ================= LOTUS DIVIDER ================= */}

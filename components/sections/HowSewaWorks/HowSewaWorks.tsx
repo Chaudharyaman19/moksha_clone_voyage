@@ -3,6 +3,7 @@
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
+import AccentTitle from "../shared/AccentTitle";
 import {
   FaArrowRight,
   FaHeadset,
@@ -589,6 +590,7 @@ export default function HowSewaWorks() {
           mx-auto
           w-full
           max-w-[1344px]
+          px-[16px]
         "
       >
         {/* =====================================================
@@ -615,7 +617,7 @@ export default function HowSewaWorks() {
             />
 
             <span
-              className="
+              className="lt-eyebrow 
                 inline-flex
                 items-center
                 gap-[7px]
@@ -662,7 +664,7 @@ export default function HowSewaWorks() {
               sm:text-[30px]
             "
           >
-            {textOrFallback(websiteSection?.title, "Support With Care, Verification & Responsibility", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.title, "Support With Care, Verification & Responsibility", 95)} accent="Verification & Responsibility" />
           </h2>
 
           <div

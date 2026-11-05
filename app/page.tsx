@@ -49,7 +49,7 @@ export default async function Page() {
       <WebsiteContentProvider sections={websiteSections}>
         <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
         <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
-        <main>
+        <main data-no-inset className="landing-typo">
         <WebsiteSection name="hero"><Hero /></WebsiteSection>
 
         <WebsiteSection name="who-we-help"><Howwehelp /></WebsiteSection>

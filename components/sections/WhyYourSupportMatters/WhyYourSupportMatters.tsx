@@ -5,6 +5,7 @@ import { FaArrowRight, FaHandHoldingHeart } from "@/lib/icons/fa";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
+import AccentTitle from "../shared/AccentTitle";
 export default function WhyYourSupportMatters() {
   const websiteSection = useWebsiteSection("support-matters");
   return (
@@ -45,7 +46,7 @@ export default function WhyYourSupportMatters() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-[1344px] items-center px-5 py-6 sm:min-h-[480px] sm:px-7 lg:min-h-[480px] lg:px-8 lg:py-5">
+        <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-[1344px] items-center px-[36px] py-6 sm:min-h-[480px] sm:px-[44px] lg:min-h-[480px] lg:px-[48px] lg:py-5">
           <div className="w-full max-w-[610px]">
             {/* eyebrow */}
             <div className="flex flex-col items-center text-center">
@@ -56,7 +57,7 @@ export default function WhyYourSupportMatters() {
 
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
-                  <span className="font-sans text-[16px] font-semibold uppercase text-[#A27B38]">
+                  <span className="lt-eyebrow font-sans text-[16px] font-semibold uppercase text-[#A27B38]">
                     {textOrFallback(websiteSection?.eyebrow, "Why Your Support Matters", 60)}
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-[#C99A4B]" />
@@ -67,12 +68,8 @@ export default function WhyYourSupportMatters() {
             </div>
 
             {/* main heading */}
-            <h2 className="mx-auto mt-5 max-w-[475px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#0E4A3F] sm:text-[30px]">
-              {textOrFallback(websiteSection?.title, "A Dignified Farewell\nShould Never Depend on\na Family's Ability to Pay.", 95)
-                .split("\n")
-                .map((line) => (
-                  <span key={line} className="block">{line}</span>
-                ))}
+            <h2 className="mx-auto mt-5 max-w-[580px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#0E4A3F] sm:text-[30px]">
+              <AccentTitle text={textOrFallback(websiteSection?.title, "A Dignified Farewell\nShould Never Depend on\na Family's Ability to Pay.", 95)} />
             </h2>
 
             {/* divider */}

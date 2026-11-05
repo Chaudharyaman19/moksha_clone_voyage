@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Topbar from "@/components/layout/topbar/Topbar";
 import Navbar from "@/components/layout/navbar/Navbar";
+import ContactHeroStage from "./ContactHeroStage";
+import ContactSupportStage from "./ContactSupportStage";
+import ContactOfficesStage from "./ContactOfficesStage";
 import Footer from "@/components/layout/Footer/ContactFooter";
 import Image from "next/image";
 import { trackEvent } from "@/lib/analytics";
@@ -179,12 +182,13 @@ function Contact() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] font-sans text-[#2C1810]">
+      <ContactHeroStage phone={textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")} />
       <Topbar />
       <Navbar />
 
-      <main>
+      <main data-no-inset>
         {/* ============================= HERO ============================= */}
-        <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,transparent_84%,#FCEAD4_100%),linear-gradient(90deg,#FEF5EC_0%,#FCEADC_38%)] pt-[113px] [--u:11px] sm:[--u:13px] lg:h-[calc(var(--u)*41+113px)] lg:[--u:min(1vw,16px)]">
+        <section className="relative w-full overflow-hidden lg:hidden bg-[linear-gradient(180deg,transparent_84%,#FCEAD4_100%),linear-gradient(90deg,#FEF5EC_0%,#FCEADC_38%)] pt-[113px] [--u:11px] sm:[--u:13px] lg:h-[calc(var(--u)*41+113px)] lg:[--u:min(1vw,16px)]">
           <div
             className="absolute inset-0 lg:inset-x-auto lg:right-0 lg:top-[113px] lg:h-[calc(var(--u)*31.3)] lg:w-[calc(var(--u)*61.7)]"
             style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 22%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 22%)" }}
@@ -279,9 +283,22 @@ function Contact() {
         </section>
 
         {/* ================= WE'RE HERE TO SUPPORT YOU ================= */}
+        <ContactSupportStage
+          phoneDisplay={CONTACT.helpline.label.replace(/^\+91\s*/, "")}
+          phoneHref={CONTACT.helpline.href}
+          email={CONTACT.email.label}
+          emailHref={CONTACT.email.href}
+          formData={formData}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          status={submitStatus}
+          locationOptions={locationOptions}
+          assistanceOptions={assistanceOptions}
+        />
         <section
           id="contact-form"
-          className="relative scroll-mt-24 overflow-hidden bg-[radial-gradient(ellipse_14%_40%_at_100%_18%,#F7E5D1,transparent),radial-gradient(ellipse_16%_16%_at_0%_100%,#FCE6CE,transparent),linear-gradient(90deg,#FFF8F0_0%,#FDF6EE_60%,#FBF0E5_100%)] px-4 pb-[calc(var(--u)*8)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]"
+          className="relative scroll-mt-24 overflow-hidden lg:hidden bg-[radial-gradient(ellipse_14%_40%_at_100%_18%,#F7E5D1,transparent),radial-gradient(ellipse_16%_16%_at_0%_100%,#FCE6CE,transparent),linear-gradient(90deg,#FFF8F0_0%,#FDF6EE_60%,#FBF0E5_100%)] px-4 pb-[calc(var(--u)*8)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]"
         >
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*2.4)] bg-[url('/assets/contact/support-wave-bottom.png')] bg-[length:100%_100%]" aria-hidden />
 
@@ -483,7 +500,8 @@ function Contact() {
         </section>
 
         {/* ======================= OFFICES & GLOBAL PRESENCE ====================== */}
-        <section className="relative overflow-hidden bg-[linear-gradient(90deg,#FDF4EA_0%,#FCF7F1_35%,#FEFAF6_100%)] px-4 pb-[calc(var(--u)*5)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]">
+        <ContactOfficesStage />
+        <section className="relative overflow-hidden lg:hidden bg-[linear-gradient(90deg,#FDF4EA_0%,#FCF7F1_35%,#FEFAF6_100%)] px-4 pb-[calc(var(--u)*5)] pt-10 [--u:14px] sm:px-6 sm:[--u:15px] lg:h-[calc(var(--u)*50)] lg:p-0 lg:[--u:min(1vw,16px)]">
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[calc(var(--u)*3.16)] bg-[url('/assets/contact/offices-wave-bottom.png')] bg-[length:100%_100%]" aria-hidden />
 
           <div className="lg:relative lg:mx-auto lg:h-full lg:w-[calc(var(--u)*100)]">

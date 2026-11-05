@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
+import HeadingAccent from "@/components/layout/HeadingAccent";
 import ChatLauncher from "@/components/chat/ChatLauncher";
 import StoreProvider from "@/store/StoreProvider";
 import { optimizeCloudinary } from "@/lib/cloudinary";
@@ -142,7 +143,7 @@ gtag('config', '${ga4MeasurementId}', { send_page_view: true });`,
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <ServerJsonLd data={organizationJsonLd(settings)} id="schema-organization" />
@@ -193,6 +194,7 @@ gtag('config', '${ga4MeasurementId}', { send_page_view: true });`,
           <GlobalAudioProvider audioUrl={configuredAudioUrl}>
             <DynamicCanonical />
             <Sideicon />
+            <HeadingAccent />
             <ChatLauncher />
             <SmoothScrolling>
               {children}

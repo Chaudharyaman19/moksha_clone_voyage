@@ -279,7 +279,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-0">
           <div className="flex items-center h-[68px] relative">
-            <div className="flex-shrink-0 pl-2 pr-4 py-1">
+            <div className="flex-shrink-0 pl-6 pr-4 py-1">
               <Link
                 href="/"
                 onClick={() => {

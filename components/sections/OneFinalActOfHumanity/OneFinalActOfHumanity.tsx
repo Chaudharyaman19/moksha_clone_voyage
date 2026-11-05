@@ -5,6 +5,7 @@ import { FaArrowRight, FaHandHoldingHeart } from "@/lib/icons/fa";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import { imageOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
+import AccentTitle from "../shared/AccentTitle";
 export default function OneFinalActOfHumanity() {
   const websiteSection = useWebsiteSection("final-act");
   return (
@@ -35,7 +36,7 @@ export default function OneFinalActOfHumanity() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-4 py-8 sm:px-5 lg:px-6">
+        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-[32px] py-8 sm:px-[36px] lg:px-[40px]">
           <div className="w-full max-w-[680px]">
             {/* Logo row */}
             <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:grid sm:w-fit sm:grid-cols-[240px_1px_250px] sm:gap-0">
@@ -79,7 +80,7 @@ export default function OneFinalActOfHumanity() {
             </div>
 
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#A87327]">
+            <div className="lt-eyebrow flex items-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#A87327]">
               <span className="h-px w-10 bg-[#C99A4B]" />
               <span className="h-1 w-1 rounded-full bg-[#B98231]" />
               {textOrFallback(websiteSection?.eyebrow, "One Final Act of Humanity", 60)}
@@ -89,14 +90,7 @@ export default function OneFinalActOfHumanity() {
 
             {/* Heading */}
             <h2 className="mt-4 max-w-[600px] font-sans text-[24px] font-semibold leading-[1.05] text-[#163F31] sm:text-[30px]">
-              {textOrFallback(websiteSection?.title, "When No One Else Is There,\nHumanity Must Be.", 95)
-                .split("\n")
-                .map((line, index) => (
-                  <span key={line} className="block">
-                    {line}
-                    {index === 0 ? null : null}
-                  </span>
-                ))}
+              <AccentTitle text={textOrFallback(websiteSection?.title, "When No One Else Is There,\nHumanity Must Be.", 95)} />
             </h2>
 
             {/* Divider */}

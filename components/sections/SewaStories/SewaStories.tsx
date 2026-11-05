@@ -6,6 +6,7 @@ import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
 
+import AccentTitle from "../shared/AccentTitle";
 interface IconProps {
   name: string;
   className?: string;
@@ -449,6 +450,7 @@ export default function SewaStories() {
           mx-auto
           w-full
           max-w-[1344px]
+          px-[16px]
         "
       >
         {/* ========================================
@@ -484,7 +486,7 @@ export default function SewaStories() {
             />
 
             <span
-              className="
+              className="lt-eyebrow 
                 font-sans
                 text-[15px]
                 font-semibold
@@ -513,7 +515,7 @@ export default function SewaStories() {
               whitespace-nowrap
             "
           >
-            {textOrFallback(websiteSection?.subtitle, "Every Sewa Has a Human Story", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.subtitle, "Every Sewa Has a Human Story", 95)} accent="Human Story" />
           </h2>
 
           {/* SUBTEXT */}

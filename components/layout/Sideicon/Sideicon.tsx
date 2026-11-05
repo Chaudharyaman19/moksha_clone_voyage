@@ -41,28 +41,28 @@ const SocialSidebar = () => {
   // Twitter removed per user request; only Facebook, Instagram, LinkedIn, YouTube
   const socialLinks = [
     {
-      icon: <FaFacebook size={18} />,
+      icon: <FaFacebook size={26} />,
       url: "https://www.facebook.com/mokshasewa/",
       color: "#1877F2",
       label: "Facebook",
       hoverColor: "#0E5FBF",
     },
     {
-      icon: <FaInstagram size={18} />,
+      icon: <FaInstagram size={26} />,
       url: "https://www.instagram.com/mokshasewa/",
       color: "#E4405F",
       label: "Instagram",
       hoverColor: "#C13584",
     },
     {
-      icon: <FaLinkedin size={18} />,
+      icon: <FaLinkedin size={26} />,
       url: "https://www.linkedin.com/company/moksha-sewaorg/",
       color: "#0077B5",
       label: "LinkedIn",
       hoverColor: "#005582",
     },
     {
-      icon: <FaYoutube size={18} />,
+      icon: <FaYoutube size={26} />,
       url: "https://www.youtube.com/@Mokshasewa",
       color: "#FF0000",
       label: "YouTube",
@@ -93,7 +93,7 @@ const SocialSidebar = () => {
     <>
       <div className="side-icon-fixed-root fixed inset-0 pointer-events-none z-40 hidden md:block">
         {/* Right Side - Social Icons (Hover expands cleanly with reduced font size so content never cuts) */}
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-auto transition-all duration-300 opacity-100 translate-x-0">
+        <div className="absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-auto transition-all duration-300 opacity-100 translate-x-0">
           <div className="flex flex-col gap-3.5 items-end">
             {socialLinks.map((social, index) => (
               <a
@@ -102,11 +102,11 @@ const SocialSidebar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="group relative flex min-h-12 min-w-12 items-center justify-end"
+                className="group relative flex min-h-[40px] min-w-[40px] items-center justify-end"
                 onClick={() => trackClick(social.label, "Social")}
               >
                 <div
-                  className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out hover:w-[136px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-all duration-300 ease-out hover:w-[132px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
                   style={{ backgroundColor: social.color }}
                 >
                   <span
@@ -115,7 +115,7 @@ const SocialSidebar = () => {
                     {social.label}
                   </span>
                   <span
-                    className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white text-[19px]"
+                    className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white"
                   >
                     {social.icon}
                   </span>
@@ -125,21 +125,21 @@ const SocialSidebar = () => {
           </div>
         </div>
 
-        {/* Left Side - Phone & WhatsApp (Positioned at Bottom-Left) */}
-        <div className="absolute left-4 sm:left-5 bottom-6 pointer-events-auto flex flex-col gap-3 items-start transition-all duration-300 opacity-100 translate-x-0">
+        {/* Left Side - Phone & WhatsApp (top aligned with the Facebook icon on the right, same spacing) */}
+        <div className="absolute left-1.5 top-[calc(50%-101px)] pointer-events-auto flex flex-col gap-3.5 items-start transition-all duration-300 opacity-100 translate-x-0">
           {/* Phone (Call Us 24/7) */}
           <a
             href={phoneLink.url}
             aria-label={phoneLink.label}
-            className="group relative flex min-h-12 min-w-12 items-center justify-start"
+            className="group relative flex min-h-[40px] min-w-[40px] items-center justify-start"
             onClick={() => trackClick("Call 24/7")}
           >
             <div
-              className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[136px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+              className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[132px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
               style={{ backgroundColor: phoneLink.color }}
             >
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
-                <FaPhoneAlt size={18} />
+                <FaPhoneAlt size={24} />
               </span>
               <span className="max-w-0 overflow-hidden whitespace-nowrap text-[12px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white text-right">
                 {phoneLink.label}
@@ -153,15 +153,15 @@ const SocialSidebar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Message Moksha Sewa on WhatsApp"
-            className="group relative flex min-h-12 min-w-12 items-center justify-start"
+            className="group relative flex min-h-[40px] min-w-[40px] items-center justify-start"
             onClick={() => trackClick("WhatsApp")}
           >
             <div
-              className="flex h-12 w-12 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[136px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
+              className="flex h-10 w-10 items-center justify-center rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out hover:w-[132px] hover:justify-between hover:px-3.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
               style={{ backgroundColor: whatsappLink.color }}
             >
               <span className="shrink-0 transition-transform duration-300 group-hover:scale-110 text-white">
-                <FaWhatsapp size={22} />
+                <FaWhatsapp size={29} />
               </span>
               <span className="max-w-0 overflow-hidden whitespace-nowrap text-[12px] font-semibold tracking-wide uppercase opacity-0 transition-all duration-300 group-hover:max-w-[90px] group-hover:opacity-100 text-white text-right">
                 {whatsappLink.label}

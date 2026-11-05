@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
 
+import AccentTitle from "../shared/AccentTitle";
 interface CustomIconProps {
   name: string;
   className?: string;
@@ -311,7 +312,7 @@ export default function WhoWeHelp() {
   });
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FBF8F3] px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-4 xl:py-5">
+    <section className="relative w-full overflow-hidden bg-[#FBF8F3] px-8 py-3 sm:px-10 sm:py-4 lg:px-11 lg:py-4 xl:py-5">
 
       {/* ===================================================
           BACKGROUND
@@ -396,16 +397,16 @@ export default function WhoWeHelp() {
           z-10
           mx-auto
           w-full
-          max-w-[1344px]
+          max-w-[1336px]
           rounded-[16px]
           border
           border-[#EFE6DC]
           bg-[#FFFCF8]/80
-          px-4
+          px-[32px]
           py-3
-          sm:px-6
+          sm:px-[40px]
           sm:py-3.5
-          lg:px-7
+          lg:px-[44px]
           lg:py-4
           shadow-[0_8px_24px_rgba(78,51,28,0.06)]
         "
@@ -423,7 +424,7 @@ export default function WhoWeHelp() {
 
             <span className="h-1.5 w-1.5 rounded-full bg-[#D36516]" />
 
-            <span className="font-sans text-[16px] font-semibold uppercase text-[#C6520D]">
+            <span className="lt-eyebrow font-sans text-[16px] font-semibold uppercase text-[#C6520D]">
               {textOrFallback(websiteSection?.eyebrow, "Who We Help", 60)}
             </span>
 
@@ -443,7 +444,7 @@ export default function WhoWeHelp() {
               sm:text-[30px]
             "
           >
-            {textOrFallback(websiteSection?.subtitle, "Standing Beside Those Who Need Us Most", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.subtitle, "Standing Beside Those Who Need Us Most", 95)} accent="Who Need Us Most" />
           </h2>
 
           <p

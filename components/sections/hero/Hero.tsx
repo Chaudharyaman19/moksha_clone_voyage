@@ -505,7 +505,7 @@ export default function Hero() {
         {/* Main content */}
         <div className="hero-container-1366 relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
           <div className="hero-content-row-1366 flex h-full items-start pt-[104px] sm:pt-[140px]">
-            <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] lg:w-[56%] xl:w-[54%]">
+            <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] md:pl-2 lg:w-[56%] lg:pl-6 xl:w-[54%]">
 
               <div className="mb-3 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">

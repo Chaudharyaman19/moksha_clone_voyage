@@ -795,3 +795,112 @@ body {
 
 
 
+
+
+/* Inner pages: keep section content ~16px inside the left/right edge so the fixed side icons never sit on top of it.
+   Home, About and Contact set data-no-inset because they handle their own spacing.
+   A transparent border (not padding) is used so it adds to any px-* the container already has,
+   and a container's own background still runs edge to edge. */
+@media (min-width: 768px) {
+  body:not(:has([data-no-inset])) section:not(footer *) > div.mx-auto,
+  body:not(:has([data-no-inset])) section.mx-auto:not(footer *) {
+    border-inline: 16px solid transparent;
+  }
+}
+
+
+/* ---- Landing page typography: one family (Poppins), one weight per level ----
+   heading (h1/h2) = semibold 600, title (h3/h4) = semibold 600, subtitle = regular 400.
+   Scoped to the home <main class="landing-typo"> only. The Trust & Transparency desktop artwork
+   keeps its own text metrics, so only its heading is touched. */
+.landing-typo,
+.landing-typo *:not(svg):not(svg *):not(.trust-stage *) {
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+.landing-typo h1:not(.hero-heading-1366),
+.landing-typo h2 {
+  font-weight: 600 !important;
+  font-size: clamp(30px, 3.1vw, 44px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.01em !important;
+  white-space: normal !important;
+}
+.landing-typo .hero-heading-1366 { font-weight: 600 !important; }
+/* small label above each section heading ("WHO WE HELP", "OUR SEWA", ...) */
+.landing-typo .lt-eyebrow {
+  font-size: clamp(16px, 1.45vw, 21px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+}
+.landing-typo h3,
+.landing-typo h4 { font-weight: 600 !important; }
+/* subtitle = the paragraph that sits straight under a section heading */
+.landing-typo h2 + p,
+.landing-typo header > p,
+.landing-typo h2 ~ p:first-of-type {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+.landing-typo .trust-stage h2 {
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 3.1cqw !important;
+  line-height: 1.1 !important;
+}
+
+/* two-tone heading theme: dark base colour for every section heading, accent part is set by <AccentTitle> */
+.landing-typo h2 { color: #21130D !important; }
+.landing-typo h2 span[style*="D54200"], .landing-typo h2 span[style*="rgb(213, 66, 0)"] { color: #D54200 !important; }
+
+
+/* ---- Inner pages: same heading typography as the landing page ----
+   Headings (h1-h4) and the subtitle right under them use Poppins; h1/h2 semibold 600 and larger,
+   two-tone accent is added by <HeadingAccent />. Body text, nav, footer, form fields and
+   fixed-layout stages ([data-stage]) keep their own styling so dense cards never break.
+   Home uses .landing-typo above. */
+body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2, h3, h4):not(footer *):not(nav *):not([data-stage] *),
+body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2) + p:not([data-stage] *) {
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2):not(footer *):not(nav *):not(form *):not([role="dialog"] *):not([data-stage] *) {
+  font-weight: 600 !important;
+  font-size: clamp(30px, 3.1vw, 44px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.01em !important;
+}
+body:not(:has(.landing-typo)) :is(main, section) :is(h3, h4):not(footer *):not(nav *):not([data-stage] *) {
+  font-weight: 600 !important;
+}
+body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2) + p:not([data-stage] *) {
+  font-weight: 400 !important;
+}
+.tt-dark { color: #21130D !important; }
+
+/* ---- one colour system for every section label + heading on every page ----
+   label   = orange-red #C6520D (the "WHO WE HELP" colour), semibold, same size
+   heading = dark #21130D with orange accent #D54200 */
+.landing-typo .lt-eyebrow,
+.tt-eyebrow {
+  color: #C6520D !important;
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: clamp(16px, 1.45vw, 21px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+}
+.landing-typo .lt-eyebrow * { color: inherit !important; }
+
+/* heading inside a narrow card/panel: smaller so it never overflows */
+body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2).tt-compact:not(footer *):not(nav *):not(form *):not([role="dialog"] *):not([data-stage] *) {
+  font-size: clamp(22px, 2vw, 28px) !important;
+}
+
+/* inner-page subtitle = landing-page subtitle (16px regular, soft dark grey) */
+.tt-subtitle {
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #50504B !important;
+}
+.tt-eyebrow { text-transform: uppercase !important; }

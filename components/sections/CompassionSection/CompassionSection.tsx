@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { ReactNode, SVGProps } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
+import AccentTitle from "../shared/AccentTitle";
 type IconProps = SVGProps<SVGSVGElement>;
 
 function IconBase({
@@ -235,13 +236,13 @@ export default function CompassionSection() {
 
       <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px] 2xl:px-8">
         <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
-          <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-0 lg:py-8">
+          <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-[16px] lg:py-8">
             {/* Brand row */}
             <div className="mb-3 flex flex-wrap items-end gap-2 sm:gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center text-[#956A32]">
                 <LotusIcon className="h-9 w-9" />
               </div>
-              <span className="pb-0.5 font-sans text-[16px] font-semibold uppercase text-[#7F5A2E]">
+              <span className="lt-eyebrow pb-0.5 font-sans text-[16px] font-semibold uppercase text-[#7F5A2E]">
                 {textOrFallback(websiteSection?.eyebrow, "CREMATION & LAST RITES SUPPORT", 70)}
               </span>
             </div>
@@ -250,12 +251,7 @@ export default function CompassionSection() {
             <h2
               className="mb-2.5 font-sans text-[24px] font-semibold leading-[1.05] text-[#26140D] sm:text-[30px]"
             >
-              <span className="block">
-                {textOrFallback(websiteSection?.title, "When a Family Needs Help\nWe Arrange the Essentials", 95).split("\n")[0]}
-              </span>
-              <span className="mt-1 block text-[#956A32]">
-                {textOrFallback(websiteSection?.title, "When a Family Needs Help\nWe Arrange the Essentials", 95).split("\n")[1] ?? ""}
-              </span>
+              <AccentTitle text={textOrFallback(websiteSection?.title, "When a Family Needs Help\nWe Arrange the Essentials", 95)} />
             </h2>
 
             {/* Decorative flourish */}

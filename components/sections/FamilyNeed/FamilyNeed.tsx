@@ -6,6 +6,7 @@ import * as LucideIcons from "lucide-react";
 import { useInViewOnce } from "@/lib/useInViewOnce";
 import { optimizeCloudinary } from "@/lib/cloudinary";
 
+import AccentTitle from "../shared/AccentTitle";
 interface IconProps {
   name: string;
   className?: string;
@@ -227,7 +228,7 @@ export default function PracticalSewaSupport() {
         lg:py-10
       "
     >
-      <div className="mx-auto w-full max-w-[1344px]">
+      <div className="mx-auto w-full max-w-[1344px] px-[16px]">
 
         {/* =====================================================
             MAIN PANEL
@@ -359,7 +360,7 @@ export default function PracticalSewaSupport() {
                   <span className="h-px w-[38px] bg-[#D45B0B]" />
 
                   <span
-                    className="
+                    className="lt-eyebrow 
                       whitespace-nowrap
                       font-sans
                       text-[16px]
@@ -388,20 +389,7 @@ export default function PracticalSewaSupport() {
                   sm:text-[30px]
                 "
               >
-                <span className="block lg:whitespace-nowrap">
-                  {textOrFallback(websiteSection?.title, "When a Family Needs Help,\nWe Arrange the Essentials", 95).split("\n")[0]}
-                </span>
-
-                <span
-                  className="
-                    mt-[4px]
-                    block
-                    text-[#C75008]
-                    lg:whitespace-nowrap
-                  "
-                >
-                  {textOrFallback(websiteSection?.title, "When a Family Needs Help,\nWe Arrange the Essentials", 95).split("\n")[1] ?? ""}
-                </span>
+                <AccentTitle text={textOrFallback(websiteSection?.title, "When a Family Needs Help,\nWe Arrange the Essentials", 95)} />
               </h2>
 
               {/* DIVIDER */}

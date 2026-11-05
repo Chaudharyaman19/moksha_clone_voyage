@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
 
+import AccentTitle from "../shared/AccentTitle";
 /* =========================================================
    TYPES
 ========================================================= */
@@ -408,6 +409,7 @@ export default function JoinTheMission() {
           mx-auto
           w-full
           max-w-[1344px]
+          px-[16px]
         "
       >
         {/* =====================================================
@@ -447,7 +449,7 @@ export default function JoinTheMission() {
             />
 
             <span
-              className="
+              className="lt-eyebrow 
                 font-sans
                 text-[16px]
                 font-semibold
@@ -475,7 +477,7 @@ export default function JoinTheMission() {
               sm:text-[30px]
             "
           >
-            {textOrFallback(websiteSection?.title, "There Is a Place for Everyone in Sewa", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.title, "There Is a Place for Everyone in Sewa", 95)} accent="Everyone in Sewa" />
           </h2>
 
           {/* LOTUS DIVIDER */}

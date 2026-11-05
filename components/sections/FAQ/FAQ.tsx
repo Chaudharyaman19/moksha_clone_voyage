@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import JsonLd from "@/components/seo/JsonLd";
 
+import AccentTitle from "../shared/AccentTitle";
 interface FAQItem {
   id: number;
   lines: string[];
@@ -79,7 +80,7 @@ export default function FAQSection() {
   const [openId, setOpenId] = useState<number | null>(null);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#FCEEE1_0%,#FDF1E5_45%,#FBEAD6_100%)] font-sans pb-[calc(var(--u)*8)] pt-8 [--u:12px] sm:[--u:14px] lg:h-[calc(var(--u)*50)] lg:pt-0 lg:[--u:min(1vw,16px)]">
+    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#FCEEE1_0%,#FDF1E5_45%,#FBEAD6_100%)] font-sans pb-[calc(var(--u)*8)] pt-8 [--u:12px] sm:[--u:14px] lg:h-[calc(var(--u)*50)] lg:pt-0 lg:[--u:min(calc((100vw-64px)/100),16px)]">
       <JsonLd
         id="schema-faq"
         data={{
@@ -109,19 +110,19 @@ export default function FAQSection() {
         className="pointer-events-none absolute left-[calc(var(--u)*83.4)] top-[calc(var(--u)*2.2)] hidden h-auto w-[calc(var(--u)*15.3)] opacity-70 lg:block"
       />
 
-      <div className="relative z-10 px-4 sm:px-6 lg:px-0">
+      <div className="relative z-10 px-9 sm:px-[64px] lg:px-[32px]">
         {/* Header */}
         <div className="mx-auto text-center lg:ml-[calc(var(--u)*26)] lg:mr-0 lg:w-[calc(var(--u)*54.8)] lg:pt-[calc(var(--u)*2.06)]">
           <div className="flex items-center justify-center gap-[calc(var(--u)*0.9)] lg:-translate-x-[calc(var(--u)*0.6)]">
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE} rotate-180`} />
-            <span className="inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.5)] font-sans text-[calc(var(--u)*1.05)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*15.5)] lg:justify-center lg:px-0">
+            <span className="lt-eyebrow inline-flex h-[calc(var(--u)*2.3)] min-h-[32px] items-center rounded-full border-[1.5px] border-[#DDAB62] bg-[#FFF7EC]/75 px-[calc(var(--u)*1.5)] font-sans text-[calc(var(--u)*1.05)] font-bold uppercase tracking-[0.03em] text-[#9C5306] lg:min-h-0 lg:w-[calc(var(--u)*15.5)] lg:justify-center lg:px-0">
               Help &amp; Information
             </span>
             <span className={`hidden h-[2px] w-[calc(var(--u)*4.25)] sm:block ${GOLD_LINE}`} />
           </div>
 
-          <h2 className="mt-[calc(var(--u)*0.5)] font-sans text-[calc(var(--u)*2.2)] font-extrabold leading-[1.15] tracking-tight text-[#4A1208] lg:text-[calc(var(--u)*2.7)] lg:leading-[calc(var(--u)*3.1)]">
-            Frequently Asked Questions
+          <h2 className="mt-[calc(var(--u)*0.5)] font-sans text-[calc(var(--u)*2.2)] font-semibold leading-[1.15] tracking-tight text-[#4A1208] lg:text-[calc(var(--u)*2.7)] lg:leading-[calc(var(--u)*3.1)]">
+            <AccentTitle text="Frequently Asked Questions" accent="Asked Questions" />
           </h2>
 
           <div className="flex items-center justify-center gap-[calc(var(--u)*0.8)]">

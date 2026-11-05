@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
 
+import AccentTitle from "../shared/AccentTitle";
 interface IconProps {
   name: string;
   className?: string;
@@ -306,7 +307,7 @@ export default function SupportInAction() {
           WIDTH
       ====================================================== */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[16px]">
         {/* =====================================================
             HEADER
         ====================================================== */}
@@ -345,7 +346,7 @@ export default function SupportInAction() {
             </span>
 
             <span
-              className="
+              className="lt-eyebrow 
                 font-sans
                 text-[16px]
                 font-semibold
@@ -383,7 +384,7 @@ export default function SupportInAction() {
               sm:text-[30px]
             "
           >
-            {textOrFallback(websiteSection?.title, "Helping Complete a Final Journey With Dignity", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.title, "Helping Complete a Final Journey With Dignity", 95)} accent="Final Journey With Dignity" />
           </h2>
 
           {/* FLOWER DIVIDER */}

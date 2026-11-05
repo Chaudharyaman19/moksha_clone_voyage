@@ -6,6 +6,7 @@ import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } fr
 import { useInViewOnce } from "@/lib/useInViewOnce";
 import { optimizeCloudinary } from "@/lib/cloudinary";
 
+import AccentTitle from "../shared/AccentTitle";
 const SEWA_CARDS = [
   {
     id: 1,
@@ -98,14 +99,14 @@ export default function GlimpseOfJourney() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-4 py-6 sm:px-5 lg:px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[32px] py-6 sm:px-[36px] lg:px-[16px]">
         {/* Section header */}
         <header className="mx-auto mb-3 max-w-[760px] text-center">
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3 sm:gap-4">
             <span className="h-px w-10 bg-[#b68a2d] sm:w-16 md:w-20" />
 
-            <span className="whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
+            <span className="lt-eyebrow whitespace-nowrap font-sans text-[16px] font-semibold uppercase text-[#a67820]">
               {textOrFallback(websiteSection?.eyebrow, "Sewa In Action", 60)}
             </span>
 
@@ -114,7 +115,7 @@ export default function GlimpseOfJourney() {
 
           {/* Main heading */}
           <h2 className="mt-1 font-sans text-[24px] font-semibold leading-[1.05] text-[#352218] sm:text-[30px]">
-            {textOrFallback(websiteSection?.title, "Moments of Compassion, Service & Dignity", 95)}
+            <AccentTitle text={textOrFallback(websiteSection?.title, "Moments of Compassion, Service & Dignity", 95)} accent="Service & Dignity" />
           </h2>
 
           {/* Decorative image */}

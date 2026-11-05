@@ -554,7 +554,7 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
 
       {/* MAIN */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[16px]">
 
         {/* HEADER */}
 
@@ -569,7 +569,7 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
           <div className="flex items-center justify-center gap-[12px]">
             <span className="h-px w-[52px] bg-[#D05A17]" />
 
-            <span className="font-sans text-[14px] sm:text-[15px] font-semibold uppercase text-[#6E2C18]">
+            <span className="lt-eyebrow font-sans text-[14px] sm:text-[15px] font-semibold uppercase text-[#6E2C18]">
               {textOrFallback(websiteSection?.eyebrow, "Our Sewa", 60)}
             </span>
 

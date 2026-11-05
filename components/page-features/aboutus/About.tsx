@@ -24,7 +24,7 @@ export default function About() {
       <Topbar />
       <Navbar />
 
-      <main className="overflow-x-clip bg-[#FBF8F3] font-sans font-normal text-[#2C1810] [&_*]:!font-sans [&_.font-black]:font-normal [&_.font-bold]:font-normal [&_.font-extrabold]:font-normal [&_.font-medium]:font-normal [&_.font-semibold]:font-normal [&_b]:font-normal [&_strong]:font-normal">
+      <main data-no-inset className="overflow-x-clip bg-[#FBF8F3] font-sans font-normal text-[#2C1810] [&_*]:!font-sans [&_.font-black]:font-normal [&_.font-bold]:font-normal [&_.font-extrabold]:font-normal [&_.font-medium]:font-normal [&_.font-semibold]:font-normal [&_b]:font-normal [&_strong]:font-normal">
         <WebsiteSection name="about-hero"><AboutBanner /></WebsiteSection>
         <WebsiteSection name="about-who-we-are"><WhoWeAre /></WebsiteSection>
         <WebsiteSection name="about-moksha-sewa"><MokshaSewaIntro /></WebsiteSection>

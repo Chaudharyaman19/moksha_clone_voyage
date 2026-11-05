@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { Eye, HandHeart, Scale, ShieldCheck } from "lucide-react";
+import AccentTitle from "../shared/AccentTitle";
 import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
 const svgProps = {
@@ -162,8 +163,8 @@ const stageValues = [
 
 function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescription }: { title: string; quoteLines: string[]; buttonLabel: string; buttonHref: string; srDescription: string }) {
   return (
-    <section className="hidden w-full bg-[#fffaf0] lg:block" aria-label="Trust and transparency">
-      <div className="relative w-full overflow-hidden" style={{ containerType: "inline-size", aspectRatio: "1600 / 816" }}>
+    <section className="trust-stage hidden w-full bg-[#fffaf0] lg:block" aria-label="Trust and transparency">
+      <div data-stage className="relative w-full overflow-hidden" style={{ containerType: "inline-size", aspectRatio: "1600 / 816" }}>
         <Image src="/assets/trust/scene.jpg" alt="" fill sizes="100vw" unoptimized className="object-cover" />
 
         {stageArt.map(([name, x, y, w, h]) => (
@@ -177,7 +178,7 @@ function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescriptio
         <p className="font-medium uppercase text-[#1d3557]" style={at(326, 94, 15.8, 20, { letterSpacing: ".115em" })}>Sewa With Responsibility</p>
 
         <h2 className="font-serif font-bold text-[#0b4a2f]" style={at(89, 159, 63.2, 66, { letterSpacing: "-.015em" })}>{title.split("&").map((part, i) => (
-          <span key={i}>
+          <span key={i} style={i > 0 ? { color: "#D54200" } : undefined}>
             {i > 0 && <span style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>&amp;</span>}
             {part}
           </span>
@@ -285,7 +286,7 @@ export default function TrustTransparency() {
               </div>
             </div>
             <h2 className="mt-2 font-serif text-[clamp(1.8rem,8.4vw,3rem)] font-bold lg:text-[clamp(2.6rem,4vw,4.4rem)] leading-[1.02] tracking-[-.02em] text-[#0b4a2f] lg:whitespace-nowrap lg:pl-[1.5%]">
-              {textOrFallback(websiteSection?.title, "Trust & Transparency", 80).replace("\n", " ")}
+              <AccentTitle text={textOrFallback(websiteSection?.title, "Trust & Transparency", 80).replace("\n", " ")} accent="& Transparency" />
             </h2>
             <div className="mx-auto my-2 flex w-[68%] max-w-[420px] items-center justify-center gap-3 text-[#c9952e] lg:ml-[6%] lg:mr-0">
               <span className="h-px flex-1 bg-current" />
