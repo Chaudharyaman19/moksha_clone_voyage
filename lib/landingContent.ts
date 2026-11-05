@@ -37,6 +37,8 @@ export interface ScheduledBannerItem {
   buttonHref?: string;
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
+  /** true = also show the title, subtitle and buttons on the left. Default false = image only. */
+  showContent?: boolean;
 }
 
 export interface LandingHeroSlide {
@@ -49,6 +51,8 @@ export interface LandingHeroSlide {
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
   variant?: "default" | "family-support" | "journey-prayer" | "volunteer-impact";
+  /** false = image only (no left-side text / buttons). Default true. */
+  showContent?: boolean;
   scheduledEnabled?: boolean;
   startDate?: string;
   endDate?: string;
@@ -90,6 +94,7 @@ export interface LandingSectionContent {
   scheduledBannerButtonHref?: string;
   scheduledBannerSecondaryButtonLabel?: string;
   scheduledBannerSecondaryButtonHref?: string;
+  scheduledBannerShowContent?: boolean;
   scheduledBanners?: ScheduledBannerItem[];
   quote?: string;
   legalNotice?: string;
