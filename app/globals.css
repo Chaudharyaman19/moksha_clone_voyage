@@ -687,7 +687,7 @@ body {
   }
 
   .hero-heading-1366 {
-    font-size: 42px !important;
+    font-size: 39px !important;
     min-height: auto !important;
     line-height: 1.05 !important;
   }
@@ -777,7 +777,7 @@ body {
     width: 220px !important;
   }
   .hero-heading-1366 {
-    font-size: 36px !important;
+    font-size: 33px !important;
     min-height: auto !important;
     line-height: 1.04 !important;
   }
@@ -825,7 +825,7 @@ body {
   letter-spacing: -0.01em !important;
   white-space: normal !important;
 }
-.landing-typo .hero-heading-1366 { font-weight: 600 !important; }
+.landing-typo .hero-heading-1366 { font-weight: 500 !important; }
 /* small label above each section heading ("WHO WE HELP", "OUR SEWA", ...) */
 .landing-typo .lt-eyebrow {
   font-size: clamp(16px, 1.45vw, 21px) !important;
@@ -904,3 +904,36 @@ body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2).tt-compact:not(foot
   color: #50504B !important;
 }
 .tt-eyebrow { text-transform: uppercase !important; }
+
+
+/* Home footer: slightly duller (a little less bright, a little less saturated) so it does not glare against the page.
+   Scoped to pages that contain the landing wrapper (.landing-typo), i.e. the home page only. */
+body:has(.landing-typo) footer > :not(:first-child),
+body:has(.landing-typo) footer > :first-child > * {
+  filter: brightness(0.9) saturate(0.9);
+}
+/* The light action band on top of the footer ("Stand with dignity..."): its own background and border are NOT filtered,
+   so they keep the original cream (#FDF6EA / #F5E6CC). Only the content inside it (text + buttons) is dulled like the rest. */
+
+/* Home footer, "Our Global Presence" panel: duller photo + a light dark shadow.
+   ::before is a dark tint over the panel photo, below the text (the text rows are z-10). */
+body:has(.landing-typo) .footer-presence {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), inset 0 0 44px rgba(0, 0, 0, 0.5);
+}
+body:has(.landing-typo) .footer-presence::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.34) 55%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* FAQ "Help & Information" pill: the pill has a fixed width that scales with --u, so its label is sized from --u too
+   (smaller than the other section labels) and always stays on one line inside the pill. */
+.landing-typo .lt-eyebrow.faq-pill,
+.tt-eyebrow.faq-pill {
+  font-size: calc(var(--u) * 1.12) !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+}
