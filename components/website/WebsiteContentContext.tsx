@@ -7,9 +7,9 @@ import { mergeLandingSections, type LandingSectionContent, type LandingSectionIt
 
 const WebsiteContentContext = createContext<LandingSectionContent[]>(mergeLandingSections());
 
-async function fetchLatestSections(page: WebsitePageKey) {
+async function fetchLatestSections(page: WebsitePageKey, force = false) {
   try {
-    const body = (await fetchSettingsJson()) as { data?: Record<string, { sections?: LandingSectionContent[] }> } | null;
+    const body = (await fetchSettingsJson(force)) as { data?: Record<string, { sections?: LandingSectionContent[] }> } | null;
     if (!body) return null;
     return getMergedWebsiteSections(page, body.data as never);
   } catch {
@@ -30,15 +30,44 @@ export function WebsiteContentProvider({
 
   useEffect(() => {
     let cancelled = false;
-    const sync = async () => {
-      const latest = await fetchLatestSections(page);
-      if (!cancelled && latest) setLatestSections(latest);
+
+    const sync = async (force = false) => {
+      const latest = await fetchLatestSections(page, force);
+      if (!cancelled && latest) {
+        setLatestSections((prev) => {
+          // If content didn't change, preserve previous reference to avoid unnecessary re-renders
+          if (JSON.stringify(prev) === JSON.stringify(latest)) {
+            return prev;
+          }
+          return latest;
+        });
+      }
     };
 
-    sync();
+    // Initial sync
+    sync(true);
+
+    // Periodic live-sync every 3 seconds so banner changes reflect without page refresh
+    const pollTimer = setInterval(() => {
+      sync(true);
+    }, 3000);
+
+    // Immediate sync when tab gets focused or becomes visible
+    const handleFocus = () => sync(true);
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        sync(true);
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
       cancelled = true;
+      clearInterval(pollTimer);
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, [page]);
 

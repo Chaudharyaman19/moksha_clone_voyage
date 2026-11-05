@@ -96,6 +96,26 @@ type SlideContent = {
   };
 };
 
+function formatBannerHref(href?: string): string | undefined {
+  if (!href) return undefined;
+  const trimmed = href.trim();
+  if (!trimmed) return undefined;
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("#") ||
+    trimmed.startsWith("tel:") ||
+    trimmed.startsWith("mailto:")
+  ) {
+    return trimmed;
+  }
+  if (trimmed.startsWith("www.")) {
+    return `https://${trimmed}`;
+  }
+  return `/${trimmed}`;
+}
+
 function splitHeading(title: string): string[] {
   if (!title) return ["Dignity in Every", "Final Journey"];
   if (title.includes("\n")) {
@@ -115,12 +135,12 @@ function splitHeading(title: string): string[] {
 export default function Hero() {
   const websiteSection = useWebsiteSection("hero");
 
-  // Re-check schedule status every 10 seconds so date/time switches live on user screens without refresh
+  // Re-check schedule status every 2 seconds so date/time switches live on user screens without refresh
   const [scheduleTick, setScheduleTick] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => {
       setScheduleTick((prev) => prev + 1);
-    }, 10000);
+    }, 2000);
     return () => clearInterval(timer);
   }, []);
 
@@ -432,10 +452,10 @@ export default function Hero() {
   if (activeScheduledBanners.length > 0) {
     const currentBanner = activeScheduledBanners[scheduledIndex] || activeScheduledBanners[0];
     const bannerImage = currentBanner.image;
-    const bannerLink = currentBanner.buttonHref?.trim() || undefined;
+    const bannerLink = formatBannerHref(currentBanner.buttonHref);
 
     const bannerElement = (
-      <div className="relative w-full h-full min-h-[735px] sm:min-h-[705px] md:min-h-[635px] lg:min-h-[615px] 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]">
+      <div className="relative w-full h-full min-h-[735px] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]">
         <Image
           key={bannerImage}
           src={bannerImage}
