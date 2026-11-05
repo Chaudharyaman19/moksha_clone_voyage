@@ -86,6 +86,8 @@ type SlideContent = {
   familySupportLayout?: boolean;
   journeyPrayerLayout?: boolean;
   volunteerImpactLayout?: boolean;
+  /** Slide's "Show left-side text & buttons" is OFF: show only the banner image. */
+  imageOnly?: boolean;
   primaryButton?: {
     label: string;
     href: string;
@@ -135,6 +137,14 @@ function splitHeading(title: string): string[] {
 export default function Hero() {
   const websiteSection = useWebsiteSection("hero");
 
+  // Schedules depend on the current time, and the server HTML can be minutes old (cached), so the
+  // server and the first browser render must agree: both show only always-on content. Scheduled
+  // banners / slides are switched in right after hydration (prevents a hydration mismatch).
+  const [scheduleReady, setScheduleReady] = useState(false);
+  useEffect(() => {
+    setScheduleReady(true);
+  }, []);
+
   // Re-check schedule status every 2 seconds so date/time switches live on user screens without refresh
   const [scheduleTick, setScheduleTick] = useState(0);
   useEffect(() => {
@@ -146,6 +156,7 @@ export default function Hero() {
 
   const isSlideActiveNow = useCallback((slide: any): boolean => {
     if (!slide?.scheduledEnabled) return true;
+    if (!scheduleReady) return false;
     return isBannerScheduleActive({
       enabled: slide.scheduledEnabled,
       startDate: slide.startDate,
@@ -154,9 +165,10 @@ export default function Hero() {
       endTime: slide.endTime,
       activeDays: slide.activeDays,
     });
-  }, [scheduleTick]);
+  }, [scheduleTick, scheduleReady]);
 
   const isSectionBannerActive = useMemo(() => {
+    if (!scheduleReady) return false;
     return isBannerScheduleActive({
       enabled: websiteSection?.scheduledBannerEnabled,
       startDate: websiteSection?.scheduledBannerStartDate,
@@ -164,7 +176,7 @@ export default function Hero() {
       startTime: websiteSection?.scheduledBannerStartTime,
       endTime: websiteSection?.scheduledBannerEndTime,
     });
-  }, [websiteSection, scheduleTick]);
+  }, [websiteSection, scheduleTick, scheduleReady]);
 
   const fallbackImages = useMemo(
     () => [
@@ -243,6 +255,7 @@ export default function Hero() {
   // Active scheduled full banners (evaluated strictly in IST)
   const activeScheduledBanners = useMemo<ScheduledBannerItem[]>(() => {
     const list: ScheduledBannerItem[] = [];
+    if (!scheduleReady) return list;
 
     // 1. From multi-schedule array
     const scheduledList = Array.isArray(websiteSection?.scheduledBanners) ? websiteSection.scheduledBanners : [];
@@ -265,13 +278,19 @@ export default function Hero() {
           enabled: true,
           title: websiteSection.scheduledBannerTitle || "Scheduled Banner",
           image: websiteSection.scheduledBannerImage,
+          imageAlt: websiteSection.scheduledBannerImageAlt,
+          subtitle: websiteSection.scheduledBannerSubtitle,
+          buttonLabel: websiteSection.scheduledBannerButtonLabel,
           buttonHref: websiteSection.scheduledBannerButtonHref,
+          secondaryButtonLabel: websiteSection.scheduledBannerSecondaryButtonLabel,
+          secondaryButtonHref: websiteSection.scheduledBannerSecondaryButtonHref,
+          showContent: websiteSection.scheduledBannerShowContent,
         });
       }
     }
 
     return list;
-  }, [websiteSection, isSectionBannerActive, scheduleTick]);
+  }, [websiteSection, isSectionBannerActive, scheduleTick, scheduleReady]);
 
   // Slider index when multiple scheduled full banners are active simultaneously
   const [scheduledIndex, setScheduledIndex] = useState(0);
@@ -330,23 +349,39 @@ export default function Hero() {
         ? { label: s.secondaryButtonLabel, href: s.secondaryButtonHref || "/donation" }
         : fallbackSlides[idx % fallbackSlides.length].secondaryButton,
       image: imageOrFallback(s.image, fallbackImages[(idx + 1) % fallbackImages.length]),
+      isScheduled: Boolean(s.scheduledEnabled),
+      imageOnly: s.showContent === false,
     }));
   }, [websiteSection?.slides, isSlideActiveNow, fallbackSlides, fallbackImages]);
+
+  // Live scheduled slides (festival / event slides) lead the carousel, ahead of the default hero
+  // banner; normal custom slides follow it. Each group keeps its saved order.
+  const scheduledCustomSlides = useMemo(() => activeCustomSlides.filter((s) => s.isScheduled), [activeCustomSlides]);
+  const normalCustomSlides = useMemo(() => activeCustomSlides.filter((s) => !s.isScheduled), [activeCustomSlides]);
 
   // Original carousel slides: Slide 0 is the default hero banner, followed by custom slides or default slides 1-5
   const slideContent = useMemo<SlideContent[]>(() => {
     if (activeCustomSlides.length > 0) {
-      return [defaultPrimarySlide, ...activeCustomSlides];
+      // If every custom slide is a scheduled one, the built-in slides keep running after it.
+      return [
+        ...scheduledCustomSlides,
+        defaultPrimarySlide,
+        ...(normalCustomSlides.length > 0 ? normalCustomSlides : fallbackSlides.slice(1)),
+      ];
     }
     return [defaultPrimarySlide, ...fallbackSlides.slice(1)];
-  }, [defaultPrimarySlide, activeCustomSlides, fallbackSlides]);
+  }, [defaultPrimarySlide, activeCustomSlides, scheduledCustomSlides, normalCustomSlides, fallbackSlides]);
 
   const images = useMemo<string[]>(() => {
     if (activeCustomSlides.length > 0) {
-      return [defaultPrimaryImage, ...activeCustomSlides.map((s) => s.image)];
+      return [
+        ...scheduledCustomSlides.map((s) => s.image),
+        defaultPrimaryImage,
+        ...(normalCustomSlides.length > 0 ? normalCustomSlides.map((s) => s.image) : fallbackImages.slice(1)),
+      ];
     }
     return [defaultPrimaryImage, ...fallbackImages.slice(1)];
-  }, [defaultPrimaryImage, activeCustomSlides, fallbackImages]);
+  }, [defaultPrimaryImage, activeCustomSlides, scheduledCustomSlides, normalCustomSlides, fallbackImages]);
 
   const statFallbacks: StatItem[] = [
     { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
@@ -389,6 +424,12 @@ export default function Hero() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // When a scheduled slide goes live (or the live set changes), jump straight to it at the front.
+  const liveScheduledKey = scheduledCustomSlides.map((s) => `${s.heading.join(" ")}|${s.image}`).join("||");
+  useEffect(() => {
+    if (liveScheduledKey) setCurrentIndex(0);
+  }, [liveScheduledKey]);
+
   // Safely clamp currentIndex if slides count changed
   useEffect(() => {
     if (currentIndex >= images.length) {
@@ -401,6 +442,7 @@ export default function Hero() {
   const isFamilySupportSlide = activeSlide.familySupportLayout === true;
   const isJourneyPrayerSlide = activeSlide.journeyPrayerLayout === true;
   const isVolunteerImpactSlide = activeSlide.volunteerImpactLayout === true;
+  const isImageOnlySlide = activeSlide.imageOnly === true;
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((previous) => (previous + 1) % images.length);
@@ -443,7 +485,8 @@ export default function Hero() {
       cleanupGate();
       window.clearInterval(interval);
     };
-  }, [nextSlide]);
+    // liveScheduledKey: a scheduled slide that just went live gets a full turn at the front.
+  }, [nextSlide, liveScheduledKey]);
 
   // Pure Full Scheduled Banner Mode:
   // When a scheduled banner is active -> ONLY that image shows in the hero.
@@ -453,19 +496,85 @@ export default function Hero() {
     const currentBanner = activeScheduledBanners[scheduledIndex] || activeScheduledBanners[0];
     const bannerImage = currentBanner.image;
     const bannerLink = formatBannerHref(currentBanner.buttonHref);
+    // "Show left-side text & buttons" (admin). Default OFF = image only, exactly as before.
+    const showBannerText = currentBanner.showContent === true;
+    const bannerTitle = currentBanner.title || "Moksha Sewa";
 
     const bannerElement = (
-      <div className="relative w-full h-full min-h-[735px] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]">
-        <Image
-          key={bannerImage}
-          src={bannerImage}
-          alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
-          fill
-          priority
-          quality={95}
-          sizes="100vw"
-          className="object-cover object-center transition-opacity duration-700 ease-in-out"
-        />
+      <div
+        className={
+          showBannerText
+            ? "relative w-full h-full min-h-[735px] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]"
+            : "relative w-full overflow-hidden bg-[#fbf5ea]"
+        }
+      >
+        {/* Image-only banner: shown full width at its own shape, so nothing is cut and there are no
+            empty bands on any screen; the hero takes the banner's height while it is live. */}
+        {showBannerText ? (
+          <Image
+            key={bannerImage}
+            src={bannerImage}
+            alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
+            fill
+            priority
+            quality={95}
+            sizes="100vw"
+            className="object-cover object-center transition-opacity duration-700 ease-in-out"
+          />
+        ) : (
+          <Image
+            key={bannerImage}
+            src={bannerImage}
+            alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
+            width={1983}
+            height={793}
+            priority
+            quality={95}
+            sizes="100vw"
+            className="block h-auto w-full transition-opacity duration-700 ease-in-out"
+          />
+        )}
+
+        {showBannerText ? (
+          <>
+            <div
+              className="pointer-events-none absolute inset-0 z-10"
+              style={{ background: "linear-gradient(90deg, rgba(251,245,234,0.96) 0%, rgba(251,245,234,0.86) 30%, rgba(251,245,234,0.35) 52%, rgba(251,245,234,0) 64%)" }}
+            />
+            <div className="absolute inset-0 z-20 mx-auto flex max-w-7xl items-center px-4 sm:px-5 lg:px-6 2xl:px-8">
+              <div className="max-w-[580px]">
+                <h1 className="text-[33px] leading-[1.02] text-[#2C1810] sm:text-[40px] lg:text-[50px]" style={{ fontWeight: 500 }}>
+                  {bannerTitle}
+                </h1>
+                {(currentBanner.subtitle || currentBanner.description) && (
+                  <p className="mt-4 max-w-[520px] text-[16px] leading-relaxed text-[#5B4635] lg:text-[18px]">
+                    {currentBanner.subtitle || currentBanner.description}
+                  </p>
+                )}
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {currentBanner.buttonLabel && (
+                    <a
+                      href={formatBannerHref(currentBanner.buttonHref) ?? "/request-help"}
+                      className="inline-flex items-center rounded-full bg-[#D95A06] px-6 py-3 text-[15px] font-semibold text-white shadow-md transition hover:bg-[#b94c05]"
+                    >
+                      {currentBanner.buttonLabel}
+                    </a>
+                  )}
+                  {currentBanner.secondaryButtonLabel && (
+                    <a
+                      href={formatBannerHref(currentBanner.secondaryButtonHref) ?? "/donation"}
+                      className="inline-flex items-center rounded-full border border-[#D95A06] bg-white/80 px-6 py-3 text-[15px] font-semibold text-[#D95A06] transition hover:bg-white"
+                    >
+                      {currentBanner.secondaryButtonLabel}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <h1 className="sr-only">{bannerTitle}</h1>
+        )}
 
         {activeScheduledBanners.length > 1 && (
           <>
@@ -517,8 +626,14 @@ export default function Hero() {
 
     return (
       <>
-        <section className="hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]">
-          {bannerLink ? (
+        <section
+          className={
+            showBannerText
+              ? "hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
+              : "hero-section-1366 group relative w-full overflow-hidden bg-[#fbf5ea]"
+          }
+        >
+          {bannerLink && !showBannerText ? (
             <a href={bannerLink} className="block w-full h-full cursor-pointer">
               {bannerElement}
             </a>
@@ -566,7 +681,9 @@ export default function Hero() {
       >
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
-          className={`absolute inset-y-0 overflow-hidden ${isFamilySupportSlide
+          className={`absolute inset-y-0 overflow-hidden ${isImageOnlySlide
+            ? "left-0 right-0"
+            : isFamilySupportSlide
             ? "left-0 right-0 md:left-[42%]"
             : isJourneyPrayerSlide
               ? "left-0 right-0 md:left-[40%]"
@@ -576,6 +693,18 @@ export default function Hero() {
             }`}
         >
           <div className="absolute inset-0 min-w-full transition-opacity duration-1000 ease-out">
+            {isImageOnlySlide && (
+              <Image
+                key={`${activeImage}-backdrop`}
+                src={activeImage}
+                alt=""
+                aria-hidden
+                fill
+                quality={40}
+                sizes="100vw"
+                className="scale-110 object-cover object-center opacity-70 blur-2xl"
+              />
+            )}
             <Image
               key={activeImage}
               src={activeImage}
@@ -586,7 +715,9 @@ export default function Hero() {
               quality={75}
               sizes="100vw"
               className={
-                isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
+                isImageOnlySlide
+                  ? "object-contain object-center"
+                  : isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
                   ? "object-cover object-right transition-transform duration-[6000ms] ease-out"
                   : "object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center]"
               }
@@ -595,7 +726,7 @@ export default function Hero() {
         </div>
 
         {/* Smooth content-to-image blend */}
-        <div
+        {!isImageOnlySlide && <div
           className="pointer-events-none absolute inset-0 hidden md:block"
           style={{
             background: isFamilySupportSlide
@@ -606,18 +737,18 @@ export default function Hero() {
                   ? "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 30%, rgba(251,245,234,0.98) 35%, rgba(251,245,234,0.86) 41%, rgba(251,245,234,0.42) 48%, rgba(251,245,234,0.10) 54%, rgba(251,245,234,0) 59%)"
                   : "linear-gradient(90deg, #fbf5ea 0%, #fbf5ea 24%, rgba(251,245,234,0.96) 31%, rgba(251,245,234,0.78) 38%, rgba(251,245,234,0.42) 45%, rgba(251,245,234,0.12) 51%, rgba(251,245,234,0) 57%)",
           }}
-        />
+        />}
 
         {/* Mobile content readability */}
-        <div
+        {!isImageOnlySlide && <div
           className={`pointer-events-none absolute inset-0 md:hidden ${isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
             ? "bg-gradient-to-b from-[#fbf5ea]/95 via-[#fbf5ea]/88 to-[#fbf5ea]/54"
             : "bg-gradient-to-b from-[#fbf5ea]/92 via-[#fbf5ea]/68 to-[#fbf5ea]/16"
             }`}
-        />
+        />}
 
         {/* Devanagari watermark — same signature as the rest of the site */}
-        {!isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
+        {!isImageOnlySlide && !isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
           <>
             <div className="pointer-events-none absolute left-16 top-1/2 z-10 hidden -translate-y-[55%] select-none font-sans text-[240px] leading-none text-[#8B6A3E]/[0.06] lg:block xl:left-24">
               मोक्ष
@@ -648,7 +779,11 @@ export default function Hero() {
           <FaChevronRight className="h-5 w-5" />
         </button>
 
+        {/* Image-only slide: keep its title for screen readers / SEO without showing any text */}
+        {isImageOnlySlide && <h1 className="sr-only">{activeSlide.heading.join(" ")}</h1>}
+
         {/* Main content */}
+        {!isImageOnlySlide && (
         <div className="hero-container-1366 relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
           <div className="hero-content-row-1366 flex h-full items-start pt-[104px] sm:pt-[140px]">
             <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] md:pl-2 lg:w-[56%] lg:pl-6 xl:w-[54%]">
@@ -801,8 +936,9 @@ export default function Hero() {
             </div>
           </div>
         </div>
+        )}
 
-        {activeSlide.showMissionExtras && !isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
+        {activeSlide.showMissionExtras && !isImageOnlySlide && !isFamilySupportSlide && !isJourneyPrayerSlide && !isVolunteerImpactSlide && (
           <div className="hero-right-card-1366 absolute bottom-5 right-5 z-30 hidden w-[640px] border border-[#E2AE73] bg-[#FFF8EE]/95 px-5 py-4 shadow-[0_10px_30px_rgba(95,61,30,0.12)] backdrop-blur-sm xl:block 2xl:right-[max(1.25rem,calc((100vw-80rem)/2+1.25rem))]">
             <div className="grid grid-cols-3 divide-x divide-[#D8B58B]">
               <div className="flex items-center gap-3 px-3">

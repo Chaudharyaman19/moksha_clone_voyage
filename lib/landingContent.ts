@@ -37,6 +37,8 @@ export interface ScheduledBannerItem {
   buttonHref?: string;
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
+  /** true = also show the title, subtitle and buttons on the left. Default false = image only. */
+  showContent?: boolean;
 }
 
 export interface LandingHeroSlide {
@@ -49,6 +51,8 @@ export interface LandingHeroSlide {
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
   variant?: "default" | "family-support" | "journey-prayer" | "volunteer-impact";
+  /** false = image only (no left-side text / buttons). Default true. */
+  showContent?: boolean;
   scheduledEnabled?: boolean;
   startDate?: string;
   endDate?: string;
@@ -90,6 +94,7 @@ export interface LandingSectionContent {
   scheduledBannerButtonHref?: string;
   scheduledBannerSecondaryButtonLabel?: string;
   scheduledBannerSecondaryButtonHref?: string;
+  scheduledBannerShowContent?: boolean;
   scheduledBanners?: ScheduledBannerItem[];
   quote?: string;
   legalNotice?: string;
@@ -689,7 +694,8 @@ export function parseDateTimeInIST(dateStr?: string, timeStr?: string, isEnd = f
     const timeParts = time.split(":");
     const hh = (timeParts[0] || "00").padStart(2, "0");
     const mm = (timeParts[1] || "00").padStart(2, "0");
-    const ss = (timeParts[2] || (isEnd ? "59" : "00")).padStart(2, "0");
+    // An end time is exact: "18:37" ends at 18:37:00 (a date without a time still runs to the end of that day).
+    const ss = (timeParts[2] || "00").padStart(2, "0");
     time = `${hh}:${mm}:${ss}`;
   }
 
@@ -787,7 +793,7 @@ export function isBannerScheduleActive(schedule?: {
   } else if (schedule.endTime && schedule.endTime.trim()) {
     const [eh, em] = schedule.endTime.split(":").map(Number);
     if (!isNaN(eh) && !isNaN(em)) {
-      if (ist.currentMinutes > (eh * 60 + em)) return false;
+      if (ist.currentMinutes >= (eh * 60 + em)) return false;
     }
   }
 
