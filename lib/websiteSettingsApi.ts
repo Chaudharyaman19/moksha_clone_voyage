@@ -27,11 +27,20 @@ import {
   type ExtraSectionContent,
 } from "./extraPagesContent";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === "production"
+function getServerApiUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (envUrl) {
+    if (envUrl.includes("localhost") || envUrl.includes("127.0.0.1")) {
+      return envUrl.replace(":5003", ":5001").replace(":5000", ":5001");
+    }
+    return envUrl;
+  }
+  return process.env.NODE_ENV === "production"
     ? "https://api.mokshasewa.org/api/v1"
-    : "http://localhost:5000/api/v1");
+    : "http://localhost:5001/api/v1";
+}
+
+const API_BASE_URL = getServerApiUrl();
 
 interface ApiEnvelope<T> {
   success: boolean;
@@ -214,9 +223,24 @@ export const getWebsiteSettings = cache(async (): Promise<SettingsResponse | und
   }
 
   try {
-    const fetchPromise = fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
-    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 6000));
-    const response = (await Promise.race([fetchPromise, timeoutPromise])) as Response | null;
+    let response: Response | null = null;
+    try {
+      const fetchPromise = fetch(`${API_BASE_URL}/settings`, { cache: "no-store" });
+      const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 4000));
+      response = (await Promise.race([fetchPromise, timeoutPromise])) as Response | null;
+    } catch {
+      response = null;
+    }
+
+    if (!response || !response.ok) {
+      if (API_BASE_URL !== "http://localhost:5001/api/v1") {
+        try {
+          response = await fetch("http://localhost:5001/api/v1/settings", { cache: "no-store" });
+        } catch {
+          response = null;
+        }
+      }
+    }
 
     if (response && response.ok) {
       const body = (await response.json()) as ApiEnvelope<SettingsResponse>;

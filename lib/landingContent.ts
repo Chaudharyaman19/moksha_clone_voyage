@@ -676,25 +676,55 @@ export function parseDateTimeInIST(dateStr?: string, timeStr?: string, isEnd = f
   const trimmedDate = dateStr?.trim();
   if (!trimmedDate) return null;
 
-  const dateMatch = trimmedDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!dateMatch) {
+  let yyyy = "";
+  let mm = "";
+  let dd = "";
+
+  const isoMatch = trimmedDate.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+  const dmyMatch = trimmedDate.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
+
+  if (isoMatch) {
+    yyyy = isoMatch[1];
+    mm = isoMatch[2].padStart(2, "0");
+    dd = isoMatch[3].padStart(2, "0");
+  } else if (dmyMatch) {
+    dd = dmyMatch[1].padStart(2, "0");
+    mm = dmyMatch[2].padStart(2, "0");
+    yyyy = dmyMatch[3];
+  } else {
     const parsed = new Date(trimmedDate);
     return isNaN(parsed.getTime()) ? null : parsed;
   }
 
-  let time = timeStr?.trim();
-  if (!time) {
-    time = isEnd ? "23:59:59" : "00:00:00";
-  } else {
-    const timeParts = time.split(":");
-    const hh = (timeParts[0] || "00").padStart(2, "0");
-    const mm = (timeParts[1] || "00").padStart(2, "0");
-    const ss = (timeParts[2] || (isEnd ? "59" : "00")).padStart(2, "0");
-    time = `${hh}:${mm}:${ss}`;
+  const standardDate = `${yyyy}-${mm}-${dd}`;
+
+  let hours = isEnd ? 23 : 0;
+  let minutes = isEnd ? 59 : 0;
+  let seconds = isEnd ? 59 : 0;
+
+  if (timeStr && timeStr.trim()) {
+    const time = timeStr.trim();
+    const isPM = /pm/i.test(time);
+    const isAM = /am/i.test(time);
+    const cleanTime = time.replace(/[^\d:]/g, "");
+    const parts = cleanTime.split(":");
+    let h = parseInt(parts[0] || "0", 10);
+    const m = parseInt(parts[1] || "0", 10);
+    const s = parseInt(parts[2] || "0", 10);
+
+    if (isPM && h < 12) h += 12;
+    if (isAM && h === 12) h = 0;
+
+    hours = isNaN(h) ? (isEnd ? 23 : 0) : h;
+    minutes = isNaN(m) ? (isEnd ? 59 : 0) : m;
+    seconds = isNaN(s) ? 0 : s;
   }
 
-  // Construct ISO 8601 with explicit IST offset (+05:30) so evaluation matches across server & client
-  const isoWithIST = `${trimmedDate}T${time}+05:30`;
+  const hhStr = String(hours).padStart(2, "0");
+  const mmStr = String(minutes).padStart(2, "0");
+  const ssStr = String(seconds).padStart(2, "0");
+
+  const isoWithIST = `${standardDate}T${hhStr}:${mmStr}:${ssStr}+05:30`;
   const d = new Date(isoWithIST);
   return isNaN(d.getTime()) ? null : d;
 }
@@ -783,11 +813,16 @@ export function isBannerScheduleActive(schedule?: {
   // End date / time check in IST
   if (schedule.endDate && schedule.endDate.trim()) {
     const end = parseDateTimeInIST(schedule.endDate, schedule.endTime, true);
-    if (end && now > end) return false;
+    if (end && now >= end) return false;
   } else if (schedule.endTime && schedule.endTime.trim()) {
-    const [eh, em] = schedule.endTime.split(":").map(Number);
+    const cleanTime = schedule.endTime.replace(/[^\d:]/g, "");
+    const parts = cleanTime.split(":");
+    let eh = parseInt(parts[0] || "0", 10);
+    const em = parseInt(parts[1] || "0", 10);
+    if (/pm/i.test(schedule.endTime) && eh < 12) eh += 12;
+    if (/am/i.test(schedule.endTime) && eh === 12) eh = 0;
     if (!isNaN(eh) && !isNaN(em)) {
-      if (ist.currentMinutes > (eh * 60 + em)) return false;
+      if (ist.currentMinutes >= (eh * 60 + em)) return false;
     }
   }
 
@@ -837,7 +872,7 @@ export function getScheduleStatus(schedule?: {
 
   if (schedule.endDate && schedule.endDate.trim()) {
     const end = parseDateTimeInIST(schedule.endDate, schedule.endTime, true);
-    if (end && now > end) {
+    if (end && now >= end) {
       return {
         status: "expired",
         label: "Schedule Expired",
