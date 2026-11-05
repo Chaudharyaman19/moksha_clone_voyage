@@ -22,7 +22,7 @@ import {
 import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
-import { isBannerScheduleActive, type LandingSectionItem } from "@/lib/landingContent";
+import { isBannerScheduleActive, type LandingSectionItem, type ScheduledBannerItem } from "@/lib/landingContent";
 
 function AnimatedNumber({ endString }: { endString: string }) {
   const shouldAnimate = !/[^0-9,%+]/.test(endString);
@@ -220,71 +220,57 @@ export default function Hero() {
     [],
   );
 
-  // Active scheduled banners (supports both multi-schedule array and legacy single banner)
-  const activeScheduledSlides = useMemo<{ slide: SlideContent; image: string }[]>(() => {
-    const list: { slide: SlideContent; image: string }[] = [];
+  // Active scheduled full banners (evaluated strictly in IST)
+  const activeScheduledBanners = useMemo<ScheduledBannerItem[]>(() => {
+    const list: ScheduledBannerItem[] = [];
 
-    // 1. Check multi-schedule array
+    // 1. From multi-schedule array
     const scheduledList = Array.isArray(websiteSection?.scheduledBanners) ? websiteSection.scheduledBanners : [];
     scheduledList.forEach((b) => {
-      if (isBannerScheduleActive(b) && (b.image || b.title || b.subtitle)) {
-        list.push({
-          slide: {
-            heading: splitHeading(b.title || "Special Sewa Drive"),
-            description: b.subtitle || b.description || fallbackSlides[0].description,
-            alt: b.imageAlt || b.title || "Scheduled Banner",
-            primaryButton: {
-              label: b.buttonLabel || "Request Sewa Help",
-              href: b.buttonHref || "/request-help",
-            },
-            secondaryButton: {
-              label: b.secondaryButtonLabel || "Support This Mission",
-              href: b.secondaryButtonHref || "/donation",
-            },
-          },
-          image: imageOrFallback(b.image, fallbackImages[0]),
-        });
+      if (b.enabled !== false && isBannerScheduleActive(b) && b.image && b.image.trim()) {
+        list.push(b);
       }
     });
 
-    // 2. Check legacy single scheduled banner
+    // 2. From legacy single scheduled banner
     if (
       isSectionBannerActive &&
-      (websiteSection?.scheduledBannerImage || websiteSection?.scheduledBannerTitle || websiteSection?.scheduledBannerSubtitle)
+      websiteSection?.scheduledBannerImage &&
+      websiteSection.scheduledBannerImage.trim()
     ) {
-      const alreadyInList = list.some(
-        (item) =>
-          item.image === websiteSection?.scheduledBannerImage &&
-          item.slide.heading.join(" ") === websiteSection?.scheduledBannerTitle,
-      );
+      const alreadyInList = list.some((item) => item.image === websiteSection?.scheduledBannerImage);
       if (!alreadyInList) {
         list.unshift({
-          slide: {
-            heading: splitHeading(websiteSection?.scheduledBannerTitle || "Special Sewa Drive"),
-            description:
-              websiteSection?.scheduledBannerSubtitle ||
-              websiteSection?.scheduledBannerDescription ||
-              websiteSection?.subtitle ||
-              fallbackSlides[0].description,
-            alt: websiteSection?.scheduledBannerImageAlt || websiteSection?.scheduledBannerTitle || "Scheduled Banner",
-            primaryButton: {
-              label: websiteSection?.scheduledBannerButtonLabel || "Request Sewa Help",
-              href: websiteSection?.scheduledBannerButtonHref || "/request-help",
-            },
-            secondaryButton: {
-              label: websiteSection?.scheduledBannerSecondaryButtonLabel || "Support This Mission",
-              href: websiteSection?.scheduledBannerSecondaryButtonHref || "/donation",
-            },
-          },
-          image: imageOrFallback(websiteSection?.scheduledBannerImage, fallbackImages[0]),
+          id: "legacy-banner",
+          enabled: true,
+          title: websiteSection.scheduledBannerTitle || "Scheduled Banner",
+          image: websiteSection.scheduledBannerImage,
+          buttonHref: websiteSection.scheduledBannerButtonHref,
         });
       }
     }
 
     return list;
-  }, [websiteSection, isSectionBannerActive, fallbackSlides, fallbackImages, scheduleTick]);
+  }, [websiteSection, isSectionBannerActive, scheduleTick]);
 
-  // Default primary hero banner (displayed when no schedule is active, or as a base slide in rotation)
+  // Slider index when multiple scheduled full banners are active simultaneously
+  const [scheduledIndex, setScheduledIndex] = useState(0);
+
+  useEffect(() => {
+    if (activeScheduledBanners.length <= 1) return;
+    const interval = setInterval(() => {
+      setScheduledIndex((prev) => (prev + 1) % activeScheduledBanners.length);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [activeScheduledBanners.length]);
+
+  useEffect(() => {
+    if (scheduledIndex >= activeScheduledBanners.length) {
+      setScheduledIndex(0);
+    }
+  }, [scheduledIndex, activeScheduledBanners.length]);
+
+  // Default primary hero banner (displayed when no schedule is active, or when original is restored)
   const defaultPrimarySlide = useMemo<SlideContent>(() => {
     const defaultTitle = websiteSection?.title || fallbackSlides[0].heading.join("\n");
     return {
@@ -327,37 +313,20 @@ export default function Hero() {
     }));
   }, [websiteSection?.slides, isSlideActiveNow, fallbackSlides, fallbackImages]);
 
-  // Full carousel slides and images:
-  // If active scheduled banners exist: put them first, followed by default slides / custom slides.
-  // If no active scheduled banners: default primary slide, followed by default slides / custom slides.
-  // ALWAYS at least 6 slides so carousel rotation never stops and never gets stuck!
+  // Original carousel slides: Slide 0 is the default hero banner, followed by custom slides or default slides 1-5
   const slideContent = useMemo<SlideContent[]>(() => {
-    if (activeScheduledSlides.length > 0) {
-      const scheduledOnly = activeScheduledSlides.map((s) => s.slide);
-      if (activeCustomSlides.length > 0) {
-        return [...scheduledOnly, ...activeCustomSlides];
-      }
-      return [...scheduledOnly, defaultPrimarySlide, ...fallbackSlides.slice(1)];
-    }
     if (activeCustomSlides.length > 0) {
       return [defaultPrimarySlide, ...activeCustomSlides];
     }
     return [defaultPrimarySlide, ...fallbackSlides.slice(1)];
-  }, [activeScheduledSlides, defaultPrimarySlide, activeCustomSlides, fallbackSlides]);
+  }, [defaultPrimarySlide, activeCustomSlides, fallbackSlides]);
 
   const images = useMemo<string[]>(() => {
-    if (activeScheduledSlides.length > 0) {
-      const scheduledOnly = activeScheduledSlides.map((s) => s.image);
-      if (activeCustomSlides.length > 0) {
-        return [...scheduledOnly, ...activeCustomSlides.map((s) => s.image)];
-      }
-      return [...scheduledOnly, defaultPrimaryImage, ...fallbackImages.slice(1)];
-    }
     if (activeCustomSlides.length > 0) {
       return [defaultPrimaryImage, ...activeCustomSlides.map((s) => s.image)];
     }
     return [defaultPrimaryImage, ...fallbackImages.slice(1)];
-  }, [activeScheduledSlides, defaultPrimaryImage, activeCustomSlides, fallbackImages]);
+  }, [defaultPrimaryImage, activeCustomSlides, fallbackImages]);
 
   const statFallbacks: StatItem[] = [
     { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
@@ -455,6 +424,120 @@ export default function Hero() {
       window.clearInterval(interval);
     };
   }, [nextSlide]);
+
+  // Pure Full Scheduled Banner Mode:
+  // When a scheduled banner is active -> ONLY that image shows in the hero.
+  // All other content (headings, buttons, logos, floating cards, Devanagari watermark) is removed!
+  // When schedule is off / expired / restored -> standard original hero is displayed.
+  if (activeScheduledBanners.length > 0) {
+    const currentBanner = activeScheduledBanners[scheduledIndex] || activeScheduledBanners[0];
+    const bannerImage = currentBanner.image;
+    const bannerLink = currentBanner.buttonHref?.trim() || undefined;
+
+    const bannerElement = (
+      <div className="relative w-full h-[360px] sm:h-[460px] md:h-[560px] lg:h-[640px] 2xl:h-[720px] overflow-hidden bg-[#fbf5ea]">
+        <Image
+          key={bannerImage}
+          src={bannerImage}
+          alt={currentBanner.imageAlt || currentBanner.title || "Scheduled Hero Banner"}
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-center transition-opacity duration-700 ease-in-out"
+        />
+
+        {activeScheduledBanners.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setScheduledIndex((prev) => (prev - 1 + activeScheduledBanners.length) % activeScheduledBanners.length);
+              }}
+              aria-label="Previous banner"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 rounded-full border border-white/60 bg-black/40 p-2.5 text-white transition hover:bg-black/70 backdrop-blur-xs"
+            >
+              <FaChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setScheduledIndex((prev) => (prev + 1) % activeScheduledBanners.length);
+              }}
+              aria-label="Next banner"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 rounded-full border border-white/60 bg-black/40 p-2.5 text-white transition hover:bg-black/70 backdrop-blur-xs"
+            >
+              <FaChevronRight className="h-5 w-5" />
+            </button>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+              {activeScheduledBanners.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setScheduledIndex(idx);
+                  }}
+                  className={`h-2.5 rounded-full transition-all ${
+                    idx === scheduledIndex ? "w-8 bg-[#D95A06]" : "w-2.5 bg-white/70 hover:bg-white"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+
+    return (
+      <>
+        <section className="hero-scheduled-banner relative w-full overflow-hidden bg-[#fbf5ea]">
+          {bannerLink ? (
+            <a href={bannerLink} className="block w-full h-full cursor-pointer">
+              {bannerElement}
+            </a>
+          ) : (
+            bannerElement
+          )}
+        </section>
+
+        {/* Mission Stats Band Below Hero */}
+        <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={`hero-stat-${index}`}
+                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${
+                    index > 0 ? "md:border-l md:border-white/20" : ""
+                  } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                    <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
+                  </div>
+                  <div className="min-w-0 text-left">
+                    <div className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]">
+                      <AnimatedNumber endString={stat.value} />
+                    </div>
+                    <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
