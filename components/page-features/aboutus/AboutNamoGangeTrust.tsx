@@ -102,8 +102,8 @@ export default function AboutNamoGangeTrust() {
 
   return (
     <section className="relative overflow-hidden bg-[#faf4e9] px-6 lg:px-8 2xl:px-0">
-      <div className="mx-auto grid min-h-[410px] w-full max-w-7xl lg:grid-cols-2">
-        <div className="relative min-h-[330px] overflow-hidden lg:min-h-[410px]">
+      <div className="mx-auto grid min-h-[360px] w-full max-w-7xl lg:grid-cols-2">
+        <div className="relative min-h-[330px] overflow-hidden lg:min-h-[360px]">
           <video
             src={textOrFallback(section?.image, "/assets/videos/namoGange.mp4", 60)}
             autoPlay
@@ -118,7 +118,7 @@ export default function AboutNamoGangeTrust() {
 
         </div>
 
-        <div className="relative flex items-center px-6 py-8 sm:px-10 lg:px-12 lg:py-7 xl:px-16">
+        <div className="relative flex items-center px-6 py-8 sm:px-10 lg:px-12 lg:py-5 xl:px-16">
           <PiFlowerLotus className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rotate-[-20deg] text-[#c5aa70]/15" />
           <PiFlowerLotus className="pointer-events-none absolute -bottom-12 right-5 h-36 w-36 text-[#c5aa70]/12" />
 
@@ -129,17 +129,17 @@ export default function AboutNamoGangeTrust() {
               <span className="h-px flex-1 bg-[#c49a4e]" />
             </div>
 
-            <h2 className="mt-4 font-sans text-[24px] font-semibold leading-[1.05] text-[#123d31] sm:text-[30px]">
+            <h2 className="mt-3 font-sans text-[24px] font-semibold leading-[1.05] text-[#123d31] sm:text-[30px]">
               <span className="whitespace-pre-line">{textOrFallback(section?.title, "Rooted in Service.\nDriven by Responsibility.", 150)}</span>
             </h2>
 
-            <div className="mt-4 flex items-center gap-2 text-[#b98735]">
+            <div className="mt-3 flex items-center gap-2 text-[#b98735]">
               <span className="h-px w-16 bg-[#cba45c]" />
               <PiFlowerLotus className="h-4 w-4" />
               <span className="h-px w-16 bg-[#cba45c]" />
             </div>
 
-            <div className="mt-4 max-w-[590px] space-y-3 text-[13px] leading-[1.5] text-[#31463f] sm:text-[14px]">
+            <div className="mt-3 max-w-[590px] space-y-3 text-[13px] leading-[1.5] text-[#31463f] sm:text-[14px]">
               <p>
                 {textOrFallback(section?.description, "Moksha Sewa is an initiative of Namo Gange Trust, an organisation committed to social service, community welfare and meaningful humanitarian action.", 600)}
               </p>
@@ -148,7 +148,7 @@ export default function AboutNamoGangeTrust() {
               </p>
             </div>
 
-            <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4">
                 {valueItems.map(({ label, icon }) => (
                   <div key={label} className="text-center">

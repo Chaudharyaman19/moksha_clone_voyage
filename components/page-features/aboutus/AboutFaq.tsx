@@ -35,7 +35,7 @@ export default function AboutFaq() {
   });
 
   return (
-    <section className="bg-[#fbfaf7] px-6 py-8 lg:px-8 lg:py-10 2xl:px-0">
+    <section className="bg-[#fbfaf7] px-6 py-6 lg:px-8 lg:py-6 2xl:px-0">
       <div className="mx-auto w-full max-w-7xl">
         <header className="text-center">
           <div className="flex items-center justify-center gap-3 font-sans text-[16px] font-semibold uppercase text-[#315448]"><span className="h-px w-12 bg-[#c69a4c]" /><span>{textOrFallback(section?.eyebrow, "Help & Information", 60)}</span><span className="h-px w-12 bg-[#c69a4c]" /></div>
@@ -43,7 +43,7 @@ export default function AboutFaq() {
           <p className="mt-2 whitespace-pre-line text-[16px] leading-[1.45] text-[#4b5c55]">{textOrFallback(section?.description, "Here are answers to some common questions about Moksha Sewa.\nIf you need more help, we are here for you.", 600)}</p>
         </header>
 
-        <div className="mt-5 grid gap-3 lg:grid-cols-[.88fr_1.12fr]">
+        <div className="mt-4 grid gap-3 lg:grid-cols-[.88fr_1.12fr]">
           <div className="flex h-full flex-col">
             <div className="relative min-h-[290px] flex-1 overflow-hidden rounded-tl-[72px]"><Image src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165029/moksha-sewa/assets/about-reference/faq-support-final.png")} alt="Moksha Sewa volunteer supporting an elderly person" fill unoptimized={!isOptimizableSrc(imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165029/moksha-sewa/assets/about-reference/faq-support-final.png"))} priority sizes="(max-width:1024px) 100vw,44vw" className="object-cover object-center" /></div>
             <div className="grid min-h-[88px] grid-cols-[48px_1fr] items-center gap-x-3 border border-[#e7ded0] bg-white px-4 py-2 shadow-[0_5px_14px_rgba(65,49,30,.09)] sm:grid-cols-[48px_1fr_auto]">

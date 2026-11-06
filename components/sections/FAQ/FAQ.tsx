@@ -141,7 +141,7 @@ export default function FAQSection() {
         </div>
 
         {/* FAQ grid */}
-        <div className="mx-auto mt-[calc(var(--u)*2.06)] grid max-w-[640px] grid-cols-1 items-start gap-[calc(var(--u)*0.62)] lg:ml-[calc(var(--u)*29.6)] lg:mr-0 lg:max-w-none lg:w-[calc(var(--u)*68.4)] lg:grid-cols-[31.75fr_34.4fr] lg:gap-x-[calc(var(--u)*2.2)]">
+        <div className="mx-auto mt-[calc(var(--u)*2.06)] grid max-w-[640px] grid-cols-1 items-start gap-[calc(var(--u)*0.62)] lg:ml-[calc(var(--u)*29.6)] lg:mr-0 lg:max-w-none lg:w-[calc(min(50vw_+_592px,100vw_-_76px)_-_var(--u)*29.6)] lg:grid-cols-[31.75fr_34.4fr] lg:gap-x-[calc(var(--u)*2.2)]">
           {FAQ_DATA.map((faq) => {
             const isOpen = openId === faq.id;
             return (

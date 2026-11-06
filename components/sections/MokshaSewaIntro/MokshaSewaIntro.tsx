@@ -76,7 +76,7 @@ const MokshaSewaIntro: React.FC = () => {
               lg:text-[50px]
             "
           >
-            <span className="whitespace-pre-line">{textOrFallback(section?.title, "A Mission Built\nAround Dignity.", 150)}</span>
+            <span className="whitespace-nowrap">{textOrFallback(section?.title, "A Mission Built Around Dignity.", 150).replace(/\s*\n\s*/g, " ")}</span>
           </h2>
 
           {/* Gold lotus / divider — lotus + border absolute on the left, text after the border */}

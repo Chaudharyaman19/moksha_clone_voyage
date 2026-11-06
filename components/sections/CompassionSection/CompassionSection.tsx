@@ -213,7 +213,7 @@ export default function CompassionSection() {
   ];
 
   return (
-    <section className="relative w-full min-h-[560px] overflow-hidden md:min-h-[600px] lg:min-h-[640px]">
+    <section className="relative w-full min-h-[500px] overflow-hidden md:min-h-[530px] lg:min-h-[560px]">
       {/* Background dimensions and positioning are intentionally unchanged. */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0">
@@ -234,9 +234,9 @@ export default function CompassionSection() {
         <div className="absolute left-0 top-0 h-full w-[42%] bg-[radial-gradient(circle_at_0%_0%,rgba(202,157,93,0.12),transparent_42%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto h-full min-h-[560px] max-w-7xl px-0 md:min-h-[600px] lg:min-h-[640px] 2xl:px-8">
-        <div className="flex h-full min-h-[560px] items-center md:min-h-[600px] lg:min-h-[640px]">
-          <div className="w-full max-w-[650px] px-5 py-7 sm:px-7 md:px-8 lg:px-[16px] lg:py-8">
+      <div className="relative z-10 mx-auto h-full min-h-[500px] wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-0 md:min-h-[530px] lg:min-h-[560px] 2xl:px-0">
+        <div className="flex h-full min-h-[500px] items-center md:min-h-[530px] lg:min-h-[560px]">
+          <div className="w-full max-w-[600px] px-5 py-5 sm:px-7 md:px-8 lg:px-[16px] lg:py-5">
             {/* Brand row */}
             <div className="mb-3 flex flex-wrap items-end gap-2 sm:gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center text-[#956A32]">
@@ -262,7 +262,7 @@ export default function CompassionSection() {
             </div>
 
             {/* Description */}
-            <p className="mb-4 max-w-[600px] text-[16px] font-normal leading-[1.6] text-[#3F2A1F] sm:text-[16px]">
+            <p className="mb-3 max-w-[560px] text-[15px] font-normal leading-[1.55] text-[#3F2A1F] sm:text-[15px]">
               {textOrFallback(
                 websiteSection?.description,
                 "At Moksha Sewa, we support economically weaker families and legally authorised unclaimed cases with practical final-rites coordination. Our team helps coordinate transport, ritual guidance, essential materials, relief support and on-ground volunteers after verification and required formalities.",
@@ -271,7 +271,7 @@ export default function CompassionSection() {
             </p>
 
             {/* Stat cards */}
-            <div className="mb-4 grid max-w-[555px] grid-cols-1 gap-2 sm:grid-cols-3">
+            <div className="mb-3 grid max-w-[520px] grid-cols-1 gap-2 sm:grid-cols-3">
               {stats.map(({ value, title, caption, icon: StatIcon }) => (
                 <article
                   key={title}
@@ -282,16 +282,16 @@ export default function CompassionSection() {
                   </div>
                   <div
                     className={`${value.length > 12
-                      ? "text-[17px] leading-[1.15]"
-                      : "text-[24px] leading-none"
+                      ? "text-[15px] leading-[1.15]"
+                      : "text-[21px] leading-none"
                       } font-semibold text-[#392116]`}
                   >
                     {value}
                   </div>
-                  <div className="mt-1 text-[15px] font-medium leading-tight text-[#39261B]">
+                  <div className="mt-1 text-[14px] font-medium leading-tight text-[#39261B]">
                     {title}
                   </div>
-                  <div className="mt-1 text-[14px] leading-tight text-[#786254]">
+                  <div className="mt-1 text-[13px] leading-tight text-[#786254]">
                     {caption}
                   </div>
                 </article>
@@ -299,17 +299,17 @@ export default function CompassionSection() {
             </div>
 
             {/* Feature grid */}
-            <div className="mb-4 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2">
+            <div className="mb-3 grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
               {features.map(({ title, text, icon: FeatureIcon }) => (
                 <div key={title} className="flex items-start gap-2.5">
                   <div className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#A87632] text-white shadow-sm">
                     <FeatureIcon className="h-3.5 w-3.5" />
                   </div>
                   <div>
-                    <div className="text-[16px] font-semibold leading-tight text-[#332117]">
+                    <div className="text-[14.5px] font-semibold leading-tight text-[#332117]">
                       {title}
                     </div>
-                    <div className="mt-1 text-[16px] leading-snug text-[#6F5A4C]">
+                    <div className="mt-0.5 text-[14px] leading-snug text-[#6F5A4C]">
                       {text}
                     </div>
                   </div>
@@ -323,7 +323,7 @@ export default function CompassionSection() {
                 href={websiteSection?.buttonHref || "/request-help"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-6 text-center text-[15px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[15px]"
               >
                 <HandHeartIcon className="h-5 w-5" />
                 {textOrFallback(websiteSection?.buttonLabel, "Request Sewa Support", 36)}
@@ -333,7 +333,7 @@ export default function CompassionSection() {
                 href={`tel:+91${websiteSection?.phoneNumber || "9220147229"}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[16px]"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-7 text-center text-[15px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:text-[15px]"
               >
                 <PhoneIcon className="h-5 w-5" />
                 {textOrFallback(websiteSection?.phoneLabel, "Call for Help", 36)}
@@ -341,16 +341,16 @@ export default function CompassionSection() {
             </div>
 
             {/* Bottom trust strip */}
-            <div className="mt-4 flex w-fit max-w-full flex-col overflow-hidden rounded-xl border border-white/70 bg-white/65 shadow-[0_8px_24px_rgba(76,48,23,0.08)] backdrop-blur-sm sm:flex-row">
+            <div className="mt-3 flex w-fit max-w-full flex-col overflow-hidden rounded-xl border border-white/70 bg-white/65 shadow-[0_8px_24px_rgba(76,48,23,0.08)] backdrop-blur-sm sm:flex-row">
               <div className="flex min-w-[235px] items-center gap-3 px-4 py-2.5">
                 <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#9A6B31]/10 text-[#8B5F2D]">
                   <PriestIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[16px] font-semibold text-[#4A3020]">
+                  <div className="text-[14.5px] font-semibold text-[#4A3020]">
                     {textOrFallback(websiteSection?.secondaryTitle, "Priest Support", 60)}
                   </div>
-                  <div className="text-[16px] text-[#796556]">
+                  <div className="text-[14px] text-[#796556]">
                     {textOrFallback(websiteSection?.secondaryDescription, "Experienced & Verified", 80)}
                   </div>
                 </div>
@@ -363,10 +363,10 @@ export default function CompassionSection() {
                   <BoxIcon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-[16px] font-semibold text-[#4A3020]">
+                  <div className="text-[14.5px] font-semibold text-[#4A3020]">
                     Ritual Items & Guidance
                   </div>
-                  <div className="text-[16px] text-[#796556]">
+                  <div className="text-[14px] text-[#796556]">
                     Complete Essentials
                   </div>
                 </div>
@@ -377,11 +377,11 @@ export default function CompassionSection() {
       </div>
 
       {/* Right-bottom trust badge */}
-      <div className="absolute bottom-5 right-12 z-20 hidden items-center gap-3 rounded-2xl border border-[#CBAA77]/45 bg-[#FFF9EF]/90 px-4 py-3 text-[#5A3A21] shadow-[0_12px_35px_rgba(54,34,17,0.16)] backdrop-blur-md lg:flex">
+      <div className="absolute bottom-5 right-12 lg:right-[max(3rem,calc(50%-624px))] z-20 hidden items-center gap-3 rounded-2xl border border-[#CBAA77]/45 bg-[#FFF9EF]/90 px-4 py-3 text-[#5A3A21] shadow-[0_12px_35px_rgba(54,34,17,0.16)] backdrop-blur-md lg:flex">
         <div className="grid h-10 w-10 place-items-center rounded-full bg-[#A67635]/10 text-[#8E612E]">
           <ShieldIcon className="h-6 w-6" />
         </div>
-        <div className="text-[16px] leading-relaxed">
+        <div className="text-[14px] leading-relaxed">
           <div className="font-semibold">Compassionate Support.</div>
           <div>Dignified Goodbyes.</div>
         </div>

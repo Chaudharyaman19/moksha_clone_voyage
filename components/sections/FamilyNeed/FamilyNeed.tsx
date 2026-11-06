@@ -228,7 +228,7 @@ export default function PracticalSewaSupport() {
         lg:py-10
       "
     >
-      <div className="mx-auto w-full max-w-[1344px] px-[16px]">
+      <div className="mx-auto w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-[16px]">
 
         {/* =====================================================
             MAIN PANEL
@@ -315,8 +315,8 @@ export default function PracticalSewaSupport() {
               z-10
               grid
               grid-cols-1
-              lg:h-[630px]
-              lg:min-h-[630px]
+              lg:h-[560px]
+              lg:min-h-[560px]
               lg:grid-cols-[46%_54%]
             "
           >
@@ -331,7 +331,7 @@ export default function PracticalSewaSupport() {
                 flex-col
                 px-6
                 pb-[24px]
-                pt-[18px]
+                pt-[44px]
                 sm:px-8
                 lg:px-[42px]
               "
@@ -339,18 +339,8 @@ export default function PracticalSewaSupport() {
               {/* LABEL */}
 
               <div className="flex flex-col items-center">
-                <CustomIcon
-                  name="Lotus"
-                  className="
-                    h-[34px]
-                    w-[34px]
-                    text-[#D1540E]
-                  "
-                />
-
                 <div
                   className="
-                    mt-[2px]
                     flex
                     items-center
                     justify-center
@@ -447,7 +437,7 @@ export default function PracticalSewaSupport() {
                     className="
                       flex
                       h-auto
-                      min-h-[188px]
+                      min-h-[150px]
                       min-w-0
                       flex-col
                       items-center
@@ -466,8 +456,8 @@ export default function PracticalSewaSupport() {
                     <div
                       className="
                         flex
-                        h-[64px]
-                        w-[64px]
+                        h-[52px]
+                        w-[52px]
                         shrink-0
                         items-center
                         justify-center
@@ -479,8 +469,8 @@ export default function PracticalSewaSupport() {
                       <CustomIcon
                         name={card.icon}
                         className="
-                          h-[55px]
-                          w-[55px]
+                          h-[44px]
+                          w-[44px]
                         "
                       />
                     </div>
@@ -490,8 +480,8 @@ export default function PracticalSewaSupport() {
                     <h3
                       className="
                         mt-[3px]
-                        min-h-[38px]
-                        text-[16px]
+                        min-h-[34px]
+                        text-[15px]
                         font-semibold
                         leading-[1.2]
                       "
@@ -509,11 +499,11 @@ export default function PracticalSewaSupport() {
                       className="
                         mt-[3px]
                         flex
-                        min-h-[44px]
+                        min-h-[38px]
                         items-center
                         justify-center
                         whitespace-pre-line
-                        text-[16px]
+                        text-[14px]
                         leading-[1.25]
                         text-[#36312D]
                       "
@@ -573,8 +563,8 @@ export default function PracticalSewaSupport() {
                     to-[#D94B04]
                     px-[18px]
                     max-[1439px]:px-[14px]
-                    text-[16px]
-                    max-[1439px]:text-[15px]
+                    text-[15px]
+                    max-[1439px]:text-[14px]
                     font-semibold
                     uppercase
                     text-white
@@ -654,8 +644,8 @@ export default function PracticalSewaSupport() {
 
                   <p
                     className="
-                      text-[15px]
-                      max-[1439px]:text-[14px]
+                      text-[14px]
+                      max-[1439px]:text-[13px]
                       font-semibold
                       leading-[1.3]
                       text-[#3B3733]
@@ -702,7 +692,7 @@ export default function PracticalSewaSupport() {
             className="
               relative
               grid
-              min-h-[112px]
+              min-h-[94px]
               grid-cols-1
               lg:grid-cols-2
             "
@@ -719,14 +709,14 @@ export default function PracticalSewaSupport() {
                 items-center
                 gap-[23px]
                 px-[44px]
-                py-[14px]
+                py-[10px]
               "
             >
               <div
                 className="
                   flex
-                  h-[82px]
-                  w-[82px]
+                  h-[66px]
+                  w-[66px]
                   shrink-0
                   items-center
                   justify-center
@@ -736,8 +726,8 @@ export default function PracticalSewaSupport() {
                 <CustomIcon
                   name="LotusHands"
                   className="
-                    h-[72px]
-                    w-[72px]
+                    h-[58px]
+                    w-[58px]
                   "
                 />
               </div>
@@ -745,7 +735,7 @@ export default function PracticalSewaSupport() {
               <div>
                 <h3
                   className="
-                    text-[18px]
+                    text-[16px]
                     font-semibold
                     leading-[1.32]
                     text-[#24562A]
@@ -760,7 +750,7 @@ export default function PracticalSewaSupport() {
                 <p
                   className="
                     mt-[3px]
-                    text-[16px]
+                    text-[15px]
                     font-semibold
                     leading-[1.25]
                     text-[#D3580C]
@@ -805,15 +795,15 @@ export default function PracticalSewaSupport() {
                 border-t
                 border-[#D8CDBD]
                 px-[44px]
-                py-[14px]
+                py-[10px]
                 lg:border-t-0
               "
             >
               <div
                 className="
                   flex
-                  h-[74px]
-                  w-[74px]
+                  h-[62px]
+                  w-[62px]
                   shrink-0
                   items-center
                   justify-center
@@ -823,8 +813,8 @@ export default function PracticalSewaSupport() {
                 <CustomIcon
                   name="MapPin"
                   className="
-                    h-[64px]
-                    w-[64px]
+                    h-[52px]
+                    w-[52px]
                   "
                 />
               </div>
@@ -832,7 +822,7 @@ export default function PracticalSewaSupport() {
               <div className="relative z-10">
                 <p
                   className="
-                    text-[16px]
+                    text-[15px]
                     leading-[1.32]
                     text-[#385039]
                   "
@@ -843,7 +833,7 @@ export default function PracticalSewaSupport() {
                 <h3
                   className="
                     mt-[3px]
-                    text-[22px]
+                    text-[19px]
                     font-semibold
                     leading-tight
                     text-[#245524]

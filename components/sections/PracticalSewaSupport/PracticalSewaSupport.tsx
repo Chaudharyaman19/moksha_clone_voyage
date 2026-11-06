@@ -554,18 +554,11 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
 
       {/* MAIN */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[16px]">
+      <div className="wwh-outer relative z-10 mx-auto w-full max-w-[min(1280px,calc(100vw-56px))] px-[16px]">
 
         {/* HEADER */}
 
         <header className="mx-auto mb-2.5 sm:mb-3 max-w-[840px] text-center">
-          <div className="mb-[1px] flex justify-center">
-            <CustomIcon
-              name="LotusIcon"
-              className="h-[22px] w-[22px] text-[#D76113]"
-            />
-          </div>
-
           <div className="flex items-center justify-center gap-[12px]">
             <span className="h-px w-[52px] bg-[#D05A17]" />
 
@@ -614,18 +607,7 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
             </h2>
           )}
 
-          <div className="mx-auto mt-1 flex max-w-[200px] items-center justify-center gap-[8px]">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#DA7643]" />
-
-            <CustomIcon
-              name="LotusIcon"
-              className="h-[18px] w-[18px] text-[#D45D16]"
-            />
-
-            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#DA7643]" />
-          </div>
-
-          <p className="mx-auto mt-1 max-w-[700px] text-[13.5px] sm:text-[14px] leading-snug text-[#2C2825]">
+          <p className="mx-auto mt-1 max-w-[700px] text-[14px] sm:text-[15px] leading-snug text-[#2C2825]">
             {textOrFallback(
               websiteSection?.description,
               "Moksha Sewa ensures that every individual—regardless of their circumstances—receives a respectful and dignified farewell with complete care and compassion.",
@@ -641,6 +623,7 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
             <article
               key={card.title}
               className="
+                [container-type:inline-size]
                 relative
                 flex
                 h-auto
@@ -663,8 +646,8 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                   flex-col
                   items-center
                   px-[12px]
-                  pt-[80px]
-                  pb-2.5
+                  pt-[68px]
+                  pb-2
                   text-center
                 "
               >
@@ -672,10 +655,10 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                   className="
                     absolute
                     left-1/2
-                    top-[6px]
+                    top-[4px]
                     flex
-                    h-[68px]
-                    w-[68px]
+                    h-[58px]
+                    w-[58px]
                     -translate-x-1/2
                     items-center
                     justify-center
@@ -691,28 +674,25 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                 >
                   <CustomIcon
                     name={card.icon}
-                    className="h-[34px] w-[34px]"
+                    className="h-[30px] w-[30px]"
                   />
                 </div>
 
                 <h3
                   className="
-                    w-full
-                    max-w-full
+                    -mx-2.5
+                    max-w-none
                     overflow-hidden
                     text-ellipsis
                     whitespace-nowrap
                     font-sans
-                    text-[15px]
-                    sm:text-[16px]
-                    lg:text-[15.5px]
-                    xl:text-[17px]
-                    2xl:text-[18px]
                     font-semibold
                     leading-tight
                   "
                   style={{
                     color: card.titleColor,
+                    // short titles (e.g. "Cremation Coordination") can afford a larger size
+                    fontSize: `clamp(12px, ${card.title.length <= 22 ? 5.9 : 5.4}cqw, 20px)`,
                   }}
                   title={card.title}
                 >
@@ -726,14 +706,14 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                   }}
                 />
 
-                <p className="mt-1.5 max-w-[280px] text-[13px] sm:text-[13.5px] lg:text-[14px] leading-[1.35] text-[#28211D] line-clamp-2 min-h-[38px]">
+                <p className="mt-1.5 w-full text-[length:clamp(12px,4.5cqw,14px)] leading-[1.35] text-[#28211D] min-h-[38px]">
                   {card.desc}
                 </p>
               </div>
 
               {/* IMAGE */}
 
-              <div className="relative h-[190px] sm:h-[205px] lg:h-[215px] w-full shrink-0 overflow-hidden">
+              <div className="relative h-[140px] sm:h-[150px] lg:h-[155px] w-full shrink-0 overflow-hidden">
                 <Image
                   src={card.image}
                   alt={card.title.replace(/\n/g, " ")}
@@ -756,10 +736,10 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                   flex-1
                   flex-col
                   justify-start
-                  gap-1.5
-                  px-3.5
+                  gap-1
+                  px-3
                   pt-2
-                  pb-2.5
+                  pb-2
                 "
                 style={{
                   backgroundColor: card.featureBg,
@@ -772,8 +752,8 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                       flex
                       items-center
                       gap-2
-                      text-[13px]
-                      sm:text-[13.5px]
+                      text-[14px]
+                      sm:text-[14.5px]
                       leading-tight
                       text-[#28211D]
                     "
@@ -851,13 +831,13 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
 
                 <div className="min-w-0 flex-1">
                   <h4
-                    className="whitespace-nowrap truncate text-[13.5px] sm:text-[14px] font-bold leading-tight text-[#251D18]"
+                    className="whitespace-nowrap truncate text-[13px] sm:text-[13px] font-bold leading-tight text-[#251D18]"
                     title={item.title}
                   >
                     {item.title}
                   </h4>
 
-                  <p className="mt-0.5 text-[11.5px] sm:text-[12px] leading-tight text-[#37302A] line-clamp-2 min-h-[26px]">
+                  <p className="mt-0.5 text-[11px] sm:text-[11px] leading-tight text-[#37302A] line-clamp-2 min-h-[26px]">
                     {item.text}
                   </p>
                 </div>
@@ -872,11 +852,11 @@ export default function HowWeCanHelp({ isH1 = false }: { isH1?: boolean } = {}) 
                 className="h-[22px] w-[22px] text-[#E4520E]"
               />
 
-              <div className="mt-0.5 font-sans text-[13px] sm:text-[13.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
+              <div className="mt-0.5 font-sans text-[14px] sm:text-[14.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
                 Together,
               </div>
 
-              <div className="font-sans text-[13px] sm:text-[13.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
+              <div className="font-sans text-[14px] sm:text-[14.5px] italic leading-tight text-[#A84F1D] whitespace-nowrap">
                 We Serve with Dignity
               </div>
 

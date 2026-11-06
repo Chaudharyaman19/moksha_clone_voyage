@@ -307,7 +307,7 @@ export default function SupportInAction() {
           WIDTH
       ====================================================== */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[16px]">
+      <div className="relative z-10 mx-auto w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-[16px]">
         {/* =====================================================
             HEADER
         ====================================================== */}
@@ -667,7 +667,7 @@ export default function SupportInAction() {
             mt-[19px]
 
             flex
-            max-w-[1220px]
+            max-w-[1304px]
 
             items-center
             justify-center
@@ -695,6 +695,7 @@ export default function SupportInAction() {
               leading-[1.35]
               text-[#40505D]
               sm:text-[17px]
+              xl:whitespace-nowrap
             "
           >
             Every contribution strengthens Moksha Sewa&apos;s ability to support

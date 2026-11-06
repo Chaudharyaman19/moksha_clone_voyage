@@ -582,6 +582,7 @@ body {
      (clearing the 54px Social/Call rail with 21px breathing space) */
   .max-w-7xl,
   .max-w-\[1344px\],
+  .max-w-\[1336px\],
   .max-w-\[1400px\],
   .max-w-\[1440px\],
   .max-w-\[1500px\],
@@ -608,6 +609,7 @@ body {
   /* 2. Neutralize xl:px-0 and lg:px-0 on containers so content never hugs screen edges */
   .max-w-7xl,
   .max-w-\[1344px\],
+  .max-w-\[1336px\],
   .max-w-\[1400px\],
   .max-w-\[1600px\],
   .max-w-\[1720px\],
@@ -664,10 +666,14 @@ body {
   }
 
   /* 7. Hero Section on Homepage */
-  .hero-container-1366,
   .blog-container-1366 {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
+  }
+  /* hero sits in the same 1180px box as every other home section (16px inner gutter) */
+  .hero-container-1366 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
   .hero-section-1366 {
@@ -678,7 +684,7 @@ body {
   }
 
   .hero-content-row-1366 {
-    padding-top: 0 !important;
+    padding-top: 66px !important;
   }
 
   .hero-content-col-1366 {
@@ -771,7 +777,7 @@ body {
 /* On shorter laptop viewports (e.g. 13-inch / 14-inch 1366x768 screens or 1080p scaled), refine vertical rhythm */
 @media screen and (min-width: 1024px) and (max-height: 760px) {
   .hero-container-1366 {
-    padding-top: 100px !important;
+    padding-top: 0 !important;
   }
   .hero-logo-1366 {
     width: 220px !important;
@@ -820,7 +826,7 @@ body {
 .landing-typo h1:not(.hero-heading-1366),
 .landing-typo h2 {
   font-weight: 600 !important;
-  font-size: clamp(30px, 3.1vw, 44px) !important;
+  font-size: clamp(24px, 2.1vw, 30px) !important;
   line-height: 1.16 !important;
   letter-spacing: -0.01em !important;
   white-space: normal !important;
@@ -828,7 +834,7 @@ body {
 .landing-typo .hero-heading-1366 { font-weight: 500 !important; }
 /* small label above each section heading ("WHO WE HELP", "OUR SEWA", ...) */
 .landing-typo .lt-eyebrow {
-  font-size: clamp(16px, 1.45vw, 21px) !important;
+  font-size: clamp(13px, 1.05vw, 15px) !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
 }
@@ -839,7 +845,7 @@ body {
 .landing-typo header > p,
 .landing-typo h2 ~ p:first-of-type {
   font-weight: 400 !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
   line-height: 1.6 !important;
 }
 .landing-typo .trust-stage h2 {
@@ -853,6 +859,38 @@ body {
 .landing-typo h2 { color: #21130D !important; }
 .landing-typo h2 span[style*="D54200"], .landing-typo h2 span[style*="rgb(213, 66, 0)"] { color: #D54200 !important; }
 
+
+/* About: every section heading (h2) uses the same size as the home page section headings */
+body .about-page h2:not(#a) { font-size: clamp(24px, 2.1vw, 30px) !important; line-height: 1.12 !important; }
+
+/* About page: every section's content box = the same box as the home page (1440px -> 96..1344).
+   (1280-1390px laptops use the narrower 1160px box, same as home.) */
+@media (min-width: 1024px) {
+  .about-page :is(.max-w-7xl, .max-w-\[1344px\], .max-w-\[1180px\]) {
+    max-width: min(1248px, calc(100vw - 88px)) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .about-page .about-flush { padding-left: 0 !important; padding-right: 0 !important; }
+}
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  .about-page :is(.max-w-7xl, .max-w-\[1344px\], .max-w-\[1180px\]) {
+    max-width: 1128px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* FAQ: photo + list start at the same left edge as the hero (1280-1390px laptops use the narrower box) */
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  .faq-root { --fx: calc((100vw - 1160px) / 2 + 16px) !important; }
+}
+
+/* Who We Help: cards / strip line up with the hero's left text. On 1280-1390px laptops the hero box is 76rem wide. */
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  .wwh-inner { max-width: 1128px !important; }
+  .wwh-outer { max-width: 1160px !important; }
+}
 
 /* ---- Inner pages: same heading typography as the landing page ----
    Headings (h1-h4) and the subtitle right under them use Poppins; h1/h2 semibold 600 and larger,
@@ -942,3 +980,16 @@ body:has(.landing-typo) .footer-presence::before {
    line spacing than the other sections (otherwise the three columns at the bottom get cut off). */
 .landing-typo h2.hum-h2 { line-height: 1.06 !important; }
 .landing-typo p.hum-lead.hum-lead { line-height: 1.45 !important; }
+
+
+/* Hero slider: new slide image fades in over the previous one */
+@keyframes hero-img-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.hero-img-fade {
+  animation: hero-img-in 1.3s ease-in-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-img-fade { animation: none; }
+}

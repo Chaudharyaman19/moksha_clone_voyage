@@ -46,13 +46,11 @@ export default function WhyYourSupportMatters() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-[1344px] items-center px-[36px] py-6 sm:min-h-[480px] sm:px-[44px] lg:min-h-[480px] lg:px-[48px] lg:py-5">
-          <div className="w-full max-w-[610px]">
+        <div className="relative z-10 mx-auto flex min-h-[540px] w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] items-center px-[36px] py-6 sm:min-h-[480px] sm:px-[44px] lg:min-h-[480px] lg:px-[16px] lg:py-5">
+          <div className="w-full max-w-[570px]">
             {/* eyebrow */}
             <div className="flex flex-col items-center text-center">
-              <PiFlowerLotus className="h-6 w-6 text-[#B98A3C]" />
-
-              <div className="mt-2 flex w-full items-center justify-center gap-3">
+              <div className="flex w-full items-center justify-center gap-3">
                 <span className="h-px w-9 bg-[#C99A4B]" />
 
                 <div className="flex items-center gap-2">

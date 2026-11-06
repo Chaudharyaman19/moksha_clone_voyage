@@ -292,7 +292,7 @@ export default function ResponsibleSewa() {
             min-h-0
             overflow-hidden
             bg-[#FBF7EF]
-            lg:min-h-[490px]
+            lg:min-h-[400px]
           "
         >
           {/* =================================================
@@ -386,10 +386,10 @@ export default function ResponsibleSewa() {
               sm:px-[42px]
 
               lg:w-[55%]
-              lg:min-h-[490px]
+              lg:min-h-[400px]
               lg:px-[58px]
-              lg:pb-[34px]
-              lg:pt-[48px]
+              lg:pb-[24px]
+              lg:pt-[30px]
             "
           >
             {/* =================================================
@@ -459,7 +459,7 @@ export default function ResponsibleSewa() {
 
             <h2
               className="
-                mt-[17px]
+                mt-[10px]
 
                 font-sans
                 text-[24px]
@@ -476,7 +476,7 @@ export default function ResponsibleSewa() {
                 ORNAMENT
             ================================================= */}
 
-            <div className="mt-[19px] flex items-center gap-[10px]">
+            <div className="mt-[10px] flex items-center gap-[10px]">
               <span
                 className="
                   h-px
@@ -514,7 +514,7 @@ export default function ResponsibleSewa() {
 
             <p
               className="
-                mt-[23px]
+                mt-[12px]
                 max-w-[650px]
                 whitespace-pre-line
                 text-[17px]
@@ -674,14 +674,14 @@ export default function ResponsibleSewa() {
                   relative
 
                   flex
-                  min-h-[166px]
+                  min-h-[138px]
 
                   items-center
 
                   gap-[18px]
 
                   px-[24px]
-                  py-[18px]
+                  py-[12px]
 
                   ${
                     index !== 0

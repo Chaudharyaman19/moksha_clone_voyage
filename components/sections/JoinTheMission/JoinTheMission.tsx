@@ -4,8 +4,8 @@ import Image from "next/image";
 import type { ReactElement } from "react";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import * as LucideIcons from "lucide-react";
-
 import AccentTitle from "../shared/AccentTitle";
+
 /* =========================================================
    TYPES
 ========================================================= */
@@ -24,6 +24,7 @@ interface MissionCard {
   buttonLabel: string;
   buttonHref: string;
   accent: string;
+  tint: string;
 }
 
 /* =========================================================
@@ -199,342 +200,103 @@ const cards: MissionCard[] = [
     alt: "A person placing a donation into a Sewa donation box by the river",
     icon: "GiveIcon",
     title: "Give in Sewa",
-    description:
-      "Help extend dignified final-rites\nsupport to eligible cases.",
+    description: "Help extend dignified final-rites support to eligible cases.",
     buttonLabel: "Donate",
     buttonHref: "/donation",
-    accent: "#004A30",
+    accent: "#3F8A5F",
+    tint: "#F6FAF3",
   },
-
   {
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165150/moksha-sewa/assets/donation-images/volunteer-sewa.png",
     alt: "Volunteers supporting an elderly person with compassion",
     icon: "ServeIcon",
     title: "Serve in Sewa",
-    description:
-      "Give your valuable time, presence,\nand compassionate support.",
+    description: "Give your valuable time, presence, and compassionate support.",
     buttonLabel: "Volunteer",
     buttonHref: "/volunteer/register",
-    accent: "#B24E11",
+    accent: "#E8803A",
+    tint: "#FFF7EE",
   },
-
   {
     image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165148/moksha-sewa/assets/donation-images/partner-sewa.png",
     alt: "A professional team discussing a partnership around a laptop",
     icon: "PartnerIcon",
     title: "Partner in Sewa",
-    description:
-      "CSR, institutions, hospitals, and\nvarious community partners.",
+    description: "CSR, institutions, hospitals, and various community partners.",
     buttonLabel: "Partner",
     buttonHref: "/partnership",
-    accent: "#004A30",
+    accent: "#D1A442",
+    tint: "#FEFAEC",
   },
 ];
+
 export default function JoinTheMission() {
   const websiteSection = useWebsiteSection("join-mission");
   const missionCards = [
     ...cards.map((fallback, index) => {
-    const item = itemOrFallback(websiteSection?.items, index, {
-      title: fallback.title,
-      label: fallback.buttonLabel,
-      description: fallback.description,
-      image: fallback.image,
-      href: fallback.buttonHref,
-      icon: fallback.icon,
-    });
+      const item = itemOrFallback(websiteSection?.items, index, {
+        title: fallback.title,
+        label: fallback.buttonLabel,
+        description: fallback.description,
+        image: fallback.image,
+        href: fallback.buttonHref,
+        icon: fallback.icon,
+      });
 
-    return {
-      ...fallback,
-      image: item.image || fallback.image,
-      alt: textOrFallback(item.title, fallback.alt, 120),
-      title: textOrFallback(item.title, fallback.title, 60),
-      description: textOrFallback(item.description, fallback.description, 140),
-      buttonLabel: textOrFallback(item.label, fallback.buttonLabel, 36),
-      buttonHref: item.href || fallback.buttonHref,
-      icon: item.icon || fallback.icon,
-    };
+      return {
+        ...fallback,
+        image: item.image || fallback.image,
+        alt: textOrFallback(item.title, fallback.alt, 120),
+        title: textOrFallback(item.title, fallback.title, 60),
+        description: textOrFallback(item.description, fallback.description, 140).replace(/\s*\n\s*/g, " "),
+        buttonLabel: textOrFallback(item.label, fallback.buttonLabel, 36),
+        buttonHref: item.href || fallback.buttonHref,
+        icon: item.icon || fallback.icon,
+      };
     }),
     ...(websiteSection?.items?.slice(cards.length) ?? []).map((item) => ({
       ...cards[cards.length - 1],
       title: item.title || "New Mission",
-      label: item.label || "Support",
-      description: item.description || "Additional mission information.",
+      buttonLabel: item.label || "Support",
+      description: (item.description || "Additional mission information.").replace(/\s*\n\s*/g, " "),
       image: item.image || cards[cards.length - 1].image,
-      href: item.href || "/",
+      buttonHref: item.href || "/",
       icon: item.icon || cards[cards.length - 1].icon,
     })),
   ];
 
+  const headingText = textOrFallback(websiteSection?.title, "There Is a Place for Everyone in Sewa", 95);
+  const headingAccent = "Sewa";
+
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#FCF8F0]
-        px-4
-        py-[20px]
-        sm:px-5
-        lg:px-6
-        lg:py-[24px]
-      "
-    >
-      {/* =====================================================
-          SUBTLE BACKGROUND PATTERN
-      ====================================================== */}
-
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(143,99,49,0.055) 0 1px, transparent 1.1px)",
-          backgroundSize: "23px 23px",
-        }}
-      />
-
-      {/* =====================================================
-          LEFT FLORAL DECORATION
-      ====================================================== */}
-
-      <svg
-        viewBox="0 0 220 240"
-        className="
-          pointer-events-none
-          absolute
-          -left-[55px]
-          top-[14px]
-          h-[220px]
-          w-[210px]
-          text-[#AEB6A0]/30
-        "
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.25"
-      >
-        <path d="M30 214C54 162 89 103 177 28" />
-
-        <path d="M49 166c-27-10-34-35-25-56 25 8 41 27 39 50" />
-
-        <path d="M76 126c-22-16-23-40-10-58 22 13 32 32 26 54" />
-
-        <path d="M108 86c-16-21-9-44 7-58 18 18 21 38 8 55" />
-
-        <path d="M142 55c-10-21 2-38 20-45 13 18 9 34-8 46" />
-      </svg>
-
-      {/* =====================================================
-          RIGHT GHAT BACKGROUND
-      ====================================================== */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          right-0
-          top-0
-          h-[255px]
-          w-[570px]
-          overflow-hidden
-        "
-      >
-        <Image
-          src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165059/moksha-sewa/assets/about-reference/story-evening-ghat.png"}
-          alt="Join Moksha Sewa Humanitarian Mission"
-          fill
-          sizes="570px"
-          className="
-            object-cover
-            object-[72%_center]
-            opacity-[0.30]
-          "
+    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#FFFAF4_0%,#FFF8F1_100%)] px-4 py-4 sm:px-6 lg:px-0 lg:py-5">
+      {/* faint lotus outlines in the top corners */}
+      {["left-[3%]", "right-[3%]"].map((pos) => (
+        <CustomIcon
+          key={pos}
+          name="Lotus"
+          className={`pointer-events-none absolute ${pos} top-3 hidden h-[84px] w-[84px] text-[#F0C9A4]/60 lg:block`}
         />
+      ))}
 
-        <div
-          className="
-            absolute
-            inset-y-0
-            left-0
-            w-[60%]
-            bg-gradient-to-r
-            from-[#FCF8F0]
-            via-[#FCF8F0]/75
-            to-transparent
-          "
-        />
-
-        <div
-          className="
-            absolute
-            inset-x-0
-            bottom-0
-            h-[90px]
-            bg-gradient-to-t
-            from-[#FCF8F0]
-            via-[#FCF8F0]/50
-            to-transparent
-          "
-        />
-
-        {/* BIRDS */}
-
-        <svg
-          viewBox="0 0 150 60"
-          className="
-            absolute
-            right-[40px]
-            top-[20px]
-            h-[55px]
-            w-[145px]
-            text-[#C59A56]/45
-          "
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        >
-          <path d="M8 24c7-7 14-7 21 0 7-7 14-7 21 0" />
-          <path d="M57 40c6-6 12-6 18 0 6-6 12-6 18 0" />
-          <path d="M100 18c5-5 10-5 15 0 5-5 10-5 15 0" />
-        </svg>
-      </div>
-
-      {/* =====================================================
-          CONTENT WIDTH
-      ====================================================== */}
-
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[1344px]
-          px-[16px]
-        "
-      >
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-
-        <header
-          className="
-            mx-auto
-            mb-[24px]
-            max-w-[1060px]
-            text-center
-          "
-        >
-          {/* LABEL */}
-
-          <div
-            className="
-              mb-[5px]
-              flex
-              items-center
-              justify-center
-              gap-[10px]
-            "
-          >
-            <span className="relative h-px w-[58px] bg-[#B77E26]">
-              <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B77E26]" />
+      <div className="wwh-inner relative z-10 mx-auto w-full max-w-[min(1248px,calc(100vw-88px))] max-lg:max-w-none">
+        {/* ================= HEADER ================= */}
+        <header className="mx-auto mb-4 max-w-[1020px] text-center">
+          <div className="flex items-center justify-center gap-3">
+            <span className="h-px w-[52px] bg-gradient-to-r from-transparent to-[#B88335]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#B88335]" />
+            <span className="lt-eyebrow font-sans font-semibold uppercase text-[#B77912]">
+                {textOrFallback(websiteSection?.eyebrow, "Join The Mission", 60)}
             </span>
-
-            <CustomIcon
-              name="Lotus"
-              className="
-                h-[23px]
-                w-[23px]
-                text-[#B17A27]
-              "
-            />
-
-            <span
-              className="lt-eyebrow 
-                font-sans
-                text-[16px]
-                font-semibold
-                uppercase
-                text-[#9B6B25]
-              "
-            >
-              {textOrFallback(websiteSection?.eyebrow, "Join The Mission", 60)}
-            </span>
-
-            <span className="relative h-px w-[58px] bg-[#B77E26]">
-              <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B77E26]" />
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[#B88335]" />
+            <span className="h-px w-[52px] bg-gradient-to-l from-transparent to-[#B88335]" />
           </div>
 
-          {/* HEADING */}
-
-          <h2
-            className="
-              font-sans
-              text-[24px]
-              font-semibold
-              leading-[1.05]
-              text-[#074A31]
-              sm:text-[30px]
-            "
-          >
-            <AccentTitle text={textOrFallback(websiteSection?.title, "There Is a Place for Everyone in Sewa", 95)} accent="Everyone in Sewa" />
+          <h2 className="mt-2 font-sans text-[24px] font-semibold leading-[1.1] sm:text-[30px]">
+            <AccentTitle text={headingText} accent={headingAccent} />
           </h2>
 
-          {/* LOTUS DIVIDER */}
-
-          <div
-            className="
-              mx-auto
-              mt-[8px]
-              flex
-              max-w-[400px]
-              items-center
-              justify-center
-              gap-[10px]
-            "
-          >
-            <span
-              className="
-                h-px
-                flex-1
-                bg-gradient-to-r
-                from-transparent
-                to-[#BD8A3A]
-              "
-            />
-
-            <CustomIcon
-              name="Lotus"
-              className="
-                h-[24px]
-                w-[24px]
-                text-[#B57C27]
-              "
-            />
-
-            <span
-              className="
-                h-px
-                flex-1
-                bg-gradient-to-l
-                from-transparent
-                to-[#BD8A3A]
-              "
-            />
-          </div>
-
-          {/* DESCRIPTION */}
-
-          <p
-            className="
-              mx-auto
-              mt-[9px]
-              max-w-[950px]
-              text-[16px]
-              leading-[1.42]
-              text-[#50504B]
-            "
-          >
+          <p className="mx-auto mt-1.5 max-w-[1000px] text-[14px] leading-[1.45] text-[#2B2623]">
             {textOrFallback(
               websiteSection?.description,
               "Every act of kindness helps us bring dignity, compassion and support to those who need it most in their final journey.",
@@ -543,322 +305,84 @@ export default function JoinTheMission() {
           </p>
         </header>
 
-        {/* =====================================================
-            CARDS
-        ====================================================== */}
-
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-[16px]
-            lg:grid-cols-3
-          "
-        >
+        {/* ================= 3 CARDS ================= */}
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {missionCards.map((card) => (
             <article
               key={card.title}
-              className="
-                grid
-                h-[322px]
-                overflow-hidden
-                rounded-[11px]
-                border
-                border-[#E2D6C4]
-                bg-[#FFFDF8]
-                shadow-[0_6px_17px_rgba(68,44,20,0.08)]
-                sm:grid-cols-[57%_43%]
-              "
+              className="relative grid min-h-[290px] grid-cols-[48%_52%] overflow-hidden rounded-[14px] bg-white shadow-[0_6px_17px_rgba(68,44,20,0.09)] max-sm:min-h-[280px]"
+              style={{ boxShadow: `0 8px 22px rgba(70,45,25,0.12), 0 6px 0 -2px ${card.tint}` }}
             >
-              {/* ===============================================
-                  IMAGE
-              ================================================ */}
-
-              <div
-                className="
-                  relative
-                  min-h-[230px]
-                  overflow-hidden
-                  sm:h-full
-                "
-              >
-                <Image
-                  src={card.image}
-                  alt={card.alt}
-                  fill
-                  quality={95}
-                  sizes="
-                    (max-width:640px) 100vw,
-                    (max-width:1024px) 60vw,
-                    20vw
-                  "
-                  className="
-                    object-cover
-                    object-center
-                  "
-                />
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-                    bg-gradient-to-t
-                    from-black/10
-                    via-transparent
-                    to-transparent
-                  "
-                />
+              {/* image + tinted wedge */}
+              <div className="relative" style={{ backgroundColor: card.tint }}>
+                <div className="absolute inset-0 overflow-hidden rounded-br-[90px]">
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    fill
+                    quality={90}
+                    sizes="(max-width:1024px) 50vw, 17vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
-              {/* ===============================================
-                  CONTENT
-              ================================================ */}
-
+              {/* content */}
               <div
-                className="
-                  flex
-                  min-w-0
-                  flex-col
-                  items-start
-                  justify-center
-                  px-[19px]
-                  py-[16px]
-                "
+                className="flex flex-col px-4 pb-4 pt-4 [container-type:inline-size]"
+                style={{ background: card.tint }}
               >
-                {/* ICON */}
-
                 <span
-                  className="
-                    flex
-                    h-[62px]
-                    w-[62px]
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    text-white
-                    shadow-[0_4px_10px_rgba(40,28,16,0.10)]
-                  "
-                  style={{
-                    backgroundColor: card.accent,
-                  }}
+                  className="flex h-[62px] w-[62px] shrink-0 items-center justify-center rounded-full text-white"
+                  style={{ backgroundColor: card.accent }}
                 >
-                  <CustomIcon
-                    name={card.icon}
-                    className="
-                      h-[36px]
-                      w-[36px]
-                    "
-                  />
+                  <CustomIcon name={card.icon} className="h-[34px] w-[34px]" />
                 </span>
 
-                {/* TITLE */}
-
                 <h3
-                  className="
-                    mt-[9px]
-                    font-sans
-                    text-[22px]
-                    font-semibold
-                    leading-[1.05]
-                  "
-                  style={{
-                    color: card.accent,
-                  }}
+                  className="mt-2 whitespace-nowrap font-sans text-[length:clamp(17px,12cqw,24px)] font-bold leading-[1.15]"
+                  style={{ color: card.accent }}
                 >
                   {card.title}
                 </h3>
 
-                {/* UNDERLINE */}
+                <span className="mt-2 h-[2px] w-[34px] shrink-0 rounded-full bg-[#B8862F]" />
 
-                <span
-                  className="
-                    mt-[7px]
-                    h-[2px]
-                    w-[35px]
-                  "
-                  style={{
-                    backgroundColor: "#C38E32",
-                  }}
-                />
-
-                {/* DESCRIPTION */}
-
-                <p
-                  className="
-                    mt-[12px]
-                    whitespace-pre-line
-                    text-[14px]
-                    leading-[1.42]
-                    text-[#4B4944]
-                  "
-                >
-                  {card.description}
-                </p>
-
-                {/* BUTTON */}
+                <p className="mt-2 text-[14px] leading-[1.42] text-[#2B2623]">{card.description}</p>
 
                 <a
                   href={card.buttonHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="
-                    group
-                    mt-auto
-                    flex
-                    min-h-[45px]
-                    w-full
-                    items-center
-                    justify-center
-                    gap-[10px]
-                    rounded-[5px]
-                    px-[10px]
-                    text-center
-                    text-[16px]
-                    font-semibold
-                    uppercase
-                    leading-[1.15]
-                    text-white
-                    shadow-[0_4px_9px_rgba(45,30,15,0.10)]
-                    transition
-                    duration-300
-                    hover:-translate-y-[1px]
-                    hover:brightness-105
-                  "
-                  style={{
-                    backgroundColor: card.accent,
-                  }}
+                  className="group mt-auto flex h-[48px] w-full items-center justify-center gap-2 rounded-[9px] border-2 border-[#D09A2D] bg-[#004B36] text-[15px] font-semibold uppercase tracking-[0.02em] text-white shadow-[0_4px_9px_rgba(45,30,15,0.15)] transition duration-300 hover:-translate-y-[1px] hover:brightness-110"
                 >
-                  <span>
-                    {card.buttonLabel}
-                  </span>
-
-                  <CustomIcon
-                    name="ArrowRight"
-                    className="
-                      h-[17px]
-                      w-[17px]
-                      shrink-0
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-[3px]
-                    "
-                  />
+                  <span>{card.buttonLabel}</span>
+                  <CustomIcon name="ArrowRight" className="h-[15px] w-[15px] shrink-0 transition-transform duration-300 group-hover:translate-x-[3px]" />
                 </a>
               </div>
             </article>
           ))}
         </div>
 
-        {/* =====================================================
-            BOTTOM BAND
-        ====================================================== */}
+        {/* ================= BOTTOM BAND ================= */}
+        <div className="mt-3 grid grid-cols-1 overflow-hidden rounded-[10px] border border-[#E2D6C5] bg-[#F4EBDD] shadow-[0_4px_11px_rgba(70,45,21,0.04)] lg:grid-cols-[1fr_auto]">
+          <div className="flex items-center gap-3 px-5 py-3">
+            <CustomIcon name="Lotus" className="h-[38px] w-[38px] shrink-0 text-[#B1843E]" />
+            <span className="h-9 w-px shrink-0 bg-[#DDD0B9]" />
+            <p className="max-w-[760px] text-[14px] leading-[1.4] text-[#2B2623]">
+              {textOrFallback(
+                websiteSection?.bottomStatement,
+                "Whether you give, serve or partner – your support creates a meaningful difference in ensuring dignity and respect in every final journey we are able to support.",
+                220
+              )}
+            </p>
+          </div>
 
-        <div
-          className="
-            mt-[16px]
-            overflow-hidden
-            rounded-[10px]
-            border
-            border-[#E2D6C5]
-            bg-[#F4EBDD]
-            shadow-[0_4px_11px_rgba(70,45,21,0.04)]
-          "
-        >
-          <div
-            className="
-              grid
-              min-h-[79px]
-              grid-cols-1
-              lg:grid-cols-[61%_39%]
-            "
-          >
-            {/* LEFT */}
-
-            <div
-              className="
-                flex
-                items-center
-                gap-[18px]
-                px-[30px]
-                py-[10px]
-              "
-            >
-              <span
-                className="
-                  flex
-                  h-[52px]
-                  w-[52px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-[#D7C294]
-                  bg-[#FAF5E9]
-                  text-[#B1843E]
-                "
-              >
-                <CustomIcon
-                  name="CommunityIcon"
-                  className="
-                    h-[32px]
-                    w-[32px]
-                  "
-                />
-              </span>
-
-              <p
-                className="
-                  max-w-[760px]
-                  text-[16px]
-                  leading-[1.4]
-                  text-[#4D4A44]
-                "
-              >
-                {textOrFallback(websiteSection?.bottomStatement, "Whether you give, serve or partner – your support creates a meaningful difference in ensuring dignity and respect in every final journey we are able to support.", 300)}
-              </p>
-            </div>
-
-            {/* RIGHT */}
-
-            <div
-              className="
-                flex
-                items-center
-                justify-center
-                gap-[18px]
-                border-t
-                border-[#DDD0B9]
-                px-[24px]
-                py-[10px]
-                lg:border-l
-                lg:border-t-0
-              "
-            >
-              <CustomIcon
-                name="Lotus"
-                className="
-                  h-[44px]
-                  w-[44px]
-                  shrink-0
-                  text-[#B57A28]
-                "
-              />
-
-              <p
-                className="
-                  font-sans
-                  text-[19px]
-                  italic
-                  leading-[1.25]
-                  text-[#A76A27]
-                "
-              >
-                Together, we bring compassion to life.
-              </p>
-            </div>
+          <div className="flex items-center justify-center gap-3 border-t border-[#DDD0B9] px-6 py-3 lg:border-l lg:border-t-0">
+            <CustomIcon name="Lotus" className="h-[34px] w-[34px] shrink-0 text-[#B57A28]" />
+            <p className="font-sans text-[17px] italic leading-[1.25] text-[#A76A27]">
+              Together, we bring compassion to life.
+            </p>
           </div>
         </div>
       </div>

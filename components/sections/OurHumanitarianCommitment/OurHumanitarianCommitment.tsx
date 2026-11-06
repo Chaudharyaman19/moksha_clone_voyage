@@ -155,22 +155,28 @@ const features = [
     icon: "ShieldCheck",
     title: "Legally Authorised Cases",
     text: "We support only legally authorised unclaimed cases.",
-    iconColor: "#0C5137",
-    secondColor: "#C79421",
+    iconColor: "#2F7A52",
+    titleColor: "#2F7A52",
+    circle: "#EDF5E6",
+    bar: "linear-gradient(90deg,#9CC47E,#4F9A6E)",
   },
   {
-    icon: "Diya",
+    icon: "Lotus",
     title: "Dignified Final Rites",
     text: "Every soul deserves a respectful and dignified farewell.",
-    iconColor: "#B97D13",
-    secondColor: "#0C5137",
+    iconColor: "#4A2A14",
+    titleColor: "#2A1A10",
+    circle: "#FDEFD2",
+    bar: "linear-gradient(90deg,#F7C262,#EE9446)",
   },
   {
     icon: "HeartHands",
     title: "Compassionate Human Presence",
     text: "Our volunteers stand with care, respect and humanity.",
-    iconColor: "#0C5137",
-    secondColor: "#B97D13",
+    iconColor: "#2F7A52",
+    titleColor: "#2F7A52",
+    circle: "#EDF5E6",
+    bar: "linear-gradient(90deg,#9CC47E,#4F9A6E)",
   },
 ];
 
@@ -187,242 +193,147 @@ export default function HumanitarianCommitment() {
   });
 
   return (
-    <section className="w-full bg-[#F7F3EC] px-3 py-6 sm:px-4 sm:py-8 lg:px-5 lg:py-10">
-      <div className="mx-auto w-full max-w-[1344px] px-[16px]">
+    <section className="w-full bg-[#F9F5EE] px-3 py-5 sm:px-4 sm:py-6 lg:px-0 lg:py-8">
+      <div className="mx-auto w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-[16px] max-lg:max-w-none">
         {/* =====================================================
-            MAIN LARGE CARD
+            MAIN LARGE CARD (content + image + commitment strip)
         ====================================================== */}
-
         <div className="relative overflow-hidden rounded-[18px] border border-[#D7AF67] bg-[#FCF8F0] shadow-[0_7px_24px_rgba(74,47,19,0.06)]">
-          <div className="grid lg:min-h-[630px] lg:grid-cols-[59%_41%]">
-            {/* =================================================
-                LEFT CONTENT
-            ================================================== */}
-
-            <div className="relative z-10 flex flex-col px-5 pb-5 pt-4 sm:px-7 lg:px-[34px] lg:pb-[28px] lg:pt-[22px]">
-              {/* TOP LEFT LEAF */}
-
+          <div className="grid lg:grid-cols-[60%_40%]">
+            {/* ================= LEFT CONTENT ================= */}
+            <div className="relative z-10 flex flex-col px-5 pb-3 pt-5 sm:px-7 lg:px-[26px] lg:pb-[10px] lg:pt-[26px]">
+              {/* top-left leaf */}
               <svg
                 viewBox="0 0 190 240"
-                className="pointer-events-none absolute -left-[12px] -top-[4px] h-[210px] w-[160px] text-[#A8AF94]/45"
+                className="pointer-events-none absolute -left-[12px] -top-[4px] h-[200px] w-[150px] text-[#C9C3A8]/50"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.3"
+                strokeWidth="1.2"
               >
                 <path d="M25 220C40 170 75 105 156 34" />
-
                 <path d="M42 171c-24-11-29-35-21-55 24 8 38 26 36 49" />
-
                 <path d="M64 137c-20-16-20-40-8-57 21 13 30 32 23 53" />
-
                 <path d="M91 101c-15-20-8-42 7-56 18 18 21 37 8 54" />
-
                 <path d="M122 69c-9-22 3-41 22-49 13 20 7 37-9 50" />
               </svg>
 
-              {/* ================= TOP LABEL ================= */}
-
-              <div className="relative z-10 flex flex-col items-center">
-                <CustomIcon
-                  name="Lotus"
-                  className="mb-[2px] h-[28px] w-[28px] text-[#B9780B]"
-                />
-
-                <div className="flex flex-wrap items-center justify-center gap-[9px]">
-                  <span className="relative hidden h-px w-[72px] bg-[#B87A12] sm:block">
-                    <span className="absolute -right-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
-                  </span>
-
-                  <span className="lt-eyebrow text-center font-sans text-[16px] font-semibold uppercase text-[#B77912]">
-                    {textOrFallback(websiteSection?.eyebrow, "Our Humanitarian Commitment", 70)}
-                  </span>
-
-                  <span className="relative hidden h-px w-[72px] bg-[#B87A12] sm:block">
-                    <span className="absolute -left-[3px] -top-[2px] h-[5px] w-[5px] rounded-full bg-[#B87A12]" />
-                  </span>
-                </div>
+              {/* eyebrow */}
+              <div className="relative z-10 flex items-center justify-center gap-3">
+                <span className="hidden h-px w-[52px] bg-gradient-to-r from-transparent to-[#B88335] sm:block" />
+                <span className="hidden h-1.5 w-1.5 rounded-full bg-[#B88335] sm:block" />
+                <span className="lt-eyebrow text-center font-sans font-semibold uppercase text-[#B77912]">
+                  {textOrFallback(websiteSection?.eyebrow, "Our Humanitarian Commitment", 70)}
+                </span>
+                <span className="hidden h-1.5 w-1.5 rounded-full bg-[#B88335] sm:block" />
+                <span className="hidden h-px w-[52px] bg-gradient-to-l from-transparent to-[#B88335] sm:block" />
               </div>
 
-              {/* ================= HEADING ================= */}
-
-              <h2 className="hum-h2 relative z-10 mx-auto mt-[4px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.05] text-[#064A31] sm:text-[30px]">
+              {/* heading */}
+              <h2 className="hum-h2 relative z-10 mx-auto mt-[6px] max-w-[720px] text-center font-sans text-[24px] font-semibold leading-[1.08] sm:text-[30px]">
                 <AccentTitle text={textOrFallback(websiteSection?.title, "No One Should Leave\nThis World Without Dignity.", 95)} accent="Dignity." />
               </h2>
 
-              {/* ================= LOTUS DIVIDER ================= */}
-
+              {/* lotus divider */}
               <div className="relative z-10 mt-[6px] flex items-center justify-center gap-[10px]">
-                <span className="h-px w-[78px] bg-gradient-to-r from-transparent to-[#BE8C3E]" />
-
-                <CustomIcon
-                  name="Lotus"
-                  className="h-[27px] w-[27px] text-[#B87912]"
-                />
-
-                <span className="h-px w-[78px] bg-gradient-to-l from-transparent to-[#BE8C3E]" />
+                <span className="h-px w-[70px] bg-gradient-to-r from-transparent to-[#D9A05A]" />
+                <CustomIcon name="Lotus" className="h-[22px] w-[22px] text-[#E8650C]" />
+                <span className="h-px w-[70px] bg-gradient-to-l from-transparent to-[#D9A05A]" />
               </div>
 
-              {/* ================= PARAGRAPH ================= */}
-
-              <p className="hum-lead relative z-10 mx-auto mt-[6px] max-w-[690px] text-center text-[16px] leading-[1.5] text-[#465365]">
-                {textOrFallback(websiteSection?.description, "Moksha Sewa supports legally authorised unclaimed cases with respectful final-rites coordination after completion of applicable police, hospital and authority formalities. Our team works carefully with the concerned authorities and service partners to help ensure that each final journey is handled with dignity, compassion, proper coordination and due respect. Support is provided only within the approved legal process and after the required documentation, verification and permissions have been completed.", 600)}
+              {/* paragraph */}
+              <p className="hum-lead relative z-10 mx-auto mt-[8px] max-w-[470px] text-center text-[14px] leading-[1.5] text-[#3A3A46]">
+                {textOrFallback(websiteSection?.description, "Moksha Sewa supports legally authorised unclaimed cases with respectful final-rites coordination after completion of applicable police, hospital and authority formalities. Our team works carefully with the concerned authorities and service partners to help ensure that each final journey is handled with dignity, compassion, proper coordination and due respect. Support is provided only within the approved legal process and after the required documentation, verification and permissions have been completed.", 700)}
               </p>
 
-              {/* =================================================
-                  FEATURES
-              ================================================== */}
-
-              <div className="relative z-10 mt-auto grid grid-cols-1 divide-y divide-[#DDBF91] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {/* 3 feature cards */}
+              <div className="relative z-10 mt-[40px] grid grid-cols-1 gap-x-3 gap-y-10 sm:grid-cols-3">
                 {managedFeatures.map((item) => (
                   <div
                     key={item.title}
-                    className="flex min-h-[205px] flex-col items-center justify-start px-[18px] pt-[4px] text-center"
+                    className="relative flex flex-col items-center rounded-[14px] bg-[#FFFDF8] px-3 pb-4 pt-[40px] text-center shadow-[0_6px_16px_rgba(90,60,25,0.10)]"
                   >
-                    {/* ICON CIRCLE */}
-
-                    <div className="flex h-[86px] w-[86px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2]">
-                      <CustomIcon
-                        name={item.icon}
-                        className="h-[49px] w-[49px]"
-                      />
+                    <div
+                      className="absolute left-1/2 top-0 flex h-[58px] w-[58px] -translate-x-1/2 -translate-y-[28px] items-center justify-center rounded-full"
+                      style={{ backgroundColor: item.circle, color: item.iconColor }}
+                    >
+                      <CustomIcon name={item.icon} className="h-[30px] w-[30px]" />
                     </div>
 
-                    {/* TITLE */}
-
-                    <h3 className="mt-[6px] min-h-[40px] text-[17px] font-semibold leading-[1.15] text-[#125439]">
+                    <h3 className="mt-1 min-h-[38px] max-w-[170px] text-[16px] font-bold leading-[1.15]" style={{ color: item.titleColor }}>
                       {item.title}
                     </h3>
 
-                    {/* GOLD LINE */}
+                    <span className="mt-[6px] h-[2px] w-[34px] bg-[#E8650C]" />
 
-                    <span className="mt-[5px] h-[2px] w-[36px] bg-[#C99328]" />
+                    <p className="mt-[8px] max-w-[190px] text-[14px] leading-[1.35] text-[#3A3A46]">{item.text}</p>
 
-                    {/* TEXT */}
-
-                    <p className="mt-[7px] max-w-[210px] text-[13px] leading-[1.3] text-[#48515E]">
-                      {item.text}
-                    </p>
+                    <span className="absolute inset-x-0 bottom-0 h-[5px] rounded-b-[14px]" style={{ background: item.bar }} />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* =================================================
-                RIGHT IMAGE
-            ================================================== */}
-
-            <div className="relative min-h-[460px] lg:min-h-[630px]">
-              <div className="absolute inset-0 overflow-hidden rounded-b-[16px] border-t-2 border-[#D5A148] lg:rounded-b-none lg:rounded-tl-[230px_54%] lg:rounded-bl-[230px_54%] lg:border-l-2 lg:border-t-0">
+            {/* ================= RIGHT IMAGE ================= */}
+            <div className="relative min-h-[400px] lg:min-h-[500px]">
+              <div className="absolute inset-x-3 bottom-[34px] top-3 overflow-hidden rounded-[22px] border-2 border-[#E2A93C] lg:left-0 lg:right-3 lg:rounded-l-[260px_50%] lg:rounded-r-[24px]">
                 <Image
                   src={websiteSection?.image || "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165202/moksha-sewa/assets/image.png"}
                   alt={textOrFallback(websiteSection?.title, "Moksha Sewa unclaimed body support", 120)}
                   fill
                   quality={100}
                   sizes="(max-width: 1024px) 100vw, 41vw"
-                  className="object-inherit object-center"
+                  className="object-cover object-center"
                 />
               </div>
 
-              {/* ================= OVERLAP CTA ================= */}
-
-              <div className="absolute bottom-[9px] left-[6px] right-[9px] z-20">
+              {/* overlapping CTA */}
+              <div className="absolute bottom-[8px] left-3 right-3 z-20 flex justify-center lg:left-[8%] lg:right-[6%]">
                 <a
                   href={websiteSection?.buttonHref || "/unclaimed-body-sewa"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-[64px] w-full items-center justify-between gap-[10px] rounded-[16px] border-[3px] border-[#C69428] bg-[#005234] px-[12px] py-[10px] text-white shadow-[0_8px_18px_rgba(2,63,40,0.18)] sm:min-h-[88px] sm:gap-0 sm:rounded-[24px] sm:px-[18px]"
+                  className="flex min-h-[50px] w-full items-center justify-between gap-3 rounded-[9px] border-2 border-[#D09A2D] bg-[#004B36] px-[10px] py-[6px] text-white shadow-[0_6px_14px_rgba(2,63,40,0.25)]"
                 >
-                  <div className="flex min-w-0 items-center gap-[10px] sm:gap-[15px]">
-                    <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border-[3px] border-[#C79428] text-[#D0A02D] sm:h-[61px] sm:w-[61px]">
-                      <CustomIcon
-                        name="Lotus"
-                        className="h-[24px] w-[24px] sm:h-[36px] sm:w-[36px]"
-                      />
+                  <span className="flex min-w-0 items-center gap-3">
+                    <span className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full border-[2px] border-[#D3A23A] text-[#E5B94A]">
+                      <CustomIcon name="Lotus" className="h-[19px] w-[19px]" />
                     </span>
-
-                    <span className="text-[16px] font-semibold uppercase leading-tight sm:leading-none">
+                    <span className="text-[15px] font-semibold uppercase leading-tight">
                       {textOrFallback(websiteSection?.buttonLabel, "Know About Unclaimed Body Sewa", 60)}
                     </span>
-                  </div>
-
-                  <span className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-full bg-[#DEA516] text-white sm:h-[49px] sm:w-[49px]">
-                    <CustomIcon
-                      name="ArrowRight"
-                      className="h-[18px] w-[18px] sm:h-[24px] sm:w-[24px]"
-                    />
+                  </span>
+                  <span className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-[#F2B21A] text-white">
+                    <CustomIcon name="ArrowRight" className="h-[16px] w-[16px]" />
                   </span>
                 </a>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* =====================================================
-            BOTTOM COMMITMENT STRIP
-        ====================================================== */}
-
-        <div className="relative mt-[12px] overflow-hidden rounded-[14px] border border-[#DCC39B] bg-[#FCF8F0] shadow-[0_4px_13px_rgba(75,48,22,0.04)]">
-          <div className="grid min-h-[72px] grid-cols-1 lg:grid-cols-[48%_52%]">
-            {/* ================= LEFT ================= */}
-
-            <div className="flex items-center gap-[14px] px-[16px] py-[10px] sm:gap-[18px] sm:px-[24px]">
-              <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#004E34] text-[#D0A020] sm:h-[52px] sm:w-[52px]">
-                <CustomIcon
-                  name="Building"
-                  className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px]"
-                />
+          {/* ================= COMMITMENT STRIP ================= */}
+          <div className="px-4 pb-4 pt-1 sm:px-5 lg:px-[26px]">
+            <div className="relative flex flex-col overflow-hidden rounded-[14px] border border-[#DCC39B] bg-[#FCF8F0] shadow-[0_4px_13px_rgba(75,48,22,0.04)] lg:flex-row lg:items-center">
+              <div className="flex shrink-0 items-center gap-3 rounded-[10px] border border-[#E7D5AE] bg-[#F3F0DC] px-6 py-[10px] text-[#2F6A4A] lg:min-w-[220px]">
+                <span className="text-[#C99A3A]">
+                  <CustomIcon name="Building" className="h-[28px] w-[28px]" />
+                </span>
+                <h3 className="font-sans text-[16px] font-semibold leading-none">Our Commitment</h3>
               </div>
 
-              <div className="min-w-0">
-                <h3 className="text-[17px] font-semibold leading-none text-[#124C36] sm:text-[18px]">
-                  Our Commitment
-                </h3>
-
-                <span className="mt-[4px] block h-[1.5px] w-[60px] bg-[#C68E2D]" />
-
-                <p className="mt-[4px] max-w-[540px] text-[13.5px] leading-snug text-[#45505E] sm:text-[14px]">
-                  {textOrFallback(websiteSection?.bottomStatement, "We follow all legal requirements and work in coordination with authorities to ensure dignity and responsibility.", 200)}
-                </p>
-              </div>
-            </div>
-
-            {/* ================= CENTER DIVIDER ================= */}
-
-            <span className="absolute bottom-[10px] left-[48%] top-[10px] hidden w-px bg-[#D9BC8A] lg:block" />
-
-            {/* ================= RIGHT ================= */}
-
-            <div className="relative flex items-center gap-[14px] border-t border-[#E0D3BF] px-[16px] py-[10px] sm:gap-[18px] sm:px-[24px] lg:border-t-0">
-              <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#F0EFE2] text-[#0D5539] sm:h-[52px] sm:w-[52px]">
-                <CustomIcon
-                  name="ShieldCheck"
-                  className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px]"
-                />
-              </div>
-
-              <p className="relative z-10 max-w-[500px] text-[13.5px] leading-snug text-[#46505E] sm:text-[14px]">
-                {textOrFallback(websiteSection?.secondaryDescription, "All support is subject to verification, applicable legal requirements and availability of resources.", 200)}
+              <p className="flex-1 px-5 py-3 text-[13px] leading-snug text-[#3A3A46]">
+                {textOrFallback(websiteSection?.bottomStatement, "We follow all legal requirements and work in coordination with authorities to ensure dignity and responsibility.", 200)}
               </p>
 
-              {/* RIGHT LEAF WATERMARK */}
+              <span className="hidden h-9 w-px bg-[#E0A070] lg:block" />
 
-              <svg
-                viewBox="0 0 200 125"
-                className="pointer-events-none absolute -bottom-[8px] right-[20px] h-[90px] w-[150px] text-[#AEB59D]/30"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.25"
-              >
-                <path d="M20 102C48 65 88 43 166 20" />
-
-                <path d="M49 83c-17-9-22-25-17-40 18 4 29 15 32 31" />
-
-                <path d="M78 65c-15-12-15-29-8-43 16 8 24 21 21 37" />
-
-                <path d="M112 48c-11-15-6-30 5-40 13 11 17 24 10 37" />
-
-                <path d="M145 33c-6-16 3-27 16-32 8 13 5 24-7 33" />
-              </svg>
+              <div className="flex flex-1 items-center gap-3 px-5 py-3">
+                <span className="shrink-0 text-[#0D5539]">
+                  <CustomIcon name="ShieldCheck" className="h-[28px] w-[28px]" />
+                </span>
+                <p className="text-[13px] leading-snug text-[#3A3A46]">
+                  {textOrFallback(websiteSection?.secondaryDescription, "All support is subject to verification, applicable legal requirements and availability of resources.", 200)}
+                </p>
+              </div>
             </div>
           </div>
         </div>

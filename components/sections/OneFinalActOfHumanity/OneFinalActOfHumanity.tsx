@@ -36,26 +36,23 @@ export default function OneFinalActOfHumanity() {
           }}
         />
 
-        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full max-w-[1344px] items-center px-[32px] py-8 sm:px-[36px] lg:px-[40px]">
+        <div className="relative z-10 mx-auto flex h-full min-h-[520px] w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] items-center px-[32px] py-8 sm:px-[36px] lg:px-[16px]">
           <div className="w-full max-w-[680px]">
             {/* Logo row */}
-            <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:grid sm:w-fit sm:grid-cols-[240px_1px_250px] sm:gap-0">
+            <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:grid sm:w-fit sm:grid-cols-[290px_33px_250px] sm:gap-0">
               {/* Moksha Sewa logo block */}
-              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[240px]">
-                <div className="relative h-[72px] w-[72px] shrink-0 sm:ml-3 sm:h-[92px] sm:w-[92px]">
+              <div className="flex min-w-[180px] flex-col items-center text-center sm:min-w-[290px]">
+                <div className="relative h-[84px] w-[105px] shrink-0 sm:h-[104px] sm:w-[130px]">
                   <Image
-                    src={imageOrFallback(websiteSection?.logoImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165176/moksha-sewa/assets/footer-moksha-mark.png")}
-                    alt={(websiteSection as any)?.logoImageAlt || "Moksha Sewa"}
+                    src="/homelogo/mok.png"
+                    alt="Moksha Sewa"
                     fill
-                    sizes="92px"
+                    sizes="130px"
                     className="object-contain"
                   />
                 </div>
 
-                <p className="mt-1 font-sans text-[16px] font-semibold uppercase tracking-[0.02em] text-[#2D3D35]">
-                  {textOrFallback(websiteSection?.secondaryTitle, "Moksha Sewa", 50)}
-                </p>
-                <p className="mt-0.5 text-[16px] text-[#A27B38]">
+                <p className="mt-1 text-[16px] text-[#A27B38]">
                   {textOrFallback(websiteSection?.initiativeLabel, "A Namo Gange Trust Initiative", 80)}
                 </p>
               </div>

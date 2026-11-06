@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLayoutEffect, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { Eye, HandHeart, Scale, ShieldCheck } from "lucide-react";
 import AccentTitle from "../shared/AccentTitle";
@@ -115,8 +116,7 @@ const at = (x: number, cy: number, fs: number, lh: number, extra?: CSSProperties
 
 // [file, x, y, width, height] in 1600x816 design pixels
 const stageArt: [string, number, number, number, number][] = [
-  ["logo-mark", 126, 4, 148, 112],
-  ["divider", 214, 182, 388, 48],
+  ["divider", 214, 210, 388, 48],
   ["quote-open", 802, 68, 47, 39],
   ["quote-close", 1051, 174, 48, 38],
   ["icon-about", 112, 340, 86, 62],
@@ -132,9 +132,9 @@ const stageArt: [string, number, number, number, number][] = [
 
 // [x, y, width, height, colour] gold rules
 const stageRules: [number, number, number, number, string][] = [
-  [277, 36, 1, 60, "#d7b66d"],
-  [288, 93.5, 31, 2, "#d9ae43"],
-  [596, 93.5, 30, 2, "#d9ae43"],
+  [277, 64, 1, 60, "#d7b66d"],
+  [288, 121.5, 31, 2, "#d9ae43"],
+  [596, 121.5, 30, 2, "#d9ae43"],
   [769, 65, 1.5, 143, "#d4a33b"],
   [349, 405, 1, 157, "#e0b562"],
   [607, 405, 1, 157, "#e0b562"],
@@ -161,29 +161,66 @@ const stageValues = [
   { x: 1354, title: "ACCOUNTABILITY", lines: ["Answerable to all,", "always improving."] },
 ];
 
+// The artwork is a fixed 1600px design grid. Its content spans roughly x=78..1506 on that grid.
+const CONTENT_LEFT = 77.8;
+const CONTENT_RIGHT = 1505.6;
+
+/** Left edge of the landing-page content box (same rule the hero / other sections use). */
+function landingContentLeft(vw: number) {
+  const box = vw >= 1280 && vw <= 1390 ? 1160 : Math.min(1280, vw - 56);
+  return (vw - box) / 2 + 16;
+}
+
 function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescription }: { title: string; quoteLines: string[]; buttonLabel: string; buttonHref: string; srDescription: string }) {
+  // Line the artwork's content up with the hero's left edge (scene backdrop stays full-bleed).
+  const [align, setAlign] = useState<string | undefined>(undefined);
+  const [alignReady, setAlignReady] = useState(false);
+  useLayoutEffect(() => {
+    const calc = () => {
+      const vw = window.innerWidth;
+      const u = vw / 1600;
+      const left = landingContentLeft(vw);
+      const contentW = (CONTENT_RIGHT - CONTENT_LEFT) * u;
+      const fit = (vw - 2 * left) / contentW;
+      // very wide screens: the fixed artwork would have to shrink too much, so leave it full-width
+      if (fit < 0.92) {
+        setAlign(undefined);
+        return;
+      }
+      const scale = Math.min(1, fit);
+      setAlign(`translateX(${(left - CONTENT_LEFT * u * scale).toFixed(2)}px) scale(${scale.toFixed(4)})`);
+    };
+    calc();
+    setAlignReady(true);
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
+
   return (
     <section className="trust-stage hidden w-full bg-[#fffaf0] lg:block" aria-label="Trust and transparency">
       <div data-stage className="relative w-full overflow-hidden" style={{ containerType: "inline-size", aspectRatio: "1600 / 816" }}>
         <Image src="/assets/trust/scene.jpg" alt="" fill sizes="100vw" unoptimized className="object-cover" />
 
+        <div className="absolute inset-0" style={{ transformOrigin: "0 50%", transform: align, opacity: alignReady ? 1 : 0 }}>
+
         {stageArt.map(([name, x, y, w, h]) => (
           <Image key={name} src={`/assets/trust/${name}.png`} alt="" width={w * 4} height={h * 4} unoptimized style={{ position: "absolute", left: px(x), top: px(y), width: px(w), height: px(h) }} />
         ))}
+        <Image src="/homelogo/mok.png" alt="Moksha Sewa" width={420} height={336} priority style={{ position: "absolute", left: px(128), top: px(26), width: px(144), height: px(122), objectFit: "contain" }} />
         {stageRules.map(([x, y, w, h, color], i) => (
           <span key={i} aria-hidden="true" style={{ position: "absolute", left: px(x), top: px(y), width: px(w), height: px(h), background: color }} />
         ))}
 
-        <p className="font-semibold text-[#0f3a75]" style={at(287, 50, 43.5, 50, { letterSpacing: ".01em" })}>MOKSHA SEWA</p>
-        <p className="font-medium uppercase text-[#1d3557]" style={at(326, 94, 15.8, 20, { letterSpacing: ".115em" })}>Sewa With Responsibility</p>
+        <p className="font-semibold text-[#0f3a75]" style={at(287, 78, 43.5, 50, { letterSpacing: ".01em" })}>MOKSHA SEWA</p>
+        <p className="font-medium uppercase text-[#1d3557]" style={at(326, 122, 15.8, 20, { letterSpacing: ".115em" })}>Sewa With Responsibility</p>
 
-        <h2 className="font-serif font-bold text-[#0b4a2f]" style={at(89, 159, 63.2, 66, { letterSpacing: "-.015em" })}>{title.split("&").map((part, i) => (
+        <h2 className="font-serif font-bold text-[#0b4a2f]" style={at(89, 187, 63.2, 66, { letterSpacing: "-.015em" })}>{title.split("&").map((part, i) => (
           <span key={i} style={i > 0 ? { color: "#D54200" } : undefined}>
             {i > 0 && <span style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>&amp;</span>}
             {part}
           </span>
         ))}</h2>
-        <p className="text-center text-[#1d2833]" style={at(115, 258.5, 24, 31, { width: px(580) })}>
+        <p className="text-center text-[#1d2833]" style={at(115, 286.5, 24, 31, { width: px(580) })}>
           A humane, accountable and transparent initiative<br />for dignified last rites support.
         </p>
         <p className="sr-only">{srDescription}</p>
@@ -210,7 +247,7 @@ function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescriptio
           aria-label={buttonLabel}
         >
           <span className="absolute font-normal" style={at(38, 25.5, 21.7, 28)}>{buttonLabel}</span>
-          <span className="absolute flex items-center justify-center rounded-full bg-[#f5c523] text-[#0b4a2f]" style={{ left: px(284), top: px(4), width: px(44), height: px(44) }}>
+          <span className="absolute flex items-center justify-center rounded-full bg-[#f5c523] text-[#0b4a2f]" style={{ left: px(292), top: px(7.5), width: px(36), height: px(36) }}>
             <ArrowIcon className="h-[55%] w-[55%]" />
           </span>
         </a>
@@ -224,6 +261,7 @@ function DesktopStage({ title, quoteLines, buttonLabel, buttonHref, srDescriptio
             </p>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -274,7 +312,7 @@ export default function TrustTransparency() {
         <div className="grid items-start gap-8 lg:grid-cols-[48%_1fr] lg:gap-0">
           <header className="min-w-0 text-center lg:text-left">
             <div className="flex items-center justify-center gap-4 lg:justify-start lg:pl-[3%]">
-              <LotusIcon className="h-[64px] w-[70px] shrink-0 sm:h-[88px] sm:w-[96px]" />
+              <Image src="/homelogo/mok.png" alt="Moksha Sewa" width={420} height={336} className="h-[64px] w-[80px] shrink-0 object-contain sm:h-[88px] sm:w-[110px]" />
               <span className="h-[56px] w-px bg-[#d7b66d] sm:h-[72px]" />
               <div className="text-left">
                 <p className="text-[22px] font-extrabold leading-none tracking-[.02em] text-[#123d78] sm:text-[40px]">MOKSHA SEWA</p>
@@ -338,8 +376,8 @@ export default function TrustTransparency() {
             className="group inline-flex min-h-[56px] shrink-0 items-center gap-6 rounded-full bg-[#0a4a30] py-1.5 pl-9 pr-2 text-lg font-medium text-white shadow-[0_6px_14px_rgba(0,48,31,.25)] transition hover:bg-[#073824]"
           >
             {textOrFallback(websiteSection?.buttonLabel, "Know About the Trust", 50)}
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2c01c] text-[#0b4a2f]">
-              <ArrowIcon className="h-6 w-6 transition-transform group-hover:translate-x-0.5" />
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f2c01c] text-[#0b4a2f]">
+              <ArrowIcon className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
             </span>
           </a>
           <span className="h-px flex-1 bg-[#d8ad50]" />

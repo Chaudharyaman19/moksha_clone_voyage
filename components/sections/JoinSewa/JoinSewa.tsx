@@ -189,15 +189,7 @@ const cards: JoinCard[] = [
         With Us
       </>
     ),
-    description: (
-      <>
-        Join hands to create
-        <br />
-        a greater and
-        <br />
-        lasting impact.
-      </>
-    ),
+    description: "Join hands to create a greater and lasting impact.",
     button: "EXPLORE PARTNERSHIP",
     href: "/partnership",
     icon: <Handshake />,
@@ -348,12 +340,13 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
         </div>
 
         <p
-          className="
+          className={`
             my-3
             text-base
             leading-[1.5]
             text-[#343735]
-          "
+            ${card.variant === "gold" ? "whitespace-nowrap text-[15px] [text-shadow:0_0_6px_rgba(255,250,240,0.95),0_0_12px_rgba(255,250,240,0.8)]" : ""}
+          `}
         >
           {card.description}
         </p>
@@ -371,6 +364,7 @@ const JoinCard = ({ card }: { card: JoinCard }) => {
             items-center
             justify-center
             gap-3
+            whitespace-nowrap
 
             rounded-[7px]
 
@@ -445,7 +439,7 @@ const JoinSewa: React.FC = () => {
           mx-auto
           w-full
           aspect-[1728/623]
-          min-h-[620px]
+          min-h-[540px]
         "
       >
         {/* HERO BACKGROUND — kept at the image's native aspect
@@ -470,6 +464,7 @@ const JoinSewa: React.FC = () => {
 
         <div
           className="
+            about-flush
             relative
             mx-auto
             flex
@@ -603,6 +598,7 @@ const JoinSewa: React.FC = () => {
 
       <div
         className="
+          about-flush
           relative
           z-20
 
@@ -644,6 +640,7 @@ const JoinSewa: React.FC = () => {
 
       <div
         className="
+          about-flush
           relative
           z-20
 

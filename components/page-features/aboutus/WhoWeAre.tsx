@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import AccentTitle from "@/components/sections/shared/AccentTitle";
+import { useLayoutEffect, useState } from "react";
 import { FaHandHoldingHeart, FaRegHeart, FaShieldAlt, FaUsers } from "@/lib/icons/fa";
 import { PiFlowerLotus, PiHandsPraying } from "@/lib/icons/pi";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
@@ -57,8 +59,36 @@ function LeafDecoration({ className }: { className: string }) {
   );
 }
 
+// Artwork content spans ~4.6%..96.9% of the stage. Line it up with the home/hero content box
+// (1440px -> 96..1344). The background photo stays full-bleed.
+function useContentAlign() {
+  const [t, setT] = useState<string | undefined>(undefined);
+  const [ready, setReady] = useState(false);
+  useLayoutEffect(() => {
+    const calc = () => {
+      const vw = window.innerWidth;
+      const stageW = Math.min(vw, 1774);
+      const stageLeft = (vw - stageW) / 2;
+      const box = vw >= 1280 && vw <= 1390 ? 1160 : Math.min(1280, vw - 56);
+      const left = (vw - box) / 2 + 16;
+      const srcW = stageW * (0.969 - 0.046);
+      const fit = (vw - 2 * left) / srcW;
+      if (fit < 0.9) { setT(undefined); return; }
+      const scale = Math.min(1, fit);
+      // transform-origin is the stage's left edge
+      setT(`translateX(${(left - stageLeft - stageW * 0.046 * scale).toFixed(2)}px) scale(${scale.toFixed(4)})`);
+    };
+    calc();
+    setReady(true);
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
+  return { t, ready };
+}
+
 export default function WhoWeAre() {
   const section = useWebsiteSection("about-who-we-are");
+  const { t: align, ready: alignReady } = useContentAlign();
   const activeValues = (section?.items?.length ? section.items : values.map(v => ({ title: v.title, description: v.caption })));
   const valueItems = activeValues.map((item, index) => {
     const itemObj = item as Record<string, any>;
@@ -130,7 +160,7 @@ export default function WhoWeAre() {
         </div>
       </div>
 
-      <div className="relative mx-auto hidden aspect-[2.32/1] w-full max-w-[1774px] lg:block">
+      <div data-no-accent className="relative mx-auto hidden aspect-[2.5/1] w-full max-w-[1774px] lg:block">
         <Image
           src={imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png")}
           alt="cremation services in ghaziabad"
@@ -142,7 +172,8 @@ export default function WhoWeAre() {
         <LeafDecoration className="absolute -left-[.5%] -top-[1%] h-[25%] w-[8%] -rotate-[18deg] opacity-75" />
         <LeafDecoration className="absolute -bottom-[1%] -left-[1.4%] h-[47%] w-[10%] rotate-[4deg] opacity-75" />
 
-        <div className="absolute left-[4.6%] top-[6.2%] flex w-[37%] flex-col items-center text-center text-[#123d31]">
+        <div className="absolute inset-0" style={{ transformOrigin: "0 50%", transform: align, opacity: alignReady ? 1 : 0 }}>
+        <div className="absolute left-[4.6%] top-[6.2%] flex w-[43%] flex-col items-center text-center text-[#123d31]">
           <PiFlowerLotus className="h-auto w-[5.2%] text-[#c28b2c]" aria-hidden="true" />
 
           <div className="mt-[1.1%] flex w-[68%] items-center gap-[3%] text-[clamp(10px,1.38vw,24px)] font-semibold tracking-[0.16em] text-[#b47a20]">
@@ -151,8 +182,10 @@ export default function WhoWeAre() {
             <span className="h-px flex-1 bg-[#d4aa63]" />
           </div>
 
-          <h2 id="who-we-are-title" className="mt-[2.2%] font-sans text-[24px] font-semibold leading-[1.05] sm:text-[30px]">
-            <span className="block whitespace-pre-line">{textOrFallback(section?.title, "Moksha Sewa Is a\nNamo Gange Trust Initiative.", 150)}</span>
+          <h2 id="who-we-are-title" style={{ color: "#21130D" }} className="about-h2-home mt-[2.2%] font-sans text-[24px] font-semibold leading-[1.05] sm:text-[30px]">
+            <span className="block whitespace-nowrap">
+              <AccentTitle text={textOrFallback(section?.title, "Moksha Sewa Is a Namo Gange Trust Initiative.", 150).replace(/\s*\n\s*/g, " ")} accent="Namo Gange Trust Initiative." />
+            </span>
           </h2>
 
           <div className="mt-[3.2%] flex w-[38%] items-center gap-[5%] text-[#c38c2b]">
@@ -162,7 +195,7 @@ export default function WhoWeAre() {
           </div>
         </div>
 
-        <div className="absolute left-[6.45%] top-[43%] w-[34.5%] text-[#263830]">
+        <div className="absolute left-[6.45%] top-[37.5%] w-[34.5%] text-[#263830]">
           <article className="grid grid-cols-[14%_1fr] items-start gap-[4%]">
             <div className="grid aspect-square place-items-center rounded-full bg-[#f1e8d5] text-[#c58b26]">
               <FaHandHoldingHeart className="h-auto w-[53%]" />
@@ -182,7 +215,7 @@ export default function WhoWeAre() {
           </article>
         </div>
 
-        <div className="absolute left-[6.4%] top-[89%] flex w-[35.4%] items-center text-[#34493f]">
+        <div className="absolute left-[6.4%] top-[90%] flex w-[35.4%] items-center text-[#34493f]">
           {valueItems.map(({ title, caption, iconName }, index) => (
             <div key={title} className={`flex flex-1 items-center gap-[8%] px-[2.5%] ${index ? "border-l border-[#d2bd97]" : ""}`}>
               <CustomIcon name={iconName} className="h-[25px] w-[25px] shrink-0 text-[#bd862a]" />
@@ -205,6 +238,7 @@ export default function WhoWeAre() {
           <div className="ml-[5%] border-l border-[#c59a48] pl-[5%] text-[clamp(8px,1.05vw,18px)] leading-[1.45]">
             {textOrFallback(section?.bottomStatement, "Together, we ensure that no one is left without dignity, care and respect in their final journey.", 600)}
           </div>
+        </div>
         </div>
       </div>
     </section>

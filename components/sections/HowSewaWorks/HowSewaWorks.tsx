@@ -589,7 +589,7 @@ export default function HowSewaWorks() {
           z-10
           mx-auto
           w-full
-          max-w-[1344px]
+          wwh-outer max-w-[min(1280px,calc(100vw-56px))]
           px-[16px]
         "
       >
@@ -711,7 +711,7 @@ export default function HowSewaWorks() {
             mx-auto
             mt-[16px]
             w-full
-            max-w-[1210px]
+            max-w-[1304px]
           "
         >
           {/* =================================================

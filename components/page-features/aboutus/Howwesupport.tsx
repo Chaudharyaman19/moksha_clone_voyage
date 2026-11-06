@@ -1,5 +1,6 @@
 "use client";
 
+import AccentTitle from "@/components/sections/shared/AccentTitle";
 import type { ReactElement } from "react";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -229,8 +230,8 @@ export default function Howwesupport() {
         bg-[#FBF8F2]
 
         px-4
-        pb-[22px]
-        pt-[32px]
+        pb-[12px]
+        pt-[18px]
 
         sm:px-5
         lg:px-6
@@ -257,7 +258,7 @@ export default function Howwesupport() {
 
         <div
           className="
-            mb-[18px]
+            mb-[10px]
             flex
             items-center
             justify-center
@@ -287,15 +288,14 @@ export default function Howwesupport() {
               font-sans
               text-[24px]
               font-semibold
-              uppercase
               leading-[1.05]
 
-              text-[#004E3A]
+              text-[#21130D]
 
               sm:text-[30px]
             "
           >
-            {textOrFallback(section?.title, "Who We Support", 60)}
+            <AccentTitle text={textOrFallback(section?.title, "Who We Support", 60)} />
           </h2>
 
           <span
@@ -333,7 +333,7 @@ export default function Howwesupport() {
               className="
                 relative
 
-                min-h-[310px]
+                min-h-[270px]
 
                 overflow-hidden
 
@@ -551,7 +551,7 @@ export default function Howwesupport() {
           className="
             relative
 
-            mt-[34px]
+            mt-[20px]
 
             overflow-hidden
 

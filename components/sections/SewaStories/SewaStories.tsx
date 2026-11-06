@@ -449,7 +449,7 @@ export default function SewaStories() {
           z-10
           mx-auto
           w-full
-          max-w-[1344px]
+          wwh-outer max-w-[min(1280px,calc(100vw-56px))]
           px-[16px]
         "
       >
@@ -569,9 +569,9 @@ export default function SewaStories() {
               <div
                 className="
                   relative
-                  h-[370px]
-                  sm:h-[390px]
-                  xl:h-[420px]
+                  h-[270px]
+                  sm:h-[290px]
+                  xl:h-[310px]
                   shrink-0
                   overflow-hidden
                 "
@@ -602,13 +602,13 @@ export default function SewaStories() {
                     left-[13px]
                     top-[12px]
                     flex
-                    h-[31px]
+                    h-[28px]
                     items-center
                     gap-[6px]
                     rounded-[5px]
                     bg-[#00543A]
                     px-[10px]
-                    text-[16px]
+                    text-[14px]
                     font-semibold
                     leading-none
                     text-white
@@ -651,7 +651,7 @@ export default function SewaStories() {
                   <span
                     className="
                       flex
-                      h-[40px]
+                      h-[36px]
                       w-[40px]
                       shrink-0
                       items-center
@@ -664,7 +664,7 @@ export default function SewaStories() {
                     <CustomIcon
                       name={story.icon}
                       className="
-                        h-[25px]
+                        h-[22px]
                         w-[25px]
                       "
                     />
@@ -674,8 +674,8 @@ export default function SewaStories() {
 
                     <h3
                       className="
-                        text-[15px]
-                        sm:text-[16px]
+                        text-[14px]
+                        sm:text-[15px]
                         font-semibold
                         uppercase
                         leading-tight
@@ -703,7 +703,7 @@ export default function SewaStories() {
                         flex
                         items-center
                         gap-[5px]
-                        text-[14px]
+                        text-[13px]
                         leading-none
                         text-[#514A42]
                         whitespace-nowrap
@@ -727,7 +727,7 @@ export default function SewaStories() {
 
                 {/* DESCRIPTION CLAMPED TO 2 ROWS */}
 
-                <p className="mt-[7px] line-clamp-2 min-h-[36px] text-[13.5px] leading-[1.32] text-[#4d4842]">
+                <p className="mt-[6px] text-[13px] leading-[1.32] text-[#4d4842]">
                   {story.description}
                 </p>
 
@@ -740,7 +740,7 @@ export default function SewaStories() {
                     flex-wrap
                     items-center
                     text-[13px]
-                    sm:text-[13.5px]
+                    sm:text-[13px]
                     font-medium
                     leading-tight
                     text-[#47413B]
@@ -774,7 +774,7 @@ export default function SewaStories() {
                       rounded-[6px]
                       bg-[#EFF0E5]
                       px-[8px]
-                      text-[13.5px]
+                      text-[13px]
                       font-semibold
                       leading-none
                       text-[#466149]
@@ -852,8 +852,8 @@ export default function SewaStories() {
 
             <p
               className="
-                text-[14px]
-                sm:text-[15px]
+                text-[13.5px]
+                sm:text-[14px]
                 font-medium
                 leading-[1.3]
                 text-[#3E403F]
@@ -881,7 +881,7 @@ export default function SewaStories() {
               rounded-[6px]
               bg-[#005039]
               px-[16px]
-              text-[14px]
+              text-[13.5px]
               font-semibold
               uppercase
               leading-none

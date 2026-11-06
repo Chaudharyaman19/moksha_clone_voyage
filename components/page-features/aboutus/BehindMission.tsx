@@ -140,7 +140,7 @@ export default function BehindMission() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#F8F2E8] px-6 py-7 lg:px-8 lg:py-8 2xl:px-0">
+    <section className="relative overflow-hidden bg-[#F8F2E8] px-6 py-7 lg:px-8 lg:py-5 2xl:px-0">
       {/* subtle decorative corner lotuses */}
       <div className="pointer-events-none absolute -left-12 bottom-3 text-[#C7AA6C]/15">
         <PiFlowerLotus className="h-44 w-44" />
@@ -168,7 +168,7 @@ export default function BehindMission() {
               <span className="h-px w-10 bg-[#C6A25C]" />
             </div>
 
-            <p className="mt-4 text-center font-sans text-[16px] font-semibold uppercase text-[#A67532] lg:text-left">
+            <p className="mt-3 text-center font-sans text-[16px] font-semibold uppercase text-[#A67532] lg:text-left">
               {textOrFallback(section?.subtitle, "See the Mission", 60)}
             </p>
 
@@ -176,11 +176,11 @@ export default function BehindMission() {
               <span className="whitespace-pre-line">{textOrFallback(section?.title, "Behind\nMoksha Sewa", 60)}</span>
             </h2>
 
-            <p className="mt-5 text-center text-[16px] leading-[1.62] text-[#334A43] lg:text-left">
+            <p className="mt-3 text-center text-[16px] leading-[1.62] text-[#334A43] lg:text-left">
               {textOrFallback(section?.description, "Every final journey carries a story. This is the story of a mission built around responsibility, compassion and the belief that no one should be left without dignity.", 600)}
             </p>
 
-            <div className="relative mt-6 flex justify-center lg:justify-start">
+            <div className="relative mt-4 flex justify-center lg:justify-start">
               <div
                 aria-hidden
                 className="pointer-events-none absolute left-1/2 top-1/2 h-14 w-[250px] -translate-x-1/2 -translate-y-1/2 opacity-75 blur-2xl lg:left-[120px]"
@@ -276,7 +276,7 @@ export default function BehindMission() {
         </div>
 
         {/* BOTTOM MISSION LINKS */}
-        <div className="mt-7 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
+        <div className="mt-4 grid overflow-hidden border border-[#B78938] bg-[#0D4939] px-3 py-1.5 text-white shadow-[0_7px_16px_rgba(22,60,46,.22)] sm:grid-cols-5 sm:px-4">
           {linkItems.map(({ eyebrow, label, iconName, fallback }, index) => (
             <div
               key={`${eyebrow}-${label}-${index}`}

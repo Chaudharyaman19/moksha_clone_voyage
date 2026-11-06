@@ -50,6 +50,8 @@ export default async function Page() {
         <WebsiteSection name="topbar"><Topbar /></WebsiteSection>
         <WebsiteSection name="navbar"><Navbar /></WebsiteSection>
         <main data-no-inset className="landing-typo">
+        {/* topbar (44px) + navbar (69px) are fixed, so push the hero below them instead of letting it slide underneath */}
+        <div aria-hidden="true" className="h-[113px] bg-[#fbf5ea]" />
         <WebsiteSection name="hero"><Hero /></WebsiteSection>
 
         <WebsiteSection name="who-we-help"><Howwehelp /></WebsiteSection>

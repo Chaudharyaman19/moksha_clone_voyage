@@ -114,7 +114,7 @@ export default function OurStory() {
           bg-[#FBF5EA]
           shadow-[0_8px_26px_rgba(72,45,20,0.06)]
 
-          lg:min-h-[650px]
+          lg:min-h-[560px]
         "
       >
         {/* =====================================================
@@ -224,7 +224,7 @@ export default function OurStory() {
             grid
             grid-cols-1
 
-            lg:min-h-[650px]
+            lg:min-h-[560px]
             lg:grid-cols-[54%_46%]
           "
         >
@@ -242,8 +242,8 @@ export default function OurStory() {
               sm:px-[46px]
 
               lg:px-[72px]
-              lg:pb-[54px]
-              lg:pt-[38px]
+              lg:pb-[34px]
+              lg:pt-[26px]
             "
           >
             {/* TOP LOTUS */}
@@ -318,7 +318,7 @@ export default function OurStory() {
             <h2
               className="
                 mx-auto
-                mt-[15px]
+                mt-[10px]
                 max-w-[560px]
                 text-center
 
@@ -340,7 +340,7 @@ export default function OurStory() {
 
             <div
               className="
-                mt-[17px]
+                mt-[10px]
                 flex
                 items-center
                 justify-center
@@ -385,7 +385,7 @@ export default function OurStory() {
               className="
                 relative
                 mx-auto
-                mt-[17px]
+                mt-[10px]
                 max-w-[560px]
                 px-[34px]
                 text-center
@@ -446,7 +446,7 @@ export default function OurStory() {
             <div
               className="
                 mx-auto
-                mt-[18px]
+                mt-[10px]
 
                 h-px
                 w-[145px]
@@ -465,10 +465,10 @@ export default function OurStory() {
             <div
               className="
                 mx-auto
-                mt-[19px]
+                mt-[10px]
                 max-w-[520px]
 
-                space-y-[15px]
+                space-y-[10px]
 
                 bg-white/80
                 backdrop-blur-sm
@@ -517,7 +517,7 @@ export default function OurStory() {
 
                 h-[350px]
                 sm:h-[420px]
-                lg:h-[540px]
+                lg:h-[480px]
                 w-full
 
                 overflow-hidden

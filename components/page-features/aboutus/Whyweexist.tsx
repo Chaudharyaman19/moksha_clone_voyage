@@ -114,7 +114,7 @@ export default function WhyWeExist() {
           border-[#E7D9C5]
           bg-[#F8F1E5]
           shadow-[0_7px_22px_rgba(73,46,22,0.06)]
-          lg:min-h-[790px]
+          lg:min-h-[640px]
         "
       >
         {/* =====================================================
@@ -138,8 +138,8 @@ export default function WhyWeExist() {
           style={{
             backgroundImage:
               `url('${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165000/moksha-sewa/assets/about-optimized/existimage.png")}')`,
-            backgroundSize: "100% 100%",
-            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            backgroundPosition: "right bottom",
           }}
         />
 
@@ -194,16 +194,16 @@ export default function WhyWeExist() {
             relative
             z-10
             flex
-            min-h-[790px]
+            min-h-[640px]
             flex-col
             px-[28px]
-            pb-[70px]
-            pt-[45px]
+            pb-[30px]
+            pt-[28px]
             sm:px-[45px]
             lg:w-[53%]
             lg:px-[72px]
-            lg:pb-[72px]
-            lg:pt-[58px]
+            lg:pb-[34px]
+            lg:pt-[34px]
           "
         >
           {/* =================================================
@@ -227,7 +227,7 @@ export default function WhyWeExist() {
 
           <div
             className="
-              mt-[9px]
+              mt-[6px]
               flex
               items-center
               justify-center
@@ -284,7 +284,7 @@ export default function WhyWeExist() {
 
           <h2
             className="
-              mt-[22px]
+              mt-[12px]
               font-sans
               text-[42px]
               font-medium
@@ -306,7 +306,7 @@ export default function WhyWeExist() {
 
           <div
             className="
-              mt-[22px]
+              mt-[12px]
               flex
               items-center
               gap-[16px]
@@ -349,7 +349,7 @@ export default function WhyWeExist() {
 
           <p
             className="
-              mt-[19px]
+              mt-[10px]
               max-w-[520px]
               whitespace-pre-line
               text-[18px]
@@ -367,7 +367,7 @@ export default function WhyWeExist() {
 
           <div
             className="
-              mt-[28px]
+              mt-[14px]
               flex
               items-center
             "
@@ -451,14 +451,14 @@ export default function WhyWeExist() {
           <div
             className="
               relative
-              mt-[27px]
+              mt-[14px]
               w-fit
               rounded-[12px]
               border
               border-[#D4AA67]
               bg-[#FBF5E9]/90
               px-[55px]
-              py-[18px]
+              py-[12px]
             "
           >
             {/* LEFT QUOTE */}

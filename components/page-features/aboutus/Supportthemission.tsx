@@ -475,7 +475,7 @@ export default function SupportTheMission() {
             min-h-0
             overflow-hidden
             bg-[#FBF6ED]
-            lg:min-h-[430px]
+            lg:min-h-[330px]
           "
         >
           {/* =================================================
@@ -496,7 +496,7 @@ export default function SupportTheMission() {
             style={{
               backgroundImage:
                 `url("${imageOrFallback(section?.image, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164974/moksha-sewa/assets/about/our-story/arthi.jpg")}")`,
-              backgroundSize: "100% 100%",
+              backgroundSize: "cover",
               backgroundPosition: "right center",
             }}
           />

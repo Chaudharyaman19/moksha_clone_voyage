@@ -99,7 +99,7 @@ export default function GlimpseOfJourney() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[#f8f1e3]/10" />
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1344px] px-[32px] py-6 sm:px-[36px] lg:px-[16px]">
+      <div className="relative z-10 mx-auto w-full wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-[32px] py-6 sm:px-[36px] lg:px-[16px]">
         {/* Section header */}
         <header className="mx-auto mb-3 max-w-[760px] text-center">
           {/* Eyebrow */}

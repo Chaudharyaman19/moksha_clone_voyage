@@ -439,6 +439,18 @@ export default function Hero() {
 
   const activeSlide = slideContent[currentIndex] ?? slideContent[0];
   const activeImage = images[currentIndex] ?? images[0];
+
+  // Smooth slide change: keep the previous image underneath while the new one fades in.
+  const [imgTrack, setImgTrack] = useState<{ cur: string; out: string | null }>({ cur: activeImage, out: null });
+  if (imgTrack.cur !== activeImage) {
+    setImgTrack({ cur: activeImage, out: imgTrack.cur });
+  }
+  const outgoingImage = imgTrack.out;
+  useEffect(() => {
+    if (!outgoingImage) return;
+    const t = window.setTimeout(() => setImgTrack((p) => (p.cur === activeImage ? { cur: p.cur, out: null } : p)), 1500);
+    return () => window.clearTimeout(t);
+  }, [outgoingImage, activeImage]);
   const isFamilySupportSlide = activeSlide.familySupportLayout === true;
   const isJourneyPrayerSlide = activeSlide.journeyPrayerLayout === true;
   const isVolunteerImpactSlide = activeSlide.volunteerImpactLayout === true;
@@ -504,7 +516,7 @@ export default function Hero() {
       <div
         className={
           showBannerText
-            ? "relative w-full h-full min-h-[735px] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px] overflow-hidden bg-[#fbf5ea]"
+            ? "relative w-full h-full min-h-[695px] sm:min-h-[665px] md:aspect-[16/10] md:min-h-[595px] lg:aspect-[20/8.45] lg:min-h-[575px] 2xl:aspect-auto 2xl:min-h-[620px] 2xl:max-h-[680px] overflow-hidden bg-[#fbf5ea]"
             : "relative w-full overflow-hidden bg-[#fbf5ea]"
         }
       >
@@ -541,7 +553,7 @@ export default function Hero() {
               className="pointer-events-none absolute inset-0 z-10"
               style={{ background: "linear-gradient(90deg, rgba(251,245,234,0.96) 0%, rgba(251,245,234,0.86) 30%, rgba(251,245,234,0.35) 52%, rgba(251,245,234,0) 64%)" }}
             />
-            <div className="absolute inset-0 z-20 mx-auto flex max-w-7xl items-center px-4 sm:px-5 lg:px-6 2xl:px-8">
+            <div className="absolute inset-0 z-20 mx-auto flex max-w-[1336px] items-center px-4 sm:px-5 lg:px-4 2xl:px-4">
               <div className="max-w-[580px]">
                 <h1 className="text-[33px] leading-[1.02] text-[#2C1810] sm:text-[40px] lg:text-[50px]" style={{ fontWeight: 500 }}>
                   {bannerTitle}
@@ -629,7 +641,7 @@ export default function Hero() {
         <section
           className={
             showBannerText
-              ? "hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
+              ? "hero-section-1366 group relative w-full min-h-[695px] overflow-hidden bg-[#fbf5ea] sm:min-h-[665px] md:aspect-[16/10] md:min-h-[595px] lg:aspect-[20/8.45] lg:min-h-[575px] 2xl:aspect-auto 2xl:min-h-[620px] 2xl:max-h-[680px]"
               : "hero-section-1366 group relative w-full overflow-hidden bg-[#fbf5ea]"
           }
         >
@@ -677,7 +689,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="hero-section-1366 group relative w-full min-h-[735px] overflow-hidden bg-[#fbf5ea] sm:min-h-[705px] md:aspect-[16/10] md:min-h-[635px] lg:aspect-[20/9] lg:min-h-[615px] 2xl:aspect-auto 2xl:min-h-[660px] 2xl:max-h-[720px]"
+        className="hero-section-1366 group relative w-full min-h-[695px] overflow-hidden bg-[#fbf5ea] sm:min-h-[665px] md:aspect-[16/10] md:min-h-[595px] lg:aspect-[20/8.45] lg:min-h-[575px] 2xl:aspect-auto 2xl:min-h-[620px] 2xl:max-h-[680px]"
       >
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
@@ -705,6 +717,18 @@ export default function Hero() {
                 className="scale-110 object-cover object-center opacity-70 blur-2xl"
               />
             )}
+            {outgoingImage && !isImageOnlySlide && (
+              <Image
+                key={`${outgoingImage}-out`}
+                src={outgoingImage}
+                alt=""
+                aria-hidden
+                fill
+                quality={75}
+                sizes="100vw"
+                className="object-cover object-right"
+              />
+            )}
             <Image
               key={activeImage}
               src={activeImage}
@@ -714,13 +738,13 @@ export default function Hero() {
               fetchPriority={currentIndex === 0 ? "high" : "auto"}
               quality={75}
               sizes="100vw"
-              className={
+              className={`${outgoingImage ? "hero-img-fade " : ""}${
                 isImageOnlySlide
                   ? "object-contain object-center"
                   : isFamilySupportSlide || isJourneyPrayerSlide || isVolunteerImpactSlide
                   ? "object-cover object-right transition-transform duration-[6000ms] ease-out"
                   : "object-cover object-[68%_center] transition-transform duration-[6000ms] ease-out sm:object-[72%_center] md:object-[76%_center]"
-              }
+              }`}
             />
           </div>
         </div>
@@ -784,11 +808,11 @@ export default function Hero() {
 
         {/* Main content */}
         {!isImageOnlySlide && (
-        <div className="hero-container-1366 relative z-20 mx-auto h-full max-w-7xl px-4 sm:px-5 lg:px-0 2xl:px-8">
-          <div className="hero-content-row-1366 flex h-full items-start pt-[104px] sm:pt-[140px]">
-            <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] md:pl-2 lg:w-[56%] lg:pl-6 xl:w-[54%]">
+        <div className="hero-container-1366 relative z-20 mx-auto h-full max-w-[1336px] px-4 sm:px-5 lg:px-4 2xl:px-4">
+          <div className="hero-content-row-1366 flex h-full items-start pt-[52px] sm:pt-[66px]">
+            <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] md:pl-2 lg:w-[56%] lg:pl-[28px] xl:w-[54%]">
 
-              <div className="mb-3 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
+              <div className="mb-2 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
                 <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
                   <Image
                     src={heroLogo}
@@ -801,9 +825,9 @@ export default function Hero() {
                   />
                 </div>
 
-                <div className="mt-2 flex w-full items-center justify-start gap-3">
+                <div className="mt-1 flex w-full items-center justify-start gap-3">
 
-                  <div className="mt-3 shrink-0 text-left">
+                  <div className="mt-1.5 shrink-0 text-left">
                     <span className="block text-[22px] leading-none tracking-[0.01em] text-[#2C1810] sm:text-[24px] lg:text-[26px]">
                       {textOrFallback(websiteSection?.eyebrow, "Moksha Sewa", 40)}
                     </span>
@@ -816,7 +840,7 @@ export default function Hero() {
               </div>
 
               <h1
-                className="hero-heading-1366 text-[33px] leading-[0.98] sm:text-[40px] md:text-[44px] lg:min-h-[102px] lg:text-[50px] xl:min-h-[110px] xl:text-[53px]"
+                className="hero-heading-1366 text-[33px] leading-[0.98] sm:text-[40px] md:text-[44px] lg:min-h-[88px] lg:text-[44px] xl:min-h-[88px] xl:text-[44px]"
                 style={{
                   fontWeight: 500,
                 }}
@@ -851,13 +875,13 @@ export default function Hero() {
               </h1>
 
               {/* reference-style flourish */}
-              <div className="mt-3 flex max-w-[500px] items-center gap-3">
+              <div className="mt-2 flex max-w-[500px] items-center gap-3">
                 <span className="h-px flex-1 bg-[#C85117]/65" />
                 <PiFlowerLotus className="h-6 w-6 shrink-0 text-[#C85117]" />
                 <span className="h-px flex-1 bg-[#C85117]/65" />
               </div>
 
-              <p className="hero-desc-1366 mt-3 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
+              <p className="hero-desc-1366 mt-2 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
                 {activeSlide.descriptionHighlight &&
                   activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
@@ -872,7 +896,7 @@ export default function Hero() {
                 )}
               </p>
 
-              <div className="mt-4 flex min-h-[54px] flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-3 flex min-h-[54px] flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/request-help"}
                   target="_blank"

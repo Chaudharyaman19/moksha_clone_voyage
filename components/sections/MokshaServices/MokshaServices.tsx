@@ -162,13 +162,13 @@ const DecorativeDivider = () => (
 );
 
 const ServiceIcon = ({ image, alt }: { image: string; alt: string }) => (
-  <div className="absolute -top-[64px] left-1/2 z-20 -translate-x-1/2 sm:-top-[92px]">
-    <div className="relative h-[62px] w-[62px] sm:h-[82px] sm:w-[82px]">
+  <div className="absolute -top-[64px] left-1/2 z-20 -translate-x-1/2 sm:-top-[72px]">
+    <div className="relative h-[54px] w-[54px] sm:h-[66px] sm:w-[66px]">
       <Image
         src={image}
         alt={alt}
         fill
-        sizes="82px"
+        sizes="66px"
         className="object-contain"
       />
     </div>
@@ -227,23 +227,18 @@ const MokshaServices: React.FC = () => {
       ========================================================== */}
       <div
         className="
-          relative mx-auto w-full
+          about-flush relative mx-auto w-full
           max-w-[1180px]
           px-4
           pb-8 pt-5
           sm:px-7 sm:pb-10 sm:pt-7
-          lg:px-8 lg:pb-8 lg:pt-4
+          lg:px-8 lg:pb-5 lg:pt-3
         "
       >
         {/* =======================================================
             HEADER
         ======================================================== */}
-        <header className="mx-auto max-w-[700px] text-center">
-          {/* Lotus */}
-          <div className="mb-1 flex justify-center text-[#b77b22]">
-            <Lotus />
-          </div>
-
+        <header className="mx-auto max-w-[700px] text-center lg:max-w-none">
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3">
             <span className="hidden h-px w-14 bg-[#b77b22]/70 sm:block" />
@@ -272,7 +267,7 @@ const MokshaServices: React.FC = () => {
               sm:text-[30px]
             "
           >
-            <span className="whitespace-pre-line">{textOrFallback(section?.title, "Supporting the\nFinal Journey With Care.", 150)}</span>
+            <span className="whitespace-normal lg:whitespace-nowrap">{textOrFallback(section?.title, "Supporting the Final Journey With Care.", 150).replace(/\s*\n\s*/g, " ")}</span>
           </h2>
 
           <div className="mt-3">
@@ -281,7 +276,7 @@ const MokshaServices: React.FC = () => {
 
           <p
             className="
-              mx-auto mt-2 max-w-[570px]
+              mx-auto mt-2 max-w-[570px] lg:max-w-none lg:whitespace-nowrap
               text-[16px] leading-[1.5]
               text-[#303635]
             "
@@ -307,12 +302,12 @@ const MokshaServices: React.FC = () => {
             sm:grid-cols-2
             sm:gap-y-[106px]
             sm:px-7
-            lg:mt-[66px]
+            lg:mt-[44px]
             lg:grid-cols-5
             lg:gap-0
             lg:px-0
-            lg:pb-5
-            lg:pt-[53px]
+            lg:pb-3
+            lg:pt-[50px]
           "
         >
           {serviceItems.map((service, index) => (
@@ -320,7 +315,7 @@ const MokshaServices: React.FC = () => {
               key={index}
               className={`
                 relative px-4 text-center
-                lg:min-h-[150px]
+                lg:min-h-[110px]
                 ${
                   index !== services.length - 1
                     ? "lg:border-r lg:border-[#cda86c]/45"
@@ -333,26 +328,21 @@ const MokshaServices: React.FC = () => {
               <h3
                 className="
                   font-sans
-                  text-[16px]
+                  text-[14.5px]
                   font-bold
                   leading-[1.12]
                   text-[#103f3a]
-                  sm:text-[17px]
+                  sm:text-[15px]
                 "
               >
                 {service.title}
               </h3>
 
-              {/* tiny gold lotus */}
-              <div className="my-2 flex justify-center text-[#b77b22]">
-                <Lotus small />
-              </div>
-
               <p
                 className="
-                  mx-auto max-w-[200px]
-                  text-[16px]
-                  leading-[1.42]
+                  mx-auto mt-2 max-w-[190px]
+                  text-[13.5px]
+                  leading-[1.4]
                   text-[#343838]
                 "
               >
@@ -365,7 +355,7 @@ const MokshaServices: React.FC = () => {
         {/* =======================================================
             HOW WE SERVE
         ======================================================== */}
-        <section className="mt-7 sm:mt-8">
+        <section className="mt-5 sm:mt-5">
           {/* Heading */}
           <div className="flex items-center justify-center gap-3">
             <span className="hidden h-px w-16 bg-[#b77b22]/70 sm:block" />
@@ -391,11 +381,11 @@ const MokshaServices: React.FC = () => {
           {/* =====================================================
               DESKTOP TIMELINE
           ====================================================== */}
-<div className="relative mt-4 hidden lg:block">
+<div className="relative mt-2 hidden lg:block">
               {/* Main connecting line */}
               <div
                 className="
-                  absolute left-[9%] right-[9%] top-[51px]
+                  absolute left-[9%] right-[9%] top-[41px]
                   h-px bg-[#0c3d39]
                 "
               />
@@ -404,12 +394,12 @@ const MokshaServices: React.FC = () => {
                 {stepItems.map((step, index) => (
                   <div key={step.number} className="relative text-center">
                     {/* icon */}
-                    <div className="relative mx-auto h-[120px] w-[120px]">
+                    <div className="relative mx-auto h-[84px] w-[84px]">
                       <Image
                         src={step.image}
                         alt={step.alt}
                         fill
-                        sizes="120px"
+                        sizes="84px"
                         className="object-contain"
                       />
                     </div>
@@ -418,7 +408,7 @@ const MokshaServices: React.FC = () => {
                     {index !== steps.length - 1 && (
                       <div
                         className="
-                          absolute right-[-9px] top-[39px] z-20
+                          absolute right-[-9px] top-[29px] z-20
                           flex h-8 w-8
                           items-center justify-center
                           rounded-full
@@ -433,9 +423,9 @@ const MokshaServices: React.FC = () => {
 
                   <h4
                     className="
-                      mt-2
+                      mt-1
                       font-sans
-                      text-[16px]
+                      text-[14.5px]
                       font-bold
                       text-[#16423d]
                     "
@@ -446,9 +436,9 @@ const MokshaServices: React.FC = () => {
                   <p
                     className="
                       mx-auto mt-1
-                      max-w-[170px]
-                      text-[16px]
-                      leading-[1.42]
+                      max-w-[160px]
+                      text-[13.5px]
+                      leading-[1.4]
                       text-[#343737]
                     "
                   >
@@ -498,7 +488,7 @@ const MokshaServices: React.FC = () => {
         {/* =======================================================
             CTA
         ======================================================== */}
-        <div className="mt-5 flex justify-center sm:mt-6">
+        <div className="mt-3 flex justify-center sm:mt-3">
           <div className="flex w-full max-w-[440px] items-center justify-center gap-3">
 
             <a

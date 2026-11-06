@@ -179,7 +179,7 @@ export default function HeartOfMoksha() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#003b2f]/45 via-transparent to-transparent" />
 
         <div className="absolute inset-0 z-10">
-          <div className="mx-auto flex h-full w-full max-w-7xl items-center px-5 py-10 sm:px-6 lg:px-8 lg:py-0 2xl:px-0">
+          <div data-no-accent className="about-flush mx-auto flex h-full w-full max-w-7xl items-center px-5 py-10 sm:px-6 lg:px-8 lg:py-0 2xl:px-0">
             <div className="flex h-full w-full items-center text-left text-white lg:w-[61%] max-lg:bg-[#003a2f]/82 max-lg:p-5 max-lg:backdrop-blur-[1px] sm:max-lg:p-7">
               <div className="flex w-full items-center justify-start gap-[4%]">
             <div className="hidden shrink-0 items-center gap-5 lg:flex">
@@ -202,7 +202,7 @@ export default function HeartOfMoksha() {
                 <span className="whitespace-pre-line">{textOrFallback(section?.title, "When Someone Has No One,\nHumanity Must Stand Beside Them.", 150)}</span>
               </h2>
 
-              <p className="mt-4 w-full max-w-[610px] text-left text-[16px] leading-7 text-white/90">
+              <p className="mt-4 w-full max-w-[610px] text-left text-[16px] leading-7 text-white">
                 {textOrFallback(section?.description, "Because the final journey is not only about how life ends. It is about how we choose to stand beside one another until the very end.", 600)}
               </p>
 
