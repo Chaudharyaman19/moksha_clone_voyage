@@ -812,15 +812,15 @@ export default function Hero() {
           <div className="hero-content-row-1366 flex h-full items-start pt-[52px] sm:pt-[66px]">
             <div className="hero-content-col-1366 w-full max-w-[720px] md:w-[68%] md:pl-2 lg:w-[56%] lg:pl-[28px] xl:w-[54%]">
 
-              <div className="mb-2 flex w-full max-w-[360px] flex-col items-start text-left sm:w-fit sm:min-w-[340px]">
-                <div className="w-[190px] self-center sm:w-[220px] lg:w-[250px]">
+              <div className="mb-2 flex w-full max-w-[400px] flex-col items-start text-left sm:w-fit sm:min-w-[360px]">
+                <div className="w-[230px] self-center sm:w-[265px] lg:w-[305px]">
                   <Image
                     src={heroLogo}
                     alt="Namo Gange"
                     width={420}
                     height={150}
                     priority
-                    sizes="250px"
+                    sizes="305px"
                     className="h-auto w-full object-contain"
                   />
                 </div>
