@@ -133,7 +133,7 @@ export default function DisclaimerContent() {
         </div>
 
         {/* Content container */}
-        <div className="relative z-10 w-full mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8">
+        <div className="relative z-10 w-full mx-auto wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-4 sm:px-6 lg:px-4 pt-4 sm:pt-6 lg:pt-8">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-[15.5px] sm:text-[17px] text-[#8C6D46]">
             <Link href="/" className="transition-colors hover:text-[#2A1B0E]">
@@ -144,7 +144,7 @@ export default function DisclaimerContent() {
           </div>
 
           {/* Heading */}
-          <h1 className="mt-4 font-sans text-[48px] sm:text-[58px] lg:text-[68px] font-bold tracking-tight text-[#112E47] leading-[1.08]">
+          <h1 className="mt-4 font-sans text-[48px] sm:text-[58px] lg:text-[44px] font-bold tracking-tight text-[#112E47] leading-[1.08]">
             Disclaimer
           </h1>
 
@@ -156,7 +156,7 @@ export default function DisclaimerContent() {
       </div>
 
       {/* ==================== MAIN BODY ==================== */}
-      <div className="mx-auto max-w-[1240px] px-4 py-6 sm:px-6 sm:py-7">
+      <div className="mx-auto wwh-outer max-w-[min(1280px,calc(100vw-56px))] px-4 py-6 sm:px-6 lg:px-4 sm:py-7">
         {/* Yellow Notice Banner */}
         <div className="mb-6 flex items-start gap-3 rounded-[8px] border border-[#F3DFC1] bg-[#FDF6E9] p-3 sm:p-3.5 text-[#4A3B29]">
           <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#C7872A] text-white">

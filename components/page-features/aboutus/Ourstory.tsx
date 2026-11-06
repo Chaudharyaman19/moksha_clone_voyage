@@ -242,8 +242,8 @@ export default function OurStory() {
               sm:px-[46px]
 
               lg:px-[72px]
-              lg:pb-[34px]
-              lg:pt-[26px]
+              lg:pb-[20px]
+              lg:pt-[18px]
             "
           >
             {/* TOP LOTUS */}
@@ -517,7 +517,7 @@ export default function OurStory() {
 
                 h-[350px]
                 sm:h-[420px]
-                lg:h-[480px]
+                lg:h-[390px]
                 w-full
 
                 overflow-hidden
@@ -537,7 +537,7 @@ export default function OurStory() {
                 sizes="(max-width:1024px) 100vw, 46vw"
                 className="
                   object-cover
-                  object-center
+                  object-[50%_20%]
                 "
               />
             </div>
@@ -554,7 +554,7 @@ export default function OurStory() {
 
                 -mt-[14px]
 
-                min-h-[320px]
+                min-h-[240px]
 
                 overflow-hidden
 
@@ -564,8 +564,8 @@ export default function OurStory() {
                 bg-[#004A39]
 
                 px-[32px]
-                pb-[16px]
-                pt-[16px]
+                pb-[12px]
+                pt-[12px]
 
                 text-white
 
@@ -669,8 +669,8 @@ export default function OurStory() {
 
                     text-[#D09A30]
 
-                    sm:h-[62px]
-                    sm:w-[62px]
+                    sm:h-[50px]
+                    sm:w-[50px]
                   "
                 >
                   <CustomIcon
@@ -679,8 +679,8 @@ export default function OurStory() {
                       h-[24px]
                       w-[24px]
 
-                      sm:h-[37px]
-                      sm:w-[37px]
+                      sm:h-[30px]
+                      sm:w-[30px]
                     "
                   />
                 </div>
@@ -713,7 +713,7 @@ export default function OurStory() {
                 className="
                   relative
                   mx-auto
-                  mt-[8px]
+                  mt-[4px]
 
                   w-fit
 
@@ -727,7 +727,7 @@ export default function OurStory() {
                     -top-[7px]
 
                     font-sans
-                    text-[44px]
+                    text-[32px]
                     leading-none
 
                     text-[#C68511]
@@ -739,7 +739,7 @@ export default function OurStory() {
                 <p
                   className="
                     font-sans
-                    text-[20px]
+                    text-[17px]
                     italic
                     whitespace-pre-line
                     leading-[1.45]
@@ -760,7 +760,7 @@ export default function OurStory() {
                     right-[5px]
 
                     font-sans
-                    text-[44px]
+                    text-[32px]
                     leading-none
 
                     text-[#C68511]
@@ -776,7 +776,7 @@ export default function OurStory() {
 
               <div
                 className="
-                  mt-[10px]
+                  mt-[6px]
                   flex
                   justify-center
                 "
@@ -801,11 +801,11 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[6px]
+                  mt-[4px]
 
                   max-w-[455px]
 
-                  text-[15px]
+                  text-[13.5px]
                   leading-[1.46]
 
                   text-[#F0EDE5]
@@ -824,7 +824,7 @@ export default function OurStory() {
                   z-10
 
                   mx-auto
-                  mt-[8px]
+                  mt-[4px]
 
                   max-w-[455px]
                 "
@@ -832,7 +832,7 @@ export default function OurStory() {
                 <div
                   className="
                     font-sans
-                    text-[24px]
+                    text-[20px]
                     leading-none
 
                     text-[#C68B22]
@@ -847,7 +847,7 @@ export default function OurStory() {
                 <div
                   className="
                     mt-[2px]
-                    text-[14px]
+                    text-[13px]
                     text-[#F0E7D8]
                   "
                 >

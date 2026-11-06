@@ -863,6 +863,18 @@ body {
 /* About: every section heading (h2) uses the same size as the home page section headings */
 body .about-page h2:not(#a) { font-size: clamp(24px, 2.1vw, 30px) !important; line-height: 1.12 !important; }
 
+/* About hero = same visible height as the home hero.
+   Home hero: width*8.45/20 (max 620px) below the fixed topbar+navbar (113px); About's banner starts under them. */
+@media (min-width: 1024px) {
+  .about-page .about-hero-h { min-height: calc(113px + min(42.25vw, 620px)) !important; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .about-page .about-hero-h { min-height: calc(113px + 575px) !important; }
+}
+@media (min-width: 1024px) {
+  .about-page .about-hero-h { padding-top: 219px !important; }
+}
+
 /* About page: every section's content box = the same box as the home page (1440px -> 96..1344).
    (1280-1390px laptops use the narrower 1160px box, same as home.) */
 @media (min-width: 1024px) {
@@ -931,6 +943,32 @@ body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2) + p:not([data-stage
 /* heading inside a narrow card/panel: smaller so it never overflows */
 body:not(:has(.landing-typo)) :is(main, section) :is(h1, h2).tt-compact:not(footer *):not(nav *):not(form *):not([role="dialog"] *):not([data-stage] *) {
   font-size: clamp(22px, 2vw, 28px) !important;
+}
+
+/* ---- Inner pages (every page EXCEPT Home, About and Contact, which set data-no-inset) ----
+   Same section-heading size as the home page (24-30px) and the same content box as home:
+   1440px -> content spans 96..1344, 1280-1390px laptops use the narrower 1160px box. */
+body:not(:has([data-no-inset])):not(:has(.landing-typo)) :is(main, section) :is(h2, h2.tt-compact):not(footer *):not(nav *):not(form *):not([role="dialog"] *):not([data-stage] *):not(#a) {
+  font-size: clamp(24px, 2.1vw, 30px) !important;
+  line-height: 1.14 !important;
+}
+@media (min-width: 1024px) {
+  body:not(:has([data-no-inset])):not(:has(.landing-typo)) :is(.max-w-7xl, .max-w-\[1344px\], .max-w-\[1400px\], .max-w-\[1280px\], .max-w-\[1180px\]):not(#a):not(nav *):not(footer *):not(#topbar *):not(nav) {
+    max-width: min(1280px, calc(100vw - 56px)) !important;
+  }
+}
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  body:not(:has([data-no-inset])):not(:has(.landing-typo)) :is(.max-w-7xl, .max-w-\[1344px\], .max-w-\[1400px\], .max-w-\[1280px\], .max-w-\[1180px\]):not(#a):not(nav *):not(footer *):not(#topbar *):not(nav) {
+    max-width: 1160px !important;
+  }
+}
+
+/* full-bleed inner hero whose text must start at the home content line (1440px -> 96) */
+@media (min-width: 1024px) {
+  .inner-hero-pad { padding-left: calc((100vw - min(1280px, 100vw - 56px)) / 2) !important; }
+}
+@media screen and (min-width: 1280px) and (max-width: 1390px) {
+  .inner-hero-pad { padding-left: calc((100vw - 1160px) / 2) !important; }
 }
 
 /* inner-page subtitle = landing-page subtitle (16px regular, soft dark grey) */

@@ -61,7 +61,7 @@ export default function UnclaimedBodyHero() {
         />
 
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-16 lg:px-0 lg:pt-28">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-6 pt-16 lg:px-4 lg:pt-28">
           <div className="flex items-center gap-3 text-[16px] font-bold uppercase tracking-[0.1em] text-[#0b4b3b]">
             <UBSIcon
               name="Lotus"

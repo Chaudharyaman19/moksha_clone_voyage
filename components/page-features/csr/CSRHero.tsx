@@ -140,12 +140,13 @@ export default function CSRHero() {
 
             sm:px-8
 
+            inner-hero-pad
             lg:w-[57%]
-            lg:px-[74px]
+            lg:px-4
             lg:pb-[100px]
             lg:pt-[72px]
 
-            xl:px-[88px]
+            xl:px-4
           "
         >
           {/* TOP LABEL */}

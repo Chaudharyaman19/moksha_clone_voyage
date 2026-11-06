@@ -501,7 +501,7 @@ export default function RefundPolicy() {
         }
       `}</style>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-0">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 pb-4 pt-6 sm:px-5 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-4">
         {/* =====================================================
             SIDEBAR
         ====================================================== */}

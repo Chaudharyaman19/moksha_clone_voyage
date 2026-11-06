@@ -585,7 +585,7 @@ export default function VolunteerRegister() {
           <LotusOrnament className="h-64 w-64" />
         </div>
 
-        <div className="relative mx-auto w-full max-w-7xl">
+        <div className="relative mx-auto w-full max-w-7xl lg:px-4">
           {/* Volunteer hero */}
           <section className="relative left-1/2 mb-5 aspect-[16/6.2] min-h-[430px] w-screen -translate-x-1/2 overflow-hidden bg-[#F4EDE3] lg:min-h-[680px]">
             <div

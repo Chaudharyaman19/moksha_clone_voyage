@@ -242,6 +242,7 @@ const AboutMokshaSewa: React.FC = () => {
             lg:min-h-[540px]
             lg:pb-10
             lg:pt-40
+            about-hero-h
           "
         >
           {/* LEFT CONTENT */}
