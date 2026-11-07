@@ -19,9 +19,8 @@ export default function TopInfoBar() {
   return (
     <div
       id="topbar"
-      className="donate-nav-sparkle fixed top-0 left-0 z-[60] h-11 w-full overflow-hidden border-b border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] text-white font-sans shadow-[0_0_18px_rgba(229,169,62,0.45)]"
+      className="fixed top-0 left-0 z-[60] h-11 w-full overflow-hidden border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] text-white font-sans shadow-md"
     >
-      <span className="donate-nav-shine pointer-events-none" aria-hidden />
       {/* Explicit h-11 (44px) above — Navbar hardcodes its own top-11 offset assuming exactly
           this height, so this can't be left to size itself from content (padding/icon tweaks
           here would silently reopen a gap between the two bars otherwise). */}
