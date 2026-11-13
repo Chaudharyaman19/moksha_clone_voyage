@@ -61,6 +61,16 @@ export interface LandingHeroSlide {
   activeDays?: string[];
 }
 
+export interface ContentField {
+  key: string;
+  label: string;
+  value: string;
+  /** Where on the page this field appears (admin groups fields by this). */
+  group: string;
+  kind?: "text" | "textarea" | "image" | "link";
+  hint?: string;
+}
+
 export interface LandingSectionContent {
   key: string;
   name: string;
@@ -139,6 +149,161 @@ export interface LandingSectionContent {
   tertiaryButtonHref?: string;
   slides?: LandingHeroSlide[];
   items?: LandingSectionItem[];
+  /** Labelled field list (used by the new Contact page sections). */
+  fields?: ContentField[];
+  /** true = admin shows only `fields` for this section. */
+  fieldsOnly?: boolean;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Labelled-field helpers (shared by the Contact page + Main Footer editors in the admin).
+//   group = where on the page it appears, label = what it is, hint = extra help.
+// The website reads these by `key`, so never rename a key. Only `value` is saved from the admin.
+// ---------------------------------------------------------------------------------------------
+export const LINES = "Each new line = a new line on the website.";
+export const cf = (group: string, key: string, label: string, value: string, extra: Partial<ContentField> = {}): ContentField => ({
+  key,
+  label,
+  value,
+  group,
+  ...extra,
+});
+
+const FOOTER_QUICK: [string, string][] = [
+  ["Home", "/"],
+  ["About Us", "/about"],
+  ["Our Services", "/services"],
+  ["Our Initiatives", "/initiatives"],
+  ["Volunteer With Us", "/volunteer/register"],
+  ["Gallery", "/mokshagallery"],
+  ["Contact Us", "/contact"],
+];
+const FOOTER_SERVICES: [string, string][] = [
+  ["Dignified Cremation\nServices", "/services"],
+  ["Antim Sanskar Assistance", "/services"],
+  ["Dead Body Transportation", "/ambulanceservices"],
+  ["Pandit & Ritual Support", "/panditservices"],
+  ["Funeral Materials\n& Arrangements", "/furalservices"],
+  ["Family Guidance & Support", "/specialservices"],
+];
+const FOOTER_INITIATIVES: [string, string][] = [
+  ["Dignified Last Rites", "/initiatives"],
+  ["Unclaimed Bodies Support", "/unclaimed-body-sewa"],
+  ["Underprivileged Family\nAssistance", "/initiatives"],
+  ["Volunteer & Seva Network", "/volunteer/register"],
+  ["Community Welfare & Outreach", "/initiatives"],
+  ["Awareness & Social\nResponsibility", "/blog"],
+];
+const FOOTER_VALUES: [string, string][] = [
+  ["Compassion", "We serve with\nempathy and humanity."],
+  ["Dignity", "Every life is treated\nwith respect."],
+  ["Service", "We support every step\nof the final journey."],
+  ["Trust", "Transparent, accountable\nand responsible."],
+  ["Together", "United for a more\ncompassionate world."],
+];
+const footerLinks = (group: string, prefix: string, rows: [string, string][]): ContentField[] =>
+  rows.flatMap(([label, href], i) => [
+    cf(group, `${prefix}.${i + 1}.label`, `Link ${i + 1} – text`, label, label.includes("\n") ? { kind: "textarea", hint: LINES } : {}),
+    cf(group, `${prefix}.${i + 1}.href`, `Link ${i + 1} – link`, href, { kind: "link" }),
+  ]);
+
+export const mainFooterFields: ContentField[] = [
+  cf("Top gold band", "band.tagline", "Sentence on the left", "Stand with dignity. Serve with compassion."),
+  cf("Top gold band – button 1", "band.btn1.label", "Button text", "Request Help"),
+  cf("Top gold band – button 1", "band.btn1.href", "Button link", "/request-help", { kind: "link" }),
+  cf("Top gold band – button 2", "band.btn2.label", "Button text", "Donate Now"),
+  cf("Top gold band – button 2", "band.btn2.href", "Button link", "/donation", { kind: "link" }),
+  cf("Top gold band – button 3", "band.btn3.label", "Button text", "Become a Volunteer"),
+  cf("Top gold band – button 3", "band.btn3.href", "Button link", "/volunteer/register", { kind: "link" }),
+  cf("Brand column (left)", "brand.name", "Brand name", "Moksha Sewa", { hint: "Also used as the logo's alt text." }),
+  cf("Brand column (left)", "brand.tagline", "Yellow line under logo", "A Namo Gange Trust Initiative"),
+  cf("Brand column (left)", "brand.description", "Paragraph", "We stand with the forgotten, the unclaimed and the helpless to ensure every life's final journey is dignified, peaceful and respectful.", { kind: "textarea" }),
+  cf("Brand column (left)", "brand.logo", "Moksha Sewa logo (white)", "/homelogo/mok-footer-white.png", { kind: "image" }),
+  cf("Brand column (left)", "brand.partnerLogo", "Namo Gange logo", "/footer/am.png", { kind: "image" }),
+  cf("Brand column (left)", "brand.partnerLogoAlt", "Namo Gange logo – alt text", "Namo Gange - A Journey to Healthy World"),
+  cf("Footer background", "bg.image", "Ghat background photo", "/footer/goldback.png", { kind: "image" }),
+  cf("Footer background", "bg.imageAlt", "Ghat background photo – alt text", "Moksha Sewa Sacred Varanasi Ghat Scenic Sunset Footer"),
+  cf("Column – Quick Links", "quick.title", "Column heading", "Quick Links"),
+  ...footerLinks("Column – Quick Links", "quick", FOOTER_QUICK),
+  cf("Column – Our Services", "services.title", "Column heading", "Our Services"),
+  ...footerLinks("Column – Our Services", "services", FOOTER_SERVICES),
+  cf("Column – Our Seva Initiatives", "initiatives.title", "Column heading", "Our Seva Initiatives"),
+  ...footerLinks("Column – Our Seva Initiatives", "initiatives", FOOTER_INITIATIVES),
+  cf("Our Global Presence box", "presence.title", "Heading", "Our Global Presence", { hint: "The 3 office cards inside this box (address / phone) are edited in Contact Page → section 6." }),
+  cf("Our Global Presence box", "presence.bgImage", "Box background picture", "/footer/image.webp", { kind: "image" }),
+  ...FOOTER_VALUES.flatMap(([title, desc], i) => [
+    cf(`Values band – item ${i + 1}`, `value${i + 1}.title`, "Title", title),
+    cf(`Values band – item ${i + 1}`, `value${i + 1}.desc`, "Text", desc, { kind: "textarea", hint: LINES }),
+  ]),
+  cf("Bottom bar – left text", "bottom.copyright", "Copyright line (after the year)", "Moksha Sewa – Dignified Last Rites & Support", { hint: "The “©” and the current year are added automatically before this text." }),
+  cf("Bottom bar – left text", "bottom.initiative", "Middle text", "A Initiative of Namo Gange Trust"),
+  cf("Bottom bar – left text", "bottom.rights", "Last text", "All Rights Reserved."),
+  cf("Bottom bar – right links", "legal1.label", "Link 1 text", "Sitemap"),
+  cf("Bottom bar – right links", "legal1.href", "Link 1 address", "/sitemap.xml", { kind: "link" }),
+  cf("Bottom bar – right links", "legal2.label", "Link 2 text", "Privacy Policy"),
+  cf("Bottom bar – right links", "legal2.href", "Link 2 address", "/privacy-policy", { kind: "link" }),
+  cf("Bottom bar – right links", "legal3.label", "Link 3 text", "Terms & Conditions"),
+  cf("Bottom bar – right links", "legal3.href", "Link 3 address", "/terms", { kind: "link" }),
+  cf("Bottom bar – right links", "bottom.designedBy", "“Designed by” text", "Designed & Developed by"),
+  cf("Bottom bar – right links", "bottom.designerLogo", "Developer logo (red box)", "/assets/encodency-logo.png", { kind: "image" }),
+  cf("Bottom bar – right links", "bottom.designerLogoAlt", "Developer logo – alt text", "enCodency Pvt. Ltd."),
+  cf("Pop-up message", "popup.successMessage", "Message shown after the footer request is sent", "Thank you for reaching out. Our support team will contact you shortly."),
+];
+
+// Older websites saved footer text in top-level props / `items[]`. Keep those in step with the fields so
+// the other footer variants (Moksha / Partnership footer) and any data saved before this editor still work.
+const FOOTER_TOP_PROPS: [string, keyof LandingSectionContent][] = [
+  ["band.tagline", "actionTitle"],
+  ["band.btn1.label", "secondaryButtonLabel"],
+  ["band.btn1.href", "secondaryButtonHref"],
+  ["band.btn2.label", "buttonLabel"],
+  ["band.btn2.href", "buttonHref"],
+  ["band.btn3.label", "tertiaryButtonLabel"],
+  ["band.btn3.href", "tertiaryButtonHref"],
+  ["brand.name", "title"],
+  ["brand.tagline", "eyebrow"],
+  ["brand.description", "description"],
+  ["quick.title", "quickLinksTitle"],
+  ["services.title", "servicesTitle"],
+  ["popup.successMessage", "successMessage"],
+];
+const FOOTER_VALUE_ITEM_START = 14;
+const FOOTER_LEGAL_ITEM_START = 19;
+
+function mergeFooterFields(base: LandingSectionContent, saved?: LandingSectionContent): LandingSectionContent {
+  const savedByKey = new Map((saved?.fields ?? []).map((f) => [f.key, f.value]));
+  const baseItems = base.items ?? [];
+  const legacy = (key: string): string | undefined => {
+    const top = FOOTER_TOP_PROPS.find(([k]) => k === key);
+    if (top) return base[top[1]] as string | undefined;
+    const v = /^value(\d)\.(title|desc)$/.exec(key);
+    if (v) return baseItems[FOOTER_VALUE_ITEM_START + Number(v[1]) - 1]?.[v[2] === "title" ? "title" : "description"];
+    const l = /^legal(\d)\.(label|href)$/.exec(key);
+    if (l) return baseItems[FOOTER_LEGAL_ITEM_START + Number(l[1]) - 1]?.[l[2] === "label" ? "label" : "href"];
+    return undefined;
+  };
+  const fields = mainFooterFields.map((f) => {
+    const sv = savedByKey.get(f.key);
+    if (typeof sv === "string") return { ...f, value: sv };
+    const lg = legacy(f.key);
+    return lg && lg.trim() ? { ...f, value: lg } : f;
+  });
+  const get = (k: string) => fields.find((f) => f.key === k)?.value ?? "";
+  const out: LandingSectionContent = { ...base, name: "Main Footer (all pages except Contact)", fields, fieldsOnly: true };
+  FOOTER_TOP_PROPS.forEach(([k, prop]) => {
+    (out as unknown as Record<string, unknown>)[prop] = get(k);
+  });
+  const items = [...baseItems];
+  for (let i = 1; i <= 5; i++) {
+    const idx = FOOTER_VALUE_ITEM_START + i - 1;
+    items[idx] = { ...(items[idx] ?? {}), title: get(`value${i}.title`), description: get(`value${i}.desc`) };
+  }
+  for (let i = 1; i <= 3; i++) {
+    const idx = FOOTER_LEGAL_ITEM_START + i - 1;
+    items[idx] = { ...(items[idx] ?? {}), label: get(`legal${i}.label`), href: get(`legal${i}.href`) };
+  }
+  out.items = items;
+  return out;
 }
 
 export const defaultLandingSections: LandingSectionContent[] = [
@@ -436,8 +601,10 @@ export const defaultLandingSections: LandingSectionContent[] = [
   },
   {
     key: "footer",
-    name: "Footer",
+    name: "Main Footer (all pages except Contact)",
     enabled: true,
+    fieldsOnly: true,
+    fields: mainFooterFields,
     eyebrow: "A Namo Gange Trust Initiative",
     title: "Moksha Sewa",
     subtitle: "Seva • Samman • Samarpan",
@@ -504,7 +671,7 @@ export const defaultLandingSections: LandingSectionContent[] = [
   },
 ];
 
-export function mergeLandingSections(sections?: LandingSectionContent[]): LandingSectionContent[] {
+function mergeLandingSectionsBase(sections?: LandingSectionContent[]): LandingSectionContent[] {
   if (!sections?.length) return defaultLandingSections;
   const byKey = new Map(sections.map((section) => [section.key, section]));
   return defaultLandingSections.map((fallback) => {
@@ -907,4 +1074,10 @@ export function getScheduleStatus(schedule?: {
     color: "text-emerald-800 bg-emerald-50 border-emerald-300",
     badgeBg: "bg-emerald-500 animate-pulse",
   };
+}
+
+export function mergeLandingSections(sections?: LandingSectionContent[]): LandingSectionContent[] {
+  const merged = mergeLandingSectionsBase(sections);
+  const savedFooter = sections?.find((s) => s.key === "footer");
+  return merged.map((s) => (s.key === "footer" ? mergeFooterFields(s, savedFooter) : s));
 }

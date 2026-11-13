@@ -21,6 +21,7 @@ import { newsletterApi } from "@/lib/newsletterApi";
 import SuccessPopup from "@/components/common/SuccessPopup";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import { useInViewOnce } from "@/lib/useInViewOnce";
+import { useContactFields } from "@/lib/contactFields";
 
 type FooterSvgProps = { className?: string; strokeWidth?: number };
 
@@ -257,6 +258,7 @@ const legalLinks = [
 
 export default function FooterNew() {
   const websiteSection = useWebsiteSection("footer");
+  const f = useContactFields("footer"); // every footer text / link / picture the admin edits (Website → Landing → Main Footer)
   const locationsSection = useWebsiteSection("contact-locations");
   const [presenceRef, presenceSeen] = useInViewOnce<HTMLDivElement>();
   const pathname = usePathname();
@@ -334,12 +336,15 @@ export default function FooterNew() {
   const requestSupportImage = imageOrFallback(websiteSection?.secondaryImage, "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165347/moksha-sewa/assets/request_support.webp");
   const footerItems = websiteSection?.items ?? [];
   // Quick links directly uses the complete 7 links from the reference image
-  const managedQuickLinks = quickLinks
+  const fromFields = <T extends { label: string; href: string }>(list: T[], prefix: string): T[] =>
+    list.map((item, i) => ({ ...item, label: f.get(`${prefix}.${i + 1}.label`) || item.label, href: f.get(`${prefix}.${i + 1}.href`) || item.href }));
+  const managedQuickLinks = fromFields(quickLinks, "quick")
     .filter((item) => !disabledPaths.includes(item.href));
-  const managedServices = services
+  const managedServices = fromFields(services, "services")
     .filter((item) => !disabledPaths.includes(item.href));
-  const managedInitiatives = initiatives
+  const managedInitiatives = fromFields(initiatives, "initiatives")
     .filter((item) => !disabledPaths.includes(item.href));
+  const legalFromFields = [1, 2, 3].map((n) => ({ label: f.get(`legal${n}.label`), href: f.get(`legal${n}.href`) || "/" }));
   const managedValues = values.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 14, { title: item.title, description: item.description }) }));
   const managedLegalLinks = legalLinks
     .map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 19, item) }))
@@ -526,8 +531,8 @@ export default function FooterNew() {
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 hidden lg:block overflow-hidden">
           <div className="relative -left-[55px] h-full w-[calc(100%+55px)]">
             <Image
-              src="/footer/goldback.png"
-              alt="Moksha Sewa Sacred Varanasi Ghat Scenic Sunset Footer"
+              src={f.image("bg.image")}
+              alt={f.get("bg.imageAlt")}
               fill
               priority={false}
               sizes="100vw"
@@ -539,8 +544,8 @@ export default function FooterNew() {
         {/* Mobile/tablet gets scenic wash */}
         <div className="footer-ganga pointer-events-none absolute inset-0 z-0 lg:hidden">
           <Image
-            src="/footer/goldback.png"
-            alt="Moksha Sewa Sacred Varanasi Ghat Scenic Sunset Footer"
+            src={f.image("bg.image")}
+            alt={f.get("bg.imageAlt")}
             fill
             sizes="100vw"
             className="object-cover object-left opacity-[0.25]"
@@ -556,7 +561,7 @@ export default function FooterNew() {
               <div className="footer-col relative flex flex-col items-center justify-center px-3 text-center sm:col-span-2 lg:col-span-1 lg:min-h-[300px] lg:justify-start lg:pb-1 lg:pt-1 min-[1280px]:pl-[95px] min-[1280px]:pr-1">
                 <div className="footer-brand-logo relative flex w-[145px] items-center justify-center overflow-hidden sm:w-[160px]">
                   <Image
-                    src="/homelogo/mok-footer-white.png"
+                    src={f.image("brand.logo")}
                     alt={brandName}
                     width={160}
                     height={120}
@@ -587,8 +592,8 @@ export default function FooterNew() {
                 {/* Namo Gange Logo & Tagline below brand text */}
                 <div className="mt-3 flex items-center justify-center">
                   <Image
-                    src="/footer/am.png"
-                    alt="Namo Gange - A Journey to Healthy World"
+                    src={f.image("brand.partnerLogo")}
+                    alt={f.get("brand.partnerLogoAlt")}
                     width={240}
                     height={84}
                     className="h-[70px] sm:h-[76px] w-auto object-contain"
@@ -648,7 +653,7 @@ export default function FooterNew() {
               </FloatingCard>
 
               {/* INITIATIVES */}
-              <FloatingCard iconImg="/footer/Glowing Golden Lotus Emblem.png" title="Our Seva Initiatives">
+              <FloatingCard iconImg="/footer/Glowing Golden Lotus Emblem.png" title={f.get("initiatives.title")}>
                 <ul className="space-y-0">
                   {managedInitiatives.map((item, idx) => {
                     const iconImg = (item as any).iconImg || initiatives[idx]?.iconImg;
@@ -685,7 +690,7 @@ export default function FooterNew() {
                   ref={presenceRef}
                   className="footer-presence relative w-full max-w-[660px] xl:max-w-full overflow-hidden rounded-[16px] border border-[#D9A33A]/60 pl-2.5 pr-2 py-2.5 sm:pl-3 sm:pr-3 sm:py-3 bg-cover bg-right bg-no-repeat"
                   style={{
-                    backgroundImage: presenceSeen ? "url('/footer/image.webp')" : undefined,
+                    backgroundImage: presenceSeen ? `url('${f.image("presence.bgImage")}')` : undefined,
                     backgroundColor: "#060908",
                   }}
                 >
@@ -716,7 +721,7 @@ export default function FooterNew() {
                       </svg>
 
                       <h3 className="text-[17px] sm:text-[18px] font-serif font-bold text-white tracking-wide">
-                        Our Global Presence
+                        {f.get("presence.title")}
                       </h3>
                     </div>
 
@@ -842,53 +847,53 @@ export default function FooterNew() {
             <div className="mx-auto flex min-h-[46px] w-full max-w-[1380px] flex-col items-center justify-between gap-2.5 px-4 py-2 text-center sm:px-6 lg:flex-row lg:px-8">
               {/* Left: Exact Image Pattern */}
               <div className="footer-bottom-left flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-white/90">
-                <span>© {new Date().getFullYear()} Moksha Sewa – Dignified Last Rites &amp; Support</span>
+                <span>© {new Date().getFullYear()} {f.get("bottom.copyright")}</span>
                 <span className="h-3.5 w-px bg-white/25" />
-                <span>A Initiative of Namo Gange Trust</span>
+                <span>{f.get("bottom.initiative")}</span>
                 <span className="h-3.5 w-px bg-white/25" />
-                <span>All Rights Reserved.</span>
+                <span>{f.get("bottom.rights")}</span>
               </div>
 
               {/* Right: Policy Links + Designed & Developed by */}
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[11.5px] text-white/90">
                 <Link
-                  href="/sitemap.xml"
+                  href={legalFromFields[0].href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition hover:text-[#E5B14A]"
                 >
-                  Sitemap
+                  {legalFromFields[0].label}
                 </Link>
                 <span className="h-3.5 w-px bg-white/20" />
 
                 <Link
-                  href="/privacy-policy"
+                  href={legalFromFields[1].href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition hover:text-[#E5B14A]"
                 >
-                  Privacy Policy
+                  {legalFromFields[1].label}
                 </Link>
                 <span className="h-3.5 w-px bg-white/20" />
 
                 <Link
-                  href="/terms"
+                  href={legalFromFields[2].href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition hover:text-[#E5B14A]"
                 >
-                  Terms &amp; Conditions
+                  {legalFromFields[2].label}
                 </Link>
                 <span className="h-3.5 w-px bg-white/20" />
 
                 <div className="flex items-center gap-1.5">
                   <span className="font-normal text-white/85">
-                    Designed &amp; Developed by
+                    {f.get("bottom.designedBy")}
                   </span>
                   <div className="relative flex items-center overflow-hidden rounded-md bg-[#ED1C24] px-1.5 py-0.5 shadow-sm">
                     <Image
-                      src="/assets/encodency-logo.png"
-                      alt="enCodency Pvt. Ltd."
+                      src={f.image("bottom.designerLogo")}
+                      alt={f.get("bottom.designerLogoAlt")}
                       width={120}
                       height={24}
                       className="h-8 w-auto object-contain"

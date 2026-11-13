@@ -1,4 +1,4 @@
-import { normalizeLandingSection, type LandingSectionContent } from "./landingContent";
+import { cf, LINES, normalizeLandingSection, type ContentField, type LandingSectionContent } from "./landingContent";
 export type ExtraSectionContent = LandingSectionContent;
 export const defaultServicesSections: ExtraSectionContent[] = [
   {
@@ -903,65 +903,210 @@ export function mergeDonationSections(sections?: ExtraSectionContent[]): ExtraSe
 // ============================================================================
 // 8. CONTACT PAGE SECTIONS
 // ============================================================================
+// Every editable piece of text / link / photo on the NEW /contact page is listed as a labelled field:
+//   group = where on the page it appears, label = what it is, hint = extra help.
+// The website reads these by `key`, so never rename a key. Only `value` is saved from the admin.
+const CONTACT_FOOTER_QUICK: [string, string][] = [
+  ["Home", "/"],
+  ["About Us", "/about"],
+  ["Our Services", "/services"],
+  ["Our Initiatives", "/initiatives"],
+  ["Volunteer With Us", "/volunteer/register"],
+  ["Gallery", "/mokshagallery"],
+  ["Contact Us", "/contact"],
+];
+const CONTACT_FOOTER_SERVICES: [string, string][] = [
+  ["Dignified Cremation\nServices", "/services"],
+  ["Antim Sanskar Assistance", "/services"],
+  ["Dead Body Transportation", "/ambulanceservices"],
+  ["Pandit & Ritual Support", "/panditservices"],
+  ["Funeral Materials\n& Arrangements", "/furalservices"],
+  ["Family Guidance & Support", "/specialservices"],
+];
+const CONTACT_FOOTER_INITIATIVES: [string, string][] = [
+  ["Dignified Last Rites", "/initiatives"],
+  ["Unclaimed Bodies Support", "/unclaimed-body-sewa"],
+  ["Underprivileged Family\nAssistance", "/initiatives"],
+  ["Volunteer & Seva Network", "/volunteer/register"],
+  ["Community Welfare & Outreach", "/initiatives"],
+  ["Awareness & Social\nResponsibility", "/blog"],
+];
+const CONTACT_FOOTER_VALUES: [string, string][] = [
+  ["Compassion", "We serve with empathy and humanity."],
+  ["Dignity", "Every life is treated with respect."],
+  ["Service", "We support every step of the final journey."],
+  ["Trust", "Transparent, accountable and responsible."],
+  ["Together", "United for a more compassionate world."],
+];
+
+const linkFields = (group: string, prefix: string, noun: string, rows: [string, string][]): ContentField[] =>
+  rows.flatMap(([label, href], i) => [
+    cf(group, `${prefix}.${i + 1}.label`, `${noun} ${i + 1} – text`, label, label.includes("\n") ? { kind: "textarea", hint: LINES } : {}),
+    cf(group, `${prefix}.${i + 1}.href`, `${noun} ${i + 1} – link`, href, { kind: "link" }),
+  ]);
+
+const contactOffice = (n: number, head1: string, head2: string, sub: string, address: string, phones: string, email: string): ContentField[] => {
+  const g = `Office ${n} card`;
+  return [
+    cf(g, `office${n}.head1`, "Card heading – line 1", head1),
+    cf(g, `office${n}.head2`, "Card heading – line 2", head2),
+    cf(g, `office${n}.sub`, "Card sub-heading (small, under heading)", sub, { hint: "Leave as-is or clear it if you do not want a sub-heading." }),
+    cf(g, `office${n}.address`, "Address", address, { kind: "textarea", hint: LINES }),
+    cf(g, `office${n}.phones`, "Phone number(s)", phones, { kind: "textarea", hint: "One phone number per line. Each becomes a tap-to-call link." }),
+    cf(g, `office${n}.email`, "Email", email, { kind: "link" }),
+  ];
+};
+
 export const defaultContactSections: ExtraSectionContent[] = [
   {
     key: "contact-hero",
-    name: "Contact Hero",
+    name: "1. Hero (top of Contact page)",
     enabled: true,
-    eyebrow: "Contact Us",
-    title: "We Are Here To Assist You\n24 Hours A Day",
-    subtitle: "Reach Out For Help, Inquiries, Or Volunteer Guidance",
-    description: "Connect with our central coordination desk in Delhi NCR via phone, email, or office visit.",
-    image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165070/moksha-sewa/assets/about-reference/who-we-are-background-v2.png",
-    phoneLabel: "24/7 Helpline",
-    phoneNumber: "9220147229",
-    altPhoneNumber: "6281482342",
-    contactEmail: "info@mokshasewa.org",
-    contactAddress: "Namo Gange Trust, Delhi • Ghaziabad • Noida",
+    fieldsOnly: true,
+    fields: [
+      cf("Hero – heading", "hero.eyebrow", "Small heading above the title", "Get in Touch"),
+      cf("Hero – heading", "hero.title", "Big title", "Contact Us", { hint: "The last word is shown in orange automatically." }),
+      cf("Hero – heading", "hero.description", "Paragraph under the title", "We’re here to support individuals\nand families in need with free\nlast-rites assistance, guidance\nand coordination, with dignity and care.", { kind: "textarea", hint: `${LINES} (On phones the lines join into one paragraph.)` }),
+      cf("Hero – Call button (brown)", "hero.callLabel", "Button top text", "Call Helpline"),
+      cf("Hero – Call button (brown)", "hero.phone", "Helpline phone number", "9220147229", { hint: "10 digits, no +91. This number is used in the hero button AND in the helpline strip lower down." }),
+      cf("Hero – Call button (brown)", "hero.callNote", "Small text after the number", "(24×7)"),
+      cf("Hero – Request button (white)", "hero.requestLabel", "Button top text", "Request Sewa"),
+      cf("Hero – Request button (white)", "hero.requestNote", "Button second line", "(Free Assistance)"),
+      cf("Hero – 4 service icons strip", "hero.strip1", "Strip item 1", "Family Support", { kind: "textarea", hint: LINES }),
+      cf("Hero – 4 service icons strip", "hero.strip2", "Strip item 2", "Ritual & Cremation\nAssistance", { kind: "textarea", hint: LINES }),
+      cf("Hero – 4 service icons strip", "hero.strip3", "Strip item 3", "Respectful\nTransportation", { kind: "textarea", hint: LINES }),
+      cf("Hero – 4 service icons strip", "hero.strip4", "Strip item 4", "Guidance &\nCoordination", { kind: "textarea", hint: LINES }),
+      cf("Hero – photos", "hero.sceneImage", "Desktop hero artwork", "/assets/contact/hero/scene.jpg", { kind: "image", hint: "Full hero picture on desktop (Haridwar ghat + banner shapes). Replace only with a 1584×792 image of the same layout." }),
+      cf("Hero – photos", "hero.mobileImage", "Phone / tablet hero photo", "/assets/contact/contact-hero-photo-2.png", { kind: "image", hint: "Ghat photo shown behind the text on phones and tablets." }),
+      cf("Hero – photos", "hero.mobileImageAlt", "Phone / tablet hero photo – alt text", "Haridwar ghat at sunset", { hint: "Describes the picture for Google and screen readers." }),
+    ],
   },
   {
-    key: "contact-info",
-    name: "Contact Info & Channels",
+    key: "contact-support",
+    name: "2. We’re Here to Support You + Helpline Strip",
     enabled: true,
-    eyebrow: "Direct Contact",
-    title: "Our Operational Desks",
-    description: "Get in touch with specific departments directly.",
-    items: [
-      { title: "Emergency Helpline", description: "Available 24x7 for immediate support." },
-      { title: "Volunteer Desk", description: "For volunteer onboarding and queries." },
-      { title: "CSR & Partner Desk", description: "For institutional collaborations." },
+    fieldsOnly: true,
+    fields: [
+      cf("Left side – heading", "support.eyebrow", "Small heading", "We’re Here to Help"),
+      cf("Left side – heading", "support.title1", "Big heading – line 1 (dark)", "We’re Here to"),
+      cf("Left side – heading", "support.title2", "Big heading – line 2 (orange)", "Support You"),
+      cf("Left side – heading", "support.description", "Paragraph", "Whether you need immediate assistance, guidance\non our services, or support for a loved one, our team\nis available 24 × 7 to help you and your family\nwith care and compassion.", { kind: "textarea", hint: LINES }),
+      cf("Left side – point 1 (heart icon)", "support.point1.title", "Title", "Compassionate Support"),
+      cf("Left side – point 1 (heart icon)", "support.point1.text", "Text", "Sensitivity, dignity and care\nfor every individual.", { kind: "textarea", hint: LINES }),
+      cf("Left side – point 2 (shield icon)", "support.point2.title", "Title", "Trusted & Transparent"),
+      cf("Left side – point 2 (shield icon)", "support.point2.text", "Text", "Clear information and ethical\nprocesses at every step.", { kind: "textarea", hint: LINES }),
+      cf("Left side – point 3 (people icon)", "support.point3.title", "Title", "Local Assistance"),
+      cf("Left side – point 3 (people icon)", "support.point3.text", "Text", "On-ground support and coordination\nin your area.", { kind: "textarea", hint: LINES }),
+      cf("Helpline strip – Call box", "strip.callTitle", "Title", "Call Our Helpline", { hint: "The phone number shown here comes from section 1 (Hero) → Helpline phone number." }),
+      cf("Helpline strip – Call box", "strip.callNote", "Small line under title", "24 × 7 Support"),
+      cf("Helpline strip – Email box", "strip.emailTitle", "Title", "Email Us"),
+      cf("Helpline strip – Email box", "strip.email", "Email address", "info@mokshasewa.org", { kind: "link" }),
+      cf("Helpline strip – Office hours box", "strip.hoursTitle", "Title", "Office Hours"),
+      cf("Helpline strip – Office hours box", "strip.hours1", "Line 1", "Mon – Sat: 9:00 AM – 7:00 PM"),
+      cf("Helpline strip – Office hours box", "strip.hours2", "Line 2", "Sun: By Appointment"),
+      cf("Photos", "support.sceneImage", "Desktop background artwork", "/assets/contact/support/scene.jpg", { kind: "image", hint: "Volunteer + elderly woman photo on desktop. Replace only with a 1584×792 image of the same layout." }),
+      cf("Photos", "support.mobileImage", "Phone / tablet photo", "/assets/contact/support-photo-3.png", { kind: "image" }),
+      cf("Photos", "support.sceneAlt", "Photo alt text (desktop + phone)", "Moksha Sewa volunteer comforting an elderly woman", { hint: "Describes the picture for Google and screen readers." }),
     ],
   },
   {
     key: "contact-form",
-    name: "Contact Form Section",
+    name: "3. Enquiry Form",
     enabled: true,
-    eyebrow: "Send Message",
-    title: "Leave Us A Message",
-    description: "Fill out the contact form and our team will respond within 2 hours.",
-    buttonLabel: "Send message",
-    items: [
-      { title: "First name *", description: "Rahul" },
-      { title: "Last name *", description: "Sharma" },
-      { title: "Email address *", description: "rahul@example.com" },
-      { title: "Phone number *", description: "Enter 10 digit mobile number" },
-      { title: "Subject *", description: "What do you need help with?" },
-      { title: "Message *", description: "Share the details — city, timing, and what you need arranged." },
-    ]
+    fieldsOnly: true,
+    fields: [
+      cf("Form – heading", "form.eyebrow", "Small heading", "Send Us an Enquiry"),
+      cf("Form – heading", "form.title", "Form title", "Get in Touch with Us"),
+      cf("Form – heading", "form.description", "Text under title", "Fill in the form below and our team will get back to you shortly."),
+      cf("Form – input boxes (grey placeholder text)", "form.namePlaceholder", "Name box", "Your Name *"),
+      cf("Form – input boxes (grey placeholder text)", "form.phonePlaceholder", "Mobile number box", "Mobile Number *"),
+      cf("Form – input boxes (grey placeholder text)", "form.emailPlaceholder", "Email box", "Email Address (Optional)"),
+      cf("Form – input boxes (grey placeholder text)", "form.locationPlaceholder", "Location drop-down (first line)", "Your Location *"),
+      cf("Form – input boxes (grey placeholder text)", "form.assistancePlaceholder", "Type of assistance drop-down (first line)", "Type of Assistance *"),
+      cf("Form – input boxes (grey placeholder text)", "form.messagePlaceholder", "Message box", "Your Message *"),
+      cf("Form – drop-down choices", "form.locationOptions", "Location choices", "Ghaziabad\nDelhi NCR\nNoida\nOther", { kind: "textarea", hint: "One choice per line." }),
+      cf("Form – drop-down choices", "form.assistanceOptions", "Type of assistance choices", "Last Rites & Cremation\nTransportation\nGuidance & Coordination\nFamily Support\nOther", { kind: "textarea", hint: "One choice per line." }),
+      cf("Form – button & messages", "form.submitLabel", "Submit button text", "Send Enquiry"),
+      cf("Form – button & messages", "form.successMessage", "Message after sending (also shown in the pop-up)", "Message sent. Our team will get back to you shortly."),
+      cf("Form – button & messages", "form.errorMessage", "Message when sending fails", "Message could not be sent. Please try again, or call our helpline."),
+    ],
   },
   {
-    key: "contact-faq",
-    name: "Contact FAQ",
+    key: "contact-offices",
+    name: "4. Our Offices & Global Presence",
     enabled: true,
-    eyebrow: "Helpful Info",
-    title: "Common Inquiries",
-    items: [
-      { title: "Where are services available?", description: "Currently serving Delhi, Ghaziabad, Noida and surrounding NCR areas." },
+    fieldsOnly: true,
+    fields: [
+      cf("Offices – heading", "offices.eyebrow", "Small heading", "Our Offices & Global Presence"),
+      cf("Offices – heading", "offices.title1", "Big heading – line 1 (dark)", "Serving Families, Across"),
+      cf("Offices – heading", "offices.title2", "Big heading – line 2 (orange)", "India & the UK"),
+      cf("Offices – heading", "offices.description", "Paragraph", "Our offices ensure timely support, coordination and assistance\nfor families in India and internationally.", { kind: "textarea", hint: LINES }),
+      ...contactOffice(1, "Head Office", "Delhi–NCR", "(Ghaziabad, India)", "Plot No. 12/29, Site II Industrial\nArea, Mohan Nagar, Ghaziabad –\n201007, Uttar Pradesh, India.", "+91 96549 00525\n+91 98102 47319", "info@mokshavoyage.vaidhyashala.in"),
+      ...contactOffice(2, "Regional Office", "Visakhapatnam", "(Andhra Pradesh, India)", "Door No. 36-46-51, 2nd Floor,\nMain Road, Kancharapalem,\nVisakhapatnam – 530008,\nAndhra Pradesh, India.", "+91 96549 00525", "info@mokshavoyage.vaidhyashala.in"),
+      ...contactOffice(3, "Global Office", "London (UK)", "", "Namo Gange Wellness Ltd.\n6 Liddel Close, Luton,\nBedfordshire, LU3 1TW,\nUnited Kingdom.", "+44 74248 78417", "uk@mokshavoyage.vaidhyashala.in"),
+      cf("Presence strip – “Our Presence at a Glance”", "presence.title", "Title", "Our Presence\nat a Glance", { kind: "textarea", hint: LINES }),
+      cf("Presence strip – map labels", "presence.london", "London label", "London (UK)", { kind: "textarea", hint: LINES }),
+      cf("Presence strip – map labels", "presence.delhi", "Delhi label", "Delhi–NCR\n(Ghaziabad)", { kind: "textarea", hint: `${LINES} Second line is smaller.` }),
+      cf("Presence strip – map labels", "presence.visakhapatnam", "Visakhapatnam label", "Visakhapatnam", { kind: "textarea", hint: LINES }),
+      cf("Photos", "offices.sceneImage", "Desktop background artwork", "/assets/contact/offices/scene.jpg", { kind: "image", hint: "Ganga ghat background on desktop. Replace only with a 1584×792 image of the same layout." }),
+      cf("Photos", "offices.mapImage", "Presence map picture", "/assets/contact/offices/map.png", { kind: "image", hint: "Map of London / Delhi-NCR / Visakhapatnam shown in the strip." }),
+      cf("Photos", "offices.mobileImage", "Phone / tablet photo", "/assets/contact/offices-photo-2.png", { kind: "image" }),
+      cf("Photos", "offices.sceneAlt", "Ganga ghat photo alt text (desktop + phone)", "Ganga ghat at sunset", { hint: "Describes the picture for Google and screen readers." }),
+      cf("Photos", "offices.mapAlt", "Map picture alt text", "Map showing offices in London, Delhi-NCR and Visakhapatnam"),
+    ],
+  },
+  {
+    key: "contact-footer",
+    name: "5. Contact Page Footer (new footer)",
+    enabled: true,
+    fieldsOnly: true,
+    fields: [
+      cf("Top gold band", "footer.tagline", "Sentence on the left", "Stand with dignity. Serve with compassion."),
+      cf("Top gold band – button 1", "footer.btn1.label", "Button text", "Request Help"),
+      cf("Top gold band – button 1", "footer.btn1.href", "Button link", "/request-help", { kind: "link" }),
+      cf("Top gold band – button 2", "footer.btn2.label", "Button text", "Donate Now"),
+      cf("Top gold band – button 2", "footer.btn2.href", "Button link", "/donation", { kind: "link" }),
+      cf("Top gold band – button 3", "footer.btn3.label", "Button text", "Become a Volunteer"),
+      cf("Top gold band – button 3", "footer.btn3.href", "Button link", "/volunteer/register", { kind: "link" }),
+      cf("Brand column (left)", "footer.brandTagline", "Yellow line under logo", "A Namo Gange Trust Initiative"),
+      cf("Brand column (left)", "footer.description", "Paragraph", "We stand with the forgotten, the unclaimed and the helpless to ensure every life’s final journey is dignified, peaceful and respectful.", { kind: "textarea" }),
+      cf("Brand column (left)", "footer.logoImage", "Moksha Sewa logo (white)", "/homelogo/mok-footer-white.png", { kind: "image" }),
+      cf("Brand column (left)", "footer.trustLogoImage", "Namo Gange logo", "/assets/namo-gange-logo.webp", { kind: "image" }),
+      cf("Brand column (left)", "footer.logoAlt", "Moksha Sewa logo – alt text", "Moksha Sewa"),
+      cf("Brand column (left)", "footer.trustLogoAlt", "Namo Gange logo – alt text", "Namo Gange"),
+      cf("Brand column (left)", "footer.leftPhoto", "Ghat photo on far left edge (desktop)", "/assets/contact-footer/left-photo-2.png", { kind: "image" }),
+      cf("Brand column (left)", "footer.leftPhotoAlt", "Ghat photo – alt text", "Varanasi ghat at sunset"),
+      cf("Column – Quick Links", "footer.quickTitle", "Column heading", "Quick Links"),
+      ...linkFields("Column – Quick Links", "footer.quick", "Link", CONTACT_FOOTER_QUICK),
+      cf("Column – Our Services", "footer.servicesTitle", "Column heading", "Our Services"),
+      ...linkFields("Column – Our Services", "footer.service", "Link", CONTACT_FOOTER_SERVICES),
+      cf("Column – Our Seva Initiatives", "footer.initiativesTitle", "Column heading", "Our Seva Initiatives"),
+      ...linkFields("Column – Our Seva Initiatives", "footer.initiative", "Link", CONTACT_FOOTER_INITIATIVES),
+      cf("Our Presence box (right)", "footer.presenceTitle", "Heading", "Our Presence"),
+      cf("Our Presence box (right)", "footer.presenceText", "Text", "A connected network to support families in India and internationally.", { kind: "textarea" }),
+      cf("Our Presence box (right)", "footer.presenceImage", "Map picture", "/assets/contact-footer/presence-art-2.png", { kind: "image" }),
+      cf("Our Presence box (right)", "footer.presenceAlt", "Map picture – alt text", "Offices in London, Delhi-NCR and Visakhapatnam"),
+      ...CONTACT_FOOTER_VALUES.flatMap(([title, desc], i) => [
+        cf(`Values band – item ${i + 1}`, `footer.value${i + 1}.title`, "Title (shown in gold capitals)", title),
+        cf(`Values band – item ${i + 1}`, `footer.value${i + 1}.desc`, "Text", desc),
+      ]),
+      cf("Bottom bar – left text", "footer.copyright", "Copyright line", "© 2026 Moksha Sewa – Dignified Last Rites & Support"),
+      cf("Bottom bar – left text", "footer.initiative", "Middle text", "A Initiative of Namo Gange Trust"),
+      cf("Bottom bar – left text", "footer.rights", "Last text", "All Rights Reserved."),
+      cf("Bottom bar – right links", "footer.legal1.label", "Link 1 text", "Sitemap"),
+      cf("Bottom bar – right links", "footer.legal1.href", "Link 1 address", "/sitemap.xml", { kind: "link" }),
+      cf("Bottom bar – right links", "footer.legal2.label", "Link 2 text", "Privacy Policy"),
+      cf("Bottom bar – right links", "footer.legal2.href", "Link 2 address", "/privacy-policy", { kind: "link" }),
+      cf("Bottom bar – right links", "footer.legal3.label", "Link 3 text", "Terms & Conditions"),
+      cf("Bottom bar – right links", "footer.legal3.href", "Link 3 address", "/terms", { kind: "link" }),
+      cf("Bottom bar – right links", "footer.designedBy", "“Designed by” text", "Designed & Developed by"),
+      cf("Bottom bar – right links", "footer.designerLogo", "Developer logo (red box)", "/assets/contact-footer/encodency-white.png", { kind: "image" }),
+      cf("Bottom bar – right links", "footer.designerLogoAlt", "Developer logo – alt text", "enCodency Pvt. Ltd."),
     ],
   },
   {
     key: "contact-locations",
-    name: "Office Locations",
+    name: "6. Office cards shown in the Main Footer (\"Our Global Presence\")",
     enabled: true,
     eyebrow: "Our Presence",
     title: "Office Locations",
@@ -1004,7 +1149,7 @@ export const defaultContactSections: ExtraSectionContent[] = [
         image: "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788165092/moksha-sewa/assets/contact/en.png",
       },
     ]
-  },
+  }
 ];
 
 export function mergeContactSections(sections?: ExtraSectionContent[]): ExtraSectionContent[] {
@@ -1013,8 +1158,17 @@ export function mergeContactSections(sections?: ExtraSectionContent[]): ExtraSec
   return defaultContactSections.map((fallback) => {
     const saved = byKey.get(fallback.key);
     if (!saved) return fallback;
+    if (fallback.fields) {
+      // Labels / groups always come from the defaults; only the edited `value` is taken from what was saved.
+      const savedByKey = new Map((saved.fields ?? []).map((f) => [f.key, f]));
+      const fields = fallback.fields.map((f) => {
+        const s = savedByKey.get(f.key);
+        return s && typeof s.value === "string" ? { ...f, value: s.value } : f;
+      });
+      return { ...fallback, enabled: saved.enabled !== false, fields };
+    }
     const items = saved.items !== undefined ? saved.items : fallback.items;
-    return normalizeLandingSection({ ...fallback, ...saved, items, enabled: saved.enabled !== false }, fallback);
+    return normalizeLandingSection({ ...fallback, ...saved, name: fallback.name, items, enabled: saved.enabled !== false }, fallback);
   });
 }
 

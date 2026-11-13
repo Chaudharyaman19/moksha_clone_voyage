@@ -11,14 +11,13 @@ import { trackEvent } from "@/lib/analytics";
 import { enquiryApi } from "@/lib/enquiryApi";
 import { ApiRequestError } from "@/lib/api";
 import SuccessPopup from "@/components/common/SuccessPopup";
-import { textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
+import { useContactFields, splitLastWord } from "@/lib/contactFields";
 
 const pu = (px: number) => `calc(var(--u) * ${(px / 15.84).toFixed(3)})`;
 
+// Geometry of the 3 mobile/tablet office cards. Their text comes from the admin: office1..3.*
 const officeCards = [
   {
-    title: ["Head Office", "Delhi–NCR"],
-    sub: "(Ghaziabad, India)",
     left: 62,
     w: 360,
     icon: { src: "office-gate", iw: 296, ih: 296, x: 38, y: 5, w: 74 },
@@ -29,15 +28,10 @@ const officeCards = [
     bodyLeft: 73,
     addrTop: 15,
     addrLh: 20,
-    address: ["Plot No. 12/29, Site II Industrial", "Area, Mohan Nagar, Ghaziabad –", "201007, Uttar Pradesh, India."],
     phoneY: 102,
-    phones: ["+91 96549 00525", "+91 98102 47319"],
     mailY: 133,
-    email: "info@mokshavoyage.vaidhyashala.in",
   },
   {
-    title: ["Regional Office", "Visakhapatnam"],
-    sub: "(Andhra Pradesh, India)",
     left: 444,
     w: 348,
     icon: { src: "office-temple", iw: 344, ih: 304, x: 30, y: 4, w: 86 },
@@ -48,15 +42,10 @@ const officeCards = [
     bodyLeft: 72,
     addrTop: 10,
     addrLh: 19,
-    address: ["Door No. 36-46-51, 2nd Floor,", "Main Road, Kancharapalem,", "Visakhapatnam – 530008,", "Andhra Pradesh, India."],
     phoneY: 107,
-    phones: ["+91 96549 00525"],
     mailY: 134,
-    email: "info@mokshavoyage.vaidhyashala.in",
   },
   {
-    title: ["Global Office", "London (UK)"],
-    sub: "",
     left: 813,
     w: 350,
     icon: { src: "office-bridge", iw: 448, ih: 272, x: 15, y: 11, w: 112 },
@@ -67,32 +56,48 @@ const officeCards = [
     bodyLeft: 75,
     addrTop: 10,
     addrLh: 19,
-    address: ["Namo Gange Wellness Ltd.", "6 Liddel Close, Luton,", "Bedfordshire, LU3 1TW,", "United Kingdom."],
     phoneY: 104,
-    phones: ["+44 74248 78417"],
     mailY: 133,
-    email: "uk@mokshavoyage.vaidhyashala.in",
   },
 ];
 
-const locationOptions = ["Ghaziabad", "Delhi NCR", "Noida", "Other"];
-const assistanceOptions = [
-  "Last Rites & Cremation",
-  "Transportation",
-  "Guidance & Coordination",
-  "Family Support",
-  "Other",
-];
 
 function Contact() {
-  const heroSection = useWebsiteSection("contact-hero");
-  const formSection = useWebsiteSection("contact-form");
+  const hero = useContactFields("contact-hero");
+  const support = useContactFields("contact-support");
+  const form = useContactFields("contact-form");
+  const offices = useContactFields("contact-offices");
 
+  const helplineDigits = hero.get("hero.phone").replace(/\D/g, "");
+  const supportEmail = support.get("strip.email");
   const CONTACT = {
-    helpline: { label: `+91 ${textOrFallback(heroSection?.phoneNumber, "9220147229", 20)}`, href: `tel:+91${textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")}` },
-    altPhone: { label: `+91 ${textOrFallback(heroSection?.altPhoneNumber, "6281482342", 20)}`, href: `tel:+91${textOrFallback(heroSection?.altPhoneNumber, "6281482342", 20).replace(/\D/g, "")}` },
-    email: { label: textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50), href: `mailto:${textOrFallback(heroSection?.contactEmail, "info@mokshasewa.org", 50)}` },
+    helpline: { label: `+91 ${helplineDigits}`, href: `tel:+91${helplineDigits}` },
+    email: { label: supportEmail, href: `mailto:${supportEmail}` },
   };
+  const locationOptions = form.lines("form.locationOptions");
+  const assistanceOptions = form.lines("form.assistanceOptions");
+  const [heroTitleHead, heroTitleTail] = splitLastWord(hero.get("hero.title"));
+  const heroStrip = [1, 2, 3, 4].map((n) => hero.lines(`hero.strip${n}`));
+  const supportPoints = [1, 2, 3].map((n) => ({ title: support.get(`support.point${n}.title`), lines: support.lines(`support.point${n}.text`) }));
+  const [supportTitle1, supportTitle2] = [support.get("support.title1"), support.get("support.title2")];
+  const officeData = officeCards.map((c, i) => {
+    const n = i + 1;
+    const sub = offices.get(`office${n}.sub`).trim();
+    return {
+      ...c,
+      title: [offices.get(`office${n}.head1`), offices.get(`office${n}.head2`)],
+      sub,
+      address: offices.lines(`office${n}.address`),
+      phones: offices.lines(`office${n}.phones`),
+      email: offices.get(`office${n}.email`),
+    };
+  });
+  const presencePills = ["presence.london", "presence.delhi", "presence.visakhapatnam"].map((k) => offices.lines(k));
+  const presenceGeo = [
+    { x: 169, y: 20, w: 128, h: 38 },
+    { x: 537, y: 14, w: 136, h: 53 },
+    { x: 553, y: 87, w: 167, h: 42 },
+  ];
 
   const [formData, setFormData] = useState({
     name: "",
@@ -147,7 +152,7 @@ function Contact() {
       trackEvent("contact_form_submit", { form_name: "contact", status: "success" });
       setSubmitStatus({
         type: "success",
-        message: "Message sent. Our team will get back to you shortly.",
+        message: form.get("form.successMessage"),
       });
       setShowSuccessPopup(true);
       setFormData({
@@ -164,7 +169,7 @@ function Contact() {
         message:
           err instanceof ApiRequestError
             ? err.message
-            : "Message could not be sent. Please try again, or call our helpline.",
+            : form.get("form.errorMessage"),
       });
     } finally {
       setIsSubmitting(false);
@@ -182,7 +187,7 @@ function Contact() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#FBF8F3] font-sans text-[#2C1810]">
-      <ContactHeroStage phone={textOrFallback(heroSection?.phoneNumber, "9220147229", 20).replace(/\D/g, "")} />
+      <ContactHeroStage phone={helplineDigits} />
       <Topbar />
       <Navbar />
 
@@ -194,8 +199,8 @@ function Contact() {
             style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 22%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 22%)" }}
           >
             <Image
-              src="/assets/contact/contact-hero-photo-2.png"
-              alt="Haridwar ghat at sunset"
+              src={hero.image("hero.mobileImage")}
+              alt={hero.get("hero.mobileImageAlt")}
               fill
               priority
               fetchPriority="high"
@@ -212,19 +217,16 @@ function Contact() {
 
           <div className="relative z-10 px-4 pt-[calc(var(--u)*3.9)] sm:px-6 lg:pl-[calc(var(--u)*5)] lg:pr-0">
             <div className="flex items-center gap-[calc(var(--u)*1.2)] text-[calc(var(--u)*1.2)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.22em] text-[#2A0A02]">
-              Get in Touch
+              {hero.get("hero.eyebrow")}
               <span className="h-px w-[calc(var(--u)*6)] bg-[#D1954C]" />
             </div>
 
             <h1 className="mt-[calc(var(--u)*0.65)] font-sans text-[calc(var(--u)*5)] font-bold leading-none tracking-[0.01em] text-[#2F0E03]">
-              Contact <span className="text-[#F09A0B]">Us</span>
+              {heroTitleHead && <>{heroTitleHead} </>}<span className="text-[#F09A0B]">{heroTitleTail}</span>
             </h1>
 
             <p className="mt-[calc(var(--u)*0.95)] font-sans text-[calc(var(--u)*1.45)] font-normal tracking-[0.015em] leading-[calc(var(--u)*2.05)] text-[#34150A]">
-              We&apos;re here to support individuals<br className="hidden lg:block" />{" "}
-              and families in need with free<br className="hidden lg:block" />{" "}
-              last-rites assistance, guidance<br className="hidden lg:block" />{" "}
-              and coordination, with dignity and care.
+              {hero.lines("hero.description").join(" ")}
             </p>
 
             <div className="mt-[calc(var(--u)*1.8)] flex flex-wrap items-center gap-[calc(var(--u)*1.2)]">
@@ -234,9 +236,9 @@ function Contact() {
               >
                 <Image unoptimized src="/assets/contact/icons/phone-white.svg" alt="" width={184} height={176} className="h-auto w-[calc(var(--u)*2.15)]" />
                 <span className="flex flex-col leading-[1.2]">
-                  <span className="text-[calc(var(--u)*0.92)] font-semibold">Call Helpline</span>
+                  <span className="text-[calc(var(--u)*0.92)] font-semibold">{hero.get("hero.callLabel")}</span>
                   <span className="whitespace-nowrap text-[calc(var(--u)*1.02)] font-bold">
-                    {CONTACT.helpline.label.replace(/^\+91\s*/, "")} <span className="text-[calc(var(--u)*0.8)] font-medium">(24×7)</span>
+                    {CONTACT.helpline.label.replace(/^\+91\s*/, "")} <span className="text-[calc(var(--u)*0.8)] font-medium">{hero.get("hero.callNote")}</span>
                   </span>
                 </span>
               </a>
@@ -246,8 +248,8 @@ function Contact() {
               >
                 <Image unoptimized src="/assets/contact/icons/calendar.svg" alt="" width={200} height={184} className="h-auto w-[calc(var(--u)*2.35)]" />
                 <span className="flex flex-1 flex-col leading-[1.2]">
-                  <span className="whitespace-nowrap text-[calc(var(--u)*0.96)] font-bold">Request Sewa</span>
-                  <span className="whitespace-nowrap text-[calc(var(--u)*0.84)] font-medium">(Free Assistance)</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*0.96)] font-bold">{hero.get("hero.requestLabel")}</span>
+                  <span className="whitespace-nowrap text-[calc(var(--u)*0.84)] font-medium">{hero.get("hero.requestNote")}</span>
                 </span>
                 <Image unoptimized src="/assets/contact/icons/arrow-orange.svg" alt="" width={152} height={128} className="h-auto w-[calc(var(--u)*1.85)]" />
               </a>
@@ -256,10 +258,10 @@ function Contact() {
 
           <div className="relative z-10 mx-4 mb-[calc(var(--u)*7)] mt-[calc(var(--u)*2.5)] grid grid-cols-2 gap-y-4 rounded-[calc(var(--u)*1.7)] border border-[#DEC1A3] bg-[#FEF1E5] py-4 shadow-[0_10px_28px_rgba(110,55,15,0.12),0_2px_8px_rgba(110,55,15,0.06)] sm:mx-6 lg:absolute lg:left-[calc(var(--u)*3.9)] lg:top-[calc(var(--u)*31.25+113px)] lg:m-0 lg:h-[calc(var(--u)*6.1)] lg:w-[calc(var(--u)*91.7)] lg:grid-cols-4 lg:gap-y-0 lg:py-0">
             {[
-              { src: "family-support", w: 5.2, h: 232, iw: 328, label: <>Family Support</> },
-              { src: "lotus", w: 5.05, h: 240, iw: 320, label: <>Ritual &amp; Cremation<br />Assistance</> },
-              { src: "truck", w: 4.9, h: 208, iw: 312, label: <>Respectful<br />Transportation</> },
-              { src: "headset", w: 4.4, h: 248, iw: 280, label: <>Guidance &amp;<br />Coordination</> },
+              { src: "family-support", w: 5.2, h: 232, iw: 328, label: heroStrip[0] },
+              { src: "lotus", w: 5.05, h: 240, iw: 320, label: heroStrip[1] },
+              { src: "truck", w: 4.9, h: 208, iw: 312, label: heroStrip[2] },
+              { src: "headset", w: 4.4, h: 248, iw: 280, label: heroStrip[3] },
             ].map((item, i) => (
               <div
                 key={item.src}
@@ -275,7 +277,9 @@ function Contact() {
                   style={{ "--w": item.w } as React.CSSProperties}
                 />
                 <span className="text-[calc(var(--u)*1.2)] font-bold leading-[1.3] text-[#2C0A02] lg:text-[calc(var(--u)*1.12)] lg:leading-[calc(var(--u)*1.55)]">
-                  {item.label}
+                  {item.label.map((l, li) => (
+                    <React.Fragment key={l}>{li > 0 && <br />}{l}</React.Fragment>
+                  ))}
                 </span>
               </div>
             ))}
@@ -286,15 +290,11 @@ function Contact() {
         <ContactSupportStage
           phoneDisplay={CONTACT.helpline.label.replace(/^\+91\s*/, "")}
           phoneHref={CONTACT.helpline.href}
-          email={CONTACT.email.label}
-          emailHref={CONTACT.email.href}
           formData={formData}
           onChange={handleChange}
           onSubmit={handleSubmit}
           isSubmitting={isSubmitting}
           status={submitStatus}
-          locationOptions={locationOptions}
-          assistanceOptions={assistanceOptions}
         />
         <section
           id="contact-form"
@@ -308,30 +308,27 @@ function Contact() {
             className="pointer-events-none absolute left-[calc(var(--u)*31.6)] top-0 hidden h-[calc(var(--u)*40.5)] w-[calc(var(--u)*68.4)] lg:block"
             style={{ maskImage: "linear-gradient(to right, transparent 0%, #000 6%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 6%)" }}
           >
-            <Image src="/assets/contact/support-photo-3.png" alt="Moksha Sewa volunteer comforting an elderly woman" fill sizes="70vw" className="object-fill" />
+            <Image src={support.image("support.mobileImage")} alt={support.get("support.sceneAlt")} fill sizes="70vw" className="object-fill" />
           </div>
 
           <div className="relative z-10 lg:absolute lg:left-[calc(var(--u)*4.67)] lg:top-[calc(var(--u)*3)]">
             <div className="flex items-center gap-[calc(var(--u)*1.6)] text-[calc(var(--u)*1.1)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.12em] text-[#2A0A02]">
-              We&apos;re Here to Help
+              {support.get("support.eyebrow")}
               <span className="h-px w-[calc(var(--u)*6)] bg-[#C79A57]" />
             </div>
             <h2 className="mt-[calc(var(--u)*1.24)] font-sans text-[calc(var(--u)*3.5)] font-bold leading-[calc(var(--u)*3.47)] tracking-[0.02em] text-[#3A1305]">
-              We&apos;re Here to<br />
-              <span className="text-[#C9780A]">Support You</span>
+              {supportTitle1}<br />
+              <span className="text-[#C9780A]">{supportTitle2}</span>
             </h2>
             <p className="mt-[calc(var(--u)*1.3)] text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.55)] tracking-[0.005em] text-[#2B1D17]">
-              Whether you need immediate assistance, guidance<br className="hidden lg:block" />{" "}
-              on our services, or support for a loved one, our team<br className="hidden lg:block" />{" "}
-              is available 24 × 7 to help you and your family<br className="hidden lg:block" />{" "}
-              with care and compassion.
+              {support.lines("support.description").join(" ")}
             </p>
 
             <div className="mt-[calc(var(--u)*1)] flex flex-col gap-[calc(var(--u)*1.2)]">
               {[
-                { src: "hand-heart", w: 3.4, iw: 216, ih: 208, title: "Compassionate Support", lines: ["Sensitivity, dignity and care", "for every individual."] },
-                { src: "shield-check", w: 3.0, iw: 192, ih: 224, title: "Trusted & Transparent", lines: ["Clear information and ethical", "processes at every step."] },
-                { src: "users-group", w: 3.5, iw: 224, ih: 192, title: "Local Assistance", lines: ["On-ground support and coordination", "in your area."] },
+                { src: "hand-heart", w: 3.4, iw: 216, ih: 208, ...supportPoints[0] },
+                { src: "shield-check", w: 3.0, iw: 192, ih: 224, ...supportPoints[1] },
+                { src: "users-group", w: 3.5, iw: 224, ih: 192, ...supportPoints[2] },
               ].map((p) => (
                 <div key={p.src} className="flex items-center gap-[calc(var(--u)*2)]">
                   <span className="flex h-[calc(var(--u)*5.18)] w-[calc(var(--u)*5.18)] shrink-0 items-center justify-center rounded-full bg-[#FEE9CF]">
@@ -340,7 +337,7 @@ function Contact() {
                   <span>
                     <span className="block text-[calc(var(--u)*1.33)] font-bold leading-[calc(var(--u)*1.7)] text-[#3A0F05]">{p.title}</span>
                     <span className="block text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.52)] text-[#2B1D17]">
-                      {p.lines[0]}<br className="hidden lg:block" />{" "}{p.lines[1]}
+                      {p.lines.map((l, li) => (<React.Fragment key={l}>{li > 0 && <br className="hidden lg:block" />}{li > 0 && " "}{l}</React.Fragment>))}
                     </span>
                   </span>
                 </div>
@@ -349,7 +346,7 @@ function Contact() {
           </div>
 
           <div className="relative z-10 mx-auto my-6 aspect-[468/642] w-full max-w-[320px] overflow-hidden rounded-3xl lg:hidden">
-            <Image src="/assets/contact/support-photo-3.png" alt="Moksha Sewa volunteer comforting an elderly woman" width={1084} height={642} className="absolute left-0 top-0 h-full w-auto max-w-none" />
+            <Image src={support.image("support.mobileImage")} alt={support.get("support.sceneAlt")} width={1084} height={642} className="absolute left-0 top-0 h-full w-auto max-w-none" />
           </div>
 
           <form
@@ -357,21 +354,21 @@ function Contact() {
             className="relative z-10 rounded-[calc(var(--u)*2.45)] border border-white/70 bg-gradient-to-b from-[#FEFDFB] via-[#FDFCF8] to-[#FEF6EE] p-[calc(var(--u)*1.77)] shadow-[0_0_0_1px_rgba(170,130,90,0.16),0_6px_16px_rgba(160,100,50,0.13),0_22px_44px_rgba(160,100,50,0.10)] lg:absolute lg:left-[calc(var(--u)*61.2)] lg:top-[calc(var(--u)*2.9)] lg:h-[calc(var(--u)*35.5)] lg:w-[calc(var(--u)*36.5)] lg:px-[calc(var(--u)*1.77)] lg:pb-0 lg:pt-[calc(var(--u)*2)]"
           >
             <div className="flex items-center gap-[calc(var(--u)*1.6)] pl-[calc(var(--u)*0.9)] text-[calc(var(--u)*1.1)] font-bold uppercase leading-[calc(var(--u)*1.5)] tracking-[0.15em] text-[#2A0A02]">
-              Send Us an Enquiry
+              {form.get("form.eyebrow")}
               <span className="h-px w-[calc(var(--u)*10.2)] bg-[#C79A57]" />
             </div>
             <h3 className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] font-sans text-[calc(var(--u)*2.75)] font-bold leading-[calc(var(--u)*2.75)] text-[#3A1305]">
-              Get in Touch with Us
+              {form.get("form.title")}
             </h3>
             <p className="mt-[calc(var(--u)*0.7)] pl-[calc(var(--u)*0.9)] text-[calc(var(--u)*1.07)] leading-[calc(var(--u)*1.5)] text-[#2B1D17]">
-              Fill in the form below and our team will get back to you shortly.
+              {form.get("form.description")}
             </p>
 
             <div className="mt-[calc(var(--u)*1.2)] grid gap-[calc(var(--u)*0.9)]">
               <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
                 <label className={fieldWrap}>
                   <Image unoptimized src="/assets/contact/icons/field-user.svg" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
-                  <input name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name *" className={fieldInput} />
+                  <input name="name" value={formData.name} onChange={handleChange} required placeholder={form.get("form.namePlaceholder")} className={fieldInput} />
                 </label>
                 <label className={fieldWrap}>
                   <Image unoptimized src="/assets/contact/icons/field-phone.svg" alt="" width={120} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.55)] -translate-y-1/2" />
@@ -385,7 +382,7 @@ function Contact() {
                     maxLength={10}
                     pattern="[6-9][0-9]{9}"
                     title="Enter a valid 10-digit mobile number"
-                    placeholder="Mobile Number *"
+                    placeholder={form.get("form.phonePlaceholder")}
                     className={fieldInput}
                   />
                 </label>
@@ -394,12 +391,12 @@ function Contact() {
               <div className="grid gap-[calc(var(--u)*1)] sm:grid-cols-2">
                 <label className={fieldWrap}>
                   <Image unoptimized src="/assets/contact/icons/field-mail.svg" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
-                  <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address (Optional)" className={fieldInput} />
+                  <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={form.get("form.emailPlaceholder")} className={fieldInput} />
                 </label>
                 <label className={fieldWrap}>
                   <Image unoptimized src="/assets/contact/icons/field-pin.svg" alt="" width={112} height={120} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.45)] -translate-y-1/2" />
                   <select name="location" value={formData.location} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
-                    <option value="" disabled>Your Location *</option>
+                    <option value="" disabled>{form.get("form.locationPlaceholder")}</option>
                     {locationOptions.map((loc) => (
                       <option key={loc} value={loc}>{loc}</option>
                     ))}
@@ -411,7 +408,7 @@ function Contact() {
               <label className={fieldWrap}>
                 <Image unoptimized src="/assets/contact/icons/field-list.svg" alt="" width={128} height={104} className="pointer-events-none absolute left-[calc(var(--u)*1.2)] top-1/2 h-auto w-[calc(var(--u)*1.65)] -translate-y-1/2" />
                 <select name="assistanceType" value={formData.assistanceType} onChange={handleChange} required className={`${fieldInput} appearance-none !pr-[calc(var(--u)*3)]`}>
-                  <option value="" disabled>Type of Assistance *</option>
+                  <option value="" disabled>{form.get("form.assistancePlaceholder")}</option>
                   {assistanceOptions.map((option) => (
                     <option key={option} value={option}>{option}</option>
                   ))}
@@ -429,7 +426,7 @@ function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Your Message *"
+                  placeholder={form.get("form.messagePlaceholder")}
                   className="h-full w-full resize-none bg-transparent pl-[calc(var(--u)*4)] pr-3 pt-[calc(var(--u)*1.05)] text-[calc(var(--u)*0.88)] text-[#3F3A36] outline-none placeholder:text-[#3F3A36]"
                 />
               </label>
@@ -456,7 +453,7 @@ function Contact() {
                 ) : (
                   <>
                     <Image unoptimized src="/assets/contact/icons/paper-plane.svg" alt="" width={176} height={152} className="h-auto w-[calc(var(--u)*2.2)]" />
-                    Send Enquiry
+                    {form.get("form.submitLabel")}
                     <Image unoptimized src="/assets/contact/icons/arrow-right-white.svg" alt="" width={136} height={80} className="ml-[calc(var(--u)*0.4)] h-auto w-[calc(var(--u)*1.8)]" />
                   </>
                 )}
@@ -471,8 +468,8 @@ function Contact() {
                 <Image unoptimized src="/assets/contact/icons/strip-phone.svg" alt="" width={232} height={224} className="h-auto w-[calc(var(--u)*3.66)]" />
               </span>
               <span>
-                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Call Our Helpline</span>
-                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">24 × 7 Support</span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">{support.get("strip.callTitle")}</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">{support.get("strip.callNote")}</span>
                 <span className="block text-[calc(var(--u)*1.9)] font-bold leading-[calc(var(--u)*2.1)] text-[#5B1A05]">{CONTACT.helpline.label.replace(/^\+91\s*/, "")}</span>
               </span>
             </a>
@@ -481,7 +478,7 @@ function Contact() {
                 <Image unoptimized src="/assets/contact/icons/strip-mail.svg" alt="" width={248} height={200} className="h-auto w-[calc(var(--u)*3.91)]" />
               </span>
               <span>
-                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Email Us</span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">{support.get("strip.emailTitle")}</span>
                 <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">{CONTACT.email.label}</span>
               </span>
             </a>
@@ -490,9 +487,9 @@ function Contact() {
                 <Image unoptimized src="/assets/contact/icons/strip-clock.svg" alt="" width={192} height={192} className="h-auto w-[calc(var(--u)*3)]" />
               </span>
               <span>
-                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">Office Hours</span>
-                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">Mon – Sat: 9:00 AM – 7:00 PM</span>
-                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">Sun: By Appointment</span>
+                <span className="block text-[calc(var(--u)*1.17)] font-bold leading-[calc(var(--u)*1.6)] text-[#2A0A02]">{support.get("strip.hoursTitle")}</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">{support.get("strip.hours1")}</span>
+                <span className="block text-[calc(var(--u)*1.08)] leading-[calc(var(--u)*1.6)] text-[#2B1D17]">{support.get("strip.hours2")}</span>
               </span>
             </div>
           </div>
@@ -508,7 +505,7 @@ function Contact() {
             <div
               className="pointer-events-none absolute left-[calc(var(--u)*63.1)] top-0 hidden h-[calc(var(--u)*41)] w-[calc(var(--u)*36.9)] lg:block"
             >
-              <Image src="/assets/contact/offices-photo-2.png" alt="Ganga ghat at sunset" fill sizes="40vw" className="object-fill" />
+              <Image src={offices.image("offices.mobileImage")} alt={offices.get("offices.sceneAlt")} fill sizes="40vw" className="object-fill" />
             </div>
             <Image
               src="/assets/contact/lotus-watermark-2.png"
@@ -520,21 +517,20 @@ function Contact() {
 
             <div className="relative z-10 lg:absolute lg:left-[calc(var(--u)*3.79)] lg:top-[calc(var(--u)*2.23)]">
               <div className="flex items-center gap-[calc(var(--u)*1)] text-[calc(var(--u)*1.3)] font-bold uppercase leading-[calc(var(--u)*1.6)] tracking-[0.12em] lg:tracking-[0.19em] text-[#2A0A02]">
-                Our Offices &amp; Global Presence
+                {offices.get("offices.eyebrow")}
                 <span className="h-px w-[calc(var(--u)*6.25)] bg-[#D37515]" />
               </div>
               <h2 className="mt-[calc(var(--u)*1)] font-sans text-[calc(var(--u)*2.7)] font-bold leading-[1.2] tracking-[0.005em] lg:text-[calc(var(--u)*3.65)] lg:leading-[calc(var(--u)*3.85)] text-[#2A0A02]">
-                Serving Families, Across<br />
-                <span className="text-[#DF7200]">India &amp; the UK</span>
+                {offices.get("offices.title1")}<br />
+                <span className="text-[#DF7200]">{offices.get("offices.title2")}</span>
               </h2>
               <p className="ml-[calc(var(--u)*0.3)] mt-[calc(var(--u)*0.47)] text-[calc(var(--u)*1.22)] leading-[calc(var(--u)*1.64)] tracking-[0.045em] text-[#2B1D17]">
-                Our offices ensure timely support, coordination and assistance<br className="hidden lg:block" />{" "}
-                for families in India and internationally.
+                {offices.lines("offices.description").join(" ")}
               </p>
             </div>
 
             <div className="relative z-10 mt-8 flex flex-col items-center gap-5 lg:mt-0 lg:block">
-              {officeCards.map((c) => (
+              {officeData.map((c) => (
                 <article
                   key={c.title[0]}
                   className="relative h-[calc(var(--u)*16.6)] w-[var(--w)] lg:absolute lg:left-[var(--l)] lg:top-[calc(var(--u)*18.1)]"
@@ -600,19 +596,15 @@ function Contact() {
                 <Image unoptimized src="/assets/contact/presence-globe.svg" alt="" width={336} height={320} className="h-auto w-[calc(var(--u)*5.3)] lg:absolute lg:left-[calc(var(--u)*2.15)] lg:top-[calc(var(--u)*2.7)]" />
                 <span className="h-[calc(var(--u)*4.5)] w-px bg-[#C9824F] lg:absolute lg:left-[calc(var(--u)*8.7)] lg:top-[calc(var(--u)*3)]" />
                 <h3 className="font-sans text-[calc(var(--u)*2.4)] font-bold leading-[calc(var(--u)*2.5)] text-[#2A0A02] lg:absolute lg:left-[calc(var(--u)*10.4)] lg:top-[calc(var(--u)*2.66)]">
-                  Our Presence<br />at a Glance
+                  {offices.lines("presence.title").map((l, li) => (<React.Fragment key={l}>{li > 0 && <br />}{l}</React.Fragment>))}
                 </h3>
               </div>
 
               <div className="relative w-full [container-type:inline-size] lg:absolute lg:left-[calc(var(--u)*28.1)] lg:top-[calc(var(--u)*0.44)] lg:w-[calc(var(--u)*48)]" style={{ aspectRatio: "760 / 153" }}>
-                <Image src="/assets/contact/presence-map-2.png" alt="Map showing offices in London, Delhi-NCR and Visakhapatnam" fill sizes="50vw" className="object-fill" />
-                {[
-                  { x: 169, y: 20, w: 128, h: 38, lines: ["London (UK)"] },
-                  { x: 537, y: 14, w: 136, h: 53, lines: ["Delhi–NCR", "(Ghaziabad)"] },
-                  { x: 553, y: 87, w: 167, h: 42, lines: ["Visakhapatnam"] },
-                ].map((p) => (
+                <Image src={offices.image("offices.mapImage")} alt={offices.get("offices.mapAlt")} fill sizes="50vw" className="object-fill" />
+                {presenceGeo.map((g, gi) => ({ ...g, lines: presencePills[gi] })).map((p) => (
                   <div
-                    key={p.lines[0]}
+                    key={p.x}
                     className="absolute flex flex-col items-center justify-center rounded-full bg-white text-center shadow-[0_3px_8px_rgba(150,90,40,0.18)]"
                     style={{ left: `${(p.x / 760) * 100}%`, top: `${(p.y / 153) * 100}%`, width: `${(p.w / 760) * 100}%`, height: `${(p.h / 153) * 100}%` }}
                   >
@@ -631,7 +623,7 @@ function Contact() {
       <SuccessPopup
         open={showSuccessPopup}
         onClose={() => setShowSuccessPopup(false)}
-        message="Message sent. Our team will get back to you shortly."
+        message={form.get("form.successMessage")}
       />
     </div>
   );

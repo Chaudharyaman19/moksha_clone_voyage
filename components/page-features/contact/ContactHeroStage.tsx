@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { useContactFields, splitLastWord } from "@/lib/contactFields";
 import { Source_Sans_3, Source_Serif_4, Work_Sans } from "next/font/google";
 
 const sans = Source_Sans_3({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
@@ -55,19 +56,21 @@ const rules: [number, number, number, number, string][] = [
   [1144, 660, 1.4, 52, "#ad9684"],
 ];
 
-const strip: { x: number; lines: string[]; ly: number }[] = [
-  { x: 228, lines: ["Family Support"], ly: 685 },
-  { x: 568, lines: ["Ritual & Cremation", "Assistance"], ly: 672 },
-  { x: 938, lines: ["Respectful", "Transportation"], ly: 672 },
-  { x: 1287, lines: ["Guidance &", "Coordination"], ly: 672 },
-];
+// x position of each of the 4 strip labels (the text itself comes from the admin: hero.strip1..4)
+const stripX = [228, 568, 938, 1287];
 
 export default function ContactHeroStage({ phone = "9220147229" }: { phone?: string }) {
+  const c = useContactFields("contact-hero");
+  const [titleHead, titleTail] = splitLastWord(c.get("hero.title"));
+  const strip = stripX.map((x, i) => {
+    const lines = c.lines(`hero.strip${i + 1}`);
+    return { x, lines, ly: lines.length > 1 ? 672 : 685 };
+  });
   return (
     <div className="hidden w-full bg-[#FEF5EC] pt-[113px] lg:block">
       <div data-stage className="relative w-full overflow-hidden" style={{ containerType: "inline-size", aspectRatio: `1584 / ${792 - CROP_TOP}` }}>
         <div style={{ position: "absolute", left: 0, top: px(-CROP_TOP), width: "100%", aspectRatio: "1584 / 792" }}>
-        <Image src="/assets/contact/hero/scene.jpg" alt="" fill priority unoptimized sizes="100vw" className="object-cover" />
+        <Image src={c.image("hero.sceneImage")} alt="" fill priority unoptimized sizes="100vw" className="object-cover" />
 
         {art.map(([name, x, y, w, h]) => (
           <Image key={name} src={`/assets/contact/hero/${name}.png`} alt="" width={w * 4} height={h * 4} unoptimized style={box(x, y, w, h)} />
@@ -77,12 +80,12 @@ export default function ContactHeroStage({ phone = "9220147229" }: { phone?: str
         ))}
 
         {/* hero copy */}
-        <p className={`${sans.className} font-bold uppercase text-[#360f06]`} style={at(80, 216, 20, 24, { letterSpacing: ".225em" })}>Get in Touch</p>
+        <p className={`${sans.className} font-bold uppercase text-[#360f06]`} style={at(80, 216, 20, 24, { letterSpacing: ".225em" })}>{c.get("hero.eyebrow")}</p>
         <h1 className={`${serif.className} font-semibold text-[#3f1604]`} style={at(78, 277, 78, 84, { letterSpacing: "-.005em" })}>
-          Contact <span className="text-[#e48e04]">Us</span>
+          {titleHead && <>{titleHead} </>}<span className="text-[#e48e04]">{titleTail}</span>
         </h1>
         <p className={`${body.className} text-[#39120b]`} style={at(80, 350, 26.3, 35.7, { letterSpacing: ".01em" })}>
-          {["We’re here to support individuals", "and families in need with free", "last-rites assistance, guidance", "and coordination, with dignity and care."].map((l) => (
+          {c.lines("hero.description").map((l) => (
             <span key={l} className="block">{l}</span>
           ))}
         </p>
@@ -99,9 +102,9 @@ export default function ContactHeroStage({ phone = "9220147229" }: { phone?: str
           })}
         >
           <Image src="/assets/contact/hero/ic-phone-btn.png" alt="" width={176} height={172} unoptimized style={box(19, 13, 44, 43)} />
-          <span className={`${sans.className} pointer-events-none font-semibold text-[#fff7ee]`} style={at(77, 22, 20.2, 24)}>Call Helpline</span>
+          <span className={`${sans.className} pointer-events-none font-semibold text-[#fff7ee]`} style={at(77, 22, 20.2, 24)}>{c.get("hero.callLabel")}</span>
           <span className={`${sans.className} pointer-events-none font-bold text-[#fff9f3]`} style={at(77, 49, 22.4, 26)}>
-            {phone} <span className="text-[17.6px] font-medium">(24×7)</span>
+            {phone} <span className="text-[17.6px] font-medium">{c.get("hero.callNote")}</span>
           </span>
         </a>
         <a
@@ -116,8 +119,8 @@ export default function ContactHeroStage({ phone = "9220147229" }: { phone?: str
           })}
         >
           <Image src="/assets/contact/hero/ic-calendar.png" alt="" width={176} height={172} unoptimized style={box(19, 12, 44, 43)} />
-          <span className={`${sans.className} pointer-events-none font-bold text-[#3a0e08]`} style={at(79, 23, 20.2, 24)}>Request Sewa</span>
-          <span className={`${sans.className} pointer-events-none font-medium text-[#361310]`} style={at(79, 47, 18.9, 22)}>(Free Assistance)</span>
+          <span className={`${sans.className} pointer-events-none font-bold text-[#3a0e08]`} style={at(79, 23, 20.2, 24)}>{c.get("hero.requestLabel")}</span>
+          <span className={`${sans.className} pointer-events-none font-medium text-[#361310]`} style={at(79, 47, 18.9, 22)}>{c.get("hero.requestNote")}</span>
           <Image src="/assets/contact/hero/ic-arrow.png" alt="" width={136} height={116} unoptimized style={box(232, 20, 34, 29)} />
         </a>
 
