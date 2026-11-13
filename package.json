@@ -9,6 +9,7 @@
     "build:seo": "npm run build && npm run seo:lighthouse",
     "start": "next start",
     "lint": "eslint",
+    "test": "../moksha-backend-v1/node_modules/.bin/jest --no-watchman",
     "seo:lighthouse": "node scripts/lighthouse-seo.mjs"
   },
   "dependencies": {
