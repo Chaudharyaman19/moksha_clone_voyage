@@ -202,13 +202,20 @@ export function getMergedWebsiteSections(page: WebsitePageKey, settings?: Settin
       pageSections = (settings?.blogPage?.sections as ExtraSectionContent[] | undefined) ?? [];
       break;
     case "landing":
-    default:
-      return mergeLandingSections(settings?.landingPage?.sections);
+    default: {
+      const landingSections = mergeLandingSections(settings?.landingPage?.sections);
+      const contactLocations = mergeContactSections(settings?.contactPage?.sections).find((s) => s.key === "contact-locations");
+      return contactLocations ? [...landingSections, contactLocations] : landingSections;
+    }
   }
 
-  // Inject global sections (like footer and topbar) from the landing page so they are available on all pages
+  // Inject global sections (like footer, topbar and main footer office locations) so they are available on all pages
   const landingSections = mergeLandingSections(settings?.landingPage?.sections);
-  const globalSections = landingSections.filter((s) => s.key === "footer" || s.key === "topbar" || s.key === "navbar");
+  const contactLocations = mergeContactSections(settings?.contactPage?.sections).find((s) => s.key === "contact-locations");
+  const globalSections = [
+    ...landingSections.filter((s) => s.key === "footer" || s.key === "topbar" || s.key === "navbar"),
+    ...(contactLocations ? [contactLocations] : []),
+  ];
   
   return [...pageSections, ...globalSections];
 }
