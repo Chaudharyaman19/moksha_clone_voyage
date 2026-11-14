@@ -46,9 +46,32 @@ describe("Website Dynamic Data & Admin Sync Tests (moksha_clone_voyage)", () => 
       const getOfficeField = (k: string) => offices?.fields?.find((f) => f.key === k)?.value;
       expect(getOfficeField("office1.head1")).toBe("Head Office");
       expect(getOfficeField("office1.head2")).toBe("Delhi–NCR");
+      expect(getOfficeField("office1.address")).toContain("Namo Gange Trust");
+      expect(getOfficeField("office1.address")).toContain("Plot No. 12/29");
+      expect(getOfficeField("office1.phones")).toBe("+91 96549 00525\n+91 98102 47319");
+      expect(getOfficeField("office1.email")).toBe("info@mokshasewa.org");
+
       expect(getOfficeField("office2.head2")).toBe("Visakhapatnam");
+      expect(getOfficeField("office2.address")).toContain("Namo Gange Trust");
+      expect(getOfficeField("office2.address")).toContain("Door No. 36-46-51");
+      expect(getOfficeField("office2.phones")).toBe("+91 96549 00525");
+      expect(getOfficeField("office2.email")).toBe("info@mokshasewa.org");
+
       expect(getOfficeField("office3.head1")).toBe("Global Office");
+      expect(getOfficeField("office3.address")).toContain("Namo Gange Wellness Ltd.");
+      expect(getOfficeField("office3.phones")).toBe("+44 74248 78417");
+      expect(getOfficeField("office3.email")).toBe("info@mokshasewa.org");
       expect(getOfficeField("presence.title")).toBe("Our Presence\nat a Glance");
+
+      const contactLocations = defaultContactSections.find((s) => s.key === "contact-locations");
+      expect(contactLocations?.items).toHaveLength(3);
+      expect(contactLocations?.items?.[0].orgName).toBe("Namo Gange Trust");
+      expect(contactLocations?.items?.[0].description).toContain("Plot No. 12/29");
+      expect(contactLocations?.items?.[0].value).toBe("+91 96549 00525");
+      expect(contactLocations?.items?.[1].orgName).toBe("Namo Gange Trust");
+      expect(contactLocations?.items?.[1].value).toBe("+91 96549 00525");
+      expect(contactLocations?.items?.[2].orgName).toBe("Namo Gange Wellness Ltd.");
+      expect(contactLocations?.items?.[2].value).toBe("+44 74248 78417");
 
       const contactFooter = defaultContactSections.find((s) => s.key === "contact-footer");
       const getFooterField = (k: string) => contactFooter?.fields?.find((f) => f.key === k)?.value;
