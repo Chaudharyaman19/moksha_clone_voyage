@@ -345,7 +345,16 @@ export default function FooterNew() {
   const managedInitiatives = fromFields(initiatives, "initiatives")
     .filter((item) => !disabledPaths.includes(item.href));
   const legalFromFields = [1, 2, 3].map((n) => ({ label: f.get(`legal${n}.label`), href: f.get(`legal${n}.href`) || "/" }));
-  const managedValues = values.map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 14, { title: item.title, description: item.description }) }));
+  const managedValues = values.map((item, index) => {
+    const fTitle = f.get(`value${index + 1}.title`);
+    const fDesc = f.get(`value${index + 1}.desc`);
+    const fallbackItem = itemOrFallback(footerItems, index + 14, { title: item.title, description: item.description });
+    return {
+      ...item,
+      title: fTitle || fallbackItem.title,
+      description: fDesc || fallbackItem.description,
+    };
+  });
   const managedLegalLinks = legalLinks
     .map((item, index) => ({ ...item, ...itemOrFallback(footerItems, index + 19, item) }))
     .filter((item) => !disabledPaths.includes(item.href));
@@ -440,13 +449,13 @@ export default function FooterNew() {
                 <path d="M21 21c4 .5 8-1 9-5-4-.5-8 1-9 5z" />
                 <path d="M6 23.5c6 1.8 14 1.8 20 0" />
               </svg>
-              <span className="font-medium text-[#1A1612] sm:whitespace-nowrap">{actionTitle}</span>
+              <span className="font-medium text-[#1A1612] sm:whitespace-nowrap">{f.get("band.tagline") || actionTitle}</span>
             </div>
 
             <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-3 sm:w-auto sm:flex-nowrap sm:justify-end">
               {pathname !== "/request-help" && (
                 <Link
-                  href={websiteSection?.secondaryButtonHref || "/request-help"}
+                  href={f.get("band.btn1.href") || websiteSection?.secondaryButtonHref || "/request-help"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[6px] border border-[#DE932A] bg-gradient-to-b from-[#FED87A] via-[#F8AB2E] to-[#DD7D15] hover:brightness-105 px-3.5 text-[12.5px] sm:text-[13px] font-bold text-[#110D07] shadow-[0_2px_5px_rgba(0,0,0,0.12)] transition"
@@ -456,7 +465,7 @@ export default function FooterNew() {
                     <circle cx="12" cy="12" r="9.5" />
                     <path d="M15.8 14.8c-.6.6-1.5.8-2.3.4-1.6-.9-3-2.3-3.9-3.9-.4-.8-.2-1.7.4-2.3l.7-.7c.3-.3.3-.9 0-1.2l-1.3-1.3c-.3-.3-.9-.3-1.2 0l-.7.7c-.9.9-1.1 2.3-.4 3.6 1.2 2.3 3.1 4.2 5.4 5.4 1.3.7 2.7.5 3.6-.4l.7-.7c.3-.3.3-.9 0-1.2l-1.3-1.3c-.3-.3-.9-.3-1.2 0l-.8.6z" />
                   </svg>
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.secondaryButtonLabel, "Request Help", 36)}</span>
+                  <span className="whitespace-nowrap">{f.get("band.btn1.label") || textOrFallback(websiteSection?.secondaryButtonLabel, "Request Help", 36)}</span>
                   {/* Real horizontal arrow -> */}
                   <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-[#110D07]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 12h14" />
@@ -467,7 +476,7 @@ export default function FooterNew() {
 
               {pathname !== "/donation" && (
                 <Link
-                  href={websiteSection?.buttonHref || "/donation"}
+                  href={f.get("band.btn2.href") || websiteSection?.buttonHref || "/donation"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[6px] border border-[#DE932A] bg-gradient-to-b from-[#FED87A] via-[#F8AB2E] to-[#DD7D15] hover:brightness-105 px-3.5 text-[12.5px] sm:text-[13px] font-bold text-[#110D07] shadow-[0_2px_5px_rgba(0,0,0,0.12)] transition"
@@ -484,7 +493,7 @@ export default function FooterNew() {
                     <path d="M5.2 13h2.3l2.8 2.2c.7.5 1.7.5 2.4 0l2.8-2.2h2.3" />
                     <path d="M5.2 16h3.2l2.3 1.5c.8.5 1.8.5 2.6 0l2.3-1.5h3.2" />
                   </svg>
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}</span>
+                  <span className="whitespace-nowrap">{f.get("band.btn2.label") || textOrFallback(websiteSection?.buttonLabel, "Donate Now", 36)}</span>
                   {/* Real horizontal arrow -> */}
                   <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-[#110D07]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 12h14" />
@@ -495,7 +504,7 @@ export default function FooterNew() {
 
               {pathname !== "/volunteer/register" && (
                 <Link
-                  href={websiteSection?.tertiaryButtonHref || "/volunteer/register"}
+                  href={f.get("band.btn3.href") || websiteSection?.tertiaryButtonHref || "/volunteer/register"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[38px] items-center justify-center gap-2 rounded-[6px] border border-[#DE932A] bg-gradient-to-b from-[#FED87A] via-[#F8AB2E] to-[#DD7D15] hover:brightness-105 px-3.5 text-[12.5px] sm:text-[13px] font-bold text-[#110D07] shadow-[0_2px_5px_rgba(0,0,0,0.12)] transition"
@@ -512,7 +521,7 @@ export default function FooterNew() {
                     <circle cx="18" cy="9.5" r="2.2" />
                     <path d="M21.5 18.5v-1.8c0-1.5-1.2-2.7-2.7-3" />
                   </svg>
-                  <span className="whitespace-nowrap">{textOrFallback(websiteSection?.tertiaryButtonLabel, "Become a Volunteer", 50)}</span>
+                  <span className="whitespace-nowrap">{f.get("band.btn3.label") || textOrFallback(websiteSection?.tertiaryButtonLabel, "Become a Volunteer", 50)}</span>
                   {/* Real horizontal arrow -> */}
                   <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-[#110D07]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 12h14" />
@@ -573,20 +582,14 @@ export default function FooterNew() {
                 {/* Only Tagline in one row */}
                 <div className="mt-1 flex items-center justify-center">
                   <p className="footer-brand-tagline text-[11.5px] font-medium tracking-[0.01em] text-[#E2AC3D] sm:text-[12px] whitespace-nowrap">
-                    {textOrFallback(websiteSection?.eyebrow, "A Namo Gange Trust Initiative", 70)}
+                    {f.get("brand.tagline") || textOrFallback(websiteSection?.eyebrow, "A Namo Gange Trust Initiative", 70)}
                   </p>
                 </div>
 
                 <GoldDivider className="footer-brand-divider mt-1" />
 
-                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[240px] text-[10.5px] font-normal leading-[1.4] text-white/95 sm:text-[11px] text-center">
-                  We stand with the forgotten, the
-                  <br />
-                  unclaimed and the helpless to ensure
-                  <br />
-                  every life&apos;s final journey is dignified,
-                  <br />
-                  peaceful and respectful.
+                <p className="footer-brand-desc relative mx-auto mt-2 max-w-[240px] text-[10.5px] font-normal leading-[1.4] text-white/95 sm:text-[11px] text-center whitespace-pre-line">
+                  {f.get("brand.description") || description}
                 </p>
 
                 {/* Namo Gange Logo & Tagline below brand text */}
@@ -602,7 +605,7 @@ export default function FooterNew() {
               </div>
 
               {/* QUICK LINKS */}
-              <FloatingCard iconImg="/footer/Glowing Golden Infinity Badge.png" title={textOrFallback(websiteSection?.quickLinksTitle, "Quick Links", 50)}>
+              <FloatingCard iconImg="/footer/Glowing Golden Infinity Badge.png" title={f.get("quick.title") || textOrFallback(websiteSection?.quickLinksTitle, "Quick Links", 50)}>
                 <ul className="space-y-[2px]">
                   {managedQuickLinks.map((item) => (
                     <li key={item.label}>
@@ -621,7 +624,7 @@ export default function FooterNew() {
               </FloatingCard>
 
               {/* SERVICES - MOKSHA SEWA */}
-              <FloatingCard iconImg="/footer/Glowing Golden Praying Hands Emblem.png" title={textOrFallback(websiteSection?.servicesTitle, "Our Services – Moksha Sewa", 50)}>
+              <FloatingCard iconImg="/footer/Glowing Golden Praying Hands Emblem.png" title={f.get("services.title") || textOrFallback(websiteSection?.servicesTitle, "Our Services – Moksha Sewa", 50)}>
                 <ul className="space-y-0">
                   {managedServices.map((item, idx) => {
                     const iconImg = (item as any).iconImg || services[idx]?.iconImg;

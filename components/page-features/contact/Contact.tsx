@@ -533,12 +533,11 @@ function Contact() {
               {officeData.map((c) => (
                 <article
                   key={c.title[0]}
-                  className="relative h-[calc(var(--u)*16.6)] w-[var(--w)] lg:absolute lg:left-[var(--l)] lg:top-[calc(var(--u)*18.1)]"
+                  className="relative min-h-[calc(var(--u)*18)] w-[var(--w)] overflow-hidden rounded-[calc(var(--u)*1.15)] bg-[#FDFCF8] shadow-[0_12px_30px_rgba(120,70,30,0.14),0_2px_6px_rgba(120,70,30,0.08)] flex flex-col lg:absolute lg:left-[var(--l)] lg:top-[calc(var(--u)*18.1)]"
                   style={{ "--w": pu(c.w), "--l": pu(c.left) } as React.CSSProperties}
                 >
-                  <div className="absolute inset-0 rounded-[calc(var(--u)*1.15)] shadow-[0_12px_30px_rgba(120,70,30,0.14),0_2px_6px_rgba(120,70,30,0.08)]" />
                   <div
-                    className="absolute inset-x-0 top-0 h-[calc(var(--u)*6.6)] rounded-t-[calc(var(--u)*1.15)]"
+                    className="relative h-[calc(var(--u)*6.6)] rounded-t-[calc(var(--u)*1.15)]"
                     style={{ background: "linear-gradient(135deg,#7E3A12 0%,#6B2F0A 58%,#5C2A10 100%)" }}
                   >
                     <Image
@@ -562,30 +561,46 @@ function Contact() {
                     </div>
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 top-[calc(var(--u)*5.43)] rounded-[calc(var(--u)*1.15)] bg-[#FDFCF8]">
-                    <Image unoptimized src="/assets/contact/office-pin.svg" alt="" width={104} height={112} className="absolute h-auto w-[calc(var(--u)*1.3)]" style={{ left: pu(c.pinX - 10), top: pu(c.pinTop) }} />
-                    <p className="absolute whitespace-nowrap text-[calc(var(--u)*1)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.addrTop), lineHeight: pu(c.addrLh) }}>
-                      {c.address.map((line, i) => (
-                        <span key={line}>
-                          {i > 0 && <br />}
-                          {line}
-                        </span>
-                      ))}
-                    </p>
-                    <Image unoptimized src="/assets/contact/office-phone.svg" alt="" width={120} height={112} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.phoneY - 12) }} />
-                    <div className="absolute flex items-center whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410]" style={{ left: pu(c.bodyLeft), top: pu(c.phoneY - 11) }}>
-                      {c.phones.map((p, i) => (
-                        <React.Fragment key={p}>
-                          {i > 0 && <span className="mx-[calc(var(--u)*0.7)] h-[calc(var(--u)*1)] w-[2px] bg-[#E8A23C]" />}
-                          <a href={`tel:${p.replace(/\s/g, "")}`} className="hover:text-[#C96822]">{p}</a>
-                        </React.Fragment>
-                      ))}
+                  <div className="flex flex-1 flex-col justify-between px-[calc(var(--u)*1.8)] pb-[calc(var(--u)*1.2)] pt-[calc(var(--u)*1.1)]">
+                    {/* Address row */}
+                    <div className="flex items-start gap-[calc(var(--u)*1.1)]">
+                      <div className="flex w-[calc(var(--u)*1.5)] shrink-0 justify-center pt-[calc(var(--u)*0.15)]">
+                        <Image unoptimized src="/assets/contact/office-pin.svg" alt="" width={104} height={112} className="h-auto w-[calc(var(--u)*1.3)]" />
+                      </div>
+                      <p className="whitespace-nowrap text-[calc(var(--u)*0.98)] leading-[calc(var(--u)*1.35)] text-[#1E1410]">
+                        {c.address.map((line) => (
+                          <span key={line} className="block">{line}</span>
+                        ))}
+                      </p>
                     </div>
-                    <Image unoptimized src="/assets/contact/office-mail.svg" alt="" width={120} height={96} className="absolute h-auto w-[calc(var(--u)*1.5)]" style={{ left: pu(c.pinX - 12), top: pu(c.mailY - 9) }} />
-                    <a href={`mailto:${c.email}`} className="absolute whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410] hover:text-[#C96822]" style={{ left: pu(c.bodyLeft), top: pu(c.mailY - 11) }}>
-                      {c.email}
-                    </a>
-                    <span className="absolute inset-x-[calc(var(--u)*1.45)] bottom-[calc(var(--u)*0.5)] h-[calc(var(--u)*0.2)] rounded-full bg-gradient-to-r from-[#F0AA3A] via-[#E9A02A] to-[#F5D9A6]" />
+
+                    {/* Phone row */}
+                    <div className="mt-[calc(var(--u)*0.9)] flex items-center gap-[calc(var(--u)*1.1)]">
+                      <div className="flex w-[calc(var(--u)*1.5)] shrink-0 justify-center">
+                        <Image unoptimized src="/assets/contact/office-phone.svg" alt="" width={120} height={112} className="h-auto w-[calc(var(--u)*1.4)]" />
+                      </div>
+                      <div className="flex items-center whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410]">
+                        {c.phones.map((p, i) => (
+                          <React.Fragment key={p}>
+                            {i > 0 && <span className="mx-[calc(var(--u)*0.7)] h-[calc(var(--u)*1)] w-[2px] bg-[#E8A23C]" />}
+                            <a href={`tel:${p.replace(/\s/g, "")}`} className="hover:text-[#C96822]">{p}</a>
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Email row */}
+                    <div className="mt-[calc(var(--u)*0.4)] flex items-center gap-[calc(var(--u)*1.1)]">
+                      <div className="flex w-[calc(var(--u)*1.5)] shrink-0 justify-center">
+                        <Image unoptimized src="/assets/contact/office-mail.svg" alt="" width={120} height={96} className="h-auto w-[calc(var(--u)*1.4)]" />
+                      </div>
+                      <a href={`mailto:${c.email}`} className="whitespace-nowrap text-[calc(var(--u)*0.94)] text-[#1E1410] hover:text-[#C96822]">
+                        {c.email}
+                      </a>
+                    </div>
+
+                    {/* Gold bottom accent line */}
+                    <span className="mt-[calc(var(--u)*1.1)] h-[calc(var(--u)*0.2)] rounded-full bg-gradient-to-r from-[#F0AA3A] via-[#E9A02A] to-[#F5D9A6]" />
                   </div>
                 </article>
               ))}

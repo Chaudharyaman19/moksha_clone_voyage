@@ -1,77 +1,20 @@
 "use client";
 
-import { fetchSettingsJson } from "@/lib/clientSettings";
-import { createContext, useEffect, useState, useContext } from "react";
-import { getMergedWebsiteSections, type WebsitePageKey } from "@/lib/websiteSettingsApi";
+import { createContext, useContext } from "react";
 import { mergeLandingSections, type LandingSectionContent, type LandingSectionItem } from "@/lib/landingContent";
+import type { WebsitePageKey } from "@/lib/websiteSettingsApi";
 
 const WebsiteContentContext = createContext<LandingSectionContent[]>(mergeLandingSections());
-
-async function fetchLatestSections(page: WebsitePageKey, force = false) {
-  try {
-    const body = (await fetchSettingsJson(force)) as { data?: Record<string, { sections?: LandingSectionContent[] }> } | null;
-    if (!body) return null;
-    return getMergedWebsiteSections(page, body.data as never);
-  } catch {
-    return null;
-  }
-}
 
 export function WebsiteContentProvider({
   sections,
   children,
-  page = "landing",
 }: {
   sections: LandingSectionContent[];
   children: React.ReactNode;
   page?: WebsitePageKey;
 }) {
-  const [latestSections, setLatestSections] = useState(sections);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const sync = async (force = false) => {
-      const latest = await fetchLatestSections(page, force);
-      if (!cancelled && latest) {
-        setLatestSections((prev) => {
-          // If content didn't change, preserve previous reference to avoid unnecessary re-renders
-          if (JSON.stringify(prev) === JSON.stringify(latest)) {
-            return prev;
-          }
-          return latest;
-        });
-      }
-    };
-
-    // Initial sync
-    sync(true);
-
-    // Periodic live-sync every 3 seconds so banner changes reflect without page refresh
-    const pollTimer = setInterval(() => {
-      sync(true);
-    }, 3000);
-
-    // Immediate sync when tab gets focused or becomes visible
-    const handleFocus = () => sync(true);
-    const handleVisibility = () => {
-      if (document.visibilityState === "visible") {
-        sync(true);
-      }
-    };
-
-    window.addEventListener("focus", handleFocus);
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-      cancelled = true;
-      clearInterval(pollTimer);
-      window.removeEventListener("focus", handleFocus);
-      document.removeEventListener("visibilitychange", handleVisibility);
-    };
-  }, [page]);
-
-  return <WebsiteContentContext.Provider value={latestSections}>{children}</WebsiteContentContext.Provider>;
+  return <WebsiteContentContext.Provider value={sections}>{children}</WebsiteContentContext.Provider>;
 }
 
 export function useWebsiteSection(key: string) {
