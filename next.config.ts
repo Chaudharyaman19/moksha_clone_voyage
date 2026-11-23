@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const apiOrigin = new URL(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000").origin;
+const apiOrigin = new URL(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5003").origin;
 // Dev me port badalne par bhi CSP block na ho — env origin + common dev ports.
 const apiOrigins = Array.from(
   new Set([apiOrigin, "http://localhost:5000", "http://localhost:5001", "http://localhost:5003"])
@@ -13,7 +13,7 @@ const csp = [
   `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https:",
-  "media-src 'self' https://res.cloudinary.com",
+  "media-src 'self' https://res.cloudinary.com blob:",
   "font-src 'self' data: https://fonts.gstatic.com",
   `connect-src 'self' ${apiOrigins} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
   "frame-src https://*.razorpay.com https://checkout.razorpay.com https://maps.google.com https://www.google.com",
@@ -29,7 +29,7 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   ...(isProd ? [{ key: "X-Frame-Options", value: "SAMEORIGIN" }] : []),
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), usb=()" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(self), geolocation=(), usb=()" },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
 ];
 
