@@ -282,7 +282,7 @@ function TrackRequest() {
                         onChange={(e) => setCaseId(e.target.value)}
                         required
                         className={`${inputClass} pr-12`}
-                        placeholder="MS-2026-000125 or REQ-2026-000125"
+                        placeholder="ms/26-27/11/001 or req/web/26-27/001"
                       />
                       <LotusOrnament className="pointer-events-none absolute right-3 top-1/2 h-6 w-8 -translate-y-1/2 text-[#C89B5B] opacity-55" />
                     </div>
