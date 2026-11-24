@@ -30,6 +30,12 @@ export function GlobalAudioProvider({
   const toggleMusic = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    const isSpeaking = typeof window !== "undefined" && Boolean((window as any).__MOKSHA_IS_AAROHI_SPEAKING__);
+    if (isSpeaking) {
+      audio.pause();
+      setIsMusicOn(false);
+      return;
+    }
 
     if (audio.paused || audio.muted) {
       explicitlyPausedRef.current = false;
@@ -51,13 +57,16 @@ export function GlobalAudioProvider({
     let audio = audioRef.current;
     if (!audio) {
       audio = new Audio();
+      audio.id = "moksha-global-bg-audio";
       audio.preload = "auto";
       audio.src = activeSrc;
       audio.loop = true;
       audio.volume = 0.35;
       audioRef.current = audio;
       try {
-        audio.load();
+        if (typeof document !== "undefined" && !document.getElementById("moksha-global-bg-audio")) {
+          document.body.appendChild(audio);
+        }
       } catch {}
     } else if (audio.src !== activeSrc && !audio.src.endsWith(activeSrc)) {
       const wasPlaying = !audio.paused && !audio.muted;
@@ -65,12 +74,58 @@ export function GlobalAudioProvider({
       try {
         audio.load();
       } catch {}
-      if (wasPlaying && !explicitlyPausedRef.current) {
+      const isSpeaking = typeof window !== "undefined" && Boolean((window as any).__MOKSHA_IS_AAROHI_SPEAKING__);
+      if (wasPlaying && !explicitlyPausedRef.current && !isSpeaking) {
         audio.play().catch(() => {});
       }
     }
 
+    // Coordinate with chatbot voice & microphone so music pauses during speech & listening
+    const pausedForVoiceRef = { chat: false, voice: false, mic: false };
+    const isVoiceActive = () => {
+      if (typeof window === "undefined") return false;
+      if (Boolean((window as any).__MOKSHA_IS_AAROHI_SPEAKING__)) return true;
+      if (pausedForVoiceRef.chat || pausedForVoiceRef.voice || pausedForVoiceRef.mic) return true;
+      if (window.speechSynthesis && (window.speechSynthesis.speaking || window.speechSynthesis.pending)) return true;
+      try {
+        const audios = document.querySelectorAll("audio");
+        for (let i = 0; i < audios.length; i++) {
+          const a = audios[i];
+          if (a.id !== "moksha-global-bg-audio" && !a.paused && a.currentTime > 0) {
+            return true;
+          }
+        }
+      } catch {}
+      return false;
+    };
+
+    if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_BG_AUDIO__ = audio;
+      (window as any).__MOKSHA_PAUSE_BG_MUSIC__ = () => {
+        (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+        const current = audioRef.current || (document.getElementById("moksha-global-bg-audio") as HTMLAudioElement);
+        if (current && !current.paused) {
+          current.pause();
+        }
+        setIsMusicOn(false);
+      };
+      (window as any).__MOKSHA_RESUME_BG_MUSIC__ = () => {
+        (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+        if (explicitlyPausedRef.current) return;
+        if (isVoiceActive()) return;
+        const current = audioRef.current || (document.getElementById("moksha-global-bg-audio") as HTMLAudioElement);
+        if (current && current.paused) {
+          current.play().then(() => setIsMusicOn(true)).catch(() => {});
+        }
+      };
+    }
+
     const onPlay = () => {
+      if (isVoiceActive()) {
+        audioRef.current?.pause();
+        setIsMusicOn(false);
+        return;
+      }
       if (!audioRef.current?.muted) {
         setIsMusicOn(true);
       }
@@ -84,20 +139,48 @@ export function GlobalAudioProvider({
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    // Coordinate with chatbot voice & microphone so music pauses during speech & listening
-    const pausedForVoiceRef = { chat: false, voice: false, mic: false };
+    // Global listener: whenever ANY non-background audio element plays, immediately pause bg music!
+    const onAnyAudioPlay = (e: Event) => {
+      const target = e.target as HTMLMediaElement;
+      if (target && target.tagName === "AUDIO" && target.id !== "moksha-global-bg-audio") {
+        (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+        if (audioRef.current && !audioRef.current.paused) {
+          audioRef.current.pause();
+        }
+        setIsMusicOn(false);
+      }
+    };
+
+    const onAnyAudioEnd = (e: Event) => {
+      const target = e.target as HTMLMediaElement;
+      if (target && target.tagName === "AUDIO" && target.id !== "moksha-global-bg-audio") {
+        setTimeout(() => {
+          if (!isVoiceActive()) {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+            if (!explicitlyPausedRef.current && audioRef.current && audioRef.current.paused) {
+              audioRef.current.play().then(() => setIsMusicOn(true)).catch(() => {});
+            }
+          }
+        }, 150);
+      }
+    };
+
+    window.addEventListener("play", onAnyAudioPlay, true);
+    window.addEventListener("ended", onAnyAudioEnd, true);
+    window.addEventListener("pause", onAnyAudioEnd, true);
+
     const handleVoiceHold = (reason: "chat" | "voice" | "mic", on: boolean) => {
       pausedForVoiceRef[reason] = on;
-      const held = pausedForVoiceRef.chat || pausedForVoiceRef.voice || pausedForVoiceRef.mic;
+      const held = on || isVoiceActive();
       const currentAudio = audioRef.current;
       if (!currentAudio) return;
 
       if (held) {
         if (!currentAudio.paused) {
           currentAudio.pause();
-          setIsMusicOn(false);
         }
-      } else if (!explicitlyPausedRef.current && currentAudio.paused) {
+        setIsMusicOn(false);
+      } else if (!explicitlyPausedRef.current && currentAudio.paused && !isVoiceActive()) {
         currentAudio.play().then(() => setIsMusicOn(true)).catch(() => {});
       }
     };
@@ -128,7 +211,7 @@ export function GlobalAudioProvider({
     };
 
     const unmuteOnInteraction = () => {
-      if (explicitlyPausedRef.current) return;
+      if (explicitlyPausedRef.current || isVoiceActive()) return;
       const currentAudio = audioRef.current;
       if (!currentAudio) return;
 
@@ -186,6 +269,9 @@ export function GlobalAudioProvider({
       window.removeEventListener("moksha:chat", onChat);
       window.removeEventListener("moksha:voice", onVoice);
       window.removeEventListener("moksha:mic", onMic);
+      window.removeEventListener("play", onAnyAudioPlay, true);
+      window.removeEventListener("ended", onAnyAudioEnd, true);
+      window.removeEventListener("pause", onAnyAudioEnd, true);
       audio?.removeEventListener("play", onPlay);
       audio?.removeEventListener("pause", onPause);
     };

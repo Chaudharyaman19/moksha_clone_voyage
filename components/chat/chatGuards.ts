@@ -165,6 +165,7 @@ export const otpIn = (said: string): string | undefined => {
 const GREETING_WORDS = new Set([
   "hi", "hii", "hiii", "hello", "helo", "hellow", "hey", "heyy", "hy", "hlo", "hlw", "hola", "yo", "namaste", "namaskar", "namaskaar",
   "pranam", "gm", "good", "morning", "afternoon", "evening", "night",
+  "नमस्ते", "नमस्कार", "प्रणाम", "राम", "जय"
 ]);
 const NOT_NAME_WORDS = new Set([
   "ok", "okay", "okk", "k", "yes", "yeah", "yep", "no", "nope", "nahi", "nhi", "haan", "han", "ha", "ji", "sir", "madam", "mam", "maam",
@@ -174,7 +175,10 @@ const NOT_NAME_WORDS = new Set([
   "abcd", "xyz", "asdf", "asd", "qwerty", "qwe", "zxc", "name", "naam", "mera", "my", "me", "i", "am", "is", "the", "a", "an", "you",
   "your", "aap", "tum", "please", "pls", "plz", "thanks", "thank", "thankyou", "bye", "nothing", "none", "nil", "na", "user", "guest",
   "anonymous", "unknown", "admin", "bot", "chatbot", "want", "need", "chahiye", "batao", "bataiye", "tell", "know", "about",
+  "सेवा", "मोक्ष", "मुख", "बारे", "बताओ", "बताइए", "चाहिए", "मदद", "सहायता", "अंतिम", "संस्कार", "अस्थि", "विसर्जन", "पंडित", "श्राद्ध", "मृत्यु", "देहांत", "निधन", "शव", "एम्बुलेंस", "गाड़ी", "जानकारी", "प्रणाम", "नमस्ते", "नमस्कार", "हाँ", "नहीं", "ना", "क्या", "कहाँ", "कब", "कैसे", "क्यों"
 ]);
+
+export const REFUSES = /^(?:no|nope|nahi|nhi|nahin|skip|later|baad (?:me|mein)|kyu|kyun|kyon|why|not now|chodo|rehnde|chhodo|नहीं|ना|बाद में|छोड़ो|नाम नहीं बताना)[\s!.🙏]*$/iu;
 
 export type NameProblem = "abuse" | "greeting" | "not-a-name" | "";
 
@@ -182,7 +186,7 @@ export const nameProblem = (raw: string, parsed: string): NameProblem => {
   if (isAbusive(raw)) return "abuse";
   const words = raw.toLowerCase().split(/[^\p{L}\p{M}]+/u).filter(Boolean);
   if (words.length && words.every((w) => GREETING_WORDS.has(w))) return "greeting";
-  if (!parsed || /[?@\d]/.test(raw)) return "not-a-name";
+  if (!parsed || /[@\d]/.test(raw) || /[?@\d]/.test(parsed)) return "not-a-name";
   const nameWords = parsed.toLowerCase().split(/\s+/);
   if (nameWords.some((w) => GREETING_WORDS.has(w) || NOT_NAME_WORDS.has(w))) return "not-a-name";
   for (const w of nameWords) {
@@ -265,14 +269,17 @@ export const cleanMobile = (value: string) => {
   return digits.slice(0, 10);
 };
 
-const NAME_PREFIX = /^(?:(?:hi|hello|hey|namaste|namaskar)[\s,!.]*)?(?:my name is|my name's|i am|i'm|im|this is|it's|its|mera naam|mera name|main|mai|me)\s+/i;
-const NAME_SUFFIX = /\s+(?:hai|hu|hoon|hun|here|h)[.!]*$/i;
+const NAME_PREFIX = /^(?:(?:hi+|hello+|hey+|namaste|namaskar|pranam|नमस्ते|नमस्कार|प्रणाम|सुनिए|जी|ji)[\s,!.]*)?(?:my name is|my name's|name is|i am|i'm|im|this is|it's|its|myself|mera naam hai|mera naam|mera nam|naam hai|naam|main|mai|me|मेरा नाम है|मेरा नाम|नाम है|नाम|मैं हूँ|मैं)\s+/iu;
+const NAME_SUFFIX = /\s+(?:hai|hain|hu|hoon|hun|here|speaking|this side|bol raha hu|bol rahi hu|bol raha hoon|bol rahi hoon|बात कर रहा हूँ|बात कर रही हूँ|बोल रहा हूँ|बोल रही हूँ|है|हूँ|हू|जी|ji|jee)[.!]*$/iu;
 
-export const parseName = (raw: string) => {
-  const n = cleanName(raw.trim().replace(NAME_PREFIX, "").replace(NAME_SUFFIX, ""))
+export const parseName = (raw: string): string => {
+  let s = raw.trim().replace(/[.!?,🙏]+$/u, "");
+  s = s.replace(NAME_PREFIX, "");
+  s = s.replace(NAME_SUFFIX, "");
+  const n = cleanName(s)
     .trim()
     .replace(/[.'-]+$/, "");
-  if (n.length < 2 || n.length > 40 || !NAME_PATTERN.test(n) || n.split(/\s+/).length > 4) return "";
+  if (n.length < 2 || n.length > 40 || !NAME_PATTERN.test(n) || n.split(/\s+/).length > 3) return "";
   return n
     .split(" ")
     .map((w) => (w ? w[0].toLocaleUpperCase() + w.slice(1) : w))

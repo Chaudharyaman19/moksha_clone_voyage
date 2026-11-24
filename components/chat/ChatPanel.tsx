@@ -44,6 +44,7 @@ import {
   cleanMobile,
   nameProblem,
   parseName,
+  REFUSES,
   typedEmailProblem,
   typedPhoneProblem,
   type Lang,
@@ -62,6 +63,18 @@ type Message = {
   sent?: boolean;
   menu?: boolean;
   divider?: string;
+  timestamp?: string;
+};
+
+const formatClock = () => {
+  const d = new Date();
+  let hours = d.getHours();
+  const minutes = d.getMinutes();
+  const ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const minStr = minutes < 10 ? `0${minutes}` : `${minutes}`;
+  return `${hours}:${minStr} ${ampm}`;
 };
 
 const LANG_KEY = "mokshaMitraLang";
@@ -142,14 +155,14 @@ const LotusMark = ({ className }: { className?: string }) => (
 );
 
 const BUBBLE = "rounded-[18px] rounded-tl-[6px] border border-[#ecd3a6] bg-[#fffaf1]/95 px-3.5 py-2.5 text-[13px] leading-[1.6] font-medium text-[#4a2a1a] shadow-[0_8px_18px_-12px_rgba(110,40,20,0.4)]";
-const USER_BUBBLE = "rounded-[18px] rounded-tr-[6px] bg-[linear-gradient(135deg,#8B6A3E,#73532F)] px-3.5 py-2.5 text-[13px] leading-[1.5] font-medium text-white shadow-[0_8px_18px_-10px_rgba(115,83,47,0.7)]";
+const USER_BUBBLE = "rounded-[18px] rounded-tr-[6px] bg-[#6b1420] px-3.5 py-2.5 text-[13px] leading-[1.5] font-medium text-white shadow-[0_8px_18px_-10px_rgba(107,20,32,0.7)]";
 const AGENT_BUBBLE = "rounded-[18px] rounded-tl-[6px] border border-[#d9a441] bg-[#fffbf2] px-3.5 py-2.5 text-[13px] leading-[1.6] font-medium text-[#3d2414] shadow-[0_8px_18px_-12px_rgba(110,40,20,0.5)]";
 
 const BotAvatar: React.FC<{ avatar: string; speaking?: boolean }> = ({ avatar, speaking }) => {
   const src = avatar || "/images/chatbot/aarohi-avatar.png";
   return (
     <span
-      className={`relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff3df] shadow-[0_4px_10px_-4px_rgba(110,40,20,0.5)] ring-2 ring-[#d9a441] ${
+      className={`relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#fff3df] shadow-[0_4px_10px_-4px_rgba(110,40,20,0.5)] ring-2 ring-[#e8b85a] ${
         speaking ? "mv-speaking" : ""
       }`}
       aria-hidden="true"
@@ -218,6 +231,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
 
   const dismissNameStep = (name = "") => {
     setNameStep(false);
+    nameAsksRef.current = 0;
     const finalName = name || "Mitr";
     setVisitorName(finalName);
     saveChatSession(sessionId, finalName);
@@ -237,6 +251,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
   });
   const [voiceMode, setVoiceMode] = useState(false);
   const voiceModeRef = useRef(false);
+  const [noiseOn, setNoiseOn] = useState(true);
   const [callMuted, setCallMuted] = useState(false);
   const callMutedRef = useRef(false);
   const [callOnHold, setCallOnHold] = useState(false);
@@ -248,6 +263,10 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const silenceRetriesRef = useRef(0);
   const autoListenTimerRef = useRef<any>(null);
+  const silenceDebounceRef = useRef<any>(null);
+  const silence12sRef = useRef<any>(null);
+  const pendingQuestionRef = useRef<string>("");
+  const nameAsksRef = useRef<number>(0);
 
   const [listening, setListening] = useState(false);
   const [transcribing, setTranscribing] = useState(false);
@@ -285,6 +304,8 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
    */
   const pauseAllSiteMedia = () => {
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+      (window as any).__MOKSHA_PAUSE_BG_MUSIC__?.();
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: true } }));
       window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: true } }));
     }
@@ -302,12 +323,16 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
 
   const resumeAllSiteMedia = () => {
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
       window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: false } }));
+      if (!voiceModeRef.current) {
+        (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+      }
     }
   };
 
-  const stopSpeaking = () => {
+  const stopSpeaking = (resumeBg = true) => {
     clearTimeout(autoListenTimerRef.current);
     if (audioRef.current) {
       try {
@@ -323,8 +348,12 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     }
     setSpeaking(false);
     speakingRef.current = false;
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && resumeBg) {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+      if (!voiceModeRef.current) {
+        (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+      }
     }
   };
 
@@ -365,10 +394,12 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     }
 
     pauseAllSiteMedia();
-    stopSpeaking();
+    stopSpeaking(false);
     setSpeaking(true);
     speakingRef.current = true;
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+      (window as any).__MOKSHA_PAUSE_BG_MUSIC__?.();
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: true } }));
     }
 
@@ -385,6 +416,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         const player = new Audio(url);
         audioRef.current = player;
         player.onplay = () => {
+          pauseAllSiteMedia();
           onStart?.();
         };
         player.onended = () => {
@@ -393,7 +425,11 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
           URL.revokeObjectURL(url);
           audioRef.current = null;
           if (typeof window !== "undefined") {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
             window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+            if (!voiceModeRef.current) {
+              (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+            }
           }
           triggerAutoListen();
         };
@@ -404,7 +440,11 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
           URL.revokeObjectURL(url);
           audioRef.current = null;
           if (typeof window !== "undefined") {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
             window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+            if (!voiceModeRef.current) {
+              (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+            }
           }
           triggerAutoListen();
         };
@@ -422,17 +462,32 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         utterance.rate = 0.95;
         utterance.pitch = 1.0;
         utterance.onstart = () => {
+          pauseAllSiteMedia();
           onStart?.();
         };
         utterance.onend = () => {
           setSpeaking(false);
           speakingRef.current = false;
+          if (typeof window !== "undefined") {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+            window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+            if (!voiceModeRef.current) {
+              (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+            }
+          }
           triggerAutoListen();
         };
         utterance.onerror = () => {
           onStart?.();
           setSpeaking(false);
           speakingRef.current = false;
+          if (typeof window !== "undefined") {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+            window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+            if (!voiceModeRef.current) {
+              (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+            }
+          }
           triggerAutoListen();
         };
         window.speechSynthesis.speak(utterance);
@@ -441,12 +496,26 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         onStart?.();
         setSpeaking(false);
         speakingRef.current = false;
+        if (typeof window !== "undefined") {
+          (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+          window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+          if (!voiceModeRef.current) {
+            (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+          }
+        }
         triggerAutoListen();
       }
     } else {
       onStart?.();
       setSpeaking(false);
       speakingRef.current = false;
+      if (typeof window !== "undefined") {
+        (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
+        window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+        if (!voiceModeRef.current) {
+          (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
+        }
+      }
       triggerAutoListen();
     }
   };
@@ -474,16 +543,75 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
   const handleSpokenOrTypedMessage = (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
+    const nowTime = formatClock();
 
     if (askingName) {
+      if (isAbusive(trimmed)) {
+        sendMessage(trimmed);
+        return;
+      }
+      if (isUrgent(trimmed)) {
+        dismissNameStep("");
+        sendMessage(trimmed);
+        return;
+      }
+
+      // Check if user explicitly refuses to give their name
+      if (REFUSES.test(trimmed)) {
+        dismissNameStep("Mitr");
+        const ack =
+          lang === "hi"
+            ? "जी कोई बात नहीं। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?"
+            : "No problem. How may I assist you today?";
+        setMessages((prev) => [
+          ...prev,
+          { role: "user", content: trimmed, timestamp: nowTime },
+          { role: "assistant", content: ack, timestamp: nowTime },
+        ]);
+        if (voiceOn || voiceModeRef.current) void speak(ack);
+        return;
+      }
+
       const parsed = parseName(trimmed);
-      const isPlainName = parsed && !nameProblem(trimmed, parsed) && trimmed.split(/\s+/).length <= 3;
+      const isPlainName = parsed && !nameProblem(trimmed, parsed);
+
       if (isPlainName) {
+        nameAsksRef.current = 0;
         startWithName(parsed, true);
         return;
       }
-      dismissNameStep("");
-      sendMessage(trimmed);
+
+      // If we already asked for their name once, do not get stuck asking repeatedly!
+      // Treat their input as their intended question or request and answer it right away.
+      if (nameAsksRef.current >= 1) {
+        dismissNameStep("Mitr");
+        sendMessage(trimmed);
+        return;
+      }
+
+      // First time giving something other than a name:
+      // Politely ask for their name once, and remember this question
+      nameAsksRef.current = 1;
+      pendingQuestionRef.current = trimmed;
+      setPending({ message: trimmed, topic: "" });
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: trimmed, timestamp: nowTime },
+      ]);
+
+      const insistLine =
+        lang === "hi"
+          ? "जी, पहले अपना नाम बता दीजिए, ताकि मैं आपकी ठीक से मदद कर सकूँ।"
+          : "Please tell me your name first, so I can assist you properly.";
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: insistLine, timestamp: nowTime },
+      ]);
+
+      if (voiceOn || voiceModeRef.current) {
+        void speak(insistLine);
+      }
       return;
     }
 
@@ -505,7 +633,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         const rec = new SpeechRec();
         recognitionRef.current = rec;
         rec.lang = lang === "hi" ? "hi-IN" : "en-IN";
-        rec.continuous = false;
+        rec.continuous = true;
         rec.interimResults = true;
         rec.maxAlternatives = 1;
 
@@ -514,9 +642,25 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
           if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: true } }));
           }
+          clearTimeout(silence12sRef.current);
+          silence12sRef.current = setTimeout(() => {
+            if (voiceModeRef.current && !speakingRef.current && !loadingRef.current && !callOnHoldRef.current && !teamLive) {
+              try {
+                rec.stop();
+              } catch {}
+              const checkLine =
+                lang === "hi"
+                  ? "जी, क्या आप लाइन पर हैं? आप बोलिए, मैं सुन रही हूँ।"
+                  : "Are you still there? Please go ahead, I'm listening.";
+              const nowTime = formatClock();
+              setMessages((prev) => [...prev, { role: "assistant", content: checkLine, timestamp: nowTime }]);
+              void speak(checkLine);
+            }
+          }, 12000);
         };
 
         rec.onresult = (e: any) => {
+          clearTimeout(silence12sRef.current);
           let interim = "";
           let final = "";
           for (let i = 0; i < e.results.length; i++) {
@@ -527,17 +671,30 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
           if (spoken) {
             setInput(spoken);
             recognizedRef.current = spoken;
+
+            // Silence debounce: 1.3s after user stops talking -> auto submit!
+            clearTimeout(silenceDebounceRef.current);
+            silenceDebounceRef.current = setTimeout(() => {
+              const textToSend = recognizedRef.current.trim();
+              if (textToSend) {
+                try {
+                  rec.stop();
+                } catch {}
+                setInput("");
+                recognizedRef.current = "";
+                silenceRetriesRef.current = 0;
+                handleSpokenOrTypedMessage(textToSend);
+              }
+            }, 1300);
           }
         };
 
-        rec.onspeechend = () => {
-          try {
-            rec.stop();
-          } catch {}
-        };
+        rec.onspeechend = () => {};
 
         rec.onerror = (e: any) => {
           setListening(false);
+          clearTimeout(silenceDebounceRef.current);
+          clearTimeout(silence12sRef.current);
           if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: false } }));
           }
@@ -546,40 +703,27 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
               lang === "hi"
                 ? "माफ़ कीजिए, माइक्रोफ़ोन की अनुमति नहीं है। कृपया ब्राउज़र एड्रेस बार में 🔒 या माइक्रोफ़ोन आइकन से Allow / चालू करें।"
                 : "Microphone permission is blocked. Please tap the 🔒 or mic icon in your address bar to Allow microphone access.";
-            setMessages((prev) => [...prev, { role: "assistant", content: permissionNotice }]);
+            const nowTime = formatClock();
+            setMessages((prev) => [...prev, { role: "assistant", content: permissionNotice, timestamp: nowTime }]);
             endVoiceCall();
           }
         };
 
         rec.onend = () => {
           setListening(false);
+          clearTimeout(silenceDebounceRef.current);
           if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: false } }));
           }
           const finalSaid = recognizedRef.current.trim();
           if (finalSaid) {
             setInput("");
+            recognizedRef.current = "";
             silenceRetriesRef.current = 0;
             if (!voiceOn) setVoiceOn(true);
             handleSpokenOrTypedMessage(finalSaid);
           } else if (voiceModeRef.current && !speakingRef.current && !loadingRef.current && !endedRef.current && !callOnHoldRef.current && !teamLive) {
-            silenceRetriesRef.current++;
-            if (silenceRetriesRef.current === 8) {
-              const checkLine =
-                lang === "hi"
-                  ? "जी, क्या आप लाइन पर हैं? आप बोलिए, मैं सुन रहा हूँ।"
-                  : "Are you still there? Please go ahead, I'm listening.";
-              void speak(checkLine);
-            } else if (silenceRetriesRef.current >= 20) {
-              const idleLine =
-                lang === "hi"
-                  ? "काफ़ी देर से कोई आवाज़ नहीं आई, इसलिए कॉल बंद कर दी। बात करनी हो तो माइक दबाइए।"
-                  : "I ended the call because it was quiet for a while. Tap the mic to talk again.";
-              void speak(idleLine);
-              endVoiceCall();
-            } else {
-              triggerAutoListen();
-            }
+            triggerAutoListen();
           }
         };
 
@@ -670,13 +814,17 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     setListening(false);
     setTranscribing(false);
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
       window.dispatchEvent(new CustomEvent("moksha:mic", { detail: { listening: false } }));
+      (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
     }
     setCallOnHold(false);
     callOnHoldRef.current = false;
     clearTimeout(autoListenTimerRef.current);
     clearTimeout(recordTimerRef.current);
+    clearTimeout(silenceDebounceRef.current);
+    clearTimeout(silence12sRef.current);
     if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
       try {
         mediaRecorderRef.current.stop();
@@ -733,7 +881,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     if (typeof window === "undefined" || isBlocked) return;
     pauseAllSiteMedia();
 
-    // 1. Barge-in: if Moksha Mitra is speaking aloud and user taps mic, interrupt immediately
+    // 1. Barge-in: if Aarohi is speaking aloud and user taps mic, interrupt immediately
     if (speaking) {
       stopSpeaking();
       setVoiceMode(true);
@@ -755,21 +903,21 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     if (!voiceOn) setVoiceOn(true);
     silenceRetriesRef.current = 0;
 
-    if (askingName) {
-      dismissNameStep("");
-    }
-
     const isHindi = lang === "hi";
     const displayName = visitorName && visitorName !== "Mitr" ? `${visitorName} ${isHindi ? "जी" : "ji"}` : "";
     const welcomeLine = isHindi
-      ? displayName
+      ? askingName
+        ? "नमो गंगे नमस्कार! मैं आरोही, आपकी मोक्ष साथी। जी, पहले अपना नाम बता दीजिए, ताकि मैं आपकी ठीक से मदद कर सकूँ।"
+        : displayName
         ? `नमो गंगे नमस्कार ${displayName}! बताइए, आज मैं आपकी क्या सहायता कर सकती हूँ?`
         : `नमो गंगे नमस्कार! मैं आरोही हूँ, मोक्ष सेवा से। बताइए, मैं आपकी क्या सहायता कर सकती हूँ?`
+      : askingName
+      ? "Namo Gange Namaskar! I am Aarohi, your Moksha companion. First, what may I call you?"
       : displayName
       ? `Namo Gange Namaskar ${displayName}! How may I help you today?`
       : `Namo Gange Namaskar! I am Aarohi from Moksha Sewa. How may I assist you today?`;
 
-    // Speak welcome out loud. Bubble appears as soon as audio starts playing!
+    const nowTime = formatClock();
     setLoading(true);
     void speak(welcomeLine, () => {
       setLoading(false);
@@ -777,10 +925,10 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         const hasGreeting = prev.some(
           (m) =>
             m.role === "assistant" &&
-            (m.content.includes("नमो गंगे") || m.content.includes("Namo Gange") || m.content.includes("Aarohi"))
+            (m.content.includes("नमो गंगे") || m.content.includes("Namo Gange") || m.content.includes("Aarohi") || m.content.includes("आरोही"))
         );
         if (!hasGreeting) {
-          return [...prev, { role: "assistant", content: welcomeLine, menu: true }];
+          return [...prev, { role: "assistant", content: welcomeLine, menu: !askingName, timestamp: nowTime }];
         }
         return prev;
       });
@@ -1150,10 +1298,11 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
     // If voiceMode or voiceOn is active: keep user bubble, but delay assistant bubble until audio starts playing
     // so text doesn't appear long before speech starts!
     const isSpeakingResponse = voiceModeRef.current || voiceOn;
+    const nowTime = formatClock();
     if (!isSpeakingResponse) {
-      setMessages((prev) => [...prev, { role: "user", content: topic || message }, { role: "assistant", content: "" }]);
+      setMessages((prev) => [...prev, { role: "user", content: topic || message, timestamp: nowTime }, { role: "assistant", content: "", timestamp: nowTime }]);
     } else {
-      setMessages((prev) => [...prev, { role: "user", content: topic || message }]);
+      setMessages((prev) => [...prev, { role: "user", content: topic || message, timestamp: nowTime }]);
     }
 
     try {
@@ -1169,7 +1318,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
         if (!isSpeakingResponse) {
           setLastReply(() => fallbackText);
         } else {
-          setMessages((prev) => [...prev, { role: "assistant", content: fallbackText }]);
+          setMessages((prev) => [...prev, { role: "assistant", content: fallbackText, timestamp: formatClock() }]);
         }
         if (isSpeakingResponse) void speak(fallbackText);
         return;
@@ -1216,21 +1365,21 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
       if (!gotText) {
         const fallback = t.fallback;
         if (!isSpeakingResponse) setLastReply(() => fallback);
-        else setMessages((prev) => [...prev, { role: "assistant", content: fallback }]);
+        else setMessages((prev) => [...prev, { role: "assistant", content: fallback, timestamp: formatClock() }]);
         if (isSpeakingResponse) void speak(fallback);
       } else if (accumulatedReply.trim()) {
         if (isSpeakingResponse) {
           // Voice mode or voice replies on: speak reply, and reveal the text bubble synchronized with audio playback!
           void speak(accumulatedReply, () => {
             setLoading(false);
-            setMessages((prev) => [...prev, { role: "assistant", content: accumulatedReply }]);
+            setMessages((prev) => [...prev, { role: "assistant", content: accumulatedReply, timestamp: formatClock() }]);
           });
         }
       }
     } catch {
       const fallback = t.fallback;
       if (!isSpeakingResponse) setLastReply((current) => current || fallback);
-      else setMessages((prev) => [...prev, { role: "assistant", content: fallback }]);
+      else setMessages((prev) => [...prev, { role: "assistant", content: fallback, timestamp: formatClock() }]);
       if (isSpeakingResponse) void speak(fallback);
       else if (voiceModeRef.current) triggerAutoListen();
     } finally {
@@ -1241,6 +1390,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
   const startWithName = async (name: string, typed: boolean) => {
     setLoading(true);
     setNameError("");
+    nameAsksRef.current = 0;
     if (typed) {
       setInput("");
       setMessages((prev) => [...prev, { role: "user", content: name }]);
@@ -1267,29 +1417,40 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
 
       welcomeLine =
         lang === "hi"
-          ? `${name} जी, बताइए, किस तरह मदद कर सकता हूँ?`
-          : `Namo Gange Namaskar, ${name} ji. How may I assist you today?`;
+          ? `${name} जी, नमो गंगे! बताइए, मोक्ष सेवा की ओर से मैं आपकी क्या सहायता कर सकती हूँ?`
+          : `Namo Gange Namaskar, ${name} ji. How may I assist you with Moksha Sewa today?`;
 
+      const nowTime = formatClock();
       setMessages((prev) => {
-        const nameBubble: Message[] = typed ? [{ role: "user", content: name }] : [];
-        const welcome: Message = { role: "assistant", content: welcomeLine, menu: true };
+        const nameBubble: Message[] = typed ? [{ role: "user", content: name, timestamp: nowTime }] : [];
+        const welcome: Message = { role: "assistant", content: welcomeLine, menu: true, timestamp: nowTime };
         if (!earlier.length) return [...nameBubble, welcome];
         return [
           { role: "assistant", content: "", divider: t.earlierChat(shortDate(earlier[0].createdAt, lang)) },
-          ...earlier.map((m) => ({ role: m.role, content: m.content })),
+          ...earlier.map((m) => ({ role: m.role, content: m.content, timestamp: formatClock() })),
           { role: "assistant", content: "", divider: t.today },
           ...nameBubble,
           welcome,
         ];
       });
-      next = { sid, question: pending };
+      const pendingQ = pendingQuestionRef.current || pending?.message || "";
+      next = { sid, question: pendingQ ? { message: pendingQ, topic: "" } : null };
+      pendingQuestionRef.current = "";
       setPending(null);
     } catch (err) {
-      if (typed) {
-        setMessages((prev) => prev.slice(0, -1));
-        setInput(name);
-        setNameError((err as Error).message || t.genericError);
-      }
+      setVisitorName(name);
+      saveChatSession(sessionId, name);
+      setNameStep(false);
+      welcomeLine =
+        lang === "hi"
+          ? `${name} जी, नमो गंगे! बताइए, मोक्ष सेवा की ओर से मैं आपकी क्या सहायता कर सकती हूँ?`
+          : `Namo Gange Namaskar, ${name} ji. How may I assist you with Moksha Sewa today?`;
+      const nowTime = formatClock();
+      setMessages((prev) => [...prev, { role: "assistant", content: welcomeLine, menu: true, timestamp: nowTime }]);
+      const pendingQ = pendingQuestionRef.current || pending?.message || "";
+      next = { sid: sessionId, question: pendingQ ? { message: pendingQ, topic: "" } : null };
+      pendingQuestionRef.current = "";
+      setPending(null);
     } finally {
       setLoading(false);
     }
@@ -1304,13 +1465,10 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
   const submitName = () => {
     if (loading || isBlocked) return;
     setRestored(true);
-    const name = parseName(input);
-    const problem = nameProblem(input, name);
-    if (problem) {
-      setNameError(NAME_REPLY[lang][problem]);
-      return;
-    }
-    startWithName(name, true);
+    const text = input.trim();
+    if (!text) return;
+    setInput("");
+    handleSpokenOrTypedMessage(text);
   };
 
   useEffect(() => {
@@ -1473,22 +1631,22 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                 ) : speaking ? (
                   <span className="flex items-center gap-1 font-semibold text-[#fcd98a]">
                     <span className="h-1.5 w-1.5 animate-ping rounded-full bg-[#fcd98a]" />
-                    {lang === "hi" ? "बोल रहे हैं…" : "speaking…"}
-                  </span>
-                ) : listening ? (
-                  <span className="flex items-center gap-1 font-semibold text-emerald-300">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                    {lang === "hi" ? "सुन रहा हूँ, बोलिए…" : "listening…"}
+                    {lang === "hi" ? "आरोही बोल रही हैं…" : "Aarohi is speaking…"}
                   </span>
                 ) : voiceMode ? (
                   <span className="flex items-center gap-1 font-semibold text-emerald-300">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                    {lang === "hi" ? "कॉल चालू · सुन रहा हूँ" : "On call · listening"}
+                    {lang === "hi" ? "On call · listening" : "On call · listening"}
+                  </span>
+                ) : listening ? (
+                  <span className="flex items-center gap-1 font-semibold text-emerald-300">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                    {lang === "hi" ? "सुन रही हूँ, बोलिए…" : "listening…"}
                   </span>
                 ) : loading ? (
                   t.typing(botName)
                 ) : (
-                  config?.subtitle?.trim() || t.subtitle
+                  config?.subtitle?.trim() || (lang === "hi" ? "मोक्ष साथी · ऑनलाइन" : "Moksha Companion · Online")
                 )}
               </p>
             </div>
@@ -1597,17 +1755,19 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                 {!messages.length && (
                   <div className="mv-msg-in flex items-start gap-2.5">
                     <BotAvatar avatar={avatar} speaking={speaking} />
-                    <div className="flex flex-col gap-2 max-w-[85%]">
+                    <div className="flex flex-col gap-1.5 max-w-[85%]">
                       <div className={BUBBLE}>
                         {lang === "hi"
-                          ? "नमो गंगे नमस्कार! 🙏 मैं आरोही हूँ, मोक्ष सेवा की ओर से आपका स्वागत करती हूँ।"
-                          : "Namo Gange Namaskar! 🙏 I am Aarohi, here to assist you on behalf of Moksha Sewa."}
+                          ? (askingName
+                              ? "नमो गंगे नमस्कार! मैं आरोही, आपकी मोक्ष साथी। जी, पहले अपना नाम बता दीजिए, ताकि मैं आपकी ठीक से मदद कर सकूँ।"
+                              : "नमो गंगे नमस्कार! 🙏 मैं आरोही हूँ, मोक्ष सेवा की ओर से आपका स्वागत करती हूँ।")
+                          : (askingName
+                              ? "Namo Gange Namaskar! I am Aarohi, your Moksha companion. First, what may I call you?"
+                              : "Namo Gange Namaskar! 🙏 I am Aarohi, here to assist you on behalf of Moksha Sewa.")}
                       </div>
-                      {askingName && (
-                        <div className={BUBBLE}>
-                          {lang === "hi" ? "आपको किस नाम से बुलाऊँ?" : "What may I call you?"}
-                        </div>
-                      )}
+                      <div className="pl-1 text-[10px] text-[#8d7a66]">
+                        {formatClock()}
+                      </div>
 
                       {/* 3 Suggestion Chips under welcome matching Moksha Voyage */}
                       <div className="mt-2 flex flex-wrap gap-1.5">
@@ -1626,7 +1786,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                           <button
                             key={chip.label}
                             type="button"
-                            onClick={() => sendMessage(chip.query)}
+                            onClick={() => handleSpokenOrTypedMessage(chip.query)}
                             disabled={loading || isBlocked}
                             className="cursor-pointer rounded-full border border-[#d9a441]/60 bg-[#fffaf1] px-3 py-1.5 text-left text-[12px] leading-tight font-semibold text-[#6b1420] shadow-[0_2px_6px_-3px_rgba(110,40,20,0.35)] transition hover:border-[#d9a441] hover:bg-[#fbecd2]"
                           >
@@ -1655,7 +1815,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                   return (
                     <div key={idx} className={`mv-msg-in flex items-start gap-2.5 ${isUser ? "justify-end" : "justify-start"}`}>
                       {!isUser && <BotAvatar avatar={avatar} speaking={speaking && idx === messages.length - 1} />}
-                      <div className={`flex flex-col gap-1.5 max-w-[85%]`}>
+                      <div className="flex flex-col gap-1 max-w-[85%]">
                         {isAgent && (
                           <span className="text-[10px] font-bold uppercase tracking-wider text-[#9b2a3a]">
                             {m.by}
@@ -1663,6 +1823,11 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                         )}
                         <div className={isUser ? USER_BUBBLE : isAgent ? AGENT_BUBBLE : BUBBLE}>
                           <ChatMessageText text={m.content} />
+                        </div>
+                        {/* Timestamp & Double Checkmark */}
+                        <div className={`flex items-center gap-1 text-[10px] text-[#8d7a66] ${isUser ? "justify-end pr-1" : "pl-1"}`}>
+                          <span>{m.timestamp || formatClock()}</span>
+                          {isUser && <span className="text-[#8f2433] font-bold text-[11px]">✓✓</span>}
                         </div>
                         {m.menu && topicCards}
                       </div>
@@ -1686,74 +1851,48 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
               </div>
             </div>
 
-            {/* Input area */}
+            {/* Input area matching Moksha Voyage screenshot */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 if (isBlocked) return;
-                if (askingName) submitName();
-                else sendMessage(input);
+                const text = input.trim();
+                if (!text) return;
+                setInput("");
+                handleSpokenOrTypedMessage(text);
               }}
-              className="mv-body-in relative shrink-0 border-t border-[#ead6b4]/80 bg-[#fffaf1]/90 px-3 pt-2.5 pb-3"
+              className="mv-body-in relative shrink-0 border-t border-[#ead6b4]/80 bg-[#fffaf1]/90 px-3 pt-2 pb-2.5"
             >
-              {/* Active Voice Call Status Bar */}
+              {/* Noise cancellation toggle row during call */}
               {voiceMode && (
-                <div className="mb-2 flex items-center justify-between gap-2 rounded-xl bg-[linear-gradient(135deg,#560d18,#76192a)] px-3 py-1.5 text-white shadow">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                    </span>
-                    <span className="text-[12px] font-semibold text-[#fcd98a]">
-                      {speaking
-                        ? (lang === "hi" ? "आरोही बोल रही हैं…" : "Aarohi is speaking…")
-                        : listening
-                        ? (lang === "hi" ? "सुन रही हूँ, बोलिए..." : "Listening, speak now...")
-                        : (lang === "hi" ? "कॉल चालू · बोलिए..." : "On call · speak...")}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={toggleCallMute}
-                      title={callMuted ? "Unmute mic" : "Mute mic"}
-                      className={`flex h-7 w-7 items-center justify-center rounded-full transition ${
-                        callMuted ? "bg-white/30 text-white" : "bg-white/15 text-white hover:bg-white/25"
-                      }`}
-                    >
-                      {callMuted ? <MicOff className="h-3.5 w-3.5" /> : <Mic className="h-3.5 w-3.5" />}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={toggleCallHold}
-                      title={callOnHold ? "Resume call" : "Hold call"}
-                      className={`flex h-7 w-7 items-center justify-center rounded-full transition ${
-                        callOnHold ? "bg-amber-500 text-white" : "bg-white/15 text-white hover:bg-white/25"
-                      }`}
-                    >
-                      {callOnHold ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={endVoiceCall}
-                      title={lang === "hi" ? "कॉल समाप्त करें" : "End call"}
-                      className="flex h-7 items-center gap-1 rounded-full bg-red-600 px-2.5 text-[11px] font-bold text-white shadow hover:bg-red-700"
-                    >
-                      <PhoneOff className="h-3.5 w-3.5" />
-                      {lang === "hi" ? "कॉल काटें" : "End call"}
-                    </button>
-                  </div>
+                <div className="mb-1.5 flex items-center justify-between gap-2 px-1">
+                  <span className="flex min-w-0 items-center gap-1.5 text-[11.5px] font-semibold text-[#6b1420]">
+                    <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#22c55e]" />
+                    <span className="truncate">{lang === "hi" ? "Noise cancellation" : "Noise cancellation"}</span>
+                  </span>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={noiseOn}
+                    onClick={() => setNoiseOn(!noiseOn)}
+                    className={`relative flex h-[22px] w-[52px] shrink-0 cursor-pointer items-center rounded-full px-1 text-[9px] font-bold transition ${
+                      noiseOn ? "bg-[#8f2433] text-white" : "bg-[#eadcc4] text-[#7a6650]"
+                    }`}
+                  >
+                    <span className={`absolute top-[3px] h-4 w-4 rounded-full bg-white shadow transition-all ${noiseOn ? "left-[33px]" : "left-[3px]"}`} />
+                    <span className={noiseOn ? "pl-0.5" : "ml-auto pr-0.5"}>{noiseOn ? "ON" : "OFF"}</span>
+                  </button>
                 </div>
               )}
 
+              {/* Input Capsule Pill */}
               <div
-                className={`flex items-center gap-2 rounded-full border bg-white py-1.5 pr-1.5 pl-3 shadow-[0_10px_24px_-14px_rgba(110,40,20,0.55)] transition ${
+                className={`flex items-center gap-1.5 rounded-full border bg-white py-1.5 pr-1.5 pl-3 shadow-[0_10px_24px_-14px_rgba(110,40,20,0.55)] transition ${
                   isBlocked
                     ? "opacity-60 border-red-500"
-                    : voiceMode || listening
-                    ? "border-red-400 ring-2 ring-red-100"
-                    : "border-[#ead6b4] focus-within:border-[#d9a441] focus-within:ring-2 focus-within:ring-[#d9a441]/20"
+                    : voiceMode
+                    ? "border-red-300 ring-2 ring-red-100"
+                    : "border-[#ead6b4] focus-within:border-[#d9a441]"
                 }`}
               >
                 <LotusMark className="h-[16px] w-[26px] shrink-0 text-[#8f2433]" />
@@ -1772,14 +1911,8 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                       ? (lang === "hi" ? "यह चैट ब्लॉक है" : "This chat is blocked")
                       : teamLive
                       ? (lang === "hi" ? "मोक्ष टीम को संदेश लिखें..." : "Message Moksha Team...")
-                      : speaking
-                      ? (lang === "hi" ? "आरोही बोल रही हैं…" : "Aarohi is speaking…")
-                      : loading
-                      ? t.typing(botName)
-                      : transcribing
-                      ? (lang === "hi" ? "आवाज़ समझ रही हूँ..." : "Understanding what you said...")
-                      : listening || voiceMode
-                      ? (lang === "hi" ? "सुन रही हूँ, बस बोलिए… या यहाँ लिखिए" : "I'm listening, just speak… or type here")
+                      : voiceMode
+                      ? (lang === "hi" ? "सुन रही हूँ, बस बोलिए..." : "I'm listening, just speak… or type here")
                       : askingName
                       ? (lang === "hi" ? "अपना नाम यहाँ लिखिए..." : "Type your name here...")
                       : (lang === "hi" ? "अपना संदेश या ज़रूरत यहाँ लिखें..." : "Type your message or need here...")
@@ -1788,38 +1921,66 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                   className="min-w-0 flex-1 bg-transparent text-[13.5px] text-[#2C1810] outline-none placeholder:text-[#9c8a74] disabled:cursor-not-allowed"
                 />
 
-                {/* Talk with voice / Microphone button */}
-                <button
-                  type="button"
-                  onClick={toggleMic}
-                  disabled={isBlocked || teamLive}
-                  aria-label={voiceMode ? "End voice call" : "Talk with Voice"}
-                  title={
-                    voiceMode
-                      ? (lang === "hi" ? "कॉल समाप्त करें" : "End voice conversation")
-                      : (lang === "hi" ? "आरोही से बात कीजिए (Talk with voice)" : "Talk to Aarohi (hands-free call)")
-                  }
-                  className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition disabled:opacity-40 ${
-                    voiceMode || listening
-                      ? "mv-recording bg-red-500 text-white shadow-md"
-                      : "border border-[#8f2433]/30 text-[#8f2433] hover:bg-[#fbecd2]"
-                  }`}
-                >
-                  {transcribing ? (
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#8f2433] border-t-transparent" />
-                  ) : voiceMode || listening ? (
-                    <MicOff className="h-4 w-4" />
-                  ) : (
-                    <Mic className="h-4 w-4" />
-                  )}
-                </button>
+                {voiceMode ? (
+                  <>
+                    {/* 1. Mic mute/unmute toggle */}
+                    <button
+                      type="button"
+                      onClick={toggleCallMute}
+                      title={callMuted ? "Unmute mic" : "Mute mic"}
+                      aria-label={callMuted ? "Unmute mic" : "Mute mic"}
+                      className={`relative flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition ${
+                        callMuted ? "bg-[#f1e6d3] text-[#9c8a74]" : "bg-[#fbecd2] text-[#8f2433] hover:bg-[#f6dfb8]"
+                      }`}
+                    >
+                      {!callMuted && <span className="absolute inset-0 rounded-full bg-[#8f2433]/20 animate-ping opacity-30" />}
+                      {callMuted ? <MicOff className="h-3.5 w-3.5" /> : <Mic className="relative h-3.5 w-3.5" />}
+                    </button>
 
-                {/* Send button */}
+                    {/* 2. Pause / Resume */}
+                    <button
+                      type="button"
+                      onClick={toggleCallHold}
+                      title={callOnHold ? "Resume call" : "Hold call"}
+                      aria-label={callOnHold ? "Resume call" : "Hold call"}
+                      className={`flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full transition ${
+                        callOnHold ? "bg-[#8f2433] text-white hover:bg-[#7a1d2b]" : "bg-[#fbecd2] text-[#8f2433] hover:bg-[#f6dfb8]"
+                      }`}
+                    >
+                      {callOnHold ? <Play className="h-3 w-3" /> : <Pause className="h-3 w-3" />}
+                    </button>
+
+                    {/* 3. Red End Call button */}
+                    <button
+                      type="button"
+                      onClick={endVoiceCall}
+                      title="End call"
+                      aria-label="End call"
+                      className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white transition hover:bg-red-700 shadow-sm"
+                    >
+                      <PhoneOff className="h-3.5 w-3.5" />
+                    </button>
+                  </>
+                ) : (
+                  /* Start Voice Call button */
+                  <button
+                    type="button"
+                    onClick={toggleMic}
+                    disabled={isBlocked || teamLive}
+                    title={lang === "hi" ? "आरोही से बात कीजिए (Voice Call)" : "Talk to Aarohi (voice call)"}
+                    aria-label="Talk with voice"
+                    className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#8f2433]/25 text-[#8f2433] hover:bg-[#fbecd2] transition disabled:opacity-40"
+                  >
+                    <Mic className="h-4 w-4" />
+                  </button>
+                )}
+
+                {/* Send Button */}
                 <button
                   type="submit"
                   disabled={loading || !input.trim() || isBlocked}
                   aria-label={t.send}
-                  className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,#9b2a3a,#6b1420)] text-white shadow-[0_6px_14px_-6px_rgba(107,20,32,0.8)] transition hover:scale-105 hover:brightness-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                  className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,#9b2a3a,#6b1420)] text-white shadow-[0_6px_14px_-6px_rgba(107,20,32,0.8)] transition hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                 >
                   <Send className="-ml-0.5 h-4 w-4" strokeWidth={2.2} aria-hidden="true" />
                 </button>
@@ -1829,7 +1990,7 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                 <p role="alert" className="mt-1.5 px-2 text-[11.5px] text-red-600">
                   {nameError}
                 </p>
-              ) : inChat ? (
+              ) : inChat && !voiceMode ? (
                 <div className="mt-1.5 flex items-center justify-between px-2 text-[10.5px] text-[#6f5a43]">
                   <div className="flex items-center gap-1.5 truncate">
                     <Shield className="h-3.5 w-3.5 shrink-0 text-[#c08a2e]" />
@@ -1850,16 +2011,16 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
                   <Shield className="h-3.5 w-3.5 shrink-0 text-[#c08a2e]" />
                   <span className="truncate">{lang === "hi" ? "आपकी जानकारी सुरक्षित और निजी है।" : "Your details are secure and private."}</span>
                   <span
-                    title={lang === "hi" ? "चैट और IP एड्रेस फ़ॉलो-अप के लिए सुरक्षित सेव होते हैं।" : "Chats and IP address are saved securely so our team can follow up."}
+                    title={lang === "hi" ? "चैट और IP एड्रेस फ़ॉलो-अप के लिए सुरक्षित सेव होते हैं।" : "Privacy info"}
                     aria-label="Privacy info"
-                    className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#6b1420] hover:text-[#9b2a3a]"
+                    className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#6b1420]"
                   >
                     <Info className="h-3.5 w-3.5" />
                   </span>
                   <button
                     type="button"
                     onClick={toggleMute}
-                    title={soundMuted ? (lang === "hi" ? "नोटिफ़िकेशन साउंड चालू" : "Notification sound on") : (lang === "hi" ? "नोटिफ़िकेशन साउंड बंद" : "Notification sound off")}
+                    title={soundMuted ? "Sound chime on" : "Sound chime off"}
                     aria-label="Sound chime toggle"
                     className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#6b1420] transition hover:bg-[#fbecd2]"
                   >
@@ -1871,6 +2032,18 @@ const ChatPanel: React.FC<Props> = ({ open, onClose, config }) => {
           </>
         )}
       </div>
+
+      {/* Floating circular Close button at bottom-right outside dialog matching Moksha Voyage */}
+      {shown && (
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close chat"
+          className="fixed right-6 bottom-5 z-[1000] hidden h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(135deg,#8f2433,#560d18)] text-white shadow-[0_8px_20px_rgba(90,14,25,0.4)] ring-2 ring-[#e8b85a]/70 transition hover:scale-105 sm:flex"
+        >
+          <X className="h-6 w-6" />
+        </button>
+      )}
     </>
   );
 };

@@ -51,18 +51,20 @@ const ChatLauncher: React.FC = () => {
       try {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
-      } catch {}
+      } catch { }
       audioRef.current = null;
     }
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       try {
         window.speechSynthesis.cancel();
-      } catch {}
+      } catch { }
     }
     setSpeaking(false);
     setShowSubtitle(false);
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = false;
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+      (window as any).__MOKSHA_RESUME_BG_MUSIC__?.();
     }
   };
 
@@ -75,7 +77,15 @@ const ChatLauncher: React.FC = () => {
     setSpeaking(true);
     setShowSubtitle(true);
     if (typeof window !== "undefined") {
+      (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+      (window as any).__MOKSHA_PAUSE_BG_MUSIC__?.();
       window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: true } }));
+      try {
+        document.querySelectorAll("audio, video").forEach((el) => {
+          const m = el as HTMLMediaElement;
+          if (!m.paused && m !== audioRef.current) m.pause();
+        });
+      } catch {}
     }
 
     try {
@@ -94,6 +104,10 @@ const ChatLauncher: React.FC = () => {
         player.onplay = () => {
           setSpeaking(true);
           setShowSubtitle(true);
+          if (typeof window !== "undefined") {
+            (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+            (window as any).__MOKSHA_PAUSE_BG_MUSIC__?.();
+          }
         };
         player.onended = () => {
           stopVoice();
@@ -120,6 +134,12 @@ const ChatLauncher: React.FC = () => {
       const utter = new SpeechSynthesisUtterance(GREETING_TEXT);
       utter.lang = "hi-IN";
       utter.rate = 0.95;
+      utter.onstart = () => {
+        if (typeof window !== "undefined") {
+          (window as any).__MOKSHA_IS_AAROHI_SPEAKING__ = true;
+          (window as any).__MOKSHA_PAUSE_BG_MUSIC__?.();
+        }
+      };
       utter.onend = () => stopVoice();
       utter.onerror = () => stopVoice();
       window.speechSynthesis.speak(utter);
@@ -342,14 +362,14 @@ const ChatLauncher: React.FC = () => {
         </button>
 
         {/* '🔊 आवाज़ सुनें' button */}
-        <button
+        {/* <button
           type="button"
           onClick={playVoice}
           className="ms-aarohi-sound"
           title="Click to hear Aarohi's greeting"
         >
           {speaking ? "🔊 बोल रही हैं…" : "🔊 आवाज़ सुनें"}
-        </button>
+        </button> */}
 
         {/* Subtitle box during voice greeting */}
         {showSubtitle && (
