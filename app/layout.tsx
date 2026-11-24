@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
 import HeadingAccent from "@/components/layout/HeadingAccent";
-import ChatLauncher from "@/components/chat/ChatLauncher";
+import { ChatbotLauncher } from "@/components/chatbot/ChatbotLauncher";
 import StoreProvider from "@/store/StoreProvider";
 import { optimizeCloudinary } from "@/lib/cloudinary";
 import JsonLd, { ServerJsonLd } from "@/components/seo/JsonLd";
@@ -198,7 +198,7 @@ gtag('config', '${ga4MeasurementId}', { send_page_view: true });`,
             <DynamicCanonical />
             <Sideicon />
             <HeadingAccent />
-            <ChatLauncher />
+            <ChatbotLauncher />
             <SmoothScrolling>
               {children}
             </SmoothScrolling>

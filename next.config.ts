@@ -5,18 +5,21 @@ const apiOrigin = new URL(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5
 const apiOrigins = Array.from(
   new Set([apiOrigin, "http://localhost:5000", "http://localhost:5001", "http://localhost:5003"])
 ).join(" ");
+// Aarohi's voice call: a WebSocket to the API (ws:// / wss://) and an AudioWorklet loaded from a blob: URL
+const wsOrigins = apiOrigins.split(" ").map((o) => o.replace(/^http/, "ws")).join(" ");
 const isProd = process.env.NODE_ENV === "production";
 const scriptSrcEval = isProd ? "" : " 'unsafe-eval'";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${scriptSrcEval} https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${scriptSrcEval} blob: https://checkout.razorpay.com https://*.razorpay.com https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https: blob:",
   "media-src 'self' blob: data: https://res.cloudinary.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  `connect-src 'self' ${apiOrigins} https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
+  `connect-src 'self' ${apiOrigins} ${wsOrigins} blob: https://res.cloudinary.com https://*.razorpay.com https://api.postalpincode.in https://api.zippopotam.us https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com`,
   "frame-src https://*.razorpay.com https://checkout.razorpay.com https://maps.google.com https://www.google.com",
+  "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

@@ -1,0 +1,58 @@
+/* Aarohi's launcher: her photograph (public/images/chatbot/aarohi-cutout.webp) in the corner, with a "Chat here" button
+   under her and a ✕ that hides her until the page is reloaded (ChatbotLauncher). ChatbotLauncher sets .al-intro (her first
+   appearance: she rises), .al-failed (the picture couldn't load: an ॐ badge instead) and .sv-hidden (the chat is open).
+   Only she, her button and the ✕ take clicks; the rest of the box lets clicks through to the page. */
+.al-bot{--sv-w:150px;--sv-h:182px;position:fixed;width:var(--sv-w);height:var(--sv-h);padding:0;border:0;margin:0;background:none;
+        pointer-events:none;-webkit-tap-highlight-color:transparent;outline:none;transition:opacity .3s ease,visibility .3s ease}
+.al-bot.sv-hidden{opacity:0;visibility:hidden}
+.al-stage{position:absolute;inset:0;display:block;pointer-events:auto;cursor:pointer;transition:scale .3s ease}
+.al-bot:hover .al-stage{scale:1.03}
+.al-bot:focus-visible .al-stage{outline:3px solid rgba(224,181,79,.85);outline-offset:-6px;border-radius:40% 40% 12px 12px}
+.al-photo{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;transform-origin:50% 100%;
+        filter:drop-shadow(0 6px 16px rgba(20,40,36,.28));animation:al-breathe 4.4s ease-in-out infinite;
+        -webkit-mask-image:linear-gradient(#000 86%,transparent 100%);mask-image:linear-gradient(#000 86%,transparent 100%)}
+/* her first appearance: she rises from below */
+.al-intro .al-stage{animation:al-rise 1.3s cubic-bezier(.2,.9,.25,1) .15s both}
+
+/* the picture couldn't load: a round ॐ badge */
+.al-fallback{display:none}
+.al-failed .al-stage{display:none}
+.al-failed .al-fallback{display:grid;place-items:center;position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+        width:64px;height:64px;border-radius:50%;font-size:34px;font-weight:700;color:#7a1500;pointer-events:auto;cursor:pointer;
+        font-family:"Nirmala UI","Mangal","Kohinoor Devanagari","Noto Sans Devanagari",serif;
+        background:radial-gradient(circle at 35% 30%,#fff2b8,#ffbf3a 55%,#e86d00);box-shadow:0 8px 18px rgba(140,50,0,.3)}
+
+/* ✕ that hides Aarohi until the page is reloaded: by the top right of her box */
+.sv-close{--sv-w:150px;--sv-h:182px;position:fixed;width:22px;height:22px;margin:0 6px calc(var(--sv-h) - 26px) 0;padding:0;
+        display:grid;place-items:center;border-radius:50%;border:1.5px solid #fff;cursor:pointer;
+        background:#2f5a52;color:#fbe7b0;box-shadow:0 4px 10px rgba(30,60,55,.35);transition:transform .2s ease,background .2s ease}
+.sv-close:hover{background:#3f6a61;transform:scale(1.08)}
+.sv-close:focus-visible{outline:2px solid #e0b54f;outline-offset:2px}
+.sv-close svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+
+/* "Chat here", under her */
+.al-actions{--sv-w:150px;position:fixed;width:calc(var(--sv-w) + 40px);margin-right:-20px;display:flex;justify-content:center;
+        pointer-events:none;margin-bottom:4px}
+.al-actions .vb-btn{pointer-events:auto;animation:al-fade-in .35s ease both}
+.vb-btn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:999px;cursor:pointer;
+        font-size:12.5px;font-weight:700;white-space:nowrap;transition:transform .15s ease,box-shadow .2s ease,filter .2s ease}
+.vb-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vb-btn:hover{transform:translateY(-1px)}
+.vb-btn:focus-visible{outline:2px solid #e0b54f;outline-offset:2px}
+.vb-talk{color:#fff;border:1.5px solid #e8b85a;background:linear-gradient(135deg,#76192a,#8f2433);
+        box-shadow:0 6px 14px -6px rgba(90,14,25,.6);animation:vb-ring 2.2s ease-out infinite}
+.vb-talk:hover{filter:brightness(1.08)}
+
+@keyframes al-rise{0%{transform:translateY(78%);opacity:0;filter:blur(5px)}55%{opacity:1;filter:blur(0)}82%{transform:translateY(-2%)}100%{transform:none;opacity:1;filter:none}}
+@keyframes al-breathe{0%,100%{transform:none}50%{transform:translateY(-2.4px) scaleY(1.004)}}
+@keyframes al-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes vb-ring{0%{box-shadow:0 6px 14px -6px rgba(90,14,25,.6),0 0 0 0 rgba(232,184,90,.6)}70%,100%{box-shadow:0 6px 14px -6px rgba(90,14,25,.6),0 0 0 9px rgba(232,184,90,0)}}
+
+/* phones: smaller, above the bottom tab bar */
+@media (max-width:600px){
+  .al-bot,.sv-close,.al-actions{--sv-w:108px;--sv-h:131px}
+  .sv-close{width:20px;height:20px;margin:0 4px calc(var(--sv-h) - 22px) 0}
+  .al-failed .al-fallback{width:54px;height:54px;font-size:28px;bottom:28px}
+  .al-actions .vb-btn{height:28px;padding:0 10px;font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){.al-bot,.al-bot *{animation:none!important;transition:none!important}}
