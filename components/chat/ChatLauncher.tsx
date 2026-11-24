@@ -2,64 +2,41 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { MessageCircleMore, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import { loadChatConfig, type ChatConfig } from "./chatConfig";
 import { readChatSession } from "./chatSession";
 
-// The panel (form, chat, streaming) is only downloaded the first time someone opens it,
-// so the chatbot adds almost nothing to page load.
 const ChatPanel = dynamic(() => import("./ChatPanel"), { ssr: false });
 
-// Animated robot (Lottie), browser only. Its ~1.2 MB WASM player is not part of page load: it is
-// fetched on the visitor's first touch / scroll (or after a long idle) and swaps in for the plain
-// icon only once the animation is ready. lib/dotLottie serves the WASM from this site.
-const DotLottieReact = dynamic(() => import("@/lib/dotLottie").then((m) => m.DotLottieReact), { ssr: false });
-const LAUNCHER_LOTTIE = "/chatbot.lottie";
-const LOTTIE_EVENTS = ["pointerdown", "touchstart", "scroll", "keydown"];
-const LOTTIE_FALLBACK_MS = 8000;
+const CHAT_URL =
+  process.env.NEXT_PUBLIC_CHAT_API_URL ||
+  (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/chat` : "/api/v1/chat");
+
+const GREETING_TEXT =
+  "नमो गंगे, नमस्कार! मैं आरोही, मोक्ष सेवा से। किसी भी सेवा की जानकारी या सहायता के लिए नीचे दिए बटन पर क्लिक करें और मुझसे बात करें।";
+
+const AAROHI_IMAGE = "/images/chatbot/aarohi-cutout.png";
 
 const ChatLauncher: React.FC = () => {
-  // The launcher appears once the browser is idle and the on/off setting is known
   const [ready, setReady] = useState(false);
   const [config, setConfig] = useState<ChatConfig | null>(null);
   const [open, setOpen] = useState(false);
   const [opened, setOpened] = useState(false);
   const [panelKey, setPanelKey] = useState(0);
-  const [lottieWanted, setLottieWanted] = useState(false);
-  const [lottieState, setLottieState] = useState<"loading" | "ready" | "failed">("loading");
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [dismissed, setDismissed] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const [showSubtitle, setShowSubtitle] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const start = () =>
-      loadChatConfig().then((c) => {
-        setConfig(c);
-        setReady(true);
-      });
-    if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(start, { timeout: 4000 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const id = window.setTimeout(start, 2000);
-    return () => window.clearTimeout(id);
+    loadChatConfig().then((c) => {
+      setConfig(c);
+      setReady(true);
+    });
   }, []);
 
-  useEffect(() => {
-    if (!ready) return;
-    const want = () => {
-      cleanup();
-      setLottieWanted(true);
-    };
-    const timer = window.setTimeout(want, LOTTIE_FALLBACK_MS);
-    const cleanup = () => {
-      window.clearTimeout(timer);
-      LOTTIE_EVENTS.forEach((ev) => window.removeEventListener(ev, want));
-    };
-    LOTTIE_EVENTS.forEach((ev) => window.addEventListener(ev, want, { once: true, passive: true }));
-    return cleanup;
-  }, [ready]);
-
   const toggle = () => {
-    // Previous visitor's chat timed out (30 min idle / browser restarted) — start fresh
+    if (speaking) stopVoice();
     if (!open && opened && readChatSession().status === "expired") setPanelKey((k) => k + 1);
     setOpened(true);
     setOpen((v) => !v);
@@ -67,72 +44,346 @@ const ChatLauncher: React.FC = () => {
 
   const close = () => {
     setOpen(false);
-    buttonRef.current?.focus();
   };
 
-  if (!ready || (config && !config.enabled)) return null;
+  const stopVoice = () => {
+    if (audioRef.current) {
+      try {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      } catch {}
+      audioRef.current = null;
+    }
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+    }
+    setSpeaking(false);
+    setShowSubtitle(false);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: false } }));
+    }
+  };
 
-  const name = config?.name?.trim() || "Moksha Mitra";
-  const showRobot = !open && lottieState === "ready";
+  const playVoice = async () => {
+    if (speaking) {
+      stopVoice();
+      return;
+    }
+
+    setSpeaking(true);
+    setShowSubtitle(true);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("moksha:voice", { detail: { speaking: true } }));
+    }
+
+    try {
+      const res = await fetch(`${CHAT_URL}/speak`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: GREETING_TEXT }),
+      });
+
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const player = new Audio(url);
+        audioRef.current = player;
+
+        player.onplay = () => {
+          setSpeaking(true);
+          setShowSubtitle(true);
+        };
+        player.onended = () => {
+          stopVoice();
+        };
+        player.onerror = () => {
+          fallbackWebSpeech();
+        };
+
+        await player.play().catch(() => fallbackWebSpeech());
+        return;
+      }
+    } catch {
+      fallbackWebSpeech();
+    }
+  };
+
+  const fallbackWebSpeech = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      setTimeout(() => stopVoice(), 4500);
+      return;
+    }
+    try {
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(GREETING_TEXT);
+      utter.lang = "hi-IN";
+      utter.rate = 0.95;
+      utter.onend = () => stopVoice();
+      utter.onerror = () => stopVoice();
+      window.speechSynthesis.speak(utter);
+    } catch {
+      stopVoice();
+    }
+  };
+
+  if (!ready || (config && !config.enabled) || dismissed) return null;
 
   return (
     <>
       <style>{`
-        @keyframes mitra-pop { from { opacity: 0; transform: translateY(6px) scale(0.95); } to { opacity: 1; transform: none; } }
-        @keyframes mitra-ring { 0% { transform: scale(1); opacity: 0.5; } 70%, 100% { transform: scale(1.55); opacity: 0; } }
-        @keyframes mitra-glow { 0%, 100% { filter: drop-shadow(0 6px 12px rgba(201,165,116,0.45)); } 50% { filter: drop-shadow(0 8px 20px rgba(213,66,0,0.38)); } }
-        .mitra-glow { animation: mitra-glow 3.2s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .mitra-anim, .mitra-glow { animation: none !important; } }
+        /* Aarohi Standing Character Launcher matching Moksha Voyage */
+        .ms-aarohi-launcher {
+          position: fixed;
+          right: 14px;
+          bottom: 0px;
+          z-index: 45;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          pointer-events: none;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (max-width: 600px) {
+          .ms-aarohi-launcher {
+            right: 6px;
+            bottom: calc(4.25rem + env(safe-area-inset-bottom));
+          }
+        }
+
+        .ms-aarohi-launcher.ms-hidden {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        /* Character figure button */
+        .ms-aarohi-figure {
+          position: relative;
+          display: block;
+          width: 155px;
+          padding: 0;
+          border: 0;
+          margin: 0;
+          background: none;
+          pointer-events: auto;
+          cursor: pointer;
+          outline: none;
+          transition: transform 0.25s ease;
+        }
+
+        .ms-aarohi-figure:hover {
+          transform: scale(1.025);
+        }
+
+        .ms-aarohi-figure img {
+          display: block;
+          width: 100%;
+          height: auto;
+          max-height: 240px;
+          object-fit: contain;
+          object-position: 50% 100%;
+          filter: drop-shadow(0 10px 24px rgba(20, 10, 10, 0.42));
+        }
+
+        @media (max-width: 600px) {
+          .ms-aarohi-figure {
+            width: 118px;
+          }
+          .ms-aarohi-figure img {
+            max-height: 180px;
+          }
+        }
+
+        /* Dismiss '✕' button */
+        .ms-aarohi-close {
+          position: absolute;
+          top: 6px;
+          right: 2px;
+          width: 22px;
+          height: 22px;
+          display: grid;
+          place-items: center;
+          border-radius: 50%;
+          border: 1.5px solid #fff;
+          cursor: pointer;
+          background: #560d18;
+          color: #fbe7b0;
+          box-shadow: 0 4px 10px rgba(90, 14, 25, 0.45);
+          transition: transform 0.2s ease, background 0.2s ease;
+          z-index: 50;
+          pointer-events: auto;
+        }
+
+        .ms-aarohi-close:hover {
+          background: #76192a;
+          transform: scale(1.1);
+        }
+
+        /* '🔊 आवाज़ सुनें' badge */
+        .ms-aarohi-sound {
+          position: absolute;
+          top: 34%;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 50;
+          pointer-events: auto;
+          white-space: nowrap;
+          border: 1.5px solid #e8b85a;
+          border-radius: 999px;
+          padding: 5px 12px;
+          font-size: 11px;
+          font-weight: 700;
+          color: #fff;
+          cursor: pointer;
+          background: rgba(86, 13, 24, 0.9);
+          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+          animation: ms-sound-pulse 1.8s ease-in-out infinite;
+          backdrop-filter: blur(4px);
+          transition: transform 0.15s ease, background 0.15s ease;
+        }
+
+        .ms-aarohi-sound:hover {
+          background: #76192a;
+          transform: translateX(-50%) scale(1.05);
+        }
+
+        /* Subtitles pill */
+        .ms-aarohi-sub {
+          position: absolute;
+          left: 50%;
+          bottom: 48px;
+          transform: translateX(-50%);
+          z-index: 50;
+          width: 220px;
+          margin: 0;
+          pointer-events: none;
+          padding: 7px 11px;
+          border-radius: 12px;
+          text-align: center;
+          font-size: 11.5px;
+          line-height: 1.45;
+          font-weight: 600;
+          color: #fcd98a;
+          background: rgba(30, 8, 12, 0.94);
+          border: 1px solid rgba(232, 184, 90, 0.5);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(6px);
+          animation: ms-sub-in 0.25s ease-out both;
+        }
+
+        /* 'Chat here' button underneath */
+        .ms-aarohi-actions {
+          position: relative;
+          z-index: 50;
+          display: flex;
+          justify-content: center;
+          margin-top: -12px;
+          pointer-events: auto;
+        }
+
+        .ms-aarohi-chatbtn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          height: 33px;
+          padding: 0 14px;
+          border-radius: 999px;
+          cursor: pointer;
+          font-size: 12.5px;
+          font-weight: 700;
+          white-space: nowrap;
+          color: #fff;
+          border: 1.5px solid #e8b85a;
+          background: linear-gradient(135deg, #76192a, #8f2433);
+          box-shadow: 0 6px 14px -6px rgba(90, 14, 25, 0.7);
+          animation: ms-ring-pulse 2.2s ease-out infinite;
+          transition: transform 0.15s ease, filter 0.2s ease;
+        }
+
+        .ms-aarohi-chatbtn:hover {
+          transform: translateY(-2px);
+          filter: brightness(1.12);
+        }
+
+        @keyframes ms-ring-pulse {
+          0% { box-shadow: 0 6px 14px -6px rgba(90, 14, 25, 0.7), 0 0 0 0 rgba(232, 184, 90, 0.6); }
+          70%, 100% { box-shadow: 0 6px 14px -6px rgba(90, 14, 25, 0.7), 0 0 0 10px rgba(232, 184, 90, 0); }
+        }
+
+        @keyframes ms-sound-pulse {
+          0%, 100% { transform: translateX(-50%) scale(1); }
+          50% { transform: translateX(-50%) scale(1.06); }
+        }
+
+        @keyframes ms-sub-in {
+          from { opacity: 0; transform: translate(-50%, 6px); }
+          to { opacity: 1; transform: translate(-50%, 0); }
+        }
       `}</style>
 
-      {/* Stays mounted after the first open so the conversation survives closing the panel */}
+      {/* Main chat conversation panel */}
       {opened && <ChatPanel key={panelKey} open={open} onClose={close} config={config} />}
 
-      {/* Bottom right floating chat launcher */}
-      <div className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-[100] md:bottom-4 ${open ? "max-[480px]:hidden" : ""}`}>
+      {/* Standing Character cutout launcher matching Moksha Voyage Image 2 */}
+      <div className={`ms-aarohi-launcher ${open ? "ms-hidden" : ""}`}>
+        {/* Close '✕' button */}
         <button
-          ref={buttonRef}
+          type="button"
+          onClick={() => setDismissed(true)}
+          aria-label="Hide assistant"
+          title="Hide"
+          className="ms-aarohi-close"
+        >
+          <X className="h-3 w-3" strokeWidth={2.5} />
+        </button>
+
+        {/* '🔊 आवाज़ सुनें' button */}
+        <button
+          type="button"
+          onClick={playVoice}
+          className="ms-aarohi-sound"
+          title="Click to hear Aarohi's greeting"
+        >
+          {speaking ? "🔊 बोल रही हैं…" : "🔊 आवाज़ सुनें"}
+        </button>
+
+        {/* Subtitle box during voice greeting */}
+        {showSubtitle && (
+          <p className="ms-aarohi-sub">
+            नमो गंगे, नमस्कार! मैं आरोही, आपकी मोक्ष सेवा साथी हूँ...
+          </p>
+        )}
+
+        {/* Full figure cutout of Aarohi */}
+        <button
           type="button"
           onClick={toggle}
-          aria-label={open ? `Close ${name} chat` : `Chat with ${name}`}
-          aria-expanded={open}
-          className="group relative block"
+          aria-label="Talk with Aarohi"
+          className="ms-aarohi-figure"
         >
-          {!open && (
-            <span className="mitra-anim pointer-events-none absolute bottom-full right-0 mb-2.5 animate-[mitra-pop_0.35s_ease-out] whitespace-nowrap rounded-xl border border-[#C9A574]/60 bg-white px-3 py-1.5 text-[12px] font-semibold text-[#73532F] shadow-lg transition-transform duration-200 group-hover:-translate-y-1 lg:text-[13px]">
-              {config?.launcher?.trim() || "Namaste 🙏 May I help you?"}
-              <span className="absolute -bottom-[5px] right-5 h-2.5 w-2.5 rotate-45 border-b border-r border-[#C9A574]/60 bg-white" aria-hidden="true" />
-            </span>
-          )}
-          {showRobot ? null : (
-            <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#8B6A3E] to-[#73532F] text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-2xl">
-              {!open && <span className="mitra-anim absolute inset-0 animate-[mitra-ring_2.4s_ease-out_infinite] rounded-full bg-[#C9A574]" aria-hidden="true" />}
-              {open ? <X className="relative h-6 w-6" strokeWidth={2.5} aria-hidden="true" /> : <MessageCircleMore className="relative h-7 w-7" strokeWidth={2} aria-hidden="true" />}
-            </span>
-          )}
-          {/* Mounted (invisible) while loading so the player can start; shown once it reports ready */}
-          {lottieWanted && !open && lottieState !== "failed" && (
-            <span
-              className={
-                showRobot
-                  ? "mitra-glow relative flex h-16 w-16 items-center justify-center transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
-                  : "pointer-events-none absolute bottom-0 right-0 h-16 w-16 opacity-0"
-              }
-              aria-hidden="true"
-            >
-              <DotLottieReact
-                src={LAUNCHER_LOTTIE}
-                loop
-                autoplay
-                className="h-full w-full"
-                dotLottieRefCallback={(player) => {
-                  player?.addEventListener("load", () => setLottieState("ready"));
-                  player?.addEventListener("loadError", () => setLottieState("failed"));
-                }}
-              />
-            </span>
-          )}
+          <img
+            src={AAROHI_IMAGE}
+            alt="Aarohi - Moksha Sewa Assistant"
+            loading="eager"
+          />
         </button>
+
+        {/* 'Chat here' button matching Moksha Voyage */}
+        <div className="ms-aarohi-actions">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label="Open chat"
+            className="ms-aarohi-chatbtn"
+          >
+            <MessageCircle className="h-3.5 w-3.5" strokeWidth={2.4} />
+            Chat here
+          </button>
+        </div>
       </div>
     </>
   );

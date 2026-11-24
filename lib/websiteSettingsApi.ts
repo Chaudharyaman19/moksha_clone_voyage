@@ -30,14 +30,11 @@ import {
 function getServerApiUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_API_URL;
   if (envUrl) {
-    if (envUrl.includes("localhost") || envUrl.includes("127.0.0.1")) {
-      return envUrl.replace(":5003", ":5001").replace(":5000", ":5001");
-    }
     return envUrl;
   }
   return process.env.NODE_ENV === "production"
     ? "https://api.mokshasewa.org/api/v1"
-    : "http://localhost:5001/api/v1";
+    : "http://localhost:5003/api/v1";
 }
 
 const API_BASE_URL = getServerApiUrl();
@@ -239,15 +236,7 @@ export const getWebsiteSettings = cache(async (): Promise<SettingsResponse | und
       response = null;
     }
 
-    if (!response || !response.ok) {
-      if (API_BASE_URL !== "http://localhost:5001/api/v1") {
-        try {
-          response = await fetch("http://localhost:5001/api/v1/settings", { cache: "no-store" });
-        } catch {
-          response = null;
-        }
-      }
-    }
+
 
     if (response && response.ok) {
       const body = (await response.json()) as ApiEnvelope<SettingsResponse>;

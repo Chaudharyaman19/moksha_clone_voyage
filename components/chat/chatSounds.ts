@@ -7,9 +7,10 @@
 type Note = { freq: number; at: number; dur: number; gain?: number; type?: OscillatorType };
 
 let ctx: AudioContext | null = null;
+let isMuted = false;
 
 const audio = (): AudioContext | null => {
-  if (typeof window === "undefined") return null;
+  if (isMuted || typeof window === "undefined") return null;
   try {
     if (!ctx) {
       const Ctor = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -64,4 +65,7 @@ export const chatSounds = {
       { freq: 1046, at: 0, dur: 0.22, gain: 0.08 },
       { freq: 1318, at: 0.07, dur: 0.3, gain: 0.06 },
     ]),
+  setMuted: (muted: boolean) => {
+    isMuted = muted;
+  },
 };

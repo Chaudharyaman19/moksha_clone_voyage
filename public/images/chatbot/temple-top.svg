@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 90">
+<!-- Sarthi chat artwork: distant temples (top right of the chat) -->
+<g fill="#e4c99b" fill-opacity=".75">
+<ellipse cx="40" cy="80" rx="22" ry="8"/><ellipse cx="62" cy="76" rx="14" ry="9"/>
+</g>
+<path d="M113.0 70.0C113.0 39.2 124.6 17.4 130.0 14.0C135.4 17.4 147.0 39.2 147.0 70.0Z" fill="#e8cf9f"/><path d="M130.0 14.0C135.4 17.4 147.0 39.2 147.0 70.0H130.0Z" fill="#dcbb84" fill-opacity=".55"/><g stroke="#c99c60" stroke-opacity=".55" stroke-width=".7"><path d="M114.9 62.0H145.1"/><path d="M117.0 54.0H143.0"/><path d="M119.6 46.0H140.4"/><path d="M122.6 38.0H137.4"/><path d="M126.1 30.0H133.9"/></g><ellipse cx="130.0" cy="15.0" rx="4.4" ry="1.7" fill="#dcbb84"/><path d="M130.0 14.0v-12" stroke="#b8864a" stroke-width=".8"/><path d="M130.0 2.0l9 3-9 3z" fill="#e9893a"/>
+<path d="M92.0 76.0C92.0 59.5 98.8 47.8 102.0 46.0C105.2 47.8 112.0 59.5 112.0 76.0Z" fill="#ead4a8"/><path d="M102.0 46.0C105.2 47.8 112.0 59.5 112.0 76.0H102.0Z" fill="#dfc08c" fill-opacity=".55"/><g stroke="#c99c60" stroke-opacity=".55" stroke-width=".7"><path d="M93.1 71.7H110.9"/><path d="M94.3 67.4H109.7"/><path d="M95.9 63.1H108.1"/><path d="M97.7 58.9H106.3"/><path d="M99.7 54.6H104.3"/></g><ellipse cx="102.0" cy="47.0" rx="2.6" ry="1.0" fill="#dfc08c"/><path d="M102.0 46.0v-12" stroke="#b8864a" stroke-width=".8"/><path d="M102.0 34.0l9 3-9 3z" fill="#e9893a"/>
+<path d="M147.0 76.0C147.0 57.3 154.5 44.0 158.0 42.0C161.5 44.0 169.0 57.3 169.0 76.0Z" fill="#ead4a8"/><path d="M158.0 42.0C161.5 44.0 169.0 57.3 169.0 76.0H158.0Z" fill="#dfc08c" fill-opacity=".55"/><g stroke="#c99c60" stroke-opacity=".55" stroke-width=".7"><path d="M148.3 71.1H167.7"/><path d="M149.6 66.3H166.4"/><path d="M151.2 61.4H164.8"/><path d="M153.2 56.6H162.8"/><path d="M155.5 51.7H160.5"/></g><ellipse cx="158.0" cy="43.0" rx="2.9" ry="1.1" fill="#dfc08c"/><path d="M158.0 42.0v-12" stroke="#b8864a" stroke-width=".8"/><path d="M158.0 30.0l9 3-9 3z" fill="#e9893a"/>
+<rect x="80" y="70" width="100" height="14" fill="#ead4a8"/><path d="M70 84H200" stroke="#dcbb84"/>
+</svg>
