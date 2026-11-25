@@ -303,8 +303,7 @@ const SOFTER = /(?:aawaz|awaaz|awaz|आवाज़?|volume|वॉल्यू�
 
 // Her video call when the chat opens (public/callbot.mp4, with its own voice): she thanks them and asks their name
 const INTRO_VIDEO = "/callbot.mp4";
-// Moksha Sewa has no intro video for Aarohi (her photograph is her avatar): the intro stays off
-let introPlayed = true;
+let introPlayed = false;
 // What she says in it, each word with the second she starts saying it: captions on the video, then in the chat
 const INTRO_WORDS: [string, number][] = [
   ["मुझसे", 1.2], ["बात", 1.68], ["करने", 2.0], ["के", 2.24], ["लिए", 2.48], ["धन्यवाद।", 2.72],
@@ -803,7 +802,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const teamLiveRef = useRef(false);
   const teamSinceRef = useRef(0); // server time: the team's messages after this are new (0 = not asked yet)
   const teamSeenRef = useRef(new Set<number>()); // the team's messages already in the chat (by their time)
-  const checkTeamRef = useRef<() => Promise<void>>(async () => {});
+  const checkTeamRef = useRef<() => Promise<void>>(async () => { });
   const [blockedTill, setBlockedTill] = useState(blockedUntil);
   const [clock, setClock] = useState(now);
   const [chatEnded, setChatEnded] = useState(false);
@@ -868,15 +867,15 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const goodbyeCutRef = useRef(false);
   const endTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const callTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const endCallRef = useRef<(note?: string) => void>(() => {});
+  const endCallRef = useRef<(note?: string) => void>(() => { });
   // Puts a quiet call on hold (as the Hold button does); Resume carries on
-  const autoHoldRef = useRef<() => void>(() => {});
+  const autoHoldRef = useRef<() => void>(() => { });
   /* A quiet call: she first asks whether they are still there (they may be talking and not being heard, or waiting for
      her after she went quiet), and only if it stays quiet does it go on hold. Before, the call went on hold at once and
      muted the mic, so what they said next was never heard. Cleared when they speak or type. */
-  const askStillThereRef = useRef<() => void>(() => {});
+  const askStillThereRef = useRef<() => void>(() => { });
   const checkedInRef = useRef(false);
-  const onCallEventRef = useRef<(event: CallEvent) => void>(() => {});
+  const onCallEventRef = useRef<(event: CallEvent) => void>(() => { });
   // The call opened with "talk or type?": typing now (or saying "likhkar") moves to the typed chat
   const choosingRef = useRef(false);
   // The visitor ended the call (or chose typing): opening the chat again doesn't call them again
@@ -1486,7 +1485,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId: sessionIdRef.current }),
-      }).catch(() => {});
+      }).catch(() => { });
     }
     if (note && aliveRef.current) void botSay([{ text: note }]);
   };
@@ -1584,7 +1583,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
       return data;
     };
     const callEvents = {
-      onEvent: (event: { type: string; [key: string]: unknown }) => onCallEventRef.current(event as unknown as CallEvent),
+      onEvent: (event: { type: string;[key: string]: unknown }) => onCallEventRef.current(event as unknown as CallEvent),
       onLevel: (level: number) => {
         const ring = micRingRef.current;
         if (ring) ring.style.transform = `scale(${1 + Math.min(level * 14, 0.7)})`;
@@ -1617,7 +1616,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId: sessionIdRef.current }),
-        }).catch(() => {});
+        }).catch(() => { });
         if (gen === callGenRef.current) setCallState("off");
         return;
       }
@@ -1879,7 +1878,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sessionId: sessionIdRef.current, pageUrl: window.location.pathname, messages: lines.map((l) => ({ ...l, content: l.content.slice(0, 2000) })) }),
-    }).catch(() => {});
+    }).catch(() => { });
   };
 
   // The quick buttons: the ones the team published in the Chatbot Manager, or the built-in ones
@@ -2096,7 +2095,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let buffer = "";
-      for (;;) {
+      for (; ;) {
         const { value, done } = await reader.read();
         if (done) break;
         buffer += decoder.decode(value, { stream: true });
@@ -2663,17 +2662,17 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         ? onHold
           ? t.onHoldHint(holdMinutesOf(config))
           : micMuted
-          ? t.muted
-          : speaking
-            ? t.interruptHint
-            : t.listeningCall
+            ? t.muted
+            : speaking
+              ? t.interruptHint
+              : t.listeningCall
         : mic === "recording"
-      ? t.listening
-      : mic === "transcribing"
-        ? t.transcribing
-        : askingName
-          ? t.namePlaceholder
-          : t.placeholder;
+          ? t.listening
+          : mic === "transcribing"
+            ? t.transcribing
+            : askingName
+              ? t.namePlaceholder
+              : t.placeholder;
   // Her intro's captions: the sentence she is saying, and how many of its words she has said
   const introWordsSaid = INTRO_WORDS.filter(([, at]) => at <= introTime).length;
   const introLine = introWordsSaid ? INTRO_LINES.find((line) => line[line.length - 1].i >= introWordsSaid - 1) : undefined;
@@ -2688,14 +2687,14 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     : onHold && inCall
       ? t.onHold
       : speaking
-      ? t.speaking
-      : inCall
-        ? t.inCall
-        : callState === "connecting"
-          ? t.connecting
-          : isTyping
-            ? t.typing
-            : config?.subtitle || t.subtitle;
+        ? t.speaking
+        : inCall
+          ? t.inCall
+          : callState === "connecting"
+            ? t.connecting
+            : isTyping
+              ? t.typing
+              : config?.subtitle || t.subtitle;
   const blockedForever = blockedTill - clock > 30 * 24 * 60 * 60 * 1000;
   const typingDots = [0, 0.15, 0.3].map((d) => <span key={d} className="mv-dot h-2 w-2 rounded-full bg-[#8f2433]" style={{ animationDelay: `${d}s` }} />);
   const botAvatar = (visible: boolean) => (
@@ -2769,9 +2768,8 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
             aria-label={`${botName} chat`}
             data-lenis-prevent
             onKeyDown={(e) => e.key === "Escape" && closeChat()}
-            className={`${closing ? "mv-chat-out" : "mv-chat-in"} fixed z-[1000] flex flex-col overflow-hidden ${panelBg} ${chatFont.className} shadow-[0_24px_60px_-12px_rgba(90,14,25,0.45),0_0_0_1px_rgba(143,36,51,0.14)] inset-x-2 bottom-2 rounded-[24px] sm:inset-x-auto sm:right-5 sm:bottom-[88px] sm:w-[360px] ${
-              isMinimized ? "" : "h-[80dvh] sm:h-[540px] sm:max-h-[calc(100vh-108px)]"
-            }`}
+            className={`${closing ? "mv-chat-out" : "mv-chat-in"} fixed z-[1000] flex flex-col overflow-hidden ${panelBg} ${chatFont.className} shadow-[0_24px_60px_-12px_rgba(90,14,25,0.45),0_0_0_1px_rgba(143,36,51,0.14)] inset-x-2 bottom-2 rounded-[24px] sm:inset-x-auto sm:right-5 sm:bottom-[88px] sm:w-[360px] ${isMinimized ? "" : "h-[80dvh] sm:h-[540px] sm:max-h-[calc(100vh-108px)]"
+              }`}
           >
             {/* Header: deep maroon with a lotus, the avatar in a gold ring, and a gold wave into the cream body */}
             <header className="mv-head-in relative shrink-0 bg-[linear-gradient(135deg,#560d18_0%,#76192a_55%,#8f2433_100%)] px-3.5 pt-4 pb-6 text-white">
@@ -3028,9 +3026,8 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
                             {botAvatar(showAvatar(i))}
                             <div className="max-w-[80%] min-w-0">
                               <div
-                                className={`relative rounded-[18px] border border-[#ecd3a6] bg-[#fffaf1]/95 px-3.5 py-2.5 text-[13px] leading-[1.6] font-medium text-[#4a2a1a] shadow-[0_8px_18px_-12px_rgba(110,40,20,0.4)] ${
-                                  showAvatar(i) ? "rounded-tl-[6px]" : ""
-                                }`}
+                                className={`relative rounded-[18px] border border-[#ecd3a6] bg-[#fffaf1]/95 px-3.5 py-2.5 text-[13px] leading-[1.6] font-medium text-[#4a2a1a] shadow-[0_8px_18px_-12px_rgba(110,40,20,0.4)] ${showAvatar(i) ? "rounded-tl-[6px]" : ""
+                                  }`}
                               >
                                 {m.title && <p className="text-[15px] font-bold text-[#6b1420]">{m.title}</p>}
                                 {m.text && <RichText text={m.text} onNavigate={onNavigate} />}
@@ -3184,13 +3181,12 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
                     </div>
                   )}
                   <div
-                    className={`flex items-center gap-1.5 rounded-full border bg-white py-1.5 pr-1.5 pl-3 shadow-[0_10px_24px_-14px_rgba(110,40,20,0.55)] ${
-                      inputIsAbusive
+                    className={`flex items-center gap-1.5 rounded-full border bg-white py-1.5 pr-1.5 pl-3 shadow-[0_10px_24px_-14px_rgba(110,40,20,0.55)] ${inputIsAbusive
                         ? "border-red-500 ring-2 ring-red-200"
                         : mic === "recording" || (inCall && !micMuted)
                           ? "border-red-400 ring-2 ring-red-100"
                           : "border-[#ead6b4] focus-within:border-[#d9a441]"
-                    } ${blocked ? "opacity-60" : ""}`}
+                      } ${blocked ? "opacity-60" : ""}`}
                   >
                     <LotusMark className="h-[16px] w-[26px] shrink-0 text-[#8f2433]" />
                     <input
@@ -3253,9 +3249,8 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
                           disabled={blocked || (busy && !canTalk) || mic === "transcribing" || callState === "connecting" || chatEnded}
                           aria-label={canTalk ? t.callStart(botNameFor(config, lang)) : mic === "recording" ? t.micStop : t.micStart}
                           title={canTalk ? t.callStart(botNameFor(config, lang)) : mic === "recording" ? t.micStop : t.micStart}
-                          className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition disabled:cursor-default disabled:opacity-40 ${
-                            mic === "recording" ? "mv-recording bg-red-500 text-white" : "border border-[#8f2433]/25 text-[#8f2433] hover:bg-[#fbecd2]"
-                          }`}
+                          className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition disabled:cursor-default disabled:opacity-40 ${mic === "recording" ? "mv-recording bg-red-500 text-white" : "border border-[#8f2433]/25 text-[#8f2433] hover:bg-[#fbecd2]"
+                            }`}
                         >
                           {mic === "transcribing" || callState === "connecting" ? <SpinnerIcon className="h-4 w-4 animate-spin" /> : <MicIcon className="h-4 w-4" />}
                         </button>
