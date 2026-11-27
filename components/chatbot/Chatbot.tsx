@@ -80,6 +80,8 @@ const COPY = {
     noiseOffHint: "Off: your mic is heard as it is",
     micNotFound: "No microphone was found on this device. You can type here.",
     callFailed: "Sorry, the voice call couldn't connect. You can type here.",
+    // The server has no call for now (the day's call minutes or the month's budget): said as it is (Module 31: never a made-up fault)
+    callUnavailable: "Voice calls aren't available right now. Please type here, and I'll help you fully in the chat.",
     callDropped: "The call ended. Tap the mic to talk again.",
     callIdle: "I ended the call because it was quiet for a while. Tap the mic to talk again.",
     // Said aloud when nothing has been heard for a while, before the call goes on hold
@@ -170,6 +172,7 @@ const COPY = {
     noiseOffHint: "बंद: आपका माइक जैसा है वैसा सुना जाता है",
     micNotFound: "इस डिवाइस पर माइक्रोफ़ोन नहीं मिला। आप यहाँ लिख सकते हैं।",
     callFailed: "माफ़ कीजिए, कॉल जुड़ नहीं पाई। आप यहाँ लिख सकते हैं।",
+    callUnavailable: "अभी वॉइस कॉल उपलब्ध नहीं है। आप यहाँ लिखकर बात कीजिए, मैं चैट में आपकी पूरी मदद करूँगी।",
     callDropped: "कॉल बंद हो गई। बात करनी हो तो माइक दबाइए।",
     callIdle: "काफ़ी देर से कोई आवाज़ नहीं आई, इसलिए कॉल बंद कर दी। बात करनी हो तो माइक दबाइए।",
     stillThere: "जी, क्या आप लाइन पर हैं? आप बोलिए, मैं सुन रही हूँ।",
@@ -260,6 +263,8 @@ interface ChatConfig {
   greeting?: Record<Lang, { title: string; chat: string; again: string }> | null;
   /** Admin → AI Training → Contact details: the helpline the chat gives out */
   helpline?: string;
+  /** Admin → AI Training → Warning messages ({name} = the visitor's name): what the chat's own filter says for abusive words */
+  warnings?: Record<Lang, { first: string; second: string; third: string; blocked: string; blockedForever: string }>;
   /** Admin → Chatbot Settings: a call on hold ends after this many minutes */
   holdMinutes?: number;
   /** Admin → Chatbot Settings: the name in Devanagari, for the Hindi lines */
@@ -362,6 +367,11 @@ const CALL_IDLE_MS = 120000; // a call ends itself after this long without anyon
 const GOODBYE_CUT_WAIT_MS = 6000;
 // Nobody has spoken for a minute: the call goes on hold by itself (sooner if admin → Chatbot Settings says so)
 const AUTO_HOLD_MS = 60000;
+/* Aarohi's Module 31: three minutes before the call's time is up she is told, so a real need or a genuine enquiry gets
+   more time (extend_call) and casual talk a polite close. The pipeline call is told on the server with each reply; the
+   realtime call by this note (the pipeline leaves such a note aside). */
+const TIME_NOTE_SECONDS = 180;
+const TIME_NOTE = `THE CALL'S TIME IS ALMOST UP (about 3 minutes left; Aarohi's Module 31). Never mention time, limit or cost. A real need going on (a death, distress, emergency, complaint, Moksha Sewa, booking) or a genuine enquiry about our services: call extend_call now and carry on helping. Casual talk or general questions only: don't extend; ask once whether anything about Moksha Sewa remains, then the natural farewell and end_conversation.`;
 const callIdleMs = (config: { callIdleSeconds?: number } | null) => {
   const n = Number(config?.callIdleSeconds);
   return Number.isFinite(n) && n >= 30 ? n * 1000 : CALL_IDLE_MS;
@@ -429,6 +439,17 @@ interface CallEvent {
 /* A warning or closing line for abusive words with their name ("Vansh जी, …"); without one: "जी," left out */
 const named = (line: string, name: string) =>
   name.trim() ? line : line.replace(/(^|:\s|⚠️\s)\s*(?:जी|ji),\s*/iu, "$1").replace(/^\s*/, "").replace(/(^|:\s|⚠️\s)(\p{Ll})/u, (_, a, c) => a + c.toUpperCase());
+
+/* A warning line from admin → AI Training with their name for {name}; without one, "{name} जी," left out (as the server does) */
+const fillName = (line: string, name: string) =>
+  name.trim()
+    ? line.split("{name}").join(name.trim())
+    : line
+        .replace(/(^|[.।!?]\s+)\{name\}\s*(?:(?:जी|ji)(?![\p{L}\p{M}]))?\s*,?\s*(\p{L})?/giu, (_, start: string, next = "") => start + next.toUpperCase())
+        .replace(/\s*,?\s*\{name\}\s*(?:(?:जी|ji)(?![\p{L}\p{M}]))?(?=\s*(?:[,.।!?]|$))/giu, "")
+        .replace(/\{name\}\s*(?:(?:जी|ji)(?![\p{L}\p{M}]))?\s*/giu, "")
+        .replace(/\s{2,}/g, " ")
+        .trim();
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => Date.now();
@@ -867,6 +888,8 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const goodbyeCutRef = useRef(false);
   const endTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const callTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  // Her note that the call's time is almost up (Aarohi's Module 31; see scheduleCallEnd)
+  const timeNoteTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const endCallRef = useRef<(note?: string) => void>(() => { });
   // Puts a quiet call on hold (as the Hold button does); Resume carries on
   const autoHoldRef = useRef<() => void>(() => { });
@@ -1236,12 +1259,42 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     else void botSay([{ text: copy().welcome(shown), chips: chips() }]);
   };
 
+  /* When the call's time is up (admin → Chatbot Settings), and her note three minutes before it (see TIME_NOTE). More time
+     given to a real need (extend_call) moves both. */
+  const scheduleCallEnd = (seconds: number) => {
+    clearTimeout(callTimerRef.current);
+    clearTimeout(timeNoteTimerRef.current);
+    if (!(seconds > 0)) return;
+    callTimerRef.current = setTimeout(() => endCallRef.current(COPY[langRef.current].callEnding), seconds * 1000);
+    timeNoteTimerRef.current = setTimeout(
+      () => callRef.current?.send({ type: "conversation.item.create", item: { type: "message", role: "system", content: [{ type: "input_text", text: TIME_NOTE }] } }),
+      Math.max(0, seconds - TIME_NOTE_SECONDS) * 1000
+    );
+  };
+
   // What Aarohi asked for in the call: save the name / number, search the team's notes, or end the call
   const runCallTools = async (requested: NonNullable<NonNullable<CallEvent["response"]>["output"]>) => {
     let replyAgain = false;
     for (const tool of requested) {
       const call = callRef.current;
       if (!call || !tool.call_id) return;
+      /* Details for the visitor to read at their own pace (Aarohi's Module 31: package inclusions, prices, documents, the
+         address): shown in the chat as her message and saved with it; she then says only a short line about them */
+      if (tool.name === "show_in_chat") {
+        let text = "";
+        try {
+          text = String(JSON.parse(tool.arguments || "{}").text || "").trim().slice(0, 3000);
+        } catch {
+          // no arguments
+        }
+        if (text) saveTurn("assistant", text, `shown-${tool.call_id}`);
+        const output = text
+          ? { ok: true, shown: true, next: "The details are on the visitor's screen now: say only a short line about them, as your rules say." }
+          : { ok: false, next: "Nothing was shown: say the key points briefly instead." };
+        call.send({ type: "conversation.item.create", item: { type: "function_call_output", call_id: tool.call_id, output: JSON.stringify(output) } });
+        replyAgain = true;
+        continue;
+      }
       if (tool.name === "continue_typing") {
         call.send({ type: "conversation.item.create", item: { type: "function_call_output", call_id: tool.call_id, output: JSON.stringify({ ok: true }) } });
         choosingRef.current = false;
@@ -1274,6 +1327,9 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         });
         const data = (await res.json())?.data;
         output = data?.output ?? output;
+        // More time for a real need (Module 31): the call's end moves with it
+        const given = data?.output as { ok?: unknown; seconds_left?: unknown } | undefined;
+        if (tool.name === "extend_call" && given?.ok === true && typeof given.seconds_left === "number") scheduleCallEnd(given.seconds_left);
         if (data?.name) {
           // Aarohi learned the visitor's name in the call: the typed chat knows it too
           remember(sessionIdRef.current, data.name);
@@ -1473,6 +1529,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     setOnHold(false);
     call.stop();
     clearTimeout(callTimerRef.current);
+    clearTimeout(timeNoteTimerRef.current);
     heardRef.current.clear();
     botTextRef.current.clear();
     setCallState("off");
@@ -1668,8 +1725,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           type: "response.create",
           response: { instructions: `Greet the visitor now, warmly and naturally in your calm voice, with this welcome and nothing else, in Hindi written in Devanagari: "${welcome}"` },
         });
-      clearTimeout(callTimerRef.current);
-      if (maxSeconds > 0) callTimerRef.current = setTimeout(() => endCallRef.current(COPY[langRef.current].callEnding), maxSeconds * 1000);
+      scheduleCallEnd(maxSeconds);
     } catch (error) {
       startingRef.current = false;
       if (gen !== callGenRef.current) return; // closed meanwhile
@@ -1690,8 +1746,13 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         return;
       }
       const reason = (error as DOMException)?.name;
+      // (no call for now — the day's call minutes or the month's budget: said as it is, not as a fault)
+      const unavailable = (error as Error)?.message === "CALL_UNAVAILABLE";
       void botSay([
-        { text: reason === "NotAllowedError" ? copy().micDenied : reason === "NotFoundError" ? copy().micNotFound : copy().callFailed },
+        {
+          text:
+            reason === "NotAllowedError" ? copy().micDenied : reason === "NotFoundError" ? copy().micNotFound : unavailable ? copy().callUnavailable : copy().callFailed,
+        },
       ]);
     }
   };
@@ -2504,7 +2565,9 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   /* An abusive message: a warning, said aloud in a call and written in the chat ("main aapko pehli warning de rahi
      hoon"); after STRIKES_TO_BLOCK of them the chat closes for a day (the call ends first) */
   const warn = (strikes: number) => {
-    const text = copy().abuseWarning(strikes, addressOf());
+    // The team's line (admin → AI Training → Warning messages), else the built-in one
+    const trained = configRef.current?.warnings?.[langRef.current]?.[strikes <= 1 ? "first" : strikes === 2 ? "second" : "third"]?.trim();
+    const text = trained ? `⚠️ ${fillName(trained, addressOf())}` : copy().abuseWarning(strikes, addressOf());
     const call = callRef.current;
     if (!call) {
       void botSay([{ text }]);
@@ -2517,7 +2580,8 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   /* The chat closes for abusive words: her closing line first (24 hours, or until the team opens it: `permanent`) — said
      in a call, which ends once it has been heard; written in the typed chat. `said`: she has said it already */
   const closeForAbuse = (block: () => void, permanent = false, said = false) => {
-    const line = copy().abuseBlocked(permanent, addressOf());
+    const trained = configRef.current?.warnings?.[langRef.current]?.[permanent ? "blockedForever" : "blocked"]?.trim();
+    const line = trained ? fillName(trained, addressOf()) : copy().abuseBlocked(permanent, addressOf());
     const call = callRef.current;
     if (!call) {
       if (!said) botSay([{ text: line }]);
