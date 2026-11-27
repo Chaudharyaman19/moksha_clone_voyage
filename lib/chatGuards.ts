@@ -94,6 +94,33 @@ const isBadWord = (token: string) => {
   return EXACT_SET.has(token) || WORD_STARTS.some((start) => token.startsWith(start));
 };
 
+/* Said aloud, the speech recognizer now and then writes an ordinary word as one of these: "Sikh" or "sects" as "sex",
+   "बीच" as "बिच", "Dixit" as "dick", "छूट" (a discount) as "chut", "load" as "lode", initials as "BC" — and a mild word
+   ("pagal", "stupid") may be about anything. In a voice call these never get the filter's warning (27 Nov 2026: a
+   tester asking about the Sikh community was warned, and the words weren't even shown): they go to Aarohi, who warns
+   only when it really is aimed at her (her rule 5c). */
+const SPOKEN_LOOKALIKES = new Set(
+  [
+    "ass", "dick", "dik", "bc", "mc", "mkc", "mkb", "bkl", "gand", "gaand", "chut", "lund", "loda", "lode", "lodey", "lodu",
+    "kutta", "kutte", "kutti", "suar", "suwar", "pagal", "ullu", "gadha", "gadhe", "idiot", "stupid", "cock", "prick",
+    "बिच", "फक", "शिट", "इडियट", "स्टूपिड", "स्टुपिड",
+  ].map(squeeze)
+);
+/* "sex", "sexy" in a call: a warning, as typed — except beside a word about a faith or a community ("how about sex
+   community", "सेक्स धर्म के लोग"), where it was surely "Sikh" misheard */
+const SEX_WORDS = new Set(["sex", "sexy", "sexual", "सेक्स", "सेक्सी"].map(squeeze));
+const FAITH_NEAR =
+  /communit|religio|faith|samaj|samaaj|dharm|panth|guru|gurdwara|gurudwara|sardar|turban|punjab|people|\blog\b|सिख|समुदाय|समाज|धर्म|पंथ|गुरु|गुरुद्वार|सरदार|पंजाब|लोग/iu;
+
+/** isAbusive for words heard in a voice call: not a word that can be an ordinary one misheard (SPOKEN_LOOKALIKES, or
+    "sex" beside a faith or a community: "Sikh") */
+export function isAbusiveSpoken(text: string): boolean {
+  if (text.toLowerCase().split(/[^\p{L}]+/u).some((w) => UNSQUEEZED_WORDS.has(w))) return true;
+  const tokens = tokensOf(text);
+  const misheard = (token: string) => SPOKEN_LOOKALIKES.has(token) || (SEX_WORDS.has(token) && FAITH_NEAR.test(text));
+  return tokens.some((token) => !misheard(token) && isBadWord(token)) || hasBadPhrase(tokens);
+}
+
 /** True if the text contains an abusive word, also when spelled "f u c k", "f.u.c.k" or "f*ck". */
 export function isAbusive(text: string): boolean {
   if (text.toLowerCase().split(/[^\p{L}]+/u).some((w) => UNSQUEEZED_WORDS.has(w))) return true;

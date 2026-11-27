@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type 
 import Image from "next/image";
 import Link from "next/link";
 
-import { isAbusive } from "@/lib/chatGuards";
+import { isAbusive, isAbusiveSpoken } from "@/lib/chatGuards";
 import { chatFont } from "./chatFont";
 import { canCall, openCall, openPipelineCall, type Call } from "./chatCall";
 import { toRoman } from "./roman";
@@ -1381,7 +1381,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
             break;
           }
           // Abusive words are never shown, not even for a moment
-          updateBubble(event.item_id, "user", { text: isAbusive(event.text) || isAbusive(toRoman(event.text)) ? "" : event.text });
+          updateBubble(event.item_id, "user", { text: isAbusiveSpoken(event.text) || isAbusiveSpoken(toRoman(event.text)) ? "" : event.text });
         }
         break;
       case "conversation.item.input_audio_transcription.delta": {
@@ -1417,8 +1417,9 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           clearTimeout(endTimerRef.current);
         }
         // Abusive words are never shown or answered (what Aarohi started saying is stopped and they leave the
-        // conversation); they count as a warning, as typed ones do, and she says the warning aloud
-        if (isAbusive(text)) {
+        // conversation); they count as a warning, as typed ones do, and she says the warning aloud. (Not a word the
+        // recognizer may have made of an ordinary one — "Sikh" heard as "sex": Aarohi judges those, isAbusiveSpoken)
+        if (isAbusiveSpoken(text)) {
           dropBubble(event.item_id);
           callRef.current?.send({ type: "response.cancel" });
           callRef.current?.send({ type: "output_audio_buffer.clear" });
