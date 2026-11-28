@@ -11,9 +11,7 @@ import {
   FaUsers,
   FaPrayingHands,
   FaHandHoldingHeart,
-  FaPhoneAlt,
   FaEnvelope,
-  FaMapMarkerAlt,
   FaHeart,
   FaStar,
   FaCheckCircle,
@@ -21,6 +19,7 @@ import {
 } from "@/lib/icons/fa";
 import { FiActivity } from "react-icons/fi";
 import { PiFlowerLotus } from "@/lib/icons/pi";
+import { Layers, MapPin, Phone } from "lucide-react";
 import { imageOrFallback, itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 import { isBannerScheduleActive, type LandingSectionItem, type ScheduledBannerItem } from "@/lib/landingContent";
 
@@ -75,6 +74,40 @@ type StatItem = {
   label: string;
   icon: ComponentType<{ className?: string; strokeWidth?: number }>;
 };
+
+function MissionStatsBand({ stats }: { stats: StatItem[] }) {
+  return (
+    <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 md:grid-cols-3">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div
+              key={`hero-stat-${index}`}
+              className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${
+                index > 0 ? "border-t border-white/20 md:border-t-0 md:border-l md:border-white/20" : ""
+              }`}
+            >
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
+                <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
+              </div>
+              <div className="min-w-0 text-left">
+                <div className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]">
+                  <AnimatedNumber endString={stat.value} />
+                </div>
+                {stat.label && (
+                  <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
+                    {stat.label}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 type SlideContent = {
   heading: string[];
@@ -180,7 +213,7 @@ export default function Hero() {
 
   const fallbackImages = useMemo(
     () => [
-      "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164944/moksha-sewa/hero-images/dignity-in-every-final-journey-bg.png",
+      "/hero-images/hero-ghat-v2.jpg",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164948/moksha-sewa/hero-images/image2.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164950/moksha-sewa/hero-images/image3.png",
       "https://res.cloudinary.com/dr8mld4i0/image/upload/v1788164954/moksha-sewa/hero-images/image7.png",
@@ -194,11 +227,11 @@ export default function Hero() {
     () => [
       {
         heading: ["Dignity in Every", "Final Journey"],
-        description: "Supporting weaker families with compassionate last-rites assistance.",
-        descriptionHighlight: "compassionate last-rites assistance.",
+        description:
+          "Free last-rites assistance in Delhi NCR for eligible families facing financial hardship, people without family support, and authorised unclaimed cases.",
         alt: "Moksha Sewa team helping a helpless family with a dignified final journey",
-        primaryButton: { label: "Request Sewa Help", href: "/request-help" },
-        secondaryButton: { label: "Support This Mission", href: "/donation" },
+        primaryButton: { label: "Request Free Sewa", href: "/request-help" },
+        secondaryButton: { label: "Call Helpline", href: "tel:+919220147229" },
       },
       {
         heading: ["No One Leaves", "Without Final Dignity."],
@@ -312,23 +345,41 @@ export default function Hero() {
   // Default primary hero banner (displayed when no schedule is active, or when original is restored)
   const defaultPrimarySlide = useMemo<SlideContent>(() => {
     const defaultTitle = websiteSection?.title || fallbackSlides[0].heading.join("\n");
+    const rawSubtitle = websiteSection?.subtitle?.replace(/\s+/g, " ").trim();
+    const isLegacySubtitle =
+      !rawSubtitle ||
+      rawSubtitle === "Supporting weaker families with compassionate last-rites assistance.";
+    const rawPrimaryLabel = websiteSection?.buttonLabel?.trim();
+    const isLegacyPrimaryLabel = !rawPrimaryLabel || rawPrimaryLabel === "Request Sewa Help";
+    const rawSecondaryLabel = websiteSection?.secondaryButtonLabel?.trim();
+    const isLegacySecondaryLabel = !rawSecondaryLabel || rawSecondaryLabel === "Support This Mission";
     return {
       heading: splitHeading(defaultTitle),
-      description: websiteSection?.subtitle || fallbackSlides[0].description,
+      description: isLegacySubtitle ? fallbackSlides[0].description : websiteSection!.subtitle!,
       alt: websiteSection?.description || fallbackSlides[0].alt,
       primaryButton: {
-        label: websiteSection?.buttonLabel || fallbackSlides[0].primaryButton?.label || "Request Sewa Help",
+        label: isLegacyPrimaryLabel
+          ? (fallbackSlides[0].primaryButton?.label ?? "Request Free Sewa")
+          : rawPrimaryLabel!,
         href: websiteSection?.buttonHref || fallbackSlides[0].primaryButton?.href || "/request-help",
       },
       secondaryButton: {
-        label: websiteSection?.secondaryButtonLabel || fallbackSlides[0].secondaryButton?.label || "Support This Mission",
-        href: websiteSection?.secondaryButtonHref || fallbackSlides[0].secondaryButton?.href || "/donation",
+        label: isLegacySecondaryLabel
+          ? (fallbackSlides[0].secondaryButton?.label ?? "Call Helpline")
+          : rawSecondaryLabel!,
+        href: isLegacySecondaryLabel
+          ? (fallbackSlides[0].secondaryButton?.href ?? "tel:+919220147229")
+          : (websiteSection?.secondaryButtonHref || fallbackSlides[0].secondaryButton?.href || "tel:+919220147229"),
       },
     };
   }, [websiteSection, fallbackSlides]);
 
   const defaultPrimaryImage = useMemo(() => {
-    return imageOrFallback(websiteSection?.image, fallbackImages[0]);
+    const img = websiteSection?.image?.trim();
+    if (!img || img.includes("dignity-in-every-final-journey-bg.png")) {
+      return fallbackImages[0];
+    }
+    return imageOrFallback(img, fallbackImages[0]);
   }, [websiteSection?.image, fallbackImages]);
 
   // Active custom slides if admin configured any in websiteSection.slides
@@ -384,13 +435,18 @@ export default function Hero() {
   }, [defaultPrimaryImage, activeCustomSlides, scheduledCustomSlides, normalCustomSlides, fallbackImages]);
 
   const statFallbacks: StatItem[] = [
-    { value: "24/7", label: "Helpline Guidance", icon: FaUsers },
-    { value: "Delhi • Ghaziabad • Noida", label: "Launch Region", icon: FaLandmark },
-    { value: "Verified", label: "Case-Based Support", icon: FaSmile },
-    { value: "Subject", label: "To Eligibility", icon: FaShieldAlt },
+    { value: "Delhi NCR", label: "", icon: MapPin },
+    { value: "Free for eligible cases", label: "", icon: Layers },
+    { value: "24×7 Helpline", label: "", icon: Phone },
   ];
+  const legacyHeroStatValues = new Set(["24/7", "Delhi • Ghaziabad • Noida", "Verified", "Subject"]);
+  const hasCustomStatItems = Boolean(
+    websiteSection?.items?.length &&
+      websiteSection.items.some((item) => item?.value && !legacyHeroStatValues.has(item.value.trim())),
+  );
+  const sourceStatItems = hasCustomStatItems ? websiteSection?.items : undefined;
   const stats: StatItem[] = statFallbacks.map((fallback, index) => {
-    const item: LandingSectionItem = itemOrFallback(websiteSection?.items, index, {
+    const item: LandingSectionItem = itemOrFallback(sourceStatItems, index, {
       value: fallback.value,
       label: fallback.label,
     });
@@ -402,9 +458,10 @@ export default function Hero() {
         case "building": resolvedIcon = FaLandmark; break;
         case "smile": resolvedIcon = FaSmile; break;
         case "shield": resolvedIcon = FaShieldAlt; break;
-        case "phone": resolvedIcon = FaPhoneAlt; break;
+        case "phone": resolvedIcon = Phone; break;
         case "mail": resolvedIcon = FaEnvelope; break;
-        case "map-pin": resolvedIcon = FaMapMarkerAlt; break;
+        case "map-pin": resolvedIcon = MapPin; break;
+        case "layers": resolvedIcon = Layers; break;
         case "heart": resolvedIcon = FaHeart; break;
         case "star": resolvedIcon = FaStar; break;
         case "check-circle": resolvedIcon = FaCheckCircle; break;
@@ -655,33 +712,7 @@ export default function Hero() {
         </section>
 
         {/* Mission Stats Band Below Hero */}
-        <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
-          <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={`hero-stat-${index}`}
-                  className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${
-                    index > 0 ? "md:border-l md:border-white/20" : ""
-                  } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
-                >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                    <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
-                  </div>
-                  <div className="min-w-0 text-left">
-                    <div className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]">
-                      <AnimatedNumber endString={stat.value} />
-                    </div>
-                    <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
-                      {stat.label}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <MissionStatsBand stats={stats} />
       </>
     );
   }
@@ -737,6 +768,7 @@ export default function Hero() {
               priority={currentIndex === 0}
               fetchPriority={currentIndex === 0 ? "high" : "auto"}
               quality={75}
+              unoptimized={activeImage.startsWith("/hero-images/")}
               sizes="100vw"
               className={`${outgoingImage ? "hero-img-fade " : ""}${
                 isImageOnlySlide
@@ -881,7 +913,7 @@ export default function Hero() {
                 <span className="h-px flex-1 bg-[#C85117]/65" />
               </div>
 
-              <p className="hero-desc-1366 mt-2 max-w-[650px] text-[18px] font-semibold leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
+              <p className="hero-desc-1366 mt-2 max-w-[650px] text-[18px] font-medium leading-[1.35] text-[#2C1810] sm:text-[19px] md:min-h-[27px] lg:text-[20px]">
                 {activeSlide.descriptionHighlight &&
                   activeSlide.description.includes(activeSlide.descriptionHighlight) ? (
                   <>
@@ -899,23 +931,23 @@ export default function Hero() {
               <div className="mt-3 flex min-h-[54px] flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={activeSlide.primaryButton?.href ?? "/request-help"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={(activeSlide.primaryButton?.href ?? "/request-help").startsWith("tel:") ? undefined : "_blank"}
+                  rel={(activeSlide.primaryButton?.href ?? "/request-help").startsWith("tel:") ? undefined : "noopener noreferrer"}
                   className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
                 >
                   <span className="whitespace-nowrap">
-                    {activeSlide.primaryButton?.label ?? "Request Sewa Help"}
+                    {activeSlide.primaryButton?.label ?? "Request Free Sewa"}
                   </span>
                 </a>
 
                 <a
-                  href={activeSlide.secondaryButton?.href ?? "/donation"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={activeSlide.secondaryButton?.href ?? "tel:+919220147229"}
+                  target={(activeSlide.secondaryButton?.href ?? "tel:+919220147229").startsWith("tel:") ? undefined : "_blank"}
+                  rel={(activeSlide.secondaryButton?.href ?? "tel:+919220147229").startsWith("tel:") ? undefined : "noopener noreferrer"}
                   className="group/cta inline-flex h-[54px] w-full items-center justify-center rounded-[9px] border border-[#F4C46A] bg-gradient-to-r from-[#B76B16] via-[#E5A93E] to-[#B76B16] px-5 text-[16px] font-semibold text-white shadow-[0_0_18px_rgba(229,169,62,0.45)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(229,169,62,0.72)] sm:w-[190px]"
                 >
                   <span className="whitespace-nowrap">
-                    {activeSlide.secondaryButton?.label ?? "Support This Mission"}
+                    {activeSlide.secondaryButton?.label ?? "Call Helpline"}
                   </span>
                 </a>
               </div>
@@ -1014,34 +1046,7 @@ export default function Hero() {
       </section>
 
       {/* Mission Stats Band Below Hero */}
-      <div className="w-full border-b border-[#73532F] bg-gradient-to-r from-[#8B6A3E] via-[#9C794C] to-[#8B6A3E] py-1 shadow-md">
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 md:grid-cols-4">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={`hero-stat-${index}`}
-                className={`group/stat flex items-center justify-center gap-3 px-4 py-1.5 ${index > 0 ? "md:border-l md:border-white/20" : ""
-                  } ${index > 1 ? "border-t border-white/20 md:border-t-0" : ""}`}
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition-transform duration-300 group-hover/stat:scale-110 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
-                  <Icon className="h-4 w-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" />
-                </div>
-                <div className="min-w-0 text-left">
-                  <div
-                    className="text-[17px] font-medium leading-none text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] lg:text-[19px]"
-                  >
-                    <AnimatedNumber endString={stat.value} />
-                  </div>
-                  <div className="mt-1 max-w-[120px] text-[16px] font-medium leading-tight tracking-[0.02em] text-white/90 lg:max-w-none lg:text-[16px]">
-                    {stat.label}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <MissionStatsBand stats={stats} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { FaChevronDown, FaUser, FaShieldAlt } from "@/lib/icons/fa";
+import { FaChevronDown, FaUser, FaShieldAlt, FaPhoneAlt } from "@/lib/icons/fa";
 import Link from "next/link";
 import { itemOrFallback, textOrFallback, useWebsiteSection } from "@/components/website/WebsiteContentContext";
 
@@ -26,11 +26,20 @@ export default function TopInfoBar() {
           here would silently reopen a gap between the two bars otherwise). */}
       <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-0">
         <div className="min-w-0 flex-1 truncate text-left pl-2 min-[1296px]:pl-6 pr-4 text-[12px] font-semibold text-white sm:text-[14px] lg:text-[16px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
-          {textOrFallback(websiteSection?.title, "Sewa Available in Delhi • Ghaziabad • Noida | 24×7 Last-Rites Assistance | Unclaimed & Needy Family Support", 220)}
+          Sewa now available in Delhi NCR
         </div>
 
         {/* Utilities */}
-        <div className="ml-auto flex shrink-0 items-center justify-end gap-1 pr-2 min-[1296px]:pr-6 md:gap-1.5">
+        <div className="ml-auto flex shrink-0 items-center justify-end gap-1 pr-2 min-[1296px]:pr-6 md:gap-2">
+          <a
+            href="tel:9220147229"
+            className="flex items-center gap-1.5 rounded-md px-2 py-1 text-[12px] font-medium text-white/95 transition-all hover:bg-white/10 hover:text-white sm:text-[14px] lg:text-[15px]"
+          >
+            <FaPhoneAlt className="h-3 w-3 shrink-0" />
+            <span className="whitespace-nowrap">24×7 Helpline · 92201 47229</span>
+          </a>
+
+          <span aria-hidden className="hidden h-4 w-px bg-white/30 md:block" />
 
           <details className="group/login relative">
             <summary className={`${utilityLink} cursor-pointer list-none [&::-webkit-details-marker]:hidden`}>
