@@ -19,9 +19,9 @@ const Chatbot = dynamic(() => import("./Chatbot"), { ssr: false });
    once she has spoken (or the chat has been opened) the drawn Garima takes her place (SaumyaButton below, from the
    designer's page public/moksha-ai-assistant-real.html), also on the next pages.
    The designer's GIF is in public/images/chatbot/saumya-launcher.webp, the 3D "Moksha Aunty" in moksha-aunty-avatar/. */
-const VIDEO_ALPHA = "/Garima_videobot.mp4";
+const VIDEO_ALPHA = "/garima-videobot-alpha.webm";
 const VIDEO_CARD = "/Garima_videobot.mp4";
-const POSTER = "/Garima_videobot.mp4";
+const POSTER = "/garima-videobot-poster.webp";
 
 /* What she says, each word with the second she starts it, a line at a time. She speaks Hindi; the subtitles show it in
    English letters (Hinglish), word for word, so each word still lights up as she says it. */
@@ -101,7 +101,7 @@ function VideoBot({
   // Her video: asked for once the page is idle
   useEffect(() => {
     const start = () => {
-      setCard(true);
+      setCard(!seeThroughVideo());
       setLoad(true);
     };
     const idle = "requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 2500 }) : 0;
@@ -231,6 +231,7 @@ function VideoBot({
           <video
             ref={videoRef}
             className="vb-video"
+            poster={POSTER}
             playsInline
             muted
             preload="auto"
@@ -242,7 +243,7 @@ function VideoBot({
               setFailed(true);
             }}
           >
-            <source src="/Garima_videobot.mp4" type="video/mp4" />
+            <source src={card ? VIDEO_CARD : VIDEO_ALPHA} type={card ? "video/mp4" : "video/webm"} />
           </video>
         )}
       </button>
