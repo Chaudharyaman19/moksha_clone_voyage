@@ -97,7 +97,7 @@ const isBadWord = (token: string) => {
 /* Said aloud, the speech recognizer now and then writes an ordinary word as one of these: "Sikh" or "sects" as "sex",
    "बीच" as "बिच", "Dixit" as "dick", "छूट" (a discount) as "chut", "load" as "lode", initials as "BC" — and a mild word
    ("pagal", "stupid") may be about anything. In a voice call these never get the filter's warning (27 Nov 2026: a
-   tester asking about the Sikh community was warned, and the words weren't even shown): they go to Aarohi, who warns
+   tester asking about the Sikh community was warned, and the words weren't even shown): they go to Garima, who warns
    only when it really is aimed at her (her rule 5c). */
 const SPOKEN_LOOKALIKES = new Set(
   [

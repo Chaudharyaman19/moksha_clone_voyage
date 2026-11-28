@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /*
- * Aarohi's chat: "call me now". Under her offer ("अभी कॉल करवाऊँ या कॉल-बैक?"), the visitor taps to be called at once
+ * Garima's chat: "call me now". Under her offer ("अभी कॉल करवाऊँ या कॉल-बैक?"), the visitor taps to be called at once
  * — on the number this chat verified already, or after a WhatsApp OTP for a new one — and our phone line rings their
- * mobile, Aarohi says she is connecting them, and the call goes to the team level by level (backend chat.phonecall).
+ * mobile, Garima says she is connecting them, and the call goes to the team level by level (backend chat.phonecall).
  * The card then follows the call. "Call back" sends the usual callback request instead.
  */
 
@@ -34,7 +34,7 @@ const TEXT = {
     working: "एक पल…",
     state: {
       ringing: (last4: string) => `📞 आपके फ़ोन (…${last4}) पर हमारी कॉल जा रही है — कृपया उठाइए।`,
-      answered: "✅ कॉल जुड़ गई — आरोही आपको हमारी टीम से जोड़ रही हैं।",
+      answered: "✅ कॉल जुड़ गई — गरिमा आपको हमारी टीम से जोड़ रही हैं।",
       connecting: "🎵 सीनियर से जोड़ा जा रहा है… कृपया लाइन पर बने रहिए।",
       team: "✅ आप हमारी टीम से बात कर रहे हैं।",
       "missed-team": "सीनियर अभी उपलब्ध नहीं हैं — आपका कॉल-बैक नोट कर लिया गया है।",
@@ -62,7 +62,7 @@ const TEXT = {
     working: "One moment…",
     state: {
       ringing: (last4: string) => `📞 We're calling your phone (…${last4}) — please pick up.`,
-      answered: "✅ Connected — Aarohi is putting you through to our team.",
+      answered: "✅ Connected — Garima is putting you through to our team.",
       connecting: "🎵 Connecting you to a senior… please stay on the line.",
       team: "✅ You're talking with our team.",
       "missed-team": "Our seniors are busy right now — your call back has been noted.",

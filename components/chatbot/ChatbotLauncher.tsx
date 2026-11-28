@@ -8,33 +8,33 @@ import type { OpenMode } from "./Chatbot";
 import { startAvatar, type RealAvatar } from "./saumyaRealAvatar";
 import "./SaumyaAvatar.css";
 
-// The chat window and everything behind it: only needed once the page is idle, or Saumya is clicked
+// The chat window and everything behind it: only needed once the page is idle, or Garima is clicked
 const Chatbot = dynamic(() => import("./Chatbot"), { ssr: false });
 
-/* Saumya in the corner: her video (public/videobot.mp4, its backdrop taken out: videobot-alpha.webm, VP9 with
+/* Garima in the corner: her video (public/videobot.mp4, its backdrop taken out: videobot-alpha.webm, VP9 with
    transparency), saying who she is and asking the visitor to talk to her, with her words as subtitles and a "Chat here"
    button under her. Safari can't show a see-through WebM, so there she stands in a small card (videobot-card.mp4).
    She speaks once per page load, whole and with her voice: at once if the browser lets the page play sound, else from
    the visitor's first tap or key anywhere (until then she stands smiling — her first second, looped). Not again after:
-   once she has spoken (or the chat has been opened) the drawn Saumya takes her place (SaumyaButton below, from the
+   once she has spoken (or the chat has been opened) the drawn Garima takes her place (SaumyaButton below, from the
    designer's page public/moksha-ai-assistant-real.html), also on the next pages.
    The designer's GIF is in public/images/chatbot/saumya-launcher.webp, the 3D "Moksha Aunty" in moksha-aunty-avatar/. */
-const VIDEO_ALPHA = "/videobot-alpha.webm";
-const VIDEO_CARD = "/videobot-card.mp4";
-const POSTER = "/videobot-poster.webp";
+const VIDEO_ALPHA = "/Garima_videobot.mp4";
+const VIDEO_CARD = "/Garima_videobot.mp4";
+const POSTER = "/Garima_videobot.mp4";
 
 /* What she says, each word with the second she starts it, a line at a time. She speaks Hindi; the subtitles show it in
    English letters (Hinglish), word for word, so each word still lights up as she says it. */
 const LINES: { end: number; words: [string, number][] }[] = [
   { end: 3.28, words: [["Namo", 1.52], ["Gange,", 1.92], ["Namaskar.", 2.56]] },
-  { end: 5.44, words: [["Main", 3.28], ["Saumya,", 3.52], ["aapki", 4.16], ["Moksha", 4.56], ["Saathi", 4.88], ["hoon.", 5.28]] },
+  { end: 5.44, words: [["Main", 3.28], ["Garima,", 3.52], ["aapki", 4.16], ["Moksha", 4.56], ["Saathi", 4.88], ["hoon.", 5.28]] },
   { end: 8.32, words: [["Sevaon", 5.44], ["ki", 5.84], ["jaankari", 6.08], ["lene", 6.48], ["ya", 6.8], ["book", 7.04], ["karwane", 7.28], ["ke", 7.68], ["liye", 7.84]] },
   { end: 11.04, words: [["aap", 8.32], ["chahein", 8.64], ["to", 8.96], ["mujhse", 9.2], ["bhi", 9.44], ["baat", 9.68], ["kar", 9.92], ["sakte", 10.08], ["hain.", 10.32]] },
   { end: 14, words: [["Neeche", 11.04], ["diye", 11.36], ["button", 11.6], ["par", 11.92], ["click", 12.16], ["karein", 12.4], ["aur", 12.64], ["mujhse", 12.88], ["baat", 13.12], ["karein.", 13.36]] },
 ];
 // Before she speaks: the first second, smiling, looped
 const IDLE_END = 1.35;
-// After: the video held on her namaste (hands folded, lips closed, smiling) until the drawn Saumya takes her place
+// After: the video held on her namaste (hands folded, lips closed, smiling) until the drawn Garima takes her place
 const NAMASTE_AT = 2.33;
 
 /** The video held on her namaste, silent */
@@ -47,7 +47,7 @@ const GESTURES = ["pointerdown", "keydown", "touchend"] as const;
 
 // She speaks once per page load (with her voice, once the browser allows it)
 let spoken = false;
-// Her video is over (said, or the chat was opened): from then on, the drawn Saumya stands here
+// Her video is over (said, or the chat was opened): from then on, the drawn Garima stands here
 let videoOver = false;
 
 /** Music and the like pause while she talks (components/layout/MusicToggle) */
@@ -68,7 +68,7 @@ function VideoBot({
   onDone,
 }: {
   hidden: boolean;
-  // Handing over to the drawn Saumya: she fades and shrinks a little into her (see .vb-leaving)
+  // Handing over to the drawn Garima: she fades and shrinks a little into her (see .vb-leaving)
   leaving: boolean;
   onOpen: (mode: OpenMode) => void;
   onDismiss: () => void;
@@ -101,7 +101,7 @@ function VideoBot({
   // Her video: asked for once the page is idle
   useEffect(() => {
     const start = () => {
-      setCard(!seeThroughVideo());
+      setCard(true);
       setLoad(true);
     };
     const idle = "requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 2500 }) : 0;
@@ -179,7 +179,7 @@ function VideoBot({
     setPhaseBoth("done");
     setSilent(false);
     onOpen(mode);
-    // Back from the chat, the drawn Saumya is there
+    // Back from the chat, the drawn Garima is there
     videoOver = true;
     onDone();
   };
@@ -209,7 +209,7 @@ function VideoBot({
     else if (phaseRef.current === "idle" && video.currentTime >= IDLE_END) video.currentTime = 0.05;
   };
 
-  // Said all of it: the drawn Saumya takes her place
+  // Said all of it: the drawn Garima takes her place
   const onEnded = () => {
     voice(false);
     setSilent(false);
@@ -226,12 +226,11 @@ function VideoBot({
       className={`sv-bot vb-bot ${ready ? "vb-ready" : ""} ${failed ? "mv-failed" : ""} ${rising && !leaving ? "vb-intro" : ""} ${leaving ? "vb-leaving" : ""} ${phase === "done" ? "vb-rest" : ""} ${hidden ? "sv-hidden" : ""} ${card ? "vb-card" : ""} ${chatFont.className} right-1 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-[45] md:right-2 md:bottom-0`}
       aria-hidden={hidden || undefined}
     >
-      <button type="button" className="vb-stage" onClick={() => open("auto")} tabIndex={hidden ? -1 : 0} aria-label="Talk to Saumya">
+      <button type="button" className="vb-stage" onClick={() => open("auto")} tabIndex={hidden ? -1 : 0} aria-label="Talk to Garima">
         {load && (
           <video
             ref={videoRef}
             className="vb-video"
-            poster={POSTER}
             playsInline
             muted
             preload="auto"
@@ -239,17 +238,17 @@ function VideoBot({
             onTimeUpdate={onTime}
             onEnded={onEnded}
             onError={() => {
-              console.warn("[Saumya] launcher video unavailable");
+              console.warn("[Garima] launcher video unavailable");
               setFailed(true);
             }}
           >
-            <source src={card ? VIDEO_CARD : VIDEO_ALPHA} type={card ? "video/mp4" : "video/webm"} />
+            <source src="/Garima_videobot.mp4" type="video/mp4" />
           </video>
         )}
       </button>
 
       {!hidden && (
-        <button type="button" onClick={onDismiss} aria-label="Hide Saumya (she comes back when the page is reloaded)" title="Hide" className="sv-close">
+        <button type="button" onClick={onDismiss} aria-label="Hide Garima (she comes back when the page is reloaded)" title="Hide" className="sv-close">
           <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M3 3l6 6M9 3l-6 6" />
           </svg>
@@ -290,14 +289,14 @@ function VideoBot({
   );
 }
 
-// The drawn Saumya's namaste plays once per page load
+// The drawn Garima's namaste plays once per page load
 let drawnIntroPlayed = false;
-// How long the video and the drawn Saumya cross-fade (as .vb-leaving / .mv-arriving in SaumyaAvatar.css)
+// How long the video and the drawn Garima cross-fade (as .vb-leaving / .mv-arriving in SaumyaAvatar.css)
 const HANDOVER_MS = 900;
 // Her drawing (its layers): fetched while the video plays, so she is ready the moment it ends
 const AVATAR_SVG = "/moksha-chatbot/saumya-real.svg";
 
-/* The drawn Saumya (the designer's page, public/moksha-ai-assistant-real.html) after the video: she rises with a
+/* The drawn Garima (the designer's page, public/moksha-ai-assistant-real.html) after the video: she rises with a
    namaste, blinks, glances around and turns her head a little towards the pointer; a click opens the chat. If she
    can't load, an ॐ badge stands in. */
 function SaumyaButton({
@@ -310,7 +309,7 @@ function SaumyaButton({
   hidden: boolean;
   // While the video plays: drawn and ready, but not shown (so nothing has to load when it ends)
   waiting?: boolean;
-  // Taking the video's place: she grows into it (see .mv-arriving) and folds her hands, as the video's Saumya did
+  // Taking the video's place: she grows into it (see .mv-arriving) and folds her hands, as the video's Garima did
   arriving?: boolean;
 }) {
   const rootRef = useRef<HTMLButtonElement>(null);
@@ -346,7 +345,7 @@ function SaumyaButton({
           void avatar.namaste();
         }
       } catch (error) {
-        console.warn("[Saumya] avatar unavailable:", error);
+        console.warn("[Garima] avatar unavailable:", error);
         if (!cancelled) setFailed(true);
       }
     };
@@ -388,7 +387,7 @@ function SaumyaButton({
       tabIndex={hidden || waiting ? -1 : 0}
       aria-hidden={hidden || waiting || undefined}
       className={`sv-bot mv-bot ${ready ? "mv-ready" : ""} ${failed ? "mv-failed" : ""} ${rising ? "mv-intro" : ""} ${arriving ? "mv-arriving" : ""} ${hidden || waiting ? "sv-hidden" : ""} ${chatFont.className} right-1 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-[45] md:right-2 md:bottom-0`}
-      aria-label="Open chat with Saumya"
+      aria-label="Open chat with Garima"
     >
       <span className="mv-stage" aria-hidden>
         <span ref={figRef} className="mv-tilt" />
@@ -400,7 +399,7 @@ function SaumyaButton({
   );
 }
 
-/* Saumya (bottom right) opens the chat. She is sent with the page, so she doesn't wait for the chat's code; that
+/* Garima (bottom right) opens the chat. She is sent with the page, so she doesn't wait for the chat's code; that
    loads afterwards, when the page is idle, without the visitor noticing. She stays on the page (hidden) while the chat
    is open, so her video isn't loaded again each time. Her ✕ takes her (and the chat) off the page until it is
    reloaded. Opening and closing the chat is announced ("moksha:chat"), so the background music pauses for it. */
@@ -416,8 +415,8 @@ export function ChatbotLauncher() {
   // From the admin's Chatbot Manager: no chat at all when it is switched off (its launcher text isn't shown any more)
   const [settings, setSettings] = useState({ enabled: true, label: "" });
   const openChat = useRef<((mode?: OpenMode) => void) | null>(null);
-  /* "video": her video (the drawn Saumya waits behind it, already drawn); "handover": the video fades into her (both
-     on screen for a moment, so it reads as one Saumya); "drawn": only her. Said on an earlier page: "drawn" at once. */
+  /* "video": her video (the drawn Garima waits behind it, already drawn); "handover": the video fades into her (both
+     on screen for a moment, so it reads as one Garima); "drawn": only her. Said on an earlier page: "drawn" at once. */
   const [stage, setStage] = useState<"video" | "handover" | "drawn">(() => (videoOver ? "drawn" : "video"));
   const handOver = () => {
     setStage((now) => (now === "video" ? "handover" : now));
@@ -473,7 +472,7 @@ export function ChatbotLauncher() {
             <button
               type="button"
               onClick={() => setDismissed(true)}
-              aria-label="Hide Saumya (she comes back when the page is reloaded)"
+              aria-label="Hide Garima (she comes back when the page is reloaded)"
               title="Hide"
               className="sv-close right-1 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-[46] md:right-2 md:bottom-0"
             >

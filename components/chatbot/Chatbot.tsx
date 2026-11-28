@@ -11,10 +11,10 @@ import { toRoman } from "./roman";
 import CallMeCard from "./CallMeCard";
 import { useSiteContact } from "@/lib/useSite";
 
-/* Aarohi ("Aapki Moksha Saathi"), the website's chat assistant: Design House's chat window in Moksha Sewa's
+/* Garima ("Aapki Moksha Saathi"), the website's chat assistant: Design House's chat window in Moksha Sewa's
    colours. Her lines follow the approved script (Aarohi_Final_Chatbot_Script_and_Guidelines.docx): "Namo Gange
    Namaskar", then the name and how the visitor likes to be addressed ("Vijay ji"), except in an urgent case, which is
-   answered at once. The conversation lives on the backend (backend/src/modules/chat): Aarohi answers from Moksha
+   answered at once. The conversation lives on the backend (backend/src/modules/chat): Garima answers from Moksha
    Sewa's services (OpenAI, streamed while she writes) and every chat is saved for the team (admin → AI Chatbot).
    The admin's Chatbot Manager sets the name, welcome and quick buttons (GET /chat/config). */
 
@@ -39,7 +39,7 @@ const COPY = {
     blockedNote: "Chat blocked for offensive language",
     blockedOpensIn: "It opens again in",
     abuseHint: "Please avoid offensive words. Sending this counts as a warning.",
-    // Said (and shown) after each abusive message, by stage (Aarohi's manual): a polite request, a warning, the final
+    // Said (and shown) after each abusive message, by stage (Garima's manual): a polite request, a warning, the final
     // warning; the next one closes the chat
     abuseWarning: (n: number, name: string) =>
       named(n <= 1 ? `⚠️ ${name} Ji, may I make a small request? Please avoid using such words. We can have a pleasant and respectful conversation, can't we? Please tell me how I can help you.` : n === 2 ? `⚠️ ${name} Ji, I just made a polite request to avoid such language. If something is bothering you, please feel free to tell me. I'm here to help. However, if this behaviour continues, I may have to bring it to the attention of our senior team. I hope you understand.` : `⚠️ ${name} Ji, I would once again respectfully request you to maintain appropriate and respectful communication. I sincerely hope our conversation does not lead to a formal complaint or further action. However, if this behaviour continues, I will have to suspend your chat access for 24 hours and report this conversation to our senior team. I hope you understand and that such action will not be necessary.`, name),
@@ -125,7 +125,7 @@ const COPY = {
     introMute: "Mute her voice",
     introUnmute: "Turn her voice on",
   },
-  // Hindi as people type it in chats (Roman letters), like Aarohi's own Hindi replies
+  // Hindi as people type it in chats (Roman letters), like Garima's own Hindi replies
   hi: {
     subtitle: "आपकी मोक्ष साथी",
     placeholder: "यहाँ लिखिए...",
@@ -216,7 +216,7 @@ const COPY = {
 
 /* ───────────────────────── Messages ───────────────────────── */
 
-// Quick buttons under the welcome: "ask" goes to Aarohi as the visitor's question, "answer" is a reply the team
+// Quick buttons under the welcome: "ask" goes to Garima as the visitor's question, "answer" is a reply the team
 // wrote in the Chatbot Manager, "team" asks for a number to call back
 type Chip =
   | { kind: "ask"; label: string }
@@ -244,7 +244,7 @@ interface Message extends Line {
   event?: "joined" | "left"; // agent: the team joined or left (a note, not a bubble)
   files?: ChatFile[];
   at?: number; // when it appeared (shown under the bubble)
-  live?: boolean; // Aarohi is still writing it (or, in a call, someone is still speaking)
+  live?: boolean; // Garima is still writing it (or, in a call, someone is still speaking)
   key?: string; // in a call: the conversation item this bubble shows
   pending?: boolean; // in a call: said in Hindi, waiting for its Hinglish text from the server
   callOffer?: { verified: boolean; last4: string }; // her offer of a call now: the "call me now / call back" card under it
@@ -277,7 +277,7 @@ interface ChatConfig {
   background?: "default" | "white";
 }
 
-// The suggestions from Aarohi's script ("Turant Sahayata · Sevaon Ki Jaankari · Parivar Ke Liye Sahayata"): shortcuts only,
+// The suggestions from Garima's script ("Turant Sahayata · Sevaon Ki Jaankari · Parivar Ke Liye Sahayata"): shortcuts only,
 // the visitor can always type or speak instead
 const DEFAULT_CHIPS: Record<Lang, Chip[]> = {
   en: [
@@ -292,22 +292,22 @@ const DEFAULT_CHIPS: Record<Lang, Chip[]> = {
   ],
 };
 
-const BOT_NAME = "Aarohi";
-const BOT_NAME_HI = "आरोही";
+const BOT_NAME = "Garima";
+const BOT_NAME_HI = "गरिमा";
 /** The chatbot's name (admin → Chatbot Settings) as the lines in this language write it */
 const botNameFor = (config: { name?: string; nameHi?: string } | null, lang: Lang) =>
   lang === "hi" ? config?.nameHi || config?.name || BOT_NAME_HI : config?.name || BOT_NAME;
-// The chat header's avatar picture (Aarohi's photograph), unless the Chatbot Manager uploaded another avatar
+// The chat header's avatar picture (Garima's photograph), unless the Chatbot Manager uploaded another avatar
 const AVATAR = "/images/chatbot/aarohi-avatar.png";
 // The chat's artwork: the ghat at the bottom, distant temples top right, a faint mandala in the corner
 const CHAT_BG = "/images/chatbot/bg.svg";
-// Aarohi's intro (a 10-second video with her voice): in a video-call window, the first time the chat opens on a page
+// Garima's intro (a 10-second video with her voice): in a video-call window, the first time the chat opens on a page
 // The visitor asks her to speak louder ("zor se boliye", "awaaz badhaiye", "can you speak loudly?") or softer
 const LOUDER = /(?:tez|tej|zor|jor|ऊँच|ऊंच|तेज़?|ज़ोर|जोर)\s*(?:se|से|awaaz|आवाज़?)?\s*(?:bol|बोल)|(?:aawaz|awaaz|awaz|aavaz|आवाज़?|volume|वॉल्यूम)\s*(?:thod[ai]\s*|थोड़[ाी]\s*)?(?:badha|badhao|badhaiye|tez|tej|unchi|बढ़ा|बढ़ाओ|बढ़ाइए|बढ़ाइये|तेज़?|ऊँची|ऊंची|up)|(?:sunai|सुनाई)\s*(?:nahi|nahin|नहीं)\s*(?:de|दे)|(?:kam|कम|dheemi|धीमी)\s*(?:sunai|सुनाई)|\b(?:louder|speak\s+(?:up|loud(?:ly|er)?)|can'?t\s+hear|cannot\s+hear|volume\s+up|turn\s+(?:it\s+)?up)\b/i;
 const SOFTER = /(?:aawaz|awaaz|awaz|आवाज़?|volume|वॉल्यूम)\s*(?:thod[ai]\s*|थोड़[ाी]\s*)?(?:kam|कम|dheemi|धीमी|down)|\b(?:too\s+loud|speak\s+(?:softly|softer|quietly)|lower\s+(?:your\s+)?voice|volume\s+down|turn\s+(?:it\s+)?down)\b/i;
 
 // Her video call when the chat opens (public/callbot.mp4, with its own voice): she thanks them and asks their name
-const INTRO_VIDEO = "/callbot.mp4";
+const INTRO_VIDEO = "/Garima.mp4";
 let introPlayed = false;
 // What she says in it, each word with the second she starts saying it: captions on the video, then in the chat
 const INTRO_WORDS: [string, number][] = [
@@ -367,11 +367,11 @@ const CALL_IDLE_MS = 120000; // a call ends itself after this long without anyon
 const GOODBYE_CUT_WAIT_MS = 6000;
 // Nobody has spoken for a minute: the call goes on hold by itself (sooner if admin → Chatbot Settings says so)
 const AUTO_HOLD_MS = 60000;
-/* Aarohi's Module 31: three minutes before the call's time is up she is told, so a real need or a genuine enquiry gets
+/* Garima's Module 31: three minutes before the call's time is up she is told, so a real need or a genuine enquiry gets
    more time (extend_call) and casual talk a polite close. The pipeline call is told on the server with each reply; the
    realtime call by this note (the pipeline leaves such a note aside). */
 const TIME_NOTE_SECONDS = 180;
-const TIME_NOTE = `THE CALL'S TIME IS ALMOST UP (about 3 minutes left; Aarohi's Module 31). Never mention time, limit or cost. A real need going on (a death, distress, emergency, complaint, Moksha Sewa, booking) or a genuine enquiry about our services: call extend_call now and carry on helping. Casual talk or general questions only: don't extend; ask once whether anything about Moksha Sewa remains, then the natural farewell and end_conversation.`;
+const TIME_NOTE = `THE CALL'S TIME IS ALMOST UP (about 3 minutes left; Garima's Module 31). Never mention time, limit or cost. A real need going on (a death, distress, emergency, complaint, Moksha Sewa, booking) or a genuine enquiry about our services: call extend_call now and carry on helping. Casual talk or general questions only: don't extend; ask once whether anything about Moksha Sewa remains, then the natural farewell and end_conversation.`;
 const callIdleMs = (config: { callIdleSeconds?: number } | null) => {
   const n = Number(config?.callIdleSeconds);
   return Number.isFinite(n) && n >= 30 ? n * 1000 : CALL_IDLE_MS;
@@ -413,7 +413,7 @@ const NAME_KEY = "mv_chat_name";
 const SALUTATION_KEY = "mv_chat_salutation"; // how the visitor confirmed they like to be addressed ("Vijay" → "Vijay ji")
 const MUTED_KEY = "mv_chat_muted";
 const BLOCK_KEY = "mv_chat_block";
-const STRIKES_TO_BLOCK = 4; // abusive messages before the chat blocks itself (three warnings first: Aarohi's manual)
+const STRIKES_TO_BLOCK = 4; // abusive messages before the chat blocks itself (three warnings first: Garima's manual)
 const BLOCK_MS = 24 * 60 * 60 * 1000;
 const MAX_NAME_ASKS = 3; // after this many tries the chat carries on without a name
 const CHAT_END_AFTER_GOODBYE_MS = 10000; // the chat ends this long after the goodbye, unless the visitor carries on
@@ -553,7 +553,7 @@ const extractName = (text: string): string | null => {
 // "ok thanks", "bye", "dhanyavaad": the visitor is done
 const VISITOR_DONE = /^(ok(ay)?|thanks?|thank (you|u)|ty|bye|good ?bye|dhanyavaad|dhanyawad|dhanywad|shukriya|theek hai|thik hai|bas|nothing( else)?|no thanks?)\b[\s\w!.🙏]*$/iu;
 
-/* ── Links in Aarohi's replies: [label](url), **bold**, bare URLs and "- " bullets ── */
+/* ── Links in Garima's replies: [label](url), **bold**, bare URLs and "- " bullets ── */
 // The live site, and the old staging address that older replies may still link to
 const SITE_HOSTS = new Set(["mokshasewa.org", "www.mokshasewa.org", "mokshasewa.vaidhyashala.in", "www.mokshasewa.vaidhyashala.in", new URL(SITE_URL).host]);
 // A page of this website opens in the same tab (and stays on localhost while testing); other sites open in a new one
@@ -800,7 +800,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const [avatarLanding, setAvatarLanding] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   // Every chat starts in English; a message in Hindi / Hinglish switches the chat's own text
-  // Hinglish first, as in Aarohi's script; English when the visitor writes English
+  // Hinglish first, as in Garima's script; English when the visitor writes English
   const [lang, setLang] = useState<Lang>("hi");
   const [muted, setMuted] = useState(() => stored(MUTED_KEY) === "1");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -818,7 +818,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const [busy, setBusy] = useState(false); // waiting for (or reading) a reply: no new message until it's done
   const [input, setInput] = useState("");
   const [askingName, setAskingName] = useState(() => !stored(NAME_KEY));
-  // Live chat: someone from the team has taken the chat over, so Aarohi isn't replying
+  // Live chat: someone from the team has taken the chat over, so Garima isn't replying
   const [teamLive, setTeamLive] = useState(false);
   const teamLiveRef = useRef(false);
   const teamSinceRef = useRef(0); // server time: the team's messages after this are new (0 = not asked yet)
@@ -851,7 +851,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const inputRef = useRef<HTMLInputElement>(null);
   const closingAtRef = useRef<number | null>(null);
 
-  /* ── Aarohi's voice: replies read out in her calm voice (OpenAI), and the visitor can speak ── */
+  /* ── Garima's voice: replies read out in her calm voice (OpenAI), and the visitor can speak ── */
   const [voiceOn, setVoiceOn] = useState(() => stored(VOICE_KEY) !== "0"); // voice replies are on until the visitor switches them off
   const voiceOnRef = useRef(voiceOn);
   const [speaking, setSpeaking] = useState(false);
@@ -867,7 +867,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const recordTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   /* ── The spoken call (OpenAI Realtime over WebRTC, as in the Design House chat): the visitor just talks, can talk
-     over Aarohi, and both sides appear in the chat as they are said ── */
+     over Garima, and both sides appear in the chat as they are said ── */
   const [canTalk] = useState(canCall);
   const [callState, setCallState] = useState<"off" | "connecting" | "on">("off");
   const [micMuted, setMicMuted] = useState(false);
@@ -888,7 +888,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
   const goodbyeCutRef = useRef(false);
   const endTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const callTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  // Her note that the call's time is almost up (Aarohi's Module 31; see scheduleCallEnd)
+  // Her note that the call's time is almost up (Garima's Module 31; see scheduleCallEnd)
   const timeNoteTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const endCallRef = useRef<(note?: string) => void>(() => { });
   // Puts a quiet call on hold (as the Hold button does); Resume carries on
@@ -993,7 +993,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
 
   /* ── Sound effects, generated in the browser (no audio files) ──
      Browsers only allow sound that starts from a click, so the audio is unlocked inside click handlers
-     (opening the chat, send) and Aarohi's later replies can then play. */
+     (opening the chat, send) and Garima's later replies can then play. */
   const audio = () => {
     try {
       const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -1033,7 +1033,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     });
   };
 
-  // New message from Aarohi: "ding-dong"
+  // New message from Garima: "ding-dong"
   const playIncoming = () => chime([[880, 0], [1318.5, 0.13]], 0.32, 0.55);
   // The chat opens: a soft temple bell (ghanti), its inharmonic overtones ringing out slowly
   const playOpen = () => {
@@ -1196,7 +1196,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           void botSay([{ text: res.status === 429 ? copy().tooFast(phoneRef.current) : copy().micFailed }]);
           return;
         }
-        // They spoke, so Aarohi answers aloud too
+        // They spoke, so Garima answers aloud too
         if (!voiceOnRef.current) setVoice(true);
         send(said);
       } catch {
@@ -1224,7 +1224,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     });
   const dropBubble = (key: string) => setMessages((prev) => prev.filter((m) => m.key !== key));
 
-  /* Saves what was said in the call and shows it in its bubble. Hindi (Aarohi speaks from Devanagari, for the accent,
+  /* Saves what was said in the call and shows it in its bubble. Hindi (Garima speaks from Devanagari, for the accent,
      and the visitor's words are written down in Devanagari) is shown as Hinglish in Roman letters: the bubble waits
      with "typing" dots until the server sends it back rewritten. */
   const saveTurn = (role: "user" | "assistant", text: string, key?: string) => {
@@ -1272,13 +1272,13 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     );
   };
 
-  // What Aarohi asked for in the call: save the name / number, search the team's notes, or end the call
+  // What Garima asked for in the call: save the name / number, search the team's notes, or end the call
   const runCallTools = async (requested: NonNullable<NonNullable<CallEvent["response"]>["output"]>) => {
     let replyAgain = false;
     for (const tool of requested) {
       const call = callRef.current;
       if (!call || !tool.call_id) return;
-      /* Details for the visitor to read at their own pace (Aarohi's Module 31: package inclusions, prices, documents, the
+      /* Details for the visitor to read at their own pace (Garima's Module 31: package inclusions, prices, documents, the
          address): shown in the chat as her message and saved with it; she then says only a short line about them */
       if (tool.name === "show_in_chat") {
         let text = "";
@@ -1331,7 +1331,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         const given = data?.output as { ok?: unknown; seconds_left?: unknown } | undefined;
         if (tool.name === "extend_call" && given?.ok === true && typeof given.seconds_left === "number") scheduleCallEnd(given.seconds_left);
         if (data?.name) {
-          // Aarohi learned the visitor's name in the call: the typed chat knows it too
+          // Garima learned the visitor's name in the call: the typed chat knows it too
           remember(sessionIdRef.current, data.name);
           setAskingName(false);
           pendingRef.current = "";
@@ -1339,7 +1339,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           if (introRef.current === "listening" || introRef.current === "on") finishIntroRef.current();
         }
       } catch {
-        // Aarohi carries on without it
+        // Garima carries on without it
       }
       callRef.current?.send({ type: "conversation.item.create", item: { type: "function_call_output", call_id: tool.call_id, output: JSON.stringify(output) } });
       replyAgain = true;
@@ -1362,7 +1362,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         if (event.blocked) closeForAbuse(() => blockFor(event.blockedFor), event.blockedFor === null, Boolean(event.said));
         break;
       case "pipeline.name":
-        // Aarohi has heard their name (the pipeline call says so the moment it knows): from the video call into her
+        // Garima has heard their name (the pipeline call says so the moment it knows): from the video call into her
         // avatar now, while she answers and saves it (even while the video is still talking: it stops for her answer)
         if (introRef.current === "listening" || introRef.current === "on") finishIntroRef.current();
         break;
@@ -1416,9 +1416,9 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
           goodbyeCutRef.current = false;
           clearTimeout(endTimerRef.current);
         }
-        // Abusive words are never shown or answered (what Aarohi started saying is stopped and they leave the
+        // Abusive words are never shown or answered (what Garima started saying is stopped and they leave the
         // conversation); they count as a warning, as typed ones do, and she says the warning aloud. (Not a word the
-        // recognizer may have made of an ordinary one — "Sikh" heard as "sex": Aarohi judges those, isAbusiveSpoken)
+        // recognizer may have made of an ordinary one — "Sikh" heard as "sex": Garima judges those, isAbusiveSpoken)
         if (isAbusiveSpoken(text)) {
           dropBubble(event.item_id);
           callRef.current?.send({ type: "response.cancel" });
@@ -1505,7 +1505,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         }
         break;
       case "error":
-        console.warn("[Aarohi] call:", event.error?.code, event.error?.message);
+        console.warn("[Garima] call:", event.error?.code, event.error?.message);
         break;
       default:
         break;
@@ -1649,7 +1649,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
       onClosed: () => endCallRef.current(COPY[langRef.current].callDropped),
     };
     try {
-      // Deepgram hears, OpenAI thinks, Sarvam speaks (in Aarohi's Hindi voice) when the backend offers it;
+      // Deepgram hears, OpenAI thinks, Sarvam speaks (in Garima's Hindi voice) when the backend offers it;
       // otherwise, or if its connection fails, the OpenAI Realtime call
       let call: Call | null = null;
       // Their earlier conversation first (it may carry on in another session: the team closed this one): whether she
@@ -1662,7 +1662,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         } catch (error) {
           const reason = (error as DOMException)?.name;
           if (reason === "NotAllowedError" || reason === "NotFoundError") throw error;
-          console.warn("[Aarohi] pipeline call failed, trying the realtime call:", (error as Error)?.message);
+          console.warn("[Garima] pipeline call failed, trying the realtime call:", (error as Error)?.message);
         }
       }
       if (!call) call = await openCall({ ...callEvents, connect: async (offer) => (await ask({ sdp: offer })).sdp || "" }, { noiseCancel: noiseOn });
@@ -1683,7 +1683,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
       checkedInRef.current = false;
       setCallState("on");
       setMicMuted(false);
-      // Aarohi speaks first, in Hindi: opened by the chat, the welcome from AI Training asks "talk or type?"
+      // Garima speaks first, in Hindi: opened by the chat, the welcome from AI Training asks "talk or type?"
       choosingRef.current = askTalkOrType;
       const welcome =
         askTalkOrType && greeting
@@ -1852,7 +1852,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     callRef.current?.setNoiseCancel(next);
   };
 
-  // Typed during a call: it goes into the same conversation and Aarohi answers aloud
+  // Typed during a call: it goes into the same conversation and Garima answers aloud
   const typeInCall = (text: string) => {
     const call = callRef.current;
     if (!call) return;
@@ -1970,7 +1970,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     store(SALUTATION_KEY, salutation);
   };
 
-  // How Aarohi addresses the visitor (with "ji"): the confirmed form, else the name, never "Visitor"
+  // How Garima addresses the visitor (with "ji"): the confirmed form, else the name, never "Visitor"
   const addressOf = () => stored(SALUTATION_KEY) || (nameRef.current && nameRef.current !== "Visitor" ? nameRef.current : "");
 
   // POST /chat/start: saves the name (and how to address them) on the chat. The same name from the same place
@@ -2100,7 +2100,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     else await botSay([...welcomeLines(), { text: copy().welcome(shown), chips: chips() }]);
   };
 
-  /* ── A question for Aarohi: POST /chat streams the reply (Server-Sent Events) into one bubble ── */
+  /* ── A question for Garima: POST /chat streams the reply (Server-Sent Events) into one bubble ── */
   const ask = async (question: string, retry = true): Promise<void> => {
     await queueRef.current; // let the scripted lines finish first
     let restart = false;
@@ -2145,7 +2145,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
         } else show(res.status === 429 ? copy().tooFast(phoneRef.current) : copy().offline(phoneRef.current));
         return;
       }
-      // The team has taken the chat over: the message went to them and Aarohi doesn't reply
+      // The team has taken the chat over: the message went to them and Garima doesn't reply
       if ((res.headers.get("content-type") || "").includes("application/json")) {
         const body = await res.json().catch(() => null);
         if (body?.data?.agent) {
@@ -2216,7 +2216,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     if (VISITOR_DONE.test(question.trim()) && reply && !/[?؟]\s*$/.test(reply.trim())) closingAtRef.current = Date.now() + CHAT_END_AFTER_GOODBYE_MS;
   };
 
-  /* ── The name, before the first answer (Aarohi's script: name first, then how they like to be addressed) ── */
+  /* ── The name, before the first answer (Garima's script: name first, then how they like to be addressed) ── */
   const takeName = async (text: string) => {
     const said = text.trim();
 
@@ -2711,9 +2711,9 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
     if (!next) playIncoming(); // turning the chime on plays it, so it's clear it works
   };
 
-  // The visitor's message has been read once Aarohi has replied after it (blue ticks)
+  // The visitor's message has been read once Garima has replied after it (blue ticks)
   const seen = (index: number) => messages.slice(index + 1).some((m) => m.from !== "user");
-  // Show the avatar only on the first of consecutive messages from Aarohi
+  // Show the avatar only on the first of consecutive messages from Garima
   const showAvatar = (index: number) => messages[index].from === "bot" && messages[index - 1]?.from !== "bot";
   const lastId = messages[messages.length - 1]?.id;
   // Only her latest offer of a call shows its card
@@ -2863,7 +2863,7 @@ const Chatbot = ({ isOpen, setIsOpen, openRef, openAtOnce, onConfig }: ChatbotPr
                   </span>
                 </div>
                 <div className="min-w-0 flex-1">
-                  {/* No "AI" label in the header (Aarohi's script); she answers honestly when asked */}
+                  {/* No "AI" label in the header (Garima's script); she answers honestly when asked */}
                   <p className="truncate text-[18px] leading-tight font-bold">{teamLive ? t.teamTitle : botName}</p>
                   <p className={`truncate text-[11px] font-semibold ${teamLive || speaking || isTyping || inCall ? "text-[#fcd98a]" : "text-white/85"}`}>{status}</p>
                 </div>

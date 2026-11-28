@@ -1,4 +1,4 @@
-/* Saumya's avatar on the chat launcher: a drawn woman (her layers are public/moksha-chatbot/saumya-real.svg, from the
+/* Garima's avatar on the chat launcher: a drawn woman (her layers are public/moksha-chatbot/saumya-real.svg, from the
    designer's page public/moksha-ai-assistant-real.html) who rises with a namaste, blinks, glances around, moves her
    lips while the bubble talks, bows, and turns a little towards the pointer. Each layer is shown or hidden by a class
    or data-v on the SVG (see SaumyaAvatar.css); her head and body follow --mx / --my / --tilt on the launcher. */

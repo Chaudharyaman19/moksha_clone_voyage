@@ -1,7 +1,7 @@
-/* A spoken call with the website chat's assistant (components/chatbot/Chatbot.tsx, Aarohi; ported from the Design House chat).
+/* A spoken call with the website chat's assistant (components/chatbot/Chatbot.tsx, Garima; ported from the Design House chat).
    Two kinds, with the same events for the chat window:
    - openPipelineCall: a WebSocket to the backend, which runs Deepgram (hears), OpenAI (thinks) and Sarvam (speaks, in
-     Aarohi's Hindi voice). The mic goes out as 16 kHz PCM; her voice comes back as one MP3 per sentence.
+     Garima's Hindi voice). The mic goes out as 16 kHz PCM; her voice comes back as one MP3 per sentence.
    - openCall: WebRTC to OpenAI's Realtime voice model. The backend opens the call, so no key is in the browser; after
      that sound goes straight between the browser and OpenAI, and events come over a data channel.
 
