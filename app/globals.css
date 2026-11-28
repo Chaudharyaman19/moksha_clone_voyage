@@ -1031,3 +1031,42 @@ body:has(.landing-typo) .footer-presence::before {
 @media (prefers-reduced-motion: reduce) {
   .hero-img-fade { animation: none; }
 }
+
+/* How Sewa Works section keeps its custom 3-column showcase typography inside .landing-typo */
+.landing-typo .how-sewa-showcase h2 {
+  font-size: clamp(34px, 3.05vw, 44px) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  color: #36160B !important;
+  white-space: pre-line !important;
+}
+.landing-typo .how-sewa-showcase h3 {
+  font-size: clamp(19px, 1.5vw, 22px) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+  color: #36160B !important;
+}
+.landing-typo .how-sewa-showcase .how-sewa-eyebrow {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.23em !important;
+  color: #9A5B22 !important;
+}
+.landing-typo .how-sewa-showcase .how-sewa-step-desc {
+  font-size: 14.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.38 !important;
+  color: #2B1B12 !important;
+}
+.landing-typo .how-sewa-showcase .how-sewa-cta {
+  font-size: 15.5px !important;
+  font-weight: 600 !important;
+  color: #FFFFFF !important;
+}
+.landing-typo .how-sewa-showcase .how-sewa-footnote {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  color: #2B1B12 !important;
+}

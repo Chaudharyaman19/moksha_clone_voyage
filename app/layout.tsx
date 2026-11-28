@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sideicon from "@/components/layout/Sideicon/Sideicon";
+import SiteAnalyticsTracker from "@/components/analytics/SiteAnalyticsTracker";
 import HeadingAccent from "@/components/layout/HeadingAccent";
 import { ChatbotLauncher } from "@/components/chatbot/ChatbotLauncher";
 import StoreProvider from "@/store/StoreProvider";
@@ -96,7 +97,7 @@ export default async function RootLayout({
   const ga4MeasurementId = /^G-[A-Z0-9]+$/i.test(configuredGa4Id) ? configuredGa4Id : undefined;
   const gtmContainerId = /^GTM-[A-Z0-9]+$/i.test(configuredGtmId) ? configuredGtmId : undefined;
 
-  const topbarSection = settings?.landingPage?.sections?.find((s: any) => s.key === "topbar");
+  const topbarSection = settings?.landingPage?.sections?.find((s: { key?: string; audioUrl?: string }) => s.key === "topbar");
   const configuredAudioUrl = topbarSection?.audioUrl;
 
   return (
@@ -194,6 +195,7 @@ gtag('config', '${ga4MeasurementId}', { send_page_view: true });`,
           }}
         />
         <StoreProvider>
+          <SiteAnalyticsTracker />
           <GlobalAudioProvider audioUrl={configuredAudioUrl}>
             <DynamicCanonical />
             <Sideicon />
