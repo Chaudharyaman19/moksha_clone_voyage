@@ -503,6 +503,16 @@ export default function Hero() {
     setImgTrack({ cur: activeImage, out: imgTrack.cur });
   }
   const outgoingImage = imgTrack.out;
+
+  // Preload all slide images in background so cross-fades never jerk on decode
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    images.forEach((src) => {
+      if (!src) return;
+      const pre = new window.Image();
+      pre.src = src;
+    });
+  }, [images]);
   useEffect(() => {
     if (!outgoingImage) return;
     const t = window.setTimeout(() => setImgTrack((p) => (p.cur === activeImage ? { cur: p.cur, out: null } : p)), 1500);
@@ -724,7 +734,7 @@ export default function Hero() {
       >
         {/* HD image slider: image is kept on the right, so it is not stretched across the full page. */}
         <div
-          className={`absolute inset-y-0 overflow-hidden ${isImageOnlySlide
+          className={`absolute inset-y-0 overflow-hidden transition-[left,right] duration-1000 ease-in-out ${isImageOnlySlide
             ? "left-0 right-0"
             : isFamilySupportSlide
             ? "left-0 right-0 md:left-[42%]"
@@ -756,6 +766,7 @@ export default function Hero() {
                 aria-hidden
                 fill
                 quality={75}
+                unoptimized={outgoingImage.startsWith("/hero-images/")}
                 sizes="100vw"
                 className="object-cover object-right"
               />
